@@ -18,7 +18,7 @@ pub const HEAPLIST32 = extern struct {
 
 pub const HEAPENTRY32 = extern struct {
     dwSize: usize,
-    hHandle: HANDLE,
+    hHandle: ?HANDLE,
     dwAddress: usize,
     dwBlockSize: usize,
     dwFlags: HEAPENTRY32_FLAGS,
@@ -70,9 +70,9 @@ pub const MODULEENTRY32W = extern struct {
     th32ProcessID: u32,
     GlblcntUsage: u32,
     ProccntUsage: u32,
-    modBaseAddr: *u8,
+    modBaseAddr: ?*u8,
     modBaseSize: u32,
-    hModule: HINSTANCE,
+    hModule: ?HINSTANCE,
     szModule: [256]u16,
     szExePath: [260]u16,
 };
@@ -83,9 +83,9 @@ pub const MODULEENTRY32 = extern struct {
     th32ProcessID: u32,
     GlblcntUsage: u32,
     ProccntUsage: u32,
-    modBaseAddr: *u8,
+    modBaseAddr: ?*u8,
     modBaseSize: u32,
-    hModule: HINSTANCE,
+    hModule: ?HINSTANCE,
     szModule: [256]CHAR,
     szExePath: [260]CHAR,
 };
@@ -144,99 +144,99 @@ pub const LF32_MOVEABLE = HEAPENTRY32_FLAGS.MOVEABLE;
 pub extern "KERNEL32" fn CreateToolhelp32Snapshot(
     dwFlags: CREATE_TOOLHELP_SNAPSHOT_FLAGS,
     th32ProcessID: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32ListFirst(
-    hSnapshot: HANDLE,
-    lphl: *HEAPLIST32,
+    hSnapshot: ?HANDLE,
+    lphl: ?*HEAPLIST32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32ListNext(
-    hSnapshot: HANDLE,
-    lphl: *HEAPLIST32,
+    hSnapshot: ?HANDLE,
+    lphl: ?*HEAPLIST32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32First(
-    lphe: *HEAPENTRY32,
+    lphe: ?*HEAPENTRY32,
     th32ProcessID: u32,
     th32HeapID: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32Next(
-    lphe: *HEAPENTRY32,
+    lphe: ?*HEAPENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Toolhelp32ReadProcessMemory(
     th32ProcessID: u32,
-    lpBaseAddress: *const c_void,
-    lpBuffer: *c_void,
+    lpBaseAddress: ?*const c_void,
+    lpBuffer: ?*c_void,
     cbRead: usize,
-    lpNumberOfBytesRead: *usize,
+    lpNumberOfBytesRead: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32FirstW(
-    hSnapshot: HANDLE,
-    lppe: *PROCESSENTRY32W,
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32NextW(
-    hSnapshot: HANDLE,
-    lppe: *PROCESSENTRY32W,
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32First(
-    hSnapshot: HANDLE,
-    lppe: *PROCESSENTRY32,
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32Next(
-    hSnapshot: HANDLE,
-    lppe: *PROCESSENTRY32,
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Thread32First(
-    hSnapshot: HANDLE,
-    lpte: *THREADENTRY32,
+    hSnapshot: ?HANDLE,
+    lpte: ?*THREADENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Thread32Next(
-    hSnapshot: HANDLE,
-    lpte: *THREADENTRY32,
+    hSnapshot: ?HANDLE,
+    lpte: ?*THREADENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32FirstW(
-    hSnapshot: HANDLE,
-    lpme: *MODULEENTRY32W,
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32NextW(
-    hSnapshot: HANDLE,
-    lpme: *MODULEENTRY32W,
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32First(
-    hSnapshot: HANDLE,
-    lpme: *MODULEENTRY32,
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32Next(
-    hSnapshot: HANDLE,
-    lpme: *MODULEENTRY32,
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

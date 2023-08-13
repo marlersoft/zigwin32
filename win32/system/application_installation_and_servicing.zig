@@ -92,37 +92,37 @@ pub const SFC_QUOTA_DEFAULT = @as(u32, 50);
 pub const ACTCTXA = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    lpSource: [*:0]const u8,
+    lpSource: ?[*:0]const u8,
     wProcessorArchitecture: u16,
     wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u8,
-    lpResourceName: [*:0]const u8,
-    lpApplicationName: [*:0]const u8,
-    hModule: HINSTANCE,
+    lpAssemblyDirectory: ?[*:0]const u8,
+    lpResourceName: ?[*:0]const u8,
+    lpApplicationName: ?[*:0]const u8,
+    hModule: ?HINSTANCE,
 };
 
 pub const ACTCTXW = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    lpSource: [*:0]const u16,
+    lpSource: ?[*:0]const u16,
     wProcessorArchitecture: u16,
     wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u16,
-    lpResourceName: [*:0]const u16,
-    lpApplicationName: [*:0]const u16,
-    hModule: HINSTANCE,
+    lpAssemblyDirectory: ?[*:0]const u16,
+    lpResourceName: ?[*:0]const u16,
+    lpApplicationName: ?[*:0]const u16,
+    hModule: ?HINSTANCE,
 };
 
 pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
     cbSize: u32,
     ulDataFormatVersion: u32,
-    lpData: *c_void,
+    lpData: ?*c_void,
     ulLength: u32,
-    lpSectionGlobalData: *c_void,
+    lpSectionGlobalData: ?*c_void,
     ulSectionGlobalDataLength: u32,
-    lpSectionBase: *c_void,
+    lpSectionBase: ?*c_void,
     ulSectionTotalLength: u32,
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     ulAssemblyRosterIndex: u32,
     ulFlags: u32,
     AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
@@ -140,8 +140,8 @@ pub const ASSEMBLY_FILE_DETAILED_INFORMATION = extern struct {
     ulFlags: u32,
     ulFilenameLength: u32,
     ulPathLength: u32,
-    lpFileName: [*:0]const u16,
-    lpFilePath: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
+    lpFilePath: ?[*:0]const u16,
 };
 
 pub const ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = extern struct {
@@ -159,10 +159,10 @@ pub const ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = extern struct {
     ulPolicyVersionMajor: u32,
     ulPolicyVersionMinor: u32,
     ulAssemblyDirectoryNameLength: u32,
-    lpAssemblyEncodedAssemblyIdentity: [*:0]const u16,
-    lpAssemblyManifestPath: [*:0]const u16,
-    lpAssemblyPolicyPath: [*:0]const u16,
-    lpAssemblyDirectoryName: [*:0]const u16,
+    lpAssemblyEncodedAssemblyIdentity: ?[*:0]const u16,
+    lpAssemblyManifestPath: ?[*:0]const u16,
+    lpAssemblyPolicyPath: ?[*:0]const u16,
+    lpAssemblyDirectoryName: ?[*:0]const u16,
     ulFileCount: u32,
 };
 
@@ -217,9 +217,9 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     ulRootConfigurationPathChars: u32,
     ulAppDirPathType: u32,
     ulAppDirPathChars: u32,
-    lpRootManifestPath: [*:0]const u16,
-    lpRootConfigurationPath: [*:0]const u16,
-    lpAppDirPath: [*:0]const u16,
+    lpRootManifestPath: ?[*:0]const u16,
+    lpRootConfigurationPath: ?[*:0]const u16,
+    lpAppDirPath: ?[*:0]const u16,
 };
 
 pub const MSIASSEMBLYINFO = enum(u32) {
@@ -290,17 +290,17 @@ pub const ieStatusFail = STATUSTYPES.Fail;
 pub const ieStatusCancel = STATUSTYPES.Cancel;
 
 pub const LPDISPLAYVAL = fn(
-    pContext: *c_void,
+    pContext: ?*c_void,
     uiType: RESULTTYPES,
-    szwVal: [*:0]const u16,
-    szwDescription: [*:0]const u16,
-    szwLocation: [*:0]const u16,
+    szwVal: ?[*:0]const u16,
+    szwDescription: ?[*:0]const u16,
+    szwLocation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPEVALCOMCALLBACK = fn(
     iStatus: STATUSTYPES,
-    szData: [*:0]const u16,
-    pContext: *c_void,
+    szData: ?[*:0]const u16,
+    pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IValidate_Value = @import("../zig.zig").Guid.initString("e482e5c6-e31e-4143-a2e6-dbc3d8e4b8d3");
@@ -310,11 +310,11 @@ pub const IValidate = extern struct {
         base: IUnknown.VTable,
         OpenDatabase: fn(
             self: *const IValidate,
-            szDatabase: [*:0]const u16,
+            szDatabase: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenCUB: fn(
             self: *const IValidate,
-            szCUBFile: [*:0]const u16,
+            szCUBFile: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseDatabase: fn(
             self: *const IValidate,
@@ -324,28 +324,28 @@ pub const IValidate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDisplay: fn(
             self: *const IValidate,
-            pDisplayFunction: LPDISPLAYVAL,
-            pContext: *c_void,
+            pDisplayFunction: ?LPDISPLAYVAL,
+            pContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStatus: fn(
             self: *const IValidate,
-            pStatusFunction: LPEVALCOMCALLBACK,
-            pContext: *c_void,
+            pStatusFunction: ?LPEVALCOMCALLBACK,
+            pContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Validate: fn(
             self: *const IValidate,
-            wzICEs: [*:0]const u16,
+            wzICEs: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_OpenDatabase(self: *const T, szDatabase: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IValidate_OpenDatabase(self: *const T, szDatabase: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).OpenDatabase(@ptrCast(*const IValidate, self), szDatabase);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_OpenCUB(self: *const T, szCUBFile: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IValidate_OpenCUB(self: *const T, szCUBFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).OpenCUB(@ptrCast(*const IValidate, self), szCUBFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -357,15 +357,15 @@ pub const IValidate = extern struct {
             return @ptrCast(*const IValidate.VTable, self.vtable).CloseCUB(@ptrCast(*const IValidate, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_SetDisplay(self: *const T, pDisplayFunction: LPDISPLAYVAL, pContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IValidate_SetDisplay(self: *const T, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).SetDisplay(@ptrCast(*const IValidate, self), pDisplayFunction, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_SetStatus(self: *const T, pStatusFunction: LPEVALCOMCALLBACK, pContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IValidate_SetStatus(self: *const T, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).SetStatus(@ptrCast(*const IValidate, self), pStatusFunction, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_Validate(self: *const T, wzICEs: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IValidate_Validate(self: *const T, wzICEs: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).Validate(@ptrCast(*const IValidate, self), wzICEs);
         }
     };}
@@ -402,8 +402,8 @@ pub const IEnumMsmString = extern struct {
         Next: fn(
             self: *const IEnumMsmString,
             cFetch: u32,
-            rgbstrStrings: *BSTR,
-            pcFetched: *u32,
+            rgbstrStrings: ?*?BSTR,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumMsmString,
@@ -414,14 +414,14 @@ pub const IEnumMsmString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumMsmString,
-            pemsmStrings: **IEnumMsmString,
+            pemsmStrings: ?*?*IEnumMsmString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmString_Next(self: *const T, cFetch: u32, rgbstrStrings: *BSTR, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmString_Next(self: *const T, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmString.VTable, self.vtable).Next(@ptrCast(*const IEnumMsmString, self), cFetch, rgbstrStrings, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -433,7 +433,7 @@ pub const IEnumMsmString = extern struct {
             return @ptrCast(*const IEnumMsmString.VTable, self.vtable).Reset(@ptrCast(*const IEnumMsmString, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmString_Clone(self: *const T, pemsmStrings: **IEnumMsmString) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmString_Clone(self: *const T, pemsmStrings: ?*?*IEnumMsmString) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmString.VTable, self.vtable).Clone(@ptrCast(*const IEnumMsmString, self), pemsmStrings);
         }
     };}
@@ -449,32 +449,32 @@ pub const IMsmStrings = extern struct {
         get_Item: fn(
             self: *const IMsmStrings,
             Item: i32,
-            Return: *BSTR,
+            Return: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmStrings,
-            Count: *i32,
+            Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmStrings,
-            NewEnum: **IUnknown,
+            NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmStrings_get_Item(self: *const T, Item: i32, Return: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmStrings_get_Item(self: *const T, Item: i32, Return: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmStrings.VTable, self.vtable).get_Item(@ptrCast(*const IMsmStrings, self), Item, Return);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmStrings_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+        pub fn IMsmStrings_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmStrings.VTable, self.vtable).get_Count(@ptrCast(*const IMsmStrings, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmStrings_get__NewEnum(self: *const T, NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMsmStrings_get__NewEnum(self: *const T, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmStrings.VTable, self.vtable).get__NewEnum(@ptrCast(*const IMsmStrings, self), NewEnum);
         }
     };}
@@ -489,68 +489,68 @@ pub const IMsmError = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IMsmError,
-            ErrorType: *msmErrorType,
+            ErrorType: ?*msmErrorType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IMsmError,
-            ErrorPath: *BSTR,
+            ErrorPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: fn(
             self: *const IMsmError,
-            ErrorLanguage: *i16,
+            ErrorLanguage: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseTable: fn(
             self: *const IMsmError,
-            ErrorTable: *BSTR,
+            ErrorTable: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseKeys: fn(
             self: *const IMsmError,
-            ErrorKeys: **IMsmStrings,
+            ErrorKeys: ?*?*IMsmStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleTable: fn(
             self: *const IMsmError,
-            ErrorTable: *BSTR,
+            ErrorTable: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleKeys: fn(
             self: *const IMsmError,
-            ErrorKeys: **IMsmStrings,
+            ErrorKeys: ?*?*IMsmStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_Type(self: *const T, ErrorType: *msmErrorType) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_Type(self: *const T, ErrorType: ?*msmErrorType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_Type(@ptrCast(*const IMsmError, self), ErrorType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_Path(self: *const T, ErrorPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_Path(self: *const T, ErrorPath: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_Path(@ptrCast(*const IMsmError, self), ErrorPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_Language(self: *const T, ErrorLanguage: *i16) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_Language(self: *const T, ErrorLanguage: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_Language(@ptrCast(*const IMsmError, self), ErrorLanguage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_DatabaseTable(self: *const T, ErrorTable: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_DatabaseTable(self: *const T, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_DatabaseTable(@ptrCast(*const IMsmError, self), ErrorTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_DatabaseKeys(self: *const T, ErrorKeys: **IMsmStrings) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_DatabaseKeys(self: *const T, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_DatabaseKeys(@ptrCast(*const IMsmError, self), ErrorKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_ModuleTable(self: *const T, ErrorTable: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_ModuleTable(self: *const T, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_ModuleTable(@ptrCast(*const IMsmError, self), ErrorTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmError_get_ModuleKeys(self: *const T, ErrorKeys: **IMsmStrings) callconv(.Inline) HRESULT {
+        pub fn IMsmError_get_ModuleKeys(self: *const T, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmError.VTable, self.vtable).get_ModuleKeys(@ptrCast(*const IMsmError, self), ErrorKeys);
         }
     };}
@@ -565,8 +565,8 @@ pub const IEnumMsmError = extern struct {
         Next: fn(
             self: *const IEnumMsmError,
             cFetch: u32,
-            rgmsmErrors: **IMsmError,
-            pcFetched: *u32,
+            rgmsmErrors: ?*?*IMsmError,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumMsmError,
@@ -577,14 +577,14 @@ pub const IEnumMsmError = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumMsmError,
-            pemsmErrors: **IEnumMsmError,
+            pemsmErrors: ?*?*IEnumMsmError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmError_Next(self: *const T, cFetch: u32, rgmsmErrors: **IMsmError, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmError_Next(self: *const T, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmError.VTable, self.vtable).Next(@ptrCast(*const IEnumMsmError, self), cFetch, rgmsmErrors, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -596,7 +596,7 @@ pub const IEnumMsmError = extern struct {
             return @ptrCast(*const IEnumMsmError.VTable, self.vtable).Reset(@ptrCast(*const IEnumMsmError, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmError_Clone(self: *const T, pemsmErrors: **IEnumMsmError) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmError_Clone(self: *const T, pemsmErrors: ?*?*IEnumMsmError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmError.VTable, self.vtable).Clone(@ptrCast(*const IEnumMsmError, self), pemsmErrors);
         }
     };}
@@ -612,32 +612,32 @@ pub const IMsmErrors = extern struct {
         get_Item: fn(
             self: *const IMsmErrors,
             Item: i32,
-            Return: **IMsmError,
+            Return: ?*?*IMsmError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmErrors,
-            Count: *i32,
+            Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmErrors,
-            NewEnum: **IUnknown,
+            NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmErrors_get_Item(self: *const T, Item: i32, Return: **IMsmError) callconv(.Inline) HRESULT {
+        pub fn IMsmErrors_get_Item(self: *const T, Item: i32, Return: ?*?*IMsmError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmErrors.VTable, self.vtable).get_Item(@ptrCast(*const IMsmErrors, self), Item, Return);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmErrors_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+        pub fn IMsmErrors_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmErrors.VTable, self.vtable).get_Count(@ptrCast(*const IMsmErrors, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmErrors_get__NewEnum(self: *const T, NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMsmErrors_get__NewEnum(self: *const T, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmErrors.VTable, self.vtable).get__NewEnum(@ptrCast(*const IMsmErrors, self), NewEnum);
         }
     };}
@@ -652,32 +652,32 @@ pub const IMsmDependency = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Module: fn(
             self: *const IMsmDependency,
-            Module: *BSTR,
+            Module: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: fn(
             self: *const IMsmDependency,
-            Language: *i16,
+            Language: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: fn(
             self: *const IMsmDependency,
-            Version: *BSTR,
+            Version: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependency_get_Module(self: *const T, Module: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmDependency_get_Module(self: *const T, Module: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependency.VTable, self.vtable).get_Module(@ptrCast(*const IMsmDependency, self), Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependency_get_Language(self: *const T, Language: *i16) callconv(.Inline) HRESULT {
+        pub fn IMsmDependency_get_Language(self: *const T, Language: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependency.VTable, self.vtable).get_Language(@ptrCast(*const IMsmDependency, self), Language);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependency_get_Version(self: *const T, Version: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmDependency_get_Version(self: *const T, Version: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependency.VTable, self.vtable).get_Version(@ptrCast(*const IMsmDependency, self), Version);
         }
     };}
@@ -692,8 +692,8 @@ pub const IEnumMsmDependency = extern struct {
         Next: fn(
             self: *const IEnumMsmDependency,
             cFetch: u32,
-            rgmsmDependencies: **IMsmDependency,
-            pcFetched: *u32,
+            rgmsmDependencies: ?*?*IMsmDependency,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumMsmDependency,
@@ -704,14 +704,14 @@ pub const IEnumMsmDependency = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumMsmDependency,
-            pemsmDependencies: **IEnumMsmDependency,
+            pemsmDependencies: ?*?*IEnumMsmDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmDependency_Next(self: *const T, cFetch: u32, rgmsmDependencies: **IMsmDependency, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmDependency_Next(self: *const T, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmDependency.VTable, self.vtable).Next(@ptrCast(*const IEnumMsmDependency, self), cFetch, rgmsmDependencies, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -723,7 +723,7 @@ pub const IEnumMsmDependency = extern struct {
             return @ptrCast(*const IEnumMsmDependency.VTable, self.vtable).Reset(@ptrCast(*const IEnumMsmDependency, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumMsmDependency_Clone(self: *const T, pemsmDependencies: **IEnumMsmDependency) callconv(.Inline) HRESULT {
+        pub fn IEnumMsmDependency_Clone(self: *const T, pemsmDependencies: ?*?*IEnumMsmDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumMsmDependency.VTable, self.vtable).Clone(@ptrCast(*const IEnumMsmDependency, self), pemsmDependencies);
         }
     };}
@@ -739,32 +739,32 @@ pub const IMsmDependencies = extern struct {
         get_Item: fn(
             self: *const IMsmDependencies,
             Item: i32,
-            Return: **IMsmDependency,
+            Return: ?*?*IMsmDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmDependencies,
-            Count: *i32,
+            Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmDependencies,
-            NewEnum: **IUnknown,
+            NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependencies_get_Item(self: *const T, Item: i32, Return: **IMsmDependency) callconv(.Inline) HRESULT {
+        pub fn IMsmDependencies_get_Item(self: *const T, Item: i32, Return: ?*?*IMsmDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependencies.VTable, self.vtable).get_Item(@ptrCast(*const IMsmDependencies, self), Item, Return);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependencies_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+        pub fn IMsmDependencies_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependencies.VTable, self.vtable).get_Count(@ptrCast(*const IMsmDependencies, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmDependencies_get__NewEnum(self: *const T, NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMsmDependencies_get__NewEnum(self: *const T, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmDependencies.VTable, self.vtable).get__NewEnum(@ptrCast(*const IMsmDependencies, self), NewEnum);
         }
     };}
@@ -778,11 +778,11 @@ pub const IMsmMerge = extern struct {
         base: IDispatch.VTable,
         OpenDatabase: fn(
             self: *const IMsmMerge,
-            Path: BSTR,
+            Path: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenModule: fn(
             self: *const IMsmMerge,
-            Path: BSTR,
+            Path: ?BSTR,
             Language: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseDatabase: fn(
@@ -794,52 +794,52 @@ pub const IMsmMerge = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenLog: fn(
             self: *const IMsmMerge,
-            Path: BSTR,
+            Path: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseLog: fn(
             self: *const IMsmMerge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Log: fn(
             self: *const IMsmMerge,
-            Message: BSTR,
+            Message: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Errors: fn(
             self: *const IMsmMerge,
-            Errors: **IMsmErrors,
+            Errors: ?*?*IMsmErrors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dependencies: fn(
             self: *const IMsmMerge,
-            Dependencies: **IMsmDependencies,
+            Dependencies: ?*?*IMsmDependencies,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Merge: fn(
             self: *const IMsmMerge,
-            Feature: BSTR,
-            RedirectDir: BSTR,
+            Feature: ?BSTR,
+            RedirectDir: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const IMsmMerge,
-            Feature: BSTR,
+            Feature: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExtractCAB: fn(
             self: *const IMsmMerge,
-            FileName: BSTR,
+            FileName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExtractFiles: fn(
             self: *const IMsmMerge,
-            Path: BSTR,
+            Path: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_OpenDatabase(self: *const T, Path: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_OpenDatabase(self: *const T, Path: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).OpenDatabase(@ptrCast(*const IMsmMerge, self), Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_OpenModule(self: *const T, Path: BSTR, Language: i16) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_OpenModule(self: *const T, Path: ?BSTR, Language: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).OpenModule(@ptrCast(*const IMsmMerge, self), Path, Language);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -851,7 +851,7 @@ pub const IMsmMerge = extern struct {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).CloseModule(@ptrCast(*const IMsmMerge, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_OpenLog(self: *const T, Path: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_OpenLog(self: *const T, Path: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).OpenLog(@ptrCast(*const IMsmMerge, self), Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -859,31 +859,31 @@ pub const IMsmMerge = extern struct {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).CloseLog(@ptrCast(*const IMsmMerge, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_Log(self: *const T, Message: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_Log(self: *const T, Message: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).Log(@ptrCast(*const IMsmMerge, self), Message);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_get_Errors(self: *const T, Errors: **IMsmErrors) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_get_Errors(self: *const T, Errors: ?*?*IMsmErrors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).get_Errors(@ptrCast(*const IMsmMerge, self), Errors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_get_Dependencies(self: *const T, Dependencies: **IMsmDependencies) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_get_Dependencies(self: *const T, Dependencies: ?*?*IMsmDependencies) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).get_Dependencies(@ptrCast(*const IMsmMerge, self), Dependencies);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_Merge(self: *const T, Feature: BSTR, RedirectDir: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_Merge(self: *const T, Feature: ?BSTR, RedirectDir: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).Merge(@ptrCast(*const IMsmMerge, self), Feature, RedirectDir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_Connect(self: *const T, Feature: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_Connect(self: *const T, Feature: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).Connect(@ptrCast(*const IMsmMerge, self), Feature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_ExtractCAB(self: *const T, FileName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_ExtractCAB(self: *const T, FileName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).ExtractCAB(@ptrCast(*const IMsmMerge, self), FileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmMerge_ExtractFiles(self: *const T, Path: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMsmMerge_ExtractFiles(self: *const T, Path: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmMerge.VTable, self.vtable).ExtractFiles(@ptrCast(*const IMsmMerge, self), Path);
         }
     };}
@@ -898,14 +898,14 @@ pub const IMsmGetFiles = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleFiles: fn(
             self: *const IMsmGetFiles,
-            Files: **IMsmStrings,
+            Files: ?*?*IMsmStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsmGetFiles_get_ModuleFiles(self: *const T, Files: **IMsmStrings) callconv(.Inline) HRESULT {
+        pub fn IMsmGetFiles_get_ModuleFiles(self: *const T, Files: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsmGetFiles.VTable, self.vtable).get_ModuleFiles(@ptrCast(*const IMsmGetFiles, self), Files);
         }
     };}
@@ -958,19 +958,19 @@ pub const INSTALLMESSAGE_INSTALLSTART = INSTALLMESSAGE.INSTALLSTART;
 pub const INSTALLMESSAGE_INSTALLEND = INSTALLMESSAGE.INSTALLEND;
 
 pub const INSTALLUI_HANDLERA = fn(
-    pvContext: *c_void,
+    pvContext: ?*c_void,
     iMessageType: u32,
-    szMessage: [*:0]const u8,
+    szMessage: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const INSTALLUI_HANDLERW = fn(
-    pvContext: *c_void,
+    pvContext: ?*c_void,
     iMessageType: u32,
-    szMessage: [*:0]const u16,
+    szMessage: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PINSTALLUI_HANDLER_RECORD = fn(
-    pvContext: *c_void,
+    pvContext: ?*c_void,
     iMessageType: u32,
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1204,14 +1204,14 @@ pub const MSIPATCH_DATATYPE_XMLPATH = MSIPATCHDATATYPE.XMLPATH;
 pub const MSIPATCH_DATATYPE_XMLBLOB = MSIPATCHDATATYPE.XMLBLOB;
 
 pub const MSIPATCHSEQUENCEINFOA = extern struct {
-    szPatchData: [*:0]const u8,
+    szPatchData: ?[*:0]const u8,
     ePatchDataType: MSIPATCHDATATYPE,
     dwOrder: u32,
     uStatus: u32,
 };
 
 pub const MSIPATCHSEQUENCEINFOW = extern struct {
-    szPatchData: [*:0]const u16,
+    szPatchData: ?[*:0]const u16,
     ePatchDataType: MSIPATCHDATATYPE,
     dwOrder: u32,
     uStatus: u32,
@@ -1539,7 +1539,7 @@ pub const ASSEMBLY_INFO = extern struct {
     cbAssemblyInfo: u32,
     dwAssemblyFlags: u32,
     uliAssemblySizeInKB: ULARGE_INTEGER,
-    pszCurrentAssemblyPathBuf: PWSTR,
+    pszCurrentAssemblyPathBuf: ?PWSTR,
     cchBuf: u32,
 };
 
@@ -1547,8 +1547,8 @@ pub const FUSION_INSTALL_REFERENCE = extern struct {
     cbSize: u32,
     dwFlags: u32,
     guidScheme: Guid,
-    szIdentifier: [*:0]const u16,
-    szNonCannonicalData: [*:0]const u16,
+    szIdentifier: ?[*:0]const u16,
+    szNonCannonicalData: ?[*:0]const u16,
 };
 
 pub const ASM_NAME = enum(i32) {
@@ -1678,14 +1678,14 @@ pub const IAssemblyName = extern struct {
         SetProperty: fn(
             self: *const IAssemblyName,
             PropertyId: u32,
-            pvProperty: *c_void,
+            pvProperty: ?*c_void,
             cbProperty: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAssemblyName,
             PropertyId: u32,
-            pvProperty: *c_void,
-            pcbProperty: *u32,
+            pvProperty: ?*c_void,
+            pcbProperty: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finalize: fn(
             self: *const IAssemblyName,
@@ -1693,49 +1693,49 @@ pub const IAssemblyName = extern struct {
         GetDisplayName: fn(
             self: *const IAssemblyName,
             szDisplayName: ?[*:0]u16,
-            pccDisplayName: *u32,
+            pccDisplayName: ?*u32,
             dwDisplayFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reserved: fn(
             self: *const IAssemblyName,
-            refIID: *const Guid,
-            pUnkReserved1: *IUnknown,
-            pUnkReserved2: *IUnknown,
-            szReserved: [*:0]const u16,
+            refIID: ?*const Guid,
+            pUnkReserved1: ?*IUnknown,
+            pUnkReserved2: ?*IUnknown,
+            szReserved: ?[*:0]const u16,
             llReserved: i64,
-            pvReserved: *c_void,
+            pvReserved: ?*c_void,
             cbReserved: u32,
-            ppReserved: **c_void,
+            ppReserved: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IAssemblyName,
-            lpcwBuffer: *u32,
+            lpcwBuffer: ?*u32,
             pwzName: ?[*:0]u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const IAssemblyName,
-            pdwVersionHi: *u32,
-            pdwVersionLow: *u32,
+            pdwVersionHi: ?*u32,
+            pdwVersionLow: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqual: fn(
             self: *const IAssemblyName,
-            pName: *IAssemblyName,
+            pName: ?*IAssemblyName,
             dwCmpFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IAssemblyName,
-            pName: **IAssemblyName,
+            pName: ?*?*IAssemblyName,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_SetProperty(self: *const T, PropertyId: u32, pvProperty: *c_void, cbProperty: u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_SetProperty(self: *const T, PropertyId: u32, pvProperty: ?*c_void, cbProperty: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).SetProperty(@ptrCast(*const IAssemblyName, self), PropertyId, pvProperty, cbProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_GetProperty(self: *const T, PropertyId: u32, pvProperty: *c_void, pcbProperty: *u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_GetProperty(self: *const T, PropertyId: u32, pvProperty: ?*c_void, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetProperty(@ptrCast(*const IAssemblyName, self), PropertyId, pvProperty, pcbProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1743,27 +1743,27 @@ pub const IAssemblyName = extern struct {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).Finalize(@ptrCast(*const IAssemblyName, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_GetDisplayName(self: *const T, szDisplayName: ?[*:0]u16, pccDisplayName: *u32, dwDisplayFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_GetDisplayName(self: *const T, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetDisplayName(@ptrCast(*const IAssemblyName, self), szDisplayName, pccDisplayName, dwDisplayFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_Reserved(self: *const T, refIID: *const Guid, pUnkReserved1: *IUnknown, pUnkReserved2: *IUnknown, szReserved: [*:0]const u16, llReserved: i64, pvReserved: *c_void, cbReserved: u32, ppReserved: **c_void) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_Reserved(self: *const T, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*c_void, cbReserved: u32, ppReserved: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).Reserved(@ptrCast(*const IAssemblyName, self), refIID, pUnkReserved1, pUnkReserved2, szReserved, llReserved, pvReserved, cbReserved, ppReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_GetName(self: *const T, lpcwBuffer: *u32, pwzName: ?[*:0]u16) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_GetName(self: *const T, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetName(@ptrCast(*const IAssemblyName, self), lpcwBuffer, pwzName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_GetVersion(self: *const T, pdwVersionHi: *u32, pdwVersionLow: *u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_GetVersion(self: *const T, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetVersion(@ptrCast(*const IAssemblyName, self), pdwVersionHi, pdwVersionLow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_IsEqual(self: *const T, pName: *IAssemblyName, dwCmpFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_IsEqual(self: *const T, pName: ?*IAssemblyName, dwCmpFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).IsEqual(@ptrCast(*const IAssemblyName, self), pName, dwCmpFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_Clone(self: *const T, pName: **IAssemblyName) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_Clone(self: *const T, pName: ?*?*IAssemblyName) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).Clone(@ptrCast(*const IAssemblyName, self), pName);
         }
     };}
@@ -1779,16 +1779,16 @@ pub const IAssemblyCacheItem = extern struct {
         CreateStream: fn(
             self: *const IAssemblyCacheItem,
             dwFlags: u32,
-            pszStreamName: [*:0]const u16,
+            pszStreamName: ?[*:0]const u16,
             dwFormat: u32,
             dwFormatFlags: u32,
-            ppIStream: **IStream,
-            puliMaxSize: *ULARGE_INTEGER,
+            ppIStream: ?*?*IStream,
+            puliMaxSize: ?*ULARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const IAssemblyCacheItem,
             dwFlags: u32,
-            pulDisposition: *u32,
+            pulDisposition: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AbortItem: fn(
             self: *const IAssemblyCacheItem,
@@ -1798,11 +1798,11 @@ pub const IAssemblyCacheItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCacheItem_CreateStream(self: *const T, dwFlags: u32, pszStreamName: [*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: **IStream, puliMaxSize: *ULARGE_INTEGER) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCacheItem_CreateStream(self: *const T, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCacheItem.VTable, self.vtable).CreateStream(@ptrCast(*const IAssemblyCacheItem, self), dwFlags, pszStreamName, dwFormat, dwFormatFlags, ppIStream, puliMaxSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCacheItem_Commit(self: *const T, dwFlags: u32, pulDisposition: *u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCacheItem_Commit(self: *const T, dwFlags: u32, pulDisposition: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCacheItem.VTable, self.vtable).Commit(@ptrCast(*const IAssemblyCacheItem, self), dwFlags, pulDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1822,55 +1822,55 @@ pub const IAssemblyCache = extern struct {
         UninstallAssembly: fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
-            pszAssemblyName: [*:0]const u16,
-            pRefData: *FUSION_INSTALL_REFERENCE,
-            pulDisposition: *IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
+            pszAssemblyName: ?[*:0]const u16,
+            pRefData: ?*FUSION_INSTALL_REFERENCE,
+            pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssemblyInfo: fn(
             self: *const IAssemblyCache,
             dwFlags: QUERYASMINFO_FLAGS,
-            pszAssemblyName: [*:0]const u16,
-            pAsmInfo: *ASSEMBLY_INFO,
+            pszAssemblyName: ?[*:0]const u16,
+            pAsmInfo: ?*ASSEMBLY_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAssemblyCacheItem: fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
-            pvReserved: *c_void,
-            ppAsmItem: **IAssemblyCacheItem,
-            pszAssemblyName: [*:0]const u16,
+            pvReserved: ?*c_void,
+            ppAsmItem: ?*?*IAssemblyCacheItem,
+            pszAssemblyName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reserved: fn(
             self: *const IAssemblyCache,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InstallAssembly: fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
-            pszManifestFilePath: [*:0]const u16,
-            pRefData: *FUSION_INSTALL_REFERENCE,
+            pszManifestFilePath: ?[*:0]const u16,
+            pRefData: ?*FUSION_INSTALL_REFERENCE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_UninstallAssembly(self: *const T, dwFlags: u32, pszAssemblyName: [*:0]const u16, pRefData: *FUSION_INSTALL_REFERENCE, pulDisposition: *IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_UninstallAssembly(self: *const T, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).UninstallAssembly(@ptrCast(*const IAssemblyCache, self), dwFlags, pszAssemblyName, pRefData, pulDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_QueryAssemblyInfo(self: *const T, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: [*:0]const u16, pAsmInfo: *ASSEMBLY_INFO) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_QueryAssemblyInfo(self: *const T, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).QueryAssemblyInfo(@ptrCast(*const IAssemblyCache, self), dwFlags, pszAssemblyName, pAsmInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_CreateAssemblyCacheItem(self: *const T, dwFlags: u32, pvReserved: *c_void, ppAsmItem: **IAssemblyCacheItem, pszAssemblyName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_CreateAssemblyCacheItem(self: *const T, dwFlags: u32, pvReserved: ?*c_void, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).CreateAssemblyCacheItem(@ptrCast(*const IAssemblyCache, self), dwFlags, pvReserved, ppAsmItem, pszAssemblyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_Reserved(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_Reserved(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).Reserved(@ptrCast(*const IAssemblyCache, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_InstallAssembly(self: *const T, dwFlags: u32, pszManifestFilePath: [*:0]const u16, pRefData: *FUSION_INSTALL_REFERENCE) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_InstallAssembly(self: *const T, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).InstallAssembly(@ptrCast(*const IAssemblyCache, self), dwFlags, pszManifestFilePath, pRefData);
         }
     };}
@@ -1895,33 +1895,33 @@ pub const PROTECTED_FILE_DATA = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateActCtxA(
-    pActCtx: *ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pActCtx: ?*ACTCTXA,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateActCtxW(
-    pActCtx: *ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pActCtx: ?*ACTCTXW,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn AddRefActCtx(
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReleaseActCtx(
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ZombifyActCtx(
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ActivateActCtx(
     hActCtx: ?HANDLE,
-    lpCookie: *usize,
+    lpCookie: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1932,40 +1932,40 @@ pub extern "KERNEL32" fn DeactivateActCtx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCurrentActCtx(
-    lphActCtx: *HANDLE,
+    lphActCtx: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindActCtxSectionStringA(
     dwFlags: u32,
-    lpExtensionGuid: *const Guid,
+    lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
-    lpStringToFind: [*:0]const u8,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+    lpStringToFind: ?[*:0]const u8,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindActCtxSectionStringW(
     dwFlags: u32,
-    lpExtensionGuid: *const Guid,
+    lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
-    lpStringToFind: [*:0]const u16,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+    lpStringToFind: ?[*:0]const u16,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindActCtxSectionGuid(
     dwFlags: u32,
-    lpExtensionGuid: *const Guid,
+    lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
     lpGuidToFind: ?*const Guid,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn QueryActCtxW(
     dwFlags: u32,
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     pvSubInstance: ?*c_void,
     ulInfoClass: u32,
     // TODO: what to do with BytesParamIndex 5?
@@ -1979,7 +1979,7 @@ pub extern "KERNEL32" fn QueryActCtxSettingsW(
     dwFlags: u32,
     hActCtx: ?HANDLE,
     settingsNameSpace: ?[*:0]const u16,
-    settingName: [*:0]const u16,
+    settingName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 5?
     pvBuffer: ?PWSTR,
     dwBuffer: usize,
@@ -1998,7 +1998,7 @@ pub extern "msi" fn MsiCloseAllHandles(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetInternalUI(
     dwUILevel: INSTALLUILEVEL,
-    phWnd: ?*HWND,
+    phWnd: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLUILEVEL;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -2006,14 +2006,14 @@ pub extern "msi" fn MsiSetExternalUIA(
     puiHandler: ?INSTALLUI_HANDLERA,
     dwMessageFilter: u32,
     pvContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) INSTALLUI_HANDLERA;
+) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERA;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIW(
     puiHandler: ?INSTALLUI_HANDLERW,
     dwMessageFilter: u32,
     pvContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) INSTALLUI_HANDLERW;
+) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERW;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIRecord(
@@ -2039,79 +2039,79 @@ pub extern "msi" fn MsiEnableLogW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryProductStateA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryProductStateW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoA(
-    szProduct: [*:0]const u8,
-    szAttribute: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szAttribute: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoW(
-    szProduct: [*:0]const u16,
-    szAttribute: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szAttribute: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoExA(
-    szProductCode: [*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
-    szProperty: [*:0]const u8,
+    szProperty: ?[*:0]const u8,
     szValue: ?[*:0]u8,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoExW(
-    szProductCode: [*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
-    szProperty: [*:0]const u16,
+    szProperty: ?[*:0]const u16,
     szValue: ?[*:0]u16,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallProductA(
-    szPackagePath: [*:0]const u8,
+    szPackagePath: ?[*:0]const u8,
     szCommandLine: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallProductW(
-    szPackagePath: [*:0]const u16,
+    szPackagePath: ?[*:0]const u16,
     szCommandLine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u8,
@@ -2119,7 +2119,7 @@ pub extern "msi" fn MsiConfigureProductExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u16,
@@ -2127,19 +2127,19 @@ pub extern "msi" fn MsiConfigureProductExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     szReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     szReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductExA(
-    szPackagePath: [*:0]const u8,
+    szPackagePath: ?[*:0]const u8,
     szScriptfilePath: ?[*:0]const u8,
     szTransforms: ?[*:0]const u8,
     lgidLanguage: u16,
@@ -2149,7 +2149,7 @@ pub extern "msi" fn MsiAdvertiseProductExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductExW(
-    szPackagePath: [*:0]const u16,
+    szPackagePath: ?[*:0]const u16,
     szScriptfilePath: ?[*:0]const u16,
     szTransforms: ?[*:0]const u16,
     lgidLanguage: u16,
@@ -2159,7 +2159,7 @@ pub extern "msi" fn MsiAdvertiseProductExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductA(
-    szPackagePath: [*:0]const u8,
+    szPackagePath: ?[*:0]const u8,
     szScriptfilePath: ?[*:0]const u8,
     szTransforms: ?[*:0]const u8,
     lgidLanguage: u16,
@@ -2167,7 +2167,7 @@ pub extern "msi" fn MsiAdvertiseProductA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductW(
-    szPackagePath: [*:0]const u16,
+    szPackagePath: ?[*:0]const u16,
     szScriptfilePath: ?[*:0]const u16,
     szTransforms: ?[*:0]const u16,
     lgidLanguage: u16,
@@ -2175,7 +2175,7 @@ pub extern "msi" fn MsiAdvertiseProductW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProcessAdvertiseScriptA(
-    szScriptFile: [*:0]const u8,
+    szScriptFile: ?[*:0]const u8,
     szIconFolder: ?[*:0]const u8,
     hRegData: ?HKEY,
     fShortcuts: BOOL,
@@ -2184,7 +2184,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProcessAdvertiseScriptW(
-    szScriptFile: [*:0]const u16,
+    szScriptFile: ?[*:0]const u16,
     szIconFolder: ?[*:0]const u16,
     hRegData: ?HKEY,
     fShortcuts: BOOL,
@@ -2193,23 +2193,23 @@ pub extern "msi" fn MsiProcessAdvertiseScriptW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptA(
-    szScriptFile: [*:0]const u8,
+    szScriptFile: ?[*:0]const u8,
     dwFlags: u32,
-    phRegData: ?*HKEY,
+    phRegData: ?*?HKEY,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptW(
-    szScriptFile: [*:0]const u16,
+    szScriptFile: ?[*:0]const u16,
     dwFlags: u32,
-    phRegData: ?*HKEY,
+    phRegData: ?*?HKEY,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoFromScriptA(
-    szScriptFile: [*:0]const u8,
+    szScriptFile: ?[*:0]const u8,
     lpProductBuf39: ?PSTR,
     plgidLanguage: ?*u16,
     pdwVersion: ?*u32,
@@ -2221,7 +2221,7 @@ pub extern "msi" fn MsiGetProductInfoFromScriptA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoFromScriptW(
-    szScriptFile: [*:0]const u16,
+    szScriptFile: ?[*:0]const u16,
     lpProductBuf39: ?PWSTR,
     plgidLanguage: ?*u16,
     pdwVersion: ?*u32,
@@ -2233,19 +2233,19 @@ pub extern "msi" fn MsiGetProductInfoFromScriptW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductCodeA(
-    szComponent: [*:0]const u8,
-    lpBuf39: PSTR,
+    szComponent: ?[*:0]const u8,
+    lpBuf39: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductCodeW(
-    szComponent: [*:0]const u16,
-    lpBuf39: PWSTR,
+    szComponent: ?[*:0]const u16,
+    lpBuf39: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetUserInfoA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     lpUserNameBuf: ?[*:0]u8,
     pcchUserNameBuf: ?*u32,
     lpOrgNameBuf: ?[*:0]u8,
@@ -2256,7 +2256,7 @@ pub extern "msi" fn MsiGetUserInfoA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetUserInfoW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     lpUserNameBuf: ?[*:0]u16,
     pcchUserNameBuf: ?*u32,
     lpOrgNameBuf: ?[*:0]u16,
@@ -2267,17 +2267,17 @@ pub extern "msi" fn MsiGetUserInfoW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCollectUserInfoA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCollectUserInfoW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyPatchA(
-    szPatchPackage: [*:0]const u8,
+    szPatchPackage: ?[*:0]const u8,
     szInstallPackage: ?[*:0]const u8,
     eInstallType: INSTALLTYPE,
     szCommandLine: ?[*:0]const u8,
@@ -2285,7 +2285,7 @@ pub extern "msi" fn MsiApplyPatchA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyPatchW(
-    szPatchPackage: [*:0]const u16,
+    szPatchPackage: ?[*:0]const u16,
     szInstallPackage: ?[*:0]const u16,
     eInstallType: INSTALLTYPE,
     szCommandLine: ?[*:0]const u16,
@@ -2293,57 +2293,57 @@ pub extern "msi" fn MsiApplyPatchW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoA(
-    szPatch: [*:0]const u8,
-    szAttribute: [*:0]const u8,
+    szPatch: ?[*:0]const u8,
+    szAttribute: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoW(
-    szPatch: [*:0]const u16,
-    szAttribute: [*:0]const u16,
+    szPatch: ?[*:0]const u16,
+    szAttribute: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     iPatchIndex: u32,
-    lpPatchBuf: PSTR,
+    lpPatchBuf: ?PSTR,
     lpTransformsBuf: [*:0]u8,
-    pcchTransformsBuf: *u32,
+    pcchTransformsBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     iPatchIndex: u32,
-    lpPatchBuf: PWSTR,
+    lpPatchBuf: ?PWSTR,
     lpTransformsBuf: [*:0]u16,
-    pcchTransformsBuf: *u32,
+    pcchTransformsBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRemovePatchesA(
-    szPatchList: [*:0]const u8,
-    szProductCode: [*:0]const u8,
+    szPatchList: ?[*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     eUninstallType: INSTALLTYPE,
     szPropertyList: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRemovePatchesW(
-    szPatchList: [*:0]const u16,
-    szProductCode: [*:0]const u16,
+    szPatchList: ?[*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     eUninstallType: INSTALLTYPE,
     szPropertyList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows Vista'
 pub extern "msi" fn MsiExtractPatchXMLDataA(
-    szPatchPath: [*:0]const u8,
+    szPatchPath: ?[*:0]const u8,
     dwReserved: u32,
     szXMLData: ?[*:0]u8,
     pcchXMLData: ?*u32,
@@ -2351,7 +2351,7 @@ pub extern "msi" fn MsiExtractPatchXMLDataA(
 
 // TODO: this type is limited to platform 'Windows Vista'
 pub extern "msi" fn MsiExtractPatchXMLDataW(
-    szPatchPath: [*:0]const u16,
+    szPatchPath: ?[*:0]const u16,
     dwReserved: u32,
     szXMLData: ?[*:0]u16,
     pcchXMLData: ?*u32,
@@ -2359,43 +2359,43 @@ pub extern "msi" fn MsiExtractPatchXMLDataW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoExA(
-    szPatchCode: [*:0]const u8,
-    szProductCode: [*:0]const u8,
+    szPatchCode: ?[*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
-    szProperty: [*:0]const u8,
+    szProperty: ?[*:0]const u8,
     lpValue: ?[*:0]u8,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoExW(
-    szPatchCode: [*:0]const u16,
-    szProductCode: [*:0]const u16,
+    szPatchCode: ?[*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
-    szProperty: [*:0]const u16,
+    szProperty: ?[*:0]const u16,
     lpValue: ?[*:0]u16,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyMultiplePatchesA(
-    szPatchPackages: [*:0]const u8,
+    szPatchPackages: ?[*:0]const u8,
     szProductCode: ?[*:0]const u8,
     szPropertiesList: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyMultiplePatchesW(
-    szPatchPackages: [*:0]const u16,
+    szPatchPackages: ?[*:0]const u16,
     szProductCode: ?[*:0]const u16,
     szPropertiesList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDeterminePatchSequenceA(
-    szProductCode: [*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     cPatchInfo: u32,
@@ -2404,7 +2404,7 @@ pub extern "msi" fn MsiDeterminePatchSequenceA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDeterminePatchSequenceW(
-    szProductCode: [*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     cPatchInfo: u32,
@@ -2413,14 +2413,14 @@ pub extern "msi" fn MsiDeterminePatchSequenceW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDetermineApplicablePatchesA(
-    szProductPackagePath: [*:0]const u8,
+    szProductPackagePath: ?[*:0]const u8,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDetermineApplicablePatchesW(
-    szProductPackagePath: [*:0]const u16,
+    szProductPackagePath: ?[*:0]const u16,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2455,111 +2455,111 @@ pub extern "msi" fn MsiEnumPatchesExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateExA(
-    szProductCode: [*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
-    szFeature: [*:0]const u8,
+    szFeature: ?[*:0]const u8,
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateExW(
-    szProductCode: [*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
-    szFeature: [*:0]const u16,
+    szFeature: ?[*:0]const u16,
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureExA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
     dwInstallMode: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureExW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
     dwInstallMode: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureUsageA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
     pdwUseCount: ?*u32,
     pwDateUsed: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureUsageW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
     pdwUseCount: ?*u32,
     pwDateUsed: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureFeatureA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureFeatureW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallFeatureA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
     dwReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallFeatureW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
     dwReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideComponentA(
-    szProduct: [*:0]const u8,
-    szFeature: [*:0]const u8,
-    szComponent: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFeature: ?[*:0]const u8,
+    szComponent: ?[*:0]const u8,
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
@@ -2567,9 +2567,9 @@ pub extern "msi" fn MsiProvideComponentA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideComponentW(
-    szProduct: [*:0]const u16,
-    szFeature: [*:0]const u16,
-    szComponent: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFeature: ?[*:0]const u16,
+    szComponent: ?[*:0]const u16,
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
@@ -2577,8 +2577,8 @@ pub extern "msi" fn MsiProvideComponentW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentA(
-    szCategory: [*:0]const u8,
-    szQualifier: [*:0]const u8,
+    szCategory: ?[*:0]const u8,
+    szQualifier: ?[*:0]const u8,
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
@@ -2586,8 +2586,8 @@ pub extern "msi" fn MsiProvideQualifiedComponentA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentW(
-    szCategory: [*:0]const u16,
-    szQualifier: [*:0]const u16,
+    szCategory: ?[*:0]const u16,
+    szQualifier: ?[*:0]const u16,
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
@@ -2595,8 +2595,8 @@ pub extern "msi" fn MsiProvideQualifiedComponentW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentExA(
-    szCategory: [*:0]const u8,
-    szQualifier: [*:0]const u8,
+    szCategory: ?[*:0]const u8,
+    szQualifier: ?[*:0]const u8,
     dwInstallMode: INSTALLMODE,
     szProduct: ?[*:0]const u8,
     dwUnused1: u32,
@@ -2607,8 +2607,8 @@ pub extern "msi" fn MsiProvideQualifiedComponentExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentExW(
-    szCategory: [*:0]const u16,
-    szQualifier: [*:0]const u16,
+    szCategory: ?[*:0]const u16,
+    szQualifier: ?[*:0]const u16,
     dwInstallMode: INSTALLMODE,
     szProduct: ?[*:0]const u16,
     dwUnused1: u32,
@@ -2619,16 +2619,16 @@ pub extern "msi" fn MsiProvideQualifiedComponentExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathA(
-    szProduct: [*:0]const u8,
-    szComponent: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szComponent: ?[*:0]const u8,
     lpPathBuf: ?[*:0]u8,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathW(
-    szProduct: [*:0]const u16,
-    szComponent: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szComponent: ?[*:0]const u16,
     lpPathBuf: ?[*:0]u16,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
@@ -2643,7 +2643,7 @@ pub fn MsiGetComponentPathExW() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideAssemblyA(
-    szAssemblyName: [*:0]const u8,
+    szAssemblyName: ?[*:0]const u8,
     szAppContext: ?[*:0]const u8,
     dwInstallMode: INSTALLMODE,
     dwAssemblyInfo: MSIASSEMBLYINFO,
@@ -2653,7 +2653,7 @@ pub extern "msi" fn MsiProvideAssemblyA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideAssemblyW(
-    szAssemblyName: [*:0]const u16,
+    szAssemblyName: ?[*:0]const u16,
     szAppContext: ?[*:0]const u16,
     dwInstallMode: INSTALLMODE,
     dwAssemblyInfo: MSIASSEMBLYINFO,
@@ -2663,32 +2663,32 @@ pub extern "msi" fn MsiProvideAssemblyW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryComponentStateA(
-    szProductCode: [*:0]const u8,
+    szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
-    szComponentCode: [*:0]const u8,
+    szComponentCode: ?[*:0]const u8,
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryComponentStateW(
-    szProductCode: [*:0]const u16,
+    szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
-    szComponentCode: [*:0]const u16,
+    szComponentCode: ?[*:0]const u16,
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsA(
     iProductIndex: u32,
-    lpProductBuf: PSTR,
+    lpProductBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsW(
     iProductIndex: u32,
-    lpProductBuf: PWSTR,
+    lpProductBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -2717,46 +2717,46 @@ pub extern "msi" fn MsiEnumProductsExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumRelatedProductsA(
-    lpUpgradeCode: [*:0]const u8,
+    lpUpgradeCode: ?[*:0]const u8,
     dwReserved: u32,
     iProductIndex: u32,
-    lpProductBuf: PSTR,
+    lpProductBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumRelatedProductsW(
-    lpUpgradeCode: [*:0]const u16,
+    lpUpgradeCode: ?[*:0]const u16,
     dwReserved: u32,
     iProductIndex: u32,
-    lpProductBuf: PWSTR,
+    lpProductBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumFeaturesA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     iFeatureIndex: u32,
-    lpFeatureBuf: PSTR,
+    lpFeatureBuf: ?PSTR,
     lpParentBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumFeaturesW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     iFeatureIndex: u32,
-    lpFeatureBuf: PWSTR,
+    lpFeatureBuf: ?PWSTR,
     lpParentBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsA(
     iComponentIndex: u32,
-    lpComponentBuf: PSTR,
+    lpComponentBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsW(
     iComponentIndex: u32,
-    lpComponentBuf: PWSTR,
+    lpComponentBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -2783,21 +2783,21 @@ pub extern "msi" fn MsiEnumComponentsExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsA(
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     iProductIndex: u32,
-    lpProductBuf: PSTR,
+    lpProductBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsW(
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     iProductIndex: u32,
-    lpProductBuf: PWSTR,
+    lpProductBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsExA(
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
@@ -2809,7 +2809,7 @@ pub extern "msi" fn MsiEnumClientsExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsExW(
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
@@ -2821,82 +2821,82 @@ pub extern "msi" fn MsiEnumClientsExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentQualifiersA(
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     iIndex: u32,
     lpQualifierBuf: [*:0]u8,
-    pcchQualifierBuf: *u32,
+    pcchQualifierBuf: ?*u32,
     lpApplicationDataBuf: ?[*:0]u8,
     pcchApplicationDataBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentQualifiersW(
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     iIndex: u32,
     lpQualifierBuf: [*:0]u16,
-    pcchQualifierBuf: *u32,
+    pcchQualifierBuf: ?*u32,
     lpApplicationDataBuf: ?[*:0]u16,
     pcchApplicationDataBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenProductA(
-    szProduct: [*:0]const u8,
-    hProduct: *MSIHANDLE,
+    szProduct: ?[*:0]const u8,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenProductW(
-    szProduct: [*:0]const u16,
-    hProduct: *MSIHANDLE,
+    szProduct: ?[*:0]const u16,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageA(
-    szPackagePath: [*:0]const u8,
-    hProduct: *MSIHANDLE,
+    szPackagePath: ?[*:0]const u8,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageW(
-    szPackagePath: [*:0]const u16,
-    hProduct: *MSIHANDLE,
+    szPackagePath: ?[*:0]const u16,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageExA(
-    szPackagePath: [*:0]const u8,
+    szPackagePath: ?[*:0]const u8,
     dwOptions: u32,
-    hProduct: *MSIHANDLE,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageExW(
-    szPackagePath: [*:0]const u16,
+    szPackagePath: ?[*:0]const u16,
     dwOptions: u32,
-    hProduct: *MSIHANDLE,
+    hProduct: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchFileListA(
-    szProductCode: [*:0]const u8,
-    szPatchPackages: [*:0]const u8,
-    pcFiles: *u32,
-    pphFileRecords: ?**MSIHANDLE,
+    szProductCode: ?[*:0]const u8,
+    szPatchPackages: ?[*:0]const u8,
+    pcFiles: ?*u32,
+    pphFileRecords: ?*?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchFileListW(
-    szProductCode: [*:0]const u16,
-    szPatchPackages: [*:0]const u16,
-    pcFiles: *u32,
-    pphFileRecords: ?**MSIHANDLE,
+    szProductCode: ?[*:0]const u16,
+    szPatchPackages: ?[*:0]const u16,
+    pcFiles: ?*u32,
+    pphFileRecords: ?*?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductPropertyA(
     hProduct: MSIHANDLE,
-    szProperty: [*:0]const u8,
+    szProperty: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2904,25 +2904,25 @@ pub extern "msi" fn MsiGetProductPropertyA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductPropertyW(
     hProduct: MSIHANDLE,
-    szProperty: [*:0]const u16,
+    szProperty: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiVerifyPackageA(
-    szPackagePath: [*:0]const u8,
+    szPackagePath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiVerifyPackageW(
-    szPackagePath: [*:0]const u16,
+    szPackagePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureInfoA(
     hProduct: MSIHANDLE,
-    szFeature: [*:0]const u8,
+    szFeature: ?[*:0]const u8,
     lpAttributes: ?*u32,
     lpTitleBuf: ?[*:0]u8,
     pcchTitleBuf: ?*u32,
@@ -2933,7 +2933,7 @@ pub extern "msi" fn MsiGetFeatureInfoA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureInfoW(
     hProduct: MSIHANDLE,
-    szFeature: [*:0]const u16,
+    szFeature: ?[*:0]const u16,
     lpAttributes: ?*u32,
     lpTitleBuf: ?[*:0]u16,
     pcchTitleBuf: ?*u32,
@@ -2943,111 +2943,111 @@ pub extern "msi" fn MsiGetFeatureInfoW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingComponentA(
-    szProduct: [*:0]const u8,
-    szComponent: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szComponent: ?[*:0]const u8,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingComponentW(
-    szProduct: [*:0]const u16,
-    szComponent: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szComponent: ?[*:0]const u16,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingFileA(
-    szProduct: [*:0]const u8,
-    szFile: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
+    szFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingFileW(
-    szProduct: [*:0]const u16,
-    szFile: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
+    szFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiLocateComponentA(
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     lpPathBuf: ?[*:0]u8,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiLocateComponentW(
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     lpPathBuf: ?[*:0]u16,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
-    szSource: [*:0]const u8,
+    szSource: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
-    szSource: [*:0]const u16,
+    szSource: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionA(
-    szProduct: [*:0]const u8,
+    szProduct: ?[*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionW(
-    szProduct: [*:0]const u16,
+    szProduct: ?[*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceExA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szSource: [*:0]const u8,
+    szSource: ?[*:0]const u8,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceExW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szSource: [*:0]const u16,
+    szSource: ?[*:0]const u16,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddMediaDiskA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3058,7 +3058,7 @@ pub extern "msi" fn MsiSourceListAddMediaDiskA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddMediaDiskW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3069,25 +3069,25 @@ pub extern "msi" fn MsiSourceListAddMediaDiskW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearSourceA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szSource: [*:0]const u8,
+    szSource: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearSourceW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szSource: [*:0]const u16,
+    szSource: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearMediaDiskA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3096,7 +3096,7 @@ pub extern "msi" fn MsiSourceListClearMediaDiskA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearMediaDiskW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3105,7 +3105,7 @@ pub extern "msi" fn MsiSourceListClearMediaDiskW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllExA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3113,7 +3113,7 @@ pub extern "msi" fn MsiSourceListClearAllExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllExW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3121,7 +3121,7 @@ pub extern "msi" fn MsiSourceListClearAllExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionExA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3129,7 +3129,7 @@ pub extern "msi" fn MsiSourceListForceResolutionExA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionExW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3137,49 +3137,49 @@ pub extern "msi" fn MsiSourceListForceResolutionExW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListSetInfoA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szProperty: [*:0]const u8,
-    szValue: [*:0]const u8,
+    szProperty: ?[*:0]const u8,
+    szValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListSetInfoW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szProperty: [*:0]const u16,
-    szValue: [*:0]const u16,
+    szProperty: ?[*:0]const u16,
+    szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListGetInfoA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szProperty: [*:0]const u8,
+    szProperty: ?[*:0]const u8,
     szValue: ?[*:0]u8,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListGetInfoW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-    szProperty: [*:0]const u16,
+    szProperty: ?[*:0]const u16,
     szValue: ?[*:0]u16,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumSourcesA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3190,7 +3190,7 @@ pub extern "msi" fn MsiSourceListEnumSourcesA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumSourcesW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3201,7 +3201,7 @@ pub extern "msi" fn MsiSourceListEnumSourcesW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumMediaDisksA(
-    szProductCodeOrPatchCode: [*:0]const u8,
+    szProductCodeOrPatchCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3215,7 +3215,7 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumMediaDisksW(
-    szProductCodeOrPatchCode: [*:0]const u16,
+    szProductCodeOrPatchCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
@@ -3229,7 +3229,7 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileVersionA(
-    szFilePath: [*:0]const u8,
+    szFilePath: ?[*:0]const u8,
     lpVersionBuf: ?[*:0]u8,
     pcchVersionBuf: ?*u32,
     lpLangBuf: ?[*:0]u8,
@@ -3238,7 +3238,7 @@ pub extern "msi" fn MsiGetFileVersionA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileVersionW(
-    szFilePath: [*:0]const u16,
+    szFilePath: ?[*:0]const u16,
     lpVersionBuf: ?[*:0]u16,
     pcchVersionBuf: ?*u32,
     lpLangBuf: ?[*:0]u16,
@@ -3247,23 +3247,23 @@ pub extern "msi" fn MsiGetFileVersionW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileHashA(
-    szFilePath: [*:0]const u8,
+    szFilePath: ?[*:0]const u8,
     dwOptions: u32,
-    pHash: *MSIFILEHASHINFO,
+    pHash: ?*MSIFILEHASHINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileHashW(
-    szFilePath: [*:0]const u16,
+    szFilePath: ?[*:0]const u16,
     dwOptions: u32,
-    pHash: *MSIFILEHASHINFO,
+    pHash: ?*MSIFILEHASHINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileSignatureInformationA(
-    szSignedObjectPath: [*:0]const u8,
+    szSignedObjectPath: ?[*:0]const u8,
     dwFlags: u32,
-    ppcCertContext: **CERT_CONTEXT,
+    ppcCertContext: ?*?*CERT_CONTEXT,
     // TODO: what to do with BytesParamIndex 4?
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
@@ -3271,9 +3271,9 @@ pub extern "msi" fn MsiGetFileSignatureInformationA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileSignatureInformationW(
-    szSignedObjectPath: [*:0]const u16,
+    szSignedObjectPath: ?[*:0]const u16,
     dwFlags: u32,
-    ppcCertContext: **CERT_CONTEXT,
+    ppcCertContext: ?*?*CERT_CONTEXT,
     // TODO: what to do with BytesParamIndex 4?
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
@@ -3281,7 +3281,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetShortcutTargetA(
-    szShortcutPath: [*:0]const u8,
+    szShortcutPath: ?[*:0]const u8,
     szProductCode: ?PSTR,
     szFeatureId: ?PSTR,
     szComponentCode: ?PSTR,
@@ -3289,7 +3289,7 @@ pub extern "msi" fn MsiGetShortcutTargetA(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetShortcutTargetW(
-    szShortcutPath: [*:0]const u16,
+    szShortcutPath: ?[*:0]const u16,
     szProductCode: ?PWSTR,
     szFeatureId: ?PWSTR,
     szComponentCode: ?PWSTR,
@@ -3297,42 +3297,42 @@ pub extern "msi" fn MsiGetShortcutTargetW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiIsProductElevatedA(
-    szProduct: [*:0]const u8,
-    pfElevated: *BOOL,
+    szProduct: ?[*:0]const u8,
+    pfElevated: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiIsProductElevatedW(
-    szProduct: [*:0]const u16,
-    pfElevated: *BOOL,
+    szProduct: ?[*:0]const u16,
+    pfElevated: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiNotifySidChangeA(
-    pOldSid: [*:0]const u8,
-    pNewSid: [*:0]const u8,
+    pOldSid: ?[*:0]const u8,
+    pNewSid: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiNotifySidChangeW(
-    pOldSid: [*:0]const u16,
-    pNewSid: [*:0]const u16,
+    pOldSid: ?[*:0]const u16,
+    pNewSid: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiBeginTransactionA(
-    szName: [*:0]const u8,
+    szName: ?[*:0]const u8,
     dwTransactionAttributes: u32,
-    phTransactionHandle: *MSIHANDLE,
-    phChangeOfOwnerEvent: *HANDLE,
+    phTransactionHandle: ?*MSIHANDLE,
+    phChangeOfOwnerEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiBeginTransactionW(
-    szName: [*:0]const u16,
+    szName: ?[*:0]const u16,
     dwTransactionAttributes: u32,
-    phTransactionHandle: *MSIHANDLE,
-    phChangeOfOwnerEvent: *HANDLE,
+    phTransactionHandle: ?*MSIHANDLE,
+    phChangeOfOwnerEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3344,21 +3344,21 @@ pub extern "msi" fn MsiEndTransaction(
 pub extern "msi" fn MsiJoinTransaction(
     hTransactionHandle: MSIHANDLE,
     dwTransactionAttributes: u32,
-    phChangeOfOwnerEvent: *HANDLE,
+    phChangeOfOwnerEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseOpenViewA(
     hDatabase: MSIHANDLE,
-    szQuery: [*:0]const u8,
-    phView: *MSIHANDLE,
+    szQuery: ?[*:0]const u8,
+    phView: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseOpenViewW(
     hDatabase: MSIHANDLE,
-    szQuery: [*:0]const u16,
-    phView: *MSIHANDLE,
+    szQuery: ?[*:0]const u16,
+    phView: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3384,7 +3384,7 @@ pub extern "msi" fn MsiViewExecute(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewFetch(
     hView: MSIHANDLE,
-    phRecord: *MSIHANDLE,
+    phRecord: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3398,7 +3398,7 @@ pub extern "msi" fn MsiViewModify(
 pub extern "msi" fn MsiViewGetColumnInfo(
     hView: MSIHANDLE,
     eColumnInfo: MSICOLINFO,
-    phRecord: *MSIHANDLE,
+    phRecord: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3409,49 +3409,49 @@ pub extern "msi" fn MsiViewClose(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysA(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u8,
-    phRecord: *MSIHANDLE,
+    szTableName: ?[*:0]const u8,
+    phRecord: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysW(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u16,
-    phRecord: *MSIHANDLE,
+    szTableName: ?[*:0]const u16,
+    phRecord: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseIsTablePersistentA(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u8,
+    szTableName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseIsTablePersistentW(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u16,
+    szTableName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSummaryInformationA(
     hDatabase: MSIHANDLE,
-    szDatabasePath: [*:0]const u8,
+    szDatabasePath: ?[*:0]const u8,
     uiUpdateCount: u32,
-    phSummaryInfo: *MSIHANDLE,
+    phSummaryInfo: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSummaryInformationW(
     hDatabase: MSIHANDLE,
-    szDatabasePath: [*:0]const u16,
+    szDatabasePath: ?[*:0]const u16,
     uiUpdateCount: u32,
-    phSummaryInfo: *MSIHANDLE,
+    phSummaryInfo: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoGetPropertyCount(
     hSummaryInfo: MSIHANDLE,
-    puiPropertyCount: *u32,
+    puiPropertyCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3460,8 +3460,8 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyA(
     uiProperty: u32,
     uiDataType: u32,
     iValue: i32,
-    pftValue: *FILETIME,
-    szValue: [*:0]const u8,
+    pftValue: ?*FILETIME,
+    szValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3470,16 +3470,16 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyW(
     uiProperty: u32,
     uiDataType: u32,
     iValue: i32,
-    pftValue: *FILETIME,
-    szValue: [*:0]const u16,
+    pftValue: ?*FILETIME,
+    szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoGetPropertyA(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
-    puiDataType: *u32,
-    piValue: *i32,
+    puiDataType: ?*u32,
+    piValue: ?*i32,
     pftValue: ?*FILETIME,
     szValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
@@ -3489,8 +3489,8 @@ pub extern "msi" fn MsiSummaryInfoGetPropertyA(
 pub extern "msi" fn MsiSummaryInfoGetPropertyW(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
-    puiDataType: *u32,
-    piValue: *i32,
+    puiDataType: ?*u32,
+    piValue: ?*i32,
     pftValue: ?*FILETIME,
     szValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
@@ -3503,67 +3503,67 @@ pub extern "msi" fn MsiSummaryInfoPersist(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenDatabaseA(
-    szDatabasePath: [*:0]const u8,
-    szPersist: [*:0]const u8,
-    phDatabase: *MSIHANDLE,
+    szDatabasePath: ?[*:0]const u8,
+    szPersist: ?[*:0]const u8,
+    phDatabase: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenDatabaseW(
-    szDatabasePath: [*:0]const u16,
-    szPersist: [*:0]const u16,
-    phDatabase: *MSIHANDLE,
+    szDatabasePath: ?[*:0]const u16,
+    szPersist: ?[*:0]const u16,
+    phDatabase: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseImportA(
     hDatabase: MSIHANDLE,
-    szFolderPath: [*:0]const u8,
-    szFileName: [*:0]const u8,
+    szFolderPath: ?[*:0]const u8,
+    szFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseImportW(
     hDatabase: MSIHANDLE,
-    szFolderPath: [*:0]const u16,
-    szFileName: [*:0]const u16,
+    szFolderPath: ?[*:0]const u16,
+    szFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseExportA(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u8,
-    szFolderPath: [*:0]const u8,
-    szFileName: [*:0]const u8,
+    szTableName: ?[*:0]const u8,
+    szFolderPath: ?[*:0]const u8,
+    szFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseExportW(
     hDatabase: MSIHANDLE,
-    szTableName: [*:0]const u16,
-    szFolderPath: [*:0]const u16,
-    szFileName: [*:0]const u16,
+    szTableName: ?[*:0]const u16,
+    szFolderPath: ?[*:0]const u16,
+    szFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseMergeA(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
-    szTableName: [*:0]const u8,
+    szTableName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseMergeW(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
-    szTableName: [*:0]const u16,
+    szTableName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGenerateTransformA(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
-    szTransformFile: [*:0]const u8,
+    szTransformFile: ?[*:0]const u8,
     iReserved1: i32,
     iReserved2: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3572,7 +3572,7 @@ pub extern "msi" fn MsiDatabaseGenerateTransformA(
 pub extern "msi" fn MsiDatabaseGenerateTransformW(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
-    szTransformFile: [*:0]const u16,
+    szTransformFile: ?[*:0]const u16,
     iReserved1: i32,
     iReserved2: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3580,14 +3580,14 @@ pub extern "msi" fn MsiDatabaseGenerateTransformW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseApplyTransformA(
     hDatabase: MSIHANDLE,
-    szTransformFile: [*:0]const u8,
+    szTransformFile: ?[*:0]const u8,
     iErrorConditions: MSITRANSFORM_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseApplyTransformW(
     hDatabase: MSIHANDLE,
-    szTransformFile: [*:0]const u16,
+    szTransformFile: ?[*:0]const u16,
     iErrorConditions: MSITRANSFORM_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3595,7 +3595,7 @@ pub extern "msi" fn MsiDatabaseApplyTransformW(
 pub extern "msi" fn MsiCreateTransformSummaryInfoA(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
-    szTransformFile: [*:0]const u8,
+    szTransformFile: ?[*:0]const u8,
     iErrorConditions: MSITRANSFORM_ERROR,
     iValidation: MSITRANSFORM_VALIDATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3604,7 +3604,7 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoA(
 pub extern "msi" fn MsiCreateTransformSummaryInfoW(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
-    szTransformFile: [*:0]const u16,
+    szTransformFile: ?[*:0]const u16,
     iErrorConditions: MSITRANSFORM_ERROR,
     iValidation: MSITRANSFORM_VALIDATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3647,14 +3647,14 @@ pub extern "msi" fn MsiRecordSetInteger(
 pub extern "msi" fn MsiRecordSetStringA(
     hRecord: MSIHANDLE,
     iField: u32,
-    szValue: [*:0]const u8,
+    szValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStringW(
     hRecord: MSIHANDLE,
     iField: u32,
-    szValue: [*:0]const u16,
+    szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3688,14 +3688,14 @@ pub extern "msi" fn MsiRecordGetFieldCount(
 pub extern "msi" fn MsiRecordSetStreamA(
     hRecord: MSIHANDLE,
     iField: u32,
-    szFilePath: [*:0]const u8,
+    szFilePath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStreamW(
     hRecord: MSIHANDLE,
     iField: u32,
-    szFilePath: [*:0]const u16,
+    szFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3704,7 +3704,7 @@ pub extern "msi" fn MsiRecordReadStream(
     iField: u32,
     // TODO: what to do with BytesParamIndex 3?
     szDataBuf: ?PSTR,
-    pcbDataBuf: *u32,
+    pcbDataBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3720,21 +3720,21 @@ pub extern "msi" fn MsiGetActiveDatabase(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetPropertyA(
     hInstall: MSIHANDLE,
-    szName: [*:0]const u8,
-    szValue: [*:0]const u8,
+    szName: ?[*:0]const u8,
+    szValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetPropertyW(
     hInstall: MSIHANDLE,
-    szName: [*:0]const u16,
-    szValue: [*:0]const u16,
+    szName: ?[*:0]const u16,
+    szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPropertyA(
     hInstall: MSIHANDLE,
-    szName: [*:0]const u8,
+    szName: ?[*:0]const u8,
     szValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3742,7 +3742,7 @@ pub extern "msi" fn MsiGetPropertyA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPropertyW(
     hInstall: MSIHANDLE,
-    szName: [*:0]const u16,
+    szName: ?[*:0]const u16,
     szValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3784,26 +3784,26 @@ pub extern "msi" fn MsiFormatRecordW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDoActionA(
     hInstall: MSIHANDLE,
-    szAction: [*:0]const u8,
+    szAction: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDoActionW(
     hInstall: MSIHANDLE,
-    szAction: [*:0]const u16,
+    szAction: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSequenceA(
     hInstall: MSIHANDLE,
-    szTable: [*:0]const u8,
+    szTable: ?[*:0]const u8,
     iSequenceMode: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSequenceW(
     hInstall: MSIHANDLE,
-    szTable: [*:0]const u16,
+    szTable: ?[*:0]const u16,
     iSequenceMode: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3817,129 +3817,129 @@ pub extern "msi" fn MsiProcessMessage(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEvaluateConditionA(
     hInstall: MSIHANDLE,
-    szCondition: [*:0]const u8,
+    szCondition: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEvaluateConditionW(
     hInstall: MSIHANDLE,
-    szCondition: [*:0]const u16,
+    szCondition: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureStateA(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u8,
-    piInstalled: *INSTALLSTATE,
-    piAction: *INSTALLSTATE,
+    szFeature: ?[*:0]const u8,
+    piInstalled: ?*INSTALLSTATE,
+    piAction: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureStateW(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u16,
-    piInstalled: *INSTALLSTATE,
-    piAction: *INSTALLSTATE,
+    szFeature: ?[*:0]const u16,
+    piInstalled: ?*INSTALLSTATE,
+    piAction: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureStateA(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u8,
+    szFeature: ?[*:0]const u8,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureStateW(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u16,
+    szFeature: ?[*:0]const u16,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureAttributesA(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u8,
+    szFeature: ?[*:0]const u8,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureAttributesW(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u16,
+    szFeature: ?[*:0]const u16,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentStateA(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u8,
-    piInstalled: *INSTALLSTATE,
-    piAction: *INSTALLSTATE,
+    szComponent: ?[*:0]const u8,
+    piInstalled: ?*INSTALLSTATE,
+    piAction: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentStateW(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u16,
-    piInstalled: *INSTALLSTATE,
-    piAction: *INSTALLSTATE,
+    szComponent: ?[*:0]const u16,
+    piInstalled: ?*INSTALLSTATE,
+    piAction: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetComponentStateA(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetComponentStateW(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureCostA(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u8,
+    szFeature: ?[*:0]const u8,
     iCostTree: MSICOSTTREE,
     iState: INSTALLSTATE,
-    piCost: *i32,
+    piCost: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureCostW(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u16,
+    szFeature: ?[*:0]const u16,
     iCostTree: MSICOSTTREE,
     iState: INSTALLSTATE,
-    piCost: *i32,
+    piCost: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentCostsA(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u8,
+    szComponent: ?[*:0]const u8,
     dwIndex: u32,
     iState: INSTALLSTATE,
     szDriveBuf: [*:0]u8,
-    pcchDriveBuf: *u32,
-    piCost: *i32,
-    piTempCost: *i32,
+    pcchDriveBuf: ?*u32,
+    piCost: ?*i32,
+    piTempCost: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentCostsW(
     hInstall: MSIHANDLE,
-    szComponent: [*:0]const u16,
+    szComponent: ?[*:0]const u16,
     dwIndex: u32,
     iState: INSTALLSTATE,
     szDriveBuf: [*:0]u16,
-    pcchDriveBuf: *u32,
-    piCost: *i32,
-    piTempCost: *i32,
+    pcchDriveBuf: ?*u32,
+    piCost: ?*i32,
+    piTempCost: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3951,21 +3951,21 @@ pub extern "msi" fn MsiSetInstallLevel(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureValidStatesA(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u8,
-    lpInstallStates: *u32,
+    szFeature: ?[*:0]const u8,
+    lpInstallStates: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureValidStatesW(
     hInstall: MSIHANDLE,
-    szFeature: [*:0]const u16,
-    lpInstallStates: *u32,
+    szFeature: ?[*:0]const u16,
+    lpInstallStates: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSourcePathA(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u8,
+    szFolder: ?[*:0]const u8,
     szPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3973,7 +3973,7 @@ pub extern "msi" fn MsiGetSourcePathA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSourcePathW(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u16,
+    szFolder: ?[*:0]const u16,
     szPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3981,7 +3981,7 @@ pub extern "msi" fn MsiGetSourcePathW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetTargetPathA(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u8,
+    szFolder: ?[*:0]const u8,
     szPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3989,7 +3989,7 @@ pub extern "msi" fn MsiGetTargetPathA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetTargetPathW(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u16,
+    szFolder: ?[*:0]const u16,
     szPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3997,15 +3997,15 @@ pub extern "msi" fn MsiGetTargetPathW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetTargetPathA(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u8,
-    szFolderPath: [*:0]const u8,
+    szFolder: ?[*:0]const u8,
+    szFolderPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetTargetPathW(
     hInstall: MSIHANDLE,
-    szFolder: [*:0]const u16,
-    szFolderPath: [*:0]const u16,
+    szFolder: ?[*:0]const u16,
+    szFolderPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -4016,33 +4016,33 @@ pub extern "msi" fn MsiVerifyDiskSpace(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableUIPreview(
     hDatabase: MSIHANDLE,
-    phPreview: *MSIHANDLE,
+    phPreview: ?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewDialogA(
     hPreview: MSIHANDLE,
-    szDialogName: [*:0]const u8,
+    szDialogName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewDialogW(
     hPreview: MSIHANDLE,
-    szDialogName: [*:0]const u16,
+    szDialogName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewBillboardA(
     hPreview: MSIHANDLE,
-    szControlName: [*:0]const u8,
-    szBillboard: [*:0]const u8,
+    szControlName: ?[*:0]const u8,
+    szBillboard: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewBillboardW(
     hPreview: MSIHANDLE,
-    szControlName: [*:0]const u16,
-    szBillboard: [*:0]const u16,
+    szControlName: ?[*:0]const u16,
+    szBillboard: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -4051,25 +4051,25 @@ pub extern "msi" fn MsiGetLastErrorRecord(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcGetNextProtectedFile(
-    RpcHandle: HANDLE,
-    ProtFileData: *PROTECTED_FILE_DATA,
+    RpcHandle: ?HANDLE,
+    ProtFileData: ?*PROTECTED_FILE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcIsFileProtected(
-    RpcHandle: HANDLE,
-    ProtFileName: [*:0]const u16,
+    RpcHandle: ?HANDLE,
+    ProtFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "sfc" fn SfcIsKeyProtected(
-    KeyHandle: HKEY,
-    SubKeyName: [*:0]const u16,
+    KeyHandle: ?HKEY,
+    SubKeyName: ?[*:0]const u16,
     KeySam: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "sfc" fn SfpVerifyFile(
-    pszFileName: [*:0]const u8,
+    pszFileName: ?[*:0]const u8,
     pszError: [*:0]u8,
     dwErrSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

@@ -60,9 +60,9 @@ pub const OSUpdateAssessment = extern struct {
     securityStatus: UpdateAssessmentStatus,
     assessmentTime: FILETIME,
     releaseInfoTime: FILETIME,
-    currentOSBuild: PWSTR,
+    currentOSBuild: ?PWSTR,
     currentOSReleaseTime: FILETIME,
-    upToDateOSBuild: PWSTR,
+    upToDateOSBuild: ?PWSTR,
     upToDateOSReleaseTime: FILETIME,
 };
 
@@ -74,14 +74,14 @@ pub const IWaaSAssessor = extern struct {
         base: IUnknown.VTable,
         GetOSUpdateAssessment: fn(
             self: *const IWaaSAssessor,
-            result: *OSUpdateAssessment,
+            result: ?*OSUpdateAssessment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: *OSUpdateAssessment) callconv(.Inline) HRESULT {
+        pub fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWaaSAssessor.VTable, self.vtable).GetOSUpdateAssessment(@ptrCast(*const IWaaSAssessor, self), result);
         }
     };}

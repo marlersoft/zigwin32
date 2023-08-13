@@ -121,8 +121,8 @@ pub const POINTER_INFO = extern struct {
     pointerId: u32,
     frameId: u32,
     pointerFlags: POINTER_FLAGS,
-    sourceDevice: HANDLE,
-    hwndTarget: HWND,
+    sourceDevice: ?HANDLE,
+    hwndTarget: ?HWND,
     ptPixelLocation: POINT,
     ptHimetricLocation: POINT,
     ptPixelLocationRaw: POINT,
@@ -190,96 +190,96 @@ pub extern "USER32" fn GetUnpredictedMessagePos(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerType(
     pointerId: u32,
-    pointerType: *POINTER_INPUT_TYPE,
+    pointerType: ?*POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerCursorId(
     pointerId: u32,
-    cursorId: *u32,
+    cursorId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerInfo(
     pointerId: u32,
-    pointerInfo: *POINTER_INFO,
+    pointerInfo: ?*POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
+    entriesCount: ?*u32,
     pointerInfo: ?[*]POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFrameInfo(
     pointerId: u32,
-    pointerCount: *u32,
+    pointerCount: ?*u32,
     pointerInfo: ?[*]POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFrameInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
-    pointerCount: *u32,
+    entriesCount: ?*u32,
+    pointerCount: ?*u32,
     pointerInfo: ?*POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerTouchInfo(
     pointerId: u32,
-    touchInfo: *POINTER_TOUCH_INFO,
+    touchInfo: ?*POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerTouchInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
+    entriesCount: ?*u32,
     touchInfo: ?[*]POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFrameTouchInfo(
     pointerId: u32,
-    pointerCount: *u32,
+    pointerCount: ?*u32,
     touchInfo: ?[*]POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFrameTouchInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
-    pointerCount: *u32,
+    entriesCount: ?*u32,
+    pointerCount: ?*u32,
     touchInfo: ?*POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerPenInfo(
     pointerId: u32,
-    penInfo: *POINTER_PEN_INFO,
+    penInfo: ?*POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerPenInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
+    entriesCount: ?*u32,
     penInfo: ?[*]POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFramePenInfo(
     pointerId: u32,
-    pointerCount: *u32,
+    pointerCount: ?*u32,
     penInfo: ?[*]POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn GetPointerFramePenInfoHistory(
     pointerId: u32,
-    entriesCount: *u32,
-    pointerCount: *u32,
+    entriesCount: ?*u32,
+    pointerCount: ?*u32,
     penInfo: ?*POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

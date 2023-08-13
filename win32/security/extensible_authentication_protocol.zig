@@ -372,13 +372,13 @@ pub const raatReserved = RAS_AUTH_ATTRIBUTE_TYPE.Reserved;
 pub const NgcTicketContext = extern struct {
     wszTicket: [45]u16,
     hKey: usize,
-    hImpersonateToken: HANDLE,
+    hImpersonateToken: ?HANDLE,
 };
 
 pub const RAS_AUTH_ATTRIBUTE = extern struct {
     raaType: RAS_AUTH_ATTRIBUTE_TYPE,
     dwLength: u32,
-    Value: *c_void,
+    Value: ?*c_void,
 };
 
 pub const PPP_EAP_PACKET = extern struct {
@@ -392,22 +392,22 @@ pub const PPP_EAP_INPUT = extern struct {
     dwSizeInBytes: u32,
     fFlags: u32,
     fAuthenticator: BOOL,
-    pwszIdentity: PWSTR,
-    pwszPassword: PWSTR,
+    pwszIdentity: ?PWSTR,
+    pwszPassword: ?PWSTR,
     bInitialId: u8,
-    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
+    pUserAttributes: ?*RAS_AUTH_ATTRIBUTE,
     fAuthenticationComplete: BOOL,
     dwAuthResultCode: u32,
-    hTokenImpersonateUser: HANDLE,
+    hTokenImpersonateUser: ?HANDLE,
     fSuccessPacketReceived: BOOL,
     fDataReceivedFromInteractiveUI: BOOL,
-    pDataFromInteractiveUI: *u8,
+    pDataFromInteractiveUI: ?*u8,
     dwSizeOfDataFromInteractiveUI: u32,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     dwSizeOfConnectionData: u32,
-    pUserData: *u8,
+    pUserData: ?*u8,
     dwSizeOfUserData: u32,
-    hReserved: HANDLE,
+    hReserved: ?HANDLE,
     guidConnectionId: Guid,
     isVpn: BOOL,
 };
@@ -437,17 +437,17 @@ pub const PPP_EAP_OUTPUT = extern struct {
     dwSizeInBytes: u32,
     Action: PPP_EAP_ACTION,
     dwAuthResultCode: u32,
-    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
+    pUserAttributes: ?*RAS_AUTH_ATTRIBUTE,
     fInvokeInteractiveUI: BOOL,
-    pUIContextData: *u8,
+    pUIContextData: ?*u8,
     dwSizeOfUIContextData: u32,
     fSaveConnectionData: BOOL,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     dwSizeOfConnectionData: u32,
     fSaveUserData: BOOL,
-    pUserData: *u8,
+    pUserData: ?*u8,
     dwSizeOfUserData: u32,
-    pNgcKerbTicket: *NgcTicketContext,
+    pNgcKerbTicket: ?*NgcTicketContext,
     fSaveToCredMan: BOOL,
 };
 
@@ -464,21 +464,21 @@ pub const LEGACY_IDENTITY_UI_PARAMS = extern struct {
     eapType: u32,
     dwFlags: u32,
     dwSizeofConnectionData: u32,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     dwSizeofUserData: u32,
-    pUserData: *u8,
+    pUserData: ?*u8,
     dwSizeofUserDataOut: u32,
-    pUserDataOut: *u8,
-    pwszIdentity: PWSTR,
+    pUserDataOut: ?*u8,
+    pwszIdentity: ?PWSTR,
     dwError: u32,
 };
 
 pub const LEGACY_INTERACTIVE_UI_PARAMS = extern struct {
     eapType: u32,
     dwSizeofContextData: u32,
-    pContextData: *u8,
+    pContextData: ?*u8,
     dwSizeofInteractiveUIData: u32,
-    pInteractiveUIData: *u8,
+    pInteractiveUIData: ?*u8,
     dwError: u32,
 };
 
@@ -489,22 +489,22 @@ pub const IRouterProtocolConfig = extern struct {
         base: IUnknown.VTable,
         AddProtocol: fn(
             self: *const IRouterProtocolConfig,
-            pszMachineName: [*:0]const u16,
+            pszMachineName: ?[*:0]const u16,
             dwTransportId: u32,
             dwProtocolId: u32,
-            hWnd: HWND,
+            hWnd: ?HWND,
             dwFlags: u32,
-            pRouter: *IUnknown,
+            pRouter: ?*IUnknown,
             uReserved1: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveProtocol: fn(
             self: *const IRouterProtocolConfig,
-            pszMachineName: [*:0]const u16,
+            pszMachineName: ?[*:0]const u16,
             dwTransportId: u32,
             dwProtocolId: u32,
-            hWnd: HWND,
+            hWnd: ?HWND,
             dwFlags: u32,
-            pRouter: *IUnknown,
+            pRouter: ?*IUnknown,
             uReserved1: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -512,11 +512,11 @@ pub const IRouterProtocolConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).AddProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).RemoveProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
         }
     };}
@@ -530,8 +530,8 @@ pub const IAuthenticationProviderConfig = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IAuthenticationProviderConfig,
-            pszMachineName: [*:0]const u16,
-            puConnectionParam: *usize,
+            pszMachineName: ?[*:0]const u16,
+            puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Uninitialize: fn(
             self: *const IAuthenticationProviderConfig,
@@ -540,7 +540,7 @@ pub const IAuthenticationProviderConfig = extern struct {
         Configure: fn(
             self: *const IAuthenticationProviderConfig,
             uConnectionParam: usize,
-            hWnd: HWND,
+            hWnd: ?HWND,
             dwFlags: u32,
             uReserved1: usize,
             uReserved2: usize,
@@ -562,7 +562,7 @@ pub const IAuthenticationProviderConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAuthenticationProviderConfig, self), pszMachineName, puConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -570,7 +570,7 @@ pub const IAuthenticationProviderConfig = extern struct {
             return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -592,8 +592,8 @@ pub const IAccountingProviderConfig = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IAccountingProviderConfig,
-            pszMachineName: [*:0]const u16,
-            puConnectionParam: *usize,
+            pszMachineName: ?[*:0]const u16,
+            puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Uninitialize: fn(
             self: *const IAccountingProviderConfig,
@@ -602,7 +602,7 @@ pub const IAccountingProviderConfig = extern struct {
         Configure: fn(
             self: *const IAccountingProviderConfig,
             uConnectionParam: usize,
-            hWnd: HWND,
+            hWnd: ?HWND,
             dwFlags: u32,
             uReserved1: usize,
             uReserved2: usize,
@@ -624,7 +624,7 @@ pub const IAccountingProviderConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAccountingProviderConfig, self), pszMachineName, puConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -632,7 +632,7 @@ pub const IAccountingProviderConfig = extern struct {
             return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -655,9 +655,9 @@ pub const IEAPProviderConfig = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IEAPProviderConfig,
-            pszMachineName: [*:0]const u16,
+            pszMachineName: ?[*:0]const u16,
             dwEapTypeId: u32,
-            puConnectionParam: *usize,
+            puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Uninitialize: fn(
             self: *const IEAPProviderConfig,
@@ -668,7 +668,7 @@ pub const IEAPProviderConfig = extern struct {
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
-            hWnd: HWND,
+            hWnd: ?HWND,
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -676,32 +676,32 @@ pub const IEAPProviderConfig = extern struct {
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             dwFlags: u32,
             pConnectionDataIn: [*:0]u8,
             dwSizeOfConnectionDataIn: u32,
-            ppConnectionDataOut: [*]*u8,
-            pdwSizeOfConnectionDataOut: *u32,
+            ppConnectionDataOut: [*]?*u8,
+            pdwSizeOfConnectionDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RouterInvokeCredentialsUI: fn(
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             dwFlags: u32,
             pConnectionDataIn: [*:0]u8,
             dwSizeOfConnectionDataIn: u32,
             pUserDataIn: [*:0]u8,
             dwSizeOfUserDataIn: u32,
-            ppUserDataOut: [*]*u8,
-            pdwSizeOfUserDataOut: *u32,
+            ppUserDataOut: [*]?*u8,
+            pdwSizeOfUserDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, dwEapTypeId: u32, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IEAPProviderConfig, self), pszMachineName, dwEapTypeId, puConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -709,15 +709,15 @@ pub const IEAPProviderConfig = extern struct {
             return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).ServerInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]*u8, pdwSizeOfConnectionDataOut: *u32) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]*u8, pdwSizeOfUserDataOut: *u32) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeCredentialsUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
         }
     };}
@@ -733,28 +733,28 @@ pub const IEAPProviderConfig2 = extern struct {
             self: *const IEAPProviderConfig2,
             dwEapTypeId: u32,
             uConnectionParam: usize,
-            hWnd: HWND,
-            pConfigDataIn: *const u8,
+            hWnd: ?HWND,
+            pConfigDataIn: ?*const u8,
             dwSizeOfConfigDataIn: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
+            ppConfigDataOut: ?*?*u8,
+            pdwSizeOfConfigDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGlobalConfig: fn(
             self: *const IEAPProviderConfig2,
             dwEapTypeId: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
+            ppConfigDataOut: ?*?*u8,
+            pdwSizeOfConfigDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IEAPProviderConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).ServerInvokeConfigUI2(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).GetGlobalConfig(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
         }
     };}
@@ -770,11 +770,11 @@ pub const IEAPProviderConfig3 = extern struct {
             self: *const IEAPProviderConfig3,
             dwEapTypeId: u32,
             uConnectionParam: usize,
-            hWnd: HWND,
-            pConfigDataIn: *const u8,
+            hWnd: ?HWND,
+            pConfigDataIn: ?*const u8,
             dwSizeOfConfigDataIn: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
+            ppConfigDataOut: ?*?*u8,
+            pdwSizeOfConfigDataOut: ?*u32,
             uReserved: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -782,7 +782,7 @@ pub const IEAPProviderConfig3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32, uReserved: usize) callconv(.Inline) HRESULT {
+        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEAPProviderConfig3.VTable, self.vtable).ServerInvokeCertificateConfigUI(@ptrCast(*const IEAPProviderConfig3, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
         }
     };}
@@ -802,28 +802,28 @@ pub const EAP_METHOD_TYPE = extern struct {
 
 pub const EAP_METHOD_INFO = extern struct {
     eaptype: EAP_METHOD_TYPE,
-    pwszAuthorName: PWSTR,
-    pwszFriendlyName: PWSTR,
+    pwszAuthorName: ?PWSTR,
+    pwszFriendlyName: ?PWSTR,
     eapProperties: u32,
-    pInnerMethodInfo: *EAP_METHOD_INFO,
+    pInnerMethodInfo: ?*EAP_METHOD_INFO,
 };
 
 pub const EAP_METHOD_INFO_EX = extern struct {
     eaptype: EAP_METHOD_TYPE,
-    pwszAuthorName: PWSTR,
-    pwszFriendlyName: PWSTR,
+    pwszAuthorName: ?PWSTR,
+    pwszFriendlyName: ?PWSTR,
     eapProperties: u32,
-    pInnerMethodInfoArray: *EAP_METHOD_INFO_ARRAY_EX,
+    pInnerMethodInfoArray: ?*EAP_METHOD_INFO_ARRAY_EX,
 };
 
 pub const EAP_METHOD_INFO_ARRAY = extern struct {
     dwNumberOfMethods: u32,
-    pEapMethods: *EAP_METHOD_INFO,
+    pEapMethods: ?*EAP_METHOD_INFO,
 };
 
 pub const EAP_METHOD_INFO_ARRAY_EX = extern struct {
     dwNumberOfMethods: u32,
-    pEapMethods: *EAP_METHOD_INFO_EX,
+    pEapMethods: ?*EAP_METHOD_INFO_EX,
 };
 
 pub const EAP_ERROR = extern struct {
@@ -833,8 +833,8 @@ pub const EAP_ERROR = extern struct {
     rootCauseGuid: Guid,
     repairGuid: Guid,
     helpLinkGuid: Guid,
-    pRootCauseString: PWSTR,
-    pRepairString: PWSTR,
+    pRootCauseString: ?PWSTR,
+    pRepairString: ?PWSTR,
 };
 
 pub const EAP_ATTRIBUTE_TYPE = enum(i32) {
@@ -1039,12 +1039,12 @@ pub const eatReserved = EAP_ATTRIBUTE_TYPE.Reserved;
 pub const EAP_ATTRIBUTE = extern struct {
     eaType: EAP_ATTRIBUTE_TYPE,
     dwLength: u32,
-    pValue: *u8,
+    pValue: ?*u8,
 };
 
 pub const EAP_ATTRIBUTES = extern struct {
     dwNumberOfAttributes: u32,
-    pAttribs: *EAP_ATTRIBUTE,
+    pAttribs: ?*EAP_ATTRIBUTE,
 };
 
 pub const EAP_CONFIG_INPUT_FIELD_TYPE = enum(i32) {
@@ -1072,8 +1072,8 @@ pub const EAP_CONFIG_INPUT_FIELD_DATA = extern struct {
     dwSize: u32,
     Type: EAP_CONFIG_INPUT_FIELD_TYPE,
     dwFlagProps: u32,
-    pwszLabel: PWSTR,
-    pwszData: PWSTR,
+    pwszLabel: ?PWSTR,
+    pwszData: ?PWSTR,
     dwMinDataLength: u32,
     dwMaxDataLength: u32,
 };
@@ -1081,7 +1081,7 @@ pub const EAP_CONFIG_INPUT_FIELD_DATA = extern struct {
 pub const EAP_CONFIG_INPUT_FIELD_ARRAY = extern struct {
     dwVersion: u32,
     dwNumberOfFields: u32,
-    pFields: *EAP_CONFIG_INPUT_FIELD_DATA,
+    pFields: ?*EAP_CONFIG_INPUT_FIELD_DATA,
 };
 
 pub const EAP_INTERACTIVE_UI_DATA_TYPE = enum(i32) {
@@ -1105,9 +1105,9 @@ pub const EAP_CRED_EXPIRY_REQ = extern struct {
 };
 
 pub const EAP_UI_DATA_FORMAT = extern union {
-    credData: *EAP_CONFIG_INPUT_FIELD_ARRAY,
-    credExpiryData: *EAP_CRED_EXPIRY_REQ,
-    credLogonData: *EAP_CONFIG_INPUT_FIELD_ARRAY,
+    credData: ?*EAP_CONFIG_INPUT_FIELD_ARRAY,
+    credExpiryData: ?*EAP_CRED_EXPIRY_REQ,
+    credLogonData: ?*EAP_CONFIG_INPUT_FIELD_ARRAY,
 };
 
 pub const EAP_INTERACTIVE_UI_DATA = extern struct {
@@ -1204,7 +1204,7 @@ pub const EAP_METHOD_PROPERTY_VALUE_DWORD = extern struct {
 
 pub const EAP_METHOD_PROPERTY_VALUE_STRING = extern struct {
     length: u32,
-    value: *u8,
+    value: ?*u8,
 };
 
 pub const EAP_METHOD_PROPERTY_VALUE = extern union {
@@ -1221,30 +1221,30 @@ pub const EAP_METHOD_PROPERTY = extern struct {
 
 pub const EAP_METHOD_PROPERTY_ARRAY = extern struct {
     dwNumberOfProperties: u32,
-    pMethodProperty: *EAP_METHOD_PROPERTY,
+    pMethodProperty: ?*EAP_METHOD_PROPERTY,
 };
 
 pub const EAPHOST_IDENTITY_UI_PARAMS = extern struct {
     eapMethodType: EAP_METHOD_TYPE,
     dwFlags: u32,
     dwSizeofConnectionData: u32,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     dwSizeofUserData: u32,
-    pUserData: *u8,
+    pUserData: ?*u8,
     dwSizeofUserDataOut: u32,
-    pUserDataOut: *u8,
-    pwszIdentity: PWSTR,
+    pUserDataOut: ?*u8,
+    pwszIdentity: ?PWSTR,
     dwError: u32,
-    pEapError: *EAP_ERROR,
+    pEapError: ?*EAP_ERROR,
 };
 
 pub const EAPHOST_INTERACTIVE_UI_PARAMS = extern struct {
     dwSizeofContextData: u32,
-    pContextData: *u8,
+    pContextData: ?*u8,
     dwSizeofInteractiveUIData: u32,
-    pInteractiveUIData: *u8,
+    pInteractiveUIData: ?*u8,
     dwError: u32,
-    pEapError: *EAP_ERROR,
+    pEapError: ?*EAP_ERROR,
 };
 
 pub const EapCredentialType = enum(i32) {
@@ -1261,17 +1261,17 @@ pub const EAP_CERTIFICATE_CREDENTIAL = EapCredentialType.CERTIFICATE_CREDENTIAL;
 pub const EAP_SIM_CREDENTIAL = EapCredentialType.SIM_CREDENTIAL;
 
 pub const EapUsernamePasswordCredential = extern struct {
-    username: PWSTR,
-    password: PWSTR,
+    username: ?PWSTR,
+    password: ?PWSTR,
 };
 
 pub const EapCertificateCredential = extern struct {
     certHash: [20]u8,
-    password: PWSTR,
+    password: ?PWSTR,
 };
 
 pub const EapSimCredential = extern struct {
-    iccID: PWSTR,
+    iccID: ?PWSTR,
 };
 
 pub const EapCredentialTypeData = extern union {
@@ -1361,14 +1361,14 @@ pub const EapHostPeerMethodResult = extern struct {
     dwFailureReasonCode: u32,
     fSaveConnectionData: BOOL,
     dwSizeofConnectionData: u32,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     fSaveUserData: BOOL,
     dwSizeofUserData: u32,
-    pUserData: *u8,
-    pAttribArray: *EAP_ATTRIBUTES,
+    pUserData: ?*u8,
+    pAttribArray: ?*EAP_ATTRIBUTES,
     isolationState: ISOLATION_STATE,
-    pEapMethodInfo: *EAP_METHOD_INFO,
-    pEapError: *EAP_ERROR,
+    pEapMethodInfo: ?*EAP_METHOD_INFO,
+    pEapError: ?*EAP_ERROR,
 };
 
 pub const EapPacket = extern struct {
@@ -1395,7 +1395,7 @@ pub const EapCodeMaximum = EapCode.Failure;
 
 pub const NotificationHandler = fn(
     connectionId: Guid,
-    pContextData: *c_void,
+    pContextData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const EAP_METHOD_AUTHENTICATOR_RESPONSE_ACTION = enum(i32) {
@@ -1416,7 +1416,7 @@ pub const EAP_METHOD_AUTHENTICATOR_RESPONSE_HANDLE_IDENTITY = EAP_METHOD_AUTHENT
 pub const EAP_METHOD_AUTHENTICATOR_RESULT = extern struct {
     fIsSuccess: BOOL,
     dwFailureReason: u32,
-    pAuthAttribs: *EAP_ATTRIBUTES,
+    pAuthAttribs: ?*EAP_ATTRIBUTES,
 };
 
 pub const EapPeerMethodResponseAction = enum(i32) {
@@ -1453,19 +1453,19 @@ pub const EapPeerMethodResult = extern struct {
     dwFailureReasonCode: u32,
     fSaveConnectionData: BOOL,
     dwSizeofConnectionData: u32,
-    pConnectionData: *u8,
+    pConnectionData: ?*u8,
     fSaveUserData: BOOL,
     dwSizeofUserData: u32,
-    pUserData: *u8,
-    pAttribArray: *EAP_ATTRIBUTES,
-    pEapError: *EAP_ERROR,
-    pNgcKerbTicket: *NgcTicketContext,
+    pUserData: ?*u8,
+    pAttribArray: ?*EAP_ATTRIBUTES,
+    pEapError: ?*EAP_ERROR,
+    pNgcKerbTicket: ?*NgcTicketContext,
     fSaveToCredMan: BOOL,
 };
 
 pub const EAP_PEER_METHOD_ROUTINES = extern struct {
     dwVersion: u32,
-    pEapType: *EAP_TYPE,
+    pEapType: ?*EAP_TYPE,
     EapPeerInitialize: isize,
     EapPeerGetIdentity: isize,
     EapPeerBeginSession: isize,
@@ -1492,7 +1492,7 @@ pub const EAP_AUTHENTICATOR_SEND_TIMEOUT_INTERACTIVE = EAP_AUTHENTICATOR_SEND_TI
 
 pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
     dwSizeInBytes: u32,
-    pEapType: *EAP_METHOD_TYPE,
+    pEapType: ?*EAP_METHOD_TYPE,
     EapMethodAuthenticatorInitialize: isize,
     EapMethodAuthenticatorBeginSession: isize,
     EapMethodAuthenticatorUpdateInnerMethodParams: isize,
@@ -1511,8 +1511,8 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerGetMethods(
-    pEapMethodInfoArray: *EAP_METHOD_INFO_ARRAY,
-    ppEapError: **EAP_ERROR,
+    pEapMethodInfoArray: ?*EAP_METHOD_INFO_ARRAY,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1520,49 +1520,49 @@ pub extern "eappcfg" fn EapHostPeerGetMethodProperties(
     dwVersion: u32,
     dwFlags: u32,
     eapMethodType: EAP_METHOD_TYPE,
-    hUserImpersonationToken: HANDLE,
+    hUserImpersonationToken: ?HANDLE,
     dwEapConnDataSize: u32,
     pbEapConnData: [*:0]const u8,
     dwUserDataSize: u32,
     pbUserData: [*:0]const u8,
-    pMethodPropertyArray: *EAP_METHOD_PROPERTY_ARRAY,
-    ppEapError: **EAP_ERROR,
+    pMethodPropertyArray: ?*EAP_METHOD_PROPERTY_ARRAY,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerInvokeConfigUI(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
     eapMethodType: EAP_METHOD_TYPE,
     dwSizeOfConfigIn: u32,
     pConfigIn: ?[*:0]const u8,
-    pdwSizeOfConfigOut: *u32,
-    ppConfigOut: **u8,
-    ppEapError: **EAP_ERROR,
+    pdwSizeOfConfigOut: ?*u32,
+    ppConfigOut: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryCredentialInputFields(
-    hUserImpersonationToken: HANDLE,
+    hUserImpersonationToken: ?HANDLE,
     eapMethodType: EAP_METHOD_TYPE,
     dwFlags: u32,
     dwEapConnDataSize: u32,
     pbEapConnData: [*:0]const u8,
-    pEapConfigInputFieldArray: *EAP_CONFIG_INPUT_FIELD_ARRAY,
-    ppEapError: **EAP_ERROR,
+    pEapConfigInputFieldArray: ?*EAP_CONFIG_INPUT_FIELD_ARRAY,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryUserBlobFromCredentialInputFields(
-    hUserImpersonationToken: HANDLE,
+    hUserImpersonationToken: ?HANDLE,
     eapMethodType: EAP_METHOD_TYPE,
     dwFlags: u32,
     dwEapConnDataSize: u32,
     pbEapConnData: [*:0]const u8,
-    pEapConfigInputFieldArray: *const EAP_CONFIG_INPUT_FIELD_ARRAY,
-    pdwUserBlobSize: *u32,
-    ppbUserBlob: [*]*u8,
-    ppEapError: **EAP_ERROR,
+    pEapConfigInputFieldArray: ?*const EAP_CONFIG_INPUT_FIELD_ARRAY,
+    pdwUserBlobSize: ?*u32,
+    ppbUserBlob: [*]?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1570,26 +1570,26 @@ pub extern "eappcfg" fn EapHostPeerInvokeIdentityUI(
     dwVersion: u32,
     eapMethodType: EAP_METHOD_TYPE,
     dwFlags: u32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwSizeofConnectionData: u32,
     pConnectionData: [*:0]const u8,
     dwSizeofUserData: u32,
     pUserData: ?[*:0]const u8,
-    pdwSizeOfUserDataOut: *u32,
-    ppUserDataOut: **u8,
-    ppwszIdentity: *PWSTR,
-    ppEapError: **EAP_ERROR,
-    ppvReserved: **c_void,
+    pdwSizeOfUserDataOut: ?*u32,
+    ppUserDataOut: ?*?*u8,
+    ppwszIdentity: ?*?PWSTR,
+    ppEapError: ?*?*EAP_ERROR,
+    ppvReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerInvokeInteractiveUI(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwSizeofUIContextData: u32,
     pUIContextData: ?[*:0]const u8,
-    pdwSizeOfDataFromInteractiveUI: *u32,
-    ppDataFromInteractiveUI: **u8,
-    ppEapError: **EAP_ERROR,
+    pdwSizeOfDataFromInteractiveUI: ?*u32,
+    ppDataFromInteractiveUI: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1598,9 +1598,9 @@ pub extern "eappcfg" fn EapHostPeerQueryInteractiveUIInputFields(
     dwFlags: u32,
     dwSizeofUIContextData: u32,
     pUIContextData: [*:0]const u8,
-    pEapInteractiveUIData: *EAP_INTERACTIVE_UI_DATA,
-    ppEapError: **EAP_ERROR,
-    ppvReserved: **c_void,
+    pEapInteractiveUIData: ?*EAP_INTERACTIVE_UI_DATA,
+    ppEapError: ?*?*EAP_ERROR,
+    ppvReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1609,33 +1609,33 @@ pub extern "eappcfg" fn EapHostPeerQueryUIBlobFromInteractiveUIInputFields(
     dwFlags: u32,
     dwSizeofUIContextData: u32,
     pUIContextData: [*:0]const u8,
-    pEapInteractiveUIData: *const EAP_INTERACTIVE_UI_DATA,
-    pdwSizeOfDataFromInteractiveUI: *u32,
-    ppDataFromInteractiveUI: **u8,
-    ppEapError: **EAP_ERROR,
-    ppvReserved: **c_void,
+    pEapInteractiveUIData: ?*const EAP_INTERACTIVE_UI_DATA,
+    pdwSizeOfDataFromInteractiveUI: ?*u32,
+    ppDataFromInteractiveUI: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
+    ppvReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerConfigXml2Blob(
     dwFlags: u32,
-    pConfigDoc: *IXMLDOMNode,
-    pdwSizeOfConfigOut: *u32,
-    ppConfigOut: **u8,
-    pEapMethodType: *EAP_METHOD_TYPE,
-    ppEapError: **EAP_ERROR,
+    pConfigDoc: ?*IXMLDOMNode,
+    pdwSizeOfConfigOut: ?*u32,
+    ppConfigOut: ?*?*u8,
+    pEapMethodType: ?*EAP_METHOD_TYPE,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerCredentialsXml2Blob(
     dwFlags: u32,
-    pCredentialsDoc: *IXMLDOMNode,
+    pCredentialsDoc: ?*IXMLDOMNode,
     dwSizeOfConfigIn: u32,
     pConfigIn: [*:0]u8,
-    pdwSizeOfCredentialsOut: *u32,
-    ppCredentialsOut: **u8,
-    pEapMethodType: *EAP_METHOD_TYPE,
-    ppEapError: **EAP_ERROR,
+    pdwSizeOfCredentialsOut: ?*u32,
+    ppCredentialsOut: ?*?*u8,
+    pEapMethodType: ?*EAP_METHOD_TYPE,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1644,18 +1644,18 @@ pub extern "eappcfg" fn EapHostPeerConfigBlob2Xml(
     eapMethodType: EAP_METHOD_TYPE,
     dwSizeOfConfigIn: u32,
     pConfigIn: [*:0]u8,
-    ppConfigDoc: **IXMLDOMDocument2,
-    ppEapError: **EAP_ERROR,
+    ppConfigDoc: ?*?*IXMLDOMDocument2,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerFreeMemory(
-    pData: *u8,
+    pData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerFreeErrorMemory(
-    pEapError: *EAP_ERROR,
+    pEapError: ?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1670,110 +1670,110 @@ pub extern "eappprxy" fn EapHostPeerUninitialize(
 pub extern "eappprxy" fn EapHostPeerBeginSession(
     dwFlags: u32,
     eapType: EAP_METHOD_TYPE,
-    pAttributeArray: *const EAP_ATTRIBUTES,
-    hTokenImpersonateUser: HANDLE,
+    pAttributeArray: ?*const EAP_ATTRIBUTES,
+    hTokenImpersonateUser: ?HANDLE,
     dwSizeofConnectionData: u32,
-    pConnectionData: *const u8,
+    pConnectionData: ?*const u8,
     dwSizeofUserData: u32,
-    pUserData: *const u8,
+    pUserData: ?*const u8,
     dwMaxSendPacketSize: u32,
-    pConnectionId: *const Guid,
-    func: NotificationHandler,
-    pContextData: *c_void,
-    pSessionId: *u32,
-    ppEapError: **EAP_ERROR,
+    pConnectionId: ?*const Guid,
+    func: ?NotificationHandler,
+    pContextData: ?*c_void,
+    pSessionId: ?*u32,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerProcessReceivedPacket(
     sessionHandle: u32,
     cbReceivePacket: u32,
-    pReceivePacket: *const u8,
-    pEapOutput: *EapHostPeerResponseAction,
-    ppEapError: **EAP_ERROR,
+    pReceivePacket: ?*const u8,
+    pEapOutput: ?*EapHostPeerResponseAction,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetSendPacket(
     sessionHandle: u32,
-    pcbSendPacket: *u32,
-    ppSendPacket: **u8,
-    ppEapError: **EAP_ERROR,
+    pcbSendPacket: ?*u32,
+    ppSendPacket: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetResult(
     sessionHandle: u32,
     reason: EapHostPeerMethodResultReason,
-    ppResult: *EapHostPeerMethodResult,
-    ppEapError: **EAP_ERROR,
+    ppResult: ?*EapHostPeerMethodResult,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetUIContext(
     sessionHandle: u32,
-    pdwSizeOfUIContextData: *u32,
-    ppUIContextData: **u8,
-    ppEapError: **EAP_ERROR,
+    pdwSizeOfUIContextData: ?*u32,
+    ppUIContextData: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerSetUIContext(
     sessionHandle: u32,
     dwSizeOfUIContextData: u32,
-    pUIContextData: *const u8,
-    pEapOutput: *EapHostPeerResponseAction,
-    ppEapError: **EAP_ERROR,
+    pUIContextData: ?*const u8,
+    pEapOutput: ?*EapHostPeerResponseAction,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetResponseAttributes(
     sessionHandle: u32,
-    pAttribs: *EAP_ATTRIBUTES,
-    ppEapError: **EAP_ERROR,
+    pAttribs: ?*EAP_ATTRIBUTES,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerSetResponseAttributes(
     sessionHandle: u32,
-    pAttribs: *const EAP_ATTRIBUTES,
-    pEapOutput: *EapHostPeerResponseAction,
-    ppEapError: **EAP_ERROR,
+    pAttribs: ?*const EAP_ATTRIBUTES,
+    pEapOutput: ?*EapHostPeerResponseAction,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetAuthStatus(
     sessionHandle: u32,
     authParam: EapHostPeerAuthParams,
-    pcbAuthData: *u32,
-    ppAuthData: **u8,
-    ppEapError: **EAP_ERROR,
+    pcbAuthData: ?*u32,
+    ppAuthData: ?*?*u8,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerEndSession(
     sessionHandle: u32,
-    ppEapError: **EAP_ERROR,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
-    pConnectionIdThatLastSavedCreds: *Guid,
-    phCredentialImpersonationToken: *isize,
+    pConnectionIdThatLastSavedCreds: ?*Guid,
+    phCredentialImpersonationToken: ?*isize,
     sessionHandle: u32,
-    ppEapError: **EAP_ERROR,
-    fSaveToCredMan: *BOOL,
+    ppEapError: ?*?*EAP_ERROR,
+    fSaveToCredMan: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerClearConnection(
-    pConnectionId: *Guid,
-    ppEapError: **EAP_ERROR,
+    pConnectionId: ?*Guid,
+    ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerFreeEapError(
-    pEapError: *EAP_ERROR,
+    pEapError: ?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1785,25 +1785,25 @@ pub extern "eappprxy" fn EapHostPeerGetIdentity(
     pConnectionData: [*:0]const u8,
     dwSizeofUserData: u32,
     pUserData: ?[*:0]const u8,
-    hTokenImpersonateUser: HANDLE,
-    pfInvokeUI: *BOOL,
-    pdwSizeOfUserDataOut: *u32,
-    ppUserDataOut: **u8,
-    ppwszIdentity: *PWSTR,
-    ppEapError: **EAP_ERROR,
-    ppvReserved: **u8,
+    hTokenImpersonateUser: ?HANDLE,
+    pfInvokeUI: ?*BOOL,
+    pdwSizeOfUserDataOut: ?*u32,
+    ppUserDataOut: ?*?*u8,
+    ppwszIdentity: ?*?PWSTR,
+    ppEapError: ?*?*EAP_ERROR,
+    ppvReserved: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "eappprxy" fn EapHostPeerGetEncryptedPassword(
     dwSizeofPassword: u32,
     // TODO: what to do with BytesParamIndex 0?
-    szPassword: PWSTR,
-    ppszEncPassword: *PWSTR,
+    szPassword: ?PWSTR,
+    ppszEncPassword: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerFreeRuntimeMemory(
-    pData: *u8,
+    pData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 

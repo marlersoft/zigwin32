@@ -205,7 +205,7 @@ pub const INDIRECT_DISPLAY_INFO = extern struct {
 };
 
 pub const VIDEO_VDM = extern struct {
-    ProcessHandle: HANDLE,
+    ProcessHandle: ?HANDLE,
 };
 
 pub const VIDEO_REGISTER_VDM = extern struct {
@@ -252,8 +252,8 @@ pub const BlackScreenDiagnosticsData = BlackScreenDiagnosticsCalloutParam.agnost
 pub const BlackScreenDisplayRecovery = BlackScreenDiagnosticsCalloutParam.splayRecovery;
 
 pub const DXGK_WIN32K_PARAM_DATA = extern struct {
-    PathsArray: *c_void,
-    ModesArray: *c_void,
+    PathsArray: ?*c_void,
+    ModesArray: ?*c_void,
     NumPathArrayElements: u32,
     NumModeArrayElements: u32,
     SDCFlags: u32,
@@ -261,7 +261,7 @@ pub const DXGK_WIN32K_PARAM_DATA = extern struct {
 
 pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
     CalloutType: VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE,
-    PhysDisp: *c_void,
+    PhysDisp: ?*c_void,
     Param: usize,
     Status: i32,
     LockUserSession: u8,
@@ -271,14 +271,14 @@ pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
 };
 
 pub const PVIDEO_WIN32K_CALLOUT = fn(
-    Params: *c_void,
+    Params: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const VIDEO_WIN32K_CALLBACKS = extern struct {
-    PhysDisp: *c_void,
-    Callout: PVIDEO_WIN32K_CALLOUT,
+    PhysDisp: ?*c_void,
+    Callout: ?PVIDEO_WIN32K_CALLOUT,
     bACPI: u32,
-    pPhysDeviceObject: HANDLE,
+    pPhysDeviceObject: ?HANDLE,
     DualviewFlags: u32,
 };
 
@@ -317,11 +317,11 @@ pub const VIDEO_HARDWARE_STATE_HEADER = extern struct {
     DIBXlatOffset: u32,
     DIBXlatLength: u32,
     VesaInfoOffset: u32,
-    FrameBufferData: *c_void,
+    FrameBufferData: ?*c_void,
 };
 
 pub const VIDEO_HARDWARE_STATE = extern struct {
-    StateHeader: *VIDEO_HARDWARE_STATE_HEADER,
+    StateHeader: ?*VIDEO_HARDWARE_STATE_HEADER,
     StateLength: u32,
 };
 
@@ -454,33 +454,33 @@ pub const VideoBanked2RW = VIDEO_BANK_TYPE.VideoBanked2RW;
 pub const NumVideoBankTypes = VIDEO_BANK_TYPE.NumVideoBankTypes;
 
 pub const VIDEO_MEMORY = extern struct {
-    RequestedVirtualAddress: *c_void,
+    RequestedVirtualAddress: ?*c_void,
 };
 
 pub const VIDEO_SHARE_MEMORY = extern struct {
-    ProcessHandle: HANDLE,
+    ProcessHandle: ?HANDLE,
     ViewOffset: u32,
     ViewSize: u32,
-    RequestedVirtualAddress: *c_void,
+    RequestedVirtualAddress: ?*c_void,
 };
 
 pub const VIDEO_SHARE_MEMORY_INFORMATION = extern struct {
     SharedViewOffset: u32,
     SharedViewSize: u32,
-    VirtualAddress: *c_void,
+    VirtualAddress: ?*c_void,
 };
 
 pub const VIDEO_MEMORY_INFORMATION = extern struct {
-    VideoRamBase: *c_void,
+    VideoRamBase: ?*c_void,
     VideoRamLength: u32,
-    FrameBufferBase: *c_void,
+    FrameBufferBase: ?*c_void,
     FrameBufferLength: u32,
 };
 
 pub const VIDEO_PUBLIC_ACCESS_RANGES = extern struct {
     InIoSpace: u32,
     MappedInIoSpace: u32,
-    VirtualAddress: *c_void,
+    VirtualAddress: ?*c_void,
 };
 
 pub const VIDEO_COLOR_CAPABILITIES = extern struct {
@@ -569,7 +569,7 @@ pub const FSCNTL_SCREEN_INFO = extern struct {
 
 pub const FONT_IMAGE_INFO = extern struct {
     FontSize: COORD,
-    ImageBits: *u8,
+    ImageBits: ?*u8,
 };
 
 pub const CHAR_IMAGE_INFO = extern struct {
@@ -588,7 +588,7 @@ pub const FSVIDEO_COPY_FRAME_BUFFER = extern struct {
 };
 
 pub const FSVIDEO_WRITE_TO_FRAME_BUFFER = extern struct {
-    SrcBuffer: *CHAR_IMAGE_INFO,
+    SrcBuffer: ?*CHAR_IMAGE_INFO,
     DestScreen: FSCNTL_SCREEN_INFO,
 };
 
@@ -613,7 +613,7 @@ pub const FSVIDEO_CURSOR_POSITION = extern struct {
 };
 
 pub const ENG_EVENT = extern struct {
-    pKEvent: *c_void,
+    pKEvent: ?*c_void,
     fFlags: u32,
 };
 
@@ -643,7 +643,7 @@ pub const VIDEO_PERFORMANCE_COUNTER = extern struct {
 
 pub const VIDEO_QUERY_PERFORMANCE_COUNTER = extern struct {
     BufferSize: u32,
-    Buffer: *VIDEO_PERFORMANCE_COUNTER,
+    Buffer: ?*VIDEO_PERFORMANCE_COUNTER,
 };
 
 pub const BRIGHTNESS_INTERFACE_VERSION = enum(i32) {
@@ -1042,24 +1042,24 @@ pub const DD_GETHEAPALIGNMENTDATA = extern struct {
     dwInstance: usize,
     dwHeap: u32,
     ddRVal: HRESULT,
-    GetHeapAlignment: *c_void,
+    GetHeapAlignment: ?*c_void,
     Alignment: HEAPALIGNMENT,
 };
 
 pub const VMEML = extern struct {
-    next: *VMEML,
+    next: ?*VMEML,
     ptr: usize,
     size: u32,
     bDiscardable: BOOL,
 };
 
 pub const VMEMR = extern struct {
-    next: *VMEMR,
-    prev: *VMEMR,
-    pUp: *VMEMR,
-    pDown: *VMEMR,
-    pLeft: *VMEMR,
-    pRight: *VMEMR,
+    next: ?*VMEMR,
+    prev: ?*VMEMR,
+    pUp: ?*VMEMR,
+    pDown: ?*VMEMR,
+    pLeft: ?*VMEMR,
+    pRight: ?*VMEMR,
     ptr: usize,
     size: u32,
     x: u32,
@@ -1074,8 +1074,8 @@ pub const VMEMR = extern struct {
 pub const VMEMHEAP = extern struct {
     dwFlags: u32,
     stride: u32,
-    freeList: *c_void,
-    allocList: *c_void,
+    freeList: ?*c_void,
+    allocList: ?*c_void,
     dwTotalSize: u32,
     fpGARTLin: usize,
     fpGARTDev: usize,
@@ -1085,9 +1085,9 @@ pub const VMEMHEAP = extern struct {
     ddsCapsEx: DDSCAPSEX,
     ddsCapsExAlt: DDSCAPSEX,
     liPhysAGPBase: LARGE_INTEGER,
-    hdevAGP: HANDLE,
-    pvPhysRsrv: *c_void,
-    pAgpCommitMask: *u8,
+    hdevAGP: ?HANDLE,
+    pvPhysRsrv: ?*c_void,
+    pAgpCommitMask: ?*u8,
     dwAgpCommitMaskSize: u32,
 };
 
@@ -1126,7 +1126,7 @@ pub const ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED = ORIENTATION_PREFERENCE.LAND
 pub const ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED = ORIENTATION_PREFERENCE.PORTRAIT_FLIPPED;
 
 pub const PHYSICAL_MONITOR = packed struct {
-    hPhysicalMonitor: HANDLE,
+    hPhysicalMonitor: ?HANDLE,
     szPhysicalMonitorDescription: [128]u16,
 };
 
@@ -1222,11 +1222,11 @@ pub const MC_COLOR_TEMPERATURE_11500K = MC_COLOR_TEMPERATURE.@"11500K";
 // Section: Functions (35)
 //--------------------------------------------------------------------------------
 pub extern "USER32" fn GetAutoRotationState(
-    pState: *AR_STATE,
+    pState: ?*AR_STATE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn GetDisplayAutoRotationPreferences(
-    pOrientation: *ORIENTATION_PREFERENCE,
+    pOrientation: ?*ORIENTATION_PREFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn SetDisplayAutoRotationPreferences(
@@ -1235,33 +1235,33 @@ pub extern "USER32" fn SetDisplayAutoRotationPreferences(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromHMONITOR(
-    hMonitor: HMONITOR,
-    pdwNumberOfPhysicalMonitors: *u32,
+    hMonitor: ?HMONITOR,
+    pdwNumberOfPhysicalMonitors: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromIDirect3DDevice9(
-    pDirect3DDevice9: *IDirect3DDevice9,
-    pdwNumberOfPhysicalMonitors: *u32,
+    pDirect3DDevice9: ?*IDirect3DDevice9,
+    pdwNumberOfPhysicalMonitors: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetPhysicalMonitorsFromHMONITOR(
-    hMonitor: HMONITOR,
+    hMonitor: ?HMONITOR,
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetPhysicalMonitorsFromIDirect3DDevice9(
-    pDirect3DDevice9: *IDirect3DDevice9,
+    pDirect3DDevice9: ?*IDirect3DDevice9,
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DestroyPhysicalMonitor(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1272,179 +1272,179 @@ pub extern "dxva2" fn DestroyPhysicalMonitors(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetVCPFeatureAndVCPFeatureReply(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     bVCPCode: u8,
     pvct: ?*MC_VCP_CODE_TYPE,
-    pdwCurrentValue: *u32,
+    pdwCurrentValue: ?*u32,
     pdwMaximumValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetVCPFeature(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     bVCPCode: u8,
     dwNewValue: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SaveCurrentSettings(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetCapabilitiesStringLength(
-    hMonitor: HANDLE,
-    pdwCapabilitiesStringLengthInCharacters: *u32,
+    hMonitor: ?HANDLE,
+    pdwCapabilitiesStringLengthInCharacters: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn CapabilitiesRequestAndCapabilitiesReply(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     pszASCIICapabilitiesString: [*:0]u8,
     dwCapabilitiesStringLengthInCharacters: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetTimingReport(
-    hMonitor: HANDLE,
-    pmtrMonitorTimingReport: *MC_TIMING_REPORT,
+    hMonitor: ?HANDLE,
+    pmtrMonitorTimingReport: ?*MC_TIMING_REPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorCapabilities(
-    hMonitor: HANDLE,
-    pdwMonitorCapabilities: *u32,
-    pdwSupportedColorTemperatures: *u32,
+    hMonitor: ?HANDLE,
+    pdwMonitorCapabilities: ?*u32,
+    pdwSupportedColorTemperatures: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SaveCurrentMonitorSettings(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorTechnologyType(
-    hMonitor: HANDLE,
-    pdtyDisplayTechnologyType: *MC_DISPLAY_TECHNOLOGY_TYPE,
+    hMonitor: ?HANDLE,
+    pdtyDisplayTechnologyType: ?*MC_DISPLAY_TECHNOLOGY_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorBrightness(
-    hMonitor: HANDLE,
-    pdwMinimumBrightness: *u32,
-    pdwCurrentBrightness: *u32,
-    pdwMaximumBrightness: *u32,
+    hMonitor: ?HANDLE,
+    pdwMinimumBrightness: ?*u32,
+    pdwCurrentBrightness: ?*u32,
+    pdwMaximumBrightness: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorContrast(
-    hMonitor: HANDLE,
-    pdwMinimumContrast: *u32,
-    pdwCurrentContrast: *u32,
-    pdwMaximumContrast: *u32,
+    hMonitor: ?HANDLE,
+    pdwMinimumContrast: ?*u32,
+    pdwCurrentContrast: ?*u32,
+    pdwMaximumContrast: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorColorTemperature(
-    hMonitor: HANDLE,
-    pctCurrentColorTemperature: *MC_COLOR_TEMPERATURE,
+    hMonitor: ?HANDLE,
+    pctCurrentColorTemperature: ?*MC_COLOR_TEMPERATURE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorRedGreenOrBlueDrive(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     dtDriveType: MC_DRIVE_TYPE,
-    pdwMinimumDrive: *u32,
-    pdwCurrentDrive: *u32,
-    pdwMaximumDrive: *u32,
+    pdwMinimumDrive: ?*u32,
+    pdwCurrentDrive: ?*u32,
+    pdwMaximumDrive: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorRedGreenOrBlueGain(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     gtGainType: MC_GAIN_TYPE,
-    pdwMinimumGain: *u32,
-    pdwCurrentGain: *u32,
-    pdwMaximumGain: *u32,
+    pdwMinimumGain: ?*u32,
+    pdwCurrentGain: ?*u32,
+    pdwMaximumGain: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorBrightness(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     dwNewBrightness: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorContrast(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     dwNewContrast: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorColorTemperature(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     ctCurrentColorTemperature: MC_COLOR_TEMPERATURE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorRedGreenOrBlueDrive(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     dtDriveType: MC_DRIVE_TYPE,
     dwNewDrive: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorRedGreenOrBlueGain(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     gtGainType: MC_GAIN_TYPE,
     dwNewGain: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DegaussMonitor(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorDisplayAreaSize(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     stSizeType: MC_SIZE_TYPE,
-    pdwMinimumWidthOrHeight: *u32,
-    pdwCurrentWidthOrHeight: *u32,
-    pdwMaximumWidthOrHeight: *u32,
+    pdwMinimumWidthOrHeight: ?*u32,
+    pdwCurrentWidthOrHeight: ?*u32,
+    pdwMaximumWidthOrHeight: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorDisplayAreaPosition(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     ptPositionType: MC_POSITION_TYPE,
-    pdwMinimumPosition: *u32,
-    pdwCurrentPosition: *u32,
-    pdwMaximumPosition: *u32,
+    pdwMinimumPosition: ?*u32,
+    pdwCurrentPosition: ?*u32,
+    pdwMaximumPosition: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorDisplayAreaSize(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     stSizeType: MC_SIZE_TYPE,
     dwNewDisplayAreaWidthOrHeight: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorDisplayAreaPosition(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
     ptPositionType: MC_POSITION_TYPE,
     dwNewPosition: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn RestoreMonitorFactoryColorDefaults(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn RestoreMonitorFactoryDefaults(
-    hMonitor: HANDLE,
+    hMonitor: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 

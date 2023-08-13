@@ -774,14 +774,14 @@ pub const FWP_BYTE_ARRAY16 = extern struct {
 
 pub const FWP_BYTE_BLOB = extern struct {
     size: u32,
-    data: *u8,
+    data: ?*u8,
 };
 
 pub const FWP_TOKEN_INFORMATION = extern struct {
     sidCount: u32,
-    sids: *SID_AND_ATTRIBUTES,
+    sids: ?*SID_AND_ATTRIBUTES,
     restrictedSidCount: u32,
-    restrictedSids: *SID_AND_ATTRIBUTES,
+    restrictedSids: ?*SID_AND_ATTRIBUTES,
 };
 
 pub const FWP_VALUE0 = extern struct {
@@ -790,22 +790,22 @@ pub const FWP_VALUE0 = extern struct {
         uint8: u8,
         uint16: u16,
         uint32: u32,
-        uint64: *u64,
+        uint64: ?*u64,
         int8: i8,
         int16: i16,
         int32: i32,
-        int64: *i64,
+        int64: ?*i64,
         float32: f32,
-        double64: *f64,
-        byteArray16: *FWP_BYTE_ARRAY16,
-        byteBlob: *FWP_BYTE_BLOB,
-        sid: *SID,
-        sd: *FWP_BYTE_BLOB,
-        tokenInformation: *FWP_TOKEN_INFORMATION,
-        tokenAccessInformation: *FWP_BYTE_BLOB,
-        unicodeString: PWSTR,
-        byteArray6: *FWP_BYTE_ARRAY6,
-        bitmapArray64: *FWP_BITMAP_ARRAY64_,
+        double64: ?*f64,
+        byteArray16: ?*FWP_BYTE_ARRAY16,
+        byteBlob: ?*FWP_BYTE_BLOB,
+        sid: ?*SID,
+        sd: ?*FWP_BYTE_BLOB,
+        tokenInformation: ?*FWP_TOKEN_INFORMATION,
+        tokenAccessInformation: ?*FWP_BYTE_BLOB,
+        unicodeString: ?PWSTR,
+        byteArray6: ?*FWP_BYTE_ARRAY6,
+        bitmapArray64: ?*FWP_BITMAP_ARRAY64_,
     },
 };
 
@@ -861,25 +861,25 @@ pub const FWP_CONDITION_VALUE0 = extern struct {
         uint8: u8,
         uint16: u16,
         uint32: u32,
-        uint64: *u64,
+        uint64: ?*u64,
         int8: i8,
         int16: i16,
         int32: i32,
-        int64: *i64,
+        int64: ?*i64,
         float32: f32,
-        double64: *f64,
-        byteArray16: *FWP_BYTE_ARRAY16,
-        byteBlob: *FWP_BYTE_BLOB,
-        sid: *SID,
-        sd: *FWP_BYTE_BLOB,
-        tokenInformation: *FWP_TOKEN_INFORMATION,
-        tokenAccessInformation: *FWP_BYTE_BLOB,
-        unicodeString: PWSTR,
-        byteArray6: *FWP_BYTE_ARRAY6,
-        bitmapArray64: *FWP_BITMAP_ARRAY64_,
-        v4AddrMask: *FWP_V4_ADDR_AND_MASK,
-        v6AddrMask: *FWP_V6_ADDR_AND_MASK,
-        rangeValue: *FWP_RANGE0,
+        double64: ?*f64,
+        byteArray16: ?*FWP_BYTE_ARRAY16,
+        byteBlob: ?*FWP_BYTE_BLOB,
+        sid: ?*SID,
+        sd: ?*FWP_BYTE_BLOB,
+        tokenInformation: ?*FWP_TOKEN_INFORMATION,
+        tokenAccessInformation: ?*FWP_BYTE_BLOB,
+        unicodeString: ?PWSTR,
+        byteArray6: ?*FWP_BYTE_ARRAY6,
+        bitmapArray64: ?*FWP_BITMAP_ARRAY64_,
+        v4AddrMask: ?*FWP_V4_ADDR_AND_MASK,
+        v6AddrMask: ?*FWP_V6_ADDR_AND_MASK,
+        rangeValue: ?*FWP_RANGE0,
     },
 };
 
@@ -925,8 +925,8 @@ pub const FWP_FILTER_ENUM_OVERLAPPING = FWP_FILTER_ENUM_TYPE.OVERLAPPING;
 pub const FWP_FILTER_ENUM_TYPE_MAX = FWP_FILTER_ENUM_TYPE.TYPE_MAX;
 
 pub const FWPM_DISPLAY_DATA0 = extern struct {
-    name: PWSTR,
-    description: PWSTR,
+    name: ?PWSTR,
+    description: ?PWSTR,
 };
 
 pub const IPSEC_VIRTUAL_IF_TUNNEL_INFO0 = extern struct {
@@ -1017,19 +1017,19 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION0 = extern struct {
     Anonymous1: extern union {
         Anonymous: extern struct {
             inboundRootArraySize: u32,
-            inboundRootArray: *IKEEXT_CERT_ROOT_CONFIG0,
+            inboundRootArray: ?*IKEEXT_CERT_ROOT_CONFIG0,
         },
-        inboundEnterpriseStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
-        inboundTrustedRootStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
+        inboundEnterpriseStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
+        inboundTrustedRootStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
     },
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
     Anonymous2: extern union {
         Anonymous: extern struct {
             outboundRootArraySize: u32,
-            outboundRootArray: *IKEEXT_CERT_ROOT_CONFIG0,
+            outboundRootArray: ?*IKEEXT_CERT_ROOT_CONFIG0,
         },
-        outboundEnterpriseStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
-        outboundTrustedRootStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
+        outboundEnterpriseStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
+        outboundTrustedRootStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
     },
     flags: IKEEXT_CERT_AUTH,
 };
@@ -1039,19 +1039,19 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION1 = extern struct {
     Anonymous1: extern union {
         Anonymous: extern struct {
             inboundRootArraySize: u32,
-            inboundRootArray: *IKEEXT_CERT_ROOT_CONFIG0,
+            inboundRootArray: ?*IKEEXT_CERT_ROOT_CONFIG0,
         },
-        inboundEnterpriseStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
-        inboundTrustedRootStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
+        inboundEnterpriseStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
+        inboundTrustedRootStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
     },
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
     Anonymous2: extern union {
         Anonymous: extern struct {
             outboundRootArraySize: u32,
-            outboundRootArray: *IKEEXT_CERT_ROOT_CONFIG0,
+            outboundRootArray: ?*IKEEXT_CERT_ROOT_CONFIG0,
         },
-        outboundEnterpriseStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
-        outboundTrustedRootStoreConfig: *IKEEXT_CERT_ROOT_CONFIG0,
+        outboundEnterpriseStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
+        outboundTrustedRootStoreConfig: ?*IKEEXT_CERT_ROOT_CONFIG0,
     },
     flags: IKEEXT_CERT_AUTH,
     localCertLocationUrl: FWP_BYTE_BLOB,
@@ -1078,19 +1078,19 @@ pub const IKEEXT_CERT_CRITERIA_NAME_TYPE_MAX = IKEEXT_CERT_CRITERIA_NAME_TYPE.NA
 
 pub const IKEEXT_CERT_EKUS0 = extern struct {
     numEku: u32,
-    eku: *PSTR,
+    eku: ?*?PSTR,
 };
 
 pub const IKEEXT_CERT_NAME0 = extern struct {
     nameType: IKEEXT_CERT_CRITERIA_NAME_TYPE,
-    certName: PWSTR,
+    certName: ?PWSTR,
 };
 
 pub const IKEEXT_CERTIFICATE_CRITERIA0 = extern struct {
     certData: FWP_BYTE_BLOB,
     certHash: FWP_BYTE_BLOB,
-    eku: *IKEEXT_CERT_EKUS0,
-    name: *IKEEXT_CERT_NAME0,
+    eku: ?*IKEEXT_CERT_EKUS0,
+    name: ?*IKEEXT_CERT_NAME0,
     flags: u32,
 };
 
@@ -1099,30 +1099,30 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION2 = extern struct {
     Anonymous1: extern union {
         Anonymous1: extern struct {
             inboundRootArraySize: u32,
-            inboundRootCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            inboundRootCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
         Anonymous2: extern struct {
             inboundEnterpriseStoreArraySize: u32,
-            inboundEnterpriseStoreCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            inboundEnterpriseStoreCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
         Anonymous3: extern struct {
             inboundRootStoreArraySize: u32,
-            inboundTrustedRootStoreCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            inboundTrustedRootStoreCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
     },
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
     Anonymous2: extern union {
         Anonymous1: extern struct {
             outboundRootArraySize: u32,
-            outboundRootCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            outboundRootCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
         Anonymous2: extern struct {
             outboundEnterpriseStoreArraySize: u32,
-            outboundEnterpriseStoreCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            outboundEnterpriseStoreCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
         Anonymous3: extern struct {
             outboundRootStoreArraySize: u32,
-            outboundTrustedRootStoreCriteria: *IKEEXT_CERTIFICATE_CRITERIA0,
+            outboundTrustedRootStoreCriteria: ?*IKEEXT_CERTIFICATE_CRITERIA0,
         },
     },
     flags: IKEEXT_CERT_AUTH,
@@ -1130,8 +1130,8 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION2 = extern struct {
 };
 
 pub const IKEEXT_IPV6_CGA_AUTHENTICATION0 = extern struct {
-    keyContainerName: PWSTR,
-    cspName: PWSTR,
+    keyContainerName: ?PWSTR,
+    cspName: ?PWSTR,
     cspType: u32,
     cgaModifier: FWP_BYTE_ARRAY16,
     cgaCollisionCount: u8,
@@ -1143,7 +1143,7 @@ pub const IKEEXT_KERBEROS_AUTHENTICATION0 = extern struct {
 
 pub const IKEEXT_KERBEROS_AUTHENTICATION1 = extern struct {
     flags: IKEEXT_KERBEROS_AUTHENTICATION_FLAGS,
-    proxyServer: PWSTR,
+    proxyServer: ?PWSTR,
 };
 
 pub const IKEEXT_RESERVED_AUTHENTICATION0 = extern struct {
@@ -1271,10 +1271,10 @@ pub const IKEEXT_PROPOSAL0 = extern struct {
 pub const IKEEXT_POLICY0 = extern struct {
     softExpirationTime: u32,
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD0,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD0,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     numIkeProposals: u32,
-    ikeProposals: *IKEEXT_PROPOSAL0,
+    ikeProposals: ?*IKEEXT_PROPOSAL0,
     flags: IKEEXT_POLICY_FLAG,
     maxDynamicFilters: u32,
 };
@@ -1282,10 +1282,10 @@ pub const IKEEXT_POLICY0 = extern struct {
 pub const IKEEXT_POLICY1 = extern struct {
     softExpirationTime: u32,
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD1,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD1,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     numIkeProposals: u32,
-    ikeProposals: *IKEEXT_PROPOSAL0,
+    ikeProposals: ?*IKEEXT_PROPOSAL0,
     flags: IKEEXT_POLICY_FLAG,
     maxDynamicFilters: u32,
     retransmitDurationSecs: u32,
@@ -1294,10 +1294,10 @@ pub const IKEEXT_POLICY1 = extern struct {
 pub const IKEEXT_POLICY2 = extern struct {
     softExpirationTime: u32,
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD2,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD2,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     numIkeProposals: u32,
-    ikeProposals: *IKEEXT_PROPOSAL0,
+    ikeProposals: ?*IKEEXT_PROPOSAL0,
     flags: IKEEXT_POLICY_FLAG,
     maxDynamicFilters: u32,
     retransmitDurationSecs: u32,
@@ -1305,19 +1305,19 @@ pub const IKEEXT_POLICY2 = extern struct {
 
 pub const IKEEXT_EM_POLICY0 = extern struct {
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD0,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD0,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
 };
 
 pub const IKEEXT_EM_POLICY1 = extern struct {
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD1,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD1,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
 };
 
 pub const IKEEXT_EM_POLICY2 = extern struct {
     numAuthenticationMethods: u32,
-    authenticationMethods: *IKEEXT_AUTHENTICATION_METHOD2,
+    authenticationMethods: ?*IKEEXT_AUTHENTICATION_METHOD2,
     initiatorImpersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
 };
 
@@ -1445,16 +1445,16 @@ pub const IKEEXT_CERTIFICATE_CREDENTIAL0 = extern struct {
 };
 
 pub const IKEEXT_NAME_CREDENTIAL0 = extern struct {
-    principalName: PWSTR,
+    principalName: ?PWSTR,
 };
 
 pub const IKEEXT_CREDENTIAL0 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     Anonymous: extern union {
-        presharedKey: *IKEEXT_PRESHARED_KEY_AUTHENTICATION0,
-        certificate: *IKEEXT_CERTIFICATE_CREDENTIAL0,
-        name: *IKEEXT_NAME_CREDENTIAL0,
+        presharedKey: ?*IKEEXT_PRESHARED_KEY_AUTHENTICATION0,
+        certificate: ?*IKEEXT_CERTIFICATE_CREDENTIAL0,
+        name: ?*IKEEXT_NAME_CREDENTIAL0,
     },
 };
 
@@ -1465,7 +1465,7 @@ pub const IKEEXT_CREDENTIAL_PAIR0 = extern struct {
 
 pub const IKEEXT_CREDENTIALS0 = extern struct {
     numCredentials: u32,
-    credentials: *IKEEXT_CREDENTIAL_PAIR0,
+    credentials: ?*IKEEXT_CREDENTIAL_PAIR0,
 };
 
 pub const IKEEXT_SA_DETAILS0 = extern struct {
@@ -1473,7 +1473,7 @@ pub const IKEEXT_SA_DETAILS0 = extern struct {
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
-        v4UdpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        v4UdpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
@@ -1494,9 +1494,9 @@ pub const IKEEXT_CREDENTIAL1 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     Anonymous: extern union {
-        presharedKey: *IKEEXT_PRESHARED_KEY_AUTHENTICATION1,
-        certificate: *IKEEXT_CERTIFICATE_CREDENTIAL1,
-        name: *IKEEXT_NAME_CREDENTIAL0,
+        presharedKey: ?*IKEEXT_PRESHARED_KEY_AUTHENTICATION1,
+        certificate: ?*IKEEXT_CERTIFICATE_CREDENTIAL1,
+        name: ?*IKEEXT_NAME_CREDENTIAL0,
     },
 };
 
@@ -1507,7 +1507,7 @@ pub const IKEEXT_CREDENTIAL_PAIR1 = extern struct {
 
 pub const IKEEXT_CREDENTIALS1 = extern struct {
     numCredentials: u32,
-    credentials: *IKEEXT_CREDENTIAL_PAIR1,
+    credentials: ?*IKEEXT_CREDENTIAL_PAIR1,
 };
 
 pub const IKEEXT_SA_DETAILS1 = extern struct {
@@ -1515,7 +1515,7 @@ pub const IKEEXT_SA_DETAILS1 = extern struct {
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
-        v4UdpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        v4UdpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
@@ -1530,9 +1530,9 @@ pub const IKEEXT_CREDENTIAL2 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
     Anonymous: extern union {
-        presharedKey: *IKEEXT_PRESHARED_KEY_AUTHENTICATION1,
-        certificate: *IKEEXT_CERTIFICATE_CREDENTIAL1,
-        name: *IKEEXT_NAME_CREDENTIAL0,
+        presharedKey: ?*IKEEXT_PRESHARED_KEY_AUTHENTICATION1,
+        certificate: ?*IKEEXT_CERTIFICATE_CREDENTIAL1,
+        name: ?*IKEEXT_NAME_CREDENTIAL0,
     },
 };
 
@@ -1543,7 +1543,7 @@ pub const IKEEXT_CREDENTIAL_PAIR2 = extern struct {
 
 pub const IKEEXT_CREDENTIALS2 = extern struct {
     numCredentials: u32,
-    credentials: *IKEEXT_CREDENTIAL_PAIR2,
+    credentials: ?*IKEEXT_CREDENTIAL_PAIR2,
 };
 
 pub const IKEEXT_SA_DETAILS2 = extern struct {
@@ -1551,7 +1551,7 @@ pub const IKEEXT_SA_DETAILS2 = extern struct {
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
-        v4UdpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        v4UdpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
@@ -1669,7 +1669,7 @@ pub const IPSEC_AUTH_TRANSFORM_ID0 = extern struct {
 
 pub const IPSEC_AUTH_TRANSFORM0 = extern struct {
     authTransformId: IPSEC_AUTH_TRANSFORM_ID0,
-    cryptoModuleId: *Guid,
+    cryptoModuleId: ?*Guid,
 };
 
 pub const IPSEC_CIPHER_TYPE = enum(i32) {
@@ -1694,7 +1694,7 @@ pub const IPSEC_CIPHER_TRANSFORM_ID0 = extern struct {
 
 pub const IPSEC_CIPHER_TRANSFORM0 = extern struct {
     cipherTransformId: IPSEC_CIPHER_TRANSFORM_ID0,
-    cryptoModuleId: *Guid,
+    cryptoModuleId: ?*Guid,
 };
 
 pub const IPSEC_AUTH_AND_CIPHER_TRANSFORM0 = extern struct {
@@ -1705,11 +1705,11 @@ pub const IPSEC_AUTH_AND_CIPHER_TRANSFORM0 = extern struct {
 pub const IPSEC_SA_TRANSFORM0 = extern struct {
     ipsecTransformType: IPSEC_TRANSFORM_TYPE,
     Anonymous: extern union {
-        ahTransform: *IPSEC_AUTH_TRANSFORM0,
-        espAuthTransform: *IPSEC_AUTH_TRANSFORM0,
-        espCipherTransform: *IPSEC_CIPHER_TRANSFORM0,
-        espAuthAndCipherTransform: *IPSEC_AUTH_AND_CIPHER_TRANSFORM0,
-        espAuthFwTransform: *IPSEC_AUTH_TRANSFORM0,
+        ahTransform: ?*IPSEC_AUTH_TRANSFORM0,
+        espAuthTransform: ?*IPSEC_AUTH_TRANSFORM0,
+        espCipherTransform: ?*IPSEC_CIPHER_TRANSFORM0,
+        espAuthAndCipherTransform: ?*IPSEC_AUTH_AND_CIPHER_TRANSFORM0,
+        espAuthFwTransform: ?*IPSEC_AUTH_TRANSFORM0,
     },
 };
 
@@ -1739,7 +1739,7 @@ pub const IPSEC_PFS_MAX = IPSEC_PFS_GROUP.MAX;
 pub const IPSEC_PROPOSAL0 = extern struct {
     lifetime: IPSEC_SA_LIFETIME0,
     numSaTransforms: u32,
-    saTransforms: *IPSEC_SA_TRANSFORM0,
+    saTransforms: ?*IPSEC_SA_TRANSFORM0,
     pfsGroup: IPSEC_PFS_GROUP,
 };
 
@@ -1766,36 +1766,36 @@ pub const IPSEC_TRAFFIC_SELECTOR0_ = extern struct {
 pub const IPSEC_TRAFFIC_SELECTOR_POLICY0_ = extern struct {
     flags: u32,
     numLocalTrafficSelectors: u32,
-    localTrafficSelectors: *IPSEC_TRAFFIC_SELECTOR0_,
+    localTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0_,
     numRemoteTrafficSelectors: u32,
-    remoteTrafficSelectors: *IPSEC_TRAFFIC_SELECTOR0_,
+    remoteTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0_,
 };
 
 pub const IPSEC_TRANSPORT_POLICY0 = extern struct {
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     flags: IPSEC_POLICY_FLAG,
     ndAllowClearTimeoutSeconds: u32,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY0,
+    emPolicy: ?*IKEEXT_EM_POLICY0,
 };
 
 pub const IPSEC_TRANSPORT_POLICY1 = extern struct {
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     flags: IPSEC_POLICY_FLAG,
     ndAllowClearTimeoutSeconds: u32,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY1,
+    emPolicy: ?*IKEEXT_EM_POLICY1,
 };
 
 pub const IPSEC_TRANSPORT_POLICY2 = extern struct {
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     flags: IPSEC_POLICY_FLAG,
     ndAllowClearTimeoutSeconds: u32,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY2,
+    emPolicy: ?*IKEEXT_EM_POLICY2,
 };
 
 pub const IPSEC_TUNNEL_ENDPOINTS0 = extern struct {
@@ -1829,9 +1829,9 @@ pub const IPSEC_TUNNEL_ENDPOINTS2 = extern struct {
         remoteV6Address: [16]u8,
     },
     localIfLuid: u64,
-    remoteFqdn: PWSTR,
+    remoteFqdn: ?PWSTR,
     numAddresses: u32,
-    remoteAddresses: *IPSEC_TUNNEL_ENDPOINT0,
+    remoteAddresses: ?*IPSEC_TUNNEL_ENDPOINT0,
 };
 
 pub const IPSEC_TUNNEL_ENDPOINTS1 = extern struct {
@@ -1850,52 +1850,52 @@ pub const IPSEC_TUNNEL_ENDPOINTS1 = extern struct {
 pub const IPSEC_TUNNEL_POLICY0 = extern struct {
     flags: IPSEC_POLICY_FLAG,
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     tunnelEndpoints: IPSEC_TUNNEL_ENDPOINTS0,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY0,
+    emPolicy: ?*IKEEXT_EM_POLICY0,
 };
 
 pub const IPSEC_TUNNEL_POLICY1 = extern struct {
     flags: IPSEC_POLICY_FLAG,
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     tunnelEndpoints: IPSEC_TUNNEL_ENDPOINTS1,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY1,
+    emPolicy: ?*IKEEXT_EM_POLICY1,
 };
 
 pub const IPSEC_TUNNEL_POLICY2 = extern struct {
     flags: IPSEC_POLICY_FLAG,
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     tunnelEndpoints: IPSEC_TUNNEL_ENDPOINTS2,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY2,
+    emPolicy: ?*IKEEXT_EM_POLICY2,
     fwdPathSaLifetime: u32,
 };
 
 pub const IPSEC_TUNNEL_POLICY3_ = extern struct {
     flags: u32,
     numIpsecProposals: u32,
-    ipsecProposals: *IPSEC_PROPOSAL0,
+    ipsecProposals: ?*IPSEC_PROPOSAL0,
     tunnelEndpoints: IPSEC_TUNNEL_ENDPOINTS2,
     saIdleTimeout: IPSEC_SA_IDLE_TIMEOUT0,
-    emPolicy: *IKEEXT_EM_POLICY2,
+    emPolicy: ?*IKEEXT_EM_POLICY2,
     fwdPathSaLifetime: u32,
     compartmentId: u32,
     numTrafficSelectorPolicy: u32,
-    trafficSelectorPolicies: *IPSEC_TRAFFIC_SELECTOR_POLICY0_,
+    trafficSelectorPolicies: ?*IPSEC_TRAFFIC_SELECTOR_POLICY0_,
 };
 
 pub const IPSEC_KEYING_POLICY0 = extern struct {
     numKeyMods: u32,
-    keyModKeys: *Guid,
+    keyModKeys: ?*Guid,
 };
 
 pub const IPSEC_KEYING_POLICY1 = extern struct {
     numKeyMods: u32,
-    keyModKeys: *Guid,
+    keyModKeys: ?*Guid,
     flags: u32,
 };
 
@@ -2005,11 +2005,11 @@ pub const IPSEC_SA0 = extern struct {
     spi: u32,
     saTransformType: IPSEC_TRANSFORM_TYPE,
     Anonymous: extern union {
-        ahInformation: *IPSEC_SA_AUTH_INFORMATION0,
-        espAuthInformation: *IPSEC_SA_AUTH_INFORMATION0,
-        espCipherInformation: *IPSEC_SA_CIPHER_INFORMATION0,
-        espAuthAndCipherInformation: *IPSEC_SA_AUTH_AND_CIPHER_INFORMATION0,
-        espAuthFwInformation: *IPSEC_SA_AUTH_INFORMATION0,
+        ahInformation: ?*IPSEC_SA_AUTH_INFORMATION0,
+        espAuthInformation: ?*IPSEC_SA_AUTH_INFORMATION0,
+        espCipherInformation: ?*IPSEC_SA_CIPHER_INFORMATION0,
+        espAuthAndCipherInformation: ?*IPSEC_SA_AUTH_AND_CIPHER_INFORMATION0,
+        espAuthFwInformation: ?*IPSEC_SA_AUTH_INFORMATION0,
     },
 };
 
@@ -2053,10 +2053,10 @@ pub const IPSEC_TOKEN0 = extern struct {
 };
 
 pub const IPSEC_ID0 = extern struct {
-    mmTargetName: PWSTR,
-    emTargetName: PWSTR,
+    mmTargetName: ?PWSTR,
+    emTargetName: ?PWSTR,
     numTokens: u32,
-    tokens: *IPSEC_TOKEN0,
+    tokens: ?*IPSEC_TOKEN0,
     explicitCredentials: u64,
     logonId: u64,
 };
@@ -2066,12 +2066,12 @@ pub const IPSEC_SA_BUNDLE0 = extern struct {
     lifetime: IPSEC_SA_LIFETIME0,
     idleTimeoutSeconds: u32,
     ndAllowClearTimeoutSeconds: u32,
-    ipsecId: *IPSEC_ID0,
+    ipsecId: ?*IPSEC_ID0,
     napContext: u32,
     qmSaId: u32,
     numSAs: u32,
-    saList: *IPSEC_SA0,
-    keyModuleState: *IPSEC_KEYMODULE_STATE0,
+    saList: ?*IPSEC_SA0,
+    keyModuleState: ?*IPSEC_KEYMODULE_STATE0,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
         peerV4PrivateAddress: u32,
@@ -2085,12 +2085,12 @@ pub const IPSEC_SA_BUNDLE1 = extern struct {
     lifetime: IPSEC_SA_LIFETIME0,
     idleTimeoutSeconds: u32,
     ndAllowClearTimeoutSeconds: u32,
-    ipsecId: *IPSEC_ID0,
+    ipsecId: ?*IPSEC_ID0,
     napContext: u32,
     qmSaId: u32,
     numSAs: u32,
-    saList: *IPSEC_SA0,
-    keyModuleState: *IPSEC_KEYMODULE_STATE0,
+    saList: ?*IPSEC_SA0,
+    keyModuleState: ?*IPSEC_KEYMODULE_STATE0,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
         peerV4PrivateAddress: u32,
@@ -2159,18 +2159,18 @@ pub const IPSEC_GETSPI0 = extern struct {
     inboundIpsecTraffic: IPSEC_TRAFFIC0,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
-        inboundUdpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        inboundUdpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
-    rngCryptoModuleID: *Guid,
+    rngCryptoModuleID: ?*Guid,
 };
 
 pub const IPSEC_GETSPI1 = extern struct {
     inboundIpsecTraffic: IPSEC_TRAFFIC1,
     ipVersion: FWP_IP_VERSION,
     Anonymous: extern union {
-        inboundUdpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        inboundUdpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
-    rngCryptoModuleID: *Guid,
+    rngCryptoModuleID: ?*Guid,
 };
 
 pub const IPSEC_SA_DETAILS0 = extern struct {
@@ -2179,9 +2179,9 @@ pub const IPSEC_SA_DETAILS0 = extern struct {
     traffic: IPSEC_TRAFFIC0,
     saBundle: IPSEC_SA_BUNDLE0,
     Anonymous: extern union {
-        udpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        udpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
-    transportFilter: *FWPM_FILTER0,
+    transportFilter: ?*FWPM_FILTER0,
 };
 
 pub const IPSEC_SA_DETAILS1 = extern struct {
@@ -2190,22 +2190,22 @@ pub const IPSEC_SA_DETAILS1 = extern struct {
     traffic: IPSEC_TRAFFIC1,
     saBundle: IPSEC_SA_BUNDLE1,
     Anonymous: extern union {
-        udpEncapsulation: *IPSEC_V4_UDP_ENCAPSULATION0,
+        udpEncapsulation: ?*IPSEC_V4_UDP_ENCAPSULATION0,
     },
-    transportFilter: *FWPM_FILTER0,
+    transportFilter: ?*FWPM_FILTER0,
     virtualIfTunnelInfo: IPSEC_VIRTUAL_IF_TUNNEL_INFO0,
 };
 
 pub const IPSEC_SA_CONTEXT0 = extern struct {
     saContextId: u64,
-    inboundSa: *IPSEC_SA_DETAILS0,
-    outboundSa: *IPSEC_SA_DETAILS0,
+    inboundSa: ?*IPSEC_SA_DETAILS0,
+    outboundSa: ?*IPSEC_SA_DETAILS0,
 };
 
 pub const IPSEC_SA_CONTEXT1 = extern struct {
     saContextId: u64,
-    inboundSa: *IPSEC_SA_DETAILS1,
-    outboundSa: *IPSEC_SA_DETAILS1,
+    inboundSa: ?*IPSEC_SA_DETAILS1,
+    outboundSa: ?*IPSEC_SA_DETAILS1,
 };
 
 pub const IPSEC_SA_CONTEXT_ENUM_TEMPLATE0 = extern struct {
@@ -2218,7 +2218,7 @@ pub const IPSEC_SA_ENUM_TEMPLATE0 = extern struct {
 };
 
 pub const IPSEC_SA_CONTEXT_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *IPSEC_SA_CONTEXT_ENUM_TEMPLATE0,
+    enumTemplate: ?*IPSEC_SA_CONTEXT_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -2250,9 +2250,9 @@ pub const IPSEC_FAILURE_POINT_MAX = IPSEC_FAILURE_POINT.POINT_MAX;
 
 pub const IPSEC_ADDRESS_INFO0 = extern struct {
     numV4Addresses: u32,
-    v4Addresses: *u32,
+    v4Addresses: ?*u32,
     numV6Addresses: u32,
-    v6Addresses: *FWP_BYTE_ARRAY16,
+    v6Addresses: ?*FWP_BYTE_ARRAY16,
 };
 
 pub const IPSEC_DOSP_OPTIONS0 = extern struct {
@@ -2273,9 +2273,9 @@ pub const IPSEC_DOSP_OPTIONS0 = extern struct {
     maxPerIPRateLimitQueues: u32,
     flags: IPSEC_DOSP_FLAGS,
     numPublicIFLuids: u32,
-    publicIFLuids: *u64,
+    publicIFLuids: ?*u64,
     numInternalIFLuids: u32,
-    internalIFLuids: *u64,
+    internalIFLuids: ?*u64,
     publicV6AddrMask: FWP_V6_ADDR_AND_MASK,
     internalV6AddrMask: FWP_V6_ADDR_AND_MASK,
 };
@@ -2375,8 +2375,8 @@ pub const FWPM_SESSION0 = extern struct {
     flags: u32,
     txnWaitTimeoutInMSec: u32,
     processId: u32,
-    sid: *SID,
-    username: PWSTR,
+    sid: ?*SID,
+    username: ?PWSTR,
     kernelMode: BOOL,
 };
 
@@ -2389,7 +2389,7 @@ pub const FWPM_PROVIDER0 = extern struct {
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
     providerData: FWP_BYTE_BLOB,
-    serviceName: PWSTR,
+    serviceName: ?PWSTR,
 };
 
 pub const FWPM_PROVIDER_ENUM_TEMPLATE0 = extern struct {
@@ -2402,7 +2402,7 @@ pub const FWPM_PROVIDER_CHANGE0 = extern struct {
 };
 
 pub const FWPM_PROVIDER_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_PROVIDER_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_PROVIDER_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -2414,7 +2414,7 @@ pub const FWPM_CLASSIFY_OPTION0 = extern struct {
 
 pub const FWPM_CLASSIFY_OPTIONS0 = extern struct {
     numOptions: u32,
-    options: *FWPM_CLASSIFY_OPTION0,
+    options: ?*FWPM_CLASSIFY_OPTION0,
 };
 
 pub const FWPM_PROVIDER_CONTEXT_TYPE = enum(i32) {
@@ -2452,19 +2452,19 @@ pub const FWPM_PROVIDER_CONTEXT0 = extern struct {
     providerContextKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
     Anonymous: extern union {
-        keyingPolicy: *IPSEC_KEYING_POLICY0,
-        ikeQmTransportPolicy: *IPSEC_TRANSPORT_POLICY0,
-        ikeQmTunnelPolicy: *IPSEC_TUNNEL_POLICY0,
-        authipQmTransportPolicy: *IPSEC_TRANSPORT_POLICY0,
-        authipQmTunnelPolicy: *IPSEC_TUNNEL_POLICY0,
-        ikeMmPolicy: *IKEEXT_POLICY0,
-        authIpMmPolicy: *IKEEXT_POLICY0,
-        dataBuffer: *FWP_BYTE_BLOB,
-        classifyOptions: *FWPM_CLASSIFY_OPTIONS0,
+        keyingPolicy: ?*IPSEC_KEYING_POLICY0,
+        ikeQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY0,
+        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY0,
+        authipQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY0,
+        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY0,
+        ikeMmPolicy: ?*IKEEXT_POLICY0,
+        authIpMmPolicy: ?*IKEEXT_POLICY0,
+        dataBuffer: ?*FWP_BYTE_BLOB,
+        classifyOptions: ?*FWPM_CLASSIFY_OPTIONS0,
     },
     providerContextId: u64,
 };
@@ -2473,22 +2473,22 @@ pub const FWPM_PROVIDER_CONTEXT1 = extern struct {
     providerContextKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
     Anonymous: extern union {
-        keyingPolicy: *IPSEC_KEYING_POLICY0,
-        ikeQmTransportPolicy: *IPSEC_TRANSPORT_POLICY1,
-        ikeQmTunnelPolicy: *IPSEC_TUNNEL_POLICY1,
-        authipQmTransportPolicy: *IPSEC_TRANSPORT_POLICY1,
-        authipQmTunnelPolicy: *IPSEC_TUNNEL_POLICY1,
-        ikeMmPolicy: *IKEEXT_POLICY1,
-        authIpMmPolicy: *IKEEXT_POLICY1,
-        dataBuffer: *FWP_BYTE_BLOB,
-        classifyOptions: *FWPM_CLASSIFY_OPTIONS0,
-        ikeV2QmTunnelPolicy: *IPSEC_TUNNEL_POLICY1,
-        ikeV2MmPolicy: *IKEEXT_POLICY1,
-        idpOptions: *IPSEC_DOSP_OPTIONS0,
+        keyingPolicy: ?*IPSEC_KEYING_POLICY0,
+        ikeQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY1,
+        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY1,
+        authipQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY1,
+        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY1,
+        ikeMmPolicy: ?*IKEEXT_POLICY1,
+        authIpMmPolicy: ?*IKEEXT_POLICY1,
+        dataBuffer: ?*FWP_BYTE_BLOB,
+        classifyOptions: ?*FWPM_CLASSIFY_OPTIONS0,
+        ikeV2QmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY1,
+        ikeV2MmPolicy: ?*IKEEXT_POLICY1,
+        idpOptions: ?*IPSEC_DOSP_OPTIONS0,
     },
     providerContextId: u64,
 };
@@ -2497,23 +2497,23 @@ pub const FWPM_PROVIDER_CONTEXT2 = extern struct {
     providerContextKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
     Anonymous: extern union {
-        keyingPolicy: *IPSEC_KEYING_POLICY1,
-        ikeQmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        ikeQmTunnelPolicy: *IPSEC_TUNNEL_POLICY2,
-        authipQmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        authipQmTunnelPolicy: *IPSEC_TUNNEL_POLICY2,
-        ikeMmPolicy: *IKEEXT_POLICY2,
-        authIpMmPolicy: *IKEEXT_POLICY2,
-        dataBuffer: *FWP_BYTE_BLOB,
-        classifyOptions: *FWPM_CLASSIFY_OPTIONS0,
-        ikeV2QmTunnelPolicy: *IPSEC_TUNNEL_POLICY2,
-        ikeV2QmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        ikeV2MmPolicy: *IKEEXT_POLICY2,
-        idpOptions: *IPSEC_DOSP_OPTIONS0,
+        keyingPolicy: ?*IPSEC_KEYING_POLICY1,
+        ikeQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY2,
+        authipQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY2,
+        ikeMmPolicy: ?*IKEEXT_POLICY2,
+        authIpMmPolicy: ?*IKEEXT_POLICY2,
+        dataBuffer: ?*FWP_BYTE_BLOB,
+        classifyOptions: ?*FWPM_CLASSIFY_OPTIONS0,
+        ikeV2QmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY2,
+        ikeV2QmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        ikeV2MmPolicy: ?*IKEEXT_POLICY2,
+        idpOptions: ?*IPSEC_DOSP_OPTIONS0,
     },
     providerContextId: u64,
 };
@@ -2522,29 +2522,29 @@ pub const FWPM_PROVIDER_CONTEXT3_ = extern struct {
     providerContextKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
     Anonymous: extern union {
-        keyingPolicy: *IPSEC_KEYING_POLICY1,
-        ikeQmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        ikeQmTunnelPolicy: *IPSEC_TUNNEL_POLICY3_,
-        authipQmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        authipQmTunnelPolicy: *IPSEC_TUNNEL_POLICY3_,
-        ikeMmPolicy: *IKEEXT_POLICY2,
-        authIpMmPolicy: *IKEEXT_POLICY2,
-        dataBuffer: *FWP_BYTE_BLOB,
-        classifyOptions: *FWPM_CLASSIFY_OPTIONS0,
-        ikeV2QmTunnelPolicy: *IPSEC_TUNNEL_POLICY3_,
-        ikeV2QmTransportPolicy: *IPSEC_TRANSPORT_POLICY2,
-        ikeV2MmPolicy: *IKEEXT_POLICY2,
-        idpOptions: *IPSEC_DOSP_OPTIONS0,
+        keyingPolicy: ?*IPSEC_KEYING_POLICY1,
+        ikeQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        authipQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        ikeMmPolicy: ?*IKEEXT_POLICY2,
+        authIpMmPolicy: ?*IKEEXT_POLICY2,
+        dataBuffer: ?*FWP_BYTE_BLOB,
+        classifyOptions: ?*FWPM_CLASSIFY_OPTIONS0,
+        ikeV2QmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        ikeV2QmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
+        ikeV2MmPolicy: ?*IKEEXT_POLICY2,
+        idpOptions: ?*IPSEC_DOSP_OPTIONS0,
     },
     providerContextId: u64,
 };
 
 pub const FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0 = extern struct {
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerContextType: FWPM_PROVIDER_CONTEXT_TYPE,
 };
 
@@ -2555,7 +2555,7 @@ pub const FWPM_PROVIDER_CONTEXT_CHANGE0 = extern struct {
 };
 
 pub const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
     flags: FWPM_SUBSCRIPTION_FLAGS,
     sessionKey: Guid,
 };
@@ -2564,13 +2564,13 @@ pub const FWPM_SUBLAYER0 = extern struct {
     subLayerKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     weight: u16,
 };
 
 pub const FWPM_SUBLAYER_ENUM_TEMPLATE0 = extern struct {
-    providerKey: *Guid,
+    providerKey: ?*Guid,
 };
 
 pub const FWPM_SUBLAYER_CHANGE0 = extern struct {
@@ -2579,7 +2579,7 @@ pub const FWPM_SUBLAYER_CHANGE0 = extern struct {
 };
 
 pub const FWPM_SUBLAYER_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_SUBLAYER_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_SUBLAYER_ENUM_TEMPLATE0,
     flags: FWPM_SUBSCRIPTION_FLAGS,
     sessionKey: Guid,
 };
@@ -2596,7 +2596,7 @@ pub const FWPM_FIELD_FLAGS = FWPM_FIELD_TYPE.FLAGS;
 pub const FWPM_FIELD_TYPE_MAX = FWPM_FIELD_TYPE.TYPE_MAX;
 
 pub const FWPM_FIELD0 = extern struct {
-    fieldKey: *Guid,
+    fieldKey: ?*Guid,
     type: FWPM_FIELD_TYPE,
     dataType: FWP_DATA_TYPE,
 };
@@ -2606,7 +2606,7 @@ pub const FWPM_LAYER0 = extern struct {
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
     numFields: u32,
-    field: *FWPM_FIELD0,
+    field: ?*FWPM_FIELD0,
     defaultSubLayerKey: Guid,
     layerId: u16,
 };
@@ -2619,14 +2619,14 @@ pub const FWPM_CALLOUT0 = extern struct {
     calloutKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     applicableLayer: Guid,
     calloutId: u32,
 };
 
 pub const FWPM_CALLOUT_ENUM_TEMPLATE0 = extern struct {
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     layerKey: Guid,
 };
 
@@ -2637,7 +2637,7 @@ pub const FWPM_CALLOUT_CHANGE0 = extern struct {
 };
 
 pub const FWPM_CALLOUT_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_CALLOUT_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_CALLOUT_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -2661,33 +2661,33 @@ pub const FWPM_FILTER0 = extern struct {
     filterKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: FWPM_FILTER_FLAGS,
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     providerData: FWP_BYTE_BLOB,
     layerKey: Guid,
     subLayerKey: Guid,
     weight: FWP_VALUE0,
     numFilterConditions: u32,
-    filterCondition: *FWPM_FILTER_CONDITION0,
+    filterCondition: ?*FWPM_FILTER_CONDITION0,
     action: FWPM_ACTION0,
     Anonymous: extern union {
         rawContext: u64,
         providerContextKey: Guid,
     },
-    reserved: *Guid,
+    reserved: ?*Guid,
     filterId: u64,
     effectiveWeight: FWP_VALUE0,
 };
 
 pub const FWPM_FILTER_ENUM_TEMPLATE0 = extern struct {
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     layerKey: Guid,
     enumType: FWP_FILTER_ENUM_TYPE,
     flags: u32,
-    providerContextTemplate: *FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
+    providerContextTemplate: ?*FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
     numFilterConditions: u32,
-    filterCondition: *FWPM_FILTER_CONDITION0,
+    filterCondition: ?*FWPM_FILTER_CONDITION0,
     actionMask: u32,
-    calloutKey: *Guid,
+    calloutKey: ?*Guid,
 };
 
 pub const FWPM_FILTER_CHANGE0 = extern struct {
@@ -2697,7 +2697,7 @@ pub const FWPM_FILTER_CHANGE0 = extern struct {
 };
 
 pub const FWPM_FILTER_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_FILTER_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_FILTER_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -2712,7 +2712,7 @@ pub const FWPM_LAYER_STATISTICS0 = extern struct {
 
 pub const FWPM_STATISTICS0 = extern struct {
     numLayerStatistics: u32,
-    layerStatistics: *FWPM_LAYER_STATISTICS0,
+    layerStatistics: ?*FWPM_LAYER_STATISTICS0,
     inboundAllowedConnectionsV4: u32,
     inboundBlockedConnectionsV4: u32,
     outboundAllowedConnectionsV4: u32,
@@ -2770,7 +2770,7 @@ pub const FWPM_NET_EVENT_HEADER0 = extern struct {
     remotePort: u16,
     scopeId: u32,
     appId: FWP_BYTE_BLOB,
-    userId: *SID,
+    userId: ?*SID,
 };
 
 pub const FWPM_NET_EVENT_HEADER1 = extern struct {
@@ -2790,7 +2790,7 @@ pub const FWPM_NET_EVENT_HEADER1 = extern struct {
     remotePort: u16,
     scopeId: u32,
     appId: FWP_BYTE_BLOB,
-    userId: *SID,
+    userId: ?*SID,
     Anonymous3: extern union {
         Anonymous: extern struct {
             reserved1: FWP_AF,
@@ -2828,9 +2828,9 @@ pub const FWPM_NET_EVENT_HEADER2 = extern struct {
     remotePort: u16,
     scopeId: u32,
     appId: FWP_BYTE_BLOB,
-    userId: *SID,
+    userId: ?*SID,
     addressFamily: FWP_AF,
-    packageSid: *SID,
+    packageSid: ?*SID,
 };
 
 pub const FWPM_NET_EVENT_HEADER3 = extern struct {
@@ -2850,10 +2850,10 @@ pub const FWPM_NET_EVENT_HEADER3 = extern struct {
     remotePort: u16,
     scopeId: u32,
     appId: FWP_BYTE_BLOB,
-    userId: *SID,
+    userId: ?*SID,
     addressFamily: FWP_AF,
-    packageSid: *SID,
-    enterpriseId: PWSTR,
+    packageSid: ?*SID,
+    enterpriseId: ?PWSTR,
     policyFlags: u64,
     effectiveName: FWP_BYTE_BLOB,
 };
@@ -2909,12 +2909,12 @@ pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE1 = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     mmFilterId: u64,
-    localPrincipalNameForAuth: PWSTR,
-    remotePrincipalNameForAuth: PWSTR,
+    localPrincipalNameForAuth: ?PWSTR,
+    remotePrincipalNameForAuth: ?PWSTR,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: *PWSTR,
+    localPrincipalGroupSids: ?*?PWSTR,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: *PWSTR,
+    remotePrincipalGroupSids: ?*?PWSTR,
 };
 
 pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_ = extern struct {
@@ -2928,13 +2928,13 @@ pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_ = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     mmFilterId: u64,
-    localPrincipalNameForAuth: PWSTR,
-    remotePrincipalNameForAuth: PWSTR,
+    localPrincipalNameForAuth: ?PWSTR,
+    remotePrincipalNameForAuth: ?PWSTR,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: *PWSTR,
+    localPrincipalGroupSids: ?*?PWSTR,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: *PWSTR,
-    providerContextKey: *Guid,
+    remotePrincipalGroupSids: ?*?PWSTR,
+    providerContextKey: ?*Guid,
 };
 
 pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE0 = extern struct {
@@ -2993,12 +2993,12 @@ pub const FWPM_NET_EVENT_IKEEXT_EM_FAILURE1 = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     qmFilterId: u64,
-    localPrincipalNameForAuth: PWSTR,
-    remotePrincipalNameForAuth: PWSTR,
+    localPrincipalNameForAuth: ?PWSTR,
+    remotePrincipalNameForAuth: ?PWSTR,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: *PWSTR,
+    localPrincipalGroupSids: ?*?PWSTR,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: *PWSTR,
+    remotePrincipalGroupSids: ?*?PWSTR,
     saTrafficType: IPSEC_TRAFFIC_TYPE,
 };
 
@@ -3113,12 +3113,12 @@ pub const FWPM_NET_EVENT0 = extern struct {
     header: FWPM_NET_EVENT_HEADER0,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE0,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE0,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP0,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE0,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE0,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP0,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
     },
 };
 
@@ -3126,12 +3126,12 @@ pub const FWPM_NET_EVENT1 = extern struct {
     header: FWPM_NET_EVENT_HEADER1,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP1,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP1,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
     },
 };
 
@@ -3139,16 +3139,16 @@ pub const FWPM_NET_EVENT2 = extern struct {
     header: FWPM_NET_EVENT_HEADER2,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP2,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
-        classifyAllow: *FWPM_NET_EVENT_CLASSIFY_ALLOW0,
-        capabilityDrop: *FWPM_NET_EVENT_CAPABILITY_DROP0,
-        capabilityAllow: *FWPM_NET_EVENT_CAPABILITY_ALLOW0,
-        classifyDropMac: *FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        classifyAllow: ?*FWPM_NET_EVENT_CLASSIFY_ALLOW0,
+        capabilityDrop: ?*FWPM_NET_EVENT_CAPABILITY_DROP0,
+        capabilityAllow: ?*FWPM_NET_EVENT_CAPABILITY_ALLOW0,
+        classifyDropMac: ?*FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
     },
 };
 
@@ -3156,16 +3156,16 @@ pub const FWPM_NET_EVENT3 = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP2,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
-        classifyAllow: *FWPM_NET_EVENT_CLASSIFY_ALLOW0,
-        capabilityDrop: *FWPM_NET_EVENT_CAPABILITY_DROP0,
-        capabilityAllow: *FWPM_NET_EVENT_CAPABILITY_ALLOW0,
-        classifyDropMac: *FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE1,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE0,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        classifyAllow: ?*FWPM_NET_EVENT_CLASSIFY_ALLOW0,
+        capabilityDrop: ?*FWPM_NET_EVENT_CAPABILITY_DROP0,
+        capabilityAllow: ?*FWPM_NET_EVENT_CAPABILITY_ALLOW0,
+        classifyDropMac: ?*FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
     },
 };
 
@@ -3173,16 +3173,16 @@ pub const FWPM_NET_EVENT4_ = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP2,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
-        classifyAllow: *FWPM_NET_EVENT_CLASSIFY_ALLOW0,
-        capabilityDrop: *FWPM_NET_EVENT_CAPABILITY_DROP0,
-        capabilityAllow: *FWPM_NET_EVENT_CAPABILITY_ALLOW0,
-        classifyDropMac: *FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        classifyAllow: ?*FWPM_NET_EVENT_CLASSIFY_ALLOW0,
+        capabilityDrop: ?*FWPM_NET_EVENT_CAPABILITY_DROP0,
+        capabilityAllow: ?*FWPM_NET_EVENT_CAPABILITY_ALLOW0,
+        classifyDropMac: ?*FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
     },
 };
 
@@ -3190,17 +3190,17 @@ pub const FWPM_NET_EVENT5_ = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: *FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
-        ikeQmFailure: *FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
-        ikeEmFailure: *FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
-        classifyDrop: *FWPM_NET_EVENT_CLASSIFY_DROP2,
-        ipsecDrop: *FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
-        idpDrop: *FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
-        classifyAllow: *FWPM_NET_EVENT_CLASSIFY_ALLOW0,
-        capabilityDrop: *FWPM_NET_EVENT_CAPABILITY_DROP0,
-        capabilityAllow: *FWPM_NET_EVENT_CAPABILITY_ALLOW0,
-        classifyDropMac: *FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
-        lpmPacketArrival: *FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0_,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
+        ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
+        classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
+        ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
+        idpDrop: ?*FWPM_NET_EVENT_IPSEC_DOSP_DROP0,
+        classifyAllow: ?*FWPM_NET_EVENT_CLASSIFY_ALLOW0,
+        capabilityDrop: ?*FWPM_NET_EVENT_CAPABILITY_DROP0,
+        capabilityAllow: ?*FWPM_NET_EVENT_CAPABILITY_ALLOW0,
+        classifyDropMac: ?*FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
+        lpmPacketArrival: ?*FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0_,
     },
 };
 
@@ -3208,11 +3208,11 @@ pub const FWPM_NET_EVENT_ENUM_TEMPLATE0 = extern struct {
     startTime: FILETIME,
     endTime: FILETIME,
     numFilterConditions: u32,
-    filterCondition: *FWPM_FILTER_CONDITION0,
+    filterCondition: ?*FWPM_FILTER_CONDITION0,
 };
 
 pub const FWPM_NET_EVENT_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_NET_EVENT_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_NET_EVENT_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -3233,12 +3233,12 @@ pub const FWPM_SYSTEM_PORT_TYPE_MAX = FWPM_SYSTEM_PORT_TYPE.TYPE_MAX;
 pub const FWPM_SYSTEM_PORTS_BY_TYPE0 = extern struct {
     type: FWPM_SYSTEM_PORT_TYPE,
     numPorts: u32,
-    ports: *u16,
+    ports: ?*u16,
 };
 
 pub const FWPM_SYSTEM_PORTS0 = extern struct {
     numTypes: u32,
-    types: *FWPM_SYSTEM_PORTS_BY_TYPE0,
+    types: ?*FWPM_SYSTEM_PORTS_BY_TYPE0,
 };
 
 pub const FWPM_CONNECTION0 = extern struct {
@@ -3252,7 +3252,7 @@ pub const FWPM_CONNECTION0 = extern struct {
         remoteV4Address: u32,
         remoteV6Address: [16]u8,
     },
-    providerKey: *Guid,
+    providerKey: ?*Guid,
     ipsecTrafficModeType: IPSEC_TRAFFIC_TYPE,
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     mmCrypto: IKEEXT_PROPOSAL0,
@@ -3270,7 +3270,7 @@ pub const FWPM_CONNECTION_ENUM_TEMPLATE0 = extern struct {
 };
 
 pub const FWPM_CONNECTION_SUBSCRIPTION0 = extern struct {
-    enumTemplate: *FWPM_CONNECTION_ENUM_TEMPLATE0,
+    enumTemplate: ?*FWPM_CONNECTION_ENUM_TEMPLATE0,
     flags: u32,
     sessionKey: Guid,
 };
@@ -3301,16 +3301,16 @@ pub const FWPM_VSWITCH_EVENT_MAX = FWPM_VSWITCH_EVENT_TYPE.MAX;
 
 pub const FWPM_VSWITCH_EVENT0 = extern struct {
     eventType: FWPM_VSWITCH_EVENT_TYPE,
-    vSwitchId: PWSTR,
+    vSwitchId: ?PWSTR,
     Anonymous: extern union {
         positionInfo: extern struct {
             numvSwitchFilterExtensions: u32,
-            vSwitchFilterExtensions: *PWSTR,
+            vSwitchFilterExtensions: ?*?PWSTR,
         },
         reorderInfo: extern struct {
             inRequiredPosition: BOOL,
             numvSwitchFilterExtensions: u32,
-            vSwitchFilterExtensions: *PWSTR,
+            vSwitchFilterExtensions: ?*?PWSTR,
         },
     },
 };
@@ -3321,99 +3321,99 @@ pub const FWPM_VSWITCH_EVENT_SUBSCRIPTION0 = extern struct {
 };
 
 pub const FWPM_PROVIDER_CHANGE_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const FWPM_PROVIDER_CHANGE0,
+    context: ?*c_void,
+    change: ?*const FWPM_PROVIDER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const FWPM_PROVIDER_CONTEXT_CHANGE0,
+    context: ?*c_void,
+    change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_SUBLAYER_CHANGE_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const FWPM_SUBLAYER_CHANGE0,
+    context: ?*c_void,
+    change: ?*const FWPM_SUBLAYER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_CALLOUT_CHANGE_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const FWPM_CALLOUT_CHANGE0,
+    context: ?*c_void,
+    change: ?*const FWPM_CALLOUT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_FILTER_CHANGE_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const FWPM_FILTER_CHANGE0,
+    context: ?*c_void,
+    change: ?*const FWPM_FILTER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_SA_CONTEXT_CALLBACK0 = fn(
-    context: *c_void,
-    change: *const IPSEC_SA_CONTEXT_CHANGE0,
+    context: ?*c_void,
+    change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0 = fn(
-    ikeTraffic: *const IKEEXT_TRAFFIC0,
-    willDictateKey: *BOOL,
-    weight: *u32,
+    ikeTraffic: ?*const IKEEXT_TRAFFIC0,
+    willDictateKey: ?*BOOL,
+    weight: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_KEY_MANAGER_DICTATE_KEY0 = fn(
-    inboundSaDetails: *IPSEC_SA_DETAILS1,
-    outboundSaDetails: *IPSEC_SA_DETAILS1,
-    keyingModuleGenKey: *BOOL,
+    inboundSaDetails: ?*IPSEC_SA_DETAILS1,
+    outboundSaDetails: ?*IPSEC_SA_DETAILS1,
+    keyingModuleGenKey: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const IPSEC_KEY_MANAGER_NOTIFY_KEY0 = fn(
-    inboundSa: *const IPSEC_SA_DETAILS1,
-    outboundSa: *const IPSEC_SA_DETAILS1,
+    inboundSa: ?*const IPSEC_SA_DETAILS1,
+    outboundSa: ?*const IPSEC_SA_DETAILS1,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
     reserved: Guid,
     flags: u32,
-    keyDictationCheck: IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0,
-    keyDictation: IPSEC_KEY_MANAGER_DICTATE_KEY0,
-    keyNotify: IPSEC_KEY_MANAGER_NOTIFY_KEY0,
+    keyDictationCheck: ?IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0,
+    keyDictation: ?IPSEC_KEY_MANAGER_DICTATE_KEY0,
+    keyNotify: ?IPSEC_KEY_MANAGER_NOTIFY_KEY0,
 };
 
 pub const FWPM_NET_EVENT_CALLBACK0 = fn(
-    context: *c_void,
-    event: *const FWPM_NET_EVENT1,
+    context: ?*c_void,
+    event: ?*const FWPM_NET_EVENT1,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK1 = fn(
-    context: *c_void,
-    event: *const FWPM_NET_EVENT2,
+    context: ?*c_void,
+    event: ?*const FWPM_NET_EVENT2,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK2 = fn(
-    context: *c_void,
-    event: *const FWPM_NET_EVENT3,
+    context: ?*c_void,
+    event: ?*const FWPM_NET_EVENT3,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK3 = fn(
-    context: *c_void,
-    event: *const FWPM_NET_EVENT4_,
+    context: ?*c_void,
+    event: ?*const FWPM_NET_EVENT4_,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK4 = fn(
-    context: *c_void,
-    event: *const FWPM_NET_EVENT5_,
+    context: ?*c_void,
+    event: ?*const FWPM_NET_EVENT5_,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_SYSTEM_PORTS_CALLBACK0 = fn(
-    context: *c_void,
-    sysPorts: *const FWPM_SYSTEM_PORTS0,
+    context: ?*c_void,
+    sysPorts: ?*const FWPM_SYSTEM_PORTS0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_CONNECTION_CALLBACK0 = fn(
-    context: *c_void,
+    context: ?*c_void,
     eventType: FWPM_CONNECTION_EVENT_TYPE,
-    connection: *const FWPM_CONNECTION0,
+    connection: ?*const FWPM_CONNECTION0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_VSWITCH_EVENT_CALLBACK0 = fn(
-    context: *c_void,
-    vSwitchEvent: *const FWPM_VSWITCH_EVENT0,
+    context: ?*c_void,
+    vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DL_OUI = extern union {
@@ -4471,7 +4471,7 @@ pub const FWPM_FILTER_FLAG_INDEXED = FWPM_FILTER_FLAGS.INDEXED;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFreeMemory0(
-    p: **c_void,
+    p: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4480,42 +4480,42 @@ pub extern "fwpuclnt" fn FwpmEngineOpen0(
     authnService: u32,
     authIdentity: ?*SEC_WINNT_AUTH_IDENTITY_W,
     session: ?*const FWPM_SESSION0,
-    engineHandle: *HANDLE,
+    engineHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmEngineClose0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmEngineGetOption0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     option: FWPM_ENGINE_OPTION,
-    value: **FWP_VALUE0,
+    value: ?*?*FWP_VALUE0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmEngineSetOption0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     option: FWPM_ENGINE_OPTION,
-    newValue: *const FWP_VALUE0,
+    newValue: ?*const FWP_VALUE0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmEngineGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmEngineSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -4525,99 +4525,99 @@ pub extern "fwpuclnt" fn FwpmEngineSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSessionCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_SESSION_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSessionEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_SESSION0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_SESSION0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSessionDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmTransactionBegin0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmTransactionCommit0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmTransactionAbort0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderAdd0(
-    engineHandle: HANDLE,
-    provider: *const FWPM_PROVIDER0,
+    engineHandle: ?HANDLE,
+    provider: ?*const FWPM_PROVIDER0,
     sd: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    provider: **FWPM_PROVIDER0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    provider: ?*?*FWPM_PROVIDER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_PROVIDER_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_PROVIDER0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_PROVIDER0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -4628,186 +4628,186 @@ pub extern "fwpuclnt" fn FwpmProviderSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderSubscribeChanges0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_PROVIDER_SUBSCRIPTION0,
-    callback: FWPM_PROVIDER_CHANGE_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_PROVIDER_SUBSCRIPTION0,
+    callback: ?FWPM_PROVIDER_CHANGE_CALLBACK0,
     context: ?*c_void,
-    changeHandle: *HANDLE,
+    changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderUnsubscribeChanges0(
-    engineHandle: HANDLE,
-    changeHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    changeHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_PROVIDER_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_PROVIDER_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextAdd0(
-    engineHandle: HANDLE,
-    providerContext: *const FWPM_PROVIDER_CONTEXT0,
+    engineHandle: ?HANDLE,
+    providerContext: ?*const FWPM_PROVIDER_CONTEXT0,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmProviderContextAdd1(
-    engineHandle: HANDLE,
-    providerContext: *const FWPM_PROVIDER_CONTEXT1,
+    engineHandle: ?HANDLE,
+    providerContext: ?*const FWPM_PROVIDER_CONTEXT1,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmProviderContextAdd2(
-    engineHandle: HANDLE,
-    providerContext: *const FWPM_PROVIDER_CONTEXT2,
+    engineHandle: ?HANDLE,
+    providerContext: ?*const FWPM_PROVIDER_CONTEXT2,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmProviderContextAdd3(
-    engineHandle: HANDLE,
-    providerContext: *const FWPM_PROVIDER_CONTEXT3_,
+    engineHandle: ?HANDLE,
+    providerContext: ?*const FWPM_PROVIDER_CONTEXT3_,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextDeleteById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    providerContext: **FWPM_PROVIDER_CONTEXT0,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmProviderContextGetById1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    providerContext: **FWPM_PROVIDER_CONTEXT1,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmProviderContextGetById2(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    providerContext: **FWPM_PROVIDER_CONTEXT2,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmProviderContextGetById3(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    providerContext: **FWPM_PROVIDER_CONTEXT3_,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3_,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    providerContext: **FWPM_PROVIDER_CONTEXT0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmProviderContextGetByKey1(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    providerContext: **FWPM_PROVIDER_CONTEXT1,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmProviderContextGetByKey2(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    providerContext: **FWPM_PROVIDER_CONTEXT2,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmProviderContextGetByKey3(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    providerContext: **FWPM_PROVIDER_CONTEXT3_,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3_,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_PROVIDER_CONTEXT0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmProviderContextEnum1(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_PROVIDER_CONTEXT1,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT1,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmProviderContextEnum2(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_PROVIDER_CONTEXT2,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT2,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmProviderContextEnum3(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_PROVIDER_CONTEXT3_,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT3_,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -4818,83 +4818,83 @@ pub extern "fwpuclnt" fn FwpmProviderContextSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextSubscribeChanges0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0,
-    callback: FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0,
+    callback: ?FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0,
     context: ?*c_void,
-    changeHandle: *HANDLE,
+    changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextUnsubscribeChanges0(
-    engineHandle: HANDLE,
-    changeHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    changeHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmProviderContextSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerAdd0(
-    engineHandle: HANDLE,
-    subLayer: *const FWPM_SUBLAYER0,
+    engineHandle: ?HANDLE,
+    subLayer: ?*const FWPM_SUBLAYER0,
     sd: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    subLayer: **FWPM_SUBLAYER0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    subLayer: ?*?*FWPM_SUBLAYER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_SUBLAYER_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_SUBLAYER0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_SUBLAYER0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -4905,77 +4905,77 @@ pub extern "fwpuclnt" fn FwpmSubLayerSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerSubscribeChanges0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_SUBLAYER_SUBSCRIPTION0,
-    callback: FWPM_SUBLAYER_CHANGE_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_SUBLAYER_SUBSCRIPTION0,
+    callback: ?FWPM_SUBLAYER_CHANGE_CALLBACK0,
     context: ?*c_void,
-    changeHandle: *HANDLE,
+    changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerUnsubscribeChanges0(
-    engineHandle: HANDLE,
-    changeHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    changeHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmSubLayerSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_SUBLAYER_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_SUBLAYER_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u16,
-    layer: **FWPM_LAYER0,
+    layer: ?*?*FWPM_LAYER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    layer: **FWPM_LAYER0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    layer: ?*?*FWPM_LAYER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_LAYER_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_LAYER0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_LAYER0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmLayerSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -4986,75 +4986,75 @@ pub extern "fwpuclnt" fn FwpmLayerSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutAdd0(
-    engineHandle: HANDLE,
-    callout: *const FWPM_CALLOUT0,
+    engineHandle: ?HANDLE,
+    callout: ?*const FWPM_CALLOUT0,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutDeleteById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u32,
-    callout: **FWPM_CALLOUT0,
+    callout: ?*?*FWPM_CALLOUT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    callout: **FWPM_CALLOUT0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    callout: ?*?*FWPM_CALLOUT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_CALLOUT_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_CALLOUT0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_CALLOUT0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -5065,97 +5065,97 @@ pub extern "fwpuclnt" fn FwpmCalloutSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutSubscribeChanges0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_CALLOUT_SUBSCRIPTION0,
-    callback: FWPM_CALLOUT_CHANGE_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_CALLOUT_SUBSCRIPTION0,
+    callback: ?FWPM_CALLOUT_CHANGE_CALLBACK0,
     context: ?*c_void,
-    changeHandle: *HANDLE,
+    changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutUnsubscribeChanges0(
-    engineHandle: HANDLE,
-    changeHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    changeHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmCalloutSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_CALLOUT_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_CALLOUT_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterAdd0(
-    engineHandle: HANDLE,
-    filter: *const FWPM_FILTER0,
+    engineHandle: ?HANDLE,
+    filter: ?*const FWPM_FILTER0,
     sd: ?*SECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterDeleteById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    filter: **FWPM_FILTER0,
+    filter: ?*?*FWPM_FILTER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterGetByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
-    filter: **FWPM_FILTER0,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
+    filter: ?*?*FWPM_FILTER0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_FILTER_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_FILTER0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_FILTER0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     key: ?*const Guid,
     securityInfo: u32,
     sidOwner: ?*const SID,
@@ -5166,50 +5166,50 @@ pub extern "fwpuclnt" fn FwpmFilterSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterSubscribeChanges0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_FILTER_SUBSCRIPTION0,
-    callback: FWPM_FILTER_CHANGE_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_FILTER_SUBSCRIPTION0,
+    callback: ?FWPM_FILTER_CHANGE_CALLBACK0,
     context: ?*c_void,
-    changeHandle: *HANDLE,
+    changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterUnsubscribeChanges0(
-    engineHandle: HANDLE,
-    changeHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    changeHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFilterSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_FILTER_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_FILTER_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmGetAppIdFromFileName0(
-    fileName: [*:0]const u16,
-    appId: **FWP_BYTE_BLOB,
+    fileName: ?[*:0]const u16,
+    appId: ?*?*FWP_BYTE_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmBitmapIndexGet0(
-    engineHandle: HANDLE,
-    fieldId: *const Guid,
-    idx: *u8,
+    engineHandle: ?HANDLE,
+    fieldId: ?*const Guid,
+    idx: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmBitmapIndexFree0(
-    engineHandle: HANDLE,
-    fieldId: *const Guid,
-    idx: *u8,
+    engineHandle: ?HANDLE,
+    fieldId: ?*const Guid,
+    idx: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u32,
     mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT0,
-    tunnelPolicy: *const FWPM_PROVIDER_CONTEXT0,
+    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT0,
     numFilterConditions: u32,
     filterConditions: [*]const FWPM_FILTER_CONDITION0,
     sd: ?*SECURITY_DESCRIPTOR,
@@ -5217,10 +5217,10 @@ pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd0(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u32,
     mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT1,
-    tunnelPolicy: *const FWPM_PROVIDER_CONTEXT1,
+    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT1,
     numFilterConditions: u32,
     filterConditions: [*]const FWPM_FILTER_CONDITION0,
     keyModKey: ?*const Guid,
@@ -5229,10 +5229,10 @@ pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd1(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd2(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u32,
     mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT2,
-    tunnelPolicy: *const FWPM_PROVIDER_CONTEXT2,
+    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT2,
     numFilterConditions: u32,
     filterConditions: [*]const FWPM_FILTER_CONDITION0,
     keyModKey: ?*const Guid,
@@ -5240,10 +5240,10 @@ pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd2(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd3(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u32,
     mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT3_,
-    tunnelPolicy: *const FWPM_PROVIDER_CONTEXT3_,
+    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT3_,
     numFilterConditions: u32,
     filterConditions: [*]const FWPM_FILTER_CONDITION0,
     keyModKey: ?*const Guid,
@@ -5252,222 +5252,222 @@ pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd3(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmIPsecTunnelDeleteByKey0(
-    engineHandle: HANDLE,
-    key: *const Guid,
+    engineHandle: ?HANDLE,
+    key: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecGetStatistics0(
-    engineHandle: HANDLE,
-    ipsecStatistics: *IPSEC_STATISTICS0,
+    engineHandle: ?HANDLE,
+    ipsecStatistics: ?*IPSEC_STATISTICS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecGetStatistics1(
-    engineHandle: HANDLE,
-    ipsecStatistics: *IPSEC_STATISTICS1,
+    engineHandle: ?HANDLE,
+    ipsecStatistics: ?*IPSEC_STATISTICS1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextCreate0(
-    engineHandle: HANDLE,
-    outboundTraffic: *const IPSEC_TRAFFIC0,
+    engineHandle: ?HANDLE,
+    outboundTraffic: ?*const IPSEC_TRAFFIC0,
     inboundFilterId: ?*u64,
-    id: *u64,
+    id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextCreate1(
-    engineHandle: HANDLE,
-    outboundTraffic: *const IPSEC_TRAFFIC1,
+    engineHandle: ?HANDLE,
+    outboundTraffic: ?*const IPSEC_TRAFFIC1,
     virtualIfTunnelInfo: ?*const IPSEC_VIRTUAL_IF_TUNNEL_INFO0,
     inboundFilterId: ?*u64,
-    id: *u64,
+    id: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextDeleteById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    saContext: **IPSEC_SA_CONTEXT0,
+    saContext: ?*?*IPSEC_SA_CONTEXT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextGetById1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    saContext: **IPSEC_SA_CONTEXT1,
+    saContext: ?*?*IPSEC_SA_CONTEXT1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextGetSpi0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    getSpi: *const IPSEC_GETSPI0,
-    inboundSpi: *u32,
+    getSpi: ?*const IPSEC_GETSPI0,
+    inboundSpi: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextGetSpi1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    getSpi: *const IPSEC_GETSPI1,
-    inboundSpi: *u32,
+    getSpi: ?*const IPSEC_GETSPI1,
+    inboundSpi: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextSetSpi0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    getSpi: *const IPSEC_GETSPI1,
+    getSpi: ?*const IPSEC_GETSPI1,
     inboundSpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextAddInbound0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    inboundBundle: *const IPSEC_SA_BUNDLE0,
+    inboundBundle: ?*const IPSEC_SA_BUNDLE0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextAddOutbound0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    outboundBundle: *const IPSEC_SA_BUNDLE0,
+    outboundBundle: ?*const IPSEC_SA_BUNDLE0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextAddInbound1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    inboundBundle: *const IPSEC_SA_BUNDLE1,
+    inboundBundle: ?*const IPSEC_SA_BUNDLE1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextAddOutbound1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    outboundBundle: *const IPSEC_SA_BUNDLE1,
+    outboundBundle: ?*const IPSEC_SA_BUNDLE1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextExpire0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextUpdate0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     flags: u64,
-    newValues: *const IPSEC_SA_CONTEXT1,
+    newValues: ?*const IPSEC_SA_CONTEXT1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const IPSEC_SA_CONTEXT_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IPSEC_SA_CONTEXT0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IPSEC_SA_CONTEXT0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaContextEnum1(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IPSEC_SA_CONTEXT1,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IPSEC_SA_CONTEXT1,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaContextDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecSaContextSubscribe0(
-    engineHandle: HANDLE,
-    subscription: *const IPSEC_SA_CONTEXT_SUBSCRIPTION0,
-    callback: IPSEC_SA_CONTEXT_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const IPSEC_SA_CONTEXT_SUBSCRIPTION0,
+    callback: ?IPSEC_SA_CONTEXT_CALLBACK0,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecSaContextUnsubscribe0(
-    engineHandle: HANDLE,
-    eventsHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    eventsHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecSaContextSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***IPSEC_SA_CONTEXT_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*IPSEC_SA_CONTEXT_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const IPSEC_SA_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IPSEC_SA_DETAILS0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IPSEC_SA_DETAILS0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecSaEnum1(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IPSEC_SA_DETAILS1,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IPSEC_SA_DETAILS1,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaDbGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IPsecSaDbSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5477,46 +5477,46 @@ pub extern "fwpuclnt" fn IPsecSaDbSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospGetStatistics0(
-    engineHandle: HANDLE,
-    idpStatistics: *IPSEC_DOSP_STATISTICS0,
+    engineHandle: ?HANDLE,
+    idpStatistics: ?*IPSEC_DOSP_STATISTICS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospStateCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const IPSEC_DOSP_STATE_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospStateEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IPSEC_DOSP_STATE0,
-    numEntries: *u32,
+    entries: ?*?*?*IPSEC_DOSP_STATE0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospStateDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IPsecDospSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5526,41 +5526,41 @@ pub extern "fwpuclnt" fn IPsecDospSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerAddAndRegister0(
-    engineHandle: HANDLE,
-    keyManager: *const IPSEC_KEY_MANAGER0,
-    keyManagerCallbacks: *const IPSEC_KEY_MANAGER_CALLBACKS0,
-    keyMgmtHandle: *HANDLE,
+    engineHandle: ?HANDLE,
+    keyManager: ?*const IPSEC_KEY_MANAGER0,
+    keyManagerCallbacks: ?*const IPSEC_KEY_MANAGER_CALLBACKS0,
+    keyMgmtHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerUnregisterAndDelete0(
-    engineHandle: HANDLE,
-    keyMgmtHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    keyMgmtHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagersGet0(
-    engineHandle: HANDLE,
-    entries: ***IPSEC_KEY_MANAGER0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*IPSEC_KEY_MANAGER0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerGetSecurityInfoByKey0(
-    engineHandle: HANDLE,
-    reserved: *const c_void,
+    engineHandle: ?HANDLE,
+    reserved: ?*const c_void,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerSetSecurityInfoByKey0(
-    engineHandle: HANDLE,
-    reserved: *const c_void,
+    engineHandle: ?HANDLE,
+    reserved: ?*const c_void,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5570,99 +5570,99 @@ pub extern "fwpuclnt" fn IPsecKeyManagerSetSecurityInfoByKey0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextGetStatistics0(
-    engineHandle: HANDLE,
-    ikeextStatistics: *IKEEXT_STATISTICS0,
+    engineHandle: ?HANDLE,
+    ikeextStatistics: ?*IKEEXT_STATISTICS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IkeextGetStatistics1(
-    engineHandle: HANDLE,
-    ikeextStatistics: *IKEEXT_STATISTICS1,
+    engineHandle: ?HANDLE,
+    ikeextStatistics: ?*IKEEXT_STATISTICS1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaDeleteById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    sa: **IKEEXT_SA_DETAILS0,
+    sa: ?*?*IKEEXT_SA_DETAILS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IkeextSaGetById1(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
     saLookupContext: ?*Guid,
-    sa: **IKEEXT_SA_DETAILS1,
+    sa: ?*?*IKEEXT_SA_DETAILS1,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IkeextSaGetById2(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
     saLookupContext: ?*Guid,
-    sa: **IKEEXT_SA_DETAILS2,
+    sa: ?*?*IKEEXT_SA_DETAILS2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const IKEEXT_SA_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IKEEXT_SA_DETAILS0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IKEEXT_SA_DETAILS0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn IkeextSaEnum1(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IKEEXT_SA_DETAILS1,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IKEEXT_SA_DETAILS1,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IkeextSaEnum2(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***IKEEXT_SA_DETAILS2,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*IKEEXT_SA_DETAILS2,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaDbGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn IkeextSaDbSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5672,83 +5672,83 @@ pub extern "fwpuclnt" fn IkeextSaDbSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmNetEventCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_NET_EVENT_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmNetEventEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmNetEventEnum1(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT1,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT1,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmNetEventEnum2(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT2,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT2,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "fwpuclnt" fn FwpmNetEventEnum3(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT3,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT3,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmNetEventEnum4(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT4_,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT4_,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmNetEventEnum5(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_NET_EVENT5_,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_NET_EVENT5_,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmNetEventDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmNetEventsGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmNetEventsSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5758,124 +5758,124 @@ pub extern "fwpuclnt" fn FwpmNetEventsSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmNetEventSubscribe0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_NET_EVENT_SUBSCRIPTION0,
-    callback: FWPM_NET_EVENT_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_NET_EVENT_CALLBACK0,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmNetEventUnsubscribe0(
-    engineHandle: HANDLE,
-    eventsHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    eventsHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmNetEventSubscriptionsGet0(
-    engineHandle: HANDLE,
-    entries: ***FWPM_NET_EVENT_SUBSCRIPTION0,
-    numEntries: *u32,
+    engineHandle: ?HANDLE,
+    entries: ?*?*?*FWPM_NET_EVENT_SUBSCRIPTION0,
+    numEntries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmNetEventSubscribe1(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_NET_EVENT_SUBSCRIPTION0,
-    callback: FWPM_NET_EVENT_CALLBACK1,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_NET_EVENT_CALLBACK1,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "fwpuclnt" fn FwpmNetEventSubscribe2(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_NET_EVENT_SUBSCRIPTION0,
-    callback: FWPM_NET_EVENT_CALLBACK2,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_NET_EVENT_CALLBACK2,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmNetEventSubscribe3(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_NET_EVENT_SUBSCRIPTION0,
-    callback: FWPM_NET_EVENT_CALLBACK3,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_NET_EVENT_CALLBACK3,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmNetEventSubscribe4(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_NET_EVENT_SUBSCRIPTION0,
-    callback: FWPM_NET_EVENT_CALLBACK4,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_NET_EVENT_CALLBACK4,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsGet0(
     engineHandle: ?HANDLE,
-    sysPorts: **FWPM_SYSTEM_PORTS0,
+    sysPorts: ?*?*FWPM_SYSTEM_PORTS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsSubscribe0(
     engineHandle: ?HANDLE,
-    reserved: *c_void,
-    callback: FWPM_SYSTEM_PORTS_CALLBACK0,
+    reserved: ?*c_void,
+    callback: ?FWPM_SYSTEM_PORTS_CALLBACK0,
     context: ?*c_void,
-    sysPortsHandle: *HANDLE,
+    sysPortsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsUnsubscribe0(
     engineHandle: ?HANDLE,
-    sysPortsHandle: HANDLE,
+    sysPortsHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionGetById0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     id: u64,
-    connection: **FWPM_CONNECTION0,
+    connection: ?*?*FWPM_CONNECTION0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionEnum0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ***FWPM_CONNECTION0,
-    numEntriesReturned: *u32,
+    entries: ?*?*?*FWPM_CONNECTION0,
+    numEntriesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionCreateEnumHandle0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     enumTemplate: ?*const FWPM_CONNECTION_ENUM_TEMPLATE0,
-    enumHandle: *HANDLE,
+    enumHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionDestroyEnumHandle0(
-    engineHandle: HANDLE,
-    enumHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    enumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5885,48 +5885,48 @@ pub extern "fwpuclnt" fn FwpmConnectionSetSecurityInfo0(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionSubscribe0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_CONNECTION_SUBSCRIPTION0,
-    callback: FWPM_CONNECTION_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_CONNECTION_SUBSCRIPTION0,
+    callback: ?FWPM_CONNECTION_CALLBACK0,
     context: ?*c_void,
-    eventsHandle: *HANDLE,
+    eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmConnectionUnsubscribe0(
-    engineHandle: HANDLE,
-    eventsHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    eventsHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmvSwitchEventSubscribe0(
-    engineHandle: HANDLE,
-    subscription: *const FWPM_VSWITCH_EVENT_SUBSCRIPTION0,
-    callback: FWPM_VSWITCH_EVENT_CALLBACK0,
+    engineHandle: ?HANDLE,
+    subscription: ?*const FWPM_VSWITCH_EVENT_SUBSCRIPTION0,
+    callback: ?FWPM_VSWITCH_EVENT_CALLBACK0,
     context: ?*c_void,
-    subscriptionHandle: *HANDLE,
+    subscriptionHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmvSwitchEventUnsubscribe0(
-    engineHandle: HANDLE,
-    subscriptionHandle: HANDLE,
+    engineHandle: ?HANDLE,
+    subscriptionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmvSwitchEventsGetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
-    sidOwner: ?*PSID,
-    sidGroup: ?*PSID,
-    dacl: ?**ACL,
-    sacl: ?**ACL,
-    securityDescriptor: **SECURITY_DESCRIPTOR,
+    sidOwner: ?*?PSID,
+    sidGroup: ?*?PSID,
+    dacl: ?*?*ACL,
+    sacl: ?*?*ACL,
+    securityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn FwpmvSwitchEventsSetSecurityInfo0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,

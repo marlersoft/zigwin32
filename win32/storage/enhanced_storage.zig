@@ -261,24 +261,24 @@ pub const IEnumEnhancedStorageACT = extern struct {
         base: IUnknown.VTable,
         GetACTs: fn(
             self: *const IEnumEnhancedStorageACT,
-            pppIEnhancedStorageACTs: [*]**IEnhancedStorageACT,
-            pcEnhancedStorageACTs: *u32,
+            pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT,
+            pcEnhancedStorageACTs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMatchingACT: fn(
             self: *const IEnumEnhancedStorageACT,
-            szVolume: [*:0]const u16,
-            ppIEnhancedStorageACT: **IEnhancedStorageACT,
+            szVolume: ?[*:0]const u16,
+            ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumEnhancedStorageACT_GetACTs(self: *const T, pppIEnhancedStorageACTs: [*]**IEnhancedStorageACT, pcEnhancedStorageACTs: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumEnhancedStorageACT_GetACTs(self: *const T, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumEnhancedStorageACT.VTable, self.vtable).GetACTs(@ptrCast(*const IEnumEnhancedStorageACT, self), pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumEnhancedStorageACT_GetMatchingACT(self: *const T, szVolume: [*:0]const u16, ppIEnhancedStorageACT: **IEnhancedStorageACT) callconv(.Inline) HRESULT {
+        pub fn IEnumEnhancedStorageACT_GetMatchingACT(self: *const T, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumEnhancedStorageACT.VTable, self.vtable).GetMatchingACT(@ptrCast(*const IEnumEnhancedStorageACT, self), szVolume, ppIEnhancedStorageACT);
         }
     };}
@@ -301,20 +301,20 @@ pub const IEnhancedStorageACT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAuthorizationState: fn(
             self: *const IEnhancedStorageACT,
-            pState: *ACT_AUTHORIZATION_STATE,
+            pState: ?*ACT_AUTHORIZATION_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMatchingVolume: fn(
             self: *const IEnhancedStorageACT,
-            ppwszVolume: *PWSTR,
+            ppwszVolume: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUniqueIdentity: fn(
             self: *const IEnhancedStorageACT,
-            ppwszIdentity: *PWSTR,
+            ppwszIdentity: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSilos: fn(
             self: *const IEnhancedStorageACT,
-            pppIEnhancedStorageSilos: [*]**IEnhancedStorageSilo,
-            pcEnhancedStorageSilos: *u32,
+            pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo,
+            pcEnhancedStorageSilos: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -329,19 +329,19 @@ pub const IEnhancedStorageACT = extern struct {
             return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).Unauthorize(@ptrCast(*const IEnhancedStorageACT, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT_GetAuthorizationState(self: *const T, pState: *ACT_AUTHORIZATION_STATE) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT_GetAuthorizationState(self: *const T, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetAuthorizationState(@ptrCast(*const IEnhancedStorageACT, self), pState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT_GetMatchingVolume(self: *const T, ppwszVolume: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT_GetMatchingVolume(self: *const T, ppwszVolume: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetMatchingVolume(@ptrCast(*const IEnhancedStorageACT, self), ppwszVolume);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT_GetUniqueIdentity(self: *const T, ppwszIdentity: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT_GetUniqueIdentity(self: *const T, ppwszIdentity: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetUniqueIdentity(@ptrCast(*const IEnhancedStorageACT, self), ppwszIdentity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT_GetSilos(self: *const T, pppIEnhancedStorageSilos: [*]**IEnhancedStorageSilo, pcEnhancedStorageSilos: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT_GetSilos(self: *const T, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetSilos(@ptrCast(*const IEnhancedStorageACT, self), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
         }
     };}
@@ -356,22 +356,22 @@ pub const IEnhancedStorageACT2 = extern struct {
         base: IEnhancedStorageACT.VTable,
         GetDeviceName: fn(
             self: *const IEnhancedStorageACT2,
-            ppwszDeviceName: *PWSTR,
+            ppwszDeviceName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDeviceRemovable: fn(
             self: *const IEnhancedStorageACT2,
-            pIsDeviceRemovable: *BOOL,
+            pIsDeviceRemovable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IEnhancedStorageACT.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT2_GetDeviceName(self: *const T, ppwszDeviceName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT2_GetDeviceName(self: *const T, ppwszDeviceName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT2.VTable, self.vtable).GetDeviceName(@ptrCast(*const IEnhancedStorageACT2, self), ppwszDeviceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT2_IsDeviceRemovable(self: *const T, pIsDeviceRemovable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT2_IsDeviceRemovable(self: *const T, pIsDeviceRemovable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT2.VTable, self.vtable).IsDeviceRemovable(@ptrCast(*const IEnhancedStorageACT2, self), pIsDeviceRemovable);
         }
     };}
@@ -389,11 +389,11 @@ pub const IEnhancedStorageACT3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsQueueFrozen: fn(
             self: *const IEnhancedStorageACT3,
-            pIsQueueFrozen: *BOOL,
+            pIsQueueFrozen: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetShellExtSupport: fn(
             self: *const IEnhancedStorageACT3,
-            pShellExtSupport: *BOOL,
+            pShellExtSupport: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -404,11 +404,11 @@ pub const IEnhancedStorageACT3 = extern struct {
             return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).UnauthorizeEx(@ptrCast(*const IEnhancedStorageACT3, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT3_IsQueueFrozen(self: *const T, pIsQueueFrozen: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT3_IsQueueFrozen(self: *const T, pIsQueueFrozen: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).IsQueueFrozen(@ptrCast(*const IEnhancedStorageACT3, self), pIsQueueFrozen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageACT3_GetShellExtSupport(self: *const T, pShellExtSupport: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageACT3_GetShellExtSupport(self: *const T, pShellExtSupport: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).GetShellExtSupport(@ptrCast(*const IEnhancedStorageACT3, self), pShellExtSupport);
         }
     };}
@@ -423,12 +423,12 @@ pub const IEnhancedStorageSilo = extern struct {
         base: IUnknown.VTable,
         GetInfo: fn(
             self: *const IEnhancedStorageSilo,
-            pSiloInfo: *SILO_INFO,
+            pSiloInfo: ?*SILO_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActions: fn(
             self: *const IEnhancedStorageSilo,
-            pppIEnhancedStorageSiloActions: [*]**IEnhancedStorageSiloAction,
-            pcEnhancedStorageSiloActions: *u32,
+            pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction,
+            pcEnhancedStorageSiloActions: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendCommand: fn(
             self: *const IEnhancedStorageSilo,
@@ -436,38 +436,38 @@ pub const IEnhancedStorageSilo = extern struct {
             pbCommandBuffer: [*:0]u8,
             cbCommandBuffer: u32,
             pbResponseBuffer: [*:0]u8,
-            pcbResponseBuffer: *u32,
+            pcbResponseBuffer: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPortableDevice: fn(
             self: *const IEnhancedStorageSilo,
-            ppIPortableDevice: **IPortableDevice,
+            ppIPortableDevice: ?*?*IPortableDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDevicePath: fn(
             self: *const IEnhancedStorageSilo,
-            ppwszSiloDevicePath: *PWSTR,
+            ppwszSiloDevicePath: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSilo_GetInfo(self: *const T, pSiloInfo: *SILO_INFO) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSilo_GetInfo(self: *const T, pSiloInfo: ?*SILO_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetInfo(@ptrCast(*const IEnhancedStorageSilo, self), pSiloInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSilo_GetActions(self: *const T, pppIEnhancedStorageSiloActions: [*]**IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSilo_GetActions(self: *const T, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetActions(@ptrCast(*const IEnhancedStorageSilo, self), pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSilo_SendCommand(self: *const T, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSilo_SendCommand(self: *const T, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).SendCommand(@ptrCast(*const IEnhancedStorageSilo, self), Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSilo_GetPortableDevice(self: *const T, ppIPortableDevice: **IPortableDevice) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSilo_GetPortableDevice(self: *const T, ppIPortableDevice: ?*?*IPortableDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetPortableDevice(@ptrCast(*const IEnhancedStorageSilo, self), ppIPortableDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSilo_GetDevicePath(self: *const T, ppwszSiloDevicePath: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSilo_GetDevicePath(self: *const T, ppwszSiloDevicePath: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetDevicePath(@ptrCast(*const IEnhancedStorageSilo, self), ppwszSiloDevicePath);
         }
     };}
@@ -482,11 +482,11 @@ pub const IEnhancedStorageSiloAction = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IEnhancedStorageSiloAction,
-            ppwszActionName: *PWSTR,
+            ppwszActionName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IEnhancedStorageSiloAction,
-            ppwszActionDescription: *PWSTR,
+            ppwszActionDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Invoke: fn(
             self: *const IEnhancedStorageSiloAction,
@@ -496,11 +496,11 @@ pub const IEnhancedStorageSiloAction = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSiloAction_GetName(self: *const T, ppwszActionName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSiloAction_GetName(self: *const T, ppwszActionName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSiloAction.VTable, self.vtable).GetName(@ptrCast(*const IEnhancedStorageSiloAction, self), ppwszActionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnhancedStorageSiloAction_GetDescription(self: *const T, ppwszActionDescription: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEnhancedStorageSiloAction_GetDescription(self: *const T, ppwszActionDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnhancedStorageSiloAction.VTable, self.vtable).GetDescription(@ptrCast(*const IEnhancedStorageSiloAction, self), ppwszActionDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

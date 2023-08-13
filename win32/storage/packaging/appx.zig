@@ -30,10 +30,10 @@ pub const PACKAGE_ID = extern struct {
     reserved: u32,
     processorArchitecture: u32,
     version: PACKAGE_VERSION,
-    name: PWSTR,
-    publisher: PWSTR,
-    resourceId: PWSTR,
-    publisherId: PWSTR,
+    name: ?PWSTR,
+    publisher: ?PWSTR,
+    resourceId: ?PWSTR,
+    publisherId: ?PWSTR,
 };
 
 }, else => struct { } };
@@ -45,9 +45,9 @@ pub const PACKAGE_INFO = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     reserved: u32,
     flags: u32,
-    path: PWSTR,
-    packageFullName: PWSTR,
-    packageFamilyName: PWSTR,
+    path: ?PWSTR,
+    packageFullName: ?PWSTR,
+    packageFamilyName: ?PWSTR,
     packageId: PACKAGE_ID,
 };
 
@@ -70,7 +70,7 @@ pub const CLSID_AppxPackageEditor = &CLSID_AppxPackageEditor_Value;
 
 pub const APPX_PACKAGE_SETTINGS = extern struct {
     forceZip32: BOOL,
-    hashMethod: *IUri,
+    hashMethod: ?*IUri,
 };
 
 pub const APPX_COMPRESSION_OPTION = enum(i32) {
@@ -87,9 +87,9 @@ pub const APPX_COMPRESSION_OPTION_FAST = APPX_COMPRESSION_OPTION.FAST;
 pub const APPX_COMPRESSION_OPTION_SUPERFAST = APPX_COMPRESSION_OPTION.SUPERFAST;
 
 pub const APPX_PACKAGE_WRITER_PAYLOAD_STREAM = extern struct {
-    inputStream: *IStream,
-    fileName: [*:0]const u16,
-    contentType: [*:0]const u16,
+    inputStream: ?*IStream,
+    fileName: ?[*:0]const u16,
+    contentType: ?[*:0]const u16,
     compressionOption: APPX_COMPRESSION_OPTION,
 };
 
@@ -258,53 +258,53 @@ pub const IAppxFactory = extern struct {
         base: IUnknown.VTable,
         CreatePackageWriter: fn(
             self: *const IAppxFactory,
-            outputStream: *IStream,
-            settings: *APPX_PACKAGE_SETTINGS,
-            packageWriter: **IAppxPackageWriter,
+            outputStream: ?*IStream,
+            settings: ?*APPX_PACKAGE_SETTINGS,
+            packageWriter: ?*?*IAppxPackageWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePackageReader: fn(
             self: *const IAppxFactory,
-            inputStream: *IStream,
-            packageReader: **IAppxPackageReader,
+            inputStream: ?*IStream,
+            packageReader: ?*?*IAppxPackageReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateManifestReader: fn(
             self: *const IAppxFactory,
-            inputStream: *IStream,
-            manifestReader: **IAppxManifestReader,
+            inputStream: ?*IStream,
+            manifestReader: ?*?*IAppxManifestReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlockMapReader: fn(
             self: *const IAppxFactory,
-            inputStream: *IStream,
-            blockMapReader: **IAppxBlockMapReader,
+            inputStream: ?*IStream,
+            blockMapReader: ?*?*IAppxBlockMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateValidatedBlockMapReader: fn(
             self: *const IAppxFactory,
-            blockMapStream: *IStream,
-            signatureFileName: [*:0]const u16,
-            blockMapReader: **IAppxBlockMapReader,
+            blockMapStream: ?*IStream,
+            signatureFileName: ?[*:0]const u16,
+            blockMapReader: ?*?*IAppxBlockMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory_CreatePackageWriter(self: *const T, outputStream: *IStream, settings: *APPX_PACKAGE_SETTINGS, packageWriter: **IAppxPackageWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory_CreatePackageWriter(self: *const T, outputStream: ?*IStream, settings: ?*APPX_PACKAGE_SETTINGS, packageWriter: ?*?*IAppxPackageWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory.VTable, self.vtable).CreatePackageWriter(@ptrCast(*const IAppxFactory, self), outputStream, settings, packageWriter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory_CreatePackageReader(self: *const T, inputStream: *IStream, packageReader: **IAppxPackageReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory_CreatePackageReader(self: *const T, inputStream: ?*IStream, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory.VTable, self.vtable).CreatePackageReader(@ptrCast(*const IAppxFactory, self), inputStream, packageReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory_CreateManifestReader(self: *const T, inputStream: *IStream, manifestReader: **IAppxManifestReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory_CreateManifestReader(self: *const T, inputStream: ?*IStream, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory.VTable, self.vtable).CreateManifestReader(@ptrCast(*const IAppxFactory, self), inputStream, manifestReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory_CreateBlockMapReader(self: *const T, inputStream: *IStream, blockMapReader: **IAppxBlockMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory_CreateBlockMapReader(self: *const T, inputStream: ?*IStream, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory.VTable, self.vtable).CreateBlockMapReader(@ptrCast(*const IAppxFactory, self), inputStream, blockMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory_CreateValidatedBlockMapReader(self: *const T, blockMapStream: *IStream, signatureFileName: [*:0]const u16, blockMapReader: **IAppxBlockMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory_CreateValidatedBlockMapReader(self: *const T, blockMapStream: ?*IStream, signatureFileName: ?[*:0]const u16, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory.VTable, self.vtable).CreateValidatedBlockMapReader(@ptrCast(*const IAppxFactory, self), blockMapStream, signatureFileName, blockMapReader);
         }
     };}
@@ -319,33 +319,33 @@ pub const IAppxFactory2 = extern struct {
         base: IUnknown.VTable,
         CreateContentGroupMapReader: fn(
             self: *const IAppxFactory2,
-            inputStream: *IStream,
-            contentGroupMapReader: **IAppxContentGroupMapReader,
+            inputStream: ?*IStream,
+            contentGroupMapReader: ?*?*IAppxContentGroupMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSourceContentGroupMapReader: fn(
             self: *const IAppxFactory2,
-            inputStream: *IStream,
-            reader: **IAppxSourceContentGroupMapReader,
+            inputStream: ?*IStream,
+            reader: ?*?*IAppxSourceContentGroupMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateContentGroupMapWriter: fn(
             self: *const IAppxFactory2,
-            stream: *IStream,
-            contentGroupMapWriter: **IAppxContentGroupMapWriter,
+            stream: ?*IStream,
+            contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory2_CreateContentGroupMapReader(self: *const T, inputStream: *IStream, contentGroupMapReader: **IAppxContentGroupMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory2_CreateContentGroupMapReader(self: *const T, inputStream: ?*IStream, contentGroupMapReader: ?*?*IAppxContentGroupMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory2.VTable, self.vtable).CreateContentGroupMapReader(@ptrCast(*const IAppxFactory2, self), inputStream, contentGroupMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory2_CreateSourceContentGroupMapReader(self: *const T, inputStream: *IStream, reader: **IAppxSourceContentGroupMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory2_CreateSourceContentGroupMapReader(self: *const T, inputStream: ?*IStream, reader: ?*?*IAppxSourceContentGroupMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory2.VTable, self.vtable).CreateSourceContentGroupMapReader(@ptrCast(*const IAppxFactory2, self), inputStream, reader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFactory2_CreateContentGroupMapWriter(self: *const T, stream: *IStream, contentGroupMapWriter: **IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxFactory2_CreateContentGroupMapWriter(self: *const T, stream: ?*IStream, contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFactory2.VTable, self.vtable).CreateContentGroupMapWriter(@ptrCast(*const IAppxFactory2, self), stream, contentGroupMapWriter);
         }
     };}
@@ -360,48 +360,48 @@ pub const IAppxPackageReader = extern struct {
         base: IUnknown.VTable,
         GetBlockMap: fn(
             self: *const IAppxPackageReader,
-            blockMapReader: **IAppxBlockMapReader,
+            blockMapReader: ?*?*IAppxBlockMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFootprintFile: fn(
             self: *const IAppxPackageReader,
             type: APPX_FOOTPRINT_FILE_TYPE,
-            file: **IAppxFile,
+            file: ?*?*IAppxFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPayloadFile: fn(
             self: *const IAppxPackageReader,
-            fileName: [*:0]const u16,
-            file: **IAppxFile,
+            fileName: ?[*:0]const u16,
+            file: ?*?*IAppxFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPayloadFiles: fn(
             self: *const IAppxPackageReader,
-            filesEnumerator: **IAppxFilesEnumerator,
+            filesEnumerator: ?*?*IAppxFilesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetManifest: fn(
             self: *const IAppxPackageReader,
-            manifestReader: **IAppxManifestReader,
+            manifestReader: ?*?*IAppxManifestReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetBlockMap(self: *const T, blockMapReader: **IAppxBlockMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageReader_GetBlockMap(self: *const T, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetBlockMap(@ptrCast(*const IAppxPackageReader, self), blockMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, type_: APPX_FOOTPRINT_FILE_TYPE, file: **IAppxFile) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, type_: APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetFootprintFile(@ptrCast(*const IAppxPackageReader, self), type_, file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetPayloadFile(self: *const T, fileName: [*:0]const u16, file: **IAppxFile) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageReader_GetPayloadFile(self: *const T, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetPayloadFile(@ptrCast(*const IAppxPackageReader, self), fileName, file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetPayloadFiles(self: *const T, filesEnumerator: **IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageReader_GetPayloadFiles(self: *const T, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetPayloadFiles(@ptrCast(*const IAppxPackageReader, self), filesEnumerator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetManifest(self: *const T, manifestReader: **IAppxManifestReader) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageReader_GetManifest(self: *const T, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetManifest(@ptrCast(*const IAppxPackageReader, self), manifestReader);
         }
     };}
@@ -416,25 +416,25 @@ pub const IAppxPackageWriter = extern struct {
         base: IUnknown.VTable,
         AddPayloadFile: fn(
             self: *const IAppxPackageWriter,
-            fileName: [*:0]const u16,
-            contentType: [*:0]const u16,
+            fileName: ?[*:0]const u16,
+            contentType: ?[*:0]const u16,
             compressionOption: APPX_COMPRESSION_OPTION,
-            inputStream: *IStream,
+            inputStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxPackageWriter,
-            manifest: *IStream,
+            manifest: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageWriter_AddPayloadFile(self: *const T, fileName: [*:0]const u16, contentType: [*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageWriter_AddPayloadFile(self: *const T, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageWriter.VTable, self.vtable).AddPayloadFile(@ptrCast(*const IAppxPackageWriter, self), fileName, contentType, compressionOption, inputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageWriter_Close(self: *const T, manifest: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageWriter_Close(self: *const T, manifest: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageWriter.VTable, self.vtable).Close(@ptrCast(*const IAppxPackageWriter, self), manifest);
         }
     };}
@@ -449,15 +449,15 @@ pub const IAppxPackageWriter2 = extern struct {
         base: IUnknown.VTable,
         Close: fn(
             self: *const IAppxPackageWriter2,
-            manifest: *IStream,
-            contentGroupMap: *IStream,
+            manifest: ?*IStream,
+            contentGroupMap: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageWriter2_Close(self: *const T, manifest: *IStream, contentGroupMap: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageWriter2_Close(self: *const T, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageWriter2.VTable, self.vtable).Close(@ptrCast(*const IAppxPackageWriter2, self), manifest, contentGroupMap);
         }
     };}
@@ -496,46 +496,46 @@ pub const IAppxFile = extern struct {
         base: IUnknown.VTable,
         GetCompressionOption: fn(
             self: *const IAppxFile,
-            compressionOption: *APPX_COMPRESSION_OPTION,
+            compressionOption: ?*APPX_COMPRESSION_OPTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContentType: fn(
             self: *const IAppxFile,
-            contentType: *PWSTR,
+            contentType: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IAppxFile,
-            fileName: *PWSTR,
+            fileName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSize: fn(
             self: *const IAppxFile,
-            size: *u64,
+            size: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IAppxFile,
-            stream: **IStream,
+            stream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFile_GetCompressionOption(self: *const T, compressionOption: *APPX_COMPRESSION_OPTION) callconv(.Inline) HRESULT {
+        pub fn IAppxFile_GetCompressionOption(self: *const T, compressionOption: ?*APPX_COMPRESSION_OPTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFile.VTable, self.vtable).GetCompressionOption(@ptrCast(*const IAppxFile, self), compressionOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFile_GetContentType(self: *const T, contentType: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxFile_GetContentType(self: *const T, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFile.VTable, self.vtable).GetContentType(@ptrCast(*const IAppxFile, self), contentType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFile_GetName(self: *const T, fileName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxFile_GetName(self: *const T, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFile.VTable, self.vtable).GetName(@ptrCast(*const IAppxFile, self), fileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFile_GetSize(self: *const T, size: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxFile_GetSize(self: *const T, size: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFile.VTable, self.vtable).GetSize(@ptrCast(*const IAppxFile, self), size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFile_GetStream(self: *const T, stream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxFile_GetStream(self: *const T, stream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFile.VTable, self.vtable).GetStream(@ptrCast(*const IAppxFile, self), stream);
         }
     };}
@@ -550,30 +550,30 @@ pub const IAppxFilesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxFilesEnumerator,
-            file: **IAppxFile,
+            file: ?*?*IAppxFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxFilesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxFilesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFilesEnumerator_GetCurrent(self: *const T, file: **IAppxFile) callconv(.Inline) HRESULT {
+        pub fn IAppxFilesEnumerator_GetCurrent(self: *const T, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFilesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxFilesEnumerator, self), file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFilesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxFilesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxFilesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxFilesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxFilesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxFilesEnumerator, self), hasNext);
         }
     };}
@@ -588,39 +588,39 @@ pub const IAppxBlockMapReader = extern struct {
         base: IUnknown.VTable,
         GetFile: fn(
             self: *const IAppxBlockMapReader,
-            filename: [*:0]const u16,
-            file: **IAppxBlockMapFile,
+            filename: ?[*:0]const u16,
+            file: ?*?*IAppxBlockMapFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFiles: fn(
             self: *const IAppxBlockMapReader,
-            enumerator: **IAppxBlockMapFilesEnumerator,
+            enumerator: ?*?*IAppxBlockMapFilesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHashMethod: fn(
             self: *const IAppxBlockMapReader,
-            hashMethod: **IUri,
+            hashMethod: ?*?*IUri,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IAppxBlockMapReader,
-            blockMapStream: **IStream,
+            blockMapStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapReader_GetFile(self: *const T, filename: [*:0]const u16, file: **IAppxBlockMapFile) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapReader_GetFile(self: *const T, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapReader.VTable, self.vtable).GetFile(@ptrCast(*const IAppxBlockMapReader, self), filename, file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapReader_GetFiles(self: *const T, enumerator: **IAppxBlockMapFilesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapReader_GetFiles(self: *const T, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapReader.VTable, self.vtable).GetFiles(@ptrCast(*const IAppxBlockMapReader, self), enumerator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapReader_GetHashMethod(self: *const T, hashMethod: **IUri) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapReader_GetHashMethod(self: *const T, hashMethod: ?*?*IUri) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapReader.VTable, self.vtable).GetHashMethod(@ptrCast(*const IAppxBlockMapReader, self), hashMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapReader_GetStream(self: *const T, blockMapStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapReader_GetStream(self: *const T, blockMapStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapReader.VTable, self.vtable).GetStream(@ptrCast(*const IAppxBlockMapReader, self), blockMapStream);
         }
     };}
@@ -635,47 +635,47 @@ pub const IAppxBlockMapFile = extern struct {
         base: IUnknown.VTable,
         GetBlocks: fn(
             self: *const IAppxBlockMapFile,
-            blocks: **IAppxBlockMapBlocksEnumerator,
+            blocks: ?*?*IAppxBlockMapBlocksEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocalFileHeaderSize: fn(
             self: *const IAppxBlockMapFile,
-            lfhSize: *u32,
+            lfhSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IAppxBlockMapFile,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUncompressedSize: fn(
             self: *const IAppxBlockMapFile,
-            size: *u64,
+            size: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ValidateFileHash: fn(
             self: *const IAppxBlockMapFile,
-            fileStream: *IStream,
-            isValid: *BOOL,
+            fileStream: ?*IStream,
+            isValid: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFile_GetBlocks(self: *const T, blocks: **IAppxBlockMapBlocksEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFile_GetBlocks(self: *const T, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFile.VTable, self.vtable).GetBlocks(@ptrCast(*const IAppxBlockMapFile, self), blocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFile_GetLocalFileHeaderSize(self: *const T, lfhSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFile_GetLocalFileHeaderSize(self: *const T, lfhSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFile.VTable, self.vtable).GetLocalFileHeaderSize(@ptrCast(*const IAppxBlockMapFile, self), lfhSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFile_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFile_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFile.VTable, self.vtable).GetName(@ptrCast(*const IAppxBlockMapFile, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFile_GetUncompressedSize(self: *const T, size: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFile_GetUncompressedSize(self: *const T, size: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFile.VTable, self.vtable).GetUncompressedSize(@ptrCast(*const IAppxBlockMapFile, self), size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFile_ValidateFileHash(self: *const T, fileStream: *IStream, isValid: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFile_ValidateFileHash(self: *const T, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFile.VTable, self.vtable).ValidateFileHash(@ptrCast(*const IAppxBlockMapFile, self), fileStream, isValid);
         }
     };}
@@ -690,30 +690,30 @@ pub const IAppxBlockMapFilesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxBlockMapFilesEnumerator,
-            file: **IAppxBlockMapFile,
+            file: ?*?*IAppxBlockMapFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxBlockMapFilesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxBlockMapFilesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFilesEnumerator_GetCurrent(self: *const T, file: **IAppxBlockMapFile) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFilesEnumerator_GetCurrent(self: *const T, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFilesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxBlockMapFilesEnumerator, self), file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFilesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxBlockMapFilesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapFilesEnumerator_MoveNext(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapFilesEnumerator_MoveNext(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapFilesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxBlockMapFilesEnumerator, self), hasCurrent);
         }
     };}
@@ -728,23 +728,23 @@ pub const IAppxBlockMapBlock = extern struct {
         base: IUnknown.VTable,
         GetHash: fn(
             self: *const IAppxBlockMapBlock,
-            bufferSize: *u32,
-            buffer: **u8,
+            bufferSize: ?*u32,
+            buffer: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCompressedSize: fn(
             self: *const IAppxBlockMapBlock,
-            size: *u32,
+            size: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapBlock_GetHash(self: *const T, bufferSize: *u32, buffer: **u8) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapBlock_GetHash(self: *const T, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapBlock.VTable, self.vtable).GetHash(@ptrCast(*const IAppxBlockMapBlock, self), bufferSize, buffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapBlock_GetCompressedSize(self: *const T, size: *u32) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapBlock_GetCompressedSize(self: *const T, size: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapBlock.VTable, self.vtable).GetCompressedSize(@ptrCast(*const IAppxBlockMapBlock, self), size);
         }
     };}
@@ -759,30 +759,30 @@ pub const IAppxBlockMapBlocksEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxBlockMapBlocksEnumerator,
-            block: **IAppxBlockMapBlock,
+            block: ?*?*IAppxBlockMapBlock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxBlockMapBlocksEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxBlockMapBlocksEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapBlocksEnumerator_GetCurrent(self: *const T, block: **IAppxBlockMapBlock) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapBlocksEnumerator_GetCurrent(self: *const T, block: ?*?*IAppxBlockMapBlock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapBlocksEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxBlockMapBlocksEnumerator, self), block);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapBlocksEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapBlocksEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapBlocksEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxBlockMapBlocksEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBlockMapBlocksEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBlockMapBlocksEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBlockMapBlocksEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxBlockMapBlocksEnumerator, self), hasNext);
         }
     };}
@@ -797,79 +797,79 @@ pub const IAppxManifestReader = extern struct {
         base: IUnknown.VTable,
         GetPackageId: fn(
             self: *const IAppxManifestReader,
-            packageId: **IAppxManifestPackageId,
+            packageId: ?*?*IAppxManifestPackageId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperties: fn(
             self: *const IAppxManifestReader,
-            packageProperties: **IAppxManifestProperties,
+            packageProperties: ?*?*IAppxManifestProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageDependencies: fn(
             self: *const IAppxManifestReader,
-            dependencies: **IAppxManifestPackageDependenciesEnumerator,
+            dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: fn(
             self: *const IAppxManifestReader,
-            capabilities: *APPX_CAPABILITIES,
+            capabilities: ?*APPX_CAPABILITIES,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResources: fn(
             self: *const IAppxManifestReader,
-            resources: **IAppxManifestResourcesEnumerator,
+            resources: ?*?*IAppxManifestResourcesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceCapabilities: fn(
             self: *const IAppxManifestReader,
-            deviceCapabilities: **IAppxManifestDeviceCapabilitiesEnumerator,
+            deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrerequisite: fn(
             self: *const IAppxManifestReader,
-            name: [*:0]const u16,
-            value: *u64,
+            name: ?[*:0]const u16,
+            value: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetApplications: fn(
             self: *const IAppxManifestReader,
-            applications: **IAppxManifestApplicationsEnumerator,
+            applications: ?*?*IAppxManifestApplicationsEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IAppxManifestReader,
-            manifestStream: **IStream,
+            manifestStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetPackageId(self: *const T, packageId: **IAppxManifestPackageId) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetPackageId(self: *const T, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetPackageId(@ptrCast(*const IAppxManifestReader, self), packageId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetProperties(self: *const T, packageProperties: **IAppxManifestProperties) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetProperties(self: *const T, packageProperties: ?*?*IAppxManifestProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetProperties(@ptrCast(*const IAppxManifestReader, self), packageProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetPackageDependencies(self: *const T, dependencies: **IAppxManifestPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetPackageDependencies(self: *const T, dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetPackageDependencies(@ptrCast(*const IAppxManifestReader, self), dependencies);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetCapabilities(self: *const T, capabilities: *APPX_CAPABILITIES) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetCapabilities(self: *const T, capabilities: ?*APPX_CAPABILITIES) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetCapabilities(@ptrCast(*const IAppxManifestReader, self), capabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetResources(self: *const T, resources: **IAppxManifestResourcesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetResources(self: *const T, resources: ?*?*IAppxManifestResourcesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetResources(@ptrCast(*const IAppxManifestReader, self), resources);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetDeviceCapabilities(self: *const T, deviceCapabilities: **IAppxManifestDeviceCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetDeviceCapabilities(self: *const T, deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetDeviceCapabilities(@ptrCast(*const IAppxManifestReader, self), deviceCapabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetPrerequisite(self: *const T, name: [*:0]const u16, value: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetPrerequisite(self: *const T, name: ?[*:0]const u16, value: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetPrerequisite(@ptrCast(*const IAppxManifestReader, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetApplications(self: *const T, applications: **IAppxManifestApplicationsEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetApplications(self: *const T, applications: ?*?*IAppxManifestApplicationsEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetApplications(@ptrCast(*const IAppxManifestReader, self), applications);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader_GetStream(self: *const T, manifestStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader_GetStream(self: *const T, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader.VTable, self.vtable).GetStream(@ptrCast(*const IAppxManifestReader, self), manifestStream);
         }
     };}
@@ -884,14 +884,14 @@ pub const IAppxManifestReader2 = extern struct {
         base: IAppxManifestReader.VTable,
         GetQualifiedResources: fn(
             self: *const IAppxManifestReader2,
-            resources: **IAppxManifestQualifiedResourcesEnumerator,
+            resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAppxManifestReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader2_GetQualifiedResources(self: *const T, resources: **IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader2_GetQualifiedResources(self: *const T, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader2.VTable, self.vtable).GetQualifiedResources(@ptrCast(*const IAppxManifestReader2, self), resources);
         }
     };}
@@ -906,22 +906,22 @@ pub const IAppxManifestReader3 = extern struct {
         GetCapabilitiesByCapabilityClass: fn(
             self: *const IAppxManifestReader3,
             capabilityClass: APPX_CAPABILITY_CLASS_TYPE,
-            capabilities: **IAppxManifestCapabilitiesEnumerator,
+            capabilities: ?*?*IAppxManifestCapabilitiesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTargetDeviceFamilies: fn(
             self: *const IAppxManifestReader3,
-            targetDeviceFamilies: **IAppxManifestTargetDeviceFamiliesEnumerator,
+            targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAppxManifestReader2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader3_GetCapabilitiesByCapabilityClass(self: *const T, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: **IAppxManifestCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader3_GetCapabilitiesByCapabilityClass(self: *const T, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: ?*?*IAppxManifestCapabilitiesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader3.VTable, self.vtable).GetCapabilitiesByCapabilityClass(@ptrCast(*const IAppxManifestReader3, self), capabilityClass, capabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader3_GetTargetDeviceFamilies(self: *const T, targetDeviceFamilies: **IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader3_GetTargetDeviceFamilies(self: *const T, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader3.VTable, self.vtable).GetTargetDeviceFamilies(@ptrCast(*const IAppxManifestReader3, self), targetDeviceFamilies);
         }
     };}
@@ -935,14 +935,14 @@ pub const IAppxManifestReader4 = extern struct {
         base: IAppxManifestReader3.VTable,
         GetOptionalPackageInfo: fn(
             self: *const IAppxManifestReader4,
-            optionalPackageInfo: **IAppxManifestOptionalPackageInfo,
+            optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAppxManifestReader3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader4_GetOptionalPackageInfo(self: *const T, optionalPackageInfo: **IAppxManifestOptionalPackageInfo) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader4_GetOptionalPackageInfo(self: *const T, optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader4.VTable, self.vtable).GetOptionalPackageInfo(@ptrCast(*const IAppxManifestReader4, self), optionalPackageInfo);
         }
     };}
@@ -957,14 +957,14 @@ pub const IAppxManifestReader5 = extern struct {
         base: IUnknown.VTable,
         GetMainPackageDependencies: fn(
             self: *const IAppxManifestReader5,
-            mainPackageDependencies: **IAppxManifestMainPackageDependenciesEnumerator,
+            mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader5_GetMainPackageDependencies(self: *const T, mainPackageDependencies: **IAppxManifestMainPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader5_GetMainPackageDependencies(self: *const T, mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader5.VTable, self.vtable).GetMainPackageDependencies(@ptrCast(*const IAppxManifestReader5, self), mainPackageDependencies);
         }
     };}
@@ -979,14 +979,14 @@ pub const IAppxManifestReader6 = extern struct {
         base: IUnknown.VTable,
         GetIsNonQualifiedResourcePackage: fn(
             self: *const IAppxManifestReader6,
-            isNonQualifiedResourcePackage: *BOOL,
+            isNonQualifiedResourcePackage: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader6_GetIsNonQualifiedResourcePackage(self: *const T, isNonQualifiedResourcePackage: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader6_GetIsNonQualifiedResourcePackage(self: *const T, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader6.VTable, self.vtable).GetIsNonQualifiedResourcePackage(@ptrCast(*const IAppxManifestReader6, self), isNonQualifiedResourcePackage);
         }
     };}
@@ -1000,30 +1000,30 @@ pub const IAppxManifestReader7 = extern struct {
         base: IUnknown.VTable,
         GetDriverDependencies: fn(
             self: *const IAppxManifestReader7,
-            driverDependencies: **IAppxManifestDriverDependenciesEnumerator,
+            driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOSPackageDependencies: fn(
             self: *const IAppxManifestReader7,
-            osPackageDependencies: **IAppxManifestOSPackageDependenciesEnumerator,
+            osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHostRuntimeDependencies: fn(
             self: *const IAppxManifestReader7,
-            hostRuntimeDependencies: **IAppxManifestHostRuntimeDependenciesEnumerator,
+            hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader7_GetDriverDependencies(self: *const T, driverDependencies: **IAppxManifestDriverDependenciesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader7_GetDriverDependencies(self: *const T, driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader7.VTable, self.vtable).GetDriverDependencies(@ptrCast(*const IAppxManifestReader7, self), driverDependencies);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader7_GetOSPackageDependencies(self: *const T, osPackageDependencies: **IAppxManifestOSPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader7_GetOSPackageDependencies(self: *const T, osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader7.VTable, self.vtable).GetOSPackageDependencies(@ptrCast(*const IAppxManifestReader7, self), osPackageDependencies);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestReader7_GetHostRuntimeDependencies(self: *const T, hostRuntimeDependencies: **IAppxManifestHostRuntimeDependenciesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestReader7_GetHostRuntimeDependencies(self: *const T, hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestReader7.VTable, self.vtable).GetHostRuntimeDependencies(@ptrCast(*const IAppxManifestReader7, self), hostRuntimeDependencies);
         }
     };}
@@ -1037,30 +1037,30 @@ pub const IAppxManifestDriverDependenciesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
-            driverDependency: **IAppxManifestDriverDependency,
+            driverDependency: ?*?*IAppxManifestDriverDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverDependenciesEnumerator_GetCurrent(self: *const T, driverDependency: **IAppxManifestDriverDependency) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverDependenciesEnumerator_GetCurrent(self: *const T, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverDependenciesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestDriverDependenciesEnumerator, self), driverDependency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverDependenciesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestDriverDependenciesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverDependenciesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverDependenciesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverDependenciesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestDriverDependenciesEnumerator, self), hasNext);
         }
     };}
@@ -1074,14 +1074,14 @@ pub const IAppxManifestDriverDependency = extern struct {
         base: IUnknown.VTable,
         GetDriverConstraints: fn(
             self: *const IAppxManifestDriverDependency,
-            driverConstraints: **IAppxManifestDriverConstraintsEnumerator,
+            driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverDependency_GetDriverConstraints(self: *const T, driverConstraints: **IAppxManifestDriverConstraintsEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverDependency_GetDriverConstraints(self: *const T, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverDependency.VTable, self.vtable).GetDriverConstraints(@ptrCast(*const IAppxManifestDriverDependency, self), driverConstraints);
         }
     };}
@@ -1095,30 +1095,30 @@ pub const IAppxManifestDriverConstraintsEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
-            driverConstraint: **IAppxManifestDriverConstraint,
+            driverConstraint: ?*?*IAppxManifestDriverConstraint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraintsEnumerator_GetCurrent(self: *const T, driverConstraint: **IAppxManifestDriverConstraint) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraintsEnumerator_GetCurrent(self: *const T, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraintsEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestDriverConstraintsEnumerator, self), driverConstraint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraintsEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraintsEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraintsEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestDriverConstraintsEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraintsEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraintsEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraintsEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestDriverConstraintsEnumerator, self), hasNext);
         }
     };}
@@ -1132,30 +1132,30 @@ pub const IAppxManifestDriverConstraint = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestDriverConstraint,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinVersion: fn(
             self: *const IAppxManifestDriverConstraint,
-            minVersion: *u64,
+            minVersion: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinDate: fn(
             self: *const IAppxManifestDriverConstraint,
-            minDate: *PWSTR,
+            minDate: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraint_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraint_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraint.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestDriverConstraint, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraint_GetMinVersion(self: *const T, minVersion: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraint_GetMinVersion(self: *const T, minVersion: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraint.VTable, self.vtable).GetMinVersion(@ptrCast(*const IAppxManifestDriverConstraint, self), minVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDriverConstraint_GetMinDate(self: *const T, minDate: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDriverConstraint_GetMinDate(self: *const T, minDate: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDriverConstraint.VTable, self.vtable).GetMinDate(@ptrCast(*const IAppxManifestDriverConstraint, self), minDate);
         }
     };}
@@ -1169,30 +1169,30 @@ pub const IAppxManifestOSPackageDependenciesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            osPackageDependency: **IAppxManifestOSPackageDependency,
+            osPackageDependency: ?*?*IAppxManifestOSPackageDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOSPackageDependenciesEnumerator_GetCurrent(self: *const T, osPackageDependency: **IAppxManifestOSPackageDependency) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOSPackageDependenciesEnumerator_GetCurrent(self: *const T, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator, self), osPackageDependency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOSPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOSPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOSPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOSPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestOSPackageDependenciesEnumerator, self), hasNext);
         }
     };}
@@ -1206,22 +1206,22 @@ pub const IAppxManifestOSPackageDependency = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestOSPackageDependency,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const IAppxManifestOSPackageDependency,
-            version: *u64,
+            version: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOSPackageDependency_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOSPackageDependency_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOSPackageDependency.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestOSPackageDependency, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOSPackageDependency_GetVersion(self: *const T, version: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOSPackageDependency_GetVersion(self: *const T, version: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOSPackageDependency.VTable, self.vtable).GetVersion(@ptrCast(*const IAppxManifestOSPackageDependency, self), version);
         }
     };}
@@ -1235,30 +1235,30 @@ pub const IAppxManifestHostRuntimeDependenciesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hostRuntimeDependency: **IAppxManifestHostRuntimeDependency,
+            hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_GetCurrent(self: *const T, hostRuntimeDependency: **IAppxManifestHostRuntimeDependency) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_GetCurrent(self: *const T, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator, self), hostRuntimeDependency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependenciesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestHostRuntimeDependenciesEnumerator, self), hasNext);
         }
     };}
@@ -1272,30 +1272,30 @@ pub const IAppxManifestHostRuntimeDependency = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestHostRuntimeDependency,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPublisher: fn(
             self: *const IAppxManifestHostRuntimeDependency,
-            publisher: *PWSTR,
+            publisher: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinVersion: fn(
             self: *const IAppxManifestHostRuntimeDependency,
-            minVersion: *u64,
+            minVersion: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependency_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependency_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependency.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestHostRuntimeDependency, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependency_GetPublisher(self: *const T, publisher: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependency_GetPublisher(self: *const T, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependency.VTable, self.vtable).GetPublisher(@ptrCast(*const IAppxManifestHostRuntimeDependency, self), publisher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestHostRuntimeDependency_GetMinVersion(self: *const T, minVersion: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestHostRuntimeDependency_GetMinVersion(self: *const T, minVersion: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestHostRuntimeDependency.VTable, self.vtable).GetMinVersion(@ptrCast(*const IAppxManifestHostRuntimeDependency, self), minVersion);
         }
     };}
@@ -1310,22 +1310,22 @@ pub const IAppxManifestOptionalPackageInfo = extern struct {
         base: IUnknown.VTable,
         GetIsOptionalPackage: fn(
             self: *const IAppxManifestOptionalPackageInfo,
-            isOptionalPackage: *BOOL,
+            isOptionalPackage: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMainPackageName: fn(
             self: *const IAppxManifestOptionalPackageInfo,
-            mainPackageName: *PWSTR,
+            mainPackageName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOptionalPackageInfo_GetIsOptionalPackage(self: *const T, isOptionalPackage: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOptionalPackageInfo_GetIsOptionalPackage(self: *const T, isOptionalPackage: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOptionalPackageInfo.VTable, self.vtable).GetIsOptionalPackage(@ptrCast(*const IAppxManifestOptionalPackageInfo, self), isOptionalPackage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestOptionalPackageInfo_GetMainPackageName(self: *const T, mainPackageName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestOptionalPackageInfo_GetMainPackageName(self: *const T, mainPackageName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestOptionalPackageInfo.VTable, self.vtable).GetMainPackageName(@ptrCast(*const IAppxManifestOptionalPackageInfo, self), mainPackageName);
         }
     };}
@@ -1340,30 +1340,30 @@ pub const IAppxManifestMainPackageDependenciesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            mainPackageDependency: **IAppxManifestMainPackageDependency,
+            mainPackageDependency: ?*?*IAppxManifestMainPackageDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependenciesEnumerator_GetCurrent(self: *const T, mainPackageDependency: **IAppxManifestMainPackageDependency) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependenciesEnumerator_GetCurrent(self: *const T, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator, self), mainPackageDependency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestMainPackageDependenciesEnumerator, self), hasNext);
         }
     };}
@@ -1378,30 +1378,30 @@ pub const IAppxManifestMainPackageDependency = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestMainPackageDependency,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPublisher: fn(
             self: *const IAppxManifestMainPackageDependency,
-            publisher: *PWSTR,
+            publisher: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageFamilyName: fn(
             self: *const IAppxManifestMainPackageDependency,
-            packageFamilyName: *PWSTR,
+            packageFamilyName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependency_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependency_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependency.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestMainPackageDependency, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependency_GetPublisher(self: *const T, publisher: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependency_GetPublisher(self: *const T, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependency.VTable, self.vtable).GetPublisher(@ptrCast(*const IAppxManifestMainPackageDependency, self), publisher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestMainPackageDependency_GetPackageFamilyName(self: *const T, packageFamilyName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestMainPackageDependency_GetPackageFamilyName(self: *const T, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestMainPackageDependency.VTable, self.vtable).GetPackageFamilyName(@ptrCast(*const IAppxManifestMainPackageDependency, self), packageFamilyName);
         }
     };}
@@ -1416,71 +1416,71 @@ pub const IAppxManifestPackageId = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestPackageId,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetArchitecture: fn(
             self: *const IAppxManifestPackageId,
-            architecture: *APPX_PACKAGE_ARCHITECTURE,
+            architecture: ?*APPX_PACKAGE_ARCHITECTURE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPublisher: fn(
             self: *const IAppxManifestPackageId,
-            publisher: *PWSTR,
+            publisher: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const IAppxManifestPackageId,
-            packageVersion: *u64,
+            packageVersion: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceId: fn(
             self: *const IAppxManifestPackageId,
-            resourceId: *PWSTR,
+            resourceId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComparePublisher: fn(
             self: *const IAppxManifestPackageId,
-            other: [*:0]const u16,
-            isSame: *BOOL,
+            other: ?[*:0]const u16,
+            isSame: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageFullName: fn(
             self: *const IAppxManifestPackageId,
-            packageFullName: *PWSTR,
+            packageFullName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageFamilyName: fn(
             self: *const IAppxManifestPackageId,
-            packageFamilyName: *PWSTR,
+            packageFamilyName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestPackageId, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetArchitecture(self: *const T, architecture: *APPX_PACKAGE_ARCHITECTURE) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetArchitecture(self: *const T, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetArchitecture(@ptrCast(*const IAppxManifestPackageId, self), architecture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetPublisher(self: *const T, publisher: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetPublisher(self: *const T, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetPublisher(@ptrCast(*const IAppxManifestPackageId, self), publisher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetVersion(self: *const T, packageVersion: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetVersion(self: *const T, packageVersion: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetVersion(@ptrCast(*const IAppxManifestPackageId, self), packageVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetResourceId(self: *const T, resourceId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetResourceId(self: *const T, resourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetResourceId(@ptrCast(*const IAppxManifestPackageId, self), resourceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_ComparePublisher(self: *const T, other: [*:0]const u16, isSame: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_ComparePublisher(self: *const T, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).ComparePublisher(@ptrCast(*const IAppxManifestPackageId, self), other, isSame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetPackageFullName(self: *const T, packageFullName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetPackageFullName(self: *const T, packageFullName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetPackageFullName(@ptrCast(*const IAppxManifestPackageId, self), packageFullName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId_GetPackageFamilyName(self: *const T, packageFamilyName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId_GetPackageFamilyName(self: *const T, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId.VTable, self.vtable).GetPackageFamilyName(@ptrCast(*const IAppxManifestPackageId, self), packageFamilyName);
         }
     };}
@@ -1495,14 +1495,14 @@ pub const IAppxManifestPackageId2 = extern struct {
         base: IAppxManifestPackageId.VTable,
         GetArchitecture2: fn(
             self: *const IAppxManifestPackageId2,
-            architecture: *APPX_PACKAGE_ARCHITECTURE2,
+            architecture: ?*APPX_PACKAGE_ARCHITECTURE2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAppxManifestPackageId.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageId2_GetArchitecture2(self: *const T, architecture: *APPX_PACKAGE_ARCHITECTURE2) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageId2_GetArchitecture2(self: *const T, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageId2.VTable, self.vtable).GetArchitecture2(@ptrCast(*const IAppxManifestPackageId2, self), architecture);
         }
     };}
@@ -1517,24 +1517,24 @@ pub const IAppxManifestProperties = extern struct {
         base: IUnknown.VTable,
         GetBoolValue: fn(
             self: *const IAppxManifestProperties,
-            name: [*:0]const u16,
-            value: *BOOL,
+            name: ?[*:0]const u16,
+            value: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringValue: fn(
             self: *const IAppxManifestProperties,
-            name: [*:0]const u16,
-            value: *PWSTR,
+            name: ?[*:0]const u16,
+            value: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestProperties_GetBoolValue(self: *const T, name: [*:0]const u16, value: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestProperties_GetBoolValue(self: *const T, name: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestProperties.VTable, self.vtable).GetBoolValue(@ptrCast(*const IAppxManifestProperties, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestProperties_GetStringValue(self: *const T, name: [*:0]const u16, value: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestProperties_GetStringValue(self: *const T, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestProperties.VTable, self.vtable).GetStringValue(@ptrCast(*const IAppxManifestProperties, self), name, value);
         }
     };}
@@ -1548,30 +1548,30 @@ pub const IAppxManifestTargetDeviceFamiliesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
-            targetDeviceFamily: **IAppxManifestTargetDeviceFamily,
+            targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_GetCurrent(self: *const T, targetDeviceFamily: **IAppxManifestTargetDeviceFamily) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_GetCurrent(self: *const T, targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator, self), targetDeviceFamily);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamiliesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestTargetDeviceFamiliesEnumerator, self), hasNext);
         }
     };}
@@ -1586,30 +1586,30 @@ pub const IAppxManifestTargetDeviceFamily = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestTargetDeviceFamily,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinVersion: fn(
             self: *const IAppxManifestTargetDeviceFamily,
-            minVersion: *u64,
+            minVersion: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxVersionTested: fn(
             self: *const IAppxManifestTargetDeviceFamily,
-            maxVersionTested: *u64,
+            maxVersionTested: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamily_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamily_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamily.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestTargetDeviceFamily, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamily_GetMinVersion(self: *const T, minVersion: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamily_GetMinVersion(self: *const T, minVersion: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamily.VTable, self.vtable).GetMinVersion(@ptrCast(*const IAppxManifestTargetDeviceFamily, self), minVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestTargetDeviceFamily_GetMaxVersionTested(self: *const T, maxVersionTested: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestTargetDeviceFamily_GetMaxVersionTested(self: *const T, maxVersionTested: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestTargetDeviceFamily.VTable, self.vtable).GetMaxVersionTested(@ptrCast(*const IAppxManifestTargetDeviceFamily, self), maxVersionTested);
         }
     };}
@@ -1624,30 +1624,30 @@ pub const IAppxManifestPackageDependenciesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
-            dependency: **IAppxManifestPackageDependency,
+            dependency: ?*?*IAppxManifestPackageDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependenciesEnumerator_GetCurrent(self: *const T, dependency: **IAppxManifestPackageDependency) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependenciesEnumerator_GetCurrent(self: *const T, dependency: ?*?*IAppxManifestPackageDependency) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependenciesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestPackageDependenciesEnumerator, self), dependency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependenciesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependenciesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestPackageDependenciesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependenciesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependenciesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestPackageDependenciesEnumerator, self), hasNext);
         }
     };}
@@ -1662,30 +1662,30 @@ pub const IAppxManifestPackageDependency = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxManifestPackageDependency,
-            name: *PWSTR,
+            name: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPublisher: fn(
             self: *const IAppxManifestPackageDependency,
-            publisher: *PWSTR,
+            publisher: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinVersion: fn(
             self: *const IAppxManifestPackageDependency,
-            minVersion: *u64,
+            minVersion: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependency_GetName(self: *const T, name: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependency_GetName(self: *const T, name: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependency.VTable, self.vtable).GetName(@ptrCast(*const IAppxManifestPackageDependency, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependency_GetPublisher(self: *const T, publisher: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependency_GetPublisher(self: *const T, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependency.VTable, self.vtable).GetPublisher(@ptrCast(*const IAppxManifestPackageDependency, self), publisher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependency_GetMinVersion(self: *const T, minVersion: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependency_GetMinVersion(self: *const T, minVersion: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependency.VTable, self.vtable).GetMinVersion(@ptrCast(*const IAppxManifestPackageDependency, self), minVersion);
         }
     };}
@@ -1700,14 +1700,14 @@ pub const IAppxManifestPackageDependency2 = extern struct {
         base: IAppxManifestPackageDependency.VTable,
         GetMaxMajorVersionTested: fn(
             self: *const IAppxManifestPackageDependency2,
-            maxMajorVersionTested: *u16,
+            maxMajorVersionTested: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAppxManifestPackageDependency.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependency2_GetMaxMajorVersionTested(self: *const T, maxMajorVersionTested: *u16) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependency2_GetMaxMajorVersionTested(self: *const T, maxMajorVersionTested: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependency2.VTable, self.vtable).GetMaxMajorVersionTested(@ptrCast(*const IAppxManifestPackageDependency2, self), maxMajorVersionTested);
         }
     };}
@@ -1721,14 +1721,14 @@ pub const IAppxManifestPackageDependency3 = extern struct {
         base: IUnknown.VTable,
         GetIsOptional: fn(
             self: *const IAppxManifestPackageDependency3,
-            isOptional: *BOOL,
+            isOptional: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestPackageDependency3_GetIsOptional(self: *const T, isOptional: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestPackageDependency3_GetIsOptional(self: *const T, isOptional: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestPackageDependency3.VTable, self.vtable).GetIsOptional(@ptrCast(*const IAppxManifestPackageDependency3, self), isOptional);
         }
     };}
@@ -1743,30 +1743,30 @@ pub const IAppxManifestResourcesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestResourcesEnumerator,
-            resource: *PWSTR,
+            resource: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestResourcesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestResourcesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestResourcesEnumerator_GetCurrent(self: *const T, resource: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestResourcesEnumerator_GetCurrent(self: *const T, resource: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestResourcesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestResourcesEnumerator, self), resource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestResourcesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestResourcesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestResourcesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestResourcesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestResourcesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestResourcesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestResourcesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestResourcesEnumerator, self), hasNext);
         }
     };}
@@ -1781,30 +1781,30 @@ pub const IAppxManifestDeviceCapabilitiesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            deviceCapability: *PWSTR,
+            deviceCapability: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDeviceCapabilitiesEnumerator_GetCurrent(self: *const T, deviceCapability: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDeviceCapabilitiesEnumerator_GetCurrent(self: *const T, deviceCapability: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator, self), deviceCapability);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDeviceCapabilitiesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDeviceCapabilitiesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestDeviceCapabilitiesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestDeviceCapabilitiesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestDeviceCapabilitiesEnumerator, self), hasNext);
         }
     };}
@@ -1818,30 +1818,30 @@ pub const IAppxManifestCapabilitiesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
-            capability: *PWSTR,
+            capability: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestCapabilitiesEnumerator_GetCurrent(self: *const T, capability: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestCapabilitiesEnumerator_GetCurrent(self: *const T, capability: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestCapabilitiesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestCapabilitiesEnumerator, self), capability);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestCapabilitiesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestCapabilitiesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestCapabilitiesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestCapabilitiesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestCapabilitiesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestCapabilitiesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestCapabilitiesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestCapabilitiesEnumerator, self), hasNext);
         }
     };}
@@ -1856,30 +1856,30 @@ pub const IAppxManifestApplicationsEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestApplicationsEnumerator,
-            application: **IAppxManifestApplication,
+            application: ?*?*IAppxManifestApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestApplicationsEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestApplicationsEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestApplicationsEnumerator_GetCurrent(self: *const T, application: **IAppxManifestApplication) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestApplicationsEnumerator_GetCurrent(self: *const T, application: ?*?*IAppxManifestApplication) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestApplicationsEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestApplicationsEnumerator, self), application);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestApplicationsEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestApplicationsEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestApplicationsEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestApplicationsEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestApplicationsEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestApplicationsEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestApplicationsEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestApplicationsEnumerator, self), hasNext);
         }
     };}
@@ -1894,23 +1894,23 @@ pub const IAppxManifestApplication = extern struct {
         base: IUnknown.VTable,
         GetStringValue: fn(
             self: *const IAppxManifestApplication,
-            name: [*:0]const u16,
-            value: *PWSTR,
+            name: ?[*:0]const u16,
+            value: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAppUserModelId: fn(
             self: *const IAppxManifestApplication,
-            appUserModelId: *PWSTR,
+            appUserModelId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestApplication_GetStringValue(self: *const T, name: [*:0]const u16, value: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestApplication_GetStringValue(self: *const T, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestApplication.VTable, self.vtable).GetStringValue(@ptrCast(*const IAppxManifestApplication, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestApplication_GetAppUserModelId(self: *const T, appUserModelId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestApplication_GetAppUserModelId(self: *const T, appUserModelId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestApplication.VTable, self.vtable).GetAppUserModelId(@ptrCast(*const IAppxManifestApplication, self), appUserModelId);
         }
     };}
@@ -1924,30 +1924,30 @@ pub const IAppxManifestQualifiedResourcesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
-            resource: **IAppxManifestQualifiedResource,
+            resource: ?*?*IAppxManifestQualifiedResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResourcesEnumerator_GetCurrent(self: *const T, resource: **IAppxManifestQualifiedResource) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResourcesEnumerator_GetCurrent(self: *const T, resource: ?*?*IAppxManifestQualifiedResource) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResourcesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxManifestQualifiedResourcesEnumerator, self), resource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResourcesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResourcesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResourcesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxManifestQualifiedResourcesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResourcesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResourcesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResourcesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxManifestQualifiedResourcesEnumerator, self), hasNext);
         }
     };}
@@ -1961,30 +1961,30 @@ pub const IAppxManifestQualifiedResource = extern struct {
         base: IUnknown.VTable,
         GetLanguage: fn(
             self: *const IAppxManifestQualifiedResource,
-            language: *PWSTR,
+            language: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScale: fn(
             self: *const IAppxManifestQualifiedResource,
-            scale: *u32,
+            scale: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDXFeatureLevel: fn(
             self: *const IAppxManifestQualifiedResource,
-            dxFeatureLevel: *DX_FEATURE_LEVEL,
+            dxFeatureLevel: ?*DX_FEATURE_LEVEL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResource_GetLanguage(self: *const T, language: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResource_GetLanguage(self: *const T, language: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResource.VTable, self.vtable).GetLanguage(@ptrCast(*const IAppxManifestQualifiedResource, self), language);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResource_GetScale(self: *const T, scale: *u32) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResource_GetScale(self: *const T, scale: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResource.VTable, self.vtable).GetScale(@ptrCast(*const IAppxManifestQualifiedResource, self), scale);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxManifestQualifiedResource_GetDXFeatureLevel(self: *const T, dxFeatureLevel: *DX_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+        pub fn IAppxManifestQualifiedResource_GetDXFeatureLevel(self: *const T, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxManifestQualifiedResource.VTable, self.vtable).GetDXFeatureLevel(@ptrCast(*const IAppxManifestQualifiedResource, self), dxFeatureLevel);
         }
     };}
@@ -1999,34 +1999,34 @@ pub const IAppxBundleFactory = extern struct {
         base: IUnknown.VTable,
         CreateBundleWriter: fn(
             self: *const IAppxBundleFactory,
-            outputStream: *IStream,
+            outputStream: ?*IStream,
             bundleVersion: u64,
-            bundleWriter: **IAppxBundleWriter,
+            bundleWriter: ?*?*IAppxBundleWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBundleReader: fn(
             self: *const IAppxBundleFactory,
-            inputStream: *IStream,
-            bundleReader: **IAppxBundleReader,
+            inputStream: ?*IStream,
+            bundleReader: ?*?*IAppxBundleReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBundleManifestReader: fn(
             self: *const IAppxBundleFactory,
-            inputStream: *IStream,
-            manifestReader: **IAppxBundleManifestReader,
+            inputStream: ?*IStream,
+            manifestReader: ?*?*IAppxBundleManifestReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleFactory_CreateBundleWriter(self: *const T, outputStream: *IStream, bundleVersion: u64, bundleWriter: **IAppxBundleWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleFactory_CreateBundleWriter(self: *const T, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleFactory.VTable, self.vtable).CreateBundleWriter(@ptrCast(*const IAppxBundleFactory, self), outputStream, bundleVersion, bundleWriter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleFactory_CreateBundleReader(self: *const T, inputStream: *IStream, bundleReader: **IAppxBundleReader) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleFactory_CreateBundleReader(self: *const T, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleFactory.VTable, self.vtable).CreateBundleReader(@ptrCast(*const IAppxBundleFactory, self), inputStream, bundleReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleFactory_CreateBundleManifestReader(self: *const T, inputStream: *IStream, manifestReader: **IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleFactory_CreateBundleManifestReader(self: *const T, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleFactory.VTable, self.vtable).CreateBundleManifestReader(@ptrCast(*const IAppxBundleFactory, self), inputStream, manifestReader);
         }
     };}
@@ -2041,8 +2041,8 @@ pub const IAppxBundleWriter = extern struct {
         base: IUnknown.VTable,
         AddPayloadPackage: fn(
             self: *const IAppxBundleWriter,
-            fileName: [*:0]const u16,
-            packageStream: *IStream,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxBundleWriter,
@@ -2052,7 +2052,7 @@ pub const IAppxBundleWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter_AddPayloadPackage(self: *const T, fileName: [*:0]const u16, packageStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter_AddPayloadPackage(self: *const T, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter.VTable, self.vtable).AddPayloadPackage(@ptrCast(*const IAppxBundleWriter, self), fileName, packageStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2071,15 +2071,15 @@ pub const IAppxBundleWriter2 = extern struct {
         base: IUnknown.VTable,
         AddExternalPackageReference: fn(
             self: *const IAppxBundleWriter2,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter2_AddExternalPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter2_AddExternalPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter2.VTable, self.vtable).AddExternalPackageReference(@ptrCast(*const IAppxBundleWriter2, self), fileName, inputStream);
         }
     };}
@@ -2094,23 +2094,23 @@ pub const IAppxBundleWriter3 = extern struct {
         base: IUnknown.VTable,
         AddPackageReference: fn(
             self: *const IAppxBundleWriter3,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxBundleWriter3,
-            hashMethodString: [*:0]const u16,
+            hashMethodString: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter3_AddPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter3_AddPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter3.VTable, self.vtable).AddPackageReference(@ptrCast(*const IAppxBundleWriter3, self), fileName, inputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter3_Close(self: *const T, hashMethodString: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter3_Close(self: *const T, hashMethodString: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter3.VTable, self.vtable).Close(@ptrCast(*const IAppxBundleWriter3, self), hashMethodString);
         }
     };}
@@ -2125,20 +2125,20 @@ pub const IAppxBundleWriter4 = extern struct {
         base: IUnknown.VTable,
         AddPayloadPackage: fn(
             self: *const IAppxBundleWriter4,
-            fileName: [*:0]const u16,
-            packageStream: *IStream,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPackageReference: fn(
             self: *const IAppxBundleWriter4,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddExternalPackageReference: fn(
             self: *const IAppxBundleWriter4,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2146,15 +2146,15 @@ pub const IAppxBundleWriter4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter4_AddPayloadPackage(self: *const T, fileName: [*:0]const u16, packageStream: *IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter4_AddPayloadPackage(self: *const T, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter4.VTable, self.vtable).AddPayloadPackage(@ptrCast(*const IAppxBundleWriter4, self), fileName, packageStream, isDefaultApplicablePackage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter4_AddPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter4_AddPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter4.VTable, self.vtable).AddPackageReference(@ptrCast(*const IAppxBundleWriter4, self), fileName, inputStream, isDefaultApplicablePackage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleWriter4_AddExternalPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleWriter4_AddExternalPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleWriter4.VTable, self.vtable).AddExternalPackageReference(@ptrCast(*const IAppxBundleWriter4, self), fileName, inputStream, isDefaultApplicablePackage);
         }
     };}
@@ -2170,47 +2170,47 @@ pub const IAppxBundleReader = extern struct {
         GetFootprintFile: fn(
             self: *const IAppxBundleReader,
             fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE,
-            footprintFile: **IAppxFile,
+            footprintFile: ?*?*IAppxFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBlockMap: fn(
             self: *const IAppxBundleReader,
-            blockMapReader: **IAppxBlockMapReader,
+            blockMapReader: ?*?*IAppxBlockMapReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetManifest: fn(
             self: *const IAppxBundleReader,
-            manifestReader: **IAppxBundleManifestReader,
+            manifestReader: ?*?*IAppxBundleManifestReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPayloadPackages: fn(
             self: *const IAppxBundleReader,
-            payloadPackages: **IAppxFilesEnumerator,
+            payloadPackages: ?*?*IAppxFilesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPayloadPackage: fn(
             self: *const IAppxBundleReader,
-            fileName: [*:0]const u16,
-            payloadPackage: **IAppxFile,
+            fileName: ?[*:0]const u16,
+            payloadPackage: ?*?*IAppxFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleReader_GetFootprintFile(self: *const T, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: **IAppxFile) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleReader_GetFootprintFile(self: *const T, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleReader.VTable, self.vtable).GetFootprintFile(@ptrCast(*const IAppxBundleReader, self), fileType, footprintFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleReader_GetBlockMap(self: *const T, blockMapReader: **IAppxBlockMapReader) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleReader_GetBlockMap(self: *const T, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleReader.VTable, self.vtable).GetBlockMap(@ptrCast(*const IAppxBundleReader, self), blockMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleReader_GetManifest(self: *const T, manifestReader: **IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleReader_GetManifest(self: *const T, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleReader.VTable, self.vtable).GetManifest(@ptrCast(*const IAppxBundleReader, self), manifestReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleReader_GetPayloadPackages(self: *const T, payloadPackages: **IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleReader_GetPayloadPackages(self: *const T, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleReader.VTable, self.vtable).GetPayloadPackages(@ptrCast(*const IAppxBundleReader, self), payloadPackages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleReader_GetPayloadPackage(self: *const T, fileName: [*:0]const u16, payloadPackage: **IAppxFile) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleReader_GetPayloadPackage(self: *const T, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleReader.VTable, self.vtable).GetPayloadPackage(@ptrCast(*const IAppxBundleReader, self), fileName, payloadPackage);
         }
     };}
@@ -2225,30 +2225,30 @@ pub const IAppxBundleManifestReader = extern struct {
         base: IUnknown.VTable,
         GetPackageId: fn(
             self: *const IAppxBundleManifestReader,
-            packageId: **IAppxManifestPackageId,
+            packageId: ?*?*IAppxManifestPackageId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageInfoItems: fn(
             self: *const IAppxBundleManifestReader,
-            packageInfoItems: **IAppxBundleManifestPackageInfoEnumerator,
+            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IAppxBundleManifestReader,
-            manifestStream: **IStream,
+            manifestStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestReader_GetPackageId(self: *const T, packageId: **IAppxManifestPackageId) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestReader_GetPackageId(self: *const T, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestReader.VTable, self.vtable).GetPackageId(@ptrCast(*const IAppxBundleManifestReader, self), packageId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestReader_GetPackageInfoItems(self: *const T, packageInfoItems: **IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestReader_GetPackageInfoItems(self: *const T, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestReader.VTable, self.vtable).GetPackageInfoItems(@ptrCast(*const IAppxBundleManifestReader, self), packageInfoItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestReader_GetStream(self: *const T, manifestStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestReader_GetStream(self: *const T, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestReader.VTable, self.vtable).GetStream(@ptrCast(*const IAppxBundleManifestReader, self), manifestStream);
         }
     };}
@@ -2263,14 +2263,14 @@ pub const IAppxBundleManifestReader2 = extern struct {
         base: IUnknown.VTable,
         GetOptionalBundles: fn(
             self: *const IAppxBundleManifestReader2,
-            optionalBundles: **IAppxBundleManifestOptionalBundleInfoEnumerator,
+            optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestReader2_GetOptionalBundles(self: *const T, optionalBundles: **IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestReader2_GetOptionalBundles(self: *const T, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestReader2.VTable, self.vtable).GetOptionalBundles(@ptrCast(*const IAppxBundleManifestReader2, self), optionalBundles);
         }
     };}
@@ -2285,30 +2285,30 @@ pub const IAppxBundleManifestPackageInfoEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
-            packageInfo: **IAppxBundleManifestPackageInfo,
+            packageInfo: ?*?*IAppxBundleManifestPackageInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfoEnumerator_GetCurrent(self: *const T, packageInfo: **IAppxBundleManifestPackageInfo) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfoEnumerator_GetCurrent(self: *const T, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfoEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxBundleManifestPackageInfoEnumerator, self), packageInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfoEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfoEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfoEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxBundleManifestPackageInfoEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfoEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfoEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfoEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxBundleManifestPackageInfoEnumerator, self), hasNext);
         }
     };}
@@ -2323,54 +2323,54 @@ pub const IAppxBundleManifestPackageInfo = extern struct {
         base: IUnknown.VTable,
         GetPackageType: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            packageType: *APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE,
+            packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageId: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            packageId: **IAppxManifestPackageId,
+            packageId: ?*?*IAppxManifestPackageId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileName: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            fileName: *PWSTR,
+            fileName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOffset: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            offset: *u64,
+            offset: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSize: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            size: *u64,
+            size: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResources: fn(
             self: *const IAppxBundleManifestPackageInfo,
-            resources: **IAppxManifestQualifiedResourcesEnumerator,
+            resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetPackageType(self: *const T, packageType: *APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetPackageType(self: *const T, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetPackageType(@ptrCast(*const IAppxBundleManifestPackageInfo, self), packageType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetPackageId(self: *const T, packageId: **IAppxManifestPackageId) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetPackageId(self: *const T, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetPackageId(@ptrCast(*const IAppxBundleManifestPackageInfo, self), packageId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetFileName(self: *const T, fileName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetFileName(self: *const T, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetFileName(@ptrCast(*const IAppxBundleManifestPackageInfo, self), fileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetOffset(self: *const T, offset: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetOffset(self: *const T, offset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetOffset(@ptrCast(*const IAppxBundleManifestPackageInfo, self), offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetSize(self: *const T, size: *u64) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetSize(self: *const T, size: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetSize(@ptrCast(*const IAppxBundleManifestPackageInfo, self), size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo_GetResources(self: *const T, resources: **IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo_GetResources(self: *const T, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo.VTable, self.vtable).GetResources(@ptrCast(*const IAppxBundleManifestPackageInfo, self), resources);
         }
     };}
@@ -2385,30 +2385,30 @@ pub const IAppxBundleManifestPackageInfo2 = extern struct {
         base: IUnknown.VTable,
         GetIsPackageReference: fn(
             self: *const IAppxBundleManifestPackageInfo2,
-            isPackageReference: *BOOL,
+            isPackageReference: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIsNonQualifiedResourcePackage: fn(
             self: *const IAppxBundleManifestPackageInfo2,
-            isNonQualifiedResourcePackage: *BOOL,
+            isNonQualifiedResourcePackage: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIsDefaultApplicablePackage: fn(
             self: *const IAppxBundleManifestPackageInfo2,
-            isDefaultApplicablePackage: *BOOL,
+            isDefaultApplicablePackage: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo2_GetIsPackageReference(self: *const T, isPackageReference: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo2_GetIsPackageReference(self: *const T, isPackageReference: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo2.VTable, self.vtable).GetIsPackageReference(@ptrCast(*const IAppxBundleManifestPackageInfo2, self), isPackageReference);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo2_GetIsNonQualifiedResourcePackage(self: *const T, isNonQualifiedResourcePackage: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo2_GetIsNonQualifiedResourcePackage(self: *const T, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo2.VTable, self.vtable).GetIsNonQualifiedResourcePackage(@ptrCast(*const IAppxBundleManifestPackageInfo2, self), isNonQualifiedResourcePackage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo2_GetIsDefaultApplicablePackage(self: *const T, isDefaultApplicablePackage: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo2_GetIsDefaultApplicablePackage(self: *const T, isDefaultApplicablePackage: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo2.VTable, self.vtable).GetIsDefaultApplicablePackage(@ptrCast(*const IAppxBundleManifestPackageInfo2, self), isDefaultApplicablePackage);
         }
     };}
@@ -2422,14 +2422,14 @@ pub const IAppxBundleManifestPackageInfo3 = extern struct {
         base: IUnknown.VTable,
         GetTargetDeviceFamilies: fn(
             self: *const IAppxBundleManifestPackageInfo3,
-            targetDeviceFamilies: **IAppxManifestTargetDeviceFamiliesEnumerator,
+            targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo3_GetTargetDeviceFamilies(self: *const T, targetDeviceFamilies: **IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo3_GetTargetDeviceFamilies(self: *const T, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo3.VTable, self.vtable).GetTargetDeviceFamilies(@ptrCast(*const IAppxBundleManifestPackageInfo3, self), targetDeviceFamilies);
         }
     };}
@@ -2443,14 +2443,14 @@ pub const IAppxBundleManifestPackageInfo4 = extern struct {
         base: IUnknown.VTable,
         GetIsStub: fn(
             self: *const IAppxBundleManifestPackageInfo4,
-            isStub: *BOOL,
+            isStub: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestPackageInfo4_GetIsStub(self: *const T, isStub: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestPackageInfo4_GetIsStub(self: *const T, isStub: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestPackageInfo4.VTable, self.vtable).GetIsStub(@ptrCast(*const IAppxBundleManifestPackageInfo4, self), isStub);
         }
     };}
@@ -2465,30 +2465,30 @@ pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            optionalBundle: **IAppxBundleManifestOptionalBundleInfo,
+            optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_GetCurrent(self: *const T, optionalBundle: **IAppxBundleManifestOptionalBundleInfo) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_GetCurrent(self: *const T, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator, self), optionalBundle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfoEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxBundleManifestOptionalBundleInfoEnumerator, self), hasNext);
         }
     };}
@@ -2503,30 +2503,30 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern struct {
         base: IUnknown.VTable,
         GetPackageId: fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
-            packageId: **IAppxManifestPackageId,
+            packageId: ?*?*IAppxManifestPackageId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileName: fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
-            fileName: *PWSTR,
+            fileName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPackageInfoItems: fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
-            packageInfoItems: **IAppxBundleManifestPackageInfoEnumerator,
+            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfo_GetPackageId(self: *const T, packageId: **IAppxManifestPackageId) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfo_GetPackageId(self: *const T, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfo.VTable, self.vtable).GetPackageId(@ptrCast(*const IAppxBundleManifestOptionalBundleInfo, self), packageId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfo_GetFileName(self: *const T, fileName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfo_GetFileName(self: *const T, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfo.VTable, self.vtable).GetFileName(@ptrCast(*const IAppxBundleManifestOptionalBundleInfo, self), fileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxBundleManifestOptionalBundleInfo_GetPackageInfoItems(self: *const T, packageInfoItems: **IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxBundleManifestOptionalBundleInfo_GetPackageInfoItems(self: *const T, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxBundleManifestOptionalBundleInfo.VTable, self.vtable).GetPackageInfoItems(@ptrCast(*const IAppxBundleManifestOptionalBundleInfo, self), packageInfoItems);
         }
     };}
@@ -2541,30 +2541,30 @@ pub const IAppxContentGroupFilesEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxContentGroupFilesEnumerator,
-            file: *PWSTR,
+            file: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxContentGroupFilesEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxContentGroupFilesEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupFilesEnumerator_GetCurrent(self: *const T, file: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupFilesEnumerator_GetCurrent(self: *const T, file: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupFilesEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxContentGroupFilesEnumerator, self), file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupFilesEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupFilesEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxContentGroupFilesEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupFilesEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupFilesEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupFilesEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxContentGroupFilesEnumerator, self), hasNext);
         }
     };}
@@ -2579,22 +2579,22 @@ pub const IAppxContentGroup = extern struct {
         base: IUnknown.VTable,
         GetName: fn(
             self: *const IAppxContentGroup,
-            groupName: *PWSTR,
+            groupName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFiles: fn(
             self: *const IAppxContentGroup,
-            enumerator: **IAppxContentGroupFilesEnumerator,
+            enumerator: ?*?*IAppxContentGroupFilesEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroup_GetName(self: *const T, groupName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroup_GetName(self: *const T, groupName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroup.VTable, self.vtable).GetName(@ptrCast(*const IAppxContentGroup, self), groupName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroup_GetFiles(self: *const T, enumerator: **IAppxContentGroupFilesEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroup_GetFiles(self: *const T, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroup.VTable, self.vtable).GetFiles(@ptrCast(*const IAppxContentGroup, self), enumerator);
         }
     };}
@@ -2609,30 +2609,30 @@ pub const IAppxContentGroupsEnumerator = extern struct {
         base: IUnknown.VTable,
         GetCurrent: fn(
             self: *const IAppxContentGroupsEnumerator,
-            stream: **IAppxContentGroup,
+            stream: ?*?*IAppxContentGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHasCurrent: fn(
             self: *const IAppxContentGroupsEnumerator,
-            hasCurrent: *BOOL,
+            hasCurrent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveNext: fn(
             self: *const IAppxContentGroupsEnumerator,
-            hasNext: *BOOL,
+            hasNext: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupsEnumerator_GetCurrent(self: *const T, stream: **IAppxContentGroup) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupsEnumerator_GetCurrent(self: *const T, stream: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupsEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IAppxContentGroupsEnumerator, self), stream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupsEnumerator_GetHasCurrent(self: *const T, hasCurrent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupsEnumerator_GetHasCurrent(self: *const T, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupsEnumerator.VTable, self.vtable).GetHasCurrent(@ptrCast(*const IAppxContentGroupsEnumerator, self), hasCurrent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupsEnumerator_MoveNext(self: *const T, hasNext: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupsEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupsEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IAppxContentGroupsEnumerator, self), hasNext);
         }
     };}
@@ -2647,22 +2647,22 @@ pub const IAppxContentGroupMapReader = extern struct {
         base: IUnknown.VTable,
         GetRequiredGroup: fn(
             self: *const IAppxContentGroupMapReader,
-            requiredGroup: **IAppxContentGroup,
+            requiredGroup: ?*?*IAppxContentGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAutomaticGroups: fn(
             self: *const IAppxContentGroupMapReader,
-            automaticGroupsEnumerator: **IAppxContentGroupsEnumerator,
+            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupMapReader_GetRequiredGroup(self: *const T, requiredGroup: **IAppxContentGroup) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupMapReader_GetRequiredGroup(self: *const T, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupMapReader.VTable, self.vtable).GetRequiredGroup(@ptrCast(*const IAppxContentGroupMapReader, self), requiredGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupMapReader_GetAutomaticGroups(self: *const T, automaticGroupsEnumerator: **IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupMapReader_GetAutomaticGroups(self: *const T, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupMapReader.VTable, self.vtable).GetAutomaticGroups(@ptrCast(*const IAppxContentGroupMapReader, self), automaticGroupsEnumerator);
         }
     };}
@@ -2677,22 +2677,22 @@ pub const IAppxSourceContentGroupMapReader = extern struct {
         base: IUnknown.VTable,
         GetRequiredGroup: fn(
             self: *const IAppxSourceContentGroupMapReader,
-            requiredGroup: **IAppxContentGroup,
+            requiredGroup: ?*?*IAppxContentGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAutomaticGroups: fn(
             self: *const IAppxSourceContentGroupMapReader,
-            automaticGroupsEnumerator: **IAppxContentGroupsEnumerator,
+            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxSourceContentGroupMapReader_GetRequiredGroup(self: *const T, requiredGroup: **IAppxContentGroup) callconv(.Inline) HRESULT {
+        pub fn IAppxSourceContentGroupMapReader_GetRequiredGroup(self: *const T, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxSourceContentGroupMapReader.VTable, self.vtable).GetRequiredGroup(@ptrCast(*const IAppxSourceContentGroupMapReader, self), requiredGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxSourceContentGroupMapReader_GetAutomaticGroups(self: *const T, automaticGroupsEnumerator: **IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+        pub fn IAppxSourceContentGroupMapReader_GetAutomaticGroups(self: *const T, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxSourceContentGroupMapReader.VTable, self.vtable).GetAutomaticGroups(@ptrCast(*const IAppxSourceContentGroupMapReader, self), automaticGroupsEnumerator);
         }
     };}
@@ -2707,11 +2707,11 @@ pub const IAppxContentGroupMapWriter = extern struct {
         base: IUnknown.VTable,
         AddAutomaticGroup: fn(
             self: *const IAppxContentGroupMapWriter,
-            groupName: [*:0]const u16,
+            groupName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAutomaticFile: fn(
             self: *const IAppxContentGroupMapWriter,
-            fileName: [*:0]const u16,
+            fileName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxContentGroupMapWriter,
@@ -2721,11 +2721,11 @@ pub const IAppxContentGroupMapWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupMapWriter_AddAutomaticGroup(self: *const T, groupName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupMapWriter_AddAutomaticGroup(self: *const T, groupName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupMapWriter.VTable, self.vtable).AddAutomaticGroup(@ptrCast(*const IAppxContentGroupMapWriter, self), groupName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxContentGroupMapWriter_AddAutomaticFile(self: *const T, fileName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxContentGroupMapWriter_AddAutomaticFile(self: *const T, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxContentGroupMapWriter.VTable, self.vtable).AddAutomaticFile(@ptrCast(*const IAppxContentGroupMapWriter, self), fileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2745,24 +2745,24 @@ pub const IAppxPackagingDiagnosticEventSink = extern struct {
             self: *const IAppxPackagingDiagnosticEventSink,
             changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE,
             contextId: i32,
-            contextName: [*:0]const u8,
-            contextMessage: [*:0]const u16,
-            detailsMessage: [*:0]const u16,
+            contextName: ?[*:0]const u8,
+            contextMessage: ?[*:0]const u16,
+            detailsMessage: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReportError: fn(
             self: *const IAppxPackagingDiagnosticEventSink,
-            errorMessage: [*:0]const u16,
+            errorMessage: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackagingDiagnosticEventSink_ReportContextChange(self: *const T, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: [*:0]const u8, contextMessage: [*:0]const u16, detailsMessage: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxPackagingDiagnosticEventSink_ReportContextChange(self: *const T, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackagingDiagnosticEventSink.VTable, self.vtable).ReportContextChange(@ptrCast(*const IAppxPackagingDiagnosticEventSink, self), changeType, contextId, contextName, contextMessage, detailsMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackagingDiagnosticEventSink_ReportError(self: *const T, errorMessage: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxPackagingDiagnosticEventSink_ReportError(self: *const T, errorMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackagingDiagnosticEventSink.VTable, self.vtable).ReportError(@ptrCast(*const IAppxPackagingDiagnosticEventSink, self), errorMessage);
         }
     };}
@@ -2776,14 +2776,14 @@ pub const IAppxPackagingDiagnosticEventSinkManager = extern struct {
         base: IUnknown.VTable,
         SetSinkForProcess: fn(
             self: *const IAppxPackagingDiagnosticEventSinkManager,
-            sink: *IAppxPackagingDiagnosticEventSink,
+            sink: ?*IAppxPackagingDiagnosticEventSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackagingDiagnosticEventSinkManager_SetSinkForProcess(self: *const T, sink: *IAppxPackagingDiagnosticEventSink) callconv(.Inline) HRESULT {
+        pub fn IAppxPackagingDiagnosticEventSinkManager_SetSinkForProcess(self: *const T, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackagingDiagnosticEventSinkManager.VTable, self.vtable).SetSinkForProcess(@ptrCast(*const IAppxPackagingDiagnosticEventSinkManager, self), sink);
         }
     };}
@@ -2792,9 +2792,9 @@ pub const IAppxPackagingDiagnosticEventSinkManager = extern struct {
 
 pub const APPX_ENCRYPTED_PACKAGE_SETTINGS = extern struct {
     keyLength: u32,
-    encryptionAlgorithm: [*:0]const u16,
+    encryptionAlgorithm: ?[*:0]const u16,
     useDiffusion: BOOL,
-    blockMapHashAlgorithm: *IUri,
+    blockMapHashAlgorithm: ?*IUri,
 };
 
 pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = enum(u32) {
@@ -2820,21 +2820,21 @@ pub const APPX_ENCRYPTED_PACKAGE_OPTION_PAGE_HASHING = APPX_ENCRYPTED_PACKAGE_OP
 
 pub const APPX_ENCRYPTED_PACKAGE_SETTINGS2 = extern struct {
     keyLength: u32,
-    encryptionAlgorithm: [*:0]const u16,
-    blockMapHashAlgorithm: *IUri,
+    encryptionAlgorithm: ?[*:0]const u16,
+    blockMapHashAlgorithm: ?*IUri,
     options: u32,
 };
 
 pub const APPX_KEY_INFO = extern struct {
     keyLength: u32,
     keyIdLength: u32,
-    key: *u8,
-    keyId: *u8,
+    key: ?*u8,
+    keyId: ?*u8,
 };
 
 pub const APPX_ENCRYPTED_EXEMPTIONS = extern struct {
     count: u32,
-    plainTextFiles: *PWSTR,
+    plainTextFiles: ?*?PWSTR,
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -2845,96 +2845,96 @@ pub const IAppxEncryptionFactory = extern struct {
         base: IUnknown.VTable,
         EncryptPackage: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DecryptPackage: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            keyInfo: *const APPX_KEY_INFO,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedPackageWriter: fn(
             self: *const IAppxEncryptionFactory,
-            outputStream: *IStream,
-            manifestStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: **IAppxEncryptedPackageWriter,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedPackageReader: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            keyInfo: *const APPX_KEY_INFO,
-            packageReader: **IAppxPackageReader,
+            inputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+            packageReader: ?*?*IAppxPackageReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EncryptBundle: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DecryptBundle: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            keyInfo: *const APPX_KEY_INFO,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedBundleWriter: fn(
             self: *const IAppxEncryptionFactory,
-            outputStream: *IStream,
+            outputStream: ?*IStream,
             bundleVersion: u64,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
-            bundleWriter: **IAppxEncryptedBundleWriter,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedBundleReader: fn(
             self: *const IAppxEncryptionFactory,
-            inputStream: *IStream,
-            keyInfo: *const APPX_KEY_INFO,
-            bundleReader: **IAppxBundleReader,
+            inputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+            bundleReader: ?*?*IAppxBundleReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_EncryptPackage(self: *const T, inputStream: *IStream, outputStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_EncryptPackage(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).EncryptPackage(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, outputStream, settings, keyInfo, exemptedFiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_DecryptPackage(self: *const T, inputStream: *IStream, outputStream: *IStream, keyInfo: *const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_DecryptPackage(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).DecryptPackage(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, outputStream, keyInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_CreateEncryptedPackageWriter(self: *const T, outputStream: *IStream, manifestStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: **IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_CreateEncryptedPackageWriter(self: *const T, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).CreateEncryptedPackageWriter(@ptrCast(*const IAppxEncryptionFactory, self), outputStream, manifestStream, settings, keyInfo, exemptedFiles, packageWriter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_CreateEncryptedPackageReader(self: *const T, inputStream: *IStream, keyInfo: *const APPX_KEY_INFO, packageReader: **IAppxPackageReader) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_CreateEncryptedPackageReader(self: *const T, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).CreateEncryptedPackageReader(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, keyInfo, packageReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_EncryptBundle(self: *const T, inputStream: *IStream, outputStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_EncryptBundle(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).EncryptBundle(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, outputStream, settings, keyInfo, exemptedFiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_DecryptBundle(self: *const T, inputStream: *IStream, outputStream: *IStream, keyInfo: *const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_DecryptBundle(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).DecryptBundle(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, outputStream, keyInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_CreateEncryptedBundleWriter(self: *const T, outputStream: *IStream, bundleVersion: u64, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: **IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_CreateEncryptedBundleWriter(self: *const T, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).CreateEncryptedBundleWriter(@ptrCast(*const IAppxEncryptionFactory, self), outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory_CreateEncryptedBundleReader(self: *const T, inputStream: *IStream, keyInfo: *const APPX_KEY_INFO, bundleReader: **IAppxBundleReader) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory_CreateEncryptedBundleReader(self: *const T, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory.VTable, self.vtable).CreateEncryptedBundleReader(@ptrCast(*const IAppxEncryptionFactory, self), inputStream, keyInfo, bundleReader);
         }
     };}
@@ -2949,20 +2949,20 @@ pub const IAppxEncryptionFactory2 = extern struct {
         base: IUnknown.VTable,
         CreateEncryptedPackageWriter: fn(
             self: *const IAppxEncryptionFactory2,
-            outputStream: *IStream,
-            manifestStream: *IStream,
-            contentGroupMapStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: **IAppxEncryptedPackageWriter,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            contentGroupMapStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory2_CreateEncryptedPackageWriter(self: *const T, outputStream: *IStream, manifestStream: *IStream, contentGroupMapStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: **IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory2_CreateEncryptedPackageWriter(self: *const T, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory2.VTable, self.vtable).CreateEncryptedPackageWriter(@ptrCast(*const IAppxEncryptionFactory2, self), outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
         }
     };}
@@ -2977,57 +2977,57 @@ pub const IAppxEncryptionFactory3 = extern struct {
         base: IUnknown.VTable,
         EncryptPackage: fn(
             self: *const IAppxEncryptionFactory3,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedPackageWriter: fn(
             self: *const IAppxEncryptionFactory3,
-            outputStream: *IStream,
-            manifestStream: *IStream,
-            contentGroupMapStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: **IAppxEncryptedPackageWriter,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            contentGroupMapStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EncryptBundle: fn(
             self: *const IAppxEncryptionFactory3,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEncryptedBundleWriter: fn(
             self: *const IAppxEncryptionFactory3,
-            outputStream: *IStream,
+            outputStream: ?*IStream,
             bundleVersion: u64,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
-            bundleWriter: **IAppxEncryptedBundleWriter,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory3_EncryptPackage(self: *const T, inputStream: *IStream, outputStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory3_EncryptPackage(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory3.VTable, self.vtable).EncryptPackage(@ptrCast(*const IAppxEncryptionFactory3, self), inputStream, outputStream, settings, keyInfo, exemptedFiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory3_CreateEncryptedPackageWriter(self: *const T, outputStream: *IStream, manifestStream: *IStream, contentGroupMapStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: **IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory3_CreateEncryptedPackageWriter(self: *const T, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory3.VTable, self.vtable).CreateEncryptedPackageWriter(@ptrCast(*const IAppxEncryptionFactory3, self), outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory3_EncryptBundle(self: *const T, inputStream: *IStream, outputStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory3_EncryptBundle(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory3.VTable, self.vtable).EncryptBundle(@ptrCast(*const IAppxEncryptionFactory3, self), inputStream, outputStream, settings, keyInfo, exemptedFiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory3_CreateEncryptedBundleWriter(self: *const T, outputStream: *IStream, bundleVersion: u64, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: **IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory3_CreateEncryptedBundleWriter(self: *const T, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory3.VTable, self.vtable).CreateEncryptedBundleWriter(@ptrCast(*const IAppxEncryptionFactory3, self), outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
         }
     };}
@@ -3042,11 +3042,11 @@ pub const IAppxEncryptionFactory4 = extern struct {
         base: IUnknown.VTable,
         EncryptPackage: fn(
             self: *const IAppxEncryptionFactory4,
-            inputStream: *IStream,
-            outputStream: *IStream,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
-            exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             memoryLimit: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3054,7 +3054,7 @@ pub const IAppxEncryptionFactory4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptionFactory4_EncryptPackage(self: *const T, inputStream: *IStream, outputStream: *IStream, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO, exemptedFiles: *const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptionFactory4_EncryptPackage(self: *const T, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptionFactory4.VTable, self.vtable).EncryptPackage(@ptrCast(*const IAppxEncryptionFactory4, self), inputStream, outputStream, settings, keyInfo, exemptedFiles, memoryLimit);
         }
     };}
@@ -3069,9 +3069,9 @@ pub const IAppxEncryptedPackageWriter = extern struct {
         base: IUnknown.VTable,
         AddPayloadFileEncrypted: fn(
             self: *const IAppxEncryptedPackageWriter,
-            fileName: [*:0]const u16,
+            fileName: ?[*:0]const u16,
             compressionOption: APPX_COMPRESSION_OPTION,
-            inputStream: *IStream,
+            inputStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxEncryptedPackageWriter,
@@ -3081,7 +3081,7 @@ pub const IAppxEncryptedPackageWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptedPackageWriter_AddPayloadFileEncrypted(self: *const T, fileName: [*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptedPackageWriter_AddPayloadFileEncrypted(self: *const T, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptedPackageWriter.VTable, self.vtable).AddPayloadFileEncrypted(@ptrCast(*const IAppxEncryptedPackageWriter, self), fileName, compressionOption, inputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3124,8 +3124,8 @@ pub const IAppxEncryptedBundleWriter = extern struct {
         base: IUnknown.VTable,
         AddPayloadPackageEncrypted: fn(
             self: *const IAppxEncryptedBundleWriter,
-            fileName: [*:0]const u16,
-            packageStream: *IStream,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IAppxEncryptedBundleWriter,
@@ -3135,7 +3135,7 @@ pub const IAppxEncryptedBundleWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptedBundleWriter_AddPayloadPackageEncrypted(self: *const T, fileName: [*:0]const u16, packageStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptedBundleWriter_AddPayloadPackageEncrypted(self: *const T, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptedBundleWriter.VTable, self.vtable).AddPayloadPackageEncrypted(@ptrCast(*const IAppxEncryptedBundleWriter, self), fileName, packageStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3154,15 +3154,15 @@ pub const IAppxEncryptedBundleWriter2 = extern struct {
         base: IUnknown.VTable,
         AddExternalPackageReference: fn(
             self: *const IAppxEncryptedBundleWriter2,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptedBundleWriter2_AddExternalPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptedBundleWriter2_AddExternalPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptedBundleWriter2.VTable, self.vtable).AddExternalPackageReference(@ptrCast(*const IAppxEncryptedBundleWriter2, self), fileName, inputStream);
         }
     };}
@@ -3203,14 +3203,14 @@ pub const IAppxEncryptedBundleWriter3 = extern struct {
         base: IUnknown.VTable,
         AddPayloadPackageEncrypted: fn(
             self: *const IAppxEncryptedBundleWriter3,
-            fileName: [*:0]const u16,
-            packageStream: *IStream,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddExternalPackageReference: fn(
             self: *const IAppxEncryptedBundleWriter3,
-            fileName: [*:0]const u16,
-            inputStream: *IStream,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3218,11 +3218,11 @@ pub const IAppxEncryptedBundleWriter3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptedBundleWriter3_AddPayloadPackageEncrypted(self: *const T, fileName: [*:0]const u16, packageStream: *IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptedBundleWriter3_AddPayloadPackageEncrypted(self: *const T, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptedBundleWriter3.VTable, self.vtable).AddPayloadPackageEncrypted(@ptrCast(*const IAppxEncryptedBundleWriter3, self), fileName, packageStream, isDefaultApplicablePackage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxEncryptedBundleWriter3_AddExternalPackageReference(self: *const T, fileName: [*:0]const u16, inputStream: *IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+        pub fn IAppxEncryptedBundleWriter3_AddExternalPackageReference(self: *const T, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxEncryptedBundleWriter3.VTable, self.vtable).AddExternalPackageReference(@ptrCast(*const IAppxEncryptedBundleWriter3, self), fileName, inputStream, isDefaultApplicablePackage);
         }
     };}
@@ -3237,39 +3237,39 @@ pub const IAppxPackageEditor = extern struct {
         base: IUnknown.VTable,
         SetWorkingDirectory: fn(
             self: *const IAppxPackageEditor,
-            workingDirectory: [*:0]const u16,
+            workingDirectory: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDeltaPackage: fn(
             self: *const IAppxPackageEditor,
-            updatedPackageStream: *IStream,
-            baselinePackageStream: *IStream,
-            deltaPackageStream: *IStream,
+            updatedPackageStream: ?*IStream,
+            baselinePackageStream: ?*IStream,
+            deltaPackageStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDeltaPackageUsingBaselineBlockMap: fn(
             self: *const IAppxPackageEditor,
-            updatedPackageStream: *IStream,
-            baselineBlockMapStream: *IStream,
-            baselinePackageFullName: [*:0]const u16,
-            deltaPackageStream: *IStream,
+            updatedPackageStream: ?*IStream,
+            baselineBlockMapStream: ?*IStream,
+            baselinePackageFullName: ?[*:0]const u16,
+            deltaPackageStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdatePackage: fn(
             self: *const IAppxPackageEditor,
-            baselinePackageStream: *IStream,
-            deltaPackageStream: *IStream,
+            baselinePackageStream: ?*IStream,
+            deltaPackageStream: ?*IStream,
             updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateEncryptedPackage: fn(
             self: *const IAppxPackageEditor,
-            baselineEncryptedPackageStream: *IStream,
-            deltaPackageStream: *IStream,
+            baselineEncryptedPackageStream: ?*IStream,
+            deltaPackageStream: ?*IStream,
             updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION,
-            settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: *const APPX_KEY_INFO,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdatePackageManifest: fn(
             self: *const IAppxPackageEditor,
-            packageStream: *IStream,
-            updatedManifestStream: *IStream,
+            packageStream: ?*IStream,
+            updatedManifestStream: ?*IStream,
             isPackageEncrypted: BOOL,
             options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3278,27 +3278,27 @@ pub const IAppxPackageEditor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_SetWorkingDirectory(self: *const T, workingDirectory: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_SetWorkingDirectory(self: *const T, workingDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).SetWorkingDirectory(@ptrCast(*const IAppxPackageEditor, self), workingDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_CreateDeltaPackage(self: *const T, updatedPackageStream: *IStream, baselinePackageStream: *IStream, deltaPackageStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_CreateDeltaPackage(self: *const T, updatedPackageStream: ?*IStream, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).CreateDeltaPackage(@ptrCast(*const IAppxPackageEditor, self), updatedPackageStream, baselinePackageStream, deltaPackageStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_CreateDeltaPackageUsingBaselineBlockMap(self: *const T, updatedPackageStream: *IStream, baselineBlockMapStream: *IStream, baselinePackageFullName: [*:0]const u16, deltaPackageStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_CreateDeltaPackageUsingBaselineBlockMap(self: *const T, updatedPackageStream: ?*IStream, baselineBlockMapStream: ?*IStream, baselinePackageFullName: ?[*:0]const u16, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).CreateDeltaPackageUsingBaselineBlockMap(@ptrCast(*const IAppxPackageEditor, self), updatedPackageStream, baselineBlockMapStream, baselinePackageFullName, deltaPackageStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_UpdatePackage(self: *const T, baselinePackageStream: *IStream, deltaPackageStream: *IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_UpdatePackage(self: *const T, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).UpdatePackage(@ptrCast(*const IAppxPackageEditor, self), baselinePackageStream, deltaPackageStream, updateOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_UpdateEncryptedPackage(self: *const T, baselineEncryptedPackageStream: *IStream, deltaPackageStream: *IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: *const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: *const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_UpdateEncryptedPackage(self: *const T, baselineEncryptedPackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).UpdateEncryptedPackage(@ptrCast(*const IAppxPackageEditor, self), baselineEncryptedPackageStream, deltaPackageStream, updateOption, settings, keyInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageEditor_UpdatePackageManifest(self: *const T, packageStream: *IStream, updatedManifestStream: *IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) callconv(.Inline) HRESULT {
+        pub fn IAppxPackageEditor_UpdatePackageManifest(self: *const T, packageStream: ?*IStream, updatedManifestStream: ?*IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppxPackageEditor.VTable, self.vtable).UpdatePackageManifest(@ptrCast(*const IAppxPackageEditor, self), packageStream, updatedManifestStream, isPackageEncrypted, options);
         }
     };}
@@ -3351,7 +3351,7 @@ pub const PackageOrigin_DeveloperSigned = PackageOrigin.DeveloperSigned;
 pub const PackageOrigin_LineOfBusiness = PackageOrigin.LineOfBusiness;
 
 pub const _PACKAGE_INFO_REFERENCE = extern struct {
-    reserved: *c_void,
+    reserved: ?*c_void,
 };
 
 pub const AppPolicyLifecycleManagement = enum(i32) {
@@ -3425,10 +3425,10 @@ pub const PACKAGE_ID = extern struct {
     reserved: u32,
     processorArchitecture: u32,
     version: PACKAGE_VERSION,
-    name: PWSTR,
-    publisher: PWSTR,
-    resourceId: PWSTR,
-    publisherId: PWSTR,
+    name: ?PWSTR,
+    publisher: ?PWSTR,
+    resourceId: ?PWSTR,
+    publisherId: ?PWSTR,
 };
 
 }, else => struct { } };
@@ -3439,9 +3439,9 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub const PACKAGE_INFO = extern struct {
     reserved: u32,
     flags: u32,
-    path: PWSTR,
-    packageFullName: PWSTR,
-    packageFamilyName: PWSTR,
+    path: ?PWSTR,
+    packageFullName: ?PWSTR,
+    packageFamilyName: ?PWSTR,
     packageId: PACKAGE_ID,
 };
 
@@ -3453,100 +3453,100 @@ pub const PACKAGE_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageId(
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageFullName(
-    packageFullNameLength: *u32,
+    packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageFamilyName(
-    packageFamilyNameLength: *u32,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackagePath(
-    pathLength: *u32,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageId(
-    hProcess: HANDLE,
-    bufferLength: *u32,
+    hProcess: ?HANDLE,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageFullName(
-    hProcess: HANDLE,
-    packageFullNameLength: *u32,
+    hProcess: ?HANDLE,
+    packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
-    token: HANDLE,
-    packageFullNameLength: *u32,
+    token: ?HANDLE,
+    packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageFamilyName(
-    hProcess: HANDLE,
-    packageFamilyNameLength: *u32,
+    hProcess: ?HANDLE,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken(
-    token: HANDLE,
-    packageFamilyNameLength: *u32,
+    token: ?HANDLE,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackagePath(
-    packageId: *const PACKAGE_ID,
+    packageId: ?*const PACKAGE_ID,
     reserved: u32,
-    pathLength: *u32,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn GetPackagePathByFullName(
-    packageFullName: [*:0]const u16,
-    pathLength: *u32,
+    packageFullName: ?[*:0]const u16,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn GetStagedPackagePathByFullName(
-    packageFullName: [*:0]const u16,
-    pathLength: *u32,
+    packageFullName: ?[*:0]const u16,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
     packagePathType: PackagePathType,
-    pathLength: *u32,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
     packagePathType: PackagePathType,
-    pathLength: *u32,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3554,7 +3554,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullNam
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
@@ -3563,133 +3563,133 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
     packagePathType: PackagePathType,
-    pathLength: *u32,
+    pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn GetCurrentApplicationUserModelId(
-    applicationUserModelIdLength: *u32,
+    applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn GetApplicationUserModelId(
-    hProcess: HANDLE,
-    applicationUserModelIdLength: *u32,
+    hProcess: ?HANDLE,
+    applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetApplicationUserModelIdFromToken(
-    token: HANDLE,
-    applicationUserModelIdLength: *u32,
+    token: ?HANDLE,
+    applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFullName(
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFamilyName(
-    packageFamilyName: [*:0]const u16,
+    packageFamilyName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageId(
-    packageId: *const PACKAGE_ID,
+    packageId: ?*const PACKAGE_ID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
-    applicationUserModelId: [*:0]const u16,
+    applicationUserModelId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicationId(
-    packageRelativeApplicationId: [*:0]const u16,
+    packageRelativeApplicationId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageIdFromFullName(
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
     flags: u32,
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFullNameFromId(
-    packageId: *const PACKAGE_ID,
-    packageFullNameLength: *u32,
+    packageId: ?*const PACKAGE_ID,
+    packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFamilyNameFromId(
-    packageId: *const PACKAGE_ID,
-    packageFamilyNameLength: *u32,
+    packageId: ?*const PACKAGE_ID,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFamilyNameFromFullName(
-    packageFullName: [*:0]const u16,
-    packageFamilyNameLength: *u32,
+    packageFullName: ?[*:0]const u16,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageNameAndPublisherIdFromFamilyName(
-    packageFamilyName: [*:0]const u16,
-    packageNameLength: *u32,
+    packageFamilyName: ?[*:0]const u16,
+    packageNameLength: ?*u32,
     packageName: ?[*:0]u16,
-    packagePublisherIdLength: *u32,
+    packagePublisherIdLength: ?*u32,
     packagePublisherId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn FormatApplicationUserModelId(
-    packageFamilyName: [*:0]const u16,
-    packageRelativeApplicationId: [*:0]const u16,
-    applicationUserModelIdLength: *u32,
+    packageFamilyName: ?[*:0]const u16,
+    packageRelativeApplicationId: ?[*:0]const u16,
+    applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn ParseApplicationUserModelId(
-    applicationUserModelId: [*:0]const u16,
-    packageFamilyNameLength: *u32,
+    applicationUserModelId: ?[*:0]const u16,
+    packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-    packageRelativeApplicationIdLength: *u32,
+    packageRelativeApplicationIdLength: ?*u32,
     packageRelativeApplicationId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackagesByPackageFamily(
-    packageFamilyName: [*:0]const u16,
-    count: *u32,
-    packageFullNames: ?[*]PWSTR,
-    bufferLength: *u32,
+    packageFamilyName: ?[*:0]const u16,
+    count: ?*u32,
+    packageFullNames: ?[*]?PWSTR,
+    bufferLength: ?*u32,
     buffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn FindPackagesByPackageFamily(
-    packageFamilyName: [*:0]const u16,
+    packageFamilyName: ?[*:0]const u16,
     packageFilters: u32,
-    count: *u32,
-    packageFullNames: ?[*]PWSTR,
-    bufferLength: *u32,
+    count: ?*u32,
+    packageFullNames: ?[*]?PWSTR,
+    bufferLength: ?*u32,
     buffer: ?[*:0]u16,
     packageProperties: ?[*]u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
-    packageFullName: [*:0]const u16,
-    origin: *PackageOrigin,
+    packageFullName: ?[*:0]const u16,
+    origin: ?*PackageOrigin,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageInfo(
     flags: u32,
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
@@ -3697,28 +3697,28 @@ pub extern "KERNEL32" fn GetCurrentPackageInfo(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn OpenPackageInfoByFullName(
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
     reserved: u32,
-    packageInfoReference: **_PACKAGE_INFO_REFERENCE,
+    packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForUser(
     userSid: ?PSID,
-    packageFullName: [*:0]const u16,
+    packageFullName: ?[*:0]const u16,
     reserved: u32,
-    packageInfoReference: **_PACKAGE_INFO_REFERENCE,
+    packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn ClosePackageInfo(
-    packageInfoReference: *_PACKAGE_INFO_REFERENCE,
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageInfo(
-    packageInfoReference: *_PACKAGE_INFO_REFERENCE,
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     flags: u32,
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
@@ -3726,59 +3726,59 @@ pub extern "KERNEL32" fn GetPackageInfo(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn GetPackageApplicationIds(
-    packageInfoReference: *_PACKAGE_INFO_REFERENCE,
-    bufferLength: *u32,
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetLifecycleManagement(
-    processToken: HANDLE,
-    policy: *AppPolicyLifecycleManagement,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyLifecycleManagement,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetWindowingModel(
-    processToken: HANDLE,
-    policy: *AppPolicyWindowingModel,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyWindowingModel,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetMediaFoundationCodecLoading(
-    processToken: HANDLE,
-    policy: *AppPolicyMediaFoundationCodecLoading,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyMediaFoundationCodecLoading,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetClrCompat(
-    processToken: HANDLE,
-    policy: *AppPolicyClrCompat,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyClrCompat,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetThreadInitializationType(
-    processToken: HANDLE,
-    policy: *AppPolicyThreadInitializationType,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyThreadInitializationType,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetShowDeveloperDiagnostic(
-    processToken: HANDLE,
-    policy: *AppPolicyShowDeveloperDiagnostic,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyShowDeveloperDiagnostic,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetProcessTerminationMethod(
-    processToken: HANDLE,
-    policy: *AppPolicyProcessTerminationMethod,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyProcessTerminationMethod,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn AppPolicyGetCreateFileAccess(
-    processToken: HANDLE,
-    policy: *AppPolicyCreateFileAccess,
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyCreateFileAccess,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
-    packageInfoReference: *_PACKAGE_INFO_REFERENCE,
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     flags: u32,
     packagePathType: PackagePathType,
-    bufferLength: *u32,
+    bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     buffer: ?*u8,
     count: ?*u32,

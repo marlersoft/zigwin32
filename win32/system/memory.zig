@@ -15,8 +15,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: *c_void,
-    AllocationBase: *c_void,
+    BaseAddress: ?*c_void,
+    AllocationBase: ?*c_void,
     AllocationProtect: PAGE_PROTECTION_FLAGS,
     PartitionId: u16,
     RegionSize: usize,
@@ -54,7 +54,7 @@ pub const MEMORY_BASIC_INFORMATION64 = extern struct {
 
 pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
     // TODO: what to do with BytesParamIndex 1?
-    Addr: *c_void,
+    Addr: ?*c_void,
     Range: usize,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
@@ -74,7 +74,7 @@ pub const LowMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.LowM
 pub const HighMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.HighMemoryResourceNotification;
 
 pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
-    VirtualAddress: *c_void,
+    VirtualAddress: ?*c_void,
     NumberOfBytes: usize,
 };
 
@@ -98,7 +98,7 @@ pub const WIN32_MEMORY_INFORMATION_CLASS = enum(i32) {
 pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
 
 pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
-    AllocationBase: *c_void,
+    AllocationBase: ?*c_void,
     AllocationProtect: u32,
     Anonymous: extern union {
         Flags: u32,
@@ -114,8 +114,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: *c_void,
-    AllocationBase: *c_void,
+    BaseAddress: ?*c_void,
+    AllocationBase: ?*c_void,
     AllocationProtect: PAGE_PROTECTION_FLAGS,
     RegionSize: usize,
     State: VIRTUAL_ALLOCATION_TYPE,
@@ -560,7 +560,7 @@ pub extern "KERNEL32" fn GlobalUnlock(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GlobalLock(
     hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GlobalFlags(
@@ -569,7 +569,7 @@ pub extern "KERNEL32" fn GlobalFlags(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GlobalHandle(
-    pMem: *const c_void,
+    pMem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -593,11 +593,11 @@ pub extern "KERNEL32" fn LocalReAlloc(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LocalLock(
     hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LocalHandle(
-    pMem: *const c_void,
+    pMem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -622,7 +622,7 @@ pub extern "KERNEL32" fn LocalFree(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateFileMappingA(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
@@ -632,32 +632,32 @@ pub extern "KERNEL32" fn CreateFileMappingA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateFileMappingNumaA(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u8,
     nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn OpenFileMappingA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn MapViewOfFileExNuma(
-    hFileMappingObject: HANDLE,
+    hFileMappingObject: ?HANDLE,
     dwDesiredAccess: FILE_MAP,
     dwFileOffsetHigh: u32,
     dwFileOffsetLow: u32,
     dwNumberOfBytesToMap: usize,
     lpBaseAddress: ?*c_void,
     nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsBadReadPtr(
@@ -690,19 +690,19 @@ pub extern "KERNEL32" fn IsBadStringPtrW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MapUserPhysicalPagesScatter(
-    VirtualAddresses: [*]*c_void,
+    VirtualAddresses: [*]?*c_void,
     NumberOfPages: usize,
     PageArray: ?[*]usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn AddSecureMemoryCacheCallback(
-    pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK,
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RemoveSecureMemoryCacheCallback(
-    pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK,
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -710,49 +710,49 @@ pub extern "KERNEL32" fn HeapCreate(
     flOptions: HEAP_FLAGS,
     dwInitialSize: usize,
     dwMaximumSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HeapHandle;
+) callconv(@import("std").os.windows.WINAPI) ?HeapHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapDestroy(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapAlloc(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
     dwBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapReAlloc(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
     lpMem: ?*c_void,
     dwBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapFree(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
     lpMem: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapSize(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
-    lpMem: *const c_void,
+    lpMem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetProcessHeap(
-) callconv(@import("std").os.windows.WINAPI) HeapHandle;
+) callconv(@import("std").os.windows.WINAPI) ?HeapHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapCompact(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
@@ -767,37 +767,37 @@ pub extern "KERNEL32" fn HeapSetInformation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapValidate(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
     dwFlags: HEAP_FLAGS,
     lpMem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn HeapSummary(
-    hHeap: HANDLE,
+    hHeap: ?HANDLE,
     dwFlags: u32,
-    lpSummary: *HEAP_SUMMARY,
+    lpSummary: ?*HEAP_SUMMARY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetProcessHeaps(
     NumberOfHeaps: u32,
-    ProcessHeaps: [*]HeapHandle,
+    ProcessHeaps: [*]?HeapHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapLock(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapUnlock(
-    hHeap: HeapHandle,
+    hHeap: ?HeapHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapWalk(
-    hHeap: HeapHandle,
-    lpEntry: *PROCESS_HEAP_ENTRY,
+    hHeap: ?HeapHandle,
+    lpEntry: ?*PROCESS_HEAP_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -816,19 +816,19 @@ pub extern "KERNEL32" fn VirtualAlloc(
     dwSize: usize,
     flAllocationType: VIRTUAL_ALLOCATION_TYPE,
     flProtect: PAGE_PROTECTION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualProtect(
-    lpAddress: *c_void,
+    lpAddress: ?*c_void,
     dwSize: usize,
     flNewProtect: PAGE_PROTECTION_FLAGS,
-    lpflOldProtect: *PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualFree(
-    lpAddress: *c_void,
+    lpAddress: ?*c_void,
     dwSize: usize,
     dwFreeType: VIRTUAL_FREE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -837,40 +837,40 @@ pub extern "KERNEL32" fn VirtualFree(
 pub extern "KERNEL32" fn VirtualQuery(
     lpAddress: ?*const c_void,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *MEMORY_BASIC_INFORMATION,
+    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
     dwLength: usize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualAllocEx(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     lpAddress: ?*c_void,
     dwSize: usize,
     flAllocationType: VIRTUAL_ALLOCATION_TYPE,
     flProtect: PAGE_PROTECTION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualProtectEx(
-    hProcess: HANDLE,
-    lpAddress: *c_void,
+    hProcess: ?HANDLE,
+    lpAddress: ?*c_void,
     dwSize: usize,
     flNewProtect: PAGE_PROTECTION_FLAGS,
-    lpflOldProtect: *PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualQueryEx(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     lpAddress: ?*const c_void,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: *MEMORY_BASIC_INFORMATION,
+    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
     dwLength: usize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateFileMappingW(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
@@ -882,12 +882,12 @@ pub extern "KERNEL32" fn CreateFileMappingW(
 pub extern "KERNEL32" fn OpenFileMappingW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MapViewOfFile(
-    hFileMappingObject: HANDLE,
+    hFileMappingObject: ?HANDLE,
     dwDesiredAccess: FILE_MAP,
     dwFileOffsetHigh: u32,
     dwFileOffsetLow: u32,
@@ -896,7 +896,7 @@ pub extern "KERNEL32" fn MapViewOfFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MapViewOfFileEx(
-    hFileMappingObject: HANDLE,
+    hFileMappingObject: ?HANDLE,
     dwDesiredAccess: FILE_MAP,
     dwFileOffsetHigh: u32,
     dwFileOffsetLow: u32,
@@ -906,21 +906,21 @@ pub extern "KERNEL32" fn MapViewOfFileEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualFreeEx(
-    hProcess: HANDLE,
-    lpAddress: *c_void,
+    hProcess: ?HANDLE,
+    lpAddress: ?*c_void,
     dwSize: usize,
     dwFreeType: VIRTUAL_FREE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FlushViewOfFile(
-    lpBaseAddress: *const c_void,
+    lpBaseAddress: ?*const c_void,
     dwNumberOfBytesToFlush: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn UnmapViewOfFile(
-    lpBaseAddress: *const c_void,
+    lpBaseAddress: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -929,15 +929,15 @@ pub extern "KERNEL32" fn GetLargePageMinimum(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetProcessWorkingSetSizeEx(
-    hProcess: HANDLE,
-    lpMinimumWorkingSetSize: *usize,
-    lpMaximumWorkingSetSize: *usize,
-    Flags: *u32,
+    hProcess: ?HANDLE,
+    lpMinimumWorkingSetSize: ?*usize,
+    lpMaximumWorkingSetSize: ?*usize,
+    Flags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetProcessWorkingSetSizeEx(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     dwMinimumWorkingSetSize: usize,
     dwMaximumWorkingSetSize: usize,
     Flags: u32,
@@ -945,48 +945,48 @@ pub extern "KERNEL32" fn SetProcessWorkingSetSizeEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualLock(
-    lpAddress: *c_void,
+    lpAddress: ?*c_void,
     dwSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualUnlock(
-    lpAddress: *c_void,
+    lpAddress: ?*c_void,
     dwSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetWriteWatch(
     dwFlags: u32,
-    lpBaseAddress: *c_void,
+    lpBaseAddress: ?*c_void,
     dwRegionSize: usize,
-    lpAddresses: ?[*]*c_void,
+    lpAddresses: ?[*]?*c_void,
     lpdwCount: ?*usize,
     lpdwGranularity: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ResetWriteWatch(
-    lpBaseAddress: *c_void,
+    lpBaseAddress: ?*c_void,
     dwRegionSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateMemoryResourceNotification(
     NotificationType: MEMORY_RESOURCE_NOTIFICATION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn QueryMemoryResourceNotification(
-    ResourceNotificationHandle: HANDLE,
-    ResourceState: *BOOL,
+    ResourceNotificationHandle: ?HANDLE,
+    ResourceState: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetSystemFileCacheSize(
-    lpMinimumFileCacheSize: *usize,
-    lpMaximumFileCacheSize: *usize,
-    lpFlags: *u32,
+    lpMinimumFileCacheSize: ?*usize,
+    lpMaximumFileCacheSize: ?*usize,
+    lpFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -998,18 +998,18 @@ pub extern "KERNEL32" fn SetSystemFileCacheSize(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateFileMappingNumaW(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u16,
     nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PrefetchVirtualMemory(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     NumberOfEntries: usize,
     VirtualAddresses: [*]WIN32_MEMORY_RANGE_ENTRY,
     Flags: u32,
@@ -1017,79 +1017,79 @@ pub extern "KERNEL32" fn PrefetchVirtualMemory(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CreateFileMappingFromApp(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
     PageProtection: PAGE_PROTECTION_FLAGS,
     MaximumSize: u64,
     Name: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn MapViewOfFileFromApp(
-    hFileMappingObject: HANDLE,
+    hFileMappingObject: ?HANDLE,
     DesiredAccess: FILE_MAP,
     FileOffset: u64,
     NumberOfBytesToMap: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn UnmapViewOfFileEx(
-    BaseAddress: *c_void,
+    BaseAddress: ?*c_void,
     UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn AllocateUserPhysicalPages(
-    hProcess: HANDLE,
-    NumberOfPages: *usize,
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
     PageArray: [*]usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FreeUserPhysicalPages(
-    hProcess: HANDLE,
-    NumberOfPages: *usize,
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
     PageArray: [*]usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MapUserPhysicalPages(
-    VirtualAddress: *c_void,
+    VirtualAddress: ?*c_void,
     NumberOfPages: usize,
     PageArray: ?[*]usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn AllocateUserPhysicalPagesNuma(
-    hProcess: HANDLE,
-    NumberOfPages: *usize,
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
     PageArray: [*]usize,
     nndPreferred: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn VirtualAllocExNuma(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     lpAddress: ?*c_void,
     dwSize: usize,
     flAllocationType: VIRTUAL_ALLOCATION_TYPE,
     flProtect: u32,
     nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetMemoryErrorHandlingCapabilities(
-    Capabilities: *u32,
+    Capabilities: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn RegisterBadMemoryNotification(
-    Callback: PBAD_MEMORY_CALLBACK_ROUTINE,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    Callback: ?PBAD_MEMORY_CALLBACK_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn UnregisterBadMemoryNotification(
-    RegistrationHandle: *c_void,
+    RegistrationHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -1113,20 +1113,20 @@ pub extern "KERNEL32" fn DiscardVirtualMemory(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-3" fn SetProcessValidCallTargets(
-    hProcess: HANDLE,
-    VirtualAddress: *c_void,
+    hProcess: ?HANDLE,
+    VirtualAddress: ?*c_void,
     RegionSize: usize,
     NumberOfOffsets: u32,
     OffsetInformation: [*]CFG_CALL_TARGET_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-memory-l1-1-7" fn SetProcessValidCallTargetsForMappedView(
-    Process: HANDLE,
-    VirtualAddress: *c_void,
+    Process: ?HANDLE,
+    VirtualAddress: ?*c_void,
     RegionSize: usize,
     NumberOfOffsets: u32,
     OffsetInformation: [*]CFG_CALL_TARGET_INFO,
-    Section: HANDLE,
+    Section: ?HANDLE,
     ExpectedFileOffset: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1136,56 +1136,56 @@ pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualAllocFromApp(
     Size: usize,
     AllocationType: VIRTUAL_ALLOCATION_TYPE,
     Protection: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualProtectFromApp(
-    Address: *c_void,
+    Address: ?*c_void,
     Size: usize,
     NewProtection: u32,
-    OldProtection: *u32,
+    OldProtection: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-3" fn OpenFileMappingFromApp(
     DesiredAccess: u32,
     InheritHandle: BOOL,
-    Name: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    Name: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "api-ms-win-core-memory-l1-1-4" fn QueryVirtualMemoryInformation(
-    Process: HANDLE,
-    VirtualAddress: *const c_void,
+    Process: ?HANDLE,
+    VirtualAddress: ?*const c_void,
     MemoryInformationClass: WIN32_MEMORY_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 4?
-    MemoryInformation: *c_void,
+    MemoryInformation: ?*c_void,
     MemoryInformationSize: usize,
     ReturnSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "api-ms-win-core-memory-l1-1-5" fn MapViewOfFileNuma2(
-    FileMappingHandle: HANDLE,
-    ProcessHandle: HANDLE,
+    FileMappingHandle: ?HANDLE,
+    ProcessHandle: ?HANDLE,
     Offset: u64,
     BaseAddress: ?*c_void,
     ViewSize: usize,
     AllocationType: u32,
     PageProtection: u32,
     PreferredNode: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "api-ms-win-core-memory-l1-1-5" fn UnmapViewOfFile2(
-    Process: HANDLE,
-    BaseAddress: *c_void,
+    Process: ?HANDLE,
+    BaseAddress: ?*c_void,
     UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-memory-l1-1-5" fn VirtualUnlockEx(
     Process: ?HANDLE,
-    Address: *c_void,
+    Address: ?*c_void,
     Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1198,11 +1198,11 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2(
     PageProtection: u32,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
     ParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3(
-    FileMapping: HANDLE,
+    FileMapping: ?HANDLE,
     Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Offset: u64,
@@ -1211,7 +1211,7 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3(
     PageProtection: u32,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
     ParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
@@ -1222,11 +1222,11 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
     PageProtection: u32,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
     ParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3FromApp(
-    FileMapping: HANDLE,
+    FileMapping: ?HANDLE,
     Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Offset: u64,
@@ -1235,10 +1235,10 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3FromApp(
     PageProtection: u32,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
     ParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
-    File: HANDLE,
+    File: ?HANDLE,
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
     DesiredAccess: u32,
     PageProtection: PAGE_PROTECTION_FLAGS,
@@ -1247,7 +1247,7 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
     Name: ?[*:0]const u16,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
     ParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 
 //--------------------------------------------------------------------------------

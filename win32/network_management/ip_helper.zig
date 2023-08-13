@@ -443,7 +443,7 @@ pub const ip_option_information = extern struct {
     Tos: u8,
     Flags: u8,
     OptionsSize: u8,
-    OptionsData: *u8,
+    OptionsData: ?*u8,
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -454,7 +454,7 @@ pub const ip_option_information32 = extern struct {
     Tos: u8,
     Flags: u8,
     OptionsSize: u8,
-    OptionsData: *u8,
+    OptionsData: ?*u8,
 };
 
 }, else => struct { } };
@@ -465,7 +465,7 @@ pub const icmp_echo_reply = extern struct {
     RoundTripTime: u32,
     DataSize: u16,
     Reserved: u16,
-    Data: *c_void,
+    Data: ?*c_void,
     Options: ip_option_information,
 };
 
@@ -478,7 +478,7 @@ pub const icmp_echo_reply32 = extern struct {
     RoundTripTime: u32,
     DataSize: u16,
     Reserved: u16,
-    Data: *c_void,
+    Data: ?*c_void,
     Options: ip_option_information32,
 };
 
@@ -906,8 +906,8 @@ pub const MIB_INVERTEDIFSTACK_TABLE = extern struct {
 };
 
 pub const PIPINTERFACE_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
-    Row: *MIB_IPINTERFACE_ROW,
+    CallerContext: ?*c_void,
+    Row: ?*MIB_IPINTERFACE_ROW,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -937,14 +937,14 @@ pub const MIB_UNICASTIPADDRESS_TABLE = extern struct {
 };
 
 pub const PUNICAST_IPADDRESS_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
+    CallerContext: ?*c_void,
     Row: ?*MIB_UNICASTIPADDRESS_ROW,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK = fn(
-    CallerContext: *c_void,
-    AddressTable: *MIB_UNICASTIPADDRESS_TABLE,
+    CallerContext: ?*c_void,
+    AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MIB_ANYCASTIPADDRESS_ROW = extern struct {
@@ -1000,7 +1000,7 @@ pub const MIB_IPFORWARD_TABLE2 = extern struct {
 };
 
 pub const PIPFORWARD_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
+    CallerContext: ?*c_void,
     Row: ?*MIB_IPFORWARD_ROW2,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1053,7 +1053,7 @@ pub const MIB_IPNET_TABLE2 = extern struct {
 };
 
 pub const PTEREDO_PORT_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
+    CallerContext: ?*c_void,
     Port: u16,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1061,32 +1061,32 @@ pub const PTEREDO_PORT_CHANGE_CALLBACK = fn(
 pub const DNS_SETTINGS = extern struct {
     Version: u32,
     Flags: u64,
-    Hostname: PWSTR,
-    Domain: PWSTR,
-    SearchList: PWSTR,
+    Hostname: ?PWSTR,
+    Domain: ?PWSTR,
+    SearchList: ?PWSTR,
 };
 
 pub const DNS_INTERFACE_SETTINGS = extern struct {
     Version: u32,
     Flags: u64,
-    Domain: PWSTR,
-    NameServer: PWSTR,
-    SearchList: PWSTR,
+    Domain: ?PWSTR,
+    NameServer: ?PWSTR,
+    SearchList: ?PWSTR,
     RegistrationEnabled: u32,
     RegisterAdapterName: u32,
     EnableLLMNR: u32,
     QueryAdapterName: u32,
-    ProfileNameServer: PWSTR,
+    ProfileNameServer: ?PWSTR,
 };
 
 pub const DNS_INTERFACE_SETTINGS_EX = extern struct {
     SettingsV1: DNS_INTERFACE_SETTINGS,
     DisableUnconstrainedQueries: u32,
-    SupplementalSearchList: PWSTR,
+    SupplementalSearchList: ?PWSTR,
 };
 
 pub const PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
+    CallerContext: ?*c_void,
     ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1401,7 +1401,7 @@ pub const MIB_IPMCAST_OIF_XP = extern struct {
 pub const MIB_IPMCAST_OIF_W2K = extern struct {
     dwOutIfIndex: u32,
     dwNextHopAddr: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     dwReserved: u32,
 };
 
@@ -1442,7 +1442,7 @@ pub const MIB_IPMCAST_OIF_STATS_LH = extern struct {
 pub const MIB_IPMCAST_OIF_STATS_W2K = extern struct {
     dwOutIfIndex: u32,
     dwNextHopAddr: u32,
-    pvDialContext: *c_void,
+    pvDialContext: ?*c_void,
     ulTtlTooLow: u32,
     ulFragNeeded: u32,
     ulOutPackets: u32,
@@ -1501,7 +1501,7 @@ pub const MIB_IPMCAST_MFE_STATS_EX_XP = extern struct {
 
 pub const MIB_MFE_STATS_TABLE_EX_XP = extern struct {
     dwNumEntries: u32,
-    table: [1]*MIB_IPMCAST_MFE_STATS_EX_XP,
+    table: [1]?*MIB_IPMCAST_MFE_STATS_EX_XP,
 };
 
 pub const MIB_IPMCAST_GLOBAL = extern struct {
@@ -1910,8 +1910,8 @@ pub const TCPIP_OWNER_MODULE_INFO_CLASS = enum(i32) {
 pub const TCPIP_OWNER_MODULE_INFO_BASIC = TCPIP_OWNER_MODULE_INFO_CLASS.C;
 
 pub const TCPIP_OWNER_MODULE_BASIC_INFO = extern struct {
-    pModuleName: [*]u16,
-    pModulePath: [*]u16,
+    pModuleName: ?[*]u16,
+    pModulePath: ?[*]u16,
 };
 
 pub const MIB_IPMCAST_BOUNDARY = extern struct {
@@ -1990,14 +1990,14 @@ pub const IP_ADDRESS_STRING = extern struct {
 };
 
 pub const IP_ADDR_STRING = extern struct {
-    Next: *IP_ADDR_STRING,
+    Next: ?*IP_ADDR_STRING,
     IpAddress: IP_ADDRESS_STRING,
     IpMask: IP_ADDRESS_STRING,
     Context: u32,
 };
 
 pub const IP_ADAPTER_INFO = extern struct {
-    Next: *IP_ADAPTER_INFO,
+    Next: ?*IP_ADAPTER_INFO,
     ComboIndex: u32,
     AdapterName: [260]CHAR,
     Description: [132]CHAR,
@@ -2006,7 +2006,7 @@ pub const IP_ADAPTER_INFO = extern struct {
     Index: u32,
     Type: u32,
     DhcpEnabled: u32,
-    CurrentIpAddress: *IP_ADDR_STRING,
+    CurrentIpAddress: ?*IP_ADDR_STRING,
     IpAddressList: IP_ADDR_STRING,
     GatewayList: IP_ADDR_STRING,
     DhcpServer: IP_ADDR_STRING,
@@ -2025,7 +2025,7 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_LH = extern struct {
             Flags: u32,
         },
     },
-    Next: *IP_ADAPTER_UNICAST_ADDRESS_LH,
+    Next: ?*IP_ADAPTER_UNICAST_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
     SuffixOrigin: NL_SUFFIX_ORIGIN,
@@ -2044,7 +2044,7 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_XP = extern struct {
             Flags: u32,
         },
     },
-    Next: *IP_ADAPTER_UNICAST_ADDRESS_XP,
+    Next: ?*IP_ADAPTER_UNICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
     SuffixOrigin: NL_SUFFIX_ORIGIN,
@@ -2062,7 +2062,7 @@ pub const IP_ADAPTER_ANYCAST_ADDRESS_XP = extern struct {
             Flags: u32,
         },
     },
-    Next: *IP_ADAPTER_ANYCAST_ADDRESS_XP,
+    Next: ?*IP_ADAPTER_ANYCAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
 };
 
@@ -2074,7 +2074,7 @@ pub const IP_ADAPTER_MULTICAST_ADDRESS_XP = extern struct {
             Flags: u32,
         },
     },
-    Next: *IP_ADAPTER_MULTICAST_ADDRESS_XP,
+    Next: ?*IP_ADAPTER_MULTICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
 };
 
@@ -2086,7 +2086,7 @@ pub const IP_ADAPTER_DNS_SERVER_ADDRESS_XP = extern struct {
             Reserved: u32,
         },
     },
-    Next: *IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
+    Next: ?*IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
 };
 
@@ -2098,7 +2098,7 @@ pub const IP_ADAPTER_WINS_SERVER_ADDRESS_LH = extern struct {
             Reserved: u32,
         },
     },
-    Next: *IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
+    Next: ?*IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
 };
 
@@ -2110,7 +2110,7 @@ pub const IP_ADAPTER_GATEWAY_ADDRESS_LH = extern struct {
             Reserved: u32,
         },
     },
-    Next: *IP_ADAPTER_GATEWAY_ADDRESS_LH,
+    Next: ?*IP_ADAPTER_GATEWAY_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
 };
 
@@ -2122,13 +2122,13 @@ pub const IP_ADAPTER_PREFIX_XP = extern struct {
             Flags: u32,
         },
     },
-    Next: *IP_ADAPTER_PREFIX_XP,
+    Next: ?*IP_ADAPTER_PREFIX_XP,
     Address: SOCKET_ADDRESS,
     PrefixLength: u32,
 };
 
 pub const IP_ADAPTER_DNS_SUFFIX = extern struct {
-    Next: *IP_ADAPTER_DNS_SUFFIX,
+    Next: ?*IP_ADAPTER_DNS_SUFFIX,
     String: [256]u16,
 };
 
@@ -2140,15 +2140,15 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
             IfIndex: u32,
         },
     },
-    Next: *IP_ADAPTER_ADDRESSES_LH,
-    AdapterName: [*]u8,
-    FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_LH,
-    FirstAnycastAddress: *IP_ADAPTER_ANYCAST_ADDRESS_XP,
-    FirstMulticastAddress: *IP_ADAPTER_MULTICAST_ADDRESS_XP,
-    FirstDnsServerAddress: *IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
-    DnsSuffix: [*]u16,
-    Description: [*]u16,
-    FriendlyName: [*]u16,
+    Next: ?*IP_ADAPTER_ADDRESSES_LH,
+    AdapterName: ?[*]u8,
+    FirstUnicastAddress: ?*IP_ADAPTER_UNICAST_ADDRESS_LH,
+    FirstAnycastAddress: ?*IP_ADAPTER_ANYCAST_ADDRESS_XP,
+    FirstMulticastAddress: ?*IP_ADAPTER_MULTICAST_ADDRESS_XP,
+    FirstDnsServerAddress: ?*IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
+    DnsSuffix: ?[*]u16,
+    Description: ?[*]u16,
+    FriendlyName: ?[*]u16,
     PhysicalAddress: [8]u8,
     PhysicalAddressLength: u32,
     Anonymous2: extern union {
@@ -2162,11 +2162,11 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
     OperStatus: IF_OPER_STATUS,
     Ipv6IfIndex: u32,
     ZoneIndices: [16]u32,
-    FirstPrefix: *IP_ADAPTER_PREFIX_XP,
+    FirstPrefix: ?*IP_ADAPTER_PREFIX_XP,
     TransmitLinkSpeed: u64,
     ReceiveLinkSpeed: u64,
-    FirstWinsServerAddress: *IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
-    FirstGatewayAddress: *IP_ADAPTER_GATEWAY_ADDRESS_LH,
+    FirstWinsServerAddress: ?*IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
+    FirstGatewayAddress: ?*IP_ADAPTER_GATEWAY_ADDRESS_LH,
     Ipv4Metric: u32,
     Ipv6Metric: u32,
     Luid: NET_LUID_LH,
@@ -2179,7 +2179,7 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
     Dhcpv6ClientDuid: [130]u8,
     Dhcpv6ClientDuidLength: u32,
     Dhcpv6Iaid: u32,
-    FirstDnsSuffix: *IP_ADAPTER_DNS_SUFFIX,
+    FirstDnsSuffix: ?*IP_ADAPTER_DNS_SUFFIX,
 };
 
 pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
@@ -2190,15 +2190,15 @@ pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
             IfIndex: u32,
         },
     },
-    Next: *IP_ADAPTER_ADDRESSES_XP,
-    AdapterName: [*]u8,
-    FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_XP,
-    FirstAnycastAddress: *IP_ADAPTER_ANYCAST_ADDRESS_XP,
-    FirstMulticastAddress: *IP_ADAPTER_MULTICAST_ADDRESS_XP,
-    FirstDnsServerAddress: *IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
-    DnsSuffix: [*]u16,
-    Description: [*]u16,
-    FriendlyName: [*]u16,
+    Next: ?*IP_ADAPTER_ADDRESSES_XP,
+    AdapterName: ?[*]u8,
+    FirstUnicastAddress: ?*IP_ADAPTER_UNICAST_ADDRESS_XP,
+    FirstAnycastAddress: ?*IP_ADAPTER_ANYCAST_ADDRESS_XP,
+    FirstMulticastAddress: ?*IP_ADAPTER_MULTICAST_ADDRESS_XP,
+    FirstDnsServerAddress: ?*IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
+    DnsSuffix: ?[*]u16,
+    Description: ?[*]u16,
+    FriendlyName: ?[*]u16,
     PhysicalAddress: [8]u8,
     PhysicalAddressLength: u32,
     Flags: u32,
@@ -2207,20 +2207,20 @@ pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
     OperStatus: IF_OPER_STATUS,
     Ipv6IfIndex: u32,
     ZoneIndices: [16]u32,
-    FirstPrefix: *IP_ADAPTER_PREFIX_XP,
+    FirstPrefix: ?*IP_ADAPTER_PREFIX_XP,
 };
 
 pub const IP_PER_ADAPTER_INFO_W2KSP1 = extern struct {
     AutoconfigEnabled: u32,
     AutoconfigActive: u32,
-    CurrentDnsServer: *IP_ADDR_STRING,
+    CurrentDnsServer: ?*IP_ADDR_STRING,
     DnsServerList: IP_ADDR_STRING,
 };
 
 pub const FIXED_INFO_W2KSP1 = extern struct {
     HostName: [132]CHAR,
     DomainName: [132]CHAR,
-    CurrentDnsServer: *IP_ADDR_STRING,
+    CurrentDnsServer: ?*IP_ADDR_STRING,
     DnsServerList: IP_ADDR_STRING,
     NodeType: u32,
     ScopeId: [260]CHAR,
@@ -2499,7 +2499,7 @@ pub const INTERFACE_HARDWARE_CROSSTIMESTAMP = extern struct {
 };
 
 pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = fn(
-    CallerContext: *c_void,
+    CallerContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NET_ADDRESS_FORMAT = enum(i32) {
@@ -2540,10 +2540,10 @@ pub const PF_FILTER_DESCRIPTOR = extern struct {
     dwFilterFlags: u32,
     dwRule: u32,
     pfatType: PFADDRESSTYPE,
-    SrcAddr: *u8,
-    SrcMask: *u8,
-    DstAddr: *u8,
-    DstMask: *u8,
+    SrcAddr: ?*u8,
+    SrcMask: ?*u8,
+    DstAddr: ?*u8,
+    DstMask: ?*u8,
     dwProtocol: u32,
     fLateBound: u32,
     wSrcPort: u16,
@@ -2558,7 +2558,7 @@ pub const PF_FILTER_STATS = extern struct {
 };
 
 pub const PF_INTERFACE_STATS = extern struct {
-    pvDriverContext: *c_void,
+    pvDriverContext: ?*c_void,
     dwFlags: u32,
     dwInDrops: u32,
     dwOutDrops: u32,
@@ -2577,9 +2577,9 @@ pub const PF_INTERFACE_STATS = extern struct {
 };
 
 pub const PF_LATEBIND_INFO = extern struct {
-    SrcAddr: *u8,
-    DstAddr: *u8,
-    Mask: *u8,
+    SrcAddr: ?*u8,
+    DstAddr: ?*u8,
+    Mask: ?*u8,
 };
 
 pub const PFFRAMETYPE = enum(i32) {
@@ -2671,162 +2671,162 @@ pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GET_ADAPTERS_ADDRESSES_FLAGS.IN
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIfEntry2(
-    Row: *MIB_IF_ROW2,
+    Row: ?*MIB_IF_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "IPHLPAPI" fn GetIfEntry2Ex(
     Level: MIB_IF_ENTRY_LEVEL,
-    Row: *MIB_IF_ROW2,
+    Row: ?*MIB_IF_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIfTable2(
-    Table: **MIB_IF_TABLE2,
+    Table: ?*?*MIB_IF_TABLE2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIfTable2Ex(
     Level: MIB_IF_TABLE_LEVEL,
-    Table: **MIB_IF_TABLE2,
+    Table: ?*?*MIB_IF_TABLE2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIfStackTable(
-    Table: **MIB_IFSTACK_TABLE,
+    Table: ?*?*MIB_IFSTACK_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetInvertedIfStackTable(
-    Table: **MIB_INVERTEDIFSTACK_TABLE,
+    Table: ?*?*MIB_INVERTEDIFSTACK_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpInterfaceEntry(
-    Row: *MIB_IPINTERFACE_ROW,
+    Row: ?*MIB_IPINTERFACE_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpInterfaceTable(
     Family: u16,
-    Table: **MIB_IPINTERFACE_TABLE,
+    Table: ?*?*MIB_IPINTERFACE_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn InitializeIpInterfaceEntry(
-    Row: *MIB_IPINTERFACE_ROW,
+    Row: ?*MIB_IPINTERFACE_ROW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyIpInterfaceChange(
     Family: u16,
-    Callback: PIPINTERFACE_CHANGE_CALLBACK,
+    Callback: ?PIPINTERFACE_CHANGE_CALLBACK,
     CallerContext: ?*c_void,
     InitialNotification: u8,
-    NotificationHandle: *HANDLE,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetIpInterfaceEntry(
-    Row: *MIB_IPINTERFACE_ROW,
+    Row: ?*MIB_IPINTERFACE_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "IPHLPAPI" fn GetIpNetworkConnectionBandwidthEstimates(
     InterfaceIndex: u32,
     AddressFamily: u16,
-    BandwidthEstimates: *MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES,
+    BandwidthEstimates: ?*MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateUnicastIpAddressEntry(
-    Row: *const MIB_UNICASTIPADDRESS_ROW,
+    Row: ?*const MIB_UNICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn DeleteUnicastIpAddressEntry(
-    Row: *const MIB_UNICASTIPADDRESS_ROW,
+    Row: ?*const MIB_UNICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetUnicastIpAddressEntry(
-    Row: *MIB_UNICASTIPADDRESS_ROW,
+    Row: ?*MIB_UNICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetUnicastIpAddressTable(
     Family: u16,
-    Table: **MIB_UNICASTIPADDRESS_TABLE,
+    Table: ?*?*MIB_UNICASTIPADDRESS_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn InitializeUnicastIpAddressEntry(
-    Row: *MIB_UNICASTIPADDRESS_ROW,
+    Row: ?*MIB_UNICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyUnicastIpAddressChange(
     Family: u16,
-    Callback: PUNICAST_IPADDRESS_CHANGE_CALLBACK,
+    Callback: ?PUNICAST_IPADDRESS_CHANGE_CALLBACK,
     CallerContext: ?*c_void,
     InitialNotification: u8,
-    NotificationHandle: *HANDLE,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyStableUnicastIpAddressTable(
     Family: u16,
-    Table: **MIB_UNICASTIPADDRESS_TABLE,
-    CallerCallback: PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK,
-    CallerContext: *c_void,
-    NotificationHandle: *HANDLE,
+    Table: ?*?*MIB_UNICASTIPADDRESS_TABLE,
+    CallerCallback: ?PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK,
+    CallerContext: ?*c_void,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetUnicastIpAddressEntry(
-    Row: *const MIB_UNICASTIPADDRESS_ROW,
+    Row: ?*const MIB_UNICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateAnycastIpAddressEntry(
-    Row: *const MIB_ANYCASTIPADDRESS_ROW,
+    Row: ?*const MIB_ANYCASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn DeleteAnycastIpAddressEntry(
-    Row: *const MIB_ANYCASTIPADDRESS_ROW,
+    Row: ?*const MIB_ANYCASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetAnycastIpAddressEntry(
-    Row: *MIB_ANYCASTIPADDRESS_ROW,
+    Row: ?*MIB_ANYCASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetAnycastIpAddressTable(
     Family: u16,
-    Table: **MIB_ANYCASTIPADDRESS_TABLE,
+    Table: ?*?*MIB_ANYCASTIPADDRESS_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetMulticastIpAddressEntry(
-    Row: *MIB_MULTICASTIPADDRESS_ROW,
+    Row: ?*MIB_MULTICASTIPADDRESS_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetMulticastIpAddressTable(
     Family: u16,
-    Table: **MIB_MULTICASTIPADDRESS_TABLE,
+    Table: ?*?*MIB_MULTICASTIPADDRESS_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateIpForwardEntry2(
-    Row: *const MIB_IPFORWARD_ROW2,
+    Row: ?*const MIB_IPFORWARD_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn DeleteIpForwardEntry2(
-    Row: *const MIB_IPFORWARD_ROW2,
+    Row: ?*const MIB_IPFORWARD_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2834,40 +2834,40 @@ pub extern "IPHLPAPI" fn GetBestRoute2(
     InterfaceLuid: ?*NET_LUID_LH,
     InterfaceIndex: u32,
     SourceAddress: ?*const SOCKADDR_INET,
-    DestinationAddress: *const SOCKADDR_INET,
+    DestinationAddress: ?*const SOCKADDR_INET,
     AddressSortOptions: u32,
-    BestRoute: *MIB_IPFORWARD_ROW2,
-    BestSourceAddress: *SOCKADDR_INET,
+    BestRoute: ?*MIB_IPFORWARD_ROW2,
+    BestSourceAddress: ?*SOCKADDR_INET,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpForwardEntry2(
-    Row: *MIB_IPFORWARD_ROW2,
+    Row: ?*MIB_IPFORWARD_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpForwardTable2(
     Family: u16,
-    Table: **MIB_IPFORWARD_TABLE2,
+    Table: ?*?*MIB_IPFORWARD_TABLE2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn InitializeIpForwardEntry(
-    Row: *MIB_IPFORWARD_ROW2,
+    Row: ?*MIB_IPFORWARD_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyRouteChange2(
     AddressFamily: u16,
-    Callback: PIPFORWARD_CHANGE_CALLBACK,
-    CallerContext: *c_void,
+    Callback: ?PIPFORWARD_CHANGE_CALLBACK,
+    CallerContext: ?*c_void,
     InitialNotification: u8,
-    NotificationHandle: *HANDLE,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetIpForwardEntry2(
-    Route: *const MIB_IPFORWARD_ROW2,
+    Route: ?*const MIB_IPFORWARD_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2877,23 +2877,23 @@ pub extern "IPHLPAPI" fn FlushIpPathTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpPathEntry(
-    Row: *MIB_IPPATH_ROW,
+    Row: ?*MIB_IPPATH_ROW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpPathTable(
     Family: u16,
-    Table: **MIB_IPPATH_TABLE,
+    Table: ?*?*MIB_IPPATH_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateIpNetEntry2(
-    Row: *const MIB_IPNET_ROW2,
+    Row: ?*const MIB_IPNET_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn DeleteIpNetEntry2(
-    Row: *const MIB_IPNET_ROW2,
+    Row: ?*const MIB_IPNET_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2904,143 +2904,143 @@ pub extern "IPHLPAPI" fn FlushIpNetTable2(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpNetEntry2(
-    Row: *MIB_IPNET_ROW2,
+    Row: ?*MIB_IPNET_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetIpNetTable2(
     Family: u16,
-    Table: **MIB_IPNET_TABLE2,
+    Table: ?*?*MIB_IPNET_TABLE2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ResolveIpNetEntry2(
-    Row: *MIB_IPNET_ROW2,
+    Row: ?*MIB_IPNET_ROW2,
     SourceAddress: ?*const SOCKADDR_INET,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetIpNetEntry2(
-    Row: *MIB_IPNET_ROW2,
+    Row: ?*MIB_IPNET_ROW2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyTeredoPortChange(
-    Callback: PTEREDO_PORT_CHANGE_CALLBACK,
-    CallerContext: *c_void,
+    Callback: ?PTEREDO_PORT_CHANGE_CALLBACK,
+    CallerContext: ?*c_void,
     InitialNotification: u8,
-    NotificationHandle: *HANDLE,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetTeredoPort(
-    Port: *u16,
+    Port: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CancelMibChangeNotify2(
-    NotificationHandle: HANDLE,
+    NotificationHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn FreeMibTable(
-    Memory: *c_void,
+    Memory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateSortedAddressPairs(
     SourceAddressList: ?*const SOCKADDR_IN6,
     SourceAddressCount: u32,
-    DestinationAddressList: *const SOCKADDR_IN6,
+    DestinationAddressList: ?*const SOCKADDR_IN6,
     DestinationAddressCount: u32,
     AddressSortOptions: u32,
-    SortedAddressPairList: **SOCKADDR_IN6_PAIR,
-    SortedAddressPairCount: *u32,
+    SortedAddressPairList: ?*?*SOCKADDR_IN6_PAIR,
+    SortedAddressPairCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn ConvertCompartmentGuidToId(
-    CompartmentGuid: *const Guid,
-    CompartmentId: *u32,
+    CompartmentGuid: ?*const Guid,
+    CompartmentId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn ConvertCompartmentIdToGuid(
     CompartmentId: u32,
-    CompartmentGuid: *Guid,
+    CompartmentGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceNameToLuidA(
-    InterfaceName: [*:0]const u8,
-    InterfaceLuid: *NET_LUID_LH,
+    InterfaceName: ?[*:0]const u8,
+    InterfaceLuid: ?*NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceNameToLuidW(
-    InterfaceName: [*:0]const u16,
-    InterfaceLuid: *NET_LUID_LH,
+    InterfaceName: ?[*:0]const u16,
+    InterfaceLuid: ?*NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceLuidToNameA(
-    InterfaceLuid: *const NET_LUID_LH,
+    InterfaceLuid: ?*const NET_LUID_LH,
     InterfaceName: [*:0]u8,
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceLuidToNameW(
-    InterfaceLuid: *const NET_LUID_LH,
+    InterfaceLuid: ?*const NET_LUID_LH,
     InterfaceName: [*:0]u16,
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceLuidToIndex(
-    InterfaceLuid: *const NET_LUID_LH,
-    InterfaceIndex: *u32,
+    InterfaceLuid: ?*const NET_LUID_LH,
+    InterfaceIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceIndexToLuid(
     InterfaceIndex: u32,
-    InterfaceLuid: *NET_LUID_LH,
+    InterfaceLuid: ?*NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceLuidToAlias(
-    InterfaceLuid: *const NET_LUID_LH,
+    InterfaceLuid: ?*const NET_LUID_LH,
     InterfaceAlias: [*:0]u16,
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceAliasToLuid(
-    InterfaceAlias: [*:0]const u16,
-    InterfaceLuid: *NET_LUID_LH,
+    InterfaceAlias: ?[*:0]const u16,
+    InterfaceLuid: ?*NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceLuidToGuid(
-    InterfaceLuid: *const NET_LUID_LH,
-    InterfaceGuid: *Guid,
+    InterfaceLuid: ?*const NET_LUID_LH,
+    InterfaceGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceGuidToLuid(
-    InterfaceGuid: *const Guid,
-    InterfaceLuid: *NET_LUID_LH,
+    InterfaceGuid: ?*const Guid,
+    InterfaceLuid: ?*NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn if_nametoindex(
-    InterfaceName: [*:0]const u8,
+    InterfaceName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn if_indextoname(
     InterfaceIndex: u32,
     InterfaceName: *[256]u8,
-) callconv(@import("std").os.windows.WINAPI) PSTR;
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 pub extern "IPHLPAPI" fn GetCurrentThreadCompartmentId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3050,8 +3050,8 @@ pub extern "IPHLPAPI" fn SetCurrentThreadCompartmentId(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn GetCurrentThreadCompartmentScope(
-    CompartmentScope: *u32,
-    CompartmentId: *u32,
+    CompartmentScope: ?*u32,
+    CompartmentId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "IPHLPAPI" fn SetCurrentThreadCompartmentScope(
@@ -3059,11 +3059,11 @@ pub extern "IPHLPAPI" fn SetCurrentThreadCompartmentScope(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn GetJobCompartmentId(
-    JobHandle: HANDLE,
+    JobHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn SetJobCompartmentId(
-    JobHandle: HANDLE,
+    JobHandle: ?HANDLE,
     CompartmentId: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -3081,74 +3081,74 @@ pub extern "IPHLPAPI" fn GetDefaultCompartmentId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn GetNetworkInformation(
-    NetworkGuid: *const Guid,
-    CompartmentId: *u32,
-    SiteId: *u32,
+    NetworkGuid: ?*const Guid,
+    CompartmentId: ?*u32,
+    SiteId: ?*u32,
     NetworkName: [*]u16,
     Length: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn SetNetworkInformation(
-    NetworkGuid: *const Guid,
+    NetworkGuid: ?*const Guid,
     CompartmentId: u32,
-    NetworkName: [*:0]const u16,
+    NetworkName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertLengthToIpv4Mask(
     MaskLength: u32,
-    Mask: *u32,
+    Mask: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertIpv4MaskToLength(
     Mask: u32,
-    MaskLength: *u8,
+    MaskLength: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn GetDnsSettings(
-    Settings: *DNS_SETTINGS,
+    Settings: ?*DNS_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn FreeDnsSettings(
-    Settings: *DNS_SETTINGS,
+    Settings: ?*DNS_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "IPHLPAPI" fn SetDnsSettings(
-    Settings: *const DNS_SETTINGS,
+    Settings: ?*const DNS_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn GetInterfaceDnsSettings(
     Interface: Guid,
-    Settings: *DNS_INTERFACE_SETTINGS,
+    Settings: ?*DNS_INTERFACE_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "IPHLPAPI" fn FreeInterfaceDnsSettings(
-    Settings: *DNS_INTERFACE_SETTINGS,
+    Settings: ?*DNS_INTERFACE_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "IPHLPAPI" fn SetInterfaceDnsSettings(
     Interface: Guid,
-    Settings: *const DNS_INTERFACE_SETTINGS,
+    Settings: ?*const DNS_INTERFACE_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "IPHLPAPI" fn GetNetworkConnectivityHint(
-    ConnectivityHint: *NL_NETWORK_CONNECTIVITY_HINT,
+    ConnectivityHint: ?*NL_NETWORK_CONNECTIVITY_HINT,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "IPHLPAPI" fn GetNetworkConnectivityHintForInterface(
     InterfaceIndex: u32,
-    ConnectivityHint: *NL_NETWORK_CONNECTIVITY_HINT,
+    ConnectivityHint: ?*NL_NETWORK_CONNECTIVITY_HINT,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "IPHLPAPI" fn NotifyNetworkConnectivityHintChange(
-    Callback: PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK,
+    Callback: ?PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK,
     CallerContext: ?*c_void,
     InitialNotification: u8,
-    NotificationHandle: *HANDLE,
+    NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3161,72 +3161,72 @@ pub extern "IPHLPAPI" fn Icmp6CreateFile(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpCloseHandle(
-    IcmpHandle: HANDLE,
+    IcmpHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpSendEcho(
-    IcmpHandle: HANDLE,
+    IcmpHandle: ?HANDLE,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 3?
-    RequestData: *c_void,
+    RequestData: ?*c_void,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 6?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpSendEcho2(
-    IcmpHandle: HANDLE,
+    IcmpHandle: ?HANDLE,
     Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 6?
-    RequestData: *c_void,
+    RequestData: ?*c_void,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 9?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn IcmpSendEcho2Ex(
-    IcmpHandle: HANDLE,
+    IcmpHandle: ?HANDLE,
     Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
     SourceAddress: u32,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 7?
-    RequestData: *c_void,
+    RequestData: ?*c_void,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 10?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn Icmp6SendEcho2(
-    IcmpHandle: HANDLE,
+    IcmpHandle: ?HANDLE,
     Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
-    SourceAddress: *SOCKADDR_IN6,
-    DestinationAddress: *SOCKADDR_IN6,
+    SourceAddress: ?*SOCKADDR_IN6,
+    DestinationAddress: ?*SOCKADDR_IN6,
     // TODO: what to do with BytesParamIndex 7?
-    RequestData: *c_void,
+    RequestData: ?*c_void,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 10?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3234,32 +3234,32 @@ pub extern "IPHLPAPI" fn Icmp6SendEcho2(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpParseReplies(
     // TODO: what to do with BytesParamIndex 1?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn Icmp6ParseReplies(
     // TODO: what to do with BytesParamIndex 1?
-    ReplyBuffer: *c_void,
+    ReplyBuffer: ?*c_void,
     ReplySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetNumberOfInterfaces(
-    pdwNumIf: *u32,
+    pdwNumIf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetIfEntry(
-    pIfRow: *MIB_IFROW,
+    pIfRow: ?*MIB_IFROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetIfTable(
     // TODO: what to do with BytesParamIndex 1?
     pIfTable: ?*MIB_IFTABLE,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
     bOrder: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3267,7 +3267,7 @@ pub extern "IPHLPAPI" fn GetIfTable(
 pub extern "IPHLPAPI" fn GetIpAddrTable(
     // TODO: what to do with BytesParamIndex 1?
     pIpAddrTable: ?*MIB_IPADDRTABLE,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
     bOrder: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3275,7 +3275,7 @@ pub extern "IPHLPAPI" fn GetIpAddrTable(
 pub extern "IPHLPAPI" fn GetIpNetTable(
     // TODO: what to do with BytesParamIndex 1?
     IpNetTable: ?*MIB_IPNETTABLE,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3283,7 +3283,7 @@ pub extern "IPHLPAPI" fn GetIpNetTable(
 pub extern "IPHLPAPI" fn GetIpForwardTable(
     // TODO: what to do with BytesParamIndex 1?
     pIpForwardTable: ?*MIB_IPFORWARDTABLE,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
     bOrder: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3291,7 +3291,7 @@ pub extern "IPHLPAPI" fn GetIpForwardTable(
 pub extern "IPHLPAPI" fn GetTcpTable(
     // TODO: what to do with BytesParamIndex 1?
     TcpTable: ?*MIB_TCPTABLE,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3299,7 +3299,7 @@ pub extern "IPHLPAPI" fn GetTcpTable(
 pub extern "IPHLPAPI" fn GetExtendedTcpTable(
     // TODO: what to do with BytesParamIndex 1?
     pTcpTable: ?*c_void,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
     bOrder: BOOL,
     ulAf: u32,
     TableClass: TCP_TABLE_CLASS,
@@ -3308,18 +3308,18 @@ pub extern "IPHLPAPI" fn GetExtendedTcpTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetOwnerModuleFromTcpEntry(
-    pTcpEntry: *MIB_TCPROW_OWNER_MODULE,
+    pTcpEntry: ?*MIB_TCPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
-    pdwSize: *u32,
+    pBuffer: ?*c_void,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetUdpTable(
     // TODO: what to do with BytesParamIndex 1?
     UdpTable: ?*MIB_UDPTABLE,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3327,7 +3327,7 @@ pub extern "IPHLPAPI" fn GetUdpTable(
 pub extern "IPHLPAPI" fn GetExtendedUdpTable(
     // TODO: what to do with BytesParamIndex 1?
     pUdpTable: ?*c_void,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
     bOrder: BOOL,
     ulAf: u32,
     TableClass: UDP_TABLE_CLASS,
@@ -3336,40 +3336,40 @@ pub extern "IPHLPAPI" fn GetExtendedUdpTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetOwnerModuleFromUdpEntry(
-    pUdpEntry: *MIB_UDPROW_OWNER_MODULE,
+    pUdpEntry: ?*MIB_UDPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
-    pdwSize: *u32,
+    pBuffer: ?*c_void,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetTcpTable2(
     // TODO: what to do with BytesParamIndex 1?
     TcpTable: ?*MIB_TCPTABLE2,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetTcp6Table(
     // TODO: what to do with BytesParamIndex 1?
-    TcpTable: *MIB_TCP6TABLE,
-    SizePointer: *u32,
+    TcpTable: ?*MIB_TCP6TABLE,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetTcp6Table2(
     // TODO: what to do with BytesParamIndex 1?
-    TcpTable: *MIB_TCP6TABLE2,
-    SizePointer: *u32,
+    TcpTable: ?*MIB_TCP6TABLE2,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetPerTcpConnectionEStats(
-    Row: *MIB_TCPROW_LH,
+    Row: ?*MIB_TCPROW_LH,
     EstatsType: TCP_ESTATS_TYPE,
     // TODO: what to do with BytesParamIndex 4?
     Rw: ?*u8,
@@ -3387,10 +3387,10 @@ pub extern "IPHLPAPI" fn GetPerTcpConnectionEStats(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetPerTcpConnectionEStats(
-    Row: *MIB_TCPROW_LH,
+    Row: ?*MIB_TCPROW_LH,
     EstatsType: TCP_ESTATS_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    Rw: *u8,
+    Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,
     Offset: u32,
@@ -3398,7 +3398,7 @@ pub extern "IPHLPAPI" fn SetPerTcpConnectionEStats(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetPerTcp6ConnectionEStats(
-    Row: *MIB_TCP6ROW,
+    Row: ?*MIB_TCP6ROW,
     EstatsType: TCP_ESTATS_TYPE,
     // TODO: what to do with BytesParamIndex 4?
     Rw: ?*u8,
@@ -3416,10 +3416,10 @@ pub extern "IPHLPAPI" fn GetPerTcp6ConnectionEStats(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetPerTcp6ConnectionEStats(
-    Row: *MIB_TCP6ROW,
+    Row: ?*MIB_TCP6ROW,
     EstatsType: TCP_ESTATS_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    Rw: *u8,
+    Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,
     Offset: u32,
@@ -3427,124 +3427,124 @@ pub extern "IPHLPAPI" fn SetPerTcp6ConnectionEStats(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetOwnerModuleFromTcp6Entry(
-    pTcpEntry: *MIB_TCP6ROW_OWNER_MODULE,
+    pTcpEntry: ?*MIB_TCP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
-    pdwSize: *u32,
+    pBuffer: ?*c_void,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetUdp6Table(
     // TODO: what to do with BytesParamIndex 1?
     Udp6Table: ?*MIB_UDP6TABLE,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
     Order: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetOwnerModuleFromUdp6Entry(
-    pUdpEntry: *MIB_UDP6ROW_OWNER_MODULE,
+    pUdpEntry: ?*MIB_UDP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
-    pdwSize: *u32,
+    pBuffer: ?*c_void,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn GetOwnerModuleFromPidAndInfo(
     ulPid: u32,
-    pInfo: *u64,
+    pInfo: ?*u64,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 4?
-    pBuffer: *c_void,
-    pdwSize: *u32,
+    pBuffer: ?*c_void,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetIpStatistics(
-    Statistics: *MIB_IPSTATS_LH,
+    Statistics: ?*MIB_IPSTATS_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetIcmpStatistics(
-    Statistics: *MIB_ICMP,
+    Statistics: ?*MIB_ICMP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetTcpStatistics(
-    Statistics: *MIB_TCPSTATS_LH,
+    Statistics: ?*MIB_TCPSTATS_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetUdpStatistics(
-    Stats: *MIB_UDPSTATS,
+    Stats: ?*MIB_UDPSTATS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn SetIpStatisticsEx(
-    Statistics: *MIB_IPSTATS_LH,
+    Statistics: ?*MIB_IPSTATS_LH,
     Family: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetIpStatisticsEx(
-    Statistics: *MIB_IPSTATS_LH,
+    Statistics: ?*MIB_IPSTATS_LH,
     Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetIcmpStatisticsEx(
-    Statistics: *MIB_ICMP_EX_XPSP1,
+    Statistics: ?*MIB_ICMP_EX_XPSP1,
     Family: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetTcpStatisticsEx(
-    Statistics: *MIB_TCPSTATS_LH,
+    Statistics: ?*MIB_TCPSTATS_LH,
     Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetUdpStatisticsEx(
-    Statistics: *MIB_UDPSTATS,
+    Statistics: ?*MIB_UDPSTATS,
     Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "IPHLPAPI" fn GetTcpStatisticsEx2(
-    Statistics: *MIB_TCPSTATS2,
+    Statistics: ?*MIB_TCPSTATS2,
     Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "IPHLPAPI" fn GetUdpStatisticsEx2(
-    Statistics: *MIB_UDPSTATS2,
+    Statistics: ?*MIB_UDPSTATS2,
     Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn SetIfEntry(
-    pIfRow: *MIB_IFROW,
+    pIfRow: ?*MIB_IFROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn CreateIpForwardEntry(
-    pRoute: *MIB_IPFORWARDROW,
+    pRoute: ?*MIB_IPFORWARDROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn SetIpForwardEntry(
-    pRoute: *MIB_IPFORWARDROW,
+    pRoute: ?*MIB_IPFORWARDROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn DeleteIpForwardEntry(
-    pRoute: *MIB_IPFORWARDROW,
+    pRoute: ?*MIB_IPFORWARDROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn SetIpStatistics(
-    pIpStats: *MIB_IPSTATS_LH,
+    pIpStats: ?*MIB_IPSTATS_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3554,17 +3554,17 @@ pub extern "IPHLPAPI" fn SetIpTTL(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn CreateIpNetEntry(
-    pArpEntry: *MIB_IPNETROW_LH,
+    pArpEntry: ?*MIB_IPNETROW_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn SetIpNetEntry(
-    pArpEntry: *MIB_IPNETROW_LH,
+    pArpEntry: ?*MIB_IPNETROW_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn DeleteIpNetEntry(
-    pArpEntry: *MIB_IPNETROW_LH,
+    pArpEntry: ?*MIB_IPNETROW_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3588,71 +3588,71 @@ pub extern "IPHLPAPI" fn DeleteProxyArpEntry(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn SetTcpEntry(
-    pTcpRow: *MIB_TCPROW_LH,
+    pTcpRow: ?*MIB_TCPROW_LH,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetInterfaceInfo(
     // TODO: what to do with BytesParamIndex 1?
     pIfTable: ?*IP_INTERFACE_INFO,
-    dwOutBufLen: *u32,
+    dwOutBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn GetUniDirectionalAdapterInfo(
     // TODO: what to do with BytesParamIndex 1?
     pIPIfInfo: ?*IP_UNIDIRECTIONAL_ADAPTER_ADDRESS,
-    dwOutBufLen: *u32,
+    dwOutBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn NhpAllocateAndGetInterfaceInfoFromStack(
-    ppTable: **ip_interface_name_info_w2ksp1,
-    pdwCount: *u32,
+    ppTable: ?*?*ip_interface_name_info_w2ksp1,
+    pdwCount: ?*u32,
     bOrder: BOOL,
-    hHeap: HANDLE,
+    hHeap: ?HANDLE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetBestInterface(
     dwDestAddr: u32,
-    pdwBestIfIndex: *u32,
+    pdwBestIfIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetBestInterfaceEx(
-    pDestAddr: *SOCKADDR,
-    pdwBestIfIndex: *u32,
+    pDestAddr: ?*SOCKADDR,
+    pdwBestIfIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetBestRoute(
     dwDestAddr: u32,
     dwSourceAddr: u32,
-    pBestRoute: *MIB_IPFORWARDROW,
+    pBestRoute: ?*MIB_IPFORWARDROW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn NotifyAddrChange(
-    Handle: *HANDLE,
-    overlapped: *OVERLAPPED,
+    Handle: ?*?HANDLE,
+    overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn NotifyRouteChange(
-    Handle: *HANDLE,
-    overlapped: *OVERLAPPED,
+    Handle: ?*?HANDLE,
+    overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn CancelIPChangeNotify(
-    notifyOverlapped: *OVERLAPPED,
+    notifyOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetAdapterIndex(
-    AdapterName: PWSTR,
-    IfIndex: *u32,
+    AdapterName: ?PWSTR,
+    IfIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3660,8 +3660,8 @@ pub extern "IPHLPAPI" fn AddIPAddress(
     Address: u32,
     IpMask: u32,
     IfIndex: u32,
-    NTEContext: *u32,
-    NTEInstance: *u32,
+    NTEContext: ?*u32,
+    NTEInstance: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3673,28 +3673,28 @@ pub extern "IPHLPAPI" fn DeleteIPAddress(
 pub extern "IPHLPAPI" fn GetNetworkParams(
     // TODO: what to do with BytesParamIndex 1?
     pFixedInfo: ?*FIXED_INFO_W2KSP1,
-    pOutBufLen: *u32,
+    pOutBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetAdaptersInfo(
     // TODO: what to do with BytesParamIndex 1?
     AdapterInfo: ?*IP_ADAPTER_INFO,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetAdapterOrderMap(
-) callconv(@import("std").os.windows.WINAPI) *IP_ADAPTER_ORDER_MAP;
+) callconv(@import("std").os.windows.WINAPI) ?*IP_ADAPTER_ORDER_MAP;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetAdaptersAddresses(
     Family: ADDRESS_FAMILY,
     Flags: GET_ADAPTERS_ADDRESSES_FLAGS,
-    Reserved: *c_void,
+    Reserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 4?
     AdapterAddresses: ?*IP_ADAPTER_ADDRESSES_LH,
-    SizePointer: *u32,
+    SizePointer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3702,42 +3702,42 @@ pub extern "IPHLPAPI" fn GetPerAdapterInfo(
     IfIndex: u32,
     // TODO: what to do with BytesParamIndex 2?
     pPerAdapterInfo: ?*IP_PER_ADAPTER_INFO_W2KSP1,
-    pOutBufLen: *u32,
+    pOutBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn GetInterfaceCurrentTimestampCapabilities(
-    InterfaceLuid: *const NET_LUID_LH,
-    TimestampCapabilites: *INTERFACE_TIMESTAMP_CAPABILITIES,
+    InterfaceLuid: ?*const NET_LUID_LH,
+    TimestampCapabilites: ?*INTERFACE_TIMESTAMP_CAPABILITIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn GetInterfaceHardwareTimestampCapabilities(
-    InterfaceLuid: *const NET_LUID_LH,
-    TimestampCapabilites: *INTERFACE_TIMESTAMP_CAPABILITIES,
+    InterfaceLuid: ?*const NET_LUID_LH,
+    TimestampCapabilites: ?*INTERFACE_TIMESTAMP_CAPABILITIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn CaptureInterfaceHardwareCrossTimestamp(
-    InterfaceLuid: *const NET_LUID_LH,
-    CrossTimestamp: *INTERFACE_HARDWARE_CROSSTIMESTAMP,
+    InterfaceLuid: ?*const NET_LUID_LH,
+    CrossTimestamp: ?*INTERFACE_HARDWARE_CROSSTIMESTAMP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn NotifyIfTimestampConfigChange(
     CallerContext: ?*c_void,
-    Callback: PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK,
-    NotificationHandle: *HIFTIMESTAMPCHANGE,
+    Callback: ?PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK,
+    NotificationHandle: ?*?HIFTIMESTAMPCHANGE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn CancelIfTimestampConfigChange(
-    NotificationHandle: HIFTIMESTAMPCHANGE,
+    NotificationHandle: ?HIFTIMESTAMPCHANGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IpReleaseAddress(
-    AdapterInfo: *IP_ADAPTER_INDEX_MAP,
+    AdapterInfo: ?*IP_ADAPTER_INDEX_MAP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IpRenewAddress(
-    AdapterInfo: *IP_ADAPTER_INDEX_MAP,
+    AdapterInfo: ?*IP_ADAPTER_INDEX_MAP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3745,16 +3745,16 @@ pub extern "IPHLPAPI" fn SendARP(
     DestIP: u32,
     SrcIP: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pMacAddr: *c_void,
-    PhyAddrLen: *u32,
+    pMacAddr: ?*c_void,
+    PhyAddrLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn GetRTTAndHopCount(
     DestIpAddress: u32,
-    HopCount: *u32,
+    HopCount: ?*u32,
     MaxHops: u32,
-    RTT: *u32,
+    RTT: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3764,25 +3764,25 @@ pub extern "IPHLPAPI" fn GetFriendlyIfIndex(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn EnableRouter(
-    pHandle: *HANDLE,
-    pOverlapped: *OVERLAPPED,
+    pHandle: ?*?HANDLE,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn UnenableRouter(
-    pOverlapped: *OVERLAPPED,
+    pOverlapped: ?*OVERLAPPED,
     lpdwEnableCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn DisableMediaSense(
-    pHandle: *HANDLE,
-    pOverLapped: *OVERLAPPED,
+    pHandle: ?*?HANDLE,
+    pOverLapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn RestoreMediaSense(
-    pOverlapped: *OVERLAPPED,
+    pOverlapped: ?*OVERLAPPED,
     lpdwEnableCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3790,29 +3790,29 @@ pub extern "IPHLPAPI" fn RestoreMediaSense(
 pub extern "IPHLPAPI" fn GetIpErrorString(
     ErrorCode: u32,
     Buffer: ?PWSTR,
-    Size: *u32,
+    Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn ResolveNeighbor(
-    NetworkAddress: *SOCKADDR,
+    NetworkAddress: ?*SOCKADDR,
     // TODO: what to do with BytesParamIndex 2?
-    PhysicalAddress: *c_void,
-    PhysicalAddressLength: *u32,
+    PhysicalAddress: ?*c_void,
+    PhysicalAddressLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreatePersistentTcpPortReservation(
     StartPort: u16,
     NumberOfPorts: u16,
-    Token: *u64,
+    Token: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreatePersistentUdpPortReservation(
     StartPort: u16,
     NumberOfPorts: u16,
-    Token: *u64,
+    Token: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3831,14 +3831,14 @@ pub extern "IPHLPAPI" fn DeletePersistentUdpPortReservation(
 pub extern "IPHLPAPI" fn LookupPersistentTcpPortReservation(
     StartPort: u16,
     NumberOfPorts: u16,
-    Token: *u64,
+    Token: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn LookupPersistentUdpPortReservation(
     StartPort: u16,
     NumberOfPorts: u16,
-    Token: *u64,
+    Token: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfCreateInterface(
@@ -3847,98 +3847,98 @@ pub extern "IPHLPAPI" fn PfCreateInterface(
     outAction: PFFORWARD_ACTION,
     bUseLog: BOOL,
     bMustBeUnique: BOOL,
-    ppInterface: **c_void,
+    ppInterface: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfDeleteInterface(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfAddFiltersToInterface(
-    ih: *c_void,
+    ih: ?*c_void,
     cInFilters: u32,
-    pfiltIn: *PF_FILTER_DESCRIPTOR,
+    pfiltIn: ?*PF_FILTER_DESCRIPTOR,
     cOutFilters: u32,
-    pfiltOut: *PF_FILTER_DESCRIPTOR,
-    pfHandle: **c_void,
+    pfiltOut: ?*PF_FILTER_DESCRIPTOR,
+    pfHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveFiltersFromInterface(
-    ih: *c_void,
+    ih: ?*c_void,
     cInFilters: u32,
-    pfiltIn: *PF_FILTER_DESCRIPTOR,
+    pfiltIn: ?*PF_FILTER_DESCRIPTOR,
     cOutFilters: u32,
-    pfiltOut: *PF_FILTER_DESCRIPTOR,
+    pfiltOut: ?*PF_FILTER_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveFilterHandles(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
     cFilters: u32,
-    pvHandles: **c_void,
+    pvHandles: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfUnBindInterface(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfBindInterfaceToIndex(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
     dwIndex: u32,
     pfatLinkType: PFADDRESSTYPE,
-    LinkIPAddress: *u8,
+    LinkIPAddress: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfBindInterfaceToIPAddress(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
     pfatType: PFADDRESSTYPE,
-    IPAddress: *u8,
+    IPAddress: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRebindFilters(
-    pInterface: *c_void,
-    pLateBindInfo: *PF_LATEBIND_INFO,
+    pInterface: ?*c_void,
+    pLateBindInfo: ?*PF_LATEBIND_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfAddGlobalFilterToInterface(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
     gfFilter: GLOBAL_FILTER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveGlobalFilterFromInterface(
-    pInterface: *c_void,
+    pInterface: ?*c_void,
     gfFilter: GLOBAL_FILTER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfMakeLog(
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfSetLogBuffer(
-    pbBuffer: *u8,
+    pbBuffer: ?*u8,
     dwSize: u32,
     dwThreshold: u32,
     dwEntries: u32,
-    pdwLoggedEntries: *u32,
-    pdwLostEntries: *u32,
-    pdwSizeUsed: *u32,
+    pdwLoggedEntries: ?*u32,
+    pdwLostEntries: ?*u32,
+    pdwSizeUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfDeleteLog(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfGetInterfaceStatistics(
-    pInterface: *c_void,
-    ppfStats: *PF_INTERFACE_STATS,
-    pdwBufferSize: *u32,
+    pInterface: ?*c_void,
+    ppfStats: ?*PF_INTERFACE_STATS,
+    pdwBufferSize: ?*u32,
     fResetCounters: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfTestPacket(
-    pInInterface: *c_void,
-    pOutInterface: *c_void,
+    pInInterface: ?*c_void,
+    pOutInterface: ?*c_void,
     cBytes: u32,
-    pbPacket: *u8,
-    ppAction: *PFFORWARD_ACTION,
+    pbPacket: ?*u8,
+    ppAction: ?*PFFORWARD_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

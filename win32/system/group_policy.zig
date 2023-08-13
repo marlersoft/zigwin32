@@ -354,118 +354,118 @@ pub const IGPM = extern struct {
         base: IDispatch.VTable,
         GetDomain: fn(
             self: *const IGPM,
-            bstrDomain: BSTR,
-            bstrDomainController: BSTR,
+            bstrDomain: ?BSTR,
+            bstrDomainController: ?BSTR,
             lDCFlags: i32,
-            pIGPMDomain: **IGPMDomain,
+            pIGPMDomain: ?*?*IGPMDomain,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBackupDir: fn(
             self: *const IGPM,
-            bstrBackupDir: BSTR,
-            pIGPMBackupDir: **IGPMBackupDir,
+            bstrBackupDir: ?BSTR,
+            pIGPMBackupDir: ?*?*IGPMBackupDir,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSitesContainer: fn(
             self: *const IGPM,
-            bstrForest: BSTR,
-            bstrDomain: BSTR,
-            bstrDomainController: BSTR,
+            bstrForest: ?BSTR,
+            bstrDomain: ?BSTR,
+            bstrDomainController: ?BSTR,
             lDCFlags: i32,
-            ppIGPMSitesContainer: **IGPMSitesContainer,
+            ppIGPMSitesContainer: ?*?*IGPMSitesContainer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRSOP: fn(
             self: *const IGPM,
             gpmRSoPMode: GPMRSOPMode,
-            bstrNamespace: BSTR,
+            bstrNamespace: ?BSTR,
             lFlags: i32,
-            ppIGPMRSOP: **IGPMRSOP,
+            ppIGPMRSOP: ?*?*IGPMRSOP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePermission: fn(
             self: *const IGPM,
-            bstrTrustee: BSTR,
+            bstrTrustee: ?BSTR,
             perm: GPMPermissionType,
             bInheritable: i16,
-            ppPerm: **IGPMPermission,
+            ppPerm: ?*?*IGPMPermission,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSearchCriteria: fn(
             self: *const IGPM,
-            ppIGPMSearchCriteria: **IGPMSearchCriteria,
+            ppIGPMSearchCriteria: ?*?*IGPMSearchCriteria,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTrustee: fn(
             self: *const IGPM,
-            bstrTrustee: BSTR,
-            ppIGPMTrustee: **IGPMTrustee,
+            bstrTrustee: ?BSTR,
+            ppIGPMTrustee: ?*?*IGPMTrustee,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClientSideExtensions: fn(
             self: *const IGPM,
-            ppIGPMCSECollection: **IGPMCSECollection,
+            ppIGPMCSECollection: ?*?*IGPMCSECollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConstants: fn(
             self: *const IGPM,
-            ppIGPMConstants: **IGPMConstants,
+            ppIGPMConstants: ?*?*IGPMConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMigrationTable: fn(
             self: *const IGPM,
-            bstrMigrationTablePath: BSTR,
-            ppMigrationTable: **IGPMMigrationTable,
+            bstrMigrationTablePath: ?BSTR,
+            ppMigrationTable: ?*?*IGPMMigrationTable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateMigrationTable: fn(
             self: *const IGPM,
-            ppMigrationTable: **IGPMMigrationTable,
+            ppMigrationTable: ?*?*IGPMMigrationTable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeReporting: fn(
             self: *const IGPM,
-            bstrAdmPath: BSTR,
+            bstrAdmPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetDomain(self: *const T, bstrDomain: BSTR, bstrDomainController: BSTR, lDCFlags: i32, pIGPMDomain: **IGPMDomain) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetDomain(self: *const T, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, pIGPMDomain: ?*?*IGPMDomain) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetDomain(@ptrCast(*const IGPM, self), bstrDomain, bstrDomainController, lDCFlags, pIGPMDomain);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetBackupDir(self: *const T, bstrBackupDir: BSTR, pIGPMBackupDir: **IGPMBackupDir) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetBackupDir(self: *const T, bstrBackupDir: ?BSTR, pIGPMBackupDir: ?*?*IGPMBackupDir) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetBackupDir(@ptrCast(*const IGPM, self), bstrBackupDir, pIGPMBackupDir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetSitesContainer(self: *const T, bstrForest: BSTR, bstrDomain: BSTR, bstrDomainController: BSTR, lDCFlags: i32, ppIGPMSitesContainer: **IGPMSitesContainer) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetSitesContainer(self: *const T, bstrForest: ?BSTR, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, ppIGPMSitesContainer: ?*?*IGPMSitesContainer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetSitesContainer(@ptrCast(*const IGPM, self), bstrForest, bstrDomain, bstrDomainController, lDCFlags, ppIGPMSitesContainer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetRSOP(self: *const T, gpmRSoPMode: GPMRSOPMode, bstrNamespace: BSTR, lFlags: i32, ppIGPMRSOP: **IGPMRSOP) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetRSOP(self: *const T, gpmRSoPMode: GPMRSOPMode, bstrNamespace: ?BSTR, lFlags: i32, ppIGPMRSOP: ?*?*IGPMRSOP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetRSOP(@ptrCast(*const IGPM, self), gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_CreatePermission(self: *const T, bstrTrustee: BSTR, perm: GPMPermissionType, bInheritable: i16, ppPerm: **IGPMPermission) callconv(.Inline) HRESULT {
+        pub fn IGPM_CreatePermission(self: *const T, bstrTrustee: ?BSTR, perm: GPMPermissionType, bInheritable: i16, ppPerm: ?*?*IGPMPermission) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).CreatePermission(@ptrCast(*const IGPM, self), bstrTrustee, perm, bInheritable, ppPerm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_CreateSearchCriteria(self: *const T, ppIGPMSearchCriteria: **IGPMSearchCriteria) callconv(.Inline) HRESULT {
+        pub fn IGPM_CreateSearchCriteria(self: *const T, ppIGPMSearchCriteria: ?*?*IGPMSearchCriteria) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).CreateSearchCriteria(@ptrCast(*const IGPM, self), ppIGPMSearchCriteria);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_CreateTrustee(self: *const T, bstrTrustee: BSTR, ppIGPMTrustee: **IGPMTrustee) callconv(.Inline) HRESULT {
+        pub fn IGPM_CreateTrustee(self: *const T, bstrTrustee: ?BSTR, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).CreateTrustee(@ptrCast(*const IGPM, self), bstrTrustee, ppIGPMTrustee);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetClientSideExtensions(self: *const T, ppIGPMCSECollection: **IGPMCSECollection) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetClientSideExtensions(self: *const T, ppIGPMCSECollection: ?*?*IGPMCSECollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetClientSideExtensions(@ptrCast(*const IGPM, self), ppIGPMCSECollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetConstants(self: *const T, ppIGPMConstants: **IGPMConstants) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetConstants(self: *const T, ppIGPMConstants: ?*?*IGPMConstants) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetConstants(@ptrCast(*const IGPM, self), ppIGPMConstants);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_GetMigrationTable(self: *const T, bstrMigrationTablePath: BSTR, ppMigrationTable: **IGPMMigrationTable) callconv(.Inline) HRESULT {
+        pub fn IGPM_GetMigrationTable(self: *const T, bstrMigrationTablePath: ?BSTR, ppMigrationTable: ?*?*IGPMMigrationTable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).GetMigrationTable(@ptrCast(*const IGPM, self), bstrMigrationTablePath, ppMigrationTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_CreateMigrationTable(self: *const T, ppMigrationTable: **IGPMMigrationTable) callconv(.Inline) HRESULT {
+        pub fn IGPM_CreateMigrationTable(self: *const T, ppMigrationTable: ?*?*IGPMMigrationTable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).CreateMigrationTable(@ptrCast(*const IGPM, self), ppMigrationTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM_InitializeReporting(self: *const T, bstrAdmPath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPM_InitializeReporting(self: *const T, bstrAdmPath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM.VTable, self.vtable).InitializeReporting(@ptrCast(*const IGPM, self), bstrAdmPath);
         }
     };}
@@ -481,97 +481,97 @@ pub const IGPMDomain = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainController: fn(
             self: *const IGPMDomain,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Domain: fn(
             self: *const IGPMDomain,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGPO: fn(
             self: *const IGPMDomain,
-            ppNewGPO: **IGPMGPO,
+            ppNewGPO: ?*?*IGPMGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGPO: fn(
             self: *const IGPMDomain,
-            bstrGuid: BSTR,
-            ppGPO: **IGPMGPO,
+            bstrGuid: ?BSTR,
+            ppGPO: ?*?*IGPMGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchGPOs: fn(
             self: *const IGPMDomain,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMGPOCollection: **IGPMGPOCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMGPOCollection: ?*?*IGPMGPOCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RestoreGPO: fn(
             self: *const IGPMDomain,
-            pIGPMBackup: *IGPMBackup,
+            pIGPMBackup: ?*IGPMBackup,
             lDCFlags: i32,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSOM: fn(
             self: *const IGPMDomain,
-            bstrPath: BSTR,
-            ppSOM: **IGPMSOM,
+            bstrPath: ?BSTR,
+            ppSOM: ?*?*IGPMSOM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchSOMs: fn(
             self: *const IGPMDomain,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMSOMCollection: **IGPMSOMCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWMIFilter: fn(
             self: *const IGPMDomain,
-            bstrPath: BSTR,
-            ppWMIFilter: **IGPMWMIFilter,
+            bstrPath: ?BSTR,
+            ppWMIFilter: ?*?*IGPMWMIFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchWMIFilters: fn(
             self: *const IGPMDomain,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMWMIFilterCollection: **IGPMWMIFilterCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_get_DomainController(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_get_DomainController(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).get_DomainController(@ptrCast(*const IGPMDomain, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_get_Domain(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_get_Domain(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMDomain, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_CreateGPO(self: *const T, ppNewGPO: **IGPMGPO) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_CreateGPO(self: *const T, ppNewGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).CreateGPO(@ptrCast(*const IGPMDomain, self), ppNewGPO);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_GetGPO(self: *const T, bstrGuid: BSTR, ppGPO: **IGPMGPO) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_GetGPO(self: *const T, bstrGuid: ?BSTR, ppGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetGPO(@ptrCast(*const IGPMDomain, self), bstrGuid, ppGPO);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_SearchGPOs(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMGPOCollection: **IGPMGPOCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_SearchGPOs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMGPOCollection: ?*?*IGPMGPOCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchGPOs(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMGPOCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_RestoreGPO(self: *const T, pIGPMBackup: *IGPMBackup, lDCFlags: i32, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_RestoreGPO(self: *const T, pIGPMBackup: ?*IGPMBackup, lDCFlags: i32, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).RestoreGPO(@ptrCast(*const IGPMDomain, self), pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_GetSOM(self: *const T, bstrPath: BSTR, ppSOM: **IGPMSOM) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_GetSOM(self: *const T, bstrPath: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetSOM(@ptrCast(*const IGPMDomain, self), bstrPath, ppSOM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_SearchSOMs(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMSOMCollection: **IGPMSOMCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_SearchSOMs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchSOMs(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMSOMCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_GetWMIFilter(self: *const T, bstrPath: BSTR, ppWMIFilter: **IGPMWMIFilter) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_GetWMIFilter(self: *const T, bstrPath: ?BSTR, ppWMIFilter: ?*?*IGPMWMIFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetWMIFilter(@ptrCast(*const IGPMDomain, self), bstrPath, ppWMIFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain_SearchWMIFilters(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMWMIFilterCollection: **IGPMWMIFilterCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain_SearchWMIFilters(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchWMIFilters(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
         }
     };}
@@ -587,32 +587,32 @@ pub const IGPMBackupDir = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupDirectory: fn(
             self: *const IGPMBackupDir,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBackup: fn(
             self: *const IGPMBackupDir,
-            bstrID: BSTR,
-            ppBackup: **IGPMBackup,
+            bstrID: ?BSTR,
+            ppBackup: ?*?*IGPMBackup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchBackups: fn(
             self: *const IGPMBackupDir,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMBackupCollection: **IGPMBackupCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMBackupCollection: ?*?*IGPMBackupCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDir_get_BackupDirectory(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDir_get_BackupDirectory(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).get_BackupDirectory(@ptrCast(*const IGPMBackupDir, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDir_GetBackup(self: *const T, bstrID: BSTR, ppBackup: **IGPMBackup) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDir_GetBackup(self: *const T, bstrID: ?BSTR, ppBackup: ?*?*IGPMBackup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).GetBackup(@ptrCast(*const IGPMBackupDir, self), bstrID, ppBackup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDir_SearchBackups(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMBackupCollection: **IGPMBackupCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDir_SearchBackups(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMBackupCollection: ?*?*IGPMBackupCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).SearchBackups(@ptrCast(*const IGPMBackupDir, self), pIGPMSearchCriteria, ppIGPMBackupCollection);
         }
     };}
@@ -628,50 +628,50 @@ pub const IGPMSitesContainer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainController: fn(
             self: *const IGPMSitesContainer,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Domain: fn(
             self: *const IGPMSitesContainer,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Forest: fn(
             self: *const IGPMSitesContainer,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSite: fn(
             self: *const IGPMSitesContainer,
-            bstrSiteName: BSTR,
-            ppSOM: **IGPMSOM,
+            bstrSiteName: ?BSTR,
+            ppSOM: ?*?*IGPMSOM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchSites: fn(
             self: *const IGPMSitesContainer,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMSOMCollection: **IGPMSOMCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSitesContainer_get_DomainController(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSitesContainer_get_DomainController(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_DomainController(@ptrCast(*const IGPMSitesContainer, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSitesContainer_get_Domain(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSitesContainer_get_Domain(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMSitesContainer, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSitesContainer_get_Forest(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSitesContainer_get_Forest(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_Forest(@ptrCast(*const IGPMSitesContainer, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSitesContainer_GetSite(self: *const T, bstrSiteName: BSTR, ppSOM: **IGPMSOM) callconv(.Inline) HRESULT {
+        pub fn IGPMSitesContainer_GetSite(self: *const T, bstrSiteName: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).GetSite(@ptrCast(*const IGPMSitesContainer, self), bstrSiteName, ppSOM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSitesContainer_SearchSites(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMSOMCollection: **IGPMSOMCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMSitesContainer_SearchSites(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).SearchSites(@ptrCast(*const IGPMSitesContainer, self), pIGPMSearchCriteria, ppIGPMSOMCollection);
         }
     };}
@@ -711,50 +711,50 @@ pub const IGPMTrustee = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrusteeSid: fn(
             self: *const IGPMTrustee,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrusteeName: fn(
             self: *const IGPMTrustee,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrusteeDomain: fn(
             self: *const IGPMTrustee,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrusteeDSPath: fn(
             self: *const IGPMTrustee,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrusteeType: fn(
             self: *const IGPMTrustee,
-            lVal: *i32,
+            lVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMTrustee_get_TrusteeSid(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMTrustee_get_TrusteeSid(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeSid(@ptrCast(*const IGPMTrustee, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMTrustee_get_TrusteeName(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMTrustee_get_TrusteeName(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeName(@ptrCast(*const IGPMTrustee, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMTrustee_get_TrusteeDomain(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMTrustee_get_TrusteeDomain(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeDomain(@ptrCast(*const IGPMTrustee, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMTrustee_get_TrusteeDSPath(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMTrustee_get_TrusteeDSPath(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeDSPath(@ptrCast(*const IGPMTrustee, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMTrustee_get_TrusteeType(self: *const T, lVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMTrustee_get_TrusteeType(self: *const T, lVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeType(@ptrCast(*const IGPMTrustee, self), lVal);
         }
     };}
@@ -770,50 +770,50 @@ pub const IGPMPermission = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Inherited: fn(
             self: *const IGPMPermission,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Inheritable: fn(
             self: *const IGPMPermission,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Denied: fn(
             self: *const IGPMPermission,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Permission: fn(
             self: *const IGPMPermission,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Trustee: fn(
             self: *const IGPMPermission,
-            ppIGPMTrustee: **IGPMTrustee,
+            ppIGPMTrustee: ?*?*IGPMTrustee,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMPermission_get_Inherited(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMPermission_get_Inherited(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Inherited(@ptrCast(*const IGPMPermission, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMPermission_get_Inheritable(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMPermission_get_Inheritable(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Inheritable(@ptrCast(*const IGPMPermission, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMPermission_get_Denied(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMPermission_get_Denied(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Denied(@ptrCast(*const IGPMPermission, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMPermission_get_Permission(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMPermission_get_Permission(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Permission(@ptrCast(*const IGPMPermission, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMPermission_get_Trustee(self: *const T, ppIGPMTrustee: **IGPMTrustee) callconv(.Inline) HRESULT {
+        pub fn IGPMPermission_get_Trustee(self: *const T, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Trustee(@ptrCast(*const IGPMPermission, self), ppIGPMTrustee);
         }
     };}
@@ -829,57 +829,57 @@ pub const IGPMSecurityInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMSecurityInfo,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMSecurityInfo,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMSecurityInfo,
-            ppEnum: **IEnumVARIANT,
+            ppEnum: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IGPMSecurityInfo,
-            pPerm: *IGPMPermission,
+            pPerm: ?*IGPMPermission,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IGPMSecurityInfo,
-            pPerm: *IGPMPermission,
+            pPerm: ?*IGPMPermission,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveTrustee: fn(
             self: *const IGPMSecurityInfo,
-            bstrTrustee: BSTR,
+            bstrTrustee: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get_Count(@ptrCast(*const IGPMSecurityInfo, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get_Item(@ptrCast(*const IGPMSecurityInfo, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_get__NewEnum(self: *const T, ppEnum: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_get__NewEnum(self: *const T, ppEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMSecurityInfo, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_Add(self: *const T, pPerm: *IGPMPermission) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_Add(self: *const T, pPerm: ?*IGPMPermission) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).Add(@ptrCast(*const IGPMSecurityInfo, self), pPerm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_Remove(self: *const T, pPerm: *IGPMPermission) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_Remove(self: *const T, pPerm: ?*IGPMPermission) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).Remove(@ptrCast(*const IGPMSecurityInfo, self), pPerm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSecurityInfo_RemoveTrustee(self: *const T, bstrTrustee: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSecurityInfo_RemoveTrustee(self: *const T, bstrTrustee: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).RemoveTrustee(@ptrCast(*const IGPMSecurityInfo, self), bstrTrustee);
         }
     };}
@@ -895,37 +895,37 @@ pub const IGPMBackup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ID: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPOID: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPODomain: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPODisplayName: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IGPMBackup,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Comment: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupDir: fn(
             self: *const IGPMBackup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGPMBackup,
@@ -933,46 +933,46 @@ pub const IGPMBackup = extern struct {
         GenerateReport: fn(
             self: *const IGPMBackup,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReportToFile: fn(
             self: *const IGPMBackup,
             gpmReportType: GPMReportType,
-            bstrTargetFilePath: BSTR,
-            ppIGPMResult: **IGPMResult,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_ID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_ID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_ID(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_GPOID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_GPOID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPOID(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_GPODomain(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_GPODomain(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPODomain(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_GPODisplayName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_GPODisplayName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPODisplayName(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_Timestamp(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_Timestamp(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_Timestamp(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_Comment(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_Comment(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_Comment(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_get_BackupDir(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_get_BackupDir(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMBackup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -980,11 +980,11 @@ pub const IGPMBackup = extern struct {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).Delete(@ptrCast(*const IGPMBackup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMBackup, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: BSTR, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackup.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMBackup, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
         }
     };}
@@ -1000,33 +1000,33 @@ pub const IGPMBackupCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMBackupCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMBackupCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMBackupCollection,
-            ppIGPMBackup: **IEnumVARIANT,
+            ppIGPMBackup: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMBackupCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMBackupCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupCollection_get__NewEnum(self: *const T, ppIGPMBackup: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupCollection_get__NewEnum(self: *const T, ppIGPMBackup: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMBackupCollection, self), ppIGPMBackup);
         }
     };}
@@ -1051,7 +1051,7 @@ pub const IGPMSOM = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPOInheritanceBlocked: fn(
             self: *const IGPMSOM,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GPOInheritanceBlocked: fn(
@@ -1061,46 +1061,46 @@ pub const IGPMSOM = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IGPMSOM,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IGPMSOM,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGPOLink: fn(
             self: *const IGPMSOM,
             lLinkPos: i32,
-            pGPO: *IGPMGPO,
-            ppNewGPOLink: **IGPMGPOLink,
+            pGPO: ?*IGPMGPO,
+            ppNewGPOLink: ?*?*IGPMGPOLink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IGPMSOM,
-            pVal: *GPMSOMType,
+            pVal: ?*GPMSOMType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGPOLinks: fn(
             self: *const IGPMSOM,
-            ppGPOLinks: **IGPMGPOLinksCollection,
+            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInheritedGPOLinks: fn(
             self: *const IGPMSOM,
-            ppGPOLinks: **IGPMGPOLinksCollection,
+            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityInfo: fn(
             self: *const IGPMSOM,
-            ppSecurityInfo: **IGPMSecurityInfo,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityInfo: fn(
             self: *const IGPMSOM,
-            pSecurityInfo: *IGPMSecurityInfo,
+            pSecurityInfo: ?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_get_GPOInheritanceBlocked(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_get_GPOInheritanceBlocked(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_GPOInheritanceBlocked(@ptrCast(*const IGPMSOM, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1108,35 +1108,35 @@ pub const IGPMSOM = extern struct {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).put_GPOInheritanceBlocked(@ptrCast(*const IGPMSOM, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_get_Name(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_get_Name(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Name(@ptrCast(*const IGPMSOM, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_get_Path(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_get_Path(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Path(@ptrCast(*const IGPMSOM, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_CreateGPOLink(self: *const T, lLinkPos: i32, pGPO: *IGPMGPO, ppNewGPOLink: **IGPMGPOLink) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_CreateGPOLink(self: *const T, lLinkPos: i32, pGPO: ?*IGPMGPO, ppNewGPOLink: ?*?*IGPMGPOLink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).CreateGPOLink(@ptrCast(*const IGPMSOM, self), lLinkPos, pGPO, ppNewGPOLink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_get_Type(self: *const T, pVal: *GPMSOMType) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_get_Type(self: *const T, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Type(@ptrCast(*const IGPMSOM, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_GetGPOLinks(self: *const T, ppGPOLinks: **IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_GetGPOLinks(self: *const T, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetGPOLinks(@ptrCast(*const IGPMSOM, self), ppGPOLinks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_GetInheritedGPOLinks(self: *const T, ppGPOLinks: **IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_GetInheritedGPOLinks(self: *const T, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetInheritedGPOLinks(@ptrCast(*const IGPMSOM, self), ppGPOLinks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_GetSecurityInfo(self: *const T, ppSecurityInfo: **IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMSOM, self), ppSecurityInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOM_SetSecurityInfo(self: *const T, pSecurityInfo: *IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMSOM_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOM.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMSOM, self), pSecurityInfo);
         }
     };}
@@ -1152,33 +1152,33 @@ pub const IGPMSOMCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMSOMCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMSOMCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMSOMCollection,
-            ppIGPMSOM: **IEnumVARIANT,
+            ppIGPMSOM: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOMCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMSOMCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMSOMCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOMCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMSOMCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMSOMCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMSOMCollection_get__NewEnum(self: *const T, ppIGPMSOM: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMSOMCollection_get__NewEnum(self: *const T, ppIGPMSOM: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMSOMCollection, self), ppIGPMSOM);
         }
     };}
@@ -1194,74 +1194,74 @@ pub const IGPMWMIFilter = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IGPMWMIFilter,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IGPMWMIFilter,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IGPMWMIFilter,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IGPMWMIFilter,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IGPMWMIFilter,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQueryList: fn(
             self: *const IGPMWMIFilter,
-            pQryList: *VARIANT,
+            pQryList: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityInfo: fn(
             self: *const IGPMWMIFilter,
-            ppSecurityInfo: **IGPMSecurityInfo,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityInfo: fn(
             self: *const IGPMWMIFilter,
-            pSecurityInfo: *IGPMSecurityInfo,
+            pSecurityInfo: ?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_get_Path(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_get_Path(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Path(@ptrCast(*const IGPMWMIFilter, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_put_Name(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_put_Name(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).put_Name(@ptrCast(*const IGPMWMIFilter, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_get_Name(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_get_Name(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Name(@ptrCast(*const IGPMWMIFilter, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_put_Description(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_put_Description(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).put_Description(@ptrCast(*const IGPMWMIFilter, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_get_Description(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_get_Description(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Description(@ptrCast(*const IGPMWMIFilter, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_GetQueryList(self: *const T, pQryList: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_GetQueryList(self: *const T, pQryList: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).GetQueryList(@ptrCast(*const IGPMWMIFilter, self), pQryList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_GetSecurityInfo(self: *const T, ppSecurityInfo: **IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMWMIFilter, self), ppSecurityInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilter_SetSecurityInfo(self: *const T, pSecurityInfo: *IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilter_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMWMIFilter, self), pSecurityInfo);
         }
     };}
@@ -1277,33 +1277,33 @@ pub const IGPMWMIFilterCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMWMIFilterCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMWMIFilterCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMWMIFilterCollection,
-            pVal: **IEnumVARIANT,
+            pVal: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilterCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilterCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMWMIFilterCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilterCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilterCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMWMIFilterCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMWMIFilterCollection_get__NewEnum(self: *const T, pVal: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMWMIFilterCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMWMIFilterCollection, self), pVal);
         }
     };}
@@ -1319,32 +1319,32 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Mode: fn(
             self: *const IGPMRSOP,
-            pVal: *GPMRSOPMode,
+            pVal: ?*GPMRSOPMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Namespace: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LoggingComputer: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoggingComputer: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LoggingUser: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoggingUser: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LoggingFlags: fn(
@@ -1354,7 +1354,7 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoggingFlags: fn(
             self: *const IGPMRSOP,
-            lVal: *i32,
+            lVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningFlags: fn(
@@ -1364,47 +1364,47 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningFlags: fn(
             self: *const IGPMRSOP,
-            lVal: *i32,
+            lVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningDomainController: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningDomainController: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningSiteName: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningSiteName: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningUser: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningUser: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningUserSOM: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningUserSOM: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningUserWMIFilters: fn(
@@ -1414,7 +1414,7 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningUserWMIFilters: fn(
             self: *const IGPMRSOP,
-            varVal: *VARIANT,
+            varVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningUserSecurityGroups: fn(
@@ -1424,27 +1424,27 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningUserSecurityGroups: fn(
             self: *const IGPMRSOP,
-            varVal: *VARIANT,
+            varVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningComputer: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningComputer: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningComputerSOM: fn(
             self: *const IGPMRSOP,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningComputerSOM: fn(
             self: *const IGPMRSOP,
-            bstrVal: *BSTR,
+            bstrVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningComputerWMIFilters: fn(
@@ -1454,7 +1454,7 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningComputerWMIFilters: fn(
             self: *const IGPMRSOP,
-            varVal: *VARIANT,
+            varVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PlanningComputerSecurityGroups: fn(
@@ -1464,11 +1464,11 @@ pub const IGPMRSOP = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PlanningComputerSecurityGroups: fn(
             self: *const IGPMRSOP,
-            varVal: *VARIANT,
+            varVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoggingEnumerateUsers: fn(
             self: *const IGPMRSOP,
-            varVal: *VARIANT,
+            varVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQueryResults: fn(
             self: *const IGPMRSOP,
@@ -1479,42 +1479,42 @@ pub const IGPMRSOP = extern struct {
         GenerateReport: fn(
             self: *const IGPMRSOP,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReportToFile: fn(
             self: *const IGPMRSOP,
             gpmReportType: GPMReportType,
-            bstrTargetFilePath: BSTR,
-            ppIGPMResult: **IGPMResult,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_Mode(self: *const T, pVal: *GPMRSOPMode) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_Mode(self: *const T, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_Mode(@ptrCast(*const IGPMRSOP, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_Namespace(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_Namespace(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_Namespace(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_LoggingComputer(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_LoggingComputer(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_LoggingComputer(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_LoggingComputer(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_LoggingUser(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_LoggingUser(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_LoggingUser(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_LoggingUser(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1522,7 +1522,7 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingFlags(@ptrCast(*const IGPMRSOP, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_LoggingFlags(self: *const T, lVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_LoggingFlags(self: *const T, lVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingFlags(@ptrCast(*const IGPMRSOP, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1530,39 +1530,39 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningFlags(@ptrCast(*const IGPMRSOP, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningFlags(self: *const T, lVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningFlags(self: *const T, lVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningFlags(@ptrCast(*const IGPMRSOP, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningDomainController(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningDomainController(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningDomainController(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningDomainController(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningDomainController(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningDomainController(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningSiteName(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningSiteName(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningSiteName(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningSiteName(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningSiteName(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningSiteName(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningUser(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningUser(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningUser(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningUser(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningUserSOM(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningUserSOM(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningUserSOM(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningUserSOM(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1570,7 +1570,7 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningUserWMIFilters(self: *const T, varVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningUserWMIFilters(self: *const T, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1578,23 +1578,23 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningUserSecurityGroups(self: *const T, varVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningUserSecurityGroups(self: *const T, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningComputer(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningComputer(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningComputer(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningComputer(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_put_PlanningComputerSOM(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_put_PlanningComputerSOM(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningComputerSOM(self: *const T, bstrVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningComputerSOM(self: *const T, bstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1602,7 +1602,7 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningComputerWMIFilters(self: *const T, varVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningComputerWMIFilters(self: *const T, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1610,11 +1610,11 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_get_PlanningComputerSecurityGroups(self: *const T, varVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_get_PlanningComputerSecurityGroups(self: *const T, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_LoggingEnumerateUsers(self: *const T, varVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_LoggingEnumerateUsers(self: *const T, varVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).LoggingEnumerateUsers(@ptrCast(*const IGPMRSOP, self), varVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1626,11 +1626,11 @@ pub const IGPMRSOP = extern struct {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).ReleaseQueryResults(@ptrCast(*const IGPMRSOP, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMRSOP, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMRSOP_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: BSTR, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMRSOP_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMRSOP.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMRSOP, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
         }
     };}
@@ -1646,65 +1646,65 @@ pub const IGPMGPO = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IGPMGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: fn(
             self: *const IGPMGPO,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IGPMGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ID: fn(
             self: *const IGPMGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainName: fn(
             self: *const IGPMGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreationTime: fn(
             self: *const IGPMGPO,
-            pDate: *f64,
+            pDate: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModificationTime: fn(
             self: *const IGPMGPO,
-            pDate: *f64,
+            pDate: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDSVersionNumber: fn(
             self: *const IGPMGPO,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ComputerDSVersionNumber: fn(
             self: *const IGPMGPO,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSysvolVersionNumber: fn(
             self: *const IGPMGPO,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ComputerSysvolVersionNumber: fn(
             self: *const IGPMGPO,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWMIFilter: fn(
             self: *const IGPMGPO,
-            ppIGPMWMIFilter: **IGPMWMIFilter,
+            ppIGPMWMIFilter: ?*?*IGPMWMIFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWMIFilter: fn(
             self: *const IGPMGPO,
-            pIGPMWMIFilter: *IGPMWMIFilter,
+            pIGPMWMIFilter: ?*IGPMWMIFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUserEnabled: fn(
             self: *const IGPMGPO,
@@ -1716,76 +1716,76 @@ pub const IGPMGPO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsUserEnabled: fn(
             self: *const IGPMGPO,
-            pvbEnabled: *i16,
+            pvbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsComputerEnabled: fn(
             self: *const IGPMGPO,
-            pvbEnabled: *i16,
+            pvbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityInfo: fn(
             self: *const IGPMGPO,
-            ppSecurityInfo: **IGPMSecurityInfo,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityInfo: fn(
             self: *const IGPMGPO,
-            pSecurityInfo: *IGPMSecurityInfo,
+            pSecurityInfo: ?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGPMGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IGPMGPO,
-            bstrBackupDir: BSTR,
-            bstrComment: BSTR,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            bstrBackupDir: ?BSTR,
+            bstrComment: ?BSTR,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Import: fn(
             self: *const IGPMGPO,
             lFlags: i32,
-            pIGPMBackup: *IGPMBackup,
-            pvarMigrationTable: *VARIANT,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pIGPMBackup: ?*IGPMBackup,
+            pvarMigrationTable: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReport: fn(
             self: *const IGPMGPO,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReportToFile: fn(
             self: *const IGPMGPO,
             gpmReportType: GPMReportType,
-            bstrTargetFilePath: BSTR,
-            ppIGPMResult: **IGPMResult,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTo: fn(
             self: *const IGPMGPO,
             lFlags: i32,
-            pIGPMDomain: *IGPMDomain,
-            pvarNewDisplayName: *VARIANT,
-            pvarMigrationTable: *VARIANT,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pIGPMDomain: ?*IGPMDomain,
+            pvarNewDisplayName: ?*VARIANT,
+            pvarMigrationTable: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityDescriptor: fn(
             self: *const IGPMGPO,
             lFlags: i32,
-            pSD: *IDispatch,
+            pSD: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityDescriptor: fn(
             self: *const IGPMGPO,
             lFlags: i32,
-            ppSD: **IDispatch,
+            ppSD: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsACLConsistent: fn(
             self: *const IGPMGPO,
-            pvbConsistent: *i16,
+            pvbConsistent: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MakeACLConsistent: fn(
             self: *const IGPMGPO,
@@ -1795,55 +1795,55 @@ pub const IGPMGPO = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_DisplayName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_DisplayName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_put_DisplayName(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_put_DisplayName(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).put_DisplayName(@ptrCast(*const IGPMGPO, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_Path(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_Path(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_Path(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_ID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_ID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ID(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_DomainName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_DomainName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_DomainName(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_CreationTime(self: *const T, pDate: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_CreationTime(self: *const T, pDate: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_CreationTime(@ptrCast(*const IGPMGPO, self), pDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_ModificationTime(self: *const T, pDate: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_ModificationTime(self: *const T, pDate: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ModificationTime(@ptrCast(*const IGPMGPO, self), pDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_UserDSVersionNumber(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_UserDSVersionNumber(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_UserDSVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_ComputerDSVersionNumber(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_ComputerDSVersionNumber(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ComputerDSVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_UserSysvolVersionNumber(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_UserSysvolVersionNumber(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_UserSysvolVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_get_ComputerSysvolVersionNumber(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_get_ComputerSysvolVersionNumber(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ComputerSysvolVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_GetWMIFilter(self: *const T, ppIGPMWMIFilter: **IGPMWMIFilter) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_GetWMIFilter(self: *const T, ppIGPMWMIFilter: ?*?*IGPMWMIFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetWMIFilter(@ptrCast(*const IGPMGPO, self), ppIGPMWMIFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_SetWMIFilter(self: *const T, pIGPMWMIFilter: *IGPMWMIFilter) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_SetWMIFilter(self: *const T, pIGPMWMIFilter: ?*IGPMWMIFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetWMIFilter(@ptrCast(*const IGPMGPO, self), pIGPMWMIFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1855,19 +1855,19 @@ pub const IGPMGPO = extern struct {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetComputerEnabled(@ptrCast(*const IGPMGPO, self), vbEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_IsUserEnabled(self: *const T, pvbEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_IsUserEnabled(self: *const T, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsUserEnabled(@ptrCast(*const IGPMGPO, self), pvbEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_IsComputerEnabled(self: *const T, pvbEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_IsComputerEnabled(self: *const T, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsComputerEnabled(@ptrCast(*const IGPMGPO, self), pvbEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: **IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMGPO, self), ppSecurityInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_SetSecurityInfo(self: *const T, pSecurityInfo: *IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMGPO, self), pSecurityInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1875,35 +1875,35 @@ pub const IGPMGPO = extern struct {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).Delete(@ptrCast(*const IGPMGPO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_Backup(self: *const T, bstrBackupDir: BSTR, bstrComment: BSTR, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_Backup(self: *const T, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).Backup(@ptrCast(*const IGPMGPO, self), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_Import(self: *const T, lFlags: i32, pIGPMBackup: *IGPMBackup, pvarMigrationTable: *VARIANT, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_Import(self: *const T, lFlags: i32, pIGPMBackup: ?*IGPMBackup, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).Import(@ptrCast(*const IGPMGPO, self), lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMGPO, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: BSTR, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMGPO, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_CopyTo(self: *const T, lFlags: i32, pIGPMDomain: *IGPMDomain, pvarNewDisplayName: *VARIANT, pvarMigrationTable: *VARIANT, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_CopyTo(self: *const T, lFlags: i32, pIGPMDomain: ?*IGPMDomain, pvarNewDisplayName: ?*VARIANT, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).CopyTo(@ptrCast(*const IGPMGPO, self), lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_SetSecurityDescriptor(self: *const T, lFlags: i32, pSD: *IDispatch) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_SetSecurityDescriptor(self: *const T, lFlags: i32, pSD: ?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetSecurityDescriptor(@ptrCast(*const IGPMGPO, self), lFlags, pSD);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_GetSecurityDescriptor(self: *const T, lFlags: i32, ppSD: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_GetSecurityDescriptor(self: *const T, lFlags: i32, ppSD: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetSecurityDescriptor(@ptrCast(*const IGPMGPO, self), lFlags, ppSD);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO_IsACLConsistent(self: *const T, pvbConsistent: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO_IsACLConsistent(self: *const T, pvbConsistent: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsACLConsistent(@ptrCast(*const IGPMGPO, self), pvbConsistent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1923,33 +1923,33 @@ pub const IGPMGPOCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMGPOCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMGPOCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMGPOCollection,
-            ppIGPMGPOs: **IEnumVARIANT,
+            ppIGPMGPOs: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMGPOCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMGPOCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOCollection_get__NewEnum(self: *const T, ppIGPMGPOs: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOCollection_get__NewEnum(self: *const T, ppIGPMGPOs: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMGPOCollection, self), ppIGPMGPOs);
         }
     };}
@@ -1965,17 +1965,17 @@ pub const IGPMGPOLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPOID: fn(
             self: *const IGPMGPOLink,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPODomain: fn(
             self: *const IGPMGPOLink,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IGPMGPOLink,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
@@ -1985,7 +1985,7 @@ pub const IGPMGPOLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enforced: fn(
             self: *const IGPMGPOLink,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enforced: fn(
@@ -1995,12 +1995,12 @@ pub const IGPMGPOLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOMLinkOrder: fn(
             self: *const IGPMGPOLink,
-            lVal: *i32,
+            lVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOM: fn(
             self: *const IGPMGPOLink,
-            ppIGPMSOM: **IGPMSOM,
+            ppIGPMSOM: ?*?*IGPMSOM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGPMGPOLink,
@@ -2010,15 +2010,15 @@ pub const IGPMGPOLink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_GPOID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_GPOID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_GPOID(@ptrCast(*const IGPMGPOLink, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_GPODomain(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_GPODomain(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_GPODomain(@ptrCast(*const IGPMGPOLink, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_Enabled(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_Enabled(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_Enabled(@ptrCast(*const IGPMGPOLink, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2026,7 +2026,7 @@ pub const IGPMGPOLink = extern struct {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).put_Enabled(@ptrCast(*const IGPMGPOLink, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_Enforced(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_Enforced(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_Enforced(@ptrCast(*const IGPMGPOLink, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2034,11 +2034,11 @@ pub const IGPMGPOLink = extern struct {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).put_Enforced(@ptrCast(*const IGPMGPOLink, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_SOMLinkOrder(self: *const T, lVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_SOMLinkOrder(self: *const T, lVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_SOMLinkOrder(@ptrCast(*const IGPMGPOLink, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLink_get_SOM(self: *const T, ppIGPMSOM: **IGPMSOM) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLink_get_SOM(self: *const T, ppIGPMSOM: ?*?*IGPMSOM) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_SOM(@ptrCast(*const IGPMGPOLink, self), ppIGPMSOM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2058,33 +2058,33 @@ pub const IGPMGPOLinksCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMGPOLinksCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMGPOLinksCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMGPOLinksCollection,
-            ppIGPMLinks: **IEnumVARIANT,
+            ppIGPMLinks: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLinksCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLinksCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMGPOLinksCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLinksCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLinksCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMGPOLinksCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPOLinksCollection_get__NewEnum(self: *const T, ppIGPMLinks: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMGPOLinksCollection_get__NewEnum(self: *const T, ppIGPMLinks: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMGPOLinksCollection, self), ppIGPMLinks);
         }
     };}
@@ -2100,33 +2100,33 @@ pub const IGPMCSECollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMCSECollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMCSECollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMCSECollection,
-            ppIGPMCSEs: **IEnumVARIANT,
+            ppIGPMCSEs: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMCSECollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMCSECollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMCSECollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMCSECollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMCSECollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMCSECollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMCSECollection_get__NewEnum(self: *const T, ppIGPMCSEs: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMCSECollection_get__NewEnum(self: *const T, ppIGPMCSEs: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMCSECollection, self), ppIGPMCSEs);
         }
     };}
@@ -2142,39 +2142,39 @@ pub const IGPMClientSideExtension = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ID: fn(
             self: *const IGPMClientSideExtension,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IGPMClientSideExtension,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsUserEnabled: fn(
             self: *const IGPMClientSideExtension,
-            pvbEnabled: *i16,
+            pvbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsComputerEnabled: fn(
             self: *const IGPMClientSideExtension,
-            pvbEnabled: *i16,
+            pvbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMClientSideExtension_get_ID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMClientSideExtension_get_ID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).get_ID(@ptrCast(*const IGPMClientSideExtension, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMClientSideExtension_get_DisplayName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMClientSideExtension_get_DisplayName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMClientSideExtension, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMClientSideExtension_IsUserEnabled(self: *const T, pvbEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMClientSideExtension_IsUserEnabled(self: *const T, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).IsUserEnabled(@ptrCast(*const IGPMClientSideExtension, self), pvbEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMClientSideExtension_IsComputerEnabled(self: *const T, pvbEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IGPMClientSideExtension_IsComputerEnabled(self: *const T, pvbEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).IsComputerEnabled(@ptrCast(*const IGPMClientSideExtension, self), pvbEnabled);
         }
     };}
@@ -2213,15 +2213,15 @@ pub const IGPMAsyncProgress = extern struct {
             lProgressNumerator: i32,
             lProgressDenominator: i32,
             hrStatus: HRESULT,
-            pResult: *VARIANT,
-            ppIGPMStatusMsgCollection: *IGPMStatusMsgCollection,
+            pResult: ?*VARIANT,
+            ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMAsyncProgress_Status(self: *const T, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: *VARIANT, ppIGPMStatusMsgCollection: *IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMAsyncProgress_Status(self: *const T, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: ?*VARIANT, ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMAsyncProgress.VTable, self.vtable).Status(@ptrCast(*const IGPMAsyncProgress, self), lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
         }
     };}
@@ -2237,33 +2237,33 @@ pub const IGPMStatusMsgCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMStatusMsgCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMStatusMsgCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMStatusMsgCollection,
-            pVal: **IEnumVARIANT,
+            pVal: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMsgCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMsgCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStatusMsgCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMsgCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMsgCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStatusMsgCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMsgCollection_get__NewEnum(self: *const T, pVal: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMsgCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStatusMsgCollection, self), pVal);
         }
     };}
@@ -2279,7 +2279,7 @@ pub const IGPMStatusMessage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectPath: fn(
             self: *const IGPMStatusMessage,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ErrorCode: fn(
             self: *const IGPMStatusMessage,
@@ -2287,12 +2287,12 @@ pub const IGPMStatusMessage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtensionName: fn(
             self: *const IGPMStatusMessage,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SettingsName: fn(
             self: *const IGPMStatusMessage,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OperationCode: fn(
             self: *const IGPMStatusMessage,
@@ -2300,14 +2300,14 @@ pub const IGPMStatusMessage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: fn(
             self: *const IGPMStatusMessage,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMessage_get_ObjectPath(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMessage_get_ObjectPath(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_ObjectPath(@ptrCast(*const IGPMStatusMessage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2315,11 +2315,11 @@ pub const IGPMStatusMessage = extern struct {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).ErrorCode(@ptrCast(*const IGPMStatusMessage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMessage_get_ExtensionName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMessage_get_ExtensionName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_ExtensionName(@ptrCast(*const IGPMStatusMessage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMessage_get_SettingsName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMessage_get_SettingsName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_SettingsName(@ptrCast(*const IGPMStatusMessage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2327,7 +2327,7 @@ pub const IGPMStatusMessage = extern struct {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).OperationCode(@ptrCast(*const IGPMStatusMessage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStatusMessage_get_Message(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStatusMessage_get_Message(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_Message(@ptrCast(*const IGPMStatusMessage, self), pVal);
         }
     };}
@@ -2343,172 +2343,172 @@ pub const IGPMConstants = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermGPOApply: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermGPORead: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermGPOEdit: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermGPOEditSecurityAndDelete: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermGPOCustom: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermWMIFilterEdit: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermWMIFilterFullControl: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermWMIFilterCustom: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMLink: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMLogging: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMPlanning: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMGPOCreate: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMWMICreate: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermSOMWMIFullControl: fn(
             self: *const IGPMConstants,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOPermissions: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOEffectivePermissions: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPODisplayName: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOWMIFilter: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOID: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOComputerExtensions: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPOUserExtensions: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertySOMLinks: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyGPODomain: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyBackupMostRecent: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchOpEquals: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchOperation,
+            pVal: ?*GPMSearchOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchOpContains: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchOperation,
+            pVal: ?*GPMSearchOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchOpNotContains: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchOperation,
+            pVal: ?*GPMSearchOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchOpNotEquals: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSearchOperation,
+            pVal: ?*GPMSearchOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UsePDC: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseAnyDC: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DoNotUseW2KDC: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOMSite: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSOMType,
+            pVal: ?*GPMSOMType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOMDomain: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSOMType,
+            pVal: ?*GPMSOMType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOMOU: fn(
             self: *const IGPMConstants,
-            pVal: *GPMSOMType,
+            pVal: ?*GPMSOMType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecurityFlags: fn(
@@ -2517,376 +2517,376 @@ pub const IGPMConstants = extern struct {
             vbGroup: i16,
             vbDACL: i16,
             vbSACL: i16,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DoNotValidateDC: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportHTML: fn(
             self: *const IGPMConstants,
-            pVal: *GPMReportType,
+            pVal: ?*GPMReportType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportXML: fn(
             self: *const IGPMConstants,
-            pVal: *GPMReportType,
+            pVal: ?*GPMReportType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RSOPModeUnknown: fn(
             self: *const IGPMConstants,
-            pVal: *GPMRSOPMode,
+            pVal: ?*GPMRSOPMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RSOPModePlanning: fn(
             self: *const IGPMConstants,
-            pVal: *GPMRSOPMode,
+            pVal: ?*GPMRSOPMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RSOPModeLogging: fn(
             self: *const IGPMConstants,
-            pVal: *GPMRSOPMode,
+            pVal: ?*GPMRSOPMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeUser: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeComputer: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeLocalGroup: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeGlobalGroup: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeUniversalGroup: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeUNCPath: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryTypeUnknown: fn(
             self: *const IGPMConstants,
-            pVal: *GPMEntryType,
+            pVal: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationOptionSameAsSource: fn(
             self: *const IGPMConstants,
-            pVal: *GPMDestinationOption,
+            pVal: ?*GPMDestinationOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationOptionNone: fn(
             self: *const IGPMConstants,
-            pVal: *GPMDestinationOption,
+            pVal: ?*GPMDestinationOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationOptionByRelativeName: fn(
             self: *const IGPMConstants,
-            pVal: *GPMDestinationOption,
+            pVal: ?*GPMDestinationOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationOptionSet: fn(
             self: *const IGPMConstants,
-            pVal: *GPMDestinationOption,
+            pVal: ?*GPMDestinationOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MigrationTableOnly: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProcessSecurity: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopLoggingNoComputer: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopLoggingNoUser: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopPlanningAssumeSlowLink: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopPlanningLoopbackOption: fn(
             self: *const IGPMConstants,
             vbMerge: i16,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopPlanningAssumeUserWQLFilterTrue: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RsopPlanningAssumeCompWQLFilterTrue: fn(
             self: *const IGPMConstants,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermGPOApply(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermGPOApply(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOApply(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermGPORead(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermGPORead(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPORead(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermGPOEdit(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermGPOEdit(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOEdit(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermGPOEditSecurityAndDelete(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermGPOEditSecurityAndDelete(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOEditSecurityAndDelete(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermGPOCustom(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermGPOCustom(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOCustom(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermWMIFilterEdit(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermWMIFilterEdit(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterEdit(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermWMIFilterFullControl(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermWMIFilterFullControl(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterFullControl(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermWMIFilterCustom(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermWMIFilterCustom(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterCustom(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMLink(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMLink(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMLink(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMLogging(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMLogging(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMLogging(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMPlanning(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMPlanning(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMPlanning(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMGPOCreate(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMGPOCreate(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMGPOCreate(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMWMICreate(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMWMICreate(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMWMICreate(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_PermSOMWMIFullControl(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_PermSOMWMIFullControl(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMWMIFullControl(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOPermissions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOPermissions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOPermissions(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOEffectivePermissions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOEffectivePermissions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOEffectivePermissions(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPODisplayName(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPODisplayName(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPODisplayName(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOWMIFilter(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOWMIFilter(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOWMIFilter(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOID(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOID(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOID(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOComputerExtensions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOComputerExtensions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOComputerExtensions(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPOUserExtensions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPOUserExtensions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOUserExtensions(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertySOMLinks(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertySOMLinks(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertySOMLinks(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyGPODomain(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyGPODomain(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPODomain(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchPropertyBackupMostRecent(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchPropertyBackupMostRecent(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyBackupMostRecent(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchOpEquals(self: *const T, pVal: *GPMSearchOperation) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchOpEquals(self: *const T, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpEquals(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchOpContains(self: *const T, pVal: *GPMSearchOperation) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchOpContains(self: *const T, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpContains(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchOpNotContains(self: *const T, pVal: *GPMSearchOperation) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchOpNotContains(self: *const T, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpNotContains(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SearchOpNotEquals(self: *const T, pVal: *GPMSearchOperation) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SearchOpNotEquals(self: *const T, pVal: ?*GPMSearchOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpNotEquals(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_UsePDC(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_UsePDC(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_UsePDC(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_UseAnyDC(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_UseAnyDC(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_UseAnyDC(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DoNotUseW2KDC(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DoNotUseW2KDC(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DoNotUseW2KDC(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SOMSite(self: *const T, pVal: *GPMSOMType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SOMSite(self: *const T, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMSite(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SOMDomain(self: *const T, pVal: *GPMSOMType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SOMDomain(self: *const T, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMDomain(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SOMOU(self: *const T, pVal: *GPMSOMType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SOMOU(self: *const T, pVal: ?*GPMSOMType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMOU(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_SecurityFlags(self: *const T, vbOwner: i16, vbGroup: i16, vbDACL: i16, vbSACL: i16, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_SecurityFlags(self: *const T, vbOwner: i16, vbGroup: i16, vbDACL: i16, vbSACL: i16, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SecurityFlags(@ptrCast(*const IGPMConstants, self), vbOwner, vbGroup, vbDACL, vbSACL, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DoNotValidateDC(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DoNotValidateDC(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DoNotValidateDC(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_ReportHTML(self: *const T, pVal: *GPMReportType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_ReportHTML(self: *const T, pVal: ?*GPMReportType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ReportHTML(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_ReportXML(self: *const T, pVal: *GPMReportType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_ReportXML(self: *const T, pVal: ?*GPMReportType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ReportXML(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RSOPModeUnknown(self: *const T, pVal: *GPMRSOPMode) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RSOPModeUnknown(self: *const T, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModeUnknown(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RSOPModePlanning(self: *const T, pVal: *GPMRSOPMode) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RSOPModePlanning(self: *const T, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModePlanning(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RSOPModeLogging(self: *const T, pVal: *GPMRSOPMode) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RSOPModeLogging(self: *const T, pVal: ?*GPMRSOPMode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModeLogging(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeUser(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeUser(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUser(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeComputer(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeComputer(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeComputer(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeLocalGroup(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeLocalGroup(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeLocalGroup(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeGlobalGroup(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeGlobalGroup(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeGlobalGroup(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeUniversalGroup(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeUniversalGroup(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUniversalGroup(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeUNCPath(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeUNCPath(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUNCPath(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_EntryTypeUnknown(self: *const T, pVal: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_EntryTypeUnknown(self: *const T, pVal: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUnknown(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DestinationOptionSameAsSource(self: *const T, pVal: *GPMDestinationOption) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DestinationOptionSameAsSource(self: *const T, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionSameAsSource(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DestinationOptionNone(self: *const T, pVal: *GPMDestinationOption) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DestinationOptionNone(self: *const T, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionNone(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DestinationOptionByRelativeName(self: *const T, pVal: *GPMDestinationOption) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DestinationOptionByRelativeName(self: *const T, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionByRelativeName(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_DestinationOptionSet(self: *const T, pVal: *GPMDestinationOption) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_DestinationOptionSet(self: *const T, pVal: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionSet(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_MigrationTableOnly(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_MigrationTableOnly(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_MigrationTableOnly(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_ProcessSecurity(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_ProcessSecurity(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ProcessSecurity(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopLoggingNoComputer(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopLoggingNoComputer(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopLoggingNoComputer(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopLoggingNoUser(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopLoggingNoUser(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopLoggingNoUser(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopPlanningAssumeSlowLink(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopPlanningAssumeSlowLink(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeSlowLink(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopPlanningLoopbackOption(self: *const T, vbMerge: i16, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopPlanningLoopbackOption(self: *const T, vbMerge: i16, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningLoopbackOption(@ptrCast(*const IGPMConstants, self), vbMerge, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopPlanningAssumeUserWQLFilterTrue(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopPlanningAssumeUserWQLFilterTrue(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeUserWQLFilterTrue(@ptrCast(*const IGPMConstants, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants_get_RsopPlanningAssumeCompWQLFilterTrue(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants_get_RsopPlanningAssumeCompWQLFilterTrue(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeCompWQLFilterTrue(@ptrCast(*const IGPMConstants, self), pVal);
         }
     };}
@@ -2902,12 +2902,12 @@ pub const IGPMResult = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const IGPMResult,
-            ppIGPMStatusMsgCollection: **IGPMStatusMsgCollection,
+            ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Result: fn(
             self: *const IGPMResult,
-            pvarResult: *VARIANT,
+            pvarResult: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OverallStatus: fn(
             self: *const IGPMResult,
@@ -2917,11 +2917,11 @@ pub const IGPMResult = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMResult_get_Status(self: *const T, ppIGPMStatusMsgCollection: **IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMResult_get_Status(self: *const T, ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMResult.VTable, self.vtable).get_Status(@ptrCast(*const IGPMResult, self), ppIGPMStatusMsgCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMResult_get_Result(self: *const T, pvarResult: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMResult_get_Result(self: *const T, pvarResult: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMResult.VTable, self.vtable).get_Result(@ptrCast(*const IGPMResult, self), pvarResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2941,33 +2941,33 @@ pub const IGPMMapEntryCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMMapEntryCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMMapEntryCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMMapEntryCollection,
-            pVal: **IEnumVARIANT,
+            pVal: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntryCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntryCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMMapEntryCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntryCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntryCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMMapEntryCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntryCollection_get__NewEnum(self: *const T, pVal: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntryCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMMapEntryCollection, self), pVal);
         }
     };}
@@ -2983,41 +2983,41 @@ pub const IGPMMapEntry = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Source: fn(
             self: *const IGPMMapEntry,
-            pbstrSource: *BSTR,
+            pbstrSource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Destination: fn(
             self: *const IGPMMapEntry,
-            pbstrDestination: *BSTR,
+            pbstrDestination: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationOption: fn(
             self: *const IGPMMapEntry,
-            pgpmDestOption: *GPMDestinationOption,
+            pgpmDestOption: ?*GPMDestinationOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EntryType: fn(
             self: *const IGPMMapEntry,
-            pgpmEntryType: *GPMEntryType,
+            pgpmEntryType: ?*GPMEntryType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntry_get_Source(self: *const T, pbstrSource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntry_get_Source(self: *const T, pbstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_Source(@ptrCast(*const IGPMMapEntry, self), pbstrSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntry_get_Destination(self: *const T, pbstrDestination: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntry_get_Destination(self: *const T, pbstrDestination: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_Destination(@ptrCast(*const IGPMMapEntry, self), pbstrDestination);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntry_get_DestinationOption(self: *const T, pgpmDestOption: *GPMDestinationOption) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntry_get_DestinationOption(self: *const T, pgpmDestOption: ?*GPMDestinationOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_DestinationOption(@ptrCast(*const IGPMMapEntry, self), pgpmDestOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMapEntry_get_EntryType(self: *const T, pgpmEntryType: *GPMEntryType) callconv(.Inline) HRESULT {
+        pub fn IGPMMapEntry_get_EntryType(self: *const T, pgpmEntryType: ?*GPMEntryType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_EntryType(@ptrCast(*const IGPMMapEntry, self), pgpmEntryType);
         }
     };}
@@ -3032,7 +3032,7 @@ pub const IGPMMigrationTable = extern struct {
         base: IDispatch.VTable,
         Save: fn(
             self: *const IGPMMigrationTable,
-            bstrMigrationTablePath: BSTR,
+            bstrMigrationTablePath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IGPMMigrationTable,
@@ -3041,40 +3041,40 @@ pub const IGPMMigrationTable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddEntry: fn(
             self: *const IGPMMigrationTable,
-            bstrSource: BSTR,
+            bstrSource: ?BSTR,
             gpmEntryType: GPMEntryType,
-            pvarDestination: *VARIANT,
-            ppEntry: **IGPMMapEntry,
+            pvarDestination: ?*VARIANT,
+            ppEntry: ?*?*IGPMMapEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEntry: fn(
             self: *const IGPMMigrationTable,
-            bstrSource: BSTR,
-            ppEntry: **IGPMMapEntry,
+            bstrSource: ?BSTR,
+            ppEntry: ?*?*IGPMMapEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteEntry: fn(
             self: *const IGPMMigrationTable,
-            bstrSource: BSTR,
+            bstrSource: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateDestination: fn(
             self: *const IGPMMigrationTable,
-            bstrSource: BSTR,
-            pvarDestination: *VARIANT,
-            ppEntry: **IGPMMapEntry,
+            bstrSource: ?BSTR,
+            pvarDestination: ?*VARIANT,
+            ppEntry: ?*?*IGPMMapEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Validate: fn(
             self: *const IGPMMigrationTable,
-            ppResult: **IGPMResult,
+            ppResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEntries: fn(
             self: *const IGPMMigrationTable,
-            ppEntries: **IGPMMapEntryCollection,
+            ppEntries: ?*?*IGPMMapEntryCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_Save(self: *const T, bstrMigrationTablePath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_Save(self: *const T, bstrMigrationTablePath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Save(@ptrCast(*const IGPMMigrationTable, self), bstrMigrationTablePath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3082,27 +3082,27 @@ pub const IGPMMigrationTable = extern struct {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Add(@ptrCast(*const IGPMMigrationTable, self), lFlags, @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_AddEntry(self: *const T, bstrSource: BSTR, gpmEntryType: GPMEntryType, pvarDestination: *VARIANT, ppEntry: **IGPMMapEntry) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_AddEntry(self: *const T, bstrSource: ?BSTR, gpmEntryType: GPMEntryType, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).AddEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource, gpmEntryType, pvarDestination, ppEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_GetEntry(self: *const T, bstrSource: BSTR, ppEntry: **IGPMMapEntry) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_GetEntry(self: *const T, bstrSource: ?BSTR, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).GetEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource, ppEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_DeleteEntry(self: *const T, bstrSource: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_DeleteEntry(self: *const T, bstrSource: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).DeleteEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_UpdateDestination(self: *const T, bstrSource: BSTR, pvarDestination: *VARIANT, ppEntry: **IGPMMapEntry) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_UpdateDestination(self: *const T, bstrSource: ?BSTR, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).UpdateDestination(@ptrCast(*const IGPMMigrationTable, self), bstrSource, pvarDestination, ppEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_Validate(self: *const T, ppResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_Validate(self: *const T, ppResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Validate(@ptrCast(*const IGPMMigrationTable, self), ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMMigrationTable_GetEntries(self: *const T, ppEntries: **IGPMMapEntryCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMMigrationTable_GetEntries(self: *const T, ppEntries: ?*?*IGPMMapEntryCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).GetEntries(@ptrCast(*const IGPMMigrationTable, self), ppEntries);
         }
     };}
@@ -3132,41 +3132,41 @@ pub const IGPMBackupDirEx = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupDir: fn(
             self: *const IGPMBackupDirEx,
-            pbstrBackupDir: *BSTR,
+            pbstrBackupDir: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupType: fn(
             self: *const IGPMBackupDirEx,
-            pgpmBackupType: *GPMBackupType,
+            pgpmBackupType: ?*GPMBackupType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBackup: fn(
             self: *const IGPMBackupDirEx,
-            bstrID: BSTR,
-            pvarBackup: *VARIANT,
+            bstrID: ?BSTR,
+            pvarBackup: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchBackups: fn(
             self: *const IGPMBackupDirEx,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            pvarBackupCollection: *VARIANT,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            pvarBackupCollection: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDirEx_get_BackupDir(self: *const T, pbstrBackupDir: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDirEx_get_BackupDir(self: *const T, pbstrBackupDir: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMBackupDirEx, self), pbstrBackupDir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDirEx_get_BackupType(self: *const T, pgpmBackupType: *GPMBackupType) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDirEx_get_BackupType(self: *const T, pgpmBackupType: ?*GPMBackupType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).get_BackupType(@ptrCast(*const IGPMBackupDirEx, self), pgpmBackupType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDirEx_GetBackup(self: *const T, bstrID: BSTR, pvarBackup: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDirEx_GetBackup(self: *const T, bstrID: ?BSTR, pvarBackup: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).GetBackup(@ptrCast(*const IGPMBackupDirEx, self), bstrID, pvarBackup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMBackupDirEx_SearchBackups(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, pvarBackupCollection: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMBackupDirEx_SearchBackups(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, pvarBackupCollection: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).SearchBackups(@ptrCast(*const IGPMBackupDirEx, self), pIGPMSearchCriteria, pvarBackupCollection);
         }
     };}
@@ -3182,33 +3182,33 @@ pub const IGPMStarterGPOBackupCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMStarterGPOBackupCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMStarterGPOBackupCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMStarterGPOBackupCollection,
-            ppIGPMTmplBackup: **IEnumVARIANT,
+            ppIGPMTmplBackup: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackupCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackupCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStarterGPOBackupCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStarterGPOBackupCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackupCollection_get__NewEnum(self: *const T, ppIGPMTmplBackup: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackupCollection_get__NewEnum(self: *const T, ppIGPMTmplBackup: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStarterGPOBackupCollection, self), ppIGPMTmplBackup);
         }
     };}
@@ -3224,42 +3224,42 @@ pub const IGPMStarterGPOBackup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupDir: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrBackupDir: *BSTR,
+            pbstrBackupDir: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Comment: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrComment: *BSTR,
+            pbstrComment: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrDisplayName: *BSTR,
+            pbstrDisplayName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Domain: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrTemplateDomain: *BSTR,
+            pbstrTemplateDomain: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StarterGPOID: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrTemplateID: *BSTR,
+            pbstrTemplateID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ID: fn(
             self: *const IGPMStarterGPOBackup,
-            pbstrID: *BSTR,
+            pbstrID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IGPMStarterGPOBackup,
-            pTimestamp: *f64,
+            pTimestamp: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IGPMStarterGPOBackup,
-            pType: *GPMStarterGPOType,
+            pType: ?*GPMStarterGPOType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGPMStarterGPOBackup,
@@ -3267,50 +3267,50 @@ pub const IGPMStarterGPOBackup = extern struct {
         GenerateReport: fn(
             self: *const IGPMStarterGPOBackup,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReportToFile: fn(
             self: *const IGPMStarterGPOBackup,
             gpmReportType: GPMReportType,
-            bstrTargetFilePath: BSTR,
-            ppIGPMResult: **IGPMResult,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_BackupDir(self: *const T, pbstrBackupDir: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_BackupDir(self: *const T, pbstrBackupDir: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrBackupDir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_Comment(self: *const T, pbstrComment: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_Comment(self: *const T, pbstrComment: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Comment(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrComment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_DisplayName(self: *const T, pbstrDisplayName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_DisplayName(self: *const T, pbstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_Domain(self: *const T, pbstrTemplateDomain: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_Domain(self: *const T, pbstrTemplateDomain: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrTemplateDomain);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_StarterGPOID(self: *const T, pbstrTemplateID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_StarterGPOID(self: *const T, pbstrTemplateID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_StarterGPOID(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrTemplateID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_ID(self: *const T, pbstrID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_ID(self: *const T, pbstrID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_ID(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_Timestamp(self: *const T, pTimestamp: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_Timestamp(self: *const T, pTimestamp: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Timestamp(@ptrCast(*const IGPMStarterGPOBackup, self), pTimestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_get_Type(self: *const T, pType: *GPMStarterGPOType) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_get_Type(self: *const T, pType: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Type(@ptrCast(*const IGPMStarterGPOBackup, self), pType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3318,11 +3318,11 @@ pub const IGPMStarterGPOBackup = extern struct {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).Delete(@ptrCast(*const IGPMStarterGPOBackup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMStarterGPOBackup, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: BSTR, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMStarterGPOBackup, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
         }
     };}
@@ -3337,13 +3337,13 @@ pub const IGPM2 = extern struct {
         base: IGPM.VTable,
         GetBackupDirEx: fn(
             self: *const IGPM2,
-            bstrBackupDir: BSTR,
+            bstrBackupDir: ?BSTR,
             backupDirType: GPMBackupType,
-            ppIGPMBackupDirEx: **IGPMBackupDirEx,
+            ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeReportingEx: fn(
             self: *const IGPM2,
-            bstrAdmPath: BSTR,
+            bstrAdmPath: ?BSTR,
             reportingOptions: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3351,11 +3351,11 @@ pub const IGPM2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPM.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM2_GetBackupDirEx(self: *const T, bstrBackupDir: BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: **IGPMBackupDirEx) callconv(.Inline) HRESULT {
+        pub fn IGPM2_GetBackupDirEx(self: *const T, bstrBackupDir: ?BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM2.VTable, self.vtable).GetBackupDirEx(@ptrCast(*const IGPM2, self), bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPM2_InitializeReportingEx(self: *const T, bstrAdmPath: BSTR, reportingOptions: i32) callconv(.Inline) HRESULT {
+        pub fn IGPM2_InitializeReportingEx(self: *const T, bstrAdmPath: ?BSTR, reportingOptions: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPM2.VTable, self.vtable).InitializeReportingEx(@ptrCast(*const IGPM2, self), bstrAdmPath, reportingOptions);
         }
     };}
@@ -3371,175 +3371,175 @@ pub const IGPMStarterGPO = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: fn(
             self: *const IGPMStarterGPO,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IGPMStarterGPO,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Author: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Product: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreationTime: fn(
             self: *const IGPMStarterGPO,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ID: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifiedTime: fn(
             self: *const IGPMStarterGPO,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IGPMStarterGPO,
-            pVal: *GPMStarterGPOType,
+            pVal: ?*GPMStarterGPOType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ComputerVersion: fn(
             self: *const IGPMStarterGPO,
-            pVal: *u16,
+            pVal: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserVersion: fn(
             self: *const IGPMStarterGPO,
-            pVal: *u16,
+            pVal: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StarterGPOVersion: fn(
             self: *const IGPMStarterGPO,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGPMStarterGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Save: fn(
             self: *const IGPMStarterGPO,
-            bstrSaveFile: BSTR,
+            bstrSaveFile: ?BSTR,
             bOverwrite: i16,
             bSaveAsSystem: i16,
-            bstrLanguage: *VARIANT,
-            bstrAuthor: *VARIANT,
-            bstrProduct: *VARIANT,
-            bstrUniqueID: *VARIANT,
-            bstrVersion: *VARIANT,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            bstrLanguage: ?*VARIANT,
+            bstrAuthor: ?*VARIANT,
+            bstrProduct: ?*VARIANT,
+            bstrUniqueID: ?*VARIANT,
+            bstrVersion: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IGPMStarterGPO,
-            bstrBackupDir: BSTR,
-            bstrComment: BSTR,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            bstrBackupDir: ?BSTR,
+            bstrComment: ?BSTR,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTo: fn(
             self: *const IGPMStarterGPO,
-            pvarNewDisplayName: *VARIANT,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarNewDisplayName: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReport: fn(
             self: *const IGPMStarterGPO,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateReportToFile: fn(
             self: *const IGPMStarterGPO,
             gpmReportType: GPMReportType,
-            bstrTargetFilePath: BSTR,
-            ppIGPMResult: **IGPMResult,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityInfo: fn(
             self: *const IGPMStarterGPO,
-            ppSecurityInfo: **IGPMSecurityInfo,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityInfo: fn(
             self: *const IGPMStarterGPO,
-            pSecurityInfo: *IGPMSecurityInfo,
+            pSecurityInfo: ?*IGPMSecurityInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_DisplayName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_DisplayName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_put_DisplayName(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_put_DisplayName(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).put_DisplayName(@ptrCast(*const IGPMStarterGPO, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_Description(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_Description(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Description(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_put_Description(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_put_Description(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).put_Description(@ptrCast(*const IGPMStarterGPO, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_Author(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_Author(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Author(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_Product(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_Product(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Product(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_CreationTime(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_CreationTime(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_CreationTime(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_ID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_ID(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ID(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_ModifiedTime(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_ModifiedTime(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ModifiedTime(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_Type(self: *const T, pVal: *GPMStarterGPOType) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_Type(self: *const T, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Type(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_ComputerVersion(self: *const T, pVal: *u16) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_ComputerVersion(self: *const T, pVal: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ComputerVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_UserVersion(self: *const T, pVal: *u16) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_UserVersion(self: *const T, pVal: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_UserVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_get_StarterGPOVersion(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_get_StarterGPOVersion(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_StarterGPOVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3547,31 +3547,31 @@ pub const IGPMStarterGPO = extern struct {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Delete(@ptrCast(*const IGPMStarterGPO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_Save(self: *const T, bstrSaveFile: BSTR, bOverwrite: i16, bSaveAsSystem: i16, bstrLanguage: *VARIANT, bstrAuthor: *VARIANT, bstrProduct: *VARIANT, bstrUniqueID: *VARIANT, bstrVersion: *VARIANT, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_Save(self: *const T, bstrSaveFile: ?BSTR, bOverwrite: i16, bSaveAsSystem: i16, bstrLanguage: ?*VARIANT, bstrAuthor: ?*VARIANT, bstrProduct: ?*VARIANT, bstrUniqueID: ?*VARIANT, bstrVersion: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Save(@ptrCast(*const IGPMStarterGPO, self), bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_Backup(self: *const T, bstrBackupDir: BSTR, bstrComment: BSTR, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_Backup(self: *const T, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Backup(@ptrCast(*const IGPMStarterGPO, self), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_CopyTo(self: *const T, pvarNewDisplayName: *VARIANT, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_CopyTo(self: *const T, pvarNewDisplayName: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).CopyTo(@ptrCast(*const IGPMStarterGPO, self), pvarNewDisplayName, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMStarterGPO, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: BSTR, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMStarterGPO, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: **IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMStarterGPO, self), ppSecurityInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPO_SetSecurityInfo(self: *const T, pSecurityInfo: *IGPMSecurityInfo) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPO_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMStarterGPO, self), pSecurityInfo);
         }
     };}
@@ -3587,33 +3587,33 @@ pub const IGPMStarterGPOCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IGPMStarterGPOCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IGPMStarterGPOCollection,
             lIndex: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IGPMStarterGPOCollection,
-            ppIGPMTemplates: **IEnumVARIANT,
+            ppIGPMTemplates: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStarterGPOCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStarterGPOCollection, self), lIndex, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMStarterGPOCollection_get__NewEnum(self: *const T, ppIGPMTemplates: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IGPMStarterGPOCollection_get__NewEnum(self: *const T, ppIGPMTemplates: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStarterGPOCollection, self), ppIGPMTemplates);
         }
     };}
@@ -3628,64 +3628,64 @@ pub const IGPMDomain2 = extern struct {
         base: IGPMDomain.VTable,
         CreateStarterGPO: fn(
             self: *const IGPMDomain2,
-            ppnewTemplate: **IGPMStarterGPO,
+            ppnewTemplate: ?*?*IGPMStarterGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGPOFromStarterGPO: fn(
             self: *const IGPMDomain2,
-            pGPOTemplate: *IGPMStarterGPO,
-            ppnewGPO: **IGPMGPO,
+            pGPOTemplate: ?*IGPMStarterGPO,
+            ppnewGPO: ?*?*IGPMGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStarterGPO: fn(
             self: *const IGPMDomain2,
-            bstrGuid: BSTR,
-            ppTemplate: **IGPMStarterGPO,
+            bstrGuid: ?BSTR,
+            ppTemplate: ?*?*IGPMStarterGPO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchStarterGPOs: fn(
             self: *const IGPMDomain2,
-            pIGPMSearchCriteria: *IGPMSearchCriteria,
-            ppIGPMTemplateCollection: **IGPMStarterGPOCollection,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadStarterGPO: fn(
             self: *const IGPMDomain2,
-            bstrLoadFile: BSTR,
+            bstrLoadFile: ?BSTR,
             bOverwrite: i16,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RestoreStarterGPO: fn(
             self: *const IGPMDomain2,
-            pIGPMTmplBackup: *IGPMStarterGPOBackup,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pIGPMTmplBackup: ?*IGPMStarterGPOBackup,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPMDomain.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_CreateStarterGPO(self: *const T, ppnewTemplate: **IGPMStarterGPO) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_CreateStarterGPO(self: *const T, ppnewTemplate: ?*?*IGPMStarterGPO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).CreateStarterGPO(@ptrCast(*const IGPMDomain2, self), ppnewTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_CreateGPOFromStarterGPO(self: *const T, pGPOTemplate: *IGPMStarterGPO, ppnewGPO: **IGPMGPO) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_CreateGPOFromStarterGPO(self: *const T, pGPOTemplate: ?*IGPMStarterGPO, ppnewGPO: ?*?*IGPMGPO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).CreateGPOFromStarterGPO(@ptrCast(*const IGPMDomain2, self), pGPOTemplate, ppnewGPO);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_GetStarterGPO(self: *const T, bstrGuid: BSTR, ppTemplate: **IGPMStarterGPO) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_GetStarterGPO(self: *const T, bstrGuid: ?BSTR, ppTemplate: ?*?*IGPMStarterGPO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).GetStarterGPO(@ptrCast(*const IGPMDomain2, self), bstrGuid, ppTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_SearchStarterGPOs(self: *const T, pIGPMSearchCriteria: *IGPMSearchCriteria, ppIGPMTemplateCollection: **IGPMStarterGPOCollection) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_SearchStarterGPOs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).SearchStarterGPOs(@ptrCast(*const IGPMDomain2, self), pIGPMSearchCriteria, ppIGPMTemplateCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_LoadStarterGPO(self: *const T, bstrLoadFile: BSTR, bOverwrite: i16, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_LoadStarterGPO(self: *const T, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).LoadStarterGPO(@ptrCast(*const IGPMDomain2, self), bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain2_RestoreStarterGPO(self: *const T, pIGPMTmplBackup: *IGPMStarterGPOBackup, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain2_RestoreStarterGPO(self: *const T, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain2.VTable, self.vtable).RestoreStarterGPO(@ptrCast(*const IGPMDomain2, self), pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
     };}
@@ -3701,140 +3701,140 @@ pub const IGPMConstants2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupTypeGPO: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMBackupType,
+            pVal: ?*GPMBackupType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackupTypeStarterGPO: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMBackupType,
+            pVal: ?*GPMBackupType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StarterGPOTypeSystem: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMStarterGPOType,
+            pVal: ?*GPMStarterGPOType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StarterGPOTypeCustom: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMStarterGPOType,
+            pVal: ?*GPMStarterGPOType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyStarterGPOPermissions: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyStarterGPOEffectivePermissions: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyStarterGPODisplayName: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyStarterGPOID: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchPropertyStarterGPODomain: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMSearchProperty,
+            pVal: ?*GPMSearchProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermStarterGPORead: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermStarterGPOEdit: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermStarterGPOFullControl: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PermStarterGPOCustom: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMPermissionType,
+            pVal: ?*GPMPermissionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportLegacy: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMReportingOptions,
+            pVal: ?*GPMReportingOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportComments: fn(
             self: *const IGPMConstants2,
-            pVal: *GPMReportingOptions,
+            pVal: ?*GPMReportingOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPMConstants.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_BackupTypeGPO(self: *const T, pVal: *GPMBackupType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_BackupTypeGPO(self: *const T, pVal: ?*GPMBackupType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_BackupTypeGPO(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_BackupTypeStarterGPO(self: *const T, pVal: *GPMBackupType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_BackupTypeStarterGPO(self: *const T, pVal: ?*GPMBackupType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_BackupTypeStarterGPO(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_StarterGPOTypeSystem(self: *const T, pVal: *GPMStarterGPOType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_StarterGPOTypeSystem(self: *const T, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_StarterGPOTypeSystem(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_StarterGPOTypeCustom(self: *const T, pVal: *GPMStarterGPOType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_StarterGPOTypeCustom(self: *const T, pVal: ?*GPMStarterGPOType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_StarterGPOTypeCustom(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_SearchPropertyStarterGPOPermissions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_SearchPropertyStarterGPOPermissions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOPermissions(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_SearchPropertyStarterGPOEffectivePermissions(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_SearchPropertyStarterGPOEffectivePermissions(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOEffectivePermissions(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_SearchPropertyStarterGPODisplayName(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_SearchPropertyStarterGPODisplayName(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPODisplayName(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_SearchPropertyStarterGPOID(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_SearchPropertyStarterGPOID(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOID(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_SearchPropertyStarterGPODomain(self: *const T, pVal: *GPMSearchProperty) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_SearchPropertyStarterGPODomain(self: *const T, pVal: ?*GPMSearchProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPODomain(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_PermStarterGPORead(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_PermStarterGPORead(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPORead(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_PermStarterGPOEdit(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_PermStarterGPOEdit(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOEdit(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_PermStarterGPOFullControl(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_PermStarterGPOFullControl(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOFullControl(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_PermStarterGPOCustom(self: *const T, pVal: *GPMPermissionType) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_PermStarterGPOCustom(self: *const T, pVal: ?*GPMPermissionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOCustom(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_ReportLegacy(self: *const T, pVal: *GPMReportingOptions) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_ReportLegacy(self: *const T, pVal: ?*GPMReportingOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_ReportLegacy(@ptrCast(*const IGPMConstants2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMConstants2_get_ReportComments(self: *const T, pVal: *GPMReportingOptions) callconv(.Inline) HRESULT {
+        pub fn IGPMConstants2_get_ReportComments(self: *const T, pVal: ?*GPMReportingOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_ReportComments(@ptrCast(*const IGPMConstants2, self), pVal);
         }
     };}
@@ -3850,23 +3850,23 @@ pub const IGPMGPO2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IGPMGPO2,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IGPMGPO2,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPMGPO.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO2_get_Description(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO2_get_Description(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO2.VTable, self.vtable).get_Description(@ptrCast(*const IGPMGPO2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO2_put_Description(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO2_put_Description(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO2.VTable, self.vtable).put_Description(@ptrCast(*const IGPMGPO2, self), newVal);
         }
     };}
@@ -3881,19 +3881,19 @@ pub const IGPMDomain3 = extern struct {
         GenerateReport: fn(
             self: *const IGPMDomain3,
             gpmReportType: GPMReportType,
-            pvarGPMProgress: *VARIANT,
-            pvarGPMCancel: *VARIANT,
-            ppIGPMResult: **IGPMResult,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InfrastructureDC: fn(
             self: *const IGPMDomain3,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InfrastructureDC: fn(
             self: *const IGPMDomain3,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InfrastructureFlags: fn(
@@ -3905,15 +3905,15 @@ pub const IGPMDomain3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPMDomain2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain3_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: *VARIANT, pvarGPMCancel: *VARIANT, ppIGPMResult: **IGPMResult) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain3_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain3.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMDomain3, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain3_get_InfrastructureDC(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain3_get_InfrastructureDC(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain3.VTable, self.vtable).get_InfrastructureDC(@ptrCast(*const IGPMDomain3, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMDomain3_put_InfrastructureDC(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMDomain3_put_InfrastructureDC(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMDomain3.VTable, self.vtable).put_InfrastructureDC(@ptrCast(*const IGPMDomain3, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3932,12 +3932,12 @@ pub const IGPMGPO3 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InfrastructureDC: fn(
             self: *const IGPMGPO3,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InfrastructureDC: fn(
             self: *const IGPMGPO3,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InfrastructureFlags: fn(
@@ -3949,11 +3949,11 @@ pub const IGPMGPO3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IGPMGPO2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO3_get_InfrastructureDC(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO3_get_InfrastructureDC(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO3.VTable, self.vtable).get_InfrastructureDC(@ptrCast(*const IGPMGPO3, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPMGPO3_put_InfrastructureDC(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IGPMGPO3_put_InfrastructureDC(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPMGPO3.VTable, self.vtable).put_InfrastructureDC(@ptrCast(*const IGPMGPO3, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3980,76 +3980,76 @@ pub const GPLinkOrganizationalUnit = GPO_LINK.OrganizationalUnit;
 pub const GROUP_POLICY_OBJECTA = extern struct {
     dwOptions: u32,
     dwVersion: u32,
-    lpDSPath: PSTR,
-    lpFileSysPath: PSTR,
-    lpDisplayName: PSTR,
+    lpDSPath: ?PSTR,
+    lpFileSysPath: ?PSTR,
+    lpDisplayName: ?PSTR,
     szGPOName: [50]CHAR,
     GPOLink: GPO_LINK,
     lParam: LPARAM,
-    pNext: *GROUP_POLICY_OBJECTA,
-    pPrev: *GROUP_POLICY_OBJECTA,
-    lpExtensions: PSTR,
+    pNext: ?*GROUP_POLICY_OBJECTA,
+    pPrev: ?*GROUP_POLICY_OBJECTA,
+    lpExtensions: ?PSTR,
     lParam2: LPARAM,
-    lpLink: PSTR,
+    lpLink: ?PSTR,
 };
 
 pub const GROUP_POLICY_OBJECTW = extern struct {
     dwOptions: u32,
     dwVersion: u32,
-    lpDSPath: PWSTR,
-    lpFileSysPath: PWSTR,
-    lpDisplayName: PWSTR,
+    lpDSPath: ?PWSTR,
+    lpFileSysPath: ?PWSTR,
+    lpDisplayName: ?PWSTR,
     szGPOName: [50]u16,
     GPOLink: GPO_LINK,
     lParam: LPARAM,
-    pNext: *GROUP_POLICY_OBJECTW,
-    pPrev: *GROUP_POLICY_OBJECTW,
-    lpExtensions: PWSTR,
+    pNext: ?*GROUP_POLICY_OBJECTW,
+    pPrev: ?*GROUP_POLICY_OBJECTW,
+    lpExtensions: ?PWSTR,
     lParam2: LPARAM,
-    lpLink: PWSTR,
+    lpLink: ?PWSTR,
 };
 
 pub const PFNSTATUSMESSAGECALLBACK = fn(
     bVerbose: BOOL,
-    lpMessage: PWSTR,
+    lpMessage: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFNPROCESSGROUPPOLICY = fn(
     dwFlags: u32,
-    hToken: HANDLE,
-    hKeyRoot: HKEY,
-    pDeletedGPOList: *GROUP_POLICY_OBJECTA,
-    pChangedGPOList: *GROUP_POLICY_OBJECTA,
+    hToken: ?HANDLE,
+    hKeyRoot: ?HKEY,
+    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
     pHandle: usize,
-    pbAbort: *BOOL,
+    pbAbort: ?*BOOL,
     pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFNPROCESSGROUPPOLICYEX = fn(
     dwFlags: u32,
-    hToken: HANDLE,
-    hKeyRoot: HKEY,
-    pDeletedGPOList: *GROUP_POLICY_OBJECTA,
-    pChangedGPOList: *GROUP_POLICY_OBJECTA,
+    hToken: ?HANDLE,
+    hKeyRoot: ?HKEY,
+    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
     pHandle: usize,
-    pbAbort: *BOOL,
+    pbAbort: ?*BOOL,
     pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
     pWbemServices: ?*IWbemServices,
-    pRsopStatus: *HRESULT,
+    pRsopStatus: ?*HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RSOP_TARGET = extern struct {
-    pwszAccountName: PWSTR,
-    pwszNewSOM: PWSTR,
-    psaSecurityGroups: *SAFEARRAY,
-    pRsopToken: *c_void,
-    pGPOList: *GROUP_POLICY_OBJECTA,
-    pWbemServices: *IWbemServices,
+    pwszAccountName: ?PWSTR,
+    pwszNewSOM: ?PWSTR,
+    psaSecurityGroups: ?*SAFEARRAY,
+    pRsopToken: ?*c_void,
+    pGPOList: ?*GROUP_POLICY_OBJECTA,
+    pWbemServices: ?*IWbemServices,
 };
 
 pub const PFNGENERATEGROUPPOLICY = fn(
     dwFlags: u32,
-    pbAbort: *BOOL,
+    pbAbort: ?*BOOL,
     pwszSite: ?PWSTR,
     pComputerTarget: ?*RSOP_TARGET,
     pUserTarget: ?*RSOP_TARGET,
@@ -4069,9 +4069,9 @@ pub const RSOPFailed = SETTINGSTATUS.Failed;
 pub const RSOPSubsettingFailed = SETTINGSTATUS.SubsettingFailed;
 
 pub const POLICYSETTINGSTATUSINFO = extern struct {
-    szKey: PWSTR,
-    szEventSource: PWSTR,
-    szEventLogName: PWSTR,
+    szKey: ?PWSTR,
+    szEventSource: ?PWSTR,
+    szEventLogName: ?PWSTR,
     dwEventID: u32,
     dwErrorCode: u32,
     status: SETTINGSTATUS,
@@ -4091,11 +4091,11 @@ pub const COMCLASS = INSTALLSPECTYPE.COMCLASS;
 
 pub const INSTALLSPEC = extern union {
     AppName: extern struct {
-        Name: PWSTR,
+        Name: ?PWSTR,
         GPOId: Guid,
     },
-    FileExt: PWSTR,
-    ProgId: PWSTR,
+    FileExt: ?PWSTR,
+    ProgId: ?PWSTR,
     COMClass: extern struct {
         Clsid: Guid,
         ClsCtx: u32,
@@ -4117,27 +4117,27 @@ pub const ASSIGNED = APPSTATE.ASSIGNED;
 pub const PUBLISHED = APPSTATE.PUBLISHED;
 
 pub const LOCALMANAGEDAPPLICATION = extern struct {
-    pszDeploymentName: PWSTR,
-    pszPolicyName: PWSTR,
-    pszProductId: PWSTR,
+    pszDeploymentName: ?PWSTR,
+    pszPolicyName: ?PWSTR,
+    pszProductId: ?PWSTR,
     dwState: u32,
 };
 
 pub const MANAGEDAPPLICATION = extern struct {
-    pszPackageName: PWSTR,
-    pszPublisher: PWSTR,
+    pszPackageName: ?PWSTR,
+    pszPublisher: ?PWSTR,
     dwVersionHi: u32,
     dwVersionLo: u32,
     dwRevision: u32,
     GpoId: Guid,
-    pszPolicyName: PWSTR,
+    pszPolicyName: ?PWSTR,
     ProductId: Guid,
     Language: u16,
-    pszOwner: PWSTR,
-    pszCompany: PWSTR,
-    pszComments: PWSTR,
-    pszContact: PWSTR,
-    pszSupportUrl: PWSTR,
+    pszOwner: ?PWSTR,
+    pszCompany: ?PWSTR,
+    pszComments: ?PWSTR,
+    pszContact: ?PWSTR,
+    pszSupportUrl: ?PWSTR,
     dwPathType: u32,
     bInstalled: BOOL,
 };
@@ -4187,7 +4187,7 @@ pub const IGPEInformation = extern struct {
         GetRegistryKey: fn(
             self: *const IGPEInformation,
             dwSection: u32,
-            hKey: *HKEY,
+            hKey: ?*?HKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDSPath: fn(
             self: *const IGPEInformation,
@@ -4203,22 +4203,22 @@ pub const IGPEInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOptions: fn(
             self: *const IGPEInformation,
-            dwOptions: *u32,
+            dwOptions: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetType: fn(
             self: *const IGPEInformation,
-            gpoType: *GROUP_POLICY_OBJECT_TYPE,
+            gpoType: ?*GROUP_POLICY_OBJECT_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHint: fn(
             self: *const IGPEInformation,
-            gpHint: *GROUP_POLICY_HINT_TYPE,
+            gpHint: ?*GROUP_POLICY_HINT_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PolicyChanged: fn(
             self: *const IGPEInformation,
             bMachine: BOOL,
             bAdd: BOOL,
-            pGuidExtension: *Guid,
-            pGuidSnapin: *Guid,
+            pGuidExtension: ?*Guid,
+            pGuidSnapin: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4233,7 +4233,7 @@ pub const IGPEInformation = extern struct {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetDisplayName(@ptrCast(*const IGPEInformation, self), pszName, cchMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPEInformation_GetRegistryKey(self: *const T, dwSection: u32, hKey: *HKEY) callconv(.Inline) HRESULT {
+        pub fn IGPEInformation_GetRegistryKey(self: *const T, dwSection: u32, hKey: ?*?HKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetRegistryKey(@ptrCast(*const IGPEInformation, self), dwSection, hKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4245,19 +4245,19 @@ pub const IGPEInformation = extern struct {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetFileSysPath(@ptrCast(*const IGPEInformation, self), dwSection, pszPath, cchMaxPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPEInformation_GetOptions(self: *const T, dwOptions: *u32) callconv(.Inline) HRESULT {
+        pub fn IGPEInformation_GetOptions(self: *const T, dwOptions: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetOptions(@ptrCast(*const IGPEInformation, self), dwOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPEInformation_GetType(self: *const T, gpoType: *GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
+        pub fn IGPEInformation_GetType(self: *const T, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetType(@ptrCast(*const IGPEInformation, self), gpoType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPEInformation_GetHint(self: *const T, gpHint: *GROUP_POLICY_HINT_TYPE) callconv(.Inline) HRESULT {
+        pub fn IGPEInformation_GetHint(self: *const T, gpHint: ?*GROUP_POLICY_HINT_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetHint(@ptrCast(*const IGPEInformation, self), gpHint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGPEInformation_PolicyChanged(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: *Guid, pGuidSnapin: *Guid) callconv(.Inline) HRESULT {
+        pub fn IGPEInformation_PolicyChanged(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuidSnapin: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGPEInformation.VTable, self.vtable).PolicyChanged(@ptrCast(*const IGPEInformation, self), bMachine, bAdd, pGuidExtension, pGuidSnapin);
         }
     };}
@@ -4272,13 +4272,13 @@ pub const IGroupPolicyObject = extern struct {
         base: IUnknown.VTable,
         New: fn(
             self: *const IGroupPolicyObject,
-            pszDomainName: PWSTR,
+            pszDomainName: ?PWSTR,
             pszDisplayName: ?PWSTR,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenDSGPO: fn(
             self: *const IGroupPolicyObject,
-            pszPath: PWSTR,
+            pszPath: ?PWSTR,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenLocalMachineGPO: fn(
@@ -4287,15 +4287,15 @@ pub const IGroupPolicyObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRemoteMachineGPO: fn(
             self: *const IGroupPolicyObject,
-            pszComputerName: PWSTR,
+            pszComputerName: ?PWSTR,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Save: fn(
             self: *const IGroupPolicyObject,
             bMachine: BOOL,
             bAdd: BOOL,
-            pGuidExtension: *Guid,
-            pGuid: *Guid,
+            pGuidExtension: ?*Guid,
+            pGuid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IGroupPolicyObject,
@@ -4312,7 +4312,7 @@ pub const IGroupPolicyObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDisplayName: fn(
             self: *const IGroupPolicyObject,
-            pszName: PWSTR,
+            pszName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPath: fn(
             self: *const IGroupPolicyObject,
@@ -4334,11 +4334,11 @@ pub const IGroupPolicyObject = extern struct {
         GetRegistryKey: fn(
             self: *const IGroupPolicyObject,
             dwSection: u32,
-            hKey: *HKEY,
+            hKey: ?*?HKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOptions: fn(
             self: *const IGroupPolicyObject,
-            dwOptions: *u32,
+            dwOptions: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOptions: fn(
             self: *const IGroupPolicyObject,
@@ -4347,7 +4347,7 @@ pub const IGroupPolicyObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetType: fn(
             self: *const IGroupPolicyObject,
-            gpoType: *GROUP_POLICY_OBJECT_TYPE,
+            gpoType: ?*GROUP_POLICY_OBJECT_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMachineName: fn(
             self: *const IGroupPolicyObject,
@@ -4356,19 +4356,19 @@ pub const IGroupPolicyObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertySheetPages: fn(
             self: *const IGroupPolicyObject,
-            hPages: **HPROPSHEETPAGE,
-            uPageCount: *u32,
+            hPages: ?*?*?HPROPSHEETPAGE,
+            uPageCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_New(self: *const T, pszDomainName: PWSTR, pszDisplayName: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_New(self: *const T, pszDomainName: ?PWSTR, pszDisplayName: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).New(@ptrCast(*const IGroupPolicyObject, self), pszDomainName, pszDisplayName, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_OpenDSGPO(self: *const T, pszPath: PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_OpenDSGPO(self: *const T, pszPath: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenDSGPO(@ptrCast(*const IGroupPolicyObject, self), pszPath, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4376,11 +4376,11 @@ pub const IGroupPolicyObject = extern struct {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenLocalMachineGPO(@ptrCast(*const IGroupPolicyObject, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_OpenRemoteMachineGPO(self: *const T, pszComputerName: PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_OpenRemoteMachineGPO(self: *const T, pszComputerName: ?PWSTR, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenRemoteMachineGPO(@ptrCast(*const IGroupPolicyObject, self), pszComputerName, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_Save(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: *Guid, pGuid: *Guid) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_Save(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).Save(@ptrCast(*const IGroupPolicyObject, self), bMachine, bAdd, pGuidExtension, pGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4396,7 +4396,7 @@ pub const IGroupPolicyObject = extern struct {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetDisplayName(@ptrCast(*const IGroupPolicyObject, self), pszName, cchMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_SetDisplayName(self: *const T, pszName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_SetDisplayName(self: *const T, pszName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).SetDisplayName(@ptrCast(*const IGroupPolicyObject, self), pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4412,11 +4412,11 @@ pub const IGroupPolicyObject = extern struct {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetFileSysPath(@ptrCast(*const IGroupPolicyObject, self), dwSection, pszPath, cchMaxPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_GetRegistryKey(self: *const T, dwSection: u32, hKey: *HKEY) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_GetRegistryKey(self: *const T, dwSection: u32, hKey: ?*?HKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetRegistryKey(@ptrCast(*const IGroupPolicyObject, self), dwSection, hKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_GetOptions(self: *const T, dwOptions: *u32) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_GetOptions(self: *const T, dwOptions: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetOptions(@ptrCast(*const IGroupPolicyObject, self), dwOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4424,7 +4424,7 @@ pub const IGroupPolicyObject = extern struct {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).SetOptions(@ptrCast(*const IGroupPolicyObject, self), dwOptions, dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_GetType(self: *const T, gpoType: *GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_GetType(self: *const T, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetType(@ptrCast(*const IGroupPolicyObject, self), gpoType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4432,7 +4432,7 @@ pub const IGroupPolicyObject = extern struct {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetMachineName(@ptrCast(*const IGroupPolicyObject, self), pszName, cchMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGroupPolicyObject_GetPropertySheetPages(self: *const T, hPages: **HPROPSHEETPAGE, uPageCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IGroupPolicyObject_GetPropertySheetPages(self: *const T, hPages: ?*?*?HPROPSHEETPAGE, uPageCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetPropertySheetPages(@ptrCast(*const IGroupPolicyObject, self), hPages, uPageCount);
         }
     };}
@@ -4453,15 +4453,15 @@ pub const IRSOPInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFlags: fn(
             self: *const IRSOPInformation,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventLogEntryText: fn(
             self: *const IRSOPInformation,
-            pszEventSource: PWSTR,
-            pszEventLogName: PWSTR,
-            pszEventTime: PWSTR,
+            pszEventSource: ?PWSTR,
+            pszEventLogName: ?PWSTR,
+            pszEventTime: ?PWSTR,
             dwEventID: u32,
-            ppszText: *PWSTR,
+            ppszText: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4472,11 +4472,11 @@ pub const IRSOPInformation = extern struct {
             return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetNamespace(@ptrCast(*const IRSOPInformation, self), dwSection, pszName, cchMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRSOPInformation_GetFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IRSOPInformation_GetFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetFlags(@ptrCast(*const IRSOPInformation, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRSOPInformation_GetEventLogEntryText(self: *const T, pszEventSource: PWSTR, pszEventLogName: PWSTR, pszEventTime: PWSTR, dwEventID: u32, ppszText: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IRSOPInformation_GetEventLogEntryText(self: *const T, pszEventSource: ?PWSTR, pszEventLogName: ?PWSTR, pszEventTime: ?PWSTR, dwEventID: u32, ppszText: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetEventLogEntryText(@ptrCast(*const IRSOPInformation, self), pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
         }
     };}
@@ -4486,12 +4486,12 @@ pub const IRSOPInformation = extern struct {
 pub const GPOBROWSEINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    hwndOwner: HWND,
-    lpTitle: PWSTR,
-    lpInitialOU: PWSTR,
-    lpDSPath: PWSTR,
+    hwndOwner: ?HWND,
+    lpTitle: ?PWSTR,
+    lpInitialOU: ?PWSTR,
+    lpDSPath: ?PWSTR,
     dwDSPathSize: u32,
-    lpName: PWSTR,
+    lpName: ?PWSTR,
     dwNameSize: u32,
     gpoType: GROUP_POLICY_OBJECT_TYPE,
     gpoHint: GROUP_POLICY_HINT_TYPE,
@@ -4515,22 +4515,22 @@ pub extern "USERENV" fn RefreshPolicyEx(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn EnterCriticalPolicySection(
     bMachine: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn LeaveCriticalPolicySection(
-    hSection: HANDLE,
+    hSection: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RegisterGPNotification(
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn UnregisterGPNotification(
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4540,7 +4540,7 @@ pub extern "USERENV" fn GetGPOListA(
     lpHostName: ?[*:0]const u8,
     lpComputerName: ?[*:0]const u8,
     dwFlags: u32,
-    pGPOList: **GROUP_POLICY_OBJECTA,
+    pGPOList: ?*?*GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4550,17 +4550,17 @@ pub extern "USERENV" fn GetGPOListW(
     lpHostName: ?[*:0]const u16,
     lpComputerName: ?[*:0]const u16,
     dwFlags: u32,
-    pGPOList: **GROUP_POLICY_OBJECTW,
+    pGPOList: ?*?*GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn FreeGPOListA(
-    pGPOList: *GROUP_POLICY_OBJECTA,
+    pGPOList: ?*GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn FreeGPOListW(
-    pGPOList: *GROUP_POLICY_OBJECTW,
+    pGPOList: ?*GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4568,8 +4568,8 @@ pub extern "USERENV" fn GetAppliedGPOListA(
     dwFlags: u32,
     pMachineName: ?[*:0]const u8,
     pSidUser: ?PSID,
-    pGuidExtension: *Guid,
-    ppGPOList: **GROUP_POLICY_OBJECTA,
+    pGuidExtension: ?*Guid,
+    ppGPOList: ?*?*GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4577,20 +4577,20 @@ pub extern "USERENV" fn GetAppliedGPOListW(
     dwFlags: u32,
     pMachineName: ?[*:0]const u16,
     pSidUser: ?PSID,
-    pGuidExtension: *Guid,
-    ppGPOList: **GROUP_POLICY_OBJECTW,
+    pGuidExtension: ?*Guid,
+    ppGPOList: ?*?*GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompleted(
-    extensionId: *Guid,
+    extensionId: ?*Guid,
     pAsyncHandle: usize,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
-    extensionId: *Guid,
+    extensionId: ?*Guid,
     pAsyncHandle: usize,
     dwStatus: u32,
     RsopStatus: HRESULT,
@@ -4598,34 +4598,34 @@ pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopAccessCheckByType(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pPrincipalSelfSid: ?PSID,
-    pRsopToken: *c_void,
+    pRsopToken: ?*c_void,
     dwDesiredAccessMask: u32,
     pObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    pGenericMapping: *GENERIC_MAPPING,
+    pGenericMapping: ?*GENERIC_MAPPING,
     // TODO: what to do with BytesParamIndex 8?
     pPrivilegeSet: ?*PRIVILEGE_SET,
     pdwPrivilegeSetLength: ?*u32,
-    pdwGrantedAccessMask: *u32,
-    pbAccessStatus: *i32,
+    pdwGrantedAccessMask: ?*u32,
+    pbAccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopFileAccessCheck(
-    pszFileName: PWSTR,
-    pRsopToken: *c_void,
+    pszFileName: ?PWSTR,
+    pRsopToken: ?*c_void,
     dwDesiredAccessMask: u32,
-    pdwGrantedAccessMask: *u32,
-    pbAccessStatus: *i32,
+    pdwGrantedAccessMask: ?*u32,
+    pbAccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopSetPolicySettingStatus(
     dwFlags: u32,
-    pServices: *IWbemServices,
-    pSettingInstance: *IWbemClassObject,
+    pServices: ?*IWbemServices,
+    pSettingInstance: ?*IWbemClassObject,
     nInfo: u32,
     pStatus: [*]POLICYSETTINGSTATUSINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4633,94 +4633,94 @@ pub extern "USERENV" fn RsopSetPolicySettingStatus(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopResetPolicySettingStatus(
     dwFlags: u32,
-    pServices: *IWbemServices,
-    pSettingInstance: *IWbemClassObject,
+    pServices: ?*IWbemServices,
+    pSettingInstance: ?*IWbemClassObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "USERENV" fn GenerateGPNotification(
     bMachine: BOOL,
-    lpwszMgmtProduct: [*:0]const u16,
+    lpwszMgmtProduct: ?[*:0]const u16,
     dwMgmtProductOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn InstallApplication(
-    pInstallInfo: *INSTALLDATA,
+    pInstallInfo: ?*INSTALLDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn UninstallApplication(
-    ProductCode: PWSTR,
+    ProductCode: ?PWSTR,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn CommandLineFromMsiDescriptor(
-    Descriptor: PWSTR,
+    Descriptor: ?PWSTR,
     CommandLine: [*:0]u16,
-    CommandLineLength: *u32,
+    CommandLineLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetManagedApplications(
-    pCategory: *Guid,
+    pCategory: ?*Guid,
     dwQueryFlags: u32,
     dwInfoLevel: u32,
-    pdwApps: *u32,
-    prgManagedApps: **MANAGEDAPPLICATION,
+    pdwApps: ?*u32,
+    prgManagedApps: ?*?*MANAGEDAPPLICATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetLocalManagedApplications(
     bUserApps: BOOL,
-    pdwApps: *u32,
-    prgLocalApps: **LOCALMANAGEDAPPLICATION,
+    pdwApps: ?*u32,
+    prgLocalApps: ?*?*LOCALMANAGEDAPPLICATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn GetLocalManagedApplicationData(
-    ProductCode: PWSTR,
-    DisplayName: *PWSTR,
-    SupportUrl: *PWSTR,
+    ProductCode: ?PWSTR,
+    DisplayName: ?*?PWSTR,
+    SupportUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetManagedApplicationCategories(
     dwReserved: u32,
-    pAppCategory: *APPCATEGORYINFOLIST,
+    pAppCategory: ?*APPCATEGORYINFOLIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn CreateGPOLink(
-    lpGPO: PWSTR,
-    lpContainer: PWSTR,
+    lpGPO: ?PWSTR,
+    lpContainer: ?PWSTR,
     fHighPriority: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn DeleteGPOLink(
-    lpGPO: PWSTR,
-    lpContainer: PWSTR,
+    lpGPO: ?PWSTR,
+    lpContainer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn DeleteAllGPOLinks(
-    lpContainer: PWSTR,
+    lpContainer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn BrowseForGPO(
-    lpBrowseInfo: *GPOBROWSEINFO,
+    lpBrowseInfo: ?*GPOBROWSEINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn ImportRSoPData(
-    lpNameSpace: PWSTR,
-    lpFileName: PWSTR,
+    lpNameSpace: ?PWSTR,
+    lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn ExportRSoPData(
-    lpNameSpace: PWSTR,
-    lpFileName: PWSTR,
+    lpNameSpace: ?PWSTR,
+    lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

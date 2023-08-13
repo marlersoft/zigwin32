@@ -478,7 +478,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     TimeStamp: i64,
     ApiStatus: HRESULT,
     UnitId: u32,
-    UserData: *c_void,
+    UserData: ?*c_void,
     Parameters: extern union {
         Verify: extern struct {
             Match: u8,
@@ -502,10 +502,10 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
         EnumEnrollments: extern struct {
             Identity: WINBIO_IDENTITY,
             SubFactorCount: usize,
-            SubFactorArray: *u8,
+            SubFactorArray: ?*u8,
         },
         CaptureSample: extern struct {
-            Sample: *WINBIO_BIR,
+            Sample: ?*WINBIO_BIR,
             SampleSize: usize,
             RejectDetail: u32,
         },
@@ -519,7 +519,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             Identity: WINBIO_IDENTITY,
             SubFactor: u8,
             PropertyBufferSize: usize,
-            PropertyBuffer: *c_void,
+            PropertyBuffer: ?*c_void,
         },
         SetProperty: extern struct {
             PropertyType: u32,
@@ -527,7 +527,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             Identity: WINBIO_IDENTITY,
             SubFactor: u8,
             PropertyBufferSize: usize,
-            PropertyBuffer: *c_void,
+            PropertyBuffer: ?*c_void,
         },
         GetEvent: extern struct {
             Event: WINBIO_EVENT,
@@ -536,23 +536,23 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             Component: WINBIO_COMPONENT,
             ControlCode: u32,
             OperationStatus: u32,
-            SendBuffer: *u8,
+            SendBuffer: ?*u8,
             SendBufferSize: usize,
-            ReceiveBuffer: *u8,
+            ReceiveBuffer: ?*u8,
             ReceiveBufferSize: usize,
             ReceiveDataSize: usize,
         },
         EnumServiceProviders: extern struct {
             BspCount: usize,
-            BspSchemaArray: *WINBIO_BSP_SCHEMA,
+            BspSchemaArray: ?*WINBIO_BSP_SCHEMA,
         },
         EnumBiometricUnits: extern struct {
             UnitCount: usize,
-            UnitSchemaArray: *WINBIO_UNIT_SCHEMA,
+            UnitSchemaArray: ?*WINBIO_UNIT_SCHEMA,
         },
         EnumDatabases: extern struct {
             StorageCount: usize,
-            StorageSchemaArray: *WINBIO_STORAGE_SCHEMA,
+            StorageSchemaArray: ?*WINBIO_STORAGE_SCHEMA,
         },
         VerifyAndReleaseTicket: extern struct {
             Match: u8,
@@ -571,7 +571,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
         MonitorPresence: extern struct {
             ChangeType: u32,
             PresenceCount: usize,
-            PresenceArray: *WINBIO_PRESENCE,
+            PresenceArray: ?*WINBIO_PRESENCE,
         },
         GetProtectionPolicy: extern struct {
             Identity: WINBIO_IDENTITY,
@@ -584,7 +584,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
 };
 
 pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = fn(
-    AsyncResult: *WINBIO_ASYNC_RESULT,
+    AsyncResult: ?*WINBIO_ASYNC_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_VERIFY_CALLBACK = fn(
@@ -599,7 +599,7 @@ pub const PWINBIO_IDENTIFY_CALLBACK = fn(
     IdentifyCallbackContext: ?*c_void,
     OperationStatus: HRESULT,
     UnitId: u32,
-    Identity: *WINBIO_IDENTITY,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -619,7 +619,7 @@ pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = fn(
 pub const PWINBIO_EVENT_CALLBACK = fn(
     EventCallbackContext: ?*c_void,
     OperationStatus: HRESULT,
-    Event: *WINBIO_EVENT,
+    Event: ?*WINBIO_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_CAPTURE_CALLBACK = fn(
@@ -627,33 +627,33 @@ pub const PWINBIO_CAPTURE_CALLBACK = fn(
     OperationStatus: HRESULT,
     UnitId: u32,
     // TODO: what to do with BytesParamIndex 4?
-    Sample: *WINBIO_BIR,
+    Sample: ?*WINBIO_BIR,
     SampleSize: usize,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WINBIO_STORAGE_RECORD = extern struct {
-    Identity: *WINBIO_IDENTITY,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    IndexVector: *u32,
+    IndexVector: ?*u32,
     IndexElementCount: usize,
-    TemplateBlob: *u8,
+    TemplateBlob: ?*u8,
     TemplateBlobSize: usize,
-    PayloadBlob: *u8,
+    PayloadBlob: ?*u8,
     PayloadBlobSize: usize,
 };
 
 pub const WINBIO_PIPELINE = extern struct {
-    SensorHandle: HANDLE,
-    EngineHandle: HANDLE,
-    StorageHandle: HANDLE,
-    SensorInterface: *WINBIO_SENSOR_INTERFACE,
-    EngineInterface: *WINBIO_ENGINE_INTERFACE,
-    StorageInterface: *WINBIO_STORAGE_INTERFACE,
-    SensorContext: *_WINIBIO_SENSOR_CONTEXT,
-    EngineContext: *_WINIBIO_ENGINE_CONTEXT,
-    StorageContext: *_WINIBIO_STORAGE_CONTEXT,
-    FrameworkInterface: *WINBIO_FRAMEWORK_INTERFACE,
+    SensorHandle: ?HANDLE,
+    EngineHandle: ?HANDLE,
+    StorageHandle: ?HANDLE,
+    SensorInterface: ?*WINBIO_SENSOR_INTERFACE,
+    EngineInterface: ?*WINBIO_ENGINE_INTERFACE,
+    StorageInterface: ?*WINBIO_STORAGE_INTERFACE,
+    SensorContext: ?*_WINIBIO_SENSOR_CONTEXT,
+    EngineContext: ?*_WINIBIO_ENGINE_CONTEXT,
+    StorageContext: ?*_WINIBIO_STORAGE_CONTEXT,
+    FrameworkInterface: ?*WINBIO_FRAMEWORK_INTERFACE,
 };
 
 pub const WINBIO_ADAPTER_INTERFACE_VERSION = extern struct {
@@ -662,193 +662,193 @@ pub const WINBIO_ADAPTER_INTERFACE_VERSION = extern struct {
 };
 
 pub const PIBIO_SENSOR_ATTACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_DETACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_QUERY_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Status: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Status: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_RESET_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_SET_MODE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Mode: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     IndicatorStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    IndicatorStatus: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    IndicatorStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_START_CAPTURE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Purpose: u8,
-    Overlapped: **OVERLAPPED,
+    Overlapped: ?*?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RejectDetail: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    SampleBuffer: **WINBIO_BIR,
-    SampleSize: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    SampleBuffer: ?*?*WINBIO_BIR,
+    SampleSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_CANCEL_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Purpose: u8,
     Flags: u8,
-    RejectDetail: *u32,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_CONTROL_UNIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     PowerEventType: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_PIPELINE_INIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_ACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_DEACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    SensorInfo: *WINBIO_EXTENDED_SENSOR_INFO,
+    SensorInfo: ?*WINBIO_EXTENDED_SENSOR_INFO,
     SensorInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     FormatArray: [*]Guid,
     FormatArraySize: usize,
-    FormatCount: *usize,
+    FormatCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Format: *Guid,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Format: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    CalibrationBuffer: *u8,
+    CalibrationBuffer: ?*u8,
     CalibrationBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
     RawBufferAddress: ?*u8,
     RawBufferSize: usize,
-    ResultBufferAddress: ?**u8,
+    ResultBufferAddress: ?*?*u8,
     ResultBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     SecureBufferIdentifier: Guid,
     // TODO: what to do with BytesParamIndex 3?
     MetadataBufferAddress: ?*u8,
     MetadataBufferSize: usize,
-    ResultBufferAddress: ?**u8,
+    ResultBufferAddress: ?*?*u8,
     ResultBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    TypeInfoBufferAddress: *u8,
+    TypeInfoBufferAddress: ?*u8,
     TypeInfoBufferSize: usize,
-    TypeInfoDataSize: *usize,
+    TypeInfoDataSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_CONNECT_SECURE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    ConnectionParams: *const WINBIO_SECURE_CONNECTION_PARAMS,
-    ConnectionData: **WINBIO_SECURE_CONNECTION_DATA,
+    Pipeline: ?*WINBIO_PIPELINE,
+    ConnectionParams: ?*const WINBIO_SECURE_CONNECTION_PARAMS,
+    ConnectionData: ?*?*WINBIO_SECURE_CONNECTION_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Purpose: u8,
     // TODO: what to do with BytesParamIndex 3?
     Nonce: ?*const u8,
     NonceSize: usize,
     Flags: u8,
-    Overlapped: **OVERLAPPED,
+    Overlapped: ?*?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Overlapped: **OVERLAPPED,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Overlapped: ?*?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Reason: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Reason: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WINBIO_SENSOR_INTERFACE = extern struct {
@@ -856,324 +856,324 @@ pub const WINBIO_SENSOR_INTERFACE = extern struct {
     Type: u32,
     Size: usize,
     AdapterId: Guid,
-    Attach: PIBIO_SENSOR_ATTACH_FN,
-    Detach: PIBIO_SENSOR_DETACH_FN,
-    ClearContext: PIBIO_SENSOR_CLEAR_CONTEXT_FN,
-    QueryStatus: PIBIO_SENSOR_QUERY_STATUS_FN,
-    Reset: PIBIO_SENSOR_RESET_FN,
-    SetMode: PIBIO_SENSOR_SET_MODE_FN,
-    SetIndicatorStatus: PIBIO_SENSOR_SET_INDICATOR_STATUS_FN,
-    GetIndicatorStatus: PIBIO_SENSOR_GET_INDICATOR_STATUS_FN,
-    StartCapture: PIBIO_SENSOR_START_CAPTURE_FN,
-    FinishCapture: PIBIO_SENSOR_FINISH_CAPTURE_FN,
-    ExportSensorData: PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN,
-    Cancel: PIBIO_SENSOR_CANCEL_FN,
-    PushDataToEngine: PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN,
-    ControlUnit: PIBIO_SENSOR_CONTROL_UNIT_FN,
-    ControlUnitPrivileged: PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN,
-    NotifyPowerChange: PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN,
-    PipelineInit: PIBIO_SENSOR_PIPELINE_INIT_FN,
-    PipelineCleanup: PIBIO_SENSOR_PIPELINE_CLEANUP_FN,
-    Activate: PIBIO_SENSOR_ACTIVATE_FN,
-    Deactivate: PIBIO_SENSOR_DEACTIVATE_FN,
-    QueryExtendedInfo: PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN,
-    QueryCalibrationFormats: PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN,
-    SetCalibrationFormat: PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN,
-    AcceptCalibrationData: PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN,
-    AsyncImportRawBuffer: PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN,
-    AsyncImportSecureBuffer: PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN,
-    QueryPrivateSensorType: PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN,
-    ConnectSecure: PIBIO_SENSOR_CONNECT_SECURE_FN,
-    StartCaptureEx: PIBIO_SENSOR_START_CAPTURE_EX_FN,
-    StartNotifyWake: PIBIO_SENSOR_START_NOTIFY_WAKE_FN,
-    FinishNotifyWake: PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN,
+    Attach: ?PIBIO_SENSOR_ATTACH_FN,
+    Detach: ?PIBIO_SENSOR_DETACH_FN,
+    ClearContext: ?PIBIO_SENSOR_CLEAR_CONTEXT_FN,
+    QueryStatus: ?PIBIO_SENSOR_QUERY_STATUS_FN,
+    Reset: ?PIBIO_SENSOR_RESET_FN,
+    SetMode: ?PIBIO_SENSOR_SET_MODE_FN,
+    SetIndicatorStatus: ?PIBIO_SENSOR_SET_INDICATOR_STATUS_FN,
+    GetIndicatorStatus: ?PIBIO_SENSOR_GET_INDICATOR_STATUS_FN,
+    StartCapture: ?PIBIO_SENSOR_START_CAPTURE_FN,
+    FinishCapture: ?PIBIO_SENSOR_FINISH_CAPTURE_FN,
+    ExportSensorData: ?PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN,
+    Cancel: ?PIBIO_SENSOR_CANCEL_FN,
+    PushDataToEngine: ?PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN,
+    ControlUnit: ?PIBIO_SENSOR_CONTROL_UNIT_FN,
+    ControlUnitPrivileged: ?PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN,
+    NotifyPowerChange: ?PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN,
+    PipelineInit: ?PIBIO_SENSOR_PIPELINE_INIT_FN,
+    PipelineCleanup: ?PIBIO_SENSOR_PIPELINE_CLEANUP_FN,
+    Activate: ?PIBIO_SENSOR_ACTIVATE_FN,
+    Deactivate: ?PIBIO_SENSOR_DEACTIVATE_FN,
+    QueryExtendedInfo: ?PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN,
+    QueryCalibrationFormats: ?PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN,
+    SetCalibrationFormat: ?PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN,
+    AcceptCalibrationData: ?PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN,
+    AsyncImportRawBuffer: ?PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN,
+    AsyncImportSecureBuffer: ?PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN,
+    QueryPrivateSensorType: ?PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN,
+    ConnectSecure: ?PIBIO_SENSOR_CONNECT_SECURE_FN,
+    StartCaptureEx: ?PIBIO_SENSOR_START_CAPTURE_EX_FN,
+    StartNotifyWake: ?PIBIO_SENSOR_START_NOTIFY_WAKE_FN,
+    FinishNotifyWake: ?PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN,
 };
 
 pub const PWINBIO_QUERY_SENSOR_INTERFACE_FN = fn(
-    SensorInterface: **WINBIO_SENSOR_INTERFACE,
+    SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_ATTACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_DETACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    StandardFormat: *WINBIO_REGISTERED_FORMAT,
-    VendorFormat: *Guid,
+    Pipeline: ?*WINBIO_PIPELINE,
+    StandardFormat: ?*WINBIO_REGISTERED_FORMAT,
+    VendorFormat: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    IndexElementCount: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    IndexElementCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    AlgorithmCount: *usize,
-    AlgorithmBufferSize: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    AlgorithmCount: ?*usize,
+    AlgorithmBufferSize: ?*usize,
     // TODO: what to do with BytesParamIndex 2?
-    AlgorithmBuffer: **u8,
+    AlgorithmBuffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     AlgorithmBufferSize: usize,
     AlgorithmBuffer: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    SampleHint: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    SampleHint: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    SampleBuffer: *WINBIO_BIR,
+    SampleBuffer: ?*WINBIO_BIR,
     SampleSize: usize,
     Purpose: u8,
-    RejectDetail: *u32,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Flags: u8,
     // TODO: what to do with BytesParamIndex 3?
-    SampleBuffer: **WINBIO_BIR,
-    SampleSize: *usize,
+    SampleBuffer: ?*?*WINBIO_BIR,
+    SampleSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    Match: *u8,
+    Match: ?*u8,
     // TODO: what to do with BytesParamIndex 5?
-    PayloadBlob: **u8,
-    PayloadBlobSize: *usize,
+    PayloadBlob: ?*?*u8,
+    PayloadBlobSize: ?*usize,
     // TODO: what to do with BytesParamIndex 7?
-    HashValue: **u8,
-    HashSize: *usize,
-    RejectDetail: *u32,
+    HashValue: ?*?*u8,
+    HashSize: ?*usize,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
-    SubFactor: *u8,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
+    SubFactor: ?*u8,
     // TODO: what to do with BytesParamIndex 4?
-    PayloadBlob: **u8,
-    PayloadBlobSize: *usize,
+    PayloadBlob: ?*?*u8,
+    PayloadBlobSize: ?*usize,
     // TODO: what to do with BytesParamIndex 6?
-    HashValue: **u8,
-    HashSize: *usize,
-    RejectDetail: *u32,
+    HashValue: ?*?*u8,
+    HashSize: ?*usize,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RejectDetail: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RejectDetail: *u32,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    HashValue: **u8,
-    HashSize: *usize,
+    HashValue: ?*?*u8,
+    HashSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
-    SubFactor: *u8,
-    Duplicate: *u8,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
+    SubFactor: ?*u8,
+    Duplicate: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     // TODO: what to do with BytesParamIndex 4?
-    PayloadBlob: *u8,
+    PayloadBlob: ?*u8,
     PayloadBlobSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CONTROL_UNIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     PowerEventType: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_RESERVED_1_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_PIPELINE_INIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_ACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_DEACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    EngineInfo: *WINBIO_EXTENDED_ENGINE_INFO,
+    EngineInfo: ?*WINBIO_EXTENDED_ENGINE_INFO,
     EngineInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    PresenceCount: *usize,
-    PresenceArray: **WINBIO_PRESENCE,
+    Pipeline: ?*WINBIO_PIPELINE,
+    PresenceCount: ?*usize,
+    PresenceArray: ?*?*WINBIO_PRESENCE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     SelectorValue: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Parameters: *WINBIO_EXTENDED_ENROLLMENT_PARAMETERS,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Parameters: ?*WINBIO_EXTENDED_ENROLLMENT_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    EnrollmentStatus: *WINBIO_EXTENDED_ENROLLMENT_STATUS,
+    EnrollmentStatus: ?*WINBIO_EXTENDED_ENROLLMENT_STATUS,
     EnrollmentStatusSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_REFRESH_CACHE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     FormatArray: [*]Guid,
     FormatCount: usize,
-    SelectedFormat: *Guid,
-    MaxBufferSize: *usize,
+    SelectedFormat: ?*Guid,
+    MaxBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    DiscardAndRepeatCapture: *u8,
+    Pipeline: ?*WINBIO_PIPELINE,
+    DiscardAndRepeatCapture: ?*u8,
     // TODO: what to do with BytesParamIndex 4?
-    CalibrationBuffer: *u8,
-    CalibrationBufferSize: *usize,
+    CalibrationBuffer: ?*u8,
+    CalibrationBufferSize: ?*usize,
     MaxBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     PolicyItemArray: [*]WINBIO_ACCOUNT_POLICY,
     PolicyItemCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CREATE_KEY_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Key: [*:0]const u8,
     KeySize: usize,
     // TODO: what to do with BytesParamIndex 4?
-    KeyIdentifier: *u8,
+    KeyIdentifier: ?*u8,
     KeyIdentifierSize: usize,
-    ResultSize: *usize,
+    ResultSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Nonce: [*:0]const u8,
     NonceSize: usize,
     KeyIdentifier: [*:0]const u8,
     KeyIdentifierSize: usize,
-    Identity: *WINBIO_IDENTITY,
-    SubFactor: *u8,
-    RejectDetail: *u32,
-    Authorization: **u8,
-    AuthorizationSize: *usize,
+    Identity: ?*WINBIO_IDENTITY,
+    SubFactor: ?*u8,
+    RejectDetail: ?*u32,
+    Authorization: ?*?*u8,
+    AuthorizationSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     TypeInfoBufferAddress: [*:0]const u8,
     TypeInfoBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Nonce: **u8,
-    NonceSize: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Nonce: ?*?*u8,
+    NonceSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    Nonce: *const u8,
+    Nonce: ?*const u8,
     NonceSize: usize,
-    Identity: *WINBIO_IDENTITY,
-    SubFactor: *u8,
-    RejectDetail: *u32,
-    Authentication: **u8,
-    AuthenticationSize: *usize,
+    Identity: ?*WINBIO_IDENTITY,
+    SubFactor: ?*u8,
+    RejectDetail: ?*u32,
+    Authentication: ?*?*u8,
+    AuthenticationSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WINBIO_ENGINE_INTERFACE = extern struct {
@@ -1181,229 +1181,229 @@ pub const WINBIO_ENGINE_INTERFACE = extern struct {
     Type: u32,
     Size: usize,
     AdapterId: Guid,
-    Attach: PIBIO_ENGINE_ATTACH_FN,
-    Detach: PIBIO_ENGINE_DETACH_FN,
-    ClearContext: PIBIO_ENGINE_CLEAR_CONTEXT_FN,
-    QueryPreferredFormat: PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN,
-    QueryIndexVectorSize: PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN,
-    QueryHashAlgorithms: PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN,
-    SetHashAlgorithm: PIBIO_ENGINE_SET_HASH_ALGORITHM_FN,
-    QuerySampleHint: PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN,
-    AcceptSampleData: PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN,
-    ExportEngineData: PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN,
-    VerifyFeatureSet: PIBIO_ENGINE_VERIFY_FEATURE_SET_FN,
-    IdentifyFeatureSet: PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN,
-    CreateEnrollment: PIBIO_ENGINE_CREATE_ENROLLMENT_FN,
-    UpdateEnrollment: PIBIO_ENGINE_UPDATE_ENROLLMENT_FN,
-    GetEnrollmentStatus: PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN,
-    GetEnrollmentHash: PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN,
-    CheckForDuplicate: PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN,
-    CommitEnrollment: PIBIO_ENGINE_COMMIT_ENROLLMENT_FN,
-    DiscardEnrollment: PIBIO_ENGINE_DISCARD_ENROLLMENT_FN,
-    ControlUnit: PIBIO_ENGINE_CONTROL_UNIT_FN,
-    ControlUnitPrivileged: PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN,
-    NotifyPowerChange: PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN,
-    Reserved_1: PIBIO_ENGINE_RESERVED_1_FN,
-    PipelineInit: PIBIO_ENGINE_PIPELINE_INIT_FN,
-    PipelineCleanup: PIBIO_ENGINE_PIPELINE_CLEANUP_FN,
-    Activate: PIBIO_ENGINE_ACTIVATE_FN,
-    Deactivate: PIBIO_ENGINE_DEACTIVATE_FN,
-    QueryExtendedInfo: PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN,
-    IdentifyAll: PIBIO_ENGINE_IDENTIFY_ALL_FN,
-    SetEnrollmentSelector: PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN,
-    SetEnrollmentParameters: PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN,
-    QueryExtendedEnrollmentStatus: PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN,
-    RefreshCache: PIBIO_ENGINE_REFRESH_CACHE_FN,
-    SelectCalibrationFormat: PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN,
-    QueryCalibrationData: PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN,
-    SetAccountPolicy: PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN,
-    CreateKey: PIBIO_ENGINE_CREATE_KEY_FN,
-    IdentifyFeatureSetSecure: PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN,
-    AcceptPrivateSensorTypeInfo: PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN,
-    CreateEnrollmentAuthenticated: PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN,
-    IdentifyFeatureSetAuthenticated: PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN,
+    Attach: ?PIBIO_ENGINE_ATTACH_FN,
+    Detach: ?PIBIO_ENGINE_DETACH_FN,
+    ClearContext: ?PIBIO_ENGINE_CLEAR_CONTEXT_FN,
+    QueryPreferredFormat: ?PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN,
+    QueryIndexVectorSize: ?PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN,
+    QueryHashAlgorithms: ?PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN,
+    SetHashAlgorithm: ?PIBIO_ENGINE_SET_HASH_ALGORITHM_FN,
+    QuerySampleHint: ?PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN,
+    AcceptSampleData: ?PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN,
+    ExportEngineData: ?PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN,
+    VerifyFeatureSet: ?PIBIO_ENGINE_VERIFY_FEATURE_SET_FN,
+    IdentifyFeatureSet: ?PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN,
+    CreateEnrollment: ?PIBIO_ENGINE_CREATE_ENROLLMENT_FN,
+    UpdateEnrollment: ?PIBIO_ENGINE_UPDATE_ENROLLMENT_FN,
+    GetEnrollmentStatus: ?PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN,
+    GetEnrollmentHash: ?PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN,
+    CheckForDuplicate: ?PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN,
+    CommitEnrollment: ?PIBIO_ENGINE_COMMIT_ENROLLMENT_FN,
+    DiscardEnrollment: ?PIBIO_ENGINE_DISCARD_ENROLLMENT_FN,
+    ControlUnit: ?PIBIO_ENGINE_CONTROL_UNIT_FN,
+    ControlUnitPrivileged: ?PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN,
+    NotifyPowerChange: ?PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN,
+    Reserved_1: ?PIBIO_ENGINE_RESERVED_1_FN,
+    PipelineInit: ?PIBIO_ENGINE_PIPELINE_INIT_FN,
+    PipelineCleanup: ?PIBIO_ENGINE_PIPELINE_CLEANUP_FN,
+    Activate: ?PIBIO_ENGINE_ACTIVATE_FN,
+    Deactivate: ?PIBIO_ENGINE_DEACTIVATE_FN,
+    QueryExtendedInfo: ?PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN,
+    IdentifyAll: ?PIBIO_ENGINE_IDENTIFY_ALL_FN,
+    SetEnrollmentSelector: ?PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN,
+    SetEnrollmentParameters: ?PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN,
+    QueryExtendedEnrollmentStatus: ?PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN,
+    RefreshCache: ?PIBIO_ENGINE_REFRESH_CACHE_FN,
+    SelectCalibrationFormat: ?PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN,
+    QueryCalibrationData: ?PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN,
+    SetAccountPolicy: ?PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN,
+    CreateKey: ?PIBIO_ENGINE_CREATE_KEY_FN,
+    IdentifyFeatureSetSecure: ?PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN,
+    AcceptPrivateSensorTypeInfo: ?PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN,
+    CreateEnrollmentAuthenticated: ?PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN,
+    IdentifyFeatureSetAuthenticated: ?PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN,
 };
 
 pub const PWINBIO_QUERY_ENGINE_INTERFACE_FN = fn(
-    EngineInterface: **WINBIO_ENGINE_INTERFACE,
+    EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_ATTACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_DETACH_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_CREATE_DATABASE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    DatabaseId: *Guid,
+    Pipeline: ?*WINBIO_PIPELINE,
+    DatabaseId: ?*Guid,
     Factor: u32,
-    Format: *Guid,
-    FilePath: [*:0]const u16,
-    ConnectString: [*:0]const u16,
+    Format: ?*Guid,
+    FilePath: ?[*:0]const u16,
+    ConnectString: ?[*:0]const u16,
     IndexElementCount: usize,
     InitialSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_ERASE_DATABASE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    DatabaseId: *Guid,
-    FilePath: [*:0]const u16,
-    ConnectString: [*:0]const u16,
+    Pipeline: ?*WINBIO_PIPELINE,
+    DatabaseId: ?*Guid,
+    FilePath: ?[*:0]const u16,
+    ConnectString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_OPEN_DATABASE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    DatabaseId: *Guid,
-    FilePath: [*:0]const u16,
-    ConnectString: [*:0]const u16,
+    Pipeline: ?*WINBIO_PIPELINE,
+    DatabaseId: ?*Guid,
+    FilePath: ?[*:0]const u16,
+    ConnectString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Format: *Guid,
-    Version: *WINBIO_VERSION,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Format: ?*Guid,
+    Version: ?*WINBIO_VERSION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    AvailableRecordCount: *usize,
-    TotalRecordCount: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    AvailableRecordCount: ?*usize,
+    TotalRecordCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_ADD_RECORD_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RecordContents: *WINBIO_STORAGE_RECORD,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RecordContents: ?*WINBIO_STORAGE_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_DELETE_RECORD_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     SubFactor: u8,
     IndexVector: [*]u32,
     IndexElementCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RecordCount: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RecordCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_FIRST_RECORD_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_NEXT_RECORD_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RecordContents: *WINBIO_STORAGE_RECORD,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RecordContents: ?*WINBIO_STORAGE_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_CONTROL_UNIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
-    OperationStatus: *u32,
+    ReceiveDataSize: ?*usize,
+    OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     PowerEventType: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_PIPELINE_INIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_ACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_DEACTIVATE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    StorageInfo: *WINBIO_EXTENDED_STORAGE_INFO,
+    StorageInfo: ?*WINBIO_EXTENDED_STORAGE_INFO,
     StorageInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     RecordsAdded: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_RESERVED_1_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
-    Reserved1: *u64,
-    Reserved2: *u64,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
+    Reserved1: ?*u64,
+    Reserved2: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_RESERVED_2_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    RecordContents: *WINBIO_STORAGE_RECORD,
+    RecordContents: ?*WINBIO_STORAGE_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RecordContents: *WINBIO_STORAGE_RECORD,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RecordContents: ?*WINBIO_STORAGE_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WINBIO_STORAGE_INTERFACE = extern struct {
@@ -1411,154 +1411,154 @@ pub const WINBIO_STORAGE_INTERFACE = extern struct {
     Type: u32,
     Size: usize,
     AdapterId: Guid,
-    Attach: PIBIO_STORAGE_ATTACH_FN,
-    Detach: PIBIO_STORAGE_DETACH_FN,
-    ClearContext: PIBIO_STORAGE_CLEAR_CONTEXT_FN,
-    CreateDatabase: PIBIO_STORAGE_CREATE_DATABASE_FN,
-    EraseDatabase: PIBIO_STORAGE_ERASE_DATABASE_FN,
-    OpenDatabase: PIBIO_STORAGE_OPEN_DATABASE_FN,
-    CloseDatabase: PIBIO_STORAGE_CLOSE_DATABASE_FN,
-    GetDataFormat: PIBIO_STORAGE_GET_DATA_FORMAT_FN,
-    GetDatabaseSize: PIBIO_STORAGE_GET_DATABASE_SIZE_FN,
-    AddRecord: PIBIO_STORAGE_ADD_RECORD_FN,
-    DeleteRecord: PIBIO_STORAGE_DELETE_RECORD_FN,
-    QueryBySubject: PIBIO_STORAGE_QUERY_BY_SUBJECT_FN,
-    QueryByContent: PIBIO_STORAGE_QUERY_BY_CONTENT_FN,
-    GetRecordCount: PIBIO_STORAGE_GET_RECORD_COUNT_FN,
-    FirstRecord: PIBIO_STORAGE_FIRST_RECORD_FN,
-    NextRecord: PIBIO_STORAGE_NEXT_RECORD_FN,
-    GetCurrentRecord: PIBIO_STORAGE_GET_CURRENT_RECORD_FN,
-    ControlUnit: PIBIO_STORAGE_CONTROL_UNIT_FN,
-    ControlUnitPrivileged: PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN,
-    NotifyPowerChange: PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN,
-    PipelineInit: PIBIO_STORAGE_PIPELINE_INIT_FN,
-    PipelineCleanup: PIBIO_STORAGE_PIPELINE_CLEANUP_FN,
-    Activate: PIBIO_STORAGE_ACTIVATE_FN,
-    Deactivate: PIBIO_STORAGE_DEACTIVATE_FN,
-    QueryExtendedInfo: PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN,
-    NotifyDatabaseChange: PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN,
-    Reserved1: PIBIO_STORAGE_RESERVED_1_FN,
-    Reserved2: PIBIO_STORAGE_RESERVED_2_FN,
-    UpdateRecordBegin: PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN,
-    UpdateRecordCommit: PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN,
+    Attach: ?PIBIO_STORAGE_ATTACH_FN,
+    Detach: ?PIBIO_STORAGE_DETACH_FN,
+    ClearContext: ?PIBIO_STORAGE_CLEAR_CONTEXT_FN,
+    CreateDatabase: ?PIBIO_STORAGE_CREATE_DATABASE_FN,
+    EraseDatabase: ?PIBIO_STORAGE_ERASE_DATABASE_FN,
+    OpenDatabase: ?PIBIO_STORAGE_OPEN_DATABASE_FN,
+    CloseDatabase: ?PIBIO_STORAGE_CLOSE_DATABASE_FN,
+    GetDataFormat: ?PIBIO_STORAGE_GET_DATA_FORMAT_FN,
+    GetDatabaseSize: ?PIBIO_STORAGE_GET_DATABASE_SIZE_FN,
+    AddRecord: ?PIBIO_STORAGE_ADD_RECORD_FN,
+    DeleteRecord: ?PIBIO_STORAGE_DELETE_RECORD_FN,
+    QueryBySubject: ?PIBIO_STORAGE_QUERY_BY_SUBJECT_FN,
+    QueryByContent: ?PIBIO_STORAGE_QUERY_BY_CONTENT_FN,
+    GetRecordCount: ?PIBIO_STORAGE_GET_RECORD_COUNT_FN,
+    FirstRecord: ?PIBIO_STORAGE_FIRST_RECORD_FN,
+    NextRecord: ?PIBIO_STORAGE_NEXT_RECORD_FN,
+    GetCurrentRecord: ?PIBIO_STORAGE_GET_CURRENT_RECORD_FN,
+    ControlUnit: ?PIBIO_STORAGE_CONTROL_UNIT_FN,
+    ControlUnitPrivileged: ?PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN,
+    NotifyPowerChange: ?PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN,
+    PipelineInit: ?PIBIO_STORAGE_PIPELINE_INIT_FN,
+    PipelineCleanup: ?PIBIO_STORAGE_PIPELINE_CLEANUP_FN,
+    Activate: ?PIBIO_STORAGE_ACTIVATE_FN,
+    Deactivate: ?PIBIO_STORAGE_DEACTIVATE_FN,
+    QueryExtendedInfo: ?PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN,
+    NotifyDatabaseChange: ?PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN,
+    Reserved1: ?PIBIO_STORAGE_RESERVED_1_FN,
+    Reserved2: ?PIBIO_STORAGE_RESERVED_2_FN,
+    UpdateRecordBegin: ?PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN,
+    UpdateRecordCommit: ?PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN,
 };
 
 pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = fn(
-    StorageInterface: **WINBIO_STORAGE_INTERFACE,
+    StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    ExtendedStatus: *WINBIO_EXTENDED_UNIT_STATUS,
+    ExtendedStatus: ?*WINBIO_EXTENDED_UNIT_STATUS,
     ExtendedStatusSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     RequiredCapacity: usize,
-    MaxBufferSize: *usize,
+    MaxBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    BufferAddress: *u8,
+    BufferAddress: ?*u8,
     BufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    RequiredCapacity: *usize,
-    MaxBufferSize: *usize,
+    Pipeline: ?*WINBIO_PIPELINE,
+    RequiredCapacity: ?*usize,
+    MaxBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    BufferAddress: *u8,
+    BufferAddress: ?*u8,
     BufferSize: usize,
-    ReturnedDataSize: *usize,
+    ReturnedDataSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     Reserved1: usize,
-    Reserved2: *usize,
+    Reserved2: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Reserved1: *u8,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Reserved1: ?*u8,
     Reserved2: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     AllocationSize: usize,
-    Address: **c_void,
+    Address: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Address: *c_void,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Address: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     PropertyType: u32,
     PropertyId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?**c_void,
+    PropertyBuffer: ?*?*c_void,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     SecureBufferIdentifier: Guid,
-    SecureBufferAddress: **c_void,
-    SecureBufferSize: *usize,
+    SecureBufferAddress: ?*?*c_void,
+    SecureBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     SecureBufferIdentifier: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
-    Identity: *WINBIO_IDENTITY,
-    SecureIdentityCount: *usize,
-    SecureIdentities: **WINBIO_IDENTITY,
+    Pipeline: ?*WINBIO_PIPELINE,
+    Identity: ?*WINBIO_IDENTITY,
+    SecureIdentityCount: ?*usize,
+    SecureIdentities: ?*?*WINBIO_IDENTITY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = fn(
-    Pipeline: *WINBIO_PIPELINE,
+    Pipeline: ?*WINBIO_PIPELINE,
     // TODO: what to do with BytesParamIndex 2?
-    Authentication: *const u8,
+    Authentication: ?*const u8,
     AuthenticationSize: usize,
     // TODO: what to do with BytesParamIndex 4?
-    Iv: *const u8,
+    Iv: ?*const u8,
     IvSize: usize,
     // TODO: what to do with BytesParamIndex 6?
-    EncryptedData: *u8,
+    EncryptedData: ?*u8,
     EncryptedDataSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1567,50 +1567,50 @@ pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
     Type: u32,
     Size: usize,
     AdapterId: Guid,
-    SetUnitStatus: PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN,
-    VsmStorageAttach: PIBIO_STORAGE_ATTACH_FN,
-    VsmStorageDetach: PIBIO_STORAGE_DETACH_FN,
-    VsmStorageClearContext: PIBIO_STORAGE_CLEAR_CONTEXT_FN,
-    VsmStorageCreateDatabase: PIBIO_STORAGE_CREATE_DATABASE_FN,
-    VsmStorageOpenDatabase: PIBIO_STORAGE_OPEN_DATABASE_FN,
-    VsmStorageCloseDatabase: PIBIO_STORAGE_CLOSE_DATABASE_FN,
-    VsmStorageDeleteRecord: PIBIO_STORAGE_DELETE_RECORD_FN,
-    VsmStorageNotifyPowerChange: PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN,
-    VsmStoragePipelineInit: PIBIO_STORAGE_PIPELINE_INIT_FN,
-    VsmStoragePipelineCleanup: PIBIO_STORAGE_PIPELINE_CLEANUP_FN,
-    VsmStorageActivate: PIBIO_STORAGE_ACTIVATE_FN,
-    VsmStorageDeactivate: PIBIO_STORAGE_DEACTIVATE_FN,
-    VsmStorageQueryExtendedInfo: PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN,
-    VsmStorageCacheClear: PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN,
-    VsmStorageCacheImportBegin: PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN,
-    VsmStorageCacheImportNext: PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN,
-    VsmStorageCacheImportEnd: PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN,
-    VsmStorageCacheExportBegin: PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN,
-    VsmStorageCacheExportNext: PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN,
-    VsmStorageCacheExportEnd: PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN,
-    VsmSensorAttach: PIBIO_SENSOR_ATTACH_FN,
-    VsmSensorDetach: PIBIO_SENSOR_DETACH_FN,
-    VsmSensorClearContext: PIBIO_SENSOR_CLEAR_CONTEXT_FN,
-    VsmSensorPushDataToEngine: PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN,
-    VsmSensorNotifyPowerChange: PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN,
-    VsmSensorPipelineInit: PIBIO_SENSOR_PIPELINE_INIT_FN,
-    VsmSensorPipelineCleanup: PIBIO_SENSOR_PIPELINE_CLEANUP_FN,
-    VsmSensorActivate: PIBIO_SENSOR_ACTIVATE_FN,
-    VsmSensorDeactivate: PIBIO_SENSOR_DEACTIVATE_FN,
-    VsmSensorAsyncImportRawBuffer: PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN,
-    VsmSensorAsyncImportSecureBuffer: PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN,
-    Reserved1: PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN,
-    Reserved2: PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN,
-    Reserved3: PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN,
-    Reserved4: PIBIO_STORAGE_RESERVED_1_FN,
-    Reserved5: PIBIO_STORAGE_RESERVED_2_FN,
-    AllocateMemory: PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN,
-    FreeMemory: PIBIO_FRAMEWORK_FREE_MEMORY_FN,
-    GetProperty: PIBIO_FRAMEWORK_GET_PROPERTY_FN,
-    LockAndValidateSecureBuffer: PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN,
-    ReleaseSecureBuffer: PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN,
-    QueryAuthorizedEnrollments: PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN,
-    DecryptSample: PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN,
+    SetUnitStatus: ?PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN,
+    VsmStorageAttach: ?PIBIO_STORAGE_ATTACH_FN,
+    VsmStorageDetach: ?PIBIO_STORAGE_DETACH_FN,
+    VsmStorageClearContext: ?PIBIO_STORAGE_CLEAR_CONTEXT_FN,
+    VsmStorageCreateDatabase: ?PIBIO_STORAGE_CREATE_DATABASE_FN,
+    VsmStorageOpenDatabase: ?PIBIO_STORAGE_OPEN_DATABASE_FN,
+    VsmStorageCloseDatabase: ?PIBIO_STORAGE_CLOSE_DATABASE_FN,
+    VsmStorageDeleteRecord: ?PIBIO_STORAGE_DELETE_RECORD_FN,
+    VsmStorageNotifyPowerChange: ?PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN,
+    VsmStoragePipelineInit: ?PIBIO_STORAGE_PIPELINE_INIT_FN,
+    VsmStoragePipelineCleanup: ?PIBIO_STORAGE_PIPELINE_CLEANUP_FN,
+    VsmStorageActivate: ?PIBIO_STORAGE_ACTIVATE_FN,
+    VsmStorageDeactivate: ?PIBIO_STORAGE_DEACTIVATE_FN,
+    VsmStorageQueryExtendedInfo: ?PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN,
+    VsmStorageCacheClear: ?PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN,
+    VsmStorageCacheImportBegin: ?PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN,
+    VsmStorageCacheImportNext: ?PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN,
+    VsmStorageCacheImportEnd: ?PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN,
+    VsmStorageCacheExportBegin: ?PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN,
+    VsmStorageCacheExportNext: ?PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN,
+    VsmStorageCacheExportEnd: ?PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN,
+    VsmSensorAttach: ?PIBIO_SENSOR_ATTACH_FN,
+    VsmSensorDetach: ?PIBIO_SENSOR_DETACH_FN,
+    VsmSensorClearContext: ?PIBIO_SENSOR_CLEAR_CONTEXT_FN,
+    VsmSensorPushDataToEngine: ?PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN,
+    VsmSensorNotifyPowerChange: ?PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN,
+    VsmSensorPipelineInit: ?PIBIO_SENSOR_PIPELINE_INIT_FN,
+    VsmSensorPipelineCleanup: ?PIBIO_SENSOR_PIPELINE_CLEANUP_FN,
+    VsmSensorActivate: ?PIBIO_SENSOR_ACTIVATE_FN,
+    VsmSensorDeactivate: ?PIBIO_SENSOR_DEACTIVATE_FN,
+    VsmSensorAsyncImportRawBuffer: ?PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN,
+    VsmSensorAsyncImportSecureBuffer: ?PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN,
+    Reserved1: ?PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN,
+    Reserved2: ?PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN,
+    Reserved3: ?PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN,
+    Reserved4: ?PIBIO_STORAGE_RESERVED_1_FN,
+    Reserved5: ?PIBIO_STORAGE_RESERVED_2_FN,
+    AllocateMemory: ?PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN,
+    FreeMemory: ?PIBIO_FRAMEWORK_FREE_MEMORY_FN,
+    GetProperty: ?PIBIO_FRAMEWORK_GET_PROPERTY_FN,
+    LockAndValidateSecureBuffer: ?PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN,
+    ReleaseSecureBuffer: ?PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN,
+    QueryAuthorizedEnrollments: ?PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN,
+    DecryptSample: ?PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN,
 };
 
 
@@ -1620,22 +1620,22 @@ pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumServiceProviders(
     Factor: u32,
-    BspSchemaArray: **WINBIO_BSP_SCHEMA,
-    BspCount: *usize,
+    BspSchemaArray: ?*?*WINBIO_BSP_SCHEMA,
+    BspCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumBiometricUnits(
     Factor: u32,
-    UnitSchemaArray: **WINBIO_UNIT_SCHEMA,
-    UnitCount: *usize,
+    UnitSchemaArray: ?*?*WINBIO_UNIT_SCHEMA,
+    UnitCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumDatabases(
     Factor: u32,
-    StorageSchemaArray: **WINBIO_STORAGE_SCHEMA,
-    StorageCount: *usize,
+    StorageSchemaArray: ?*?*WINBIO_STORAGE_SCHEMA,
+    StorageCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1686,7 +1686,7 @@ pub extern "winbio" fn WinBioOpenSession(
     UnitArray: ?[*]u32,
     UnitCount: usize,
     DatabaseId: ?*Guid,
-    SessionHandle: *u32,
+    SessionHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1714,7 +1714,7 @@ pub extern "winbio" fn WinBioCloseSession(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerify(
     SessionHandle: u32,
-    Identity: *WINBIO_IDENTITY,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     UnitId: ?*u32,
     Match: ?*u8,
@@ -1724,9 +1724,9 @@ pub extern "winbio" fn WinBioVerify(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerifyWithCallback(
     SessionHandle: u32,
-    Identity: *WINBIO_IDENTITY,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    VerifyCallback: PWINBIO_VERIFY_CALLBACK,
+    VerifyCallback: ?PWINBIO_VERIFY_CALLBACK,
     VerifyCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1742,7 +1742,7 @@ pub extern "winbio" fn WinBioIdentify(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioIdentifyWithCallback(
     SessionHandle: u32,
-    IdentifyCallback: PWINBIO_IDENTIFY_CALLBACK,
+    IdentifyCallback: ?PWINBIO_IDENTIFY_CALLBACK,
     IdentifyCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1765,7 +1765,7 @@ pub extern "winbio" fn WinBioLocateSensor(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLocateSensorWithCallback(
     SessionHandle: u32,
-    LocateCallback: PWINBIO_LOCATE_SENSOR_CALLBACK,
+    LocateCallback: ?PWINBIO_LOCATE_SENSOR_CALLBACK,
     LocateCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1791,7 +1791,7 @@ pub extern "winbio" fn WinBioEnrollCapture(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCaptureWithCallback(
     SessionHandle: u32,
-    EnrollCallback: PWINBIO_ENROLL_CAPTURE_CALLBACK,
+    EnrollCallback: ?PWINBIO_ENROLL_CAPTURE_CALLBACK,
     EnrollCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1811,8 +1811,8 @@ pub extern "winbio" fn WinBioEnrollDiscard(
 pub extern "winbio" fn WinBioEnumEnrollments(
     SessionHandle: u32,
     UnitId: u32,
-    Identity: *WINBIO_IDENTITY,
-    SubFactorArray: ?**u8,
+    Identity: ?*WINBIO_IDENTITY,
+    SubFactorArray: ?*?*u8,
     SubFactorCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1820,7 +1820,7 @@ pub extern "winbio" fn WinBioEnumEnrollments(
 pub extern "winbio" fn WinBioRegisterEventMonitor(
     SessionHandle: u32,
     EventMask: u32,
-    EventCallback: PWINBIO_EVENT_CALLBACK,
+    EventCallback: ?PWINBIO_EVENT_CALLBACK,
     EventCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1841,7 +1841,7 @@ pub extern "winbio" fn WinBioCaptureSample(
     Purpose: u8,
     Flags: u8,
     UnitId: ?*u32,
-    Sample: ?**WINBIO_BIR,
+    Sample: ?*?*WINBIO_BIR,
     SampleSize: ?*usize,
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1851,7 +1851,7 @@ pub extern "winbio" fn WinBioCaptureSampleWithCallback(
     SessionHandle: u32,
     Purpose: u8,
     Flags: u8,
-    CaptureCallback: PWINBIO_CAPTURE_CALLBACK,
+    CaptureCallback: ?PWINBIO_CAPTURE_CALLBACK,
     CaptureCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1859,7 +1859,7 @@ pub extern "winbio" fn WinBioCaptureSampleWithCallback(
 pub extern "winbio" fn WinBioDeleteTemplate(
     SessionHandle: u32,
     UnitId: u32,
-    Identity: *WINBIO_IDENTITY,
+    Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1882,12 +1882,12 @@ pub extern "winbio" fn WinBioControlUnit(
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 5?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 7?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
+    ReceiveDataSize: ?*usize,
     OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1898,12 +1898,12 @@ pub extern "winbio" fn WinBioControlUnitPrivileged(
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
     // TODO: what to do with BytesParamIndex 5?
-    SendBuffer: *u8,
+    SendBuffer: ?*u8,
     SendBufferSize: usize,
     // TODO: what to do with BytesParamIndex 7?
-    ReceiveBuffer: *u8,
+    ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
-    ReceiveDataSize: *usize,
+    ReceiveDataSize: ?*usize,
     OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1915,7 +1915,7 @@ pub extern "winbio" fn WinBioGetProperty(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?**c_void,
+    PropertyBuffer: ?*?*c_void,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1928,20 +1928,20 @@ pub extern "winbio" fn WinBioSetProperty(
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     // TODO: what to do with BytesParamIndex 7?
-    PropertyBuffer: *c_void,
+    PropertyBuffer: ?*c_void,
     PropertyBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioFree(
-    Address: *c_void,
+    Address: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "winbio" fn WinBioSetCredential(
     Type: WINBIO_CREDENTIAL_TYPE,
     // TODO: what to do with BytesParamIndex 2?
-    Credential: *u8,
+    Credential: ?*u8,
     CredentialSize: usize,
     Format: WINBIO_CREDENTIAL_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1964,7 +1964,7 @@ pub extern "winbio" fn WinBioRemoveAllDomainCredentials(
 pub extern "winbio" fn WinBioGetCredentialState(
     Identity: WINBIO_IDENTITY,
     Type: WINBIO_CREDENTIAL_TYPE,
-    CredentialState: *WINBIO_CREDENTIAL_STATE,
+    CredentialState: ?*WINBIO_CREDENTIAL_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1974,26 +1974,26 @@ pub extern "winbio" fn WinBioLogonIdentifiedUser(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioGetEnrolledFactors(
-    AccountOwner: *WINBIO_IDENTITY,
-    EnrolledFactors: *u32,
+    AccountOwner: ?*WINBIO_IDENTITY,
+    EnrolledFactors: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetEnabledSetting(
-    Value: *u8,
-    Source: *WINBIO_SETTING_SOURCE,
+    Value: ?*u8,
+    Source: ?*WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetLogonSetting(
-    Value: *u8,
-    Source: *WINBIO_SETTING_SOURCE,
+    Value: ?*u8,
+    Source: ?*WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetDomainLogonSetting(
-    Value: *u8,
-    Source: *WINBIO_SETTING_SOURCE,
+    Value: ?*u8,
+    Source: ?*WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'

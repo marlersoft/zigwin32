@@ -517,38 +517,38 @@ pub const IAudioMediaType = extern struct {
         base: IUnknown.VTable,
         IsCompressedFormat: fn(
             self: *const IAudioMediaType,
-            pfCompressed: *BOOL,
+            pfCompressed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqual: fn(
             self: *const IAudioMediaType,
-            pIAudioType: *IAudioMediaType,
-            pdwFlags: *u32,
+            pIAudioType: ?*IAudioMediaType,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAudioFormat: fn(
             self: *const IAudioMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) *WAVEFORMATEX,
+        ) callconv(@import("std").os.windows.WINAPI) ?*WAVEFORMATEX,
         GetUncompressedAudioFormat: fn(
             self: *const IAudioMediaType,
-            pUncompressedAudioFormat: *UNCOMPRESSEDAUDIOFORMAT,
+            pUncompressedAudioFormat: ?*UNCOMPRESSEDAUDIOFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMediaType_IsCompressedFormat(self: *const T, pfCompressed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAudioMediaType_IsCompressedFormat(self: *const T, pfCompressed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioMediaType.VTable, self.vtable).IsCompressedFormat(@ptrCast(*const IAudioMediaType, self), pfCompressed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMediaType_IsEqual(self: *const T, pIAudioType: *IAudioMediaType, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IAudioMediaType_IsEqual(self: *const T, pIAudioType: ?*IAudioMediaType, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioMediaType.VTable, self.vtable).IsEqual(@ptrCast(*const IAudioMediaType, self), pIAudioType, pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMediaType_GetAudioFormat(self: *const T) callconv(.Inline) *WAVEFORMATEX {
+        pub fn IAudioMediaType_GetAudioFormat(self: *const T) callconv(.Inline) ?*WAVEFORMATEX {
             return @ptrCast(*const IAudioMediaType.VTable, self.vtable).GetAudioFormat(@ptrCast(*const IAudioMediaType, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMediaType_GetUncompressedAudioFormat(self: *const T, pUncompressedAudioFormat: *UNCOMPRESSEDAUDIOFORMAT) callconv(.Inline) HRESULT {
+        pub fn IAudioMediaType_GetUncompressedAudioFormat(self: *const T, pUncompressedAudioFormat: ?*UNCOMPRESSEDAUDIOFORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioMediaType.VTable, self.vtable).GetUncompressedAudioFormat(@ptrCast(*const IAudioMediaType, self), pUncompressedAudioFormat);
         }
     };}
@@ -568,7 +568,7 @@ pub const APO_CONNECTION_DESCRIPTOR = extern struct {
     Type: APO_CONNECTION_BUFFER_TYPE,
     pBuffer: usize,
     u32MaxFrameCount: u32,
-    pFormat: *IAudioMediaType,
+    pFormat: ?*IAudioMediaType,
     u32Signature: u32,
 };
 
@@ -638,9 +638,9 @@ pub const IAudioProcessingObjectRT = extern struct {
         APOProcess: fn(
             self: *const IAudioProcessingObjectRT,
             u32NumInputConnections: u32,
-            ppInputConnections: **APO_CONNECTION_PROPERTY,
+            ppInputConnections: ?*?*APO_CONNECTION_PROPERTY,
             u32NumOutputConnections: u32,
-            ppOutputConnections: **APO_CONNECTION_PROPERTY,
+            ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CalcInputFrames: fn(
             self: *const IAudioProcessingObjectRT,
@@ -655,7 +655,7 @@ pub const IAudioProcessingObjectRT = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObjectRT_APOProcess(self: *const T, u32NumInputConnections: u32, ppInputConnections: **APO_CONNECTION_PROPERTY, u32NumOutputConnections: u32, ppOutputConnections: **APO_CONNECTION_PROPERTY) callconv(.Inline) void {
+        pub fn IAudioProcessingObjectRT_APOProcess(self: *const T, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_PROPERTY, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY) callconv(.Inline) void {
             return @ptrCast(*const IAudioProcessingObjectRT.VTable, self.vtable).APOProcess(@ptrCast(*const IAudioProcessingObjectRT, self), u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -678,23 +678,23 @@ pub const IAudioProcessingObjectVBR = extern struct {
         CalcMaxInputFrames: fn(
             self: *const IAudioProcessingObjectVBR,
             u32MaxOutputFrameCount: u32,
-            pu32InputFrameCount: *u32,
+            pu32InputFrameCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CalcMaxOutputFrames: fn(
             self: *const IAudioProcessingObjectVBR,
             u32MaxInputFrameCount: u32,
-            pu32OutputFrameCount: *u32,
+            pu32OutputFrameCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObjectVBR_CalcMaxInputFrames(self: *const T, u32MaxOutputFrameCount: u32, pu32InputFrameCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObjectVBR_CalcMaxInputFrames(self: *const T, u32MaxOutputFrameCount: u32, pu32InputFrameCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObjectVBR.VTable, self.vtable).CalcMaxInputFrames(@ptrCast(*const IAudioProcessingObjectVBR, self), u32MaxOutputFrameCount, pu32InputFrameCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObjectVBR_CalcMaxOutputFrames(self: *const T, u32MaxInputFrameCount: u32, pu32OutputFrameCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObjectVBR_CalcMaxOutputFrames(self: *const T, u32MaxInputFrameCount: u32, pu32OutputFrameCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObjectVBR.VTable, self.vtable).CalcMaxOutputFrames(@ptrCast(*const IAudioProcessingObjectVBR, self), u32MaxInputFrameCount, pu32OutputFrameCount);
         }
     };}
@@ -709,9 +709,9 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
         LockForProcess: fn(
             self: *const IAudioProcessingObjectConfiguration,
             u32NumInputConnections: u32,
-            ppInputConnections: **APO_CONNECTION_DESCRIPTOR,
+            ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
             u32NumOutputConnections: u32,
-            ppOutputConnections: **APO_CONNECTION_DESCRIPTOR,
+            ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnlockForProcess: fn(
             self: *const IAudioProcessingObjectConfiguration,
@@ -721,7 +721,7 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObjectConfiguration_LockForProcess(self: *const T, u32NumInputConnections: u32, ppInputConnections: **APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: **APO_CONNECTION_DESCRIPTOR) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObjectConfiguration_LockForProcess(self: *const T, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObjectConfiguration.VTable, self.vtable).LockForProcess(@ptrCast(*const IAudioProcessingObjectConfiguration, self), u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -742,11 +742,11 @@ pub const IAudioProcessingObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLatency: fn(
             self: *const IAudioProcessingObject,
-            pTime: *i64,
+            pTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegistrationProperties: fn(
             self: *const IAudioProcessingObject,
-            ppRegProps: **APO_REG_PROPERTIES,
+            ppRegProps: ?*?*APO_REG_PROPERTIES,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IAudioProcessingObject,
@@ -755,19 +755,19 @@ pub const IAudioProcessingObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsInputFormatSupported: fn(
             self: *const IAudioProcessingObject,
-            pOppositeFormat: *IAudioMediaType,
-            pRequestedInputFormat: *IAudioMediaType,
-            ppSupportedInputFormat: **IAudioMediaType,
+            pOppositeFormat: ?*IAudioMediaType,
+            pRequestedInputFormat: ?*IAudioMediaType,
+            ppSupportedInputFormat: ?*?*IAudioMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsOutputFormatSupported: fn(
             self: *const IAudioProcessingObject,
-            pOppositeFormat: *IAudioMediaType,
-            pRequestedOutputFormat: *IAudioMediaType,
-            ppSupportedOutputFormat: **IAudioMediaType,
+            pOppositeFormat: ?*IAudioMediaType,
+            pRequestedOutputFormat: ?*IAudioMediaType,
+            ppSupportedOutputFormat: ?*?*IAudioMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputChannelCount: fn(
             self: *const IAudioProcessingObject,
-            pu32ChannelCount: *u32,
+            pu32ChannelCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -778,11 +778,11 @@ pub const IAudioProcessingObject = extern struct {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).Reset(@ptrCast(*const IAudioProcessingObject, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObject_GetLatency(self: *const T, pTime: *i64) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObject_GetLatency(self: *const T, pTime: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).GetLatency(@ptrCast(*const IAudioProcessingObject, self), pTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObject_GetRegistrationProperties(self: *const T, ppRegProps: **APO_REG_PROPERTIES) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObject_GetRegistrationProperties(self: *const T, ppRegProps: ?*?*APO_REG_PROPERTIES) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).GetRegistrationProperties(@ptrCast(*const IAudioProcessingObject, self), ppRegProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -790,15 +790,15 @@ pub const IAudioProcessingObject = extern struct {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).Initialize(@ptrCast(*const IAudioProcessingObject, self), cbDataSize, pbyData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObject_IsInputFormatSupported(self: *const T, pOppositeFormat: *IAudioMediaType, pRequestedInputFormat: *IAudioMediaType, ppSupportedInputFormat: **IAudioMediaType) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObject_IsInputFormatSupported(self: *const T, pOppositeFormat: ?*IAudioMediaType, pRequestedInputFormat: ?*IAudioMediaType, ppSupportedInputFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).IsInputFormatSupported(@ptrCast(*const IAudioProcessingObject, self), pOppositeFormat, pRequestedInputFormat, ppSupportedInputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObject_IsOutputFormatSupported(self: *const T, pOppositeFormat: *IAudioMediaType, pRequestedOutputFormat: *IAudioMediaType, ppSupportedOutputFormat: **IAudioMediaType) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObject_IsOutputFormatSupported(self: *const T, pOppositeFormat: ?*IAudioMediaType, pRequestedOutputFormat: ?*IAudioMediaType, ppSupportedOutputFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).IsOutputFormatSupported(@ptrCast(*const IAudioProcessingObject, self), pOppositeFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioProcessingObject_GetInputChannelCount(self: *const T, pu32ChannelCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IAudioProcessingObject_GetInputChannelCount(self: *const T, pu32ChannelCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioProcessingObject.VTable, self.vtable).GetInputChannelCount(@ptrCast(*const IAudioProcessingObject, self), pu32ChannelCount);
         }
     };}
@@ -812,14 +812,14 @@ pub const IAudioDeviceModulesClient = extern struct {
         base: IUnknown.VTable,
         SetAudioDeviceModulesManager: fn(
             self: *const IAudioDeviceModulesClient,
-            pAudioDeviceModulesManager: *IUnknown,
+            pAudioDeviceModulesManager: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceModulesClient_SetAudioDeviceModulesManager(self: *const T, pAudioDeviceModulesManager: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAudioDeviceModulesClient_SetAudioDeviceModulesManager(self: *const T, pAudioDeviceModulesManager: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioDeviceModulesClient.VTable, self.vtable).SetAudioDeviceModulesManager(@ptrCast(*const IAudioDeviceModulesClient, self), pAudioDeviceModulesManager);
         }
     };}
@@ -827,8 +827,8 @@ pub const IAudioDeviceModulesClient = extern struct {
 };
 
 pub const FNAPONOTIFICATIONCALLBACK = fn(
-    pProperties: *APO_REG_PROPERTIES,
-    pvRefData: *c_void,
+    pProperties: ?*APO_REG_PROPERTIES,
+    pvRefData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const IID_IAudioSystemEffects_Value = @import("../../zig.zig").Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
@@ -851,16 +851,16 @@ pub const IAudioSystemEffects2 = extern struct {
         base: IAudioSystemEffects.VTable,
         GetEffectsList: fn(
             self: *const IAudioSystemEffects2,
-            ppEffectsIds: ?**Guid,
-            pcEffects: *u32,
-            Event: HANDLE,
+            ppEffectsIds: ?*?*Guid,
+            pcEffects: ?*u32,
+            Event: ?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAudioSystemEffects.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffects2_GetEffectsList(self: *const T, ppEffectsIds: ?**Guid, pcEffects: *u32, Event: HANDLE) callconv(.Inline) HRESULT {
+        pub fn IAudioSystemEffects2_GetEffectsList(self: *const T, ppEffectsIds: ?*?*Guid, pcEffects: ?*u32, Event: ?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioSystemEffects2.VTable, self.vtable).GetEffectsList(@ptrCast(*const IAudioSystemEffects2, self), ppEffectsIds, pcEffects, Event);
         }
     };}
@@ -874,32 +874,32 @@ pub const IAudioSystemEffectsCustomFormats = extern struct {
         base: IUnknown.VTable,
         GetFormatCount: fn(
             self: *const IAudioSystemEffectsCustomFormats,
-            pcFormats: *u32,
+            pcFormats: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const IAudioSystemEffectsCustomFormats,
             nFormat: u32,
-            ppFormat: **IAudioMediaType,
+            ppFormat: ?*?*IAudioMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatRepresentation: fn(
             self: *const IAudioSystemEffectsCustomFormats,
             nFormat: u32,
-            ppwstrFormatRep: *PWSTR,
+            ppwstrFormatRep: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsCustomFormats_GetFormatCount(self: *const T, pcFormats: *u32) callconv(.Inline) HRESULT {
+        pub fn IAudioSystemEffectsCustomFormats_GetFormatCount(self: *const T, pcFormats: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioSystemEffectsCustomFormats.VTable, self.vtable).GetFormatCount(@ptrCast(*const IAudioSystemEffectsCustomFormats, self), pcFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsCustomFormats_GetFormat(self: *const T, nFormat: u32, ppFormat: **IAudioMediaType) callconv(.Inline) HRESULT {
+        pub fn IAudioSystemEffectsCustomFormats_GetFormat(self: *const T, nFormat: u32, ppFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioSystemEffectsCustomFormats.VTable, self.vtable).GetFormat(@ptrCast(*const IAudioSystemEffectsCustomFormats, self), nFormat, ppFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsCustomFormats_GetFormatRepresentation(self: *const T, nFormat: u32, ppwstrFormatRep: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IAudioSystemEffectsCustomFormats_GetFormatRepresentation(self: *const T, nFormat: u32, ppwstrFormatRep: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioSystemEffectsCustomFormats.VTable, self.vtable).GetFormatRepresentation(@ptrCast(*const IAudioSystemEffectsCustomFormats, self), nFormat, ppwstrFormatRep);
         }
     };}
@@ -908,18 +908,18 @@ pub const IAudioSystemEffectsCustomFormats = extern struct {
 
 pub const APOInitSystemEffects = extern struct {
     APOInit: APOInitBaseStruct,
-    pAPOEndpointProperties: *IPropertyStore,
-    pAPOSystemEffectsProperties: *IPropertyStore,
-    pReserved: *c_void,
-    pDeviceCollection: *IMMDeviceCollection,
+    pAPOEndpointProperties: ?*IPropertyStore,
+    pAPOSystemEffectsProperties: ?*IPropertyStore,
+    pReserved: ?*c_void,
+    pDeviceCollection: ?*IMMDeviceCollection,
 };
 
 pub const APOInitSystemEffects2 = extern struct {
     APOInit: APOInitBaseStruct,
-    pAPOEndpointProperties: *IPropertyStore,
-    pAPOSystemEffectsProperties: *IPropertyStore,
-    pReserved: *c_void,
-    pDeviceCollection: *IMMDeviceCollection,
+    pAPOEndpointProperties: ?*IPropertyStore,
+    pAPOSystemEffectsProperties: ?*IPropertyStore,
+    pReserved: ?*c_void,
+    pDeviceCollection: ?*IMMDeviceCollection,
     nSoftwareIoDeviceInCollection: u32,
     nSoftwareIoConnectorIndex: u32,
     AudioProcessingMode: Guid,
@@ -928,8 +928,8 @@ pub const APOInitSystemEffects2 = extern struct {
 
 pub const AudioFXExtensionParams = extern struct {
     AddPageParam: LPARAM,
-    pwstrEndpointID: PWSTR,
-    pFxProperties: *IPropertyStore,
+    pwstrEndpointID: ?PWSTR,
+    pFxProperties: ?*IPropertyStore,
 };
 
 pub const DLSID = extern struct {
@@ -1196,7 +1196,7 @@ pub const DSBUFFERDESC = extern struct {
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
-    lpwfxFormat: *WAVEFORMATEX,
+    lpwfxFormat: ?*WAVEFORMATEX,
     guid3DAlgorithm: Guid,
 };
 
@@ -1205,7 +1205,7 @@ pub const DSBUFFERDESC1 = extern struct {
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
-    lpwfxFormat: *WAVEFORMATEX,
+    lpwfxFormat: ?*WAVEFORMATEX,
 };
 
 pub const DS3DBUFFER = extern struct {
@@ -1244,7 +1244,7 @@ pub const DSCBUFFERDESC1 = extern struct {
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
-    lpwfxFormat: *WAVEFORMATEX,
+    lpwfxFormat: ?*WAVEFORMATEX,
 };
 
 pub const DSCBUFFERDESC = extern struct {
@@ -1252,9 +1252,9 @@ pub const DSCBUFFERDESC = extern struct {
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
-    lpwfxFormat: *WAVEFORMATEX,
+    lpwfxFormat: ?*WAVEFORMATEX,
     dwFXCount: u32,
-    lpDSCFXDesc: *DSCEFFECTDESC,
+    lpDSCFXDesc: ?*DSCEFFECTDESC,
 };
 
 pub const DSCBCAPS = extern struct {
@@ -1266,21 +1266,21 @@ pub const DSCBCAPS = extern struct {
 
 pub const DSBPOSITIONNOTIFY = extern struct {
     dwOffset: u32,
-    hEventNotify: HANDLE,
+    hEventNotify: ?HANDLE,
 };
 
 pub const LPDSENUMCALLBACKA = fn(
-    param0: *Guid,
-    param1: [*:0]const u8,
-    param2: [*:0]const u8,
-    param3: *c_void,
+    param0: ?*Guid,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDSENUMCALLBACKW = fn(
-    param0: *Guid,
-    param1: [*:0]const u16,
-    param2: [*:0]const u16,
-    param3: *c_void,
+    param0: ?*Guid,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectSound_Value = @import("../../zig.zig").Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
@@ -1290,22 +1290,22 @@ pub const IDirectSound = extern struct {
         base: IUnknown.VTable,
         CreateSoundBuffer: fn(
             self: *const IDirectSound,
-            pcDSBufferDesc: *DSBUFFERDESC,
-            ppDSBuffer: **IDirectSoundBuffer,
-            pUnkOuter: *IUnknown,
+            pcDSBufferDesc: ?*DSBUFFERDESC,
+            ppDSBuffer: ?*?*IDirectSoundBuffer,
+            pUnkOuter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaps: fn(
             self: *const IDirectSound,
-            pDSCaps: *DSCAPS,
+            pDSCaps: ?*DSCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DuplicateSoundBuffer: fn(
             self: *const IDirectSound,
-            pDSBufferOriginal: *IDirectSoundBuffer,
-            ppDSBufferDuplicate: **IDirectSoundBuffer,
+            pDSBufferOriginal: ?*IDirectSoundBuffer,
+            ppDSBufferDuplicate: ?*?*IDirectSoundBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCooperativeLevel: fn(
             self: *const IDirectSound,
-            hwnd: HWND,
+            hwnd: ?HWND,
             dwLevel: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Compact: fn(
@@ -1313,7 +1313,7 @@ pub const IDirectSound = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpeakerConfig: fn(
             self: *const IDirectSound,
-            pdwSpeakerConfig: *u32,
+            pdwSpeakerConfig: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSpeakerConfig: fn(
             self: *const IDirectSound,
@@ -1328,19 +1328,19 @@ pub const IDirectSound = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound_CreateSoundBuffer(self: *const T, pcDSBufferDesc: *DSBUFFERDESC, ppDSBuffer: **IDirectSoundBuffer, pUnkOuter: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectSound_CreateSoundBuffer(self: *const T, pcDSBufferDesc: ?*DSBUFFERDESC, ppDSBuffer: ?*?*IDirectSoundBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).CreateSoundBuffer(@ptrCast(*const IDirectSound, self), pcDSBufferDesc, ppDSBuffer, pUnkOuter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound_GetCaps(self: *const T, pDSCaps: *DSCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectSound_GetCaps(self: *const T, pDSCaps: ?*DSCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSound, self), pDSCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound_DuplicateSoundBuffer(self: *const T, pDSBufferOriginal: *IDirectSoundBuffer, ppDSBufferDuplicate: **IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        pub fn IDirectSound_DuplicateSoundBuffer(self: *const T, pDSBufferOriginal: ?*IDirectSoundBuffer, ppDSBufferDuplicate: ?*?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).DuplicateSoundBuffer(@ptrCast(*const IDirectSound, self), pDSBufferOriginal, ppDSBufferDuplicate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound_SetCooperativeLevel(self: *const T, hwnd: HWND, dwLevel: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound_SetCooperativeLevel(self: *const T, hwnd: ?HWND, dwLevel: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectSound, self), hwnd, dwLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1348,7 +1348,7 @@ pub const IDirectSound = extern struct {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).Compact(@ptrCast(*const IDirectSound, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound_GetSpeakerConfig(self: *const T, pdwSpeakerConfig: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound_GetSpeakerConfig(self: *const T, pdwSpeakerConfig: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound.VTable, self.vtable).GetSpeakerConfig(@ptrCast(*const IDirectSound, self), pdwSpeakerConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1370,14 +1370,14 @@ pub const IDirectSound8 = extern struct {
         base: IDirectSound.VTable,
         VerifyCertification: fn(
             self: *const IDirectSound8,
-            pdwCertified: *u32,
+            pdwCertified: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectSound.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound8_VerifyCertification(self: *const T, pdwCertified: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound8_VerifyCertification(self: *const T, pdwCertified: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound8.VTable, self.vtable).VerifyCertification(@ptrCast(*const IDirectSound8, self), pdwCertified);
         }
     };}
@@ -1391,7 +1391,7 @@ pub const IDirectSoundBuffer = extern struct {
         base: IUnknown.VTable,
         GetCaps: fn(
             self: *const IDirectSoundBuffer,
-            pDSBufferCaps: *DSBCAPS,
+            pDSBufferCaps: ?*DSBCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPosition: fn(
             self: *const IDirectSoundBuffer,
@@ -1407,32 +1407,32 @@ pub const IDirectSoundBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVolume: fn(
             self: *const IDirectSoundBuffer,
-            plVolume: *i32,
+            plVolume: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPan: fn(
             self: *const IDirectSoundBuffer,
-            plPan: *i32,
+            plPan: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFrequency: fn(
             self: *const IDirectSoundBuffer,
-            pdwFrequency: *u32,
+            pdwFrequency: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IDirectSoundBuffer,
-            pdwStatus: *u32,
+            pdwStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IDirectSoundBuffer,
-            pDirectSound: *IDirectSound,
-            pcDSBufferDesc: *DSBUFFERDESC,
+            pDirectSound: ?*IDirectSound,
+            pcDSBufferDesc: ?*DSBUFFERDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Lock: fn(
             self: *const IDirectSoundBuffer,
             dwOffset: u32,
             dwBytes: u32,
-            ppvAudioPtr1: **c_void,
-            pdwAudioBytes1: *u32,
-            ppvAudioPtr2: ?**c_void,
+            ppvAudioPtr1: ?*?*c_void,
+            pdwAudioBytes1: ?*u32,
+            ppvAudioPtr2: ?*?*c_void,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1448,7 +1448,7 @@ pub const IDirectSoundBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFormat: fn(
             self: *const IDirectSoundBuffer,
-            pcfxFormat: *WAVEFORMATEX,
+            pcfxFormat: ?*WAVEFORMATEX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVolume: fn(
             self: *const IDirectSoundBuffer,
@@ -1468,7 +1468,7 @@ pub const IDirectSoundBuffer = extern struct {
         Unlock: fn(
             self: *const IDirectSoundBuffer,
             // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: *c_void,
+            pvAudioPtr1: ?*c_void,
             dwAudioBytes1: u32,
             // TODO: what to do with BytesParamIndex 3?
             pvAudioPtr2: ?*c_void,
@@ -1482,7 +1482,7 @@ pub const IDirectSoundBuffer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetCaps(self: *const T, pDSBufferCaps: *DSBCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetCaps(self: *const T, pDSBufferCaps: ?*DSBCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundBuffer, self), pDSBufferCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1494,27 +1494,27 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetVolume(self: *const T, plVolume: *i32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetVolume(self: *const T, plVolume: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetVolume(@ptrCast(*const IDirectSoundBuffer, self), plVolume);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetPan(self: *const T, plPan: *i32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetPan(self: *const T, plPan: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetPan(@ptrCast(*const IDirectSoundBuffer, self), plPan);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetFrequency(self: *const T, pdwFrequency: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetFrequency(self: *const T, pdwFrequency: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetFrequency(@ptrCast(*const IDirectSoundBuffer, self), pdwFrequency);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetStatus(self: *const T, pdwStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundBuffer, self), pdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Initialize(self: *const T, pDirectSound: *IDirectSound, pcDSBufferDesc: *DSBUFFERDESC) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Initialize(self: *const T, pDirectSound: ?*IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundBuffer, self), pDirectSound, pcDSBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?**c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*c_void, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1526,7 +1526,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IDirectSoundBuffer, self), dwNewPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_SetFormat(self: *const T, pcfxFormat: *WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_SetFormat(self: *const T, pcfxFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetFormat(@ptrCast(*const IDirectSoundBuffer, self), pcfxFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1546,7 +1546,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: *c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: ?*c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1576,10 +1576,10 @@ pub const IDirectSoundBuffer8 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectInPath: fn(
             self: *const IDirectSoundBuffer8,
-            rguidObject: *const Guid,
+            rguidObject: ?*const Guid,
             dwIndex: u32,
-            rguidInterface: *const Guid,
-            ppObject: **c_void,
+            rguidInterface: ?*const Guid,
+            ppObject: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1594,7 +1594,7 @@ pub const IDirectSoundBuffer8 = extern struct {
             return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).AcquireResources(@ptrCast(*const IDirectSoundBuffer8, self), dwFlags, dwEffectsCount, pdwResultCodes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer8_GetObjectInPath(self: *const T, rguidObject: *const Guid, dwIndex: u32, rguidInterface: *const Guid, ppObject: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
         }
     };}
@@ -1608,36 +1608,36 @@ pub const IDirectSound3DListener = extern struct {
         base: IUnknown.VTable,
         GetAllParameters: fn(
             self: *const IDirectSound3DListener,
-            pListener: *DS3DLISTENER,
+            pListener: ?*DS3DLISTENER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDistanceFactor: fn(
             self: *const IDirectSound3DListener,
-            pflDistanceFactor: *f32,
+            pflDistanceFactor: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDopplerFactor: fn(
             self: *const IDirectSound3DListener,
-            pflDopplerFactor: *f32,
+            pflDopplerFactor: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOrientation: fn(
             self: *const IDirectSound3DListener,
-            pvOrientFront: *D3DVECTOR,
-            pvOrientTop: *D3DVECTOR,
+            pvOrientFront: ?*D3DVECTOR,
+            pvOrientTop: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPosition: fn(
             self: *const IDirectSound3DListener,
-            pvPosition: *D3DVECTOR,
+            pvPosition: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRolloffFactor: fn(
             self: *const IDirectSound3DListener,
-            pflRolloffFactor: *f32,
+            pflRolloffFactor: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVelocity: fn(
             self: *const IDirectSound3DListener,
-            pvVelocity: *D3DVECTOR,
+            pvVelocity: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllParameters: fn(
             self: *const IDirectSound3DListener,
-            pcListener: *DS3DLISTENER,
+            pcListener: ?*DS3DLISTENER,
             dwApply: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDistanceFactor: fn(
@@ -1687,35 +1687,35 @@ pub const IDirectSound3DListener = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetAllParameters(self: *const T, pListener: *DS3DLISTENER) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetAllParameters(self: *const T, pListener: ?*DS3DLISTENER) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSound3DListener, self), pListener);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetDistanceFactor(self: *const T, pflDistanceFactor: *f32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetDistanceFactor(self: *const T, pflDistanceFactor: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetDistanceFactor(@ptrCast(*const IDirectSound3DListener, self), pflDistanceFactor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetDopplerFactor(self: *const T, pflDopplerFactor: *f32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetDopplerFactor(self: *const T, pflDopplerFactor: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetDopplerFactor(@ptrCast(*const IDirectSound3DListener, self), pflDopplerFactor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetOrientation(self: *const T, pvOrientFront: *D3DVECTOR, pvOrientTop: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetOrientation(self: *const T, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetOrientation(@ptrCast(*const IDirectSound3DListener, self), pvOrientFront, pvOrientTop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetPosition(self: *const T, pvPosition: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetPosition(self: *const T, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetPosition(@ptrCast(*const IDirectSound3DListener, self), pvPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetRolloffFactor(self: *const T, pflRolloffFactor: *f32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetRolloffFactor(self: *const T, pflRolloffFactor: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetRolloffFactor(@ptrCast(*const IDirectSound3DListener, self), pflRolloffFactor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_GetVelocity(self: *const T, pvVelocity: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_GetVelocity(self: *const T, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetVelocity(@ptrCast(*const IDirectSound3DListener, self), pvVelocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DListener_SetAllParameters(self: *const T, pcListener: *DS3DLISTENER, dwApply: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DListener_SetAllParameters(self: *const T, pcListener: ?*DS3DLISTENER, dwApply: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSound3DListener, self), pcListener, dwApply);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1757,44 +1757,44 @@ pub const IDirectSound3DBuffer = extern struct {
         base: IUnknown.VTable,
         GetAllParameters: fn(
             self: *const IDirectSound3DBuffer,
-            pDs3dBuffer: *DS3DBUFFER,
+            pDs3dBuffer: ?*DS3DBUFFER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConeAngles: fn(
             self: *const IDirectSound3DBuffer,
-            pdwInsideConeAngle: *u32,
-            pdwOutsideConeAngle: *u32,
+            pdwInsideConeAngle: ?*u32,
+            pdwOutsideConeAngle: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConeOrientation: fn(
             self: *const IDirectSound3DBuffer,
-            pvOrientation: *D3DVECTOR,
+            pvOrientation: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConeOutsideVolume: fn(
             self: *const IDirectSound3DBuffer,
-            plConeOutsideVolume: *i32,
+            plConeOutsideVolume: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxDistance: fn(
             self: *const IDirectSound3DBuffer,
-            pflMaxDistance: *f32,
+            pflMaxDistance: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinDistance: fn(
             self: *const IDirectSound3DBuffer,
-            pflMinDistance: *f32,
+            pflMinDistance: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMode: fn(
             self: *const IDirectSound3DBuffer,
-            pdwMode: *u32,
+            pdwMode: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPosition: fn(
             self: *const IDirectSound3DBuffer,
-            pvPosition: *D3DVECTOR,
+            pvPosition: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVelocity: fn(
             self: *const IDirectSound3DBuffer,
-            pvVelocity: *D3DVECTOR,
+            pvVelocity: ?*D3DVECTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllParameters: fn(
             self: *const IDirectSound3DBuffer,
-            pcDs3dBuffer: *DS3DBUFFER,
+            pcDs3dBuffer: ?*DS3DBUFFER,
             dwApply: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConeAngles: fn(
@@ -1849,43 +1849,43 @@ pub const IDirectSound3DBuffer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetAllParameters(self: *const T, pDs3dBuffer: *DS3DBUFFER) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetAllParameters(self: *const T, pDs3dBuffer: ?*DS3DBUFFER) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSound3DBuffer, self), pDs3dBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetConeAngles(self: *const T, pdwInsideConeAngle: *u32, pdwOutsideConeAngle: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetConeAngles(self: *const T, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeAngles(@ptrCast(*const IDirectSound3DBuffer, self), pdwInsideConeAngle, pdwOutsideConeAngle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetConeOrientation(self: *const T, pvOrientation: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetConeOrientation(self: *const T, pvOrientation: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeOrientation(@ptrCast(*const IDirectSound3DBuffer, self), pvOrientation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetConeOutsideVolume(self: *const T, plConeOutsideVolume: *i32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetConeOutsideVolume(self: *const T, plConeOutsideVolume: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeOutsideVolume(@ptrCast(*const IDirectSound3DBuffer, self), plConeOutsideVolume);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetMaxDistance(self: *const T, pflMaxDistance: *f32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetMaxDistance(self: *const T, pflMaxDistance: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMaxDistance(@ptrCast(*const IDirectSound3DBuffer, self), pflMaxDistance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetMinDistance(self: *const T, pflMinDistance: *f32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetMinDistance(self: *const T, pflMinDistance: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMinDistance(@ptrCast(*const IDirectSound3DBuffer, self), pflMinDistance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetMode(self: *const T, pdwMode: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetMode(self: *const T, pdwMode: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMode(@ptrCast(*const IDirectSound3DBuffer, self), pdwMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetPosition(self: *const T, pvPosition: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetPosition(self: *const T, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetPosition(@ptrCast(*const IDirectSound3DBuffer, self), pvPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_GetVelocity(self: *const T, pvVelocity: *D3DVECTOR) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_GetVelocity(self: *const T, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetVelocity(@ptrCast(*const IDirectSound3DBuffer, self), pvVelocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSound3DBuffer_SetAllParameters(self: *const T, pcDs3dBuffer: *DS3DBUFFER, dwApply: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSound3DBuffer_SetAllParameters(self: *const T, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSound3DBuffer, self), pcDs3dBuffer, dwApply);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1931,13 +1931,13 @@ pub const IDirectSoundCapture = extern struct {
         base: IUnknown.VTable,
         CreateCaptureBuffer: fn(
             self: *const IDirectSoundCapture,
-            pcDSCBufferDesc: *DSCBUFFERDESC,
-            ppDSCBuffer: **IDirectSoundCaptureBuffer,
-            pUnkOuter: *IUnknown,
+            pcDSCBufferDesc: ?*DSCBUFFERDESC,
+            ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer,
+            pUnkOuter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaps: fn(
             self: *const IDirectSoundCapture,
-            pDSCCaps: *DSCCAPS,
+            pDSCCaps: ?*DSCCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IDirectSoundCapture,
@@ -1948,11 +1948,11 @@ pub const IDirectSoundCapture = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCapture_CreateCaptureBuffer(self: *const T, pcDSCBufferDesc: *DSCBUFFERDESC, ppDSCBuffer: **IDirectSoundCaptureBuffer, pUnkOuter: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCapture_CreateCaptureBuffer(self: *const T, pcDSCBufferDesc: ?*DSCBUFFERDESC, ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCapture.VTable, self.vtable).CreateCaptureBuffer(@ptrCast(*const IDirectSoundCapture, self), pcDSCBufferDesc, ppDSCBuffer, pUnkOuter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCapture_GetCaps(self: *const T, pDSCCaps: *DSCCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCapture_GetCaps(self: *const T, pDSCCaps: ?*DSCCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCapture.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundCapture, self), pDSCCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1970,7 +1970,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         base: IUnknown.VTable,
         GetCaps: fn(
             self: *const IDirectSoundCaptureBuffer,
-            pDSCBCaps: *DSCBCAPS,
+            pDSCBCaps: ?*DSCBCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPosition: fn(
             self: *const IDirectSoundCaptureBuffer,
@@ -1986,20 +1986,20 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IDirectSoundCaptureBuffer,
-            pdwStatus: *u32,
+            pdwStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IDirectSoundCaptureBuffer,
-            pDirectSoundCapture: *IDirectSoundCapture,
-            pcDSCBufferDesc: *DSCBUFFERDESC,
+            pDirectSoundCapture: ?*IDirectSoundCapture,
+            pcDSCBufferDesc: ?*DSCBUFFERDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Lock: fn(
             self: *const IDirectSoundCaptureBuffer,
             dwOffset: u32,
             dwBytes: u32,
-            ppvAudioPtr1: **c_void,
-            pdwAudioBytes1: *u32,
-            ppvAudioPtr2: ?**c_void,
+            ppvAudioPtr1: ?*?*c_void,
+            pdwAudioBytes1: ?*u32,
+            ppvAudioPtr2: ?*?*c_void,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2013,7 +2013,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         Unlock: fn(
             self: *const IDirectSoundCaptureBuffer,
             // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: *c_void,
+            pvAudioPtr1: ?*c_void,
             dwAudioBytes1: u32,
             // TODO: what to do with BytesParamIndex 3?
             pvAudioPtr2: ?*c_void,
@@ -2024,7 +2024,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_GetCaps(self: *const T, pDSCBCaps: *DSCBCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_GetCaps(self: *const T, pDSCBCaps: ?*DSCBCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDSCBCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2036,15 +2036,15 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundCaptureBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_GetStatus(self: *const T, pdwStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_GetStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundCaptureBuffer, self), pdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Initialize(self: *const T, pDirectSoundCapture: *IDirectSoundCapture, pcDSCBufferDesc: *DSCBUFFERDESC) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Initialize(self: *const T, pDirectSoundCapture: ?*IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDirectSoundCapture, pcDSCBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?**c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*c_void, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundCaptureBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2056,7 +2056,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundCaptureBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: *c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: ?*c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundCaptureBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
     };}
@@ -2070,10 +2070,10 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
         base: IDirectSoundCaptureBuffer.VTable,
         GetObjectInPath: fn(
             self: *const IDirectSoundCaptureBuffer8,
-            rguidObject: *const Guid,
+            rguidObject: ?*const Guid,
             dwIndex: u32,
-            rguidInterface: *const Guid,
-            ppObject: **c_void,
+            rguidInterface: ?*const Guid,
+            ppObject: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFXStatus: fn(
             self: *const IDirectSoundCaptureBuffer8,
@@ -2085,7 +2085,7 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectSoundCaptureBuffer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer8_GetObjectInPath(self: *const T, rguidObject: *const Guid, dwIndex: u32, rguidInterface: *const Guid, ppObject: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundCaptureBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2130,22 +2130,22 @@ pub const IDirectSoundFXGargle = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXGargle,
-            pcDsFxGargle: *DSFXGargle,
+            pcDsFxGargle: ?*DSFXGargle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXGargle,
-            pDsFxGargle: *DSFXGargle,
+            pDsFxGargle: ?*DSFXGargle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXGargle_SetAllParameters(self: *const T, pcDsFxGargle: *DSFXGargle) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXGargle_SetAllParameters(self: *const T, pcDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXGargle.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXGargle, self), pcDsFxGargle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXGargle_GetAllParameters(self: *const T, pDsFxGargle: *DSFXGargle) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXGargle_GetAllParameters(self: *const T, pDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXGargle.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXGargle, self), pDsFxGargle);
         }
     };}
@@ -2169,22 +2169,22 @@ pub const IDirectSoundFXChorus = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXChorus,
-            pcDsFxChorus: *DSFXChorus,
+            pcDsFxChorus: ?*DSFXChorus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXChorus,
-            pDsFxChorus: *DSFXChorus,
+            pDsFxChorus: ?*DSFXChorus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXChorus_SetAllParameters(self: *const T, pcDsFxChorus: *DSFXChorus) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXChorus_SetAllParameters(self: *const T, pcDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXChorus.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXChorus, self), pcDsFxChorus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXChorus_GetAllParameters(self: *const T, pDsFxChorus: *DSFXChorus) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXChorus_GetAllParameters(self: *const T, pDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXChorus.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXChorus, self), pDsFxChorus);
         }
     };}
@@ -2208,22 +2208,22 @@ pub const IDirectSoundFXFlanger = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXFlanger,
-            pcDsFxFlanger: *DSFXFlanger,
+            pcDsFxFlanger: ?*DSFXFlanger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXFlanger,
-            pDsFxFlanger: *DSFXFlanger,
+            pDsFxFlanger: ?*DSFXFlanger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXFlanger_SetAllParameters(self: *const T, pcDsFxFlanger: *DSFXFlanger) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXFlanger_SetAllParameters(self: *const T, pcDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXFlanger.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXFlanger, self), pcDsFxFlanger);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXFlanger_GetAllParameters(self: *const T, pDsFxFlanger: *DSFXFlanger) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXFlanger_GetAllParameters(self: *const T, pDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXFlanger.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXFlanger, self), pDsFxFlanger);
         }
     };}
@@ -2245,22 +2245,22 @@ pub const IDirectSoundFXEcho = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXEcho,
-            pcDsFxEcho: *DSFXEcho,
+            pcDsFxEcho: ?*DSFXEcho,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXEcho,
-            pDsFxEcho: *DSFXEcho,
+            pDsFxEcho: ?*DSFXEcho,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXEcho_SetAllParameters(self: *const T, pcDsFxEcho: *DSFXEcho) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXEcho_SetAllParameters(self: *const T, pcDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXEcho.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXEcho, self), pcDsFxEcho);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXEcho_GetAllParameters(self: *const T, pDsFxEcho: *DSFXEcho) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXEcho_GetAllParameters(self: *const T, pDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXEcho.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXEcho, self), pDsFxEcho);
         }
     };}
@@ -2282,22 +2282,22 @@ pub const IDirectSoundFXDistortion = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXDistortion,
-            pcDsFxDistortion: *DSFXDistortion,
+            pcDsFxDistortion: ?*DSFXDistortion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXDistortion,
-            pDsFxDistortion: *DSFXDistortion,
+            pDsFxDistortion: ?*DSFXDistortion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXDistortion_SetAllParameters(self: *const T, pcDsFxDistortion: *DSFXDistortion) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXDistortion_SetAllParameters(self: *const T, pcDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXDistortion.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXDistortion, self), pcDsFxDistortion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXDistortion_GetAllParameters(self: *const T, pDsFxDistortion: *DSFXDistortion) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXDistortion_GetAllParameters(self: *const T, pDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXDistortion.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXDistortion, self), pDsFxDistortion);
         }
     };}
@@ -2320,22 +2320,22 @@ pub const IDirectSoundFXCompressor = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXCompressor,
-            pcDsFxCompressor: *DSFXCompressor,
+            pcDsFxCompressor: ?*DSFXCompressor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXCompressor,
-            pDsFxCompressor: *DSFXCompressor,
+            pDsFxCompressor: ?*DSFXCompressor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXCompressor_SetAllParameters(self: *const T, pcDsFxCompressor: *DSFXCompressor) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXCompressor_SetAllParameters(self: *const T, pcDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXCompressor.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXCompressor, self), pcDsFxCompressor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXCompressor_GetAllParameters(self: *const T, pDsFxCompressor: *DSFXCompressor) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXCompressor_GetAllParameters(self: *const T, pDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXCompressor.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXCompressor, self), pDsFxCompressor);
         }
     };}
@@ -2355,22 +2355,22 @@ pub const IDirectSoundFXParamEq = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXParamEq,
-            pcDsFxParamEq: *DSFXParamEq,
+            pcDsFxParamEq: ?*DSFXParamEq,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXParamEq,
-            pDsFxParamEq: *DSFXParamEq,
+            pDsFxParamEq: ?*DSFXParamEq,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXParamEq_SetAllParameters(self: *const T, pcDsFxParamEq: *DSFXParamEq) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXParamEq_SetAllParameters(self: *const T, pcDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXParamEq.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXParamEq, self), pcDsFxParamEq);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXParamEq_GetAllParameters(self: *const T, pDsFxParamEq: *DSFXParamEq) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXParamEq_GetAllParameters(self: *const T, pDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXParamEq.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXParamEq, self), pDsFxParamEq);
         }
     };}
@@ -2399,11 +2399,11 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
-            pcDsFxI3DL2Reverb: *DSFXI3DL2Reverb,
+            pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
-            pDsFxI3DL2Reverb: *DSFXI3DL2Reverb,
+            pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPreset: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
@@ -2411,7 +2411,7 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreset: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
-            pdwPreset: *u32,
+            pdwPreset: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetQuality: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
@@ -2419,18 +2419,18 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuality: fn(
             self: *const IDirectSoundFXI3DL2Reverb,
-            plQuality: *i32,
+            plQuality: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXI3DL2Reverb_SetAllParameters(self: *const T, pcDsFxI3DL2Reverb: *DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXI3DL2Reverb_SetAllParameters(self: *const T, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pcDsFxI3DL2Reverb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXI3DL2Reverb_GetAllParameters(self: *const T, pDsFxI3DL2Reverb: *DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXI3DL2Reverb_GetAllParameters(self: *const T, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pDsFxI3DL2Reverb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2438,7 +2438,7 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetPreset(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), dwPreset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXI3DL2Reverb_GetPreset(self: *const T, pdwPreset: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXI3DL2Reverb_GetPreset(self: *const T, pdwPreset: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetPreset(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pdwPreset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2446,7 +2446,7 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetQuality(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), lQuality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXI3DL2Reverb_GetQuality(self: *const T, plQuality: *i32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXI3DL2Reverb_GetQuality(self: *const T, plQuality: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetQuality(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), plQuality);
         }
     };}
@@ -2467,22 +2467,22 @@ pub const IDirectSoundFXWavesReverb = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundFXWavesReverb,
-            pcDsFxWavesReverb: *DSFXWavesReverb,
+            pcDsFxWavesReverb: ?*DSFXWavesReverb,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundFXWavesReverb,
-            pDsFxWavesReverb: *DSFXWavesReverb,
+            pDsFxWavesReverb: ?*DSFXWavesReverb,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXWavesReverb_SetAllParameters(self: *const T, pcDsFxWavesReverb: *DSFXWavesReverb) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXWavesReverb_SetAllParameters(self: *const T, pcDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXWavesReverb.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXWavesReverb, self), pcDsFxWavesReverb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFXWavesReverb_GetAllParameters(self: *const T, pDsFxWavesReverb: *DSFXWavesReverb) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFXWavesReverb_GetAllParameters(self: *const T, pDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFXWavesReverb.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXWavesReverb, self), pDsFxWavesReverb);
         }
     };}
@@ -2502,15 +2502,15 @@ pub const IDirectSoundCaptureFXAec = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundCaptureFXAec,
-            pDscFxAec: *DSCFXAec,
+            pDscFxAec: ?*DSCFXAec,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundCaptureFXAec,
-            pDscFxAec: *DSCFXAec,
+            pDscFxAec: ?*DSCFXAec,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IDirectSoundCaptureFXAec,
-            pdwStatus: *u32,
+            pdwStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IDirectSoundCaptureFXAec,
@@ -2520,15 +2520,15 @@ pub const IDirectSoundCaptureFXAec = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureFXAec_SetAllParameters(self: *const T, pDscFxAec: *DSCFXAec) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureFXAec_SetAllParameters(self: *const T, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundCaptureFXAec, self), pDscFxAec);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureFXAec_GetAllParameters(self: *const T, pDscFxAec: *DSCFXAec) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureFXAec_GetAllParameters(self: *const T, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundCaptureFXAec, self), pDscFxAec);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureFXAec_GetStatus(self: *const T, pdwStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureFXAec_GetStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundCaptureFXAec, self), pdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2550,11 +2550,11 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
         base: IUnknown.VTable,
         SetAllParameters: fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
-            pcDscFxNoiseSuppress: *DSCFXNoiseSuppress,
+            pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParameters: fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
-            pDscFxNoiseSuppress: *DSCFXNoiseSuppress,
+            pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
@@ -2564,11 +2564,11 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureFXNoiseSuppress_SetAllParameters(self: *const T, pcDscFxNoiseSuppress: *DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureFXNoiseSuppress_SetAllParameters(self: *const T, pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureFXNoiseSuppress.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundCaptureFXNoiseSuppress, self), pcDscFxNoiseSuppress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureFXNoiseSuppress_GetAllParameters(self: *const T, pDscFxNoiseSuppress: *DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureFXNoiseSuppress_GetAllParameters(self: *const T, pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureFXNoiseSuppress.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundCaptureFXNoiseSuppress, self), pDscFxNoiseSuppress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2586,21 +2586,21 @@ pub const IDirectSoundFullDuplex = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IDirectSoundFullDuplex,
-            pCaptureGuid: *const Guid,
-            pRenderGuid: *const Guid,
-            lpDscBufferDesc: *DSCBUFFERDESC,
-            lpDsBufferDesc: *DSBUFFERDESC,
-            hWnd: HWND,
+            pCaptureGuid: ?*const Guid,
+            pRenderGuid: ?*const Guid,
+            lpDscBufferDesc: ?*DSCBUFFERDESC,
+            lpDsBufferDesc: ?*DSBUFFERDESC,
+            hWnd: ?HWND,
             dwLevel: u32,
-            lplpDirectSoundCaptureBuffer8: **IDirectSoundCaptureBuffer8,
-            lplpDirectSoundBuffer8: **IDirectSoundBuffer8,
+            lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8,
+            lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundFullDuplex_Initialize(self: *const T, pCaptureGuid: *const Guid, pRenderGuid: *const Guid, lpDscBufferDesc: *DSCBUFFERDESC, lpDsBufferDesc: *DSBUFFERDESC, hWnd: HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: **IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: **IDirectSoundBuffer8) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundFullDuplex_Initialize(self: *const T, pCaptureGuid: ?*const Guid, pRenderGuid: ?*const Guid, lpDscBufferDesc: ?*DSCBUFFERDESC, lpDsBufferDesc: ?*DSBUFFERDESC, hWnd: ?HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundFullDuplex.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundFullDuplex, self), pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
         }
     };}
@@ -2719,34 +2719,34 @@ pub const IDirectMusic = extern struct {
         EnumPort: fn(
             self: *const IDirectMusic,
             dwIndex: u32,
-            pPortCaps: *DMUS_PORTCAPS,
+            pPortCaps: ?*DMUS_PORTCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateMusicBuffer: fn(
             self: *const IDirectMusic,
-            pBufferDesc: *DMUS_BUFFERDESC,
-            ppBuffer: **IDirectMusicBuffer,
-            pUnkOuter: *IUnknown,
+            pBufferDesc: ?*DMUS_BUFFERDESC,
+            ppBuffer: ?*?*IDirectMusicBuffer,
+            pUnkOuter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePort: fn(
             self: *const IDirectMusic,
-            rclsidPort: *const Guid,
-            pPortParams: *DMUS_PORTPARAMS8,
-            ppPort: **IDirectMusicPort,
-            pUnkOuter: *IUnknown,
+            rclsidPort: ?*const Guid,
+            pPortParams: ?*DMUS_PORTPARAMS8,
+            ppPort: ?*?*IDirectMusicPort,
+            pUnkOuter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumMasterClock: fn(
             self: *const IDirectMusic,
             dwIndex: u32,
-            lpClockInfo: *DMUS_CLOCKINFO8,
+            lpClockInfo: ?*DMUS_CLOCKINFO8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMasterClock: fn(
             self: *const IDirectMusic,
-            pguidClock: *Guid,
-            ppReferenceClock: **IReferenceClock,
+            pguidClock: ?*Guid,
+            ppReferenceClock: ?*?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMasterClock: fn(
             self: *const IDirectMusic,
-            rguidClock: *const Guid,
+            rguidClock: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Activate: fn(
             self: *const IDirectMusic,
@@ -2754,39 +2754,39 @@ pub const IDirectMusic = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultPort: fn(
             self: *const IDirectMusic,
-            pguidPort: *Guid,
+            pguidPort: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDirectSound: fn(
             self: *const IDirectMusic,
-            pDirectSound: *IDirectSound,
-            hWnd: HWND,
+            pDirectSound: ?*IDirectSound,
+            hWnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumPort(self: *const T, dwIndex: u32, pPortCaps: *DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_EnumPort(self: *const T, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumPort(@ptrCast(*const IDirectMusic, self), dwIndex, pPortCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreateMusicBuffer(self: *const T, pBufferDesc: *DMUS_BUFFERDESC, ppBuffer: **IDirectMusicBuffer, pUnkOuter: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_CreateMusicBuffer(self: *const T, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreateMusicBuffer(@ptrCast(*const IDirectMusic, self), pBufferDesc, ppBuffer, pUnkOuter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreatePort(self: *const T, rclsidPort: *const Guid, pPortParams: *DMUS_PORTPARAMS8, ppPort: **IDirectMusicPort, pUnkOuter: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_CreatePort(self: *const T, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreatePort(@ptrCast(*const IDirectMusic, self), rclsidPort, pPortParams, ppPort, pUnkOuter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumMasterClock(self: *const T, dwIndex: u32, lpClockInfo: *DMUS_CLOCKINFO8) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_EnumMasterClock(self: *const T, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumMasterClock(@ptrCast(*const IDirectMusic, self), dwIndex, lpClockInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetMasterClock(self: *const T, pguidClock: *Guid, ppReferenceClock: **IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_GetMasterClock(self: *const T, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetMasterClock(@ptrCast(*const IDirectMusic, self), pguidClock, ppReferenceClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetMasterClock(self: *const T, rguidClock: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_SetMasterClock(self: *const T, rguidClock: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusic, self), rguidClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2794,11 +2794,11 @@ pub const IDirectMusic = extern struct {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusic, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetDefaultPort(self: *const T, pguidPort: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_GetDefaultPort(self: *const T, pguidPort: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetDefaultPort(@ptrCast(*const IDirectMusic, self), pguidPort);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetDirectSound(self: *const T, pDirectSound: *IDirectSound, hWnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, hWnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusic, self), pDirectSound, hWnd);
         }
     };}
@@ -2812,14 +2812,14 @@ pub const IDirectMusic8 = extern struct {
         base: IDirectMusic.VTable,
         SetExternalMasterClock: fn(
             self: *const IDirectMusic8,
-            pClock: *IReferenceClock,
+            pClock: ?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectMusic.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic8_SetExternalMasterClock(self: *const T, pClock: *IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusic8_SetExternalMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusic8.VTable, self.vtable).SetExternalMasterClock(@ptrCast(*const IDirectMusic8, self), pClock);
         }
     };}
@@ -2836,7 +2836,7 @@ pub const IDirectMusicBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TotalTime: fn(
             self: *const IDirectMusicBuffer,
-            prtTime: *i64,
+            prtTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PackStructured: fn(
             self: *const IDirectMusicBuffer,
@@ -2849,37 +2849,37 @@ pub const IDirectMusicBuffer = extern struct {
             rt: i64,
             dwChannelGroup: u32,
             cb: u32,
-            lpb: *u8,
+            lpb: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetReadPtr: fn(
             self: *const IDirectMusicBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextEvent: fn(
             self: *const IDirectMusicBuffer,
-            prt: *i64,
-            pdwChannelGroup: *u32,
-            pdwLength: *u32,
-            ppData: **u8,
+            prt: ?*i64,
+            pdwChannelGroup: ?*u32,
+            pdwLength: ?*u32,
+            ppData: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRawBufferPtr: fn(
             self: *const IDirectMusicBuffer,
-            ppData: **u8,
+            ppData: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStartTime: fn(
             self: *const IDirectMusicBuffer,
-            prt: *i64,
+            prt: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUsedBytes: fn(
             self: *const IDirectMusicBuffer,
-            pcb: *u32,
+            pcb: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxBytes: fn(
             self: *const IDirectMusicBuffer,
-            pcb: *u32,
+            pcb: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferFormat: fn(
             self: *const IDirectMusicBuffer,
-            pGuidFormat: *Guid,
+            pGuidFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStartTime: fn(
             self: *const IDirectMusicBuffer,
@@ -2898,7 +2898,7 @@ pub const IDirectMusicBuffer = extern struct {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).Flush(@ptrCast(*const IDirectMusicBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_TotalTime(self: *const T, prtTime: *i64) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_TotalTime(self: *const T, prtTime: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).TotalTime(@ptrCast(*const IDirectMusicBuffer, self), prtTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2906,7 +2906,7 @@ pub const IDirectMusicBuffer = extern struct {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackStructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, dwChannelMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_PackUnstructured(self: *const T, rt: i64, dwChannelGroup: u32, cb: u32, lpb: *u8) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_PackUnstructured(self: *const T, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackUnstructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, cb, lpb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2914,27 +2914,27 @@ pub const IDirectMusicBuffer = extern struct {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).ResetReadPtr(@ptrCast(*const IDirectMusicBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetNextEvent(self: *const T, prt: *i64, pdwChannelGroup: *u32, pdwLength: *u32, ppData: **u8) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetNextEvent(self: *const T, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetNextEvent(@ptrCast(*const IDirectMusicBuffer, self), prt, pdwChannelGroup, pdwLength, ppData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetRawBufferPtr(self: *const T, ppData: **u8) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetRawBufferPtr(self: *const T, ppData: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetRawBufferPtr(@ptrCast(*const IDirectMusicBuffer, self), ppData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetStartTime(self: *const T, prt: *i64) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetStartTime(self: *const T, prt: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetStartTime(@ptrCast(*const IDirectMusicBuffer, self), prt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetUsedBytes(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetUsedBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetUsedBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetMaxBytes(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetMaxBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetMaxBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetBufferFormat(self: *const T, pGuidFormat: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicBuffer_GetBufferFormat(self: *const T, pGuidFormat: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetBufferFormat(@ptrCast(*const IDirectMusicBuffer, self), pGuidFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2956,7 +2956,7 @@ pub const IDirectMusicInstrument = extern struct {
         base: IUnknown.VTable,
         GetPatch: fn(
             self: *const IDirectMusicInstrument,
-            pdwPatch: *u32,
+            pdwPatch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPatch: fn(
             self: *const IDirectMusicInstrument,
@@ -2967,7 +2967,7 @@ pub const IDirectMusicInstrument = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicInstrument_GetPatch(self: *const T, pdwPatch: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicInstrument_GetPatch(self: *const T, pdwPatch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicInstrument.VTable, self.vtable).GetPatch(@ptrCast(*const IDirectMusicInstrument, self), pdwPatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2999,13 +2999,13 @@ pub const IDirectMusicCollection = extern struct {
         GetInstrument: fn(
             self: *const IDirectMusicCollection,
             dwPatch: u32,
-            ppInstrument: **IDirectMusicInstrument,
+            ppInstrument: ?*?*IDirectMusicInstrument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumInstrument: fn(
             self: *const IDirectMusicCollection,
             dwIndex: u32,
-            pdwPatch: *u32,
-            pwszName: PWSTR,
+            pdwPatch: ?*u32,
+            pwszName: ?PWSTR,
             dwNameLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3013,11 +3013,11 @@ pub const IDirectMusicCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_GetInstrument(self: *const T, dwPatch: u32, ppInstrument: **IDirectMusicInstrument) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicCollection_GetInstrument(self: *const T, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).GetInstrument(@ptrCast(*const IDirectMusicCollection, self), dwPatch, ppInstrument);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_EnumInstrument(self: *const T, dwIndex: u32, pdwPatch: *u32, pwszName: PWSTR, dwNameLen: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicCollection_EnumInstrument(self: *const T, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).EnumInstrument(@ptrCast(*const IDirectMusicCollection, self), dwIndex, pdwPatch, pwszName, dwNameLen);
         }
     };}
@@ -3031,15 +3031,15 @@ pub const IDirectMusicDownload = extern struct {
         base: IUnknown.VTable,
         GetBuffer: fn(
             self: *const IDirectMusicDownload,
-            ppvBuffer: **c_void,
-            pdwSize: *u32,
+            ppvBuffer: ?*?*c_void,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: **c_void, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*c_void, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicDownload, self), ppvBuffer, pdwSize);
         }
     };}
@@ -3054,56 +3054,56 @@ pub const IDirectMusicPortDownload = extern struct {
         GetBuffer: fn(
             self: *const IDirectMusicPortDownload,
             dwDLId: u32,
-            ppIDMDownload: **IDirectMusicDownload,
+            ppIDMDownload: ?*?*IDirectMusicDownload,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateBuffer: fn(
             self: *const IDirectMusicPortDownload,
             dwSize: u32,
-            ppIDMDownload: **IDirectMusicDownload,
+            ppIDMDownload: ?*?*IDirectMusicDownload,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDLId: fn(
             self: *const IDirectMusicPortDownload,
-            pdwStartDLId: *u32,
+            pdwStartDLId: ?*u32,
             dwCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAppend: fn(
             self: *const IDirectMusicPortDownload,
-            pdwAppend: *u32,
+            pdwAppend: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Download: fn(
             self: *const IDirectMusicPortDownload,
-            pIDMDownload: *IDirectMusicDownload,
+            pIDMDownload: ?*IDirectMusicDownload,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unload: fn(
             self: *const IDirectMusicPortDownload,
-            pIDMDownload: *IDirectMusicDownload,
+            pIDMDownload: ?*IDirectMusicDownload,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetBuffer(self: *const T, dwDLId: u32, ppIDMDownload: **IDirectMusicDownload) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_GetBuffer(self: *const T, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwDLId, ppIDMDownload);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_AllocateBuffer(self: *const T, dwSize: u32, ppIDMDownload: **IDirectMusicDownload) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_AllocateBuffer(self: *const T, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwSize, ppIDMDownload);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetDLId(self: *const T, pdwStartDLId: *u32, dwCount: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_GetDLId(self: *const T, pdwStartDLId: ?*u32, dwCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetDLId(@ptrCast(*const IDirectMusicPortDownload, self), pdwStartDLId, dwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetAppend(self: *const T, pdwAppend: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicPortDownload, self), pdwAppend);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Download(self: *const T, pIDMDownload: *IDirectMusicDownload) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_Download(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Unload(self: *const T, pIDMDownload: *IDirectMusicDownload) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPortDownload_Unload(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
         }
     };}
@@ -3117,51 +3117,51 @@ pub const IDirectMusicPort = extern struct {
         base: IUnknown.VTable,
         PlayBuffer: fn(
             self: *const IDirectMusicPort,
-            pBuffer: *IDirectMusicBuffer,
+            pBuffer: ?*IDirectMusicBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReadNotificationHandle: fn(
             self: *const IDirectMusicPort,
-            hEvent: HANDLE,
+            hEvent: ?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Read: fn(
             self: *const IDirectMusicPort,
-            pBuffer: *IDirectMusicBuffer,
+            pBuffer: ?*IDirectMusicBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DownloadInstrument: fn(
             self: *const IDirectMusicPort,
-            pInstrument: *IDirectMusicInstrument,
-            ppDownloadedInstrument: **IDirectMusicDownloadedInstrument,
-            pNoteRanges: *DMUS_NOTERANGE,
+            pInstrument: ?*IDirectMusicInstrument,
+            ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument,
+            pNoteRanges: ?*DMUS_NOTERANGE,
             dwNumNoteRanges: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnloadInstrument: fn(
             self: *const IDirectMusicPort,
-            pDownloadedInstrument: *IDirectMusicDownloadedInstrument,
+            pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLatencyClock: fn(
             self: *const IDirectMusicPort,
-            ppClock: **IReferenceClock,
+            ppClock: ?*?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRunningStats: fn(
             self: *const IDirectMusicPort,
-            pStats: *DMUS_SYNTHSTATS,
+            pStats: ?*DMUS_SYNTHSTATS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Compact: fn(
             self: *const IDirectMusicPort,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaps: fn(
             self: *const IDirectMusicPort,
-            pPortCaps: *DMUS_PORTCAPS,
+            pPortCaps: ?*DMUS_PORTCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceIoControl: fn(
             self: *const IDirectMusicPort,
             dwIoControlCode: u32,
-            lpInBuffer: *c_void,
+            lpInBuffer: ?*c_void,
             nInBufferSize: u32,
-            lpOutBuffer: *c_void,
+            lpOutBuffer: ?*c_void,
             nOutBufferSize: u32,
-            lpBytesReturned: *u32,
-            lpOverlapped: *OVERLAPPED,
+            lpBytesReturned: ?*u32,
+            lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNumChannelGroups: fn(
             self: *const IDirectMusicPort,
@@ -3169,7 +3169,7 @@ pub const IDirectMusicPort = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumChannelGroups: fn(
             self: *const IDirectMusicPort,
-            pdwChannelGroups: *u32,
+            pdwChannelGroups: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Activate: fn(
             self: *const IDirectMusicPort,
@@ -3185,49 +3185,49 @@ pub const IDirectMusicPort = extern struct {
             self: *const IDirectMusicPort,
             dwChannelGroup: u32,
             dwChannel: u32,
-            pdwPriority: *u32,
+            pdwPriority: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDirectSound: fn(
             self: *const IDirectMusicPort,
-            pDirectSound: *IDirectSound,
-            pDirectSoundBuffer: *IDirectSoundBuffer,
+            pDirectSound: ?*IDirectSound,
+            pDirectSoundBuffer: ?*IDirectSoundBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const IDirectMusicPort,
-            pWaveFormatEx: *WAVEFORMATEX,
-            pdwWaveFormatExSize: *u32,
-            pdwBufferSize: *u32,
+            pWaveFormatEx: ?*WAVEFORMATEX,
+            pdwWaveFormatExSize: ?*u32,
+            pdwBufferSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_PlayBuffer(self: *const T, pBuffer: *IDirectMusicBuffer) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_PlayBuffer(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicPort, self), pBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetReadNotificationHandle(self: *const T, hEvent: HANDLE) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_SetReadNotificationHandle(self: *const T, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetReadNotificationHandle(@ptrCast(*const IDirectMusicPort, self), hEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Read(self: *const T, pBuffer: *IDirectMusicBuffer) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_Read(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Read(@ptrCast(*const IDirectMusicPort, self), pBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DownloadInstrument(self: *const T, pInstrument: *IDirectMusicInstrument, ppDownloadedInstrument: **IDirectMusicDownloadedInstrument, pNoteRanges: *DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_DownloadInstrument(self: *const T, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DownloadInstrument(@ptrCast(*const IDirectMusicPort, self), pInstrument, ppDownloadedInstrument, pNoteRanges, dwNumNoteRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_UnloadInstrument(self: *const T, pDownloadedInstrument: *IDirectMusicDownloadedInstrument) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_UnloadInstrument(self: *const T, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).UnloadInstrument(@ptrCast(*const IDirectMusicPort, self), pDownloadedInstrument);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetLatencyClock(self: *const T, ppClock: **IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicPort, self), ppClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetRunningStats(self: *const T, pStats: *DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicPort, self), pStats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3235,11 +3235,11 @@ pub const IDirectMusicPort = extern struct {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Compact(@ptrCast(*const IDirectMusicPort, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetCaps(self: *const T, pPortCaps: *DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetCaps(self: *const T, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectMusicPort, self), pPortCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: *c_void, nInBufferSize: u32, lpOutBuffer: *c_void, nOutBufferSize: u32, lpBytesReturned: *u32, lpOverlapped: *OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*c_void, nInBufferSize: u32, lpOutBuffer: ?*c_void, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IDirectMusicPort, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3247,7 +3247,7 @@ pub const IDirectMusicPort = extern struct {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), dwChannelGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetNumChannelGroups(self: *const T, pdwChannelGroups: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetNumChannelGroups(self: *const T, pdwChannelGroups: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), pdwChannelGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3259,15 +3259,15 @@ pub const IDirectMusicPort = extern struct {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, dwPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, pdwPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetDirectSound(self: *const T, pDirectSound: *IDirectSound, pDirectSoundBuffer: *IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicPort, self), pDirectSound, pDirectSoundBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetFormat(self: *const T, pWaveFormatEx: *WAVEFORMATEX, pdwWaveFormatExSize: *u32, pdwBufferSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicPort, self), pWaveFormatEx, pdwWaveFormatExSize, pdwBufferSize);
         }
     };}
@@ -3285,14 +3285,14 @@ pub const IDirectMusicThru = extern struct {
             dwSourceChannel: u32,
             dwDestinationChannelGroup: u32,
             dwDestinationChannel: u32,
-            pDestinationPort: *IDirectMusicPort,
+            pDestinationPort: ?*IDirectMusicPort,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicThru_ThruChannel(self: *const T, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: *IDirectMusicPort) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicThru_ThruChannel(self: *const T, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicThru.VTable, self.vtable).ThruChannel(@ptrCast(*const IDirectMusicThru, self), dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
         }
     };}
@@ -3311,7 +3311,7 @@ pub const IDirectMusicSynth = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IDirectMusicSynth,
-            pPortParams: *DMUS_PORTPARAMS8,
+            pPortParams: ?*DMUS_PORTPARAMS8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IDirectMusicSynth,
@@ -3322,37 +3322,37 @@ pub const IDirectMusicSynth = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Download: fn(
             self: *const IDirectMusicSynth,
-            phDownload: *HANDLE,
-            pvData: *c_void,
-            pbFree: *i32,
+            phDownload: ?*?HANDLE,
+            pvData: ?*c_void,
+            pbFree: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unload: fn(
             self: *const IDirectMusicSynth,
-            hDownload: HANDLE,
+            hDownload: ?HANDLE,
             lpFreeHandle: isize,
-            hUserData: HANDLE,
+            hUserData: ?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PlayBuffer: fn(
             self: *const IDirectMusicSynth,
             rt: i64,
-            pbBuffer: *u8,
+            pbBuffer: ?*u8,
             cbBuffer: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRunningStats: fn(
             self: *const IDirectMusicSynth,
-            pStats: *DMUS_SYNTHSTATS,
+            pStats: ?*DMUS_SYNTHSTATS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPortCaps: fn(
             self: *const IDirectMusicSynth,
-            pCaps: *DMUS_PORTCAPS,
+            pCaps: ?*DMUS_PORTCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMasterClock: fn(
             self: *const IDirectMusicSynth,
-            pClock: *IReferenceClock,
+            pClock: ?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLatencyClock: fn(
             self: *const IDirectMusicSynth,
-            ppClock: **IReferenceClock,
+            ppClock: ?*?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Activate: fn(
             self: *const IDirectMusicSynth,
@@ -3360,11 +3360,11 @@ pub const IDirectMusicSynth = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSynthSink: fn(
             self: *const IDirectMusicSynth,
-            pSynthSink: *IDirectMusicSynthSink,
+            pSynthSink: ?*IDirectMusicSynthSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Render: fn(
             self: *const IDirectMusicSynth,
-            pBuffer: *i16,
+            pBuffer: ?*i16,
             dwLength: u32,
             llPosition: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3378,23 +3378,23 @@ pub const IDirectMusicSynth = extern struct {
             self: *const IDirectMusicSynth,
             dwChannelGroup: u32,
             dwChannel: u32,
-            pdwPriority: *u32,
+            pdwPriority: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const IDirectMusicSynth,
-            pWaveFormatEx: *WAVEFORMATEX,
-            pdwWaveFormatExSize: *u32,
+            pWaveFormatEx: ?*WAVEFORMATEX,
+            pdwWaveFormatExSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAppend: fn(
             self: *const IDirectMusicSynth,
-            pdwAppend: *u32,
+            pdwAppend: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Open(self: *const T, pPortParams: *DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Open(self: *const T, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Open(@ptrCast(*const IDirectMusicSynth, self), pPortParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3406,31 +3406,31 @@ pub const IDirectMusicSynth = extern struct {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicSynth, self), dwGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: *HANDLE, pvData: *c_void, pbFree: *i32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*c_void, pbFree: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicSynth, self), phDownload, pvData, pbFree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: HANDLE, lpFreeHandle: isize, hUserData: HANDLE) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicSynth, self), hDownload, lpFreeHandle, hUserData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_PlayBuffer(self: *const T, rt: i64, pbBuffer: *u8, cbBuffer: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_PlayBuffer(self: *const T, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicSynth, self), rt, pbBuffer, cbBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetRunningStats(self: *const T, pStats: *DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicSynth, self), pStats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetPortCaps(self: *const T, pCaps: *DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetPortCaps(self: *const T, pCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetPortCaps(@ptrCast(*const IDirectMusicSynth, self), pCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetMasterClock(self: *const T, pClock: *IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynth, self), pClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetLatencyClock(self: *const T, ppClock: **IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynth, self), ppClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3438,11 +3438,11 @@ pub const IDirectMusicSynth = extern struct {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynth, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetSynthSink(self: *const T, pSynthSink: *IDirectMusicSynthSink) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_SetSynthSink(self: *const T, pSynthSink: ?*IDirectMusicSynthSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetSynthSink(@ptrCast(*const IDirectMusicSynth, self), pSynthSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Render(self: *const T, pBuffer: *i16, dwLength: u32, llPosition: i64) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Render(self: *const T, pBuffer: ?*i16, dwLength: u32, llPosition: i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Render(@ptrCast(*const IDirectMusicSynth, self), pBuffer, dwLength, llPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3450,15 +3450,15 @@ pub const IDirectMusicSynth = extern struct {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, dwPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, pdwPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetFormat(self: *const T, pWaveFormatEx: *WAVEFORMATEX, pdwWaveFormatExSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicSynth, self), pWaveFormatEx, pdwWaveFormatExSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetAppend(self: *const T, pdwAppend: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicSynth, self), pdwAppend);
         }
     };}
@@ -3490,9 +3490,9 @@ pub const IDirectMusicSynth8 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVoiceState: fn(
             self: *const IDirectMusicSynth8,
-            dwVoice: *u32,
+            dwVoice: ?*u32,
             cbVoice: u32,
-            dwVoiceState: *DMUS_VOICE_STATE,
+            dwVoiceState: ?*DMUS_VOICE_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Refresh: fn(
             self: *const IDirectMusicSynth8,
@@ -3503,7 +3503,7 @@ pub const IDirectMusicSynth8 = extern struct {
             self: *const IDirectMusicSynth8,
             dwChannelGroup: u32,
             dwChannel: u32,
-            pdwBuses: *u32,
+            pdwBuses: ?*u32,
             cBuses: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3519,7 +3519,7 @@ pub const IDirectMusicSynth8 = extern struct {
             return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).StopVoice(@ptrCast(*const IDirectMusicSynth8, self), rt, dwVoiceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_GetVoiceState(self: *const T, dwVoice: *u32, cbVoice: u32, dwVoiceState: *DMUS_VOICE_STATE) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth8_GetVoiceState(self: *const T, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).GetVoiceState(@ptrCast(*const IDirectMusicSynth8, self), dwVoice, cbVoice, dwVoiceState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3527,7 +3527,7 @@ pub const IDirectMusicSynth8 = extern struct {
             return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).Refresh(@ptrCast(*const IDirectMusicSynth8, self), dwDownloadID, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_AssignChannelToBuses(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwBuses: *u32, cBuses: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth8_AssignChannelToBuses(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).AssignChannelToBuses(@ptrCast(*const IDirectMusicSynth8, self), dwChannelGroup, dwChannel, pdwBuses, cBuses);
         }
     };}
@@ -3541,15 +3541,15 @@ pub const IDirectMusicSynthSink = extern struct {
         base: IUnknown.VTable,
         Init: fn(
             self: *const IDirectMusicSynthSink,
-            pSynth: *IDirectMusicSynth,
+            pSynth: ?*IDirectMusicSynth,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMasterClock: fn(
             self: *const IDirectMusicSynthSink,
-            pClock: *IReferenceClock,
+            pClock: ?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLatencyClock: fn(
             self: *const IDirectMusicSynthSink,
-            ppClock: **IReferenceClock,
+            ppClock: ?*?*IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Activate: fn(
             self: *const IDirectMusicSynthSink,
@@ -3558,36 +3558,36 @@ pub const IDirectMusicSynthSink = extern struct {
         SampleToRefTime: fn(
             self: *const IDirectMusicSynthSink,
             llSampleTime: i64,
-            prfTime: *i64,
+            prfTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RefTimeToSample: fn(
             self: *const IDirectMusicSynthSink,
             rfTime: i64,
-            pllSampleTime: *i64,
+            pllSampleTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDirectSound: fn(
             self: *const IDirectMusicSynthSink,
-            pDirectSound: *IDirectSound,
-            pDirectSoundBuffer: *IDirectSoundBuffer,
+            pDirectSound: ?*IDirectSound,
+            pDirectSoundBuffer: ?*IDirectSoundBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesiredBufferSize: fn(
             self: *const IDirectMusicSynthSink,
-            pdwBufferSizeInSamples: *u32,
+            pdwBufferSizeInSamples: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_Init(self: *const T, pSynth: *IDirectMusicSynth) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_Init(self: *const T, pSynth: ?*IDirectMusicSynth) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Init(@ptrCast(*const IDirectMusicSynthSink, self), pSynth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetMasterClock(self: *const T, pClock: *IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynthSink, self), pClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetLatencyClock(self: *const T, ppClock: **IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynthSink, self), ppClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3595,19 +3595,19 @@ pub const IDirectMusicSynthSink = extern struct {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynthSink, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SampleToRefTime(self: *const T, llSampleTime: i64, prfTime: *i64) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_SampleToRefTime(self: *const T, llSampleTime: i64, prfTime: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SampleToRefTime(@ptrCast(*const IDirectMusicSynthSink, self), llSampleTime, prfTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_RefTimeToSample(self: *const T, rfTime: i64, pllSampleTime: *i64) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_RefTimeToSample(self: *const T, rfTime: i64, pllSampleTime: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).RefTimeToSample(@ptrCast(*const IDirectMusicSynthSink, self), rfTime, pllSampleTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetDirectSound(self: *const T, pDirectSound: *IDirectSound, pDirectSoundBuffer: *IDirectSoundBuffer) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicSynthSink, self), pDirectSound, pDirectSoundBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetDesiredBufferSize(self: *const T, pdwBufferSizeInSamples: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynthSink_GetDesiredBufferSize(self: *const T, pdwBufferSizeInSamples: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetDesiredBufferSize(@ptrCast(*const IDirectMusicSynthSink, self), pdwBufferSizeInSamples);
         }
     };}
@@ -3629,11 +3629,11 @@ pub const KSP_PINMODE = extern struct {
 
 pub const MDEVICECAPSEX = packed struct {
     cbSize: u32,
-    pCaps: *c_void,
+    pCaps: ?*c_void,
 };
 
 pub const MIDIOPENDESC = packed struct {
-    hMidi: HMIDI,
+    hMidi: ?HMIDI,
     dwCallback: usize,
     dwInstance: usize,
     dnDevNode: usize,
@@ -3647,64 +3647,64 @@ pub const MIDIOPENDESC = packed struct {
 //--------------------------------------------------------------------------------
 pub extern "DSOUND" fn DirectSoundCreate(
     pcGuidDevice: ?*const Guid,
-    ppDS: **IDirectSound,
-    pUnkOuter: *IUnknown,
+    ppDS: ?*?*IDirectSound,
+    pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundEnumerateA(
-    pDSEnumCallback: LPDSENUMCALLBACKA,
+    pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundEnumerateW(
-    pDSEnumCallback: LPDSENUMCALLBACKW,
+    pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureCreate(
     pcGuidDevice: ?*const Guid,
-    ppDSC: **IDirectSoundCapture,
-    pUnkOuter: *IUnknown,
+    ppDSC: ?*?*IDirectSoundCapture,
+    pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureEnumerateA(
-    pDSEnumCallback: LPDSENUMCALLBACKA,
+    pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureEnumerateW(
-    pDSEnumCallback: LPDSENUMCALLBACKW,
+    pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCreate8(
     pcGuidDevice: ?*const Guid,
-    ppDS8: **IDirectSound8,
-    pUnkOuter: *IUnknown,
+    ppDS8: ?*?*IDirectSound8,
+    pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureCreate8(
     pcGuidDevice: ?*const Guid,
-    ppDSC8: **IDirectSoundCapture,
-    pUnkOuter: *IUnknown,
+    ppDSC8: ?*?*IDirectSoundCapture,
+    pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundFullDuplexCreate(
     pcGuidCaptureDevice: ?*const Guid,
     pcGuidRenderDevice: ?*const Guid,
-    pcDSCBufferDesc: *DSCBUFFERDESC,
-    pcDSBufferDesc: *DSBUFFERDESC,
-    hWnd: HWND,
+    pcDSCBufferDesc: ?*DSCBUFFERDESC,
+    pcDSBufferDesc: ?*DSBUFFERDESC,
+    hWnd: ?HWND,
     dwLevel: u32,
-    ppDSFD: **IDirectSoundFullDuplex,
-    ppDSCBuffer8: **IDirectSoundCaptureBuffer8,
-    ppDSBuffer8: **IDirectSoundBuffer8,
-    pUnkOuter: *IUnknown,
+    ppDSFD: ?*?*IDirectSoundFullDuplex,
+    ppDSCBuffer8: ?*?*IDirectSoundCaptureBuffer8,
+    ppDSBuffer8: ?*?*IDirectSoundBuffer8,
+    pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn GetDeviceID(
     pGuidSrc: ?*const Guid,
-    pGuidDest: *Guid,
+    pGuidDest: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

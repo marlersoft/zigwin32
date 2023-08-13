@@ -58,7 +58,7 @@ pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID
 pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
 
 pub const SLIST_ENTRY = extern struct {
-    Next: *SLIST_ENTRY,
+    Next: ?*SLIST_ENTRY,
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -172,32 +172,32 @@ pub const WaitDequeue = WAIT_TYPE.Dequeue;
 pub const STRING = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Buffer: [*]u8,
+    Buffer: ?[*]u8,
 };
 
 pub const CSTRING = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Buffer: [*:0]const u8,
+    Buffer: ?[*:0]const u8,
 };
 
 pub const UNICODE_STRING = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Buffer: [*]u16,
+    Buffer: ?[*]u16,
 };
 
 pub const LIST_ENTRY = extern struct {
-    Flink: *LIST_ENTRY,
-    Blink: *LIST_ENTRY,
+    Flink: ?*LIST_ENTRY,
+    Blink: ?*LIST_ENTRY,
 };
 
 pub const RTL_BALANCED_NODE = extern struct {
     Anonymous1: extern union {
-        Children: [2]*RTL_BALANCED_NODE,
+        Children: [2]?*RTL_BALANCED_NODE,
         Anonymous: extern struct {
-            Left: *RTL_BALANCED_NODE,
-            Right: *RTL_BALANCED_NODE,
+            Left: ?*RTL_BALANCED_NODE,
+            Right: ?*RTL_BALANCED_NODE,
         },
     },
     Anonymous2: extern union {
@@ -260,10 +260,10 @@ pub const OBJECTID = extern struct {
 };
 
 pub const EXCEPTION_ROUTINE = fn(
-    ExceptionRecord: *EXCEPTION_RECORD,
-    EstablisherFrame: *c_void,
-    ContextRecord: *CONTEXT,
-    DispatcherContext: *c_void,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    EstablisherFrame: ?*c_void,
+    ContextRecord: ?*CONTEXT,
+    DispatcherContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION;
 
 pub const NT_PRODUCT_TYPE = enum(i32) {

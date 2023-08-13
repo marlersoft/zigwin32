@@ -1272,145 +1272,145 @@ pub const UAS_ROLE_BACKUP = USER_MODALS_ROLES.BACKUP;
 pub const UAS_ROLE_PRIMARY = USER_MODALS_ROLES.PRIMARY;
 
 pub const USER_INFO_0 = extern struct {
-    usri0_name: PWSTR,
+    usri0_name: ?PWSTR,
 };
 
 pub const USER_INFO_1 = extern struct {
-    usri1_name: PWSTR,
-    usri1_password: PWSTR,
+    usri1_name: ?PWSTR,
+    usri1_password: ?PWSTR,
     usri1_password_age: u32,
     usri1_priv: USER_PRIV,
-    usri1_home_dir: PWSTR,
-    usri1_comment: PWSTR,
+    usri1_home_dir: ?PWSTR,
+    usri1_comment: ?PWSTR,
     usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_script_path: PWSTR,
+    usri1_script_path: ?PWSTR,
 };
 
 pub const USER_INFO_2 = extern struct {
-    usri2_name: PWSTR,
-    usri2_password: PWSTR,
+    usri2_name: ?PWSTR,
+    usri2_password: ?PWSTR,
     usri2_password_age: u32,
     usri2_priv: USER_PRIV,
-    usri2_home_dir: PWSTR,
-    usri2_comment: PWSTR,
+    usri2_home_dir: ?PWSTR,
+    usri2_comment: ?PWSTR,
     usri2_flags: USER_ACCOUNT_FLAGS,
-    usri2_script_path: PWSTR,
+    usri2_script_path: ?PWSTR,
     usri2_auth_flags: AF_OP,
-    usri2_full_name: PWSTR,
-    usri2_usr_comment: PWSTR,
-    usri2_parms: PWSTR,
-    usri2_workstations: PWSTR,
+    usri2_full_name: ?PWSTR,
+    usri2_usr_comment: ?PWSTR,
+    usri2_parms: ?PWSTR,
+    usri2_workstations: ?PWSTR,
     usri2_last_logon: u32,
     usri2_last_logoff: u32,
     usri2_acct_expires: u32,
     usri2_max_storage: u32,
     usri2_units_per_week: u32,
-    usri2_logon_hours: *u8,
+    usri2_logon_hours: ?*u8,
     usri2_bad_pw_count: u32,
     usri2_num_logons: u32,
-    usri2_logon_server: PWSTR,
+    usri2_logon_server: ?PWSTR,
     usri2_country_code: u32,
     usri2_code_page: u32,
 };
 
 pub const USER_INFO_3 = extern struct {
-    usri3_name: PWSTR,
-    usri3_password: PWSTR,
+    usri3_name: ?PWSTR,
+    usri3_password: ?PWSTR,
     usri3_password_age: u32,
     usri3_priv: USER_PRIV,
-    usri3_home_dir: PWSTR,
-    usri3_comment: PWSTR,
+    usri3_home_dir: ?PWSTR,
+    usri3_comment: ?PWSTR,
     usri3_flags: USER_ACCOUNT_FLAGS,
-    usri3_script_path: PWSTR,
+    usri3_script_path: ?PWSTR,
     usri3_auth_flags: AF_OP,
-    usri3_full_name: PWSTR,
-    usri3_usr_comment: PWSTR,
-    usri3_parms: PWSTR,
-    usri3_workstations: PWSTR,
+    usri3_full_name: ?PWSTR,
+    usri3_usr_comment: ?PWSTR,
+    usri3_parms: ?PWSTR,
+    usri3_workstations: ?PWSTR,
     usri3_last_logon: u32,
     usri3_last_logoff: u32,
     usri3_acct_expires: u32,
     usri3_max_storage: u32,
     usri3_units_per_week: u32,
-    usri3_logon_hours: *u8,
+    usri3_logon_hours: ?*u8,
     usri3_bad_pw_count: u32,
     usri3_num_logons: u32,
-    usri3_logon_server: PWSTR,
+    usri3_logon_server: ?PWSTR,
     usri3_country_code: u32,
     usri3_code_page: u32,
     usri3_user_id: u32,
     usri3_primary_group_id: u32,
-    usri3_profile: PWSTR,
-    usri3_home_dir_drive: PWSTR,
+    usri3_profile: ?PWSTR,
+    usri3_home_dir_drive: ?PWSTR,
     usri3_password_expired: u32,
 };
 
 pub const USER_INFO_4 = extern struct {
-    usri4_name: PWSTR,
-    usri4_password: PWSTR,
+    usri4_name: ?PWSTR,
+    usri4_password: ?PWSTR,
     usri4_password_age: u32,
     usri4_priv: USER_PRIV,
-    usri4_home_dir: PWSTR,
-    usri4_comment: PWSTR,
+    usri4_home_dir: ?PWSTR,
+    usri4_comment: ?PWSTR,
     usri4_flags: USER_ACCOUNT_FLAGS,
-    usri4_script_path: PWSTR,
+    usri4_script_path: ?PWSTR,
     usri4_auth_flags: AF_OP,
-    usri4_full_name: PWSTR,
-    usri4_usr_comment: PWSTR,
-    usri4_parms: PWSTR,
-    usri4_workstations: PWSTR,
+    usri4_full_name: ?PWSTR,
+    usri4_usr_comment: ?PWSTR,
+    usri4_parms: ?PWSTR,
+    usri4_workstations: ?PWSTR,
     usri4_last_logon: u32,
     usri4_last_logoff: u32,
     usri4_acct_expires: u32,
     usri4_max_storage: u32,
     usri4_units_per_week: u32,
-    usri4_logon_hours: *u8,
+    usri4_logon_hours: ?*u8,
     usri4_bad_pw_count: u32,
     usri4_num_logons: u32,
-    usri4_logon_server: PWSTR,
+    usri4_logon_server: ?PWSTR,
     usri4_country_code: u32,
     usri4_code_page: u32,
-    usri4_user_sid: PSID,
+    usri4_user_sid: ?PSID,
     usri4_primary_group_id: u32,
-    usri4_profile: PWSTR,
-    usri4_home_dir_drive: PWSTR,
+    usri4_profile: ?PWSTR,
+    usri4_home_dir_drive: ?PWSTR,
     usri4_password_expired: u32,
 };
 
 pub const USER_INFO_10 = extern struct {
-    usri10_name: PWSTR,
-    usri10_comment: PWSTR,
-    usri10_usr_comment: PWSTR,
-    usri10_full_name: PWSTR,
+    usri10_name: ?PWSTR,
+    usri10_comment: ?PWSTR,
+    usri10_usr_comment: ?PWSTR,
+    usri10_full_name: ?PWSTR,
 };
 
 pub const USER_INFO_11 = extern struct {
-    usri11_name: PWSTR,
-    usri11_comment: PWSTR,
-    usri11_usr_comment: PWSTR,
-    usri11_full_name: PWSTR,
+    usri11_name: ?PWSTR,
+    usri11_comment: ?PWSTR,
+    usri11_usr_comment: ?PWSTR,
+    usri11_full_name: ?PWSTR,
     usri11_priv: USER_PRIV,
     usri11_auth_flags: AF_OP,
     usri11_password_age: u32,
-    usri11_home_dir: PWSTR,
-    usri11_parms: PWSTR,
+    usri11_home_dir: ?PWSTR,
+    usri11_parms: ?PWSTR,
     usri11_last_logon: u32,
     usri11_last_logoff: u32,
     usri11_bad_pw_count: u32,
     usri11_num_logons: u32,
-    usri11_logon_server: PWSTR,
+    usri11_logon_server: ?PWSTR,
     usri11_country_code: u32,
-    usri11_workstations: PWSTR,
+    usri11_workstations: ?PWSTR,
     usri11_max_storage: u32,
     usri11_units_per_week: u32,
-    usri11_logon_hours: *u8,
+    usri11_logon_hours: ?*u8,
     usri11_code_page: u32,
 };
 
 pub const USER_INFO_20 = extern struct {
-    usri20_name: PWSTR,
-    usri20_full_name: PWSTR,
-    usri20_comment: PWSTR,
+    usri20_name: ?PWSTR,
+    usri20_full_name: ?PWSTR,
+    usri20_comment: ?PWSTR,
     usri20_flags: USER_ACCOUNT_FLAGS,
     usri20_user_id: u32,
 };
@@ -1420,50 +1420,50 @@ pub const USER_INFO_21 = extern struct {
 };
 
 pub const USER_INFO_22 = extern struct {
-    usri22_name: PWSTR,
+    usri22_name: ?PWSTR,
     usri22_password: [16]u8,
     usri22_password_age: u32,
     usri22_priv: USER_PRIV,
-    usri22_home_dir: PWSTR,
-    usri22_comment: PWSTR,
+    usri22_home_dir: ?PWSTR,
+    usri22_comment: ?PWSTR,
     usri22_flags: USER_ACCOUNT_FLAGS,
-    usri22_script_path: PWSTR,
+    usri22_script_path: ?PWSTR,
     usri22_auth_flags: AF_OP,
-    usri22_full_name: PWSTR,
-    usri22_usr_comment: PWSTR,
-    usri22_parms: PWSTR,
-    usri22_workstations: PWSTR,
+    usri22_full_name: ?PWSTR,
+    usri22_usr_comment: ?PWSTR,
+    usri22_parms: ?PWSTR,
+    usri22_workstations: ?PWSTR,
     usri22_last_logon: u32,
     usri22_last_logoff: u32,
     usri22_acct_expires: u32,
     usri22_max_storage: u32,
     usri22_units_per_week: u32,
-    usri22_logon_hours: *u8,
+    usri22_logon_hours: ?*u8,
     usri22_bad_pw_count: u32,
     usri22_num_logons: u32,
-    usri22_logon_server: PWSTR,
+    usri22_logon_server: ?PWSTR,
     usri22_country_code: u32,
     usri22_code_page: u32,
 };
 
 pub const USER_INFO_23 = extern struct {
-    usri23_name: PWSTR,
-    usri23_full_name: PWSTR,
-    usri23_comment: PWSTR,
+    usri23_name: ?PWSTR,
+    usri23_full_name: ?PWSTR,
+    usri23_comment: ?PWSTR,
     usri23_flags: USER_ACCOUNT_FLAGS,
-    usri23_user_sid: PSID,
+    usri23_user_sid: ?PSID,
 };
 
 pub const USER_INFO_24 = extern struct {
     usri24_internet_identity: BOOL,
     usri24_flags: u32,
-    usri24_internet_provider_name: PWSTR,
-    usri24_internet_principal_name: PWSTR,
-    usri24_user_sid: PSID,
+    usri24_internet_provider_name: ?PWSTR,
+    usri24_internet_principal_name: ?PWSTR,
+    usri24_user_sid: ?PSID,
 };
 
 pub const USER_INFO_1003 = extern struct {
-    usri1003_password: PWSTR,
+    usri1003_password: ?PWSTR,
 };
 
 pub const USER_INFO_1005 = extern struct {
@@ -1471,11 +1471,11 @@ pub const USER_INFO_1005 = extern struct {
 };
 
 pub const USER_INFO_1006 = extern struct {
-    usri1006_home_dir: PWSTR,
+    usri1006_home_dir: ?PWSTR,
 };
 
 pub const USER_INFO_1007 = extern struct {
-    usri1007_comment: PWSTR,
+    usri1007_comment: ?PWSTR,
 };
 
 pub const USER_INFO_1008 = extern struct {
@@ -1483,7 +1483,7 @@ pub const USER_INFO_1008 = extern struct {
 };
 
 pub const USER_INFO_1009 = extern struct {
-    usri1009_script_path: PWSTR,
+    usri1009_script_path: ?PWSTR,
 };
 
 pub const USER_INFO_1010 = extern struct {
@@ -1491,19 +1491,19 @@ pub const USER_INFO_1010 = extern struct {
 };
 
 pub const USER_INFO_1011 = extern struct {
-    usri1011_full_name: PWSTR,
+    usri1011_full_name: ?PWSTR,
 };
 
 pub const USER_INFO_1012 = extern struct {
-    usri1012_usr_comment: PWSTR,
+    usri1012_usr_comment: ?PWSTR,
 };
 
 pub const USER_INFO_1013 = extern struct {
-    usri1013_parms: PWSTR,
+    usri1013_parms: ?PWSTR,
 };
 
 pub const USER_INFO_1014 = extern struct {
-    usri1014_workstations: PWSTR,
+    usri1014_workstations: ?PWSTR,
 };
 
 pub const USER_INFO_1017 = extern struct {
@@ -1516,11 +1516,11 @@ pub const USER_INFO_1018 = extern struct {
 
 pub const USER_INFO_1020 = extern struct {
     usri1020_units_per_week: u32,
-    usri1020_logon_hours: *u8,
+    usri1020_logon_hours: ?*u8,
 };
 
 pub const USER_INFO_1023 = extern struct {
-    usri1023_logon_server: PWSTR,
+    usri1023_logon_server: ?PWSTR,
 };
 
 pub const USER_INFO_1024 = extern struct {
@@ -1536,11 +1536,11 @@ pub const USER_INFO_1051 = extern struct {
 };
 
 pub const USER_INFO_1052 = extern struct {
-    usri1052_profile: PWSTR,
+    usri1052_profile: ?PWSTR,
 };
 
 pub const USER_INFO_1053 = extern struct {
-    usri1053_home_dir_drive: PWSTR,
+    usri1053_home_dir_drive: ?PWSTR,
 };
 
 pub const USER_MODALS_INFO_0 = extern struct {
@@ -1553,12 +1553,12 @@ pub const USER_MODALS_INFO_0 = extern struct {
 
 pub const USER_MODALS_INFO_1 = extern struct {
     usrmod1_role: u32,
-    usrmod1_primary: PWSTR,
+    usrmod1_primary: ?PWSTR,
 };
 
 pub const USER_MODALS_INFO_2 = extern struct {
-    usrmod2_domain_name: PWSTR,
-    usrmod2_domain_id: PSID,
+    usrmod2_domain_name: ?PWSTR,
+    usrmod2_domain_id: ?PSID,
 };
 
 pub const USER_MODALS_INFO_3 = extern struct {
@@ -1592,34 +1592,34 @@ pub const USER_MODALS_INFO_1006 = extern struct {
 };
 
 pub const USER_MODALS_INFO_1007 = extern struct {
-    usrmod1007_primary: PWSTR,
+    usrmod1007_primary: ?PWSTR,
 };
 
 pub const GROUP_INFO_0 = extern struct {
-    grpi0_name: PWSTR,
+    grpi0_name: ?PWSTR,
 };
 
 pub const GROUP_INFO_1 = extern struct {
-    grpi1_name: PWSTR,
-    grpi1_comment: PWSTR,
+    grpi1_name: ?PWSTR,
+    grpi1_comment: ?PWSTR,
 };
 
 pub const GROUP_INFO_2 = extern struct {
-    grpi2_name: PWSTR,
-    grpi2_comment: PWSTR,
+    grpi2_name: ?PWSTR,
+    grpi2_comment: ?PWSTR,
     grpi2_group_id: u32,
     grpi2_attributes: u32,
 };
 
 pub const GROUP_INFO_3 = extern struct {
-    grpi3_name: PWSTR,
-    grpi3_comment: PWSTR,
-    grpi3_group_sid: PSID,
+    grpi3_name: ?PWSTR,
+    grpi3_comment: ?PWSTR,
+    grpi3_group_sid: ?PSID,
     grpi3_attributes: u32,
 };
 
 pub const GROUP_INFO_1002 = extern struct {
-    grpi1002_comment: PWSTR,
+    grpi1002_comment: ?PWSTR,
 };
 
 pub const GROUP_INFO_1005 = extern struct {
@@ -1627,82 +1627,82 @@ pub const GROUP_INFO_1005 = extern struct {
 };
 
 pub const GROUP_USERS_INFO_0 = extern struct {
-    grui0_name: PWSTR,
+    grui0_name: ?PWSTR,
 };
 
 pub const GROUP_USERS_INFO_1 = extern struct {
-    grui1_name: PWSTR,
+    grui1_name: ?PWSTR,
     grui1_attributes: u32,
 };
 
 pub const LOCALGROUP_INFO_0 = extern struct {
-    lgrpi0_name: PWSTR,
+    lgrpi0_name: ?PWSTR,
 };
 
 pub const LOCALGROUP_INFO_1 = extern struct {
-    lgrpi1_name: PWSTR,
-    lgrpi1_comment: PWSTR,
+    lgrpi1_name: ?PWSTR,
+    lgrpi1_comment: ?PWSTR,
 };
 
 pub const LOCALGROUP_INFO_1002 = extern struct {
-    lgrpi1002_comment: PWSTR,
+    lgrpi1002_comment: ?PWSTR,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
-    lgrmi0_sid: PSID,
+    lgrmi0_sid: ?PSID,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_1 = extern struct {
-    lgrmi1_sid: PSID,
+    lgrmi1_sid: ?PSID,
     lgrmi1_sidusage: SID_NAME_USE,
-    lgrmi1_name: PWSTR,
+    lgrmi1_name: ?PWSTR,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_2 = extern struct {
-    lgrmi2_sid: PSID,
+    lgrmi2_sid: ?PSID,
     lgrmi2_sidusage: SID_NAME_USE,
-    lgrmi2_domainandname: PWSTR,
+    lgrmi2_domainandname: ?PWSTR,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_3 = extern struct {
-    lgrmi3_domainandname: PWSTR,
+    lgrmi3_domainandname: ?PWSTR,
 };
 
 pub const LOCALGROUP_USERS_INFO_0 = extern struct {
-    lgrui0_name: PWSTR,
+    lgrui0_name: ?PWSTR,
 };
 
 pub const NET_DISPLAY_USER = extern struct {
-    usri1_name: PWSTR,
-    usri1_comment: PWSTR,
+    usri1_name: ?PWSTR,
+    usri1_comment: ?PWSTR,
     usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_full_name: PWSTR,
+    usri1_full_name: ?PWSTR,
     usri1_user_id: u32,
     usri1_next_index: u32,
 };
 
 pub const NET_DISPLAY_MACHINE = extern struct {
-    usri2_name: PWSTR,
-    usri2_comment: PWSTR,
+    usri2_name: ?PWSTR,
+    usri2_comment: ?PWSTR,
     usri2_flags: USER_ACCOUNT_FLAGS,
     usri2_user_id: u32,
     usri2_next_index: u32,
 };
 
 pub const NET_DISPLAY_GROUP = extern struct {
-    grpi3_name: PWSTR,
-    grpi3_comment: PWSTR,
+    grpi3_name: ?PWSTR,
+    grpi3_comment: ?PWSTR,
     grpi3_group_id: u32,
     grpi3_attributes: u32,
     grpi3_next_index: u32,
 };
 
 pub const ACCESS_INFO_0 = extern struct {
-    acc0_resource_name: PWSTR,
+    acc0_resource_name: ?PWSTR,
 };
 
 pub const ACCESS_INFO_1 = extern struct {
-    acc1_resource_name: PWSTR,
+    acc1_resource_name: ?PWSTR,
     acc1_attr: u32,
     acc1_count: u32,
 };
@@ -1712,7 +1712,7 @@ pub const ACCESS_INFO_1002 = extern struct {
 };
 
 pub const ACCESS_LIST = extern struct {
-    acl_ugname: PWSTR,
+    acl_ugname: ?PWSTR,
     acl_access: u32,
 };
 
@@ -1727,7 +1727,7 @@ pub const NetValidatePasswordReset = NET_VALIDATE_PASSWORD_TYPE.PasswordReset;
 
 pub const NET_VALIDATE_PASSWORD_HASH = extern struct {
     Length: u32,
-    Hash: *u8,
+    Hash: ?*u8,
 };
 
 pub const NET_VALIDATE_PERSISTED_FIELDS = extern struct {
@@ -1737,7 +1737,7 @@ pub const NET_VALIDATE_PERSISTED_FIELDS = extern struct {
     LockoutTime: FILETIME,
     BadPasswordCount: u32,
     PasswordHistoryLength: u32,
-    PasswordHistory: *NET_VALIDATE_PASSWORD_HASH,
+    PasswordHistory: ?*NET_VALIDATE_PASSWORD_HASH,
 };
 
 pub const NET_VALIDATE_OUTPUT_ARG = extern struct {
@@ -1752,16 +1752,16 @@ pub const NET_VALIDATE_AUTHENTICATION_INPUT_ARG = extern struct {
 
 pub const NET_VALIDATE_PASSWORD_CHANGE_INPUT_ARG = extern struct {
     InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: PWSTR,
-    UserAccountName: PWSTR,
+    ClearPassword: ?PWSTR,
+    UserAccountName: ?PWSTR,
     HashedPassword: NET_VALIDATE_PASSWORD_HASH,
     PasswordMatch: u8,
 };
 
 pub const NET_VALIDATE_PASSWORD_RESET_INPUT_ARG = extern struct {
     InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: PWSTR,
-    UserAccountName: PWSTR,
+    ClearPassword: ?PWSTR,
+    UserAccountName: ?PWSTR,
     HashedPassword: NET_VALIDATE_PASSWORD_HASH,
     PasswordMustChangeAtNextLogon: u8,
     ClearLockout: u8,
@@ -1775,7 +1775,7 @@ pub const NETLOGON_INFO_1 = extern struct {
 pub const NETLOGON_INFO_2 = extern struct {
     netlog2_flags: u32,
     netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: PWSTR,
+    netlog2_trusted_dc_name: ?PWSTR,
     netlog2_tc_connection_status: u32,
 };
 
@@ -1790,8 +1790,8 @@ pub const NETLOGON_INFO_3 = extern struct {
 };
 
 pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: PWSTR,
-    netlog4_trusted_domain_name: PWSTR,
+    netlog4_trusted_dc_name: ?PWSTR,
+    netlog4_trusted_domain_name: ?PWSTR,
 };
 
 pub const MSA_INFO_LEVEL = enum(i32) {
@@ -1843,24 +1843,24 @@ pub const DSREG_DEVICE_JOIN = DSREG_JOIN_TYPE.DEVICE_JOIN;
 pub const DSREG_WORKPLACE_JOIN = DSREG_JOIN_TYPE.WORKPLACE_JOIN;
 
 pub const DSREG_USER_INFO = extern struct {
-    pszUserEmail: PWSTR,
-    pszUserKeyId: PWSTR,
-    pszUserKeyName: PWSTR,
+    pszUserEmail: ?PWSTR,
+    pszUserKeyId: ?PWSTR,
+    pszUserKeyName: ?PWSTR,
 };
 
 pub const DSREG_JOIN_INFO = extern struct {
     joinType: DSREG_JOIN_TYPE,
-    pJoinCertificate: *const CERT_CONTEXT,
-    pszDeviceId: PWSTR,
-    pszIdpDomain: PWSTR,
-    pszTenantId: PWSTR,
-    pszJoinUserEmail: PWSTR,
-    pszTenantDisplayName: PWSTR,
-    pszMdmEnrollmentUrl: PWSTR,
-    pszMdmTermsOfUseUrl: PWSTR,
-    pszMdmComplianceUrl: PWSTR,
-    pszUserSettingSyncUrl: PWSTR,
-    pUserInfo: *DSREG_USER_INFO,
+    pJoinCertificate: ?*const CERT_CONTEXT,
+    pszDeviceId: ?PWSTR,
+    pszIdpDomain: ?PWSTR,
+    pszTenantId: ?PWSTR,
+    pszJoinUserEmail: ?PWSTR,
+    pszTenantDisplayName: ?PWSTR,
+    pszMdmEnrollmentUrl: ?PWSTR,
+    pszMdmTermsOfUseUrl: ?PWSTR,
+    pszMdmComplianceUrl: ?PWSTR,
+    pszUserSettingSyncUrl: ?PWSTR,
+    pUserInfo: ?*DSREG_USER_INFO,
 };
 
 pub const NET_COMPUTER_NAME_TYPE = enum(i32) {
@@ -1876,20 +1876,20 @@ pub const NetComputerNameTypeMax = NET_COMPUTER_NAME_TYPE.ComputerNameTypeMax;
 
 pub const NETSETUP_PROVISIONING_PARAMS = extern struct {
     dwVersion: u32,
-    lpDomain: [*:0]const u16,
-    lpHostName: [*:0]const u16,
-    lpMachineAccountOU: [*:0]const u16,
-    lpDcName: [*:0]const u16,
+    lpDomain: ?[*:0]const u16,
+    lpHostName: ?[*:0]const u16,
+    lpMachineAccountOU: ?[*:0]const u16,
+    lpDcName: ?[*:0]const u16,
     dwProvisionOptions: NETSETUP_PROVISION,
-    aCertTemplateNames: *PWSTR,
+    aCertTemplateNames: ?*?PWSTR,
     cCertTemplateNames: u32,
-    aMachinePolicyNames: *PWSTR,
+    aMachinePolicyNames: ?*?PWSTR,
     cMachinePolicyNames: u32,
-    aMachinePolicyPaths: *PWSTR,
+    aMachinePolicyPaths: ?*?PWSTR,
     cMachinePolicyPaths: u32,
-    lpNetbiosName: PWSTR,
-    lpSiteName: PWSTR,
-    lpPrimaryDNSDomain: PWSTR,
+    lpNetbiosName: ?PWSTR,
+    lpSiteName: ?PWSTR,
+    lpPrimaryDNSDomain: ?PWSTR,
 };
 
 pub const NETSETUP_JOIN_STATUS = enum(i32) {
@@ -2018,8 +2018,8 @@ pub const AE_GENERIC = extern struct {
 };
 
 pub const CONFIG_INFO_0 = extern struct {
-    cfgi0_key: PWSTR,
-    cfgi0_data: PWSTR,
+    cfgi0_key: ?PWSTR,
+    cfgi0_data: ?PWSTR,
 };
 
 pub const ERROR_LOG = extern struct {
@@ -2027,21 +2027,21 @@ pub const ERROR_LOG = extern struct {
     el_reserved: u32,
     el_time: u32,
     el_error: u32,
-    el_name: PWSTR,
-    el_text: PWSTR,
-    el_data: *u8,
+    el_name: ?PWSTR,
+    el_text: ?PWSTR,
+    el_data: ?*u8,
     el_data_size: u32,
     el_nstrings: u32,
 };
 
 pub const MSG_INFO_0 = extern struct {
-    msgi0_name: PWSTR,
+    msgi0_name: ?PWSTR,
 };
 
 pub const MSG_INFO_1 = extern struct {
-    msgi1_name: PWSTR,
+    msgi1_name: ?PWSTR,
     msgi1_forward_flag: u32,
-    msgi1_forward: PWSTR,
+    msgi1_forward: ?PWSTR,
 };
 
 pub const TIME_OF_DAY_INFO = extern struct {
@@ -2064,7 +2064,7 @@ pub const AT_INFO = extern struct {
     DaysOfMonth: u32,
     DaysOfWeek: u8,
     Flags: u8,
-    Command: PWSTR,
+    Command: ?PWSTR,
 };
 
 pub const AT_ENUM = extern struct {
@@ -2073,53 +2073,53 @@ pub const AT_ENUM = extern struct {
     DaysOfMonth: u32,
     DaysOfWeek: u8,
     Flags: u8,
-    Command: PWSTR,
+    Command: ?PWSTR,
 };
 
 pub const SERVER_INFO_100 = extern struct {
     sv100_platform_id: u32,
-    sv100_name: PWSTR,
+    sv100_name: ?PWSTR,
 };
 
 pub const SERVER_INFO_101 = extern struct {
     sv101_platform_id: u32,
-    sv101_name: PWSTR,
+    sv101_name: ?PWSTR,
     sv101_version_major: u32,
     sv101_version_minor: u32,
     sv101_type: NET_SERVER_TYPE,
-    sv101_comment: PWSTR,
+    sv101_comment: ?PWSTR,
 };
 
 pub const SERVER_INFO_102 = extern struct {
     sv102_platform_id: u32,
-    sv102_name: PWSTR,
+    sv102_name: ?PWSTR,
     sv102_version_major: u32,
     sv102_version_minor: u32,
     sv102_type: NET_SERVER_TYPE,
-    sv102_comment: PWSTR,
+    sv102_comment: ?PWSTR,
     sv102_users: u32,
     sv102_disc: i32,
     sv102_hidden: SERVER_INFO_HIDDEN,
     sv102_announce: u32,
     sv102_anndelta: u32,
     sv102_licenses: u32,
-    sv102_userpath: PWSTR,
+    sv102_userpath: ?PWSTR,
 };
 
 pub const SERVER_INFO_103 = extern struct {
     sv103_platform_id: u32,
-    sv103_name: PWSTR,
+    sv103_name: ?PWSTR,
     sv103_version_major: u32,
     sv103_version_minor: u32,
     sv103_type: u32,
-    sv103_comment: PWSTR,
+    sv103_comment: ?PWSTR,
     sv103_users: u32,
     sv103_disc: i32,
     sv103_hidden: BOOL,
     sv103_announce: u32,
     sv103_anndelta: u32,
     sv103_licenses: u32,
-    sv103_userpath: PWSTR,
+    sv103_userpath: ?PWSTR,
     sv103_capabilities: u32,
 };
 
@@ -2127,11 +2127,11 @@ pub const SERVER_INFO_402 = extern struct {
     sv402_ulist_mtime: u32,
     sv402_glist_mtime: u32,
     sv402_alist_mtime: u32,
-    sv402_alerts: PWSTR,
+    sv402_alerts: ?PWSTR,
     sv402_security: SERVER_INFO_SECURITY,
     sv402_numadmin: u32,
     sv402_lanmask: u32,
-    sv402_guestacct: PWSTR,
+    sv402_guestacct: ?PWSTR,
     sv402_chdevs: u32,
     sv402_chdevq: u32,
     sv402_chdevjobs: u32,
@@ -2154,18 +2154,18 @@ pub const SERVER_INFO_402 = extern struct {
     sv402_diskalert: u32,
     sv402_netioalert: u32,
     sv402_maxauditsz: u32,
-    sv402_srvheuristics: PWSTR,
+    sv402_srvheuristics: ?PWSTR,
 };
 
 pub const SERVER_INFO_403 = extern struct {
     sv403_ulist_mtime: u32,
     sv403_glist_mtime: u32,
     sv403_alist_mtime: u32,
-    sv403_alerts: PWSTR,
+    sv403_alerts: ?PWSTR,
     sv403_security: SERVER_INFO_SECURITY,
     sv403_numadmin: u32,
     sv403_lanmask: u32,
-    sv403_guestacct: PWSTR,
+    sv403_guestacct: ?PWSTR,
     sv403_chdevs: u32,
     sv403_chdevq: u32,
     sv403_chdevjobs: u32,
@@ -2188,10 +2188,10 @@ pub const SERVER_INFO_403 = extern struct {
     sv403_diskalert: u32,
     sv403_netioalert: u32,
     sv403_maxauditsz: u32,
-    sv403_srvheuristics: PWSTR,
+    sv403_srvheuristics: ?PWSTR,
     sv403_auditedevents: u32,
     sv403_autoprofile: u32,
-    sv403_autopath: PWSTR,
+    sv403_autopath: ?PWSTR,
 };
 
 pub const SERVER_INFO_502 = extern struct {
@@ -2234,7 +2234,7 @@ pub const SERVER_INFO_503 = extern struct {
     sv503_timesource: BOOL,
     sv503_acceptdownlevelapis: BOOL,
     sv503_lmannounce: BOOL,
-    sv503_domain: PWSTR,
+    sv503_domain: ?PWSTR,
     sv503_maxcopyreadlen: u32,
     sv503_maxcopywritelen: u32,
     sv503_minkeepsearch: u32,
@@ -2279,7 +2279,7 @@ pub const SERVER_INFO_599 = extern struct {
     sv599_timesource: BOOL,
     sv599_acceptdownlevelapis: BOOL,
     sv599_lmannounce: BOOL,
-    sv599_domain: PWSTR,
+    sv599_domain: ?PWSTR,
     sv599_maxcopyreadlen: u32,
     sv599_maxcopywritelen: u32,
     sv599_minkeepsearch: u32,
@@ -2366,7 +2366,7 @@ pub const SERVER_INFO_598 = extern struct {
 };
 
 pub const SERVER_INFO_1005 = extern struct {
-    sv1005_comment: PWSTR,
+    sv1005_comment: ?PWSTR,
 };
 
 pub const SERVER_INFO_1107 = extern struct {
@@ -2743,73 +2743,73 @@ pub const SERVER_INFO_1602 = extern struct {
 
 pub const SERVER_TRANSPORT_INFO_0 = extern struct {
     svti0_numberofvcs: u32,
-    svti0_transportname: PWSTR,
-    svti0_transportaddress: *u8,
+    svti0_transportname: ?PWSTR,
+    svti0_transportaddress: ?*u8,
     svti0_transportaddresslength: u32,
-    svti0_networkaddress: PWSTR,
+    svti0_networkaddress: ?PWSTR,
 };
 
 pub const SERVER_TRANSPORT_INFO_1 = extern struct {
     svti1_numberofvcs: u32,
-    svti1_transportname: PWSTR,
-    svti1_transportaddress: *u8,
+    svti1_transportname: ?PWSTR,
+    svti1_transportaddress: ?*u8,
     svti1_transportaddresslength: u32,
-    svti1_networkaddress: PWSTR,
-    svti1_domain: PWSTR,
+    svti1_networkaddress: ?PWSTR,
+    svti1_domain: ?PWSTR,
 };
 
 pub const SERVER_TRANSPORT_INFO_2 = extern struct {
     svti2_numberofvcs: u32,
-    svti2_transportname: PWSTR,
-    svti2_transportaddress: *u8,
+    svti2_transportname: ?PWSTR,
+    svti2_transportaddress: ?*u8,
     svti2_transportaddresslength: u32,
-    svti2_networkaddress: PWSTR,
-    svti2_domain: PWSTR,
+    svti2_networkaddress: ?PWSTR,
+    svti2_domain: ?PWSTR,
     svti2_flags: u32,
 };
 
 pub const SERVER_TRANSPORT_INFO_3 = extern struct {
     svti3_numberofvcs: u32,
-    svti3_transportname: PWSTR,
-    svti3_transportaddress: *u8,
+    svti3_transportname: ?PWSTR,
+    svti3_transportaddress: ?*u8,
     svti3_transportaddresslength: u32,
-    svti3_networkaddress: PWSTR,
-    svti3_domain: PWSTR,
+    svti3_networkaddress: ?PWSTR,
+    svti3_domain: ?PWSTR,
     svti3_flags: u32,
     svti3_passwordlength: u32,
     svti3_password: [256]u8,
 };
 
 pub const SERVICE_INFO_0 = extern struct {
-    svci0_name: PWSTR,
+    svci0_name: ?PWSTR,
 };
 
 pub const SERVICE_INFO_1 = extern struct {
-    svci1_name: PWSTR,
+    svci1_name: ?PWSTR,
     svci1_status: u32,
     svci1_code: u32,
     svci1_pid: u32,
 };
 
 pub const SERVICE_INFO_2 = extern struct {
-    svci2_name: PWSTR,
+    svci2_name: ?PWSTR,
     svci2_status: u32,
     svci2_code: u32,
     svci2_pid: u32,
-    svci2_text: PWSTR,
+    svci2_text: ?PWSTR,
     svci2_specific_error: u32,
-    svci2_display_name: PWSTR,
+    svci2_display_name: ?PWSTR,
 };
 
 pub const USE_INFO_0 = extern struct {
-    ui0_local: PWSTR,
-    ui0_remote: PWSTR,
+    ui0_local: ?PWSTR,
+    ui0_remote: ?PWSTR,
 };
 
 pub const USE_INFO_1 = extern struct {
-    ui1_local: PWSTR,
-    ui1_remote: PWSTR,
-    ui1_password: PWSTR,
+    ui1_local: ?PWSTR,
+    ui1_remote: ?PWSTR,
+    ui1_password: ?PWSTR,
     ui1_status: u32,
     ui1_asg_type: USE_INFO_ASG_TYPE,
     ui1_refcount: u32,
@@ -2817,15 +2817,15 @@ pub const USE_INFO_1 = extern struct {
 };
 
 pub const USE_INFO_2 = extern struct {
-    ui2_local: PWSTR,
-    ui2_remote: PWSTR,
-    ui2_password: PWSTR,
+    ui2_local: ?PWSTR,
+    ui2_remote: ?PWSTR,
+    ui2_password: ?PWSTR,
     ui2_status: u32,
     ui2_asg_type: USE_INFO_ASG_TYPE,
     ui2_refcount: u32,
     ui2_usecount: u32,
-    ui2_username: PWSTR,
-    ui2_domainname: PWSTR,
+    ui2_username: ?PWSTR,
+    ui2_domainname: ?PWSTR,
 };
 
 pub const USE_INFO_3 = extern struct {
@@ -2836,17 +2836,17 @@ pub const USE_INFO_3 = extern struct {
 pub const USE_INFO_4 = extern struct {
     ui4_ui3: USE_INFO_3,
     ui4_auth_identity_length: u32,
-    ui4_auth_identity: *u8,
+    ui4_auth_identity: ?*u8,
 };
 
 pub const USE_INFO_5 = extern struct {
     ui4_ui3: USE_INFO_3,
     ui4_auth_identity_length: u32,
-    ui4_auth_identity: *u8,
+    ui4_auth_identity: ?*u8,
     ui5_security_descriptor_length: u32,
-    ui5_security_descriptor: *u8,
+    ui5_security_descriptor: ?*u8,
     ui5_use_options_length: u32,
-    ui5_use_options: *u8,
+    ui5_use_options: ?*u8,
 };
 
 pub const USE_OPTION_GENERIC = extern struct {
@@ -2882,28 +2882,28 @@ pub const USE_OPTION_TRANSPORT_PARAMETERS = extern struct {
 
 pub const WKSTA_INFO_100 = extern struct {
     wki100_platform_id: u32,
-    wki100_computername: PWSTR,
-    wki100_langroup: PWSTR,
+    wki100_computername: ?PWSTR,
+    wki100_langroup: ?PWSTR,
     wki100_ver_major: u32,
     wki100_ver_minor: u32,
 };
 
 pub const WKSTA_INFO_101 = extern struct {
     wki101_platform_id: u32,
-    wki101_computername: PWSTR,
-    wki101_langroup: PWSTR,
+    wki101_computername: ?PWSTR,
+    wki101_langroup: ?PWSTR,
     wki101_ver_major: u32,
     wki101_ver_minor: u32,
-    wki101_lanroot: PWSTR,
+    wki101_lanroot: ?PWSTR,
 };
 
 pub const WKSTA_INFO_102 = extern struct {
     wki102_platform_id: u32,
-    wki102_computername: PWSTR,
-    wki102_langroup: PWSTR,
+    wki102_computername: ?PWSTR,
+    wki102_langroup: ?PWSTR,
     wki102_ver_major: u32,
     wki102_ver_minor: u32,
-    wki102_lanroot: PWSTR,
+    wki102_lanroot: ?PWSTR,
     wki102_logged_on_users: u32,
 };
 
@@ -2925,7 +2925,7 @@ pub const WKSTA_INFO_302 = extern struct {
     wki302_print_buf_time: u32,
     wki302_num_char_buf: u32,
     wki302_siz_char_buf: u32,
-    wki302_wrk_heuristics: PWSTR,
+    wki302_wrk_heuristics: ?PWSTR,
     wki302_mailslots: u32,
     wki302_num_dgram_buf: u32,
 };
@@ -2948,7 +2948,7 @@ pub const WKSTA_INFO_402 = extern struct {
     wki402_print_buf_time: u32,
     wki402_num_char_buf: u32,
     wki402_siz_char_buf: u32,
-    wki402_wrk_heuristics: PWSTR,
+    wki402_wrk_heuristics: ?PWSTR,
     wki402_mailslots: u32,
     wki402_num_dgram_buf: u32,
     wki402_max_threads: u32,
@@ -3121,25 +3121,25 @@ pub const WKSTA_INFO_1062 = extern struct {
 };
 
 pub const WKSTA_USER_INFO_0 = extern struct {
-    wkui0_username: PWSTR,
+    wkui0_username: ?PWSTR,
 };
 
 pub const WKSTA_USER_INFO_1 = extern struct {
-    wkui1_username: PWSTR,
-    wkui1_logon_domain: PWSTR,
-    wkui1_oth_domains: PWSTR,
-    wkui1_logon_server: PWSTR,
+    wkui1_username: ?PWSTR,
+    wkui1_logon_domain: ?PWSTR,
+    wkui1_oth_domains: ?PWSTR,
+    wkui1_logon_server: ?PWSTR,
 };
 
 pub const WKSTA_USER_INFO_1101 = extern struct {
-    wkui1101_oth_domains: PWSTR,
+    wkui1101_oth_domains: ?PWSTR,
 };
 
 pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
     wkti0_quality_of_service: u32,
     wkti0_number_of_vcs: u32,
-    wkti0_transport_name: PWSTR,
-    wkti0_transport_address: PWSTR,
+    wkti0_transport_name: ?PWSTR,
+    wkti0_transport_address: ?PWSTR,
     wkti0_wan_ish: BOOL,
 };
 
@@ -3151,7 +3151,7 @@ pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
 pub extern "NETAPI32" fn NetUserAdd(
     servername: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3160,80 +3160,80 @@ pub extern "NETAPI32" fn NetUserEnum(
     servername: ?[*:0]const u16,
     level: u32,
     filter: NET_USER_ENUM_FILTER_FLAGS,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetUserGetInfo(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserSetInfo(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserDel(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserGetGroups(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserSetGroups(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     num_entries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserGetLocalGroups(
     servername: ?[*:0]const u16,
-    username: [*:0]const u16,
+    username: ?[*:0]const u16,
     level: u32,
     flags: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserModalsGet(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUserModalsSet(
     servername: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3241,84 +3241,84 @@ pub extern "NETAPI32" fn NetUserModalsSet(
 pub extern "NETAPI32" fn NetUserChangePassword(
     domainname: ?[*:0]const u16,
     username: ?[*:0]const u16,
-    oldpassword: [*:0]const u16,
-    newpassword: [*:0]const u16,
+    oldpassword: ?[*:0]const u16,
+    newpassword: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupAdd(
     servername: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupAddUser(
     servername: ?[*:0]const u16,
-    GroupName: [*:0]const u16,
-    username: [*:0]const u16,
+    GroupName: ?[*:0]const u16,
+    username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupEnum(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupGetInfo(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupSetInfo(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupDel(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupDelUser(
     servername: ?[*:0]const u16,
-    GroupName: [*:0]const u16,
-    Username: [*:0]const u16,
+    GroupName: ?[*:0]const u16,
+    Username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupGetUsers(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     ResumeHandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGroupSetUsers(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3326,214 +3326,214 @@ pub extern "NETAPI32" fn NetGroupSetUsers(
 pub extern "NETAPI32" fn NetLocalGroupAdd(
     servername: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetLocalGroupAddMember(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
-    membersid: PSID,
+    groupname: ?[*:0]const u16,
+    membersid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupEnum(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resumehandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupGetInfo(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupSetInfo(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupDel(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetLocalGroupDelMember(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
-    membersid: PSID,
+    groupname: ?[*:0]const u16,
+    membersid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupGetMembers(
     servername: ?[*:0]const u16,
-    localgroupname: [*:0]const u16,
+    localgroupname: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resumehandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupSetMembers(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupAddMembers(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetLocalGroupDelMembers(
     servername: ?[*:0]const u16,
-    groupname: [*:0]const u16,
+    groupname: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetQueryDisplayInformation(
-    ServerName: [*:0]const u16,
+    ServerName: ?[*:0]const u16,
     Level: u32,
     Index: u32,
     EntriesRequested: u32,
     PreferredMaximumLength: u32,
-    ReturnedEntryCount: *u32,
-    SortedBuffer: **c_void,
+    ReturnedEntryCount: ?*u32,
+    SortedBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGetDisplayInformationIndex(
-    ServerName: [*:0]const u16,
+    ServerName: ?[*:0]const u16,
     Level: u32,
-    Prefix: [*:0]const u16,
-    Index: *u32,
+    Prefix: ?[*:0]const u16,
+    Index: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessAdd(
     servername: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessEnum(
     servername: ?[*:0]const u16,
-    BasePath: [*:0]const u16,
+    BasePath: ?[*:0]const u16,
     Recursive: u32,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessGetInfo(
     servername: ?[*:0]const u16,
-    resource: [*:0]const u16,
+    resource: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessSetInfo(
     servername: ?[*:0]const u16,
-    resource: [*:0]const u16,
+    resource: ?[*:0]const u16,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessDel(
-    servername: [*:0]const u16,
-    resource: [*:0]const u16,
+    servername: ?[*:0]const u16,
+    resource: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessGetUserPerms(
-    servername: [*:0]const u16,
-    UGname: [*:0]const u16,
-    resource: [*:0]const u16,
-    Perms: *u32,
+    servername: ?[*:0]const u16,
+    UGname: ?[*:0]const u16,
+    resource: ?[*:0]const u16,
+    Perms: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "NETAPI32" fn NetValidatePasswordPolicy(
-    ServerName: [*:0]const u16,
-    Qualifier: *c_void,
+    ServerName: ?[*:0]const u16,
+    Qualifier: ?*c_void,
     ValidationType: NET_VALIDATE_PASSWORD_TYPE,
-    InputArg: *c_void,
-    OutputArg: **c_void,
+    InputArg: ?*c_void,
+    OutputArg: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "NETAPI32" fn NetValidatePasswordPolicyFree(
-    OutputArg: **c_void,
+    OutputArg: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGetDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
-    Buffer: **u8,
+    Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGetAnyDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
-    Buffer: **u8,
+    Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn I_NetLogonControl2(
     ServerName: ?[*:0]const u16,
     FunctionCode: u32,
     QueryLevel: u32,
-    Data: *u8,
-    Buffer: **u8,
+    Data: ?*u8,
+    Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetAddServiceAccount(
     ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    Password: PWSTR,
+    AccountName: ?PWSTR,
+    Password: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetRemoveServiceAccount(
     ServerName: ?PWSTR,
-    AccountName: PWSTR,
+    AccountName: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -3541,29 +3541,29 @@ pub extern "NETAPI32" fn NetRemoveServiceAccount(
 pub extern "NETAPI32" fn NetEnumerateServiceAccounts(
     ServerName: ?PWSTR,
     Flags: u32,
-    AccountsCount: *u32,
-    Accounts: ***u16,
+    AccountsCount: ?*u32,
+    Accounts: ?*?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetIsServiceAccount(
     ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    IsService: *BOOL,
+    AccountName: ?PWSTR,
+    IsService: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetQueryServiceAccount(
     ServerName: ?PWSTR,
-    AccountName: PWSTR,
+    AccountName: ?PWSTR,
     InfoLevel: u32,
-    Buffer: **u8,
+    Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetJoinDomain(
     lpServer: ?[*:0]const u16,
-    lpDomain: [*:0]const u16,
+    lpDomain: ?[*:0]const u16,
     lpMachineAccountOU: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
@@ -3590,7 +3590,7 @@ pub extern "NETAPI32" fn NetRenameMachineInDomain(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetValidateName(
     lpServer: ?[*:0]const u16,
-    lpName: [*:0]const u16,
+    lpName: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     NameType: NETSETUP_NAME_TYPE,
@@ -3598,18 +3598,18 @@ pub extern "NETAPI32" fn NetValidateName(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGetJoinableOUs(
-    lpServer: [*:0]const u16,
-    lpDomain: [*:0]const u16,
+    lpServer: ?[*:0]const u16,
+    lpDomain: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
-    OUCount: *u32,
-    OUs: **PWSTR,
+    OUCount: ?*u32,
+    OUs: ?*?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetAddAlternateComputerName(
     Server: ?[*:0]const u16,
-    AlternateName: [*:0]const u16,
+    AlternateName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
@@ -3618,7 +3618,7 @@ pub extern "NETAPI32" fn NetAddAlternateComputerName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetRemoveAlternateComputerName(
     Server: ?[*:0]const u16,
-    AlternateName: [*:0]const u16,
+    AlternateName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
@@ -3627,7 +3627,7 @@ pub extern "NETAPI32" fn NetRemoveAlternateComputerName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetSetPrimaryComputerName(
     Server: ?[*:0]const u16,
-    PrimaryName: [*:0]const u16,
+    PrimaryName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
     DomainAccountPassword: ?[*:0]const u16,
     Reserved: u32,
@@ -3638,53 +3638,53 @@ pub extern "NETAPI32" fn NetEnumerateComputerNames(
     Server: ?[*:0]const u16,
     NameType: NET_COMPUTER_NAME_TYPE,
     Reserved: u32,
-    EntryCount: *u32,
-    ComputerNames: **PWSTR,
+    EntryCount: ?*u32,
+    ComputerNames: ?*?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetProvisionComputerAccount(
-    lpDomain: [*:0]const u16,
-    lpMachineName: [*:0]const u16,
+    lpDomain: ?[*:0]const u16,
+    lpMachineName: ?[*:0]const u16,
     lpMachineAccountOU: ?[*:0]const u16,
     lpDcName: ?[*:0]const u16,
     dwOptions: NETSETUP_PROVISION,
-    pProvisionBinData: ?**u8,
+    pProvisionBinData: ?*?*u8,
     pdwProvisionBinDataSize: ?*u32,
-    pProvisionTextData: ?*PWSTR,
+    pProvisionTextData: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
     // TODO: what to do with BytesParamIndex 1?
-    pProvisionBinData: *u8,
+    pProvisionBinData: ?*u8,
     cbProvisionBinDataSize: u32,
     dwOptions: NET_REQUEST_PROVISION_OPTIONS,
-    lpWindowsPath: [*:0]const u16,
+    lpWindowsPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "NETAPI32" fn NetCreateProvisioningPackage(
-    pProvisioningParams: *NETSETUP_PROVISIONING_PARAMS,
-    ppPackageBinData: ?**u8,
+    pProvisioningParams: ?*NETSETUP_PROVISIONING_PARAMS,
+    ppPackageBinData: ?*?*u8,
     pdwPackageBinDataSize: ?*u32,
-    ppPackageTextData: ?*PWSTR,
+    ppPackageTextData: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
     // TODO: what to do with BytesParamIndex 1?
-    pPackageBinData: *u8,
+    pPackageBinData: ?*u8,
     dwPackageBinDataSize: u32,
     dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
-    lpWindowsPath: [*:0]const u16,
-    pvReserved: *c_void,
+    lpWindowsPath: ?[*:0]const u16,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "NETAPI32" fn NetGetAadJoinInformation(
     pcszTenantId: ?[*:0]const u16,
-    ppJoinInfo: ?**DSREG_JOIN_INFO,
+    ppJoinInfo: ?*?*DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -3695,43 +3695,43 @@ pub extern "NETAPI32" fn NetFreeAadJoinInformation(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetGetJoinInformation(
     lpServer: ?[*:0]const u16,
-    lpNameBuffer: *PWSTR,
-    BufferType: *NETSETUP_JOIN_STATUS,
+    lpNameBuffer: ?*?PWSTR,
+    BufferType: ?*NETSETUP_JOIN_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn GetNetScheduleAccountInformation(
-    pwszServerName: [*:0]const u16,
+    pwszServerName: ?[*:0]const u16,
     ccAccount: u32,
     wszAccount: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn SetNetScheduleAccountInformation(
-    pwszServerName: [*:0]const u16,
-    pwszAccount: [*:0]const u16,
-    pwszPassword: [*:0]const u16,
+    pwszServerName: ?[*:0]const u16,
+    pwszAccount: ?[*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaise(
-    AlertType: [*:0]const u16,
-    Buffer: *c_void,
+    AlertType: ?[*:0]const u16,
+    Buffer: ?*c_void,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaiseEx(
-    AlertType: [*:0]const u16,
-    VariableInfo: *c_void,
+    AlertType: ?[*:0]const u16,
+    VariableInfo: ?*c_void,
     VariableInfoSize: u32,
-    ServiceName: [*:0]const u16,
+    ServiceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferAllocate(
     ByteCount: u32,
-    Buffer: **c_void,
+    Buffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3743,63 +3743,63 @@ pub extern "NETAPI32" fn NetApiBufferFree(
 pub extern "NETAPI32" fn NetApiBufferReallocate(
     OldBuffer: ?*c_void,
     NewByteCount: u32,
-    NewBuffer: **c_void,
+    NewBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferSize(
-    Buffer: *c_void,
-    ByteCount: *u32,
+    Buffer: ?*c_void,
+    ByteCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetAuditClear(
-    server: [*:0]const u16,
-    backupfile: [*:0]const u16,
-    service: [*:0]const u16,
+    server: ?[*:0]const u16,
+    backupfile: ?[*:0]const u16,
+    service: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetAuditRead(
-    server: [*:0]const u16,
-    service: [*:0]const u16,
-    auditloghandle: *HLOG,
+    server: ?[*:0]const u16,
+    service: ?[*:0]const u16,
+    auditloghandle: ?*HLOG,
     offset: u32,
-    reserved1: *u32,
+    reserved1: ?*u32,
     reserved2: u32,
     offsetflag: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    bytesread: *u32,
-    totalavailable: *u32,
+    bytesread: ?*u32,
+    totalavailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetAuditWrite(
     type: u32,
-    buf: *u8,
+    buf: ?*u8,
     numbytes: u32,
-    service: [*:0]const u16,
-    reserved: *u8,
+    service: ?[*:0]const u16,
+    reserved: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetConfigGet(
-    server: [*:0]const u16,
-    component: [*:0]const u16,
-    parameter: [*:0]const u16,
-    bufptr: **u8,
+    server: ?[*:0]const u16,
+    component: ?[*:0]const u16,
+    parameter: ?[*:0]const u16,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetConfigGetAll(
-    server: [*:0]const u16,
-    component: [*:0]const u16,
-    bufptr: **u8,
+    server: ?[*:0]const u16,
+    component: ?[*:0]const u16,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetConfigSet(
-    server: [*:0]const u16,
-    reserved1: [*:0]const u16,
-    component: [*:0]const u16,
+    server: ?[*:0]const u16,
+    reserved1: ?[*:0]const u16,
+    component: ?[*:0]const u16,
     level: u32,
     reserved2: u32,
-    buf: *u8,
+    buf: ?*u8,
     reserved3: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3812,24 +3812,24 @@ pub extern "NETAPI32" fn NetErrorLogClear(
 pub extern "NETAPI32" fn NetErrorLogRead(
     UncServerName: ?[*:0]const u16,
     Reserved1: ?PWSTR,
-    ErrorLogHandle: *HLOG,
+    ErrorLogHandle: ?*HLOG,
     Offset: u32,
     Reserved2: ?*u32,
     Reserved3: u32,
     OffsetFlag: u32,
-    BufPtr: **u8,
+    BufPtr: ?*?*u8,
     PrefMaxSize: u32,
-    BytesRead: *u32,
-    TotalAvailable: *u32,
+    BytesRead: ?*u32,
+    TotalAvailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetErrorLogWrite(
     Reserved1: ?*u8,
     Code: u32,
-    Component: [*:0]const u16,
-    Buffer: *u8,
+    Component: ?[*:0]const u16,
+    Buffer: ?*u8,
     NumBytes: u32,
-    MsgBuf: *u8,
+    MsgBuf: ?*u8,
     StrCount: u32,
     Reserved2: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3837,95 +3837,95 @@ pub extern "NETAPI32" fn NetErrorLogWrite(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameAdd(
     servername: ?[*:0]const u16,
-    msgname: [*:0]const u16,
+    msgname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameEnum(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
-    resume_handle: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameGetInfo(
     servername: ?[*:0]const u16,
-    msgname: [*:0]const u16,
+    msgname: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameDel(
     servername: ?[*:0]const u16,
-    msgname: [*:0]const u16,
+    msgname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageBufferSend(
     servername: ?[*:0]const u16,
-    msgname: [*:0]const u16,
-    fromname: [*:0]const u16,
-    buf: *u8,
+    msgname: ?[*:0]const u16,
+    fromname: ?[*:0]const u16,
+    buf: ?*u8,
     buflen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetRemoteTOD(
     UncServerName: ?[*:0]const u16,
-    BufferPtr: **u8,
+    BufferPtr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetRemoteComputerSupports(
-    UncServerName: [*:0]const u16,
+    UncServerName: ?[*:0]const u16,
     OptionsWanted: NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS,
-    OptionsSupported: *u32,
+    OptionsSupported: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetScheduleJobAdd(
-    Servername: [*:0]const u16,
-    Buffer: *u8,
-    JobId: *u32,
+    Servername: ?[*:0]const u16,
+    Buffer: ?*u8,
+    JobId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetScheduleJobDel(
-    Servername: [*:0]const u16,
+    Servername: ?[*:0]const u16,
     MinJobId: u32,
     MaxJobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetScheduleJobEnum(
-    Servername: [*:0]const u16,
-    PointerToBuffer: **u8,
+    Servername: ?[*:0]const u16,
+    PointerToBuffer: ?*?*u8,
     PrefferedMaximumLength: u32,
-    EntriesRead: *u32,
-    TotalEntries: *u32,
-    ResumeHandle: *u32,
+    EntriesRead: ?*u32,
+    TotalEntries: ?*u32,
+    ResumeHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetScheduleJobGetInfo(
-    Servername: [*:0]const u16,
+    Servername: ?[*:0]const u16,
     JobId: u32,
-    PointerToBuffer: **u8,
+    PointerToBuffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerEnum(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     servertype: NET_SERVER_TYPE,
     domain: ?[*:0]const u16,
     resume_handle: ?*u32,
@@ -3935,14 +3935,14 @@ pub extern "NETAPI32" fn NetServerEnum(
 pub extern "NETAPI32" fn NetServerGetInfo(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerSetInfo(
     servername: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     ParmError: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3950,10 +3950,10 @@ pub extern "NETAPI32" fn NetServerSetInfo(
 pub extern "NETAPI32" fn NetServerDiskEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3961,92 +3961,92 @@ pub extern "NETAPI32" fn NetServerDiskEnum(
 pub extern "NETAPI32" fn NetServerComputerNameAdd(
     ServerName: ?PWSTR,
     EmulatedDomainName: ?PWSTR,
-    EmulatedServerName: PWSTR,
+    EmulatedServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerComputerNameDel(
     ServerName: ?PWSTR,
-    EmulatedServerName: PWSTR,
+    EmulatedServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerTransportAdd(
     servername: ?PWSTR,
     level: u32,
-    bufptr: *u8,
+    bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerTransportAddEx(
     servername: ?PWSTR,
     level: u32,
-    bufptr: *u8,
+    bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerTransportDel(
     servername: ?PWSTR,
     level: u32,
-    bufptr: *u8,
+    bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerTransportEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServiceControl(
     servername: ?[*:0]const u16,
-    service: [*:0]const u16,
+    service: ?[*:0]const u16,
     opcode: u32,
     arg: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServiceEnum(
     servername: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServiceGetInfo(
     servername: ?[*:0]const u16,
-    service: [*:0]const u16,
+    service: ?[*:0]const u16,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServiceInstall(
     servername: ?[*:0]const u16,
-    service: [*:0]const u16,
+    service: ?[*:0]const u16,
     argc: u32,
-    argv: [*]PWSTR,
-    bufptr: **u8,
+    argv: [*]?PWSTR,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUseAdd(
     servername: ?*i8,
     LevelFlags: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUseDel(
     UncServerName: ?PWSTR,
-    UseName: PWSTR,
+    UseName: ?PWSTR,
     ForceLevelFlags: FORCE_LEVEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4054,33 +4054,33 @@ pub extern "NETAPI32" fn NetUseDel(
 pub extern "NETAPI32" fn NetUseEnum(
     UncServerName: ?PWSTR,
     LevelFlags: u32,
-    BufPtr: ?**u8,
+    BufPtr: ?*?*u8,
     PreferedMaximumSize: u32,
     EntriesRead: ?*u32,
-    TotalEntries: *u32,
+    TotalEntries: ?*u32,
     ResumeHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetUseGetInfo(
     UncServerName: ?PWSTR,
-    UseName: PWSTR,
+    UseName: ?PWSTR,
     LevelFlags: u32,
-    bufptr: ?**u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: u32,
-    bufptr: ?**u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetWkstaSetInfo(
     servername: ?PWSTR,
     level: u32,
-    buffer: *u8,
+    buffer: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4088,14 +4088,14 @@ pub extern "NETAPI32" fn NetWkstaSetInfo(
 pub extern "NETAPI32" fn NetWkstaUserGetInfo(
     reserved: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetWkstaUserSetInfo(
     reserved: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4103,17 +4103,17 @@ pub extern "NETAPI32" fn NetWkstaUserSetInfo(
 pub extern "NETAPI32" fn NetWkstaUserEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: ?**u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
     entriesread: ?*u32,
-    totalentries: *u32,
+    totalentries: ?*u32,
     resumehandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetWkstaTransportAdd(
     servername: ?*i8,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4127,10 +4127,10 @@ pub extern "NETAPI32" fn NetWkstaTransportDel(
 pub extern "NETAPI32" fn NetWkstaTransportEnum(
     servername: ?*i8,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

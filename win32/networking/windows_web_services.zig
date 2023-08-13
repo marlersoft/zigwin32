@@ -2119,9 +2119,9 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS
 pub const WS_READ_CALLBACK = fn(
     callbackState: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    bytes: *c_void,
+    bytes: ?*c_void,
     maxSize: u32,
-    actualSize: *u32,
+    actualSize: ?*u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2136,7 +2136,7 @@ pub const WS_WRITE_CALLBACK = fn(
 
 pub const WS_PUSH_BYTES_CALLBACK = fn(
     callbackState: ?*c_void,
-    writeCallback: WS_WRITE_CALLBACK,
+    writeCallback: ?WS_WRITE_CALLBACK,
     writeCallbackState: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -2145,18 +2145,18 @@ pub const WS_PUSH_BYTES_CALLBACK = fn(
 pub const WS_PULL_BYTES_CALLBACK = fn(
     callbackState: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    bytes: *c_void,
+    bytes: ?*c_void,
     maxSize: u32,
-    actualSize: *u32,
+    actualSize: ?*u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DYNAMIC_STRING_CALLBACK = fn(
     callbackState: ?*c_void,
-    string: *const WS_XML_STRING,
-    found: *BOOL,
-    id: *u32,
+    string: ?*const WS_XML_STRING,
+    found: ?*BOOL,
+    id: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2170,7 +2170,7 @@ pub const WS_ASYNC_FUNCTION = fn(
     hr: HRESULT,
     callbackModel: WS_CALLBACK_MODEL,
     callbackState: ?*c_void,
-    next: *WS_ASYNC_OPERATION,
+    next: ?*WS_ASYNC_OPERATION,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2178,121 +2178,121 @@ pub const WS_ASYNC_FUNCTION = fn(
 pub const WS_CREATE_CHANNEL_CALLBACK = fn(
     channelType: WS_CHANNEL_TYPE,
     // TODO: what to do with BytesParamIndex 2?
-    channelParameters: *const c_void,
+    channelParameters: ?*const c_void,
     channelParametersSize: u32,
-    channelInstance: **c_void,
+    channelInstance: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_FREE_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_RESET_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ABORT_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_OPEN_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
-    endpointAddress: *const WS_ENDPOINT_ADDRESS,
+    channelInstance: ?*c_void,
+    endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CLOSE_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_READ_MESSAGE_START_CALLBACK = fn(
-    channelInstance: *c_void,
-    message: *WS_MESSAGE,
+    channelInstance: ?*c_void,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_READ_MESSAGE_END_CALLBACK = fn(
-    channelInstance: *c_void,
-    message: *WS_MESSAGE,
+    channelInstance: ?*c_void,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_WRITE_MESSAGE_START_CALLBACK = fn(
-    channelInstance: *c_void,
-    message: *WS_MESSAGE,
+    channelInstance: ?*c_void,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_WRITE_MESSAGE_END_CALLBACK = fn(
-    channelInstance: *c_void,
-    message: *WS_MESSAGE,
+    channelInstance: ?*c_void,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ABANDON_MESSAGE_CALLBACK = fn(
-    channelInstance: *c_void,
-    message: *WS_MESSAGE,
+    channelInstance: ?*c_void,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK = fn(
-    channelInstance: *c_void,
+    channelInstance: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CREATE_ENCODER_CALLBACK = fn(
-    createContext: *c_void,
-    writeCallback: WS_WRITE_CALLBACK,
-    writeContext: *c_void,
-    encoderContext: **c_void,
+    createContext: ?*c_void,
+    writeCallback: ?WS_WRITE_CALLBACK,
+    writeContext: ?*c_void,
+    encoderContext: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = fn(
-    encoderContext: *c_void,
-    contentType: *const WS_STRING,
-    newContentType: *WS_STRING,
-    contentEncoding: *WS_STRING,
+    encoderContext: ?*c_void,
+    contentType: ?*const WS_STRING,
+    newContentType: ?*WS_STRING,
+    contentEncoding: ?*WS_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ENCODER_START_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ENCODER_ENCODE_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     buffers: [*]const WS_BYTES,
     count: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -2300,130 +2300,130 @@ pub const WS_ENCODER_ENCODE_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ENCODER_END_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_FREE_ENCODER_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_CREATE_DECODER_CALLBACK = fn(
-    createContext: *c_void,
-    readCallback: WS_READ_CALLBACK,
-    readContext: *c_void,
-    decoderContext: **c_void,
+    createContext: ?*c_void,
+    readCallback: ?WS_READ_CALLBACK,
+    readContext: ?*c_void,
+    decoderContext: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = fn(
-    decoderContext: *c_void,
-    contentType: *const WS_STRING,
+    decoderContext: ?*c_void,
+    contentType: ?*const WS_STRING,
     contentEncoding: ?*const WS_STRING,
-    newContentType: *WS_STRING,
+    newContentType: ?*WS_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DECODER_START_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DECODER_DECODE_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    buffer: *c_void,
+    buffer: ?*c_void,
     maxLength: u32,
-    length: *u32,
+    length: ?*u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DECODER_END_CALLBACK = fn(
-    encoderContext: *c_void,
+    encoderContext: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_FREE_DECODER_CALLBACK = fn(
-    decoderContext: *c_void,
+    decoderContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_HTTP_REDIRECT_CALLBACK = fn(
     state: ?*c_void,
-    originalUrl: *const WS_STRING,
-    newUrl: *const WS_STRING,
+    originalUrl: ?*const WS_STRING,
+    newUrl: ?*const WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CREATE_LISTENER_CALLBACK = fn(
     channelType: WS_CHANNEL_TYPE,
     // TODO: what to do with BytesParamIndex 2?
-    listenerParameters: *const c_void,
+    listenerParameters: ?*const c_void,
     listenerParametersSize: u32,
-    listenerInstance: **c_void,
+    listenerInstance: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_FREE_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_RESET_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_OPEN_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
-    url: *const WS_STRING,
+    listenerInstance: ?*c_void,
+    url: ?*const WS_STRING,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CLOSE_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SET_LISTENER_PROPERTY_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ACCEPT_CHANNEL_CALLBACK = fn(
-    listenerInstance: *c_void,
-    channelInstance: *c_void,
+    listenerInstance: ?*c_void,
+    channelInstance: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_ABORT_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = fn(
-    listenerInstance: *c_void,
+    listenerInstance: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    channelParameters: *const c_void,
+    channelParameters: ?*const c_void,
     channelParametersSize: u32,
-    channelInstance: **c_void,
+    channelInstance: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2432,7 +2432,7 @@ pub const WS_MESSAGE_DONE_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_CERTIFICATE_VALIDATION_CALLBACK = fn(
-    certContext: *const CERT_CONTEXT,
+    certContext: ?*const CERT_CONTEXT,
     state: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2440,71 +2440,71 @@ pub const WS_GET_CERT_CALLBACK = fn(
     getCertCallbackState: ?*c_void,
     targetAddress: ?*const WS_ENDPOINT_ADDRESS,
     viaUri: ?*const WS_STRING,
-    cert: *const *CERT_CONTEXT,
+    cert: ?*const ?*CERT_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK = fn(
     certIssuerListNotificationCallbackState: ?*c_void,
-    issuerList: *const SecPkgContext_IssuerListInfoEx,
+    issuerList: ?*const SecPkgContext_IssuerListInfoEx,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_VALIDATE_PASSWORD_CALLBACK = fn(
     passwordValidatorCallbackState: ?*c_void,
-    username: *const WS_STRING,
-    password: *const WS_STRING,
+    username: ?*const WS_STRING,
+    password: ?*const WS_STRING,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_VALIDATE_SAML_CALLBACK = fn(
     samlValidatorCallbackState: ?*c_void,
-    samlAssertion: *WS_XML_BUFFER,
+    samlAssertion: ?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_DURATION_COMPARISON_CALLBACK = fn(
-    duration1: *const WS_DURATION,
-    duration2: *const WS_DURATION,
-    result: *i32,
+    duration1: ?*const WS_DURATION,
+    duration2: ?*const WS_DURATION,
+    result: ?*i32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_READ_TYPE_CALLBACK = fn(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     typeMapping: WS_TYPE_MAPPING,
-    descriptionData: *const c_void,
+    descriptionData: ?*const c_void,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 5?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_WRITE_TYPE_CALLBACK = fn(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
-    descriptionData: *const c_void,
+    descriptionData: ?*const c_void,
     // TODO: what to do with BytesParamIndex 4?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_IS_DEFAULT_VALUE_CALLBACK = fn(
-    descriptionData: *const c_void,
+    descriptionData: ?*const c_void,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     // TODO: what to do with BytesParamIndex 3?
     defaultValue: ?*const c_void,
     valueSize: u32,
-    isDefault: *BOOL,
+    isDefault: ?*BOOL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SERVICE_MESSAGE_RECEIVE_CALLBACK = fn(
-    context: *const WS_OPERATION_CONTEXT,
+    context: ?*const WS_OPERATION_CONTEXT,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2519,49 +2519,49 @@ pub const WS_OPERATION_FREE_STATE_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WS_SERVICE_STUB_CALLBACK = fn(
-    context: *const WS_OPERATION_CONTEXT,
-    frame: *c_void,
-    callback: *const c_void,
+    context: ?*const WS_OPERATION_CONTEXT,
+    frame: ?*c_void,
+    callback: ?*const c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SERVICE_ACCEPT_CHANNEL_CALLBACK = fn(
-    context: *const WS_OPERATION_CONTEXT,
-    channelState: **c_void,
+    context: ?*const WS_OPERATION_CONTEXT,
+    channelState: ?*?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SERVICE_CLOSE_CHANNEL_CALLBACK = fn(
-    context: *const WS_OPERATION_CONTEXT,
+    context: ?*const WS_OPERATION_CONTEXT,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_SERVICE_SECURITY_CALLBACK = fn(
-    context: *const WS_OPERATION_CONTEXT,
-    authorized: *BOOL,
+    context: ?*const WS_OPERATION_CONTEXT,
+    authorized: ?*BOOL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_PROXY_MESSAGE_CALLBACK = fn(
-    message: *WS_MESSAGE,
-    heap: *WS_HEAP,
-    state: *c_void,
+    message: ?*WS_MESSAGE,
+    heap: ?*WS_HEAP,
+    state: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_XML_DICTIONARY = extern struct {
     guid: Guid,
-    strings: *WS_XML_STRING,
+    strings: ?*WS_XML_STRING,
     stringCount: u32,
     isConst: BOOL,
 };
 
 pub const WS_XML_STRING = extern struct {
     length: u32,
-    bytes: *u8,
-    dictionary: *WS_XML_DICTIONARY,
+    bytes: ?*u8,
+    dictionary: ?*WS_XML_DICTIONARY,
     id: u32,
 };
 
@@ -2571,36 +2571,36 @@ pub const WS_XML_QNAME = extern struct {
 };
 
 pub const WS_XML_NODE_POSITION = extern struct {
-    buffer: *WS_XML_BUFFER,
-    node: *c_void,
+    buffer: ?*WS_XML_BUFFER,
+    node: ?*c_void,
 };
 
 pub const WS_XML_READER_PROPERTY = extern struct {
     id: WS_XML_READER_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_XML_CANONICALIZATION_INCLUSIVE_PREFIXES = extern struct {
     prefixCount: u32,
-    prefixes: *WS_XML_STRING,
+    prefixes: ?*WS_XML_STRING,
 };
 
 pub const WS_XML_CANONICALIZATION_PROPERTY = extern struct {
     id: WS_XML_CANONICALIZATION_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_XML_WRITER_PROPERTY = extern struct {
     id: WS_XML_WRITER_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_XML_BUFFER_PROPERTY = extern struct {
     id: WS_XML_BUFFER_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
@@ -2615,13 +2615,13 @@ pub const WS_XML_UTF8_TEXT = extern struct {
 
 pub const WS_XML_UTF16_TEXT = extern struct {
     text: WS_XML_TEXT,
-    bytes: *u8,
+    bytes: ?*u8,
     byteCount: u32,
 };
 
 pub const WS_XML_BASE64_TEXT = extern struct {
     text: WS_XML_TEXT,
-    bytes: *u8,
+    bytes: ?*u8,
     length: u32,
 };
 
@@ -2691,15 +2691,15 @@ pub const WS_XML_TIMESPAN_TEXT = extern struct {
 
 pub const WS_XML_QNAME_TEXT = extern struct {
     text: WS_XML_TEXT,
-    prefix: *WS_XML_STRING,
-    localName: *WS_XML_STRING,
-    ns: *WS_XML_STRING,
+    prefix: ?*WS_XML_STRING,
+    localName: ?*WS_XML_STRING,
+    ns: ?*WS_XML_STRING,
 };
 
 pub const WS_XML_LIST_TEXT = extern struct {
     text: WS_XML_TEXT,
     itemCount: u32,
-    items: **WS_XML_TEXT,
+    items: ?*?*WS_XML_TEXT,
 };
 
 pub const WS_XML_NODE = extern struct {
@@ -2709,25 +2709,25 @@ pub const WS_XML_NODE = extern struct {
 pub const WS_XML_ATTRIBUTE = extern struct {
     singleQuote: u8,
     isXmlNs: u8,
-    prefix: *WS_XML_STRING,
-    localName: *WS_XML_STRING,
-    ns: *WS_XML_STRING,
-    value: *WS_XML_TEXT,
+    prefix: ?*WS_XML_STRING,
+    localName: ?*WS_XML_STRING,
+    ns: ?*WS_XML_STRING,
+    value: ?*WS_XML_TEXT,
 };
 
 pub const WS_XML_ELEMENT_NODE = extern struct {
     node: WS_XML_NODE,
-    prefix: *WS_XML_STRING,
-    localName: *WS_XML_STRING,
-    ns: *WS_XML_STRING,
+    prefix: ?*WS_XML_STRING,
+    localName: ?*WS_XML_STRING,
+    ns: ?*WS_XML_STRING,
     attributeCount: u32,
-    attributes: **WS_XML_ATTRIBUTE,
+    attributes: ?*?*WS_XML_ATTRIBUTE,
     isEmpty: BOOL,
 };
 
 pub const WS_XML_TEXT_NODE = extern struct {
     node: WS_XML_NODE,
-    text: *WS_XML_TEXT,
+    text: ?*WS_XML_TEXT,
 };
 
 pub const WS_XML_COMMENT_NODE = extern struct {
@@ -2741,14 +2741,14 @@ pub const WS_XML_READER_INPUT = extern struct {
 
 pub const WS_XML_READER_BUFFER_INPUT = extern struct {
     input: WS_XML_READER_INPUT,
-    encodedData: *c_void,
+    encodedData: ?*c_void,
     encodedDataSize: u32,
 };
 
 pub const WS_XML_READER_STREAM_INPUT = extern struct {
     input: WS_XML_READER_INPUT,
-    readCallback: WS_READ_CALLBACK,
-    readCallbackState: *c_void,
+    readCallback: ?WS_READ_CALLBACK,
+    readCallbackState: ?*c_void,
 };
 
 pub const WS_XML_READER_ENCODING = extern struct {
@@ -2762,18 +2762,18 @@ pub const WS_XML_READER_TEXT_ENCODING = extern struct {
 
 pub const WS_XML_READER_BINARY_ENCODING = extern struct {
     encoding: WS_XML_READER_ENCODING,
-    staticDictionary: *WS_XML_DICTIONARY,
-    dynamicDictionary: *WS_XML_DICTIONARY,
+    staticDictionary: ?*WS_XML_DICTIONARY,
+    dynamicDictionary: ?*WS_XML_DICTIONARY,
 };
 
 pub const WS_STRING = extern struct {
     length: u32,
-    chars: PWSTR,
+    chars: ?PWSTR,
 };
 
 pub const WS_XML_READER_MTOM_ENCODING = extern struct {
     encoding: WS_XML_READER_ENCODING,
-    textEncoding: *WS_XML_READER_ENCODING,
+    textEncoding: ?*WS_XML_READER_ENCODING,
     readMimeHeader: BOOL,
     startInfo: WS_STRING,
     boundary: WS_STRING,
@@ -2795,14 +2795,14 @@ pub const WS_XML_WRITER_TEXT_ENCODING = extern struct {
 
 pub const WS_XML_WRITER_BINARY_ENCODING = extern struct {
     encoding: WS_XML_WRITER_ENCODING,
-    staticDictionary: *WS_XML_DICTIONARY,
-    dynamicStringCallback: WS_DYNAMIC_STRING_CALLBACK,
-    dynamicStringCallbackState: *c_void,
+    staticDictionary: ?*WS_XML_DICTIONARY,
+    dynamicStringCallback: ?WS_DYNAMIC_STRING_CALLBACK,
+    dynamicStringCallbackState: ?*c_void,
 };
 
 pub const WS_XML_WRITER_MTOM_ENCODING = extern struct {
     encoding: WS_XML_WRITER_ENCODING,
-    textEncoding: *WS_XML_WRITER_ENCODING,
+    textEncoding: ?*WS_XML_WRITER_ENCODING,
     writeMimeHeader: BOOL,
     boundary: WS_STRING,
     startInfo: WS_STRING,
@@ -2824,40 +2824,40 @@ pub const WS_XML_WRITER_BUFFER_OUTPUT = extern struct {
 
 pub const WS_XML_WRITER_STREAM_OUTPUT = extern struct {
     output: WS_XML_WRITER_OUTPUT,
-    writeCallback: WS_WRITE_CALLBACK,
-    writeCallbackState: *c_void,
+    writeCallback: ?WS_WRITE_CALLBACK,
+    writeCallbackState: ?*c_void,
 };
 
 pub const WS_XML_WRITER_PROPERTIES = extern struct {
-    properties: *WS_XML_WRITER_PROPERTY,
+    properties: ?*WS_XML_WRITER_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_XML_READER_PROPERTIES = extern struct {
-    properties: *WS_XML_READER_PROPERTY,
+    properties: ?*WS_XML_READER_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_ASYNC_CONTEXT = extern struct {
-    callback: WS_ASYNC_CALLBACK,
-    callbackState: *c_void,
+    callback: ?WS_ASYNC_CALLBACK,
+    callbackState: ?*c_void,
 };
 
 pub const WS_ASYNC_STATE = extern struct {
-    internal0: *c_void,
-    internal1: *c_void,
-    internal2: *c_void,
-    internal3: *c_void,
-    internal4: *c_void,
+    internal0: ?*c_void,
+    internal1: ?*c_void,
+    internal2: ?*c_void,
+    internal3: ?*c_void,
+    internal4: ?*c_void,
 };
 
 pub const WS_ASYNC_OPERATION = extern struct {
-    function: WS_ASYNC_FUNCTION,
+    function: ?WS_ASYNC_FUNCTION,
 };
 
 pub const WS_CHANNEL_PROPERTY = extern struct {
     id: WS_CHANNEL_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
@@ -2867,25 +2867,25 @@ pub const WS_CUSTOM_HTTP_PROXY = extern struct {
 };
 
 pub const WS_CHANNEL_PROPERTIES = extern struct {
-    properties: *WS_CHANNEL_PROPERTY,
+    properties: ?*WS_CHANNEL_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_CUSTOM_CHANNEL_CALLBACKS = extern struct {
-    createChannelCallback: WS_CREATE_CHANNEL_CALLBACK,
-    freeChannelCallback: WS_FREE_CHANNEL_CALLBACK,
-    resetChannelCallback: WS_RESET_CHANNEL_CALLBACK,
-    openChannelCallback: WS_OPEN_CHANNEL_CALLBACK,
-    closeChannelCallback: WS_CLOSE_CHANNEL_CALLBACK,
-    abortChannelCallback: WS_ABORT_CHANNEL_CALLBACK,
-    getChannelPropertyCallback: WS_GET_CHANNEL_PROPERTY_CALLBACK,
-    setChannelPropertyCallback: WS_SET_CHANNEL_PROPERTY_CALLBACK,
-    writeMessageStartCallback: WS_WRITE_MESSAGE_START_CALLBACK,
-    writeMessageEndCallback: WS_WRITE_MESSAGE_END_CALLBACK,
-    readMessageStartCallback: WS_READ_MESSAGE_START_CALLBACK,
-    readMessageEndCallback: WS_READ_MESSAGE_END_CALLBACK,
-    abandonMessageCallback: WS_ABANDON_MESSAGE_CALLBACK,
-    shutdownSessionChannelCallback: WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK,
+    createChannelCallback: ?WS_CREATE_CHANNEL_CALLBACK,
+    freeChannelCallback: ?WS_FREE_CHANNEL_CALLBACK,
+    resetChannelCallback: ?WS_RESET_CHANNEL_CALLBACK,
+    openChannelCallback: ?WS_OPEN_CHANNEL_CALLBACK,
+    closeChannelCallback: ?WS_CLOSE_CHANNEL_CALLBACK,
+    abortChannelCallback: ?WS_ABORT_CHANNEL_CALLBACK,
+    getChannelPropertyCallback: ?WS_GET_CHANNEL_PROPERTY_CALLBACK,
+    setChannelPropertyCallback: ?WS_SET_CHANNEL_PROPERTY_CALLBACK,
+    writeMessageStartCallback: ?WS_WRITE_MESSAGE_START_CALLBACK,
+    writeMessageEndCallback: ?WS_WRITE_MESSAGE_END_CALLBACK,
+    readMessageStartCallback: ?WS_READ_MESSAGE_START_CALLBACK,
+    readMessageEndCallback: ?WS_READ_MESSAGE_END_CALLBACK,
+    abandonMessageCallback: ?WS_ABANDON_MESSAGE_CALLBACK,
+    shutdownSessionChannelCallback: ?WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK,
 };
 
 pub const WS_HTTP_HEADER_MAPPING = extern struct {
@@ -2896,47 +2896,47 @@ pub const WS_HTTP_HEADER_MAPPING = extern struct {
 pub const WS_HTTP_MESSAGE_MAPPING = extern struct {
     requestMappingOptions: u32,
     responseMappingOptions: u32,
-    requestHeaderMappings: **WS_HTTP_HEADER_MAPPING,
+    requestHeaderMappings: ?*?*WS_HTTP_HEADER_MAPPING,
     requestHeaderMappingCount: u32,
-    responseHeaderMappings: **WS_HTTP_HEADER_MAPPING,
+    responseHeaderMappings: ?*?*WS_HTTP_HEADER_MAPPING,
     responseHeaderMappingCount: u32,
 };
 
 pub const WS_ELEMENT_DESCRIPTION = extern struct {
-    elementLocalName: *WS_XML_STRING,
-    elementNs: *WS_XML_STRING,
+    elementLocalName: ?*WS_XML_STRING,
+    elementNs: ?*WS_XML_STRING,
     type: WS_TYPE,
-    typeDescription: *c_void,
+    typeDescription: ?*c_void,
 };
 
 pub const WS_MESSAGE_DESCRIPTION = extern struct {
-    action: *WS_XML_STRING,
-    bodyElementDescription: *WS_ELEMENT_DESCRIPTION,
+    action: ?*WS_XML_STRING,
+    bodyElementDescription: ?*WS_ELEMENT_DESCRIPTION,
 };
 
 pub const WS_CHANNEL_ENCODER = extern struct {
-    createContext: *c_void,
-    createEncoderCallback: WS_CREATE_ENCODER_CALLBACK,
-    encoderGetContentTypeCallback: WS_ENCODER_GET_CONTENT_TYPE_CALLBACK,
-    encoderStartCallback: WS_ENCODER_START_CALLBACK,
-    encoderEncodeCallback: WS_ENCODER_ENCODE_CALLBACK,
-    encoderEndCallback: WS_ENCODER_END_CALLBACK,
-    freeEncoderCallback: WS_FREE_ENCODER_CALLBACK,
+    createContext: ?*c_void,
+    createEncoderCallback: ?WS_CREATE_ENCODER_CALLBACK,
+    encoderGetContentTypeCallback: ?WS_ENCODER_GET_CONTENT_TYPE_CALLBACK,
+    encoderStartCallback: ?WS_ENCODER_START_CALLBACK,
+    encoderEncodeCallback: ?WS_ENCODER_ENCODE_CALLBACK,
+    encoderEndCallback: ?WS_ENCODER_END_CALLBACK,
+    freeEncoderCallback: ?WS_FREE_ENCODER_CALLBACK,
 };
 
 pub const WS_CHANNEL_DECODER = extern struct {
-    createContext: *c_void,
-    createDecoderCallback: WS_CREATE_DECODER_CALLBACK,
-    decoderGetContentTypeCallback: WS_DECODER_GET_CONTENT_TYPE_CALLBACK,
-    decoderStartCallback: WS_DECODER_START_CALLBACK,
-    decoderDecodeCallback: WS_DECODER_DECODE_CALLBACK,
-    decoderEndCallback: WS_DECODER_END_CALLBACK,
-    freeDecoderCallback: WS_FREE_DECODER_CALLBACK,
+    createContext: ?*c_void,
+    createDecoderCallback: ?WS_CREATE_DECODER_CALLBACK,
+    decoderGetContentTypeCallback: ?WS_DECODER_GET_CONTENT_TYPE_CALLBACK,
+    decoderStartCallback: ?WS_DECODER_START_CALLBACK,
+    decoderDecodeCallback: ?WS_DECODER_DECODE_CALLBACK,
+    decoderEndCallback: ?WS_DECODER_END_CALLBACK,
+    freeDecoderCallback: ?WS_FREE_DECODER_CALLBACK,
 };
 
 pub const WS_HTTP_REDIRECT_CALLBACK_CONTEXT = extern struct {
-    callback: WS_HTTP_REDIRECT_CALLBACK,
-    state: *c_void,
+    callback: ?WS_HTTP_REDIRECT_CALLBACK,
+    state: ?*c_void,
 };
 
 pub const WS_ENDPOINT_IDENTITY = extern struct {
@@ -2945,9 +2945,9 @@ pub const WS_ENDPOINT_IDENTITY = extern struct {
 
 pub const WS_ENDPOINT_ADDRESS = extern struct {
     url: WS_STRING,
-    headers: *WS_XML_BUFFER,
-    extensions: *WS_XML_BUFFER,
-    identity: *WS_ENDPOINT_IDENTITY,
+    headers: ?*WS_XML_BUFFER,
+    extensions: ?*WS_XML_BUFFER,
+    identity: ?*WS_ENDPOINT_IDENTITY,
 };
 
 pub const WS_DNS_ENDPOINT_IDENTITY = extern struct {
@@ -2967,7 +2967,7 @@ pub const WS_SPN_ENDPOINT_IDENTITY = extern struct {
 
 pub const WS_BYTES = extern struct {
     length: u32,
-    bytes: *u8,
+    bytes: ?*u8,
 };
 
 pub const WS_RSA_ENDPOINT_IDENTITY = extern struct {
@@ -2983,12 +2983,12 @@ pub const WS_CERT_ENDPOINT_IDENTITY = extern struct {
 
 pub const WS_UNKNOWN_ENDPOINT_IDENTITY = extern struct {
     identity: WS_ENDPOINT_IDENTITY,
-    element: *WS_XML_BUFFER,
+    element: ?*WS_XML_BUFFER,
 };
 
 pub const WS_ERROR_PROPERTY = extern struct {
     id: WS_ERROR_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
@@ -2999,82 +2999,82 @@ pub const WS_FAULT_REASON = extern struct {
 
 pub const WS_FAULT_CODE = extern struct {
     value: WS_XML_QNAME,
-    subCode: *WS_FAULT_CODE,
+    subCode: ?*WS_FAULT_CODE,
 };
 
 pub const WS_FAULT = extern struct {
-    code: *WS_FAULT_CODE,
-    reasons: *WS_FAULT_REASON,
+    code: ?*WS_FAULT_CODE,
+    reasons: ?*WS_FAULT_REASON,
     reasonCount: u32,
     actor: WS_STRING,
     node: WS_STRING,
-    detail: *WS_XML_BUFFER,
+    detail: ?*WS_XML_BUFFER,
 };
 
 pub const WS_FAULT_DETAIL_DESCRIPTION = extern struct {
-    action: *WS_XML_STRING,
-    detailElementDescription: *WS_ELEMENT_DESCRIPTION,
+    action: ?*WS_XML_STRING,
+    detailElementDescription: ?*WS_ELEMENT_DESCRIPTION,
 };
 
 pub const WS_HEAP_PROPERTY = extern struct {
     id: WS_HEAP_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_HEAP_PROPERTIES = extern struct {
-    properties: *WS_HEAP_PROPERTY,
+    properties: ?*WS_HEAP_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_LISTENER_PROPERTY = extern struct {
     id: WS_LISTENER_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_DISALLOWED_USER_AGENT_SUBSTRINGS = extern struct {
     subStringCount: u32,
-    subStrings: **WS_STRING,
+    subStrings: ?*?*WS_STRING,
 };
 
 pub const WS_LISTENER_PROPERTIES = extern struct {
-    properties: *WS_LISTENER_PROPERTY,
+    properties: ?*WS_LISTENER_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_HOST_NAMES = extern struct {
-    hostNames: *WS_STRING,
+    hostNames: ?*WS_STRING,
     hostNameCount: u32,
 };
 
 pub const WS_CUSTOM_LISTENER_CALLBACKS = extern struct {
-    createListenerCallback: WS_CREATE_LISTENER_CALLBACK,
-    freeListenerCallback: WS_FREE_LISTENER_CALLBACK,
-    resetListenerCallback: WS_RESET_LISTENER_CALLBACK,
-    openListenerCallback: WS_OPEN_LISTENER_CALLBACK,
-    closeListenerCallback: WS_CLOSE_LISTENER_CALLBACK,
-    abortListenerCallback: WS_ABORT_LISTENER_CALLBACK,
-    getListenerPropertyCallback: WS_GET_LISTENER_PROPERTY_CALLBACK,
-    setListenerPropertyCallback: WS_SET_LISTENER_PROPERTY_CALLBACK,
-    createChannelForListenerCallback: WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK,
-    acceptChannelCallback: WS_ACCEPT_CHANNEL_CALLBACK,
+    createListenerCallback: ?WS_CREATE_LISTENER_CALLBACK,
+    freeListenerCallback: ?WS_FREE_LISTENER_CALLBACK,
+    resetListenerCallback: ?WS_RESET_LISTENER_CALLBACK,
+    openListenerCallback: ?WS_OPEN_LISTENER_CALLBACK,
+    closeListenerCallback: ?WS_CLOSE_LISTENER_CALLBACK,
+    abortListenerCallback: ?WS_ABORT_LISTENER_CALLBACK,
+    getListenerPropertyCallback: ?WS_GET_LISTENER_PROPERTY_CALLBACK,
+    setListenerPropertyCallback: ?WS_SET_LISTENER_PROPERTY_CALLBACK,
+    createChannelForListenerCallback: ?WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK,
+    acceptChannelCallback: ?WS_ACCEPT_CHANNEL_CALLBACK,
 };
 
 pub const WS_MESSAGE_PROPERTY = extern struct {
     id: WS_MESSAGE_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_MESSAGE_PROPERTIES = extern struct {
-    properties: *WS_MESSAGE_PROPERTY,
+    properties: ?*WS_MESSAGE_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SECURITY_ALGORITHM_PROPERTY = extern struct {
     id: WS_SECURITY_ALGORITHM_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
@@ -3091,40 +3091,40 @@ pub const WS_SECURITY_ALGORITHM_SUITE = extern struct {
     maxSymmetricKeyLength: u32,
     minAsymmetricKeyLength: u32,
     maxAsymmetricKeyLength: u32,
-    properties: *WS_SECURITY_ALGORITHM_PROPERTY,
+    properties: ?*WS_SECURITY_ALGORITHM_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SECURITY_PROPERTY = extern struct {
     id: WS_SECURITY_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_SECURITY_PROPERTIES = extern struct {
-    properties: *WS_SECURITY_PROPERTY,
+    properties: ?*WS_SECURITY_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SECURITY_BINDING_PROPERTY = extern struct {
     id: WS_SECURITY_BINDING_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_SECURITY_BINDING_PROPERTIES = extern struct {
-    properties: *WS_SECURITY_BINDING_PROPERTY,
+    properties: ?*WS_SECURITY_BINDING_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SERVICE_SECURITY_IDENTITIES = extern struct {
-    serviceIdentities: *WS_STRING,
+    serviceIdentities: ?*WS_STRING,
     serviceIdentityCount: u32,
 };
 
 pub const WS_CERTIFICATE_VALIDATION_CALLBACK_CONTEXT = extern struct {
-    callback: WS_CERTIFICATE_VALIDATION_CALLBACK,
-    state: *c_void,
+    callback: ?WS_CERTIFICATE_VALIDATION_CALLBACK,
+    state: ?*c_void,
 };
 
 pub const WS_CERT_CREDENTIAL = extern struct {
@@ -3147,10 +3147,10 @@ pub const WS_THUMBPRINT_CERT_CREDENTIAL = extern struct {
 
 pub const WS_CUSTOM_CERT_CREDENTIAL = extern struct {
     credential: WS_CERT_CREDENTIAL,
-    getCertCallback: WS_GET_CERT_CALLBACK,
-    getCertCallbackState: *c_void,
-    certIssuerListNotificationCallback: WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK,
-    certIssuerListNotificationCallbackState: *c_void,
+    getCertCallback: ?WS_GET_CERT_CALLBACK,
+    getCertCallbackState: ?*c_void,
+    certIssuerListNotificationCallback: ?WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK,
+    certIssuerListNotificationCallbackState: ?*c_void,
 };
 
 pub const WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL = extern struct {
@@ -3170,7 +3170,7 @@ pub const WS_DEFAULT_WINDOWS_INTEGRATED_AUTH_CREDENTIAL = extern struct {
 
 pub const WS_OPAQUE_WINDOWS_INTEGRATED_AUTH_CREDENTIAL = extern struct {
     credential: WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
-    opaqueAuthIdentity: *c_void,
+    opaqueAuthIdentity: ?*c_void,
 };
 
 pub const WS_USERNAME_CREDENTIAL = extern struct {
@@ -3205,73 +3205,73 @@ pub const WS_CAPI_ASYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
 
 pub const WS_SECURITY_BINDING = extern struct {
     bindingType: WS_SECURITY_BINDING_TYPE,
-    properties: *WS_SECURITY_BINDING_PROPERTY,
+    properties: ?*WS_SECURITY_BINDING_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SSL_TRANSPORT_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
-    localCertCredential: *WS_CERT_CREDENTIAL,
+    localCertCredential: ?*WS_CERT_CREDENTIAL,
 };
 
 pub const WS_TCP_SSPI_TRANSPORT_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_NAMEDPIPE_SSPI_TRANSPORT_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_HTTP_HEADER_AUTH_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_KERBEROS_APREQ_MESSAGE_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_USERNAME_MESSAGE_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    clientCredential: *WS_USERNAME_CREDENTIAL,
-    passwordValidator: WS_VALIDATE_PASSWORD_CALLBACK,
-    passwordValidatorCallbackState: *c_void,
+    clientCredential: ?*WS_USERNAME_CREDENTIAL,
+    passwordValidator: ?WS_VALIDATE_PASSWORD_CALLBACK,
+    passwordValidatorCallbackState: ?*c_void,
 };
 
 pub const WS_SECURITY_DESCRIPTION = extern struct {
-    securityBindings: **WS_SECURITY_BINDING,
+    securityBindings: ?*?*WS_SECURITY_BINDING,
     securityBindingCount: u32,
-    properties: *WS_SECURITY_PROPERTY,
+    properties: ?*WS_SECURITY_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SECURITY_CONTEXT_MESSAGE_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    bootstrapSecurityDescription: *WS_SECURITY_DESCRIPTION,
+    bootstrapSecurityDescription: ?*WS_SECURITY_DESCRIPTION,
 };
 
 pub const WS_SECURITY_CONTEXT_PROPERTY = extern struct {
     id: WS_SECURITY_CONTEXT_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_XML_SECURITY_TOKEN_PROPERTY = extern struct {
     id: WS_XML_SECURITY_TOKEN_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_XML_TOKEN_MESSAGE_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    xmlToken: *WS_SECURITY_TOKEN,
+    xmlToken: ?*WS_SECURITY_TOKEN,
 };
 
 pub const WS_SAML_AUTHENTICATOR = extern struct {
@@ -3280,33 +3280,33 @@ pub const WS_SAML_AUTHENTICATOR = extern struct {
 
 pub const WS_CERT_SIGNED_SAML_AUTHENTICATOR = extern struct {
     authenticator: WS_SAML_AUTHENTICATOR,
-    trustedIssuerCerts: *const *CERT_CONTEXT,
+    trustedIssuerCerts: ?*const ?*CERT_CONTEXT,
     trustedIssuerCertCount: u32,
-    decryptionCert: *const CERT_CONTEXT,
-    samlValidator: WS_VALIDATE_SAML_CALLBACK,
-    samlValidatorCallbackState: *c_void,
+    decryptionCert: ?*const CERT_CONTEXT,
+    samlValidator: ?WS_VALIDATE_SAML_CALLBACK,
+    samlValidatorCallbackState: ?*c_void,
 };
 
 pub const WS_SAML_MESSAGE_SECURITY_BINDING = extern struct {
     binding: WS_SECURITY_BINDING,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    authenticator: *WS_SAML_AUTHENTICATOR,
+    authenticator: ?*WS_SAML_AUTHENTICATOR,
 };
 
 pub const WS_REQUEST_SECURITY_TOKEN_PROPERTY = extern struct {
     id: WS_REQUEST_SECURITY_TOKEN_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_ANY_ATTRIBUTE = extern struct {
     localName: WS_XML_STRING,
     ns: WS_XML_STRING,
-    value: *WS_XML_TEXT,
+    value: ?*WS_XML_TEXT,
 };
 
 pub const WS_ANY_ATTRIBUTES = extern struct {
-    attributes: *WS_ANY_ATTRIBUTE,
+    attributes: ?*WS_ANY_ATTRIBUTE,
     attributeCount: u32,
 };
 
@@ -3338,7 +3338,7 @@ pub const WS_DURATION = extern struct {
 pub const WS_DURATION_DESCRIPTION = extern struct {
     minValue: WS_DURATION,
     maxValue: WS_DURATION,
-    comparer: WS_DURATION_COMPARISON_CALLBACK,
+    comparer: ?WS_DURATION_COMPARISON_CALLBACK,
 };
 
 pub const WS_TIMESPAN_DESCRIPTION = extern struct {
@@ -3450,14 +3450,14 @@ pub const WS_BYTES_DESCRIPTION = extern struct {
 
 pub const WS_ENUM_VALUE = extern struct {
     value: i32,
-    name: *WS_XML_STRING,
+    name: ?*WS_XML_STRING,
 };
 
 pub const WS_ENUM_DESCRIPTION = extern struct {
-    values: *WS_ENUM_VALUE,
+    values: ?*WS_ENUM_VALUE,
     valueCount: u32,
     maxByteCount: u32,
-    nameIndices: *u32,
+    nameIndices: ?*u32,
 };
 
 pub const WS_ITEM_RANGE = extern struct {
@@ -3466,23 +3466,23 @@ pub const WS_ITEM_RANGE = extern struct {
 };
 
 pub const WS_DEFAULT_VALUE = extern struct {
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_FIELD_DESCRIPTION = extern struct {
     mapping: WS_FIELD_MAPPING,
-    localName: *WS_XML_STRING,
-    ns: *WS_XML_STRING,
+    localName: ?*WS_XML_STRING,
+    ns: ?*WS_XML_STRING,
     type: WS_TYPE,
-    typeDescription: *c_void,
+    typeDescription: ?*c_void,
     offset: u32,
     options: u32,
-    defaultValue: *WS_DEFAULT_VALUE,
+    defaultValue: ?*WS_DEFAULT_VALUE,
     countOffset: u32,
-    itemLocalName: *WS_XML_STRING,
-    itemNs: *WS_XML_STRING,
-    itemRange: *WS_ITEM_RANGE,
+    itemLocalName: ?*WS_XML_STRING,
+    itemNs: ?*WS_XML_STRING,
+    itemRange: ?*WS_ITEM_RANGE,
 };
 
 pub const WS_UNION_FIELD_DESCRIPTION = extern struct {
@@ -3493,12 +3493,12 @@ pub const WS_UNION_FIELD_DESCRIPTION = extern struct {
 pub const WS_STRUCT_DESCRIPTION = extern struct {
     size: u32,
     alignment: u32,
-    fields: **WS_FIELD_DESCRIPTION,
+    fields: ?*?*WS_FIELD_DESCRIPTION,
     fieldCount: u32,
-    typeLocalName: *WS_XML_STRING,
-    typeNs: *WS_XML_STRING,
-    parentType: *WS_STRUCT_DESCRIPTION,
-    subTypes: **WS_STRUCT_DESCRIPTION,
+    typeLocalName: ?*WS_XML_STRING,
+    typeNs: ?*WS_XML_STRING,
+    parentType: ?*WS_STRUCT_DESCRIPTION,
+    subTypes: ?*?*WS_STRUCT_DESCRIPTION,
     subTypeCount: u32,
     structOptions: u32,
 };
@@ -3506,11 +3506,11 @@ pub const WS_STRUCT_DESCRIPTION = extern struct {
 pub const WS_UNION_DESCRIPTION = extern struct {
     size: u32,
     alignment: u32,
-    fields: **WS_UNION_FIELD_DESCRIPTION,
+    fields: ?*?*WS_UNION_FIELD_DESCRIPTION,
     fieldCount: u32,
     enumOffset: u32,
     noneEnumValue: i32,
-    valueIndices: *u32,
+    valueIndices: ?*u32,
 };
 
 pub const WS_ENDPOINT_ADDRESS_DESCRIPTION = extern struct {
@@ -3528,17 +3528,17 @@ pub const WS_VOID_DESCRIPTION = extern struct {
 pub const WS_CUSTOM_TYPE_DESCRIPTION = extern struct {
     size: u32,
     alignment: u32,
-    readCallback: WS_READ_TYPE_CALLBACK,
-    writeCallback: WS_WRITE_TYPE_CALLBACK,
-    descriptionData: *c_void,
-    isDefaultValueCallback: WS_IS_DEFAULT_VALUE_CALLBACK,
+    readCallback: ?WS_READ_TYPE_CALLBACK,
+    writeCallback: ?WS_WRITE_TYPE_CALLBACK,
+    descriptionData: ?*c_void,
+    isDefaultValueCallback: ?WS_IS_DEFAULT_VALUE_CALLBACK,
 };
 
 pub const WS_ATTRIBUTE_DESCRIPTION = extern struct {
-    attributeLocalName: *WS_XML_STRING,
-    attributeNs: *WS_XML_STRING,
+    attributeLocalName: ?*WS_XML_STRING,
+    attributeNs: ?*WS_XML_STRING,
     type: WS_TYPE,
-    typeDescription: *c_void,
+    typeDescription: ?*c_void,
 };
 
 pub const WS_PARAMETER_DESCRIPTION = extern struct {
@@ -3549,91 +3549,91 @@ pub const WS_PARAMETER_DESCRIPTION = extern struct {
 
 pub const WS_OPERATION_DESCRIPTION = extern struct {
     versionInfo: u32,
-    inputMessageDescription: *WS_MESSAGE_DESCRIPTION,
-    outputMessageDescription: *WS_MESSAGE_DESCRIPTION,
+    inputMessageDescription: ?*WS_MESSAGE_DESCRIPTION,
+    outputMessageDescription: ?*WS_MESSAGE_DESCRIPTION,
     inputMessageOptions: u32,
     outputMessageOptions: u32,
     parameterCount: u16,
-    parameterDescription: *WS_PARAMETER_DESCRIPTION,
-    stubCallback: WS_SERVICE_STUB_CALLBACK,
+    parameterDescription: ?*WS_PARAMETER_DESCRIPTION,
+    stubCallback: ?WS_SERVICE_STUB_CALLBACK,
     style: WS_OPERATION_STYLE,
 };
 
 pub const WS_CONTRACT_DESCRIPTION = extern struct {
     operationCount: u32,
-    operations: **WS_OPERATION_DESCRIPTION,
+    operations: ?*?*WS_OPERATION_DESCRIPTION,
 };
 
 pub const WS_SERVICE_CONTRACT = extern struct {
-    contractDescription: *const WS_CONTRACT_DESCRIPTION,
-    defaultMessageHandlerCallback: WS_SERVICE_MESSAGE_RECEIVE_CALLBACK,
-    methodTable: *const c_void,
+    contractDescription: ?*const WS_CONTRACT_DESCRIPTION,
+    defaultMessageHandlerCallback: ?WS_SERVICE_MESSAGE_RECEIVE_CALLBACK,
+    methodTable: ?*const c_void,
 };
 
 pub const WS_SERVICE_PROPERTY = extern struct {
     id: WS_SERVICE_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_SERVICE_ENDPOINT_PROPERTY = extern struct {
     id: WS_SERVICE_ENDPOINT_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_SERVICE_PROPERTY_ACCEPT_CALLBACK = extern struct {
-    callback: WS_SERVICE_ACCEPT_CHANNEL_CALLBACK,
+    callback: ?WS_SERVICE_ACCEPT_CHANNEL_CALLBACK,
 };
 
 pub const WS_SERVICE_METADATA_DOCUMENT = extern struct {
-    content: *WS_XML_STRING,
-    name: *WS_STRING,
+    content: ?*WS_XML_STRING,
+    name: ?*WS_STRING,
 };
 
 pub const WS_SERVICE_METADATA = extern struct {
     documentCount: u32,
-    documents: **WS_SERVICE_METADATA_DOCUMENT,
-    serviceName: *WS_XML_STRING,
-    serviceNs: *WS_XML_STRING,
+    documents: ?*?*WS_SERVICE_METADATA_DOCUMENT,
+    serviceName: ?*WS_XML_STRING,
+    serviceNs: ?*WS_XML_STRING,
 };
 
 pub const WS_SERVICE_PROPERTY_CLOSE_CALLBACK = extern struct {
-    callback: WS_SERVICE_CLOSE_CHANNEL_CALLBACK,
+    callback: ?WS_SERVICE_CLOSE_CHANNEL_CALLBACK,
 };
 
 pub const WS_SERVICE_ENDPOINT_METADATA = extern struct {
-    portName: *WS_XML_STRING,
-    bindingName: *WS_XML_STRING,
-    bindingNs: *WS_XML_STRING,
+    portName: ?*WS_XML_STRING,
+    bindingName: ?*WS_XML_STRING,
+    bindingNs: ?*WS_XML_STRING,
 };
 
 pub const WS_SERVICE_ENDPOINT = extern struct {
     address: WS_ENDPOINT_ADDRESS,
     channelBinding: WS_CHANNEL_BINDING,
     channelType: WS_CHANNEL_TYPE,
-    securityDescription: *const WS_SECURITY_DESCRIPTION,
-    contract: *const WS_SERVICE_CONTRACT,
-    authorizationCallback: WS_SERVICE_SECURITY_CALLBACK,
-    properties: *const WS_SERVICE_ENDPOINT_PROPERTY,
+    securityDescription: ?*const WS_SECURITY_DESCRIPTION,
+    contract: ?*const WS_SERVICE_CONTRACT,
+    authorizationCallback: ?WS_SERVICE_SECURITY_CALLBACK,
+    properties: ?*const WS_SERVICE_ENDPOINT_PROPERTY,
     propertyCount: u32,
     channelProperties: WS_CHANNEL_PROPERTIES,
 };
 
 pub const WS_PROXY_PROPERTY = extern struct {
     id: WS_PROXY_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_PROXY_MESSAGE_CALLBACK_CONTEXT = extern struct {
-    callback: WS_PROXY_MESSAGE_CALLBACK,
-    state: *c_void,
+    callback: ?WS_PROXY_MESSAGE_CALLBACK,
+    state: ?*c_void,
 };
 
 pub const WS_CALL_PROPERTY = extern struct {
     id: WS_CALL_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
@@ -3698,46 +3698,46 @@ pub const WS_UNIQUE_ID = extern struct {
 
 pub const WS_BUFFERS = extern struct {
     bufferCount: u32,
-    buffers: *WS_BYTES,
+    buffers: ?*WS_BYTES,
 };
 
 pub const WS_METADATA_ENDPOINT = extern struct {
     endpointAddress: WS_ENDPOINT_ADDRESS,
-    endpointPolicy: *WS_POLICY,
-    portName: *WS_XML_STRING,
-    serviceName: *WS_XML_STRING,
-    serviceNs: *WS_XML_STRING,
-    bindingName: *WS_XML_STRING,
-    bindingNs: *WS_XML_STRING,
-    portTypeName: *WS_XML_STRING,
-    portTypeNs: *WS_XML_STRING,
+    endpointPolicy: ?*WS_POLICY,
+    portName: ?*WS_XML_STRING,
+    serviceName: ?*WS_XML_STRING,
+    serviceNs: ?*WS_XML_STRING,
+    bindingName: ?*WS_XML_STRING,
+    bindingNs: ?*WS_XML_STRING,
+    portTypeName: ?*WS_XML_STRING,
+    portTypeNs: ?*WS_XML_STRING,
 };
 
 pub const WS_METADATA_ENDPOINTS = extern struct {
-    endpoints: *WS_METADATA_ENDPOINT,
+    endpoints: ?*WS_METADATA_ENDPOINT,
     endpointCount: u32,
 };
 
 pub const WS_METADATA_PROPERTY = extern struct {
     id: WS_METADATA_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_POLICY_PROPERTY = extern struct {
     id: WS_POLICY_PROPERTY_ID,
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 };
 
 pub const WS_POLICY_PROPERTIES = extern struct {
-    properties: *WS_POLICY_PROPERTY,
+    properties: ?*WS_POLICY_PROPERTY,
     propertyCount: u32,
 };
 
 pub const WS_SECURITY_BINDING_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_BINDING_PROPERTY_ID,
-    allowedValues: *c_void,
+    allowedValues: ?*c_void,
     allowedValuesSize: u32,
     out: extern struct {
         securityBindingProperty: WS_SECURITY_BINDING_PROPERTY,
@@ -3746,7 +3746,7 @@ pub const WS_SECURITY_BINDING_PROPERTY_CONSTRAINT = extern struct {
 
 pub const WS_SECURITY_BINDING_CONSTRAINT = extern struct {
     type: WS_SECURITY_BINDING_CONSTRAINT_TYPE,
-    propertyConstraints: *WS_SECURITY_BINDING_PROPERTY_CONSTRAINT,
+    propertyConstraints: ?*WS_SECURITY_BINDING_PROPERTY_CONSTRAINT,
     propertyConstraintCount: u32,
 };
 
@@ -3782,7 +3782,7 @@ pub const WS_KERBEROS_APREQ_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct 
 
 pub const WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT = extern struct {
     id: WS_REQUEST_SECURITY_TOKEN_PROPERTY_ID,
-    allowedValues: *c_void,
+    allowedValues: ?*c_void,
     allowedValuesSize: u32,
     out: extern struct {
         requestSecurityTokenProperty: WS_REQUEST_SECURITY_TOKEN_PROPERTY,
@@ -3792,19 +3792,19 @@ pub const WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT = extern struct {
 pub const WS_ISSUED_TOKEN_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
     bindingConstraint: WS_SECURITY_BINDING_CONSTRAINT,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    claimConstraints: *WS_XML_STRING,
+    claimConstraints: ?*WS_XML_STRING,
     claimConstraintCount: u32,
-    requestSecurityTokenPropertyConstraints: *WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT,
+    requestSecurityTokenPropertyConstraints: ?*WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT,
     requestSecurityTokenPropertyConstraintCount: u32,
     out: extern struct {
-        issuerAddress: *WS_ENDPOINT_ADDRESS,
-        requestSecurityTokenTemplate: *WS_XML_BUFFER,
+        issuerAddress: ?*WS_ENDPOINT_ADDRESS,
+        requestSecurityTokenTemplate: ?*WS_XML_BUFFER,
     },
 };
 
 pub const WS_SECURITY_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_PROPERTY_ID,
-    allowedValues: *c_void,
+    allowedValues: ?*c_void,
     allowedValuesSize: u32,
     out: extern struct {
         securityProperty: WS_SECURITY_PROPERTY,
@@ -3812,21 +3812,21 @@ pub const WS_SECURITY_PROPERTY_CONSTRAINT = extern struct {
 };
 
 pub const WS_SECURITY_CONSTRAINTS = extern struct {
-    securityPropertyConstraints: *WS_SECURITY_PROPERTY_CONSTRAINT,
+    securityPropertyConstraints: ?*WS_SECURITY_PROPERTY_CONSTRAINT,
     securityPropertyConstraintCount: u32,
-    securityBindingConstraints: **WS_SECURITY_BINDING_CONSTRAINT,
+    securityBindingConstraints: ?*?*WS_SECURITY_BINDING_CONSTRAINT,
     securityBindingConstraintCount: u32,
 };
 
 pub const WS_SECURITY_CONTEXT_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
     bindingConstraint: WS_SECURITY_BINDING_CONSTRAINT,
     bindingUsage: WS_MESSAGE_SECURITY_USAGE,
-    bootstrapSecurityConstraint: *WS_SECURITY_CONSTRAINTS,
+    bootstrapSecurityConstraint: ?*WS_SECURITY_CONSTRAINTS,
 };
 
 pub const WS_CHANNEL_PROPERTY_CONSTRAINT = extern struct {
     id: WS_CHANNEL_PROPERTY_ID,
-    allowedValues: *c_void,
+    allowedValues: ?*c_void,
     allowedValuesSize: u32,
     out: extern struct {
         channelProperty: WS_CHANNEL_PROPERTY,
@@ -3839,19 +3839,19 @@ pub const WS_POLICY_EXTENSION = extern struct {
 
 pub const WS_ENDPOINT_POLICY_EXTENSION = extern struct {
     policyExtension: WS_POLICY_EXTENSION,
-    assertionName: *WS_XML_STRING,
-    assertionNs: *WS_XML_STRING,
+    assertionName: ?*WS_XML_STRING,
+    assertionNs: ?*WS_XML_STRING,
     out: extern struct {
-        assertionValue: *WS_XML_BUFFER,
+        assertionValue: ?*WS_XML_BUFFER,
     },
 };
 
 pub const WS_POLICY_CONSTRAINTS = extern struct {
     channelBinding: WS_CHANNEL_BINDING,
-    channelPropertyConstraints: *WS_CHANNEL_PROPERTY_CONSTRAINT,
+    channelPropertyConstraints: ?*WS_CHANNEL_PROPERTY_CONSTRAINT,
     channelPropertyConstraintCount: u32,
-    securityConstraints: *WS_SECURITY_CONSTRAINTS,
-    policyExtensions: **WS_POLICY_EXTENSION,
+    securityConstraints: ?*WS_SECURITY_CONSTRAINTS,
+    policyExtensions: ?*?*WS_POLICY_EXTENSION,
     policyExtensionCount: u32,
 };
 
@@ -3990,7 +3990,7 @@ pub const WS_TCP_BINDING_TEMPLATE = extern struct {
 
 pub const WS_SSL_TRANSPORT_SECURITY_BINDING_TEMPLATE = extern struct {
     securityBindingProperties: WS_SECURITY_BINDING_PROPERTIES,
-    localCertCredential: *WS_CERT_CREDENTIAL,
+    localCertCredential: ?*WS_CERT_CREDENTIAL,
 };
 
 pub const WS_HTTP_SSL_BINDING_TEMPLATE = extern struct {
@@ -4001,7 +4001,7 @@ pub const WS_HTTP_SSL_BINDING_TEMPLATE = extern struct {
 
 pub const WS_HTTP_HEADER_AUTH_SECURITY_BINDING_TEMPLATE = extern struct {
     securityBindingProperties: WS_SECURITY_BINDING_PROPERTIES,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_HTTP_HEADER_AUTH_BINDING_TEMPLATE = extern struct {
@@ -4012,7 +4012,7 @@ pub const WS_HTTP_HEADER_AUTH_BINDING_TEMPLATE = extern struct {
 
 pub const WS_TCP_SSPI_TRANSPORT_SECURITY_BINDING_TEMPLATE = extern struct {
     securityBindingProperties: WS_SECURITY_BINDING_PROPERTIES,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_TCP_SSPI_BINDING_TEMPLATE = extern struct {
@@ -4030,9 +4030,9 @@ pub const WS_HTTP_SSL_HEADER_AUTH_BINDING_TEMPLATE = extern struct {
 
 pub const WS_USERNAME_MESSAGE_SECURITY_BINDING_TEMPLATE = extern struct {
     securityBindingProperties: WS_SECURITY_BINDING_PROPERTIES,
-    clientCredential: *WS_USERNAME_CREDENTIAL,
-    passwordValidator: WS_VALIDATE_PASSWORD_CALLBACK,
-    passwordValidatorCallbackState: *c_void,
+    clientCredential: ?*WS_USERNAME_CREDENTIAL,
+    passwordValidator: ?WS_VALIDATE_PASSWORD_CALLBACK,
+    passwordValidatorCallbackState: ?*c_void,
 };
 
 pub const WS_HTTP_SSL_USERNAME_BINDING_TEMPLATE = extern struct {
@@ -4044,7 +4044,7 @@ pub const WS_HTTP_SSL_USERNAME_BINDING_TEMPLATE = extern struct {
 
 pub const WS_KERBEROS_APREQ_MESSAGE_SECURITY_BINDING_TEMPLATE = extern struct {
     securityBindingProperties: WS_SECURITY_BINDING_PROPERTIES,
-    clientCredential: *WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
+    clientCredential: ?*WS_WINDOWS_INTEGRATED_AUTH_CREDENTIAL,
 };
 
 pub const WS_HTTP_SSL_KERBEROS_APREQ_BINDING_TEMPLATE = extern struct {
@@ -4117,23 +4117,23 @@ pub const IContentPrefetcherTaskTrigger = extern struct {
         base: IInspectable.VTable,
         TriggerContentPrefetcherTask: fn(
             self: *const IContentPrefetcherTaskTrigger,
-            packageFullName: [*:0]const u16,
+            packageFullName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRegisteredForContentPrefetch: fn(
             self: *const IContentPrefetcherTaskTrigger,
-            packageFullName: [*:0]const u16,
-            isRegistered: *u8,
+            packageFullName: ?[*:0]const u16,
+            isRegistered: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).TriggerContentPrefetcherTask(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: [*:0]const u16, isRegistered: *u8) callconv(.Inline) HRESULT {
+        pub fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).IsRegisteredForContentPrefetch(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName, isRegistered);
         }
     };}
@@ -4142,61 +4142,61 @@ pub const IContentPrefetcherTaskTrigger = extern struct {
 
 pub const WEBAUTHN_RP_ENTITY_INFORMATION = extern struct {
     dwVersion: u32,
-    pwszId: [*:0]const u16,
-    pwszName: [*:0]const u16,
-    pwszIcon: [*:0]const u16,
+    pwszId: ?[*:0]const u16,
+    pwszName: ?[*:0]const u16,
+    pwszIcon: ?[*:0]const u16,
 };
 
 pub const WEBAUTHN_USER_ENTITY_INFORMATION = extern struct {
     dwVersion: u32,
     cbId: u32,
-    pbId: *u8,
-    pwszName: [*:0]const u16,
-    pwszIcon: [*:0]const u16,
-    pwszDisplayName: [*:0]const u16,
+    pbId: ?*u8,
+    pwszName: ?[*:0]const u16,
+    pwszIcon: ?[*:0]const u16,
+    pwszDisplayName: ?[*:0]const u16,
 };
 
 pub const WEBAUTHN_CLIENT_DATA = extern struct {
     dwVersion: u32,
     cbClientDataJSON: u32,
-    pbClientDataJSON: *u8,
-    pwszHashAlgId: [*:0]const u16,
+    pbClientDataJSON: ?*u8,
+    pwszHashAlgId: ?[*:0]const u16,
 };
 
 pub const WEBAUTHN_COSE_CREDENTIAL_PARAMETER = extern struct {
     dwVersion: u32,
-    pwszCredentialType: [*:0]const u16,
+    pwszCredentialType: ?[*:0]const u16,
     lAlg: i32,
 };
 
 pub const WEBAUTHN_COSE_CREDENTIAL_PARAMETERS = extern struct {
     cCredentialParameters: u32,
-    pCredentialParameters: *WEBAUTHN_COSE_CREDENTIAL_PARAMETER,
+    pCredentialParameters: ?*WEBAUTHN_COSE_CREDENTIAL_PARAMETER,
 };
 
 pub const WEBAUTHN_CREDENTIAL = extern struct {
     dwVersion: u32,
     cbId: u32,
-    pbId: *u8,
-    pwszCredentialType: [*:0]const u16,
+    pbId: ?*u8,
+    pwszCredentialType: ?[*:0]const u16,
 };
 
 pub const WEBAUTHN_CREDENTIALS = extern struct {
     cCredentials: u32,
-    pCredentials: *WEBAUTHN_CREDENTIAL,
+    pCredentials: ?*WEBAUTHN_CREDENTIAL,
 };
 
 pub const WEBAUTHN_CREDENTIAL_EX = extern struct {
     dwVersion: u32,
     cbId: u32,
-    pbId: *u8,
-    pwszCredentialType: [*:0]const u16,
+    pbId: ?*u8,
+    pwszCredentialType: ?[*:0]const u16,
     dwTransports: u32,
 };
 
 pub const WEBAUTHN_CREDENTIAL_LIST = extern struct {
     cCredentials: u32,
-    ppCredentials: **WEBAUTHN_CREDENTIAL_EX,
+    ppCredentials: ?*?*WEBAUTHN_CREDENTIAL_EX,
 };
 
 pub const WEBAUTHN_CRED_PROTECT_EXTENSION_IN = extern struct {
@@ -4205,14 +4205,14 @@ pub const WEBAUTHN_CRED_PROTECT_EXTENSION_IN = extern struct {
 };
 
 pub const WEBAUTHN_EXTENSION = extern struct {
-    pwszExtensionIdentifier: [*:0]const u16,
+    pwszExtensionIdentifier: ?[*:0]const u16,
     cbExtension: u32,
-    pvExtension: *c_void,
+    pvExtension: ?*c_void,
 };
 
 pub const WEBAUTHN_EXTENSIONS = extern struct {
     cExtensions: u32,
-    pExtensions: *WEBAUTHN_EXTENSION,
+    pExtensions: ?*WEBAUTHN_EXTENSION,
 };
 
 pub const WEBAUTHN_AUTHENTICATOR_MAKE_CREDENTIAL_OPTIONS = extern struct {
@@ -4225,8 +4225,8 @@ pub const WEBAUTHN_AUTHENTICATOR_MAKE_CREDENTIAL_OPTIONS = extern struct {
     dwUserVerificationRequirement: u32,
     dwAttestationConveyancePreference: u32,
     dwFlags: u32,
-    pCancellationId: *Guid,
-    pExcludeCredentialList: *WEBAUTHN_CREDENTIAL_LIST,
+    pCancellationId: ?*Guid,
+    pExcludeCredentialList: ?*WEBAUTHN_CREDENTIAL_LIST,
 };
 
 pub const WEBAUTHN_AUTHENTICATOR_GET_ASSERTION_OPTIONS = extern struct {
@@ -4237,45 +4237,45 @@ pub const WEBAUTHN_AUTHENTICATOR_GET_ASSERTION_OPTIONS = extern struct {
     dwAuthenticatorAttachment: u32,
     dwUserVerificationRequirement: u32,
     dwFlags: u32,
-    pwszU2fAppId: [*:0]const u16,
-    pbU2fAppId: *BOOL,
-    pCancellationId: *Guid,
-    pAllowCredentialList: *WEBAUTHN_CREDENTIAL_LIST,
+    pwszU2fAppId: ?[*:0]const u16,
+    pbU2fAppId: ?*BOOL,
+    pCancellationId: ?*Guid,
+    pAllowCredentialList: ?*WEBAUTHN_CREDENTIAL_LIST,
 };
 
 pub const WEBAUTHN_X5C = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const WEBAUTHN_COMMON_ATTESTATION = extern struct {
     dwVersion: u32,
-    pwszAlg: [*:0]const u16,
+    pwszAlg: ?[*:0]const u16,
     lAlg: i32,
     cbSignature: u32,
-    pbSignature: *u8,
+    pbSignature: ?*u8,
     cX5c: u32,
-    pX5c: *WEBAUTHN_X5C,
-    pwszVer: [*:0]const u16,
+    pX5c: ?*WEBAUTHN_X5C,
+    pwszVer: ?[*:0]const u16,
     cbCertInfo: u32,
-    pbCertInfo: *u8,
+    pbCertInfo: ?*u8,
     cbPubArea: u32,
-    pbPubArea: *u8,
+    pbPubArea: ?*u8,
 };
 
 pub const WEBAUTHN_CREDENTIAL_ATTESTATION = extern struct {
     dwVersion: u32,
-    pwszFormatType: [*:0]const u16,
+    pwszFormatType: ?[*:0]const u16,
     cbAuthenticatorData: u32,
-    pbAuthenticatorData: *u8,
+    pbAuthenticatorData: ?*u8,
     cbAttestation: u32,
-    pbAttestation: *u8,
+    pbAttestation: ?*u8,
     dwAttestationDecodeType: u32,
-    pvAttestationDecode: *c_void,
+    pvAttestationDecode: ?*c_void,
     cbAttestationObject: u32,
-    pbAttestationObject: *u8,
+    pbAttestationObject: ?*u8,
     cbCredentialId: u32,
-    pbCredentialId: *u8,
+    pbCredentialId: ?*u8,
     Extensions: WEBAUTHN_EXTENSIONS,
     dwUsedTransport: u32,
 };
@@ -4283,12 +4283,12 @@ pub const WEBAUTHN_CREDENTIAL_ATTESTATION = extern struct {
 pub const WEBAUTHN_ASSERTION = extern struct {
     dwVersion: u32,
     cbAuthenticatorData: u32,
-    pbAuthenticatorData: *u8,
+    pbAuthenticatorData: ?*u8,
     cbSignature: u32,
-    pbSignature: *u8,
+    pbSignature: ?*u8,
     Credential: WEBAUTHN_CREDENTIAL,
     cbUserId: u32,
-    pbUserId: *u8,
+    pbUserId: ?*u8,
 };
 
 
@@ -4297,8 +4297,8 @@ pub const WEBAUTHN_ASSERTION = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsStartReaderCanonicalization(
-    reader: *WS_XML_READER,
-    writeCallback: WS_WRITE_CALLBACK,
+    reader: ?*WS_XML_READER,
+    writeCallback: ?WS_WRITE_CALLBACK,
     writeCallbackState: ?*c_void,
     properties: ?[*]const WS_XML_CANONICALIZATION_PROPERTY,
     propertyCount: u32,
@@ -4307,14 +4307,14 @@ pub extern "webservices" fn WsStartReaderCanonicalization(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEndReaderCanonicalization(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsStartWriterCanonicalization(
-    writer: *WS_XML_WRITER,
-    writeCallback: WS_WRITE_CALLBACK,
+    writer: ?*WS_XML_WRITER,
+    writeCallback: ?WS_WRITE_CALLBACK,
     writeCallbackState: ?*c_void,
     properties: ?[*]const WS_XML_CANONICALIZATION_PROPERTY,
     propertyCount: u32,
@@ -4323,22 +4323,22 @@ pub extern "webservices" fn WsStartWriterCanonicalization(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEndWriterCanonicalization(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateXmlBuffer(
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     properties: ?[*]const WS_XML_BUFFER_PROPERTY,
     propertyCount: u32,
-    buffer: **WS_XML_BUFFER,
+    buffer: ?*?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveNode(
-    nodePosition: *const WS_XML_NODE_POSITION,
+    nodePosition: ?*const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4346,13 +4346,13 @@ pub extern "webservices" fn WsRemoveNode(
 pub extern "webservices" fn WsCreateReader(
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
-    reader: **WS_XML_READER,
+    reader: ?*?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetInput(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     encoding: ?*const WS_XML_READER_ENCODING,
     input: ?*const WS_XML_READER_INPUT,
     properties: ?[*]const WS_XML_READER_PROPERTY,
@@ -4362,8 +4362,8 @@ pub extern "webservices" fn WsSetInput(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetInputToBuffer(
-    reader: *WS_XML_READER,
-    buffer: *WS_XML_BUFFER,
+    reader: ?*WS_XML_READER,
+    buffer: ?*WS_XML_BUFFER,
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
     @"error": ?*WS_ERROR,
@@ -4371,29 +4371,29 @@ pub extern "webservices" fn WsSetInputToBuffer(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeReader(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderProperty(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     id: WS_XML_READER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderNode(
-    xmlReader: *WS_XML_READER,
-    node: *const *WS_XML_NODE,
+    xmlReader: ?*WS_XML_READER,
+    node: ?*const ?*WS_XML_NODE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFillReader(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     minSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -4401,13 +4401,13 @@ pub extern "webservices" fn WsFillReader(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadStartElement(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadToStartElement(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     localName: ?*const WS_XML_STRING,
     ns: ?*const WS_XML_STRING,
     found: ?*BOOL,
@@ -4416,115 +4416,115 @@ pub extern "webservices" fn WsReadToStartElement(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadStartAttribute(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     attributeIndex: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndAttribute(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadNode(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSkipNode(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndElement(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFindAttribute(
-    reader: *WS_XML_READER,
-    localName: *const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    reader: ?*WS_XML_READER,
+    localName: ?*const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     required: BOOL,
-    attributeIndex: *u32,
+    attributeIndex: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadValue(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     valueType: WS_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadChars(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     chars: [*:0]u16,
     maxCharCount: u32,
-    actualCharCount: *u32,
+    actualCharCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadCharsUtf8(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     bytes: [*:0]u8,
     maxByteCount: u32,
-    actualByteCount: *u32,
+    actualByteCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBytes(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     // TODO: what to do with BytesParamIndex 2?
-    bytes: *c_void,
+    bytes: ?*c_void,
     maxByteCount: u32,
-    actualByteCount: *u32,
+    actualByteCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadArray(
-    reader: *WS_XML_READER,
-    localName: *const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    reader: ?*WS_XML_READER,
+    localName: ?*const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 5?
     array: ?*c_void,
     arraySize: u32,
     itemOffset: u32,
     itemCount: u32,
-    actualItemCount: *u32,
+    actualItemCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderPosition(
-    reader: *WS_XML_READER,
-    nodePosition: *WS_XML_NODE_POSITION,
+    reader: ?*WS_XML_READER,
+    nodePosition: ?*WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetReaderPosition(
-    reader: *WS_XML_READER,
-    nodePosition: *const WS_XML_NODE_POSITION,
+    reader: ?*WS_XML_READER,
+    nodePosition: ?*const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMoveReader(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     moveTo: WS_MOVE_TO,
     found: ?*BOOL,
     @"error": ?*WS_ERROR,
@@ -4534,18 +4534,18 @@ pub extern "webservices" fn WsMoveReader(
 pub extern "webservices" fn WsCreateWriter(
     properties: ?[*]const WS_XML_WRITER_PROPERTY,
     propertyCount: u32,
-    writer: **WS_XML_WRITER,
+    writer: ?*?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeWriter(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetOutput(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     encoding: ?*const WS_XML_WRITER_ENCODING,
     output: ?*const WS_XML_WRITER_OUTPUT,
     properties: ?[*]const WS_XML_WRITER_PROPERTY,
@@ -4555,8 +4555,8 @@ pub extern "webservices" fn WsSetOutput(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetOutputToBuffer(
-    writer: *WS_XML_WRITER,
-    buffer: *WS_XML_BUFFER,
+    writer: ?*WS_XML_WRITER,
+    buffer: ?*WS_XML_BUFFER,
     properties: ?[*]const WS_XML_WRITER_PROPERTY,
     propertyCount: u32,
     @"error": ?*WS_ERROR,
@@ -4564,17 +4564,17 @@ pub extern "webservices" fn WsSetOutputToBuffer(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetWriterProperty(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     id: WS_XML_WRITER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFlushWriter(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     minSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -4582,101 +4582,101 @@ pub extern "webservices" fn WsFlushWriter(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartElement(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
-    localName: *const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    localName: ?*const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndStartElement(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlnsAttribute(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     singleQuote: BOOL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartAttribute(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
-    localName: *const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    localName: ?*const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     singleQuote: BOOL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndAttribute(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteValue(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     valueType: WS_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlBuffer(
-    writer: *WS_XML_WRITER,
-    xmlBuffer: *WS_XML_BUFFER,
+    writer: ?*WS_XML_WRITER,
+    xmlBuffer: ?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadXmlBuffer(
-    reader: *WS_XML_READER,
-    heap: *WS_HEAP,
-    xmlBuffer: **WS_XML_BUFFER,
+    reader: ?*WS_XML_READER,
+    heap: ?*WS_HEAP,
+    xmlBuffer: ?*?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlBufferToBytes(
-    writer: *WS_XML_WRITER,
-    xmlBuffer: *WS_XML_BUFFER,
+    writer: ?*WS_XML_WRITER,
+    xmlBuffer: ?*WS_XML_BUFFER,
     encoding: ?*const WS_XML_WRITER_ENCODING,
     properties: ?[*]const WS_XML_WRITER_PROPERTY,
     propertyCount: u32,
-    heap: *WS_HEAP,
-    bytes: **c_void,
-    byteCount: *u32,
+    heap: ?*WS_HEAP,
+    bytes: ?*?*c_void,
+    byteCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadXmlBufferFromBytes(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     encoding: ?*const WS_XML_READER_ENCODING,
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
     // TODO: what to do with BytesParamIndex 5?
-    bytes: *const c_void,
+    bytes: ?*const c_void,
     byteCount: u32,
-    heap: *WS_HEAP,
-    xmlBuffer: **WS_XML_BUFFER,
+    heap: ?*WS_HEAP,
+    xmlBuffer: ?*?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteArray(
-    writer: *WS_XML_WRITER,
-    localName: *const WS_XML_STRING,
-    ns: *const WS_XML_STRING,
+    writer: ?*WS_XML_WRITER,
+    localName: ?*const WS_XML_STRING,
+    ns: ?*const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 5?
     array: ?*const c_void,
@@ -4688,16 +4688,16 @@ pub extern "webservices" fn WsWriteArray(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteQualifiedName(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
-    localName: *const WS_XML_STRING,
+    localName: ?*const WS_XML_STRING,
     ns: ?*const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteChars(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     chars: [*:0]const u16,
     charCount: u32,
     @"error": ?*WS_ERROR,
@@ -4705,7 +4705,7 @@ pub extern "webservices" fn WsWriteChars(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteCharsUtf8(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     bytes: [*:0]const u8,
     byteCount: u32,
     @"error": ?*WS_ERROR,
@@ -4713,87 +4713,87 @@ pub extern "webservices" fn WsWriteCharsUtf8(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBytes(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     // TODO: what to do with BytesParamIndex 2?
-    bytes: *const c_void,
+    bytes: ?*const c_void,
     byteCount: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsPushBytes(
-    writer: *WS_XML_WRITER,
-    callback: WS_PUSH_BYTES_CALLBACK,
+    writer: ?*WS_XML_WRITER,
+    callback: ?WS_PUSH_BYTES_CALLBACK,
     callbackState: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsPullBytes(
-    writer: *WS_XML_WRITER,
-    callback: WS_PULL_BYTES_CALLBACK,
+    writer: ?*WS_XML_WRITER,
+    callback: ?WS_PULL_BYTES_CALLBACK,
     callbackState: ?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndElement(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteText(
-    writer: *WS_XML_WRITER,
-    text: *const WS_XML_TEXT,
+    writer: ?*WS_XML_WRITER,
+    text: ?*const WS_XML_TEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartCData(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndCData(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteNode(
-    writer: *WS_XML_WRITER,
-    node: *const WS_XML_NODE,
+    writer: ?*WS_XML_WRITER,
+    node: ?*const WS_XML_NODE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPrefixFromNamespace(
-    writer: *WS_XML_WRITER,
-    ns: *const WS_XML_STRING,
+    writer: ?*WS_XML_WRITER,
+    ns: ?*const WS_XML_STRING,
     required: BOOL,
-    prefix: *const *WS_XML_STRING,
+    prefix: ?*const ?*WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetWriterPosition(
-    writer: *WS_XML_WRITER,
-    nodePosition: *WS_XML_NODE_POSITION,
+    writer: ?*WS_XML_WRITER,
+    nodePosition: ?*WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetWriterPosition(
-    writer: *WS_XML_WRITER,
-    nodePosition: *const WS_XML_NODE_POSITION,
+    writer: ?*WS_XML_WRITER,
+    nodePosition: ?*const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMoveWriter(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     moveTo: WS_MOVE_TO,
     found: ?*BOOL,
     @"error": ?*WS_ERROR,
@@ -4803,8 +4803,8 @@ pub extern "webservices" fn WsMoveWriter(
 pub extern "webservices" fn WsTrimXmlWhitespace(
     chars: [*:0]u16,
     charCount: u32,
-    trimmedChars: **u16,
-    trimmedCount: *u32,
+    trimmedChars: ?*?*u16,
+    trimmedCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4817,51 +4817,51 @@ pub extern "webservices" fn WsVerifyXmlNCName(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsXmlStringEquals(
-    string1: *const WS_XML_STRING,
-    string2: *const WS_XML_STRING,
+    string1: ?*const WS_XML_STRING,
+    string2: ?*const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetNamespaceFromPrefix(
-    reader: *WS_XML_READER,
-    prefix: *const WS_XML_STRING,
+    reader: ?*WS_XML_READER,
+    prefix: ?*const WS_XML_STRING,
     required: BOOL,
-    ns: *const *WS_XML_STRING,
+    ns: ?*const ?*WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadQualifiedName(
-    reader: *WS_XML_READER,
-    heap: *WS_HEAP,
+    reader: ?*WS_XML_READER,
+    heap: ?*WS_HEAP,
     prefix: ?*WS_XML_STRING,
-    localName: *WS_XML_STRING,
+    localName: ?*WS_XML_STRING,
     ns: ?*WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetXmlAttribute(
-    reader: *WS_XML_READER,
-    localName: *const WS_XML_STRING,
-    heap: *WS_HEAP,
-    valueChars: ?**u16,
-    valueCharCount: *u32,
+    reader: ?*WS_XML_READER,
+    localName: ?*const WS_XML_STRING,
+    heap: ?*WS_HEAP,
+    valueChars: ?*?*u16,
+    valueCharCount: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCopyNode(
-    writer: *WS_XML_WRITER,
-    reader: *WS_XML_READER,
+    writer: ?*WS_XML_WRITER,
+    reader: ?*WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAsyncExecute(
-    asyncState: *WS_ASYNC_STATE,
-    operation: WS_ASYNC_FUNCTION,
+    asyncState: ?*WS_ASYNC_STATE,
+    operation: ?WS_ASYNC_FUNCTION,
     callbackModel: WS_CALLBACK_MODEL,
     callbackState: ?*c_void,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -4875,23 +4875,23 @@ pub extern "webservices" fn WsCreateChannel(
     properties: ?[*]const WS_CHANNEL_PROPERTY,
     propertyCount: u32,
     securityDescription: ?*const WS_SECURITY_DESCRIPTION,
-    channel: **WS_CHANNEL,
+    channel: ?*?*WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenChannel(
-    channel: *WS_CHANNEL,
-    endpointAddress: *const WS_ENDPOINT_ADDRESS,
+    channel: ?*WS_CHANNEL,
+    endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendMessage(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
-    messageDescription: *const WS_MESSAGE_DESCRIPTION,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
+    messageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 5?
     bodyValue: ?*const c_void,
@@ -4902,15 +4902,15 @@ pub extern "webservices" fn WsSendMessage(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReceiveMessage(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
-    messageDescriptions: [*]const *const WS_MESSAGE_DESCRIPTION,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
+    messageDescriptions: [*]const ?*const WS_MESSAGE_DESCRIPTION,
     messageDescriptionCount: u32,
     receiveOption: WS_RECEIVE_OPTION,
     readBodyOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 8?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     index: ?*u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -4919,15 +4919,15 @@ pub extern "webservices" fn WsReceiveMessage(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRequestReply(
-    channel: *WS_CHANNEL,
-    requestMessage: *WS_MESSAGE,
-    requestMessageDescription: *const WS_MESSAGE_DESCRIPTION,
+    channel: ?*WS_CHANNEL,
+    requestMessage: ?*WS_MESSAGE,
+    requestMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 5?
     requestBodyValue: ?*const c_void,
     requestBodyValueSize: u32,
-    replyMessage: *WS_MESSAGE,
-    replyMessageDescription: *const WS_MESSAGE_DESCRIPTION,
+    replyMessage: ?*WS_MESSAGE,
+    replyMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 11?
@@ -4939,126 +4939,126 @@ pub extern "webservices" fn WsRequestReply(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendReplyMessage(
-    channel: *WS_CHANNEL,
-    replyMessage: *WS_MESSAGE,
-    replyMessageDescription: *const WS_MESSAGE_DESCRIPTION,
+    channel: ?*WS_CHANNEL,
+    replyMessage: ?*WS_MESSAGE,
+    replyMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 5?
     replyBodyValue: ?*const c_void,
     replyBodyValueSize: u32,
-    requestMessage: *WS_MESSAGE,
+    requestMessage: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendFaultMessageForError(
-    channel: *WS_CHANNEL,
-    replyMessage: *WS_MESSAGE,
-    faultError: *WS_ERROR,
+    channel: ?*WS_CHANNEL,
+    replyMessage: ?*WS_MESSAGE,
+    faultError: ?*WS_ERROR,
     faultErrorCode: HRESULT,
     faultDisclosure: WS_FAULT_DISCLOSURE,
-    requestMessage: *WS_MESSAGE,
+    requestMessage: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetChannelProperty(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetChannelProperty(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteMessageStart(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteMessageEnd(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMessageStart(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMessageEnd(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbandonMessage(
-    channel: *WS_CHANNEL,
-    message: *WS_MESSAGE,
+    channel: ?*WS_CHANNEL,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsShutdownSessionChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetOperationContextProperty(
-    context: *const WS_OPERATION_CONTEXT,
+    context: ?*const WS_OPERATION_CONTEXT,
     id: WS_OPERATION_CONTEXT_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5066,19 +5066,19 @@ pub extern "webservices" fn WsGetOperationContextProperty(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetDictionary(
     encoding: WS_ENCODING,
-    dictionary: ?**WS_XML_DICTIONARY,
+    dictionary: ?*?*WS_XML_DICTIONARY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndpointAddressExtension(
-    reader: *WS_XML_READER,
-    endpointAddress: *WS_ENDPOINT_ADDRESS,
+    reader: ?*WS_XML_READER,
+    endpointAddress: ?*WS_ENDPOINT_ADDRESS,
     extensionType: WS_ENDPOINT_ADDRESS_EXTENSION_TYPE,
     readOption: WS_READ_OPTION,
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 6?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5087,87 +5087,87 @@ pub extern "webservices" fn WsReadEndpointAddressExtension(
 pub extern "webservices" fn WsCreateError(
     properties: ?[*]const WS_ERROR_PROPERTY,
     propertyCount: u32,
-    @"error": **WS_ERROR,
+    @"error": ?*?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddErrorString(
-    @"error": *WS_ERROR,
-    string: *const WS_STRING,
+    @"error": ?*WS_ERROR,
+    string: ?*const WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetErrorString(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     index: u32,
-    string: *WS_STRING,
+    string: ?*WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCopyError(
-    source: *WS_ERROR,
-    destination: *WS_ERROR,
+    source: ?*WS_ERROR,
+    destination: ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetErrorProperty(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    buffer: *c_void,
+    buffer: ?*c_void,
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetErrorProperty(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetError(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeError(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetFaultErrorProperty(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    buffer: *c_void,
+    buffer: ?*c_void,
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetFaultErrorProperty(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateFaultFromError(
-    @"error": *WS_ERROR,
+    @"error": ?*WS_ERROR,
     faultErrorCode: HRESULT,
     faultDisclosure: WS_FAULT_DISCLOSURE,
-    heap: *WS_HEAP,
-    fault: *WS_FAULT,
+    heap: ?*WS_HEAP,
+    fault: ?*WS_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetFaultErrorDetail(
-    @"error": *WS_ERROR,
-    faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
+    @"error": ?*WS_ERROR,
+    faultDetailDescription: ?*const WS_FAULT_DETAIL_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 4?
     value: ?*const c_void,
@@ -5176,12 +5176,12 @@ pub extern "webservices" fn WsSetFaultErrorDetail(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetFaultErrorDetail(
-    @"error": *WS_ERROR,
-    faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
+    @"error": ?*WS_ERROR,
+    faultDetailDescription: ?*const WS_FAULT_DETAIL_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 5?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5191,37 +5191,37 @@ pub extern "webservices" fn WsCreateHeap(
     trimSize: usize,
     properties: ?*const WS_HEAP_PROPERTY,
     propertyCount: u32,
-    heap: **WS_HEAP,
+    heap: ?*?*WS_HEAP,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAlloc(
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     size: usize,
-    ptr: **c_void,
+    ptr: ?*?*c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeapProperty(
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     id: WS_HEAP_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetHeap(
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeHeap(
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -5231,76 +5231,76 @@ pub extern "webservices" fn WsCreateListener(
     properties: ?[*]const WS_LISTENER_PROPERTY,
     propertyCount: u32,
     securityDescription: ?*const WS_SECURITY_DESCRIPTION,
-    listener: **WS_LISTENER,
+    listener: ?*?*WS_LISTENER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenListener(
-    listener: *WS_LISTENER,
-    url: *const WS_STRING,
+    listener: ?*WS_LISTENER,
+    url: ?*const WS_STRING,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAcceptChannel(
-    listener: *WS_LISTENER,
-    channel: *WS_CHANNEL,
+    listener: ?*WS_LISTENER,
+    channel: ?*WS_CHANNEL,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseListener(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortListener(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetListener(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeListener(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetListenerProperty(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetListenerProperty(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateChannelForListener(
-    listener: *WS_LISTENER,
+    listener: ?*WS_LISTENER,
     properties: ?[*]const WS_CHANNEL_PROPERTY,
     propertyCount: u32,
-    channel: **WS_CHANNEL,
+    channel: ?*?*WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5310,22 +5310,22 @@ pub extern "webservices" fn WsCreateMessage(
     addressingVersion: WS_ADDRESSING_VERSION,
     properties: ?[*]const WS_MESSAGE_PROPERTY,
     propertyCount: u32,
-    message: **WS_MESSAGE,
+    message: ?*?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateMessageForChannel(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     properties: ?[*]const WS_MESSAGE_PROPERTY,
     propertyCount: u32,
-    message: **WS_MESSAGE,
+    message: ?*?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsInitializeMessage(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     initialization: WS_MESSAGE_INITIALIZATION,
     sourceMessage: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
@@ -5333,46 +5333,46 @@ pub extern "webservices" fn WsInitializeMessage(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetMessage(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeMessage(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeaderAttributes(
-    message: *WS_MESSAGE,
-    reader: *WS_XML_READER,
-    headerAttributes: *u32,
+    message: ?*WS_MESSAGE,
+    reader: ?*WS_XML_READER,
+    headerAttributes: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeader(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 6?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetCustomHeader(
-    message: *WS_MESSAGE,
-    customHeaderDescription: *const WS_ELEMENT_DESCRIPTION,
+    message: ?*WS_MESSAGE,
+    customHeaderDescription: ?*const WS_ELEMENT_DESCRIPTION,
     repeatingOption: WS_REPEATING_HEADER_OPTION,
     headerIndex: u32,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 7?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     headerAttributes: ?*u32,
     @"error": ?*WS_ERROR,
@@ -5380,38 +5380,38 @@ pub extern "webservices" fn WsGetCustomHeader(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveHeader(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetHeader(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 5?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveCustomHeader(
-    message: *WS_MESSAGE,
-    headerName: *const WS_XML_STRING,
-    headerNs: *const WS_XML_STRING,
+    message: ?*WS_MESSAGE,
+    headerName: ?*const WS_XML_STRING,
+    headerNs: ?*const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddCustomHeader(
-    message: *WS_MESSAGE,
-    headerDescription: *const WS_ELEMENT_DESCRIPTION,
+    message: ?*WS_MESSAGE,
+    headerDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 4?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     headerAttributes: u32,
     @"error": ?*WS_ERROR,
@@ -5419,65 +5419,65 @@ pub extern "webservices" fn WsAddCustomHeader(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddMappedHeader(
-    message: *WS_MESSAGE,
-    headerName: *const WS_XML_STRING,
+    message: ?*WS_MESSAGE,
+    headerName: ?*const WS_XML_STRING,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 5?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveMappedHeader(
-    message: *WS_MESSAGE,
-    headerName: *const WS_XML_STRING,
+    message: ?*WS_MESSAGE,
+    headerName: ?*const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMappedHeader(
-    message: *WS_MESSAGE,
-    headerName: *const WS_XML_STRING,
+    message: ?*WS_MESSAGE,
+    headerName: ?*const WS_XML_STRING,
     repeatingOption: WS_REPEATING_HEADER_OPTION,
     headerIndex: u32,
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 8?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBody(
-    message: *WS_MESSAGE,
-    bodyDescription: *const WS_ELEMENT_DESCRIPTION,
+    message: ?*WS_MESSAGE,
+    bodyDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 4?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBody(
-    message: *WS_MESSAGE,
-    bodyDescription: *const WS_ELEMENT_DESCRIPTION,
+    message: ?*WS_MESSAGE,
+    bodyDescription: ?*const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 5?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEnvelopeStart(
-    message: *WS_MESSAGE,
-    writer: *WS_XML_WRITER,
+    message: ?*WS_MESSAGE,
+    writer: ?*WS_XML_WRITER,
     doneCallback: ?WS_MESSAGE_DONE_CALLBACK,
     doneCallbackState: ?*c_void,
     @"error": ?*WS_ERROR,
@@ -5485,14 +5485,14 @@ pub extern "webservices" fn WsWriteEnvelopeStart(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEnvelopeEnd(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEnvelopeStart(
-    message: *WS_MESSAGE,
-    reader: *WS_XML_READER,
+    message: ?*WS_MESSAGE,
+    reader: ?*WS_XML_READER,
     doneCallback: ?WS_MESSAGE_DONE_CALLBACK,
     doneCallbackState: ?*c_void,
     @"error": ?*WS_ERROR,
@@ -5500,53 +5500,53 @@ pub extern "webservices" fn WsReadEnvelopeStart(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEnvelopeEnd(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMessageProperty(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetMessageProperty(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *const c_void,
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddressMessage(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     address: ?*const WS_ENDPOINT_ADDRESS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCheckMustUnderstandHeaders(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMarkHeaderAsUnderstood(
-    message: *WS_MESSAGE,
-    headerPosition: *const WS_XML_NODE_POSITION,
+    message: ?*WS_MESSAGE,
+    headerPosition: ?*const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFillBody(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     minSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -5554,7 +5554,7 @@ pub extern "webservices" fn WsFillBody(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFlushBody(
-    message: *WS_MESSAGE,
+    message: ?*WS_MESSAGE,
     minSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -5562,20 +5562,20 @@ pub extern "webservices" fn WsFlushBody(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRequestSecurityToken(
-    channel: *WS_CHANNEL,
+    channel: ?*WS_CHANNEL,
     properties: ?[*]const WS_REQUEST_SECURITY_TOKEN_PROPERTY,
     propertyCount: u32,
-    token: **WS_SECURITY_TOKEN,
+    token: ?*?*WS_SECURITY_TOKEN,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetSecurityTokenProperty(
-    securityToken: *WS_SECURITY_TOKEN,
+    securityToken: ?*WS_SECURITY_TOKEN,
     id: WS_SECURITY_TOKEN_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     heap: ?*WS_HEAP,
     @"error": ?*WS_ERROR,
@@ -5587,73 +5587,73 @@ pub extern "webservices" fn WsCreateXmlSecurityToken(
     tokenKey: ?*WS_SECURITY_KEY_HANDLE,
     properties: ?[*]const WS_XML_SECURITY_TOKEN_PROPERTY,
     propertyCount: u32,
-    token: **WS_SECURITY_TOKEN,
+    token: ?*?*WS_SECURITY_TOKEN,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeSecurityToken(
-    token: *WS_SECURITY_TOKEN,
+    token: ?*WS_SECURITY_TOKEN,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRevokeSecurityContext(
-    securityContext: *WS_SECURITY_CONTEXT,
+    securityContext: ?*WS_SECURITY_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetSecurityContextProperty(
-    securityContext: *WS_SECURITY_CONTEXT,
+    securityContext: ?*WS_SECURITY_CONTEXT,
     id: WS_SECURITY_CONTEXT_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadElement(
-    reader: *WS_XML_READER,
-    elementDescription: *const WS_ELEMENT_DESCRIPTION,
+    reader: ?*WS_XML_READER,
+    elementDescription: ?*const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 5?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadAttribute(
-    reader: *WS_XML_READER,
-    attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
+    reader: ?*WS_XML_READER,
+    attributeDescription: ?*const WS_ATTRIBUTE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 5?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadType(
-    reader: *WS_XML_READER,
+    reader: ?*WS_XML_READER,
     typeMapping: WS_TYPE_MAPPING,
     type: WS_TYPE,
     typeDescription: ?*const c_void,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
     // TODO: what to do with BytesParamIndex 7?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteElement(
-    writer: *WS_XML_WRITER,
-    elementDescription: *const WS_ELEMENT_DESCRIPTION,
+    writer: ?*WS_XML_WRITER,
+    elementDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 4?
     value: ?*const c_void,
@@ -5663,8 +5663,8 @@ pub extern "webservices" fn WsWriteElement(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteAttribute(
-    writer: *WS_XML_WRITER,
-    attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
+    writer: ?*WS_XML_WRITER,
+    attributeDescription: ?*const WS_ATTRIBUTE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
     // TODO: what to do with BytesParamIndex 4?
     value: ?*const c_void,
@@ -5674,7 +5674,7 @@ pub extern "webservices" fn WsWriteAttribute(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteType(
-    writer: *WS_XML_WRITER,
+    writer: ?*WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
     type: WS_TYPE,
     typeDescription: ?*const c_void,
@@ -5687,8 +5687,8 @@ pub extern "webservices" fn WsWriteType(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRegisterOperationForCancel(
-    context: *const WS_OPERATION_CONTEXT,
-    cancelCallback: WS_OPERATION_CANCEL_CALLBACK,
+    context: ?*const WS_OPERATION_CONTEXT,
+    cancelCallback: ?WS_OPERATION_CANCEL_CALLBACK,
     freestateCallback: ?WS_OPERATION_FREE_STATE_CALLBACK,
     userState: ?*c_void,
     @"error": ?*WS_ERROR,
@@ -5696,61 +5696,61 @@ pub extern "webservices" fn WsRegisterOperationForCancel(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetServiceHostProperty(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
     id: WS_SERVICE_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceHost(
-    endpoints: ?[*]const *const WS_SERVICE_ENDPOINT,
+    endpoints: ?[*]const ?*const WS_SERVICE_ENDPOINT,
     endpointCount: u16,
     serviceProperties: ?[*]const WS_SERVICE_PROPERTY,
     servicePropertyCount: u32,
-    serviceHost: **WS_SERVICE_HOST,
+    serviceHost: ?*?*WS_SERVICE_HOST,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenServiceHost(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseServiceHost(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortServiceHost(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeServiceHost(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetServiceHost(
-    serviceHost: *WS_SERVICE_HOST,
+    serviceHost: ?*WS_SERVICE_HOST,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetServiceProxyProperty(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
     id: WS_PROXY_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5764,55 +5764,55 @@ pub extern "webservices" fn WsCreateServiceProxy(
     propertyCount: u32,
     channelProperties: ?[*]const WS_CHANNEL_PROPERTY,
     channelPropertyCount: u32,
-    serviceProxy: **WS_SERVICE_PROXY,
+    serviceProxy: ?*?*WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenServiceProxy(
-    serviceProxy: *WS_SERVICE_PROXY,
-    address: *const WS_ENDPOINT_ADDRESS,
+    serviceProxy: ?*WS_SERVICE_PROXY,
+    address: ?*const WS_ENDPOINT_ADDRESS,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseServiceProxy(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortServiceProxy(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeServiceProxy(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetServiceProxy(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbandonCall(
-    serviceProxy: *WS_SERVICE_PROXY,
+    serviceProxy: ?*WS_SERVICE_PROXY,
     callId: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCall(
-    serviceProxy: *WS_SERVICE_PROXY,
-    operation: *const WS_OPERATION_DESCRIPTION,
-    arguments: ?*const *c_void,
-    heap: *WS_HEAP,
+    serviceProxy: ?*WS_SERVICE_PROXY,
+    operation: ?*const WS_OPERATION_DESCRIPTION,
+    arguments: ?*const ?*c_void,
+    heap: ?*WS_HEAP,
     callProperties: ?[*]const WS_CALL_PROPERTY,
     callPropertyCount: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -5821,43 +5821,43 @@ pub extern "webservices" fn WsCall(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsDecodeUrl(
-    url: *const WS_STRING,
+    url: ?*const WS_STRING,
     flags: u32,
-    heap: *WS_HEAP,
-    outUrl: **WS_URL,
+    heap: ?*WS_HEAP,
+    outUrl: ?*?*WS_URL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEncodeUrl(
-    url: *const WS_URL,
+    url: ?*const WS_URL,
     flags: u32,
-    heap: *WS_HEAP,
-    outUrl: *WS_STRING,
+    heap: ?*WS_HEAP,
+    outUrl: ?*WS_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCombineUrl(
-    baseUrl: *const WS_STRING,
-    referenceUrl: *const WS_STRING,
+    baseUrl: ?*const WS_STRING,
+    referenceUrl: ?*const WS_STRING,
     flags: u32,
-    heap: *WS_HEAP,
-    resultUrl: *WS_STRING,
+    heap: ?*WS_HEAP,
+    resultUrl: ?*WS_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsDateTimeToFileTime(
-    dateTime: *const WS_DATETIME,
-    fileTime: *FILETIME,
+    dateTime: ?*const WS_DATETIME,
+    fileTime: ?*FILETIME,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFileTimeToDateTime(
-    fileTime: *const FILETIME,
-    dateTime: *WS_DATETIME,
+    fileTime: ?*const FILETIME,
+    dateTime: ?*WS_DATETIME,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5865,77 +5865,77 @@ pub extern "webservices" fn WsFileTimeToDateTime(
 pub extern "webservices" fn WsCreateMetadata(
     properties: ?[*]const WS_METADATA_PROPERTY,
     propertyCount: u32,
-    metadata: **WS_METADATA,
+    metadata: ?*?*WS_METADATA,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMetadata(
-    metadata: *WS_METADATA,
-    reader: *WS_XML_READER,
-    url: *const WS_STRING,
+    metadata: ?*WS_METADATA,
+    reader: ?*WS_XML_READER,
+    url: ?*const WS_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeMetadata(
-    metadata: *WS_METADATA,
+    metadata: ?*WS_METADATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetMetadata(
-    metadata: *WS_METADATA,
+    metadata: ?*WS_METADATA,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMetadataProperty(
-    metadata: *WS_METADATA,
+    metadata: ?*WS_METADATA,
     id: WS_METADATA_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMissingMetadataDocumentAddress(
-    metadata: *WS_METADATA,
-    address: ?**WS_ENDPOINT_ADDRESS,
+    metadata: ?*WS_METADATA,
+    address: ?*?*WS_ENDPOINT_ADDRESS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMetadataEndpoints(
-    metadata: *WS_METADATA,
-    endpoints: *WS_METADATA_ENDPOINTS,
+    metadata: ?*WS_METADATA,
+    endpoints: ?*WS_METADATA_ENDPOINTS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMatchPolicyAlternative(
-    policy: *WS_POLICY,
+    policy: ?*WS_POLICY,
     alternativeIndex: u32,
-    policyConstraints: *WS_POLICY_CONSTRAINTS,
+    policyConstraints: ?*WS_POLICY_CONSTRAINTS,
     matchRequired: BOOL,
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPolicyProperty(
-    policy: *WS_POLICY,
+    policy: ?*WS_POLICY,
     id: WS_POLICY_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
-    value: *c_void,
+    value: ?*c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPolicyAlternativeCount(
-    policy: *WS_POLICY,
-    count: *u32,
+    policy: ?*WS_POLICY,
+    count: ?*u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5948,9 +5948,9 @@ pub extern "webservices" fn WsCreateServiceProxyFromTemplate(
     // TODO: what to do with BytesParamIndex 5?
     templateValue: ?*c_void,
     templateSize: u32,
-    templateDescription: *const c_void,
+    templateDescription: ?*const c_void,
     templateDescriptionSize: u32,
-    serviceProxy: **WS_SERVICE_PROXY,
+    serviceProxy: ?*?*WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5960,16 +5960,16 @@ pub extern "webservices" fn WsCreateServiceEndpointFromTemplate(
     properties: ?[*]const WS_SERVICE_ENDPOINT_PROPERTY,
     propertyCount: u32,
     addressUrl: ?*const WS_STRING,
-    contract: *const WS_SERVICE_CONTRACT,
+    contract: ?*const WS_SERVICE_CONTRACT,
     authorizationCallback: ?WS_SERVICE_SECURITY_CALLBACK,
-    heap: *WS_HEAP,
+    heap: ?*WS_HEAP,
     templateType: WS_BINDING_TEMPLATE_TYPE,
     // TODO: what to do with BytesParamIndex 9?
     templateValue: ?*c_void,
     templateSize: u32,
-    templateDescription: *const c_void,
+    templateDescription: ?*const c_void,
     templateDescriptionSize: u32,
-    serviceEndpoint: **WS_SERVICE_ENDPOINT,
+    serviceEndpoint: ?*?*WS_SERVICE_ENDPOINT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5977,25 +5977,25 @@ pub extern "webauthn" fn WebAuthNGetApiVersionNumber(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "webauthn" fn WebAuthNIsUserVerifyingPlatformAuthenticatorAvailable(
-    pbIsUserVerifyingPlatformAuthenticatorAvailable: *BOOL,
+    pbIsUserVerifyingPlatformAuthenticatorAvailable: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNAuthenticatorMakeCredential(
-    hWnd: HWND,
-    pRpInformation: *WEBAUTHN_RP_ENTITY_INFORMATION,
-    pUserInformation: *WEBAUTHN_USER_ENTITY_INFORMATION,
-    pPubKeyCredParams: *WEBAUTHN_COSE_CREDENTIAL_PARAMETERS,
-    pWebAuthNClientData: *WEBAUTHN_CLIENT_DATA,
+    hWnd: ?HWND,
+    pRpInformation: ?*WEBAUTHN_RP_ENTITY_INFORMATION,
+    pUserInformation: ?*WEBAUTHN_USER_ENTITY_INFORMATION,
+    pPubKeyCredParams: ?*WEBAUTHN_COSE_CREDENTIAL_PARAMETERS,
+    pWebAuthNClientData: ?*WEBAUTHN_CLIENT_DATA,
     pWebAuthNMakeCredentialOptions: ?*WEBAUTHN_AUTHENTICATOR_MAKE_CREDENTIAL_OPTIONS,
-    ppWebAuthNCredentialAttestation: ?**WEBAUTHN_CREDENTIAL_ATTESTATION,
+    ppWebAuthNCredentialAttestation: ?*?*WEBAUTHN_CREDENTIAL_ATTESTATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNAuthenticatorGetAssertion(
-    hWnd: HWND,
-    pwszRpId: [*:0]const u16,
-    pWebAuthNClientData: *WEBAUTHN_CLIENT_DATA,
+    hWnd: ?HWND,
+    pwszRpId: ?[*:0]const u16,
+    pWebAuthNClientData: ?*WEBAUTHN_CLIENT_DATA,
     pWebAuthNGetAssertionOptions: ?*WEBAUTHN_AUTHENTICATOR_GET_ASSERTION_OPTIONS,
-    ppWebAuthNAssertion: ?**WEBAUTHN_ASSERTION,
+    ppWebAuthNAssertion: ?*?*WEBAUTHN_ASSERTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNFreeCredentialAttestation(
@@ -6003,20 +6003,20 @@ pub extern "webauthn" fn WebAuthNFreeCredentialAttestation(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "webauthn" fn WebAuthNFreeAssertion(
-    pWebAuthNAssertion: *WEBAUTHN_ASSERTION,
+    pWebAuthNAssertion: ?*WEBAUTHN_ASSERTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "webauthn" fn WebAuthNGetCancellationId(
-    pCancellationId: *Guid,
+    pCancellationId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNCancelCurrentOperation(
-    pCancellationId: *const Guid,
+    pCancellationId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNGetErrorName(
     hr: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) PWSTR;
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 pub extern "webauthn" fn WebAuthNGetW3CExceptionDOMError(
     hr: HRESULT,

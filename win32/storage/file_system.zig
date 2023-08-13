@@ -561,16 +561,16 @@ pub const OFSTRUCT = extern struct {
 
 pub const PFE_EXPORT_FUNC = fn(
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *u8,
+    pbData: ?*u8,
     pvCallbackContext: ?*c_void,
     ulLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFE_IMPORT_FUNC = fn(
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *u8,
+    pbData: ?*u8,
     pvCallbackContext: ?*c_void,
-    ulLength: *u32,
+    ulLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WIN32_STREAM_ID = extern struct {
@@ -588,8 +588,8 @@ pub const LPPROGRESS_ROUTINE = fn(
     StreamBytesTransferred: LARGE_INTEGER,
     dwStreamNumber: u32,
     dwCallbackReason: LPPROGRESS_ROUTINE_CALLBACK_REASON,
-    hSourceFile: HANDLE,
-    hDestinationFile: HANDLE,
+    hSourceFile: ?HANDLE,
+    hDestinationFile: ?HANDLE,
     lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -651,8 +651,8 @@ pub const COPYFILE2_MESSAGE = extern struct {
         ChunkStarted: extern struct {
             dwStreamNumber: u32,
             dwReserved: u32,
-            hSourceFile: HANDLE,
-            hDestinationFile: HANDLE,
+            hSourceFile: ?HANDLE,
+            hDestinationFile: ?HANDLE,
             uliChunkNumber: ULARGE_INTEGER,
             uliChunkSize: ULARGE_INTEGER,
             uliStreamSize: ULARGE_INTEGER,
@@ -661,8 +661,8 @@ pub const COPYFILE2_MESSAGE = extern struct {
         ChunkFinished: extern struct {
             dwStreamNumber: u32,
             dwFlags: u32,
-            hSourceFile: HANDLE,
-            hDestinationFile: HANDLE,
+            hSourceFile: ?HANDLE,
+            hDestinationFile: ?HANDLE,
             uliChunkNumber: ULARGE_INTEGER,
             uliChunkSize: ULARGE_INTEGER,
             uliStreamSize: ULARGE_INTEGER,
@@ -673,16 +673,16 @@ pub const COPYFILE2_MESSAGE = extern struct {
         StreamStarted: extern struct {
             dwStreamNumber: u32,
             dwReserved: u32,
-            hSourceFile: HANDLE,
-            hDestinationFile: HANDLE,
+            hSourceFile: ?HANDLE,
+            hDestinationFile: ?HANDLE,
             uliStreamSize: ULARGE_INTEGER,
             uliTotalFileSize: ULARGE_INTEGER,
         },
         StreamFinished: extern struct {
             dwStreamNumber: u32,
             dwReserved: u32,
-            hSourceFile: HANDLE,
-            hDestinationFile: HANDLE,
+            hSourceFile: ?HANDLE,
+            hDestinationFile: ?HANDLE,
             uliStreamSize: ULARGE_INTEGER,
             uliStreamBytesTransferred: ULARGE_INTEGER,
             uliTotalFileSize: ULARGE_INTEGER,
@@ -706,16 +706,16 @@ pub const COPYFILE2_MESSAGE = extern struct {
 };
 
 pub const PCOPYFILE2_PROGRESS_ROUTINE = fn(
-    pMessage: *const COPYFILE2_MESSAGE,
+    pMessage: ?*const COPYFILE2_MESSAGE,
     pvCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION;
 
 pub const COPYFILE2_EXTENDED_PARAMETERS = extern struct {
     dwSize: u32,
     dwCopyFlags: u32,
-    pfCancel: *BOOL,
-    pProgressRoutine: PCOPYFILE2_PROGRESS_ROUTINE,
-    pvCallbackContext: *c_void,
+    pfCancel: ?*BOOL,
+    pProgressRoutine: ?PCOPYFILE2_PROGRESS_ROUTINE,
+    pvCallbackContext: ?*c_void,
 };
 
 pub const FILE_BASIC_INFO = extern struct {
@@ -744,7 +744,7 @@ pub const FILE_RENAME_INFO = extern struct {
         ReplaceIfExists: u8,
         Flags: u32,
     },
-    RootDirectory: HANDLE,
+    RootDirectory: ?HANDLE,
     FileNameLength: u32,
     FileName: [1]u16,
 };
@@ -981,7 +981,7 @@ pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.Aborted;
 
 pub const OVERLAPPED_ENTRY = extern struct {
     lpCompletionKey: usize,
-    lpOverlapped: *OVERLAPPED,
+    lpOverlapped: ?*OVERLAPPED,
     Internal: usize,
     dwNumberOfBytesTransferred: u32,
 };
@@ -1104,7 +1104,7 @@ pub const MaximumFileInfoByHandleClass = FILE_INFO_BY_HANDLE_CLASS.MaximumFileIn
 pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
     dwErrorCode: u32,
     dwNumberOfBytesTransfered: u32,
-    lpOverlapped: *OVERLAPPED,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const STORAGE_QUERY_TYPE = enum(i32) {
@@ -2039,7 +2039,7 @@ pub const NTFS_FILE_RECORD_OUTPUT_BUFFER = extern struct {
 };
 
 pub const MOVE_FILE_DATA = extern struct {
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     StartingVcn: LARGE_INTEGER,
     StartingLcn: LARGE_INTEGER,
     ClusterCount: u32,
@@ -2217,7 +2217,7 @@ pub const MARK_HANDLE_INFO = extern struct {
         UsnSourceInfo: u32,
         CopyNumber: u32,
     },
-    VolumeHandle: HANDLE,
+    VolumeHandle: ?HANDLE,
     HandleInfo: u32,
 };
 
@@ -2618,7 +2618,7 @@ pub const TXFS_GET_TRANSACTED_VERSION = extern struct {
 };
 
 pub const TXFS_SAVEPOINT_INFORMATION = extern struct {
-    KtmTransaction: HANDLE,
+    KtmTransaction: ?HANDLE,
     ActionCode: u32,
     SavepointId: u32,
 };
@@ -2862,7 +2862,7 @@ pub const FSCTL_QUERY_REGION_INFO_OUTPUT = extern struct {
 };
 
 pub const DUPLICATE_EXTENTS_DATA = extern struct {
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     SourceFileOffset: LARGE_INTEGER,
     TargetFileOffset: LARGE_INTEGER,
     ByteCount: LARGE_INTEGER,
@@ -3842,7 +3842,7 @@ pub const SYMBOLIC_LINK_FLAG_DIRECTORY = SYMBOLIC_LINK_FLAGS.DIRECTORY;
 pub const SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE = SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE;
 
 pub const TRANSACTION_NOTIFICATION = extern struct {
-    TransactionKey: *c_void,
+    TransactionKey: ?*c_void,
     TransactionNotification: u32,
     TmVirtualClock: LARGE_INTEGER,
     ArgumentLength: u32,
@@ -3941,8 +3941,8 @@ pub const CREATEFILE2_EXTENDED_PARAMETERS = extern struct {
     dwFileAttributes: u32,
     dwFileFlags: u32,
     dwSecurityQosFlags: u32,
-    lpSecurityAttributes: *SECURITY_ATTRIBUTES,
-    hTemplateFile: HANDLE,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    hTemplateFile: ?HANDLE,
 };
 
 pub const STREAM_INFO_LEVELS = enum(i32) {
@@ -4022,7 +4022,7 @@ pub const NTMS_ASYNC_IO = extern struct {
     dwOperationType: u32,
     dwResult: u32,
     dwAsyncState: u32,
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
     bOnStateChange: BOOL,
 };
 
@@ -4092,7 +4092,7 @@ pub const NTMS_PRIORITY_LOWEST = NtmsMountPriority.LOWEST;
 
 pub const NTMS_MOUNT_INFORMATION = extern struct {
     dwSize: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 };
 
 pub const NtmsAllocateOptions = enum(i32) {
@@ -4106,7 +4106,7 @@ pub const NTMS_ALLOCATE_ERROR_IF_UNAVAILABLE = NtmsAllocateOptions.ERROR_IF_UNAV
 
 pub const NTMS_ALLOCATION_INFORMATION = extern struct {
     dwSize: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
     AllocatedFrom: Guid,
 };
 
@@ -5099,20 +5099,20 @@ pub const MediaLabelInfo = extern struct {
 };
 
 pub const MAXMEDIALABEL = fn(
-    pMaxSize: *u32,
+    pMaxSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CLAIMMEDIALABEL = fn(
-    pBuffer: *const u8,
+    pBuffer: ?*const u8,
     nBufferSize: u32,
-    pLabelInfo: *MediaLabelInfo,
+    pLabelInfo: ?*MediaLabelInfo,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CLAIMMEDIALABELEX = fn(
-    pBuffer: *const u8,
+    pBuffer: ?*const u8,
     nBufferSize: u32,
-    pLabelInfo: *MediaLabelInfo,
-    LabelGuid: *Guid,
+    pLabelInfo: ?*MediaLabelInfo,
+    LabelGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CLS_LSN = extern struct {
@@ -5147,7 +5147,7 @@ pub const CLFS_NODE_ID = extern struct {
 };
 
 pub const CLS_WRITE_ENTRY = extern struct {
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     ByteLength: u32,
 };
 
@@ -5247,12 +5247,12 @@ pub const CLS_IO_STATISTICS = extern struct {
 
 pub const CLS_SCAN_CONTEXT = extern struct {
     cidNode: CLFS_NODE_ID,
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cIndex: u32,
     cContainers: u32,
     cContainersReturned: u32,
     eScanMode: u8,
-    pinfoContainer: *CLS_CONTAINER_INFORMATION,
+    pinfoContainer: ?*CLS_CONTAINER_INFORMATION,
 };
 
 pub const CLS_ARCHIVE_DESCRIPTOR = extern struct {
@@ -5263,12 +5263,12 @@ pub const CLS_ARCHIVE_DESCRIPTOR = extern struct {
 
 pub const CLFS_BLOCK_ALLOCATION = fn(
     cbBufferLength: u32,
-    pvUserContext: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    pvUserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const CLFS_BLOCK_DEALLOCATION = fn(
-    pvBuffer: *c_void,
-    pvUserContext: *c_void,
+    pvBuffer: ?*c_void,
+    pvUserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CLFS_LOG_ARCHIVE_MODE = enum(i32) {
@@ -5279,7 +5279,7 @@ pub const ClfsLogArchiveEnabled = CLFS_LOG_ARCHIVE_MODE.Enabled;
 pub const ClfsLogArchiveDisabled = CLFS_LOG_ARCHIVE_MODE.Disabled;
 
 pub const PCLFS_COMPLETION_ROUTINE = fn(
-    pvOverlapped: *c_void,
+    pvOverlapped: ?*c_void,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -5369,28 +5369,28 @@ pub const CLFS_MGMT_NOTIFICATION = extern struct {
 };
 
 pub const PLOG_TAIL_ADVANCE_CALLBACK = fn(
-    hLogFile: HANDLE,
+    hLogFile: ?HANDLE,
     lsnTarget: CLS_LSN,
-    pvClientContext: *c_void,
+    pvClientContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLOG_FULL_HANDLER_CALLBACK = fn(
-    hLogFile: HANDLE,
+    hLogFile: ?HANDLE,
     dwError: u32,
     fLogIsPinned: BOOL,
-    pvClientContext: *c_void,
+    pvClientContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLOG_UNPINNED_CALLBACK = fn(
-    hLogFile: HANDLE,
-    pvClientContext: *c_void,
+    hLogFile: ?HANDLE,
+    pvClientContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LOG_MANAGEMENT_CALLBACKS = extern struct {
-    CallbackContext: *c_void,
-    AdvanceTailCallback: PLOG_TAIL_ADVANCE_CALLBACK,
-    LogFullHandlerCallback: PLOG_FULL_HANDLER_CALLBACK,
-    LogUnpinnedCallback: PLOG_UNPINNED_CALLBACK,
+    CallbackContext: ?*c_void,
+    AdvanceTailCallback: ?PLOG_TAIL_ADVANCE_CALLBACK,
+    LogFullHandlerCallback: ?PLOG_FULL_HANDLER_CALLBACK,
+    LogUnpinnedCallback: ?PLOG_UNPINNED_CALLBACK,
 };
 
 pub const DISKQUOTA_USER_INFORMATION = extern struct {
@@ -5407,56 +5407,56 @@ pub const IDiskQuotaUser = extern struct {
         base: IUnknown.VTable,
         GetID: fn(
             self: *const IDiskQuotaUser,
-            pulID: *u32,
+            pulID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IDiskQuotaUser,
-            pszAccountContainer: PWSTR,
+            pszAccountContainer: ?PWSTR,
             cchAccountContainer: u32,
-            pszLogonName: PWSTR,
+            pszLogonName: ?PWSTR,
             cchLogonName: u32,
-            pszDisplayName: PWSTR,
+            pszDisplayName: ?PWSTR,
             cchDisplayName: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSidLength: fn(
             self: *const IDiskQuotaUser,
-            pdwLength: *u32,
+            pdwLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSid: fn(
             self: *const IDiskQuotaUser,
-            pbSidBuffer: *u8,
+            pbSidBuffer: ?*u8,
             cbSidBuffer: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaThreshold: fn(
             self: *const IDiskQuotaUser,
-            pllThreshold: *i64,
+            pllThreshold: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaThresholdText: fn(
             self: *const IDiskQuotaUser,
-            pszText: PWSTR,
+            pszText: ?PWSTR,
             cchText: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaLimit: fn(
             self: *const IDiskQuotaUser,
-            pllLimit: *i64,
+            pllLimit: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaLimitText: fn(
             self: *const IDiskQuotaUser,
-            pszText: PWSTR,
+            pszText: ?PWSTR,
             cchText: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaUsed: fn(
             self: *const IDiskQuotaUser,
-            pllUsed: *i64,
+            pllUsed: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaUsedText: fn(
             self: *const IDiskQuotaUser,
-            pszText: PWSTR,
+            pszText: ?PWSTR,
             cchText: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaInformation: fn(
             self: *const IDiskQuotaUser,
-            pbQuotaInfo: *c_void,
+            pbQuotaInfo: ?*c_void,
             cbQuotaInfo: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetQuotaThreshold: fn(
@@ -5474,54 +5474,54 @@ pub const IDiskQuotaUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAccountStatus: fn(
             self: *const IDiskQuotaUser,
-            pdwStatus: *u32,
+            pdwStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetID(self: *const T, pulID: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetID(self: *const T, pulID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetID(@ptrCast(*const IDiskQuotaUser, self), pulID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: PWSTR, cchAccountContainer: u32, pszLogonName: PWSTR, cchLogonName: u32, pszDisplayName: PWSTR, cchDisplayName: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetName(@ptrCast(*const IDiskQuotaUser, self), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSidLength(@ptrCast(*const IDiskQuotaUser, self), pdwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: *u8, cbSidBuffer: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: ?*u8, cbSidBuffer: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSid(@ptrCast(*const IDiskQuotaUser, self), pbSidBuffer, cbSidBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: *i64) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), pllThreshold);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThresholdText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: *i64) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), pllLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimitText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: *i64) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsed(@ptrCast(*const IDiskQuotaUser, self), pllUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsedText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: *c_void, cbQuotaInfo: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: ?*c_void, cbQuotaInfo: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaInformation(@ptrCast(*const IDiskQuotaUser, self), pbQuotaInfo, cbQuotaInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5537,7 +5537,7 @@ pub const IDiskQuotaUser = extern struct {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).Invalidate(@ptrCast(*const IDiskQuotaUser, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetAccountStatus(@ptrCast(*const IDiskQuotaUser, self), pdwStatus);
         }
     };}
@@ -5553,8 +5553,8 @@ pub const IEnumDiskQuotaUsers = extern struct {
         Next: fn(
             self: *const IEnumDiskQuotaUsers,
             cUsers: u32,
-            rgUsers: **IDiskQuotaUser,
-            pcUsersFetched: *u32,
+            rgUsers: ?*?*IDiskQuotaUser,
+            pcUsersFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumDiskQuotaUsers,
@@ -5565,14 +5565,14 @@ pub const IEnumDiskQuotaUsers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDiskQuotaUsers,
-            ppEnum: **IEnumDiskQuotaUsers,
+            ppEnum: ?*?*IEnumDiskQuotaUsers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: **IDiskQuotaUser, pcUsersFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Next(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers, rgUsers, pcUsersFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5584,7 +5584,7 @@ pub const IEnumDiskQuotaUsers = extern struct {
             return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiskQuotaUsers, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: **IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
+        pub fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiskQuotaUsers, self), ppEnum);
         }
     };}
@@ -5599,11 +5599,11 @@ pub const IDiskQuotaUserBatch = extern struct {
         base: IUnknown.VTable,
         Add: fn(
             self: *const IDiskQuotaUserBatch,
-            pUser: *IDiskQuotaUser,
+            pUser: ?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IDiskQuotaUserBatch,
-            pUser: *IDiskQuotaUser,
+            pUser: ?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAll: fn(
             self: *const IDiskQuotaUserBatch,
@@ -5616,11 +5616,11 @@ pub const IDiskQuotaUserBatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Add(self: *const T, pUser: *IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUserBatch_Add(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Add(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: *IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Remove(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5643,7 +5643,7 @@ pub const IDiskQuotaControl = extern struct {
         base: IConnectionPointContainer.VTable,
         Initialize: fn(
             self: *const IDiskQuotaControl,
-            pszPath: [*:0]const u16,
+            pszPath: ?[*:0]const u16,
             bReadWrite: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetQuotaState: fn(
@@ -5652,7 +5652,7 @@ pub const IDiskQuotaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaState: fn(
             self: *const IDiskQuotaControl,
-            pdwState: *u32,
+            pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetQuotaLogFlags: fn(
             self: *const IDiskQuotaControl,
@@ -5660,7 +5660,7 @@ pub const IDiskQuotaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuotaLogFlags: fn(
             self: *const IDiskQuotaControl,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultQuotaThreshold: fn(
             self: *const IDiskQuotaControl,
@@ -5668,11 +5668,11 @@ pub const IDiskQuotaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultQuotaThreshold: fn(
             self: *const IDiskQuotaControl,
-            pllThreshold: *i64,
+            pllThreshold: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultQuotaThresholdText: fn(
             self: *const IDiskQuotaControl,
-            pszText: PWSTR,
+            pszText: ?PWSTR,
             cchText: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultQuotaLimit: fn(
@@ -5681,57 +5681,57 @@ pub const IDiskQuotaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultQuotaLimit: fn(
             self: *const IDiskQuotaControl,
-            pllLimit: *i64,
+            pllLimit: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultQuotaLimitText: fn(
             self: *const IDiskQuotaControl,
-            pszText: PWSTR,
+            pszText: ?PWSTR,
             cchText: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddUserSid: fn(
             self: *const IDiskQuotaControl,
-            pUserSid: PSID,
+            pUserSid: ?PSID,
             fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-            ppUser: **IDiskQuotaUser,
+            ppUser: ?*?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddUserName: fn(
             self: *const IDiskQuotaControl,
-            pszLogonName: [*:0]const u16,
+            pszLogonName: ?[*:0]const u16,
             fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-            ppUser: **IDiskQuotaUser,
+            ppUser: ?*?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteUser: fn(
             self: *const IDiskQuotaControl,
-            pUser: *IDiskQuotaUser,
+            pUser: ?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindUserSid: fn(
             self: *const IDiskQuotaControl,
-            pUserSid: PSID,
+            pUserSid: ?PSID,
             fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-            ppUser: **IDiskQuotaUser,
+            ppUser: ?*?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindUserName: fn(
             self: *const IDiskQuotaControl,
-            pszLogonName: [*:0]const u16,
-            ppUser: **IDiskQuotaUser,
+            pszLogonName: ?[*:0]const u16,
+            ppUser: ?*?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEnumUsers: fn(
             self: *const IDiskQuotaControl,
-            rgpUserSids: *PSID,
+            rgpUserSids: ?*?PSID,
             cpSids: u32,
             fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-            ppEnum: **IEnumDiskQuotaUsers,
+            ppEnum: ?*?*IEnumDiskQuotaUsers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateUserBatch: fn(
             self: *const IDiskQuotaControl,
-            ppBatch: **IDiskQuotaUserBatch,
+            ppBatch: ?*?*IDiskQuotaUserBatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvalidateSidNameCache: fn(
             self: *const IDiskQuotaControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GiveUserNameResolutionPriority: fn(
             self: *const IDiskQuotaControl,
-            pUser: *IDiskQuotaUser,
+            pUser: ?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShutdownNameResolution: fn(
             self: *const IDiskQuotaControl,
@@ -5741,7 +5741,7 @@ pub const IDiskQuotaControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConnectionPointContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_Initialize(self: *const T, pszPath: [*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_Initialize(self: *const T, pszPath: ?[*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).Initialize(@ptrCast(*const IDiskQuotaControl, self), pszPath, bReadWrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5749,7 +5749,7 @@ pub const IDiskQuotaControl = extern struct {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaState(@ptrCast(*const IDiskQuotaControl, self), dwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaState(@ptrCast(*const IDiskQuotaControl, self), pdwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5757,7 +5757,7 @@ pub const IDiskQuotaControl = extern struct {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5765,11 +5765,11 @@ pub const IDiskQuotaControl = extern struct {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), llThreshold);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: *i64) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), pllThreshold);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThresholdText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5777,39 +5777,39 @@ pub const IDiskQuotaControl = extern struct {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), llLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: *i64) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), pllLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: PWSTR, cchText: u32) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimitText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: **IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: [*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: **IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, fNameResolution, ppUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: *IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).DeleteUser(@ptrCast(*const IDiskQuotaControl, self), pUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: **IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: [*:0]const u16, ppUser: **IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, ppUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: *PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: **IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateEnumUsers(@ptrCast(*const IDiskQuotaControl, self), rgpUserSids, cpSids, fNameResolution, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: **IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: ?*?*IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateUserBatch(@ptrCast(*const IDiskQuotaControl, self), ppBatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5817,7 +5817,7 @@ pub const IDiskQuotaControl = extern struct {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).InvalidateSidNameCache(@ptrCast(*const IDiskQuotaControl, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: *IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GiveUserNameResolutionPriority(@ptrCast(*const IDiskQuotaControl, self), pUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5836,14 +5836,14 @@ pub const IDiskQuotaEvents = extern struct {
         base: IUnknown.VTable,
         OnUserNameChanged: fn(
             self: *const IDiskQuotaEvents,
-            pUser: *IDiskQuotaUser,
+            pUser: ?*IDiskQuotaUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: *IDiskQuotaUser) callconv(.Inline) HRESULT {
+        pub fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiskQuotaEvents.VTable, self.vtable).OnUserNameChanged(@ptrCast(*const IDiskQuotaEvents, self), pUser);
         }
     };}
@@ -5853,23 +5853,23 @@ pub const IDiskQuotaEvents = extern struct {
 pub const EFS_CERTIFICATE_BLOB = extern struct {
     dwCertEncodingType: u32,
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const EFS_HASH_BLOB = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const EFS_RPC_BLOB = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const EFS_PIN_BLOB = extern struct {
     cbPadding: u32,
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const EFS_KEY_INFO = extern struct {
@@ -5901,53 +5901,53 @@ pub const EFS_ENCRYPTION_STATUS_INFO = extern struct {
 
 pub const ENCRYPTION_CERTIFICATE = extern struct {
     cbTotalLength: u32,
-    pUserSid: *SID,
-    pCertBlob: *EFS_CERTIFICATE_BLOB,
+    pUserSid: ?*SID,
+    pCertBlob: ?*EFS_CERTIFICATE_BLOB,
 };
 
 pub const ENCRYPTION_CERTIFICATE_HASH = extern struct {
     cbTotalLength: u32,
-    pUserSid: *SID,
-    pHash: *EFS_HASH_BLOB,
-    lpDisplayInformation: PWSTR,
+    pUserSid: ?*SID,
+    pHash: ?*EFS_HASH_BLOB,
+    lpDisplayInformation: ?PWSTR,
 };
 
 pub const ENCRYPTION_CERTIFICATE_HASH_LIST = extern struct {
     nCert_Hash: u32,
-    pUsers: **ENCRYPTION_CERTIFICATE_HASH,
+    pUsers: ?*?*ENCRYPTION_CERTIFICATE_HASH,
 };
 
 pub const ENCRYPTION_CERTIFICATE_LIST = extern struct {
     nUsers: u32,
-    pUsers: **ENCRYPTION_CERTIFICATE,
+    pUsers: ?*?*ENCRYPTION_CERTIFICATE,
 };
 
 pub const ENCRYPTED_FILE_METADATA_SIGNATURE = extern struct {
     dwEfsAccessType: u32,
-    pCertificatesAdded: *ENCRYPTION_CERTIFICATE_HASH_LIST,
-    pEncryptionCertificate: *ENCRYPTION_CERTIFICATE,
-    pEfsStreamSignature: *EFS_RPC_BLOB,
+    pCertificatesAdded: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
+    pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
+    pEfsStreamSignature: ?*EFS_RPC_BLOB,
 };
 
 pub const ENCRYPTION_PROTECTOR = extern struct {
     cbTotalLength: u32,
-    pUserSid: *SID,
-    lpProtectorDescriptor: PWSTR,
+    pUserSid: ?*SID,
+    lpProtectorDescriptor: ?PWSTR,
 };
 
 pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
     nProtectors: u32,
-    pProtectors: **ENCRYPTION_PROTECTOR,
+    pProtectors: ?*?*ENCRYPTION_PROTECTOR,
 };
 
 pub const WofEnumEntryProc = fn(
-    EntryInfo: *const c_void,
+    EntryInfo: ?*const c_void,
     UserData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const WofEnumFilesProc = fn(
-    FilePath: [*:0]const u16,
-    ExternalFileInfo: *c_void,
+    FilePath: ?[*:0]const u16,
+    ExternalFileInfo: ?*c_void,
     UserData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5956,7 +5956,7 @@ pub const WIM_ENTRY_INFO = extern struct {
     WimType: u32,
     DataSourceId: LARGE_INTEGER,
     WimGuid: Guid,
-    WimPath: [*:0]const u16,
+    WimPath: ?[*:0]const u16,
     WimIndex: u32,
     Flags: u32,
 };
@@ -6128,62 +6128,62 @@ pub const VOLUME_SHRINK_INFO = extern struct {
 };
 
 pub const SHARE_INFO_0 = extern struct {
-    shi0_netname: PWSTR,
+    shi0_netname: ?PWSTR,
 };
 
 pub const SHARE_INFO_1 = extern struct {
-    shi1_netname: PWSTR,
+    shi1_netname: ?PWSTR,
     shi1_type: SHARE_TYPE,
-    shi1_remark: PWSTR,
+    shi1_remark: ?PWSTR,
 };
 
 pub const SHARE_INFO_2 = extern struct {
-    shi2_netname: PWSTR,
+    shi2_netname: ?PWSTR,
     shi2_type: SHARE_TYPE,
-    shi2_remark: PWSTR,
+    shi2_remark: ?PWSTR,
     shi2_permissions: SHARE_INFO_PERMISSIONS,
     shi2_max_uses: u32,
     shi2_current_uses: u32,
-    shi2_path: PWSTR,
-    shi2_passwd: PWSTR,
+    shi2_path: ?PWSTR,
+    shi2_passwd: ?PWSTR,
 };
 
 pub const SHARE_INFO_501 = extern struct {
-    shi501_netname: PWSTR,
+    shi501_netname: ?PWSTR,
     shi501_type: SHARE_TYPE,
-    shi501_remark: PWSTR,
+    shi501_remark: ?PWSTR,
     shi501_flags: u32,
 };
 
 pub const SHARE_INFO_502 = extern struct {
-    shi502_netname: PWSTR,
+    shi502_netname: ?PWSTR,
     shi502_type: SHARE_TYPE,
-    shi502_remark: PWSTR,
+    shi502_remark: ?PWSTR,
     shi502_permissions: SHARE_INFO_PERMISSIONS,
     shi502_max_uses: u32,
     shi502_current_uses: u32,
-    shi502_path: PWSTR,
-    shi502_passwd: PWSTR,
+    shi502_path: ?PWSTR,
+    shi502_passwd: ?PWSTR,
     shi502_reserved: u32,
-    shi502_security_descriptor: *SECURITY_DESCRIPTOR,
+    shi502_security_descriptor: ?*SECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_503 = extern struct {
-    shi503_netname: PWSTR,
+    shi503_netname: ?PWSTR,
     shi503_type: SHARE_TYPE,
-    shi503_remark: PWSTR,
+    shi503_remark: ?PWSTR,
     shi503_permissions: SHARE_INFO_PERMISSIONS,
     shi503_max_uses: u32,
     shi503_current_uses: u32,
-    shi503_path: PWSTR,
-    shi503_passwd: PWSTR,
-    shi503_servername: PWSTR,
+    shi503_path: ?PWSTR,
+    shi503_passwd: ?PWSTR,
+    shi503_servername: ?PWSTR,
     shi503_reserved: u32,
-    shi503_security_descriptor: *SECURITY_DESCRIPTOR,
+    shi503_security_descriptor: ?*SECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_1004 = extern struct {
-    shi1004_remark: PWSTR,
+    shi1004_remark: ?PWSTR,
 };
 
 pub const SHARE_INFO_1005 = extern struct {
@@ -6196,7 +6196,7 @@ pub const SHARE_INFO_1006 = extern struct {
 
 pub const SHARE_INFO_1501 = extern struct {
     shi1501_reserved: u32,
-    shi1501_security_descriptor: *SECURITY_DESCRIPTOR,
+    shi1501_security_descriptor: ?*SECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_1503 = extern struct {
@@ -6204,19 +6204,19 @@ pub const SHARE_INFO_1503 = extern struct {
 };
 
 pub const SERVER_ALIAS_INFO_0 = extern struct {
-    srvai0_alias: PWSTR,
-    srvai0_target: PWSTR,
+    srvai0_alias: ?PWSTR,
+    srvai0_target: ?PWSTR,
     srvai0_default: u8,
     srvai0_reserved: u32,
 };
 
 pub const SESSION_INFO_0 = extern struct {
-    sesi0_cname: PWSTR,
+    sesi0_cname: ?PWSTR,
 };
 
 pub const SESSION_INFO_1 = extern struct {
-    sesi1_cname: PWSTR,
-    sesi1_username: PWSTR,
+    sesi1_cname: ?PWSTR,
+    sesi1_username: ?PWSTR,
     sesi1_num_opens: u32,
     sesi1_time: u32,
     sesi1_idle_time: u32,
@@ -6224,31 +6224,31 @@ pub const SESSION_INFO_1 = extern struct {
 };
 
 pub const SESSION_INFO_2 = extern struct {
-    sesi2_cname: PWSTR,
-    sesi2_username: PWSTR,
+    sesi2_cname: ?PWSTR,
+    sesi2_username: ?PWSTR,
     sesi2_num_opens: u32,
     sesi2_time: u32,
     sesi2_idle_time: u32,
     sesi2_user_flags: SESSION_INFO_USER_FLAGS,
-    sesi2_cltype_name: PWSTR,
+    sesi2_cltype_name: ?PWSTR,
 };
 
 pub const SESSION_INFO_10 = extern struct {
-    sesi10_cname: PWSTR,
-    sesi10_username: PWSTR,
+    sesi10_cname: ?PWSTR,
+    sesi10_username: ?PWSTR,
     sesi10_time: u32,
     sesi10_idle_time: u32,
 };
 
 pub const SESSION_INFO_502 = extern struct {
-    sesi502_cname: PWSTR,
-    sesi502_username: PWSTR,
+    sesi502_cname: ?PWSTR,
+    sesi502_username: ?PWSTR,
     sesi502_num_opens: u32,
     sesi502_time: u32,
     sesi502_idle_time: u32,
     sesi502_user_flags: SESSION_INFO_USER_FLAGS,
-    sesi502_cltype_name: PWSTR,
-    sesi502_transport: PWSTR,
+    sesi502_cltype_name: ?PWSTR,
+    sesi502_transport: ?PWSTR,
 };
 
 pub const CONNECTION_INFO_0 = extern struct {
@@ -6261,8 +6261,8 @@ pub const CONNECTION_INFO_1 = extern struct {
     coni1_num_opens: u32,
     coni1_num_users: u32,
     coni1_time: u32,
-    coni1_username: PWSTR,
-    coni1_netname: PWSTR,
+    coni1_username: ?PWSTR,
+    coni1_netname: ?PWSTR,
 };
 
 pub const FILE_INFO_2 = extern struct {
@@ -6273,8 +6273,8 @@ pub const FILE_INFO_3 = extern struct {
     fi3_id: u32,
     fi3_permissions: FILE_INFO_FLAGS_PERMISSIONS,
     fi3_num_locks: u32,
-    fi3_pathname: PWSTR,
-    fi3_username: PWSTR,
+    fi3_pathname: ?PWSTR,
+    fi3_username: ?PWSTR,
 };
 
 pub const SERVER_CERTIFICATE_TYPE = enum(i32) {
@@ -6283,15 +6283,15 @@ pub const SERVER_CERTIFICATE_TYPE = enum(i32) {
 pub const QUIC = SERVER_CERTIFICATE_TYPE.C;
 
 pub const SERVER_CERTIFICATE_INFO_0 = extern struct {
-    srvci0_name: PWSTR,
-    srvci0_subject: PWSTR,
-    srvci0_issuer: PWSTR,
-    srvci0_thumbprint: PWSTR,
-    srvci0_friendlyname: PWSTR,
-    srvci0_notbefore: PWSTR,
-    srvci0_notafter: PWSTR,
-    srvci0_storelocation: PWSTR,
-    srvci0_storename: PWSTR,
+    srvci0_name: ?PWSTR,
+    srvci0_subject: ?PWSTR,
+    srvci0_issuer: ?PWSTR,
+    srvci0_thumbprint: ?PWSTR,
+    srvci0_friendlyname: ?PWSTR,
+    srvci0_notbefore: ?PWSTR,
+    srvci0_notafter: ?PWSTR,
+    srvci0_storelocation: ?PWSTR,
+    srvci0_storename: ?PWSTR,
     srvci0_type: u32,
 };
 
@@ -6364,60 +6364,60 @@ pub const STAT_SERVER_0 = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetBinaryTypeA(
-    lpApplicationName: [*:0]const u8,
-    lpBinaryType: *u32,
+    lpApplicationName: ?[*:0]const u8,
+    lpBinaryType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetBinaryTypeW(
-    lpApplicationName: [*:0]const u16,
-    lpBinaryType: *u32,
+    lpApplicationName: ?[*:0]const u16,
+    lpBinaryType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetShortPathNameA(
-    lpszLongPath: [*:0]const u8,
+    lpszLongPath: ?[*:0]const u8,
     lpszShortPath: ?[*:0]u8,
     cchBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetLongPathNameTransactedA(
-    lpszShortPath: [*:0]const u8,
+    lpszShortPath: ?[*:0]const u8,
     lpszLongPath: ?[*:0]u8,
     cchBuffer: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetLongPathNameTransactedW(
-    lpszShortPath: [*:0]const u16,
+    lpszShortPath: ?[*:0]const u16,
     lpszLongPath: ?[*:0]u16,
     cchBuffer: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileCompletionNotificationModes(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     Flags: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileShortNameA(
-    hFile: HANDLE,
-    lpShortName: [*:0]const u8,
+    hFile: ?HANDLE,
+    lpShortName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileShortNameW(
-    hFile: HANDLE,
-    lpShortName: [*:0]const u16,
+    hFile: ?HANDLE,
+    lpShortName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetTapePosition(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwPositionMethod: TAPE_POSITION_METHOD,
     dwPartition: u32,
     dwOffsetLow: u32,
@@ -6427,30 +6427,30 @@ pub extern "KERNEL32" fn SetTapePosition(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetTapePosition(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwPositionType: TAPE_POSITION_TYPE,
-    lpdwPartition: *u32,
-    lpdwOffsetLow: *u32,
-    lpdwOffsetHigh: *u32,
+    lpdwPartition: ?*u32,
+    lpdwOffsetLow: ?*u32,
+    lpdwOffsetHigh: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn PrepareTape(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwOperation: PREPARE_TAPE_OPERATION,
     bImmediate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn EraseTape(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwEraseType: ERASE_TAPE_TYPE,
     bImmediate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateTapePartition(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwPartitionMethod: CREATE_TAPE_PARTITION_METHOD,
     dwCount: u32,
     dwSize: u32,
@@ -6458,7 +6458,7 @@ pub extern "KERNEL32" fn CreateTapePartition(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteTapemark(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwTapemarkType: TAPEMARK_TYPE,
     dwTapemarkCount: u32,
     bImmediate: BOOL,
@@ -6466,131 +6466,131 @@ pub extern "KERNEL32" fn WriteTapemark(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetTapeStatus(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetTapeParameters(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwOperation: GET_TAPE_DRIVE_PARAMETERS_OPERATION,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    lpTapeInformation: *c_void,
+    lpTapeInformation: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetTapeParameters(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwOperation: TAPE_INFORMATION_TYPE,
-    lpTapeInformation: *c_void,
+    lpTapeInformation: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EncryptFileA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EncryptFileW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DecryptFileA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DecryptFileW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FileEncryptionStatusA(
-    lpFileName: [*:0]const u8,
-    lpStatus: *u32,
+    lpFileName: ?[*:0]const u8,
+    lpStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FileEncryptionStatusW(
-    lpFileName: [*:0]const u16,
-    lpStatus: *u32,
+    lpFileName: ?[*:0]const u16,
+    lpStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn OpenEncryptedFileRawA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     ulFlags: u32,
-    pvContext: **c_void,
+    pvContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn OpenEncryptedFileRawW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     ulFlags: u32,
-    pvContext: **c_void,
+    pvContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ReadEncryptedFileRaw(
-    pfExportCallback: PFE_EXPORT_FUNC,
+    pfExportCallback: ?PFE_EXPORT_FUNC,
     pvCallbackContext: ?*c_void,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn WriteEncryptedFileRaw(
-    pfImportCallback: PFE_IMPORT_FUNC,
+    pfImportCallback: ?PFE_IMPORT_FUNC,
     pvCallbackContext: ?*c_void,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CloseEncryptedFileRaw(
-    pvContext: *c_void,
+    pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn OpenFile(
-    lpFileName: [*:0]const u8,
-    lpReOpenBuff: *OFSTRUCT,
+    lpFileName: ?[*:0]const u8,
+    lpReOpenBuff: ?*OFSTRUCT,
     uStyle: LZOPENFILE_STYLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BackupRead(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *u8,
+    lpBuffer: ?*u8,
     nNumberOfBytesToRead: u32,
-    lpNumberOfBytesRead: *u32,
+    lpNumberOfBytesRead: ?*u32,
     bAbort: BOOL,
     bProcessSecurity: BOOL,
-    lpContext: **c_void,
+    lpContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BackupSeek(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwLowBytesToSeek: u32,
     dwHighBytesToSeek: u32,
-    lpdwLowByteSeeked: *u32,
-    lpdwHighByteSeeked: *u32,
-    lpContext: **c_void,
+    lpdwLowByteSeeked: ?*u32,
+    lpdwHighByteSeeked: ?*u32,
+    lpContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BackupWrite(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *u8,
+    lpBuffer: ?*u8,
     nNumberOfBytesToWrite: u32,
-    lpNumberOfBytesWritten: *u32,
+    lpNumberOfBytesWritten: ?*u32,
     bAbort: BOOL,
     bProcessSecurity: BOOL,
-    lpContext: **c_void,
+    lpContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6611,68 +6611,68 @@ pub extern "KERNEL32" fn SetSearchPathMode(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateDirectoryExA(
-    lpTemplateDirectory: [*:0]const u8,
-    lpNewDirectory: [*:0]const u8,
+    lpTemplateDirectory: ?[*:0]const u8,
+    lpNewDirectory: ?[*:0]const u8,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateDirectoryExW(
-    lpTemplateDirectory: [*:0]const u16,
-    lpNewDirectory: [*:0]const u16,
+    lpTemplateDirectory: ?[*:0]const u16,
+    lpNewDirectory: ?[*:0]const u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateDirectoryTransactedA(
     lpTemplateDirectory: ?[*:0]const u8,
-    lpNewDirectory: [*:0]const u8,
+    lpNewDirectory: ?[*:0]const u8,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateDirectoryTransactedW(
     lpTemplateDirectory: ?[*:0]const u16,
-    lpNewDirectory: [*:0]const u16,
+    lpNewDirectory: ?[*:0]const u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RemoveDirectoryTransactedA(
-    lpPathName: [*:0]const u8,
-    hTransaction: HANDLE,
+    lpPathName: ?[*:0]const u8,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RemoveDirectoryTransactedW(
-    lpPathName: [*:0]const u16,
-    hTransaction: HANDLE,
+    lpPathName: ?[*:0]const u16,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFullPathNameTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*PSTR,
-    hTransaction: HANDLE,
+    lpFilePart: ?*?PSTR,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFullPathNameTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*PWSTR,
-    hTransaction: HANDLE,
+    lpFilePart: ?*?PWSTR,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DefineDosDeviceA(
     dwFlags: DEFINE_DOS_DEVICE_FLAGS,
-    lpDeviceName: [*:0]const u8,
+    lpDeviceName: ?[*:0]const u8,
     lpTargetPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6685,154 +6685,154 @@ pub extern "KERNEL32" fn QueryDosDeviceA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateFileTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     dwDesiredAccess: u32,
     dwShareMode: FILE_SHARE_MODE,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
     pusMiniVersion: ?*TXFS_MINIVERSION,
-    lpExtendedParameter: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpExtendedParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateFileTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     dwShareMode: FILE_SHARE_MODE,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
     pusMiniVersion: ?*TXFS_MINIVERSION,
-    lpExtendedParameter: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpExtendedParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn ReOpenFile(
-    hOriginalFile: HANDLE,
+    hOriginalFile: ?HANDLE,
     dwDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileAttributesTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     dwFileAttributes: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileAttributesTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwFileAttributes: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFileAttributesTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     fInfoLevelId: GET_FILEEX_INFO_LEVELS,
-    lpFileInformation: *c_void,
-    hTransaction: HANDLE,
+    lpFileInformation: ?*c_void,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFileAttributesTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: GET_FILEEX_INFO_LEVELS,
-    lpFileInformation: *c_void,
-    hTransaction: HANDLE,
+    lpFileInformation: ?*c_void,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetCompressedFileSizeTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     lpFileSizeHigh: ?*u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetCompressedFileSizeTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     lpFileSizeHigh: ?*u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn DeleteFileTransactedA(
-    lpFileName: [*:0]const u8,
-    hTransaction: HANDLE,
+    lpFileName: ?[*:0]const u8,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn DeleteFileTransactedW(
-    lpFileName: [*:0]const u16,
-    hTransaction: HANDLE,
+    lpFileName: ?[*:0]const u16,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CheckNameLegalDOS8Dot3A(
-    lpName: [*:0]const u8,
+    lpName: ?[*:0]const u8,
     lpOemName: ?[*:0]u8,
     OemNameSize: u32,
     pbNameContainsSpaces: ?*BOOL,
-    pbNameLegal: *BOOL,
+    pbNameLegal: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CheckNameLegalDOS8Dot3W(
-    lpName: [*:0]const u16,
+    lpName: ?[*:0]const u16,
     lpOemName: ?[*:0]u8,
     OemNameSize: u32,
     pbNameContainsSpaces: ?*BOOL,
-    pbNameLegal: *BOOL,
+    pbNameLegal: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileTransactedA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     fInfoLevelId: FINDEX_INFO_LEVELS,
-    lpFindFileData: *c_void,
+    lpFindFileData: ?*c_void,
     fSearchOp: FINDEX_SEARCH_OPS,
-    lpSearchFilter: *c_void,
+    lpSearchFilter: ?*c_void,
     dwAdditionalFlags: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: FINDEX_INFO_LEVELS,
-    lpFindFileData: *c_void,
+    lpFindFileData: ?*c_void,
     fSearchOp: FINDEX_SEARCH_OPS,
-    lpSearchFilter: *c_void,
+    lpSearchFilter: ?*c_void,
     dwAdditionalFlags: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CopyFileA(
-    lpExistingFileName: [*:0]const u8,
-    lpNewFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpNewFileName: ?[*:0]const u8,
     bFailIfExists: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CopyFileW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
     bFailIfExists: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CopyFileExA(
-    lpExistingFileName: [*:0]const u8,
-    lpNewFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpNewFileName: ?[*:0]const u8,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     pbCancel: ?*i32,
@@ -6841,8 +6841,8 @@ pub extern "KERNEL32" fn CopyFileExA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CopyFileExW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     pbCancel: ?*i32,
@@ -6851,62 +6851,62 @@ pub extern "KERNEL32" fn CopyFileExW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CopyFileTransactedA(
-    lpExistingFileName: [*:0]const u8,
-    lpNewFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpNewFileName: ?[*:0]const u8,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     pbCancel: ?*i32,
     dwCopyFlags: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CopyFileTransactedW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     pbCancel: ?*i32,
     dwCopyFlags: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CopyFile2(
-    pwszExistingFileName: [*:0]const u16,
-    pwszNewFileName: [*:0]const u16,
+    pwszExistingFileName: ?[*:0]const u16,
+    pwszNewFileName: ?[*:0]const u16,
     pExtendedParameters: ?*COPYFILE2_EXTENDED_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileA(
-    lpExistingFileName: [*:0]const u8,
-    lpNewFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpNewFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileExA(
-    lpExistingFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
     lpNewFileName: ?[*:0]const u8,
     dwFlags: MOVE_FILE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileExW(
-    lpExistingFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
     lpNewFileName: ?[*:0]const u16,
     dwFlags: MOVE_FILE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileWithProgressA(
-    lpExistingFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
     lpNewFileName: ?[*:0]const u8,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
@@ -6915,7 +6915,7 @@ pub extern "KERNEL32" fn MoveFileWithProgressA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MoveFileWithProgressW(
-    lpExistingFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
     lpNewFileName: ?[*:0]const u16,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
@@ -6924,88 +6924,88 @@ pub extern "KERNEL32" fn MoveFileWithProgressW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn MoveFileTransactedA(
-    lpExistingFileName: [*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
     lpNewFileName: ?[*:0]const u8,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     dwFlags: MOVE_FILE_FLAGS,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn MoveFileTransactedW(
-    lpExistingFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
     lpNewFileName: ?[*:0]const u16,
     lpProgressRoutine: ?LPPROGRESS_ROUTINE,
     lpData: ?*c_void,
     dwFlags: MOVE_FILE_FLAGS,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReplaceFileA(
-    lpReplacedFileName: [*:0]const u8,
-    lpReplacementFileName: [*:0]const u8,
+    lpReplacedFileName: ?[*:0]const u8,
+    lpReplacementFileName: ?[*:0]const u8,
     lpBackupFileName: ?[*:0]const u8,
     dwReplaceFlags: REPLACE_FILE_FLAGS,
-    lpExclude: *c_void,
-    lpReserved: *c_void,
+    lpExclude: ?*c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReplaceFileW(
-    lpReplacedFileName: [*:0]const u16,
-    lpReplacementFileName: [*:0]const u16,
+    lpReplacedFileName: ?[*:0]const u16,
+    lpReplacementFileName: ?[*:0]const u16,
     lpBackupFileName: ?[*:0]const u16,
     dwReplaceFlags: REPLACE_FILE_FLAGS,
-    lpExclude: *c_void,
-    lpReserved: *c_void,
+    lpExclude: ?*c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateHardLinkA(
-    lpFileName: [*:0]const u8,
-    lpExistingFileName: [*:0]const u8,
-    lpSecurityAttributes: *SECURITY_ATTRIBUTES,
+    lpFileName: ?[*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateHardLinkW(
-    lpFileName: [*:0]const u16,
-    lpExistingFileName: [*:0]const u16,
-    lpSecurityAttributes: *SECURITY_ATTRIBUTES,
+    lpFileName: ?[*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateHardLinkTransactedA(
-    lpFileName: [*:0]const u8,
-    lpExistingFileName: [*:0]const u8,
-    lpSecurityAttributes: *SECURITY_ATTRIBUTES,
-    hTransaction: HANDLE,
+    lpFileName: ?[*:0]const u8,
+    lpExistingFileName: ?[*:0]const u8,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateHardLinkTransactedW(
-    lpFileName: [*:0]const u16,
-    lpExistingFileName: [*:0]const u16,
-    lpSecurityAttributes: *SECURITY_ATTRIBUTES,
-    hTransaction: HANDLE,
+    lpFileName: ?[*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstStreamTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     InfoLevel: STREAM_INFO_LEVELS,
-    lpFindStreamData: *c_void,
+    lpFindStreamData: ?*c_void,
     dwFlags: u32,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) FindStreamHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileNameTransactedW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwFlags: u32,
-    StringLength: *u32,
+    StringLength: ?*u32,
     LinkName: [*:0]u16,
     hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) FindFileNameHandle;
@@ -7024,29 +7024,29 @@ pub extern "KERNEL32" fn SetVolumeLabelW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileBandwidthReservation(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     nPeriodMilliseconds: u32,
     nBytesPerPeriod: u32,
     bDiscardable: BOOL,
-    lpTransferSize: *u32,
-    lpNumOutstandingRequests: *u32,
+    lpTransferSize: ?*u32,
+    lpNumOutstandingRequests: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFileBandwidthReservation(
-    hFile: HANDLE,
-    lpPeriodMilliseconds: *u32,
-    lpBytesPerPeriod: *u32,
-    pDiscardable: *i32,
-    lpTransferSize: *u32,
-    lpNumOutstandingRequests: *u32,
+    hFile: ?HANDLE,
+    lpPeriodMilliseconds: ?*u32,
+    lpBytesPerPeriod: ?*u32,
+    pDiscardable: ?*i32,
+    lpTransferSize: ?*u32,
+    lpNumOutstandingRequests: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadDirectoryChangesW(
-    hDirectory: HANDLE,
+    hDirectory: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
@@ -7057,9 +7057,9 @@ pub extern "KERNEL32" fn ReadDirectoryChangesW(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "KERNEL32" fn ReadDirectoryChangesExW(
-    hDirectory: HANDLE,
+    hDirectory: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
@@ -7084,14 +7084,14 @@ pub extern "KERNEL32" fn FindNextVolumeA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstVolumeMountPointA(
-    lpszRootPathName: [*:0]const u8,
+    lpszRootPathName: ?[*:0]const u8,
     lpszVolumeMountPoint: [*:0]u8,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) FindVolumeMointPointHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstVolumeMountPointW(
-    lpszRootPathName: [*:0]const u16,
+    lpszRootPathName: ?[*:0]const u16,
     lpszVolumeMountPoint: [*:0]u16,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) FindVolumeMointPointHandle;
@@ -7117,188 +7117,188 @@ pub extern "KERNEL32" fn FindVolumeMountPointClose(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetVolumeMountPointA(
-    lpszVolumeMountPoint: [*:0]const u8,
-    lpszVolumeName: [*:0]const u8,
+    lpszVolumeMountPoint: ?[*:0]const u8,
+    lpszVolumeName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetVolumeMountPointW(
-    lpszVolumeMountPoint: [*:0]const u16,
-    lpszVolumeName: [*:0]const u16,
+    lpszVolumeMountPoint: ?[*:0]const u16,
+    lpszVolumeName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteVolumeMountPointA(
-    lpszVolumeMountPoint: [*:0]const u8,
+    lpszVolumeMountPoint: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumeNameForVolumeMountPointA(
-    lpszVolumeMountPoint: [*:0]const u8,
+    lpszVolumeMountPoint: ?[*:0]const u8,
     lpszVolumeName: [*:0]u8,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumePathNameA(
-    lpszFileName: [*:0]const u8,
+    lpszFileName: ?[*:0]const u8,
     lpszVolumePathName: [*:0]u8,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumePathNamesForVolumeNameA(
-    lpszVolumeName: [*:0]const u8,
+    lpszVolumeName: ?[*:0]const u8,
     lpszVolumePathNames: ?[*]u8,
     cchBufferLength: u32,
-    lpcchReturnLength: *u32,
+    lpcchReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFileInformationByHandleEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpFileInformation: *c_void,
+    lpFileInformation: ?*c_void,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn OpenFileById(
-    hVolumeHint: HANDLE,
-    lpFileId: *FILE_ID_DESCRIPTOR,
+    hVolumeHint: ?HANDLE,
+    lpFileId: ?*FILE_ID_DESCRIPTOR,
     dwDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateSymbolicLinkA(
-    lpSymlinkFileName: [*:0]const u8,
-    lpTargetFileName: [*:0]const u8,
+    lpSymlinkFileName: ?[*:0]const u8,
+    lpTargetFileName: ?[*:0]const u8,
     dwFlags: SYMBOLIC_LINK_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateSymbolicLinkW(
-    lpSymlinkFileName: [*:0]const u16,
-    lpTargetFileName: [*:0]const u16,
+    lpSymlinkFileName: ?[*:0]const u16,
+    lpTargetFileName: ?[*:0]const u16,
     dwFlags: SYMBOLIC_LINK_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateSymbolicLinkTransactedA(
-    lpSymlinkFileName: [*:0]const u8,
-    lpTargetFileName: [*:0]const u8,
+    lpSymlinkFileName: ?[*:0]const u8,
+    lpTargetFileName: ?[*:0]const u8,
     dwFlags: SYMBOLIC_LINK_FLAGS,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateSymbolicLinkTransactedW(
-    lpSymlinkFileName: [*:0]const u16,
-    lpTargetFileName: [*:0]const u16,
+    lpSymlinkFileName: ?[*:0]const u16,
+    lpTargetFileName: ?[*:0]const u16,
     dwFlags: SYMBOLIC_LINK_FLAGS,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn Wow64DisableWow64FsRedirection(
-    OldValue: **c_void,
+    OldValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn Wow64RevertWow64FsRedirection(
-    OlValue: *c_void,
+    OlValue: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SearchPathW(
     lpPath: ?[*:0]const u16,
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     lpExtension: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*PWSTR,
+    lpFilePart: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SearchPathA(
     lpPath: ?[*:0]const u8,
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     lpExtension: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*PSTR,
+    lpFilePart: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CompareFileTime(
-    lpFileTime1: *const FILETIME,
-    lpFileTime2: *const FILETIME,
+    lpFileTime1: ?*const FILETIME,
+    lpFileTime2: ?*const FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateDirectoryA(
-    lpPathName: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateDirectoryW(
-    lpPathName: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateFileA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     dwDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateFileW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DefineDosDeviceW(
     dwFlags: DEFINE_DOS_DEVICE_FLAGS,
-    lpDeviceName: [*:0]const u16,
+    lpDeviceName: ?[*:0]const u16,
     lpTargetPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteFileA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteFileW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteVolumeMountPointW(
-    lpszVolumeMountPoint: [*:0]const u16,
+    lpszVolumeMountPoint: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FileTimeToLocalFileTime(
-    lpFileTime: *const FILETIME,
-    lpLocalFileTime: *FILETIME,
+    lpFileTime: ?*const FILETIME,
+    lpLocalFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7313,47 +7313,47 @@ pub extern "KERNEL32" fn FindCloseChangeNotification(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstChangeNotificationA(
-    lpPathName: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
 ) callconv(@import("std").os.windows.WINAPI) FindChangeNotificationHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstChangeNotificationW(
-    lpPathName: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
 ) callconv(@import("std").os.windows.WINAPI) FindChangeNotificationHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileA(
-    lpFileName: [*:0]const u8,
-    lpFindFileData: *WIN32_FIND_DATAA,
+    lpFileName: ?[*:0]const u8,
+    lpFindFileData: ?*WIN32_FIND_DATAA,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileW(
-    lpFileName: [*:0]const u16,
-    lpFindFileData: *WIN32_FIND_DATAW,
+    lpFileName: ?[*:0]const u16,
+    lpFindFileData: ?*WIN32_FIND_DATAW,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileExA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     fInfoLevelId: FINDEX_INFO_LEVELS,
-    lpFindFileData: *c_void,
+    lpFindFileData: ?*c_void,
     fSearchOp: FINDEX_SEARCH_OPS,
-    lpSearchFilter: *c_void,
+    lpSearchFilter: ?*c_void,
     dwAdditionalFlags: FIND_FIRST_EX_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileExW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: FINDEX_INFO_LEVELS,
-    lpFindFileData: *c_void,
+    lpFindFileData: ?*c_void,
     fSearchOp: FINDEX_SEARCH_OPS,
-    lpSearchFilter: *c_void,
+    lpSearchFilter: ?*c_void,
     dwAdditionalFlags: FIND_FIRST_EX_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
@@ -7371,13 +7371,13 @@ pub extern "KERNEL32" fn FindNextChangeNotification(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextFileA(
     hFindFile: FindFileHandle,
-    lpFindFileData: *WIN32_FIND_DATAA,
+    lpFindFileData: ?*WIN32_FIND_DATAA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextFileW(
-    hFindFile: HANDLE,
-    lpFindFileData: *WIN32_FIND_DATAW,
+    hFindFile: ?HANDLE,
+    lpFindFileData: ?*WIN32_FIND_DATAW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7394,7 +7394,7 @@ pub extern "KERNEL32" fn FindVolumeClose(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FlushFileBuffers(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7433,12 +7433,12 @@ pub extern "KERNEL32" fn GetDiskFreeSpaceExW(
 
 pub extern "KERNEL32" fn GetDiskSpaceInformationA(
     rootPath: ?[*:0]const u8,
-    diskSpaceInfo: *DISK_SPACE_INFORMATION,
+    diskSpaceInfo: ?*DISK_SPACE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "KERNEL32" fn GetDiskSpaceInformationW(
     rootPath: ?[*:0]const u16,
-    diskSpaceInfo: *DISK_SPACE_INFORMATION,
+    diskSpaceInfo: ?*DISK_SPACE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7453,54 +7453,54 @@ pub extern "KERNEL32" fn GetDriveTypeW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileAttributesA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileAttributesW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileAttributesExA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     fInfoLevelId: GET_FILEEX_INFO_LEVELS,
-    lpFileInformation: *c_void,
+    lpFileInformation: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileAttributesExW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: GET_FILEEX_INFO_LEVELS,
-    lpFileInformation: *c_void,
+    lpFileInformation: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileInformationByHandle(
-    hFile: HANDLE,
-    lpFileInformation: *BY_HANDLE_FILE_INFORMATION,
+    hFile: ?HANDLE,
+    lpFileInformation: ?*BY_HANDLE_FILE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileSize(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpFileSizeHigh: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileSizeEx(
-    hFile: HANDLE,
-    lpFileSize: *LARGE_INTEGER,
+    hFile: ?HANDLE,
+    lpFileSize: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileType(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFinalPathNameByHandleA(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpszFilePath: [*:0]u8,
     cchFilePath: u32,
     dwFlags: FILE_NAME,
@@ -7508,7 +7508,7 @@ pub extern "KERNEL32" fn GetFinalPathNameByHandleA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFinalPathNameByHandleW(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpszFilePath: [*:0]u16,
     cchFilePath: u32,
     dwFlags: FILE_NAME,
@@ -7516,7 +7516,7 @@ pub extern "KERNEL32" fn GetFinalPathNameByHandleW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFileTime(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpCreationTime: ?*FILETIME,
     lpLastAccessTime: ?*FILETIME,
     lpLastWriteTime: ?*FILETIME,
@@ -7524,18 +7524,18 @@ pub extern "KERNEL32" fn GetFileTime(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFullPathNameW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*PWSTR,
+    lpFilePart: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetFullPathNameA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*PSTR,
+    lpFilePart: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7550,36 +7550,36 @@ pub extern "KERNEL32" fn GetLogicalDriveStringsW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetLongPathNameA(
-    lpszShortPath: [*:0]const u8,
+    lpszShortPath: ?[*:0]const u8,
     lpszLongPath: ?[*:0]u8,
     cchBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetLongPathNameW(
-    lpszShortPath: [*:0]const u16,
+    lpszShortPath: ?[*:0]const u16,
     lpszLongPath: ?[*:0]u16,
     cchBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetShortPathNameW(
-    lpszLongPath: [*:0]const u16,
+    lpszLongPath: ?[*:0]const u16,
     lpszShortPath: ?[*:0]u16,
     cchBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetTempFileNameW(
-    lpPathName: [*:0]const u16,
-    lpPrefixString: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
+    lpPrefixString: ?[*:0]const u16,
     uUnique: u32,
     lpTempFileName: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetVolumeInformationByHandleW(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpVolumeNameBuffer: ?[*:0]u16,
     nVolumeNameSize: u32,
     lpVolumeSerialNumber: ?*u32,
@@ -7603,20 +7603,20 @@ pub extern "KERNEL32" fn GetVolumeInformationW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumePathNameW(
-    lpszFileName: [*:0]const u16,
+    lpszFileName: ?[*:0]const u16,
     lpszVolumePathName: [*:0]u16,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LocalFileTimeToFileTime(
-    lpLocalFileTime: *const FILETIME,
-    lpFileTime: *FILETIME,
+    lpLocalFileTime: ?*const FILETIME,
+    lpFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LockFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwFileOffsetLow: u32,
     dwFileOffsetHigh: u32,
     nNumberOfBytesToLockLow: u32,
@@ -7625,12 +7625,12 @@ pub extern "KERNEL32" fn LockFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LockFileEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwFlags: LOCK_FILE_FLAGS,
     dwReserved: u32,
     nNumberOfBytesToLockLow: u32,
     nNumberOfBytesToLockHigh: u32,
-    lpOverlapped: *OVERLAPPED,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7642,7 +7642,7 @@ pub extern "KERNEL32" fn QueryDosDeviceW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
@@ -7652,62 +7652,62 @@ pub extern "KERNEL32" fn ReadFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadFileEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
-    lpOverlapped: *OVERLAPPED,
-    lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadFileScatter(
-    hFile: HANDLE,
-    aSegmentArray: *FILE_SEGMENT_ELEMENT,
+    hFile: ?HANDLE,
+    aSegmentArray: ?*FILE_SEGMENT_ELEMENT,
     nNumberOfBytesToRead: u32,
-    lpReserved: *u32,
-    lpOverlapped: *OVERLAPPED,
+    lpReserved: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RemoveDirectoryA(
-    lpPathName: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RemoveDirectoryW(
-    lpPathName: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetEndOfFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileAttributesA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileAttributesW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileInformationByHandle(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpFileInformation: *c_void,
+    lpFileInformation: ?*c_void,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFilePointer(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lDistanceToMove: i32,
     lpDistanceToMoveHigh: ?*i32,
     dwMoveMethod: SET_FILE_POINTER_MOVE_METHOD,
@@ -7715,7 +7715,7 @@ pub extern "KERNEL32" fn SetFilePointer(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFilePointerEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     liDistanceToMove: LARGE_INTEGER,
     lpNewFilePointer: ?*LARGE_INTEGER,
     dwMoveMethod: SET_FILE_POINTER_MOVE_METHOD,
@@ -7723,7 +7723,7 @@ pub extern "KERNEL32" fn SetFilePointerEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileTime(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpCreationTime: ?*const FILETIME,
     lpLastAccessTime: ?*const FILETIME,
     lpLastWriteTime: ?*const FILETIME,
@@ -7731,13 +7731,13 @@ pub extern "KERNEL32" fn SetFileTime(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetFileValidData(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     ValidDataLength: i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn UnlockFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwFileOffsetLow: u32,
     dwFileOffsetHigh: u32,
     nNumberOfBytesToUnlockLow: u32,
@@ -7746,16 +7746,16 @@ pub extern "KERNEL32" fn UnlockFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn UnlockFileEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwReserved: u32,
     nNumberOfBytesToUnlockLow: u32,
     nNumberOfBytesToUnlockHigh: u32,
-    lpOverlapped: *OVERLAPPED,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*const c_void,
     nNumberOfBytesToWrite: u32,
@@ -7765,21 +7765,21 @@ pub extern "KERNEL32" fn WriteFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteFileEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*const c_void,
     nNumberOfBytesToWrite: u32,
-    lpOverlapped: *OVERLAPPED,
-    lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteFileGather(
-    hFile: HANDLE,
-    aSegmentArray: *FILE_SEGMENT_ELEMENT,
+    hFile: ?HANDLE,
+    aSegmentArray: ?*FILE_SEGMENT_ELEMENT,
     nNumberOfBytesToWrite: u32,
-    lpReserved: *u32,
-    lpOverlapped: *OVERLAPPED,
+    lpReserved: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7790,59 +7790,59 @@ pub extern "KERNEL32" fn GetTempPathW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumeNameForVolumeMountPointW(
-    lpszVolumeMountPoint: [*:0]const u16,
+    lpszVolumeMountPoint: ?[*:0]const u16,
     lpszVolumeName: [*:0]u16,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetVolumePathNamesForVolumeNameW(
-    lpszVolumeName: [*:0]const u16,
+    lpszVolumeName: ?[*:0]const u16,
     lpszVolumePathNames: ?[*]u16,
     cchBufferLength: u32,
-    lpcchReturnLength: *u32,
+    lpcchReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CreateFile2(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     pCreateExParams: ?*CREATEFILE2_EXTENDED_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFileIoOverlappedRange(
-    FileHandle: HANDLE,
-    OverlappedRangeStart: *u8,
+    FileHandle: ?HANDLE,
+    OverlappedRangeStart: ?*u8,
     Length: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCompressedFileSizeA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     lpFileSizeHigh: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCompressedFileSizeW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     lpFileSizeHigh: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstStreamW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     InfoLevel: STREAM_INFO_LEVELS,
-    lpFindStreamData: *c_void,
+    lpFindStreamData: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) FindStreamHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindNextStreamW(
     hFindStream: FindStreamHandle,
-    lpFindStreamData: *c_void,
+    lpFindStreamData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7857,16 +7857,16 @@ pub extern "KERNEL32" fn GetTempPathA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileNameW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwFlags: u32,
-    StringLength: *u32,
+    StringLength: ?*u32,
     LinkName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) FindFileNameHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindNextFileNameW(
     hFindStream: FindFileNameHandle,
-    StringLength: *u32,
+    StringLength: ?*u32,
     LinkName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7884,8 +7884,8 @@ pub extern "KERNEL32" fn GetVolumeInformationA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetTempFileNameA(
-    lpPathName: [*:0]const u8,
-    lpPrefixString: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
+    lpPrefixString: ?[*:0]const u8,
     uUnique: u32,
     lpTempFileName: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -7899,106 +7899,106 @@ pub extern "KERNEL32" fn SetFileApisToANSI(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CopyFileFromAppW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
     bFailIfExists: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CreateDirectoryFromAppW(
-    lpPathName: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CreateFileFromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     dwShareMode: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: u32,
     dwFlagsAndAttributes: u32,
     hTemplateFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CreateFile2FromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     dwShareMode: u32,
     dwCreationDisposition: u32,
     pCreateExParams: ?*CREATEFILE2_EXTENDED_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn DeleteFileFromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn FindFirstFileExFromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: FINDEX_INFO_LEVELS,
-    lpFindFileData: *c_void,
+    lpFindFileData: ?*c_void,
     fSearchOp: FINDEX_SEARCH_OPS,
-    lpSearchFilter: *c_void,
+    lpSearchFilter: ?*c_void,
     dwAdditionalFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn GetFileAttributesExFromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     fInfoLevelId: GET_FILEEX_INFO_LEVELS,
-    lpFileInformation: *c_void,
+    lpFileInformation: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn MoveFileFromAppW(
-    lpExistingFileName: [*:0]const u16,
-    lpNewFileName: [*:0]const u16,
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn RemoveDirectoryFromAppW(
-    lpPathName: [*:0]const u16,
+    lpPathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn ReplaceFileFromAppW(
-    lpReplacedFileName: [*:0]const u16,
-    lpReplacementFileName: [*:0]const u16,
+    lpReplacedFileName: ?[*:0]const u16,
+    lpReplacementFileName: ?[*:0]const u16,
     lpBackupFileName: ?[*:0]const u16,
     dwReplaceFlags: u32,
-    lpExclude: *c_void,
-    lpReserved: *c_void,
+    lpExclude: ?*c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn SetFileAttributesFromAppW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     dwFileAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateIoCompletionPort(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     ExistingCompletionPort: ?HANDLE,
     CompletionKey: usize,
     NumberOfConcurrentThreads: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetQueuedCompletionStatus(
-    CompletionPort: HANDLE,
-    lpNumberOfBytesTransferred: *u32,
-    lpCompletionKey: *usize,
-    lpOverlapped: **OVERLAPPED,
+    CompletionPort: ?HANDLE,
+    lpNumberOfBytesTransferred: ?*u32,
+    lpCompletionKey: ?*usize,
+    lpOverlapped: ?*?*OVERLAPPED,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetQueuedCompletionStatusEx(
-    CompletionPort: HANDLE,
+    CompletionPort: ?HANDLE,
     lpCompletionPortEntries: [*]OVERLAPPED_ENTRY,
     ulCount: u32,
-    ulNumEntriesRemoved: *u32,
+    ulNumEntriesRemoved: ?*u32,
     dwMilliseconds: u32,
     fAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn PostQueuedCompletionStatus(
-    CompletionPort: HANDLE,
+    CompletionPort: ?HANDLE,
     dwNumberOfBytesTransferred: u32,
     dwCompletionKey: usize,
     lpOverlapped: ?*OVERLAPPED,
@@ -8006,130 +8006,130 @@ pub extern "KERNEL32" fn PostQueuedCompletionStatus(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CancelIoEx(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CancelIo(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CancelSynchronousIo(
-    hThread: HANDLE,
+    hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerFindFileA(
     uFlags: VER_FIND_FILE_FLAGS,
-    szFileName: [*:0]const u8,
+    szFileName: ?[*:0]const u8,
     szWinDir: ?[*:0]const u8,
-    szAppDir: [*:0]const u8,
+    szAppDir: ?[*:0]const u8,
     szCurDir: [*:0]u8,
-    puCurDirLen: *u32,
+    puCurDirLen: ?*u32,
     szDestDir: [*:0]u8,
-    puDestDirLen: *u32,
+    puDestDirLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) VER_FIND_FILE_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerFindFileW(
     uFlags: VER_FIND_FILE_FLAGS,
-    szFileName: [*:0]const u16,
+    szFileName: ?[*:0]const u16,
     szWinDir: ?[*:0]const u16,
-    szAppDir: [*:0]const u16,
+    szAppDir: ?[*:0]const u16,
     szCurDir: [*:0]u16,
-    puCurDirLen: *u32,
+    puCurDirLen: ?*u32,
     szDestDir: [*:0]u16,
-    puDestDirLen: *u32,
+    puDestDirLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) VER_FIND_FILE_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerInstallFileA(
     uFlags: VER_INSTALL_FILE_FLAGS,
-    szSrcFileName: [*:0]const u8,
-    szDestFileName: [*:0]const u8,
-    szSrcDir: [*:0]const u8,
-    szDestDir: [*:0]const u8,
-    szCurDir: [*:0]const u8,
+    szSrcFileName: ?[*:0]const u8,
+    szDestFileName: ?[*:0]const u8,
+    szSrcDir: ?[*:0]const u8,
+    szDestDir: ?[*:0]const u8,
+    szCurDir: ?[*:0]const u8,
     szTmpFile: [*:0]u8,
-    puTmpFileLen: *u32,
+    puTmpFileLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) VER_INSTALL_FILE_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerInstallFileW(
     uFlags: VER_INSTALL_FILE_FLAGS,
-    szSrcFileName: [*:0]const u16,
-    szDestFileName: [*:0]const u16,
-    szSrcDir: [*:0]const u16,
-    szDestDir: [*:0]const u16,
-    szCurDir: [*:0]const u16,
+    szSrcFileName: ?[*:0]const u16,
+    szDestFileName: ?[*:0]const u16,
+    szSrcDir: ?[*:0]const u16,
+    szDestDir: ?[*:0]const u16,
+    szCurDir: ?[*:0]const u16,
     szTmpFile: [*:0]u16,
-    puTmpFileLen: *u32,
+    puTmpFileLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) VER_INSTALL_FILE_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn GetFileVersionInfoSizeA(
-    lptstrFilename: [*:0]const u8,
+    lptstrFilename: ?[*:0]const u8,
     lpdwHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn GetFileVersionInfoSizeW(
-    lptstrFilename: [*:0]const u16,
+    lptstrFilename: ?[*:0]const u16,
     lpdwHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn GetFileVersionInfoA(
-    lptstrFilename: [*:0]const u8,
+    lptstrFilename: ?[*:0]const u8,
     dwHandle: u32,
     dwLen: u32,
     // TODO: what to do with BytesParamIndex 2?
-    lpData: *c_void,
+    lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn GetFileVersionInfoW(
-    lptstrFilename: [*:0]const u16,
+    lptstrFilename: ?[*:0]const u16,
     dwHandle: u32,
     dwLen: u32,
     // TODO: what to do with BytesParamIndex 2?
-    lpData: *c_void,
+    lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "VERSION" fn GetFileVersionInfoSizeExA(
     dwFlags: GET_FILE_VERSION_INFO_FLAGS,
-    lpwstrFilename: [*:0]const u8,
-    lpdwHandle: *u32,
+    lpwstrFilename: ?[*:0]const u8,
+    lpdwHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "VERSION" fn GetFileVersionInfoSizeExW(
     dwFlags: GET_FILE_VERSION_INFO_FLAGS,
-    lpwstrFilename: [*:0]const u16,
-    lpdwHandle: *u32,
+    lpwstrFilename: ?[*:0]const u16,
+    lpdwHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "VERSION" fn GetFileVersionInfoExA(
     dwFlags: GET_FILE_VERSION_INFO_FLAGS,
-    lpwstrFilename: [*:0]const u8,
+    lpwstrFilename: ?[*:0]const u8,
     dwHandle: u32,
     dwLen: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpData: *c_void,
+    lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "VERSION" fn GetFileVersionInfoExW(
     dwFlags: GET_FILE_VERSION_INFO_FLAGS,
-    lpwstrFilename: [*:0]const u16,
+    lpwstrFilename: ?[*:0]const u16,
     dwHandle: u32,
     dwLen: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpData: *c_void,
+    lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8148,42 +8148,42 @@ pub extern "KERNEL32" fn VerLanguageNameW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerQueryValueA(
-    pBlock: *const c_void,
-    lpSubBlock: [*:0]const u8,
-    lplpBuffer: **c_void,
-    puLen: *u32,
+    pBlock: ?*const c_void,
+    lpSubBlock: ?[*:0]const u8,
+    lplpBuffer: ?*?*c_void,
+    puLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "VERSION" fn VerQueryValueW(
-    pBlock: *const c_void,
-    lpSubBlock: [*:0]const u16,
-    lplpBuffer: **c_void,
-    puLen: *u32,
+    pBlock: ?*const c_void,
+    lpSubBlock: ?[*:0]const u16,
+    lplpBuffer: ?*?*c_void,
+    puLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "clfsw32" fn LsnEqual(
-    plsn1: *const CLS_LSN,
-    plsn2: *const CLS_LSN,
+    plsn1: ?*const CLS_LSN,
+    plsn2: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "clfsw32" fn LsnLess(
-    plsn1: *const CLS_LSN,
-    plsn2: *const CLS_LSN,
+    plsn1: ?*const CLS_LSN,
+    plsn2: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "clfsw32" fn LsnGreater(
-    plsn1: *const CLS_LSN,
-    plsn2: *const CLS_LSN,
+    plsn1: ?*const CLS_LSN,
+    plsn2: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "clfsw32" fn LsnNull(
-    plsn: *const CLS_LSN,
+    plsn: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn LsnContainer(
-    plsn: *const CLS_LSN,
+    plsn: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8195,442 +8195,442 @@ pub extern "clfsw32" fn LsnCreate(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn LsnBlockOffset(
-    plsn: *const CLS_LSN,
+    plsn: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn LsnRecordSequence(
-    plsn: *const CLS_LSN,
+    plsn: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "clfsw32" fn LsnInvalid(
-    plsn: *const CLS_LSN,
+    plsn: ?*const CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "clfsw32" fn LsnIncrement(
-    plsn: *CLS_LSN,
+    plsn: ?*CLS_LSN,
 ) callconv(@import("std").os.windows.WINAPI) CLS_LSN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn CreateLogFile(
-    pszLogFileName: [*:0]const u16,
+    pszLogFileName: ?[*:0]const u16,
     fDesiredAccess: FILE_ACCESS_FLAGS,
     dwShareMode: FILE_SHARE_MODE,
-    psaLogFile: *SECURITY_ATTRIBUTES,
+    psaLogFile: ?*SECURITY_ATTRIBUTES,
     fCreateDisposition: FILE_CREATION_DISPOSITION,
     fFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn DeleteLogByHandle(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn DeleteLogFile(
-    pszLogFileName: [*:0]const u16,
-    pvReserved: *c_void,
+    pszLogFileName: ?[*:0]const u16,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn AddLogContainer(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     pcbContainer: ?*u64,
-    pwszContainerPath: PWSTR,
+    pwszContainerPath: ?PWSTR,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn AddLogContainerSet(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cContainer: u16,
     pcbContainer: ?*u64,
-    rgwszContainerPath: [*]PWSTR,
+    rgwszContainerPath: [*]?PWSTR,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RemoveLogContainer(
-    hLog: HANDLE,
-    pwszContainerPath: PWSTR,
+    hLog: ?HANDLE,
+    pwszContainerPath: ?PWSTR,
     fForce: BOOL,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RemoveLogContainerSet(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cContainer: u16,
-    rgwszContainerPath: [*]PWSTR,
+    rgwszContainerPath: [*]?PWSTR,
     fForce: BOOL,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn SetLogArchiveTail(
-    hLog: HANDLE,
-    plsnArchiveTail: *CLS_LSN,
-    pReserved: *c_void,
+    hLog: ?HANDLE,
+    plsnArchiveTail: ?*CLS_LSN,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn SetEndOfLog(
-    hLog: HANDLE,
-    plsnEnd: *CLS_LSN,
-    lpOverlapped: *OVERLAPPED,
+    hLog: ?HANDLE,
+    plsnEnd: ?*CLS_LSN,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn TruncateLog(
-    pvMarshal: *c_void,
-    plsnEnd: *CLS_LSN,
+    pvMarshal: ?*c_void,
+    plsnEnd: ?*CLS_LSN,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn CreateLogContainerScanContext(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cFromContainer: u32,
     cContainers: u32,
     eScanMode: u8,
-    pcxScan: *CLS_SCAN_CONTEXT,
-    pOverlapped: *OVERLAPPED,
+    pcxScan: ?*CLS_SCAN_CONTEXT,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ScanLogContainers(
-    pcxScan: *CLS_SCAN_CONTEXT,
+    pcxScan: ?*CLS_SCAN_CONTEXT,
     eScanMode: u8,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn AlignReservedLog(
-    pvMarshal: *c_void,
+    pvMarshal: ?*c_void,
     cReservedRecords: u32,
-    rgcbReservation: *i64,
-    pcbAlignReservation: *i64,
+    rgcbReservation: ?*i64,
+    pcbAlignReservation: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn AllocReservedLog(
-    pvMarshal: *c_void,
+    pvMarshal: ?*c_void,
     cReservedRecords: u32,
-    pcbAdjustment: *i64,
+    pcbAdjustment: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn FreeReservedLog(
-    pvMarshal: *c_void,
+    pvMarshal: ?*c_void,
     cReservedRecords: u32,
-    pcbAdjustment: *i64,
+    pcbAdjustment: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn GetLogFileInformation(
-    hLog: HANDLE,
-    pinfoBuffer: *CLS_INFORMATION,
-    cbBuffer: *u32,
+    hLog: ?HANDLE,
+    pinfoBuffer: ?*CLS_INFORMATION,
+    cbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn SetLogArchiveMode(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     eMode: CLFS_LOG_ARCHIVE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadLogRestartArea(
-    pvMarshal: *c_void,
-    ppvRestartBuffer: **c_void,
-    pcbRestartBuffer: *u32,
-    plsn: *CLS_LSN,
-    ppvContext: **c_void,
-    pOverlapped: *OVERLAPPED,
+    pvMarshal: ?*c_void,
+    ppvRestartBuffer: ?*?*c_void,
+    pcbRestartBuffer: ?*u32,
+    plsn: ?*CLS_LSN,
+    ppvContext: ?*?*c_void,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadPreviousLogRestartArea(
-    pvReadContext: *c_void,
-    ppvRestartBuffer: **c_void,
-    pcbRestartBuffer: *u32,
-    plsnRestart: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    pvReadContext: ?*c_void,
+    ppvRestartBuffer: ?*?*c_void,
+    pcbRestartBuffer: ?*u32,
+    plsnRestart: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn WriteLogRestartArea(
-    pvMarshal: *c_void,
-    pvRestartBuffer: *c_void,
+    pvMarshal: ?*c_void,
+    pvRestartBuffer: ?*c_void,
     cbRestartBuffer: u32,
-    plsnBase: *CLS_LSN,
+    plsnBase: ?*CLS_LSN,
     fFlags: CLFS_FLAG,
-    pcbWritten: *u32,
-    plsnNext: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    pcbWritten: ?*u32,
+    plsnNext: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "clfsw32" fn GetLogReservationInfo(
-    pvMarshal: *c_void,
-    pcbRecordNumber: *u32,
-    pcbUserReservation: *i64,
-    pcbCommitReservation: *i64,
+    pvMarshal: ?*c_void,
+    pcbRecordNumber: ?*u32,
+    pcbUserReservation: ?*i64,
+    pcbCommitReservation: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn AdvanceLogBase(
-    pvMarshal: *c_void,
-    plsnBase: *CLS_LSN,
+    pvMarshal: ?*c_void,
+    plsnBase: ?*CLS_LSN,
     fFlags: u32,
-    pOverlapped: *OVERLAPPED,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn CloseAndResetLogFile(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn CreateLogMarshallingArea(
-    hLog: HANDLE,
-    pfnAllocBuffer: CLFS_BLOCK_ALLOCATION,
-    pfnFreeBuffer: CLFS_BLOCK_DEALLOCATION,
-    pvBlockAllocContext: *c_void,
+    hLog: ?HANDLE,
+    pfnAllocBuffer: ?CLFS_BLOCK_ALLOCATION,
+    pfnFreeBuffer: ?CLFS_BLOCK_DEALLOCATION,
+    pvBlockAllocContext: ?*c_void,
     cbMarshallingBuffer: u32,
     cMaxWriteBuffers: u32,
     cMaxReadBuffers: u32,
-    ppvMarshal: **c_void,
+    ppvMarshal: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn DeleteLogMarshallingArea(
-    pvMarshal: *c_void,
+    pvMarshal: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReserveAndAppendLog(
-    pvMarshal: *c_void,
-    rgWriteEntries: *CLS_WRITE_ENTRY,
+    pvMarshal: ?*c_void,
+    rgWriteEntries: ?*CLS_WRITE_ENTRY,
     cWriteEntries: u32,
-    plsnUndoNext: *CLS_LSN,
-    plsnPrevious: *CLS_LSN,
+    plsnUndoNext: ?*CLS_LSN,
+    plsnPrevious: ?*CLS_LSN,
     cReserveRecords: u32,
-    rgcbReservation: *i64,
+    rgcbReservation: ?*i64,
     fFlags: CLFS_FLAG,
-    plsn: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    plsn: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReserveAndAppendLogAligned(
-    pvMarshal: *c_void,
-    rgWriteEntries: *CLS_WRITE_ENTRY,
+    pvMarshal: ?*c_void,
+    rgWriteEntries: ?*CLS_WRITE_ENTRY,
     cWriteEntries: u32,
     cbEntryAlignment: u32,
-    plsnUndoNext: *CLS_LSN,
-    plsnPrevious: *CLS_LSN,
+    plsnUndoNext: ?*CLS_LSN,
+    plsnPrevious: ?*CLS_LSN,
     cReserveRecords: u32,
-    rgcbReservation: *i64,
+    rgcbReservation: ?*i64,
     fFlags: CLFS_FLAG,
-    plsn: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    plsn: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn FlushLogBuffers(
-    pvMarshal: *c_void,
-    pOverlapped: *OVERLAPPED,
+    pvMarshal: ?*c_void,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn FlushLogToLsn(
-    pvMarshalContext: *c_void,
-    plsnFlush: *CLS_LSN,
-    plsnLastFlushed: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    pvMarshalContext: ?*c_void,
+    plsnFlush: ?*CLS_LSN,
+    plsnLastFlushed: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadLogRecord(
-    pvMarshal: *c_void,
-    plsnFirst: *CLS_LSN,
+    pvMarshal: ?*c_void,
+    plsnFirst: ?*CLS_LSN,
     eContextMode: CLFS_CONTEXT_MODE,
-    ppvReadBuffer: **c_void,
-    pcbReadBuffer: *u32,
-    peRecordType: *u8,
-    plsnUndoNext: *CLS_LSN,
-    plsnPrevious: *CLS_LSN,
-    ppvReadContext: **c_void,
-    pOverlapped: *OVERLAPPED,
+    ppvReadBuffer: ?*?*c_void,
+    pcbReadBuffer: ?*u32,
+    peRecordType: ?*u8,
+    plsnUndoNext: ?*CLS_LSN,
+    plsnPrevious: ?*CLS_LSN,
+    ppvReadContext: ?*?*c_void,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadNextLogRecord(
-    pvReadContext: *c_void,
-    ppvBuffer: **c_void,
-    pcbBuffer: *u32,
-    peRecordType: *u8,
-    plsnUser: *CLS_LSN,
-    plsnUndoNext: *CLS_LSN,
-    plsnPrevious: *CLS_LSN,
-    plsnRecord: *CLS_LSN,
-    pOverlapped: *OVERLAPPED,
+    pvReadContext: ?*c_void,
+    ppvBuffer: ?*?*c_void,
+    pcbBuffer: ?*u32,
+    peRecordType: ?*u8,
+    plsnUser: ?*CLS_LSN,
+    plsnUndoNext: ?*CLS_LSN,
+    plsnPrevious: ?*CLS_LSN,
+    plsnRecord: ?*CLS_LSN,
+    pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn TerminateReadLog(
-    pvCursorContext: *c_void,
+    pvCursorContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn PrepareLogArchive(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     pszBaseLogFileName: [*:0]u16,
     cLen: u32,
     plsnLow: ?*const CLS_LSN,
     plsnHigh: ?*const CLS_LSN,
     pcActualLength: ?*u32,
-    poffBaseLogFileData: *u64,
-    pcbBaseLogFileLength: *u64,
-    plsnBase: *CLS_LSN,
-    plsnLast: *CLS_LSN,
-    plsnCurrentArchiveTail: *CLS_LSN,
-    ppvArchiveContext: **c_void,
+    poffBaseLogFileData: ?*u64,
+    pcbBaseLogFileLength: ?*u64,
+    plsnBase: ?*CLS_LSN,
+    plsnLast: ?*CLS_LSN,
+    plsnCurrentArchiveTail: ?*CLS_LSN,
+    ppvArchiveContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadLogArchiveMetadata(
-    pvArchiveContext: *c_void,
+    pvArchiveContext: ?*c_void,
     cbOffset: u32,
     cbBytesToRead: u32,
-    pbReadBuffer: *u8,
-    pcbBytesRead: *u32,
+    pbReadBuffer: ?*u8,
+    pcbBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn GetNextLogArchiveExtent(
-    pvArchiveContext: *c_void,
-    rgadExtent: *CLS_ARCHIVE_DESCRIPTOR,
+    pvArchiveContext: ?*c_void,
+    rgadExtent: ?*CLS_ARCHIVE_DESCRIPTOR,
     cDescriptors: u32,
-    pcDescriptorsReturned: *u32,
+    pcDescriptorsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn TerminateLogArchive(
-    pvArchiveContext: *c_void,
+    pvArchiveContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ValidateLog(
-    pszLogFileName: [*:0]const u16,
-    psaLogFile: *SECURITY_ATTRIBUTES,
-    pinfoBuffer: *CLS_INFORMATION,
-    pcbBuffer: *u32,
+    pszLogFileName: ?[*:0]const u16,
+    psaLogFile: ?*SECURITY_ATTRIBUTES,
+    pinfoBuffer: ?*CLS_INFORMATION,
+    pcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn GetLogContainerName(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cidLogicalContainer: u32,
-    pwstrContainerName: [*:0]const u16,
+    pwstrContainerName: ?[*:0]const u16,
     cLenContainerName: u32,
-    pcActualLenContainerName: *u32,
+    pcActualLenContainerName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn GetLogIoStatistics(
-    hLog: HANDLE,
-    pvStatsBuffer: *c_void,
+    hLog: ?HANDLE,
+    pvStatsBuffer: ?*c_void,
     cbStatsBuffer: u32,
     eStatsClass: CLFS_IOSTATS_CLASS,
-    pcbStatsWritten: *u32,
+    pcbStatsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RegisterManageableLogClient(
-    hLog: HANDLE,
-    pCallbacks: *LOG_MANAGEMENT_CALLBACKS,
+    hLog: ?HANDLE,
+    pCallbacks: ?*LOG_MANAGEMENT_CALLBACKS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn DeregisterManageableLogClient(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn ReadLogNotification(
-    hLog: HANDLE,
-    pNotification: *CLFS_MGMT_NOTIFICATION,
-    lpOverlapped: *OVERLAPPED,
+    hLog: ?HANDLE,
+    pNotification: ?*CLFS_MGMT_NOTIFICATION,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn InstallLogPolicy(
-    hLog: HANDLE,
-    pPolicy: *CLFS_MGMT_POLICY,
+    hLog: ?HANDLE,
+    pPolicy: ?*CLFS_MGMT_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RemoveLogPolicy(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     ePolicyType: CLFS_MGMT_POLICY_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn QueryLogPolicy(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     ePolicyType: CLFS_MGMT_POLICY_TYPE,
-    pPolicyBuffer: *CLFS_MGMT_POLICY,
-    pcbPolicyBuffer: *u32,
+    pPolicyBuffer: ?*CLFS_MGMT_POLICY,
+    pcbPolicyBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn SetLogFileSizeWithPolicy(
-    hLog: HANDLE,
-    pDesiredSize: *u64,
-    pResultingSize: *u64,
+    hLog: ?HANDLE,
+    pDesiredSize: ?*u64,
+    pResultingSize: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn HandleLogFull(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn LogTailAdvanceFailure(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     dwReason: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RegisterForLogWriteNotification(
-    hLog: HANDLE,
+    hLog: ?HANDLE,
     cbThreshold: u32,
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn QueryUsersOnEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pUsers: **ENCRYPTION_CERTIFICATE_HASH_LIST,
+    lpFileName: ?[*:0]const u16,
+    pUsers: ?*?*ENCRYPTION_CERTIFICATE_HASH_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn QueryRecoveryAgentsOnEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pRecoveryAgents: **ENCRYPTION_CERTIFICATE_HASH_LIST,
+    lpFileName: ?[*:0]const u16,
+    pRecoveryAgents: ?*?*ENCRYPTION_CERTIFICATE_HASH_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RemoveUsersFromEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pHashes: *ENCRYPTION_CERTIFICATE_HASH_LIST,
+    lpFileName: ?[*:0]const u16,
+    pHashes: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddUsersToEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pEncryptionCertificates: *ENCRYPTION_CERTIFICATE_LIST,
+    lpFileName: ?[*:0]const u16,
+    pEncryptionCertificates: ?*ENCRYPTION_CERTIFICATE_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8642,46 +8642,46 @@ pub extern "ADVAPI32" fn SetUserFileEncryptionKeyEx(
     pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
     dwCapabilities: u32,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FreeEncryptionCertificateHashList(
-    pUsers: *ENCRYPTION_CERTIFICATE_HASH_LIST,
+    pUsers: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EncryptionDisable(
-    DirPath: [*:0]const u16,
+    DirPath: ?[*:0]const u16,
     Disable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DuplicateEncryptionInfoFile(
-    SrcFileName: [*:0]const u16,
-    DstFileName: [*:0]const u16,
+    SrcFileName: ?[*:0]const u16,
+    DstFileName: ?[*:0]const u16,
     dwCreationDistribution: u32,
     dwAttributes: u32,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn GetEncryptedFileMetadata(
-    lpFileName: [*:0]const u16,
-    pcbMetadata: *u32,
-    ppbMetadata: **u8,
+    lpFileName: ?[*:0]const u16,
+    pcbMetadata: ?*u32,
+    ppbMetadata: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn SetEncryptedFileMetadata(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     pbOldMetadata: ?*u8,
-    pbNewMetadata: *u8,
-    pOwnerHash: *ENCRYPTION_CERTIFICATE_HASH,
+    pbNewMetadata: ?*u8,
+    pOwnerHash: ?*ENCRYPTION_CERTIFICATE_HASH,
     dwOperation: u32,
     pCertificatesAdded: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn FreeEncryptedFileMetadata(
-    pbMetadata: *u8,
+    pbMetadata: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "KERNEL32" fn LZStart(
@@ -8708,27 +8708,27 @@ pub extern "KERNEL32" fn LZInit(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetExpandedNameA(
-    lpszSource: PSTR,
+    lpszSource: ?PSTR,
     lpszBuffer: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetExpandedNameW(
-    lpszSource: PWSTR,
+    lpszSource: ?PWSTR,
     lpszBuffer: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LZOpenFileA(
-    lpFileName: PSTR,
-    lpReOpenBuf: *OFSTRUCT,
+    lpFileName: ?PSTR,
+    lpReOpenBuf: ?*OFSTRUCT,
     wStyle: LZOPENFILE_STYLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LZOpenFileW(
-    lpFileName: PWSTR,
-    lpReOpenBuf: *OFSTRUCT,
+    lpFileName: ?PWSTR,
+    lpReOpenBuf: ?*OFSTRUCT,
     wStyle: LZOPENFILE_STYLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -8743,7 +8743,7 @@ pub extern "KERNEL32" fn LZSeek(
 pub extern "KERNEL32" fn LZRead(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: PSTR,
+    lpBuffer: ?PSTR,
     cbRead: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -8753,25 +8753,25 @@ pub extern "KERNEL32" fn LZClose(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WOFUTIL" fn WofShouldCompressBinaries(
-    Volume: [*:0]const u16,
-    Algorithm: *u32,
+    Volume: ?[*:0]const u16,
+    Algorithm: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WOFUTIL" fn WofGetDriverVersion(
-    FileOrVolumeHandle: HANDLE,
+    FileOrVolumeHandle: ?HANDLE,
     Provider: u32,
-    WofVersion: *u32,
+    WofVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofSetFileDataLocation(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     Provider: u32,
-    ExternalFileInfo: *c_void,
+    ExternalFileInfo: ?*c_void,
     Length: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofIsExternalFile(
-    FilePath: [*:0]const u16,
+    FilePath: ?[*:0]const u16,
     IsExternalFile: ?*BOOL,
     Provider: ?*u32,
     ExternalFileInfo: ?*c_void,
@@ -8779,106 +8779,106 @@ pub extern "WOFUTIL" fn WofIsExternalFile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofEnumEntries(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     Provider: u32,
-    EnumProc: WofEnumEntryProc,
+    EnumProc: ?WofEnumEntryProc,
     UserData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofWimAddEntry(
-    VolumeName: [*:0]const u16,
-    WimPath: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
+    WimPath: ?[*:0]const u16,
     WimType: u32,
     WimIndex: u32,
-    DataSourceId: *LARGE_INTEGER,
+    DataSourceId: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofWimEnumFiles(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     DataSourceId: LARGE_INTEGER,
-    EnumProc: WofEnumFilesProc,
+    EnumProc: ?WofEnumFilesProc,
     UserData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofWimSuspendEntry(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     DataSourceId: LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofWimRemoveEntry(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     DataSourceId: LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofWimUpdateEntry(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     DataSourceId: LARGE_INTEGER,
-    NewWimPath: [*:0]const u16,
+    NewWimPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WOFUTIL" fn WofFileEnumFiles(
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     Algorithm: u32,
-    EnumProc: WofEnumFilesProc,
+    EnumProc: ?WofEnumFilesProc,
     UserData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "txfw32" fn TxfLogCreateFileReadContext(
-    LogPath: [*:0]const u16,
+    LogPath: ?[*:0]const u16,
     BeginningLsn: CLS_LSN,
     EndingLsn: CLS_LSN,
-    TxfFileId: *TXF_ID,
-    TxfLogContext: **c_void,
+    TxfFileId: ?*TXF_ID,
+    TxfLogContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "txfw32" fn TxfLogCreateRangeReadContext(
-    LogPath: [*:0]const u16,
+    LogPath: ?[*:0]const u16,
     BeginningLsn: CLS_LSN,
     EndingLsn: CLS_LSN,
-    BeginningVirtualClock: *LARGE_INTEGER,
-    EndingVirtualClock: *LARGE_INTEGER,
+    BeginningVirtualClock: ?*LARGE_INTEGER,
+    EndingVirtualClock: ?*LARGE_INTEGER,
     RecordTypeMask: u32,
-    TxfLogContext: **c_void,
+    TxfLogContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "txfw32" fn TxfLogDestroyReadContext(
-    TxfLogContext: *c_void,
+    TxfLogContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "txfw32" fn TxfLogReadRecords(
-    TxfLogContext: *c_void,
+    TxfLogContext: ?*c_void,
     BufferLength: u32,
     // TODO: what to do with BytesParamIndex 1?
-    Buffer: *c_void,
-    BytesUsed: *u32,
-    RecordCount: *u32,
+    Buffer: ?*c_void,
+    BytesUsed: ?*u32,
+    RecordCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "txfw32" fn TxfReadMetadataInfo(
-    FileHandle: HANDLE,
-    TxfFileId: *TXF_ID,
-    LastLsn: *CLS_LSN,
-    TransactionState: *u32,
-    LockingTransaction: *Guid,
+    FileHandle: ?HANDLE,
+    TxfFileId: ?*TXF_ID,
+    LastLsn: ?*CLS_LSN,
+    TransactionState: ?*u32,
+    LockingTransaction: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "txfw32" fn TxfLogRecordGetFileName(
     // TODO: what to do with BytesParamIndex 1?
-    RecordBuffer: *c_void,
+    RecordBuffer: ?*c_void,
     RecordBufferLengthInBytes: u32,
     // TODO: what to do with BytesParamIndex 3?
-    NameBuffer: PWSTR,
-    NameBufferLengthInBytes: *u32,
+    NameBuffer: ?PWSTR,
+    NameBufferLengthInBytes: ?*u32,
     TxfId: ?*TXF_ID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "txfw32" fn TxfLogRecordGetGenericType(
-    RecordBuffer: *c_void,
+    RecordBuffer: ?*c_void,
     RecordBufferLengthInBytes: u32,
-    GenericType: *u32,
+    GenericType: ?*u32,
     VirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8887,66 +8887,66 @@ pub extern "txfw32" fn TxfSetThreadMiniVersionForCreate(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "txfw32" fn TxfGetThreadMiniVersionForCreate(
-    MiniVersion: *u16,
+    MiniVersion: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CreateTransaction(
-    lpTransactionAttributes: *SECURITY_ATTRIBUTES,
-    UOW: *Guid,
+    lpTransactionAttributes: ?*SECURITY_ATTRIBUTES,
+    UOW: ?*Guid,
     CreateOptions: u32,
     IsolationLevel: u32,
     IsolationFlags: u32,
     Timeout: u32,
     Description: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenTransaction(
     dwDesiredAccess: u32,
-    TransactionId: *Guid,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    TransactionId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CommitTransaction(
-    TransactionHandle: HANDLE,
+    TransactionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CommitTransactionAsync(
-    TransactionHandle: HANDLE,
+    TransactionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RollbackTransaction(
-    TransactionHandle: HANDLE,
+    TransactionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RollbackTransactionAsync(
-    TransactionHandle: HANDLE,
+    TransactionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetTransactionId(
-    TransactionHandle: HANDLE,
-    TransactionId: *Guid,
+    TransactionHandle: ?HANDLE,
+    TransactionId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetTransactionInformation(
-    TransactionHandle: HANDLE,
-    Outcome: *u32,
-    IsolationLevel: *u32,
-    IsolationFlags: *u32,
-    Timeout: *u32,
+    TransactionHandle: ?HANDLE,
+    Outcome: ?*u32,
+    IsolationLevel: ?*u32,
+    IsolationFlags: ?*u32,
+    Timeout: ?*u32,
     BufferLength: u32,
     Description: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn SetTransactionInformation(
-    TransactionHandle: HANDLE,
+    TransactionHandle: ?HANDLE,
     IsolationLevel: u32,
     IsolationFlags: u32,
     Timeout: u32,
@@ -8955,210 +8955,210 @@ pub extern "ktmw32" fn SetTransactionInformation(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CreateTransactionManager(
-    lpTransactionAttributes: *SECURITY_ATTRIBUTES,
-    LogFileName: PWSTR,
+    lpTransactionAttributes: ?*SECURITY_ATTRIBUTES,
+    LogFileName: ?PWSTR,
     CreateOptions: u32,
     CommitStrength: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenTransactionManager(
-    LogFileName: PWSTR,
+    LogFileName: ?PWSTR,
     DesiredAccess: u32,
     OpenOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenTransactionManagerById(
-    TransactionManagerId: *Guid,
+    TransactionManagerId: ?*Guid,
     DesiredAccess: u32,
     OpenOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RenameTransactionManager(
-    LogFileName: PWSTR,
-    ExistingTransactionManagerGuid: *Guid,
+    LogFileName: ?PWSTR,
+    ExistingTransactionManagerGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RollforwardTransactionManager(
-    TransactionManagerHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    TransactionManagerHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RecoverTransactionManager(
-    TransactionManagerHandle: HANDLE,
+    TransactionManagerHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetCurrentClockTransactionManager(
-    TransactionManagerHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    TransactionManagerHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetTransactionManagerId(
-    TransactionManagerHandle: HANDLE,
-    TransactionManagerId: *Guid,
+    TransactionManagerHandle: ?HANDLE,
+    TransactionManagerId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CreateResourceManager(
-    lpResourceManagerAttributes: *SECURITY_ATTRIBUTES,
-    ResourceManagerId: *Guid,
+    lpResourceManagerAttributes: ?*SECURITY_ATTRIBUTES,
+    ResourceManagerId: ?*Guid,
     CreateOptions: u32,
-    TmHandle: HANDLE,
+    TmHandle: ?HANDLE,
     Description: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenResourceManager(
     dwDesiredAccess: u32,
-    TmHandle: HANDLE,
-    ResourceManagerId: *Guid,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    TmHandle: ?HANDLE,
+    ResourceManagerId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RecoverResourceManager(
-    ResourceManagerHandle: HANDLE,
+    ResourceManagerHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetNotificationResourceManager(
-    ResourceManagerHandle: HANDLE,
-    TransactionNotification: *TRANSACTION_NOTIFICATION,
+    ResourceManagerHandle: ?HANDLE,
+    TransactionNotification: ?*TRANSACTION_NOTIFICATION,
     NotificationLength: u32,
     dwMilliseconds: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetNotificationResourceManagerAsync(
-    ResourceManagerHandle: HANDLE,
-    TransactionNotification: *TRANSACTION_NOTIFICATION,
+    ResourceManagerHandle: ?HANDLE,
+    TransactionNotification: ?*TRANSACTION_NOTIFICATION,
     TransactionNotificationLength: u32,
-    ReturnLength: *u32,
-    lpOverlapped: *OVERLAPPED,
+    ReturnLength: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn SetResourceManagerCompletionPort(
-    ResourceManagerHandle: HANDLE,
-    IoCompletionPortHandle: HANDLE,
+    ResourceManagerHandle: ?HANDLE,
+    IoCompletionPortHandle: ?HANDLE,
     CompletionKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CreateEnlistment(
-    lpEnlistmentAttributes: *SECURITY_ATTRIBUTES,
-    ResourceManagerHandle: HANDLE,
-    TransactionHandle: HANDLE,
+    lpEnlistmentAttributes: ?*SECURITY_ATTRIBUTES,
+    ResourceManagerHandle: ?HANDLE,
+    TransactionHandle: ?HANDLE,
     NotificationMask: u32,
     CreateOptions: u32,
-    EnlistmentKey: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    EnlistmentKey: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenEnlistment(
     dwDesiredAccess: u32,
-    ResourceManagerHandle: HANDLE,
-    EnlistmentId: *Guid,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    ResourceManagerHandle: ?HANDLE,
+    EnlistmentId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RecoverEnlistment(
-    EnlistmentHandle: HANDLE,
-    EnlistmentKey: *c_void,
+    EnlistmentHandle: ?HANDLE,
+    EnlistmentKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetEnlistmentRecoveryInformation(
-    EnlistmentHandle: HANDLE,
+    EnlistmentHandle: ?HANDLE,
     BufferSize: u32,
-    Buffer: *c_void,
-    BufferUsed: *u32,
+    Buffer: ?*c_void,
+    BufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn GetEnlistmentId(
-    EnlistmentHandle: HANDLE,
-    EnlistmentId: *Guid,
+    EnlistmentHandle: ?HANDLE,
+    EnlistmentId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn SetEnlistmentRecoveryInformation(
-    EnlistmentHandle: HANDLE,
+    EnlistmentHandle: ?HANDLE,
     BufferSize: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn PrepareEnlistment(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn PrePrepareEnlistment(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CommitEnlistment(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RollbackEnlistment(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn PrePrepareComplete(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn PrepareComplete(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn ReadOnlyEnlistment(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CommitComplete(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RollbackComplete(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn SinglePhaseReject(
-    EnlistmentHandle: HANDLE,
-    TmVirtualClock: *LARGE_INTEGER,
+    EnlistmentHandle: ?HANDLE,
+    TmVirtualClock: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareAdd(
     servername: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9166,86 +9166,86 @@ pub extern "NETAPI32" fn NetShareAdd(
 pub extern "NETAPI32" fn NetShareEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetShareEnumSticky(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareGetInfo(
     servername: ?PWSTR,
-    netname: PWSTR,
+    netname: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareSetInfo(
     servername: ?PWSTR,
-    netname: PWSTR,
+    netname: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareDel(
     servername: ?PWSTR,
-    netname: PWSTR,
+    netname: ?PWSTR,
     reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetShareDelSticky(
     servername: ?PWSTR,
-    netname: PWSTR,
+    netname: ?PWSTR,
     reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareCheck(
     servername: ?PWSTR,
-    device: PWSTR,
-    type: *u32,
+    device: ?PWSTR,
+    type: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetShareDelEx(
     servername: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServerAliasAdd(
     servername: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServerAliasDel(
     servername: ?PWSTR,
     level: u32,
-    buf: *u8,
+    buf: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NETAPI32" fn NetServerAliasEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resumehandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9255,10 +9255,10 @@ pub extern "NETAPI32" fn NetSessionEnum(
     UncClientName: ?PWSTR,
     username: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9272,21 +9272,21 @@ pub extern "NETAPI32" fn NetSessionDel(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetSessionGetInfo(
     servername: ?PWSTR,
-    UncClientName: PWSTR,
-    username: PWSTR,
+    UncClientName: ?PWSTR,
+    username: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetConnectionEnum(
     servername: ?PWSTR,
-    qualifier: PWSTR,
+    qualifier: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9302,10 +9302,10 @@ pub extern "NETAPI32" fn NetFileEnum(
     basepath: ?PWSTR,
     username: ?PWSTR,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
     prefmaxlen: u32,
-    entriesread: *u32,
-    totalentries: *u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
     resume_handle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9314,16 +9314,16 @@ pub extern "NETAPI32" fn NetFileGetInfo(
     servername: ?PWSTR,
     fileid: u32,
     level: u32,
-    bufptr: **u8,
+    bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETAPI32" fn NetStatisticsGet(
-    ServerName: *i8,
-    Service: *i8,
+    ServerName: ?*i8,
+    Service: ?*i8,
     Level: u32,
     Options: u32,
-    Buffer: **u8,
+    Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

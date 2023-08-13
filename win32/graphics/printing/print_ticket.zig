@@ -35,89 +35,89 @@ pub const kPTJobScope = EPrintTicketScope.JobScope;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
-    pszPrinterName: [*:0]const u16,
-    pMaxVersion: *u32,
+    pszPrinterName: ?[*:0]const u16,
+    pMaxVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTOpenProvider(
-    pszPrinterName: [*:0]const u16,
+    pszPrinterName: ?[*:0]const u16,
     dwVersion: u32,
-    phProvider: *HPTPROVIDER,
+    phProvider: ?*?HPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTOpenProviderEx(
-    pszPrinterName: [*:0]const u16,
+    pszPrinterName: ?[*:0]const u16,
     dwMaxVersion: u32,
     dwPrefVersion: u32,
-    phProvider: *HPTPROVIDER,
-    pUsedVersion: *u32,
+    phProvider: ?*?HPTPROVIDER,
+    pUsedVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTCloseProvider(
-    hProvider: HPTPROVIDER,
+    hProvider: ?HPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTReleaseMemory(
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTGetPrintCapabilities(
-    hProvider: HPTPROVIDER,
+    hProvider: ?HPTPROVIDER,
     pPrintTicket: ?*IStream,
-    pCapabilities: *IStream,
-    pbstrErrorMessage: ?*BSTR,
+    pCapabilities: ?*IStream,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "prntvpt" fn PTGetPrintDeviceCapabilities(
-    hProvider: HPTPROVIDER,
+    hProvider: ?HPTPROVIDER,
     pPrintTicket: ?*IStream,
-    pDeviceCapabilities: *IStream,
-    pbstrErrorMessage: ?*BSTR,
+    pDeviceCapabilities: ?*IStream,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "prntvpt" fn PTGetPrintDeviceResources(
-    hProvider: HPTPROVIDER,
-    pszLocaleName: [*:0]const u16,
+    hProvider: ?HPTPROVIDER,
+    pszLocaleName: ?[*:0]const u16,
     pPrintTicket: ?*IStream,
-    pDeviceResources: *IStream,
-    pbstrErrorMessage: ?*BSTR,
+    pDeviceResources: ?*IStream,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTMergeAndValidatePrintTicket(
-    hProvider: HPTPROVIDER,
-    pBaseTicket: *IStream,
+    hProvider: ?HPTPROVIDER,
+    pBaseTicket: ?*IStream,
     pDeltaTicket: ?*IStream,
     scope: EPrintTicketScope,
-    pResultTicket: *IStream,
-    pbstrErrorMessage: ?*BSTR,
+    pResultTicket: ?*IStream,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTConvertPrintTicketToDevMode(
-    hProvider: HPTPROVIDER,
-    pPrintTicket: *IStream,
+    hProvider: ?HPTPROVIDER,
+    pPrintTicket: ?*IStream,
     baseDevmodeType: EDefaultDevmodeType,
     scope: EPrintTicketScope,
-    pcbDevmode: *u32,
-    ppDevmode: **DEVMODEA,
-    pbstrErrorMessage: ?*BSTR,
+    pcbDevmode: ?*u32,
+    ppDevmode: ?*?*DEVMODEA,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
-    hProvider: HPTPROVIDER,
+    hProvider: ?HPTPROVIDER,
     cbDevmode: u32,
-    pDevmode: *DEVMODEA,
+    pDevmode: ?*DEVMODEA,
     scope: EPrintTicketScope,
-    pPrintTicket: *IStream,
+    pPrintTicket: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

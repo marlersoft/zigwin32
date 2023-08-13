@@ -116,14 +116,14 @@ pub const PRJ_EXTENDED_INFO = extern struct {
     NextInfoOffset: u32,
     Anonymous: extern union {
         Symlink: extern struct {
-            TargetName: [*:0]const u16,
+            TargetName: ?[*:0]const u16,
         },
     },
 };
 
 pub const PRJ_NOTIFICATION_MAPPING = extern struct {
     NotificationBitMask: PRJ_NOTIFY_TYPES,
-    NotificationRoot: [*:0]const u16,
+    NotificationRoot: ?[*:0]const u16,
 };
 
 pub const PRJ_STARTVIRTUALIZING_FLAGS = enum(u32) {
@@ -147,7 +147,7 @@ pub const PRJ_STARTVIRTUALIZING_OPTIONS = extern struct {
     Flags: PRJ_STARTVIRTUALIZING_FLAGS,
     PoolThreadCount: u32,
     ConcurrentThreadCount: u32,
-    NotificationMappings: *PRJ_NOTIFICATION_MAPPING,
+    NotificationMappings: ?*PRJ_NOTIFICATION_MAPPING,
     NotificationMappingsCount: u32,
 };
 
@@ -307,42 +307,42 @@ pub const PRJ_CALLBACK_DATA = extern struct {
     CommandId: i32,
     FileId: Guid,
     DataStreamId: Guid,
-    FilePathName: [*:0]const u16,
-    VersionInfo: *PRJ_PLACEHOLDER_VERSION_INFO,
+    FilePathName: ?[*:0]const u16,
+    VersionInfo: ?*PRJ_PLACEHOLDER_VERSION_INFO,
     TriggeringProcessId: u32,
-    TriggeringProcessImageFileName: [*:0]const u16,
-    InstanceContext: *c_void,
+    TriggeringProcessImageFileName: ?[*:0]const u16,
+    InstanceContext: ?*c_void,
 };
 
 pub const PRJ_START_DIRECTORY_ENUMERATION_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
-    enumerationId: *const Guid,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_GET_DIRECTORY_ENUMERATION_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
-    enumerationId: *const Guid,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
     searchExpression: ?[*:0]const u16,
     dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_END_DIRECTORY_ENUMERATION_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
-    enumerationId: *const Guid,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_GET_PLACEHOLDER_INFO_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_GET_FILE_DATA_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
     byteOffset: u64,
     length: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_QUERY_FILE_NAME_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
@@ -358,26 +358,26 @@ pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
 };
 
 pub const PRJ_NOTIFICATION_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
     isDirectory: u8,
     notification: PRJ_NOTIFICATION,
     destinationFileName: ?[*:0]const u16,
-    operationParameters: *PRJ_NOTIFICATION_PARAMETERS,
+    operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_CANCEL_COMMAND_CB = fn(
-    callbackData: *const PRJ_CALLBACK_DATA,
+    callbackData: ?*const PRJ_CALLBACK_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PRJ_CALLBACKS = extern struct {
-    StartDirectoryEnumerationCallback: PRJ_START_DIRECTORY_ENUMERATION_CB,
-    EndDirectoryEnumerationCallback: PRJ_END_DIRECTORY_ENUMERATION_CB,
-    GetDirectoryEnumerationCallback: PRJ_GET_DIRECTORY_ENUMERATION_CB,
-    GetPlaceholderInfoCallback: PRJ_GET_PLACEHOLDER_INFO_CB,
-    GetFileDataCallback: PRJ_GET_FILE_DATA_CB,
-    QueryFileNameCallback: PRJ_QUERY_FILE_NAME_CB,
-    NotificationCallback: PRJ_NOTIFICATION_CB,
-    CancelCommandCallback: PRJ_CANCEL_COMMAND_CB,
+    StartDirectoryEnumerationCallback: ?PRJ_START_DIRECTORY_ENUMERATION_CB,
+    EndDirectoryEnumerationCallback: ?PRJ_END_DIRECTORY_ENUMERATION_CB,
+    GetDirectoryEnumerationCallback: ?PRJ_GET_DIRECTORY_ENUMERATION_CB,
+    GetPlaceholderInfoCallback: ?PRJ_GET_PLACEHOLDER_INFO_CB,
+    GetFileDataCallback: ?PRJ_GET_FILE_DATA_CB,
+    QueryFileNameCallback: ?PRJ_QUERY_FILE_NAME_CB,
+    NotificationCallback: ?PRJ_NOTIFICATION_CB,
+    CancelCommandCallback: ?PRJ_CANCEL_COMMAND_CB,
 };
 
 pub const PRJ_COMPLETE_COMMAND_TYPE = enum(i32) {
@@ -405,11 +405,11 @@ pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjStartVirtualizing(
-    virtualizationRootPath: [*:0]const u16,
-    callbacks: *const PRJ_CALLBACKS,
+    virtualizationRootPath: ?[*:0]const u16,
+    callbacks: ?*const PRJ_CALLBACKS,
     instanceContext: ?*const c_void,
     options: ?*const PRJ_STARTVIRTUALIZING_OPTIONS,
-    namespaceVirtualizationContext: *PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
+    namespaceVirtualizationContext: ?*PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -426,32 +426,32 @@ pub extern "PROJECTEDFSLIB" fn PrjClearNegativePathCache(
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjGetVirtualizationInstanceInfo(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    virtualizationInstanceInfo: *PRJ_VIRTUALIZATION_INSTANCE_INFO,
+    virtualizationInstanceInfo: ?*PRJ_VIRTUALIZATION_INSTANCE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjMarkDirectoryAsPlaceholder(
-    rootPathName: [*:0]const u16,
+    rootPathName: ?[*:0]const u16,
     targetPathName: ?[*:0]const u16,
     versionInfo: ?*const PRJ_PLACEHOLDER_VERSION_INFO,
-    virtualizationInstanceID: *const Guid,
+    virtualizationInstanceID: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    destinationFileName: [*:0]const u16,
+    destinationFileName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
+    placeholderInfo: ?*const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo2(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    destinationFileName: [*:0]const u16,
+    destinationFileName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
+    placeholderInfo: ?*const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
     ExtendedInfo: ?*const PRJ_EXTENDED_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -467,28 +467,28 @@ pub fn PrjDeleteFile() void { @panic("this function is not working"); }
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjWriteFileData(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    dataStreamId: *const Guid,
+    dataStreamId: ?*const Guid,
     // TODO: what to do with BytesParamIndex 4?
-    buffer: *c_void,
+    buffer: ?*c_void,
     byteOffset: u64,
     length: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjGetOnDiskFileState(
-    destinationFileName: [*:0]const u16,
-    fileState: *PRJ_FILE_STATE,
+    destinationFileName: ?[*:0]const u16,
+    fileState: ?*PRJ_FILE_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjAllocateAlignedBuffer(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     size: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFreeAlignedBuffer(
-    buffer: *c_void,
+    buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -501,7 +501,7 @@ pub extern "PROJECTEDFSLIB" fn PrjCompleteCommand(
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFillDirEntryBuffer(
-    fileName: [*:0]const u16,
+    fileName: ?[*:0]const u16,
     fileBasicInfo: ?*PRJ_FILE_BASIC_INFO,
     dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -509,26 +509,26 @@ pub extern "PROJECTEDFSLIB" fn PrjFillDirEntryBuffer(
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "PROJECTEDFSLIB" fn PrjFillDirEntryBuffer2(
     dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
-    fileName: [*:0]const u16,
+    fileName: ?[*:0]const u16,
     fileBasicInfo: ?*PRJ_FILE_BASIC_INFO,
     extendedInfo: ?*PRJ_EXTENDED_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFileNameMatch(
-    fileNameToCheck: [*:0]const u16,
-    pattern: [*:0]const u16,
+    fileNameToCheck: ?[*:0]const u16,
+    pattern: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFileNameCompare(
-    fileName1: [*:0]const u16,
-    fileName2: [*:0]const u16,
+    fileName1: ?[*:0]const u16,
+    fileName2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjDoesNameContainWildCards(
-    fileName: [*:0]const u16,
+    fileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 

@@ -37,7 +37,7 @@ pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS.REBOOT;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RegisterApplicationRecoveryCallback(
-    pRecoveyCallback: APPLICATION_RECOVERY_CALLBACK,
+    pRecoveyCallback: ?APPLICATION_RECOVERY_CALLBACK,
     pvParameter: ?*c_void,
     dwPingInterval: u32,
     dwFlags: u32,
@@ -59,24 +59,24 @@ pub extern "KERNEL32" fn UnregisterApplicationRestart(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetApplicationRecoveryCallback(
-    hProcess: HANDLE,
-    pRecoveryCallback: *APPLICATION_RECOVERY_CALLBACK,
-    ppvParameter: ?**c_void,
+    hProcess: ?HANDLE,
+    pRecoveryCallback: ?*?APPLICATION_RECOVERY_CALLBACK,
+    ppvParameter: ?*?*c_void,
     pdwPingInterval: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetApplicationRestartSettings(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     pwzCommandline: ?[*:0]u16,
-    pcchSize: *u32,
+    pcchSize: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn ApplicationRecoveryInProgress(
-    pbCancelled: *BOOL,
+    pbCancelled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

@@ -49,7 +49,7 @@ pub const WNV_NOTIFICATION_PARAM = extern struct {
     Header: WNV_OBJECT_HEADER,
     NotificationType: WNV_NOTIFICATION_TYPE,
     PendingNotifications: u32,
-    Buffer: *u8,
+    Buffer: ?*u8,
 };
 
 pub const WNV_IP_ADDRESS = extern struct {
@@ -108,14 +108,14 @@ pub const WNV_REDIRECT_PARAM = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "wnvapi" fn WnvOpen(
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "wnvapi" fn WnvRequestNotification(
-    WnvHandle: HANDLE,
-    NotificationParam: *WNV_NOTIFICATION_PARAM,
-    Overlapped: *OVERLAPPED,
-    BytesTransferred: *u32,
+    WnvHandle: ?HANDLE,
+    NotificationParam: ?*WNV_NOTIFICATION_PARAM,
+    Overlapped: ?*OVERLAPPED,
+    BytesTransferred: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

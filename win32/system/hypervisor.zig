@@ -1104,45 +1104,45 @@ pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
 };
 
 pub const WHV_EMULATOR_IO_PORT_CALLBACK = fn(
-    Context: *c_void,
-    IoAccess: *WHV_EMULATOR_IO_ACCESS_INFO,
+    Context: ?*c_void,
+    IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_MEMORY_CALLBACK = fn(
-    Context: *c_void,
-    MemoryAccess: *WHV_EMULATOR_MEMORY_ACCESS_INFO,
+    Context: ?*c_void,
+    MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = fn(
-    Context: *c_void,
+    Context: ?*c_void,
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]WHV_REGISTER_VALUE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = fn(
-    Context: *c_void,
+    Context: ?*c_void,
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]const WHV_REGISTER_VALUE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = fn(
-    Context: *c_void,
+    Context: ?*c_void,
     Gva: u64,
     TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-    TranslationResult: *WHV_TRANSLATE_GVA_RESULT_CODE,
-    Gpa: *u64,
+    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
+    Gpa: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_CALLBACKS = extern struct {
     Size: u32,
     Reserved: u32,
-    WHvEmulatorIoPortCallback: WHV_EMULATOR_IO_PORT_CALLBACK,
-    WHvEmulatorMemoryCallback: WHV_EMULATOR_MEMORY_CALLBACK,
-    WHvEmulatorGetVirtualProcessorRegisters: WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
-    WHvEmulatorSetVirtualProcessorRegisters: WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
-    WHvEmulatorTranslateGvaPage: WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK,
+    WHvEmulatorIoPortCallback: ?WHV_EMULATOR_IO_PORT_CALLBACK,
+    WHvEmulatorMemoryCallback: ?WHV_EMULATOR_MEMORY_CALLBACK,
+    WHvEmulatorGetVirtualProcessorRegisters: ?WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
+    WHvEmulatorSetVirtualProcessorRegisters: ?WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
+    WHvEmulatorTranslateGvaPage: ?WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK,
 };
 
 
@@ -1152,13 +1152,13 @@ pub const WHV_EMULATOR_CALLBACKS = extern struct {
 pub extern "WinHvPlatform" fn WHvGetCapability(
     CapabilityCode: WHV_CAPABILITY_CODE,
     // TODO: what to do with BytesParamIndex 2?
-    CapabilityBuffer: *c_void,
+    CapabilityBuffer: ?*c_void,
     CapabilityBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvCreatePartition(
-    Partition: *WHV_PARTITION_HANDLE,
+    Partition: ?*WHV_PARTITION_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvSetupPartition(
@@ -1173,7 +1173,7 @@ pub extern "WinHvPlatform" fn WHvGetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
     PropertyCode: WHV_PARTITION_PROPERTY_CODE,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyBuffer: *c_void,
+    PropertyBuffer: ?*c_void,
     PropertyBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1182,7 +1182,7 @@ pub extern "WinHvPlatform" fn WHvSetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
     PropertyCode: WHV_PARTITION_PROPERTY_CODE,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyBuffer: *const c_void,
+    PropertyBuffer: ?*const c_void,
     PropertyBufferSizeInBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1196,7 +1196,7 @@ pub extern "WinHvPlatform" fn WHvResumePartitionTime(
 
 pub extern "WinHvPlatform" fn WHvMapGpaRange(
     Partition: WHV_PARTITION_HANDLE,
-    SourceAddress: *c_void,
+    SourceAddress: ?*c_void,
     GuestAddress: u64,
     SizeInBytes: u64,
     Flags: WHV_MAP_GPA_RANGE_FLAGS,
@@ -1213,8 +1213,8 @@ pub extern "WinHvPlatform" fn WHvTranslateGva(
     VpIndex: u32,
     Gva: u64,
     TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-    TranslationResult: *WHV_TRANSLATE_GVA_RESULT,
-    Gpa: *u64,
+    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT,
+    Gpa: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvCreateVirtualProcessor(
@@ -1232,7 +1232,7 @@ pub extern "WinHvPlatform" fn WHvRunVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    ExitContext: *c_void,
+    ExitContext: ?*c_void,
     ExitContextSizeInBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1262,7 +1262,7 @@ pub extern "WinHvPlatform" fn WHvGetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    State: *c_void,
+    State: ?*c_void,
     StateSize: u32,
     WrittenSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1271,13 +1271,13 @@ pub extern "WinHvPlatform" fn WHvSetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    State: *const c_void,
+    State: ?*const c_void,
     StateSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvRequestInterrupt(
     Partition: WHV_PARTITION_HANDLE,
-    Interrupt: *const WHV_INTERRUPT_CONTROL,
+    Interrupt: ?*const WHV_INTERRUPT_CONTROL,
     InterruptControlSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1285,16 +1285,16 @@ pub extern "WinHvPlatform" fn WHvGetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSizeInBytes: u32,
-    BytesWritten: *u32,
+    BytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvSetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *const c_void,
+    Buffer: ?*const c_void,
     BufferSizeInBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1311,7 +1311,7 @@ pub extern "WinHvPlatform" fn WHvGetPartitionCounters(
     Partition: WHV_PARTITION_HANDLE,
     CounterSet: WHV_PARTITION_COUNTER_SET,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1321,7 +1321,7 @@ pub extern "WinHvPlatform" fn WHvGetVirtualProcessorCounters(
     VpIndex: u32,
     CounterSet: WHV_PROCESSOR_COUNTER_SET,
     // TODO: what to do with BytesParamIndex 4?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1330,7 +1330,7 @@ pub extern "WinHvPlatform" fn WHvGetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    State: *c_void,
+    State: ?*c_void,
     StateSize: u32,
     WrittenSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1339,44 +1339,44 @@ pub extern "WinHvPlatform" fn WHvSetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    State: *const c_void,
+    State: ?*const c_void,
     StateSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvRegisterPartitionDoorbellEvent(
     Partition: WHV_PARTITION_HANDLE,
-    MatchData: *const WHV_DOORBELL_MATCH_DATA,
-    EventHandle: HANDLE,
+    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
+    EventHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvPlatform" fn WHvUnregisterPartitionDoorbellEvent(
     Partition: WHV_PARTITION_HANDLE,
-    MatchData: *const WHV_DOORBELL_MATCH_DATA,
+    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvEmulation" fn WHvEmulatorCreateEmulator(
-    Callbacks: *const WHV_EMULATOR_CALLBACKS,
-    Emulator: **c_void,
+    Callbacks: ?*const WHV_EMULATOR_CALLBACKS,
+    Emulator: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvEmulation" fn WHvEmulatorDestroyEmulator(
-    Emulator: *c_void,
+    Emulator: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvEmulation" fn WHvEmulatorTryIoEmulation(
-    Emulator: *c_void,
-    Context: *c_void,
-    VpContext: *const WHV_VP_EXIT_CONTEXT,
-    IoInstructionContext: *const WHV_X64_IO_PORT_ACCESS_CONTEXT,
-    EmulatorReturnStatus: *WHV_EMULATOR_STATUS,
+    Emulator: ?*c_void,
+    Context: ?*c_void,
+    VpContext: ?*const WHV_VP_EXIT_CONTEXT,
+    IoInstructionContext: ?*const WHV_X64_IO_PORT_ACCESS_CONTEXT,
+    EmulatorReturnStatus: ?*WHV_EMULATOR_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WinHvEmulation" fn WHvEmulatorTryMmioEmulation(
-    Emulator: *c_void,
-    Context: *c_void,
-    VpContext: *const WHV_VP_EXIT_CONTEXT,
-    MmioInstructionContext: *const WHV_MEMORY_ACCESS_CONTEXT,
-    EmulatorReturnStatus: *WHV_EMULATOR_STATUS,
+    Emulator: ?*c_void,
+    Context: ?*c_void,
+    VpContext: ?*const WHV_VP_EXIT_CONTEXT,
+    MmioInstructionContext: ?*const WHV_MEMORY_ACCESS_CONTEXT,
+    EmulatorReturnStatus: ?*WHV_EMULATOR_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

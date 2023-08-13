@@ -366,7 +366,7 @@ pub const WNODE_HEADER = extern struct {
     },
     Anonymous2: extern union {
         CountLost: u32,
-        KernelHandle: HANDLE,
+        KernelHandle: ?HANDLE,
         TimeStamp: LARGE_INTEGER,
     },
     Guid: Guid,
@@ -600,8 +600,8 @@ pub const TRACE_LOGFILE_HEADER = extern struct {
             CpuSpeedInMHz: u32,
         },
     },
-    LoggerName: PWSTR,
-    LogFileName: PWSTR,
+    LoggerName: ?PWSTR,
+    LogFileName: ?PWSTR,
     TimeZone: TIME_ZONE_INFORMATION,
     BootTime: LARGE_INTEGER,
     PerfFreq: LARGE_INTEGER,
@@ -685,7 +685,7 @@ pub const TRACE_LOGFILE_HEADER64 = extern struct {
 };
 
 pub const EVENT_INSTANCE_INFO = extern struct {
-    RegHandle: HANDLE,
+    RegHandle: ?HANDLE,
     InstanceId: u32,
 };
 
@@ -708,7 +708,7 @@ pub const EVENT_TRACE_PROPERTIES = extern struct {
     BuffersWritten: u32,
     LogBuffersLost: u32,
     RealTimeBuffersLost: u32,
-    LoggerThreadId: HANDLE,
+    LoggerThreadId: ?HANDLE,
     LogFileNameOffset: u32,
     LoggerNameOffset: u32,
 };
@@ -732,7 +732,7 @@ pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
     BuffersWritten: u32,
     LogBuffersLost: u32,
     RealTimeBuffersLost: u32,
-    LoggerThreadId: HANDLE,
+    LoggerThreadId: ?HANDLE,
     LogFileNameOffset: u32,
     LoggerNameOffset: u32,
     Anonymous2: extern union {
@@ -742,7 +742,7 @@ pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
         V2Control: u32,
     },
     FilterDescCount: u32,
-    FilterDesc: *EVENT_FILTER_DESCRIPTOR,
+    FilterDesc: ?*EVENT_FILTER_DESCRIPTOR,
     Anonymous3: extern union {
         Anonymous: extern struct {
             _bitfield: u32,
@@ -752,8 +752,8 @@ pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
 };
 
 pub const TRACE_GUID_REGISTRATION = extern struct {
-    Guid: *const Guid,
-    RegHandle: HANDLE,
+    Guid: ?*const Guid,
+    RegHandle: ?HANDLE,
 };
 
 pub const TRACE_GUID_PROPERTIES = extern struct {
@@ -813,7 +813,7 @@ pub const EVENT_TRACE = extern struct {
     InstanceId: u32,
     ParentInstanceId: u32,
     ParentGuid: Guid,
-    MofData: *c_void,
+    MofData: ?*c_void,
     MofLength: u32,
     Anonymous: extern union {
         ClientContext: u32,
@@ -822,31 +822,31 @@ pub const EVENT_TRACE = extern struct {
 };
 
 pub const PEVENT_TRACE_BUFFER_CALLBACKW = fn(
-    Logfile: *EVENT_TRACE_LOGFILEW,
+    Logfile: ?*EVENT_TRACE_LOGFILEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PEVENT_TRACE_BUFFER_CALLBACKA = fn(
-    Logfile: *EVENT_TRACE_LOGFILEA,
+    Logfile: ?*EVENT_TRACE_LOGFILEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PEVENT_CALLBACK = fn(
-    pEvent: *EVENT_TRACE,
+    pEvent: ?*EVENT_TRACE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PEVENT_RECORD_CALLBACK = fn(
-    EventRecord: *EVENT_RECORD,
+    EventRecord: ?*EVENT_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WMIDPREQUEST = fn(
     RequestCode: WMIDPREQUESTCODE,
-    RequestContext: *c_void,
-    BufferSize: *u32,
-    Buffer: *c_void,
+    RequestContext: ?*c_void,
+    BufferSize: ?*u32,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EVENT_TRACE_LOGFILEW = extern struct {
-    LogFileName: PWSTR,
-    LoggerName: PWSTR,
+    LogFileName: ?PWSTR,
+    LoggerName: ?PWSTR,
     CurrentTime: i64,
     BuffersRead: u32,
     Anonymous1: extern union {
@@ -855,21 +855,21 @@ pub const EVENT_TRACE_LOGFILEW = extern struct {
     },
     CurrentEvent: EVENT_TRACE,
     LogfileHeader: TRACE_LOGFILE_HEADER,
-    BufferCallback: PEVENT_TRACE_BUFFER_CALLBACKW,
+    BufferCallback: ?PEVENT_TRACE_BUFFER_CALLBACKW,
     BufferSize: u32,
     Filled: u32,
     EventsLost: u32,
     Anonymous2: extern union {
-        EventCallback: PEVENT_CALLBACK,
-        EventRecordCallback: PEVENT_RECORD_CALLBACK,
+        EventCallback: ?PEVENT_CALLBACK,
+        EventRecordCallback: ?PEVENT_RECORD_CALLBACK,
     },
     IsKernelTrace: u32,
-    Context: *c_void,
+    Context: ?*c_void,
 };
 
 pub const EVENT_TRACE_LOGFILEA = extern struct {
-    LogFileName: PSTR,
-    LoggerName: PSTR,
+    LogFileName: ?PSTR,
+    LoggerName: ?PSTR,
     CurrentTime: i64,
     BuffersRead: u32,
     Anonymous1: extern union {
@@ -878,16 +878,16 @@ pub const EVENT_TRACE_LOGFILEA = extern struct {
     },
     CurrentEvent: EVENT_TRACE,
     LogfileHeader: TRACE_LOGFILE_HEADER,
-    BufferCallback: PEVENT_TRACE_BUFFER_CALLBACKA,
+    BufferCallback: ?PEVENT_TRACE_BUFFER_CALLBACKA,
     BufferSize: u32,
     Filled: u32,
     EventsLost: u32,
     Anonymous2: extern union {
-        EventCallback: PEVENT_CALLBACK,
-        EventRecordCallback: PEVENT_RECORD_CALLBACK,
+        EventCallback: ?PEVENT_CALLBACK,
+        EventRecordCallback: ?PEVENT_RECORD_CALLBACK,
     },
     IsKernelTrace: u32,
-    Context: *c_void,
+    Context: ?*c_void,
 };
 
 pub const ENABLE_TRACE_PARAMETERS_V1 = extern struct {
@@ -895,7 +895,7 @@ pub const ENABLE_TRACE_PARAMETERS_V1 = extern struct {
     EnableProperty: u32,
     ControlFlags: u32,
     SourceId: Guid,
-    EnableFilterDesc: *EVENT_FILTER_DESCRIPTOR,
+    EnableFilterDesc: ?*EVENT_FILTER_DESCRIPTOR,
 };
 
 pub const ENABLE_TRACE_PARAMETERS = extern struct {
@@ -903,7 +903,7 @@ pub const ENABLE_TRACE_PARAMETERS = extern struct {
     EnableProperty: u32,
     ControlFlags: u32,
     SourceId: Guid,
-    EnableFilterDesc: *EVENT_FILTER_DESCRIPTOR,
+    EnableFilterDesc: ?*EVENT_FILTER_DESCRIPTOR,
     FilterDescCount: u32,
 };
 
@@ -1001,8 +1001,8 @@ pub const ETW_TRACE_PARTITION_INFORMATION = extern struct {
 pub const ETW_TRACE_PARTITION_INFORMATION_V2 = extern struct {
     QpcOffsetFromRoot: i64,
     PartitionType: u32,
-    PartitionId: PWSTR,
-    ParentId: PWSTR,
+    PartitionId: ?PWSTR,
+    ParentId: ?PWSTR,
 };
 
 pub const EVENT_DATA_DESCRIPTOR = extern struct {
@@ -1080,7 +1080,7 @@ pub const EventProviderUseDescriptorType = EVENT_INFO_CLASS.EventProviderUseDesc
 pub const MaxEventInfo = EVENT_INFO_CLASS.MaxEventInfo;
 
 pub const PENABLECALLBACK = fn(
-    SourceId: *const Guid,
+    SourceId: ?*const Guid,
     IsEnabled: ENABLECALLBACK_ENABLED_STATE,
     Level: u8,
     MatchAnyKeyword: u64,
@@ -1164,9 +1164,9 @@ pub const EVENT_RECORD = extern struct {
     BufferContext: ETW_BUFFER_CONTEXT,
     ExtendedDataCount: u16,
     UserDataLength: u16,
-    ExtendedData: *EVENT_HEADER_EXTENDED_DATA_ITEM,
-    UserData: *c_void,
-    UserContext: *c_void,
+    ExtendedData: ?*EVENT_HEADER_EXTENDED_DATA_ITEM,
+    UserData: ?*c_void,
+    UserContext: ?*c_void,
 };
 
 pub const ETW_PROVIDER_TRAIT_TYPE = enum(i32) {
@@ -1548,9 +1548,9 @@ pub const PAYLOADFIELD_ISNOT = PAYLOAD_OPERATOR.ISNOT;
 pub const PAYLOADFIELD_INVALID = PAYLOAD_OPERATOR.INVALID;
 
 pub const PAYLOAD_FILTER_PREDICATE = extern struct {
-    FieldName: PWSTR,
+    FieldName: ?PWSTR,
     CompareOp: u16,
-    Value: PWSTR,
+    Value: ?PWSTR,
 };
 
 pub const PROVIDER_FILTER_INFO = extern struct {
@@ -1639,15 +1639,15 @@ pub const ITraceEvent = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const ITraceEvent,
-            NewEvent: **ITraceEvent,
+            NewEvent: ?*?*ITraceEvent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUserContext: fn(
             self: *const ITraceEvent,
-            UserContext: **c_void,
+            UserContext: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventRecord: fn(
             self: *const ITraceEvent,
-            EventRecord: **EVENT_RECORD,
+            EventRecord: ?*?*EVENT_RECORD,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPayload: fn(
             self: *const ITraceEvent,
@@ -1656,7 +1656,7 @@ pub const ITraceEvent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEventDescriptor: fn(
             self: *const ITraceEvent,
-            EventDescriptor: *const EVENT_DESCRIPTOR,
+            EventDescriptor: ?*const EVENT_DESCRIPTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProcessId: fn(
             self: *const ITraceEvent,
@@ -1677,30 +1677,30 @@ pub const ITraceEvent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetActivityId: fn(
             self: *const ITraceEvent,
-            ActivityId: *const Guid,
+            ActivityId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTimeStamp: fn(
             self: *const ITraceEvent,
-            TimeStamp: *LARGE_INTEGER,
+            TimeStamp: ?*LARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProviderId: fn(
             self: *const ITraceEvent,
-            ProviderId: *const Guid,
+            ProviderId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_Clone(self: *const T, NewEvent: **ITraceEvent) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_Clone(self: *const T, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).Clone(@ptrCast(*const ITraceEvent, self), NewEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetUserContext(self: *const T, UserContext: **c_void) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_GetUserContext(self: *const T, UserContext: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetUserContext(@ptrCast(*const ITraceEvent, self), UserContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: **EVENT_RECORD) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: ?*?*EVENT_RECORD) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetEventRecord(@ptrCast(*const ITraceEvent, self), EventRecord);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1708,7 +1708,7 @@ pub const ITraceEvent = extern struct {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetPayload(@ptrCast(*const ITraceEvent, self), Payload, PayloadSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: *const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetEventDescriptor(@ptrCast(*const ITraceEvent, self), EventDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1728,15 +1728,15 @@ pub const ITraceEvent = extern struct {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadTimes(@ptrCast(*const ITraceEvent, self), KernelTime, UserTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetActivityId(self: *const T, ActivityId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_SetActivityId(self: *const T, ActivityId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetActivityId(@ptrCast(*const ITraceEvent, self), ActivityId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: *LARGE_INTEGER) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetTimeStamp(@ptrCast(*const ITraceEvent, self), TimeStamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProviderId(self: *const T, ProviderId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITraceEvent_SetProviderId(self: *const T, ProviderId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProviderId(@ptrCast(*const ITraceEvent, self), ProviderId);
         }
     };}
@@ -1751,32 +1751,32 @@ pub const ITraceEventCallback = extern struct {
         base: IUnknown.VTable,
         OnBeginProcessTrace: fn(
             self: *const ITraceEventCallback,
-            HeaderEvent: *ITraceEvent,
-            Relogger: *ITraceRelogger,
+            HeaderEvent: ?*ITraceEvent,
+            Relogger: ?*ITraceRelogger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnFinalizeProcessTrace: fn(
             self: *const ITraceEventCallback,
-            Relogger: *ITraceRelogger,
+            Relogger: ?*ITraceRelogger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEvent: fn(
             self: *const ITraceEventCallback,
-            Event: *ITraceEvent,
-            Relogger: *ITraceRelogger,
+            Event: ?*ITraceEvent,
+            Relogger: ?*ITraceRelogger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: *ITraceEvent, Relogger: *ITraceRelogger) callconv(.Inline) HRESULT {
+        pub fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnBeginProcessTrace(@ptrCast(*const ITraceEventCallback, self), HeaderEvent, Relogger);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: *ITraceRelogger) callconv(.Inline) HRESULT {
+        pub fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnFinalizeProcessTrace(@ptrCast(*const ITraceEventCallback, self), Relogger);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnEvent(self: *const T, Event: *ITraceEvent, Relogger: *ITraceRelogger) callconv(.Inline) HRESULT {
+        pub fn ITraceEventCallback_OnEvent(self: *const T, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const ITraceEventCallback, self), Event, Relogger);
         }
     };}
@@ -1791,36 +1791,36 @@ pub const ITraceRelogger = extern struct {
         base: IUnknown.VTable,
         AddLogfileTraceStream: fn(
             self: *const ITraceRelogger,
-            LogfileName: BSTR,
-            UserContext: *c_void,
-            TraceHandle: *u64,
+            LogfileName: ?BSTR,
+            UserContext: ?*c_void,
+            TraceHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRealtimeTraceStream: fn(
             self: *const ITraceRelogger,
-            LoggerName: BSTR,
-            UserContext: *c_void,
-            TraceHandle: *u64,
+            LoggerName: ?BSTR,
+            UserContext: ?*c_void,
+            TraceHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterCallback: fn(
             self: *const ITraceRelogger,
-            Callback: *ITraceEventCallback,
+            Callback: ?*ITraceEventCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Inject: fn(
             self: *const ITraceRelogger,
-            Event: *ITraceEvent,
+            Event: ?*ITraceEvent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEventInstance: fn(
             self: *const ITraceRelogger,
             TraceHandle: u64,
             Flags: u32,
-            Event: **ITraceEvent,
+            Event: ?*?*ITraceEvent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessTrace: fn(
             self: *const ITraceRelogger,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputFilename: fn(
             self: *const ITraceRelogger,
-            LogfileName: BSTR,
+            LogfileName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompressionMode: fn(
             self: *const ITraceRelogger,
@@ -1834,23 +1834,23 @@ pub const ITraceRelogger = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: BSTR, UserContext: *c_void, TraceHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: ?BSTR, UserContext: ?*c_void, TraceHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddLogfileTraceStream(@ptrCast(*const ITraceRelogger, self), LogfileName, UserContext, TraceHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: BSTR, UserContext: *c_void, TraceHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: ?BSTR, UserContext: ?*c_void, TraceHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddRealtimeTraceStream(@ptrCast(*const ITraceRelogger, self), LoggerName, UserContext, TraceHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_RegisterCallback(self: *const T, Callback: *ITraceEventCallback) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_RegisterCallback(self: *const T, Callback: ?*ITraceEventCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).RegisterCallback(@ptrCast(*const ITraceRelogger, self), Callback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_Inject(self: *const T, Event: *ITraceEvent) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_Inject(self: *const T, Event: ?*ITraceEvent) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Inject(@ptrCast(*const ITraceRelogger, self), Event);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: u64, Flags: u32, Event: **ITraceEvent) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: u64, Flags: u32, Event: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).CreateEventInstance(@ptrCast(*const ITraceRelogger, self), TraceHandle, Flags, Event);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1858,7 +1858,7 @@ pub const ITraceRelogger = extern struct {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).ProcessTrace(@ptrCast(*const ITraceRelogger, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetOutputFilename(@ptrCast(*const ITraceRelogger, self), LogfileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2045,79 +2045,79 @@ pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StartTraceW(
-    TraceHandle: *u64,
-    InstanceName: [*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    TraceHandle: ?*u64,
+    InstanceName: ?[*:0]const u16,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StartTraceA(
-    TraceHandle: *u64,
-    InstanceName: [*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    TraceHandle: ?*u64,
+    InstanceName: ?[*:0]const u8,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StopTraceW(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StopTraceA(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn QueryTraceW(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn QueryTraceA(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn UpdateTraceW(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn UpdateTraceA(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FlushTraceW(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FlushTraceA(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ControlTraceW(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u16,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
     ControlCode: EVENT_TRACE_CONTROL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2125,22 +2125,22 @@ pub extern "ADVAPI32" fn ControlTraceW(
 pub extern "ADVAPI32" fn ControlTraceA(
     TraceHandle: u64,
     InstanceName: ?[*:0]const u8,
-    Properties: *EVENT_TRACE_PROPERTIES,
+    Properties: ?*EVENT_TRACE_PROPERTIES,
     ControlCode: EVENT_TRACE_CONTROL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn QueryAllTracesW(
-    PropertyArray: [*]*EVENT_TRACE_PROPERTIES,
+    PropertyArray: [*]?*EVENT_TRACE_PROPERTIES,
     PropertyArrayCount: u32,
-    LoggerCount: *u32,
+    LoggerCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn QueryAllTracesA(
-    PropertyArray: [*]*EVENT_TRACE_PROPERTIES,
+    PropertyArray: [*]?*EVENT_TRACE_PROPERTIES,
     PropertyArrayCount: u32,
-    LoggerCount: *u32,
+    LoggerCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2148,13 +2148,13 @@ pub extern "ADVAPI32" fn EnableTrace(
     Enable: u32,
     EnableFlag: u32,
     EnableLevel: u32,
-    ControlGuid: *const Guid,
+    ControlGuid: ?*const Guid,
     TraceHandle: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EnableTraceEx(
-    ProviderId: *const Guid,
+    ProviderId: ?*const Guid,
     SourceId: ?*const Guid,
     TraceHandle: u64,
     IsEnabled: u32,
@@ -2168,7 +2168,7 @@ pub extern "ADVAPI32" fn EnableTraceEx(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn EnableTraceEx2(
     TraceHandle: u64,
-    ProviderId: *const Guid,
+    ProviderId: ?*const Guid,
     ControlCode: u32,
     Level: u8,
     MatchAnyKeyword: u64,
@@ -2186,7 +2186,7 @@ pub extern "ADVAPI32" fn EnumerateTraceGuidsEx(
     // TODO: what to do with BytesParamIndex 4?
     OutBuffer: ?*c_void,
     OutBufferSize: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2194,7 +2194,7 @@ pub extern "ADVAPI32" fn TraceSetInformation(
     SessionHandle: u64,
     InformationClass: TRACE_QUERY_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    TraceInformation: *c_void,
+    TraceInformation: ?*c_void,
     InformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2203,60 +2203,60 @@ pub extern "ADVAPI32" fn TraceQueryInformation(
     SessionHandle: u64,
     InformationClass: TRACE_QUERY_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    TraceInformation: *c_void,
+    TraceInformation: ?*c_void,
     InformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn CreateTraceInstanceId(
-    RegHandle: HANDLE,
-    InstInfo: *EVENT_INSTANCE_INFO,
+    RegHandle: ?HANDLE,
+    InstInfo: ?*EVENT_INSTANCE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn TraceEvent(
     TraceHandle: u64,
-    EventTrace: *EVENT_TRACE_HEADER,
+    EventTrace: ?*EVENT_TRACE_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn TraceEventInstance(
     TraceHandle: u64,
-    EventTrace: *EVENT_INSTANCE_HEADER,
-    InstInfo: *EVENT_INSTANCE_INFO,
+    EventTrace: ?*EVENT_INSTANCE_HEADER,
+    InstInfo: ?*EVENT_INSTANCE_INFO,
     ParentInstInfo: ?*EVENT_INSTANCE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegisterTraceGuidsW(
-    RequestAddress: WMIDPREQUEST,
+    RequestAddress: ?WMIDPREQUEST,
     RequestContext: ?*c_void,
-    ControlGuid: *const Guid,
+    ControlGuid: ?*const Guid,
     GuidCount: u32,
     TraceGuidReg: ?[*]TRACE_GUID_REGISTRATION,
     MofImagePath: ?[*:0]const u16,
     MofResourceName: ?[*:0]const u16,
-    RegistrationHandle: *u64,
+    RegistrationHandle: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegisterTraceGuidsA(
-    RequestAddress: WMIDPREQUEST,
+    RequestAddress: ?WMIDPREQUEST,
     RequestContext: ?*c_void,
-    ControlGuid: *const Guid,
+    ControlGuid: ?*const Guid,
     GuidCount: u32,
     TraceGuidReg: ?[*]TRACE_GUID_REGISTRATION,
     MofImagePath: ?[*:0]const u8,
     MofResourceName: ?[*:0]const u8,
-    RegistrationHandle: *u64,
+    RegistrationHandle: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EnumerateTraceGuids(
-    GuidPropertiesArray: [*]*TRACE_GUID_PROPERTIES,
+    GuidPropertiesArray: [*]?*TRACE_GUID_PROPERTIES,
     PropertyArrayCount: u32,
-    GuidCount: *u32,
+    GuidCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2266,7 +2266,7 @@ pub extern "ADVAPI32" fn UnregisterTraceGuids(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetTraceLoggerHandle(
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2281,7 +2281,7 @@ pub extern "ADVAPI32" fn GetTraceEnableFlags(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenTraceW(
-    Logfile: *EVENT_TRACE_LOGFILEW,
+    Logfile: ?*EVENT_TRACE_LOGFILEW,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2305,30 +2305,30 @@ pub extern "ADVAPI32" fn QueryTraceProcessingHandle(
     InBufferSize: u32,
     OutBuffer: ?*c_void,
     OutBufferSize: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenTraceA(
-    Logfile: *EVENT_TRACE_LOGFILEA,
+    Logfile: ?*EVENT_TRACE_LOGFILEA,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn SetTraceCallback(
-    pGuid: *const Guid,
-    EventCallback: PEVENT_CALLBACK,
+    pGuid: ?*const Guid,
+    EventCallback: ?PEVENT_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RemoveTraceCallback(
-    pGuid: *const Guid,
+    pGuid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn TraceMessage(
     LoggerHandle: u64,
     MessageFlags: TRACE_MESSAGE_FLAGS,
-    MessageGuid: *const Guid,
+    MessageGuid: ?*const Guid,
     MessageNumber: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2336,17 +2336,17 @@ pub extern "ADVAPI32" fn TraceMessage(
 pub extern "ADVAPI32" fn TraceMessageVa(
     LoggerHandle: u64,
     MessageFlags: TRACE_MESSAGE_FLAGS,
-    MessageGuid: *const Guid,
+    MessageGuid: ?*const Guid,
     MessageNumber: u16,
-    MessageArgList: *i8,
+    MessageArgList: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventRegister(
-    ProviderId: *const Guid,
+    ProviderId: ?*const Guid,
     EnableCallback: ?PENABLECALLBACK,
     CallbackContext: ?*c_void,
-    RegHandle: *u64,
+    RegHandle: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2359,14 +2359,14 @@ pub extern "ADVAPI32" fn EventSetInformation(
     RegHandle: u64,
     InformationClass: EVENT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    EventInformation: *c_void,
+    EventInformation: ?*c_void,
     InformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventEnabled(
     RegHandle: u64,
-    EventDescriptor: *const EVENT_DESCRIPTOR,
+    EventDescriptor: ?*const EVENT_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2379,7 +2379,7 @@ pub extern "ADVAPI32" fn EventProviderEnabled(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventWrite(
     RegHandle: u64,
-    EventDescriptor: *const EVENT_DESCRIPTOR,
+    EventDescriptor: ?*const EVENT_DESCRIPTOR,
     UserDataCount: u32,
     UserData: ?[*]EVENT_DATA_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2387,7 +2387,7 @@ pub extern "ADVAPI32" fn EventWrite(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventWriteTransfer(
     RegHandle: u64,
-    EventDescriptor: *const EVENT_DESCRIPTOR,
+    EventDescriptor: ?*const EVENT_DESCRIPTOR,
     ActivityId: ?*const Guid,
     RelatedActivityId: ?*const Guid,
     UserDataCount: u32,
@@ -2397,7 +2397,7 @@ pub extern "ADVAPI32" fn EventWriteTransfer(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn EventWriteEx(
     RegHandle: u64,
-    EventDescriptor: *const EVENT_DESCRIPTOR,
+    EventDescriptor: ?*const EVENT_DESCRIPTOR,
     Filter: u64,
     Flags: u32,
     ActivityId: ?*const Guid,
@@ -2411,168 +2411,168 @@ pub extern "ADVAPI32" fn EventWriteString(
     RegHandle: u64,
     Level: u8,
     Keyword: u64,
-    String: [*:0]const u16,
+    String: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventActivityIdControl(
     ControlCode: u32,
-    ActivityId: *Guid,
+    ActivityId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventAccessControl(
-    Guid: *Guid,
+    Guid: ?*Guid,
     Operation: u32,
-    Sid: PSID,
+    Sid: ?PSID,
     Rights: u32,
     AllowOrDeny: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventAccessQuery(
-    Guid: *Guid,
+    Guid: ?*Guid,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*SECURITY_DESCRIPTOR,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventAccessRemove(
-    Guid: *Guid,
+    Guid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "tdh" fn TdhCreatePayloadFilter(
-    ProviderGuid: *const Guid,
-    EventDescriptor: *const EVENT_DESCRIPTOR,
+    ProviderGuid: ?*const Guid,
+    EventDescriptor: ?*const EVENT_DESCRIPTOR,
     EventMatchANY: u8,
     PayloadPredicateCount: u32,
     PayloadPredicates: [*]PAYLOAD_FILTER_PREDICATE,
-    PayloadFilter: ?**c_void,
+    PayloadFilter: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "tdh" fn TdhDeletePayloadFilter(
-    PayloadFilter: **c_void,
+    PayloadFilter: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "tdh" fn TdhAggregatePayloadFilters(
     PayloadFilterCount: u32,
-    PayloadFilterPtrs: [*]*c_void,
+    PayloadFilterPtrs: [*]?*c_void,
     EventMatchALLFlags: ?[*:0]u8,
-    EventFilterDescriptor: *EVENT_FILTER_DESCRIPTOR,
+    EventFilterDescriptor: ?*EVENT_FILTER_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "tdh" fn TdhCleanupPayloadEventFilterDescriptor(
-    EventFilterDescriptor: *EVENT_FILTER_DESCRIPTOR,
+    EventFilterDescriptor: ?*EVENT_FILTER_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhGetEventInformation(
-    Event: *EVENT_RECORD,
+    Event: ?*EVENT_RECORD,
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
     // TODO: what to do with BytesParamIndex 4?
     Buffer: ?*TRACE_EVENT_INFO,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhGetEventMapInformation(
-    pEvent: *EVENT_RECORD,
-    pMapName: PWSTR,
+    pEvent: ?*EVENT_RECORD,
+    pMapName: ?PWSTR,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*EVENT_MAP_INFO,
-    pBufferSize: *u32,
+    pBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhGetPropertySize(
-    pEvent: *EVENT_RECORD,
+    pEvent: ?*EVENT_RECORD,
     TdhContextCount: u32,
     pTdhContext: ?[*]TDH_CONTEXT,
     PropertyDataCount: u32,
     pPropertyData: [*]PROPERTY_DATA_DESCRIPTOR,
-    pPropertySize: *u32,
+    pPropertySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhGetProperty(
-    pEvent: *EVENT_RECORD,
+    pEvent: ?*EVENT_RECORD,
     TdhContextCount: u32,
     pTdhContext: ?[*]TDH_CONTEXT,
     PropertyDataCount: u32,
     pPropertyData: [*]PROPERTY_DATA_DESCRIPTOR,
     BufferSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pBuffer: *u8,
+    pBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhEnumerateProviders(
     // TODO: what to do with BytesParamIndex 1?
     pBuffer: ?*PROVIDER_ENUMERATION_INFO,
-    pBufferSize: *u32,
+    pBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhQueryProviderFieldInformation(
-    pGuid: *Guid,
+    pGuid: ?*Guid,
     EventFieldValue: u64,
     EventFieldType: EVENT_FIELD_TYPE,
     // TODO: what to do with BytesParamIndex 4?
     pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
-    pBufferSize: *u32,
+    pBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhEnumerateProviderFieldInformation(
-    pGuid: *Guid,
+    pGuid: ?*Guid,
     EventFieldType: EVENT_FIELD_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
-    pBufferSize: *u32,
+    pBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "tdh" fn TdhEnumerateProviderFilters(
-    Guid: *Guid,
+    Guid: ?*Guid,
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
-    FilterCount: *u32,
+    FilterCount: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?**PROVIDER_FILTER_INFO,
-    BufferSize: *u32,
+    Buffer: ?*?*PROVIDER_FILTER_INFO,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "TDH" fn TdhLoadManifest(
-    Manifest: PWSTR,
+    Manifest: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "TDH" fn TdhLoadManifestFromMemory(
     // TODO: what to do with BytesParamIndex 1?
-    pData: *const c_void,
+    pData: ?*const c_void,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "TDH" fn TdhUnloadManifest(
-    Manifest: PWSTR,
+    Manifest: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "TDH" fn TdhUnloadManifestFromMemory(
     // TODO: what to do with BytesParamIndex 1?
-    pData: *const c_void,
+    pData: ?*const c_void,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "TDH" fn TdhFormatProperty(
-    EventInfo: *TRACE_EVENT_INFO,
+    EventInfo: ?*TRACE_EVENT_INFO,
     MapInfo: ?*EVENT_MAP_INFO,
     PointerSize: u32,
     PropertyInType: u16,
@@ -2580,47 +2580,47 @@ pub extern "TDH" fn TdhFormatProperty(
     PropertyLength: u16,
     UserDataLength: u16,
     // TODO: what to do with BytesParamIndex 6?
-    UserData: *u8,
-    BufferSize: *u32,
+    UserData: ?*u8,
+    BufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 8?
     Buffer: ?[*]u16,
-    UserDataConsumed: *u16,
+    UserDataConsumed: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhOpenDecodingHandle(
-    Handle: *TDH_HANDLE,
+    Handle: ?*TDH_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhSetDecodingParameter(
     Handle: TDH_HANDLE,
-    TdhContext: *TDH_CONTEXT,
+    TdhContext: ?*TDH_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhGetDecodingParameter(
     Handle: TDH_HANDLE,
-    TdhContext: *TDH_CONTEXT,
+    TdhContext: ?*TDH_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhGetWppProperty(
     Handle: TDH_HANDLE,
-    EventRecord: *EVENT_RECORD,
-    PropertyName: PWSTR,
-    BufferSize: *u32,
+    EventRecord: ?*EVENT_RECORD,
+    PropertyName: ?PWSTR,
+    BufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *u8,
+    Buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhGetWppMessage(
     Handle: TDH_HANDLE,
-    EventRecord: *EVENT_RECORD,
-    BufferSize: *u32,
+    EventRecord: ?*EVENT_RECORD,
+    BufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: *u8,
+    Buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2630,29 +2630,29 @@ pub extern "tdh" fn TdhCloseDecodingHandle(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhLoadManifestFromBinary(
-    BinaryPath: PWSTR,
+    BinaryPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "TDH" fn TdhEnumerateManifestProviderEvents(
-    ProviderGuid: *Guid,
+    ProviderGuid: ?*Guid,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*PROVIDER_EVENT_INFO,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "TDH" fn TdhGetManifestEventInformation(
-    ProviderGuid: *Guid,
-    EventDescriptor: *EVENT_DESCRIPTOR,
+    ProviderGuid: ?*Guid,
+    EventDescriptor: ?*EVENT_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*TRACE_EVENT_INFO,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ADVAPI32" fn CveEventWrite(
-    CveId: [*:0]const u16,
+    CveId: ?[*:0]const u16,
     AdditionalDetails: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

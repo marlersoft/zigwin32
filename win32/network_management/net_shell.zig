@@ -88,13 +88,13 @@ pub const NETSH_COMMIT_STATE = NS_MODE_CHANGE.COMMIT_STATE;
 pub const NETSH_SAVE = NS_MODE_CHANGE.SAVE;
 
 pub const TOKEN_VALUE = extern struct {
-    pwszToken: [*:0]const u16,
+    pwszToken: ?[*:0]const u16,
     dwValue: u32,
 };
 
 pub const PGET_RESOURCE_STRING_FN = fn(
     dwMsgID: u32,
-    lpBuffer: PWSTR,
+    lpBuffer: ?PWSTR,
     nBufferMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -103,14 +103,14 @@ pub const PNS_CONTEXT_COMMIT_FN = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_CONTEXT_CONNECT_FN = fn(
-    pwszMachine: [*:0]const u16,
+    pwszMachine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_CONTEXT_DUMP_FN = fn(
-    pwszRouter: [*:0]const u16,
-    ppwcArguments: [*]PWSTR,
+    pwszRouter: ?[*:0]const u16,
+    ppwcArguments: [*]?PWSTR,
     dwArgCount: u32,
-    pvData: *const c_void,
+    pvData: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_DLL_STOP_FN = fn(
@@ -118,7 +118,7 @@ pub const PNS_DLL_STOP_FN = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_HELPER_START_FN = fn(
-    pguidParent: *const Guid,
+    pguidParent: ?*const Guid,
     dwVersion: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -127,22 +127,22 @@ pub const PNS_HELPER_STOP_FN = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_HANDLE_CMD = fn(
-    pwszMachine: [*:0]const u16,
-    ppwcArguments: [*]PWSTR,
+    pwszMachine: ?[*:0]const u16,
+    ppwcArguments: [*]?PWSTR,
     dwCurrentIndex: u32,
     dwArgCount: u32,
     dwFlags: u32,
-    pvData: *const c_void,
-    pbDone: *BOOL,
+    pvData: ?*const c_void,
+    pbDone: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_OSVERSIONCHECK = fn(
     CIMOSType: u32,
     CIMOSProductSuite: u32,
-    CIMOSVersion: [*:0]const u16,
-    CIMOSBuildNumber: [*:0]const u16,
-    CIMServicePackMajorVersion: [*:0]const u16,
-    CIMServicePackMinorVersion: [*:0]const u16,
+    CIMOSVersion: ?[*:0]const u16,
+    CIMOSBuildNumber: ?[*:0]const u16,
+    CIMServicePackMajorVersion: ?[*:0]const u16,
+    CIMServicePackMinorVersion: ?[*:0]const u16,
     uiReserved: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -156,26 +156,26 @@ pub const NS_HELPER_ATTRIBUTES = extern struct {
         _ullAlign: u64,
     },
     guidHelper: Guid,
-    pfnStart: PNS_HELPER_START_FN,
-    pfnStop: PNS_HELPER_STOP_FN,
+    pfnStart: ?PNS_HELPER_START_FN,
+    pfnStop: ?PNS_HELPER_STOP_FN,
 };
 
 pub const CMD_ENTRY = extern struct {
-    pwszCmdToken: [*:0]const u16,
-    pfnCmdHandler: PFN_HANDLE_CMD,
+    pwszCmdToken: ?[*:0]const u16,
+    pfnCmdHandler: ?PFN_HANDLE_CMD,
     dwShortCmdHelpToken: u32,
     dwCmdHlpToken: u32,
     dwFlags: u32,
-    pOsVersionCheck: PNS_OSVERSIONCHECK,
+    pOsVersionCheck: ?PNS_OSVERSIONCHECK,
 };
 
 pub const CMD_GROUP_ENTRY = extern struct {
-    pwszCmdGroupToken: [*:0]const u16,
+    pwszCmdGroupToken: ?[*:0]const u16,
     dwShortCmdHelpToken: u32,
     ulCmdGroupSize: u32,
     dwFlags: u32,
-    pCmdGroup: *CMD_ENTRY,
-    pOsVersionCheck: PNS_OSVERSIONCHECK,
+    pCmdGroup: ?*CMD_ENTRY,
+    pOsVersionCheck: ?PNS_OSVERSIONCHECK,
 };
 
 pub const NS_CONTEXT_ATTRIBUTES = extern struct {
@@ -186,30 +186,30 @@ pub const NS_CONTEXT_ATTRIBUTES = extern struct {
         },
         _ullAlign: u64,
     },
-    pwszContext: PWSTR,
+    pwszContext: ?PWSTR,
     guidHelper: Guid,
     dwFlags: u32,
     ulPriority: u32,
     ulNumTopCmds: u32,
-    pTopCmds: *CMD_ENTRY,
+    pTopCmds: ?*CMD_ENTRY,
     ulNumGroups: u32,
-    pCmdGroups: *CMD_GROUP_ENTRY,
-    pfnCommitFn: PNS_CONTEXT_COMMIT_FN,
-    pfnDumpFn: PNS_CONTEXT_DUMP_FN,
-    pfnConnectFn: PNS_CONTEXT_CONNECT_FN,
-    pReserved: *c_void,
-    pfnOsVersionCheck: PNS_OSVERSIONCHECK,
+    pCmdGroups: ?*CMD_GROUP_ENTRY,
+    pfnCommitFn: ?PNS_CONTEXT_COMMIT_FN,
+    pfnDumpFn: ?PNS_CONTEXT_DUMP_FN,
+    pfnConnectFn: ?PNS_CONTEXT_CONNECT_FN,
+    pReserved: ?*c_void,
+    pfnOsVersionCheck: ?PNS_OSVERSIONCHECK,
 };
 
 pub const TAG_TYPE = extern struct {
-    pwszTag: [*:0]const u16,
+    pwszTag: ?[*:0]const u16,
     dwRequired: u32,
     bPresent: BOOL,
 };
 
 pub const PNS_DLL_INIT_FN = fn(
     dwNetshVersion: u32,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 
@@ -218,23 +218,23 @@ pub const PNS_DLL_INIT_FN = fn(
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn MatchEnumTag(
-    hModule: HANDLE,
-    pwcArg: [*:0]const u16,
+    hModule: ?HANDLE,
+    pwcArg: ?[*:0]const u16,
     dwNumArg: u32,
-    pEnumTable: *const TOKEN_VALUE,
-    pdwValue: *u32,
+    pEnumTable: ?*const TOKEN_VALUE,
+    pdwValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn MatchToken(
-    pwszUserToken: [*:0]const u16,
-    pwszCmdToken: [*:0]const u16,
+    pwszUserToken: ?[*:0]const u16,
+    pwszCmdToken: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn PreprocessCommand(
     hModule: ?HANDLE,
-    ppwcArguments: [*]PWSTR,
+    ppwcArguments: [*]?PWSTR,
     dwCurrentIndex: u32,
     dwArgCount: u32,
     pttTags: ?[*]TAG_TYPE,
@@ -246,30 +246,30 @@ pub extern "NETSH" fn PreprocessCommand(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn PrintError(
-    hModule: HANDLE,
+    hModule: ?HANDLE,
     dwErrId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn PrintMessageFromModule(
-    hModule: HANDLE,
+    hModule: ?HANDLE,
     dwMsgId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn PrintMessage(
-    pwszFormat: [*:0]const u16,
+    pwszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn RegisterContext(
-    pChildContext: *const NS_CONTEXT_ATTRIBUTES,
+    pChildContext: ?*const NS_CONTEXT_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn RegisterHelper(
-    pguidParentContext: *const Guid,
-    pfnRegisterSubContext: *const NS_HELPER_ATTRIBUTES,
+    pguidParentContext: ?*const Guid,
+    pfnRegisterSubContext: ?*const NS_HELPER_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

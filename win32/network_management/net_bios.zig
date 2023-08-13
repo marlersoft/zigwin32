@@ -96,7 +96,7 @@ pub const NCB = extern struct {
     ncb_retcode: u8,
     ncb_lsn: u8,
     ncb_num: u8,
-    ncb_buffer: *u8,
+    ncb_buffer: ?*u8,
     ncb_length: u16,
     ncb_callname: [16]u8,
     ncb_name: [16]u8,
@@ -106,7 +106,7 @@ pub const NCB = extern struct {
     ncb_lana_num: u8,
     ncb_cmd_cplt: u8,
     ncb_reserve: [18]u8,
-    ncb_event: HANDLE,
+    ncb_event: ?HANDLE,
 };
 
 }, else => struct { } };
@@ -119,7 +119,7 @@ pub const NCB = extern struct {
     ncb_retcode: u8,
     ncb_lsn: u8,
     ncb_num: u8,
-    ncb_buffer: *u8,
+    ncb_buffer: ?*u8,
     ncb_length: u16,
     ncb_callname: [16]u8,
     ncb_name: [16]u8,
@@ -129,7 +129,7 @@ pub const NCB = extern struct {
     ncb_lana_num: u8,
     ncb_cmd_cplt: u8,
     ncb_reserve: [10]u8,
-    ncb_event: HANDLE,
+    ncb_event: ?HANDLE,
 };
 
 }, else => struct { } };
@@ -218,7 +218,7 @@ pub const ACTION_HEADER = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn Netbios(
-    pncb: *NCB,
+    pncb: ?*NCB,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 

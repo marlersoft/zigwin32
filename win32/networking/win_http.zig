@@ -424,33 +424,33 @@ pub const HTTP_VERSION_INFO = extern struct {
 
 pub const URL_COMPONENTS = extern struct {
     dwStructSize: u32,
-    lpszScheme: PWSTR,
+    lpszScheme: ?PWSTR,
     dwSchemeLength: u32,
     nScheme: INTERNET_SCHEME,
-    lpszHostName: PWSTR,
+    lpszHostName: ?PWSTR,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: PWSTR,
+    lpszUserName: ?PWSTR,
     dwUserNameLength: u32,
-    lpszPassword: PWSTR,
+    lpszPassword: ?PWSTR,
     dwPasswordLength: u32,
-    lpszUrlPath: PWSTR,
+    lpszUrlPath: ?PWSTR,
     dwUrlPathLength: u32,
-    lpszExtraInfo: PWSTR,
+    lpszExtraInfo: ?PWSTR,
     dwExtraInfoLength: u32,
 };
 
 pub const WINHTTP_PROXY_INFO = extern struct {
     dwAccessType: WINHTTP_ACCESS_TYPE,
-    lpszProxy: PWSTR,
-    lpszProxyBypass: PWSTR,
+    lpszProxy: ?PWSTR,
+    lpszProxyBypass: ?PWSTR,
 };
 
 pub const WINHTTP_AUTOPROXY_OPTIONS = extern struct {
     dwFlags: u32,
     dwAutoDetectFlags: u32,
-    lpszAutoConfigUrl: [*:0]const u16,
-    lpvReserved: *c_void,
+    lpszAutoConfigUrl: ?[*:0]const u16,
+    lpvReserved: ?*c_void,
     dwReserved: u32,
     fAutoLogonIfChallenged: BOOL,
 };
@@ -459,19 +459,19 @@ pub const WINHTTP_PROXY_RESULT_ENTRY = extern struct {
     fProxy: BOOL,
     fBypass: BOOL,
     ProxyScheme: INTERNET_SCHEME,
-    pwszProxy: PWSTR,
+    pwszProxy: ?PWSTR,
     ProxyPort: u16,
 };
 
 pub const WINHTTP_PROXY_RESULT = extern struct {
     cEntries: u32,
-    pEntries: *WINHTTP_PROXY_RESULT_ENTRY,
+    pEntries: ?*WINHTTP_PROXY_RESULT_ENTRY,
 };
 
 pub const WINHTTP_PROXY_RESULT_EX = extern struct {
     cEntries: u32,
-    pEntries: *WINHTTP_PROXY_RESULT_ENTRY,
-    hProxyDetectionHandle: HANDLE,
+    pEntries: ?*WINHTTP_PROXY_RESULT_ENTRY,
+    hProxyDetectionHandle: ?HANDLE,
     dwProxyInterfaceAffinity: u32,
 };
 
@@ -483,29 +483,29 @@ pub const WINHTTP_PROXY_SETTINGS = extern struct {
     dwStructSize: u32,
     dwFlags: u32,
     dwCurrentSettingsVersion: u32,
-    pwszConnectionName: PWSTR,
-    pwszProxy: PWSTR,
-    pwszProxyBypass: PWSTR,
-    pwszAutoconfigUrl: PWSTR,
-    pwszAutoconfigSecondaryUrl: PWSTR,
+    pwszConnectionName: ?PWSTR,
+    pwszProxy: ?PWSTR,
+    pwszProxyBypass: ?PWSTR,
+    pwszAutoconfigUrl: ?PWSTR,
+    pwszAutoconfigSecondaryUrl: ?PWSTR,
     dwAutoDiscoveryFlags: u32,
-    pwszLastKnownGoodAutoConfigUrl: PWSTR,
+    pwszLastKnownGoodAutoConfigUrl: ?PWSTR,
     dwAutoconfigReloadDelayMins: u32,
     ftLastKnownDetectTime: FILETIME,
     dwDetectedInterfaceIpCount: u32,
-    pdwDetectedInterfaceIp: *u32,
+    pdwDetectedInterfaceIp: ?*u32,
     cNetworkKeys: u32,
-    pNetworkKeys: *_WinHttpProxyNetworkKey,
+    pNetworkKeys: ?*_WinHttpProxyNetworkKey,
 };
 
 pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     ftExpiry: FILETIME,
     ftStart: FILETIME,
-    lpszSubjectInfo: PWSTR,
-    lpszIssuerInfo: PWSTR,
-    lpszProtocolName: PWSTR,
-    lpszSignatureAlgName: PWSTR,
-    lpszEncryptionAlgName: PWSTR,
+    lpszSubjectInfo: ?PWSTR,
+    lpszIssuerInfo: ?PWSTR,
+    lpszProtocolName: ?PWSTR,
+    lpszSignatureAlgName: ?PWSTR,
+    lpszEncryptionAlgName: ?PWSTR,
     dwKeySize: u32,
 };
 
@@ -662,39 +662,39 @@ pub const WINHTTP_REQUEST_STATS = extern struct {
 
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
     Anonymous1: extern union {
-        pwszName: [*:0]const u16,
-        pszName: [*:0]const u8,
+        pwszName: ?[*:0]const u16,
+        pszName: ?[*:0]const u8,
     },
     Anonymous2: extern union {
-        pwszValue: [*:0]const u16,
-        pszValue: [*:0]const u8,
+        pwszValue: ?[*:0]const u16,
+        pszValue: ?[*:0]const u8,
     },
 };
 
 pub const WINHTTP_CREDS = extern struct {
-    lpszUserName: PSTR,
-    lpszPassword: PSTR,
-    lpszRealm: PSTR,
+    lpszUserName: ?PSTR,
+    lpszPassword: ?PSTR,
+    lpszRealm: ?PSTR,
     dwAuthScheme: WINHTTP_CREDS_AUTHSCHEME,
-    lpszHostName: PSTR,
+    lpszHostName: ?PSTR,
     dwPort: u32,
 };
 
 pub const WINHTTP_CREDS_EX = extern struct {
-    lpszUserName: PSTR,
-    lpszPassword: PSTR,
-    lpszRealm: PSTR,
+    lpszUserName: ?PSTR,
+    lpszPassword: ?PSTR,
+    lpszRealm: ?PSTR,
     dwAuthScheme: WINHTTP_CREDS_AUTHSCHEME,
-    lpszHostName: PSTR,
+    lpszHostName: ?PSTR,
     dwPort: u32,
-    lpszUrl: PSTR,
+    lpszUrl: ?PSTR,
 };
 
 pub const WINHTTP_STATUS_CALLBACK = fn(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     dwContext: usize,
     dwInternetStatus: u32,
-    lpvStatusInformation: *c_void,
+    lpvStatusInformation: ?*c_void,
     dwStatusInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -703,9 +703,9 @@ pub const LPWINHTTP_STATUS_CALLBACK = fn(
 
 pub const WINHTTP_CURRENT_USER_IE_PROXY_CONFIG = extern struct {
     fAutoDetect: BOOL,
-    lpszAutoConfigUrl: PWSTR,
-    lpszProxy: PWSTR,
-    lpszProxyBypass: PWSTR,
+    lpszAutoConfigUrl: ?PWSTR,
+    lpszProxy: ?PWSTR,
+    lpszProxyBypass: ?PWSTR,
 };
 
 pub const WINHTTP_WEB_SOCKET_OPERATION = enum(i32) {
@@ -884,22 +884,22 @@ pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpSetStatusCallback(
-    hInternet: *c_void,
-    lpfnInternetCallback: WINHTTP_STATUS_CALLBACK,
+    hInternet: ?*c_void,
+    lpfnInternetCallback: ?WINHTTP_STATUS_CALLBACK,
     dwNotificationFlags: u32,
     dwReserved: usize,
-) callconv(@import("std").os.windows.WINAPI) WINHTTP_STATUS_CALLBACK;
+) callconv(@import("std").os.windows.WINAPI) ?WINHTTP_STATUS_CALLBACK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpTimeFromSystemTime(
-    pst: *const SYSTEMTIME,
+    pst: ?*const SYSTEMTIME,
     pwszTime: *[62]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpTimeToSystemTime(
-    pwszTime: [*:0]const u16,
-    pst: *SYSTEMTIME,
+    pwszTime: ?[*:0]const u16,
+    pst: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -907,15 +907,15 @@ pub extern "WINHTTP" fn WinHttpCrackUrl(
     pwszUrl: [*:0]const u16,
     dwUrlLength: u32,
     dwFlags: u32,
-    lpUrlComponents: *URL_COMPONENTS,
+    lpUrlComponents: ?*URL_COMPONENTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpCreateUrl(
-    lpUrlComponents: *URL_COMPONENTS,
+    lpUrlComponents: ?*URL_COMPONENTS,
     dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
     pwszUrl: ?[*:0]u16,
-    pdwUrlLength: *u32,
+    pdwUrlLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -924,12 +924,12 @@ pub extern "WINHTTP" fn WinHttpCheckPlatform(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpGetDefaultProxyConfiguration(
-    pProxyInfo: *WINHTTP_PROXY_INFO,
+    pProxyInfo: ?*WINHTTP_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpSetDefaultProxyConfiguration(
-    pProxyInfo: *WINHTTP_PROXY_INFO,
+    pProxyInfo: ?*WINHTTP_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -939,52 +939,52 @@ pub extern "WINHTTP" fn WinHttpOpen(
     pszProxyW: ?[*:0]const u16,
     pszProxyBypassW: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpCloseHandle(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpConnect(
-    hSession: *c_void,
-    pswzServerName: [*:0]const u16,
+    hSession: ?*c_void,
+    pswzServerName: ?[*:0]const u16,
     nServerPort: INTERNET_PORT,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpReadData(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     dwNumberOfBytesToRead: u32,
-    lpdwNumberOfBytesRead: *u32,
+    lpdwNumberOfBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpWriteData(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*const c_void,
     dwNumberOfBytesToWrite: u32,
-    lpdwNumberOfBytesWritten: *u32,
+    lpdwNumberOfBytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpQueryDataAvailable(
-    hRequest: *c_void,
-    lpdwNumberOfBytesAvailable: *u32,
+    hRequest: ?*c_void,
+    lpdwNumberOfBytesAvailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpQueryOption(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -997,7 +997,7 @@ pub extern "WINHTTP" fn WinHttpSetOption(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpSetTimeouts(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     nResolveTimeout: i32,
     nConnectTimeout: i32,
     nSendTimeout: i32,
@@ -1006,25 +1006,25 @@ pub extern "WINHTTP" fn WinHttpSetTimeouts(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpOpenRequest(
-    hConnect: *c_void,
-    pwszVerb: [*:0]const u16,
-    pwszObjectName: [*:0]const u16,
-    pwszVersion: [*:0]const u16,
-    pwszReferrer: [*:0]const u16,
-    ppwszAcceptTypes: *PWSTR,
+    hConnect: ?*c_void,
+    pwszVerb: ?[*:0]const u16,
+    pwszObjectName: ?[*:0]const u16,
+    pwszVersion: ?[*:0]const u16,
+    pwszReferrer: ?[*:0]const u16,
+    ppwszAcceptTypes: ?*?PWSTR,
     dwFlags: WINHTTP_OPEN_REQUEST_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpAddRequestHeaders(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: [*:0]const u16,
     dwHeadersLength: u32,
     dwModifiers: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINHTTP" fn WinHttpAddRequestHeadersEx(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwModifiers: u32,
     ullFlags: u64,
     ullExtra: u64,
@@ -1034,7 +1034,7 @@ pub extern "WINHTTP" fn WinHttpAddRequestHeadersEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpSendRequest(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -1046,71 +1046,71 @@ pub extern "WINHTTP" fn WinHttpSendRequest(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpSetCredentials(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     AuthTargets: u32,
     AuthScheme: u32,
-    pwszUserName: [*:0]const u16,
-    pwszPassword: [*:0]const u16,
-    pAuthParams: *c_void,
+    pwszUserName: ?[*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
+    pAuthParams: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpQueryAuthSchemes(
-    hRequest: *c_void,
-    lpdwSupportedSchemes: *u32,
-    lpdwFirstScheme: *u32,
-    pdwAuthTarget: *u32,
+    hRequest: ?*c_void,
+    lpdwSupportedSchemes: ?*u32,
+    lpdwFirstScheme: ?*u32,
+    pdwAuthTarget: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpReceiveResponse(
-    hRequest: *c_void,
-    lpReserved: *c_void,
+    hRequest: ?*c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpQueryHeaders(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwInfoLevel: u32,
-    pwszName: [*:0]const u16,
+    pwszName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
-    lpdwIndex: *u32,
+    lpdwBufferLength: ?*u32,
+    lpdwIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpDetectAutoProxyConfigUrl(
     dwAutoDetectFlags: u32,
-    ppwstrAutoConfigUrl: ?*PWSTR,
+    ppwstrAutoConfigUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpGetProxyForUrl(
-    hSession: *c_void,
-    lpcwszUrl: [*:0]const u16,
-    pAutoProxyOptions: *WINHTTP_AUTOPROXY_OPTIONS,
-    pProxyInfo: *WINHTTP_PROXY_INFO,
+    hSession: ?*c_void,
+    lpcwszUrl: ?[*:0]const u16,
+    pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
+    pProxyInfo: ?*WINHTTP_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpCreateProxyResolver(
-    hSession: *c_void,
-    phResolver: **c_void,
+    hSession: ?*c_void,
+    phResolver: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx(
-    hResolver: *c_void,
-    pcwszUrl: [*:0]const u16,
-    pAutoProxyOptions: *WINHTTP_AUTOPROXY_OPTIONS,
+    hResolver: ?*c_void,
+    pcwszUrl: ?[*:0]const u16,
+    pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
     pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
-    hResolver: *c_void,
-    pcwszUrl: [*:0]const u16,
-    pAutoProxyOptions: *WINHTTP_AUTOPROXY_OPTIONS,
+    hResolver: ?*c_void,
+    pcwszUrl: ?[*:0]const u16,
+    pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
     cbInterfaceSelectionContext: u32,
     // TODO: what to do with BytesParamIndex 3?
     pInterfaceSelectionContext: ?*u8,
@@ -1119,58 +1119,58 @@ pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpGetProxyResult(
-    hResolver: *c_void,
-    pProxyResult: *WINHTTP_PROXY_RESULT,
+    hResolver: ?*c_void,
+    pProxyResult: ?*WINHTTP_PROXY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpGetProxyResultEx(
-    hResolver: *c_void,
-    pProxyResultEx: *WINHTTP_PROXY_RESULT_EX,
+    hResolver: ?*c_void,
+    pProxyResultEx: ?*WINHTTP_PROXY_RESULT_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpFreeProxyResult(
-    pProxyResult: *WINHTTP_PROXY_RESULT,
+    pProxyResult: ?*WINHTTP_PROXY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WINHTTP" fn WinHttpFreeProxyResultEx(
-    pProxyResultEx: *WINHTTP_PROXY_RESULT_EX,
+    pProxyResultEx: ?*WINHTTP_PROXY_RESULT_EX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpResetAutoProxy(
-    hSession: *c_void,
+    hSession: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINHTTP" fn WinHttpGetIEProxyConfigForCurrentUser(
-    pProxyConfig: *WINHTTP_CURRENT_USER_IE_PROXY_CONFIG,
+    pProxyConfig: ?*WINHTTP_CURRENT_USER_IE_PROXY_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINHTTP" fn WinHttpWriteProxySettings(
-    hSession: *c_void,
+    hSession: ?*c_void,
     fForceUpdate: BOOL,
-    pWinHttpProxySettings: *WINHTTP_PROXY_SETTINGS,
+    pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpReadProxySettings(
-    hSession: *c_void,
+    hSession: ?*c_void,
     pcwszConnectionName: ?[*:0]const u16,
     fFallBackToDefaultSettings: BOOL,
     fSetAutoDiscoverForDefaultSettings: BOOL,
-    pdwSettingsVersion: *u32,
-    pfDefaultSettingsAreReturned: *BOOL,
-    pWinHttpProxySettings: *WINHTTP_PROXY_SETTINGS,
+    pdwSettingsVersion: ?*u32,
+    pfDefaultSettingsAreReturned: ?*BOOL,
+    pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpFreeProxySettings(
-    pWinHttpProxySettings: *WINHTTP_PROXY_SETTINGS,
+    pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WINHTTP" fn WinHttpGetProxySettingsVersion(
-    hSession: *c_void,
-    pdwProxySettingsVersion: *u32,
+    hSession: ?*c_void,
+    pdwProxySettingsVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpSetProxySettingsPerUser(
@@ -1179,13 +1179,13 @@ pub extern "WINHTTP" fn WinHttpSetProxySettingsPerUser(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketCompleteUpgrade(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     pContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketSend(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
     pvBuffer: ?[*]u8,
     dwBufferLength: u32,
@@ -1193,17 +1193,17 @@ pub extern "WINHTTP" fn WinHttpWebSocketSend(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketReceive(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
     dwBufferLength: u32,
-    pdwBytesRead: *u32,
-    peBufferType: *WINHTTP_WEB_SOCKET_BUFFER_TYPE,
+    pdwBytesRead: ?*u32,
+    peBufferType: ?*WINHTTP_WEB_SOCKET_BUFFER_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketShutdown(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
@@ -1212,7 +1212,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketShutdown(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketClose(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
@@ -1221,12 +1221,12 @@ pub extern "WINHTTP" fn WinHttpWebSocketClose(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketQueryCloseStatus(
-    hWebSocket: *c_void,
-    pusStatus: *u16,
+    hWebSocket: ?*c_void,
+    pusStatus: ?*u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
     dwReasonLength: u32,
-    pdwReasonLengthConsumed: *u32,
+    pdwReasonLengthConsumed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

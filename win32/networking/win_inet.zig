@@ -902,15 +902,15 @@ pub const INTERNET_DIAGNOSTIC_SOCKET_INFO = extern struct {
 
 pub const INTERNET_PROXY_INFO = extern struct {
     dwAccessType: INTERNET_ACCESS_TYPE,
-    lpszProxy: *i8,
-    lpszProxyBypass: *i8,
+    lpszProxy: ?*i8,
+    lpszProxyBypass: ?*i8,
 };
 
 pub const INTERNET_PER_CONN_OPTIONA = extern struct {
     dwOption: INTERNET_PER_CONN,
     Value: extern union {
         dwValue: u32,
-        pszValue: PSTR,
+        pszValue: ?PSTR,
         ftValue: FILETIME,
     },
 };
@@ -919,25 +919,25 @@ pub const INTERNET_PER_CONN_OPTIONW = extern struct {
     dwOption: INTERNET_PER_CONN,
     Value: extern union {
         dwValue: u32,
-        pszValue: PWSTR,
+        pszValue: ?PWSTR,
         ftValue: FILETIME,
     },
 };
 
 pub const INTERNET_PER_CONN_OPTION_LISTA = extern struct {
     dwSize: u32,
-    pszConnection: PSTR,
+    pszConnection: ?PSTR,
     dwOptionCount: u32,
     dwOptionError: u32,
-    pOptions: *INTERNET_PER_CONN_OPTIONA,
+    pOptions: ?*INTERNET_PER_CONN_OPTIONA,
 };
 
 pub const INTERNET_PER_CONN_OPTION_LISTW = extern struct {
     dwSize: u32,
-    pszConnection: PWSTR,
+    pszConnection: ?PWSTR,
     dwOptionCount: u32,
     dwOptionError: u32,
-    pOptions: *INTERNET_PER_CONN_OPTIONW,
+    pOptions: ?*INTERNET_PER_CONN_OPTIONW,
 };
 
 pub const INTERNET_VERSION_INFO = extern struct {
@@ -952,58 +952,58 @@ pub const INTERNET_CONNECTED_INFO = extern struct {
 
 pub const URL_COMPONENTSA = extern struct {
     dwStructSize: u32,
-    lpszScheme: PSTR,
+    lpszScheme: ?PSTR,
     dwSchemeLength: u32,
     nScheme: INTERNET_SCHEME,
-    lpszHostName: PSTR,
+    lpszHostName: ?PSTR,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: PSTR,
+    lpszUserName: ?PSTR,
     dwUserNameLength: u32,
-    lpszPassword: PSTR,
+    lpszPassword: ?PSTR,
     dwPasswordLength: u32,
-    lpszUrlPath: PSTR,
+    lpszUrlPath: ?PSTR,
     dwUrlPathLength: u32,
-    lpszExtraInfo: PSTR,
+    lpszExtraInfo: ?PSTR,
     dwExtraInfoLength: u32,
 };
 
 pub const URL_COMPONENTSW = extern struct {
     dwStructSize: u32,
-    lpszScheme: PWSTR,
+    lpszScheme: ?PWSTR,
     dwSchemeLength: u32,
     nScheme: INTERNET_SCHEME,
-    lpszHostName: PWSTR,
+    lpszHostName: ?PWSTR,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: PWSTR,
+    lpszUserName: ?PWSTR,
     dwUserNameLength: u32,
-    lpszPassword: PWSTR,
+    lpszPassword: ?PWSTR,
     dwPasswordLength: u32,
-    lpszUrlPath: PWSTR,
+    lpszUrlPath: ?PWSTR,
     dwUrlPathLength: u32,
-    lpszExtraInfo: PWSTR,
+    lpszExtraInfo: ?PWSTR,
     dwExtraInfoLength: u32,
 };
 
 pub const INTERNET_CERTIFICATE_INFO = extern struct {
     ftExpiry: FILETIME,
     ftStart: FILETIME,
-    lpszSubjectInfo: *i8,
-    lpszIssuerInfo: *i8,
-    lpszProtocolName: *i8,
-    lpszSignatureAlgName: *i8,
-    lpszEncryptionAlgName: *i8,
+    lpszSubjectInfo: ?*i8,
+    lpszIssuerInfo: ?*i8,
+    lpszProtocolName: ?*i8,
+    lpszSignatureAlgName: ?*i8,
+    lpszEncryptionAlgName: ?*i8,
     dwKeySize: u32,
 };
 
 pub const INTERNET_BUFFERSA = extern struct {
     dwStructSize: u32,
-    Next: *INTERNET_BUFFERSA,
-    lpcszHeader: [*:0]const u8,
+    Next: ?*INTERNET_BUFFERSA,
+    lpcszHeader: ?[*:0]const u8,
     dwHeadersLength: u32,
     dwHeadersTotal: u32,
-    lpvBuffer: *c_void,
+    lpvBuffer: ?*c_void,
     dwBufferLength: u32,
     dwBufferTotal: u32,
     dwOffsetLow: u32,
@@ -1012,11 +1012,11 @@ pub const INTERNET_BUFFERSA = extern struct {
 
 pub const INTERNET_BUFFERSW = extern struct {
     dwStructSize: u32,
-    Next: *INTERNET_BUFFERSW,
-    lpcszHeader: [*:0]const u16,
+    Next: ?*INTERNET_BUFFERSW,
+    lpcszHeader: ?[*:0]const u16,
     dwHeadersLength: u32,
     dwHeadersTotal: u32,
-    lpvBuffer: *c_void,
+    lpvBuffer: ?*c_void,
     dwBufferLength: u32,
     dwBufferTotal: u32,
     dwOffsetLow: u32,
@@ -1024,7 +1024,7 @@ pub const INTERNET_BUFFERSW = extern struct {
 };
 
 pub const LPINTERNET_STATUS_CALLBACK = fn(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     dwContext: usize,
     dwInternetStatus: u32,
     lpvStatusInformation: ?*c_void,
@@ -1055,13 +1055,13 @@ pub const IncomingCookieState = extern struct {
     cLeashed: i32,
     cDowngraded: i32,
     cBlocked: i32,
-    pszLocation: [*:0]const u8,
+    pszLocation: ?[*:0]const u8,
 };
 
 pub const OutgoingCookieState = extern struct {
     cSent: i32,
     cSuppressed: i32,
-    pszLocation: [*:0]const u8,
+    pszLocation: ?[*:0]const u8,
 };
 
 pub const InternetCookieHistory = extern struct {
@@ -1095,8 +1095,8 @@ pub const GOPHER_FIND_DATAW = extern struct {
 };
 
 pub const GOPHER_ADMIN_ATTRIBUTE_TYPE = extern struct {
-    Comment: *i8,
-    EmailAddress: *i8,
+    Comment: ?*i8,
+    EmailAddress: ?*i8,
 };
 
 pub const GOPHER_MOD_DATE_ATTRIBUTE_TYPE = extern struct {
@@ -1117,15 +1117,15 @@ pub const GOPHER_SCORE_RANGE_ATTRIBUTE_TYPE = extern struct {
 };
 
 pub const GOPHER_SITE_ATTRIBUTE_TYPE = extern struct {
-    Site: *i8,
+    Site: ?*i8,
 };
 
 pub const GOPHER_ORGANIZATION_ATTRIBUTE_TYPE = extern struct {
-    Organization: *i8,
+    Organization: ?*i8,
 };
 
 pub const GOPHER_LOCATION_ATTRIBUTE_TYPE = extern struct {
-    Location: *i8,
+    Location: ?*i8,
 };
 
 pub const GOPHER_GEOGRAPHICAL_LOCATION_ATTRIBUTE_TYPE = extern struct {
@@ -1142,21 +1142,21 @@ pub const GOPHER_TIMEZONE_ATTRIBUTE_TYPE = extern struct {
 };
 
 pub const GOPHER_PROVIDER_ATTRIBUTE_TYPE = extern struct {
-    Provider: *i8,
+    Provider: ?*i8,
 };
 
 pub const GOPHER_VERSION_ATTRIBUTE_TYPE = extern struct {
-    Version: *i8,
+    Version: ?*i8,
 };
 
 pub const GOPHER_ABSTRACT_ATTRIBUTE_TYPE = extern struct {
-    ShortAbstract: *i8,
-    AbstractFile: *i8,
+    ShortAbstract: ?*i8,
+    AbstractFile: ?*i8,
 };
 
 pub const GOPHER_VIEW_ATTRIBUTE_TYPE = extern struct {
-    ContentType: *i8,
-    Language: *i8,
+    ContentType: ?*i8,
+    Language: ?*i8,
     Size: u32,
 };
 
@@ -1165,12 +1165,12 @@ pub const GOPHER_VERONICA_ATTRIBUTE_TYPE = extern struct {
 };
 
 pub const GOPHER_ASK_ATTRIBUTE_TYPE = extern struct {
-    QuestionType: *i8,
-    QuestionText: *i8,
+    QuestionType: ?*i8,
+    QuestionText: ?*i8,
 };
 
 pub const GOPHER_UNKNOWN_ATTRIBUTE_TYPE = extern struct {
-    Text: *i8,
+    Text: ?*i8,
 };
 
 pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
@@ -1198,15 +1198,15 @@ pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
 };
 
 pub const GOPHER_ATTRIBUTE_ENUMERATOR = fn(
-    lpAttributeInfo: *GOPHER_ATTRIBUTE_TYPE,
+    lpAttributeInfo: ?*GOPHER_ATTRIBUTE_TYPE,
     dwError: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const INTERNET_COOKIE2 = extern struct {
-    pwszName: PWSTR,
-    pwszValue: PWSTR,
-    pwszDomain: PWSTR,
-    pwszPath: PWSTR,
+    pwszName: ?PWSTR,
+    pwszValue: ?PWSTR,
+    pwszDomain: ?PWSTR,
+    pwszPath: ?PWSTR,
     dwFlags: u32,
     ftExpires: FILETIME,
     fExpiresSet: BOOL,
@@ -1215,20 +1215,20 @@ pub const INTERNET_COOKIE2 = extern struct {
 pub const PFN_AUTH_NOTIFY = fn(
     param0: usize,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const INTERNET_AUTH_NOTIFY_DATA = extern struct {
     cbStruct: u32,
     dwOptions: u32,
-    pfnNotify: PFN_AUTH_NOTIFY,
+    pfnNotify: ?PFN_AUTH_NOTIFY,
     dwContext: usize,
 };
 
 pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     dwStructSize: u32,
-    lpszSourceUrlName: PSTR,
-    lpszLocalFileName: PSTR,
+    lpszSourceUrlName: ?PSTR,
+    lpszLocalFileName: ?PSTR,
     CacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -1238,9 +1238,9 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     ExpireTime: FILETIME,
     LastAccessTime: FILETIME,
     LastSyncTime: FILETIME,
-    lpHeaderInfo: PSTR,
+    lpHeaderInfo: ?PSTR,
     dwHeaderInfoSize: u32,
-    lpszFileExtension: PSTR,
+    lpszFileExtension: ?PSTR,
     Anonymous: extern union {
         dwReserved: u32,
         dwExemptDelta: u32,
@@ -1249,8 +1249,8 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
 
 pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     dwStructSize: u32,
-    lpszSourceUrlName: PWSTR,
-    lpszLocalFileName: PWSTR,
+    lpszSourceUrlName: ?PWSTR,
+    lpszLocalFileName: ?PWSTR,
     CacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -1260,9 +1260,9 @@ pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     ExpireTime: FILETIME,
     LastAccessTime: FILETIME,
     LastSyncTime: FILETIME,
-    lpHeaderInfo: PWSTR,
+    lpHeaderInfo: ?PWSTR,
     dwHeaderInfoSize: u32,
-    lpszFileExtension: PWSTR,
+    lpszFileExtension: ?PWSTR,
     Anonymous: extern union {
         dwReserved: u32,
         dwExemptDelta: u32,
@@ -1308,34 +1308,34 @@ pub const AutoProxyHelperVtbl = extern struct {
 
 pub const AUTO_PROXY_SCRIPT_BUFFER = extern struct {
     dwStructSize: u32,
-    lpszScriptBuffer: PSTR,
+    lpszScriptBuffer: ?PSTR,
     dwScriptBufferSize: u32,
 };
 
 pub const AutoProxyHelperFunctions = extern struct {
-    lpVtbl: *const AutoProxyHelperVtbl,
+    lpVtbl: ?*const AutoProxyHelperVtbl,
 };
 
 pub const pfnInternetInitializeAutoProxyDll = fn(
     dwVersion: u32,
-    lpszDownloadedTempFile: PSTR,
-    lpszMime: PSTR,
-    lpAutoProxyCallbacks: *AutoProxyHelperFunctions,
-    lpAutoProxyScriptBuffer: *AUTO_PROXY_SCRIPT_BUFFER,
+    lpszDownloadedTempFile: ?PSTR,
+    lpszMime: ?PSTR,
+    lpAutoProxyCallbacks: ?*AutoProxyHelperFunctions,
+    lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pfnInternetDeInitializeAutoProxyDll = fn(
-    lpszMime: PSTR,
+    lpszMime: ?PSTR,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pfnInternetGetProxyInfo = fn(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     dwUrlLength: u32,
-    lpszUrlHostName: PSTR,
+    lpszUrlHostName: ?PSTR,
     dwUrlHostNameLength: u32,
-    lplpszProxyHostName: *PSTR,
-    lpdwProxyHostNameLength: *u32,
+    lplpszProxyHostName: ?*?PSTR,
+    lpdwProxyHostNameLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const WPAD_CACHE_DELETE = enum(i32) {
@@ -1346,10 +1346,10 @@ pub const WPAD_CACHE_DELETE_CURRENT = WPAD_CACHE_DELETE.CURRENT;
 pub const WPAD_CACHE_DELETE_ALL = WPAD_CACHE_DELETE.ALL;
 
 pub const PFN_DIAL_HANDLER = fn(
-    param0: HWND,
-    param1: [*:0]const u8,
+    param0: ?HWND,
+    param1: ?[*:0]const u8,
     param2: u32,
-    param3: *u32,
+    param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 const IID_IDialEventSink_Value = @import("../zig.zig").Guid.initString("2d86f4ff-6e2d-4488-b2e9-6934afd41bea");
@@ -1381,19 +1381,19 @@ pub const IDialEngine = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IDialEngine,
-            pwzConnectoid: [*:0]const u16,
-            pIDES: *IDialEventSink,
+            pwzConnectoid: ?[*:0]const u16,
+            pIDES: ?*IDialEventSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IDialEngine,
-            pwzProperty: [*:0]const u16,
-            pwzValue: PWSTR,
+            pwzProperty: ?[*:0]const u16,
+            pwzValue: ?PWSTR,
             dwBufSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IDialEngine,
-            pwzProperty: [*:0]const u16,
-            pwzValue: [*:0]const u16,
+            pwzProperty: ?[*:0]const u16,
+            pwzValue: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Dial: fn(
             self: *const IDialEngine,
@@ -1403,26 +1403,26 @@ pub const IDialEngine = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectedState: fn(
             self: *const IDialEngine,
-            pdwState: *u32,
+            pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectHandle: fn(
             self: *const IDialEngine,
-            pdwHandle: *usize,
+            pdwHandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_Initialize(self: *const T, pwzConnectoid: [*:0]const u16, pIDES: *IDialEventSink) callconv(.Inline) HRESULT {
+        pub fn IDialEngine_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).Initialize(@ptrCast(*const IDialEngine, self), pwzConnectoid, pIDES);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetProperty(self: *const T, pwzProperty: [*:0]const u16, pwzValue: PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDialEngine_GetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).GetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue, dwBufSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_SetProperty(self: *const T, pwzProperty: [*:0]const u16, pwzValue: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDialEngine_SetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).SetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1434,11 +1434,11 @@ pub const IDialEngine = extern struct {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).HangUp(@ptrCast(*const IDialEngine, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectedState(self: *const T, pdwState: *u32) callconv(.Inline) HRESULT {
+        pub fn IDialEngine_GetConnectedState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectedState(@ptrCast(*const IDialEngine, self), pdwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: *usize) callconv(.Inline) HRESULT {
+        pub fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectHandle(@ptrCast(*const IDialEngine, self), pdwHandle);
         }
     };}
@@ -1452,23 +1452,23 @@ pub const IDialBranding = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IDialBranding,
-            pwzConnectoid: [*:0]const u16,
+            pwzConnectoid: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBitmap: fn(
             self: *const IDialBranding,
             dwIndex: u32,
-            phBitmap: *HBITMAP,
+            phBitmap: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_Initialize(self: *const T, pwzConnectoid: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDialBranding_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialBranding.VTable, self.vtable).Initialize(@ptrCast(*const IDialBranding, self), pwzConnectoid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: *HBITMAP) callconv(.Inline) HRESULT {
+        pub fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDialBranding.VTable, self.vtable).GetBitmap(@ptrCast(*const IDialBranding, self), dwIndex, phBitmap);
         }
     };}
@@ -1482,11 +1482,11 @@ pub const INTERNET_PREFETCH_STATUS = extern struct {
 
 pub const INTERNET_SECURITY_INFO = extern struct {
     dwSize: u32,
-    pCertificate: *const CERT_CONTEXT,
-    pcCertChain: *CERT_CHAIN_CONTEXT,
+    pCertificate: ?*const CERT_CONTEXT,
+    pcCertChain: ?*CERT_CHAIN_CONTEXT,
     connectionInfo: SecPkgContext_ConnectionInfo,
     cipherInfo: SecPkgContext_CipherInfo,
-    pcUnverifiedCertChain: *CERT_CHAIN_CONTEXT,
+    pcUnverifiedCertChain: ?*CERT_CHAIN_CONTEXT,
     channelBindingToken: SecPkgContext_Bindings,
 };
 
@@ -1514,8 +1514,8 @@ pub const FORTSTAT_INSTALLED = FORTSTAT.INSTALLED;
 pub const FORTSTAT_LOGGEDON = FORTSTAT.LOGGEDON;
 
 pub const INTERNET_DOWNLOAD_MODE_HANDLE = extern struct {
-    pcwszFileName: [*:0]const u16,
-    phFile: *HANDLE,
+    pcwszFileName: ?[*:0]const u16,
+    phFile: ?*?HANDLE,
 };
 
 pub const REQUEST_TIMES = enum(i32) {
@@ -1541,7 +1541,7 @@ pub const HTTP_REQUEST_TIMES = extern struct {
 };
 
 pub const INTERNET_SERVER_CONNECTION_STATE = extern struct {
-    lpcwszHostName: [*:0]const u16,
+    lpcwszHostName: ?[*:0]const u16,
     fProxy: BOOL,
     dwCounter: u32,
     dwConnectionLimit: u32,
@@ -1552,32 +1552,32 @@ pub const INTERNET_SERVER_CONNECTION_STATE = extern struct {
 };
 
 pub const INTERNET_END_BROWSER_SESSION_DATA = extern struct {
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     dwBufferLength: u32,
 };
 
 pub const INTERNET_CALLBACK_COOKIE = extern struct {
-    pcwszName: [*:0]const u16,
-    pcwszValue: [*:0]const u16,
-    pcwszDomain: [*:0]const u16,
-    pcwszPath: [*:0]const u16,
+    pcwszName: ?[*:0]const u16,
+    pcwszValue: ?[*:0]const u16,
+    pcwszDomain: ?[*:0]const u16,
+    pcwszPath: ?[*:0]const u16,
     ftExpires: FILETIME,
     dwFlags: u32,
 };
 
 pub const INTERNET_CREDENTIALS = extern struct {
-    lpcwszHostName: [*:0]const u16,
+    lpcwszHostName: ?[*:0]const u16,
     dwPort: u32,
     dwScheme: u32,
-    lpcwszUrl: [*:0]const u16,
-    lpcwszRealm: [*:0]const u16,
+    lpcwszUrl: ?[*:0]const u16,
+    lpcwszRealm: ?[*:0]const u16,
     fAuthIdentity: BOOL,
     Anonymous: extern union {
         Anonymous: extern struct {
-            lpcwszUserName: [*:0]const u16,
-            lpcwszPassword: [*:0]const u16,
+            lpcwszUserName: ?[*:0]const u16,
+            lpcwszPassword: ?[*:0]const u16,
         },
-        pAuthIdentityOpaque: *c_void,
+        pAuthIdentityOpaque: ?*c_void,
     },
 };
 
@@ -1602,23 +1602,23 @@ pub const HttpPushWaitSendComplete = HTTP_PUSH_WAIT_TYPE.SendComplete;
 
 pub const INTERNET_COOKIE = extern struct {
     cbSize: u32,
-    pszName: PSTR,
-    pszData: PSTR,
-    pszDomain: PSTR,
-    pszPath: PSTR,
-    pftExpires: *FILETIME,
+    pszName: ?PSTR,
+    pszData: ?PSTR,
+    pszDomain: ?PSTR,
+    pszPath: ?PSTR,
+    pftExpires: ?*FILETIME,
     dwFlags: u32,
-    pszUrl: PSTR,
-    pszP3PPolicy: PSTR,
+    pszUrl: ?PSTR,
+    pszP3PPolicy: ?PSTR,
 };
 
 pub const COOKIE_DLG_INFO = extern struct {
-    pszServer: PWSTR,
-    pic: *INTERNET_COOKIE,
+    pszServer: ?PWSTR,
+    pic: ?*INTERNET_COOKIE,
     dwStopWarning: u32,
     cx: i32,
     cy: i32,
-    pszHeader: PWSTR,
+    pszHeader: ?PWSTR,
     dwOperation: u32,
 };
 
@@ -1672,18 +1672,18 @@ pub const INTERNET_CACHE_CONFIG_INFOW = extern struct {
 
 pub const INTERNET_CACHE_CONTAINER_INFOA = extern struct {
     dwCacheVersion: u32,
-    lpszName: PSTR,
-    lpszCachePrefix: PSTR,
-    lpszVolumeLabel: PSTR,
-    lpszVolumeTitle: PSTR,
+    lpszName: ?PSTR,
+    lpszCachePrefix: ?PSTR,
+    lpszVolumeLabel: ?PSTR,
+    lpszVolumeTitle: ?PSTR,
 };
 
 pub const INTERNET_CACHE_CONTAINER_INFOW = extern struct {
     dwCacheVersion: u32,
-    lpszName: PWSTR,
-    lpszCachePrefix: PWSTR,
-    lpszVolumeLabel: PWSTR,
-    lpszVolumeTitle: PWSTR,
+    lpszName: ?PWSTR,
+    lpszCachePrefix: ?PWSTR,
+    lpszVolumeLabel: ?PWSTR,
+    lpszVolumeTitle: ?PWSTR,
 };
 
 pub const WININET_SYNC_MODE = enum(i32) {
@@ -1713,13 +1713,13 @@ pub const AppCacheStateUpdateNeededNew = APP_CACHE_STATE.UpdateNeededNew;
 pub const AppCacheStateUpdateNeededMasterOnly = APP_CACHE_STATE.UpdateNeededMasterOnly;
 
 pub const APP_CACHE_DOWNLOAD_ENTRY = extern struct {
-    pwszUrl: PWSTR,
+    pwszUrl: ?PWSTR,
     dwEntryType: u32,
 };
 
 pub const APP_CACHE_DOWNLOAD_LIST = extern struct {
     dwEntryCount: u32,
-    pEntries: *APP_CACHE_DOWNLOAD_ENTRY,
+    pEntries: ?*APP_CACHE_DOWNLOAD_ENTRY,
 };
 
 pub const APP_CACHE_FINALIZE_STATE = enum(i32) {
@@ -1732,19 +1732,19 @@ pub const AppCacheFinalizeStateManifestChange = APP_CACHE_FINALIZE_STATE.Manifes
 pub const AppCacheFinalizeStateComplete = APP_CACHE_FINALIZE_STATE.Complete;
 
 pub const APP_CACHE_GROUP_INFO = extern struct {
-    pwszManifestUrl: PWSTR,
+    pwszManifestUrl: ?PWSTR,
     ftLastAccessTime: FILETIME,
     ullSize: u64,
 };
 
 pub const APP_CACHE_GROUP_LIST = extern struct {
     dwAppCacheGroupCount: u32,
-    pAppCacheGroups: *APP_CACHE_GROUP_INFO,
+    pAppCacheGroups: ?*APP_CACHE_GROUP_INFO,
 };
 
 pub const URLCACHE_ENTRY_INFO = extern struct {
-    pwszSourceUrlName: PWSTR,
-    pwszLocalFileName: PWSTR,
+    pwszSourceUrlName: ?PWSTR,
+    pwszLocalFileName: ?PWSTR,
     dwCacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -1754,9 +1754,9 @@ pub const URLCACHE_ENTRY_INFO = extern struct {
     ftExpireTime: FILETIME,
     ftLastAccessTime: FILETIME,
     ftLastSyncTime: FILETIME,
-    pbHeaderInfo: *u8,
+    pbHeaderInfo: ?*u8,
     cbHeaderInfoSize: u32,
-    pbExtraData: *u8,
+    pbExtraData: ?*u8,
     cbExtraDataSize: u32,
 };
 
@@ -1777,19 +1777,19 @@ pub const WININET_PROXY_INFO = extern struct {
     fProxy: BOOL,
     fBypass: BOOL,
     ProxyScheme: INTERNET_SCHEME,
-    pwszProxy: PWSTR,
+    pwszProxy: ?PWSTR,
     ProxyPort: u16,
 };
 
 pub const WININET_PROXY_INFO_LIST = extern struct {
     dwProxyInfoCount: u32,
-    pProxyInfo: *WININET_PROXY_INFO,
+    pProxyInfo: ?*WININET_PROXY_INFO,
 };
 
 pub const CACHE_OPERATOR = fn(
-    pcei: *INTERNET_CACHE_ENTRY_INFOA,
-    pcbcei: *u32,
-    pOpData: *c_void,
+    pcei: ?*INTERNET_CACHE_ENTRY_INFOA,
+    pcbcei: ?*u32,
+    pOpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const HTTP_WEB_SOCKET_OPERATION = enum(i32) {
@@ -1856,10 +1856,10 @@ const CLSID_ProofOfPossessionCookieInfoManager_Value = @import("../zig.zig").Gui
 pub const CLSID_ProofOfPossessionCookieInfoManager = &CLSID_ProofOfPossessionCookieInfoManager_Value;
 
 pub const ProofOfPossessionCookieInfo = extern struct {
-    name: PWSTR,
-    data: PWSTR,
+    name: ?PWSTR,
+    data: ?PWSTR,
     flags: u32,
-    p3pHeader: PWSTR,
+    p3pHeader: ?PWSTR,
 };
 
 const IID_IProofOfPossessionCookieInfoManager_Value = @import("../zig.zig").Guid.initString("cdaece56-4edf-43df-b113-88e4556fa1bb");
@@ -1869,16 +1869,16 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
         base: IUnknown.VTable,
         GetCookieInfoForUri: fn(
             self: *const IProofOfPossessionCookieInfoManager,
-            uri: [*:0]const u16,
-            cookieInfoCount: *u32,
-            cookieInfo: [*]*ProofOfPossessionCookieInfo,
+            uri: ?[*:0]const u16,
+            cookieInfoCount: ?*u32,
+            cookieInfo: [*]?*ProofOfPossessionCookieInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: [*:0]const u16, cookieInfoCount: *u32, cookieInfo: [*]*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+        pub fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProofOfPossessionCookieInfoManager.VTable, self.vtable).GetCookieInfoForUri(@ptrCast(*const IProofOfPossessionCookieInfoManager, self), uri, cookieInfoCount, cookieInfo);
         }
     };}
@@ -1892,17 +1892,17 @@ pub const IProofOfPossessionCookieInfoManager2 = extern struct {
         base: IUnknown.VTable,
         GetCookieInfoWithUriForAccount: fn(
             self: *const IProofOfPossessionCookieInfoManager2,
-            webAccount: *IInspectable,
-            uri: [*:0]const u16,
-            cookieInfoCount: *u32,
-            cookieInfo: [*]*ProofOfPossessionCookieInfo,
+            webAccount: ?*IInspectable,
+            uri: ?[*:0]const u16,
+            cookieInfoCount: ?*u32,
+            cookieInfo: [*]?*ProofOfPossessionCookieInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: *IInspectable, uri: [*:0]const u16, cookieInfoCount: *u32, cookieInfo: [*]*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+        pub fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProofOfPossessionCookieInfoManager2.VTable, self.vtable).GetCookieInfoWithUriForAccount(@ptrCast(*const IProofOfPossessionCookieInfoManager2, self), webAccount, uri, cookieInfoCount, cookieInfo);
         }
     };}
@@ -2150,49 +2150,49 @@ pub const INTERNET_STATE_BUSY = INTERNET_STATE.BUSY;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeFromSystemTimeA(
-    pst: *const SYSTEMTIME,
+    pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpszTime: PSTR,
+    lpszTime: ?PSTR,
     cbTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeFromSystemTimeW(
-    pst: *const SYSTEMTIME,
+    pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpszTime: PWSTR,
+    lpszTime: ?PWSTR,
     cbTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeFromSystemTime(
-    pst: *const SYSTEMTIME,
+    pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpszTime: PSTR,
+    lpszTime: ?PSTR,
     cbTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeToSystemTimeA(
-    lpszTime: [*:0]const u8,
-    pst: *SYSTEMTIME,
+    lpszTime: ?[*:0]const u8,
+    pst: ?*SYSTEMTIME,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeToSystemTimeW(
-    lpszTime: [*:0]const u16,
-    pst: *SYSTEMTIME,
+    lpszTime: ?[*:0]const u16,
+    pst: ?*SYSTEMTIME,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetTimeToSystemTime(
-    lpszTime: [*:0]const u8,
-    pst: *SYSTEMTIME,
+    lpszTime: ?[*:0]const u8,
+    pst: ?*SYSTEMTIME,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2201,7 +2201,7 @@ pub extern "WININET" fn InternetCrackUrlA(
     lpszUrl: [*:0]const u8,
     dwUrlLength: u32,
     dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
-    lpUrlComponents: *URL_COMPONENTSA,
+    lpUrlComponents: ?*URL_COMPONENTSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2209,56 +2209,56 @@ pub extern "WININET" fn InternetCrackUrlW(
     lpszUrl: [*:0]const u16,
     dwUrlLength: u32,
     dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
-    lpUrlComponents: *URL_COMPONENTSW,
+    lpUrlComponents: ?*URL_COMPONENTSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCreateUrlA(
-    lpUrlComponents: *URL_COMPONENTSA,
+    lpUrlComponents: ?*URL_COMPONENTSA,
     dwFlags: u32,
     lpszUrl: ?[*:0]u8,
-    lpdwUrlLength: *u32,
+    lpdwUrlLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCreateUrlW(
-    lpUrlComponents: *URL_COMPONENTSW,
+    lpUrlComponents: ?*URL_COMPONENTSW,
     dwFlags: u32,
     lpszUrl: ?[*:0]u16,
-    lpdwUrlLength: *u32,
+    lpdwUrlLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCanonicalizeUrlA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszBuffer: [*:0]u8,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCanonicalizeUrlW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     lpszBuffer: [*:0]u16,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCombineUrlA(
-    lpszBaseUrl: [*:0]const u8,
-    lpszRelativeUrl: [*:0]const u8,
+    lpszBaseUrl: ?[*:0]const u8,
+    lpszRelativeUrl: ?[*:0]const u8,
     lpszBuffer: [*:0]u8,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCombineUrlW(
-    lpszBaseUrl: [*:0]const u16,
-    lpszRelativeUrl: [*:0]const u16,
+    lpszBaseUrl: ?[*:0]const u16,
+    lpszRelativeUrl: ?[*:0]const u16,
     lpszBuffer: [*:0]u16,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2269,7 +2269,7 @@ pub extern "WININET" fn InternetOpenA(
     lpszProxy: ?[*:0]const u8,
     lpszProxyBypass: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetOpenW(
@@ -2278,85 +2278,85 @@ pub extern "WININET" fn InternetOpenW(
     lpszProxy: ?[*:0]const u16,
     lpszProxyBypass: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCloseHandle(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetConnectA(
-    hInternet: *c_void,
-    lpszServerName: [*:0]const u8,
+    hInternet: ?*c_void,
+    lpszServerName: ?[*:0]const u8,
     nServerPort: u16,
     lpszUserName: ?[*:0]const u8,
     lpszPassword: ?[*:0]const u8,
     dwService: u32,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetConnectW(
-    hInternet: *c_void,
-    lpszServerName: [*:0]const u16,
+    hInternet: ?*c_void,
+    lpszServerName: ?[*:0]const u16,
     nServerPort: u16,
     lpszUserName: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,
     dwService: u32,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetOpenUrlA(
-    hInternet: *c_void,
-    lpszUrl: [*:0]const u8,
+    hInternet: ?*c_void,
+    lpszUrl: ?[*:0]const u8,
     lpszHeaders: ?[*:0]const u8,
     dwHeadersLength: u32,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetOpenUrlW(
-    hInternet: *c_void,
-    lpszUrl: [*:0]const u16,
+    hInternet: ?*c_void,
+    lpszUrl: ?[*:0]const u16,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetReadFile(
-    hFile: *c_void,
+    hFile: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     dwNumberOfBytesToRead: u32,
-    lpdwNumberOfBytesRead: *u32,
+    lpdwNumberOfBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetReadFileExA(
-    hFile: *c_void,
-    lpBuffersOut: *INTERNET_BUFFERSA,
+    hFile: ?*c_void,
+    lpBuffersOut: ?*INTERNET_BUFFERSA,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetReadFileExW(
-    hFile: *c_void,
-    lpBuffersOut: *INTERNET_BUFFERSW,
+    hFile: ?*c_void,
+    lpBuffersOut: ?*INTERNET_BUFFERSW,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetFilePointer(
-    hFile: *c_void,
+    hFile: ?*c_void,
     lDistanceToMove: i32,
     lpDistanceToMoveHigh: ?*i32,
     dwMoveMethod: u32,
@@ -2365,16 +2365,16 @@ pub extern "WININET" fn InternetSetFilePointer(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetWriteFile(
-    hFile: *c_void,
+    hFile: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *const c_void,
+    lpBuffer: ?*const c_void,
     dwNumberOfBytesToWrite: u32,
-    lpdwNumberOfBytesWritten: *u32,
+    lpdwNumberOfBytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetQueryDataAvailable(
-    hFile: *c_void,
+    hFile: ?*c_void,
     lpdwNumberOfBytesAvailable: ?*u32,
     dwFlags: u32,
     dwContext: usize,
@@ -2382,14 +2382,14 @@ pub extern "WININET" fn InternetQueryDataAvailable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetFindNextFileA(
-    hFind: *c_void,
-    lpvFindData: *c_void,
+    hFind: ?*c_void,
+    lpvFindData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetFindNextFileW(
-    hFind: *c_void,
-    lpvFindData: *c_void,
+    hFind: ?*c_void,
+    lpvFindData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2398,7 +2398,7 @@ pub extern "WININET" fn InternetQueryOptionA(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2407,7 +2407,7 @@ pub extern "WININET" fn InternetQueryOptionW(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2446,68 +2446,68 @@ pub extern "WININET" fn InternetSetOptionExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetLockRequestFile(
-    hInternet: *c_void,
-    lphLockRequestInfo: *HANDLE,
+    hInternet: ?*c_void,
+    lphLockRequestInfo: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetUnlockRequestFile(
-    hLockRequestInfo: HANDLE,
+    hLockRequestInfo: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetLastResponseInfoA(
-    lpdwError: *u32,
+    lpdwError: ?*u32,
     lpszBuffer: ?[*:0]u8,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetLastResponseInfoW(
-    lpdwError: *u32,
+    lpdwError: ?*u32,
     lpszBuffer: ?[*:0]u16,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetSetStatusCallbackA(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     lpfnInternetCallback: ?LPINTERNET_STATUS_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) LPINTERNET_STATUS_CALLBACK;
+) callconv(@import("std").os.windows.WINAPI) ?LPINTERNET_STATUS_CALLBACK;
 
 pub extern "WININET" fn InternetSetStatusCallbackW(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     lpfnInternetCallback: ?LPINTERNET_STATUS_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) LPINTERNET_STATUS_CALLBACK;
+) callconv(@import("std").os.windows.WINAPI) ?LPINTERNET_STATUS_CALLBACK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetStatusCallback(
-    hInternet: *c_void,
+    hInternet: ?*c_void,
     lpfnInternetCallback: ?LPINTERNET_STATUS_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) LPINTERNET_STATUS_CALLBACK;
+) callconv(@import("std").os.windows.WINAPI) ?LPINTERNET_STATUS_CALLBACK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpFindFirstFileA(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszSearchFile: ?[*:0]const u8,
     lpFindFileData: ?*WIN32_FIND_DATAA,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpFindFirstFileW(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszSearchFile: ?[*:0]const u16,
     lpFindFileData: ?*WIN32_FIND_DATAW,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpGetFileA(
-    hConnect: *c_void,
-    lpszRemoteFile: [*:0]const u8,
-    lpszNewFile: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszRemoteFile: ?[*:0]const u8,
+    lpszNewFile: ?[*:0]const u8,
     fFailIfExists: BOOL,
     dwFlagsAndAttributes: u32,
     dwFlags: u32,
@@ -2516,9 +2516,9 @@ pub extern "WININET" fn FtpGetFileA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpGetFileW(
-    hConnect: *c_void,
-    lpszRemoteFile: [*:0]const u16,
-    lpszNewFile: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszRemoteFile: ?[*:0]const u16,
+    lpszNewFile: ?[*:0]const u16,
     fFailIfExists: BOOL,
     dwFlagsAndAttributes: u32,
     dwFlags: u32,
@@ -2527,26 +2527,26 @@ pub extern "WININET" fn FtpGetFileW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpPutFileA(
-    hConnect: *c_void,
-    lpszLocalFile: [*:0]const u8,
-    lpszNewRemoteFile: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszLocalFile: ?[*:0]const u8,
+    lpszNewRemoteFile: ?[*:0]const u8,
     dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpPutFileW(
-    hConnect: *c_void,
-    lpszLocalFile: [*:0]const u16,
-    lpszNewRemoteFile: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszLocalFile: ?[*:0]const u16,
+    lpszNewRemoteFile: ?[*:0]const u16,
     dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FtpGetFileEx(
-    hFtpSession: *c_void,
-    lpszRemoteFile: [*:0]const u8,
-    lpszNewFile: [*:0]const u16,
+    hFtpSession: ?*c_void,
+    lpszRemoteFile: ?[*:0]const u8,
+    lpszNewFile: ?[*:0]const u16,
     fFailIfExists: BOOL,
     dwFlagsAndAttributes: u32,
     dwFlags: u32,
@@ -2554,256 +2554,256 @@ pub extern "WININET" fn FtpGetFileEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FtpPutFileEx(
-    hFtpSession: *c_void,
-    lpszLocalFile: [*:0]const u16,
-    lpszNewRemoteFile: [*:0]const u8,
+    hFtpSession: ?*c_void,
+    lpszLocalFile: ?[*:0]const u16,
+    lpszNewRemoteFile: ?[*:0]const u8,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpDeleteFileA(
-    hConnect: *c_void,
-    lpszFileName: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpDeleteFileW(
-    hConnect: *c_void,
-    lpszFileName: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpRenameFileA(
-    hConnect: *c_void,
-    lpszExisting: [*:0]const u8,
-    lpszNew: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszExisting: ?[*:0]const u8,
+    lpszNew: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpRenameFileW(
-    hConnect: *c_void,
-    lpszExisting: [*:0]const u16,
-    lpszNew: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszExisting: ?[*:0]const u16,
+    lpszNew: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpOpenFileA(
-    hConnect: *c_void,
-    lpszFileName: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszFileName: ?[*:0]const u8,
     dwAccess: u32,
     dwFlags: FTP_FLAGS,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpOpenFileW(
-    hConnect: *c_void,
-    lpszFileName: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszFileName: ?[*:0]const u16,
     dwAccess: u32,
     dwFlags: FTP_FLAGS,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpCreateDirectoryA(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpCreateDirectoryW(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpRemoveDirectoryA(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpRemoveDirectoryW(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpSetCurrentDirectoryA(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpSetCurrentDirectoryW(
-    hConnect: *c_void,
-    lpszDirectory: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszDirectory: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpGetCurrentDirectoryA(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszCurrentDirectory: [*:0]u8,
-    lpdwCurrentDirectory: *u32,
+    lpdwCurrentDirectory: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpGetCurrentDirectoryW(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszCurrentDirectory: [*:0]u16,
-    lpdwCurrentDirectory: *u32,
+    lpdwCurrentDirectory: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpCommandA(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     fExpectResponse: BOOL,
     dwFlags: FTP_FLAGS,
-    lpszCommand: [*:0]const u8,
+    lpszCommand: ?[*:0]const u8,
     dwContext: usize,
-    phFtpCommand: ?**c_void,
+    phFtpCommand: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpCommandW(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     fExpectResponse: BOOL,
     dwFlags: FTP_FLAGS,
-    lpszCommand: [*:0]const u16,
+    lpszCommand: ?[*:0]const u16,
     dwContext: usize,
-    phFtpCommand: ?**c_void,
+    phFtpCommand: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FtpGetFileSize(
-    hFile: *c_void,
+    hFile: ?*c_void,
     lpdwFileSizeHigh: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherCreateLocatorA(
-    lpszHost: [*:0]const u8,
+    lpszHost: ?[*:0]const u8,
     nServerPort: u16,
     lpszDisplayString: ?[*:0]const u8,
     lpszSelectorString: ?[*:0]const u8,
     dwGopherType: u32,
     lpszLocator: ?[*:0]u8,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherCreateLocatorW(
-    lpszHost: [*:0]const u16,
+    lpszHost: ?[*:0]const u16,
     nServerPort: u16,
     lpszDisplayString: ?[*:0]const u16,
     lpszSelectorString: ?[*:0]const u16,
     dwGopherType: u32,
     lpszLocator: ?[*:0]u16,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherGetLocatorTypeA(
-    lpszLocator: [*:0]const u8,
-    lpdwGopherType: *u32,
+    lpszLocator: ?[*:0]const u8,
+    lpdwGopherType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherGetLocatorTypeW(
-    lpszLocator: [*:0]const u16,
-    lpdwGopherType: *u32,
+    lpszLocator: ?[*:0]const u16,
+    lpdwGopherType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherFindFirstFileA(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszLocator: ?[*:0]const u8,
     lpszSearchString: ?[*:0]const u8,
     lpFindData: ?*GOPHER_FIND_DATAA,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherFindFirstFileW(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszLocator: ?[*:0]const u16,
     lpszSearchString: ?[*:0]const u16,
     lpFindData: ?*GOPHER_FIND_DATAW,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherOpenFileA(
-    hConnect: *c_void,
-    lpszLocator: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszLocator: ?[*:0]const u8,
     lpszView: ?[*:0]const u8,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherOpenFileW(
-    hConnect: *c_void,
-    lpszLocator: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszLocator: ?[*:0]const u16,
     lpszView: ?[*:0]const u16,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherGetAttributeA(
-    hConnect: *c_void,
-    lpszLocator: [*:0]const u8,
+    hConnect: ?*c_void,
+    lpszLocator: ?[*:0]const u8,
     lpszAttributeName: ?[*:0]const u8,
     lpBuffer: [*:0]u8,
     dwBufferLength: u32,
-    lpdwCharactersReturned: *u32,
+    lpdwCharactersReturned: ?*u32,
     lpfnEnumerator: ?GOPHER_ATTRIBUTE_ENUMERATOR,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GopherGetAttributeW(
-    hConnect: *c_void,
-    lpszLocator: [*:0]const u16,
+    hConnect: ?*c_void,
+    lpszLocator: ?[*:0]const u16,
     lpszAttributeName: ?[*:0]const u16,
     lpBuffer: [*:0]u8,
     dwBufferLength: u32,
-    lpdwCharactersReturned: *u32,
+    lpdwCharactersReturned: ?*u32,
     lpfnEnumerator: ?GOPHER_ATTRIBUTE_ENUMERATOR,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpOpenRequestA(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszVerb: ?[*:0]const u8,
     lpszObjectName: ?[*:0]const u8,
     lpszVersion: ?[*:0]const u8,
     lpszReferrer: ?[*:0]const u8,
-    lplpszAcceptTypes: ?*PSTR,
+    lplpszAcceptTypes: ?*?PSTR,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpOpenRequestW(
-    hConnect: *c_void,
+    hConnect: ?*c_void,
     lpszVerb: ?[*:0]const u16,
     lpszObjectName: ?[*:0]const u16,
     lpszVersion: ?[*:0]const u16,
     lpszReferrer: ?[*:0]const u16,
-    lplpszAcceptTypes: ?*PWSTR,
+    lplpszAcceptTypes: ?*?PWSTR,
     dwFlags: u32,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpAddRequestHeadersA(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: [*:0]const u8,
     dwHeadersLength: u32,
     dwModifiers: HTTP_ADDREQ_FLAG,
@@ -2811,7 +2811,7 @@ pub extern "WININET" fn HttpAddRequestHeadersA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpAddRequestHeadersW(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: [*:0]const u16,
     dwHeadersLength: u32,
     dwModifiers: HTTP_ADDREQ_FLAG,
@@ -2819,7 +2819,7 @@ pub extern "WININET" fn HttpAddRequestHeadersW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpSendRequestA(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: ?[*:0]const u8,
     dwHeadersLength: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -2829,7 +2829,7 @@ pub extern "WININET" fn HttpSendRequestA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpSendRequestW(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -2839,7 +2839,7 @@ pub extern "WININET" fn HttpSendRequestW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpSendRequestExA(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpBuffersIn: ?*INTERNET_BUFFERSA,
     lpBuffersOut: ?*INTERNET_BUFFERSA,
     dwFlags: u32,
@@ -2848,7 +2848,7 @@ pub extern "WININET" fn HttpSendRequestExA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpSendRequestExW(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpBuffersIn: ?*INTERNET_BUFFERSW,
     lpBuffersOut: ?*INTERNET_BUFFERSW,
     dwFlags: u32,
@@ -2857,7 +2857,7 @@ pub extern "WININET" fn HttpSendRequestExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpEndRequestA(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpBuffersOut: ?*INTERNET_BUFFERSA,
     dwFlags: u32,
     dwContext: usize,
@@ -2865,7 +2865,7 @@ pub extern "WININET" fn HttpEndRequestA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpEndRequestW(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     lpBuffersOut: ?*INTERNET_BUFFERSW,
     dwFlags: u32,
     dwContext: usize,
@@ -2873,90 +2873,90 @@ pub extern "WININET" fn HttpEndRequestW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpQueryInfoA(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     lpdwIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn HttpQueryInfoW(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
     lpdwIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetCookieA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszCookieName: ?[*:0]const u8,
-    lpszCookieData: [*:0]const u8,
+    lpszCookieData: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetCookieW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     lpszCookieName: ?[*:0]const u16,
-    lpszCookieData: [*:0]const u16,
+    lpszCookieData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetCookieA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszCookieName: ?[*:0]const u8,
     lpszCookieData: ?[*:0]u8,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetCookieW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     lpszCookieName: ?[*:0]const u16,
     lpszCookieData: ?[*:0]u16,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn InternetSetCookieExA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszCookieName: ?[*:0]const u8,
-    lpszCookieData: [*:0]const u8,
+    lpszCookieData: ?[*:0]const u8,
     dwFlags: u32,
     dwReserved: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn InternetSetCookieExW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     lpszCookieName: ?[*:0]const u16,
-    lpszCookieData: [*:0]const u16,
+    lpszCookieData: ?[*:0]const u16,
     dwFlags: u32,
     dwReserved: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn InternetGetCookieExA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszCookieName: ?[*:0]const u8,
     lpszCookieData: ?[*:0]u8,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
     dwFlags: INTERNET_COOKIE_FLAGS,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn InternetGetCookieExW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     lpszCookieName: ?[*:0]const u16,
     lpszCookieData: ?[*:0]u16,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
     dwFlags: INTERNET_COOKIE_FLAGS,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetFreeCookies(
@@ -2965,19 +2965,19 @@ pub extern "WININET" fn InternetFreeCookies(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn InternetGetCookieEx2(
-    pcwszUrl: [*:0]const u16,
+    pcwszUrl: ?[*:0]const u16,
     pcwszCookieName: ?[*:0]const u16,
     dwFlags: u32,
-    ppCookies: **INTERNET_COOKIE2,
-    pdwCookieCount: *u32,
+    ppCookies: ?*?*INTERNET_COOKIE2,
+    pdwCookieCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn InternetSetCookieEx2(
-    pcwszUrl: [*:0]const u16,
-    pCookie: *const INTERNET_COOKIE2,
+    pcwszUrl: ?[*:0]const u16,
+    pCookie: ?*const INTERNET_COOKIE2,
     pcwszP3PPolicy: ?[*:0]const u16,
     dwFlags: u32,
-    pdwCookieState: *u32,
+    pdwCookieState: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2987,60 +2987,60 @@ pub extern "WININET" fn InternetAttemptConnect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCheckConnectionA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     dwFlags: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetCheckConnectionW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     dwFlags: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn ResumeSuspendedDownload(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwResultCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetErrorDlg(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hRequest: ?*c_void,
     dwError: u32,
     dwFlags: u32,
-    lppvData: ?**c_void,
+    lppvData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetConfirmZoneCrossingA(
-    hWnd: HWND,
-    szUrlPrev: PSTR,
-    szUrlNew: PSTR,
+    hWnd: ?HWND,
+    szUrlPrev: ?PSTR,
+    szUrlNew: ?PSTR,
     bPost: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetConfirmZoneCrossingW(
-    hWnd: HWND,
-    szUrlPrev: PWSTR,
-    szUrlNew: PWSTR,
+    hWnd: ?HWND,
+    szUrlPrev: ?PWSTR,
+    szUrlNew: ?PWSTR,
     bPost: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetConfirmZoneCrossing(
-    hWnd: HWND,
-    szUrlPrev: PSTR,
-    szUrlNew: PSTR,
+    hWnd: ?HWND,
+    szUrlPrev: ?PSTR,
+    szUrlNew: ?PSTR,
     bPost: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateUrlCacheEntryA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwExpectedFileSize: u32,
     lpszFileExtension: ?[*:0]const u8,
     lpszFileName: *[260]u8,
@@ -3049,7 +3049,7 @@ pub extern "WININET" fn CreateUrlCacheEntryA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateUrlCacheEntryW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     dwExpectedFileSize: u32,
     lpszFileExtension: ?[*:0]const u16,
     lpszFileName: *[260]u16,
@@ -3058,113 +3058,113 @@ pub extern "WININET" fn CreateUrlCacheEntryW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CommitUrlCacheEntryA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     lpszLocalFileName: ?[*:0]const u8,
     ExpireTime: FILETIME,
     LastModifiedTime: FILETIME,
     CacheEntryType: u32,
     lpHeaderInfo: ?[*:0]u8,
     cchHeaderInfo: u32,
-    lpszFileExtension: [*:0]const u8,
+    lpszFileExtension: ?[*:0]const u8,
     lpszOriginalUrl: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CommitUrlCacheEntryW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     lpszLocalFileName: ?[*:0]const u16,
     ExpireTime: FILETIME,
     LastModifiedTime: FILETIME,
     CacheEntryType: u32,
     lpszHeaderInfo: ?[*:0]u16,
     cchHeaderInfo: u32,
-    lpszFileExtension: [*:0]const u16,
+    lpszFileExtension: ?[*:0]const u16,
     lpszOriginalUrl: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn RetrieveUrlCacheEntryFileA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn RetrieveUrlCacheEntryFileW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn UnlockUrlCacheEntryFileA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn UnlockUrlCacheEntryFileW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn UnlockUrlCacheEntryFile(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn RetrieveUrlCacheEntryStreamA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
     fRandomRead: BOOL,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn RetrieveUrlCacheEntryStreamW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
     fRandomRead: BOOL,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn ReadUrlCacheEntryStream(
-    hUrlCacheStream: HANDLE,
+    hUrlCacheStream: ?HANDLE,
     dwLocation: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: *c_void,
-    lpdwLen: *u32,
+    lpBuffer: ?*c_void,
+    lpdwLen: ?*u32,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn ReadUrlCacheEntryStreamEx(
-    hUrlCacheStream: HANDLE,
+    hUrlCacheStream: ?HANDLE,
     qwLocation: u64,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: *c_void,
-    lpdwLen: *u32,
+    lpBuffer: ?*c_void,
+    lpdwLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn UnlockUrlCacheEntryStream(
-    hUrlCacheStream: HANDLE,
+    hUrlCacheStream: ?HANDLE,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GetUrlCacheEntryInfoA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
@@ -3172,7 +3172,7 @@ pub extern "WININET" fn GetUrlCacheEntryInfoA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GetUrlCacheEntryInfoW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
@@ -3182,17 +3182,17 @@ pub extern "WININET" fn GetUrlCacheEntryInfoW(
 pub extern "WININET" fn FindFirstUrlCacheGroup(
     dwFlags: u32,
     dwFilter: u32,
-    lpSearchCondition: *c_void,
+    lpSearchCondition: ?*c_void,
     dwSearchCondition: u32,
-    lpGroupId: *i64,
-    lpReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpGroupId: ?*i64,
+    lpReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindNextUrlCacheGroup(
-    hFind: HANDLE,
-    lpGroupId: *i64,
-    lpReserved: *c_void,
+    hFind: ?HANDLE,
+    lpGroupId: ?*i64,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3201,9 +3201,9 @@ pub extern "WININET" fn GetUrlCacheGroupAttributeA(
     dwFlags: u32,
     dwAttributes: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpGroupInfo: *INTERNET_CACHE_GROUP_INFOA,
-    lpcbGroupInfo: *u32,
-    lpReserved: *c_void,
+    lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOA,
+    lpcbGroupInfo: ?*u32,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3212,9 +3212,9 @@ pub extern "WININET" fn GetUrlCacheGroupAttributeW(
     dwFlags: u32,
     dwAttributes: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpGroupInfo: *INTERNET_CACHE_GROUP_INFOW,
-    lpcbGroupInfo: *u32,
-    lpReserved: *c_void,
+    lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOW,
+    lpcbGroupInfo: ?*u32,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3222,8 +3222,8 @@ pub extern "WININET" fn SetUrlCacheGroupAttributeA(
     gid: i64,
     dwFlags: u32,
     dwAttributes: u32,
-    lpGroupInfo: *INTERNET_CACHE_GROUP_INFOA,
-    lpReserved: *c_void,
+    lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOA,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3231,89 +3231,89 @@ pub extern "WININET" fn SetUrlCacheGroupAttributeW(
     gid: i64,
     dwFlags: u32,
     dwAttributes: u32,
-    lpGroupInfo: *INTERNET_CACHE_GROUP_INFOW,
-    lpReserved: *c_void,
+    lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOW,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GetUrlCacheEntryInfoExA(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
-    lpszRedirectUrl: PSTR,
-    lpcbRedirectUrl: *u32,
-    lpReserved: *c_void,
+    lpszRedirectUrl: ?PSTR,
+    lpcbRedirectUrl: ?*u32,
+    lpReserved: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn GetUrlCacheEntryInfoExW(
-    lpszUrl: [*:0]const u16,
+    lpszUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
-    lpszRedirectUrl: PWSTR,
-    lpcbRedirectUrl: *u32,
-    lpReserved: *c_void,
+    lpszRedirectUrl: ?PWSTR,
+    lpcbRedirectUrl: ?*u32,
+    lpReserved: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn SetUrlCacheEntryInfoA(
-    lpszUrlName: [*:0]const u8,
-    lpCacheEntryInfo: *INTERNET_CACHE_ENTRY_INFOA,
+    lpszUrlName: ?[*:0]const u8,
+    lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     dwFieldControl: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn SetUrlCacheEntryInfoW(
-    lpszUrlName: [*:0]const u16,
-    lpCacheEntryInfo: *INTERNET_CACHE_ENTRY_INFOW,
+    lpszUrlName: ?[*:0]const u16,
+    lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     dwFieldControl: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateUrlCacheGroup(
     dwFlags: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheGroup(
     GroupId: i64,
     dwFlags: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn SetUrlCacheEntryGroupA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwFlags: u32,
     GroupId: i64,
-    pbGroupAttributes: *u8,
+    pbGroupAttributes: ?*u8,
     cbGroupAttributes: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn SetUrlCacheEntryGroupW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     dwFlags: u32,
     GroupId: i64,
-    pbGroupAttributes: *u8,
+    pbGroupAttributes: ?*u8,
     cbGroupAttributes: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn SetUrlCacheEntryGroup(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwFlags: u32,
     GroupId: i64,
-    pbGroupAttributes: *u8,
+    pbGroupAttributes: ?*u8,
     cbGroupAttributes: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3324,11 +3324,11 @@ pub extern "WININET" fn FindFirstUrlCacheEntryExA(
     GroupId: i64,
     // TODO: what to do with BytesParamIndex 5?
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
-    lpGroupAttributes: *c_void,
-    lpcbGroupAttributes: *u32,
-    lpReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpcbCacheEntryInfo: ?*u32,
+    lpGroupAttributes: ?*c_void,
+    lpcbGroupAttributes: ?*u32,
+    lpReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindFirstUrlCacheEntryExW(
@@ -3338,32 +3338,32 @@ pub extern "WININET" fn FindFirstUrlCacheEntryExW(
     GroupId: i64,
     // TODO: what to do with BytesParamIndex 5?
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
-    lpGroupAttributes: *c_void,
-    lpcbGroupAttributes: *u32,
-    lpReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpcbCacheEntryInfo: ?*u32,
+    lpGroupAttributes: ?*c_void,
+    lpcbGroupAttributes: ?*u32,
+    lpReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindNextUrlCacheEntryExA(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
-    lpGroupAttributes: *c_void,
-    lpcbGroupAttributes: *u32,
-    lpReserved: *c_void,
+    lpcbCacheEntryInfo: ?*u32,
+    lpGroupAttributes: ?*c_void,
+    lpcbGroupAttributes: ?*u32,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindNextUrlCacheEntryExW(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
-    lpGroupAttributes: *c_void,
-    lpcbGroupAttributes: *u32,
-    lpReserved: *c_void,
+    lpcbCacheEntryInfo: ?*u32,
+    lpGroupAttributes: ?*c_void,
+    lpcbGroupAttributes: ?*u32,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3371,77 +3371,77 @@ pub extern "WININET" fn FindFirstUrlCacheEntryA(
     lpszUrlSearchPattern: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpcbCacheEntryInfo: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindFirstUrlCacheEntryW(
     lpszUrlSearchPattern: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpcbCacheEntryInfo: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindNextUrlCacheEntryA(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindNextUrlCacheEntryW(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
-    lpcbCacheEntryInfo: *u32,
+    lpcbCacheEntryInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn FindCloseUrlCache(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheEntryA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheEntryW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheEntry(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetDialA(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     lpszConnectoid: ?PSTR,
     dwFlags: u32,
-    lpdwConnection: *usize,
+    lpdwConnection: ?*usize,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetDialW(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     lpszConnectoid: ?PWSTR,
     dwFlags: u32,
-    lpdwConnection: *usize,
+    lpdwConnection: ?*usize,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetDial(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     lpszConnectoid: ?PSTR,
     dwFlags: u32,
-    lpdwConnection: *u32,
+    lpdwConnection: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3454,21 +3454,21 @@ pub extern "WININET" fn InternetHangUp(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGoOnlineA(
     lpszURL: ?[*:0]const u8,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGoOnlineW(
     lpszURL: ?[*:0]const u16,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGoOnline(
     lpszURL: ?PSTR,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3485,7 +3485,7 @@ pub extern "WININET" fn InternetAutodialHangup(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetConnectedState(
-    lpdwFlags: *INTERNET_CONNECTION,
+    lpdwFlags: ?*INTERNET_CONNECTION,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3523,15 +3523,15 @@ pub extern "WININET" fn DetectAutoProxyUrl(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateMD5SSOHash(
-    pszChallengeInfo: PWSTR,
-    pwszRealm: PWSTR,
-    pwszTarget: PWSTR,
-    pbHexHash: *u8,
+    pszChallengeInfo: ?PWSTR,
+    pwszRealm: ?PWSTR,
+    pwszTarget: ?PWSTR,
+    pbHexHash: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetConnectedStateEx(
-    lpdwFlags: *INTERNET_CONNECTION,
+    lpdwFlags: ?*INTERNET_CONNECTION,
     lpszConnectionName: ?[*:0]u8,
     dwNameLen: u32,
     dwReserved: u32,
@@ -3557,26 +3557,26 @@ pub extern "WININET" fn InternetSetDialState(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetPerSiteCookieDecisionA(
-    pchHostName: [*:0]const u8,
+    pchHostName: ?[*:0]const u8,
     dwDecision: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetSetPerSiteCookieDecisionW(
-    pchHostName: [*:0]const u16,
+    pchHostName: ?[*:0]const u16,
     dwDecision: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetPerSiteCookieDecisionA(
-    pchHostName: [*:0]const u8,
-    pResult: *u32,
+    pchHostName: ?[*:0]const u8,
+    pResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetGetPerSiteCookieDecisionW(
-    pchHostName: [*:0]const u16,
-    pResult: *u32,
+    pchHostName: ?[*:0]const u16,
+    pResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3586,16 +3586,16 @@ pub extern "WININET" fn InternetClearAllPerSiteCookieDecisions(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetEnumPerSiteCookieDecisionA(
     pszSiteName: [*:0]u8,
-    pcSiteNameSize: *u32,
-    pdwDecision: *u32,
+    pcSiteNameSize: ?*u32,
+    pdwDecision: ?*u32,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetEnumPerSiteCookieDecisionW(
     pszSiteName: [*:0]u16,
-    pcSiteNameSize: *u32,
-    pdwDecision: *u32,
+    pcSiteNameSize: ?*u32,
+    pdwDecision: ?*u32,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3617,134 +3617,134 @@ pub extern "WININET" fn PrivacyGetZonePreferenceW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpIsHostHstsEnabled(
-    pcwszUrl: [*:0]const u16,
-    pfIsHsts: *BOOL,
+    pcwszUrl: ?[*:0]const u16,
+    pfIsHsts: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn InternetAlgIdToStringA(
     ai: u32,
     lpstr: [*:0]u8,
-    lpdwstrLength: *u32,
+    lpdwstrLength: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetAlgIdToStringW(
     ai: u32,
     lpstr: [*:0]u16,
-    lpdwstrLength: *u32,
+    lpdwstrLength: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetSecurityProtocolToStringA(
     dwProtocol: u32,
     lpstr: ?[*:0]u8,
-    lpdwstrLength: *u32,
+    lpdwstrLength: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetSecurityProtocolToStringW(
     dwProtocol: u32,
     lpstr: ?[*:0]u16,
-    lpdwstrLength: *u32,
+    lpdwstrLength: ?*u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetGetSecurityInfoByURLA(
-    lpszURL: PSTR,
-    ppCertChain: **CERT_CHAIN_CONTEXT,
-    pdwSecureFlags: *u32,
+    lpszURL: ?PSTR,
+    ppCertChain: ?*?*CERT_CHAIN_CONTEXT,
+    pdwSecureFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetGetSecurityInfoByURLW(
-    lpszURL: [*:0]const u16,
-    ppCertChain: **CERT_CHAIN_CONTEXT,
-    pdwSecureFlags: *u32,
+    lpszURL: ?[*:0]const u16,
+    ppCertChain: ?*?*CERT_CHAIN_CONTEXT,
+    pdwSecureFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetGetSecurityInfoByURL(
-    lpszURL: PSTR,
-    ppCertChain: **CERT_CHAIN_CONTEXT,
-    pdwSecureFlags: *u32,
+    lpszURL: ?PSTR,
+    ppCertChain: ?*?*CERT_CHAIN_CONTEXT,
+    pdwSecureFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn ShowSecurityInfo(
-    hWndParent: HWND,
-    pSecurityInfo: *INTERNET_SECURITY_INFO,
+    hWndParent: ?HWND,
+    pSecurityInfo: ?*INTERNET_SECURITY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn ShowX509EncodedCertificate(
-    hWndParent: HWND,
+    hWndParent: ?HWND,
     // TODO: what to do with BytesParamIndex 2?
-    lpCert: *u8,
+    lpCert: ?*u8,
     cbCert: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn ShowClientAuthCerts(
-    hWndParent: HWND,
+    hWndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn ParseX509EncodedCertificateForListBoxEntry(
     // TODO: what to do with BytesParamIndex 1?
-    lpCert: *u8,
+    lpCert: ?*u8,
     cbCert: u32,
     lpszListBoxEntry: ?[*:0]u8,
-    lpdwListBoxEntry: *u32,
+    lpdwListBoxEntry: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn InternetShowSecurityInfoByURLA(
-    lpszURL: PSTR,
-    hwndParent: HWND,
+    lpszURL: ?PSTR,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetShowSecurityInfoByURLW(
-    lpszURL: [*:0]const u16,
-    hwndParent: HWND,
+    lpszURL: ?[*:0]const u16,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetShowSecurityInfoByURL(
-    lpszURL: PSTR,
-    hwndParent: HWND,
+    lpszURL: ?PSTR,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetFortezzaCommand(
     dwCommand: u32,
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwReserved: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetQueryFortezzaStatus(
-    pdwStatus: *u32,
+    pdwStatus: ?*u32,
     dwReserved: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetWriteFileExA(
-    hFile: *c_void,
-    lpBuffersIn: *INTERNET_BUFFERSA,
+    hFile: ?*c_void,
+    lpBuffersIn: ?*INTERNET_BUFFERSA,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetWriteFileExW(
-    hFile: *c_void,
-    lpBuffersIn: *INTERNET_BUFFERSW,
+    hFile: ?*c_void,
+    lpBuffersIn: ?*INTERNET_BUFFERSW,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FindP3PPolicySymbol(
-    pszSymbol: [*:0]const u8,
+    pszSymbol: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "WININET" fn HttpGetServerCredentials(
-    pwszUrl: PWSTR,
-    ppwszUserName: *PWSTR,
-    ppwszPassword: *PWSTR,
+    pwszUrl: ?PWSTR,
+    ppwszUserName: ?*?PWSTR,
+    ppwszPassword: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpPushEnable(
-    hRequest: *c_void,
-    pTransportSetting: *HTTP_PUSH_TRANSPORT_SETTING,
-    phWait: *HTTP_PUSH_WAIT_HANDLE,
+    hRequest: ?*c_void,
+    pTransportSetting: ?*HTTP_PUSH_TRANSPORT_SETTING,
+    phWait: ?*HTTP_PUSH_WAIT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpPushWait(
@@ -3758,35 +3758,35 @@ pub extern "WININET" fn HttpPushClose(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn HttpCheckDavComplianceA(
-    lpszUrl: [*:0]const u8,
-    lpszComplianceToken: [*:0]const u8,
-    lpfFound: *i32,
-    hWnd: HWND,
-    lpvReserved: *c_void,
+    lpszUrl: ?[*:0]const u8,
+    lpszComplianceToken: ?[*:0]const u8,
+    lpfFound: ?*i32,
+    hWnd: ?HWND,
+    lpvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpCheckDavComplianceW(
-    lpszUrl: [*:0]const u16,
-    lpszComplianceToken: [*:0]const u16,
-    lpfFound: *i32,
-    hWnd: HWND,
-    lpvReserved: *c_void,
+    lpszUrl: ?[*:0]const u16,
+    lpszComplianceToken: ?[*:0]const u16,
+    lpfFound: ?*i32,
+    hWnd: ?HWND,
+    lpvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn IsUrlCacheEntryExpiredA(
-    lpszUrlName: [*:0]const u8,
+    lpszUrlName: ?[*:0]const u8,
     dwFlags: u32,
-    pftLastModified: *FILETIME,
+    pftLastModified: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn IsUrlCacheEntryExpiredW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     dwFlags: u32,
-    pftLastModified: *FILETIME,
+    pftLastModified: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn CreateUrlCacheEntryExW(
-    lpszUrlName: [*:0]const u16,
+    lpszUrlName: ?[*:0]const u16,
     dwExpectedFileSize: u32,
     lpszFileExtension: ?[*:0]const u16,
     lpszFileName: *[260]u16,
@@ -3795,17 +3795,17 @@ pub extern "WININET" fn CreateUrlCacheEntryExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn GetUrlCacheEntryBinaryBlob(
-    pwszUrlName: [*:0]const u16,
-    dwType: *u32,
-    pftExpireTime: *FILETIME,
-    pftAccessTime: *FILETIME,
-    pftModifiedTime: *FILETIME,
-    ppbBlob: ?[*]*u8,
-    pcbBlob: *u32,
+    pwszUrlName: ?[*:0]const u16,
+    dwType: ?*u32,
+    pftExpireTime: ?*FILETIME,
+    pftAccessTime: ?*FILETIME,
+    pftModifiedTime: ?*FILETIME,
+    ppbBlob: ?[*]?*u8,
+    pcbBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn CommitUrlCacheEntryBinaryBlob(
-    pwszUrlName: [*:0]const u16,
+    pwszUrlName: ?[*:0]const u16,
     dwType: u32,
     ftExpireTime: FILETIME,
     ftModifiedTime: FILETIME,
@@ -3815,68 +3815,68 @@ pub extern "WININET" fn CommitUrlCacheEntryBinaryBlob(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateUrlCacheContainerA(
-    Name: [*:0]const u8,
-    lpCachePrefix: [*:0]const u8,
+    Name: ?[*:0]const u8,
+    lpCachePrefix: ?[*:0]const u8,
     lpszCachePath: ?[*:0]const u8,
     KBCacheLimit: u32,
     dwContainerType: u32,
     dwOptions: u32,
-    pvBuffer: *c_void,
-    cbBuffer: *u32,
+    pvBuffer: ?*c_void,
+    cbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn CreateUrlCacheContainerW(
-    Name: [*:0]const u16,
-    lpCachePrefix: [*:0]const u16,
+    Name: ?[*:0]const u16,
+    lpCachePrefix: ?[*:0]const u16,
     lpszCachePath: ?[*:0]const u16,
     KBCacheLimit: u32,
     dwContainerType: u32,
     dwOptions: u32,
-    pvBuffer: *c_void,
-    cbBuffer: *u32,
+    pvBuffer: ?*c_void,
+    cbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheContainerA(
-    Name: [*:0]const u8,
+    Name: ?[*:0]const u8,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn DeleteUrlCacheContainerW(
-    Name: [*:0]const u16,
+    Name: ?[*:0]const u16,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FindFirstUrlCacheContainerA(
-    pdwModified: *u32,
+    pdwModified: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    lpContainerInfo: *INTERNET_CACHE_CONTAINER_INFOA,
-    lpcbContainerInfo: *u32,
+    lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOA,
+    lpcbContainerInfo: ?*u32,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "WININET" fn FindFirstUrlCacheContainerW(
-    pdwModified: *u32,
+    pdwModified: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    lpContainerInfo: *INTERNET_CACHE_CONTAINER_INFOW,
-    lpcbContainerInfo: *u32,
+    lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOW,
+    lpcbContainerInfo: ?*u32,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "WININET" fn FindNextUrlCacheContainerA(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpContainerInfo: *INTERNET_CACHE_CONTAINER_INFOA,
-    lpcbContainerInfo: *u32,
+    lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOA,
+    lpcbContainerInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FindNextUrlCacheContainerW(
-    hEnumHandle: HANDLE,
+    hEnumHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpContainerInfo: *INTERNET_CACHE_CONTAINER_INFOW,
-    lpcbContainerInfo: *u32,
+    lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOW,
+    lpcbContainerInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3900,50 +3900,50 @@ pub extern "WININET" fn UrlCacheFreeGlobalSpace(
 
 pub extern "WININET" fn UrlCacheGetGlobalCacheSize(
     dwFilter: u32,
-    pullSize: *u64,
-    pullLimit: *u64,
+    pullSize: ?*u64,
+    pullLimit: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn GetUrlCacheConfigInfoA(
-    lpCacheConfigInfo: *INTERNET_CACHE_CONFIG_INFOA,
-    lpcbCacheConfigInfo: *u32,
+    lpCacheConfigInfo: ?*INTERNET_CACHE_CONFIG_INFOA,
+    lpcbCacheConfigInfo: ?*u32,
     dwFieldControl: CACHE_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WININET" fn GetUrlCacheConfigInfoW(
-    lpCacheConfigInfo: *INTERNET_CACHE_CONFIG_INFOW,
-    lpcbCacheConfigInfo: *u32,
+    lpCacheConfigInfo: ?*INTERNET_CACHE_CONFIG_INFOW,
+    lpcbCacheConfigInfo: ?*u32,
     dwFieldControl: CACHE_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn SetUrlCacheConfigInfoA(
-    lpCacheConfigInfo: *INTERNET_CACHE_CONFIG_INFOA,
+    lpCacheConfigInfo: ?*INTERNET_CACHE_CONFIG_INFOA,
     dwFieldControl: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn SetUrlCacheConfigInfoW(
-    lpCacheConfigInfo: *INTERNET_CACHE_CONFIG_INFOW,
+    lpCacheConfigInfo: ?*INTERNET_CACHE_CONFIG_INFOW,
     dwFieldControl: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn RunOnceUrlCache(
-    hwnd: HWND,
-    hinst: HINSTANCE,
-    lpszCmd: PSTR,
+    hwnd: ?HWND,
+    hinst: ?HINSTANCE,
+    lpszCmd: ?PSTR,
     nCmdShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn DeleteIE3Cache(
-    hwnd: HWND,
-    hinst: HINSTANCE,
-    lpszCmd: PSTR,
+    hwnd: ?HWND,
+    hinst: ?HINSTANCE,
+    lpszCmd: ?PSTR,
     nCmdShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UpdateUrlCacheContentPath(
-    szNewPath: [*:0]const u8,
+    szNewPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn RegisterUrlCacheNotification(
@@ -3956,7 +3956,7 @@ pub extern "WININET" fn RegisterUrlCacheNotification(
 
 pub extern "WININET" fn GetUrlCacheHeaderData(
     nIdx: u32,
-    lpdwData: *u32,
+    lpdwData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn SetUrlCacheHeaderData(
@@ -3966,83 +3966,83 @@ pub extern "WININET" fn SetUrlCacheHeaderData(
 
 pub extern "WININET" fn IncrementUrlCacheHeaderData(
     nIdx: u32,
-    lpdwData: *u32,
+    lpdwData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn LoadUrlCacheContent(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn AppCacheLookup(
-    pwszUrl: [*:0]const u16,
+    pwszUrl: ?[*:0]const u16,
     dwFlags: u32,
-    phAppCache: **c_void,
+    phAppCache: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheCheckManifest(
     pwszMasterUrl: ?[*:0]const u16,
-    pwszManifestUrl: [*:0]const u16,
+    pwszManifestUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pbManifestData: *const u8,
+    pbManifestData: ?*const u8,
     dwManifestDataSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbManifestResponseHeaders: *const u8,
+    pbManifestResponseHeaders: ?*const u8,
     dwManifestResponseHeadersSize: u32,
-    peState: *APP_CACHE_STATE,
-    phNewAppCache: **c_void,
+    peState: ?*APP_CACHE_STATE,
+    phNewAppCache: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheGetDownloadList(
-    hAppCache: *c_void,
-    pDownloadList: *APP_CACHE_DOWNLOAD_LIST,
+    hAppCache: ?*c_void,
+    pDownloadList: ?*APP_CACHE_DOWNLOAD_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheFreeDownloadList(
-    pDownloadList: *APP_CACHE_DOWNLOAD_LIST,
+    pDownloadList: ?*APP_CACHE_DOWNLOAD_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn AppCacheFinalize(
-    hAppCache: *c_void,
+    hAppCache: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbManifestData: *const u8,
+    pbManifestData: ?*const u8,
     dwManifestDataSize: u32,
-    peState: *APP_CACHE_FINALIZE_STATE,
+    peState: ?*APP_CACHE_FINALIZE_STATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheGetFallbackUrl(
-    hAppCache: *c_void,
-    pwszUrl: [*:0]const u16,
-    ppwszFallbackUrl: *PWSTR,
+    hAppCache: ?*c_void,
+    pwszUrl: ?[*:0]const u16,
+    ppwszFallbackUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheGetManifestUrl(
-    hAppCache: *c_void,
-    ppwszManifestUrl: *PWSTR,
+    hAppCache: ?*c_void,
+    ppwszManifestUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheDuplicateHandle(
-    hAppCache: *c_void,
-    phDuplicatedAppCache: **c_void,
+    hAppCache: ?*c_void,
+    phDuplicatedAppCache: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheCloseHandle(
-    hAppCache: *c_void,
+    hAppCache: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn AppCacheFreeGroupList(
-    pAppCacheGroupList: *APP_CACHE_GROUP_LIST,
+    pAppCacheGroupList: ?*APP_CACHE_GROUP_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn AppCacheGetGroupList(
-    pAppCacheGroupList: *APP_CACHE_GROUP_LIST,
+    pAppCacheGroupList: ?*APP_CACHE_GROUP_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheGetInfo(
-    hAppCache: *c_void,
-    pAppCacheInfo: *APP_CACHE_GROUP_INFO,
+    hAppCache: ?*c_void,
+    pAppCacheInfo: ?*APP_CACHE_GROUP_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheDeleteGroup(
-    pwszManifestUrl: [*:0]const u16,
+    pwszManifestUrl: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheFreeSpace(
@@ -4050,11 +4050,11 @@ pub extern "WININET" fn AppCacheFreeSpace(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheGetIEGroupList(
-    pAppCacheGroupList: *APP_CACHE_GROUP_LIST,
+    pAppCacheGroupList: ?*APP_CACHE_GROUP_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheDeleteIEGroup(
-    pwszManifestUrl: [*:0]const u16,
+    pwszManifestUrl: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheFreeIESpace(
@@ -4062,100 +4062,100 @@ pub extern "WININET" fn AppCacheFreeIESpace(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn AppCacheCreateAndCommitFile(
-    hAppCache: *c_void,
-    pwszSourceFilePath: [*:0]const u16,
-    pwszUrl: [*:0]const u16,
+    hAppCache: ?*c_void,
+    pwszSourceFilePath: ?[*:0]const u16,
+    pwszUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
-    pbResponseHeaders: *const u8,
+    pbResponseHeaders: ?*const u8,
     dwResponseHeadersSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpOpenDependencyHandle(
-    hRequestHandle: *c_void,
+    hRequestHandle: ?*c_void,
     fBackground: BOOL,
-    phDependencyHandle: **c_void,
+    phDependencyHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpCloseDependencyHandle(
-    hDependencyHandle: *c_void,
+    hDependencyHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn HttpDuplicateDependencyHandle(
-    hDependencyHandle: *c_void,
-    phDuplicatedDependencyHandle: **c_void,
+    hDependencyHandle: ?*c_void,
+    phDuplicatedDependencyHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn HttpIndicatePageLoadComplete(
-    hDependencyHandle: *c_void,
+    hDependencyHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheFreeEntryInfo(
-    pCacheEntryInfo: *URLCACHE_ENTRY_INFO,
+    pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn UrlCacheGetEntryInfo(
     hAppCache: ?*c_void,
-    pcwszUrl: [*:0]const u16,
+    pcwszUrl: ?[*:0]const u16,
     pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheCloseEntryHandle(
-    hEntryFile: *c_void,
+    hEntryFile: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn UrlCacheRetrieveEntryFile(
     hAppCache: ?*c_void,
-    pcwszUrl: [*:0]const u16,
-    pCacheEntryInfo: *URLCACHE_ENTRY_INFO,
-    phEntryFile: **c_void,
+    pcwszUrl: ?[*:0]const u16,
+    pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
+    phEntryFile: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheReadEntryStream(
-    hUrlCacheStream: *c_void,
+    hUrlCacheStream: ?*c_void,
     ullLocation: u64,
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     dwBufferLen: u32,
-    pdwBufferLen: *u32,
+    pdwBufferLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheRetrieveEntryStream(
     hAppCache: ?*c_void,
-    pcwszUrl: [*:0]const u16,
+    pcwszUrl: ?[*:0]const u16,
     fRandomRead: BOOL,
-    pCacheEntryInfo: *URLCACHE_ENTRY_INFO,
-    phEntryStream: **c_void,
+    pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
+    phEntryStream: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheUpdateEntryExtraData(
     hAppCache: ?*c_void,
-    pcwszUrl: [*:0]const u16,
+    pcwszUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pbExtraData: *const u8,
+    pbExtraData: ?*const u8,
     cbExtraData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheCreateContainer(
-    pwszName: [*:0]const u16,
-    pwszPrefix: [*:0]const u16,
-    pwszDirectory: [*:0]const u16,
+    pwszName: ?[*:0]const u16,
+    pwszPrefix: ?[*:0]const u16,
+    pwszDirectory: ?[*:0]const u16,
     ullLimit: u64,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheCheckEntriesExist(
-    rgpwszUrls: [*]PWSTR,
+    rgpwszUrls: [*]?PWSTR,
     cEntries: u32,
     rgfExist: [*]BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheGetContentPaths(
-    pppwszDirectories: **PWSTR,
-    pcDirectories: *u32,
+    pppwszDirectories: ?*?*?PWSTR,
+    pcDirectories: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheGetGlobalLimit(
     limitType: URL_CACHE_LIMIT_TYPE,
-    pullLimit: *u64,
+    pullLimit: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheSetGlobalLimit(
@@ -4167,7 +4167,7 @@ pub extern "WININET" fn UrlCacheReloadSettings(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheContainerSetEntryMaximumAge(
-    pwszPrefix: [*:0]const u16,
+    pwszPrefix: ?[*:0]const u16,
     dwEntryMaxAge: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4176,13 +4176,13 @@ pub extern "WININET" fn UrlCacheFindFirstEntry(
     dwFlags: u32,
     dwFilter: u32,
     GroupId: i64,
-    pCacheEntryInfo: *URLCACHE_ENTRY_INFO,
-    phFind: *HANDLE,
+    pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
+    phFind: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheFindNextEntry(
-    hFind: HANDLE,
-    pCacheEntryInfo: *URLCACHE_ENTRY_INFO,
+    hFind: ?HANDLE,
+    pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn UrlCacheServer(
@@ -4190,9 +4190,9 @@ pub extern "WININET" fn UrlCacheServer(
 
 pub extern "WININET" fn ReadGuidsForConnectedNetworks(
     pcNetworks: ?*u32,
-    pppwszNetworkGuids: ?**PWSTR,
-    pppbstrNetworkNames: ?**BSTR,
-    pppwszGWMacs: ?**PWSTR,
+    pppwszNetworkGuids: ?*?*?PWSTR,
+    pppbstrNetworkNames: ?*?*?BSTR,
+    pppwszGWMacs: ?*?*?PWSTR,
     pcGatewayMacs: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4204,20 +4204,20 @@ pub extern "WININET" fn IsHostInProxyBypassList(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetFreeProxyInfoList(
-    pProxyInfoList: *WININET_PROXY_INFO_LIST,
+    pProxyInfoList: ?*WININET_PROXY_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WININET" fn InternetGetProxyForUrl(
-    hInternet: *c_void,
-    pcwszUrl: [*:0]const u16,
-    pProxyInfoList: *WININET_PROXY_INFO_LIST,
+    hInternet: ?*c_void,
+    pcwszUrl: ?[*:0]const u16,
+    pProxyInfoList: ?*WININET_PROXY_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn DoConnectoidsExist(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn GetDiskInfoA(
-    pszPath: [*:0]const u8,
+    pszPath: ?[*:0]const u8,
     pdwClusterSize: ?*u32,
     pdlAvail: ?*u64,
     pdlTotal: ?*u64,
@@ -4228,57 +4228,57 @@ pub extern "WININET" fn PerformOperationOverUrlCacheA(
     dwFlags: u32,
     dwFilter: u32,
     GroupId: i64,
-    pReserved1: *c_void,
-    pdwReserved2: *u32,
-    pReserved3: *c_void,
-    op: CACHE_OPERATOR,
-    pOperatorData: *c_void,
+    pReserved1: ?*c_void,
+    pdwReserved2: ?*u32,
+    pReserved3: ?*c_void,
+    op: ?CACHE_OPERATOR,
+    pOperatorData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn IsProfilesEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternalInternetGetCookie(
-    lpszUrl: [*:0]const u8,
+    lpszUrl: ?[*:0]const u8,
     lpszCookieData: [*:0]u8,
-    lpdwDataSize: *u32,
+    lpdwDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WININET" fn ImportCookieFileA(
-    szFilename: [*:0]const u8,
+    szFilename: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn ImportCookieFileW(
-    szFilename: [*:0]const u16,
+    szFilename: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn ExportCookieFileA(
-    szFilename: [*:0]const u8,
+    szFilename: ?[*:0]const u8,
     fAppend: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn ExportCookieFileW(
-    szFilename: [*:0]const u16,
+    szFilename: ?[*:0]const u16,
     fAppend: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn IsDomainLegalCookieDomainA(
-    pchDomain: [*:0]const u8,
-    pchFullDomain: [*:0]const u8,
+    pchDomain: ?[*:0]const u8,
+    pchFullDomain: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn IsDomainLegalCookieDomainW(
-    pchDomain: [*:0]const u16,
-    pchFullDomain: [*:0]const u16,
+    pchDomain: ?[*:0]const u16,
+    pchFullDomain: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpWebSocketCompleteUpgrade(
-    hRequest: *c_void,
+    hRequest: ?*c_void,
     dwContext: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub extern "WININET" fn HttpWebSocketSend(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     BufferType: HTTP_WEB_SOCKET_BUFFER_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pvBuffer: ?*c_void,
@@ -4286,16 +4286,16 @@ pub extern "WININET" fn HttpWebSocketSend(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpWebSocketReceive(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
     dwBufferLength: u32,
-    pdwBytesRead: *u32,
-    pBufferType: *HTTP_WEB_SOCKET_BUFFER_TYPE,
+    pdwBytesRead: ?*u32,
+    pBufferType: ?*HTTP_WEB_SOCKET_BUFFER_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpWebSocketClose(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
@@ -4303,7 +4303,7 @@ pub extern "WININET" fn HttpWebSocketClose(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpWebSocketShutdown(
-    hWebSocket: *c_void,
+    hWebSocket: ?*c_void,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
@@ -4311,23 +4311,23 @@ pub extern "WININET" fn HttpWebSocketShutdown(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn HttpWebSocketQueryCloseStatus(
-    hWebSocket: *c_void,
-    pusStatus: *u16,
+    hWebSocket: ?*c_void,
+    pusStatus: ?*u16,
     // TODO: what to do with BytesParamIndex 3?
     pvReason: ?*c_void,
     dwReasonLength: u32,
-    pdwReasonLengthConsumed: *u32,
+    pdwReasonLengthConsumed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn InternetConvertUrlFromWireToWideChar(
     pcszUrl: [*:0]const u8,
     cchUrl: u32,
-    pcwszBaseUrl: [*:0]const u16,
+    pcwszBaseUrl: ?[*:0]const u16,
     dwCodePageHost: u32,
     dwCodePagePath: u32,
     fEncodePathExtra: BOOL,
     dwCodePageExtra: u32,
-    ppwszConvertedUrl: *PWSTR,
+    ppwszConvertedUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

@@ -62,74 +62,74 @@ pub const MapiFileDesc = extern struct {
     ulReserved: u32,
     flFlags: u32,
     nPosition: u32,
-    lpszPathName: PSTR,
-    lpszFileName: PSTR,
-    lpFileType: *c_void,
+    lpszPathName: ?PSTR,
+    lpszFileName: ?PSTR,
+    lpFileType: ?*c_void,
 };
 
 pub const MapiFileDescW = extern struct {
     ulReserved: u32,
     flFlags: u32,
     nPosition: u32,
-    lpszPathName: PWSTR,
-    lpszFileName: PWSTR,
-    lpFileType: *c_void,
+    lpszPathName: ?PWSTR,
+    lpszFileName: ?PWSTR,
+    lpFileType: ?*c_void,
 };
 
 pub const MapiFileTagExt = extern struct {
     ulReserved: u32,
     cbTag: u32,
-    lpTag: *u8,
+    lpTag: ?*u8,
     cbEncoding: u32,
-    lpEncoding: *u8,
+    lpEncoding: ?*u8,
 };
 
 pub const MapiRecipDesc = extern struct {
     ulReserved: u32,
     ulRecipClass: u32,
-    lpszName: PSTR,
-    lpszAddress: PSTR,
+    lpszName: ?PSTR,
+    lpszAddress: ?PSTR,
     ulEIDSize: u32,
-    lpEntryID: *c_void,
+    lpEntryID: ?*c_void,
 };
 
 pub const MapiRecipDescW = extern struct {
     ulReserved: u32,
     ulRecipClass: u32,
-    lpszName: PWSTR,
-    lpszAddress: PWSTR,
+    lpszName: ?PWSTR,
+    lpszAddress: ?PWSTR,
     ulEIDSize: u32,
-    lpEntryID: *c_void,
+    lpEntryID: ?*c_void,
 };
 
 pub const MapiMessage = extern struct {
     ulReserved: u32,
-    lpszSubject: PSTR,
-    lpszNoteText: PSTR,
-    lpszMessageType: PSTR,
-    lpszDateReceived: PSTR,
-    lpszConversationID: PSTR,
+    lpszSubject: ?PSTR,
+    lpszNoteText: ?PSTR,
+    lpszMessageType: ?PSTR,
+    lpszDateReceived: ?PSTR,
+    lpszConversationID: ?PSTR,
     flFlags: u32,
-    lpOriginator: *MapiRecipDesc,
+    lpOriginator: ?*MapiRecipDesc,
     nRecipCount: u32,
-    lpRecips: *MapiRecipDesc,
+    lpRecips: ?*MapiRecipDesc,
     nFileCount: u32,
-    lpFiles: *MapiFileDesc,
+    lpFiles: ?*MapiFileDesc,
 };
 
 pub const MapiMessageW = extern struct {
     ulReserved: u32,
-    lpszSubject: PWSTR,
-    lpszNoteText: PWSTR,
-    lpszMessageType: PWSTR,
-    lpszDateReceived: PWSTR,
-    lpszConversationID: PWSTR,
+    lpszSubject: ?PWSTR,
+    lpszNoteText: ?PWSTR,
+    lpszMessageType: ?PWSTR,
+    lpszDateReceived: ?PWSTR,
+    lpszConversationID: ?PWSTR,
     flFlags: u32,
-    lpOriginator: *MapiRecipDescW,
+    lpOriginator: ?*MapiRecipDescW,
     nRecipCount: u32,
-    lpRecips: *MapiRecipDescW,
+    lpRecips: ?*MapiRecipDescW,
     nFileCount: u32,
-    lpFiles: *MapiFileDescW,
+    lpFiles: ?*MapiFileDescW,
 };
 
 pub const LPMAPILOGON = fn(
@@ -138,7 +138,7 @@ pub const LPMAPILOGON = fn(
     lpszPassword: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
-    lplhSession: *usize,
+    lplhSession: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPILOGOFF = fn(
@@ -151,7 +151,7 @@ pub const LPMAPILOGOFF = fn(
 pub const LPMAPISENDMAIL = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpMessage: *MapiMessage,
+    lpMessage: ?*MapiMessage,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -159,77 +159,77 @@ pub const LPMAPISENDMAIL = fn(
 pub const LPMAPISENDMAILW = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpMessage: *MapiMessageW,
+    lpMessage: ?*MapiMessageW,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISENDDOCUMENTS = fn(
     ulUIParam: usize,
-    lpszDelimChar: PSTR,
-    lpszFilePaths: PSTR,
-    lpszFileNames: PSTR,
+    lpszDelimChar: ?PSTR,
+    lpszFilePaths: ?PSTR,
+    lpszFileNames: ?PSTR,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIFINDNEXT = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageType: PSTR,
-    lpszSeedMessageID: PSTR,
+    lpszMessageType: ?PSTR,
+    lpszSeedMessageID: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
-    lpszMessageID: PSTR,
+    lpszMessageID: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIREADMAIL = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageID: PSTR,
+    lpszMessageID: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
-    lppMessage: **MapiMessage,
+    lppMessage: ?*?*MapiMessage,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISAVEMAIL = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpMessage: *MapiMessage,
+    lpMessage: ?*MapiMessage,
     flFlags: u32,
     ulReserved: u32,
-    lpszMessageID: PSTR,
+    lpszMessageID: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIDELETEMAIL = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageID: PSTR,
+    lpszMessageID: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIFREEBUFFER = fn(
-    pv: *c_void,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIADDRESS = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszCaption: PSTR,
+    lpszCaption: ?PSTR,
     nEditFields: u32,
-    lpszLabels: PSTR,
+    lpszLabels: ?PSTR,
     nRecips: u32,
-    lpRecips: *MapiRecipDesc,
+    lpRecips: ?*MapiRecipDesc,
     flFlags: u32,
     ulReserved: u32,
-    lpnNewRecips: *u32,
-    lppNewRecips: **MapiRecipDesc,
+    lpnNewRecips: ?*u32,
+    lppNewRecips: ?*?*MapiRecipDesc,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIDETAILS = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpRecip: *MapiRecipDesc,
+    lpRecip: ?*MapiRecipDesc,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -237,10 +237,10 @@ pub const LPMAPIDETAILS = fn(
 pub const LPMAPIRESOLVENAME = fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszName: PSTR,
+    lpszName: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
-    lppRecip: **MapiRecipDesc,
+    lppRecip: ?*?*MapiRecipDesc,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 
@@ -248,7 +248,7 @@ pub const LPMAPIRESOLVENAME = fn(
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 pub extern "MAPI32" fn MAPIFreeBuffer(
-    pv: *c_void,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

@@ -88,30 +88,30 @@ pub const IBackgroundCopyFile = extern struct {
         base: IUnknown.VTable,
         GetRemoteName: fn(
             self: *const IBackgroundCopyFile,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocalName: fn(
             self: *const IBackgroundCopyFile,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProgress: fn(
             self: *const IBackgroundCopyFile,
-            pVal: *BG_FILE_PROGRESS,
+            pVal: ?*BG_FILE_PROGRESS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile_GetRemoteName(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile_GetRemoteName(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetRemoteName(@ptrCast(*const IBackgroundCopyFile, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile_GetLocalName(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile_GetLocalName(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetLocalName(@ptrCast(*const IBackgroundCopyFile, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile_GetProgress(self: *const T, pVal: *BG_FILE_PROGRESS) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile_GetProgress(self: *const T, pVal: ?*BG_FILE_PROGRESS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyFile, self), pVal);
         }
     };}
@@ -127,8 +127,8 @@ pub const IEnumBackgroundCopyFiles = extern struct {
         Next: fn(
             self: *const IEnumBackgroundCopyFiles,
             celt: u32,
-            rgelt: **IBackgroundCopyFile,
-            pceltFetched: *u32,
+            rgelt: ?*?*IBackgroundCopyFile,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBackgroundCopyFiles,
@@ -139,18 +139,18 @@ pub const IEnumBackgroundCopyFiles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBackgroundCopyFiles,
-            ppenum: **IEnumBackgroundCopyFiles,
+            ppenum: ?*?*IEnumBackgroundCopyFiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBackgroundCopyFiles,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: **IBackgroundCopyFile, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyFiles, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -162,11 +162,11 @@ pub const IEnumBackgroundCopyFiles = extern struct {
             return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyFiles, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyFiles_Clone(self: *const T, ppenum: **IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyFiles_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyFiles, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyFiles_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyFiles_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyFiles, self), puCount);
         }
     };}
@@ -202,49 +202,49 @@ pub const IBackgroundCopyError = extern struct {
         base: IUnknown.VTable,
         GetError: fn(
             self: *const IBackgroundCopyError,
-            pContext: *BG_ERROR_CONTEXT,
-            pCode: *HRESULT,
+            pContext: ?*BG_ERROR_CONTEXT,
+            pCode: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFile: fn(
             self: *const IBackgroundCopyError,
-            pVal: **IBackgroundCopyFile,
+            pVal: ?*?*IBackgroundCopyFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorDescription: fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pErrorDescription: ?*PWSTR,
+            pErrorDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorContextDescription: fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pContextDescription: ?*PWSTR,
+            pContextDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProtocol: fn(
             self: *const IBackgroundCopyError,
-            pProtocol: ?*PWSTR,
+            pProtocol: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetError(self: *const T, pContext: *BG_ERROR_CONTEXT, pCode: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetError(self: *const T, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetError(@ptrCast(*const IBackgroundCopyError, self), pContext, pCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetFile(self: *const T, pVal: **IBackgroundCopyFile) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetFile(self: *const T, pVal: ?*?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetFile(@ptrCast(*const IBackgroundCopyError, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pErrorDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorContextDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pContextDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetProtocol(@ptrCast(*const IBackgroundCopyError, self), pProtocol);
         }
     };}
@@ -252,8 +252,8 @@ pub const IBackgroundCopyError = extern struct {
 };
 
 pub const BG_FILE_INFO = extern struct {
-    RemoteName: PWSTR,
-    LocalName: PWSTR,
+    RemoteName: ?PWSTR,
+    LocalName: ?PWSTR,
 };
 
 pub const BG_JOB_PROGRESS = extern struct {
@@ -334,12 +334,12 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFile: fn(
             self: *const IBackgroundCopyJob,
-            RemoteUrl: [*:0]const u16,
-            LocalName: [*:0]const u16,
+            RemoteUrl: ?[*:0]const u16,
+            LocalName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFiles: fn(
             self: *const IBackgroundCopyJob,
-            pEnum: **IEnumBackgroundCopyFiles,
+            pEnum: ?*?*IEnumBackgroundCopyFiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Suspend: fn(
             self: *const IBackgroundCopyJob,
@@ -355,47 +355,47 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetId: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *Guid,
+            pVal: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetType: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *BG_JOB_TYPE,
+            pVal: ?*BG_JOB_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProgress: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *BG_JOB_PROGRESS,
+            pVal: ?*BG_JOB_PROGRESS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTimes: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *BG_JOB_TIMES,
+            pVal: ?*BG_JOB_TIMES,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetState: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *BG_JOB_STATE,
+            pVal: ?*BG_JOB_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetError: fn(
             self: *const IBackgroundCopyJob,
-            ppError: **IBackgroundCopyError,
+            ppError: ?*?*IBackgroundCopyError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOwner: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDisplayName: fn(
             self: *const IBackgroundCopyJob,
-            Val: [*:0]const u16,
+            Val: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayName: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDescription: fn(
             self: *const IBackgroundCopyJob,
-            Val: [*:0]const u16,
+            Val: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPriority: fn(
             self: *const IBackgroundCopyJob,
@@ -403,7 +403,7 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPriority: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *BG_JOB_PRIORITY,
+            pVal: ?*BG_JOB_PRIORITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotifyFlags: fn(
             self: *const IBackgroundCopyJob,
@@ -411,15 +411,15 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNotifyFlags: fn(
             self: *const IBackgroundCopyJob,
-            pVal: *u32,
+            pVal: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotifyInterface: fn(
             self: *const IBackgroundCopyJob,
-            Val: *IUnknown,
+            Val: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNotifyInterface: fn(
             self: *const IBackgroundCopyJob,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMinimumRetryDelay: fn(
             self: *const IBackgroundCopyJob,
@@ -427,7 +427,7 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinimumRetryDelay: fn(
             self: *const IBackgroundCopyJob,
-            Seconds: *u32,
+            Seconds: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNoProgressTimeout: fn(
             self: *const IBackgroundCopyJob,
@@ -435,23 +435,23 @@ pub const IBackgroundCopyJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNoProgressTimeout: fn(
             self: *const IBackgroundCopyJob,
-            Seconds: *u32,
+            Seconds: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorCount: fn(
             self: *const IBackgroundCopyJob,
-            Errors: *u32,
+            Errors: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxySettings: fn(
             self: *const IBackgroundCopyJob,
             ProxyUsage: BG_JOB_PROXY_USAGE,
-            ProxyList: [*:0]const u16,
-            ProxyBypassList: [*:0]const u16,
+            ProxyList: ?[*:0]const u16,
+            ProxyBypassList: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxySettings: fn(
             self: *const IBackgroundCopyJob,
-            pProxyUsage: *BG_JOB_PROXY_USAGE,
-            pProxyList: *PWSTR,
-            pProxyBypassList: *PWSTR,
+            pProxyUsage: ?*BG_JOB_PROXY_USAGE,
+            pProxyList: ?*?PWSTR,
+            pProxyBypassList: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TakeOwnership: fn(
             self: *const IBackgroundCopyJob,
@@ -465,11 +465,11 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).AddFileSet(@ptrCast(*const IBackgroundCopyJob, self), cFileCount, pFileSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_AddFile(self: *const T, RemoteUrl: [*:0]const u16, LocalName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_AddFile(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).AddFile(@ptrCast(*const IBackgroundCopyJob, self), RemoteUrl, LocalName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_EnumFiles(self: *const T, pEnum: **IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_EnumFiles(self: *const T, pEnum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).EnumFiles(@ptrCast(*const IBackgroundCopyJob, self), pEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -489,47 +489,47 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).Complete(@ptrCast(*const IBackgroundCopyJob, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetId(self: *const T, pVal: *Guid) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetId(self: *const T, pVal: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetId(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetType(self: *const T, pVal: *BG_JOB_TYPE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetType(self: *const T, pVal: ?*BG_JOB_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetType(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetProgress(self: *const T, pVal: *BG_JOB_PROGRESS) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetProgress(self: *const T, pVal: ?*BG_JOB_PROGRESS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetTimes(self: *const T, pVal: *BG_JOB_TIMES) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetTimes(self: *const T, pVal: ?*BG_JOB_TIMES) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetTimes(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetState(self: *const T, pVal: *BG_JOB_STATE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetState(self: *const T, pVal: ?*BG_JOB_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetState(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetError(self: *const T, ppError: **IBackgroundCopyError) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetError(self: *const T, ppError: ?*?*IBackgroundCopyError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetError(@ptrCast(*const IBackgroundCopyJob, self), ppError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetOwner(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetOwner(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetOwner(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_SetDisplayName(self: *const T, Val: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_SetDisplayName(self: *const T, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetDisplayName(@ptrCast(*const IBackgroundCopyJob, self), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetDisplayName(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetDisplayName(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetDisplayName(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_SetDescription(self: *const T, Val: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_SetDescription(self: *const T, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetDescription(@ptrCast(*const IBackgroundCopyJob, self), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetDescription(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetDescription(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetDescription(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -537,7 +537,7 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetPriority(@ptrCast(*const IBackgroundCopyJob, self), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetPriority(self: *const T, pVal: *BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetPriority(self: *const T, pVal: ?*BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetPriority(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -545,15 +545,15 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNotifyFlags(@ptrCast(*const IBackgroundCopyJob, self), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetNotifyFlags(self: *const T, pVal: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetNotifyFlags(self: *const T, pVal: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNotifyFlags(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_SetNotifyInterface(self: *const T, Val: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_SetNotifyInterface(self: *const T, Val: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNotifyInterface(@ptrCast(*const IBackgroundCopyJob, self), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetNotifyInterface(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetNotifyInterface(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNotifyInterface(@ptrCast(*const IBackgroundCopyJob, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -561,7 +561,7 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetMinimumRetryDelay(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetMinimumRetryDelay(self: *const T, Seconds: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetMinimumRetryDelay(self: *const T, Seconds: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetMinimumRetryDelay(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -569,19 +569,19 @@ pub const IBackgroundCopyJob = extern struct {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNoProgressTimeout(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetNoProgressTimeout(self: *const T, Seconds: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetNoProgressTimeout(self: *const T, Seconds: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNoProgressTimeout(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetErrorCount(self: *const T, Errors: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetErrorCount(self: *const T, Errors: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetErrorCount(@ptrCast(*const IBackgroundCopyJob, self), Errors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_SetProxySettings(self: *const T, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: [*:0]const u16, ProxyBypassList: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_SetProxySettings(self: *const T, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetProxySettings(@ptrCast(*const IBackgroundCopyJob, self), ProxyUsage, ProxyList, ProxyBypassList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob_GetProxySettings(self: *const T, pProxyUsage: *BG_JOB_PROXY_USAGE, pProxyList: *PWSTR, pProxyBypassList: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob_GetProxySettings(self: *const T, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetProxySettings(@ptrCast(*const IBackgroundCopyJob, self), pProxyUsage, pProxyList, pProxyBypassList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -601,8 +601,8 @@ pub const IEnumBackgroundCopyJobs = extern struct {
         Next: fn(
             self: *const IEnumBackgroundCopyJobs,
             celt: u32,
-            rgelt: **IBackgroundCopyJob,
-            pceltFetched: *u32,
+            rgelt: ?*?*IBackgroundCopyJob,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBackgroundCopyJobs,
@@ -613,18 +613,18 @@ pub const IEnumBackgroundCopyJobs = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBackgroundCopyJobs,
-            ppenum: **IEnumBackgroundCopyJobs,
+            ppenum: ?*?*IEnumBackgroundCopyJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBackgroundCopyJobs,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: **IBackgroundCopyJob, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyJobs, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -636,11 +636,11 @@ pub const IEnumBackgroundCopyJobs = extern struct {
             return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyJobs, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs_Clone(self: *const T, ppenum: **IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyJobs, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyJobs, self), puCount);
         }
     };}
@@ -655,16 +655,16 @@ pub const IBackgroundCopyCallback = extern struct {
         base: IUnknown.VTable,
         JobTransferred: fn(
             self: *const IBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
+            pJob: ?*IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         JobError: fn(
             self: *const IBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
-            pError: *IBackgroundCopyError,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         JobModification: fn(
             self: *const IBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
+            pJob: ?*IBackgroundCopyJob,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -672,15 +672,15 @@ pub const IBackgroundCopyCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback_JobTransferred(self: *const T, pJob: *IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobTransferred(@ptrCast(*const IBackgroundCopyCallback, self), pJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback_JobError(self: *const T, pJob: *IBackgroundCopyJob, pError: *IBackgroundCopyError) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobError(@ptrCast(*const IBackgroundCopyCallback, self), pJob, pError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback_JobModification(self: *const T, pJob: *IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobModification(@ptrCast(*const IBackgroundCopyCallback, self), pJob, dwReserved);
         }
     };}
@@ -694,22 +694,22 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
         base: IUnknown.VTable,
         Begin_JobTransferred: fn(
             self: *const AsyncIBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
+            pJob: ?*IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_JobTransferred: fn(
             self: *const AsyncIBackgroundCopyCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_JobError: fn(
             self: *const AsyncIBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
-            pError: *IBackgroundCopyError,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_JobError: fn(
             self: *const AsyncIBackgroundCopyCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_JobModification: fn(
             self: *const AsyncIBackgroundCopyCallback,
-            pJob: *IBackgroundCopyJob,
+            pJob: ?*IBackgroundCopyJob,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_JobModification: fn(
@@ -720,7 +720,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIBackgroundCopyCallback_Begin_JobTransferred(self: *const T, pJob: *IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        pub fn AsyncIBackgroundCopyCallback_Begin_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobTransferred(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -728,7 +728,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
             return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Finish_JobTransferred(@ptrCast(*const AsyncIBackgroundCopyCallback, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIBackgroundCopyCallback_Begin_JobError(self: *const T, pJob: *IBackgroundCopyJob, pError: *IBackgroundCopyError) callconv(.Inline) HRESULT {
+        pub fn AsyncIBackgroundCopyCallback_Begin_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobError(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob, pError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -736,7 +736,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
             return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Finish_JobError(@ptrCast(*const AsyncIBackgroundCopyCallback, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIBackgroundCopyCallback_Begin_JobModification(self: *const T, pJob: *IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn AsyncIBackgroundCopyCallback_Begin_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobModification(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -755,45 +755,45 @@ pub const IBackgroundCopyManager = extern struct {
         base: IUnknown.VTable,
         CreateJob: fn(
             self: *const IBackgroundCopyManager,
-            DisplayName: [*:0]const u16,
+            DisplayName: ?[*:0]const u16,
             Type: BG_JOB_TYPE,
-            pJobId: *Guid,
-            ppJob: **IBackgroundCopyJob,
+            pJobId: ?*Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJob: fn(
             self: *const IBackgroundCopyManager,
-            jobID: *const Guid,
-            ppJob: **IBackgroundCopyJob,
+            jobID: ?*const Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumJobs: fn(
             self: *const IBackgroundCopyManager,
             dwFlags: u32,
-            ppEnum: **IEnumBackgroundCopyJobs,
+            ppEnum: ?*?*IEnumBackgroundCopyJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorDescription: fn(
             self: *const IBackgroundCopyManager,
             hResult: HRESULT,
             LanguageId: u32,
-            pErrorDescription: *PWSTR,
+            pErrorDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_CreateJob(self: *const T, DisplayName: [*:0]const u16, Type: BG_JOB_TYPE, pJobId: *Guid, ppJob: **IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyManager_CreateJob(self: *const T, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyManager, self), DisplayName, Type, pJobId, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_GetJob(self: *const T, jobID: *const Guid, ppJob: **IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyManager_GetJob(self: *const T, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyManager, self), jobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_EnumJobs(self: *const T, dwFlags: u32, ppEnum: **IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyManager_EnumJobs(self: *const T, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyManager, self), dwFlags, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_GetErrorDescription(self: *const T, hResult: HRESULT, LanguageId: u32, pErrorDescription: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyManager_GetErrorDescription(self: *const T, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IBackgroundCopyManager, self), hResult, LanguageId, pErrorDescription);
         }
     };}
@@ -829,8 +829,8 @@ pub const BG_AUTH_SCHEME_NEGOTIATE = BG_AUTH_SCHEME.NEGOTIATE;
 pub const BG_AUTH_SCHEME_PASSPORT = BG_AUTH_SCHEME.PASSPORT;
 
 pub const BG_BASIC_CREDENTIALS = extern struct {
-    UserName: PWSTR,
-    Password: PWSTR,
+    UserName: ?PWSTR,
+    Password: ?PWSTR,
 };
 
 pub const BG_AUTH_CREDENTIALS_UNION = extern union {
@@ -851,34 +851,34 @@ pub const IBackgroundCopyJob2 = extern struct {
         base: IBackgroundCopyJob.VTable,
         SetNotifyCmdLine: fn(
             self: *const IBackgroundCopyJob2,
-            Program: [*:0]const u16,
-            Parameters: [*:0]const u16,
+            Program: ?[*:0]const u16,
+            Parameters: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNotifyCmdLine: fn(
             self: *const IBackgroundCopyJob2,
-            pProgram: *PWSTR,
-            pParameters: *PWSTR,
+            pProgram: ?*?PWSTR,
+            pParameters: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReplyProgress: fn(
             self: *const IBackgroundCopyJob2,
-            pProgress: *BG_JOB_REPLY_PROGRESS,
+            pProgress: ?*BG_JOB_REPLY_PROGRESS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReplyData: fn(
             self: *const IBackgroundCopyJob2,
-            ppBuffer: ?**u8,
-            pLength: *u64,
+            ppBuffer: ?*?*u8,
+            pLength: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReplyFileName: fn(
             self: *const IBackgroundCopyJob2,
-            ReplyFileName: [*:0]const u16,
+            ReplyFileName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReplyFileName: fn(
             self: *const IBackgroundCopyJob2,
-            pReplyFileName: *PWSTR,
+            pReplyFileName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCredentials: fn(
             self: *const IBackgroundCopyJob2,
-            credentials: *BG_AUTH_CREDENTIALS,
+            credentials: ?*BG_AUTH_CREDENTIALS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveCredentials: fn(
             self: *const IBackgroundCopyJob2,
@@ -890,31 +890,31 @@ pub const IBackgroundCopyJob2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_SetNotifyCmdLine(self: *const T, Program: [*:0]const u16, Parameters: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_SetNotifyCmdLine(self: *const T, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetNotifyCmdLine(@ptrCast(*const IBackgroundCopyJob2, self), Program, Parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_GetNotifyCmdLine(self: *const T, pProgram: *PWSTR, pParameters: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_GetNotifyCmdLine(self: *const T, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetNotifyCmdLine(@ptrCast(*const IBackgroundCopyJob2, self), pProgram, pParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_GetReplyProgress(self: *const T, pProgress: *BG_JOB_REPLY_PROGRESS) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_GetReplyProgress(self: *const T, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyProgress(@ptrCast(*const IBackgroundCopyJob2, self), pProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_GetReplyData(self: *const T, ppBuffer: ?**u8, pLength: *u64) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_GetReplyData(self: *const T, ppBuffer: ?*?*u8, pLength: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyData(@ptrCast(*const IBackgroundCopyJob2, self), ppBuffer, pLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_SetReplyFileName(self: *const T, ReplyFileName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_SetReplyFileName(self: *const T, ReplyFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetReplyFileName(@ptrCast(*const IBackgroundCopyJob2, self), ReplyFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_GetReplyFileName(self: *const T, pReplyFileName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_GetReplyFileName(self: *const T, pReplyFileName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyFileName(@ptrCast(*const IBackgroundCopyJob2, self), pReplyFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob2_SetCredentials(self: *const T, credentials: *BG_AUTH_CREDENTIALS) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob2_SetCredentials(self: *const T, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetCredentials(@ptrCast(*const IBackgroundCopyJob2, self), credentials);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -941,13 +941,13 @@ pub const IBackgroundCopyJob3 = extern struct {
         base: IBackgroundCopyJob2.VTable,
         ReplaceRemotePrefix: fn(
             self: *const IBackgroundCopyJob3,
-            OldPrefix: [*:0]const u16,
-            NewPrefix: [*:0]const u16,
+            OldPrefix: ?[*:0]const u16,
+            NewPrefix: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFileWithRanges: fn(
             self: *const IBackgroundCopyJob3,
-            RemoteUrl: [*:0]const u16,
-            LocalName: [*:0]const u16,
+            RemoteUrl: ?[*:0]const u16,
+            LocalName: ?[*:0]const u16,
             RangeCount: u32,
             Ranges: [*]BG_FILE_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -957,18 +957,18 @@ pub const IBackgroundCopyJob3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileACLFlags: fn(
             self: *const IBackgroundCopyJob3,
-            Flags: *u32,
+            Flags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJob2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob3_ReplaceRemotePrefix(self: *const T, OldPrefix: [*:0]const u16, NewPrefix: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob3_ReplaceRemotePrefix(self: *const T, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).ReplaceRemotePrefix(@ptrCast(*const IBackgroundCopyJob3, self), OldPrefix, NewPrefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob3_AddFileWithRanges(self: *const T, RemoteUrl: [*:0]const u16, LocalName: [*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob3_AddFileWithRanges(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).AddFileWithRanges(@ptrCast(*const IBackgroundCopyJob3, self), RemoteUrl, LocalName, RangeCount, Ranges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -976,7 +976,7 @@ pub const IBackgroundCopyJob3 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).SetFileACLFlags(@ptrCast(*const IBackgroundCopyJob3, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob3_GetFileACLFlags(self: *const T, Flags: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob3_GetFileACLFlags(self: *const T, Flags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).GetFileACLFlags(@ptrCast(*const IBackgroundCopyJob3, self), Flags);
         }
     };}
@@ -991,23 +991,23 @@ pub const IBackgroundCopyFile2 = extern struct {
         base: IBackgroundCopyFile.VTable,
         GetFileRanges: fn(
             self: *const IBackgroundCopyFile2,
-            RangeCount: *u32,
-            Ranges: [*]*BG_FILE_RANGE,
+            RangeCount: ?*u32,
+            Ranges: [*]?*BG_FILE_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRemoteName: fn(
             self: *const IBackgroundCopyFile2,
-            Val: [*:0]const u16,
+            Val: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile2_GetFileRanges(self: *const T, RangeCount: *u32, Ranges: [*]*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile2_GetFileRanges(self: *const T, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile2.VTable, self.vtable).GetFileRanges(@ptrCast(*const IBackgroundCopyFile2, self), RangeCount, Ranges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile2_SetRemoteName(self: *const T, Val: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile2_SetRemoteName(self: *const T, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile2.VTable, self.vtable).SetRemoteName(@ptrCast(*const IBackgroundCopyFile2, self), Val);
         }
     };}
@@ -1045,32 +1045,32 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
         SetClientCertificateByID: fn(
             self: *const IBackgroundCopyJobHttpOptions,
             StoreLocation: BG_CERT_STORE_LOCATION,
-            StoreName: [*:0]const u16,
+            StoreName: ?[*:0]const u16,
             pCertHashBlob: *[20]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetClientCertificateByName: fn(
             self: *const IBackgroundCopyJobHttpOptions,
             StoreLocation: BG_CERT_STORE_LOCATION,
-            StoreName: [*:0]const u16,
-            SubjectName: [*:0]const u16,
+            StoreName: ?[*:0]const u16,
+            SubjectName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveClientCertificate: fn(
             self: *const IBackgroundCopyJobHttpOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClientCertificate: fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            pStoreLocation: *BG_CERT_STORE_LOCATION,
-            pStoreName: ?*PWSTR,
-            ppCertHashBlob: ?*[20]*u8,
-            pSubjectName: ?*PWSTR,
+            pStoreLocation: ?*BG_CERT_STORE_LOCATION,
+            pStoreName: ?*?PWSTR,
+            ppCertHashBlob: ?*[20]?*u8,
+            pSubjectName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCustomHeaders: fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            RequestHeaders: [*:0]const u16,
+            RequestHeaders: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCustomHeaders: fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            pRequestHeaders: ?*PWSTR,
+            pRequestHeaders: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityFlags: fn(
             self: *const IBackgroundCopyJobHttpOptions,
@@ -1078,18 +1078,18 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityFlags: fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            pFlags: *u32,
+            pFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_SetClientCertificateByID(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: [*:0]const u16, pCertHashBlob: *[20]u8) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_SetClientCertificateByID(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetClientCertificateByID(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), StoreLocation, StoreName, pCertHashBlob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_SetClientCertificateByName(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: [*:0]const u16, SubjectName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_SetClientCertificateByName(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetClientCertificateByName(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), StoreLocation, StoreName, SubjectName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1097,15 +1097,15 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).RemoveClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: *BG_CERT_STORE_LOCATION, pStoreName: ?*PWSTR, ppCertHashBlob: ?*[20]*u8, pSubjectName: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_SetCustomHeaders(self: *const T, RequestHeaders: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_SetCustomHeaders(self: *const T, RequestHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), RequestHeaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pRequestHeaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1113,7 +1113,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetSecurityFlags(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetSecurityFlags(self: *const T, pFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetSecurityFlags(self: *const T, pFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetSecurityFlags(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pFlags);
         }
     };}
@@ -1131,54 +1131,54 @@ pub const IBitsPeerCacheRecord = extern struct {
         base: IUnknown.VTable,
         GetId: fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: *Guid,
+            pVal: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOriginUrl: fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: *PWSTR,
+            pVal: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileSize: fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: *u64,
+            pVal: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileModificationTime: fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: *FILETIME,
+            pVal: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLastAccessTime: fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: *FILETIME,
+            pVal: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsFileValidated: fn(
             self: *const IBitsPeerCacheRecord,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileRanges: fn(
             self: *const IBitsPeerCacheRecord,
-            pRangeCount: *u32,
-            ppRanges: [*]*BG_FILE_RANGE,
+            pRangeCount: ?*u32,
+            ppRanges: [*]?*BG_FILE_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetId(self: *const T, pVal: *Guid) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetId(self: *const T, pVal: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetId(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetOriginUrl(self: *const T, pVal: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetOriginUrl(self: *const T, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetOriginUrl(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetFileSize(self: *const T, pVal: *u64) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetFileSize(self: *const T, pVal: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileSize(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetFileModificationTime(self: *const T, pVal: *FILETIME) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetFileModificationTime(self: *const T, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileModificationTime(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetLastAccessTime(self: *const T, pVal: *FILETIME) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetLastAccessTime(self: *const T, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetLastAccessTime(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1186,7 +1186,7 @@ pub const IBitsPeerCacheRecord = extern struct {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).IsFileValidated(@ptrCast(*const IBitsPeerCacheRecord, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheRecord_GetFileRanges(self: *const T, pRangeCount: *u32, ppRanges: [*]*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheRecord_GetFileRanges(self: *const T, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileRanges(@ptrCast(*const IBitsPeerCacheRecord, self), pRangeCount, ppRanges);
         }
     };}
@@ -1202,8 +1202,8 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
         Next: fn(
             self: *const IEnumBitsPeerCacheRecords,
             celt: u32,
-            rgelt: **IBitsPeerCacheRecord,
-            pceltFetched: *u32,
+            rgelt: ?*?*IBitsPeerCacheRecord,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBitsPeerCacheRecords,
@@ -1214,18 +1214,18 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBitsPeerCacheRecords,
-            ppenum: **IEnumBitsPeerCacheRecords,
+            ppenum: ?*?*IEnumBitsPeerCacheRecords,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBitsPeerCacheRecords,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: **IBitsPeerCacheRecord, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeerCacheRecords, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1237,11 +1237,11 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
             return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Reset(@ptrCast(*const IEnumBitsPeerCacheRecords, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeerCacheRecords_Clone(self: *const T, ppenum: **IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeerCacheRecords_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Clone(@ptrCast(*const IEnumBitsPeerCacheRecords, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeerCacheRecords_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeerCacheRecords_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBitsPeerCacheRecords, self), puCount);
         }
     };}
@@ -1256,30 +1256,30 @@ pub const IBitsPeer = extern struct {
         base: IUnknown.VTable,
         GetPeerName: fn(
             self: *const IBitsPeer,
-            pName: ?*PWSTR,
+            pName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsAuthenticated: fn(
             self: *const IBitsPeer,
-            pAuth: *BOOL,
+            pAuth: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsAvailable: fn(
             self: *const IBitsPeer,
-            pOnline: *BOOL,
+            pOnline: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeer_GetPeerName(self: *const T, pName: ?*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBitsPeer_GetPeerName(self: *const T, pName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeer.VTable, self.vtable).GetPeerName(@ptrCast(*const IBitsPeer, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeer_IsAuthenticated(self: *const T, pAuth: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IBitsPeer_IsAuthenticated(self: *const T, pAuth: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeer.VTable, self.vtable).IsAuthenticated(@ptrCast(*const IBitsPeer, self), pAuth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeer_IsAvailable(self: *const T, pOnline: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IBitsPeer_IsAvailable(self: *const T, pOnline: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeer.VTable, self.vtable).IsAvailable(@ptrCast(*const IBitsPeer, self), pOnline);
         }
     };}
@@ -1295,8 +1295,8 @@ pub const IEnumBitsPeers = extern struct {
         Next: fn(
             self: *const IEnumBitsPeers,
             celt: u32,
-            rgelt: **IBitsPeer,
-            pceltFetched: *u32,
+            rgelt: ?*?*IBitsPeer,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBitsPeers,
@@ -1307,18 +1307,18 @@ pub const IEnumBitsPeers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBitsPeers,
-            ppenum: **IEnumBitsPeers,
+            ppenum: ?*?*IEnumBitsPeers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBitsPeers,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: **IBitsPeer, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeers, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1330,11 +1330,11 @@ pub const IEnumBitsPeers = extern struct {
             return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Reset(@ptrCast(*const IEnumBitsPeers, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeers_Clone(self: *const T, ppenum: **IEnumBitsPeers) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeers_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Clone(@ptrCast(*const IEnumBitsPeers, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeers_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeers_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBitsPeers, self), puCount);
         }
     };}
@@ -1349,7 +1349,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
         base: IUnknown.VTable,
         GetMaximumCacheSize: fn(
             self: *const IBitsPeerCacheAdministration,
-            pBytes: *u32,
+            pBytes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaximumCacheSize: fn(
             self: *const IBitsPeerCacheAdministration,
@@ -1357,7 +1357,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaximumContentAge: fn(
             self: *const IBitsPeerCacheAdministration,
-            pSeconds: *u32,
+            pSeconds: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaximumContentAge: fn(
             self: *const IBitsPeerCacheAdministration,
@@ -1365,7 +1365,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConfigurationFlags: fn(
             self: *const IBitsPeerCacheAdministration,
-            pFlags: *u32,
+            pFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConfigurationFlags: fn(
             self: *const IBitsPeerCacheAdministration,
@@ -1373,27 +1373,27 @@ pub const IBitsPeerCacheAdministration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRecords: fn(
             self: *const IBitsPeerCacheAdministration,
-            ppEnum: **IEnumBitsPeerCacheRecords,
+            ppEnum: ?*?*IEnumBitsPeerCacheRecords,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecord: fn(
             self: *const IBitsPeerCacheAdministration,
-            id: *const Guid,
-            ppRecord: **IBitsPeerCacheRecord,
+            id: ?*const Guid,
+            ppRecord: ?*?*IBitsPeerCacheRecord,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearRecords: fn(
             self: *const IBitsPeerCacheAdministration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRecord: fn(
             self: *const IBitsPeerCacheAdministration,
-            id: *const Guid,
+            id: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteUrl: fn(
             self: *const IBitsPeerCacheAdministration,
-            url: [*:0]const u16,
+            url: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumPeers: fn(
             self: *const IBitsPeerCacheAdministration,
-            ppEnum: ?**IEnumBitsPeers,
+            ppEnum: ?*?*IEnumBitsPeers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearPeers: fn(
             self: *const IBitsPeerCacheAdministration,
@@ -1406,7 +1406,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_GetMaximumCacheSize(self: *const T, pBytes: *u32) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_GetMaximumCacheSize(self: *const T, pBytes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetMaximumCacheSize(@ptrCast(*const IBitsPeerCacheAdministration, self), pBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1414,7 +1414,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetMaximumCacheSize(@ptrCast(*const IBitsPeerCacheAdministration, self), Bytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_GetMaximumContentAge(self: *const T, pSeconds: *u32) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_GetMaximumContentAge(self: *const T, pSeconds: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetMaximumContentAge(@ptrCast(*const IBitsPeerCacheAdministration, self), pSeconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1422,7 +1422,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetMaximumContentAge(@ptrCast(*const IBitsPeerCacheAdministration, self), Seconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_GetConfigurationFlags(self: *const T, pFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_GetConfigurationFlags(self: *const T, pFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetConfigurationFlags(@ptrCast(*const IBitsPeerCacheAdministration, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1430,11 +1430,11 @@ pub const IBitsPeerCacheAdministration = extern struct {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetConfigurationFlags(@ptrCast(*const IBitsPeerCacheAdministration, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_EnumRecords(self: *const T, ppEnum: **IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_EnumRecords(self: *const T, ppEnum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).EnumRecords(@ptrCast(*const IBitsPeerCacheAdministration, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_GetRecord(self: *const T, id: *const Guid, ppRecord: **IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_GetRecord(self: *const T, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetRecord(@ptrCast(*const IBitsPeerCacheAdministration, self), id, ppRecord);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1442,15 +1442,15 @@ pub const IBitsPeerCacheAdministration = extern struct {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).ClearRecords(@ptrCast(*const IBitsPeerCacheAdministration, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_DeleteRecord(self: *const T, id: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_DeleteRecord(self: *const T, id: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DeleteRecord(@ptrCast(*const IBitsPeerCacheAdministration, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_DeleteUrl(self: *const T, url: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_DeleteUrl(self: *const T, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DeleteUrl(@ptrCast(*const IBitsPeerCacheAdministration, self), url);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: ?**IEnumBitsPeers) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).EnumPeers(@ptrCast(*const IBitsPeerCacheAdministration, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1477,15 +1477,15 @@ pub const IBackgroundCopyJob4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPeerCachingFlags: fn(
             self: *const IBackgroundCopyJob4,
-            pFlags: *u32,
+            pFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOwnerIntegrityLevel: fn(
             self: *const IBackgroundCopyJob4,
-            pLevel: *u32,
+            pLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOwnerElevationState: fn(
             self: *const IBackgroundCopyJob4,
-            pElevated: *BOOL,
+            pElevated: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaximumDownloadTime: fn(
             self: *const IBackgroundCopyJob4,
@@ -1493,7 +1493,7 @@ pub const IBackgroundCopyJob4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaximumDownloadTime: fn(
             self: *const IBackgroundCopyJob4,
-            pTimeout: *u32,
+            pTimeout: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1504,15 +1504,15 @@ pub const IBackgroundCopyJob4 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).SetPeerCachingFlags(@ptrCast(*const IBackgroundCopyJob4, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob4_GetPeerCachingFlags(self: *const T, pFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob4_GetPeerCachingFlags(self: *const T, pFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetPeerCachingFlags(@ptrCast(*const IBackgroundCopyJob4, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob4_GetOwnerIntegrityLevel(self: *const T, pLevel: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob4_GetOwnerIntegrityLevel(self: *const T, pLevel: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetOwnerIntegrityLevel(@ptrCast(*const IBackgroundCopyJob4, self), pLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob4_GetOwnerElevationState(self: *const T, pElevated: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob4_GetOwnerElevationState(self: *const T, pElevated: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetOwnerElevationState(@ptrCast(*const IBackgroundCopyJob4, self), pElevated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1520,7 +1520,7 @@ pub const IBackgroundCopyJob4 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).SetMaximumDownloadTime(@ptrCast(*const IBackgroundCopyJob4, self), Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob4_GetMaximumDownloadTime(self: *const T, pTimeout: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob4_GetMaximumDownloadTime(self: *const T, pTimeout: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetMaximumDownloadTime(@ptrCast(*const IBackgroundCopyJob4, self), pTimeout);
         }
     };}
@@ -1535,7 +1535,7 @@ pub const IBackgroundCopyFile3 = extern struct {
         base: IBackgroundCopyFile2.VTable,
         GetTemporaryName: fn(
             self: *const IBackgroundCopyFile3,
-            pFilename: *PWSTR,
+            pFilename: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValidationState: fn(
             self: *const IBackgroundCopyFile3,
@@ -1543,18 +1543,18 @@ pub const IBackgroundCopyFile3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValidationState: fn(
             self: *const IBackgroundCopyFile3,
-            pState: *BOOL,
+            pState: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDownloadedFromPeer: fn(
             self: *const IBackgroundCopyFile3,
-            pVal: *BOOL,
+            pVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile3_GetTemporaryName(self: *const T, pFilename: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile3_GetTemporaryName(self: *const T, pFilename: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).GetTemporaryName(@ptrCast(*const IBackgroundCopyFile3, self), pFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1562,11 +1562,11 @@ pub const IBackgroundCopyFile3 = extern struct {
             return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).SetValidationState(@ptrCast(*const IBackgroundCopyFile3, self), state);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile3_GetValidationState(self: *const T, pState: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile3_GetValidationState(self: *const T, pState: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).GetValidationState(@ptrCast(*const IBackgroundCopyFile3, self), pState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile3_IsDownloadedFromPeer(self: *const T, pVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile3_IsDownloadedFromPeer(self: *const T, pVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).IsDownloadedFromPeer(@ptrCast(*const IBackgroundCopyFile3, self), pVal);
         }
     };}
@@ -1581,15 +1581,15 @@ pub const IBackgroundCopyCallback2 = extern struct {
         base: IBackgroundCopyCallback.VTable,
         FileTransferred: fn(
             self: *const IBackgroundCopyCallback2,
-            pJob: *IBackgroundCopyJob,
-            pFile: *IBackgroundCopyFile,
+            pJob: ?*IBackgroundCopyJob,
+            pFile: ?*IBackgroundCopyFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback2_FileTransferred(self: *const T, pJob: *IBackgroundCopyJob, pFile: *IBackgroundCopyFile) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback2_FileTransferred(self: *const T, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback2.VTable, self.vtable).FileTransferred(@ptrCast(*const IBackgroundCopyCallback2, self), pJob, pFile);
         }
     };}
@@ -1611,7 +1611,7 @@ pub const IBitsTokenOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelperTokenFlags: fn(
             self: *const IBitsTokenOptions,
-            pFlags: *BG_TOKEN,
+            pFlags: ?*BG_TOKEN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelperToken: fn(
             self: *const IBitsTokenOptions,
@@ -1621,7 +1621,7 @@ pub const IBitsTokenOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelperTokenSid: fn(
             self: *const IBitsTokenOptions,
-            pSid: *PWSTR,
+            pSid: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1632,7 +1632,7 @@ pub const IBitsTokenOptions = extern struct {
             return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).SetHelperTokenFlags(@ptrCast(*const IBitsTokenOptions, self), UsageFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsTokenOptions_GetHelperTokenFlags(self: *const T, pFlags: *BG_TOKEN) callconv(.Inline) HRESULT {
+        pub fn IBitsTokenOptions_GetHelperTokenFlags(self: *const T, pFlags: ?*BG_TOKEN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).GetHelperTokenFlags(@ptrCast(*const IBitsTokenOptions, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1644,7 +1644,7 @@ pub const IBitsTokenOptions = extern struct {
             return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).ClearHelperToken(@ptrCast(*const IBitsTokenOptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsTokenOptions_GetHelperTokenSid(self: *const T, pSid: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBitsTokenOptions_GetHelperTokenSid(self: *const T, pSid: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).GetHelperTokenSid(@ptrCast(*const IBitsTokenOptions, self), pSid);
         }
     };}
@@ -1659,15 +1659,15 @@ pub const IBackgroundCopyFile4 = extern struct {
         base: IBackgroundCopyFile3.VTable,
         GetPeerDownloadStats: fn(
             self: *const IBackgroundCopyFile4,
-            pFromOrigin: *u64,
-            pFromPeers: *u64,
+            pFromOrigin: ?*u64,
+            pFromPeers: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyFile3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile4_GetPeerDownloadStats(self: *const T, pFromOrigin: *u64, pFromPeers: *u64) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile4_GetPeerDownloadStats(self: *const T, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile4.VTable, self.vtable).GetPeerDownloadStats(@ptrCast(*const IBackgroundCopyFile4, self), pFromOrigin, pFromPeers);
         }
     };}
@@ -1723,7 +1723,7 @@ pub const BITS_FILE_PROPERTY_ID = enum(i32) {
 pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
 
 pub const BITS_FILE_PROPERTY_VALUE = extern union {
-    String: PWSTR,
+    String: ?PWSTR,
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1740,7 +1740,7 @@ pub const IBackgroundCopyJob5 = extern struct {
         GetProperty: fn(
             self: *const IBackgroundCopyJob5,
             PropertyId: BITS_JOB_PROPERTY_ID,
-            PropertyValue: *BITS_JOB_PROPERTY_VALUE,
+            PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1751,7 +1751,7 @@ pub const IBackgroundCopyJob5 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob5.VTable, self.vtable).SetProperty(@ptrCast(*const IBackgroundCopyJob5, self), PropertyId, PropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob5_GetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: *BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob5_GetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob5.VTable, self.vtable).GetProperty(@ptrCast(*const IBackgroundCopyJob5, self), PropertyId, PropertyValue);
         }
     };}
@@ -1772,7 +1772,7 @@ pub const IBackgroundCopyFile5 = extern struct {
         GetProperty: fn(
             self: *const IBackgroundCopyFile5,
             PropertyId: BITS_FILE_PROPERTY_ID,
-            PropertyValue: *BITS_FILE_PROPERTY_VALUE,
+            PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1783,7 +1783,7 @@ pub const IBackgroundCopyFile5 = extern struct {
             return @ptrCast(*const IBackgroundCopyFile5.VTable, self.vtable).SetProperty(@ptrCast(*const IBackgroundCopyFile5, self), PropertyId, PropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile5_GetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: *BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile5_GetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile5.VTable, self.vtable).GetProperty(@ptrCast(*const IBackgroundCopyFile5, self), PropertyId, PropertyValue);
         }
     };}
@@ -1801,8 +1801,8 @@ pub const IBackgroundCopyCallback3 = extern struct {
         base: IBackgroundCopyCallback2.VTable,
         FileRangesTransferred: fn(
             self: *const IBackgroundCopyCallback3,
-            job: *IBackgroundCopyJob,
-            file: *IBackgroundCopyFile,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
             rangeCount: u32,
             ranges: [*]const BG_FILE_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1811,7 +1811,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyCallback2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback3_FileRangesTransferred(self: *const T, job: *IBackgroundCopyJob, file: *IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback3_FileRangesTransferred(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback3.VTable, self.vtable).FileRangesTransferred(@ptrCast(*const IBackgroundCopyCallback3, self), job, file, rangeCount, ranges);
         }
     };}
@@ -1835,8 +1835,8 @@ pub const IBackgroundCopyFile6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilledFileRanges: fn(
             self: *const IBackgroundCopyFile6,
-            rangeCount: *u32,
-            ranges: [*]*BG_FILE_RANGE,
+            rangeCount: ?*u32,
+            ranges: [*]?*BG_FILE_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1851,7 +1851,7 @@ pub const IBackgroundCopyFile6 = extern struct {
             return @ptrCast(*const IBackgroundCopyFile6.VTable, self.vtable).RequestFileRanges(@ptrCast(*const IBackgroundCopyFile6, self), rangeCount, ranges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyFile6_GetFilledFileRanges(self: *const T, rangeCount: *u32, ranges: [*]*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyFile6_GetFilledFileRanges(self: *const T, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyFile6.VTable, self.vtable).GetFilledFileRanges(@ptrCast(*const IBackgroundCopyFile6, self), rangeCount, ranges);
         }
     };}
@@ -1869,22 +1869,22 @@ pub const IBackgroundCopyJobHttpOptions2 = extern struct {
         base: IBackgroundCopyJobHttpOptions.VTable,
         SetHttpMethod: fn(
             self: *const IBackgroundCopyJobHttpOptions2,
-            method: [*:0]const u16,
+            method: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHttpMethod: fn(
             self: *const IBackgroundCopyJobHttpOptions2,
-            method: *PWSTR,
+            method: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJobHttpOptions.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions2_SetHttpMethod(self: *const T, method: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions2_SetHttpMethod(self: *const T, method: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions2.VTable, self.vtable).SetHttpMethod(@ptrCast(*const IBackgroundCopyJobHttpOptions2, self), method);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions2_GetHttpMethod(self: *const T, method: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions2_GetHttpMethod(self: *const T, method: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions2.VTable, self.vtable).GetHttpMethod(@ptrCast(*const IBackgroundCopyJobHttpOptions2, self), method);
         }
     };}
@@ -1901,8 +1901,8 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
         base: IUnknown.VTable,
         ValidateServerCertificate: fn(
             self: *const IBackgroundCopyServerCertificateValidationCallback,
-            job: *IBackgroundCopyJob,
-            file: *IBackgroundCopyFile,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
             certLength: u32,
             certData: [*:0]const u8,
             certEncodingType: u32,
@@ -1914,7 +1914,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyServerCertificateValidationCallback_ValidateServerCertificate(self: *const T, job: *IBackgroundCopyJob, file: *IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyServerCertificateValidationCallback_ValidateServerCertificate(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyServerCertificateValidationCallback.VTable, self.vtable).ValidateServerCertificate(@ptrCast(*const IBackgroundCopyServerCertificateValidationCallback, self), job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
         }
     };}
@@ -1928,7 +1928,7 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
         base: IBackgroundCopyJobHttpOptions2.VTable,
         SetServerCertificateValidationInterface: fn(
             self: *const IBackgroundCopyJobHttpOptions3,
-            certValidationCallback: *IUnknown,
+            certValidationCallback: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MakeCustomHeadersWriteOnly: fn(
             self: *const IBackgroundCopyJobHttpOptions3,
@@ -1938,7 +1938,7 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBackgroundCopyJobHttpOptions2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions3_SetServerCertificateValidationInterface(self: *const T, certValidationCallback: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions3_SetServerCertificateValidationInterface(self: *const T, certValidationCallback: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions3.VTable, self.vtable).SetServerCertificateValidationInterface(@ptrCast(*const IBackgroundCopyJobHttpOptions3, self), certValidationCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1966,12 +1966,12 @@ pub const IBITSExtensionSetup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCleanupTaskName: fn(
             self: *const IBITSExtensionSetup,
-            pTaskName: *BSTR,
+            pTaskName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCleanupTask: fn(
             self: *const IBITSExtensionSetup,
-            riid: *const Guid,
-            ppUnk: **IUnknown,
+            riid: ?*const Guid,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1986,11 +1986,11 @@ pub const IBITSExtensionSetup = extern struct {
             return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).DisableBITSUploads(@ptrCast(*const IBITSExtensionSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBITSExtensionSetup_GetCleanupTaskName(self: *const T, pTaskName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IBITSExtensionSetup_GetCleanupTaskName(self: *const T, pTaskName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).GetCleanupTaskName(@ptrCast(*const IBITSExtensionSetup, self), pTaskName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBITSExtensionSetup_GetCleanupTask(self: *const T, riid: *const Guid, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBITSExtensionSetup_GetCleanupTask(self: *const T, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).GetCleanupTask(@ptrCast(*const IBITSExtensionSetup, self), riid, ppUnk);
         }
     };}
@@ -2005,15 +2005,15 @@ pub const IBITSExtensionSetupFactory = extern struct {
         base: IDispatch.VTable,
         GetObject: fn(
             self: *const IBITSExtensionSetupFactory,
-            Path: BSTR,
-            ppExtensionSetup: **IBITSExtensionSetup,
+            Path: ?BSTR,
+            ppExtensionSetup: ?*?*IBITSExtensionSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBITSExtensionSetupFactory_GetObject(self: *const T, Path: BSTR, ppExtensionSetup: **IBITSExtensionSetup) callconv(.Inline) HRESULT {
+        pub fn IBITSExtensionSetupFactory_GetObject(self: *const T, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBITSExtensionSetupFactory.VTable, self.vtable).GetObject(@ptrCast(*const IBITSExtensionSetupFactory, self), Path, ppExtensionSetup);
         }
     };}
@@ -2024,8 +2024,8 @@ const CLSID_BackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("69
 pub const CLSID_BackgroundCopyQMgr = &CLSID_BackgroundCopyQMgr_Value;
 
 pub const FILESETINFO = extern struct {
-    bstrRemoteFile: BSTR,
-    bstrLocalFile: BSTR,
+    bstrRemoteFile: ?BSTR,
+    bstrLocalFile: ?BSTR,
     dwSizeHint: u32,
 };
 
@@ -2041,28 +2041,28 @@ pub const IBackgroundCopyJob1 = extern struct {
         GetProgress: fn(
             self: *const IBackgroundCopyJob1,
             dwFlags: u32,
-            pdwProgress: *u32,
+            pdwProgress: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IBackgroundCopyJob1,
-            pdwStatus: *u32,
-            pdwWin32Result: *u32,
-            pdwTransportResult: *u32,
-            pdwNumOfRetries: *u32,
+            pdwStatus: ?*u32,
+            pdwWin32Result: ?*u32,
+            pdwTransportResult: ?*u32,
+            pdwNumOfRetries: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFiles: fn(
             self: *const IBackgroundCopyJob1,
             cFileCount: u32,
-            ppFileSet: [*]*FILESETINFO,
+            ppFileSet: [*]?*FILESETINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFile: fn(
             self: *const IBackgroundCopyJob1,
             cFileIndex: u32,
-            pFileInfo: *FILESETINFO,
+            pFileInfo: ?*FILESETINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileCount: fn(
             self: *const IBackgroundCopyJob1,
-            pdwFileCount: *u32,
+            pdwFileCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SwitchToForeground: fn(
             self: *const IBackgroundCopyJob1,
@@ -2070,7 +2070,7 @@ pub const IBackgroundCopyJob1 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobID: fn(
             self: *const IBackgroundCopyJob1,
-            pguidJobID: *Guid,
+            pguidJobID: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2081,23 +2081,23 @@ pub const IBackgroundCopyJob1 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).CancelJob(@ptrCast(*const IBackgroundCopyJob1, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_GetProgress(self: *const T, dwFlags: u32, pdwProgress: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyJob1, self), dwFlags, pdwProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_GetStatus(self: *const T, pdwStatus: *u32, pdwWin32Result: *u32, pdwTransportResult: *u32, pdwNumOfRetries: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_GetStatus(self: *const T, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetStatus(@ptrCast(*const IBackgroundCopyJob1, self), pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_AddFiles(self: *const T, cFileCount: u32, ppFileSet: [*]*FILESETINFO) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_AddFiles(self: *const T, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).AddFiles(@ptrCast(*const IBackgroundCopyJob1, self), cFileCount, ppFileSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_GetFile(self: *const T, cFileIndex: u32, pFileInfo: *FILESETINFO) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_GetFile(self: *const T, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetFile(@ptrCast(*const IBackgroundCopyJob1, self), cFileIndex, pFileInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_GetFileCount(self: *const T, pdwFileCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_GetFileCount(self: *const T, pdwFileCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetFileCount(@ptrCast(*const IBackgroundCopyJob1, self), pdwFileCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2105,7 +2105,7 @@ pub const IBackgroundCopyJob1 = extern struct {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyJob1, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJob1_get_JobID(self: *const T, pguidJobID: *Guid) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJob1_get_JobID(self: *const T, pguidJobID: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).get_JobID(@ptrCast(*const IBackgroundCopyJob1, self), pguidJobID);
         }
     };}
@@ -2122,7 +2122,7 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
             self: *const IEnumBackgroundCopyJobs1,
             celt: u32,
             rgelt: [*]Guid,
-            pceltFetched: *u32,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBackgroundCopyJobs1,
@@ -2133,18 +2133,18 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBackgroundCopyJobs1,
-            ppenum: **IEnumBackgroundCopyJobs1,
+            ppenum: ?*?*IEnumBackgroundCopyJobs1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBackgroundCopyJobs1,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs1_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs1_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyJobs1, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2156,11 +2156,11 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
             return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyJobs1, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs1_Clone(self: *const T, ppenum: **IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs1_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyJobs1, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs1_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs1_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyJobs1, self), puCount);
         }
     };}
@@ -2205,27 +2205,27 @@ pub const IBackgroundCopyGroup = extern struct {
         GetProp: fn(
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
-            pvarVal: *VARIANT,
+            pvarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProp: fn(
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
-            pvarVal: *VARIANT,
+            pvarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProgress: fn(
             self: *const IBackgroundCopyGroup,
             dwFlags: u32,
-            pdwProgress: *u32,
+            pdwProgress: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IBackgroundCopyGroup,
-            pdwStatus: *u32,
-            pdwJobIndex: *u32,
+            pdwStatus: ?*u32,
+            pdwJobIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJob: fn(
             self: *const IBackgroundCopyGroup,
             jobID: Guid,
-            ppJob: **IBackgroundCopyJob1,
+            ppJob: ?*?*IBackgroundCopyJob1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SuspendGroup: fn(
             self: *const IBackgroundCopyGroup,
@@ -2239,58 +2239,58 @@ pub const IBackgroundCopyGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: fn(
             self: *const IBackgroundCopyGroup,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupID: fn(
             self: *const IBackgroundCopyGroup,
-            pguidGroupID: *Guid,
+            pguidGroupID: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateJob: fn(
             self: *const IBackgroundCopyGroup,
             guidJobID: Guid,
-            ppJob: **IBackgroundCopyJob1,
+            ppJob: ?*?*IBackgroundCopyJob1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumJobs: fn(
             self: *const IBackgroundCopyGroup,
             dwFlags: u32,
-            ppEnumJobs: **IEnumBackgroundCopyJobs1,
+            ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SwitchToForeground: fn(
             self: *const IBackgroundCopyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryNewJobInterface: fn(
             self: *const IBackgroundCopyGroup,
-            iid: *const Guid,
-            pUnk: **IUnknown,
+            iid: ?*const Guid,
+            pUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotificationPointer: fn(
             self: *const IBackgroundCopyGroup,
-            iid: *const Guid,
-            pUnk: *IUnknown,
+            iid: ?*const Guid,
+            pUnk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetProp(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_GetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_SetProp(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_SetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetProgress(self: *const T, dwFlags: u32, pdwProgress: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, pdwProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetStatus(self: *const T, pdwStatus: *u32, pdwJobIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_GetStatus(self: *const T, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetStatus(@ptrCast(*const IBackgroundCopyGroup, self), pdwStatus, pdwJobIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetJob(self: *const T, jobID: Guid, ppJob: **IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_GetJob(self: *const T, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyGroup, self), jobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2306,19 +2306,19 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).CancelGroup(@ptrCast(*const IBackgroundCopyGroup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_get_Size(self: *const T, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_get_Size(self: *const T, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).get_Size(@ptrCast(*const IBackgroundCopyGroup, self), pdwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_get_GroupID(self: *const T, pguidGroupID: *Guid) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_get_GroupID(self: *const T, pguidGroupID: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).get_GroupID(@ptrCast(*const IBackgroundCopyGroup, self), pguidGroupID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_CreateJob(self: *const T, guidJobID: Guid, ppJob: **IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_CreateJob(self: *const T, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyGroup, self), guidJobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_EnumJobs(self: *const T, dwFlags: u32, ppEnumJobs: **IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_EnumJobs(self: *const T, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, ppEnumJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2326,11 +2326,11 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyGroup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: *const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: ?*const Guid, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).QueryNewJobInterface(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_SetNotificationPointer(self: *const T, iid: *const Guid, pUnk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_SetNotificationPointer(self: *const T, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetNotificationPointer(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
         }
     };}
@@ -2347,7 +2347,7 @@ pub const IEnumBackgroundCopyGroups = extern struct {
             self: *const IEnumBackgroundCopyGroups,
             celt: u32,
             rgelt: [*]Guid,
-            pceltFetched: *u32,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumBackgroundCopyGroups,
@@ -2358,18 +2358,18 @@ pub const IEnumBackgroundCopyGroups = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumBackgroundCopyGroups,
-            ppenum: **IEnumBackgroundCopyGroups,
+            ppenum: ?*?*IEnumBackgroundCopyGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumBackgroundCopyGroups,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyGroups_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyGroups_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyGroups, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2381,11 +2381,11 @@ pub const IEnumBackgroundCopyGroups = extern struct {
             return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyGroups, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyGroups_Clone(self: *const T, ppenum: **IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyGroups_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyGroups, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyGroups_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyGroups_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyGroups, self), puCount);
         }
     };}
@@ -2400,8 +2400,8 @@ pub const IBackgroundCopyCallback1 = extern struct {
         base: IUnknown.VTable,
         OnStatus: fn(
             self: *const IBackgroundCopyCallback1,
-            pGroup: *IBackgroundCopyGroup,
-            pJob: *IBackgroundCopyJob1,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
             dwFileIndex: u32,
             dwStatus: u32,
             dwNumOfRetries: u32,
@@ -2411,16 +2411,16 @@ pub const IBackgroundCopyCallback1 = extern struct {
         OnProgress: fn(
             self: *const IBackgroundCopyCallback1,
             ProgressType: u32,
-            pGroup: *IBackgroundCopyGroup,
-            pJob: *IBackgroundCopyJob1,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
             dwFileIndex: u32,
             dwProgressValue: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnProgressEx: fn(
             self: *const IBackgroundCopyCallback1,
             ProgressType: u32,
-            pGroup: *IBackgroundCopyGroup,
-            pJob: *IBackgroundCopyJob1,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
             dwFileIndex: u32,
             dwProgressValue: u32,
             dwByteArraySize: u32,
@@ -2431,15 +2431,15 @@ pub const IBackgroundCopyCallback1 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback1_OnStatus(self: *const T, pGroup: *IBackgroundCopyGroup, pJob: *IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback1_OnStatus(self: *const T, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnStatus(@ptrCast(*const IBackgroundCopyCallback1, self), pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback1_OnProgress(self: *const T, ProgressType: u32, pGroup: *IBackgroundCopyGroup, pJob: *IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback1_OnProgress(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnProgress(@ptrCast(*const IBackgroundCopyCallback1, self), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyCallback1_OnProgressEx(self: *const T, ProgressType: u32, pGroup: *IBackgroundCopyGroup, pJob: *IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyCallback1_OnProgressEx(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnProgressEx(@ptrCast(*const IBackgroundCopyCallback1, self), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
         }
     };}
@@ -2455,32 +2455,32 @@ pub const IBackgroundCopyQMgr = extern struct {
         CreateGroup: fn(
             self: *const IBackgroundCopyQMgr,
             guidGroupID: Guid,
-            ppGroup: **IBackgroundCopyGroup,
+            ppGroup: ?*?*IBackgroundCopyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroup: fn(
             self: *const IBackgroundCopyQMgr,
             groupID: Guid,
-            ppGroup: **IBackgroundCopyGroup,
+            ppGroup: ?*?*IBackgroundCopyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumGroups: fn(
             self: *const IBackgroundCopyQMgr,
             dwFlags: u32,
-            ppEnumGroups: **IEnumBackgroundCopyGroups,
+            ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyQMgr_CreateGroup(self: *const T, guidGroupID: Guid, ppGroup: **IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyQMgr_CreateGroup(self: *const T, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).CreateGroup(@ptrCast(*const IBackgroundCopyQMgr, self), guidGroupID, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyQMgr_GetGroup(self: *const T, groupID: Guid, ppGroup: **IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyQMgr_GetGroup(self: *const T, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).GetGroup(@ptrCast(*const IBackgroundCopyQMgr, self), groupID, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyQMgr_EnumGroups(self: *const T, dwFlags: u32, ppEnumGroups: **IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyQMgr_EnumGroups(self: *const T, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).EnumGroups(@ptrCast(*const IBackgroundCopyQMgr, self), dwFlags, ppEnumGroups);
         }
     };}

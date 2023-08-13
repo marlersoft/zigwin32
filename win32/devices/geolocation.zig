@@ -52,31 +52,31 @@ pub const ILocationReport = extern struct {
         base: IUnknown.VTable,
         GetSensorID: fn(
             self: *const ILocationReport,
-            pSensorID: *Guid,
+            pSensorID: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTimestamp: fn(
             self: *const ILocationReport,
-            pCreationTime: *SYSTEMTIME,
+            pCreationTime: ?*SYSTEMTIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const ILocationReport,
-            pKey: *const PROPERTYKEY,
-            pValue: *PROPVARIANT,
+            pKey: ?*const PROPERTYKEY,
+            pValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReport_GetSensorID(self: *const T, pSensorID: *Guid) callconv(.Inline) HRESULT {
+        pub fn ILocationReport_GetSensorID(self: *const T, pSensorID: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReport.VTable, self.vtable).GetSensorID(@ptrCast(*const ILocationReport, self), pSensorID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReport_GetTimestamp(self: *const T, pCreationTime: *SYSTEMTIME) callconv(.Inline) HRESULT {
+        pub fn ILocationReport_GetTimestamp(self: *const T, pCreationTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReport.VTable, self.vtable).GetTimestamp(@ptrCast(*const ILocationReport, self), pCreationTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReport_GetValue(self: *const T, pKey: *const PROPERTYKEY, pValue: *PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn ILocationReport_GetValue(self: *const T, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReport.VTable, self.vtable).GetValue(@ptrCast(*const ILocationReport, self), pKey, pValue);
         }
     };}
@@ -91,46 +91,46 @@ pub const ILatLongReport = extern struct {
         base: ILocationReport.VTable,
         GetLatitude: fn(
             self: *const ILatLongReport,
-            pLatitude: *f64,
+            pLatitude: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLongitude: fn(
             self: *const ILatLongReport,
-            pLongitude: *f64,
+            pLongitude: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorRadius: fn(
             self: *const ILatLongReport,
-            pErrorRadius: *f64,
+            pErrorRadius: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAltitude: fn(
             self: *const ILatLongReport,
-            pAltitude: *f64,
+            pAltitude: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAltitudeError: fn(
             self: *const ILatLongReport,
-            pAltitudeError: *f64,
+            pAltitudeError: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReport_GetLatitude(self: *const T, pLatitude: *f64) callconv(.Inline) HRESULT {
+        pub fn ILatLongReport_GetLatitude(self: *const T, pLatitude: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetLatitude(@ptrCast(*const ILatLongReport, self), pLatitude);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReport_GetLongitude(self: *const T, pLongitude: *f64) callconv(.Inline) HRESULT {
+        pub fn ILatLongReport_GetLongitude(self: *const T, pLongitude: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetLongitude(@ptrCast(*const ILatLongReport, self), pLongitude);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReport_GetErrorRadius(self: *const T, pErrorRadius: *f64) callconv(.Inline) HRESULT {
+        pub fn ILatLongReport_GetErrorRadius(self: *const T, pErrorRadius: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetErrorRadius(@ptrCast(*const ILatLongReport, self), pErrorRadius);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReport_GetAltitude(self: *const T, pAltitude: *f64) callconv(.Inline) HRESULT {
+        pub fn ILatLongReport_GetAltitude(self: *const T, pAltitude: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetAltitude(@ptrCast(*const ILatLongReport, self), pAltitude);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReport_GetAltitudeError(self: *const T, pAltitudeError: *f64) callconv(.Inline) HRESULT {
+        pub fn ILatLongReport_GetAltitudeError(self: *const T, pAltitudeError: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetAltitudeError(@ptrCast(*const ILatLongReport, self), pAltitudeError);
         }
     };}
@@ -145,62 +145,62 @@ pub const ICivicAddressReport = extern struct {
         base: ILocationReport.VTable,
         GetAddressLine1: fn(
             self: *const ICivicAddressReport,
-            pbstrAddress1: ?*BSTR,
+            pbstrAddress1: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAddressLine2: fn(
             self: *const ICivicAddressReport,
-            pbstrAddress2: ?*BSTR,
+            pbstrAddress2: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCity: fn(
             self: *const ICivicAddressReport,
-            pbstrCity: ?*BSTR,
+            pbstrCity: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStateProvince: fn(
             self: *const ICivicAddressReport,
-            pbstrStateProvince: ?*BSTR,
+            pbstrStateProvince: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPostalCode: fn(
             self: *const ICivicAddressReport,
-            pbstrPostalCode: ?*BSTR,
+            pbstrPostalCode: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCountryRegion: fn(
             self: *const ICivicAddressReport,
-            pbstrCountryRegion: ?*BSTR,
+            pbstrCountryRegion: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDetailLevel: fn(
             self: *const ICivicAddressReport,
-            pDetailLevel: *u32,
+            pDetailLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetAddressLine1(self: *const T, pbstrAddress1: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetAddressLine1(self: *const T, pbstrAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine1(@ptrCast(*const ICivicAddressReport, self), pbstrAddress1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetAddressLine2(self: *const T, pbstrAddress2: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetAddressLine2(self: *const T, pbstrAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine2(@ptrCast(*const ICivicAddressReport, self), pbstrAddress2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetCity(self: *const T, pbstrCity: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetCity(self: *const T, pbstrCity: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCity(@ptrCast(*const ICivicAddressReport, self), pbstrCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetStateProvince(self: *const T, pbstrStateProvince: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetStateProvince(self: *const T, pbstrStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetStateProvince(@ptrCast(*const ICivicAddressReport, self), pbstrStateProvince);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetPostalCode(self: *const T, pbstrPostalCode: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetPostalCode(self: *const T, pbstrPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetPostalCode(@ptrCast(*const ICivicAddressReport, self), pbstrPostalCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetCountryRegion(self: *const T, pbstrCountryRegion: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetCountryRegion(self: *const T, pbstrCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCountryRegion(@ptrCast(*const ICivicAddressReport, self), pbstrCountryRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetDetailLevel(self: *const T, pDetailLevel: *u32) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetDetailLevel(self: *const T, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetDetailLevel(@ptrCast(*const ICivicAddressReport, self), pDetailLevel);
         }
     };}
@@ -216,41 +216,41 @@ pub const ILocation = extern struct {
         RegisterForReport: fn(
             self: *const ILocation,
             pEvents: ?*ILocationEvents,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             dwRequestedReportInterval: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterForReport: fn(
             self: *const ILocation,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReport: fn(
             self: *const ILocation,
-            reportType: *const Guid,
-            ppLocationReport: ?**ILocationReport,
+            reportType: ?*const Guid,
+            ppLocationReport: ?*?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReportStatus: fn(
             self: *const ILocation,
-            reportType: *const Guid,
-            pStatus: *LOCATION_REPORT_STATUS,
+            reportType: ?*const Guid,
+            pStatus: ?*LOCATION_REPORT_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReportInterval: fn(
             self: *const ILocation,
-            reportType: *const Guid,
-            pMilliseconds: *u32,
+            reportType: ?*const Guid,
+            pMilliseconds: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReportInterval: fn(
             self: *const ILocation,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             millisecondsRequested: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesiredAccuracy: fn(
             self: *const ILocation,
-            reportType: *const Guid,
-            pDesiredAccuracy: *LOCATION_DESIRED_ACCURACY,
+            reportType: ?*const Guid,
+            pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDesiredAccuracy: fn(
             self: *const ILocation,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             desiredAccuracy: LOCATION_DESIRED_ACCURACY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestPermissions: fn(
@@ -265,35 +265,35 @@ pub const ILocation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_RegisterForReport(self: *const T, pEvents: ?*ILocationEvents, reportType: *const Guid, dwRequestedReportInterval: u32) callconv(.Inline) HRESULT {
+        pub fn ILocation_RegisterForReport(self: *const T, pEvents: ?*ILocationEvents, reportType: ?*const Guid, dwRequestedReportInterval: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).RegisterForReport(@ptrCast(*const ILocation, self), pEvents, reportType, dwRequestedReportInterval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_UnregisterForReport(self: *const T, reportType: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ILocation_UnregisterForReport(self: *const T, reportType: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).UnregisterForReport(@ptrCast(*const ILocation, self), reportType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?**ILocationReport) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetReport(self: *const T, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetReport(@ptrCast(*const ILocation, self), reportType, ppLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetReportStatus(self: *const T, reportType: *const Guid, pStatus: *LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetReportStatus(self: *const T, reportType: ?*const Guid, pStatus: ?*LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetReportStatus(@ptrCast(*const ILocation, self), reportType, pStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetReportInterval(self: *const T, reportType: *const Guid, pMilliseconds: *u32) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetReportInterval(self: *const T, reportType: ?*const Guid, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetReportInterval(@ptrCast(*const ILocation, self), reportType, pMilliseconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_SetReportInterval(self: *const T, reportType: *const Guid, millisecondsRequested: u32) callconv(.Inline) HRESULT {
+        pub fn ILocation_SetReportInterval(self: *const T, reportType: ?*const Guid, millisecondsRequested: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).SetReportInterval(@ptrCast(*const ILocation, self), reportType, millisecondsRequested);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetDesiredAccuracy(self: *const T, reportType: *const Guid, pDesiredAccuracy: *LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetDesiredAccuracy(self: *const T, reportType: ?*const Guid, pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetDesiredAccuracy(@ptrCast(*const ILocation, self), reportType, pDesiredAccuracy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_SetDesiredAccuracy(self: *const T, reportType: *const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
+        pub fn ILocation_SetDesiredAccuracy(self: *const T, reportType: ?*const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).SetDesiredAccuracy(@ptrCast(*const ILocation, self), reportType, desiredAccuracy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -340,24 +340,24 @@ pub const IDefaultLocation = extern struct {
         base: IUnknown.VTable,
         SetReport: fn(
             self: *const IDefaultLocation,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             pLocationReport: ?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReport: fn(
             self: *const IDefaultLocation,
-            reportType: *const Guid,
-            ppLocationReport: ?**ILocationReport,
+            reportType: ?*const Guid,
+            ppLocationReport: ?*?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultLocation_SetReport(self: *const T, reportType: *const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
+        pub fn IDefaultLocation_SetReport(self: *const T, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).SetReport(@ptrCast(*const IDefaultLocation, self), reportType, pLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultLocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?**ILocationReport) callconv(.Inline) HRESULT {
+        pub fn IDefaultLocation_GetReport(self: *const T, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).GetReport(@ptrCast(*const IDefaultLocation, self), reportType, ppLocationReport);
         }
     };}
@@ -372,12 +372,12 @@ pub const ILocationEvents = extern struct {
         base: IUnknown.VTable,
         OnLocationChanged: fn(
             self: *const ILocationEvents,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             pLocationReport: ?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnStatusChanged: fn(
             self: *const ILocationEvents,
-            reportType: *const Guid,
+            reportType: ?*const Guid,
             newStatus: LOCATION_REPORT_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -385,11 +385,11 @@ pub const ILocationEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationEvents_OnLocationChanged(self: *const T, reportType: *const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
+        pub fn ILocationEvents_OnLocationChanged(self: *const T, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationEvents.VTable, self.vtable).OnLocationChanged(@ptrCast(*const ILocationEvents, self), reportType, pLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationEvents_OnStatusChanged(self: *const T, reportType: *const Guid, newStatus: LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
+        pub fn ILocationEvents_OnStatusChanged(self: *const T, reportType: ?*const Guid, newStatus: LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationEvents.VTable, self.vtable).OnStatusChanged(@ptrCast(*const ILocationEvents, self), reportType, newStatus);
         }
     };}
@@ -404,59 +404,59 @@ pub const IDispLatLongReport = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Latitude: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Longitude: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorRadius: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Altitude: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AltitudeError: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IDispLatLongReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_Latitude(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_Latitude(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Latitude(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_Longitude(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_Longitude(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Longitude(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_ErrorRadius(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_ErrorRadius(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_ErrorRadius(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_Altitude(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_Altitude(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Altitude(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_AltitudeError(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_AltitudeError(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_AltitudeError(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispLatLongReport_get_Timestamp(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispLatLongReport_get_Timestamp(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Timestamp(@ptrCast(*const IDispLatLongReport, self), pVal);
         }
     };}
@@ -471,77 +471,77 @@ pub const IDispCivicAddressReport = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressLine1: fn(
             self: *const IDispCivicAddressReport,
-            pAddress1: ?*BSTR,
+            pAddress1: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressLine2: fn(
             self: *const IDispCivicAddressReport,
-            pAddress2: ?*BSTR,
+            pAddress2: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_City: fn(
             self: *const IDispCivicAddressReport,
-            pCity: ?*BSTR,
+            pCity: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StateProvince: fn(
             self: *const IDispCivicAddressReport,
-            pStateProvince: ?*BSTR,
+            pStateProvince: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PostalCode: fn(
             self: *const IDispCivicAddressReport,
-            pPostalCode: ?*BSTR,
+            pPostalCode: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CountryRegion: fn(
             self: *const IDispCivicAddressReport,
-            pCountryRegion: ?*BSTR,
+            pCountryRegion: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DetailLevel: fn(
             self: *const IDispCivicAddressReport,
-            pDetailLevel: *u32,
+            pDetailLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IDispCivicAddressReport,
-            pVal: *f64,
+            pVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_AddressLine1(self: *const T, pAddress1: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_AddressLine1(self: *const T, pAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine1(@ptrCast(*const IDispCivicAddressReport, self), pAddress1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_AddressLine2(self: *const T, pAddress2: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_AddressLine2(self: *const T, pAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine2(@ptrCast(*const IDispCivicAddressReport, self), pAddress2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_City(self: *const T, pCity: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_City(self: *const T, pCity: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_City(@ptrCast(*const IDispCivicAddressReport, self), pCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_StateProvince(self: *const T, pStateProvince: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_StateProvince(self: *const T, pStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_StateProvince(@ptrCast(*const IDispCivicAddressReport, self), pStateProvince);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_PostalCode(self: *const T, pPostalCode: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_PostalCode(self: *const T, pPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_PostalCode(@ptrCast(*const IDispCivicAddressReport, self), pPostalCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_CountryRegion(self: *const T, pCountryRegion: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_CountryRegion(self: *const T, pCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_CountryRegion(@ptrCast(*const IDispCivicAddressReport, self), pCountryRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_DetailLevel(self: *const T, pDetailLevel: *u32) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_DetailLevel(self: *const T, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_DetailLevel(@ptrCast(*const IDispCivicAddressReport, self), pDetailLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_Timestamp(self: *const T, pVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_Timestamp(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_Timestamp(@ptrCast(*const IDispCivicAddressReport, self), pVal);
         }
     };}
@@ -563,12 +563,12 @@ pub const ILocationReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ILocationReportFactory,
-            pVal: *u32,
+            pVal: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportInterval: fn(
             self: *const ILocationReportFactory,
-            pMilliseconds: *u32,
+            pMilliseconds: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportInterval: fn(
@@ -578,7 +578,7 @@ pub const ILocationReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredAccuracy: fn(
             self: *const ILocationReportFactory,
-            pDesiredAccuracy: *u32,
+            pDesiredAccuracy: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredAccuracy: fn(
@@ -587,7 +587,7 @@ pub const ILocationReportFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestPermissions: fn(
             self: *const ILocationReportFactory,
-            hWnd: *u32,
+            hWnd: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -602,11 +602,11 @@ pub const ILocationReportFactory = extern struct {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).StopListeningForReports(@ptrCast(*const ILocationReportFactory, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReportFactory_get_Status(self: *const T, pVal: *u32) callconv(.Inline) HRESULT {
+        pub fn ILocationReportFactory_get_Status(self: *const T, pVal: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_Status(@ptrCast(*const ILocationReportFactory, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReportFactory_get_ReportInterval(self: *const T, pMilliseconds: *u32) callconv(.Inline) HRESULT {
+        pub fn ILocationReportFactory_get_ReportInterval(self: *const T, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_ReportInterval(@ptrCast(*const ILocationReportFactory, self), pMilliseconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -614,7 +614,7 @@ pub const ILocationReportFactory = extern struct {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).put_ReportInterval(@ptrCast(*const ILocationReportFactory, self), millisecondsRequested);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReportFactory_get_DesiredAccuracy(self: *const T, pDesiredAccuracy: *u32) callconv(.Inline) HRESULT {
+        pub fn ILocationReportFactory_get_DesiredAccuracy(self: *const T, pDesiredAccuracy: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_DesiredAccuracy(@ptrCast(*const ILocationReportFactory, self), pDesiredAccuracy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -622,7 +622,7 @@ pub const ILocationReportFactory = extern struct {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).put_DesiredAccuracy(@ptrCast(*const ILocationReportFactory, self), desiredAccuracy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationReportFactory_RequestPermissions(self: *const T, hWnd: *u32) callconv(.Inline) HRESULT {
+        pub fn ILocationReportFactory_RequestPermissions(self: *const T, hWnd: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).RequestPermissions(@ptrCast(*const ILocationReportFactory, self), hWnd);
         }
     };}
@@ -637,14 +637,14 @@ pub const ILatLongReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LatLongReport: fn(
             self: *const ILatLongReportFactory,
-            pVal: ?**IDispLatLongReport,
+            pVal: ?*?*IDispLatLongReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?**IDispLatLongReport) callconv(.Inline) HRESULT {
+        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?*?*IDispLatLongReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReportFactory.VTable, self.vtable).get_LatLongReport(@ptrCast(*const ILatLongReportFactory, self), pVal);
         }
     };}
@@ -659,14 +659,14 @@ pub const ICivicAddressReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CivicAddressReport: fn(
             self: *const ICivicAddressReportFactory,
-            pVal: ?**IDispCivicAddressReport,
+            pVal: ?*?*IDispCivicAddressReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?**IDispCivicAddressReport) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?*?*IDispCivicAddressReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReportFactory.VTable, self.vtable).get_CivicAddressReport(@ptrCast(*const ICivicAddressReportFactory, self), pVal);
         }
     };}

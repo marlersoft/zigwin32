@@ -25,19 +25,19 @@ pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
 pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 
 pub const PFN_COMPRESS_ALLOCATE = fn(
-    UserContext: *c_void,
+    UserContext: ?*c_void,
     Size: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_COMPRESS_FREE = fn(
-    UserContext: *c_void,
-    Memory: *c_void,
+    UserContext: ?*c_void,
+    Memory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const COMPRESS_ALLOCATION_ROUTINES = extern struct {
-    Allocate: PFN_COMPRESS_ALLOCATE,
-    Free: PFN_COMPRESS_FREE,
-    UserContext: *c_void,
+    Allocate: ?PFN_COMPRESS_ALLOCATE,
+    Free: ?PFN_COMPRESS_FREE,
+    UserContext: ?*c_void,
 };
 
 pub const COMPRESS_INFORMATION_CLASS = enum(i32) {
@@ -57,7 +57,7 @@ pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
 pub extern "Cabinet" fn CreateCompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
-    CompressorHandle: *isize,
+    CompressorHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -65,7 +65,7 @@ pub extern "Cabinet" fn SetCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: *const c_void,
+    CompressInformation: ?*const c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -74,7 +74,7 @@ pub extern "Cabinet" fn QueryCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: *c_void,
+    CompressInformation: ?*c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -87,7 +87,7 @@ pub extern "Cabinet" fn Compress(
     // TODO: what to do with BytesParamIndex 4?
     CompressedBuffer: ?*c_void,
     CompressedBufferSize: usize,
-    CompressedDataSize: *usize,
+    CompressedDataSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -104,7 +104,7 @@ pub extern "Cabinet" fn CloseCompressor(
 pub extern "Cabinet" fn CreateDecompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
-    DecompressorHandle: *isize,
+    DecompressorHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -112,7 +112,7 @@ pub extern "Cabinet" fn SetDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: *const c_void,
+    CompressInformation: ?*const c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -121,7 +121,7 @@ pub extern "Cabinet" fn QueryDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: *c_void,
+    CompressInformation: ?*c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

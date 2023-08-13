@@ -14,15 +14,15 @@ pub const DAV_AUTHN_SCHEME_FBA = @as(u32, 1048576);
 // Section: Types (6)
 //--------------------------------------------------------------------------------
 pub const DAV_CALLBACK_AUTH_BLOB = extern struct {
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     ulSize: u32,
     ulType: u32,
 };
 
 pub const DAV_CALLBACK_AUTH_UNP = extern struct {
-    pszUserName: PWSTR,
+    pszUserName: ?PWSTR,
     ulUserNameLength: u32,
-    pszPassword: PWSTR,
+    pszPassword: ?PWSTR,
     ulPasswordLength: u32,
 };
 
@@ -43,17 +43,17 @@ pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
 pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
 
 pub const PFNDAVAUTHCALLBACK_FREECRED = fn(
-    pbuffer: *c_void,
+    pbuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFNDAVAUTHCALLBACK = fn(
-    lpwzServerName: PWSTR,
-    lpwzRemoteName: PWSTR,
+    lpwzServerName: ?PWSTR,
+    lpwzRemoteName: ?PWSTR,
     dwAuthScheme: u32,
     dwFlags: u32,
-    pCallbackCred: *DAV_CALLBACK_CRED,
-    NextStep: *AUTHNEXTSTEP,
-    pFreeCred: *PFNDAVAUTHCALLBACK_FREECRED,
+    pCallbackCred: ?*DAV_CALLBACK_CRED,
+    NextStep: ?*AUTHNEXTSTEP,
+    pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 
@@ -62,69 +62,69 @@ pub const PFNDAVAUTHCALLBACK = fn(
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavAddConnection(
-    ConnectionHandle: *HANDLE,
-    RemoteName: [*:0]const u16,
+    ConnectionHandle: ?*?HANDLE,
+    RemoteName: ?[*:0]const u16,
     UserName: ?[*:0]const u16,
     Password: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 5?
-    ClientCert: *u8,
+    ClientCert: ?*u8,
     CertSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavDeleteConnection(
-    ConnectionHandle: HANDLE,
+    ConnectionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavGetUNCFromHTTPPath(
-    Url: [*:0]const u16,
+    Url: ?[*:0]const u16,
     UncPath: ?[*:0]u16,
-    lpSize: *u32,
+    lpSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavGetHTTPFromUNCPath(
-    UncPath: [*:0]const u16,
+    UncPath: ?[*:0]const u16,
     Url: ?[*:0]u16,
-    lpSize: *u32,
+    lpSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
-    FileName: [*:0]const u16,
+    FileName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     LockOwnerName: ?PWSTR,
-    LockOwnerNameLengthInBytes: *u32,
+    LockOwnerNameLengthInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavGetExtendedError(
-    hFile: HANDLE,
-    ExtError: *u32,
+    hFile: ?HANDLE,
+    ExtError: ?*u32,
     ExtErrorString: [*:0]u16,
-    cChSize: *u32,
+    cChSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DavFlushFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavInvalidateCache(
-    URLName: [*:0]const u16,
+    URLName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavCancelConnectionsToServer(
-    lpName: PWSTR,
+    lpName: ?PWSTR,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavRegisterAuthCallback(
-    CallBack: PFNDAVAUTHCALLBACK,
+    CallBack: ?PFNDAVAUTHCALLBACK,
     Version: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

@@ -69,7 +69,7 @@ pub const IFIMETRICS = extern struct {
     cKerningPairs: u32,
     ulPanoseCulture: u32,
     panose: PANOSE,
-    Align: *c_void,
+    Align: ?*c_void,
 };
 
 }, else => struct { } };
@@ -81,11 +81,11 @@ pub const IDirectDrawKernel = extern struct {
         base: IUnknown.VTable,
         GetCaps: fn(
             self: *const IDirectDrawKernel,
-            param0: *DDKERNELCAPS,
+            param0: ?*DDKERNELCAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKernelHandle: fn(
             self: *const IDirectDrawKernel,
-            param0: *usize,
+            param0: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseKernelHandle: fn(
             self: *const IDirectDrawKernel,
@@ -95,11 +95,11 @@ pub const IDirectDrawKernel = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -117,7 +117,7 @@ pub const IDirectDrawSurfaceKernel = extern struct {
         base: IUnknown.VTable,
         GetKernelHandle: fn(
             self: *const IDirectDrawSurfaceKernel,
-            param0: *usize,
+            param0: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseKernelHandle: fn(
             self: *const IDirectDrawSurfaceKernel,
@@ -127,7 +127,7 @@ pub const IDirectDrawSurfaceKernel = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -188,9 +188,9 @@ pub const DDVIDEOPORTINFO = extern struct {
     rCrop: RECT,
     dwPrescaleWidth: u32,
     dwPrescaleHeight: u32,
-    lpddpfInputFormat: *DDPIXELFORMAT,
-    lpddpfVBIInputFormat: *DDPIXELFORMAT,
-    lpddpfVBIOutputFormat: *DDPIXELFORMAT,
+    lpddpfInputFormat: ?*DDPIXELFORMAT,
+    lpddpfVBIInputFormat: ?*DDPIXELFORMAT,
+    lpddpfVBIOutputFormat: ?*DDPIXELFORMAT,
     dwVBIHeight: u32,
     dwReserved1: usize,
     dwReserved2: usize,
@@ -262,17 +262,17 @@ pub const DDCORECAPS = extern struct {
 };
 
 pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: *DDRAWI_DIRECTDRAW_GBL,
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
     dwFlags: u32,
     bIsInVB: u32,
     hEvent: usize,
     ddRVal: HRESULT,
-    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
+    WaitForVerticalBlank: ?LPDDHAL_WAITFORVERTICALBLANK,
 };
 
 pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
     dwFlags: u32,
-    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
+    pDDLcl: ?*DDRAWI_DIRECTDRAW_LCL,
     ddRVal: HRESULT,
 };
 
@@ -286,7 +286,7 @@ pub const VIDEOMEMORY = extern struct {
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
     Anonymous2: extern union {
-        lpHeap: *VMEMHEAP,
+        lpHeap: ?*VMEMHEAP,
         dwHeight: u32,
     },
 };
@@ -303,343 +303,343 @@ pub const VIDEOMEMORYINFO = extern struct {
     dwTextureAlign: u32,
     dwZBufferAlign: u32,
     dwAlphaAlign: u32,
-    pvPrimary: *c_void,
+    pvPrimary: ?*c_void,
 };
 
 pub const PDD_CANCREATESURFACE = fn(
-    param0: *DD_CANCREATESURFACEDATA,
+    param0: ?*DD_CANCREATESURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_WAITFORVERTICALBLANK = fn(
-    param0: *DD_WAITFORVERTICALBLANKDATA,
+    param0: ?*DD_WAITFORVERTICALBLANKDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_CREATESURFACE = fn(
-    param0: *DD_CREATESURFACEDATA,
+    param0: ?*DD_CREATESURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_CREATEPALETTE = fn(
-    param0: *DD_CREATEPALETTEDATA,
+    param0: ?*DD_CREATEPALETTEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_GETSCANLINE = fn(
-    param0: *DD_GETSCANLINEDATA,
+    param0: ?*DD_GETSCANLINEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MAPMEMORY = fn(
-    param0: *DD_MAPMEMORYDATA,
+    param0: ?*DD_MAPMEMORYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_GETDRIVERINFO = fn(
-    param0: *DD_GETDRIVERINFODATA,
+    param0: ?*DD_GETDRIVERINFODATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_CALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    DestroyDriver: PDD_DESTROYDRIVER,
-    CreateSurface: PDD_CREATESURFACE,
-    SetColorKey: PDD_SETCOLORKEY,
-    SetMode: PDD_SETMODE,
-    WaitForVerticalBlank: PDD_WAITFORVERTICALBLANK,
-    CanCreateSurface: PDD_CANCREATESURFACE,
-    CreatePalette: PDD_CREATEPALETTE,
-    GetScanLine: PDD_GETSCANLINE,
-    MapMemory: PDD_MAPMEMORY,
+    DestroyDriver: ?PDD_DESTROYDRIVER,
+    CreateSurface: ?PDD_CREATESURFACE,
+    SetColorKey: ?PDD_SETCOLORKEY,
+    SetMode: ?PDD_SETMODE,
+    WaitForVerticalBlank: ?PDD_WAITFORVERTICALBLANK,
+    CanCreateSurface: ?PDD_CANCREATESURFACE,
+    CreatePalette: ?PDD_CREATEPALETTE,
+    GetScanLine: ?PDD_GETSCANLINE,
+    MapMemory: ?PDD_MAPMEMORY,
 };
 
 pub const PDD_GETAVAILDRIVERMEMORY = fn(
-    param0: *DD_GETAVAILDRIVERMEMORYDATA,
+    param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    GetAvailDriverMemory: PDD_GETAVAILDRIVERMEMORY,
+    GetAvailDriverMemory: ?PDD_GETAVAILDRIVERMEMORY,
 };
 
 pub const PDD_CREATESURFACEEX = fn(
-    param0: *DD_CREATESURFACEEXDATA,
+    param0: ?*DD_CREATESURFACEEXDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_GETDRIVERSTATE = fn(
-    param0: *DD_GETDRIVERSTATEDATA,
+    param0: ?*DD_GETDRIVERSTATEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_DESTROYDDLOCAL = fn(
-    param0: *DD_DESTROYDDLOCALDATA,
+    param0: ?*DD_DESTROYDDLOCALDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    AlphaBlt: PDD_ALPHABLT,
-    CreateSurfaceEx: PDD_CREATESURFACEEX,
-    GetDriverState: PDD_GETDRIVERSTATE,
-    DestroyDDLocal: PDD_DESTROYDDLOCAL,
+    AlphaBlt: ?PDD_ALPHABLT,
+    CreateSurfaceEx: ?PDD_CREATESURFACEEX,
+    GetDriverState: ?PDD_GETDRIVERSTATE,
+    DestroyDDLocal: ?PDD_DESTROYDDLOCAL,
 };
 
 pub const PDD_FREEDRIVERMEMORY = fn(
-    param0: *DD_FREEDRIVERMEMORYDATA,
+    param0: ?*DD_FREEDRIVERMEMORYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SETEXCLUSIVEMODE = fn(
-    param0: *DD_SETEXCLUSIVEMODEDATA,
+    param0: ?*DD_SETEXCLUSIVEMODEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_FLIPTOGDISURFACE = fn(
-    param0: *DD_FLIPTOGDISURFACEDATA,
+    param0: ?*DD_FLIPTOGDISURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_NTCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    FreeDriverMemory: PDD_FREEDRIVERMEMORY,
-    SetExclusiveMode: PDD_SETEXCLUSIVEMODE,
-    FlipToGDISurface: PDD_FLIPTOGDISURFACE,
+    FreeDriverMemory: ?PDD_FREEDRIVERMEMORY,
+    SetExclusiveMode: ?PDD_SETEXCLUSIVEMODE,
+    FlipToGDISurface: ?PDD_FLIPTOGDISURFACE,
 };
 
 pub const PDD_PALCB_DESTROYPALETTE = fn(
-    param0: *DD_DESTROYPALETTEDATA,
+    param0: ?*DD_DESTROYPALETTEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_PALCB_SETENTRIES = fn(
-    param0: *DD_SETENTRIESDATA,
+    param0: ?*DD_SETENTRIESDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_PALETTECALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    DestroyPalette: PDD_PALCB_DESTROYPALETTE,
-    SetEntries: PDD_PALCB_SETENTRIES,
+    DestroyPalette: ?PDD_PALCB_DESTROYPALETTE,
+    SetEntries: ?PDD_PALCB_SETENTRIES,
 };
 
 pub const PDD_SURFCB_LOCK = fn(
-    param0: *DD_LOCKDATA,
+    param0: ?*DD_LOCKDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_UNLOCK = fn(
-    param0: *DD_UNLOCKDATA,
+    param0: ?*DD_UNLOCKDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_BLT = fn(
-    param0: *DD_BLTDATA,
+    param0: ?*DD_BLTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_UPDATEOVERLAY = fn(
-    param0: *DD_UPDATEOVERLAYDATA,
+    param0: ?*DD_UPDATEOVERLAYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_SETOVERLAYPOSITION = fn(
-    param0: *DD_SETOVERLAYPOSITIONDATA,
+    param0: ?*DD_SETOVERLAYPOSITIONDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_SETPALETTE = fn(
-    param0: *DD_SETPALETTEDATA,
+    param0: ?*DD_SETPALETTEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_FLIP = fn(
-    param0: *DD_FLIPDATA,
+    param0: ?*DD_FLIPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_DESTROYSURFACE = fn(
-    param0: *DD_DESTROYSURFACEDATA,
+    param0: ?*DD_DESTROYSURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_ADDATTACHEDSURFACE = fn(
-    param0: *DD_ADDATTACHEDSURFACEDATA,
+    param0: ?*DD_ADDATTACHEDSURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_SETCOLORKEY = fn(
-    param0: *DD_SETCOLORKEYDATA,
+    param0: ?*DD_SETCOLORKEYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_GETBLTSTATUS = fn(
-    param0: *DD_GETBLTSTATUSDATA,
+    param0: ?*DD_GETBLTSTATUSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_SURFCB_GETFLIPSTATUS = fn(
-    param0: *DD_GETFLIPSTATUSDATA,
+    param0: ?*DD_GETFLIPSTATUSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_SURFACECALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    DestroySurface: PDD_SURFCB_DESTROYSURFACE,
-    Flip: PDD_SURFCB_FLIP,
-    SetClipList: PDD_SURFCB_SETCLIPLIST,
-    Lock: PDD_SURFCB_LOCK,
-    Unlock: PDD_SURFCB_UNLOCK,
-    Blt: PDD_SURFCB_BLT,
-    SetColorKey: PDD_SURFCB_SETCOLORKEY,
-    AddAttachedSurface: PDD_SURFCB_ADDATTACHEDSURFACE,
-    GetBltStatus: PDD_SURFCB_GETBLTSTATUS,
-    GetFlipStatus: PDD_SURFCB_GETFLIPSTATUS,
-    UpdateOverlay: PDD_SURFCB_UPDATEOVERLAY,
-    SetOverlayPosition: PDD_SURFCB_SETOVERLAYPOSITION,
-    reserved4: *c_void,
-    SetPalette: PDD_SURFCB_SETPALETTE,
+    DestroySurface: ?PDD_SURFCB_DESTROYSURFACE,
+    Flip: ?PDD_SURFCB_FLIP,
+    SetClipList: ?PDD_SURFCB_SETCLIPLIST,
+    Lock: ?PDD_SURFCB_LOCK,
+    Unlock: ?PDD_SURFCB_UNLOCK,
+    Blt: ?PDD_SURFCB_BLT,
+    SetColorKey: ?PDD_SURFCB_SETCOLORKEY,
+    AddAttachedSurface: ?PDD_SURFCB_ADDATTACHEDSURFACE,
+    GetBltStatus: ?PDD_SURFCB_GETBLTSTATUS,
+    GetFlipStatus: ?PDD_SURFCB_GETFLIPSTATUS,
+    UpdateOverlay: ?PDD_SURFCB_UPDATEOVERLAY,
+    SetOverlayPosition: ?PDD_SURFCB_SETOVERLAYPOSITION,
+    reserved4: ?*c_void,
+    SetPalette: ?PDD_SURFCB_SETPALETTE,
 };
 
 pub const PDD_VPORTCB_CANCREATEVIDEOPORT = fn(
-    param0: *DD_CANCREATEVPORTDATA,
+    param0: ?*DD_CANCREATEVPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_CREATEVIDEOPORT = fn(
-    param0: *DD_CREATEVPORTDATA,
+    param0: ?*DD_CREATEVPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_FLIP = fn(
-    param0: *DD_FLIPVPORTDATA,
+    param0: ?*DD_FLIPVPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETBANDWIDTH = fn(
-    param0: *DD_GETVPORTBANDWIDTHDATA,
+    param0: ?*DD_GETVPORTBANDWIDTHDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETINPUTFORMATS = fn(
-    param0: *DD_GETVPORTINPUTFORMATDATA,
+    param0: ?*DD_GETVPORTINPUTFORMATDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETOUTPUTFORMATS = fn(
-    param0: *DD_GETVPORTOUTPUTFORMATDATA,
+    param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETFIELD = fn(
-    param0: *DD_GETVPORTFIELDDATA,
+    param0: ?*DD_GETVPORTFIELDDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETLINE = fn(
-    param0: *DD_GETVPORTLINEDATA,
+    param0: ?*DD_GETVPORTLINEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETVPORTCONNECT = fn(
-    param0: *DD_GETVPORTCONNECTDATA,
+    param0: ?*DD_GETVPORTCONNECTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_DESTROYVPORT = fn(
-    param0: *DD_DESTROYVPORTDATA,
+    param0: ?*DD_DESTROYVPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETFLIPSTATUS = fn(
-    param0: *DD_GETVPORTFLIPSTATUSDATA,
+    param0: ?*DD_GETVPORTFLIPSTATUSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_UPDATE = fn(
-    param0: *DD_UPDATEVPORTDATA,
+    param0: ?*DD_UPDATEVPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_WAITFORSYNC = fn(
-    param0: *DD_WAITFORVPORTSYNCDATA,
+    param0: ?*DD_WAITFORVPORTSYNCDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_GETSIGNALSTATUS = fn(
-    param0: *DD_GETVPORTSIGNALDATA,
+    param0: ?*DD_GETVPORTSIGNALDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_VPORTCB_COLORCONTROL = fn(
-    param0: *DD_VPORTCOLORDATA,
+    param0: ?*DD_VPORTCOLORDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_VIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    CanCreateVideoPort: PDD_VPORTCB_CANCREATEVIDEOPORT,
-    CreateVideoPort: PDD_VPORTCB_CREATEVIDEOPORT,
-    FlipVideoPort: PDD_VPORTCB_FLIP,
-    GetVideoPortBandwidth: PDD_VPORTCB_GETBANDWIDTH,
-    GetVideoPortInputFormats: PDD_VPORTCB_GETINPUTFORMATS,
-    GetVideoPortOutputFormats: PDD_VPORTCB_GETOUTPUTFORMATS,
-    lpReserved1: *c_void,
-    GetVideoPortField: PDD_VPORTCB_GETFIELD,
-    GetVideoPortLine: PDD_VPORTCB_GETLINE,
-    GetVideoPortConnectInfo: PDD_VPORTCB_GETVPORTCONNECT,
-    DestroyVideoPort: PDD_VPORTCB_DESTROYVPORT,
-    GetVideoPortFlipStatus: PDD_VPORTCB_GETFLIPSTATUS,
-    UpdateVideoPort: PDD_VPORTCB_UPDATE,
-    WaitForVideoPortSync: PDD_VPORTCB_WAITFORSYNC,
-    GetVideoSignalStatus: PDD_VPORTCB_GETSIGNALSTATUS,
-    ColorControl: PDD_VPORTCB_COLORCONTROL,
+    CanCreateVideoPort: ?PDD_VPORTCB_CANCREATEVIDEOPORT,
+    CreateVideoPort: ?PDD_VPORTCB_CREATEVIDEOPORT,
+    FlipVideoPort: ?PDD_VPORTCB_FLIP,
+    GetVideoPortBandwidth: ?PDD_VPORTCB_GETBANDWIDTH,
+    GetVideoPortInputFormats: ?PDD_VPORTCB_GETINPUTFORMATS,
+    GetVideoPortOutputFormats: ?PDD_VPORTCB_GETOUTPUTFORMATS,
+    lpReserved1: ?*c_void,
+    GetVideoPortField: ?PDD_VPORTCB_GETFIELD,
+    GetVideoPortLine: ?PDD_VPORTCB_GETLINE,
+    GetVideoPortConnectInfo: ?PDD_VPORTCB_GETVPORTCONNECT,
+    DestroyVideoPort: ?PDD_VPORTCB_DESTROYVPORT,
+    GetVideoPortFlipStatus: ?PDD_VPORTCB_GETFLIPSTATUS,
+    UpdateVideoPort: ?PDD_VPORTCB_UPDATE,
+    WaitForVideoPortSync: ?PDD_VPORTCB_WAITFORSYNC,
+    GetVideoSignalStatus: ?PDD_VPORTCB_GETSIGNALSTATUS,
+    ColorControl: ?PDD_VPORTCB_COLORCONTROL,
 };
 
 pub const PDD_COLORCB_COLORCONTROL = fn(
-    param0: *DD_COLORCONTROLDATA,
+    param0: ?*DD_COLORCONTROLDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_COLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    ColorControl: PDD_COLORCB_COLORCONTROL,
+    ColorControl: ?PDD_COLORCB_COLORCONTROL,
 };
 
 pub const PDD_KERNELCB_SYNCSURFACE = fn(
-    param0: *DD_SYNCSURFACEDATA,
+    param0: ?*DD_SYNCSURFACEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_KERNELCB_SYNCVIDEOPORT = fn(
-    param0: *DD_SYNCVIDEOPORTDATA,
+    param0: ?*DD_SYNCVIDEOPORTDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_KERNELCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    SyncSurfaceData: PDD_KERNELCB_SYNCSURFACE,
-    SyncVideoPortData: PDD_KERNELCB_SYNCVIDEOPORT,
+    SyncSurfaceData: ?PDD_KERNELCB_SYNCSURFACE,
+    SyncVideoPortData: ?PDD_KERNELCB_SYNCVIDEOPORT,
 };
 
 pub const PDD_MOCOMPCB_GETGUIDS = fn(
-    param0: *DD_GETMOCOMPGUIDSDATA,
+    param0: ?*DD_GETMOCOMPGUIDSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_GETFORMATS = fn(
-    param0: *DD_GETMOCOMPFORMATSDATA,
+    param0: ?*DD_GETMOCOMPFORMATSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_CREATE = fn(
-    param0: *DD_CREATEMOCOMPDATA,
+    param0: ?*DD_CREATEMOCOMPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = fn(
-    param0: *DD_GETMOCOMPCOMPBUFFDATA,
+    param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_GETINTERNALINFO = fn(
-    param0: *DD_GETINTERNALMOCOMPDATA,
+    param0: ?*DD_GETINTERNALMOCOMPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_BEGINFRAME = fn(
-    param0: *DD_BEGINMOCOMPFRAMEDATA,
+    param0: ?*DD_BEGINMOCOMPFRAMEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_ENDFRAME = fn(
-    param0: *DD_ENDMOCOMPFRAMEDATA,
+    param0: ?*DD_ENDMOCOMPFRAMEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_RENDER = fn(
-    param0: *DD_RENDERMOCOMPDATA,
+    param0: ?*DD_RENDERMOCOMPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_QUERYSTATUS = fn(
-    param0: *DD_QUERYMOCOMPSTATUSDATA,
+    param0: ?*DD_QUERYMOCOMPSTATUSDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDD_MOCOMPCB_DESTROY = fn(
-    param0: *DD_DESTROYMOCOMPDATA,
+    param0: ?*DD_DESTROYMOCOMPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DD_MOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    GetMoCompGuids: PDD_MOCOMPCB_GETGUIDS,
-    GetMoCompFormats: PDD_MOCOMPCB_GETFORMATS,
-    CreateMoComp: PDD_MOCOMPCB_CREATE,
-    GetMoCompBuffInfo: PDD_MOCOMPCB_GETCOMPBUFFINFO,
-    GetInternalMoCompInfo: PDD_MOCOMPCB_GETINTERNALINFO,
-    BeginMoCompFrame: PDD_MOCOMPCB_BEGINFRAME,
-    EndMoCompFrame: PDD_MOCOMPCB_ENDFRAME,
-    RenderMoComp: PDD_MOCOMPCB_RENDER,
-    QueryMoCompStatus: PDD_MOCOMPCB_QUERYSTATUS,
-    DestroyMoComp: PDD_MOCOMPCB_DESTROY,
+    GetMoCompGuids: ?PDD_MOCOMPCB_GETGUIDS,
+    GetMoCompFormats: ?PDD_MOCOMPCB_GETFORMATS,
+    CreateMoComp: ?PDD_MOCOMPCB_CREATE,
+    GetMoCompBuffInfo: ?PDD_MOCOMPCB_GETCOMPBUFFINFO,
+    GetInternalMoCompInfo: ?PDD_MOCOMPCB_GETINTERNALINFO,
+    BeginMoCompFrame: ?PDD_MOCOMPCB_BEGINFRAME,
+    EndMoCompFrame: ?PDD_MOCOMPCB_ENDFRAME,
+    RenderMoComp: ?PDD_MOCOMPCB_RENDER,
+    QueryMoCompStatus: ?PDD_MOCOMPCB_QUERYSTATUS,
+    DestroyMoComp: ?PDD_MOCOMPCB_DESTROY,
 };
 
 pub const DD_NONLOCALVIDMEMCAPS = extern struct {
@@ -669,12 +669,12 @@ pub const DD_CLIPPER_LOCAL = extern struct {
 };
 
 pub const DD_ATTACHLIST = extern struct {
-    lpLink: *DD_ATTACHLIST,
-    lpAttached: *DD_SURFACE_LOCAL,
+    lpLink: ?*DD_ATTACHLIST,
+    lpAttached: ?*DD_SURFACE_LOCAL,
 };
 
 pub const DD_SURFACE_INT = extern struct {
-    lpLcl: *DD_SURFACE_LOCAL,
+    lpLcl: ?*DD_SURFACE_LOCAL,
 };
 
 pub const DD_SURFACE_GLOBAL = extern struct {
@@ -683,7 +683,7 @@ pub const DD_SURFACE_GLOBAL = extern struct {
         lSlicePitch: i32,
     },
     Anonymous2: extern union {
-        lpVidMemHeap: *VIDEOMEMORY,
+        lpVidMemHeap: ?*VIDEOMEMORY,
         dwBlockSizeX: u32,
         dwUserMemSize: u32,
     },
@@ -699,19 +699,19 @@ pub const DD_SURFACE_GLOBAL = extern struct {
     dwReserved1: usize,
     ddpfSurface: DDPIXELFORMAT,
     fpHeapOffset: usize,
-    hCreatorProcess: HANDLE,
+    hCreatorProcess: ?HANDLE,
 };
 
 pub const DD_SURFACE_MORE = extern struct {
     dwMipMapCount: u32,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwOverlayFlags: u32,
     ddsCapsEx: DDSCAPSEX,
     dwSurfaceHandle: u32,
 };
 
 pub const DD_SURFACE_LOCAL = extern struct {
-    lpGbl: *DD_SURFACE_GLOBAL,
+    lpGbl: ?*DD_SURFACE_GLOBAL,
     dwFlags: u32,
     ddsCaps: DDSCAPS,
     dwReserved1: usize,
@@ -723,50 +723,50 @@ pub const DD_SURFACE_LOCAL = extern struct {
         ddckCKDestOverlay: DDCOLORKEY,
         ddckCKDestBlt: DDCOLORKEY,
     },
-    lpSurfMore: *DD_SURFACE_MORE,
-    lpAttachList: *DD_ATTACHLIST,
-    lpAttachListFrom: *DD_ATTACHLIST,
+    lpSurfMore: ?*DD_SURFACE_MORE,
+    lpAttachList: ?*DD_ATTACHLIST,
+    lpAttachListFrom: ?*DD_ATTACHLIST,
     rcOverlaySrc: RECT,
 };
 
 pub const DD_D3DBUFCALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    CanCreateD3DBuffer: PDD_CANCREATESURFACE,
-    CreateD3DBuffer: PDD_CREATESURFACE,
-    DestroyD3DBuffer: PDD_SURFCB_DESTROYSURFACE,
-    LockD3DBuffer: PDD_SURFCB_LOCK,
-    UnlockD3DBuffer: PDD_SURFCB_UNLOCK,
+    CanCreateD3DBuffer: ?PDD_CANCREATESURFACE,
+    CreateD3DBuffer: ?PDD_CREATESURFACE,
+    DestroyD3DBuffer: ?PDD_SURFCB_DESTROYSURFACE,
+    LockD3DBuffer: ?PDD_SURFCB_LOCK,
+    UnlockD3DBuffer: ?PDD_SURFCB_UNLOCK,
 };
 
 pub const DD_HALINFO = extern struct {
     dwSize: u32,
     vmiData: VIDEOMEMORYINFO,
     ddCaps: DDNTCORECAPS,
-    GetDriverInfo: PDD_GETDRIVERINFO,
+    GetDriverInfo: ?PDD_GETDRIVERINFO,
     dwFlags: u32,
-    lpD3DGlobalDriverData: *c_void,
-    lpD3DHALCallbacks: *c_void,
-    lpD3DBufCallbacks: *DD_D3DBUFCALLBACKS,
+    lpD3DGlobalDriverData: ?*c_void,
+    lpD3DHALCallbacks: ?*c_void,
+    lpD3DBufCallbacks: ?*DD_D3DBUFCALLBACKS,
 };
 
 pub const DD_DIRECTDRAW_GLOBAL = extern struct {
-    dhpdev: *c_void,
+    dhpdev: ?*c_void,
     dwReserved1: usize,
     dwReserved2: usize,
-    lpDDVideoPortCaps: *DDVIDEOPORTCAPS,
+    lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
 };
 
 pub const DD_DIRECTDRAW_LOCAL = extern struct {
-    lpGbl: *DD_DIRECTDRAW_GLOBAL,
+    lpGbl: ?*DD_DIRECTDRAW_GLOBAL,
 };
 
 pub const DD_VIDEOPORT_LOCAL = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
     ddvpDesc: DDVIDEOPORTDESC,
     ddvpInfo: DDVIDEOPORTINFO,
-    lpSurface: *DD_SURFACE_INT,
-    lpVBISurface: *DD_SURFACE_INT,
+    lpSurface: ?*DD_SURFACE_INT,
+    lpVBISurface: ?*DD_SURFACE_INT,
     dwNumAutoflip: u32,
     dwNumVBIAutoflip: u32,
     dwReserved1: usize,
@@ -775,7 +775,7 @@ pub const DD_VIDEOPORT_LOCAL = extern struct {
 };
 
 pub const DD_MOTIONCOMP_LOCAL = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
     guid: Guid,
     dwUncompWidth: u32,
     dwUncompHeight: u32,
@@ -783,9 +783,9 @@ pub const DD_MOTIONCOMP_LOCAL = extern struct {
     dwDriverReserved1: u32,
     dwDriverReserved2: u32,
     dwDriverReserved3: u32,
-    lpDriverReserved1: *c_void,
-    lpDriverReserved2: *c_void,
-    lpDriverReserved3: *c_void,
+    lpDriverReserved1: ?*c_void,
+    lpDriverReserved2: ?*c_void,
+    lpDriverReserved3: ?*c_void,
 };
 
 pub const DD_MORESURFACECAPS = extern struct {
@@ -808,13 +808,13 @@ pub const DD_STEREOMODE = extern struct {
 };
 
 pub const DD_UPDATENONLOCALHEAPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwHeap: u32,
     fpGARTLin: usize,
     fpGARTDev: usize,
     ulPolicyMaxBytes: usize,
     ddRVal: HRESULT,
-    UpdateNonLocalHeap: *c_void,
+    UpdateNonLocalHeap: ?*c_void,
 };
 
 pub const DD_NTPRIVATEDRIVERCAPS = extern struct {
@@ -823,384 +823,384 @@ pub const DD_NTPRIVATEDRIVERCAPS = extern struct {
 };
 
 pub const DD_BLTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDDestSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
     rDest: RECTL,
-    lpDDSrcSurface: *DD_SURFACE_LOCAL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
     rSrc: RECTL,
     dwFlags: u32,
     dwROPFlags: u32,
     bltFX: DDBLTFX,
     ddRVal: HRESULT,
-    Blt: *c_void,
+    Blt: ?*c_void,
     IsClipped: BOOL,
     rOrigDest: RECTL,
     rOrigSrc: RECTL,
     dwRectCnt: u32,
-    prDestRects: *RECT,
+    prDestRects: ?*RECT,
     dwAFlags: u32,
     ddargbScaleFactors: DDARGB,
 };
 
 pub const DD_LOCKDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     bHasRect: u32,
     rArea: RECTL,
-    lpSurfData: *c_void,
+    lpSurfData: ?*c_void,
     ddRVal: HRESULT,
-    Lock: *c_void,
+    Lock: ?*c_void,
     dwFlags: u32,
     fpProcess: usize,
 };
 
 pub const DD_UNLOCKDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    Unlock: *c_void,
+    Unlock: ?*c_void,
 };
 
 pub const DD_UPDATEOVERLAYDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDDestSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
     rDest: RECTL,
-    lpDDSrcSurface: *DD_SURFACE_LOCAL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
     rSrc: RECTL,
     dwFlags: u32,
     overlayFX: DDOVERLAYFX,
     ddRVal: HRESULT,
-    UpdateOverlay: *c_void,
+    UpdateOverlay: ?*c_void,
 };
 
 pub const DD_SETOVERLAYPOSITIONDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSrcSurface: *DD_SURFACE_LOCAL,
-    lpDDDestSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
     lXPos: i32,
     lYPos: i32,
     ddRVal: HRESULT,
-    SetOverlayPosition: *c_void,
+    SetOverlayPosition: ?*c_void,
 };
 
 pub const DD_SETPALETTEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
-    lpDDPalette: *DD_PALETTE_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
     ddRVal: HRESULT,
-    SetPalette: *c_void,
+    SetPalette: ?*c_void,
     Attach: BOOL,
 };
 
 pub const DD_FLIPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpSurfCurr: *DD_SURFACE_LOCAL,
-    lpSurfTarg: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpSurfCurr: ?*DD_SURFACE_LOCAL,
+    lpSurfTarg: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    Flip: *c_void,
-    lpSurfCurrLeft: *DD_SURFACE_LOCAL,
-    lpSurfTargLeft: *DD_SURFACE_LOCAL,
+    Flip: ?*c_void,
+    lpSurfCurrLeft: ?*DD_SURFACE_LOCAL,
+    lpSurfTargLeft: ?*DD_SURFACE_LOCAL,
 };
 
 pub const DD_DESTROYSURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    DestroySurface: *c_void,
+    DestroySurface: ?*c_void,
 };
 
 pub const DD_ADDATTACHEDSURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
-    lpSurfAttached: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpSurfAttached: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    AddAttachedSurface: *c_void,
+    AddAttachedSurface: ?*c_void,
 };
 
 pub const DD_SETCOLORKEYDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ckNew: DDCOLORKEY,
     ddRVal: HRESULT,
-    SetColorKey: *c_void,
+    SetColorKey: ?*c_void,
 };
 
 pub const DD_GETBLTSTATUSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    GetBltStatus: *c_void,
+    GetBltStatus: ?*c_void,
 };
 
 pub const DD_GETFLIPSTATUSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    GetFlipStatus: *c_void,
+    GetFlipStatus: ?*c_void,
 };
 
 pub const DD_DESTROYPALETTEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: *DD_PALETTE_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
     ddRVal: HRESULT,
-    DestroyPalette: *c_void,
+    DestroyPalette: ?*c_void,
 };
 
 pub const DD_SETENTRIESDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: *DD_PALETTE_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
     dwBase: u32,
     dwNumEntries: u32,
-    lpEntries: *PALETTEENTRY,
+    lpEntries: ?*PALETTEENTRY,
     ddRVal: HRESULT,
-    SetEntries: *c_void,
+    SetEntries: ?*c_void,
 };
 
 pub const DD_CREATESURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurfaceDesc: *DDSURFACEDESC,
-    lplpSList: **DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
+    lplpSList: ?*?*DD_SURFACE_LOCAL,
     dwSCnt: u32,
     ddRVal: HRESULT,
-    CreateSurface: *c_void,
+    CreateSurface: ?*c_void,
 };
 
 pub const DD_CANCREATESURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurfaceDesc: *DDSURFACEDESC,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
     bIsDifferentPixelFormat: u32,
     ddRVal: HRESULT,
-    CanCreateSurface: *c_void,
+    CanCreateSurface: ?*c_void,
 };
 
 pub const DD_CREATEPALETTEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: *DD_PALETTE_GLOBAL,
-    lpColorTable: *PALETTEENTRY,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
+    lpColorTable: ?*PALETTEENTRY,
     ddRVal: HRESULT,
-    CreatePalette: *c_void,
+    CreatePalette: ?*c_void,
     is_excl: BOOL,
 };
 
 pub const DD_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwFlags: u32,
     bIsInVB: u32,
     hEvent: usize,
     ddRVal: HRESULT,
-    WaitForVerticalBlank: *c_void,
+    WaitForVerticalBlank: ?*c_void,
 };
 
 pub const DD_GETSCANLINEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwScanLine: u32,
     ddRVal: HRESULT,
-    GetScanLine: *c_void,
+    GetScanLine: ?*c_void,
 };
 
 pub const DD_MAPMEMORYDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     bMap: BOOL,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     fpProcess: usize,
     ddRVal: HRESULT,
 };
 
 pub const DD_CANCREATEVPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpDDVideoPortDesc: *DDVIDEOPORTDESC,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
     ddRVal: HRESULT,
-    CanCreateVideoPort: *c_void,
+    CanCreateVideoPort: ?*c_void,
 };
 
 pub const DD_CREATEVPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpDDVideoPortDesc: *DDVIDEOPORTDESC,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     ddRVal: HRESULT,
-    CreateVideoPort: *c_void,
+    CreateVideoPort: ?*c_void,
 };
 
 pub const DD_FLIPVPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
-    lpSurfCurr: *DD_SURFACE_LOCAL,
-    lpSurfTarg: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lpSurfCurr: ?*DD_SURFACE_LOCAL,
+    lpSurfTarg: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    FlipVideoPort: *c_void,
+    FlipVideoPort: ?*c_void,
 };
 
 pub const DD_GETVPORTBANDWIDTHDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
-    lpddpfFormat: *DDPIXELFORMAT,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lpddpfFormat: ?*DDPIXELFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwFlags: u32,
-    lpBandwidth: *DDVIDEOPORTBANDWIDTH,
+    lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
     ddRVal: HRESULT,
-    GetVideoPortBandwidth: *c_void,
+    GetVideoPortBandwidth: ?*c_void,
 };
 
 pub const DD_GETVPORTINPUTFORMATDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwFlags: u32,
-    lpddpfFormat: *DDPIXELFORMAT,
+    lpddpfFormat: ?*DDPIXELFORMAT,
     dwNumFormats: u32,
     ddRVal: HRESULT,
-    GetVideoPortInputFormats: *c_void,
+    GetVideoPortInputFormats: ?*c_void,
 };
 
 pub const DD_GETVPORTOUTPUTFORMATDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwFlags: u32,
-    lpddpfInputFormat: *DDPIXELFORMAT,
-    lpddpfOutputFormats: *DDPIXELFORMAT,
+    lpddpfInputFormat: ?*DDPIXELFORMAT,
+    lpddpfOutputFormats: ?*DDPIXELFORMAT,
     dwNumFormats: u32,
     ddRVal: HRESULT,
-    GetVideoPortInputFormats: *c_void,
+    GetVideoPortInputFormats: ?*c_void,
 };
 
 pub const DD_GETVPORTFIELDDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     bField: BOOL,
     ddRVal: HRESULT,
-    GetVideoPortField: *c_void,
+    GetVideoPortField: ?*c_void,
 };
 
 pub const DD_GETVPORTLINEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwLine: u32,
     ddRVal: HRESULT,
-    GetVideoPortLine: *c_void,
+    GetVideoPortLine: ?*c_void,
 };
 
 pub const DD_GETVPORTCONNECTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
     dwPortId: u32,
-    lpConnect: *DDVIDEOPORTCONNECT,
+    lpConnect: ?*DDVIDEOPORTCONNECT,
     dwNumEntries: u32,
     ddRVal: HRESULT,
-    GetVideoPortConnectInfo: *c_void,
+    GetVideoPortConnectInfo: ?*c_void,
 };
 
 pub const DD_DESTROYVPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     ddRVal: HRESULT,
-    DestroyVideoPort: *c_void,
+    DestroyVideoPort: ?*c_void,
 };
 
 pub const DD_GETVPORTFLIPSTATUSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
     fpSurface: usize,
     ddRVal: HRESULT,
-    GetVideoPortFlipStatus: *c_void,
+    GetVideoPortFlipStatus: ?*c_void,
 };
 
 pub const DD_UPDATEVPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
-    lplpDDSurface: **DD_SURFACE_INT,
-    lplpDDVBISurface: **DD_SURFACE_INT,
-    lpVideoInfo: *DDVIDEOPORTINFO,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lplpDDSurface: ?*?*DD_SURFACE_INT,
+    lplpDDVBISurface: ?*?*DD_SURFACE_INT,
+    lpVideoInfo: ?*DDVIDEOPORTINFO,
     dwFlags: u32,
     dwNumAutoflip: u32,
     dwNumVBIAutoflip: u32,
     ddRVal: HRESULT,
-    UpdateVideoPort: *c_void,
+    UpdateVideoPort: ?*c_void,
 };
 
 pub const DD_WAITFORVPORTSYNCDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwFlags: u32,
     dwLine: u32,
     dwTimeOut: u32,
     ddRVal: HRESULT,
-    UpdateVideoPort: *c_void,
+    UpdateVideoPort: ?*c_void,
 };
 
 pub const DD_GETVPORTSIGNALDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwStatus: u32,
     ddRVal: HRESULT,
-    GetVideoSignalStatus: *c_void,
+    GetVideoSignalStatus: ?*c_void,
 };
 
 pub const DD_VPORTCOLORDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwFlags: u32,
-    lpColorData: *DDCOLORCONTROL,
+    lpColorData: ?*DDCOLORCONTROL,
     ddRVal: HRESULT,
-    ColorControl: *c_void,
+    ColorControl: ?*c_void,
 };
 
 pub const DD_COLORCONTROLDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
-    lpColorData: *DDCOLORCONTROL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpColorData: ?*DDCOLORCONTROL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    ColorControl: *c_void,
+    ColorControl: ?*c_void,
 };
 
 pub const DD_GETDRIVERINFODATA = extern struct {
-    dhpdev: *c_void,
+    dhpdev: ?*c_void,
     dwSize: u32,
     dwFlags: u32,
     guidInfo: Guid,
     dwExpectedSize: u32,
-    lpvData: *c_void,
+    lpvData: ?*c_void,
     dwActualSize: u32,
     ddRVal: HRESULT,
 };
 
 pub const DD_GETAVAILDRIVERMEMORYDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     DDSCaps: DDSCAPS,
     dwTotal: u32,
     dwFree: u32,
     ddRVal: HRESULT,
-    GetAvailDriverMemory: *c_void,
+    GetAvailDriverMemory: ?*c_void,
 };
 
 pub const DD_FREEDRIVERMEMORYDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    FreeDriverMemory: *c_void,
+    FreeDriverMemory: ?*c_void,
 };
 
 pub const DD_SETEXCLUSIVEMODEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwEnterExcl: u32,
     dwReserved: u32,
     ddRVal: HRESULT,
-    SetExclusiveMode: *c_void,
+    SetExclusiveMode: ?*c_void,
 };
 
 pub const DD_FLIPTOGDISURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_GLOBAL,
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwToGDI: u32,
     dwReserved: u32,
     ddRVal: HRESULT,
-    FlipToGDISurface: *c_void,
+    FlipToGDISurface: ?*c_void,
 };
 
 pub const DD_SYNCSURFACEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpDDSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwSurfaceOffset: u32,
     fpLockPtr: usize,
     lPitch: i32,
@@ -1213,8 +1213,8 @@ pub const DD_SYNCSURFACEDATA = extern struct {
 };
 
 pub const DD_SYNCVIDEOPORTDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: *DD_VIDEOPORT_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwOriginOffset: u32,
     dwHeight: u32,
     dwVBIHeight: u32,
@@ -1225,28 +1225,28 @@ pub const DD_SYNCVIDEOPORTDATA = extern struct {
 };
 
 pub const DD_GETMOCOMPGUIDSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
     dwNumGuids: u32,
-    lpGuids: *Guid,
+    lpGuids: ?*Guid,
     ddRVal: HRESULT,
 };
 
 pub const DD_GETMOCOMPFORMATSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpGuid: *Guid,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
     dwNumFormats: u32,
-    lpFormats: *DDPIXELFORMAT,
+    lpFormats: ?*DDPIXELFORMAT,
     ddRVal: HRESULT,
 };
 
 pub const DD_CREATEMOCOMPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
-    lpGuid: *Guid,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpGuid: ?*Guid,
     dwUncompWidth: u32,
     dwUncompHeight: u32,
     ddUncompPixelFormat: DDPIXELFORMAT,
-    lpData: *c_void,
+    lpData: ?*c_void,
     dwDataSize: u32,
     ddRVal: HRESULT,
 };
@@ -1262,19 +1262,19 @@ pub const DDCOMPBUFFERINFO = extern struct {
 };
 
 pub const DD_GETMOCOMPCOMPBUFFDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpGuid: *Guid,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
     dwWidth: u32,
     dwHeight: u32,
     ddPixelFormat: DDPIXELFORMAT,
     dwNumTypesCompBuffs: u32,
-    lpCompBuffInfo: *DDCOMPBUFFERINFO,
+    lpCompBuffInfo: ?*DDCOMPBUFFERINFO,
     ddRVal: HRESULT,
 };
 
 pub const DD_GETINTERNALMOCOMPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpGuid: *Guid,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
     dwWidth: u32,
     dwHeight: u32,
     ddPixelFormat: DDPIXELFORMAT,
@@ -1283,73 +1283,73 @@ pub const DD_GETINTERNALMOCOMPDATA = extern struct {
 };
 
 pub const DD_BEGINMOCOMPFRAMEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
-    lpDestSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpDestSurface: ?*DD_SURFACE_LOCAL,
     dwInputDataSize: u32,
-    lpInputData: *c_void,
+    lpInputData: ?*c_void,
     dwOutputDataSize: u32,
-    lpOutputData: *c_void,
+    lpOutputData: ?*c_void,
     ddRVal: HRESULT,
 };
 
 pub const DD_ENDMOCOMPFRAMEDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
-    lpInputData: *c_void,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpInputData: ?*c_void,
     dwInputDataSize: u32,
     ddRVal: HRESULT,
 };
 
 pub const DDMOCOMPBUFFERINFO = extern struct {
     dwSize: u32,
-    lpCompSurface: *DD_SURFACE_LOCAL,
+    lpCompSurface: ?*DD_SURFACE_LOCAL,
     dwDataOffset: u32,
     dwDataSize: u32,
-    lpPrivate: *c_void,
+    lpPrivate: ?*c_void,
 };
 
 pub const DD_RENDERMOCOMPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
     dwNumBuffers: u32,
-    lpBufferInfo: *DDMOCOMPBUFFERINFO,
+    lpBufferInfo: ?*DDMOCOMPBUFFERINFO,
     dwFunction: u32,
-    lpInputData: *c_void,
+    lpInputData: ?*c_void,
     dwInputDataSize: u32,
-    lpOutputData: *c_void,
+    lpOutputData: ?*c_void,
     dwOutputDataSize: u32,
     ddRVal: HRESULT,
 };
 
 pub const DD_QUERYMOCOMPSTATUSDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
-    lpSurface: *DD_SURFACE_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
 };
 
 pub const DD_DESTROYMOCOMPDATA = extern struct {
-    lpDD: *DD_DIRECTDRAW_LOCAL,
-    lpMoComp: *DD_MOTIONCOMP_LOCAL,
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
     ddRVal: HRESULT,
 };
 
 pub const DD_CREATESURFACEEXDATA = extern struct {
     dwFlags: u32,
-    lpDDLcl: *DD_DIRECTDRAW_LOCAL,
-    lpDDSLcl: *DD_SURFACE_LOCAL,
+    lpDDLcl: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDSLcl: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
 };
 
 pub const DD_GETDRIVERSTATEDATA = extern struct {
     dwFlags: u32,
     Anonymous: extern union {
-        lpDD: *DD_DIRECTDRAW_GLOBAL,
+        lpDD: ?*DD_DIRECTDRAW_GLOBAL,
         dwhContext: usize,
     },
-    lpdwStates: *u32,
+    lpdwStates: ?*u32,
     dwLength: u32,
     ddRVal: HRESULT,
 };
@@ -1802,7 +1802,7 @@ pub const FD_DEVICEMETRICS = extern struct {
 pub const WCRUN = extern struct {
     wcLow: u16,
     cGlyphs: u16,
-    phg: *u32,
+    phg: ?*u32,
 };
 
 pub const FD_GLYPHSET = extern struct {
@@ -1855,13 +1855,13 @@ pub const IFIEXTRA = extern struct {
 
 pub const DRVFN = extern struct {
     iFunc: u32,
-    pfn: PFN,
+    pfn: ?PFN,
 };
 
 pub const DRVENABLEDATA = extern struct {
     iDriverVersion: u32,
     c: u32,
-    pdrvfn: *DRVFN,
+    pdrvfn: ?*DRVFN,
 };
 
 pub const DEVINFO = extern struct {
@@ -1873,7 +1873,7 @@ pub const DEVINFO = extern struct {
     iDitherFormat: u32,
     cxDither: u16,
     cyDither: u16,
-    hpalDefault: HPALETTE,
+    hpalDefault: ?HPALETTE,
     flGraphicsCaps2: u32,
 };
 
@@ -1884,7 +1884,7 @@ pub const LINEATTRS = extern struct {
     elWidth: FLOAT_LONG,
     eMiterLimit: f32,
     cstyle: u32,
-    pstyle: *FLOAT_LONG,
+    pstyle: ?*FLOAT_LONG,
     elStyleState: FLOAT_LONG,
 };
 
@@ -1962,9 +1962,9 @@ pub const GDIINFO = extern struct {
     yPanningAlignment: u32,
     cxHTPat: u32,
     cyHTPat: u32,
-    pHTPatA: *u8,
-    pHTPatB: *u8,
-    pHTPatC: *u8,
+    pHTPatA: ?*u8,
+    pHTPatB: ?*u8,
+    pHTPatC: ?*u8,
     flShadeBlend: u32,
     ulPhysicalPixelCharacteristics: u32,
     ulPhysicalPixelGamma: u32,
@@ -1972,7 +1972,7 @@ pub const GDIINFO = extern struct {
 
 pub const BRUSHOBJ = extern struct {
     iSolidColor: u32,
-    pvRbrush: *c_void,
+    pvRbrush: ?*c_void,
     flColorType: u32,
 };
 
@@ -1986,9 +1986,9 @@ pub const CLIPOBJ = extern struct {
 };
 
 pub const DRIVEROBJ = extern struct {
-    pvObj: *c_void,
-    pFreeProc: FREEOBJPROC,
-    hdev: HDEV,
+    pvObj: ?*c_void,
+    pFreeProc: ?FREEOBJPROC,
+    hdev: ?HDEV,
     dhpdev: DHPDEV,
 };
 
@@ -2001,8 +2001,8 @@ pub const FONTOBJ = extern struct {
     iFile: usize,
     sizLogResPpi: SIZE,
     ulStyleSize: u32,
-    pvConsumer: *c_void,
-    pvProducer: *c_void,
+    pvConsumer: ?*c_void,
+    pvProducer: ?*c_void,
 };
 
 pub const BLENDOBJ = extern struct {
@@ -2020,13 +2020,13 @@ pub const PATHOBJ = extern struct {
 
 pub const SURFOBJ = extern struct {
     dhsurf: DHSURF,
-    hsurf: HSURF,
+    hsurf: ?HSURF,
     dhpdev: DHPDEV,
-    hdev: HDEV,
+    hdev: ?HDEV,
     sizlBitmap: SIZE,
     cjBits: u32,
-    pvBits: *c_void,
-    pvScan0: *c_void,
+    pvBits: ?*c_void,
+    pvScan0: ?*c_void,
     lDelta: i32,
     iUniq: u32,
     iBitmapFormat: u32,
@@ -2036,9 +2036,9 @@ pub const SURFOBJ = extern struct {
 
 pub const WNDOBJ = extern struct {
     coClient: CLIPOBJ,
-    pvConsumer: *c_void,
+    pvConsumer: ?*c_void,
     rclClient: RECTL,
-    psoOwner: *SURFOBJ,
+    psoOwner: ?*SURFOBJ,
 };
 
 pub const XLATEOBJ = extern struct {
@@ -2047,7 +2047,7 @@ pub const XLATEOBJ = extern struct {
     iSrcType: u16,
     iDstType: u16,
     cEntries: u32,
-    pulXlate: *u32,
+    pulXlate: ?*u32,
 };
 
 pub const ENUMRECTS = extern struct {
@@ -2062,13 +2062,13 @@ pub const GLYPHBITS = extern struct {
 };
 
 pub const GLYPHDEF = extern union {
-    pgb: *GLYPHBITS,
-    ppo: *PATHOBJ,
+    pgb: ?*GLYPHBITS,
+    ppo: ?*PATHOBJ,
 };
 
 pub const GLYPHPOS = extern struct {
     hg: u32,
-    pgdf: *GLYPHDEF,
+    pgdf: ?*GLYPHDEF,
     ptl: POINTL,
 };
 
@@ -2089,8 +2089,8 @@ pub const STROBJ = extern struct {
     flAccel: u32,
     ulCharInc: u32,
     rclBkGround: RECTL,
-    pgp: *GLYPHPOS,
-    pwszOrg: PWSTR,
+    pgp: ?*GLYPHPOS,
+    pwszOrg: ?PWSTR,
 };
 
 pub const FONTINFO = extern struct {
@@ -2106,7 +2106,7 @@ pub const FONTINFO = extern struct {
 pub const PATHDATA = extern struct {
     flags: u32,
     count: u32,
-    pptfx: *POINTFIX,
+    pptfx: ?*POINTFIX,
 };
 
 pub const RUN = extern struct {
@@ -2146,18 +2146,18 @@ pub const DEVHTADJDATA = extern struct {
     DeviceFlags: u32,
     DeviceXDPI: u32,
     DeviceYDPI: u32,
-    pDefHTInfo: *DEVHTINFO,
-    pAdjHTInfo: *DEVHTINFO,
+    pDefHTInfo: ?*DEVHTINFO,
+    pAdjHTInfo: ?*DEVHTINFO,
 };
 
 pub const TYPE1_FONT = extern struct {
-    hPFM: HANDLE,
-    hPFB: HANDLE,
+    hPFM: ?HANDLE,
+    hPFB: ?HANDLE,
     ulIdentifier: u32,
 };
 
 pub const ENGSAFESEMAPHORE = extern struct {
-    hsem: *HSEMAPHORE__,
+    hsem: ?*HSEMAPHORE__,
     lCount: i32,
 };
 
@@ -2173,9 +2173,9 @@ pub const ENG_TIME_FIELDS = extern struct {
 };
 
 pub const PFN_DrvQueryGlyphAttrs = fn(
-    param0: *FONTOBJ,
+    param0: ?*FONTOBJ,
     param1: u32,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
@@ -2276,28 +2276,28 @@ pub const VIDEOPARAMETERS = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_pvAllocRbrush(
-    pbo: *BRUSHOBJ,
+    pbo: ?*BRUSHOBJ,
     cj: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_pvGetRbrush(
-    pbo: *BRUSHOBJ,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    pbo: ?*BRUSHOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_ulGetBrushColor(
-    pbo: *BRUSHOBJ,
+    pbo: ?*BRUSHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_hGetColorTransform(
-    pbo: *BRUSHOBJ,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pbo: ?*BRUSHOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_cEnumStart(
-    pco: *CLIPOBJ,
+    pco: ?*CLIPOBJ,
     bAll: BOOL,
     iType: u32,
     iDirection: u32,
@@ -2306,167 +2306,167 @@ pub extern "GDI32" fn CLIPOBJ_cEnumStart(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_bEnum(
-    pco: *CLIPOBJ,
+    pco: ?*CLIPOBJ,
     cj: u32,
-    pul: *u32,
+    pul: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_ppoGetPath(
-    pco: *CLIPOBJ,
-) callconv(@import("std").os.windows.WINAPI) *PATHOBJ;
+    pco: ?*CLIPOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*PATHOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_cGetAllGlyphHandles(
-    pfo: *FONTOBJ,
-    phg: *u32,
+    pfo: ?*FONTOBJ,
+    phg: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_vGetInfo(
-    pfo: *FONTOBJ,
+    pfo: ?*FONTOBJ,
     cjSize: u32,
-    pfi: *FONTINFO,
+    pfi: ?*FONTINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_cGetGlyphs(
-    pfo: *FONTOBJ,
+    pfo: ?*FONTOBJ,
     iMode: u32,
     cGlyph: u32,
-    phg: *u32,
-    ppvGlyph: **c_void,
+    phg: ?*u32,
+    ppvGlyph: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pxoGetXform(
-    pfo: *FONTOBJ,
-) callconv(@import("std").os.windows.WINAPI) *XFORMOBJ;
+    pfo: ?*FONTOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*XFORMOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pifi(
-    pfo: *FONTOBJ,
-) callconv(@import("std").os.windows.WINAPI) *IFIMETRICS;
+    pfo: ?*FONTOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*IFIMETRICS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pfdg(
-    pfo: *FONTOBJ,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHSET;
+    pfo: ?*FONTOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHSET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pvTrueTypeFontFile(
-    pfo: *FONTOBJ,
-    pcjFile: *u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    pfo: ?*FONTOBJ,
+    pcjFile: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pQueryGlyphAttrs(
-    pfo: *FONTOBJ,
+    pfo: ?*FONTOBJ,
     iMode: u32,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vEnumStart(
-    ppo: *PATHOBJ,
+    ppo: ?*PATHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_bEnum(
-    ppo: *PATHOBJ,
-    ppd: *PATHDATA,
+    ppo: ?*PATHOBJ,
+    ppd: ?*PATHDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vEnumStartClipLines(
-    ppo: *PATHOBJ,
-    pco: *CLIPOBJ,
-    pso: *SURFOBJ,
-    pla: *LINEATTRS,
+    ppo: ?*PATHOBJ,
+    pco: ?*CLIPOBJ,
+    pso: ?*SURFOBJ,
+    pla: ?*LINEATTRS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_bEnumClipLines(
-    ppo: *PATHOBJ,
+    ppo: ?*PATHOBJ,
     cb: u32,
-    pcl: *CLIPLINE,
+    pcl: ?*CLIPLINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vGetBounds(
-    ppo: *PATHOBJ,
-    prectfx: *RECTFX,
+    ppo: ?*PATHOBJ,
+    prectfx: ?*RECTFX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_vEnumStart(
-    pstro: *STROBJ,
+    pstro: ?*STROBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bEnum(
-    pstro: *STROBJ,
-    pc: *u32,
-    ppgpos: **GLYPHPOS,
+    pstro: ?*STROBJ,
+    pc: ?*u32,
+    ppgpos: ?*?*GLYPHPOS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bEnumPositionsOnly(
-    pstro: *STROBJ,
-    pc: *u32,
-    ppgpos: **GLYPHPOS,
+    pstro: ?*STROBJ,
+    pc: ?*u32,
+    ppgpos: ?*?*GLYPHPOS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_dwGetCodePage(
-    pstro: *STROBJ,
+    pstro: ?*STROBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bGetAdvanceWidths(
-    pso: *STROBJ,
+    pso: ?*STROBJ,
     iFirst: u32,
     c: u32,
-    pptqD: *POINTQF,
+    pptqD: ?*POINTQF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XFORMOBJ_iGetXform(
-    pxo: *XFORMOBJ,
+    pxo: ?*XFORMOBJ,
     pxform: ?*XFORML,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XFORMOBJ_bApplyXform(
-    pxo: *XFORMOBJ,
+    pxo: ?*XFORMOBJ,
     iMode: u32,
     cPoints: u32,
-    pvIn: *c_void,
-    pvOut: *c_void,
+    pvIn: ?*c_void,
+    pvOut: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_iXlate(
-    pxlo: *XLATEOBJ,
+    pxlo: ?*XLATEOBJ,
     iColor: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_piVector(
-    pxlo: *XLATEOBJ,
-) callconv(@import("std").os.windows.WINAPI) *u32;
+    pxlo: ?*XLATEOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?*u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_cGetPalette(
-    pxlo: *XLATEOBJ,
+    pxlo: ?*XLATEOBJ,
     iPal: u32,
     cPal: u32,
-    pPal: *u32,
+    pPal: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_hGetColorTransform(
-    pxlo: *XLATEOBJ,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pxlo: ?*XLATEOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateBitmap(
@@ -2474,270 +2474,270 @@ pub extern "GDI32" fn EngCreateBitmap(
     lWidth: i32,
     iFormat: u32,
     fl: u32,
-    pvBits: *c_void,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    pvBits: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateDeviceSurface(
     dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
-) callconv(@import("std").os.windows.WINAPI) HSURF;
+) callconv(@import("std").os.windows.WINAPI) ?HSURF;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateDeviceBitmap(
     dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteSurface(
-    hsurf: HSURF,
+    hsurf: ?HSURF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLockSurface(
-    hsurf: HSURF,
-) callconv(@import("std").os.windows.WINAPI) *SURFOBJ;
+    hsurf: ?HSURF,
+) callconv(@import("std").os.windows.WINAPI) ?*SURFOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngUnlockSurface(
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngEraseSurface(
-    pso: *SURFOBJ,
-    prcl: *RECTL,
+    pso: ?*SURFOBJ,
+    prcl: ?*RECTL,
     iColor: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAssociateSurface(
-    hsurf: HSURF,
-    hdev: HDEV,
+    hsurf: ?HSURF,
+    hdev: ?HDEV,
     flHooks: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMarkBandingSurface(
-    hsurf: HSURF,
+    hsurf: ?HSURF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCheckAbort(
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeletePath(
-    ppo: *PATHOBJ,
+    ppo: ?*PATHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreatePalette(
     iMode: u32,
     cColors: u32,
-    pulColors: *u32,
+    pulColors: ?*u32,
     flRed: u32,
     flGreen: u32,
     flBlue: u32,
-) callconv(@import("std").os.windows.WINAPI) HPALETTE;
+) callconv(@import("std").os.windows.WINAPI) ?HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeletePalette(
-    hpal: HPALETTE,
+    hpal: ?HPALETTE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateClip(
-) callconv(@import("std").os.windows.WINAPI) *CLIPOBJ;
+) callconv(@import("std").os.windows.WINAPI) ?*CLIPOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteClip(
-    pco: *CLIPOBJ,
+    pco: ?*CLIPOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngBitBlt(
-    psoTrg: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    psoMask: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    prclTrg: *RECTL,
-    pptlSrc: *POINTL,
-    pptlMask: *POINTL,
-    pbo: *BRUSHOBJ,
-    pptlBrush: *POINTL,
+    psoTrg: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    psoMask: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    prclTrg: ?*RECTL,
+    pptlSrc: ?*POINTL,
+    pptlMask: ?*POINTL,
+    pbo: ?*BRUSHOBJ,
+    pptlBrush: ?*POINTL,
     rop4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLineTo(
-    pso: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pbo: *BRUSHOBJ,
+    pso: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pbo: ?*BRUSHOBJ,
     x1: i32,
     y1: i32,
     x2: i32,
     y2: i32,
-    prclBounds: *RECTL,
+    prclBounds: ?*RECTL,
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStretchBlt(
-    psoDest: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    psoMask: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    pca: *COLORADJUSTMENT,
-    pptlHTOrg: *POINTL,
-    prclDest: *RECTL,
-    prclSrc: *RECTL,
-    pptlMask: *POINTL,
+    psoDest: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    psoMask: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    pca: ?*COLORADJUSTMENT,
+    pptlHTOrg: ?*POINTL,
+    prclDest: ?*RECTL,
+    prclSrc: ?*RECTL,
+    pptlMask: ?*POINTL,
     iMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStretchBltROP(
-    psoDest: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    psoMask: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    pca: *COLORADJUSTMENT,
-    pptlHTOrg: *POINTL,
-    prclDest: *RECTL,
-    prclSrc: *RECTL,
-    pptlMask: *POINTL,
+    psoDest: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    psoMask: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    pca: ?*COLORADJUSTMENT,
+    pptlHTOrg: ?*POINTL,
+    prclDest: ?*RECTL,
+    prclSrc: ?*RECTL,
+    pptlMask: ?*POINTL,
     iMode: u32,
-    pbo: *BRUSHOBJ,
+    pbo: ?*BRUSHOBJ,
     rop4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAlphaBlend(
-    psoDest: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    prclDest: *RECTL,
-    prclSrc: *RECTL,
-    pBlendObj: *BLENDOBJ,
+    psoDest: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    prclDest: ?*RECTL,
+    prclSrc: ?*RECTL,
+    pBlendObj: ?*BLENDOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGradientFill(
-    psoDest: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    pVertex: *TRIVERTEX,
+    psoDest: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    pVertex: ?*TRIVERTEX,
     nVertex: u32,
-    pMesh: *c_void,
+    pMesh: ?*c_void,
     nMesh: u32,
-    prclExtents: *RECTL,
-    pptlDitherOrg: *POINTL,
+    prclExtents: ?*RECTL,
+    pptlDitherOrg: ?*POINTL,
     ulMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngTransparentBlt(
-    psoDst: *SURFOBJ,
-    psoSrc: *SURFOBJ,
+    psoDst: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
     pco: ?*CLIPOBJ,
     pxlo: ?*XLATEOBJ,
-    prclDst: *RECTL,
-    prclSrc: *RECTL,
+    prclDst: ?*RECTL,
+    prclSrc: ?*RECTL,
     TransColor: u32,
     bCalledFromBitBlt: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngTextOut(
-    pso: *SURFOBJ,
-    pstro: *STROBJ,
-    pfo: *FONTOBJ,
-    pco: *CLIPOBJ,
-    prclExtra: *RECTL,
-    prclOpaque: *RECTL,
-    pboFore: *BRUSHOBJ,
-    pboOpaque: *BRUSHOBJ,
-    pptlOrg: *POINTL,
+    pso: ?*SURFOBJ,
+    pstro: ?*STROBJ,
+    pfo: ?*FONTOBJ,
+    pco: ?*CLIPOBJ,
+    prclExtra: ?*RECTL,
+    prclOpaque: ?*RECTL,
+    pboFore: ?*BRUSHOBJ,
+    pboOpaque: ?*BRUSHOBJ,
+    pptlOrg: ?*POINTL,
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStrokePath(
-    pso: *SURFOBJ,
-    ppo: *PATHOBJ,
-    pco: *CLIPOBJ,
-    pxo: *XFORMOBJ,
-    pbo: *BRUSHOBJ,
-    pptlBrushOrg: *POINTL,
-    plineattrs: *LINEATTRS,
+    pso: ?*SURFOBJ,
+    ppo: ?*PATHOBJ,
+    pco: ?*CLIPOBJ,
+    pxo: ?*XFORMOBJ,
+    pbo: ?*BRUSHOBJ,
+    pptlBrushOrg: ?*POINTL,
+    plineattrs: ?*LINEATTRS,
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFillPath(
-    pso: *SURFOBJ,
-    ppo: *PATHOBJ,
-    pco: *CLIPOBJ,
-    pbo: *BRUSHOBJ,
-    pptlBrushOrg: *POINTL,
+    pso: ?*SURFOBJ,
+    ppo: ?*PATHOBJ,
+    pco: ?*CLIPOBJ,
+    pbo: ?*BRUSHOBJ,
+    pptlBrushOrg: ?*POINTL,
     mix: u32,
     flOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStrokeAndFillPath(
-    pso: *SURFOBJ,
-    ppo: *PATHOBJ,
-    pco: *CLIPOBJ,
-    pxo: *XFORMOBJ,
-    pboStroke: *BRUSHOBJ,
-    plineattrs: *LINEATTRS,
-    pboFill: *BRUSHOBJ,
-    pptlBrushOrg: *POINTL,
+    pso: ?*SURFOBJ,
+    ppo: ?*PATHOBJ,
+    pco: ?*CLIPOBJ,
+    pxo: ?*XFORMOBJ,
+    pboStroke: ?*BRUSHOBJ,
+    plineattrs: ?*LINEATTRS,
+    pboFill: ?*BRUSHOBJ,
+    pptlBrushOrg: ?*POINTL,
     mixFill: u32,
     flOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngPaint(
-    pso: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pbo: *BRUSHOBJ,
-    pptlBrushOrg: *POINTL,
+    pso: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pbo: ?*BRUSHOBJ,
+    pptlBrushOrg: ?*POINTL,
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCopyBits(
-    psoDest: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    prclDest: *RECTL,
-    pptlSrc: *POINTL,
+    psoDest: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    prclDest: ?*RECTL,
+    pptlSrc: ?*POINTL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngPlgBlt(
-    psoTrg: *SURFOBJ,
-    psoSrc: *SURFOBJ,
-    psoMsk: *SURFOBJ,
-    pco: *CLIPOBJ,
-    pxlo: *XLATEOBJ,
-    pca: *COLORADJUSTMENT,
-    pptlBrushOrg: *POINTL,
-    pptfx: *POINTFIX,
-    prcl: *RECTL,
-    pptl: *POINTL,
+    psoTrg: ?*SURFOBJ,
+    psoSrc: ?*SURFOBJ,
+    psoMsk: ?*SURFOBJ,
+    pco: ?*CLIPOBJ,
+    pxlo: ?*XLATEOBJ,
+    pca: ?*COLORADJUSTMENT,
+    pptlBrushOrg: ?*POINTL,
+    pptfx: ?*POINTFIX,
+    prcl: ?*RECTL,
+    pptl: ?*POINTL,
     iMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2761,76 +2761,76 @@ pub extern "GDI32" fn HT_Get8BPPMaskPalette(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetPrinterDataFileName(
-    hdev: HDEV,
-) callconv(@import("std").os.windows.WINAPI) PWSTR;
+    hdev: ?HDEV,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetDriverName(
-    hdev: HDEV,
-) callconv(@import("std").os.windows.WINAPI) PWSTR;
+    hdev: ?HDEV,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLoadModule(
-    pwsz: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pwsz: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFindResource(
-    h: HANDLE,
+    h: ?HANDLE,
     iName: i32,
     iType: i32,
-    pulSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    pulSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFreeModule(
-    h: HANDLE,
+    h: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateSemaphore(
-) callconv(@import("std").os.windows.WINAPI) *HSEMAPHORE__;
+) callconv(@import("std").os.windows.WINAPI) ?*HSEMAPHORE__;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAcquireSemaphore(
-    hsem: *HSEMAPHORE__,
+    hsem: ?*HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngReleaseSemaphore(
-    hsem: *HSEMAPHORE__,
+    hsem: ?*HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteSemaphore(
-    hsem: *HSEMAPHORE__,
+    hsem: ?*HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMultiByteToUnicodeN(
     // TODO: what to do with BytesParamIndex 1?
-    UnicodeString: PWSTR,
+    UnicodeString: ?PWSTR,
     MaxBytesInUnicodeString: u32,
     BytesInUnicodeString: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    MultiByteString: [*]u8,
+    MultiByteString: ?[*]u8,
     BytesInMultiByteString: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngUnicodeToMultiByteN(
     // TODO: what to do with BytesParamIndex 1?
-    MultiByteString: [*]u8,
+    MultiByteString: ?[*]u8,
     MaxBytesInMultiByteString: u32,
     BytesInMultiByteString: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    UnicodeString: PWSTR,
+    UnicodeString: ?PWSTR,
     BytesInUnicodeString: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngQueryLocalTime(
-    param0: *ENG_TIME_FIELDS,
+    param0: ?*ENG_TIME_FIELDS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2838,7 +2838,7 @@ pub extern "GDI32" fn EngComputeGlyphSet(
     nCodePage: i32,
     nFirstChar: i32,
     cChars: i32,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHSET;
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHSET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMultiByteToWideChar(
@@ -2864,15 +2864,15 @@ pub extern "GDI32" fn EngWideCharToMultiByte(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetCurrentCodePage(
-    OemCodePage: *u16,
-    AnsiCodePage: *u16,
+    OemCodePage: ?*u16,
+    AnsiCodePage: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn GetDisplayConfigBufferSizes(
     flags: u32,
-    numPathArrayElements: *u32,
-    numModeInfoArrayElements: *u32,
+    numPathArrayElements: ?*u32,
+    numModeInfoArrayElements: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2887,21 +2887,21 @@ pub extern "USER32" fn SetDisplayConfig(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn QueryDisplayConfig(
     flags: u32,
-    numPathArrayElements: *u32,
+    numPathArrayElements: ?*u32,
     pathArray: [*]DISPLAYCONFIG_PATH_INFO,
-    numModeInfoArrayElements: *u32,
+    numModeInfoArrayElements: ?*u32,
     modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
-    currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
+    currentTopologyId: ?*DISPLAYCONFIG_TOPOLOGY_ID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn DisplayConfigGetDeviceInfo(
-    requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    requestPacket: ?*DISPLAYCONFIG_DEVICE_INFO_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn DisplayConfigSetDeviceInfo(
-    setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    setPacket: ?*DISPLAYCONFIG_DEVICE_INFO_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 

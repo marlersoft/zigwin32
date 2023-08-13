@@ -279,86 +279,86 @@ pub const HHACT_LAST_ENUM = @as(i32, 23);
 //--------------------------------------------------------------------------------
 pub const HHN_NOTIFY = extern struct {
     hdr: NMHDR,
-    pszUrl: [*:0]const u8,
+    pszUrl: ?[*:0]const u8,
 };
 
 pub const HH_POPUP = extern struct {
     cbStruct: i32,
-    hinst: HINSTANCE,
+    hinst: ?HINSTANCE,
     idString: u32,
-    pszText: *i8,
+    pszText: ?*i8,
     pt: POINT,
     clrForeground: u32,
     clrBackground: u32,
     rcMargins: RECT,
-    pszFont: *i8,
+    pszFont: ?*i8,
 };
 
 pub const HH_AKLINK = extern struct {
     cbStruct: i32,
     fReserved: BOOL,
-    pszKeywords: *i8,
-    pszUrl: *i8,
-    pszMsgText: *i8,
-    pszMsgTitle: *i8,
-    pszWindow: *i8,
+    pszKeywords: ?*i8,
+    pszUrl: ?*i8,
+    pszMsgText: ?*i8,
+    pszMsgTitle: ?*i8,
+    pszWindow: ?*i8,
     fIndexOnFail: BOOL,
 };
 
 pub const HH_ENUM_IT = extern struct {
     cbStruct: i32,
     iType: i32,
-    pszCatName: [*:0]const u8,
-    pszITName: [*:0]const u8,
-    pszITDescription: [*:0]const u8,
+    pszCatName: ?[*:0]const u8,
+    pszITName: ?[*:0]const u8,
+    pszITDescription: ?[*:0]const u8,
 };
 
 pub const HH_ENUM_CAT = extern struct {
     cbStruct: i32,
-    pszCatName: [*:0]const u8,
-    pszCatDescription: [*:0]const u8,
+    pszCatName: ?[*:0]const u8,
+    pszCatDescription: ?[*:0]const u8,
 };
 
 pub const HH_SET_INFOTYPE = extern struct {
     cbStruct: i32,
-    pszCatName: [*:0]const u8,
-    pszInfoTypeName: [*:0]const u8,
+    pszCatName: ?[*:0]const u8,
+    pszInfoTypeName: ?[*:0]const u8,
 };
 
 pub const HH_FTS_QUERY = extern struct {
     cbStruct: i32,
     fUniCodeStrings: BOOL,
-    pszSearchQuery: *i8,
+    pszSearchQuery: ?*i8,
     iProximity: i32,
     fStemmedSearch: BOOL,
     fTitleOnly: BOOL,
     fExecute: BOOL,
-    pszWindow: *i8,
+    pszWindow: ?*i8,
 };
 
 pub const HH_WINTYPE = extern struct {
     cbStruct: i32,
     fUniCodeStrings: BOOL,
-    pszType: *i8,
+    pszType: ?*i8,
     fsValidMembers: u32,
     fsWinProperties: u32,
-    pszCaption: *i8,
+    pszCaption: ?*i8,
     dwStyles: u32,
     dwExStyles: u32,
     rcWindowPos: RECT,
     nShowState: i32,
-    hwndHelp: HWND,
-    hwndCaller: HWND,
-    paInfoTypes: *u32,
-    hwndToolBar: HWND,
-    hwndNavigation: HWND,
-    hwndHTML: HWND,
+    hwndHelp: ?HWND,
+    hwndCaller: ?HWND,
+    paInfoTypes: ?*u32,
+    hwndToolBar: ?HWND,
+    hwndNavigation: ?HWND,
+    hwndHTML: ?HWND,
     iNavWidth: i32,
     rcHTML: RECT,
-    pszToc: *i8,
-    pszIndex: *i8,
-    pszFile: *i8,
-    pszHome: *i8,
+    pszToc: ?*i8,
+    pszIndex: ?*i8,
+    pszFile: ?*i8,
+    pszHome: ?*i8,
     fsToolBarFlags: u32,
     fNotExpanded: BOOL,
     curNavType: i32,
@@ -366,20 +366,20 @@ pub const HH_WINTYPE = extern struct {
     idNotify: i32,
     tabOrder: [20]u8,
     cHistory: i32,
-    pszJump1: *i8,
-    pszJump2: *i8,
-    pszUrlJump1: *i8,
-    pszUrlJump2: *i8,
+    pszJump1: ?*i8,
+    pszJump2: ?*i8,
+    pszUrlJump1: ?*i8,
+    pszUrlJump2: ?*i8,
     rcMinSize: RECT,
     cbInfoTypes: i32,
-    pszCustomTabs: *i8,
+    pszCustomTabs: ?*i8,
 };
 
 pub const HHNTRACK = extern struct {
     hdr: NMHDR,
-    pszCurUrl: [*:0]const u8,
+    pszCurUrl: ?[*:0]const u8,
     idAction: i32,
-    phhWinType: *HH_WINTYPE,
+    phhWinType: ?*HH_WINTYPE,
 };
 
 pub const HH_GPROPID = enum(i32) {
@@ -405,8 +405,8 @@ pub const CProperty = extern struct {
     cbData: u32,
     dwType: u32,
     Anonymous: extern union {
-        lpszwData: PWSTR,
-        lpvData: *c_void,
+        lpszwData: ?PWSTR,
+        lpvData: ?*c_void,
         dwValue: u32,
     },
     fPersist: BOOL,
@@ -426,24 +426,24 @@ pub const IITPropList = extern struct {
         Set1: fn(
             self: *const IITPropList,
             PropID: u32,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             cbData: u32,
             dwOperation: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Set2: fn(
             self: *const IITPropList,
             PropID: u32,
-            lpszwString: [*:0]const u16,
+            lpszwString: ?[*:0]const u16,
             dwOperation: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IITPropList,
-            Prop: *CProperty,
+            Prop: ?*CProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Get: fn(
             self: *const IITPropList,
             PropID: u32,
-            Property: *CProperty,
+            Property: ?*CProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IITPropList,
@@ -459,52 +459,52 @@ pub const IITPropList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFirst: fn(
             self: *const IITPropList,
-            Property: *CProperty,
+            Property: ?*CProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: fn(
             self: *const IITPropList,
-            Property: *CProperty,
+            Property: ?*CProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropCount: fn(
             self: *const IITPropList,
-            cProp: *i32,
+            cProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveHeader: fn(
             self: *const IITPropList,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             dwHdrSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveData: fn(
             self: *const IITPropList,
-            lpvHeader: *c_void,
+            lpvHeader: ?*c_void,
             dwHdrSize: u32,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             dwBufSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHeaderSize: fn(
             self: *const IITPropList,
-            dwHdrSize: *u32,
+            dwHdrSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataSize: fn(
             self: *const IITPropList,
-            lpvHeader: *c_void,
+            lpvHeader: ?*c_void,
             dwHdrSize: u32,
-            dwDataSize: *u32,
+            dwDataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveDataToStream: fn(
             self: *const IITPropList,
-            lpvHeader: *c_void,
+            lpvHeader: ?*c_void,
             dwHdrSize: u32,
-            pStream: *IStream,
+            pStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadFromMem: fn(
             self: *const IITPropList,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             dwBufSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveToMem: fn(
             self: *const IITPropList,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             dwBufSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -516,19 +516,19 @@ pub const IITPropList = extern struct {
             return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, dwData, dwOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_Set1(self: *const T, PropID: u32, lpvData: *c_void, cbData: u32, dwOperation: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_Set1(self: *const T, PropID: u32, lpvData: ?*c_void, cbData: u32, dwOperation: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, lpvData, cbData, dwOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_Set2(self: *const T, PropID: u32, lpszwString: [*:0]const u16, dwOperation: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_Set2(self: *const T, PropID: u32, lpszwString: ?[*:0]const u16, dwOperation: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, lpszwString, dwOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_Add(self: *const T, Prop: *CProperty) callconv(.Inline) HRESULT {
+        pub fn IITPropList_Add(self: *const T, Prop: ?*CProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).Add(@ptrCast(*const IITPropList, self), Prop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_Get(self: *const T, PropID: u32, Property: *CProperty) callconv(.Inline) HRESULT {
+        pub fn IITPropList_Get(self: *const T, PropID: u32, Property: ?*CProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).Get(@ptrCast(*const IITPropList, self), PropID, Property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -544,43 +544,43 @@ pub const IITPropList = extern struct {
             return @ptrCast(*const IITPropList.VTable, self.vtable).SetPersist(@ptrCast(*const IITPropList, self), fPersist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_GetFirst(self: *const T, Property: *CProperty) callconv(.Inline) HRESULT {
+        pub fn IITPropList_GetFirst(self: *const T, Property: ?*CProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).GetFirst(@ptrCast(*const IITPropList, self), Property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_GetNext(self: *const T, Property: *CProperty) callconv(.Inline) HRESULT {
+        pub fn IITPropList_GetNext(self: *const T, Property: ?*CProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).GetNext(@ptrCast(*const IITPropList, self), Property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_GetPropCount(self: *const T, cProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_GetPropCount(self: *const T, cProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).GetPropCount(@ptrCast(*const IITPropList, self), cProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_SaveHeader(self: *const T, lpvData: *c_void, dwHdrSize: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_SaveHeader(self: *const T, lpvData: ?*c_void, dwHdrSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).SaveHeader(@ptrCast(*const IITPropList, self), lpvData, dwHdrSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_SaveData(self: *const T, lpvHeader: *c_void, dwHdrSize: u32, lpvData: *c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_SaveData(self: *const T, lpvHeader: ?*c_void, dwHdrSize: u32, lpvData: ?*c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).SaveData(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, lpvData, dwBufSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_GetHeaderSize(self: *const T, dwHdrSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_GetHeaderSize(self: *const T, dwHdrSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).GetHeaderSize(@ptrCast(*const IITPropList, self), dwHdrSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_GetDataSize(self: *const T, lpvHeader: *c_void, dwHdrSize: u32, dwDataSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_GetDataSize(self: *const T, lpvHeader: ?*c_void, dwHdrSize: u32, dwDataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).GetDataSize(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, dwDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_SaveDataToStream(self: *const T, lpvHeader: *c_void, dwHdrSize: u32, pStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IITPropList_SaveDataToStream(self: *const T, lpvHeader: ?*c_void, dwHdrSize: u32, pStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).SaveDataToStream(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, pStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_LoadFromMem(self: *const T, lpvData: *c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_LoadFromMem(self: *const T, lpvData: ?*c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).LoadFromMem(@ptrCast(*const IITPropList, self), lpvData, dwBufSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITPropList_SaveToMem(self: *const T, lpvData: *c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
+        pub fn IITPropList_SaveToMem(self: *const T, lpvData: ?*c_void, dwBufSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITPropList.VTable, self.vtable).SaveToMem(@ptrCast(*const IITPropList, self), lpvData, dwBufSize);
         }
     };}
@@ -594,8 +594,8 @@ pub const IITDatabase = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IITDatabase,
-            lpszHost: [*:0]const u16,
-            lpszMoniker: [*:0]const u16,
+            lpszHost: ?[*:0]const u16,
+            lpszMoniker: ?[*:0]const u16,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
@@ -603,20 +603,20 @@ pub const IITDatabase = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateObject: fn(
             self: *const IITDatabase,
-            rclsid: *const Guid,
-            pdwObjInstance: *u32,
+            rclsid: ?*const Guid,
+            pdwObjInstance: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObject: fn(
             self: *const IITDatabase,
             dwObjInstance: u32,
-            riid: *const Guid,
-            ppvObj: **c_void,
+            riid: ?*const Guid,
+            ppvObj: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectPersistence: fn(
             self: *const IITDatabase,
-            lpwszObject: [*:0]const u16,
+            lpwszObject: ?[*:0]const u16,
             dwObjInstance: u32,
-            ppvPersistence: **c_void,
+            ppvPersistence: ?*?*c_void,
             fStream: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -624,7 +624,7 @@ pub const IITDatabase = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITDatabase_Open(self: *const T, lpszHost: [*:0]const u16, lpszMoniker: [*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IITDatabase_Open(self: *const T, lpszHost: ?[*:0]const u16, lpszMoniker: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITDatabase.VTable, self.vtable).Open(@ptrCast(*const IITDatabase, self), lpszHost, lpszMoniker, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -632,15 +632,15 @@ pub const IITDatabase = extern struct {
             return @ptrCast(*const IITDatabase.VTable, self.vtable).Close(@ptrCast(*const IITDatabase, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITDatabase_CreateObject(self: *const T, rclsid: *const Guid, pdwObjInstance: *u32) callconv(.Inline) HRESULT {
+        pub fn IITDatabase_CreateObject(self: *const T, rclsid: ?*const Guid, pdwObjInstance: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITDatabase.VTable, self.vtable).CreateObject(@ptrCast(*const IITDatabase, self), rclsid, pdwObjInstance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITDatabase_GetObject(self: *const T, dwObjInstance: u32, riid: *const Guid, ppvObj: **c_void) callconv(.Inline) HRESULT {
+        pub fn IITDatabase_GetObject(self: *const T, dwObjInstance: u32, riid: ?*const Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITDatabase.VTable, self.vtable).GetObject(@ptrCast(*const IITDatabase, self), dwObjInstance, riid, ppvObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITDatabase_GetObjectPersistence(self: *const T, lpwszObject: [*:0]const u16, dwObjInstance: u32, ppvPersistence: **c_void, fStream: BOOL) callconv(.Inline) HRESULT {
+        pub fn IITDatabase_GetObjectPersistence(self: *const T, lpwszObject: ?[*:0]const u16, dwObjInstance: u32, ppvPersistence: ?*?*c_void, fStream: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITDatabase.VTable, self.vtable).GetObjectPersistence(@ptrCast(*const IITDatabase, self), lpwszObject, dwObjInstance, ppvPersistence, fStream);
         }
     };}
@@ -662,8 +662,8 @@ pub const IITWordWheel = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IITWordWheel,
-            lpITDB: *IITDatabase,
-            lpszMoniker: [*:0]const u16,
+            lpITDB: ?*IITDatabase,
+            lpszMoniker: ?[*:0]const u16,
             dwFlags: WORD_WHEEL_OPEN_FLAGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
@@ -671,63 +671,63 @@ pub const IITWordWheel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocaleInfo: fn(
             self: *const IITWordWheel,
-            pdwCodePageID: *u32,
-            plcid: *u32,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSorterInstance: fn(
             self: *const IITWordWheel,
-            pdwObjInstance: *u32,
+            pdwObjInstance: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Count: fn(
             self: *const IITWordWheel,
-            pcEntries: *i32,
+            pcEntries: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Lookup: fn(
             self: *const IITWordWheel,
             lEntry: i32,
-            lpvKeyBuf: *c_void,
+            lpvKeyBuf: ?*c_void,
             cbKeyBuf: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Lookup1: fn(
             self: *const IITWordWheel,
             lEntry: i32,
-            lpITResult: *IITResultSet,
+            lpITResult: ?*IITResultSet,
             cEntries: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Lookup2: fn(
             self: *const IITWordWheel,
-            lpcvPrefix: *const c_void,
+            lpcvPrefix: ?*const c_void,
             fExactMatch: BOOL,
-            plEntry: *i32,
+            plEntry: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetGroup: fn(
             self: *const IITWordWheel,
-            piitGroup: *IITGroup,
+            piitGroup: ?*IITGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroup: fn(
             self: *const IITWordWheel,
-            ppiitGroup: **IITGroup,
+            ppiitGroup: ?*?*IITGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataCount: fn(
             self: *const IITWordWheel,
             lEntry: i32,
-            pdwCount: *u32,
+            pdwCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetData: fn(
             self: *const IITWordWheel,
             lEntry: i32,
-            lpITResult: *IITResultSet,
+            lpITResult: ?*IITResultSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataColumns: fn(
             self: *const IITWordWheel,
-            pRS: *IITResultSet,
+            pRS: ?*IITResultSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Open(self: *const T, lpITDB: *IITDatabase, lpszMoniker: [*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Open(self: *const T, lpITDB: ?*IITDatabase, lpszMoniker: ?[*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Open(@ptrCast(*const IITWordWheel, self), lpITDB, lpszMoniker, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -735,47 +735,47 @@ pub const IITWordWheel = extern struct {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Close(@ptrCast(*const IITWordWheel, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IITWordWheel, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetSorterInstance(self: *const T, pdwObjInstance: *u32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetSorterInstance(self: *const T, pdwObjInstance: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetSorterInstance(@ptrCast(*const IITWordWheel, self), pdwObjInstance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Count(self: *const T, pcEntries: *i32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Count(self: *const T, pcEntries: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Count(@ptrCast(*const IITWordWheel, self), pcEntries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Lookup(self: *const T, lEntry: i32, lpvKeyBuf: *c_void, cbKeyBuf: u32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Lookup(self: *const T, lEntry: i32, lpvKeyBuf: ?*c_void, cbKeyBuf: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lEntry, lpvKeyBuf, cbKeyBuf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Lookup1(self: *const T, lEntry: i32, lpITResult: *IITResultSet, cEntries: i32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Lookup1(self: *const T, lEntry: i32, lpITResult: ?*IITResultSet, cEntries: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lEntry, lpITResult, cEntries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Lookup2(self: *const T, lpcvPrefix: *const c_void, fExactMatch: BOOL, plEntry: *i32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Lookup2(self: *const T, lpcvPrefix: ?*const c_void, fExactMatch: BOOL, plEntry: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lpcvPrefix, fExactMatch, plEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_SetGroup(self: *const T, piitGroup: *IITGroup) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_SetGroup(self: *const T, piitGroup: ?*IITGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).SetGroup(@ptrCast(*const IITWordWheel, self), piitGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetGroup(self: *const T, ppiitGroup: **IITGroup) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetGroup(self: *const T, ppiitGroup: ?*?*IITGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetGroup(@ptrCast(*const IITWordWheel, self), ppiitGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetDataCount(self: *const T, lEntry: i32, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetDataCount(self: *const T, lEntry: i32, pdwCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetDataCount(@ptrCast(*const IITWordWheel, self), lEntry, pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetData(self: *const T, lEntry: i32, lpITResult: *IITResultSet) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetData(self: *const T, lEntry: i32, lpITResult: ?*IITResultSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetData(@ptrCast(*const IITWordWheel, self), lEntry, lpITResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetDataColumns(self: *const T, pRS: *IITResultSet) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_GetDataColumns(self: *const T, pRS: ?*IITResultSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetDataColumns(@ptrCast(*const IITWordWheel, self), pRS);
         }
     };}
@@ -789,12 +789,12 @@ pub const IStemSink = extern struct {
         base: IUnknown.VTable,
         PutAltWord: fn(
             self: *const IStemSink,
-            pwcInBuf: [*:0]const u16,
+            pwcInBuf: ?[*:0]const u16,
             cwc: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutWord: fn(
             self: *const IStemSink,
-            pwcInBuf: [*:0]const u16,
+            pwcInBuf: ?[*:0]const u16,
             cwc: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -802,11 +802,11 @@ pub const IStemSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemSink_PutAltWord(self: *const T, pwcInBuf: [*:0]const u16, cwc: u32) callconv(.Inline) HRESULT {
+        pub fn IStemSink_PutAltWord(self: *const T, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStemSink.VTable, self.vtable).PutAltWord(@ptrCast(*const IStemSink, self), pwcInBuf, cwc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemSink_PutWord(self: *const T, pwcInBuf: [*:0]const u16, cwc: u32) callconv(.Inline) HRESULT {
+        pub fn IStemSink_PutWord(self: *const T, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStemSink.VTable, self.vtable).PutWord(@ptrCast(*const IStemSink, self), pwcInBuf, cwc);
         }
     };}
@@ -825,8 +825,8 @@ pub const IStemmerConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocaleInfo: fn(
             self: *const IStemmerConfig,
-            pdwCodePageID: *u32,
-            plcid: *u32,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetControlInfo: fn(
             self: *const IStemmerConfig,
@@ -835,12 +835,12 @@ pub const IStemmerConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetControlInfo: fn(
             self: *const IStemmerConfig,
-            pgrfStemFlags: *u32,
-            pdwReserved: *u32,
+            pgrfStemFlags: ?*u32,
+            pdwReserved: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadExternalStemmerData: fn(
             self: *const IStemmerConfig,
-            pStream: *IStream,
+            pStream: ?*IStream,
             dwExtDataType: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -852,7 +852,7 @@ pub const IStemmerConfig = extern struct {
             return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IStemmerConfig, self), dwCodePageID, lcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemmerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+        pub fn IStemmerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IStemmerConfig, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -860,11 +860,11 @@ pub const IStemmerConfig = extern struct {
             return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetControlInfo(@ptrCast(*const IStemmerConfig, self), grfStemFlags, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemmerConfig_GetControlInfo(self: *const T, pgrfStemFlags: *u32, pdwReserved: *u32) callconv(.Inline) HRESULT {
+        pub fn IStemmerConfig_GetControlInfo(self: *const T, pgrfStemFlags: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetControlInfo(@ptrCast(*const IStemmerConfig, self), pgrfStemFlags, pdwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemmerConfig_LoadExternalStemmerData(self: *const T, pStream: *IStream, dwExtDataType: u32) callconv(.Inline) HRESULT {
+        pub fn IStemmerConfig_LoadExternalStemmerData(self: *const T, pStream: ?*IStream, dwExtDataType: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStemmerConfig.VTable, self.vtable).LoadExternalStemmerData(@ptrCast(*const IStemmerConfig, self), pStream, dwExtDataType);
         }
     };}
@@ -887,8 +887,8 @@ pub const IWordBreakerConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocaleInfo: fn(
             self: *const IWordBreakerConfig,
-            pdwCodePageID: *u32,
-            plcid: *u32,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBreakWordType: fn(
             self: *const IWordBreakerConfig,
@@ -896,7 +896,7 @@ pub const IWordBreakerConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBreakWordType: fn(
             self: *const IWordBreakerConfig,
-            pdwBreakWordType: *u32,
+            pdwBreakWordType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetControlInfo: fn(
             self: *const IWordBreakerConfig,
@@ -905,22 +905,22 @@ pub const IWordBreakerConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetControlInfo: fn(
             self: *const IWordBreakerConfig,
-            pgrfBreakFlags: *u32,
-            pdwReserved: *u32,
+            pgrfBreakFlags: ?*u32,
+            pdwReserved: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadExternalBreakerData: fn(
             self: *const IWordBreakerConfig,
-            pStream: *IStream,
+            pStream: ?*IStream,
             dwExtDataType: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWordStemmer: fn(
             self: *const IWordBreakerConfig,
-            rclsid: *const Guid,
-            pStemmer: *IStemmer,
+            rclsid: ?*const Guid,
+            pStemmer: ?*IStemmer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWordStemmer: fn(
             self: *const IWordBreakerConfig,
-            ppStemmer: **IStemmer,
+            ppStemmer: ?*?*IStemmer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -931,7 +931,7 @@ pub const IWordBreakerConfig = extern struct {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), dwCodePageID, lcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -939,7 +939,7 @@ pub const IWordBreakerConfig = extern struct {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetBreakWordType(@ptrCast(*const IWordBreakerConfig, self), dwBreakWordType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_GetBreakWordType(self: *const T, pdwBreakWordType: *u32) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_GetBreakWordType(self: *const T, pdwBreakWordType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetBreakWordType(@ptrCast(*const IWordBreakerConfig, self), pdwBreakWordType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -947,19 +947,19 @@ pub const IWordBreakerConfig = extern struct {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetControlInfo(@ptrCast(*const IWordBreakerConfig, self), grfBreakFlags, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_GetControlInfo(self: *const T, pgrfBreakFlags: *u32, pdwReserved: *u32) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_GetControlInfo(self: *const T, pgrfBreakFlags: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetControlInfo(@ptrCast(*const IWordBreakerConfig, self), pgrfBreakFlags, pdwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_LoadExternalBreakerData(self: *const T, pStream: *IStream, dwExtDataType: u32) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_LoadExternalBreakerData(self: *const T, pStream: ?*IStream, dwExtDataType: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).LoadExternalBreakerData(@ptrCast(*const IWordBreakerConfig, self), pStream, dwExtDataType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_SetWordStemmer(self: *const T, rclsid: *const Guid, pStemmer: *IStemmer) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_SetWordStemmer(self: *const T, rclsid: ?*const Guid, pStemmer: ?*IStemmer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetWordStemmer(@ptrCast(*const IWordBreakerConfig, self), rclsid, pStemmer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_GetWordStemmer(self: *const T, ppStemmer: **IStemmer) callconv(.Inline) HRESULT {
+        pub fn IWordBreakerConfig_GetWordStemmer(self: *const T, ppStemmer: ?*?*IStemmer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetWordStemmer(@ptrCast(*const IWordBreakerConfig, self), ppStemmer);
         }
     };}
@@ -988,7 +988,7 @@ pub const COLUMNSTATUS = extern struct {
 };
 
 pub const PFNCOLHEAPFREE = fn(
-    param0: *c_void,
+    param0: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 const IID_IITResultSet_Value = @import("../zig.zig").Guid.initString("3bb91d41-998b-11d0-a850-00aa006c7d01");
@@ -1004,8 +1004,8 @@ pub const IITResultSet = extern struct {
         SetColumnHeap: fn(
             self: *const IITResultSet,
             lColumnIndex: i32,
-            lpvHeap: *c_void,
-            pfnColHeapFree: PFNCOLHEAPFREE,
+            lpvHeap: ?*c_void,
+            pfnColHeapFree: ?PFNCOLHEAPFREE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyProp: fn(
             self: *const IITResultSet,
@@ -1013,19 +1013,19 @@ pub const IITResultSet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IITResultSet,
-            lpvHdr: *c_void,
+            lpvHdr: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add1: fn(
             self: *const IITResultSet,
             PropID: u32,
-            lpvDefaultData: *c_void,
+            lpvDefaultData: ?*c_void,
             cbData: u32,
             Priority: PRIORITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add2: fn(
             self: *const IITResultSet,
             PropID: u32,
-            lpszwDefault: [*:0]const u16,
+            lpszwDefault: ?[*:0]const u16,
             Priority: PRIORITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add3: fn(
@@ -1036,14 +1036,14 @@ pub const IITResultSet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Append: fn(
             self: *const IITResultSet,
-            lpvHdr: *c_void,
-            lpvData: *c_void,
+            lpvHdr: ?*c_void,
+            lpvData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Set: fn(
             self: *const IITResultSet,
             lRowIndex: i32,
-            lpvHdr: *c_void,
-            lpvData: *c_void,
+            lpvHdr: ?*c_void,
+            lpvData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Set1: fn(
             self: *const IITResultSet,
@@ -1055,67 +1055,67 @@ pub const IITResultSet = extern struct {
             self: *const IITResultSet,
             lRowIndex: i32,
             lColumnIndex: i32,
-            lpwStr: [*:0]const u16,
+            lpwStr: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Set3: fn(
             self: *const IITResultSet,
             lRowIndex: i32,
             lColumnIndex: i32,
-            lpvData: *c_void,
+            lpvData: ?*c_void,
             cbData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Copy: fn(
             self: *const IITResultSet,
-            pRSCopy: *IITResultSet,
+            pRSCopy: ?*IITResultSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendRows: fn(
             self: *const IITResultSet,
-            pResSrc: *IITResultSet,
+            pResSrc: ?*IITResultSet,
             lRowSrcFirst: i32,
             cSrcRows: i32,
-            lRowFirstDest: *i32,
+            lRowFirstDest: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Get: fn(
             self: *const IITResultSet,
             lRowIndex: i32,
             lColumnIndex: i32,
-            Prop: *CProperty,
+            Prop: ?*CProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyProp: fn(
             self: *const IITResultSet,
-            KeyPropID: *u32,
+            KeyPropID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnPriority: fn(
             self: *const IITResultSet,
             lColumnIndex: i32,
-            ColumnPriority: *PRIORITY,
+            ColumnPriority: ?*PRIORITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRowCount: fn(
             self: *const IITResultSet,
-            lNumberOfRows: *i32,
+            lNumberOfRows: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnCount: fn(
             self: *const IITResultSet,
-            lNumberOfColumns: *i32,
+            lNumberOfColumns: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumn: fn(
             self: *const IITResultSet,
             lColumnIndex: i32,
-            PropID: *u32,
+            PropID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumn1: fn(
             self: *const IITResultSet,
             lColumnIndex: i32,
-            PropID: *u32,
-            dwType: *u32,
-            lpvDefaultValue: **c_void,
-            cbSize: *u32,
-            ColumnPriority: *PRIORITY,
+            PropID: ?*u32,
+            dwType: ?*u32,
+            lpvDefaultValue: ?*?*c_void,
+            cbSize: ?*u32,
+            ColumnPriority: ?*PRIORITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnFromPropID: fn(
             self: *const IITResultSet,
             PropID: u32,
-            lColumnIndex: *i32,
+            lColumnIndex: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IITResultSet,
@@ -1140,11 +1140,11 @@ pub const IITResultSet = extern struct {
             self: *const IITResultSet,
             lRowFirst: i32,
             cRows: i32,
-            lpRowStatus: *ROWSTATUS,
+            lpRowStatus: ?*ROWSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnStatus: fn(
             self: *const IITResultSet,
-            lpColStatus: *COLUMNSTATUS,
+            lpColStatus: ?*COLUMNSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1155,7 +1155,7 @@ pub const IITResultSet = extern struct {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).SetColumnPriority(@ptrCast(*const IITResultSet, self), lColumnIndex, ColumnPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_SetColumnHeap(self: *const T, lColumnIndex: i32, lpvHeap: *c_void, pfnColHeapFree: PFNCOLHEAPFREE) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_SetColumnHeap(self: *const T, lColumnIndex: i32, lpvHeap: ?*c_void, pfnColHeapFree: ?PFNCOLHEAPFREE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).SetColumnHeap(@ptrCast(*const IITResultSet, self), lColumnIndex, lpvHeap, pfnColHeapFree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1163,15 +1163,15 @@ pub const IITResultSet = extern struct {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).SetKeyProp(@ptrCast(*const IITResultSet, self), PropID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Add(self: *const T, lpvHdr: *c_void) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Add(self: *const T, lpvHdr: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), lpvHdr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Add1(self: *const T, PropID: u32, lpvDefaultData: *c_void, cbData: u32, Priority: PRIORITY) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Add1(self: *const T, PropID: u32, lpvDefaultData: ?*c_void, cbData: u32, Priority: PRIORITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, lpvDefaultData, cbData, Priority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Add2(self: *const T, PropID: u32, lpszwDefault: [*:0]const u16, Priority: PRIORITY) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Add2(self: *const T, PropID: u32, lpszwDefault: ?[*:0]const u16, Priority: PRIORITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, lpszwDefault, Priority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1179,11 +1179,11 @@ pub const IITResultSet = extern struct {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, dwDefaultData, Priority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Append(self: *const T, lpvHdr: *c_void, lpvData: *c_void) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Append(self: *const T, lpvHdr: ?*c_void, lpvData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Append(@ptrCast(*const IITResultSet, self), lpvHdr, lpvData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Set(self: *const T, lRowIndex: i32, lpvHdr: *c_void, lpvData: *c_void) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Set(self: *const T, lRowIndex: i32, lpvHdr: ?*c_void, lpvData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lpvHdr, lpvData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1191,51 +1191,51 @@ pub const IITResultSet = extern struct {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, dwData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Set2(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpwStr: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Set2(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpwStr: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, lpwStr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Set3(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpvData: *c_void, cbData: u32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Set3(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpvData: ?*c_void, cbData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, lpvData, cbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Copy(self: *const T, pRSCopy: *IITResultSet) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Copy(self: *const T, pRSCopy: ?*IITResultSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Copy(@ptrCast(*const IITResultSet, self), pRSCopy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_AppendRows(self: *const T, pResSrc: *IITResultSet, lRowSrcFirst: i32, cSrcRows: i32, lRowFirstDest: *i32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_AppendRows(self: *const T, pResSrc: ?*IITResultSet, lRowSrcFirst: i32, cSrcRows: i32, lRowFirstDest: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).AppendRows(@ptrCast(*const IITResultSet, self), pResSrc, lRowSrcFirst, cSrcRows, lRowFirstDest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_Get(self: *const T, lRowIndex: i32, lColumnIndex: i32, Prop: *CProperty) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_Get(self: *const T, lRowIndex: i32, lColumnIndex: i32, Prop: ?*CProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Get(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, Prop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetKeyProp(self: *const T, KeyPropID: *u32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetKeyProp(self: *const T, KeyPropID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetKeyProp(@ptrCast(*const IITResultSet, self), KeyPropID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumnPriority(self: *const T, lColumnIndex: i32, ColumnPriority: *PRIORITY) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumnPriority(self: *const T, lColumnIndex: i32, ColumnPriority: ?*PRIORITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnPriority(@ptrCast(*const IITResultSet, self), lColumnIndex, ColumnPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetRowCount(self: *const T, lNumberOfRows: *i32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetRowCount(self: *const T, lNumberOfRows: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetRowCount(@ptrCast(*const IITResultSet, self), lNumberOfRows);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumnCount(self: *const T, lNumberOfColumns: *i32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumnCount(self: *const T, lNumberOfColumns: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnCount(@ptrCast(*const IITResultSet, self), lNumberOfColumns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumn(self: *const T, lColumnIndex: i32, PropID: *u32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumn(self: *const T, lColumnIndex: i32, PropID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumn(@ptrCast(*const IITResultSet, self), lColumnIndex, PropID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumn1(self: *const T, lColumnIndex: i32, PropID: *u32, dwType: *u32, lpvDefaultValue: **c_void, cbSize: *u32, ColumnPriority: *PRIORITY) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumn1(self: *const T, lColumnIndex: i32, PropID: ?*u32, dwType: ?*u32, lpvDefaultValue: ?*?*c_void, cbSize: ?*u32, ColumnPriority: ?*PRIORITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumn(@ptrCast(*const IITResultSet, self), lColumnIndex, PropID, dwType, lpvDefaultValue, cbSize, ColumnPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumnFromPropID(self: *const T, PropID: u32, lColumnIndex: *i32) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumnFromPropID(self: *const T, PropID: u32, lColumnIndex: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnFromPropID(@ptrCast(*const IITResultSet, self), PropID, lColumnIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1263,11 +1263,11 @@ pub const IITResultSet = extern struct {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).Pause(@ptrCast(*const IITResultSet, self), fPause);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetRowStatus(self: *const T, lRowFirst: i32, cRows: i32, lpRowStatus: *ROWSTATUS) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetRowStatus(self: *const T, lRowFirst: i32, cRows: i32, lpRowStatus: ?*ROWSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetRowStatus(@ptrCast(*const IITResultSet, self), lRowFirst, cRows, lpRowStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITResultSet_GetColumnStatus(self: *const T, lpColStatus: *COLUMNSTATUS) callconv(.Inline) HRESULT {
+        pub fn IITResultSet_GetColumnStatus(self: *const T, lpColStatus: ?*COLUMNSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnStatus(@ptrCast(*const IITResultSet, self), lpColStatus);
         }
     };}

@@ -488,114 +488,114 @@ pub const MODEMSETTINGS = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ClearCommBreak(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ClearCommError(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     lpErrors: ?*CLEAR_COMM_ERROR_FLAGS,
     lpStat: ?*COMSTAT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetupComm(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwInQueue: u32,
     dwOutQueue: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn EscapeCommFunction(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwFunc: ESCAPE_COMM_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommConfig(
-    hCommDev: HANDLE,
+    hCommDev: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpCC: ?*COMMCONFIG,
-    lpdwSize: *u32,
+    lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommMask(
-    hFile: HANDLE,
-    lpEvtMask: *COMM_EVENT_MASK,
+    hFile: ?HANDLE,
+    lpEvtMask: ?*COMM_EVENT_MASK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommProperties(
-    hFile: HANDLE,
-    lpCommProp: *COMMPROP,
+    hFile: ?HANDLE,
+    lpCommProp: ?*COMMPROP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommModemStatus(
-    hFile: HANDLE,
-    lpModemStat: *MODEM_STATUS_FLAGS,
+    hFile: ?HANDLE,
+    lpModemStat: ?*MODEM_STATUS_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommState(
-    hFile: HANDLE,
-    lpDCB: *DCB,
+    hFile: ?HANDLE,
+    lpDCB: ?*DCB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetCommTimeouts(
-    hFile: HANDLE,
-    lpCommTimeouts: *COMMTIMEOUTS,
+    hFile: ?HANDLE,
+    lpCommTimeouts: ?*COMMTIMEOUTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn PurgeComm(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwFlags: PURGE_COMM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetCommBreak(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetCommConfig(
-    hCommDev: HANDLE,
+    hCommDev: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpCC: *COMMCONFIG,
+    lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetCommMask(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwEvtMask: COMM_EVENT_MASK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetCommState(
-    hFile: HANDLE,
-    lpDCB: *DCB,
+    hFile: ?HANDLE,
+    lpDCB: ?*DCB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetCommTimeouts(
-    hFile: HANDLE,
-    lpCommTimeouts: *COMMTIMEOUTS,
+    hFile: ?HANDLE,
+    lpCommTimeouts: ?*COMMTIMEOUTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn TransmitCommChar(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     cChar: CHAR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WaitCommEvent(
-    hFile: HANDLE,
-    lpEvtMask: *COMM_EVENT_MASK,
+    hFile: ?HANDLE,
+    lpEvtMask: ?*COMM_EVENT_MASK,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -604,84 +604,84 @@ pub extern "api-ms-win-core-comm-l1-1-1" fn OpenCommPort(
     uPortNumber: u32,
     dwDesiredAccess: u32,
     dwFlagsAndAttributes: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "api-ms-win-core-comm-l1-1-2" fn GetCommPorts(
     lpPortNumbers: [*]u32,
     uPortNumbersCount: u32,
-    puPortNumbersFound: *u32,
+    puPortNumbersFound: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BuildCommDCBA(
-    lpDef: [*:0]const u8,
-    lpDCB: *DCB,
+    lpDef: ?[*:0]const u8,
+    lpDCB: ?*DCB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BuildCommDCBW(
-    lpDef: [*:0]const u16,
-    lpDCB: *DCB,
+    lpDef: ?[*:0]const u16,
+    lpDCB: ?*DCB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BuildCommDCBAndTimeoutsA(
-    lpDef: [*:0]const u8,
-    lpDCB: *DCB,
-    lpCommTimeouts: *COMMTIMEOUTS,
+    lpDef: ?[*:0]const u8,
+    lpDCB: ?*DCB,
+    lpCommTimeouts: ?*COMMTIMEOUTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BuildCommDCBAndTimeoutsW(
-    lpDef: [*:0]const u16,
-    lpDCB: *DCB,
-    lpCommTimeouts: *COMMTIMEOUTS,
+    lpDef: ?[*:0]const u16,
+    lpDCB: ?*DCB,
+    lpCommTimeouts: ?*COMMTIMEOUTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CommConfigDialogA(
-    lpszName: [*:0]const u8,
+    lpszName: ?[*:0]const u8,
     hWnd: ?HWND,
-    lpCC: *COMMCONFIG,
+    lpCC: ?*COMMCONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CommConfigDialogW(
-    lpszName: [*:0]const u16,
+    lpszName: ?[*:0]const u16,
     hWnd: ?HWND,
-    lpCC: *COMMCONFIG,
+    lpCC: ?*COMMCONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetDefaultCommConfigA(
-    lpszName: [*:0]const u8,
+    lpszName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
-    lpCC: *COMMCONFIG,
-    lpdwSize: *u32,
+    lpCC: ?*COMMCONFIG,
+    lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetDefaultCommConfigW(
-    lpszName: [*:0]const u16,
+    lpszName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
-    lpCC: *COMMCONFIG,
-    lpdwSize: *u32,
+    lpCC: ?*COMMCONFIG,
+    lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetDefaultCommConfigA(
-    lpszName: [*:0]const u8,
+    lpszName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
-    lpCC: *COMMCONFIG,
+    lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetDefaultCommConfigW(
-    lpszName: [*:0]const u16,
+    lpszName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
-    lpCC: *COMMCONFIG,
+    lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

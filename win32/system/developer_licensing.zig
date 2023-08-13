@@ -11,12 +11,12 @@
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
 pub extern "WSClient" fn CheckDeveloperLicense(
-    pExpiration: *FILETIME,
+    pExpiration: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSClient" fn AcquireDeveloperLicense(
     hwndParent: ?HWND,
-    pExpiration: *FILETIME,
+    pExpiration: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSClient" fn RemoveDeveloperLicense(

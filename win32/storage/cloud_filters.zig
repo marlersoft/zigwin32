@@ -48,9 +48,9 @@ pub const CF_PLACEHOLDER_CREATE_FLAG_SUPERSEDE = CF_PLACEHOLDER_CREATE_FLAGS.SUP
 pub const CF_PLACEHOLDER_CREATE_FLAG_ALWAYS_FULL = CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL;
 
 pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
-    RelativeFileName: [*:0]const u16,
+    RelativeFileName: ?[*:0]const u16,
     FsMetadata: CF_FS_METADATA,
-    FileIdentity: *const c_void,
+    FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
     Flags: CF_PLACEHOLDER_CREATE_FLAGS,
     Result: HRESULT,
@@ -113,10 +113,10 @@ pub const CF_PROVIDER_STATUS_ERROR = CF_SYNC_PROVIDER_STATUS.ERROR;
 pub const CF_PROCESS_INFO = extern struct {
     StructSize: u32,
     ProcessId: u32,
-    ImagePath: [*:0]const u16,
-    PackageName: [*:0]const u16,
-    ApplicationId: [*:0]const u16,
-    CommandLine: [*:0]const u16,
+    ImagePath: ?[*:0]const u16,
+    PackageName: ?[*:0]const u16,
+    ApplicationId: ?[*:0]const u16,
+    CommandLine: ?[*:0]const u16,
     SessionId: u32,
 };
 
@@ -343,11 +343,11 @@ pub const CF_SYNC_POLICIES = extern struct {
 
 pub const CF_SYNC_REGISTRATION = extern struct {
     StructSize: u32,
-    ProviderName: [*:0]const u16,
-    ProviderVersion: [*:0]const u16,
-    SyncRootIdentity: *const c_void,
+    ProviderName: ?[*:0]const u16,
+    ProviderVersion: ?[*:0]const u16,
+    SyncRootIdentity: ?*const c_void,
     SyncRootIdentityLength: u32,
-    FileIdentity: *const c_void,
+    FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
     ProviderId: Guid,
 };
@@ -355,22 +355,22 @@ pub const CF_SYNC_REGISTRATION = extern struct {
 pub const CF_CALLBACK_INFO = extern struct {
     StructSize: u32,
     ConnectionKey: CF_CONNECTION_KEY,
-    CallbackContext: *c_void,
-    VolumeGuidName: [*:0]const u16,
-    VolumeDosName: [*:0]const u16,
+    CallbackContext: ?*c_void,
+    VolumeGuidName: ?[*:0]const u16,
+    VolumeDosName: ?[*:0]const u16,
     VolumeSerialNumber: u32,
     SyncRootFileId: LARGE_INTEGER,
-    SyncRootIdentity: *const c_void,
+    SyncRootIdentity: ?*const c_void,
     SyncRootIdentityLength: u32,
     FileId: LARGE_INTEGER,
     FileSize: LARGE_INTEGER,
-    FileIdentity: *const c_void,
+    FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
-    NormalizedPath: [*:0]const u16,
+    NormalizedPath: ?[*:0]const u16,
     TransferKey: LARGE_INTEGER,
     PriorityHint: u8,
-    CorrelationVector: *CORRELATION_VECTOR,
-    ProcessInfo: *CF_PROCESS_INFO,
+    CorrelationVector: ?*CORRELATION_VECTOR,
+    ProcessInfo: ?*CF_PROCESS_INFO,
     RequestKey: LARGE_INTEGER,
 };
 
@@ -635,7 +635,7 @@ pub const CF_CALLBACK_PARAMETERS = extern struct {
         },
         FetchPlaceholders: extern struct {
             Flags: CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS,
-            Pattern: [*:0]const u16,
+            Pattern: ?[*:0]const u16,
         },
         OpenCompletion: extern struct {
             Flags: CF_CALLBACK_OPEN_COMPLETION_FLAGS,
@@ -659,18 +659,18 @@ pub const CF_CALLBACK_PARAMETERS = extern struct {
         },
         Rename: extern struct {
             Flags: CF_CALLBACK_RENAME_FLAGS,
-            TargetPath: [*:0]const u16,
+            TargetPath: ?[*:0]const u16,
         },
         RenameCompletion: extern struct {
             Flags: CF_CALLBACK_RENAME_COMPLETION_FLAGS,
-            SourcePath: [*:0]const u16,
+            SourcePath: ?[*:0]const u16,
         },
     },
 };
 
 pub const CF_CALLBACK = fn(
-    CallbackInfo: *const CF_CALLBACK_INFO,
-    CallbackParameters: *const CF_CALLBACK_PARAMETERS,
+    CallbackInfo: ?*const CF_CALLBACK_INFO,
+    CallbackParameters: ?*const CF_CALLBACK_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CF_CALLBACK_TYPE = enum(i32) {
@@ -706,7 +706,7 @@ pub const CF_CALLBACK_TYPE_NONE = CF_CALLBACK_TYPE.NONE;
 
 pub const CF_CALLBACK_REGISTRATION = extern struct {
     Type: CF_CALLBACK_TYPE,
-    Callback: CF_CALLBACK,
+    Callback: ?CF_CALLBACK,
 };
 
 pub const CF_CONNECT_FLAGS = enum(u32) {
@@ -767,8 +767,8 @@ pub const CF_OPERATION_INFO = extern struct {
     Type: CF_OPERATION_TYPE,
     ConnectionKey: CF_CONNECTION_KEY,
     TransferKey: LARGE_INTEGER,
-    CorrelationVector: *const CORRELATION_VECTOR,
-    SyncStatus: *const CF_SYNC_STATUS,
+    CorrelationVector: ?*const CORRELATION_VECTOR,
+    SyncStatus: ?*const CF_SYNC_STATUS,
     RequestKey: LARGE_INTEGER,
 };
 
@@ -894,13 +894,13 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
         TransferData: extern struct {
             Flags: CF_OPERATION_TRANSFER_DATA_FLAGS,
             CompletionStatus: NTSTATUS,
-            Buffer: *const c_void,
+            Buffer: ?*const c_void,
             Offset: LARGE_INTEGER,
             Length: LARGE_INTEGER,
         },
         RetrieveData: extern struct {
             Flags: CF_OPERATION_RETRIEVE_DATA_FLAGS,
-            Buffer: *c_void,
+            Buffer: ?*c_void,
             Offset: LARGE_INTEGER,
             Length: LARGE_INTEGER,
             ReturnedLength: LARGE_INTEGER,
@@ -913,22 +913,22 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
         },
         RestartHydration: extern struct {
             Flags: CF_OPERATION_RESTART_HYDRATION_FLAGS,
-            FsMetadata: *const CF_FS_METADATA,
-            FileIdentity: *const c_void,
+            FsMetadata: ?*const CF_FS_METADATA,
+            FileIdentity: ?*const c_void,
             FileIdentityLength: u32,
         },
         TransferPlaceholders: extern struct {
             Flags: CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS,
             CompletionStatus: NTSTATUS,
             PlaceholderTotalCount: LARGE_INTEGER,
-            PlaceholderArray: *CF_PLACEHOLDER_CREATE_INFO,
+            PlaceholderArray: ?*CF_PLACEHOLDER_CREATE_INFO,
             PlaceholderCount: u32,
             EntriesProcessed: u32,
         },
         AckDehydrate: extern struct {
             Flags: CF_OPERATION_ACK_DEHYDRATE_FLAGS,
             CompletionStatus: NTSTATUS,
-            FileIdentity: *const c_void,
+            FileIdentity: ?*const c_void,
             FileIdentityLength: u32,
         },
         AckRename: extern struct {
@@ -1297,29 +1297,29 @@ pub const CF_PLACEHOLDER_RANGE_INFO_MODIFIED = CF_PLACEHOLDER_RANGE_INFO_CLASS.M
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlatformInfo(
-    PlatformVersion: *CF_PLATFORM_INFO,
+    PlatformVersion: ?*CF_PLATFORM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfRegisterSyncRoot(
-    SyncRootPath: [*:0]const u16,
-    Registration: *const CF_SYNC_REGISTRATION,
-    Policies: *const CF_SYNC_POLICIES,
+    SyncRootPath: ?[*:0]const u16,
+    Registration: ?*const CF_SYNC_REGISTRATION,
+    Policies: ?*const CF_SYNC_POLICIES,
     RegisterFlags: CF_REGISTER_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfUnregisterSyncRoot(
-    SyncRootPath: [*:0]const u16,
+    SyncRootPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConnectSyncRoot(
-    SyncRootPath: [*:0]const u16,
-    CallbackTable: *const CF_CALLBACK_REGISTRATION,
+    SyncRootPath: ?[*:0]const u16,
+    CallbackTable: ?*const CF_CALLBACK_REGISTRATION,
     CallbackContext: ?*const c_void,
     ConnectFlags: CF_CONNECT_FLAGS,
-    ConnectionKey: *CF_CONNECTION_KEY,
+    ConnectionKey: ?*CF_CONNECTION_KEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -1329,20 +1329,20 @@ pub extern "cldapi" fn CfDisconnectSyncRoot(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetTransferKey(
-    FileHandle: HANDLE,
-    TransferKey: *LARGE_INTEGER,
+    FileHandle: ?HANDLE,
+    TransferKey: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReleaseTransferKey(
-    FileHandle: HANDLE,
-    TransferKey: *LARGE_INTEGER,
+    FileHandle: ?HANDLE,
+    TransferKey: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfExecute(
-    OpInfo: *const CF_OPERATION_INFO,
-    OpParams: *CF_OPERATION_PARAMETERS,
+    OpInfo: ?*const CF_OPERATION_INFO,
+    OpParams: ?*CF_OPERATION_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -1354,18 +1354,18 @@ pub extern "cldapi" fn CfUpdateSyncProviderStatus(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfQuerySyncProviderStatus(
     ConnectionKey: CF_CONNECTION_KEY,
-    ProviderStatus: *CF_SYNC_PROVIDER_STATUS,
+    ProviderStatus: ?*CF_SYNC_PROVIDER_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "cldapi" fn CfReportSyncStatus(
-    SyncRootPath: [*:0]const u16,
+    SyncRootPath: ?[*:0]const u16,
     SyncStatus: ?*CF_SYNC_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfCreatePlaceholders(
-    BaseDirectoryPath: [*:0]const u16,
+    BaseDirectoryPath: ?[*:0]const u16,
     PlaceholderArray: [*]CF_PLACEHOLDER_CREATE_INFO,
     PlaceholderCount: u32,
     CreateFlags: CF_CREATE_FLAGS,
@@ -1374,34 +1374,34 @@ pub extern "cldapi" fn CfCreatePlaceholders(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfOpenFileWithOplock(
-    FilePath: [*:0]const u16,
+    FilePath: ?[*:0]const u16,
     Flags: CF_OPEN_FILE_FLAGS,
-    ProtectedHandle: *HANDLE,
+    ProtectedHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReferenceProtectedHandle(
-    ProtectedHandle: HANDLE,
+    ProtectedHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetWin32HandleFromProtectedHandle(
-    ProtectedHandle: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    ProtectedHandle: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReleaseProtectedHandle(
-    ProtectedHandle: HANDLE,
+    ProtectedHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfCloseHandle(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConvertToPlaceholder(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
@@ -1412,7 +1412,7 @@ pub extern "cldapi" fn CfConvertToPlaceholder(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfUpdatePlaceholder(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     FsMetadata: ?*const CF_FS_METADATA,
     // TODO: what to do with BytesParamIndex 3?
     FileIdentity: ?*const c_void,
@@ -1426,14 +1426,14 @@ pub extern "cldapi" fn CfUpdatePlaceholder(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfRevertPlaceholder(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     RevertFlags: CF_REVERT_FLAGS,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfHydratePlaceholder(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
     HydrateFlags: CF_HYDRATE_FLAGS,
@@ -1441,7 +1441,7 @@ pub extern "cldapi" fn CfHydratePlaceholder(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "cldapi" fn CfDehydratePlaceholder(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
     DehydrateFlags: CF_DEHYDRATE_FLAGS,
@@ -1450,7 +1450,7 @@ pub extern "cldapi" fn CfDehydratePlaceholder(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetPinState(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     PinState: CF_PIN_STATE,
     PinFlags: CF_SET_PIN_FLAGS,
     Overlapped: ?*OVERLAPPED,
@@ -1458,7 +1458,7 @@ pub extern "cldapi" fn CfSetPinState(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetInSyncState(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     InSyncState: CF_IN_SYNC_STATE,
     InSyncFlags: CF_SET_IN_SYNC_FLAGS,
     InSyncUsn: ?*i64,
@@ -1466,14 +1466,14 @@ pub extern "cldapi" fn CfSetInSyncState(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetCorrelationVector(
-    FileHandle: HANDLE,
-    CorrelationVector: *const CORRELATION_VECTOR,
+    FileHandle: ?HANDLE,
+    CorrelationVector: ?*const CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetCorrelationVector(
-    FileHandle: HANDLE,
-    CorrelationVector: *CORRELATION_VECTOR,
+    FileHandle: ?HANDLE,
+    CorrelationVector: ?*CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -1484,51 +1484,51 @@ pub extern "cldapi" fn CfGetPlaceholderStateFromAttributeTag(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromFileInfo(
-    InfoBuffer: *const c_void,
+    InfoBuffer: ?*const c_void,
     InfoClass: FILE_INFO_BY_HANDLE_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromFindData(
-    FindData: *const WIN32_FIND_DATAA,
+    FindData: ?*const WIN32_FIND_DATAA,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderInfo(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     InfoClass: CF_PLACEHOLDER_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    InfoBuffer: *c_void,
+    InfoBuffer: ?*c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetSyncRootInfoByPath(
-    FilePath: [*:0]const u16,
+    FilePath: ?[*:0]const u16,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
-    InfoBuffer: *c_void,
+    InfoBuffer: ?*c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetSyncRootInfoByHandle(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
-    InfoBuffer: *c_void,
+    InfoBuffer: ?*c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     InfoClass: CF_PLACEHOLDER_RANGE_INFO_CLASS,
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
     // TODO: what to do with BytesParamIndex 5?
-    InfoBuffer: *c_void,
+    InfoBuffer: ?*c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

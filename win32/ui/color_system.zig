@@ -157,12 +157,12 @@ pub const LOGCOLORSPACEW = extern struct {
 };
 
 pub const ICMENUMPROCA = fn(
-    param0: PSTR,
+    param0: ?PSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ICMENUMPROCW = fn(
-    param0: PWSTR,
+    param0: ?PWSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -193,8 +193,8 @@ pub const GamutShell = extern struct {
     JMax: f32,
     cVertices: u32,
     cTriangles: u32,
-    pVertices: *JabColorF,
-    pTriangles: *GamutShellTriangle,
+    pVertices: ?*JabColorF,
+    pTriangles: ?*GamutShellTriangle,
 };
 
 pub const PrimaryJabColors = extern struct {
@@ -220,12 +220,12 @@ pub const PrimaryXYZColors = extern struct {
 };
 
 pub const GamutBoundaryDescription = extern struct {
-    pPrimaries: *PrimaryJabColors,
+    pPrimaries: ?*PrimaryJabColors,
     cNeutralSamples: u32,
-    pNeutralSamples: *JabColorF,
-    pReferenceShell: *GamutShell,
-    pPlausibleShell: *GamutShell,
-    pPossibleShell: *GamutShell,
+    pNeutralSamples: ?*JabColorF,
+    pReferenceShell: ?*GamutShell,
+    pPlausibleShell: ?*GamutShell,
+    pPossibleShell: ?*GamutShell,
 };
 
 pub const BlackInformation = extern struct {
@@ -240,19 +240,19 @@ pub const IDeviceModelPlugIn = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IDeviceModelPlugIn,
-            bstrXml: BSTR,
+            bstrXml: ?BSTR,
             cNumModels: u32,
             iModelPosition: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumChannels: fn(
             self: *const IDeviceModelPlugIn,
-            pNumChannels: *u32,
+            pNumChannels: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceToColorimetricColors: fn(
             self: *const IDeviceModelPlugIn,
             cColors: u32,
             cChannels: u32,
-            pDeviceValues: *const f32,
+            pDeviceValues: ?*const f32,
             pXYZColors: [*]XYZColorF,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ColorimetricToDeviceColors: fn(
@@ -260,7 +260,7 @@ pub const IDeviceModelPlugIn = extern struct {
             cColors: u32,
             cChannels: u32,
             pXYZColors: [*]const XYZColorF,
-            pDeviceValues: *f32,
+            pDeviceValues: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ColorimetricToDeviceColorsWithBlack: fn(
             self: *const IDeviceModelPlugIn,
@@ -268,33 +268,33 @@ pub const IDeviceModelPlugIn = extern struct {
             cChannels: u32,
             pXYZColors: [*]const XYZColorF,
             pBlackInformation: [*]const BlackInformation,
-            pDeviceValues: *f32,
+            pDeviceValues: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTransformDeviceModelInfo: fn(
             self: *const IDeviceModelPlugIn,
             iModelPosition: u32,
-            pIDeviceModelOther: *IDeviceModelPlugIn,
+            pIDeviceModelOther: ?*IDeviceModelPlugIn,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrimarySamples: fn(
             self: *const IDeviceModelPlugIn,
-            pPrimaryColor: *PrimaryXYZColors,
+            pPrimaryColor: ?*PrimaryXYZColors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGamutBoundaryMeshSize: fn(
             self: *const IDeviceModelPlugIn,
-            pNumVertices: *u32,
-            pNumTriangles: *u32,
+            pNumVertices: ?*u32,
+            pNumTriangles: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGamutBoundaryMesh: fn(
             self: *const IDeviceModelPlugIn,
             cChannels: u32,
             cVertices: u32,
             cTriangles: u32,
-            pVertices: *f32,
+            pVertices: ?*f32,
             pTriangles: [*]GamutShellTriangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNeutralAxisSize: fn(
             self: *const IDeviceModelPlugIn,
-            pcColors: *u32,
+            pcColors: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNeutralAxis: fn(
             self: *const IDeviceModelPlugIn,
@@ -306,43 +306,43 @@ pub const IDeviceModelPlugIn = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_Initialize(self: *const T, bstrXml: BSTR, cNumModels: u32, iModelPosition: u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).Initialize(@ptrCast(*const IDeviceModelPlugIn, self), bstrXml, cNumModels, iModelPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetNumChannels(self: *const T, pNumChannels: *u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_GetNumChannels(self: *const T, pNumChannels: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetNumChannels(@ptrCast(*const IDeviceModelPlugIn, self), pNumChannels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_DeviceToColorimetricColors(self: *const T, cColors: u32, cChannels: u32, pDeviceValues: *const f32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_DeviceToColorimetricColors(self: *const T, cColors: u32, cChannels: u32, pDeviceValues: ?*const f32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).DeviceToColorimetricColors(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pDeviceValues, pXYZColors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColors(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: *f32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColors(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).ColorimetricToDeviceColors(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pXYZColors, pDeviceValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColorsWithBlack(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: *f32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_ColorimetricToDeviceColorsWithBlack(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).ColorimetricToDeviceColorsWithBlack(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pXYZColors, pBlackInformation, pDeviceValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_SetTransformDeviceModelInfo(self: *const T, iModelPosition: u32, pIDeviceModelOther: *IDeviceModelPlugIn) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_SetTransformDeviceModelInfo(self: *const T, iModelPosition: u32, pIDeviceModelOther: ?*IDeviceModelPlugIn) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).SetTransformDeviceModelInfo(@ptrCast(*const IDeviceModelPlugIn, self), iModelPosition, pIDeviceModelOther);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetPrimarySamples(self: *const T, pPrimaryColor: *PrimaryXYZColors) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_GetPrimarySamples(self: *const T, pPrimaryColor: ?*PrimaryXYZColors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetPrimarySamples(@ptrCast(*const IDeviceModelPlugIn, self), pPrimaryColor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetGamutBoundaryMeshSize(self: *const T, pNumVertices: *u32, pNumTriangles: *u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_GetGamutBoundaryMeshSize(self: *const T, pNumVertices: ?*u32, pNumTriangles: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetGamutBoundaryMeshSize(@ptrCast(*const IDeviceModelPlugIn, self), pNumVertices, pNumTriangles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetGamutBoundaryMesh(self: *const T, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: *f32, pTriangles: [*]GamutShellTriangle) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_GetGamutBoundaryMesh(self: *const T, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: ?*f32, pTriangles: [*]GamutShellTriangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetGamutBoundaryMesh(@ptrCast(*const IDeviceModelPlugIn, self), cChannels, cVertices, cTriangles, pVertices, pTriangles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceModelPlugIn_GetNeutralAxisSize(self: *const T, pcColors: *u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceModelPlugIn_GetNeutralAxisSize(self: *const T, pcColors: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetNeutralAxisSize(@ptrCast(*const IDeviceModelPlugIn, self), pcColors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -360,11 +360,11 @@ pub const IGamutMapModelPlugIn = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IGamutMapModelPlugIn,
-            bstrXml: BSTR,
-            pSrcPlugIn: *IDeviceModelPlugIn,
-            pDestPlugIn: *IDeviceModelPlugIn,
-            pSrcGBD: *GamutBoundaryDescription,
-            pDestGBD: *GamutBoundaryDescription,
+            bstrXml: ?BSTR,
+            pSrcPlugIn: ?*IDeviceModelPlugIn,
+            pDestPlugIn: ?*IDeviceModelPlugIn,
+            pSrcGBD: ?*GamutBoundaryDescription,
+            pDestGBD: ?*GamutBoundaryDescription,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SourceToDestinationAppearanceColors: fn(
             self: *const IGamutMapModelPlugIn,
@@ -377,7 +377,7 @@ pub const IGamutMapModelPlugIn = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGamutMapModelPlugIn_Initialize(self: *const T, bstrXml: BSTR, pSrcPlugIn: *IDeviceModelPlugIn, pDestPlugIn: *IDeviceModelPlugIn, pSrcGBD: *GamutBoundaryDescription, pDestGBD: *GamutBoundaryDescription) callconv(.Inline) HRESULT {
+        pub fn IGamutMapModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGamutMapModelPlugIn.VTable, self.vtable).Initialize(@ptrCast(*const IGamutMapModelPlugIn, self), bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -457,7 +457,7 @@ pub const COLOR = extern union {
     hifi: HiFiCOLOR,
     Anonymous: extern struct {
         reserved1: u32,
-        reserved2: *c_void,
+        reserved2: ?*c_void,
     },
 };
 
@@ -650,7 +650,7 @@ pub const PROFILEHEADER = extern struct {
 
 pub const PROFILE = extern struct {
     dwType: u32,
-    pProfileData: *c_void,
+    pProfileData: ?*c_void,
     cbDataSize: u32,
 };
 
@@ -658,7 +658,7 @@ pub const ENUMTYPEA = extern struct {
     dwSize: u32,
     dwVersion: u32,
     dwFields: u32,
-    pDeviceName: [*:0]const u8,
+    pDeviceName: ?[*:0]const u8,
     dwMediaType: u32,
     dwDitheringMode: u32,
     dwResolution: [2]u32,
@@ -681,7 +681,7 @@ pub const ENUMTYPEW = extern struct {
     dwSize: u32,
     dwVersion: u32,
     dwFields: u32,
-    pDeviceName: [*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
     dwMediaType: u32,
     dwDitheringMode: u32,
     dwResolution: [2]u32,
@@ -708,12 +708,12 @@ pub const WCS_PROFILE_MANAGEMENT_SCOPE_SYSTEM_WIDE = WCS_PROFILE_MANAGEMENT_SCOP
 pub const WCS_PROFILE_MANAGEMENT_SCOPE_CURRENT_USER = WCS_PROFILE_MANAGEMENT_SCOPE.CURRENT_USER;
 
 pub const PCMSCALLBACKW = fn(
-    param0: *COLORMATCHSETUPW,
+    param0: ?*COLORMATCHSETUPW,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PCMSCALLBACKA = fn(
-    param0: *COLORMATCHSETUPA,
+    param0: ?*COLORMATCHSETUPA,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -721,21 +721,21 @@ pub const COLORMATCHSETUPW = extern struct {
     dwSize: u32,
     dwVersion: u32,
     dwFlags: u32,
-    hwndOwner: HWND,
-    pSourceName: [*:0]const u16,
-    pDisplayName: [*:0]const u16,
-    pPrinterName: [*:0]const u16,
+    hwndOwner: ?HWND,
+    pSourceName: ?[*:0]const u16,
+    pDisplayName: ?[*:0]const u16,
+    pPrinterName: ?[*:0]const u16,
     dwRenderIntent: u32,
     dwProofingIntent: u32,
-    pMonitorProfile: PWSTR,
+    pMonitorProfile: ?PWSTR,
     ccMonitorProfile: u32,
-    pPrinterProfile: PWSTR,
+    pPrinterProfile: ?PWSTR,
     ccPrinterProfile: u32,
-    pTargetProfile: PWSTR,
+    pTargetProfile: ?PWSTR,
     ccTargetProfile: u32,
-    lpfnHook: DLGPROC,
+    lpfnHook: ?DLGPROC,
     lParam: LPARAM,
-    lpfnApplyCallback: PCMSCALLBACKW,
+    lpfnApplyCallback: ?PCMSCALLBACKW,
     lParamApplyCallback: LPARAM,
 };
 
@@ -743,21 +743,21 @@ pub const COLORMATCHSETUPA = extern struct {
     dwSize: u32,
     dwVersion: u32,
     dwFlags: u32,
-    hwndOwner: HWND,
-    pSourceName: [*:0]const u8,
-    pDisplayName: [*:0]const u8,
-    pPrinterName: [*:0]const u8,
+    hwndOwner: ?HWND,
+    pSourceName: ?[*:0]const u8,
+    pDisplayName: ?[*:0]const u8,
+    pPrinterName: ?[*:0]const u8,
     dwRenderIntent: u32,
     dwProofingIntent: u32,
-    pMonitorProfile: PSTR,
+    pMonitorProfile: ?PSTR,
     ccMonitorProfile: u32,
-    pPrinterProfile: PSTR,
+    pPrinterProfile: ?PSTR,
     ccPrinterProfile: u32,
-    pTargetProfile: PSTR,
+    pTargetProfile: ?PSTR,
     ccTargetProfile: u32,
-    lpfnHook: DLGPROC,
+    lpfnHook: ?DLGPROC,
     lParam: LPARAM,
-    lpfnApplyCallback: PCMSCALLBACKA,
+    lpfnApplyCallback: ?PCMSCALLBACKA,
     lParamApplyCallback: LPARAM,
 };
 
@@ -798,153 +798,153 @@ pub const DisplayTransformLut = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMMode(
-    hdc: HDC,
+    hdc: ?HDC,
     mode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CheckColorsInGamut(
-    hdc: HDC,
+    hdc: ?HDC,
     lpRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
-    dlpBuffer: *c_void,
+    dlpBuffer: ?*c_void,
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetColorSpace(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+    hdc: ?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetLogColorSpaceA(
-    hColorSpace: HCOLORSPACE,
+    hColorSpace: ?HCOLORSPACE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *LOGCOLORSPACEA,
+    lpBuffer: ?*LOGCOLORSPACEA,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetLogColorSpaceW(
-    hColorSpace: HCOLORSPACE,
+    hColorSpace: ?HCOLORSPACE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *LOGCOLORSPACEW,
+    lpBuffer: ?*LOGCOLORSPACEW,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateColorSpaceA(
-    lplcs: *LOGCOLORSPACEA,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+    lplcs: ?*LOGCOLORSPACEA,
+) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateColorSpaceW(
-    lplcs: *LOGCOLORSPACEW,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+    lplcs: ?*LOGCOLORSPACEW,
+) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetColorSpace(
-    hdc: HDC,
-    hcs: HCOLORSPACE,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+    hdc: ?HDC,
+    hcs: ?HCOLORSPACE,
+) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteColorSpace(
-    hcs: HCOLORSPACE,
+    hcs: ?HCOLORSPACE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetICMProfileA(
-    hdc: HDC,
-    pBufSize: *u32,
+    hdc: ?HDC,
+    pBufSize: ?*u32,
     pszFilename: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetICMProfileW(
-    hdc: HDC,
-    pBufSize: *u32,
+    hdc: ?HDC,
+    pBufSize: ?*u32,
     pszFilename: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMProfileA(
-    hdc: HDC,
-    lpFileName: PSTR,
+    hdc: ?HDC,
+    lpFileName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMProfileW(
-    hdc: HDC,
-    lpFileName: PWSTR,
+    hdc: ?HDC,
+    lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDeviceGammaRamp(
-    hdc: HDC,
-    lpRamp: *c_void,
+    hdc: ?HDC,
+    lpRamp: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDeviceGammaRamp(
-    hdc: HDC,
-    lpRamp: *c_void,
+    hdc: ?HDC,
+    lpRamp: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ColorMatchToTarget(
-    hdc: HDC,
-    hdcTarget: HDC,
+    hdc: ?HDC,
+    hdcTarget: ?HDC,
     action: COLOR_MATCH_TO_TARGET_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumICMProfilesA(
-    hdc: HDC,
-    proc: ICMENUMPROCA,
+    hdc: ?HDC,
+    proc: ?ICMENUMPROCA,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumICMProfilesW(
-    hdc: HDC,
-    proc: ICMENUMPROCW,
+    hdc: ?HDC,
+    proc: ?ICMENUMPROCW,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UpdateICMRegKeyA(
     reserved: u32,
-    lpszCMID: PSTR,
-    lpszFileName: PSTR,
+    lpszCMID: ?PSTR,
+    lpszFileName: ?PSTR,
     command: ICM_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UpdateICMRegKeyW(
     reserved: u32,
-    lpszCMID: PWSTR,
-    lpszFileName: PWSTR,
+    lpszCMID: ?PWSTR,
+    lpszFileName: ?PWSTR,
     command: ICM_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ColorCorrectPalette(
-    hdc: HDC,
-    hPal: HPALETTE,
+    hdc: ?HDC,
+    hPal: ?HPALETTE,
     deFirst: u32,
     num: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn OpenColorProfileA(
-    pProfile: *PROFILE,
+    pProfile: ?*PROFILE,
     dwDesiredAccess: u32,
     dwShareMode: u32,
     dwCreationMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "mscms" fn OpenColorProfileW(
-    pProfile: *PROFILE,
+    pProfile: ?*PROFILE,
     dwDesiredAccess: u32,
     dwShareMode: u32,
     dwCreationMode: u32,
@@ -958,59 +958,59 @@ pub extern "mscms" fn GetColorProfileFromHandle(
     hProfile: isize,
     // TODO: what to do with BytesParamIndex 2?
     pProfile: ?*u8,
-    pcbProfile: *u32,
+    pcbProfile: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn IsColorProfileValid(
     hProfile: isize,
-    pbValid: *BOOL,
+    pbValid: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn CreateProfileFromLogColorSpaceA(
-    pLogColorSpace: *LOGCOLORSPACEA,
-    pProfile: **u8,
+    pLogColorSpace: ?*LOGCOLORSPACEA,
+    pProfile: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn CreateProfileFromLogColorSpaceW(
-    pLogColorSpace: *LOGCOLORSPACEW,
-    pProfile: **u8,
+    pLogColorSpace: ?*LOGCOLORSPACEW,
+    pProfile: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetCountColorProfileElements(
     hProfile: isize,
-    pnElementCount: *u32,
+    pnElementCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetColorProfileHeader(
     hProfile: isize,
-    pHeader: *PROFILEHEADER,
+    pHeader: ?*PROFILEHEADER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetColorProfileElementTag(
     hProfile: isize,
     dwIndex: u32,
-    pTag: *u32,
+    pTag: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn IsColorProfileTagPresent(
     hProfile: isize,
     tag: u32,
-    pbPresent: *BOOL,
+    pbPresent: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetColorProfileElement(
     hProfile: isize,
     tag: u32,
     dwOffset: u32,
-    pcbElement: *u32,
+    pcbElement: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     pElement: ?*c_void,
-    pbReference: *BOOL,
+    pbReference: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn SetColorProfileHeader(
     hProfile: isize,
-    pHeader: *PROFILEHEADER,
+    pHeader: ?*PROFILEHEADER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn SetColorProfileElementSize(
@@ -1023,7 +1023,7 @@ pub extern "mscms" fn SetColorProfileElement(
     hProfile: isize,
     tag: u32,
     dwOffset: u32,
-    pcbElement: *u32,
+    pcbElement: ?*u32,
     pElement: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1039,8 +1039,8 @@ pub extern "mscms" fn GetPS2ColorSpaceArray(
     dwCSAType: u32,
     // TODO: what to do with BytesParamIndex 4?
     pPS2ColorSpaceArray: ?*u8,
-    pcbPS2ColorSpaceArray: *u32,
-    pbBinary: *BOOL,
+    pcbPS2ColorSpaceArray: ?*u32,
+    pbBinary: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetPS2ColorRenderingIntent(
@@ -1048,7 +1048,7 @@ pub extern "mscms" fn GetPS2ColorRenderingIntent(
     dwIntent: u32,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*u8,
-    pcbPS2ColorRenderingIntent: *u32,
+    pcbPS2ColorRenderingIntent: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetPS2ColorRenderingDictionary(
@@ -1056,18 +1056,18 @@ pub extern "mscms" fn GetPS2ColorRenderingDictionary(
     dwIntent: u32,
     // TODO: what to do with BytesParamIndex 3?
     pPS2ColorRenderingDictionary: ?*u8,
-    pcbPS2ColorRenderingDictionary: *u32,
-    pbBinary: *BOOL,
+    pcbPS2ColorRenderingDictionary: ?*u32,
+    pbBinary: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetNamedProfileInfo(
     hProfile: isize,
-    pNamedProfileInfo: *NAMED_PROFILE_INFO,
+    pNamedProfileInfo: ?*NAMED_PROFILE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn ConvertColorNameToIndex(
     hProfile: isize,
-    paColorName: [*]*i8,
+    paColorName: [*]?*i8,
     paIndex: [*]u32,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1075,7 +1075,7 @@ pub extern "mscms" fn ConvertColorNameToIndex(
 pub extern "mscms" fn ConvertIndexToColorName(
     hProfile: isize,
     paIndex: [*]u32,
-    paColorName: [*]*i8,
+    paColorName: [*]?*i8,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1085,19 +1085,19 @@ pub extern "mscms" fn CreateDeviceLinkProfile(
     padwIntent: [*]u32,
     nIntents: u32,
     dwFlags: u32,
-    pProfileData: **u8,
+    pProfileData: ?*?*u8,
     indexPreferredCMM: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn CreateColorTransformA(
-    pLogColorSpace: *LOGCOLORSPACEA,
+    pLogColorSpace: ?*LOGCOLORSPACEA,
     hDestProfile: isize,
     hTargetProfile: isize,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "mscms" fn CreateColorTransformW(
-    pLogColorSpace: *LOGCOLORSPACEW,
+    pLogColorSpace: ?*LOGCOLORSPACEW,
     hDestProfile: isize,
     hTargetProfile: isize,
     dwFlags: u32,
@@ -1118,12 +1118,12 @@ pub extern "mscms" fn DeleteColorTransform(
 
 pub extern "mscms" fn TranslateBitmapBits(
     hColorTransform: isize,
-    pSrcBits: *c_void,
+    pSrcBits: ?*c_void,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwInputStride: u32,
-    pDestBits: *c_void,
+    pDestBits: ?*c_void,
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
     pfnCallBack: ?LPBMCALLBACKFN,
@@ -1132,12 +1132,12 @@ pub extern "mscms" fn TranslateBitmapBits(
 
 pub extern "mscms" fn CheckBitmapBits(
     hColorTransform: isize,
-    pSrcBits: *c_void,
+    pSrcBits: ?*c_void,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwStride: u32,
-    paResult: *u8,
+    paResult: ?*u8,
     pfnCallback: ?LPBMCALLBACKFN,
     lpCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1167,13 +1167,13 @@ pub extern "mscms" fn GetCMMInfo(
 pub extern "mscms" fn RegisterCMMA(
     pMachineName: ?[*:0]const u8,
     cmmID: u32,
-    pCMMdll: [*:0]const u8,
+    pCMMdll: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn RegisterCMMW(
     pMachineName: ?[*:0]const u16,
     cmmID: u32,
-    pCMMdll: [*:0]const u16,
+    pCMMdll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn UnregisterCMMA(
@@ -1194,66 +1194,66 @@ pub extern "mscms" fn GetColorDirectoryA(
     pMachineName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     pBuffer: ?PSTR,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetColorDirectoryW(
     pMachineName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     pBuffer: ?PWSTR,
-    pdwSize: *u32,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn InstallColorProfileA(
     pMachineName: ?[*:0]const u8,
-    pProfileName: [*:0]const u8,
+    pProfileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn InstallColorProfileW(
     pMachineName: ?[*:0]const u16,
-    pProfileName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn UninstallColorProfileA(
     pMachineName: ?[*:0]const u8,
-    pProfileName: [*:0]const u8,
+    pProfileName: ?[*:0]const u8,
     bDelete: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn UninstallColorProfileW(
     pMachineName: ?[*:0]const u16,
-    pProfileName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
     bDelete: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn EnumColorProfilesA(
     pMachineName: ?[*:0]const u8,
-    pEnumRecord: *ENUMTYPEA,
+    pEnumRecord: ?*ENUMTYPEA,
     // TODO: what to do with BytesParamIndex 3?
     pEnumerationBuffer: ?*u8,
-    pdwSizeOfEnumerationBuffer: *u32,
+    pdwSizeOfEnumerationBuffer: ?*u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn EnumColorProfilesW(
     pMachineName: ?[*:0]const u16,
-    pEnumRecord: *ENUMTYPEW,
+    pEnumRecord: ?*ENUMTYPEW,
     // TODO: what to do with BytesParamIndex 3?
     pEnumerationBuffer: ?*u8,
-    pdwSizeOfEnumerationBuffer: *u32,
+    pdwSizeOfEnumerationBuffer: ?*u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn SetStandardColorSpaceProfileA(
     pMachineName: ?[*:0]const u8,
     dwProfileID: u32,
-    pProfilename: [*:0]const u8,
+    pProfilename: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn SetStandardColorSpaceProfileW(
     pMachineName: ?[*:0]const u16,
     dwProfileID: u32,
-    pProfileName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetStandardColorSpaceProfileA(
@@ -1261,7 +1261,7 @@ pub extern "mscms" fn GetStandardColorSpaceProfileA(
     dwSCS: u32,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?PSTR,
-    pcbSize: *u32,
+    pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetStandardColorSpaceProfileW(
@@ -1269,64 +1269,64 @@ pub extern "mscms" fn GetStandardColorSpaceProfileW(
     dwSCS: u32,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?PWSTR,
-    pcbSize: *u32,
+    pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn AssociateColorProfileWithDeviceA(
     pMachineName: ?[*:0]const u8,
-    pProfileName: [*:0]const u8,
-    pDeviceName: [*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+    pDeviceName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn AssociateColorProfileWithDeviceW(
     pMachineName: ?[*:0]const u16,
-    pProfileName: [*:0]const u16,
-    pDeviceName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn DisassociateColorProfileFromDeviceA(
     pMachineName: ?[*:0]const u8,
-    pProfileName: [*:0]const u8,
-    pDeviceName: [*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+    pDeviceName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn DisassociateColorProfileFromDeviceW(
     pMachineName: ?[*:0]const u16,
-    pProfileName: [*:0]const u16,
-    pDeviceName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICMUI" fn SetupColorMatchingW(
-    pcms: *COLORMATCHSETUPW,
+    pcms: ?*COLORMATCHSETUPW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICMUI" fn SetupColorMatchingA(
-    pcms: *COLORMATCHSETUPA,
+    pcms: ?*COLORMATCHSETUPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsAssociateColorProfileWithDevice(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pProfileName: [*:0]const u16,
-    pDeviceName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsDisassociateColorProfileFromDevice(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pProfileName: [*:0]const u16,
-    pDeviceName: [*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsEnumColorProfilesSize(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pEnumRecord: *ENUMTYPEW,
-    pdwSize: *u32,
+    pEnumRecord: ?*ENUMTYPEW,
+    pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsEnumColorProfiles(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pEnumRecord: *ENUMTYPEW,
+    pEnumRecord: ?*ENUMTYPEW,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *u8,
+    pBuffer: ?*u8,
     dwSize: u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1337,7 +1337,7 @@ pub extern "mscms" fn WcsGetDefaultColorProfileSize(
     cptColorProfileType: COLORPROFILETYPE,
     cpstColorProfileSubType: COLORPROFILESUBTYPE,
     dwProfileID: u32,
-    pcbProfileName: *u32,
+    pcbProfileName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsGetDefaultColorProfile(
@@ -1348,7 +1348,7 @@ pub extern "mscms" fn WcsGetDefaultColorProfile(
     dwProfileID: u32,
     cbProfileName: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pProfileName: PWSTR,
+    pProfileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsSetDefaultColorProfile(
@@ -1367,17 +1367,17 @@ pub extern "mscms" fn WcsSetDefaultRenderingIntent(
 
 pub extern "mscms" fn WcsGetDefaultRenderingIntent(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pdwRenderingIntent: *u32,
+    pdwRenderingIntent: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsGetUsePerUserProfiles(
-    pDeviceName: [*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
     dwDeviceClass: u32,
-    pUsePerUserProfiles: *BOOL,
+    pUsePerUserProfiles: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsSetUsePerUserProfiles(
-    pDeviceName: [*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
     dwDeviceClass: u32,
     usePerUserProfiles: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1389,12 +1389,12 @@ pub extern "mscms" fn WcsTranslateColors(
     cdtInput: COLORDATATYPE,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pInputData: *c_void,
+    pInputData: ?*c_void,
     nOutputChannels: u32,
     cdtOutput: COLORDATATYPE,
     cbOutput: u32,
     // TODO: what to do with BytesParamIndex 8?
-    pOutputData: *c_void,
+    pOutputData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsCheckColors(
@@ -1404,7 +1404,7 @@ pub extern "mscms" fn WcsCheckColors(
     cdtInput: COLORDATATYPE,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pInputData: *c_void,
+    pInputData: ?*c_void,
     paResult: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1418,19 +1418,19 @@ pub extern "ICM32" fn CMCheckColors(
 
 pub extern "ICM32" fn CMCheckRGBs(
     hcmTransform: isize,
-    lpSrcBits: *c_void,
+    lpSrcBits: ?*c_void,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwStride: u32,
-    lpaResult: *u8,
-    pfnCallback: LPBMCALLBACKFN,
+    lpaResult: ?*u8,
+    pfnCallback: ?LPBMCALLBACKFN,
     ulCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMConvertColorNameToIndex(
     hProfile: isize,
-    paColorName: [*]*i8,
+    paColorName: [*]?*i8,
     paIndex: [*]u32,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1438,7 +1438,7 @@ pub extern "ICM32" fn CMConvertColorNameToIndex(
 pub extern "ICM32" fn CMConvertIndexToColorName(
     hProfile: isize,
     paIndex: [*]u32,
-    paColorName: [*]*i8,
+    paColorName: [*]?*i8,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1448,7 +1448,7 @@ pub extern "ICM32" fn CMCreateDeviceLinkProfile(
     padwIntents: [*]u32,
     nIntents: u32,
     dwFlags: u32,
-    lpProfileData: **u8,
+    lpProfileData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateMultiProfileTransform(
@@ -1460,26 +1460,26 @@ pub extern "ICM32" fn CMCreateMultiProfileTransform(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "ICM32" fn CMCreateProfileW(
-    lpColorSpace: *LOGCOLORSPACEW,
-    lpProfileData: **c_void,
+    lpColorSpace: ?*LOGCOLORSPACEW,
+    lpProfileData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateTransform(
-    lpColorSpace: *LOGCOLORSPACEA,
-    lpDevCharacter: *c_void,
-    lpTargetDevCharacter: *c_void,
+    lpColorSpace: ?*LOGCOLORSPACEA,
+    lpDevCharacter: ?*c_void,
+    lpTargetDevCharacter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "ICM32" fn CMCreateTransformW(
-    lpColorSpace: *LOGCOLORSPACEW,
-    lpDevCharacter: *c_void,
-    lpTargetDevCharacter: *c_void,
+    lpColorSpace: ?*LOGCOLORSPACEW,
+    lpDevCharacter: ?*c_void,
+    lpTargetDevCharacter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "ICM32" fn CMCreateTransformExt(
-    lpColorSpace: *LOGCOLORSPACEA,
-    lpDevCharacter: *c_void,
-    lpTargetDevCharacter: *c_void,
+    lpColorSpace: ?*LOGCOLORSPACEA,
+    lpDevCharacter: ?*c_void,
+    lpTargetDevCharacter: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -1487,38 +1487,38 @@ pub extern "ICM32" fn CMCheckColorsInGamut(
     hcmTransform: isize,
     lpaRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
-    lpaResult: *u8,
+    lpaResult: ?*u8,
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateProfile(
-    lpColorSpace: *LOGCOLORSPACEA,
-    lpProfileData: **c_void,
+    lpColorSpace: ?*LOGCOLORSPACEA,
+    lpProfileData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMTranslateRGB(
     hcmTransform: isize,
     ColorRef: u32,
-    lpColorRef: *u32,
+    lpColorRef: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMTranslateRGBs(
     hcmTransform: isize,
-    lpSrcBits: *c_void,
+    lpSrcBits: ?*c_void,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwStride: u32,
-    lpDestBits: *c_void,
+    lpDestBits: ?*c_void,
     bmOutput: BMFORMAT,
     dwTranslateDirection: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateTransformExtW(
-    lpColorSpace: *LOGCOLORSPACEW,
-    lpDevCharacter: *c_void,
-    lpTargetDevCharacter: *c_void,
+    lpColorSpace: ?*LOGCOLORSPACEW,
+    lpDevCharacter: ?*c_void,
+    lpTargetDevCharacter: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -1532,12 +1532,12 @@ pub extern "ICM32" fn CMGetInfo(
 
 pub extern "ICM32" fn CMGetNamedProfileInfo(
     hProfile: isize,
-    pNamedProfileInfo: *NAMED_PROFILE_INFO,
+    pNamedProfileInfo: ?*NAMED_PROFILE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMIsProfileValid(
     hProfile: isize,
-    lpbValid: *i32,
+    lpbValid: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMTranslateColors(
@@ -1551,20 +1551,20 @@ pub extern "ICM32" fn CMTranslateColors(
 
 pub extern "ICM32" fn CMTranslateRGBsExt(
     hcmTransform: isize,
-    lpSrcBits: *c_void,
+    lpSrcBits: ?*c_void,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwInputStride: u32,
-    lpDestBits: *c_void,
+    lpDestBits: ?*c_void,
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
-    lpfnCallback: LPBMCALLBACKFN,
+    lpfnCallback: ?LPBMCALLBACKFN,
     ulCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsOpenColorProfileA(
-    pCDMPProfile: *PROFILE,
+    pCDMPProfile: ?*PROFILE,
     pCAMPProfile: ?*PROFILE,
     pGMMPProfile: ?*PROFILE,
     dwDesireAccess: u32,
@@ -1574,7 +1574,7 @@ pub extern "mscms" fn WcsOpenColorProfileA(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "mscms" fn WcsOpenColorProfileW(
-    pCDMPProfile: *PROFILE,
+    pCDMPProfile: ?*PROFILE,
     pCAMPProfile: ?*PROFILE,
     pGMMPProfile: ?*PROFILE,
     dwDesireAccess: u32,
@@ -1589,7 +1589,7 @@ pub extern "mscms" fn WcsCreateIccProfile(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "mscms" fn WcsGetCalibrationManagementState(
-    pbIsEnabled: *BOOL,
+    pbIsEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsSetCalibrationManagementState(
@@ -1597,65 +1597,65 @@ pub extern "mscms" fn WcsSetCalibrationManagementState(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn ColorAdapterGetSystemModifyWhitePointCaps(
-    whitePointAdjCapable: *BOOL,
-    isColorOverrideActive: *BOOL,
+    whitePointAdjCapable: ?*BOOL,
+    isColorOverrideActive: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterUpdateDisplayGamma(
     displayID: DisplayID,
-    displayTransform: *DisplayTransformLut,
+    displayTransform: ?*DisplayTransformLut,
     internal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterUpdateDeviceProfile(
     displayID: DisplayID,
-    profName: PWSTR,
+    profName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterGetDisplayCurrentStateID(
     displayID: DisplayID,
-    displayStateID: *DisplayStateID,
+    displayStateID: ?*DisplayStateID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterGetDisplayTransformData(
     displayID: DisplayID,
-    displayTransformLut: *DisplayTransformLut,
-    transformID: *u32,
+    displayTransformLut: ?*DisplayTransformLut,
+    transformID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterGetDisplayTargetWhitePoint(
     displayID: DisplayID,
-    wtpt: *WhitePoint,
-    transitionTime: *u32,
-    whitepointID: *u32,
+    wtpt: ?*WhitePoint,
+    transitionTime: ?*u32,
+    whitepointID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterGetDisplayProfile(
     displayID: DisplayID,
     displayProfile: *[80]u16,
-    profileID: *u32,
-    bUseAccurate: *BOOL,
+    profileID: ?*u32,
+    bUseAccurate: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterGetCurrentProfileCalibration(
     displayID: DisplayID,
     maxCalibrationBlobSize: u32,
-    blobSize: *u32,
+    blobSize: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    calibrationBlob: *u8,
+    calibrationBlob: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterRegisterOEMColorService(
-    registration: *HANDLE,
+    registration: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterUnregisterOEMColorService(
-    registration: HANDLE,
+    registration: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorProfileAddDisplayAssociation(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: [*:0]const u16,
+    profileName: ?[*:0]const u16,
     targetAdapterID: LUID,
     sourceID: u32,
     setAsDefault: BOOL,
@@ -1664,7 +1664,7 @@ pub extern "mscms" fn ColorProfileAddDisplayAssociation(
 
 pub extern "mscms" fn ColorProfileRemoveDisplayAssociation(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: [*:0]const u16,
+    profileName: ?[*:0]const u16,
     targetAdapterID: LUID,
     sourceID: u32,
     dissociateAdvancedColor: BOOL,
@@ -1672,7 +1672,7 @@ pub extern "mscms" fn ColorProfileRemoveDisplayAssociation(
 
 pub extern "mscms" fn ColorProfileSetDisplayDefaultAssociation(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: [*:0]const u16,
+    profileName: ?[*:0]const u16,
     profileType: COLORPROFILETYPE,
     profileSubType: COLORPROFILESUBTYPE,
     targetAdapterID: LUID,
@@ -1683,8 +1683,8 @@ pub extern "mscms" fn ColorProfileGetDisplayList(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
     targetAdapterID: LUID,
     sourceID: u32,
-    profileList: **PWSTR,
-    profileCount: *u32,
+    profileList: ?*?*?PWSTR,
+    profileCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorProfileGetDisplayDefault(
@@ -1693,13 +1693,13 @@ pub extern "mscms" fn ColorProfileGetDisplayDefault(
     sourceID: u32,
     profileType: COLORPROFILETYPE,
     profileSubType: COLORPROFILESUBTYPE,
-    profileName: *PWSTR,
+    profileName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorProfileGetDisplayUserScope(
     targetAdapterID: LUID,
     sourceID: u32,
-    scope: *WCS_PROFILE_MANAGEMENT_SCOPE,
+    scope: ?*WCS_PROFILE_MANAGEMENT_SCOPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

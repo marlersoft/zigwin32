@@ -178,39 +178,39 @@ pub const OBJECTS_AND_SID = extern struct {
     ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
     ObjectTypeGuid: Guid,
     InheritedObjectTypeGuid: Guid,
-    pSid: *SID,
+    pSid: ?*SID,
 };
 
 pub const OBJECTS_AND_NAME_A = extern struct {
     ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
     ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: PSTR,
-    InheritedObjectTypeName: PSTR,
-    ptstrName: PSTR,
+    ObjectTypeName: ?PSTR,
+    InheritedObjectTypeName: ?PSTR,
+    ptstrName: ?PSTR,
 };
 
 pub const OBJECTS_AND_NAME_W = extern struct {
     ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
     ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: PWSTR,
-    InheritedObjectTypeName: PWSTR,
-    ptstrName: PWSTR,
+    ObjectTypeName: ?PWSTR,
+    InheritedObjectTypeName: ?PWSTR,
+    ptstrName: ?PWSTR,
 };
 
 pub const TRUSTEE_A = extern struct {
-    pMultipleTrustee: *TRUSTEE_A,
+    pMultipleTrustee: ?*TRUSTEE_A,
     MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
     TrusteeForm: TRUSTEE_FORM,
     TrusteeType: TRUSTEE_TYPE,
-    ptstrName: [*]u8,
+    ptstrName: ?[*]u8,
 };
 
 pub const TRUSTEE_W = extern struct {
-    pMultipleTrustee: *TRUSTEE_W,
+    pMultipleTrustee: ?*TRUSTEE_W,
     MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
     TrusteeForm: TRUSTEE_FORM,
     TrusteeType: TRUSTEE_TYPE,
-    ptstrName: [*]u16,
+    ptstrName: ?[*]u16,
 };
 
 pub const ACCESS_MODE = enum(i32) {
@@ -250,7 +250,7 @@ pub const ACTRL_ACCESS_ENTRYA = extern struct {
     Access: u32,
     ProvSpecificAccess: u32,
     Inheritance: ACE_FLAGS,
-    lpInheritProperty: PSTR,
+    lpInheritProperty: ?PSTR,
 };
 
 pub const ACTRL_ACCESS_ENTRYW = extern struct {
@@ -259,50 +259,50 @@ pub const ACTRL_ACCESS_ENTRYW = extern struct {
     Access: u32,
     ProvSpecificAccess: u32,
     Inheritance: ACE_FLAGS,
-    lpInheritProperty: PWSTR,
+    lpInheritProperty: ?PWSTR,
 };
 
 pub const ACTRL_ACCESS_ENTRY_LISTA = extern struct {
     cEntries: u32,
-    pAccessList: *ACTRL_ACCESS_ENTRYA,
+    pAccessList: ?*ACTRL_ACCESS_ENTRYA,
 };
 
 pub const ACTRL_ACCESS_ENTRY_LISTW = extern struct {
     cEntries: u32,
-    pAccessList: *ACTRL_ACCESS_ENTRYW,
+    pAccessList: ?*ACTRL_ACCESS_ENTRYW,
 };
 
 pub const ACTRL_PROPERTY_ENTRYA = extern struct {
-    lpProperty: PSTR,
-    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTA,
+    lpProperty: ?PSTR,
+    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTA,
     fListFlags: u32,
 };
 
 pub const ACTRL_PROPERTY_ENTRYW = extern struct {
-    lpProperty: PWSTR,
-    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTW,
+    lpProperty: ?PWSTR,
+    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTW,
     fListFlags: u32,
 };
 
 pub const ACTRL_ACCESSA = extern struct {
     cEntries: u32,
-    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYA,
+    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYA,
 };
 
 pub const ACTRL_ACCESSW = extern struct {
     cEntries: u32,
-    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYW,
+    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYW,
 };
 
 pub const TRUSTEE_ACCESSA = extern struct {
-    lpProperty: PSTR,
+    lpProperty: ?PSTR,
     Access: u32,
     fAccessFlags: u32,
     fReturnedAccess: u32,
 };
 
 pub const TRUSTEE_ACCESSW = extern struct {
-    lpProperty: PWSTR,
+    lpProperty: ?PWSTR,
     Access: u32,
     fAccessFlags: u32,
     fReturnedAccess: u32,
@@ -310,31 +310,31 @@ pub const TRUSTEE_ACCESSW = extern struct {
 
 pub const ACTRL_OVERLAPPED = extern struct {
     Anonymous: extern union {
-        Provider: *c_void,
+        Provider: ?*c_void,
         Reserved1: u32,
     },
     Reserved2: u32,
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
 };
 
 pub const ACTRL_ACCESS_INFOA = extern struct {
     fAccessPermission: u32,
-    lpAccessPermissionName: PSTR,
+    lpAccessPermissionName: ?PSTR,
 };
 
 pub const ACTRL_ACCESS_INFOW = extern struct {
     fAccessPermission: u32,
-    lpAccessPermissionName: PWSTR,
+    lpAccessPermissionName: ?PWSTR,
 };
 
 pub const ACTRL_CONTROL_INFOA = extern struct {
-    lpControlId: PSTR,
-    lpControlName: PSTR,
+    lpControlId: ?PSTR,
+    lpControlName: ?PSTR,
 };
 
 pub const ACTRL_CONTROL_INFOW = extern struct {
-    lpControlId: PWSTR,
-    lpControlName: PWSTR,
+    lpControlId: ?PWSTR,
+    lpControlName: ?PWSTR,
 };
 
 pub const PROG_INVOKE_SETTING = enum(i32) {
@@ -358,12 +358,12 @@ pub const FN_OBJECT_MGR_FUNCTIONS = extern struct {
 
 pub const INHERITED_FROMA = extern struct {
     GenerationGap: i32,
-    AncestorName: PSTR,
+    AncestorName: ?PSTR,
 };
 
 pub const INHERITED_FROMW = extern struct {
     GenerationGap: i32,
-    AncestorName: PWSTR,
+    AncestorName: ?PWSTR,
 };
 
 pub const AUDIT_PARAM_TYPE = enum(i32) {
@@ -405,7 +405,7 @@ pub const AUDIT_OBJECT_TYPE = extern struct {
 pub const AUDIT_OBJECT_TYPES = extern struct {
     Count: u16,
     Flags: u16,
-    pObjectTypes: *AUDIT_OBJECT_TYPE,
+    pObjectTypes: ?*AUDIT_OBJECT_TYPE,
 };
 
 pub const AUDIT_IP_ADDRESS = extern struct {
@@ -418,13 +418,13 @@ pub const AUDIT_PARAM = extern struct {
     Flags: u32,
     Anonymous1: extern union {
         Data0: usize,
-        String: PWSTR,
+        String: ?PWSTR,
         u: usize,
-        psid: *SID,
-        pguid: *Guid,
+        psid: ?*SID,
+        pguid: ?*Guid,
         LogonId_LowPart: u32,
-        pObjectTypes: *AUDIT_OBJECT_TYPES,
-        pIpAddress: *AUDIT_IP_ADDRESS,
+        pObjectTypes: ?*AUDIT_OBJECT_TYPES,
+        pIpAddress: ?*AUDIT_IP_ADDRESS,
     },
     Anonymous2: extern union {
         Data1: usize,
@@ -436,7 +436,7 @@ pub const AUDIT_PARAMS = extern struct {
     Length: u32,
     Flags: u32,
     Count: u16,
-    Parameters: *AUDIT_PARAM,
+    Parameters: ?*AUDIT_PARAM,
 };
 
 pub const AUTHZ_AUDIT_EVENT_TYPE_LEGACY = extern struct {
@@ -464,58 +464,58 @@ pub const AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__ = extern struct {
 
 pub const AUTHZ_ACCESS_REQUEST = extern struct {
     DesiredAccess: u32,
-    PrincipalSelfSid: PSID,
-    ObjectTypeList: *OBJECT_TYPE_LIST,
+    PrincipalSelfSid: ?PSID,
+    ObjectTypeList: ?*OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    OptionalArguments: *c_void,
+    OptionalArguments: ?*c_void,
 };
 
 pub const AUTHZ_ACCESS_REPLY = extern struct {
     ResultListLength: u32,
-    GrantedAccessMask: *u32,
-    SaclEvaluationResults: *AUTHZ_GENERATE_RESULTS,
-    Error: *u32,
+    GrantedAccessMask: ?*u32,
+    SaclEvaluationResults: ?*AUTHZ_GENERATE_RESULTS,
+    Error: ?*u32,
 };
 
 pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pAce: *ACE_HEADER,
+    pAce: ?*ACE_HEADER,
     pArgs: ?*c_void,
-    pbAceApplicable: *BOOL,
+    pbAceApplicable: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    Args: *c_void,
-    pSidAttrArray: **SID_AND_ATTRIBUTES,
-    pSidCount: *u32,
-    pRestrictedSidAttrArray: **SID_AND_ATTRIBUTES,
-    pRestrictedSidCount: *u32,
+    Args: ?*c_void,
+    pSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
+    pSidCount: ?*u32,
+    pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
+    pRestrictedSidCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = fn(
-    pSidAttrArray: *SID_AND_ATTRIBUTES,
+    pSidAttrArray: ?*SID_AND_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    capid: PSID,
+    capid: ?PSID,
     pArgs: ?*c_void,
-    pCentralAccessPolicyApplicable: *BOOL,
-    ppCentralAccessPolicy: **c_void,
+    pCentralAccessPolicyApplicable: ?*BOOL,
+    ppCentralAccessPolicy: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = fn(
-    pCentralAccessPolicy: *c_void,
+    pCentralAccessPolicy: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
-    pName: PWSTR,
+    pName: ?PWSTR,
 };
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: *c_void,
+    pValue: ?*c_void,
     ValueLength: u32,
 };
 
@@ -546,17 +546,17 @@ pub const AUTHZ_SID_OPERATION_DELETE = AUTHZ_SID_OPERATION.DELETE;
 pub const AUTHZ_SID_OPERATION_REPLACE = AUTHZ_SID_OPERATION.REPLACE;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
-    pName: PWSTR,
+    pName: ?PWSTR,
     ValueType: u16,
     Reserved: u16,
     Flags: AUTHZ_SECURITY_ATTRIBUTE_FLAGS,
     ValueCount: u32,
     Values: extern union {
-        pInt64: *i64,
-        pUint64: *u64,
-        ppString: *PWSTR,
-        pFqbn: *AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE,
-        pOctetString: *AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
+        pInt64: ?*i64,
+        pUint64: ?*u64,
+        ppString: ?*?PWSTR,
+        pFqbn: ?*AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE,
+        pOctetString: ?*AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
     },
 };
 
@@ -565,28 +565,28 @@ pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Reserved: u16,
     AttributeCount: u32,
     Attribute: extern union {
-        pAttributeV1: *AUTHZ_SECURITY_ATTRIBUTE_V1,
+        pAttributeV1: ?*AUTHZ_SECURITY_ATTRIBUTE_V1,
     },
 };
 
 pub const AUTHZ_RPC_INIT_INFO_CLIENT = extern struct {
     version: u16,
-    ObjectUuid: PWSTR,
-    ProtSeq: PWSTR,
-    NetworkAddr: PWSTR,
-    Endpoint: PWSTR,
-    Options: PWSTR,
-    ServerSpn: PWSTR,
+    ObjectUuid: ?PWSTR,
+    ProtSeq: ?PWSTR,
+    NetworkAddr: ?PWSTR,
+    Endpoint: ?PWSTR,
+    Options: ?PWSTR,
+    ServerSpn: ?PWSTR,
 };
 
 pub const AUTHZ_INIT_INFO = extern struct {
     version: u16,
-    szResourceManagerName: [*:0]const u16,
-    pfnDynamicAccessCheck: PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
-    pfnComputeDynamicGroups: PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
-    pfnFreeDynamicGroups: PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
-    pfnGetCentralAccessPolicy: PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY,
-    pfnFreeCentralAccessPolicy: PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY,
+    szResourceManagerName: ?[*:0]const u16,
+    pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
+    pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
+    pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
+    pfnGetCentralAccessPolicy: ?PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY,
+    pfnFreeCentralAccessPolicy: ?PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY,
 };
 
 pub const AUTHZ_CONTEXT_INFORMATION_CLASS = enum(i32) {
@@ -638,20 +638,20 @@ pub const AuthzAuditEventInfoObjectName = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.Ob
 pub const AuthzAuditEventInfoAdditionalInfo = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.AdditionalInfo;
 
 pub const AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET = extern struct {
-    szObjectTypeName: PWSTR,
+    szObjectTypeName: ?PWSTR,
     dwOffset: u32,
 };
 
 pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     dwFlags: u32,
-    szEventSourceName: PWSTR,
-    szEventMessageFile: PWSTR,
-    szEventSourceXmlSchemaFile: PWSTR,
-    szEventAccessStringsFile: PWSTR,
-    szExecutableImagePath: PWSTR,
+    szEventSourceName: ?PWSTR,
+    szEventMessageFile: ?PWSTR,
+    szEventSourceXmlSchemaFile: ?PWSTR,
+    szEventAccessStringsFile: ?PWSTR,
+    szExecutableImagePath: ?PWSTR,
     Anonymous: extern union {
-        pReserved: *c_void,
-        pProviderGuid: *Guid,
+        pReserved: ?*c_void,
+        pProviderGuid: ?*Guid,
     },
     dwObjectTypeNameCount: u32,
     ObjectTypeNames: [1]AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET,
@@ -675,27 +675,27 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzAuthorizationStore,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzAuthorizationStore,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzAuthorizationStore,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzAuthorizationStore,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainTimeout: fn(
             self: *const IAzAuthorizationStore,
-            plProp: *i32,
+            plProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DomainTimeout: fn(
@@ -705,7 +705,7 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScriptEngineTimeout: fn(
             self: *const IAzAuthorizationStore,
-            plProp: *i32,
+            plProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScriptEngineTimeout: fn(
@@ -715,7 +715,7 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxScriptEngines: fn(
             self: *const IAzAuthorizationStore,
-            plProp: *i32,
+            plProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxScriptEngines: fn(
@@ -725,7 +725,7 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: fn(
             self: *const IAzAuthorizationStore,
-            pbProp: *BOOL,
+            pbProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: fn(
@@ -735,13 +735,13 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzAuthorizationStore,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzAuthorizationStore,
@@ -764,37 +764,37 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: fn(
             self: *const IAzAuthorizationStore,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: fn(
             self: *const IAzAuthorizationStore,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministrator: fn(
             self: *const IAzAuthorizationStore,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministrator: fn(
             self: *const IAzAuthorizationStore,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReader: fn(
             self: *const IAzAuthorizationStore,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReader: fn(
             self: *const IAzAuthorizationStore,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IAzAuthorizationStore,
             lFlags: AZ_PROP_CONSTANTS,
-            bstrPolicyURL: BSTR,
+            bstrPolicyURL: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateCache: fn(
@@ -808,45 +808,45 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Applications: fn(
             self: *const IAzAuthorizationStore,
-            ppAppCollection: ?**IAzApplications,
+            ppAppCollection: ?*?*IAzApplications,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplication: fn(
             self: *const IAzAuthorizationStore,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-            ppApplication: ?**IAzApplication,
+            ppApplication: ?*?*IAzApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplication: fn(
             self: *const IAzAuthorizationStore,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-            ppApplication: ?**IAzApplication,
+            ppApplication: ?*?*IAzApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplication: fn(
             self: *const IAzAuthorizationStore,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: fn(
             self: *const IAzAuthorizationStore,
-            ppGroupCollection: ?**IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Submit: fn(
@@ -857,27 +857,27 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: fn(
             self: *const IAzAuthorizationStore,
-            pvarDelegatedPolicyUsers: *VARIANT,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDelegatedPolicyUser: fn(
             self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteDelegatedPolicyUser: fn(
             self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetMachine: fn(
             self: *const IAzAuthorizationStore,
-            pbstrTargetMachine: ?*BSTR,
+            pbstrTargetMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: fn(
             self: *const IAzAuthorizationStore,
-            pbApplyStoreSacl: *BOOL,
+            pbApplyStoreSacl: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: fn(
@@ -887,51 +887,51 @@ pub const IAzAuthorizationStore = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: fn(
             self: *const IAzAuthorizationStore,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: fn(
             self: *const IAzAuthorizationStore,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministratorName: fn(
             self: *const IAzAuthorizationStore,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministratorName: fn(
             self: *const IAzAuthorizationStore,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReaderName: fn(
             self: *const IAzAuthorizationStore,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReaderName: fn(
             self: *const IAzAuthorizationStore,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: fn(
             self: *const IAzAuthorizationStore,
-            pvarDelegatedPolicyUsers: *VARIANT,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDelegatedPolicyUserName: fn(
             self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteDelegatedPolicyUserName: fn(
             self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseApplication: fn(
             self: *const IAzAuthorizationStore,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             lFlag: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -939,23 +939,23 @@ pub const IAzAuthorizationStore = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_Description(@ptrCast(*const IAzAuthorizationStore, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_Description(@ptrCast(*const IAzAuthorizationStore, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzAuthorizationStore, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DomainTimeout(self: *const T, plProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_DomainTimeout(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_DomainTimeout(@ptrCast(*const IAzAuthorizationStore, self), plProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -963,7 +963,7 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_DomainTimeout(@ptrCast(*const IAzAuthorizationStore, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ScriptEngineTimeout(self: *const T, plProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ScriptEngineTimeout(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ScriptEngineTimeout(@ptrCast(*const IAzAuthorizationStore, self), plProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -971,7 +971,7 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_ScriptEngineTimeout(@ptrCast(*const IAzAuthorizationStore, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_MaxScriptEngines(self: *const T, plProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_MaxScriptEngines(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_MaxScriptEngines(@ptrCast(*const IAzAuthorizationStore, self), plProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -979,7 +979,7 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_MaxScriptEngines(@ptrCast(*const IAzAuthorizationStore, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_GenerateAudits(self: *const T, pbProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_GenerateAudits(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_GenerateAudits(@ptrCast(*const IAzAuthorizationStore, self), pbProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -987,11 +987,11 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_GenerateAudits(@ptrCast(*const IAzAuthorizationStore, self), bProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_Writable(@ptrCast(*const IAzAuthorizationStore, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).GetProperty(@ptrCast(*const IAzAuthorizationStore, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1007,31 +1007,31 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeletePropertyItem(@ptrCast(*const IAzAuthorizationStore, self), lPropId, varProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyAdministrators(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_PolicyAdministrators(@ptrCast(*const IAzAuthorizationStore, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyReaders(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_PolicyReaders(@ptrCast(*const IAzAuthorizationStore, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddPolicyAdministrator(@ptrCast(*const IAzAuthorizationStore, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeletePolicyAdministrator(@ptrCast(*const IAzAuthorizationStore, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddPolicyReader(@ptrCast(*const IAzAuthorizationStore, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeletePolicyReader(@ptrCast(*const IAzAuthorizationStore, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_Initialize(self: *const T, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_Initialize(self: *const T, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).Initialize(@ptrCast(*const IAzAuthorizationStore, self), lFlags, bstrPolicyURL, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1043,35 +1043,35 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).Delete(@ptrCast(*const IAzAuthorizationStore, self), varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Applications(self: *const T, ppAppCollection: ?**IAzApplications) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_Applications(self: *const T, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_Applications(@ptrCast(*const IAzAuthorizationStore, self), ppAppCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?**IAzApplication) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_OpenApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).OpenApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?**IAzApplication) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_CreateApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).CreateApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeleteApplication(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationGroups(self: *const T, ppGroupCollection: ?**IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzAuthorizationStore, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzAuthorizationStore, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzAuthorizationStore, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteApplicationGroup(@ptrCast(*const IAzAuthorizationStore, self), bstrGroupName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1079,23 +1079,23 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).Submit(@ptrCast(*const IAzAuthorizationStore, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_DelegatedPolicyUsers(@ptrCast(*const IAzAuthorizationStore, self), pvarDelegatedPolicyUsers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddDelegatedPolicyUser(@ptrCast(*const IAzAuthorizationStore, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteDelegatedPolicyUser(@ptrCast(*const IAzAuthorizationStore, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_TargetMachine(self: *const T, pbstrTargetMachine: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_TargetMachine(self: *const T, pbstrTargetMachine: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_TargetMachine(@ptrCast(*const IAzAuthorizationStore, self), pbstrTargetMachine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplyStoreSacl(self: *const T, pbApplyStoreSacl: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ApplyStoreSacl(self: *const T, pbApplyStoreSacl: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ApplyStoreSacl(@ptrCast(*const IAzAuthorizationStore, self), pbApplyStoreSacl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1103,43 +1103,43 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_ApplyStoreSacl(@ptrCast(*const IAzAuthorizationStore, self), bApplyStoreSacl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyAdministratorsName(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_PolicyAdministratorsName(@ptrCast(*const IAzAuthorizationStore, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_PolicyReadersName(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_PolicyReadersName(@ptrCast(*const IAzAuthorizationStore, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddPolicyAdministratorName(@ptrCast(*const IAzAuthorizationStore, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeletePolicyAdministratorName(@ptrCast(*const IAzAuthorizationStore, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddPolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddPolicyReaderName(@ptrCast(*const IAzAuthorizationStore, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeletePolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeletePolicyReaderName(@ptrCast(*const IAzAuthorizationStore, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_DelegatedPolicyUsersName(@ptrCast(*const IAzAuthorizationStore, self), pvarDelegatedPolicyUsers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).AddDelegatedPolicyUserName(@ptrCast(*const IAzAuthorizationStore, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteDelegatedPolicyUserName(@ptrCast(*const IAzAuthorizationStore, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CloseApplication(self: *const T, bstrApplicationName: BSTR, lFlag: i32) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_CloseApplication(self: *const T, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).CloseApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, lFlag);
         }
     };}
@@ -1154,26 +1154,26 @@ pub const IAzAuthorizationStore2 = extern struct {
         base: IAzAuthorizationStore.VTable,
         OpenApplication2: fn(
             self: *const IAzAuthorizationStore2,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-            ppApplication: ?**IAzApplication2,
+            ppApplication: ?*?*IAzApplication2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplication2: fn(
             self: *const IAzAuthorizationStore2,
-            bstrApplicationName: BSTR,
+            bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-            ppApplication: ?**IAzApplication2,
+            ppApplication: ?*?*IAzApplication2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzAuthorizationStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_OpenApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?**IAzApplication2) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore2_OpenApplication2(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore2.VTable, self.vtable).OpenApplication2(@ptrCast(*const IAzAuthorizationStore2, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_CreateApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?**IAzApplication2) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore2_CreateApplication2(self: *const T, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore2.VTable, self.vtable).CreateApplication2(@ptrCast(*const IAzAuthorizationStore2, self), bstrApplicationName, varReserved, ppApplication);
         }
     };}
@@ -1188,11 +1188,11 @@ pub const IAzAuthorizationStore3 = extern struct {
         base: IAzAuthorizationStore2.VTable,
         IsUpdateNeeded: fn(
             self: *const IAzAuthorizationStore3,
-            pbIsUpdateNeeded: *i16,
+            pbIsUpdateNeeded: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BizruleGroupSupported: fn(
             self: *const IAzAuthorizationStore3,
-            pbSupported: *i16,
+            pbSupported: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpgradeStoresFunctionalLevel: fn(
             self: *const IAzAuthorizationStore3,
@@ -1201,23 +1201,23 @@ pub const IAzAuthorizationStore3 = extern struct {
         IsFunctionalLevelUpgradeSupported: fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
-            pbSupported: *i16,
+            pbSupported: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSchemaVersion: fn(
             self: *const IAzAuthorizationStore3,
-            plMajorVersion: *i32,
-            plMinorVersion: *i32,
+            plMajorVersion: ?*i32,
+            plMinorVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzAuthorizationStore2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_IsUpdateNeeded(self: *const T, pbIsUpdateNeeded: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore3_IsUpdateNeeded(self: *const T, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore3.VTable, self.vtable).IsUpdateNeeded(@ptrCast(*const IAzAuthorizationStore3, self), pbIsUpdateNeeded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_BizruleGroupSupported(self: *const T, pbSupported: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore3_BizruleGroupSupported(self: *const T, pbSupported: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore3.VTable, self.vtable).BizruleGroupSupported(@ptrCast(*const IAzAuthorizationStore3, self), pbSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1225,11 +1225,11 @@ pub const IAzAuthorizationStore3 = extern struct {
             return @ptrCast(*const IAzAuthorizationStore3.VTable, self.vtable).UpgradeStoresFunctionalLevel(@ptrCast(*const IAzAuthorizationStore3, self), lFunctionalLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_IsFunctionalLevelUpgradeSupported(self: *const T, lFunctionalLevel: i32, pbSupported: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore3_IsFunctionalLevelUpgradeSupported(self: *const T, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore3.VTable, self.vtable).IsFunctionalLevelUpgradeSupported(@ptrCast(*const IAzAuthorizationStore3, self), lFunctionalLevel, pbSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore3_GetSchemaVersion(self: *const T, plMajorVersion: *i32, plMinorVersion: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore3_GetSchemaVersion(self: *const T, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore3.VTable, self.vtable).GetSchemaVersion(@ptrCast(*const IAzAuthorizationStore3, self), plMajorVersion, plMinorVersion);
         }
     };}
@@ -1245,57 +1245,57 @@ pub const IAzApplication = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzApplication,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzApplication,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzApplication,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzApplication,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzApplication,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzApplication,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthzInterfaceClsid: fn(
             self: *const IAzApplication,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthzInterfaceClsid: fn(
             self: *const IAzApplication,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: fn(
             self: *const IAzApplication,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: fn(
             self: *const IAzApplication,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: fn(
             self: *const IAzApplication,
-            pbProp: *BOOL,
+            pbProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: fn(
@@ -1305,7 +1305,7 @@ pub const IAzApplication = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: fn(
             self: *const IAzApplication,
-            pbProp: *BOOL,
+            pbProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: fn(
@@ -1315,13 +1315,13 @@ pub const IAzApplication = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzApplication,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzApplication,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzApplication,
@@ -1332,148 +1332,148 @@ pub const IAzApplication = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: fn(
             self: *const IAzApplication,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: fn(
             self: *const IAzApplication,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministrator: fn(
             self: *const IAzApplication,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministrator: fn(
             self: *const IAzApplication,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReader: fn(
             self: *const IAzApplication,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReader: fn(
             self: *const IAzApplication,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scopes: fn(
             self: *const IAzApplication,
-            ppScopeCollection: ?**IAzScopes,
+            ppScopeCollection: ?*?*IAzScopes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenScope: fn(
             self: *const IAzApplication,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             varReserved: VARIANT,
-            ppScope: ?**IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScope: fn(
             self: *const IAzApplication,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             varReserved: VARIANT,
-            ppScope: ?**IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteScope: fn(
             self: *const IAzApplication,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: fn(
             self: *const IAzApplication,
-            ppOperationCollection: ?**IAzOperations,
+            ppOperationCollection: ?*?*IAzOperations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenOperation: fn(
             self: *const IAzApplication,
-            bstrOperationName: BSTR,
+            bstrOperationName: ?BSTR,
             varReserved: VARIANT,
-            ppOperation: ?**IAzOperation,
+            ppOperation: ?*?*IAzOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperation: fn(
             self: *const IAzApplication,
-            bstrOperationName: BSTR,
+            bstrOperationName: ?BSTR,
             varReserved: VARIANT,
-            ppOperation: ?**IAzOperation,
+            ppOperation: ?*?*IAzOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteOperation: fn(
             self: *const IAzApplication,
-            bstrOperationName: BSTR,
+            bstrOperationName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: fn(
             self: *const IAzApplication,
-            ppTaskCollection: ?**IAzTasks,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenTask: fn(
             self: *const IAzApplication,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-            ppTask: ?**IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTask: fn(
             self: *const IAzApplication,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-            ppTask: ?**IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzApplication,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: fn(
             self: *const IAzApplication,
-            ppGroupCollection: ?**IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzApplication,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzApplication,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzApplication,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: fn(
             self: *const IAzApplication,
-            ppRoleCollection: ?**IAzRoles,
+            ppRoleCollection: ?*?*IAzRoles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRole: fn(
             self: *const IAzApplication,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-            ppRole: ?**IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRole: fn(
             self: *const IAzApplication,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-            ppRole: ?**IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRole: fn(
             self: *const IAzApplication,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeClientContextFromToken: fn(
             self: *const IAzApplication,
             ullTokenHandle: u64,
             varReserved: VARIANT,
-            ppClientContext: ?**IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyItem: fn(
             self: *const IAzApplication,
@@ -1494,76 +1494,76 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeClientContextFromName: fn(
             self: *const IAzApplication,
-            ClientName: BSTR,
-            DomainName: BSTR,
+            ClientName: ?BSTR,
+            DomainName: ?BSTR,
             varReserved: VARIANT,
-            ppClientContext: ?**IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: fn(
             self: *const IAzApplication,
-            pvarDelegatedPolicyUsers: *VARIANT,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDelegatedPolicyUser: fn(
             self: *const IAzApplication,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteDelegatedPolicyUser: fn(
             self: *const IAzApplication,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeClientContextFromStringSid: fn(
             self: *const IAzApplication,
-            SidString: BSTR,
+            SidString: ?BSTR,
             lOptions: i32,
             varReserved: VARIANT,
-            ppClientContext: ?**IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: fn(
             self: *const IAzApplication,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: fn(
             self: *const IAzApplication,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministratorName: fn(
             self: *const IAzApplication,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministratorName: fn(
             self: *const IAzApplication,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReaderName: fn(
             self: *const IAzApplication,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReaderName: fn(
             self: *const IAzApplication,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: fn(
             self: *const IAzApplication,
-            pvarDelegatedPolicyUsers: *VARIANT,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDelegatedPolicyUserName: fn(
             self: *const IAzApplication,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteDelegatedPolicyUserName: fn(
             self: *const IAzApplication,
-            bstrDelegatedPolicyUser: BSTR,
+            bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1571,47 +1571,47 @@ pub const IAzApplication = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Name(@ptrCast(*const IAzApplication, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_Name(@ptrCast(*const IAzApplication, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Description(@ptrCast(*const IAzApplication, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_Description(@ptrCast(*const IAzApplication, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzApplication, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzApplication, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_AuthzInterfaceClsid(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_AuthzInterfaceClsid(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_AuthzInterfaceClsid(@ptrCast(*const IAzApplication, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_AuthzInterfaceClsid(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_put_AuthzInterfaceClsid(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_AuthzInterfaceClsid(@ptrCast(*const IAzApplication, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Version(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Version(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Version(@ptrCast(*const IAzApplication, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_put_Version(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_put_Version(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_Version(@ptrCast(*const IAzApplication, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_GenerateAudits(self: *const T, pbProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_GenerateAudits(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_GenerateAudits(@ptrCast(*const IAzApplication, self), pbProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1619,7 +1619,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_GenerateAudits(@ptrCast(*const IAzApplication, self), bProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplyStoreSacl(self: *const T, pbProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_ApplyStoreSacl(self: *const T, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_ApplyStoreSacl(@ptrCast(*const IAzApplication, self), pbProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1627,11 +1627,11 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_ApplyStoreSacl(@ptrCast(*const IAzApplication, self), bProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Writable(@ptrCast(*const IAzApplication, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).GetProperty(@ptrCast(*const IAzApplication, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1639,111 +1639,111 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).SetProperty(@ptrCast(*const IAzApplication, self), lPropId, varProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyAdministrators(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_PolicyAdministrators(@ptrCast(*const IAzApplication, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyReaders(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_PolicyReaders(@ptrCast(*const IAzApplication, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddPolicyAdministrator(@ptrCast(*const IAzApplication, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeletePolicyAdministrator(@ptrCast(*const IAzApplication, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddPolicyReader(@ptrCast(*const IAzApplication, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeletePolicyReader(@ptrCast(*const IAzApplication, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Scopes(self: *const T, ppScopeCollection: ?**IAzScopes) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Scopes(self: *const T, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Scopes(@ptrCast(*const IAzApplication, self), ppScopeCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: ?**IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved, ppScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: ?**IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved, ppScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteScope(self: *const T, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Operations(self: *const T, ppOperationCollection: ?**IAzOperations) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Operations(self: *const T, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Operations(@ptrCast(*const IAzApplication, self), ppOperationCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: ?**IAzOperation) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved, ppOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: ?**IAzOperation) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved, ppOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteOperation(self: *const T, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Tasks(self: *const T, ppTaskCollection: ?**IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzApplication, self), ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?**IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?**IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationGroups(self: *const T, ppGroupCollection: ?**IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzApplication, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Roles(self: *const T, ppRoleCollection: ?**IAzRoles) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Roles(@ptrCast(*const IAzApplication, self), ppRoleCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?**IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?**IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromToken(self: *const T, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?**IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromToken(self: *const T, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromToken(@ptrCast(*const IAzApplication, self), ullTokenHandle, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1759,59 +1759,59 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).Submit(@ptrCast(*const IAzApplication, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromName(self: *const T, ClientName: BSTR, DomainName: BSTR, varReserved: VARIANT, ppClientContext: ?**IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromName(self: *const T, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromName(@ptrCast(*const IAzApplication, self), ClientName, DomainName, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_DelegatedPolicyUsers(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_DelegatedPolicyUsers(@ptrCast(*const IAzApplication, self), pvarDelegatedPolicyUsers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddDelegatedPolicyUser(@ptrCast(*const IAzApplication, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteDelegatedPolicyUser(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteDelegatedPolicyUser(@ptrCast(*const IAzApplication, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromStringSid(self: *const T, SidString: BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?**IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromStringSid(self: *const T, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromStringSid(@ptrCast(*const IAzApplication, self), SidString, lOptions, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyAdministratorsName(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_PolicyAdministratorsName(@ptrCast(*const IAzApplication, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_PolicyReadersName(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_PolicyReadersName(@ptrCast(*const IAzApplication, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddPolicyAdministratorName(@ptrCast(*const IAzApplication, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeletePolicyAdministratorName(@ptrCast(*const IAzApplication, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddPolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddPolicyReaderName(@ptrCast(*const IAzApplication, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeletePolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeletePolicyReaderName(@ptrCast(*const IAzApplication, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_DelegatedPolicyUsersName(self: *const T, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_DelegatedPolicyUsersName(@ptrCast(*const IAzApplication, self), pvarDelegatedPolicyUsers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_AddDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).AddDelegatedPolicyUserName(@ptrCast(*const IAzApplication, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_DeleteDelegatedPolicyUserName(self: *const T, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteDelegatedPolicyUserName(@ptrCast(*const IAzApplication, self), bstrDelegatedPolicyUser, varReserved);
         }
     };}
@@ -1829,24 +1829,24 @@ pub const IAzApplication2 = extern struct {
             ulTokenHandleLowPart: u32,
             ulTokenHandleHighPart: u32,
             varReserved: VARIANT,
-            ppClientContext: ?**IAzClientContext2,
+            ppClientContext: ?*?*IAzClientContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeClientContext2: fn(
             self: *const IAzApplication2,
-            IdentifyingString: BSTR,
+            IdentifyingString: ?BSTR,
             varReserved: VARIANT,
-            ppClientContext: ?**IAzClientContext2,
+            ppClientContext: ?*?*IAzClientContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzApplication.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContextFromToken2(self: *const T, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?**IAzClientContext2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication2_InitializeClientContextFromToken2(self: *const T, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication2.VTable, self.vtable).InitializeClientContextFromToken2(@ptrCast(*const IAzApplication2, self), ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContext2(self: *const T, IdentifyingString: BSTR, varReserved: VARIANT, ppClientContext: ?**IAzClientContext2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication2_InitializeClientContext2(self: *const T, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication2.VTable, self.vtable).InitializeClientContext2(@ptrCast(*const IAzApplication2, self), IdentifyingString, varReserved, ppClientContext);
         }
     };}
@@ -1863,32 +1863,32 @@ pub const IAzApplications = extern struct {
         get_Item: fn(
             self: *const IAzApplications,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzApplications,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzApplications,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplications_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplications.VTable, self.vtable).get_Item(@ptrCast(*const IAzApplications, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzApplications_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplications.VTable, self.vtable).get_Count(@ptrCast(*const IAzApplications, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzApplications_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplications.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzApplications, self), ppEnumPtr);
         }
     };}
@@ -1904,37 +1904,37 @@ pub const IAzOperation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzOperation,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzOperation,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzOperation,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzOperation,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzOperation,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzOperation,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationID: fn(
             self: *const IAzOperation,
-            plProp: *i32,
+            plProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OperationID: fn(
@@ -1944,13 +1944,13 @@ pub const IAzOperation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzOperation,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzOperation,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzOperation,
@@ -1968,31 +1968,31 @@ pub const IAzOperation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_Name(@ptrCast(*const IAzOperation, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_Name(@ptrCast(*const IAzOperation, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_Description(@ptrCast(*const IAzOperation, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_Description(@ptrCast(*const IAzOperation, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzOperation, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzOperation, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_OperationID(self: *const T, plProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_OperationID(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_OperationID(@ptrCast(*const IAzOperation, self), plProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2000,11 +2000,11 @@ pub const IAzOperation = extern struct {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_OperationID(@ptrCast(*const IAzOperation, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_Writable(@ptrCast(*const IAzOperation, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).GetProperty(@ptrCast(*const IAzOperation, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2029,32 +2029,32 @@ pub const IAzOperations = extern struct {
         get_Item: fn(
             self: *const IAzOperations,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzOperations,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzOperations,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzOperations_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperations.VTable, self.vtable).get_Item(@ptrCast(*const IAzOperations, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzOperations_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperations.VTable, self.vtable).get_Count(@ptrCast(*const IAzOperations, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzOperations_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperations.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzOperations, self), ppEnumPtr);
         }
     };}
@@ -2070,67 +2070,67 @@ pub const IAzTask = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzTask,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzTask,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzTask,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzTask,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzTask,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzTask,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRule: fn(
             self: *const IAzTask,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: fn(
             self: *const IAzTask,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: fn(
             self: *const IAzTask,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: fn(
             self: *const IAzTask,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: fn(
             self: *const IAzTask,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: fn(
             self: *const IAzTask,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRoleDefinition: fn(
             self: *const IAzTask,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsRoleDefinition: fn(
@@ -2140,43 +2140,43 @@ pub const IAzTask = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: fn(
             self: *const IAzTask,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: fn(
             self: *const IAzTask,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddOperation: fn(
             self: *const IAzTask,
-            bstrOp: BSTR,
+            bstrOp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteOperation: fn(
             self: *const IAzTask,
-            bstrOp: BSTR,
+            bstrOp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddTask: fn(
             self: *const IAzTask,
-            bstrTask: BSTR,
+            bstrTask: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzTask,
-            bstrTask: BSTR,
+            bstrTask: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzTask,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzTask,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzTask,
@@ -2206,55 +2206,55 @@ pub const IAzTask = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Name(@ptrCast(*const IAzTask, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_Name(@ptrCast(*const IAzTask, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Description(@ptrCast(*const IAzTask, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_Description(@ptrCast(*const IAzTask, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzTask, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzTask, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRule(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRule(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRule(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRule(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_BizRule(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_BizRule(@ptrCast(*const IAzTask, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleLanguage(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRuleLanguage(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRuleLanguage(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRuleLanguage(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_BizRuleLanguage(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_BizRuleLanguage(@ptrCast(*const IAzTask, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRuleImportedPath(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_put_BizRuleImportedPath(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_put_BizRuleImportedPath(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_BizRuleImportedPath(@ptrCast(*const IAzTask, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_IsRoleDefinition(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_IsRoleDefinition(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_IsRoleDefinition(@ptrCast(*const IAzTask, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2262,35 +2262,35 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_IsRoleDefinition(@ptrCast(*const IAzTask, self), fProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Operations(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Operations(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Operations(@ptrCast(*const IAzTask, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Tasks(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Tasks(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzTask, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_AddOperation(self: *const T, bstrOp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_AddOperation(self: *const T, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).AddOperation(@ptrCast(*const IAzTask, self), bstrOp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_DeleteOperation(self: *const T, bstrOp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_DeleteOperation(self: *const T, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).DeleteOperation(@ptrCast(*const IAzTask, self), bstrOp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_AddTask(self: *const T, bstrTask: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_AddTask(self: *const T, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).AddTask(@ptrCast(*const IAzTask, self), bstrTask, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_DeleteTask(self: *const T, bstrTask: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_DeleteTask(self: *const T, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).DeleteTask(@ptrCast(*const IAzTask, self), bstrTask, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Writable(@ptrCast(*const IAzTask, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTask_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).GetProperty(@ptrCast(*const IAzTask, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2323,32 +2323,32 @@ pub const IAzTasks = extern struct {
         get_Item: fn(
             self: *const IAzTasks,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzTasks,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzTasks,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzTasks_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTasks.VTable, self.vtable).get_Item(@ptrCast(*const IAzTasks, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzTasks_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTasks.VTable, self.vtable).get_Count(@ptrCast(*const IAzTasks, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzTasks_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTasks.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzTasks, self), ppEnumPtr);
         }
     };}
@@ -2364,43 +2364,43 @@ pub const IAzScope = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzScope,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzScope,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzScope,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzScope,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzScope,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzScope,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzScope,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzScope,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzScope,
@@ -2423,97 +2423,97 @@ pub const IAzScope = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: fn(
             self: *const IAzScope,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: fn(
             self: *const IAzScope,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministrator: fn(
             self: *const IAzScope,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministrator: fn(
             self: *const IAzScope,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReader: fn(
             self: *const IAzScope,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReader: fn(
             self: *const IAzScope,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: fn(
             self: *const IAzScope,
-            ppGroupCollection: ?**IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzScope,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzScope,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-            ppGroup: ?**IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzScope,
-            bstrGroupName: BSTR,
+            bstrGroupName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: fn(
             self: *const IAzScope,
-            ppRoleCollection: ?**IAzRoles,
+            ppRoleCollection: ?*?*IAzRoles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRole: fn(
             self: *const IAzScope,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-            ppRole: ?**IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRole: fn(
             self: *const IAzScope,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-            ppRole: ?**IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRole: fn(
             self: *const IAzScope,
-            bstrRoleName: BSTR,
+            bstrRoleName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: fn(
             self: *const IAzScope,
-            ppTaskCollection: ?**IAzTasks,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenTask: fn(
             self: *const IAzScope,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-            ppTask: ?**IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTask: fn(
             self: *const IAzScope,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-            ppTask: ?**IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzScope,
-            bstrTaskName: BSTR,
+            bstrTaskName: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Submit: fn(
@@ -2524,41 +2524,41 @@ pub const IAzScope = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanBeDelegated: fn(
             self: *const IAzScope,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizrulesWritable: fn(
             self: *const IAzScope,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: fn(
             self: *const IAzScope,
-            pvarAdmins: *VARIANT,
+            pvarAdmins: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: fn(
             self: *const IAzScope,
-            pvarReaders: *VARIANT,
+            pvarReaders: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyAdministratorName: fn(
             self: *const IAzScope,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyAdministratorName: fn(
             self: *const IAzScope,
-            bstrAdmin: BSTR,
+            bstrAdmin: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPolicyReaderName: fn(
             self: *const IAzScope,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePolicyReaderName: fn(
             self: *const IAzScope,
-            bstrReader: BSTR,
+            bstrReader: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2566,35 +2566,35 @@ pub const IAzScope = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Name(@ptrCast(*const IAzScope, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).put_Name(@ptrCast(*const IAzScope, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Description(@ptrCast(*const IAzScope, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).put_Description(@ptrCast(*const IAzScope, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzScope, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzScope, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Writable(@ptrCast(*const IAzScope, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).GetProperty(@ptrCast(*const IAzScope, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2610,75 +2610,75 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePropertyItem(@ptrCast(*const IAzScope, self), lPropId, varProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyAdministrators(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_PolicyAdministrators(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_PolicyAdministrators(@ptrCast(*const IAzScope, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyReaders(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_PolicyReaders(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_PolicyReaders(@ptrCast(*const IAzScope, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_AddPolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).AddPolicyAdministrator(@ptrCast(*const IAzScope, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyAdministrator(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeletePolicyAdministrator(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePolicyAdministrator(@ptrCast(*const IAzScope, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_AddPolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).AddPolicyReader(@ptrCast(*const IAzScope, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyReader(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeletePolicyReader(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePolicyReader(@ptrCast(*const IAzScope, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationGroups(self: *const T, ppGroupCollection: ?**IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzScope, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?**IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeleteApplicationGroup(self: *const T, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeleteApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Roles(self: *const T, ppRoleCollection: ?**IAzRoles) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Roles(@ptrCast(*const IAzScope, self), ppRoleCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?**IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?**IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeleteRole(self: *const T, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeleteRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Tasks(self: *const T, ppTaskCollection: ?**IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzScope, self), ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?**IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenTask(@ptrCast(*const IAzScope, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?**IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateTask(@ptrCast(*const IAzScope, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeleteTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeleteTask(self: *const T, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeleteTask(@ptrCast(*const IAzScope, self), bstrTaskName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2686,35 +2686,35 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).Submit(@ptrCast(*const IAzScope, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_CanBeDelegated(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_CanBeDelegated(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_CanBeDelegated(@ptrCast(*const IAzScope, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_BizrulesWritable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_BizrulesWritable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_BizrulesWritable(@ptrCast(*const IAzScope, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyAdministratorsName(self: *const T, pvarAdmins: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_PolicyAdministratorsName(self: *const T, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_PolicyAdministratorsName(@ptrCast(*const IAzScope, self), pvarAdmins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_PolicyReadersName(self: *const T, pvarReaders: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_PolicyReadersName(self: *const T, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_PolicyReadersName(@ptrCast(*const IAzScope, self), pvarReaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_AddPolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).AddPolicyAdministratorName(@ptrCast(*const IAzScope, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyAdministratorName(self: *const T, bstrAdmin: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeletePolicyAdministratorName(self: *const T, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePolicyAdministratorName(@ptrCast(*const IAzScope, self), bstrAdmin, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_AddPolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_AddPolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).AddPolicyReaderName(@ptrCast(*const IAzScope, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_DeletePolicyReaderName(self: *const T, bstrReader: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScope_DeletePolicyReaderName(self: *const T, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePolicyReaderName(@ptrCast(*const IAzScope, self), bstrReader, varReserved);
         }
     };}
@@ -2731,32 +2731,32 @@ pub const IAzScopes = extern struct {
         get_Item: fn(
             self: *const IAzScopes,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzScopes,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzScopes,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzScopes_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScopes.VTable, self.vtable).get_Item(@ptrCast(*const IAzScopes, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzScopes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScopes.VTable, self.vtable).get_Count(@ptrCast(*const IAzScopes, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzScopes_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScopes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzScopes, self), ppEnumPtr);
         }
     };}
@@ -2772,17 +2772,17 @@ pub const IAzApplicationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzApplicationGroup,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzApplicationGroup,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IAzApplicationGroup,
-            plProp: *i32,
+            plProp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: fn(
@@ -2792,93 +2792,93 @@ pub const IAzApplicationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LdapQuery: fn(
             self: *const IAzApplicationGroup,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LdapQuery: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppNonMembers: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembers: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzApplicationGroup,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzApplicationGroup,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAppMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteAppMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAppNonMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteAppNonMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddNonMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteNonMember: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzApplicationGroup,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzApplicationGroup,
@@ -2905,48 +2905,48 @@ pub const IAzApplicationGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMemberName: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMemberName: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddNonMemberName: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteNonMemberName: fn(
             self: *const IAzApplicationGroup,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembersName: fn(
             self: *const IAzApplicationGroup,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Name(@ptrCast(*const IAzApplicationGroup, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).put_Name(@ptrCast(*const IAzApplicationGroup, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Type(self: *const T, plProp: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Type(self: *const T, plProp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Type(@ptrCast(*const IAzApplicationGroup, self), plProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2954,75 +2954,75 @@ pub const IAzApplicationGroup = extern struct {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).put_Type(@ptrCast(*const IAzApplicationGroup, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_LdapQuery(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_LdapQuery(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_LdapQuery(@ptrCast(*const IAzApplicationGroup, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_LdapQuery(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_put_LdapQuery(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).put_LdapQuery(@ptrCast(*const IAzApplicationGroup, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_AppMembers(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_AppMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_AppMembers(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_AppNonMembers(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_AppNonMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_AppNonMembers(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Members(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Members(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Members(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_NonMembers(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_NonMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_NonMembers(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Description(@ptrCast(*const IAzApplicationGroup, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).put_Description(@ptrCast(*const IAzApplicationGroup, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddAppMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddAppMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteAppMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteAppMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddAppNonMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddAppNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddAppNonMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteAppNonMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteAppNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteAppNonMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddNonMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddNonMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteNonMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteNonMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteNonMember(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Writable(@ptrCast(*const IAzApplicationGroup, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).GetProperty(@ptrCast(*const IAzApplicationGroup, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3042,27 +3042,27 @@ pub const IAzApplicationGroup = extern struct {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).Submit(@ptrCast(*const IAzApplicationGroup, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddMemberName(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteMemberName(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_AddNonMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_AddNonMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).AddNonMemberName(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_DeleteNonMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_DeleteNonMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).DeleteNonMemberName(@ptrCast(*const IAzApplicationGroup, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_MembersName(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_MembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_MembersName(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_NonMembersName(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_NonMembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_NonMembersName(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
     };}
@@ -3079,32 +3079,32 @@ pub const IAzApplicationGroups = extern struct {
         get_Item: fn(
             self: *const IAzApplicationGroups,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzApplicationGroups,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzApplicationGroups,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroups_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroups.VTable, self.vtable).get_Item(@ptrCast(*const IAzApplicationGroups, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroups_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroups.VTable, self.vtable).get_Count(@ptrCast(*const IAzApplicationGroups, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroups_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzApplicationGroups, self), ppEnumPtr);
         }
     };}
@@ -3120,83 +3120,83 @@ pub const IAzRole = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzRole,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IAzRole,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IAzRole,
-            pbstrDescription: ?*BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IAzRole,
-            bstrDescription: BSTR,
+            bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: fn(
             self: *const IAzRole,
-            pbstrApplicationData: ?*BSTR,
+            pbstrApplicationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: fn(
             self: *const IAzRole,
-            bstrApplicationData: BSTR,
+            bstrApplicationData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAppMember: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteAppMember: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddTask: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddOperation: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteOperation: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMember: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMember: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: fn(
             self: *const IAzRole,
-            pfProp: *BOOL,
+            pfProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzRole,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IAzRole,
@@ -3207,22 +3207,22 @@ pub const IAzRole = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: fn(
             self: *const IAzRole,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: fn(
             self: *const IAzRole,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: fn(
             self: *const IAzRole,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: fn(
             self: *const IAzRole,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyItem: fn(
             self: *const IAzRole,
@@ -3243,85 +3243,85 @@ pub const IAzRole = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMemberName: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMemberName: fn(
             self: *const IAzRole,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
             varReserved: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: fn(
             self: *const IAzRole,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Name(@ptrCast(*const IAzRole, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_Name(self: *const T, bstrName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_put_Name(self: *const T, bstrName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).put_Name(@ptrCast(*const IAzRole, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Description(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Description(@ptrCast(*const IAzRole, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_put_Description(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).put_Description(@ptrCast(*const IAzRole, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_ApplicationData(self: *const T, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzRole, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_put_ApplicationData(self: *const T, bstrApplicationData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_put_ApplicationData(self: *const T, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzRole, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddAppMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_AddAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).AddAppMember(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteAppMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_DeleteAppMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).DeleteAppMember(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddTask(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_AddTask(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).AddTask(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteTask(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_DeleteTask(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).DeleteTask(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddOperation(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_AddOperation(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).AddOperation(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteOperation(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_DeleteOperation(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).DeleteOperation(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_AddMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).AddMember(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteMember(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_DeleteMember(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).DeleteMember(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Writable(self: *const T, pfProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Writable(self: *const T, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Writable(@ptrCast(*const IAzRole, self), pfProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).GetProperty(@ptrCast(*const IAzRole, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3329,19 +3329,19 @@ pub const IAzRole = extern struct {
             return @ptrCast(*const IAzRole.VTable, self.vtable).SetProperty(@ptrCast(*const IAzRole, self), lPropId, varProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_AppMembers(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_AppMembers(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_AppMembers(@ptrCast(*const IAzRole, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Members(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Members(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Members(@ptrCast(*const IAzRole, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Operations(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Operations(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Operations(@ptrCast(*const IAzRole, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Tasks(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Tasks(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzRole, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3357,15 +3357,15 @@ pub const IAzRole = extern struct {
             return @ptrCast(*const IAzRole.VTable, self.vtable).Submit(@ptrCast(*const IAzRole, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_AddMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_AddMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).AddMemberName(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_DeleteMemberName(self: *const T, bstrProp: BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_DeleteMemberName(self: *const T, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).DeleteMemberName(@ptrCast(*const IAzRole, self), bstrProp, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_MembersName(self: *const T, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_MembersName(self: *const T, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_MembersName(@ptrCast(*const IAzRole, self), pvarProp);
         }
     };}
@@ -3382,32 +3382,32 @@ pub const IAzRoles = extern struct {
         get_Item: fn(
             self: *const IAzRoles,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzRoles,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzRoles,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRoles_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoles.VTable, self.vtable).get_Item(@ptrCast(*const IAzRoles, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzRoles_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoles.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoles, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoles_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoles.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoles, self), ppEnumPtr);
         }
     };}
@@ -3422,7 +3422,7 @@ pub const IAzClientContext = extern struct {
         base: IDispatch.VTable,
         AccessCheck: fn(
             self: *const IAzClientContext,
-            bstrObjectName: BSTR,
+            bstrObjectName: ?BSTR,
             varScopeNames: VARIANT,
             varOperations: VARIANT,
             varParameterNames: VARIANT,
@@ -3430,122 +3430,122 @@ pub const IAzClientContext = extern struct {
             varInterfaceNames: VARIANT,
             varInterfaceFlags: VARIANT,
             varInterfaces: VARIANT,
-            pvarResults: *VARIANT,
+            pvarResults: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBusinessRuleString: fn(
             self: *const IAzClientContext,
-            pbstrBusinessRuleString: ?*BSTR,
+            pbstrBusinessRuleString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDn: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSamCompat: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDisplay: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserGuid: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserCanonical: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserUpn: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDnsSamCompat: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzClientContext,
             lPropId: i32,
             varReserved: VARIANT,
-            pvarProp: *VARIANT,
+            pvarProp: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRoles: fn(
             self: *const IAzClientContext,
-            bstrScopeName: BSTR,
-            pvarRoleNames: *VARIANT,
+            bstrScopeName: ?BSTR,
+            pvarRoleNames: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleForAccessCheck: fn(
             self: *const IAzClientContext,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RoleForAccessCheck: fn(
             self: *const IAzClientContext,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_AccessCheck(self: *const T, bstrObjectName: BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_AccessCheck(self: *const T, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).AccessCheck(@ptrCast(*const IAzClientContext, self), bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetBusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_GetBusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).GetBusinessRuleString(@ptrCast(*const IAzClientContext, self), pbstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDn(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDn(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDn(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserSamCompat(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserSamCompat(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserSamCompat(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDisplay(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDisplay(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDisplay(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserGuid(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserGuid(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserGuid(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserCanonical(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserCanonical(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserCanonical(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserUpn(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserUpn(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserUpn(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDnsSamCompat(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDnsSamCompat(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDnsSamCompat(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_GetProperty(self: *const T, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).GetProperty(@ptrCast(*const IAzClientContext, self), lPropId, varReserved, pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetRoles(self: *const T, bstrScopeName: BSTR, pvarRoleNames: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_GetRoles(self: *const T, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).GetRoles(@ptrCast(*const IAzClientContext, self), bstrScopeName, pvarRoleNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_RoleForAccessCheck(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_RoleForAccessCheck(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_RoleForAccessCheck(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_put_RoleForAccessCheck(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_put_RoleForAccessCheck(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).put_RoleForAccessCheck(@ptrCast(*const IAzClientContext, self), bstrProp);
         }
     };}
@@ -3562,13 +3562,13 @@ pub const IAzClientContext2 = extern struct {
             self: *const IAzClientContext2,
             lOptions: i32,
             PageSize: i32,
-            pvarCursor: *VARIANT,
-            pvarScopeNames: *VARIANT,
+            pvarCursor: ?*VARIANT,
+            pvarScopeNames: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRoles: fn(
             self: *const IAzClientContext2,
             varRoles: VARIANT,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddApplicationGroups: fn(
             self: *const IAzClientContext2,
@@ -3581,23 +3581,23 @@ pub const IAzClientContext2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LDAPQueryDN: fn(
             self: *const IAzClientContext2,
-            bstrLDAPQueryDN: BSTR,
+            bstrLDAPQueryDN: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LDAPQueryDN: fn(
             self: *const IAzClientContext2,
-            pbstrLDAPQueryDN: ?*BSTR,
+            pbstrLDAPQueryDN: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzClientContext.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_GetAssignedScopesPage(self: *const T, lOptions: i32, PageSize: i32, pvarCursor: *VARIANT, pvarScopeNames: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext2_GetAssignedScopesPage(self: *const T, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).GetAssignedScopesPage(@ptrCast(*const IAzClientContext2, self), lOptions, PageSize, pvarCursor, pvarScopeNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_AddRoles(self: *const T, varRoles: VARIANT, bstrScopeName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext2_AddRoles(self: *const T, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).AddRoles(@ptrCast(*const IAzClientContext2, self), varRoles, bstrScopeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3609,11 +3609,11 @@ pub const IAzClientContext2 = extern struct {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).AddStringSids(@ptrCast(*const IAzClientContext2, self), varStringSids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_put_LDAPQueryDN(self: *const T, bstrLDAPQueryDN: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext2_put_LDAPQueryDN(self: *const T, bstrLDAPQueryDN: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).put_LDAPQueryDN(@ptrCast(*const IAzClientContext2, self), bstrLDAPQueryDN);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_get_LDAPQueryDN(self: *const T, pbstrLDAPQueryDN: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext2_get_LDAPQueryDN(self: *const T, pbstrLDAPQueryDN: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).get_LDAPQueryDN(@ptrCast(*const IAzClientContext2, self), pbstrLDAPQueryDN);
         }
     };}
@@ -3634,17 +3634,17 @@ pub const IAzBizRuleContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BusinessRuleString: fn(
             self: *const IAzBizRuleContext,
-            bstrBusinessRuleString: BSTR,
+            bstrBusinessRuleString: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BusinessRuleString: fn(
             self: *const IAzBizRuleContext,
-            pbstrBusinessRuleString: ?*BSTR,
+            pbstrBusinessRuleString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParameter: fn(
             self: *const IAzBizRuleContext,
-            bstrParameterName: BSTR,
-            pvarParameterValue: *VARIANT,
+            bstrParameterName: ?BSTR,
+            pvarParameterValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3655,15 +3655,15 @@ pub const IAzBizRuleContext = extern struct {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).put_BusinessRuleResult(@ptrCast(*const IAzBizRuleContext, self), bResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_put_BusinessRuleString(self: *const T, bstrBusinessRuleString: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleContext_put_BusinessRuleString(self: *const T, bstrBusinessRuleString: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).put_BusinessRuleString(@ptrCast(*const IAzBizRuleContext, self), bstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_get_BusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleContext_get_BusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).get_BusinessRuleString(@ptrCast(*const IAzBizRuleContext, self), pbstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_GetParameter(self: *const T, bstrParameterName: BSTR, pvarParameterValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleContext_GetParameter(self: *const T, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).GetParameter(@ptrCast(*const IAzBizRuleContext, self), bstrParameterName, pvarParameterValue);
         }
     };}
@@ -3678,7 +3678,7 @@ pub const IAzBizRuleParameters = extern struct {
         base: IDispatch.VTable,
         AddParameter: fn(
             self: *const IAzBizRuleParameters,
-            bstrParameterName: BSTR,
+            bstrParameterName: ?BSTR,
             varParameterValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddParameters: fn(
@@ -3688,12 +3688,12 @@ pub const IAzBizRuleParameters = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParameterValue: fn(
             self: *const IAzBizRuleParameters,
-            bstrParameterName: BSTR,
-            pvarParameterValue: *VARIANT,
+            bstrParameterName: ?BSTR,
+            pvarParameterValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IAzBizRuleParameters,
-            varParameterName: BSTR,
+            varParameterName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAll: fn(
             self: *const IAzBizRuleParameters,
@@ -3701,14 +3701,14 @@ pub const IAzBizRuleParameters = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzBizRuleParameters,
-            plCount: *u32,
+            plCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_AddParameter(self: *const T, bstrParameterName: BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleParameters_AddParameter(self: *const T, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).AddParameter(@ptrCast(*const IAzBizRuleParameters, self), bstrParameterName, varParameterValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3716,11 +3716,11 @@ pub const IAzBizRuleParameters = extern struct {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).AddParameters(@ptrCast(*const IAzBizRuleParameters, self), varParameterNames, varParameterValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_GetParameterValue(self: *const T, bstrParameterName: BSTR, pvarParameterValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleParameters_GetParameterValue(self: *const T, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).GetParameterValue(@ptrCast(*const IAzBizRuleParameters, self), bstrParameterName, pvarParameterValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_Remove(self: *const T, varParameterName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleParameters_Remove(self: *const T, varParameterName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).Remove(@ptrCast(*const IAzBizRuleParameters, self), varParameterName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3728,7 +3728,7 @@ pub const IAzBizRuleParameters = extern struct {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).RemoveAll(@ptrCast(*const IAzBizRuleParameters, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleParameters_get_Count(self: *const T, plCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleParameters_get_Count(self: *const T, plCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleParameters.VTable, self.vtable).get_Count(@ptrCast(*const IAzBizRuleParameters, self), plCount);
         }
     };}
@@ -3743,7 +3743,7 @@ pub const IAzBizRuleInterfaces = extern struct {
         base: IDispatch.VTable,
         AddInterface: fn(
             self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: BSTR,
+            bstrInterfaceName: ?BSTR,
             lInterfaceFlag: i32,
             varInterface: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3755,13 +3755,13 @@ pub const IAzBizRuleInterfaces = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterfaceValue: fn(
             self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: BSTR,
-            lInterfaceFlag: *i32,
-            varInterface: *VARIANT,
+            bstrInterfaceName: ?BSTR,
+            lInterfaceFlag: ?*i32,
+            varInterface: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: BSTR,
+            bstrInterfaceName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAll: fn(
             self: *const IAzBizRuleInterfaces,
@@ -3769,14 +3769,14 @@ pub const IAzBizRuleInterfaces = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzBizRuleInterfaces,
-            plCount: *u32,
+            plCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_AddInterface(self: *const T, bstrInterfaceName: BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleInterfaces_AddInterface(self: *const T, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).AddInterface(@ptrCast(*const IAzBizRuleInterfaces, self), bstrInterfaceName, lInterfaceFlag, varInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3784,11 +3784,11 @@ pub const IAzBizRuleInterfaces = extern struct {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).AddInterfaces(@ptrCast(*const IAzBizRuleInterfaces, self), varInterfaceNames, varInterfaceFlags, varInterfaces);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_GetInterfaceValue(self: *const T, bstrInterfaceName: BSTR, lInterfaceFlag: *i32, varInterface: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleInterfaces_GetInterfaceValue(self: *const T, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).GetInterfaceValue(@ptrCast(*const IAzBizRuleInterfaces, self), bstrInterfaceName, lInterfaceFlag, varInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_Remove(self: *const T, bstrInterfaceName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleInterfaces_Remove(self: *const T, bstrInterfaceName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).Remove(@ptrCast(*const IAzBizRuleInterfaces, self), bstrInterfaceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3796,7 +3796,7 @@ pub const IAzBizRuleInterfaces = extern struct {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).RemoveAll(@ptrCast(*const IAzBizRuleInterfaces, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleInterfaces_get_Count(self: *const T, plCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleInterfaces_get_Count(self: *const T, plCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const IAzBizRuleInterfaces, self), plCount);
         }
     };}
@@ -3811,82 +3811,82 @@ pub const IAzClientContext3 = extern struct {
         base: IAzClientContext2.VTable,
         AccessCheck2: fn(
             self: *const IAzClientContext3,
-            bstrObjectName: BSTR,
-            bstrScopeName: BSTR,
+            bstrObjectName: ?BSTR,
+            bstrScopeName: ?BSTR,
             lOperation: i32,
-            plResult: *u32,
+            plResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsInRoleAssignment: fn(
             self: *const IAzClientContext3,
-            bstrScopeName: BSTR,
-            bstrRoleName: BSTR,
-            pbIsInRole: *i16,
+            bstrScopeName: ?BSTR,
+            bstrRoleName: ?BSTR,
+            pbIsInRole: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOperations: fn(
             self: *const IAzClientContext3,
-            bstrScopeName: BSTR,
-            ppOperationCollection: ?**IAzOperations,
+            bstrScopeName: ?BSTR,
+            ppOperationCollection: ?*?*IAzOperations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTasks: fn(
             self: *const IAzClientContext3,
-            bstrScopeName: BSTR,
-            ppTaskCollection: ?**IAzTasks,
+            bstrScopeName: ?BSTR,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleParameters: fn(
             self: *const IAzClientContext3,
-            ppBizRuleParam: ?**IAzBizRuleParameters,
+            ppBizRuleParam: ?*?*IAzBizRuleParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleInterfaces: fn(
             self: *const IAzClientContext3,
-            ppBizRuleInterfaces: ?**IAzBizRuleInterfaces,
+            ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroups: fn(
             self: *const IAzClientContext3,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             ulOptions: AZ_PROP_CONSTANTS,
-            pGroupArray: *VARIANT,
+            pGroupArray: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Sids: fn(
             self: *const IAzClientContext3,
-            pStringSidArray: *VARIANT,
+            pStringSidArray: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzClientContext2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_AccessCheck2(self: *const T, bstrObjectName: BSTR, bstrScopeName: BSTR, lOperation: i32, plResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_AccessCheck2(self: *const T, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).AccessCheck2(@ptrCast(*const IAzClientContext3, self), bstrObjectName, bstrScopeName, lOperation, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_IsInRoleAssignment(self: *const T, bstrScopeName: BSTR, bstrRoleName: BSTR, pbIsInRole: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_IsInRoleAssignment(self: *const T, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).IsInRoleAssignment(@ptrCast(*const IAzClientContext3, self), bstrScopeName, bstrRoleName, pbIsInRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetOperations(self: *const T, bstrScopeName: BSTR, ppOperationCollection: ?**IAzOperations) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_GetOperations(self: *const T, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).GetOperations(@ptrCast(*const IAzClientContext3, self), bstrScopeName, ppOperationCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetTasks(self: *const T, bstrScopeName: BSTR, ppTaskCollection: ?**IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_GetTasks(self: *const T, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).GetTasks(@ptrCast(*const IAzClientContext3, self), bstrScopeName, ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleParameters(self: *const T, ppBizRuleParam: ?**IAzBizRuleParameters) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_get_BizRuleParameters(self: *const T, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).get_BizRuleParameters(@ptrCast(*const IAzClientContext3, self), ppBizRuleParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleInterfaces(self: *const T, ppBizRuleInterfaces: ?**IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_get_BizRuleInterfaces(self: *const T, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).get_BizRuleInterfaces(@ptrCast(*const IAzClientContext3, self), ppBizRuleInterfaces);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetGroups(self: *const T, bstrScopeName: BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_GetGroups(self: *const T, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).GetGroups(@ptrCast(*const IAzClientContext3, self), bstrScopeName, ulOptions, pGroupArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_Sids(self: *const T, pStringSidArray: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_get_Sids(self: *const T, pStringSidArray: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).get_Sids(@ptrCast(*const IAzClientContext3, self), pStringSidArray);
         }
     };}
@@ -3902,75 +3902,75 @@ pub const IAzScope2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: fn(
             self: *const IAzScope2,
-            ppRoleDefinitions: ?**IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleDefinition: fn(
             self: *const IAzScope2,
-            bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: ?**IAzRoleDefinition,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleDefinition: fn(
             self: *const IAzScope2,
-            bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: ?**IAzRoleDefinition,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzScope2,
-            bstrRoleDefinitionName: BSTR,
+            bstrRoleDefinitionName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: fn(
             self: *const IAzScope2,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleAssignment: fn(
             self: *const IAzScope2,
-            bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: ?**IAzRoleAssignment,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleAssignment: fn(
             self: *const IAzScope2,
-            bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: ?**IAzRoleAssignment,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleAssignment: fn(
             self: *const IAzScope2,
-            bstrRoleAssignmentName: BSTR,
+            bstrRoleAssignmentName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzScope.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?**IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzScope2, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?**IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).CreateRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?**IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).OpenRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleAssignments(self: *const T, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).get_RoleAssignments(@ptrCast(*const IAzScope2, self), ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?**IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).CreateRoleAssignment(@ptrCast(*const IAzScope2, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?**IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).OpenRoleAssignment(@ptrCast(*const IAzScope2, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).DeleteRoleAssignment(@ptrCast(*const IAzScope2, self), bstrRoleAssignmentName);
         }
     };}
@@ -3985,65 +3985,65 @@ pub const IAzApplication3 = extern struct {
         base: IAzApplication2.VTable,
         ScopeExists: fn(
             self: *const IAzApplication3,
-            bstrScopeName: BSTR,
-            pbExist: *i16,
+            bstrScopeName: ?BSTR,
+            pbExist: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenScope2: fn(
             self: *const IAzApplication3,
-            bstrScopeName: BSTR,
-            ppScope2: ?**IAzScope2,
+            bstrScopeName: ?BSTR,
+            ppScope2: ?*?*IAzScope2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScope2: fn(
             self: *const IAzApplication3,
-            bstrScopeName: BSTR,
-            ppScope2: ?**IAzScope2,
+            bstrScopeName: ?BSTR,
+            ppScope2: ?*?*IAzScope2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteScope2: fn(
             self: *const IAzApplication3,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: fn(
             self: *const IAzApplication3,
-            ppRoleDefinitions: ?**IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleDefinition: fn(
             self: *const IAzApplication3,
-            bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: ?**IAzRoleDefinition,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleDefinition: fn(
             self: *const IAzApplication3,
-            bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: ?**IAzRoleDefinition,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzApplication3,
-            bstrRoleDefinitionName: BSTR,
+            bstrRoleDefinitionName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: fn(
             self: *const IAzApplication3,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleAssignment: fn(
             self: *const IAzApplication3,
-            bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: ?**IAzRoleAssignment,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleAssignment: fn(
             self: *const IAzApplication3,
-            bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: ?**IAzRoleAssignment,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleAssignment: fn(
             self: *const IAzApplication3,
-            bstrRoleAssignmentName: BSTR,
+            bstrRoleAssignmentName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRulesEnabled: fn(
             self: *const IAzApplication3,
-            pbEnabled: *i16,
+            pbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRulesEnabled: fn(
@@ -4055,55 +4055,55 @@ pub const IAzApplication3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzApplication2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_ScopeExists(self: *const T, bstrScopeName: BSTR, pbExist: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_ScopeExists(self: *const T, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).ScopeExists(@ptrCast(*const IAzApplication3, self), bstrScopeName, pbExist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenScope2(self: *const T, bstrScopeName: BSTR, ppScope2: ?**IAzScope2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenScope2(self: *const T, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName, ppScope2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateScope2(self: *const T, bstrScopeName: BSTR, ppScope2: ?**IAzScope2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateScope2(self: *const T, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName, ppScope2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteScope2(self: *const T, bstrScopeName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_DeleteScope2(self: *const T, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).DeleteScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?**IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzApplication3, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?**IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?**IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_DeleteRoleDefinition(self: *const T, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleAssignments(self: *const T, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).get_RoleAssignments(@ptrCast(*const IAzApplication3, self), ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?**IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateRoleAssignment(@ptrCast(*const IAzApplication3, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?**IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenRoleAssignment(@ptrCast(*const IAzApplication3, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_DeleteRoleAssignment(self: *const T, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).DeleteRoleAssignment(@ptrCast(*const IAzApplication3, self), bstrRoleAssignmentName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_BizRulesEnabled(self: *const T, pbEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_get_BizRulesEnabled(self: *const T, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).get_BizRulesEnabled(@ptrCast(*const IAzApplication3, self), pbEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4122,16 +4122,16 @@ pub const IAzOperation2 = extern struct {
         base: IAzOperation.VTable,
         RoleAssignments: fn(
             self: *const IAzOperation2,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             bRecursive: i16,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzOperation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzOperation2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzOperation2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
@@ -4148,32 +4148,32 @@ pub const IAzRoleDefinitions = extern struct {
         get_Item: fn(
             self: *const IAzRoleDefinitions,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzRoleDefinitions,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzRoleDefinitions,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinitions_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinitions.VTable, self.vtable).get_Item(@ptrCast(*const IAzRoleDefinitions, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinitions_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinitions.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoleDefinitions, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinitions_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoleDefinitions, self), ppEnumPtr);
         }
     };}
@@ -4188,41 +4188,41 @@ pub const IAzRoleDefinition = extern struct {
         base: IAzTask.VTable,
         RoleAssignments: fn(
             self: *const IAzRoleDefinition,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             bRecursive: i16,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRoleDefinition: fn(
             self: *const IAzRoleDefinition,
-            bstrRoleDefinition: BSTR,
+            bstrRoleDefinition: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzRoleDefinition,
-            bstrRoleDefinition: BSTR,
+            bstrRoleDefinition: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: fn(
             self: *const IAzRoleDefinition,
-            ppRoleDefinitions: ?**IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzTask.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzRoleDefinition, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_AddRoleDefinition(self: *const T, bstrRoleDefinition: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_AddRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).AddRoleDefinition(@ptrCast(*const IAzRoleDefinition, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzRoleDefinition, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?**IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzRoleDefinition, self), ppRoleDefinitions);
         }
     };}
@@ -4237,40 +4237,40 @@ pub const IAzRoleAssignment = extern struct {
         base: IAzRole.VTable,
         AddRoleDefinition: fn(
             self: *const IAzRoleAssignment,
-            bstrRoleDefinition: BSTR,
+            bstrRoleDefinition: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzRoleAssignment,
-            bstrRoleDefinition: BSTR,
+            bstrRoleDefinition: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: fn(
             self: *const IAzRoleAssignment,
-            ppRoleDefinitions: ?**IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: fn(
             self: *const IAzRoleAssignment,
-            ppScope: ?**IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzRole.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_AddRoleDefinition(self: *const T, bstrRoleDefinition: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_AddRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).AddRoleDefinition(@ptrCast(*const IAzRoleAssignment, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_DeleteRoleDefinition(self: *const T, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzRoleAssignment, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?**IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzRoleAssignment, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_Scope(self: *const T, ppScope: ?**IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_get_Scope(self: *const T, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).get_Scope(@ptrCast(*const IAzRoleAssignment, self), ppScope);
         }
     };}
@@ -4287,32 +4287,32 @@ pub const IAzRoleAssignments = extern struct {
         get_Item: fn(
             self: *const IAzRoleAssignments,
             Index: i32,
-            pvarObtPtr: *VARIANT,
+            pvarObtPtr: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IAzRoleAssignments,
-            plCount: *i32,
+            plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAzRoleAssignments,
-            ppEnumPtr: ?**IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get_Item(self: *const T, Index: i32, pvarObtPtr: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignments_get_Item(self: *const T, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignments.VTable, self.vtable).get_Item(@ptrCast(*const IAzRoleAssignments, self), Index, pvarObtPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get_Count(self: *const T, plCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignments_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignments.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoleAssignments, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get__NewEnum(self: *const T, ppEnumPtr: ?**IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignments_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignments.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoleAssignments, self), ppEnumPtr);
         }
     };}
@@ -4328,23 +4328,23 @@ pub const IAzPrincipalLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NameResolver: fn(
             self: *const IAzPrincipalLocator,
-            ppNameResolver: ?**IAzNameResolver,
+            ppNameResolver: ?*?*IAzNameResolver,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectPicker: fn(
             self: *const IAzPrincipalLocator,
-            ppObjectPicker: ?**IAzObjectPicker,
+            ppObjectPicker: ?*?*IAzObjectPicker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_NameResolver(self: *const T, ppNameResolver: ?**IAzNameResolver) callconv(.Inline) HRESULT {
+        pub fn IAzPrincipalLocator_get_NameResolver(self: *const T, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzPrincipalLocator.VTable, self.vtable).get_NameResolver(@ptrCast(*const IAzPrincipalLocator, self), ppNameResolver);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_ObjectPicker(self: *const T, ppObjectPicker: ?**IAzObjectPicker) callconv(.Inline) HRESULT {
+        pub fn IAzPrincipalLocator_get_ObjectPicker(self: *const T, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzPrincipalLocator.VTable, self.vtable).get_ObjectPicker(@ptrCast(*const IAzPrincipalLocator, self), ppObjectPicker);
         }
     };}
@@ -4359,26 +4359,26 @@ pub const IAzNameResolver = extern struct {
         base: IDispatch.VTable,
         NameFromSid: fn(
             self: *const IAzNameResolver,
-            bstrSid: BSTR,
-            pSidType: *i32,
-            pbstrName: ?*BSTR,
+            bstrSid: ?BSTR,
+            pSidType: ?*i32,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NamesFromSids: fn(
             self: *const IAzNameResolver,
             vSids: VARIANT,
-            pvSidTypes: *VARIANT,
-            pvNames: *VARIANT,
+            pvSidTypes: ?*VARIANT,
+            pvNames: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzNameResolver_NameFromSid(self: *const T, bstrSid: BSTR, pSidType: *i32, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzNameResolver_NameFromSid(self: *const T, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzNameResolver.VTable, self.vtable).NameFromSid(@ptrCast(*const IAzNameResolver, self), bstrSid, pSidType, pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzNameResolver_NamesFromSids(self: *const T, vSids: VARIANT, pvSidTypes: *VARIANT, pvNames: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzNameResolver_NamesFromSids(self: *const T, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzNameResolver.VTable, self.vtable).NamesFromSids(@ptrCast(*const IAzNameResolver, self), vSids, pvSidTypes, pvNames);
         }
     };}
@@ -4393,27 +4393,27 @@ pub const IAzObjectPicker = extern struct {
         base: IDispatch.VTable,
         GetPrincipals: fn(
             self: *const IAzObjectPicker,
-            hParentWnd: HWND,
-            bstrTitle: BSTR,
-            pvSidTypes: *VARIANT,
-            pvNames: *VARIANT,
-            pvSids: *VARIANT,
+            hParentWnd: ?HWND,
+            bstrTitle: ?BSTR,
+            pvSidTypes: ?*VARIANT,
+            pvNames: ?*VARIANT,
+            pvSids: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IAzObjectPicker,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzObjectPicker_GetPrincipals(self: *const T, hParentWnd: HWND, bstrTitle: BSTR, pvSidTypes: *VARIANT, pvNames: *VARIANT, pvSids: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAzObjectPicker_GetPrincipals(self: *const T, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzObjectPicker.VTable, self.vtable).GetPrincipals(@ptrCast(*const IAzObjectPicker, self), hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzObjectPicker_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzObjectPicker_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzObjectPicker.VTable, self.vtable).get_Name(@ptrCast(*const IAzObjectPicker, self), pbstrName);
         }
     };}
@@ -4429,69 +4429,69 @@ pub const IAzApplicationGroup2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRule: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: fn(
             self: *const IAzApplicationGroup2,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: fn(
             self: *const IAzApplicationGroup2,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: ?*BSTR,
+            pbstrProp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: fn(
             self: *const IAzApplicationGroup2,
-            bstrProp: BSTR,
+            bstrProp: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RoleAssignments: fn(
             self: *const IAzApplicationGroup2,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             bRecursive: i16,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzApplicationGroup.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRule(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRule(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRule(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRule(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_put_BizRule(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRule(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleLanguage(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRuleLanguage(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRuleLanguage(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRuleLanguage(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_put_BizRuleLanguage(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRuleLanguage(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRuleImportedPath(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_put_BizRuleImportedPath(self: *const T, bstrProp: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_put_BizRuleImportedPath(self: *const T, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRuleImportedPath(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzApplicationGroup2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
@@ -4506,16 +4506,16 @@ pub const IAzTask2 = extern struct {
         base: IAzTask.VTable,
         RoleAssignments: fn(
             self: *const IAzTask2,
-            bstrScopeName: BSTR,
+            bstrScopeName: ?BSTR,
             bRecursive: i16,
-            ppRoleAssignments: ?**IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzTask.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?**IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzTask2_RoleAssignments(self: *const T, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzTask2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
@@ -4723,24 +4723,24 @@ pub const AZ_CLIENT_CONTEXT_GET_GROUPS_STORE_LEVEL_ONLY = AZ_PROP_CONSTANTS.PROP
 
 pub const SI_OBJECT_INFO = extern struct {
     dwFlags: SI_OBJECT_INFO_FLAGS,
-    hInstance: HINSTANCE,
-    pszServerName: PWSTR,
-    pszObjectName: PWSTR,
-    pszPageTitle: PWSTR,
+    hInstance: ?HINSTANCE,
+    pszServerName: ?PWSTR,
+    pszObjectName: ?PWSTR,
+    pszPageTitle: ?PWSTR,
     guidObjectType: Guid,
 };
 
 pub const SI_ACCESS = extern struct {
-    pguid: *const Guid,
+    pguid: ?*const Guid,
     mask: u32,
-    pszName: [*:0]const u16,
+    pszName: ?[*:0]const u16,
     dwFlags: u32,
 };
 
 pub const SI_INHERIT_TYPE = extern struct {
-    pguid: *const Guid,
+    pguid: ?*const Guid,
     dwFlags: ACE_FLAGS,
-    pszName: [*:0]const u16,
+    pszName: ?[*:0]const u16,
 };
 
 pub const SI_PAGE_TYPE = enum(i32) {
@@ -4785,41 +4785,41 @@ pub const ISecurityInformation = extern struct {
         base: IUnknown.VTable,
         GetObjectInformation: fn(
             self: *const ISecurityInformation,
-            pObjectInfo: *SI_OBJECT_INFO,
+            pObjectInfo: ?*SI_OBJECT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurity: fn(
             self: *const ISecurityInformation,
             RequestedInformation: OBJECT_SECURITY_INFORMATION,
-            ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
+            ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
             fDefault: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurity: fn(
             self: *const ISecurityInformation,
             SecurityInformation: OBJECT_SECURITY_INFORMATION,
-            pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+            pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAccessRights: fn(
             self: *const ISecurityInformation,
-            pguidObjectType: *const Guid,
+            pguidObjectType: ?*const Guid,
             dwFlags: SECURITY_INFO_PAGE_FLAGS,
-            ppAccess: **SI_ACCESS,
-            pcAccesses: *u32,
-            piDefaultAccess: *u32,
+            ppAccess: ?*?*SI_ACCESS,
+            pcAccesses: ?*u32,
+            piDefaultAccess: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MapGeneric: fn(
             self: *const ISecurityInformation,
-            pguidObjectType: *const Guid,
-            pAceFlags: *u8,
-            pMask: *u32,
+            pguidObjectType: ?*const Guid,
+            pAceFlags: ?*u8,
+            pMask: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInheritTypes: fn(
             self: *const ISecurityInformation,
-            ppInheritTypes: **SI_INHERIT_TYPE,
-            pcInheritTypes: *u32,
+            ppInheritTypes: ?*?*SI_INHERIT_TYPE,
+            pcInheritTypes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PropertySheetPageCallback: fn(
             self: *const ISecurityInformation,
-            hwnd: HWND,
+            hwnd: ?HWND,
             uMsg: PSPCB_MESSAGE,
             uPage: SI_PAGE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4828,31 +4828,31 @@ pub const ISecurityInformation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetObjectInformation(self: *const T, pObjectInfo: *SI_OBJECT_INFO) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_GetObjectInformation(self: *const T, pObjectInfo: ?*SI_OBJECT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetObjectInformation(@ptrCast(*const ISecurityInformation, self), pObjectInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: **SECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetSecurity(@ptrCast(*const ISecurityInformation, self), RequestedInformation, ppSecurityDescriptor, fDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: *SECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?*SECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).SetSecurity(@ptrCast(*const ISecurityInformation, self), SecurityInformation, pSecurityDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetAccessRights(self: *const T, pguidObjectType: *const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: **SI_ACCESS, pcAccesses: *u32, piDefaultAccess: *u32) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_GetAccessRights(self: *const T, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetAccessRights(@ptrCast(*const ISecurityInformation, self), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_MapGeneric(self: *const T, pguidObjectType: *const Guid, pAceFlags: *u8, pMask: *u32) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_MapGeneric(self: *const T, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).MapGeneric(@ptrCast(*const ISecurityInformation, self), pguidObjectType, pAceFlags, pMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetInheritTypes(self: *const T, ppInheritTypes: **SI_INHERIT_TYPE, pcInheritTypes: *u32) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_GetInheritTypes(self: *const T, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetInheritTypes(@ptrCast(*const ISecurityInformation, self), ppInheritTypes, pcInheritTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_PropertySheetPageCallback(self: *const T, hwnd: HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_PropertySheetPageCallback(self: *const T, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation.VTable, self.vtable).PropertySheetPageCallback(@ptrCast(*const ISecurityInformation, self), hwnd, uMsg, uPage);
         }
     };}
@@ -4867,24 +4867,24 @@ pub const ISecurityInformation2 = extern struct {
         base: IUnknown.VTable,
         IsDaclCanonical: fn(
             self: *const ISecurityInformation2,
-            pDacl: *ACL,
+            pDacl: ?*ACL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         LookupSids: fn(
             self: *const ISecurityInformation2,
             cSids: u32,
-            rgpSids: *PSID,
-            ppdo: **IDataObject,
+            rgpSids: ?*?PSID,
+            ppdo: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation2_IsDaclCanonical(self: *const T, pDacl: *ACL) callconv(.Inline) BOOL {
+        pub fn ISecurityInformation2_IsDaclCanonical(self: *const T, pDacl: ?*ACL) callconv(.Inline) BOOL {
             return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).IsDaclCanonical(@ptrCast(*const ISecurityInformation2, self), pDacl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation2_LookupSids(self: *const T, cSids: u32, rgpSids: *PSID, ppdo: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation2_LookupSids(self: *const T, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).LookupSids(@ptrCast(*const ISecurityInformation2, self), cSids, rgpSids, ppdo);
         }
     };}
@@ -4892,10 +4892,10 @@ pub const ISecurityInformation2 = extern struct {
 };
 
 pub const SID_INFO = extern struct {
-    pSid: PSID,
-    pwzCommonName: PWSTR,
-    pwzClass: PWSTR,
-    pwzUPN: PWSTR,
+    pSid: ?PSID,
+    pwzCommonName: ?PWSTR,
+    pwzClass: ?PWSTR,
+    pwzUPN: ?PWSTR,
 };
 
 pub const SID_INFO_LIST = extern struct {
@@ -4911,21 +4911,21 @@ pub const IEffectivePermission = extern struct {
         base: IUnknown.VTable,
         GetEffectivePermission: fn(
             self: *const IEffectivePermission,
-            pguidObjectType: *const Guid,
-            pUserSid: PSID,
-            pszServerName: [*:0]const u16,
-            pSD: *SECURITY_DESCRIPTOR,
-            ppObjectTypeList: **OBJECT_TYPE_LIST,
-            pcObjectTypeListLength: *u32,
-            ppGrantedAccessList: **u32,
-            pcGrantedAccessListLength: *u32,
+            pguidObjectType: ?*const Guid,
+            pUserSid: ?PSID,
+            pszServerName: ?[*:0]const u16,
+            pSD: ?*SECURITY_DESCRIPTOR,
+            ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
+            pcObjectTypeListLength: ?*u32,
+            ppGrantedAccessList: ?*?*u32,
+            pcGrantedAccessListLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: *const Guid, pUserSid: PSID, pszServerName: [*:0]const u16, pSD: *SECURITY_DESCRIPTOR, ppObjectTypeList: **OBJECT_TYPE_LIST, pcObjectTypeListLength: *u32, ppGrantedAccessList: **u32, pcGrantedAccessListLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?*SECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEffectivePermission.VTable, self.vtable).GetEffectivePermission(@ptrCast(*const IEffectivePermission, self), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
         }
     };}
@@ -4941,15 +4941,15 @@ pub const ISecurityObjectTypeInfo = extern struct {
         GetInheritSource: fn(
             self: *const ISecurityObjectTypeInfo,
             si: u32,
-            pACL: *ACL,
-            ppInheritArray: **INHERITED_FROMA,
+            pACL: ?*ACL,
+            ppInheritArray: ?*?*INHERITED_FROMA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityObjectTypeInfo_GetInheritSource(self: *const T, si: u32, pACL: *ACL, ppInheritArray: **INHERITED_FROMA) callconv(.Inline) HRESULT {
+        pub fn ISecurityObjectTypeInfo_GetInheritSource(self: *const T, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityObjectTypeInfo.VTable, self.vtable).GetInheritSource(@ptrCast(*const ISecurityObjectTypeInfo, self), si, pACL, ppInheritArray);
         }
     };}
@@ -4964,11 +4964,11 @@ pub const ISecurityInformation3 = extern struct {
         base: IUnknown.VTable,
         GetFullResourceName: fn(
             self: *const ISecurityInformation3,
-            ppszResourceName: *PWSTR,
+            ppszResourceName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenElevatedEditor: fn(
             self: *const ISecurityInformation3,
-            hWnd: HWND,
+            hWnd: ?HWND,
             uPage: SI_PAGE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4976,11 +4976,11 @@ pub const ISecurityInformation3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation3_GetFullResourceName(self: *const T, ppszResourceName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation3_GetFullResourceName(self: *const T, ppszResourceName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).GetFullResourceName(@ptrCast(*const ISecurityInformation3, self), ppszResourceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation3_OpenElevatedEditor(self: *const T, hWnd: HWND, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation3_OpenElevatedEditor(self: *const T, hWnd: ?HWND, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).OpenElevatedEditor(@ptrCast(*const ISecurityInformation3, self), hWnd, uPage);
         }
     };}
@@ -4988,10 +4988,10 @@ pub const ISecurityInformation3 = extern struct {
 };
 
 pub const SECURITY_OBJECT = extern struct {
-    pwszName: PWSTR,
-    pData: *c_void,
+    pwszName: ?PWSTR,
+    pData: ?*c_void,
     cbData: u32,
-    pData2: *c_void,
+    pData2: ?*c_void,
     cbData2: u32,
     Id: u32,
     fWellKnown: u8,
@@ -5000,8 +5000,8 @@ pub const SECURITY_OBJECT = extern struct {
 pub const EFFPERM_RESULT_LIST = extern struct {
     fEvaluated: u8,
     cObjectTypeListLength: u32,
-    pObjectTypeList: *OBJECT_TYPE_LIST,
-    pGrantedAccessList: *u32,
+    pObjectTypeList: ?*OBJECT_TYPE_LIST,
+    pGrantedAccessList: ?*u32,
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5012,15 +5012,15 @@ pub const ISecurityInformation4 = extern struct {
         base: IUnknown.VTable,
         GetSecondarySecurity: fn(
             self: *const ISecurityInformation4,
-            pSecurityObjects: **SECURITY_OBJECT,
-            pSecurityObjectCount: *u32,
+            pSecurityObjects: ?*?*SECURITY_OBJECT,
+            pSecurityObjectCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation4_GetSecondarySecurity(self: *const T, pSecurityObjects: **SECURITY_OBJECT, pSecurityObjectCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation4_GetSecondarySecurity(self: *const T, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityInformation4.VTable, self.vtable).GetSecondarySecurity(@ptrCast(*const ISecurityInformation4, self), pSecurityObjects, pSecurityObjectCount);
         }
     };}
@@ -5035,9 +5035,9 @@ pub const IEffectivePermission2 = extern struct {
         base: IUnknown.VTable,
         ComputeEffectivePermissionWithSecondarySecurity: fn(
             self: *const IEffectivePermission2,
-            pSid: PSID,
+            pSid: ?PSID,
             pDeviceSid: ?PSID,
-            pszServerName: [*:0]const u16,
+            pszServerName: ?[*:0]const u16,
             pSecurityObjects: [*]SECURITY_OBJECT,
             dwSecurityObjectCount: u32,
             pUserGroups: ?*TOKEN_GROUPS,
@@ -5055,7 +5055,7 @@ pub const IEffectivePermission2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEffectivePermission2_ComputeEffectivePermissionWithSecondarySecurity(self: *const T, pSid: PSID, pDeviceSid: ?PSID, pszServerName: [*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.Inline) HRESULT {
+        pub fn IEffectivePermission2_ComputeEffectivePermissionWithSecondarySecurity(self: *const T, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEffectivePermission2.VTable, self.vtable).ComputeEffectivePermissionWithSecondarySecurity(@ptrCast(*const IEffectivePermission2, self), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
         }
     };}
@@ -5063,10 +5063,10 @@ pub const IEffectivePermission2 = extern struct {
 };
 
 pub const FN_PROGRESS = fn(
-    pObjectName: PWSTR,
+    pObjectName: ?PWSTR,
     Status: u32,
-    pInvokeSetting: *PROG_INVOKE_SETTING,
-    Args: *c_void,
+    pInvokeSetting: ?*PROG_INVOKE_SETTING,
+    Args: ?*c_void,
     SecuritySet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -5255,12 +5255,12 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBU
 pub extern "AUTHZ" fn AuthzAccessCheck(
     Flags: AUTHZ_ACCESS_CHECK_FLAGS,
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pRequest: *AUTHZ_ACCESS_REQUEST,
+    pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorArray: ?[*]*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorArray: ?[*]?*SECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
-    pReply: *AUTHZ_ACCESS_REPLY,
+    pReply: ?*AUTHZ_ACCESS_REPLY,
     phAccessCheckResults: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5268,21 +5268,21 @@ pub extern "AUTHZ" fn AuthzAccessCheck(
 pub extern "AUTHZ" fn AuthzCachedAccessCheck(
     Flags: u32,
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
-    pRequest: *AUTHZ_ACCESS_REQUEST,
+    pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-    pReply: *AUTHZ_ACCESS_REPLY,
+    pReply: ?*AUTHZ_ACCESS_REPLY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "AUTHZ" fn AuthzOpenObjectAudit(
     Flags: u32,
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pRequest: *AUTHZ_ACCESS_REQUEST,
-    hAuditEvent: AUTHZ_AUDIT_EVENT_HANDLE,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorArray: ?[*]*SECURITY_DESCRIPTOR,
+    pRequest: ?*AUTHZ_ACCESS_REQUEST,
+    hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorArray: ?[*]?*SECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
-    pReply: *AUTHZ_ACCESS_REPLY,
+    pReply: ?*AUTHZ_ACCESS_REPLY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5297,7 +5297,7 @@ pub extern "AUTHZ" fn AuthzInitializeResourceManager(
     pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
     pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
     szResourceManagerName: ?[*:0]const u16,
-    phAuthzResourceManager: *AUTHZ_RESOURCE_MANAGER_HANDLE,
+    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5306,8 +5306,8 @@ pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not wo
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "AUTHZ" fn AuthzInitializeRemoteResourceManager(
-    pRpcInitInfo: *AUTHZ_RPC_INIT_INFO_CLIENT,
-    phAuthzResourceManager: *AUTHZ_RESOURCE_MANAGER_HANDLE,
+    pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
+    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5318,23 +5318,23 @@ pub extern "AUTHZ" fn AuthzFreeResourceManager(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "AUTHZ" fn AuthzInitializeContextFromToken(
     Flags: u32,
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*c_void,
-    phAuthzClientContext: *isize,
+    phAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "AUTHZ" fn AuthzInitializeContextFromSid(
     Flags: u32,
-    UserSid: PSID,
+    UserSid: ?PSID,
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*c_void,
-    phAuthzClientContext: *isize,
+    phAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5343,15 +5343,15 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromAuthzContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
-    DynamicGroupArgs: *c_void,
-    phNewAuthzClientContext: *isize,
+    DynamicGroupArgs: ?*c_void,
+    phNewAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "AUTHZ" fn AuthzInitializeCompoundContext(
     UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    phCompoundContext: *isize,
+    phCompoundContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5361,13 +5361,13 @@ pub extern "AUTHZ" fn AuthzAddSidsToContext(
     SidCount: u32,
     RestrictedSids: ?*SID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
-    phNewAuthzClientContext: *isize,
+    phNewAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "AUTHZ" fn AuthzModifySecurityAttributes(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pOperations: *AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+    pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5375,7 +5375,7 @@ pub extern "AUTHZ" fn AuthzModifySecurityAttributes(
 pub extern "AUTHZ" fn AuthzModifyClaims(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
-    pClaimOperations: *AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+    pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5383,14 +5383,14 @@ pub extern "AUTHZ" fn AuthzModifyClaims(
 pub extern "AUTHZ" fn AuthzModifySids(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
-    pSidOperations: *AUTHZ_SID_OPERATION,
+    pSidOperations: ?*AUTHZ_SID_OPERATION,
     pSids: ?*TOKEN_GROUPS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "AUTHZ" fn AuthzSetAppContainerInformation(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pAppContainerSid: PSID,
+    pAppContainerSid: ?PSID,
     CapabilityCount: u32,
     pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5400,8 +5400,8 @@ pub extern "AUTHZ" fn AuthzGetInformationFromContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     InfoClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     BufferSize: u32,
-    pSizeRequired: *u32,
-    Buffer: *c_void,
+    pSizeRequired: ?*u32,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5413,11 +5413,11 @@ pub extern "AUTHZ" fn AuthzFreeContext(
 pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent(
     Flags: AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
-    szOperationType: PWSTR,
-    szObjectType: PWSTR,
-    szObjectName: PWSTR,
-    szAdditionalInfo: PWSTR,
-    phAuditEvent: *isize,
+    szOperationType: ?PWSTR,
+    szObjectType: ?PWSTR,
+    szObjectName: ?PWSTR,
+    szAdditionalInfo: ?PWSTR,
+    phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5425,60 +5425,60 @@ pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent(
 pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent2(
     Flags: u32,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
-    szOperationType: PWSTR,
-    szObjectType: PWSTR,
-    szObjectName: PWSTR,
-    szAdditionalInfo: PWSTR,
-    szAdditionalInfo2: PWSTR,
-    phAuditEvent: *isize,
+    szOperationType: ?PWSTR,
+    szObjectType: ?PWSTR,
+    szObjectName: ?PWSTR,
+    szAdditionalInfo: ?PWSTR,
+    szAdditionalInfo2: ?PWSTR,
+    phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "AUTHZ" fn AuthzFreeAuditEvent(
-    hAuditEvent: AUTHZ_AUDIT_EVENT_HANDLE,
+    hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "AUTHZ" fn AuthzEvaluateSacl(
     AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pRequest: *AUTHZ_ACCESS_REQUEST,
-    Sacl: *ACL,
+    pRequest: ?*AUTHZ_ACCESS_REQUEST,
+    Sacl: ?*ACL,
     GrantedAccess: u32,
     AccessGranted: BOOL,
-    pbGenerateAudit: *BOOL,
+    pbGenerateAudit: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "AUTHZ" fn AuthzInstallSecurityEventSource(
     dwFlags: u32,
-    pRegistration: *AUTHZ_SOURCE_SCHEMA_REGISTRATION,
+    pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "AUTHZ" fn AuthzUninstallSecurityEventSource(
     dwFlags: u32,
-    szEventSourceName: [*:0]const u16,
+    szEventSourceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "AUTHZ" fn AuthzEnumerateSecurityEventSources(
     dwFlags: u32,
-    Buffer: *AUTHZ_SOURCE_SCHEMA_REGISTRATION,
-    pdwCount: *u32,
-    pdwLength: *u32,
+    Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
+    pdwCount: ?*u32,
+    pdwLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "AUTHZ" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
-    szEventSourceName: [*:0]const u16,
-    phEventProvider: *isize,
+    szEventSourceName: ?[*:0]const u16,
+    phEventProvider: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "AUTHZ" fn AuthzUnregisterSecurityEventSource(
     dwFlags: u32,
-    phEventProvider: *isize,
+    phEventProvider: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -5496,19 +5496,19 @@ pub extern "AUTHZ" fn AuthzReportSecurityEventFromParams(
     hEventProvider: AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE,
     dwAuditId: u32,
     pUserSid: ?PSID,
-    pParams: *AUDIT_PARAMS,
+    pParams: ?*AUDIT_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "AUTHZ" fn AuthzRegisterCapChangeNotification(
-    phCapChangeSubscription: **AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
-    pfnCapChangeCallback: LPTHREAD_START_ROUTINE,
+    phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
+    pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
     pCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "AUTHZ" fn AuthzUnregisterCapChangeNotification(
-    hCapChangeSubscription: *AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
+    hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5517,19 +5517,19 @@ pub extern "AUTHZ" fn AuthzFreeCentralAccessPolicyCache(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ACLUI" fn CreateSecurityPage(
-    psi: *ISecurityInformation,
-) callconv(@import("std").os.windows.WINAPI) HPROPSHEETPAGE;
+    psi: ?*ISecurityInformation,
+) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ACLUI" fn EditSecurity(
-    hwndOwner: HWND,
-    psi: *ISecurityInformation,
+    hwndOwner: ?HWND,
+    psi: ?*ISecurityInformation,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACLUI" fn EditSecurityAdvanced(
-    hwndOwner: HWND,
-    psi: *ISecurityInformation,
+    hwndOwner: ?HWND,
+    psi: ?*ISecurityInformation,
     uSIPage: SI_PAGE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5538,7 +5538,7 @@ pub extern "ADVAPI32" fn SetEntriesInAclA(
     cCountOfExplicitEntries: u32,
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
     OldAcl: ?*ACL,
-    NewAcl: **ACL,
+    NewAcl: ?*?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5546,92 +5546,92 @@ pub extern "ADVAPI32" fn SetEntriesInAclW(
     cCountOfExplicitEntries: u32,
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
     OldAcl: ?*ACL,
-    NewAcl: **ACL,
+    NewAcl: ?*?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetExplicitEntriesFromAclA(
-    pacl: *ACL,
-    pcCountOfExplicitEntries: *u32,
-    pListOfExplicitEntries: **EXPLICIT_ACCESS_A,
+    pacl: ?*ACL,
+    pcCountOfExplicitEntries: ?*u32,
+    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetExplicitEntriesFromAclW(
-    pacl: *ACL,
-    pcCountOfExplicitEntries: *u32,
-    pListOfExplicitEntries: **EXPLICIT_ACCESS_W,
+    pacl: ?*ACL,
+    pcCountOfExplicitEntries: ?*u32,
+    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetEffectiveRightsFromAclA(
-    pacl: *ACL,
-    pTrustee: *TRUSTEE_A,
-    pAccessRights: *u32,
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_A,
+    pAccessRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetEffectiveRightsFromAclW(
-    pacl: *ACL,
-    pTrustee: *TRUSTEE_W,
-    pAccessRights: *u32,
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_W,
+    pAccessRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclA(
-    pacl: *ACL,
-    pTrustee: *TRUSTEE_A,
-    pSuccessfulAuditedRights: *u32,
-    pFailedAuditRights: *u32,
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_A,
+    pSuccessfulAuditedRights: ?*u32,
+    pFailedAuditRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclW(
-    pacl: *ACL,
-    pTrustee: *TRUSTEE_W,
-    pSuccessfulAuditedRights: *u32,
-    pFailedAuditRights: *u32,
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_W,
+    pSuccessfulAuditedRights: ?*u32,
+    pFailedAuditRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetNamedSecurityInfoA(
-    pObjectName: [*:0]const u8,
+    pObjectName: ?[*:0]const u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
-    ppsidOwner: ?*PSID,
-    ppsidGroup: ?*PSID,
-    ppDacl: ?**ACL,
-    ppSacl: ?**ACL,
-    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
+    ppsidOwner: ?*?PSID,
+    ppsidGroup: ?*?PSID,
+    ppDacl: ?*?*ACL,
+    ppSacl: ?*?*ACL,
+    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetNamedSecurityInfoW(
-    pObjectName: [*:0]const u16,
+    pObjectName: ?[*:0]const u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
-    ppsidOwner: ?*PSID,
-    ppsidGroup: ?*PSID,
-    ppDacl: ?**ACL,
-    ppSacl: ?**ACL,
-    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
+    ppsidOwner: ?*?PSID,
+    ppsidGroup: ?*?PSID,
+    ppDacl: ?*?*ACL,
+    ppSacl: ?*?*ACL,
+    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityInfo(
-    handle: HANDLE,
+    handle: ?HANDLE,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
-    ppsidOwner: ?*PSID,
-    ppsidGroup: ?*PSID,
-    ppDacl: ?**ACL,
-    ppSacl: ?**ACL,
-    ppSecurityDescriptor: ?**SECURITY_DESCRIPTOR,
+    ppsidOwner: ?*?PSID,
+    ppsidGroup: ?*?PSID,
+    ppDacl: ?*?*ACL,
+    ppSacl: ?*?*ACL,
+    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetNamedSecurityInfoA(
-    pObjectName: PSTR,
+    pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     psidOwner: ?PSID,
@@ -5642,7 +5642,7 @@ pub extern "ADVAPI32" fn SetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetNamedSecurityInfoW(
-    pObjectName: PWSTR,
+    pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     psidOwner: ?PSID,
@@ -5653,7 +5653,7 @@ pub extern "ADVAPI32" fn SetNamedSecurityInfoW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityInfo(
-    handle: HANDLE,
+    handle: ?HANDLE,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     psidOwner: ?PSID,
@@ -5664,30 +5664,30 @@ pub extern "ADVAPI32" fn SetSecurityInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetInheritanceSourceA(
-    pObjectName: PSTR,
+    pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     Container: BOOL,
-    pObjectClassGuids: ?[*]*Guid,
+    pObjectClassGuids: ?[*]?*Guid,
     GuidCount: u32,
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-    pGenericMapping: *GENERIC_MAPPING,
-    pInheritArray: *INHERITED_FROMA,
+    pGenericMapping: ?*GENERIC_MAPPING,
+    pInheritArray: ?*INHERITED_FROMA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetInheritanceSourceW(
-    pObjectName: PWSTR,
+    pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     Container: BOOL,
-    pObjectClassGuids: ?[*]*Guid,
+    pObjectClassGuids: ?[*]?*Guid,
     GuidCount: u32,
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-    pGenericMapping: *GENERIC_MAPPING,
-    pInheritArray: *INHERITED_FROMW,
+    pGenericMapping: ?*GENERIC_MAPPING,
+    pInheritArray: ?*INHERITED_FROMW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5699,7 +5699,7 @@ pub extern "ADVAPI32" fn FreeInheritedFromArray(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoA(
-    pObjectName: PSTR,
+    pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5714,7 +5714,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoW(
-    pObjectName: PWSTR,
+    pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5729,7 +5729,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoA(
-    pObjectName: PSTR,
+    pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5744,7 +5744,7 @@ pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoW(
-    pObjectName: PWSTR,
+    pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5766,8 +5766,8 @@ pub extern "ADVAPI32" fn BuildSecurityDescriptorA(
     cCountOfAuditEntries: u32,
     pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_A,
     pOldSD: ?*SECURITY_DESCRIPTOR,
-    pSizeNewSD: *u32,
-    pNewSD: **SECURITY_DESCRIPTOR,
+    pSizeNewSD: ?*u32,
+    pNewSD: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5779,35 +5779,35 @@ pub extern "ADVAPI32" fn BuildSecurityDescriptorW(
     cCountOfAuditEntries: u32,
     pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_W,
     pOldSD: ?*SECURITY_DESCRIPTOR,
-    pSizeNewSD: *u32,
-    pNewSD: **SECURITY_DESCRIPTOR,
+    pSizeNewSD: ?*u32,
+    pNewSD: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsA(
-    ppOwner: ?**TRUSTEE_A,
-    ppGroup: ?**TRUSTEE_A,
+    ppOwner: ?*?*TRUSTEE_A,
+    ppGroup: ?*?*TRUSTEE_A,
     pcCountOfAccessEntries: ?*u32,
-    ppListOfAccessEntries: ?**EXPLICIT_ACCESS_A,
+    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_A,
     pcCountOfAuditEntries: ?*u32,
-    ppListOfAuditEntries: ?**EXPLICIT_ACCESS_A,
-    pSD: *SECURITY_DESCRIPTOR,
+    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
+    pSD: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsW(
-    ppOwner: ?**TRUSTEE_W,
-    ppGroup: ?**TRUSTEE_W,
+    ppOwner: ?*?*TRUSTEE_W,
+    ppGroup: ?*?*TRUSTEE_W,
     pcCountOfAccessEntries: ?*u32,
-    ppListOfAccessEntries: ?**EXPLICIT_ACCESS_W,
+    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_W,
     pcCountOfAuditEntries: ?*u32,
-    ppListOfAuditEntries: ?**EXPLICIT_ACCESS_W,
-    pSD: *SECURITY_DESCRIPTOR,
+    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
+    pSD: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildExplicitAccessWithNameA(
-    pExplicitAccess: *EXPLICIT_ACCESS_A,
+    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
     pTrusteeName: ?PSTR,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
@@ -5816,7 +5816,7 @@ pub extern "ADVAPI32" fn BuildExplicitAccessWithNameA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildExplicitAccessWithNameW(
-    pExplicitAccess: *EXPLICIT_ACCESS_W,
+    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
     pTrusteeName: ?PWSTR,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
@@ -5824,7 +5824,7 @@ pub extern "ADVAPI32" fn BuildExplicitAccessWithNameW(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameA(
-    pExplicitAccess: *EXPLICIT_ACCESS_A,
+    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
     pTrusteeName: ?PSTR,
     pTrustee: ?*TRUSTEE_A,
     AccessPermissions: u32,
@@ -5833,7 +5833,7 @@ pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameA(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameW(
-    pExplicitAccess: *EXPLICIT_ACCESS_W,
+    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
     pTrusteeName: ?PWSTR,
     pTrustee: ?*TRUSTEE_W,
     AccessPermissions: u32,
@@ -5843,41 +5843,41 @@ pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithNameA(
-    pTrustee: *TRUSTEE_A,
+    pTrustee: ?*TRUSTEE_A,
     pName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithNameW(
-    pTrustee: *TRUSTEE_W,
+    pTrustee: ?*TRUSTEE_W,
     pName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ADVAPI32" fn BuildImpersonateTrusteeA(
-    pTrustee: *TRUSTEE_A,
+    pTrustee: ?*TRUSTEE_A,
     pImpersonateTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ADVAPI32" fn BuildImpersonateTrusteeW(
-    pTrustee: *TRUSTEE_W,
+    pTrustee: ?*TRUSTEE_W,
     pImpersonateTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithSidA(
-    pTrustee: *TRUSTEE_A,
+    pTrustee: ?*TRUSTEE_A,
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithSidW(
-    pTrustee: *TRUSTEE_W,
+    pTrustee: ?*TRUSTEE_W,
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidA(
-    pTrustee: *TRUSTEE_A,
+    pTrustee: ?*TRUSTEE_A,
     pObjSid: ?*OBJECTS_AND_SID,
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
@@ -5886,7 +5886,7 @@ pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidW(
-    pTrustee: *TRUSTEE_W,
+    pTrustee: ?*TRUSTEE_W,
     pObjSid: ?*OBJECTS_AND_SID,
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
@@ -5903,13 +5903,13 @@ pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not wor
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTrusteeNameA(
-    pTrustee: *TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) PSTR;
+    pTrustee: ?*TRUSTEE_A,
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTrusteeNameW(
-    pTrustee: *TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) PWSTR;
+    pTrustee: ?*TRUSTEE_W,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTrusteeTypeA(
@@ -5923,12 +5923,12 @@ pub extern "ADVAPI32" fn GetTrusteeTypeW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTrusteeFormA(
-    pTrustee: *TRUSTEE_A,
+    pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTrusteeFormW(
-    pTrustee: *TRUSTEE_W,
+    pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
 
 pub extern "ADVAPI32" fn GetMultipleTrusteeOperationA(
@@ -5941,67 +5941,67 @@ pub extern "ADVAPI32" fn GetMultipleTrusteeOperationW(
 
 pub extern "ADVAPI32" fn GetMultipleTrusteeA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) *TRUSTEE_A;
+) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_A;
 
 pub extern "ADVAPI32" fn GetMultipleTrusteeW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) *TRUSTEE_W;
+) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_W;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertSidToStringSidA(
-    Sid: PSID,
-    StringSid: *PSTR,
+    Sid: ?PSID,
+    StringSid: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertSidToStringSidW(
-    Sid: PSID,
-    StringSid: *PWSTR,
+    Sid: ?PSID,
+    StringSid: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertStringSidToSidA(
-    StringSid: [*:0]const u8,
-    Sid: *PSID,
+    StringSid: ?[*:0]const u8,
+    Sid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertStringSidToSidW(
-    StringSid: [*:0]const u16,
-    Sid: *PSID,
+    StringSid: ?[*:0]const u16,
+    Sid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
-    StringSecurityDescriptor: [*:0]const u8,
+    StringSecurityDescriptor: ?[*:0]const u8,
     StringSDRevision: u32,
-    SecurityDescriptor: **SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
-    StringSecurityDescriptor: [*:0]const u16,
+    StringSecurityDescriptor: ?[*:0]const u16,
     StringSDRevision: u32,
-    SecurityDescriptor: **SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
-    StringSecurityDescriptor: *PSTR,
+    StringSecurityDescriptor: ?*?PSTR,
     StringSecurityDescriptorLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
-    StringSecurityDescriptor: *PWSTR,
+    StringSecurityDescriptor: ?*?PWSTR,
     StringSecurityDescriptorLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

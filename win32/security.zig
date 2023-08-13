@@ -239,18 +239,18 @@ pub const WLX_OPTION_DISPATCH_TABLE_SIZE = @as(u32, 65539);
 // Section: Types (314)
 //--------------------------------------------------------------------------------
 pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SEC_THREAD_START = fn(
-    lpThreadParameter: *c_void,
+    lpThreadParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const TOKEN_ACCESS_MASK = enum(u32) {
@@ -391,13 +391,13 @@ pub const SidTypeLabel = SID_NAME_USE.Label;
 pub const SidTypeLogonSession = SID_NAME_USE.LogonSession;
 
 pub const SID_AND_ATTRIBUTES = extern struct {
-    Sid: PSID,
+    Sid: ?PSID,
     Attributes: u32,
 };
 
 pub const SID_AND_ATTRIBUTES_HASH = extern struct {
     SidCount: u32,
-    SidAttr: *SID_AND_ATTRIBUTES,
+    SidAttr: ?*SID_AND_ATTRIBUTES,
     Hash: [32]usize,
 };
 
@@ -817,16 +817,16 @@ pub const SECURITY_DESCRIPTOR = extern struct {
     Revision: u8,
     Sbz1: u8,
     Control: u16,
-    Owner: PSID,
-    Group: PSID,
-    Sacl: *ACL,
-    Dacl: *ACL,
+    Owner: ?PSID,
+    Group: ?PSID,
+    Sacl: ?*ACL,
+    Dacl: ?*ACL,
 };
 
 pub const OBJECT_TYPE_LIST = extern struct {
     Level: u16,
     Sbz: u16,
-    ObjectType: *Guid,
+    ObjectType: ?*Guid,
 };
 
 pub const AUDIT_EVENT_TYPE = enum(i32) {
@@ -985,40 +985,40 @@ pub const TOKEN_PRIVILEGES = extern struct {
 };
 
 pub const TOKEN_OWNER = extern struct {
-    Owner: PSID,
+    Owner: ?PSID,
 };
 
 pub const TOKEN_PRIMARY_GROUP = extern struct {
-    PrimaryGroup: PSID,
+    PrimaryGroup: ?PSID,
 };
 
 pub const TOKEN_DEFAULT_DACL = extern struct {
-    DefaultDacl: *ACL,
+    DefaultDacl: ?*ACL,
 };
 
 pub const TOKEN_USER_CLAIMS = extern struct {
-    UserClaims: *c_void,
+    UserClaims: ?*c_void,
 };
 
 pub const TOKEN_DEVICE_CLAIMS = extern struct {
-    DeviceClaims: *c_void,
+    DeviceClaims: ?*c_void,
 };
 
 pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
     SidCount: u32,
     SidLength: u32,
-    Sids: *SID_AND_ATTRIBUTES,
+    Sids: ?*SID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
     RestrictedSidLength: u32,
-    RestrictedSids: *SID_AND_ATTRIBUTES,
+    RestrictedSids: ?*SID_AND_ATTRIBUTES,
     PrivilegeCount: u32,
     PrivilegeLength: u32,
-    Privileges: *LUID_AND_ATTRIBUTES,
+    Privileges: ?*LUID_AND_ATTRIBUTES,
     AuthenticationId: LUID,
 };
 
 pub const TOKEN_LINKED_TOKEN = extern struct {
-    LinkedToken: HANDLE,
+    LinkedToken: ?HANDLE,
 };
 
 pub const TOKEN_ELEVATION = extern struct {
@@ -1034,19 +1034,19 @@ pub const TOKEN_MANDATORY_POLICY = extern struct {
 };
 
 pub const TOKEN_ACCESS_INFORMATION = extern struct {
-    SidHash: *SID_AND_ATTRIBUTES_HASH,
-    RestrictedSidHash: *SID_AND_ATTRIBUTES_HASH,
-    Privileges: *TOKEN_PRIVILEGES,
+    SidHash: ?*SID_AND_ATTRIBUTES_HASH,
+    RestrictedSidHash: ?*SID_AND_ATTRIBUTES_HASH,
+    Privileges: ?*TOKEN_PRIVILEGES,
     AuthenticationId: LUID,
     TokenType: TOKEN_TYPE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     MandatoryPolicy: TOKEN_MANDATORY_POLICY,
     Flags: u32,
     AppContainerNumber: u32,
-    PackageSid: PSID,
-    CapabilitiesHash: *SID_AND_ATTRIBUTES_HASH,
-    TrustLevelSid: PSID,
-    SecurityAttributes: *c_void,
+    PackageSid: ?PSID,
+    CapabilitiesHash: ?*SID_AND_ATTRIBUTES_HASH,
+    TrustLevelSid: ?PSID,
+    SecurityAttributes: ?*c_void,
 };
 
 pub const TOKEN_AUDIT_POLICY = extern struct {
@@ -1100,31 +1100,31 @@ pub const MandatoryLevelSecureProcess = MANDATORY_LEVEL.SecureProcess;
 pub const MandatoryLevelCount = MANDATORY_LEVEL.Count;
 
 pub const TOKEN_APPCONTAINER_INFORMATION = extern struct {
-    TokenAppContainer: PSID,
+    TokenAppContainer: ?PSID,
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
-    Name: PWSTR,
+    Name: ?PWSTR,
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: *c_void,
+    pValue: ?*c_void,
     ValueLength: u32,
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
-    Name: PWSTR,
+    Name: ?PWSTR,
     ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
     Reserved: u16,
     Flags: u32,
     ValueCount: u32,
     Values: extern union {
-        pInt64: *i64,
-        pUint64: *u64,
-        ppString: *PWSTR,
-        pFqbn: *CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
-        pOctetString: *CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
+        pInt64: ?*i64,
+        pUint64: ?*u64,
+        ppString: ?*?PWSTR,
+        pFqbn: ?*CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
+        pOctetString: ?*CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
     },
 };
 
@@ -1148,7 +1148,7 @@ pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Reserved: u16,
     AttributeCount: u32,
     Attribute: extern union {
-        pAttributeV1: *CLAIM_SECURITY_ATTRIBUTE_V1,
+        pAttributeV1: ?*CLAIM_SECURITY_ATTRIBUTE_V1,
     },
 };
 
@@ -1160,8 +1160,8 @@ pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
 };
 
 pub const SECURITY_CAPABILITIES = extern struct {
-    AppContainerSid: PSID,
-    Capabilities: *SID_AND_ATTRIBUTES,
+    AppContainerSid: ?PSID,
+    Capabilities: ?*SID_AND_ATTRIBUTES,
     CapabilityCount: u32,
     Reserved: u32,
 };
@@ -1177,43 +1177,43 @@ pub const QUOTA_LIMITS = extern struct {
 
 pub const SECURITY_ATTRIBUTES = extern struct {
     nLength: u32,
-    lpSecurityDescriptor: *c_void,
+    lpSecurityDescriptor: ?*c_void,
     bInheritHandle: BOOL,
 };
 
 pub const CRYPTPROTECT_PROMPTSTRUCT = extern struct {
     cbSize: u32,
     dwPromptFlags: u32,
-    hwndApp: HWND,
-    szPrompt: [*:0]const u16,
+    hwndApp: ?HWND,
+    szPrompt: ?[*:0]const u16,
 };
 
 pub const WLX_SC_NOTIFICATION_INFO = extern struct {
-    pszCard: PWSTR,
-    pszReader: PWSTR,
-    pszContainer: PWSTR,
-    pszCryptoProvider: PWSTR,
+    pszCard: ?PWSTR,
+    pszReader: ?PWSTR,
+    pszContainer: ?PWSTR,
+    pszCryptoProvider: ?PWSTR,
 };
 
 pub const WLX_PROFILE_V1_0 = extern struct {
     dwType: u32,
-    pszProfile: PWSTR,
+    pszProfile: ?PWSTR,
 };
 
 pub const WLX_PROFILE_V2_0 = extern struct {
     dwType: u32,
-    pszProfile: PWSTR,
-    pszPolicy: PWSTR,
-    pszNetworkDefaultUserProfile: PWSTR,
-    pszServerName: PWSTR,
-    pszEnvironment: PWSTR,
+    pszProfile: ?PWSTR,
+    pszPolicy: ?PWSTR,
+    pszNetworkDefaultUserProfile: ?PWSTR,
+    pszServerName: ?PWSTR,
+    pszEnvironment: ?PWSTR,
 };
 
 pub const WLX_MPR_NOTIFY_INFO = extern struct {
-    pszUserName: PWSTR,
-    pszDomain: PWSTR,
-    pszPassword: PWSTR,
-    pszOldPassword: PWSTR,
+    pszUserName: ?PWSTR,
+    pszDomain: ?PWSTR,
+    pszPassword: ?PWSTR,
+    pszOldPassword: ?PWSTR,
 };
 
 pub const WLX_TERMINAL_SERVICES_DATA = extern struct {
@@ -1224,28 +1224,28 @@ pub const WLX_TERMINAL_SERVICES_DATA = extern struct {
 
 pub const WLX_CLIENT_CREDENTIALS_INFO_V1_0 = extern struct {
     dwType: u32,
-    pszUserName: PWSTR,
-    pszDomain: PWSTR,
-    pszPassword: PWSTR,
+    pszUserName: ?PWSTR,
+    pszDomain: ?PWSTR,
+    pszPassword: ?PWSTR,
     fPromptForPassword: BOOL,
 };
 
 pub const WLX_CLIENT_CREDENTIALS_INFO_V2_0 = extern struct {
     dwType: u32,
-    pszUserName: PWSTR,
-    pszDomain: PWSTR,
-    pszPassword: PWSTR,
+    pszUserName: ?PWSTR,
+    pszDomain: ?PWSTR,
+    pszPassword: ?PWSTR,
     fPromptForPassword: BOOL,
     fDisconnectOnLogonFailure: BOOL,
 };
 
 pub const WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0 = extern struct {
     dwType: u32,
-    UserToken: HANDLE,
+    UserToken: ?HANDLE,
     LogonId: LUID,
     Quotas: QUOTA_LIMITS,
-    UserName: PWSTR,
-    Domain: PWSTR,
+    UserName: ?PWSTR,
+    Domain: ?PWSTR,
     LogonTime: LARGE_INTEGER,
     SmartCardLogon: BOOL,
     ProfileLength: u32,
@@ -1258,310 +1258,310 @@ pub const WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0 = extern struct {
     PasswordLastSet: LARGE_INTEGER,
     PasswordCanChange: LARGE_INTEGER,
     PasswordMustChange: LARGE_INTEGER,
-    LogonScript: PWSTR,
-    HomeDirectory: PWSTR,
-    FullName: PWSTR,
-    ProfilePath: PWSTR,
-    HomeDirectoryDrive: PWSTR,
-    LogonServer: PWSTR,
+    LogonScript: ?PWSTR,
+    HomeDirectory: ?PWSTR,
+    FullName: ?PWSTR,
+    ProfilePath: ?PWSTR,
+    HomeDirectoryDrive: ?PWSTR,
+    LogonServer: ?PWSTR,
     UserFlags: u32,
     PrivateDataLen: u32,
-    PrivateData: *u8,
+    PrivateData: ?*u8,
 };
 
 pub const WLX_DESKTOP = extern struct {
     Size: u32,
     Flags: u32,
-    hDesktop: HDESK,
-    pszDesktopName: PWSTR,
+    hDesktop: ?HDESK,
+    pszDesktopName: ?PWSTR,
 };
 
 pub const PWLX_USE_CTRL_ALT_DEL = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWLX_SET_CONTEXT_POINTER = fn(
-    hWlx: HANDLE,
-    pWlxContext: *c_void,
+    hWlx: ?HANDLE,
+    pWlxContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWLX_SAS_NOTIFY = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
     dwSasType: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWLX_SET_TIMEOUT = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_ASSIGN_SHELL_PROTECTION = fn(
-    hWlx: HANDLE,
-    hToken: HANDLE,
-    hProcess: HANDLE,
-    hThread: HANDLE,
+    hWlx: ?HANDLE,
+    hToken: ?HANDLE,
+    hProcess: ?HANDLE,
+    hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_MESSAGE_BOX = fn(
-    hWlx: HANDLE,
-    hwndOwner: HWND,
-    lpszText: PWSTR,
-    lpszTitle: PWSTR,
+    hWlx: ?HANDLE,
+    hwndOwner: ?HWND,
+    lpszText: ?PWSTR,
+    lpszTitle: ?PWSTR,
     fuStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_DIALOG_BOX = fn(
-    hWlx: HANDLE,
-    hInst: HANDLE,
-    lpszTemplate: PWSTR,
-    hwndOwner: HWND,
-    dlgprc: DLGPROC,
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    lpszTemplate: ?PWSTR,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_DIALOG_BOX_INDIRECT = fn(
-    hWlx: HANDLE,
-    hInst: HANDLE,
-    hDialogTemplate: *DLGTEMPLATE,
-    hwndOwner: HWND,
-    dlgprc: DLGPROC,
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    hDialogTemplate: ?*DLGTEMPLATE,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_DIALOG_BOX_PARAM = fn(
-    hWlx: HANDLE,
-    hInst: HANDLE,
-    lpszTemplate: PWSTR,
-    hwndOwner: HWND,
-    dlgprc: DLGPROC,
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    lpszTemplate: ?PWSTR,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
     dwInitParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = fn(
-    hWlx: HANDLE,
-    hInst: HANDLE,
-    hDialogTemplate: *DLGTEMPLATE,
-    hwndOwner: HWND,
-    dlgprc: DLGPROC,
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    hDialogTemplate: ?*DLGTEMPLATE,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
     dwInitParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_SWITCH_DESKTOP_TO_USER = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_SWITCH_DESKTOP_TO_WINLOGON = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_CHANGE_PASSWORD_NOTIFY = fn(
-    hWlx: HANDLE,
-    pMprInfo: *WLX_MPR_NOTIFY_INFO,
+    hWlx: ?HANDLE,
+    pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_GET_SOURCE_DESKTOP = fn(
-    hWlx: HANDLE,
-    ppDesktop: **WLX_DESKTOP,
+    hWlx: ?HANDLE,
+    ppDesktop: ?*?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_SET_RETURN_DESKTOP = fn(
-    hWlx: HANDLE,
-    pDesktop: *WLX_DESKTOP,
+    hWlx: ?HANDLE,
+    pDesktop: ?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_CREATE_USER_DESKTOP = fn(
-    hWlx: HANDLE,
-    hToken: HANDLE,
+    hWlx: ?HANDLE,
+    hToken: ?HANDLE,
     Flags: u32,
-    pszDesktopName: PWSTR,
-    ppDesktop: **WLX_DESKTOP,
+    pszDesktopName: ?PWSTR,
+    ppDesktop: ?*?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = fn(
-    hWlx: HANDLE,
-    pMprInfo: *WLX_MPR_NOTIFY_INFO,
+    hWlx: ?HANDLE,
+    pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
-    ProviderName: PWSTR,
-    Reserved: *c_void,
+    ProviderName: ?PWSTR,
+    Reserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_CLOSE_USER_DESKTOP = fn(
-    hWlx: HANDLE,
-    pDesktop: *WLX_DESKTOP,
-    hToken: HANDLE,
+    hWlx: ?HANDLE,
+    pDesktop: ?*WLX_DESKTOP,
+    hToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_SET_OPTION = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
     Option: u32,
     Value: usize,
-    OldValue: *usize,
+    OldValue: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_GET_OPTION = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
     Option: u32,
-    Value: *usize,
+    Value: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_WIN31_MIGRATE = fn(
-    hWlx: HANDLE,
+    hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWLX_QUERY_CLIENT_CREDENTIALS = fn(
-    pCred: *WLX_CLIENT_CREDENTIALS_INFO_V1_0,
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_QUERY_IC_CREDENTIALS = fn(
-    pCred: *WLX_CLIENT_CREDENTIALS_INFO_V1_0,
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = fn(
-    pCred: *WLX_CLIENT_CREDENTIALS_INFO_V2_0,
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V2_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_DISCONNECT = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = fn(
-    hWlx: HANDLE,
-    pTSData: *WLX_TERMINAL_SERVICES_DATA,
-    UserName: PWSTR,
-    Domain: PWSTR,
+    hWlx: ?HANDLE,
+    pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
+    UserName: ?PWSTR,
+    Domain: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWLX_QUERY_CONSOLESWITCH_CREDENTIALS = fn(
-    pCred: *WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
+    pCred: ?*WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WLX_DISPATCH_VERSION_1_0 = extern struct {
-    WlxUseCtrlAltDel: PWLX_USE_CTRL_ALT_DEL,
-    WlxSetContextPointer: PWLX_SET_CONTEXT_POINTER,
-    WlxSasNotify: PWLX_SAS_NOTIFY,
-    WlxSetTimeout: PWLX_SET_TIMEOUT,
-    WlxAssignShellProtection: PWLX_ASSIGN_SHELL_PROTECTION,
-    WlxMessageBox: PWLX_MESSAGE_BOX,
-    WlxDialogBox: PWLX_DIALOG_BOX,
-    WlxDialogBoxParam: PWLX_DIALOG_BOX_PARAM,
-    WlxDialogBoxIndirect: PWLX_DIALOG_BOX_INDIRECT,
-    WlxDialogBoxIndirectParam: PWLX_DIALOG_BOX_INDIRECT_PARAM,
-    WlxSwitchDesktopToUser: PWLX_SWITCH_DESKTOP_TO_USER,
-    WlxSwitchDesktopToWinlogon: PWLX_SWITCH_DESKTOP_TO_WINLOGON,
-    WlxChangePasswordNotify: PWLX_CHANGE_PASSWORD_NOTIFY,
+    WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
+    WlxSetContextPointer: ?PWLX_SET_CONTEXT_POINTER,
+    WlxSasNotify: ?PWLX_SAS_NOTIFY,
+    WlxSetTimeout: ?PWLX_SET_TIMEOUT,
+    WlxAssignShellProtection: ?PWLX_ASSIGN_SHELL_PROTECTION,
+    WlxMessageBox: ?PWLX_MESSAGE_BOX,
+    WlxDialogBox: ?PWLX_DIALOG_BOX,
+    WlxDialogBoxParam: ?PWLX_DIALOG_BOX_PARAM,
+    WlxDialogBoxIndirect: ?PWLX_DIALOG_BOX_INDIRECT,
+    WlxDialogBoxIndirectParam: ?PWLX_DIALOG_BOX_INDIRECT_PARAM,
+    WlxSwitchDesktopToUser: ?PWLX_SWITCH_DESKTOP_TO_USER,
+    WlxSwitchDesktopToWinlogon: ?PWLX_SWITCH_DESKTOP_TO_WINLOGON,
+    WlxChangePasswordNotify: ?PWLX_CHANGE_PASSWORD_NOTIFY,
 };
 
 pub const WLX_DISPATCH_VERSION_1_1 = extern struct {
-    WlxUseCtrlAltDel: PWLX_USE_CTRL_ALT_DEL,
-    WlxSetContextPointer: PWLX_SET_CONTEXT_POINTER,
-    WlxSasNotify: PWLX_SAS_NOTIFY,
-    WlxSetTimeout: PWLX_SET_TIMEOUT,
-    WlxAssignShellProtection: PWLX_ASSIGN_SHELL_PROTECTION,
-    WlxMessageBox: PWLX_MESSAGE_BOX,
-    WlxDialogBox: PWLX_DIALOG_BOX,
-    WlxDialogBoxParam: PWLX_DIALOG_BOX_PARAM,
-    WlxDialogBoxIndirect: PWLX_DIALOG_BOX_INDIRECT,
-    WlxDialogBoxIndirectParam: PWLX_DIALOG_BOX_INDIRECT_PARAM,
-    WlxSwitchDesktopToUser: PWLX_SWITCH_DESKTOP_TO_USER,
-    WlxSwitchDesktopToWinlogon: PWLX_SWITCH_DESKTOP_TO_WINLOGON,
-    WlxChangePasswordNotify: PWLX_CHANGE_PASSWORD_NOTIFY,
-    WlxGetSourceDesktop: PWLX_GET_SOURCE_DESKTOP,
-    WlxSetReturnDesktop: PWLX_SET_RETURN_DESKTOP,
-    WlxCreateUserDesktop: PWLX_CREATE_USER_DESKTOP,
-    WlxChangePasswordNotifyEx: PWLX_CHANGE_PASSWORD_NOTIFY_EX,
+    WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
+    WlxSetContextPointer: ?PWLX_SET_CONTEXT_POINTER,
+    WlxSasNotify: ?PWLX_SAS_NOTIFY,
+    WlxSetTimeout: ?PWLX_SET_TIMEOUT,
+    WlxAssignShellProtection: ?PWLX_ASSIGN_SHELL_PROTECTION,
+    WlxMessageBox: ?PWLX_MESSAGE_BOX,
+    WlxDialogBox: ?PWLX_DIALOG_BOX,
+    WlxDialogBoxParam: ?PWLX_DIALOG_BOX_PARAM,
+    WlxDialogBoxIndirect: ?PWLX_DIALOG_BOX_INDIRECT,
+    WlxDialogBoxIndirectParam: ?PWLX_DIALOG_BOX_INDIRECT_PARAM,
+    WlxSwitchDesktopToUser: ?PWLX_SWITCH_DESKTOP_TO_USER,
+    WlxSwitchDesktopToWinlogon: ?PWLX_SWITCH_DESKTOP_TO_WINLOGON,
+    WlxChangePasswordNotify: ?PWLX_CHANGE_PASSWORD_NOTIFY,
+    WlxGetSourceDesktop: ?PWLX_GET_SOURCE_DESKTOP,
+    WlxSetReturnDesktop: ?PWLX_SET_RETURN_DESKTOP,
+    WlxCreateUserDesktop: ?PWLX_CREATE_USER_DESKTOP,
+    WlxChangePasswordNotifyEx: ?PWLX_CHANGE_PASSWORD_NOTIFY_EX,
 };
 
 pub const WLX_DISPATCH_VERSION_1_2 = extern struct {
-    WlxUseCtrlAltDel: PWLX_USE_CTRL_ALT_DEL,
-    WlxSetContextPointer: PWLX_SET_CONTEXT_POINTER,
-    WlxSasNotify: PWLX_SAS_NOTIFY,
-    WlxSetTimeout: PWLX_SET_TIMEOUT,
-    WlxAssignShellProtection: PWLX_ASSIGN_SHELL_PROTECTION,
-    WlxMessageBox: PWLX_MESSAGE_BOX,
-    WlxDialogBox: PWLX_DIALOG_BOX,
-    WlxDialogBoxParam: PWLX_DIALOG_BOX_PARAM,
-    WlxDialogBoxIndirect: PWLX_DIALOG_BOX_INDIRECT,
-    WlxDialogBoxIndirectParam: PWLX_DIALOG_BOX_INDIRECT_PARAM,
-    WlxSwitchDesktopToUser: PWLX_SWITCH_DESKTOP_TO_USER,
-    WlxSwitchDesktopToWinlogon: PWLX_SWITCH_DESKTOP_TO_WINLOGON,
-    WlxChangePasswordNotify: PWLX_CHANGE_PASSWORD_NOTIFY,
-    WlxGetSourceDesktop: PWLX_GET_SOURCE_DESKTOP,
-    WlxSetReturnDesktop: PWLX_SET_RETURN_DESKTOP,
-    WlxCreateUserDesktop: PWLX_CREATE_USER_DESKTOP,
-    WlxChangePasswordNotifyEx: PWLX_CHANGE_PASSWORD_NOTIFY_EX,
-    WlxCloseUserDesktop: PWLX_CLOSE_USER_DESKTOP,
+    WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
+    WlxSetContextPointer: ?PWLX_SET_CONTEXT_POINTER,
+    WlxSasNotify: ?PWLX_SAS_NOTIFY,
+    WlxSetTimeout: ?PWLX_SET_TIMEOUT,
+    WlxAssignShellProtection: ?PWLX_ASSIGN_SHELL_PROTECTION,
+    WlxMessageBox: ?PWLX_MESSAGE_BOX,
+    WlxDialogBox: ?PWLX_DIALOG_BOX,
+    WlxDialogBoxParam: ?PWLX_DIALOG_BOX_PARAM,
+    WlxDialogBoxIndirect: ?PWLX_DIALOG_BOX_INDIRECT,
+    WlxDialogBoxIndirectParam: ?PWLX_DIALOG_BOX_INDIRECT_PARAM,
+    WlxSwitchDesktopToUser: ?PWLX_SWITCH_DESKTOP_TO_USER,
+    WlxSwitchDesktopToWinlogon: ?PWLX_SWITCH_DESKTOP_TO_WINLOGON,
+    WlxChangePasswordNotify: ?PWLX_CHANGE_PASSWORD_NOTIFY,
+    WlxGetSourceDesktop: ?PWLX_GET_SOURCE_DESKTOP,
+    WlxSetReturnDesktop: ?PWLX_SET_RETURN_DESKTOP,
+    WlxCreateUserDesktop: ?PWLX_CREATE_USER_DESKTOP,
+    WlxChangePasswordNotifyEx: ?PWLX_CHANGE_PASSWORD_NOTIFY_EX,
+    WlxCloseUserDesktop: ?PWLX_CLOSE_USER_DESKTOP,
 };
 
 pub const WLX_DISPATCH_VERSION_1_3 = extern struct {
-    WlxUseCtrlAltDel: PWLX_USE_CTRL_ALT_DEL,
-    WlxSetContextPointer: PWLX_SET_CONTEXT_POINTER,
-    WlxSasNotify: PWLX_SAS_NOTIFY,
-    WlxSetTimeout: PWLX_SET_TIMEOUT,
-    WlxAssignShellProtection: PWLX_ASSIGN_SHELL_PROTECTION,
-    WlxMessageBox: PWLX_MESSAGE_BOX,
-    WlxDialogBox: PWLX_DIALOG_BOX,
-    WlxDialogBoxParam: PWLX_DIALOG_BOX_PARAM,
-    WlxDialogBoxIndirect: PWLX_DIALOG_BOX_INDIRECT,
-    WlxDialogBoxIndirectParam: PWLX_DIALOG_BOX_INDIRECT_PARAM,
-    WlxSwitchDesktopToUser: PWLX_SWITCH_DESKTOP_TO_USER,
-    WlxSwitchDesktopToWinlogon: PWLX_SWITCH_DESKTOP_TO_WINLOGON,
-    WlxChangePasswordNotify: PWLX_CHANGE_PASSWORD_NOTIFY,
-    WlxGetSourceDesktop: PWLX_GET_SOURCE_DESKTOP,
-    WlxSetReturnDesktop: PWLX_SET_RETURN_DESKTOP,
-    WlxCreateUserDesktop: PWLX_CREATE_USER_DESKTOP,
-    WlxChangePasswordNotifyEx: PWLX_CHANGE_PASSWORD_NOTIFY_EX,
-    WlxCloseUserDesktop: PWLX_CLOSE_USER_DESKTOP,
-    WlxSetOption: PWLX_SET_OPTION,
-    WlxGetOption: PWLX_GET_OPTION,
-    WlxWin31Migrate: PWLX_WIN31_MIGRATE,
-    WlxQueryClientCredentials: PWLX_QUERY_CLIENT_CREDENTIALS,
-    WlxQueryInetConnectorCredentials: PWLX_QUERY_IC_CREDENTIALS,
-    WlxDisconnect: PWLX_DISCONNECT,
-    WlxQueryTerminalServicesData: PWLX_QUERY_TERMINAL_SERVICES_DATA,
+    WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
+    WlxSetContextPointer: ?PWLX_SET_CONTEXT_POINTER,
+    WlxSasNotify: ?PWLX_SAS_NOTIFY,
+    WlxSetTimeout: ?PWLX_SET_TIMEOUT,
+    WlxAssignShellProtection: ?PWLX_ASSIGN_SHELL_PROTECTION,
+    WlxMessageBox: ?PWLX_MESSAGE_BOX,
+    WlxDialogBox: ?PWLX_DIALOG_BOX,
+    WlxDialogBoxParam: ?PWLX_DIALOG_BOX_PARAM,
+    WlxDialogBoxIndirect: ?PWLX_DIALOG_BOX_INDIRECT,
+    WlxDialogBoxIndirectParam: ?PWLX_DIALOG_BOX_INDIRECT_PARAM,
+    WlxSwitchDesktopToUser: ?PWLX_SWITCH_DESKTOP_TO_USER,
+    WlxSwitchDesktopToWinlogon: ?PWLX_SWITCH_DESKTOP_TO_WINLOGON,
+    WlxChangePasswordNotify: ?PWLX_CHANGE_PASSWORD_NOTIFY,
+    WlxGetSourceDesktop: ?PWLX_GET_SOURCE_DESKTOP,
+    WlxSetReturnDesktop: ?PWLX_SET_RETURN_DESKTOP,
+    WlxCreateUserDesktop: ?PWLX_CREATE_USER_DESKTOP,
+    WlxChangePasswordNotifyEx: ?PWLX_CHANGE_PASSWORD_NOTIFY_EX,
+    WlxCloseUserDesktop: ?PWLX_CLOSE_USER_DESKTOP,
+    WlxSetOption: ?PWLX_SET_OPTION,
+    WlxGetOption: ?PWLX_GET_OPTION,
+    WlxWin31Migrate: ?PWLX_WIN31_MIGRATE,
+    WlxQueryClientCredentials: ?PWLX_QUERY_CLIENT_CREDENTIALS,
+    WlxQueryInetConnectorCredentials: ?PWLX_QUERY_IC_CREDENTIALS,
+    WlxDisconnect: ?PWLX_DISCONNECT,
+    WlxQueryTerminalServicesData: ?PWLX_QUERY_TERMINAL_SERVICES_DATA,
 };
 
 pub const WLX_DISPATCH_VERSION_1_4 = extern struct {
-    WlxUseCtrlAltDel: PWLX_USE_CTRL_ALT_DEL,
-    WlxSetContextPointer: PWLX_SET_CONTEXT_POINTER,
-    WlxSasNotify: PWLX_SAS_NOTIFY,
-    WlxSetTimeout: PWLX_SET_TIMEOUT,
-    WlxAssignShellProtection: PWLX_ASSIGN_SHELL_PROTECTION,
-    WlxMessageBox: PWLX_MESSAGE_BOX,
-    WlxDialogBox: PWLX_DIALOG_BOX,
-    WlxDialogBoxParam: PWLX_DIALOG_BOX_PARAM,
-    WlxDialogBoxIndirect: PWLX_DIALOG_BOX_INDIRECT,
-    WlxDialogBoxIndirectParam: PWLX_DIALOG_BOX_INDIRECT_PARAM,
-    WlxSwitchDesktopToUser: PWLX_SWITCH_DESKTOP_TO_USER,
-    WlxSwitchDesktopToWinlogon: PWLX_SWITCH_DESKTOP_TO_WINLOGON,
-    WlxChangePasswordNotify: PWLX_CHANGE_PASSWORD_NOTIFY,
-    WlxGetSourceDesktop: PWLX_GET_SOURCE_DESKTOP,
-    WlxSetReturnDesktop: PWLX_SET_RETURN_DESKTOP,
-    WlxCreateUserDesktop: PWLX_CREATE_USER_DESKTOP,
-    WlxChangePasswordNotifyEx: PWLX_CHANGE_PASSWORD_NOTIFY_EX,
-    WlxCloseUserDesktop: PWLX_CLOSE_USER_DESKTOP,
-    WlxSetOption: PWLX_SET_OPTION,
-    WlxGetOption: PWLX_GET_OPTION,
-    WlxWin31Migrate: PWLX_WIN31_MIGRATE,
-    WlxQueryClientCredentials: PWLX_QUERY_CLIENT_CREDENTIALS,
-    WlxQueryInetConnectorCredentials: PWLX_QUERY_IC_CREDENTIALS,
-    WlxDisconnect: PWLX_DISCONNECT,
-    WlxQueryTerminalServicesData: PWLX_QUERY_TERMINAL_SERVICES_DATA,
-    WlxQueryConsoleSwitchCredentials: PWLX_QUERY_CONSOLESWITCH_CREDENTIALS,
-    WlxQueryTsLogonCredentials: PWLX_QUERY_TS_LOGON_CREDENTIALS,
+    WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
+    WlxSetContextPointer: ?PWLX_SET_CONTEXT_POINTER,
+    WlxSasNotify: ?PWLX_SAS_NOTIFY,
+    WlxSetTimeout: ?PWLX_SET_TIMEOUT,
+    WlxAssignShellProtection: ?PWLX_ASSIGN_SHELL_PROTECTION,
+    WlxMessageBox: ?PWLX_MESSAGE_BOX,
+    WlxDialogBox: ?PWLX_DIALOG_BOX,
+    WlxDialogBoxParam: ?PWLX_DIALOG_BOX_PARAM,
+    WlxDialogBoxIndirect: ?PWLX_DIALOG_BOX_INDIRECT,
+    WlxDialogBoxIndirectParam: ?PWLX_DIALOG_BOX_INDIRECT_PARAM,
+    WlxSwitchDesktopToUser: ?PWLX_SWITCH_DESKTOP_TO_USER,
+    WlxSwitchDesktopToWinlogon: ?PWLX_SWITCH_DESKTOP_TO_WINLOGON,
+    WlxChangePasswordNotify: ?PWLX_CHANGE_PASSWORD_NOTIFY,
+    WlxGetSourceDesktop: ?PWLX_GET_SOURCE_DESKTOP,
+    WlxSetReturnDesktop: ?PWLX_SET_RETURN_DESKTOP,
+    WlxCreateUserDesktop: ?PWLX_CREATE_USER_DESKTOP,
+    WlxChangePasswordNotifyEx: ?PWLX_CHANGE_PASSWORD_NOTIFY_EX,
+    WlxCloseUserDesktop: ?PWLX_CLOSE_USER_DESKTOP,
+    WlxSetOption: ?PWLX_SET_OPTION,
+    WlxGetOption: ?PWLX_GET_OPTION,
+    WlxWin31Migrate: ?PWLX_WIN31_MIGRATE,
+    WlxQueryClientCredentials: ?PWLX_QUERY_CLIENT_CREDENTIALS,
+    WlxQueryInetConnectorCredentials: ?PWLX_QUERY_IC_CREDENTIALS,
+    WlxDisconnect: ?PWLX_DISCONNECT,
+    WlxQueryTerminalServicesData: ?PWLX_QUERY_TERMINAL_SERVICES_DATA,
+    WlxQueryConsoleSwitchCredentials: ?PWLX_QUERY_CONSOLESWITCH_CREDENTIALS,
+    WlxQueryTsLogonCredentials: ?PWLX_QUERY_TS_LOGON_CREDENTIALS,
 };
 
 pub const PFNMSGECALLBACK = fn(
     bVerbose: BOOL,
-    lpMessage: PWSTR,
+    lpMessage: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WLX_NOTIFICATION_INFO = extern struct {
     Size: u32,
     Flags: u32,
-    UserName: PWSTR,
-    Domain: PWSTR,
-    WindowStation: PWSTR,
-    hToken: HANDLE,
-    hDesktop: HDESK,
-    pStatusCallback: PFNMSGECALLBACK,
+    UserName: ?PWSTR,
+    Domain: ?PWSTR,
+    WindowStation: ?PWSTR,
+    hToken: ?HANDLE,
+    hDesktop: ?HDESK,
+    pStatusCallback: ?PFNMSGECALLBACK,
 };
 
 const CLSID_TpmVirtualSmartCardManager_Value = @import("zig.zig").Guid.initString("16a18e86-7f6e-4c20-ad89-4ffc0db7a96a");
@@ -1689,7 +1689,7 @@ pub const ITpmVirtualSmartCardManager = extern struct {
         base: IUnknown.VTable,
         CreateVirtualSmartCard: fn(
             self: *const ITpmVirtualSmartCardManager,
-            pszFriendlyName: [*:0]const u16,
+            pszFriendlyName: ?[*:0]const u16,
             bAdminAlgId: u8,
             pbAdminKey: [*:0]const u8,
             cbAdminKey: u32,
@@ -1700,26 +1700,26 @@ pub const ITpmVirtualSmartCardManager = extern struct {
             pbPin: [*:0]const u8,
             cbPin: u32,
             fGenerate: BOOL,
-            pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: *PWSTR,
-            pfNeedReboot: *BOOL,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
+            pfNeedReboot: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestroyVirtualSmartCard: fn(
             self: *const ITpmVirtualSmartCardManager,
-            pszInstanceId: [*:0]const u16,
-            pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback,
-            pfNeedReboot: *BOOL,
+            pszInstanceId: ?[*:0]const u16,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            pfNeedReboot: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITpmVirtualSmartCardManager_CreateVirtualSmartCard(self: *const T, pszFriendlyName: [*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: *PWSTR, pfNeedReboot: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITpmVirtualSmartCardManager_CreateVirtualSmartCard(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITpmVirtualSmartCardManager.VTable, self.vtable).CreateVirtualSmartCard(@ptrCast(*const ITpmVirtualSmartCardManager, self), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITpmVirtualSmartCardManager_DestroyVirtualSmartCard(self: *const T, pszInstanceId: [*:0]const u16, pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITpmVirtualSmartCardManager_DestroyVirtualSmartCard(self: *const T, pszInstanceId: ?[*:0]const u16, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITpmVirtualSmartCardManager.VTable, self.vtable).DestroyVirtualSmartCard(@ptrCast(*const ITpmVirtualSmartCardManager, self), pszInstanceId, pStatusCallback, pfNeedReboot);
         }
     };}
@@ -1733,7 +1733,7 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
         base: ITpmVirtualSmartCardManager.VTable,
         CreateVirtualSmartCardWithPinPolicy: fn(
             self: *const ITpmVirtualSmartCardManager2,
-            pszFriendlyName: [*:0]const u16,
+            pszFriendlyName: ?[*:0]const u16,
             bAdminAlgId: u8,
             pbAdminKey: [*:0]const u8,
             cbAdminKey: u32,
@@ -1746,16 +1746,16 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
             pbPinPolicy: [*:0]const u8,
             cbPinPolicy: u32,
             fGenerate: BOOL,
-            pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: *PWSTR,
-            pfNeedReboot: *BOOL,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
+            pfNeedReboot: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITpmVirtualSmartCardManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITpmVirtualSmartCardManager2_CreateVirtualSmartCardWithPinPolicy(self: *const T, pszFriendlyName: [*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: *PWSTR, pfNeedReboot: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITpmVirtualSmartCardManager2_CreateVirtualSmartCardWithPinPolicy(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITpmVirtualSmartCardManager2.VTable, self.vtable).CreateVirtualSmartCardWithPinPolicy(@ptrCast(*const ITpmVirtualSmartCardManager2, self), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
         }
     };}
@@ -1769,7 +1769,7 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
         base: ITpmVirtualSmartCardManager2.VTable,
         CreateVirtualSmartCardWithAttestation: fn(
             self: *const ITpmVirtualSmartCardManager3,
-            pszFriendlyName: [*:0]const u16,
+            pszFriendlyName: ?[*:0]const u16,
             bAdminAlgId: u8,
             pbAdminKey: [*:0]const u8,
             cbAdminKey: u32,
@@ -1783,15 +1783,15 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
             cbPinPolicy: u32,
             attestationType: TPMVSC_ATTESTATION_TYPE,
             fGenerate: BOOL,
-            pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: *PWSTR,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITpmVirtualSmartCardManager2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITpmVirtualSmartCardManager3_CreateVirtualSmartCardWithAttestation(self: *const T, pszFriendlyName: [*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: *ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn ITpmVirtualSmartCardManager3_CreateVirtualSmartCardWithAttestation(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITpmVirtualSmartCardManager3.VTable, self.vtable).CreateVirtualSmartCardWithAttestation(@ptrCast(*const ITpmVirtualSmartCardManager3, self), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
         }
     };}
@@ -1799,60 +1799,60 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
 };
 
 pub const PFNREADOBJECTSECURITY = fn(
-    param0: [*:0]const u16,
+    param0: ?[*:0]const u16,
     param1: u32,
-    param2: **SECURITY_DESCRIPTOR,
+    param2: ?*?*SECURITY_DESCRIPTOR,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNWRITEOBJECTSECURITY = fn(
-    param0: [*:0]const u16,
+    param0: ?[*:0]const u16,
     param1: u32,
-    param2: *SECURITY_DESCRIPTOR,
+    param2: ?*SECURITY_DESCRIPTOR,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNDSCREATEISECINFO = fn(
-    param0: [*:0]const u16,
-    param1: [*:0]const u16,
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
     param2: u32,
-    param3: **ISecurityInformation,
-    param4: PFNREADOBJECTSECURITY,
-    param5: PFNWRITEOBJECTSECURITY,
+    param3: ?*?*ISecurityInformation,
+    param4: ?PFNREADOBJECTSECURITY,
+    param5: ?PFNWRITEOBJECTSECURITY,
     param6: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNDSCREATEISECINFOEX = fn(
-    param0: [*:0]const u16,
-    param1: [*:0]const u16,
-    param2: [*:0]const u16,
-    param3: [*:0]const u16,
-    param4: [*:0]const u16,
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?[*:0]const u16,
+    param4: ?[*:0]const u16,
     param5: u32,
-    param6: **ISecurityInformation,
-    param7: PFNREADOBJECTSECURITY,
-    param8: PFNWRITEOBJECTSECURITY,
+    param6: ?*?*ISecurityInformation,
+    param7: ?PFNREADOBJECTSECURITY,
+    param8: ?PFNWRITEOBJECTSECURITY,
     param9: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNDSCREATESECPAGE = fn(
-    param0: [*:0]const u16,
-    param1: [*:0]const u16,
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
     param2: u32,
-    param3: *HPROPSHEETPAGE,
-    param4: PFNREADOBJECTSECURITY,
-    param5: PFNWRITEOBJECTSECURITY,
+    param3: ?*?HPROPSHEETPAGE,
+    param4: ?PFNREADOBJECTSECURITY,
+    param5: ?PFNWRITEOBJECTSECURITY,
     param6: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNDSEDITSECURITY = fn(
-    param0: HWND,
-    param1: [*:0]const u16,
-    param2: [*:0]const u16,
+    param0: ?HWND,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
     param3: u32,
-    param4: [*:0]const u16,
-    param5: PFNREADOBJECTSECURITY,
-    param6: PFNWRITEOBJECTSECURITY,
+    param4: ?[*:0]const u16,
+    param5: ?PFNREADOBJECTSECURITY,
+    param6: ?PFNWRITEOBJECTSECURITY,
     param7: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1880,17 +1880,17 @@ pub const ICertSrvSetupKeyInformation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderName: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderName: fn(
             self: *const ICertSrvSetupKeyInformation,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Length: fn(
@@ -1900,7 +1900,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Existing: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *i16,
+            pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Existing: fn(
@@ -1910,27 +1910,27 @@ pub const ICertSrvSetupKeyInformation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerName: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerName: fn(
             self: *const ICertSrvSetupKeyInformation,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: fn(
             self: *const ICertSrvSetupKeyInformation,
-            bstrVal: BSTR,
+            bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExistingCACertificate: fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExistingCACertificate: fn(
@@ -1942,15 +1942,15 @@ pub const ICertSrvSetupKeyInformation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ProviderName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_ProviderName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_ProviderName(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_put_ProviderName(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_Length(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_Length(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1958,7 +1958,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_Existing(self: *const T, pVal: *i16) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_Existing(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1966,23 +1966,23 @@ pub const ICertSrvSetupKeyInformation = extern struct {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), bVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ContainerName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_ContainerName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_ContainerName(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_put_ContainerName(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_HashAlgorithm(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_HashAlgorithm(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_HashAlgorithm(self: *const T, bstrVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_put_HashAlgorithm(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ExistingCACertificate(self: *const T, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformation_get_ExistingCACertificate(self: *const T, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ExistingCACertificate(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2002,41 +2002,41 @@ pub const ICertSrvSetupKeyInformationCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ICertSrvSetupKeyInformationCollection,
-            ppVal: **IUnknown,
+            ppVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const ICertSrvSetupKeyInformationCollection,
             Index: i32,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ICertSrvSetupKeyInformationCollection,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICertSrvSetupKeyInformationCollection,
-            pIKeyInformation: *ICertSrvSetupKeyInformation,
+            pIKeyInformation: ?*ICertSrvSetupKeyInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get__NewEnum(self: *const T, ppVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformationCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get_Item(self: *const T, Index: i32, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformationCollection_get_Item(self: *const T, Index: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Item(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformationCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Count(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_Add(self: *const T, pIKeyInformation: *ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetupKeyInformationCollection_Add(self: *const T, pIKeyInformation: ?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).Add(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pIKeyInformation);
         }
     };}
@@ -2091,12 +2091,12 @@ pub const ICertSrvSetup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAErrorId: fn(
             self: *const ICertSrvSetup,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAErrorString: fn(
             self: *const ICertSrvSetup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeDefaults: fn(
             self: *const ICertSrvSetup,
@@ -2106,73 +2106,73 @@ pub const ICertSrvSetup = extern struct {
         GetCASetupProperty: fn(
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCASetupProperty: fn(
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsPropertyEditable: fn(
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
-            pbEditable: *i16,
+            pbEditable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedCATypes: fn(
             self: *const ICertSrvSetup,
-            pCATypes: *VARIANT,
+            pCATypes: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderNameList: fn(
             self: *const ICertSrvSetup,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyLengthList: fn(
             self: *const ICertSrvSetup,
-            bstrProviderName: BSTR,
-            pVal: *VARIANT,
+            bstrProviderName: ?BSTR,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHashAlgorithmList: fn(
             self: *const ICertSrvSetup,
-            bstrProviderName: BSTR,
-            pVal: *VARIANT,
+            bstrProviderName: ?BSTR,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivateKeyContainerList: fn(
             self: *const ICertSrvSetup,
-            bstrProviderName: BSTR,
-            pVal: *VARIANT,
+            bstrProviderName: ?BSTR,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExistingCACertificates: fn(
             self: *const ICertSrvSetup,
-            ppVal: **ICertSrvSetupKeyInformationCollection,
+            ppVal: ?*?*ICertSrvSetupKeyInformationCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CAImportPFX: fn(
             self: *const ICertSrvSetup,
-            bstrFileName: BSTR,
-            bstrPasswd: BSTR,
+            bstrFileName: ?BSTR,
+            bstrPasswd: ?BSTR,
             bOverwriteExistingKey: i16,
-            ppVal: **ICertSrvSetupKeyInformation,
+            ppVal: ?*?*ICertSrvSetupKeyInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCADistinguishedName: fn(
             self: *const ICertSrvSetup,
-            bstrCADN: BSTR,
+            bstrCADN: ?BSTR,
             bIgnoreUnicode: i16,
             bOverwriteExistingKey: i16,
             bOverwriteExistingCAInDS: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDatabaseInformation: fn(
             self: *const ICertSrvSetup,
-            bstrDBDirectory: BSTR,
-            bstrLogDirectory: BSTR,
-            bstrSharedFolder: BSTR,
+            bstrDBDirectory: ?BSTR,
+            bstrLogDirectory: ?BSTR,
+            bstrSharedFolder: ?BSTR,
             bForceOverwrite: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetParentCAInformation: fn(
             self: *const ICertSrvSetup,
-            bstrCAConfiguration: BSTR,
+            bstrCAConfiguration: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWebCAInformation: fn(
             self: *const ICertSrvSetup,
-            bstrCAConfiguration: BSTR,
+            bstrCAConfiguration: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Install: fn(
             self: *const ICertSrvSetup,
@@ -2189,11 +2189,11 @@ pub const ICertSrvSetup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_get_CAErrorId(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_get_CAErrorId(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorId(@ptrCast(*const ICertSrvSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_get_CAErrorString(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_get_CAErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorString(@ptrCast(*const ICertSrvSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2201,59 +2201,59 @@ pub const ICertSrvSetup = extern struct {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const ICertSrvSetup, self), bServer, bClient);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_SetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_IsPropertyEditable(self: *const T, propertyId: CASetupProperty, pbEditable: *i16) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_IsPropertyEditable(self: *const T, propertyId: CASetupProperty, pbEditable: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).IsPropertyEditable(@ptrCast(*const ICertSrvSetup, self), propertyId, pbEditable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetSupportedCATypes(self: *const T, pCATypes: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetSupportedCATypes(self: *const T, pCATypes: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetSupportedCATypes(@ptrCast(*const ICertSrvSetup, self), pCATypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetProviderNameList(self: *const T, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetProviderNameList(self: *const T, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const ICertSrvSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetKeyLengthList(self: *const T, bstrProviderName: BSTR, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetKeyLengthList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetHashAlgorithmList(self: *const T, bstrProviderName: BSTR, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetHashAlgorithmList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetHashAlgorithmList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetPrivateKeyContainerList(self: *const T, bstrProviderName: BSTR, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetPrivateKeyContainerList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetPrivateKeyContainerList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetExistingCACertificates(self: *const T, ppVal: **ICertSrvSetupKeyInformationCollection) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_GetExistingCACertificates(self: *const T, ppVal: ?*?*ICertSrvSetupKeyInformationCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetExistingCACertificates(@ptrCast(*const ICertSrvSetup, self), ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_CAImportPFX(self: *const T, bstrFileName: BSTR, bstrPasswd: BSTR, bOverwriteExistingKey: i16, ppVal: **ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_CAImportPFX(self: *const T, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: i16, ppVal: ?*?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).CAImportPFX(@ptrCast(*const ICertSrvSetup, self), bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetCADistinguishedName(self: *const T, bstrCADN: BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_SetCADistinguishedName(self: *const T, bstrCADN: ?BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCADistinguishedName(@ptrCast(*const ICertSrvSetup, self), bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetDatabaseInformation(self: *const T, bstrDBDirectory: BSTR, bstrLogDirectory: BSTR, bstrSharedFolder: BSTR, bForceOverwrite: i16) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_SetDatabaseInformation(self: *const T, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetDatabaseInformation(@ptrCast(*const ICertSrvSetup, self), bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetParentCAInformation(self: *const T, bstrCAConfiguration: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_SetParentCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetParentCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetWebCAInformation(self: *const T, bstrCAConfiguration: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertSrvSetup_SetWebCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetWebCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2312,12 +2312,12 @@ pub const IMSCEPSetup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MSCEPErrorId: fn(
             self: *const IMSCEPSetup,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MSCEPErrorString: fn(
             self: *const IMSCEPSetup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeDefaults: fn(
             self: *const IMSCEPSetup,
@@ -2325,32 +2325,32 @@ pub const IMSCEPSetup = extern struct {
         GetMSCEPSetupProperty: fn(
             self: *const IMSCEPSetup,
             propertyId: MSCEPSetupProperty,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMSCEPSetupProperty: fn(
             self: *const IMSCEPSetup,
             propertyId: MSCEPSetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAccountInformation: fn(
             self: *const IMSCEPSetup,
-            bstrUserName: BSTR,
-            bstrPassword: BSTR,
+            bstrUserName: ?BSTR,
+            bstrPassword: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsMSCEPStoreEmpty: fn(
             self: *const IMSCEPSetup,
-            pbEmpty: *i16,
+            pbEmpty: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderNameList: fn(
             self: *const IMSCEPSetup,
             bExchange: i16,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyLengthList: fn(
             self: *const IMSCEPSetup,
             bExchange: i16,
-            bstrProviderName: BSTR,
-            pVal: *VARIANT,
+            bstrProviderName: ?BSTR,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Install: fn(
             self: *const IMSCEPSetup,
@@ -2366,11 +2366,11 @@ pub const IMSCEPSetup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_get_MSCEPErrorId(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_get_MSCEPErrorId(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorId(@ptrCast(*const IMSCEPSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_get_MSCEPErrorString(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_get_MSCEPErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorString(@ptrCast(*const IMSCEPSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2378,27 +2378,27 @@ pub const IMSCEPSetup = extern struct {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const IMSCEPSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_GetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_SetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_SetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_SetAccountInformation(self: *const T, bstrUserName: BSTR, bstrPassword: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_SetAccountInformation(self: *const T, bstrUserName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetAccountInformation(@ptrCast(*const IMSCEPSetup, self), bstrUserName, bstrPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_IsMSCEPStoreEmpty(self: *const T, pbEmpty: *i16) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_IsMSCEPStoreEmpty(self: *const T, pbEmpty: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).IsMSCEPStoreEmpty(@ptrCast(*const IMSCEPSetup, self), pbEmpty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetProviderNameList(self: *const T, bExchange: i16, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_GetProviderNameList(self: *const T, bExchange: i16, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const IMSCEPSetup, self), bExchange, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetKeyLengthList(self: *const T, bExchange: i16, bstrProviderName: BSTR, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IMSCEPSetup_GetKeyLengthList(self: *const T, bExchange: i16, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const IMSCEPSetup, self), bExchange, bstrProviderName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2443,7 +2443,7 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorString: fn(
             self: *const ICertificateEnrollmentServerSetup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeInstallDefaults: fn(
             self: *const ICertificateEnrollmentServerSetup,
@@ -2451,32 +2451,32 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
         GetProperty: fn(
             self: *const ICertificateEnrollmentServerSetup,
             propertyId: CESSetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const ICertificateEnrollmentServerSetup,
             propertyId: CESSetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetApplicationPoolCredentials: fn(
             self: *const ICertificateEnrollmentServerSetup,
-            bstrUsername: BSTR,
-            bstrPassword: BSTR,
+            bstrUsername: ?BSTR,
+            bstrPassword: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Install: fn(
             self: *const ICertificateEnrollmentServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnInstall: fn(
             self: *const ICertificateEnrollmentServerSetup,
-            pCAConfig: *VARIANT,
-            pAuthentication: *VARIANT,
+            pCAConfig: ?*VARIANT,
+            pAuthentication: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_get_ErrorString(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2484,15 +2484,15 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_GetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentServerSetup_GetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_SetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentServerSetup_SetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_SetApplicationPoolCredentials(self: *const T, bstrUsername: BSTR, bstrPassword: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentServerSetup_SetApplicationPoolCredentials(self: *const T, bstrUsername: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetApplicationPoolCredentials(@ptrCast(*const ICertificateEnrollmentServerSetup, self), bstrUsername, bstrPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2500,7 +2500,7 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_UnInstall(self: *const T, pCAConfig: *VARIANT, pAuthentication: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentServerSetup_UnInstall(self: *const T, pCAConfig: ?*VARIANT, pAuthentication: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pCAConfig, pAuthentication);
         }
     };}
@@ -2527,7 +2527,7 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorString: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeInstallDefaults: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
@@ -2535,26 +2535,26 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
         GetProperty: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
             propertyId: CEPSetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
             propertyId: CEPSetupProperty,
-            pPropertyValue: *VARIANT,
+            pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Install: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnInstall: fn(
             self: *const ICertificateEnrollmentPolicyServerSetup,
-            pAuthKeyBasedRenewal: *VARIANT,
+            pAuthKeyBasedRenewal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_get_ErrorString(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentPolicyServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2562,11 +2562,11 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_GetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentPolicyServerSetup_GetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_SetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentPolicyServerSetup_SetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2574,7 +2574,7 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_UnInstall(self: *const T, pAuthKeyBasedRenewal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICertificateEnrollmentPolicyServerSetup_UnInstall(self: *const T, pAuthKeyBasedRenewal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pAuthKeyBasedRenewal);
         }
     };}
@@ -2609,10 +2609,10 @@ pub const LLFILETIME = extern struct {
 
 pub const SIP_SUBJECTINFO = extern struct {
     cbSize: u32,
-    pgSubjectType: *Guid,
-    hFile: HANDLE,
-    pwsFileName: [*:0]const u16,
-    pwsDisplayName: [*:0]const u16,
+    pgSubjectType: ?*Guid,
+    hFile: ?HANDLE,
+    pwsFileName: ?[*:0]const u16,
+    pwsDisplayName: ?[*:0]const u16,
     dwReserved1: u32,
     dwIntVersion: u32,
     hProv: usize,
@@ -2625,30 +2625,30 @@ pub const SIP_SUBJECTINFO = extern struct {
     dwIndex: u32,
     dwUnionChoice: u32,
     Anonymous: extern union {
-        psFlat: *MS_ADDINFO_FLAT,
-        psCatMember: *MS_ADDINFO_CATALOGMEMBER,
-        psBlob: *MS_ADDINFO_BLOB,
+        psFlat: ?*MS_ADDINFO_FLAT,
+        psCatMember: ?*MS_ADDINFO_CATALOGMEMBER,
+        psBlob: ?*MS_ADDINFO_BLOB,
     },
-    pClientData: *c_void,
+    pClientData: ?*c_void,
 };
 
 pub const MS_ADDINFO_FLAT = extern struct {
     cbStruct: u32,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
 };
 
 pub const MS_ADDINFO_CATALOGMEMBER = extern struct {
     cbStruct: u32,
-    pStore: *CRYPTCATSTORE,
-    pMember: *CRYPTCATMEMBER,
+    pStore: ?*CRYPTCATSTORE,
+    pMember: ?*CRYPTCATMEMBER,
 };
 
 pub const MS_ADDINFO_BLOB = extern struct {
     cbStruct: u32,
     cbMemObject: u32,
-    pbMemObject: *u8,
+    pbMemObject: ?*u8,
     cbMemSignedMsg: u32,
-    pbMemSignedMsg: *u8,
+    pbMemSignedMsg: ?*u8,
 };
 
 pub const SIP_CAP_SET_V2 = extern struct {
@@ -2675,129 +2675,129 @@ pub const SIP_INDIRECT_DATA = extern struct {
 };
 
 pub const pCryptSIPGetSignedDataMsg = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pdwEncodingType: *u32,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pdwEncodingType: ?*u32,
     dwIndex: u32,
-    pcbSignedDataMsg: *u32,
-    pbSignedDataMsg: *u8,
+    pcbSignedDataMsg: ?*u32,
+    pbSignedDataMsg: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pCryptSIPPutSignedDataMsg = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwEncodingType: u32,
-    pdwIndex: *u32,
+    pdwIndex: ?*u32,
     cbSignedDataMsg: u32,
-    pbSignedDataMsg: *u8,
+    pbSignedDataMsg: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pCryptSIPCreateIndirectData = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pcbIndirectData: *u32,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pcbIndirectData: ?*u32,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pCryptSIPVerifyIndirectData = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pCryptSIPRemoveSignedDataMsg = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SIP_DISPATCH_INFO = extern struct {
     cbSize: u32,
-    hSIP: HANDLE,
-    pfGet: pCryptSIPGetSignedDataMsg,
-    pfPut: pCryptSIPPutSignedDataMsg,
-    pfCreate: pCryptSIPCreateIndirectData,
-    pfVerify: pCryptSIPVerifyIndirectData,
-    pfRemove: pCryptSIPRemoveSignedDataMsg,
+    hSIP: ?HANDLE,
+    pfGet: ?pCryptSIPGetSignedDataMsg,
+    pfPut: ?pCryptSIPPutSignedDataMsg,
+    pfCreate: ?pCryptSIPCreateIndirectData,
+    pfVerify: ?pCryptSIPVerifyIndirectData,
+    pfRemove: ?pCryptSIPRemoveSignedDataMsg,
 };
 
 pub const pfnIsFileSupported = fn(
-    hFile: HANDLE,
-    pgSubject: *Guid,
+    hFile: ?HANDLE,
+    pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pfnIsFileSupportedName = fn(
-    pwszFileName: PWSTR,
-    pgSubject: *Guid,
+    pwszFileName: ?PWSTR,
+    pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SIP_ADD_NEWPROVIDER = extern struct {
     cbStruct: u32,
-    pgSubject: *Guid,
-    pwszDLLFileName: PWSTR,
-    pwszMagicNumber: PWSTR,
-    pwszIsFunctionName: PWSTR,
-    pwszGetFuncName: PWSTR,
-    pwszPutFuncName: PWSTR,
-    pwszCreateFuncName: PWSTR,
-    pwszVerifyFuncName: PWSTR,
-    pwszRemoveFuncName: PWSTR,
-    pwszIsFunctionNameFmt2: PWSTR,
-    pwszGetCapFuncName: PWSTR,
+    pgSubject: ?*Guid,
+    pwszDLLFileName: ?PWSTR,
+    pwszMagicNumber: ?PWSTR,
+    pwszIsFunctionName: ?PWSTR,
+    pwszGetFuncName: ?PWSTR,
+    pwszPutFuncName: ?PWSTR,
+    pwszCreateFuncName: ?PWSTR,
+    pwszVerifyFuncName: ?PWSTR,
+    pwszRemoveFuncName: ?PWSTR,
+    pwszIsFunctionNameFmt2: ?PWSTR,
+    pwszGetCapFuncName: ?PWSTR,
 };
 
 pub const pCryptSIPGetCaps = fn(
-    pSubjInfo: *SIP_SUBJECTINFO,
-    pCaps: *SIP_CAP_SET_V3,
+    pSubjInfo: ?*SIP_SUBJECTINFO,
+    pCaps: ?*SIP_CAP_SET_V3,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const pCryptSIPGetSealedDigest = fn(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     pSig: ?[*:0]const u8,
     dwSig: u32,
     pbDigest: ?[*:0]u8,
-    pcbDigest: *u32,
+    pcbDigest: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPTCATSTORE = extern struct {
     cbStruct: u32,
     dwPublicVersion: u32,
-    pwszP7File: PWSTR,
+    pwszP7File: ?PWSTR,
     hProv: usize,
     dwEncodingType: u32,
     fdwStoreFlags: CRYPTCAT_OPEN_FLAGS,
-    hReserved: HANDLE,
-    hAttrs: HANDLE,
-    hCryptMsg: *c_void,
-    hSorted: HANDLE,
+    hReserved: ?HANDLE,
+    hAttrs: ?HANDLE,
+    hCryptMsg: ?*c_void,
+    hSorted: ?HANDLE,
 };
 
 pub const CRYPTCATMEMBER = extern struct {
     cbStruct: u32,
-    pwszReferenceTag: PWSTR,
-    pwszFileName: PWSTR,
+    pwszReferenceTag: ?PWSTR,
+    pwszFileName: ?PWSTR,
     gSubjectType: Guid,
     fdwMemberFlags: u32,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
     dwCertVersion: u32,
     dwReserved: u32,
-    hReserved: HANDLE,
+    hReserved: ?HANDLE,
     sEncodedIndirectData: CRYPTOAPI_BLOB,
     sEncodedMemberInfo: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPTCATATTRIBUTE = extern struct {
     cbStruct: u32,
-    pwszReferenceTag: PWSTR,
+    pwszReferenceTag: ?PWSTR,
     dwAttrTypeAndAction: u32,
     cbValue: u32,
-    pbValue: *u8,
+    pbValue: ?*u8,
     dwReserved: u32,
 };
 
 pub const CRYPTCATCDF = extern struct {
     cbStruct: u32,
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     dwCurFilePos: u32,
     dwLastMemberOffset: u32,
     fEOF: BOOL,
-    pwszResultDir: PWSTR,
-    hCATStore: HANDLE,
+    pwszResultDir: ?PWSTR,
+    hCATStore: ?HANDLE,
 };
 
 pub const CATALOG_INFO = extern struct {
@@ -2808,29 +2808,29 @@ pub const CATALOG_INFO = extern struct {
 pub const PFN_CDF_PARSE_ERROR_CALLBACK = fn(
     dwErrorArea: u32,
     dwLocalError: u32,
-    pwszLine: PWSTR,
+    pwszLine: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WINTRUST_DATA = extern struct {
     cbStruct: u32,
-    pPolicyCallbackData: *c_void,
-    pSIPClientData: *c_void,
+    pPolicyCallbackData: ?*c_void,
+    pSIPClientData: ?*c_void,
     dwUIChoice: WINTRUST_DATA_UICHOICE,
     fdwRevocationChecks: WINTRUST_DATA_REVOCATION_CHECKS,
     dwUnionChoice: WINTRUST_DATA_UNION_CHOICE,
     Anonymous: extern union {
-        pFile: *WINTRUST_FILE_INFO,
-        pCatalog: *WINTRUST_CATALOG_INFO,
-        pBlob: *WINTRUST_BLOB_INFO,
-        pSgnr: *WINTRUST_SGNR_INFO,
-        pCert: *WINTRUST_CERT_INFO,
+        pFile: ?*WINTRUST_FILE_INFO,
+        pCatalog: ?*WINTRUST_CATALOG_INFO,
+        pBlob: ?*WINTRUST_BLOB_INFO,
+        pSgnr: ?*WINTRUST_SGNR_INFO,
+        pCert: ?*WINTRUST_CERT_INFO,
     },
     dwStateAction: WINTRUST_DATA_STATE_ACTION,
-    hWVTStateData: HANDLE,
-    pwszURLReference: PWSTR,
+    hWVTStateData: ?HANDLE,
+    pwszURLReference: ?PWSTR,
     dwProvFlags: u32,
     dwUIContext: WINTRUST_DATA_UICONTEXT,
-    pSignatureSettings: *WINTRUST_SIGNATURE_SETTINGS,
+    pSignatureSettings: ?*WINTRUST_SIGNATURE_SETTINGS,
 };
 
 pub const WINTRUST_SIGNATURE_SETTINGS = extern struct {
@@ -2839,120 +2839,120 @@ pub const WINTRUST_SIGNATURE_SETTINGS = extern struct {
     dwFlags: WINTRUST_SIGNATURE_SETTINGS_FLAGS,
     cSecondarySigs: u32,
     dwVerifiedSigIndex: u32,
-    pCryptoPolicy: *CERT_STRONG_SIGN_PARA,
+    pCryptoPolicy: ?*CERT_STRONG_SIGN_PARA,
 };
 
 pub const WINTRUST_FILE_INFO = extern struct {
     cbStruct: u32,
-    pcwszFilePath: [*:0]const u16,
-    hFile: HANDLE,
-    pgKnownSubject: *Guid,
+    pcwszFilePath: ?[*:0]const u16,
+    hFile: ?HANDLE,
+    pgKnownSubject: ?*Guid,
 };
 
 pub const WINTRUST_CATALOG_INFO = extern struct {
     cbStruct: u32,
     dwCatalogVersion: u32,
-    pcwszCatalogFilePath: [*:0]const u16,
-    pcwszMemberTag: [*:0]const u16,
-    pcwszMemberFilePath: [*:0]const u16,
-    hMemberFile: HANDLE,
-    pbCalculatedFileHash: *u8,
+    pcwszCatalogFilePath: ?[*:0]const u16,
+    pcwszMemberTag: ?[*:0]const u16,
+    pcwszMemberFilePath: ?[*:0]const u16,
+    hMemberFile: ?HANDLE,
+    pbCalculatedFileHash: ?*u8,
     cbCalculatedFileHash: u32,
-    pcCatalogContext: *CTL_CONTEXT,
+    pcCatalogContext: ?*CTL_CONTEXT,
     hCatAdmin: isize,
 };
 
 pub const WINTRUST_BLOB_INFO = extern struct {
     cbStruct: u32,
     gSubject: Guid,
-    pcwszDisplayName: [*:0]const u16,
+    pcwszDisplayName: ?[*:0]const u16,
     cbMemObject: u32,
-    pbMemObject: *u8,
+    pbMemObject: ?*u8,
     cbMemSignedMsg: u32,
-    pbMemSignedMsg: *u8,
+    pbMemSignedMsg: ?*u8,
 };
 
 pub const WINTRUST_SGNR_INFO = extern struct {
     cbStruct: u32,
-    pcwszDisplayName: [*:0]const u16,
-    psSignerInfo: *CMSG_SIGNER_INFO,
+    pcwszDisplayName: ?[*:0]const u16,
+    psSignerInfo: ?*CMSG_SIGNER_INFO,
     chStores: u32,
-    pahStores: **c_void,
+    pahStores: ?*?*c_void,
 };
 
 pub const WINTRUST_CERT_INFO = extern struct {
     cbStruct: u32,
-    pcwszDisplayName: [*:0]const u16,
-    psCertContext: *CERT_CONTEXT,
+    pcwszDisplayName: ?[*:0]const u16,
+    psCertContext: ?*CERT_CONTEXT,
     chStores: u32,
-    pahStores: **c_void,
+    pahStores: ?*?*c_void,
     dwFlags: u32,
-    psftVerifyAsOf: *FILETIME,
+    psftVerifyAsOf: ?*FILETIME,
 };
 
 pub const PFN_CPD_MEM_ALLOC = fn(
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_CPD_MEM_FREE = fn(
-    pvMem2Free: *c_void,
+    pvMem2Free: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CPD_ADD_STORE = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
-    hStore2Add: *c_void,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
+    hStore2Add: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CPD_ADD_SGNR = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
     fCounterSigner: BOOL,
     idxSigner: u32,
-    pSgnr2Add: *CRYPT_PROVIDER_SGNR,
+    pSgnr2Add: ?*CRYPT_PROVIDER_SGNR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CPD_ADD_CERT = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
-    pCert2Add: *const CERT_CONTEXT,
+    pCert2Add: ?*const CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CPD_ADD_PRIVDATA = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
-    pPrivData2Add: *CRYPT_PROVIDER_PRIVDATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
+    pPrivData2Add: ?*CRYPT_PROVIDER_PRIVDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_PROVIDER_INIT_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_OBJTRUST_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_SIGTRUST_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_CERTTRUST_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_FINALPOLICY_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_CLEANUP_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = fn(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSignerChain: BOOL,
     idxCounterSigner: u32,
@@ -2960,46 +2960,46 @@ pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = fn(
 
 pub const CRYPT_PROVIDER_DATA = extern struct {
     cbStruct: u32,
-    pWintrustData: *WINTRUST_DATA,
+    pWintrustData: ?*WINTRUST_DATA,
     fOpenedFile: BOOL,
-    hWndParent: HWND,
-    pgActionID: *Guid,
+    hWndParent: ?HWND,
+    pgActionID: ?*Guid,
     hProv: usize,
     dwError: u32,
     dwRegSecuritySettings: u32,
     dwRegPolicySettings: u32,
-    psPfns: *CRYPT_PROVIDER_FUNCTIONS,
+    psPfns: ?*CRYPT_PROVIDER_FUNCTIONS,
     cdwTrustStepErrors: u32,
-    padwTrustStepErrors: *u32,
+    padwTrustStepErrors: ?*u32,
     chStores: u32,
-    pahStores: **c_void,
+    pahStores: ?*?*c_void,
     dwEncoding: u32,
-    hMsg: *c_void,
+    hMsg: ?*c_void,
     csSigners: u32,
-    pasSigners: *CRYPT_PROVIDER_SGNR,
+    pasSigners: ?*CRYPT_PROVIDER_SGNR,
     csProvPrivData: u32,
-    pasProvPrivData: *CRYPT_PROVIDER_PRIVDATA,
+    pasProvPrivData: ?*CRYPT_PROVIDER_PRIVDATA,
     dwSubjectChoice: u32,
     Anonymous: extern union {
-        pPDSip: *PROVDATA_SIP,
+        pPDSip: ?*PROVDATA_SIP,
     },
-    pszUsageOID: PSTR,
+    pszUsageOID: ?PSTR,
     fRecallWithState: BOOL,
     sftSystemTime: FILETIME,
-    pszCTLSignerUsageOID: PSTR,
+    pszCTLSignerUsageOID: ?PSTR,
     dwProvFlags: u32,
     dwFinalError: u32,
-    pRequestUsage: *CERT_USAGE_MATCH,
+    pRequestUsage: ?*CERT_USAGE_MATCH,
     dwTrustPubSettings: u32,
     dwUIStateFlags: u32,
-    pSigState: *CRYPT_PROVIDER_SIGSTATE,
-    pSigSettings: *WINTRUST_SIGNATURE_SETTINGS,
+    pSigState: ?*CRYPT_PROVIDER_SIGSTATE,
+    pSigSettings: ?*WINTRUST_SIGNATURE_SETTINGS,
 };
 
 pub const CRYPT_PROVIDER_SIGSTATE = extern struct {
     cbStruct: u32,
-    rhSecondarySigs: **c_void,
-    hPrimarySig: *c_void,
+    rhSecondarySigs: ?*?*c_void,
+    hPrimarySig: ?*c_void,
     fFirstAttemptMade: BOOL,
     fNoMoreSigs: BOOL,
     cSecondarySigs: u32,
@@ -3008,70 +3008,70 @@ pub const CRYPT_PROVIDER_SIGSTATE = extern struct {
     dwCryptoPolicySupport: u32,
     iAttemptCount: u32,
     fCheckedSealing: BOOL,
-    pSealingSignature: *SEALING_SIGNATURE_ATTRIBUTE,
+    pSealingSignature: ?*SEALING_SIGNATURE_ATTRIBUTE,
 };
 
 pub const CRYPT_PROVIDER_FUNCTIONS = extern struct {
     cbStruct: u32,
-    pfnAlloc: PFN_CPD_MEM_ALLOC,
-    pfnFree: PFN_CPD_MEM_FREE,
-    pfnAddStore2Chain: PFN_CPD_ADD_STORE,
-    pfnAddSgnr2Chain: PFN_CPD_ADD_SGNR,
-    pfnAddCert2Chain: PFN_CPD_ADD_CERT,
-    pfnAddPrivData2Chain: PFN_CPD_ADD_PRIVDATA,
-    pfnInitialize: PFN_PROVIDER_INIT_CALL,
-    pfnObjectTrust: PFN_PROVIDER_OBJTRUST_CALL,
-    pfnSignatureTrust: PFN_PROVIDER_SIGTRUST_CALL,
-    pfnCertificateTrust: PFN_PROVIDER_CERTTRUST_CALL,
-    pfnFinalPolicy: PFN_PROVIDER_FINALPOLICY_CALL,
-    pfnCertCheckPolicy: PFN_PROVIDER_CERTCHKPOLICY_CALL,
-    pfnTestFinalPolicy: PFN_PROVIDER_TESTFINALPOLICY_CALL,
-    psUIpfns: *CRYPT_PROVUI_FUNCS,
-    pfnCleanupPolicy: PFN_PROVIDER_CLEANUP_CALL,
+    pfnAlloc: ?PFN_CPD_MEM_ALLOC,
+    pfnFree: ?PFN_CPD_MEM_FREE,
+    pfnAddStore2Chain: ?PFN_CPD_ADD_STORE,
+    pfnAddSgnr2Chain: ?PFN_CPD_ADD_SGNR,
+    pfnAddCert2Chain: ?PFN_CPD_ADD_CERT,
+    pfnAddPrivData2Chain: ?PFN_CPD_ADD_PRIVDATA,
+    pfnInitialize: ?PFN_PROVIDER_INIT_CALL,
+    pfnObjectTrust: ?PFN_PROVIDER_OBJTRUST_CALL,
+    pfnSignatureTrust: ?PFN_PROVIDER_SIGTRUST_CALL,
+    pfnCertificateTrust: ?PFN_PROVIDER_CERTTRUST_CALL,
+    pfnFinalPolicy: ?PFN_PROVIDER_FINALPOLICY_CALL,
+    pfnCertCheckPolicy: ?PFN_PROVIDER_CERTCHKPOLICY_CALL,
+    pfnTestFinalPolicy: ?PFN_PROVIDER_TESTFINALPOLICY_CALL,
+    psUIpfns: ?*CRYPT_PROVUI_FUNCS,
+    pfnCleanupPolicy: ?PFN_PROVIDER_CLEANUP_CALL,
 };
 
 pub const PFN_PROVUI_CALL = fn(
-    hWndSecurityDialog: HWND,
-    pProvData: *CRYPT_PROVIDER_DATA,
+    hWndSecurityDialog: ?HWND,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_PROVUI_FUNCS = extern struct {
     cbStruct: u32,
-    psUIData: *CRYPT_PROVUI_DATA,
-    pfnOnMoreInfoClick: PFN_PROVUI_CALL,
-    pfnOnMoreInfoClickDefault: PFN_PROVUI_CALL,
-    pfnOnAdvancedClick: PFN_PROVUI_CALL,
-    pfnOnAdvancedClickDefault: PFN_PROVUI_CALL,
+    psUIData: ?*CRYPT_PROVUI_DATA,
+    pfnOnMoreInfoClick: ?PFN_PROVUI_CALL,
+    pfnOnMoreInfoClickDefault: ?PFN_PROVUI_CALL,
+    pfnOnAdvancedClick: ?PFN_PROVUI_CALL,
+    pfnOnAdvancedClickDefault: ?PFN_PROVUI_CALL,
 };
 
 pub const CRYPT_PROVUI_DATA = extern struct {
     cbStruct: u32,
     dwFinalError: u32,
-    pYesButtonText: PWSTR,
-    pNoButtonText: PWSTR,
-    pMoreInfoButtonText: PWSTR,
-    pAdvancedLinkText: PWSTR,
-    pCopyActionText: PWSTR,
-    pCopyActionTextNoTS: PWSTR,
-    pCopyActionTextNotSigned: PWSTR,
+    pYesButtonText: ?PWSTR,
+    pNoButtonText: ?PWSTR,
+    pMoreInfoButtonText: ?PWSTR,
+    pAdvancedLinkText: ?PWSTR,
+    pCopyActionText: ?PWSTR,
+    pCopyActionTextNoTS: ?PWSTR,
+    pCopyActionTextNotSigned: ?PWSTR,
 };
 
 pub const CRYPT_PROVIDER_SGNR = extern struct {
     cbStruct: u32,
     sftVerifyAsOf: FILETIME,
     csCertChain: u32,
-    pasCertChain: *CRYPT_PROVIDER_CERT,
+    pasCertChain: ?*CRYPT_PROVIDER_CERT,
     dwSignerType: u32,
-    psSigner: *CMSG_SIGNER_INFO,
+    psSigner: ?*CMSG_SIGNER_INFO,
     dwError: u32,
     csCounterSigners: u32,
-    pasCounterSigners: *CRYPT_PROVIDER_SGNR,
-    pChainContext: *CERT_CHAIN_CONTEXT,
+    pasCounterSigners: ?*CRYPT_PROVIDER_SGNR,
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
 };
 
 pub const CRYPT_PROVIDER_CERT = extern struct {
     cbStruct: u32,
-    pCert: *const CERT_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
     fCommercial: BOOL,
     fTrustedRoot: BOOL,
     fSelfSigned: BOOL,
@@ -3079,35 +3079,35 @@ pub const CRYPT_PROVIDER_CERT = extern struct {
     dwRevokedReason: u32,
     dwConfidence: u32,
     dwError: u32,
-    pTrustListContext: *CTL_CONTEXT,
+    pTrustListContext: ?*CTL_CONTEXT,
     fTrustListSignerCert: BOOL,
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwCtlError: u32,
     fIsCyclic: BOOL,
-    pChainElement: *CERT_CHAIN_ELEMENT,
+    pChainElement: ?*CERT_CHAIN_ELEMENT,
 };
 
 pub const CRYPT_PROVIDER_PRIVDATA = extern struct {
     cbStruct: u32,
     gProviderID: Guid,
     cbProvData: u32,
-    pvProvData: *c_void,
+    pvProvData: ?*c_void,
 };
 
 pub const PROVDATA_SIP = extern struct {
     cbStruct: u32,
     gSubject: Guid,
-    pSip: *SIP_DISPATCH_INFO,
-    pCATSip: *SIP_DISPATCH_INFO,
-    psSipSubjectInfo: *SIP_SUBJECTINFO,
-    psSipCATSubjectInfo: *SIP_SUBJECTINFO,
-    psIndirectData: *SIP_INDIRECT_DATA,
+    pSip: ?*SIP_DISPATCH_INFO,
+    pCATSip: ?*SIP_DISPATCH_INFO,
+    psSipSubjectInfo: ?*SIP_SUBJECTINFO,
+    psSipCATSubjectInfo: ?*SIP_SUBJECTINFO,
+    psIndirectData: ?*SIP_INDIRECT_DATA,
 };
 
 pub const CRYPT_TRUST_REG_ENTRY = extern struct {
     cbStruct: u32,
-    pwszDLLName: PWSTR,
-    pwszFunctionName: PWSTR,
+    pwszDLLName: ?PWSTR,
+    pwszFunctionName: ?PWSTR,
 };
 
 pub const CRYPT_REGISTER_ACTIONID = extern struct {
@@ -3123,28 +3123,28 @@ pub const CRYPT_REGISTER_ACTIONID = extern struct {
 };
 
 pub const PFN_ALLOCANDFILLDEFUSAGE = fn(
-    pszUsageOID: [*:0]const u8,
-    psDefUsage: *CRYPT_PROVIDER_DEFUSAGE,
+    pszUsageOID: ?[*:0]const u8,
+    psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_FREEDEFUSAGE = fn(
-    pszUsageOID: [*:0]const u8,
-    psDefUsage: *CRYPT_PROVIDER_DEFUSAGE,
+    pszUsageOID: ?[*:0]const u8,
+    psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_PROVIDER_REGDEFUSAGE = extern struct {
     cbStruct: u32,
-    pgActionID: *Guid,
-    pwszDllName: PWSTR,
-    pwszLoadCallbackDataFunctionName: PSTR,
-    pwszFreeCallbackDataFunctionName: PSTR,
+    pgActionID: ?*Guid,
+    pwszDllName: ?PWSTR,
+    pwszLoadCallbackDataFunctionName: ?PSTR,
+    pwszFreeCallbackDataFunctionName: ?PSTR,
 };
 
 pub const CRYPT_PROVIDER_DEFUSAGE = extern struct {
     cbStruct: u32,
     gActionID: Guid,
-    pDefPolicyCallbackData: *c_void,
-    pDefSIPClientData: *c_void,
+    pDefPolicyCallbackData: ?*c_void,
+    pDefSIPClientData: ?*c_void,
 };
 
 pub const SPC_SERIALIZED_OBJECT = extern struct {
@@ -3165,15 +3165,15 @@ pub const SPC_SIGINFO = extern struct {
 pub const SPC_LINK = extern struct {
     dwLinkChoice: u32,
     Anonymous: extern union {
-        pwszUrl: PWSTR,
+        pwszUrl: ?PWSTR,
         Moniker: SPC_SERIALIZED_OBJECT,
-        pwszFile: PWSTR,
+        pwszFile: ?PWSTR,
     },
 };
 
 pub const SPC_PE_IMAGE_DATA = extern struct {
     Flags: CRYPT_BIT_BLOB,
-    pFile: *SPC_LINK,
+    pFile: ?*SPC_LINK,
 };
 
 pub const SPC_INDIRECT_DATA_CONTENT = extern struct {
@@ -3188,7 +3188,7 @@ pub const SPC_FINANCIAL_CRITERIA = extern struct {
 };
 
 pub const SPC_IMAGE = extern struct {
-    pImageLink: *SPC_LINK,
+    pImageLink: ?*SPC_LINK,
     Bitmap: CRYPTOAPI_BLOB,
     Metafile: CRYPTOAPI_BLOB,
     EnhancedMetafile: CRYPTOAPI_BLOB,
@@ -3196,31 +3196,31 @@ pub const SPC_IMAGE = extern struct {
 };
 
 pub const SPC_SP_AGENCY_INFO = extern struct {
-    pPolicyInformation: *SPC_LINK,
-    pwszPolicyDisplayText: PWSTR,
-    pLogoImage: *SPC_IMAGE,
-    pLogoLink: *SPC_LINK,
+    pPolicyInformation: ?*SPC_LINK,
+    pwszPolicyDisplayText: ?PWSTR,
+    pLogoImage: ?*SPC_IMAGE,
+    pLogoLink: ?*SPC_LINK,
 };
 
 pub const SPC_STATEMENT_TYPE = extern struct {
     cKeyPurposeId: u32,
-    rgpszKeyPurposeId: *PSTR,
+    rgpszKeyPurposeId: ?*?PSTR,
 };
 
 pub const SPC_SP_OPUS_INFO = extern struct {
-    pwszProgramName: [*:0]const u16,
-    pMoreInfo: *SPC_LINK,
-    pPublisherInfo: *SPC_LINK,
+    pwszProgramName: ?[*:0]const u16,
+    pMoreInfo: ?*SPC_LINK,
+    pPublisherInfo: ?*SPC_LINK,
 };
 
 pub const CAT_NAMEVALUE = extern struct {
-    pwszTag: PWSTR,
+    pwszTag: ?PWSTR,
     fdwFlags: u32,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CAT_MEMBERINFO = extern struct {
-    pwszSubjGuid: PWSTR,
+    pwszSubjGuid: ?PWSTR,
     dwCertVersion: u32,
 };
 
@@ -3255,41 +3255,41 @@ pub const WIN_CERTIFICATE = extern struct {
 };
 
 pub const WIN_TRUST_ACTDATA_CONTEXT_WITH_SUBJECT = extern struct {
-    hClientToken: HANDLE,
-    SubjectType: *Guid,
-    Subject: *c_void,
+    hClientToken: ?HANDLE,
+    SubjectType: ?*Guid,
+    Subject: ?*c_void,
 };
 
 pub const WIN_TRUST_ACTDATA_SUBJECT_ONLY = extern struct {
-    SubjectType: *Guid,
-    Subject: *c_void,
+    SubjectType: ?*Guid,
+    Subject: ?*c_void,
 };
 
 pub const WIN_TRUST_SUBJECT_FILE = extern struct {
-    hFile: HANDLE,
-    lpPath: [*:0]const u16,
+    hFile: ?HANDLE,
+    lpPath: ?[*:0]const u16,
 };
 
 pub const WIN_TRUST_SUBJECT_FILE_AND_DISPLAY = extern struct {
-    hFile: HANDLE,
-    lpPath: [*:0]const u16,
-    lpDisplayName: [*:0]const u16,
+    hFile: ?HANDLE,
+    lpPath: ?[*:0]const u16,
+    lpDisplayName: ?[*:0]const u16,
 };
 
 pub const WIN_SPUB_TRUSTED_PUBLISHER_DATA = extern struct {
-    hClientToken: HANDLE,
-    lpCertificate: *WIN_CERTIFICATE,
+    hClientToken: ?HANDLE,
+    lpCertificate: ?*WIN_CERTIFICATE,
 };
 
 pub const SCESVC_CONFIGURATION_LINE = extern struct {
-    Key: *i8,
-    Value: *i8,
+    Key: ?*i8,
+    Value: ?*i8,
     ValueLen: u32,
 };
 
 pub const SCESVC_CONFIGURATION_INFO = extern struct {
     Count: u32,
-    Lines: *SCESVC_CONFIGURATION_LINE,
+    Lines: ?*SCESVC_CONFIGURATION_LINE,
 };
 
 pub const SCESVC_INFO_TYPE = enum(i32) {
@@ -3304,58 +3304,58 @@ pub const SceSvcAnalysisInfo = SCESVC_INFO_TYPE.AnalysisInfo;
 pub const SceSvcInternalUse = SCESVC_INFO_TYPE.InternalUse;
 
 pub const SCESVC_ANALYSIS_LINE = extern struct {
-    Key: *i8,
-    Value: *u8,
+    Key: ?*i8,
+    Value: ?*u8,
     ValueLen: u32,
 };
 
 pub const SCESVC_ANALYSIS_INFO = extern struct {
     Count: u32,
-    Lines: *SCESVC_ANALYSIS_LINE,
+    Lines: ?*SCESVC_ANALYSIS_LINE,
 };
 
 pub const PFSCE_QUERY_INFO = fn(
-    sceHandle: *c_void,
+    sceHandle: ?*c_void,
     sceType: SCESVC_INFO_TYPE,
-    lpPrefix: *i8,
+    lpPrefix: ?*i8,
     bExact: BOOL,
-    ppvInfo: **c_void,
-    psceEnumHandle: *u32,
+    ppvInfo: ?*?*c_void,
+    psceEnumHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_SET_INFO = fn(
-    sceHandle: *c_void,
+    sceHandle: ?*c_void,
     sceType: SCESVC_INFO_TYPE,
-    lpPrefix: *i8,
+    lpPrefix: ?*i8,
     bExact: BOOL,
-    pvInfo: *c_void,
+    pvInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_FREE_INFO = fn(
-    pvServiceInfo: *c_void,
+    pvServiceInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_LOG_INFO = fn(
     ErrLevel: SCE_LOG_ERR_LEVEL,
     Win32rc: u32,
-    pErrFmt: *i8,
+    pErrFmt: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const SCESVC_CALLBACK_INFO = extern struct {
-    sceHandle: *c_void,
-    pfQueryInfo: PFSCE_QUERY_INFO,
-    pfSetInfo: PFSCE_SET_INFO,
-    pfFreeInfo: PFSCE_FREE_INFO,
-    pfLogInfo: PFSCE_LOG_INFO,
+    sceHandle: ?*c_void,
+    pfQueryInfo: ?PFSCE_QUERY_INFO,
+    pfSetInfo: ?PFSCE_SET_INFO,
+    pfFreeInfo: ?PFSCE_FREE_INFO,
+    pfLogInfo: ?PFSCE_LOG_INFO,
 };
 
 pub const PF_ConfigAnalyzeService = fn(
-    pSceCbInfo: *SCESVC_CALLBACK_INFO,
+    pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PF_UpdateService = fn(
-    pSceCbInfo: *SCESVC_CALLBACK_INFO,
-    ServiceInfo: *SCESVC_CONFIGURATION_INFO,
+    pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
+    ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3366,33 +3366,33 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
         base: IUnknown.VTable,
         Save: fn(
             self: *const ISceSvcAttachmentPersistInfo,
-            lpTemplateName: *i8,
-            scesvcHandle: **c_void,
-            ppvData: **c_void,
-            pbOverwriteAll: *BOOL,
+            lpTemplateName: ?*i8,
+            scesvcHandle: ?*?*c_void,
+            ppvData: ?*?*c_void,
+            pbOverwriteAll: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDirty: fn(
             self: *const ISceSvcAttachmentPersistInfo,
-            lpTemplateName: *i8,
+            lpTemplateName: ?*i8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const ISceSvcAttachmentPersistInfo,
-            pvData: *c_void,
+            pvData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: *i8, scesvcHandle: **c_void, ppvData: **c_void, pbOverwriteAll: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*c_void, ppvData: ?*?*c_void, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).Save(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_IsDirty(self: *const T, lpTemplateName: *i8) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentPersistInfo_IsDirty(self: *const T, lpTemplateName: ?*i8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).IsDirty(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: *c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), pvData);
         }
     };}
@@ -3407,44 +3407,44 @@ pub const ISceSvcAttachmentData = extern struct {
         base: IUnknown.VTable,
         GetData: fn(
             self: *const ISceSvcAttachmentData,
-            scesvcHandle: *c_void,
+            scesvcHandle: ?*c_void,
             sceType: SCESVC_INFO_TYPE,
-            ppvData: **c_void,
-            psceEnumHandle: *u32,
+            ppvData: ?*?*c_void,
+            psceEnumHandle: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const ISceSvcAttachmentData,
-            lpServiceName: *i8,
-            lpTemplateName: *i8,
-            lpSceSvcPersistInfo: *ISceSvcAttachmentPersistInfo,
-            pscesvcHandle: **c_void,
+            lpServiceName: ?*i8,
+            lpTemplateName: ?*i8,
+            lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
+            pscesvcHandle: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const ISceSvcAttachmentData,
-            pvData: *c_void,
+            pvData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseHandle: fn(
             self: *const ISceSvcAttachmentData,
-            scesvcHandle: *c_void,
+            scesvcHandle: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: *c_void, sceType: SCESVC_INFO_TYPE, ppvData: **c_void, psceEnumHandle: *u32) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*c_void, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*c_void, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).GetData(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle, sceType, ppvData, psceEnumHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: *i8, lpTemplateName: *i8, lpSceSvcPersistInfo: *ISceSvcAttachmentPersistInfo, pscesvcHandle: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).Initialize(@ptrCast(*const ISceSvcAttachmentData, self), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: *c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentData, self), pvData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: *c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).CloseHandle(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle);
         }
     };}
@@ -3454,34 +3454,34 @@ pub const ISceSvcAttachmentData = extern struct {
 pub const SAFER_CODE_PROPERTIES_V1 = extern struct {
     cbSize: u32,
     dwCheckFlags: u32,
-    ImagePath: [*:0]const u16,
-    hImageFileHandle: HANDLE,
+    ImagePath: ?[*:0]const u16,
+    hImageFileHandle: ?HANDLE,
     UrlZoneId: u32,
     ImageHash: [64]u8,
     dwImageHashSize: u32,
     ImageSize: LARGE_INTEGER,
     HashAlgorithm: u32,
-    pByteBlock: *u8,
-    hWndParent: HWND,
+    pByteBlock: ?*u8,
+    hWndParent: ?HWND,
     dwWVTUIChoice: u32,
 };
 
 pub const SAFER_CODE_PROPERTIES_V2 = extern struct {
     cbSize: u32,
     dwCheckFlags: u32,
-    ImagePath: [*:0]const u16,
-    hImageFileHandle: HANDLE,
+    ImagePath: ?[*:0]const u16,
+    hImageFileHandle: ?HANDLE,
     UrlZoneId: u32,
     ImageHash: [64]u8,
     dwImageHashSize: u32,
     ImageSize: LARGE_INTEGER,
     HashAlgorithm: u32,
-    pByteBlock: *u8,
-    hWndParent: HWND,
+    pByteBlock: ?*u8,
+    hWndParent: ?HWND,
     dwWVTUIChoice: u32,
-    PackageMoniker: [*:0]const u16,
-    PackagePublisher: [*:0]const u16,
-    PackageName: [*:0]const u16,
+    PackageMoniker: ?[*:0]const u16,
+    PackagePublisher: ?[*:0]const u16,
+    PackageName: ?[*:0]const u16,
     PackageVersion: u64,
     PackageIsFramework: BOOL,
 };
@@ -3561,7 +3561,7 @@ pub const SAFER_IDENTIFICATION_HEADER = extern struct {
 pub const SAFER_PATHNAME_IDENTIFICATION = extern struct {
     header: SAFER_IDENTIFICATION_HEADER,
     Description: [256]u16,
-    ImageName: [*]u16,
+    ImageName: ?[*]u16,
     dwSaferFlags: u32,
 };
 
@@ -3661,8 +3661,8 @@ pub const SL_ACTIVATION_INFO_HEADER = extern struct {
 
 pub const SL_AD_ACTIVATION_INFO = extern struct {
     header: SL_ACTIVATION_INFO_HEADER,
-    pwszProductKey: [*:0]const u16,
-    pwszActivationObjectName: [*:0]const u16,
+    pwszProductKey: ?[*:0]const u16,
+    pwszActivationObjectName: ?[*:0]const u16,
 };
 
 pub const SLREFERRALTYPE = enum(i32) {
@@ -3693,12 +3693,12 @@ pub const SL_GEN_STATE_LAST = SL_GENUINE_STATE.LAST;
 
 pub const SL_NONGENUINE_UI_OPTIONS = extern struct {
     cbSize: u32,
-    pComponentId: *const Guid,
+    pComponentId: ?*const Guid,
     hResultUI: HRESULT,
 };
 
 pub const SL_SYSTEM_POLICY_INFORMATION = extern struct {
-    Reserved1: [2]*c_void,
+    Reserved1: [2]?*c_void,
     Reserved2: [3]u32,
 };
 
@@ -3715,43 +3715,43 @@ pub const DIAGNOSTIC_DATA_RECORD = extern struct {
     rowId: i64,
     timestamp: u64,
     eventKeywords: u64,
-    fullEventName: PWSTR,
-    providerGroupGuid: PWSTR,
-    producerName: PWSTR,
-    privacyTags: *i32,
+    fullEventName: ?PWSTR,
+    providerGroupGuid: ?PWSTR,
+    producerName: ?PWSTR,
+    privacyTags: ?*i32,
     privacyTagCount: u32,
-    categoryIds: *i32,
+    categoryIds: ?*i32,
     categoryIdCount: u32,
     isCoreData: BOOL,
-    extra1: PWSTR,
-    extra2: PWSTR,
-    extra3: PWSTR,
+    extra1: ?PWSTR,
+    extra2: ?PWSTR,
+    extra3: ?PWSTR,
 };
 
 pub const DIAGNOSTIC_DATA_SEARCH_CRITERIA = extern struct {
-    producerNames: *PWSTR,
+    producerNames: ?*?PWSTR,
     producerNameCount: u32,
-    textToMatch: [*:0]const u16,
-    categoryIds: *const i32,
+    textToMatch: ?[*:0]const u16,
+    categoryIds: ?*const i32,
     categoryIdCount: u32,
-    privacyTags: *const i32,
+    privacyTags: ?*const i32,
     privacyTagCount: u32,
     coreDataOnly: BOOL,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_TAG_DESCRIPTION = extern struct {
     privacyTag: i32,
-    name: PWSTR,
-    description: PWSTR,
+    name: ?PWSTR,
+    description: ?PWSTR,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_PRODUCER_DESCRIPTION = extern struct {
-    name: PWSTR,
+    name: ?PWSTR,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_CATEGORY_DESCRIPTION = extern struct {
     id: i32,
-    name: PWSTR,
+    name: ?PWSTR,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_TAG_STATS = extern struct {
@@ -3760,8 +3760,8 @@ pub const DIAGNOSTIC_DATA_EVENT_TAG_STATS = extern struct {
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_BINARY_STATS = extern struct {
-    moduleName: PWSTR,
-    friendlyModuleName: PWSTR,
+    moduleName: ?PWSTR,
+    friendlyModuleName: ?PWSTR,
     eventCount: u32,
     uploadSizeBytes: u64,
 };
@@ -3796,18 +3796,18 @@ pub const DIAGNOSTIC_REPORT_DATA = extern struct {
     reportId: Guid,
     creationTime: FILETIME,
     sizeInBytes: u64,
-    cabId: PWSTR,
+    cabId: ?PWSTR,
     reportStatus: u32,
     reportIntegratorId: Guid,
-    fileNames: *PWSTR,
+    fileNames: ?*?PWSTR,
     fileCount: u32,
-    friendlyEventName: PWSTR,
-    applicationName: PWSTR,
-    applicationPath: PWSTR,
-    description: PWSTR,
-    bucketIdString: PWSTR,
+    friendlyEventName: ?PWSTR,
+    applicationName: ?PWSTR,
+    applicationPath: ?PWSTR,
+    description: ?PWSTR,
+    bucketIdString: ?PWSTR,
     legacyBucketId: u64,
-    reportKey: PWSTR,
+    reportKey: ?PWSTR,
 };
 
 pub const TOKEN_PRIVILEGES_ATTRIBUTES = enum(u32) {
@@ -4300,575 +4300,575 @@ pub const WTD_UICONTEXT_INSTALL = WINTRUST_DATA_UICONTEXT.INSTALL;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
+    SubsystemName: ?[*:0]const u8,
     HandleId: ?*c_void,
-    ObjectTypeName: PSTR,
+    ObjectTypeName: ?PSTR,
     ObjectName: ?PSTR,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     DesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
     GrantedAccess: [*]u32,
     AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    ObjectTypeName: [*:0]const u8,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
+    ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
     GrantedAccess: [*]u32,
     AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: PSTR,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?PSTR,
     ObjectName: ?PSTR,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    ClientToken: HANDLE,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
     GrantedAccess: u32,
     Privileges: ?*PRIVILEGE_SET,
     ObjectCreation: BOOL,
     AccessGranted: BOOL,
-    GenerateOnClose: *i32,
+    GenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
-    Privileges: *PRIVILEGE_SET,
+    Privileges: ?*PRIVILEGE_SET,
     AccessGranted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    ServiceName: [*:0]const u8,
-    ClientToken: HANDLE,
-    Privileges: *PRIVILEGE_SET,
+    SubsystemName: ?[*:0]const u8,
+    ServiceName: ?[*:0]const u8,
+    ClientToken: ?HANDLE,
+    Privileges: ?*PRIVILEGE_SET,
     AccessGranted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AddConditionalAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AceType: u8,
     AccessMask: u32,
-    pSid: PSID,
-    ConditionStr: [*]u16,
-    ReturnLength: *u32,
+    pSid: ?PSID,
+    ConditionStr: ?[*]u16,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetFileSecurityA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     SecurityInformation: u32,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetFileSecurityA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     nLength: u32,
-    lpnLengthNeeded: *u32,
+    lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupAccountSidA(
     lpSystemName: ?[*:0]const u8,
-    Sid: PSID,
+    Sid: ?PSID,
     Name: ?[*:0]u8,
-    cchName: *u32,
+    cchName: ?*u32,
     ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupAccountSidW(
     lpSystemName: ?[*:0]const u16,
-    Sid: PSID,
+    Sid: ?PSID,
     Name: ?[*:0]u16,
-    cchName: *u32,
+    cchName: ?*u32,
     ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupAccountNameA(
     lpSystemName: ?[*:0]const u8,
-    lpAccountName: [*:0]const u8,
+    lpAccountName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     Sid: ?PSID,
-    cbSid: *u32,
+    cbSid: ?*u32,
     ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
-    lpAccountName: [*:0]const u16,
+    lpAccountName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     Sid: ?PSID,
-    cbSid: *u32,
+    cbSid: ?*u32,
     ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeValueA(
     lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
-    lpLuid: *LUID,
+    lpName: ?[*:0]const u8,
+    lpLuid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeValueW(
     lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
-    lpLuid: *LUID,
+    lpName: ?[*:0]const u16,
+    lpLuid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeNameA(
     lpSystemName: ?[*:0]const u8,
-    lpLuid: *LUID,
+    lpLuid: ?*LUID,
     lpName: ?[*:0]u8,
-    cchName: *u32,
+    cchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeNameW(
     lpSystemName: ?[*:0]const u16,
-    lpLuid: *LUID,
+    lpLuid: ?*LUID,
     lpName: ?[*:0]u16,
-    cchName: *u32,
+    cchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
     lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
+    lpName: ?[*:0]const u8,
     lpDisplayName: ?[*:0]u8,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
     lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
+    lpName: ?[*:0]const u16,
     lpDisplayName: ?[*:0]u16,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LogonUserA(
-    lpszUsername: [*:0]const u8,
+    lpszUsername: ?[*:0]const u8,
     lpszDomain: ?[*:0]const u8,
     lpszPassword: ?[*:0]const u8,
     dwLogonType: LOGON32_LOGON,
     dwLogonProvider: LOGON32_PROVIDER,
-    phToken: *HANDLE,
+    phToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LogonUserW(
-    lpszUsername: [*:0]const u16,
+    lpszUsername: ?[*:0]const u16,
     lpszDomain: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,
     dwLogonType: LOGON32_LOGON,
     dwLogonProvider: LOGON32_PROVIDER,
-    phToken: *HANDLE,
+    phToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LogonUserExA(
-    lpszUsername: [*:0]const u8,
+    lpszUsername: ?[*:0]const u8,
     lpszDomain: ?[*:0]const u8,
     lpszPassword: ?[*:0]const u8,
     dwLogonType: LOGON32_LOGON,
     dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*PSID,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?**c_void,
+    ppProfileBuffer: ?*?*c_void,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LogonUserExW(
-    lpszUsername: [*:0]const u16,
+    lpszUsername: ?[*:0]const u16,
     lpszDomain: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,
     dwLogonType: LOGON32_LOGON,
     dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*PSID,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?**c_void,
+    ppProfileBuffer: ?*?*c_void,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlConvertSidToUnicodeString(
-    UnicodeString: *UNICODE_STRING,
-    Sid: PSID,
+    UnicodeString: ?*UNICODE_STRING,
+    Sid: ?PSID,
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn SetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *OBJECT_SECURITY_INFORMATION,
-    pSID: *SECURITY_DESCRIPTOR,
+    hObj: ?HANDLE,
+    pSIRequested: ?*OBJECT_SECURITY_INFORMATION,
+    pSID: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
+    hObj: ?HANDLE,
+    pSIRequested: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     pSID: ?*SECURITY_DESCRIPTOR,
     nLength: u32,
-    lpnLengthNeeded: *u32,
+    lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheck(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    ClientToken: HANDLE,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     // TODO: what to do with BytesParamIndex 5?
     PrivilegeSet: ?*PRIVILEGE_SET,
-    PrivilegeSetLength: *u32,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
+    PrivilegeSetLength: ?*u32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmW(
-    SubsystemName: [*:0]const u16,
+    SubsystemName: ?[*:0]const u16,
     HandleId: ?*c_void,
-    ObjectTypeName: PWSTR,
+    ObjectTypeName: ?PWSTR,
     ObjectName: ?PWSTR,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     DesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByType(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
-    ClientToken: HANDLE,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     // TODO: what to do with BytesParamIndex 8?
     PrivilegeSet: ?*PRIVILEGE_SET,
-    PrivilegeSetLength: *u32,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
+    PrivilegeSetLength: ?*u32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultList(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
-    ClientToken: HANDLE,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     // TODO: what to do with BytesParamIndex 8?
     PrivilegeSet: ?*PRIVILEGE_SET,
-    PrivilegeSetLength: *u32,
+    PrivilegeSetLength: ?*u32,
     GrantedAccessList: [*]u32,
     AccessStatusList: [*]u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u16,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u16,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
     GrantedAccessList: [*]u32,
     AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    ObjectTypeName: [*:0]const u16,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
+    ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectCreation: BOOL,
     GrantedAccessList: [*]u32,
     AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessAllowedAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessAllowedAceEx(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessAllowedObjectAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
     InheritedObjectTypeGuid: ?*Guid,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessDeniedAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessDeniedAceEx(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAccessDeniedObjectAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
     InheritedObjectTypeGuid: ?*Guid,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     dwStartingAceIndex: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pAceList: *c_void,
+    pAceList: ?*c_void,
     nAceListLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAuditAccessAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     dwAccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
     bAuditSuccess: BOOL,
     bAuditFailure: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAuditAccessAceEx(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     dwAccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
     bAuditSuccess: BOOL,
     bAuditFailure: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AddAuditAccessObjectAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
     InheritedObjectTypeGuid: ?*Guid,
-    pSid: PSID,
+    pSid: ?PSID,
     bAuditSuccess: BOOL,
     bAuditFailure: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AddMandatoryAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     MandatoryPolicy: u32,
-    pLabelSid: PSID,
+    pLabelSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn AddResourceAttributeAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
-    pSid: PSID,
-    pAttributeInfo: *CLAIM_SECURITY_ATTRIBUTES_INFORMATION,
-    pReturnLength: *u32,
+    pSid: ?PSID,
+    pAttributeInfo: ?*CLAIM_SECURITY_ATTRIBUTES_INFORMATION,
+    pReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn AddScopedPolicyIDAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AdjustTokenGroups(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     ResetToDefault: BOOL,
     NewState: ?*TOKEN_GROUPS,
     BufferLength: u32,
@@ -4879,7 +4879,7 @@ pub extern "ADVAPI32" fn AdjustTokenGroups(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AdjustTokenPrivileges(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     DisableAllPrivileges: BOOL,
     NewState: ?*TOKEN_PRIVILEGES,
     BufferLength: u32,
@@ -4890,7 +4890,7 @@ pub extern "ADVAPI32" fn AdjustTokenPrivileges(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AllocateAndInitializeSid(
-    pIdentifierAuthority: *SID_IDENTIFIER_AUTHORITY,
+    pIdentifierAuthority: ?*SID_IDENTIFIER_AUTHORITY,
     nSubAuthorityCount: u8,
     nSubAuthority0: u32,
     nSubAuthority1: u32,
@@ -4900,12 +4900,12 @@ pub extern "ADVAPI32" fn AllocateAndInitializeSid(
     nSubAuthority5: u32,
     nSubAuthority6: u32,
     nSubAuthority7: u32,
-    pSid: *PSID,
+    pSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AllocateLocallyUniqueId(
-    Luid: *LUID,
+    Luid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4923,88 +4923,88 @@ pub extern "ADVAPI32" fn AreAnyAccessesGranted(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CheckTokenMembership(
     TokenHandle: ?HANDLE,
-    SidToCheck: PSID,
-    IsMember: *BOOL,
+    SidToCheck: ?PSID,
+    IsMember: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CheckTokenCapability(
     TokenHandle: ?HANDLE,
-    CapabilitySidToCheck: PSID,
-    HasCapability: *BOOL,
+    CapabilitySidToCheck: ?PSID,
+    HasCapability: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn GetAppContainerAce(
-    Acl: *ACL,
+    Acl: ?*ACL,
     StartingAceIndex: u32,
-    AppContainerAce: **c_void,
+    AppContainerAce: ?*?*c_void,
     AppContainerAceIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CheckTokenMembershipEx(
     TokenHandle: ?HANDLE,
-    SidToCheck: PSID,
+    SidToCheck: ?PSID,
     Flags: u32,
-    IsMember: *BOOL,
+    IsMember: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ConvertToAutoInheritPrivateObjectSecurity(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
-    CurrentSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    NewSecurityDescriptor: **SECURITY_DESCRIPTOR,
+    CurrentSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    NewSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     ObjectType: ?*Guid,
     IsDirectoryObject: u8,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CopySid(
     nDestinationSidLength: u32,
     // TODO: what to do with BytesParamIndex 0?
-    pDestinationSid: PSID,
-    pSourceSid: PSID,
+    pDestinationSid: ?PSID,
+    pSourceSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreatePrivateObjectSecurity(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
-    NewDescriptor: **SECURITY_DESCRIPTOR,
+    NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
     IsDirectoryObject: BOOL,
     Token: ?HANDLE,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreatePrivateObjectSecurityEx(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
-    NewDescriptor: **SECURITY_DESCRIPTOR,
+    NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
     ObjectType: ?*Guid,
     IsContainerObject: BOOL,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
     Token: ?HANDLE,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreatePrivateObjectSecurityWithMultipleInheritance(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
-    NewDescriptor: **SECURITY_DESCRIPTOR,
-    ObjectTypes: ?[*]*Guid,
+    NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ObjectTypes: ?[*]?*Guid,
     GuidCount: u32,
     IsContainerObject: BOOL,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
     Token: ?HANDLE,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreateRestrictedToken(
-    ExistingTokenHandle: HANDLE,
+    ExistingTokenHandle: ?HANDLE,
     Flags: CREATE_RESTRICTED_TOKEN_FLAGS,
     DisableSidCount: u32,
     SidsToDisable: ?[*]SID_AND_ATTRIBUTES,
@@ -5012,7 +5012,7 @@ pub extern "ADVAPI32" fn CreateRestrictedToken(
     PrivilegesToDelete: ?[*]LUID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
     SidsToRestrict: ?[*]SID_AND_ATTRIBUTES,
-    NewTokenHandle: *HANDLE,
+    NewTokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5021,169 +5021,169 @@ pub extern "ADVAPI32" fn CreateWellKnownSid(
     DomainSid: ?PSID,
     // TODO: what to do with BytesParamIndex 3?
     pSid: ?PSID,
-    cbSid: *u32,
+    cbSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EqualDomainSid(
-    pSid1: PSID,
-    pSid2: PSID,
-    pfEqual: *BOOL,
+    pSid1: ?PSID,
+    pSid2: ?PSID,
+    pfEqual: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DeleteAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DestroyPrivateObjectSecurity(
-    ObjectDescriptor: **SECURITY_DESCRIPTOR,
+    ObjectDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DuplicateToken(
-    ExistingTokenHandle: HANDLE,
+    ExistingTokenHandle: ?HANDLE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    DuplicateTokenHandle: *HANDLE,
+    DuplicateTokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn DuplicateTokenEx(
-    hExistingToken: HANDLE,
+    hExistingToken: ?HANDLE,
     dwDesiredAccess: TOKEN_ACCESS_MASK,
     lpTokenAttributes: ?*SECURITY_ATTRIBUTES,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     TokenType: TOKEN_TYPE,
-    phNewToken: *HANDLE,
+    phNewToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EqualPrefixSid(
-    pSid1: PSID,
-    pSid2: PSID,
+    pSid1: ?PSID,
+    pSid2: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn EqualSid(
-    pSid1: PSID,
-    pSid2: PSID,
+    pSid1: ?PSID,
+    pSid2: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FindFirstFreeAce(
-    pAcl: *ACL,
-    pAce: **c_void,
+    pAcl: ?*ACL,
+    pAce: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FreeSid(
-    pSid: PSID,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAce(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     dwAceIndex: u32,
-    pAce: **c_void,
+    pAce: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAclInformation(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
-    pAclInformation: *c_void,
+    pAclInformation: ?*c_void,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn GetFileSecurityW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     nLength: u32,
-    lpnLengthNeeded: *u32,
+    lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetKernelObjectSecurity(
-    Handle: HANDLE,
+    Handle: ?HANDLE,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     nLength: u32,
-    lpnLengthNeeded: *u32,
+    lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetLengthSid(
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetPrivateObjectSecurity(
-    ObjectDescriptor: *SECURITY_DESCRIPTOR,
+    ObjectDescriptor: ?*SECURITY_DESCRIPTOR,
     SecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
     ResultantDescriptor: ?*SECURITY_DESCRIPTOR,
     DescriptorLength: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorControl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pControl: *u16,
-    lpdwRevision: *u32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pControl: ?*u16,
+    lpdwRevision: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorDacl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    lpbDaclPresent: *i32,
-    pDacl: **ACL,
-    lpbDaclDefaulted: *i32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    lpbDaclPresent: ?*i32,
+    pDacl: ?*?*ACL,
+    lpbDaclDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorGroup(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pGroup: *PSID,
-    lpbGroupDefaulted: *i32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pGroup: ?*?PSID,
+    lpbGroupDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorLength(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorOwner(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pOwner: *PSID,
-    lpbOwnerDefaulted: *i32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pOwner: ?*?PSID,
+    lpbOwnerDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorRMControl(
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    RMControl: *u8,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    RMControl: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSecurityDescriptorSacl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    lpbSaclPresent: *i32,
-    pSacl: **ACL,
-    lpbSaclDefaulted: *i32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    lpbSaclPresent: ?*i32,
+    pSacl: ?*?*ACL,
+    lpbSaclDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSidIdentifierAuthority(
-    pSid: PSID,
-) callconv(@import("std").os.windows.WINAPI) *SID_IDENTIFIER_AUTHORITY;
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) ?*SID_IDENTIFIER_AUTHORITY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSidLengthRequired(
@@ -5192,41 +5192,41 @@ pub extern "ADVAPI32" fn GetSidLengthRequired(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSidSubAuthority(
-    pSid: PSID,
+    pSid: ?PSID,
     nSubAuthority: u32,
-) callconv(@import("std").os.windows.WINAPI) *u32;
+) callconv(@import("std").os.windows.WINAPI) ?*u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetSidSubAuthorityCount(
-    pSid: PSID,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetTokenInformation(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
     TokenInformation: ?*c_void,
     TokenInformationLength: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetWindowsAccountDomainSid(
-    pSid: PSID,
+    pSid: ?PSID,
     // TODO: what to do with BytesParamIndex 2?
     pDomainSid: ?PSID,
-    cbDomainSid: *u32,
+    cbDomainSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ImpersonateAnonymousToken(
-    ThreadHandle: HANDLE,
+    ThreadHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ImpersonateLoggedOnUser(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5237,139 +5237,139 @@ pub extern "ADVAPI32" fn ImpersonateSelf(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn InitializeAcl(
     // TODO: what to do with BytesParamIndex 1?
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     nAclLength: u32,
     dwAclRevision: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn InitializeSecurityDescriptor(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     dwRevision: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn InitializeSid(
-    Sid: PSID,
-    pIdentifierAuthority: *SID_IDENTIFIER_AUTHORITY,
+    Sid: ?PSID,
+    pIdentifierAuthority: ?*SID_IDENTIFIER_AUTHORITY,
     nSubAuthorityCount: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn IsTokenRestricted(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn IsValidAcl(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn IsValidSecurityDescriptor(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn IsValidSid(
-    pSid: PSID,
+    pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn IsWellKnownSid(
-    pSid: PSID,
+    pSid: ?PSID,
     WellKnownSidType: WELL_KNOWN_SID_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MakeAbsoluteSD(
-    pSelfRelativeSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSelfRelativeSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 2?
     pAbsoluteSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    lpdwAbsoluteSecurityDescriptorSize: *u32,
+    lpdwAbsoluteSecurityDescriptorSize: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
     pDacl: ?*ACL,
-    lpdwDaclSize: *u32,
+    lpdwDaclSize: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
     pSacl: ?*ACL,
-    lpdwSaclSize: *u32,
+    lpdwSaclSize: ?*u32,
     // TODO: what to do with BytesParamIndex 8?
     pOwner: ?PSID,
-    lpdwOwnerSize: *u32,
+    lpdwOwnerSize: ?*u32,
     // TODO: what to do with BytesParamIndex 10?
     pPrimaryGroup: ?PSID,
-    lpdwPrimaryGroupSize: *u32,
+    lpdwPrimaryGroupSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MakeSelfRelativeSD(
-    pAbsoluteSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pAbsoluteSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 2?
     pSelfRelativeSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    lpdwBufferLength: *u32,
+    lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MapGenericMask(
-    AccessMask: *u32,
-    GenericMapping: *GENERIC_MAPPING,
+    AccessMask: ?*u32,
+    GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ADVAPI32" fn ObjectCloseAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn ObjectOpenAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
-    ObjectTypeName: PWSTR,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?PWSTR,
     ObjectName: ?PWSTR,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    ClientToken: HANDLE,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
     GrantedAccess: u32,
     Privileges: ?*PRIVILEGE_SET,
     ObjectCreation: BOOL,
     AccessGranted: BOOL,
-    GenerateOnClose: *i32,
+    GenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
+    SubsystemName: ?[*:0]const u16,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
     DesiredAccess: u32,
-    Privileges: *PRIVILEGE_SET,
+    Privileges: ?*PRIVILEGE_SET,
     AccessGranted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn PrivilegeCheck(
-    ClientToken: HANDLE,
-    RequiredPrivileges: *PRIVILEGE_SET,
-    pfResult: *i32,
+    ClientToken: ?HANDLE,
+    RequiredPrivileges: ?*PRIVILEGE_SET,
+    pfResult: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmW(
-    SubsystemName: [*:0]const u16,
-    ServiceName: [*:0]const u16,
-    ClientToken: HANDLE,
-    Privileges: *PRIVILEGE_SET,
+    SubsystemName: ?[*:0]const u16,
+    ServiceName: ?[*:0]const u16,
+    ClientToken: ?HANDLE,
+    Privileges: ?*PRIVILEGE_SET,
     AccessGranted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn QuerySecurityAccessMask(
     SecurityInformation: u32,
-    DesiredAccess: *u32,
+    DesiredAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5378,61 +5378,61 @@ pub extern "ADVAPI32" fn RevertToSelf(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetAclInformation(
-    pAcl: *ACL,
+    pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
-    pAclInformation: *c_void,
+    pAclInformation: ?*c_void,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn SetFileSecurityW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
     SecurityInformation: u32,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetKernelObjectSecurity(
-    Handle: HANDLE,
+    Handle: ?HANDLE,
     SecurityInformation: u32,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetPrivateObjectSecurity(
     SecurityInformation: u32,
-    ModificationDescriptor: *SECURITY_DESCRIPTOR,
-    ObjectsSecurityDescriptor: **SECURITY_DESCRIPTOR,
-    GenericMapping: *GENERIC_MAPPING,
+    ModificationDescriptor: ?*SECURITY_DESCRIPTOR,
+    ObjectsSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    GenericMapping: ?*GENERIC_MAPPING,
     Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetPrivateObjectSecurityEx(
     SecurityInformation: u32,
-    ModificationDescriptor: *SECURITY_DESCRIPTOR,
-    ObjectsSecurityDescriptor: **SECURITY_DESCRIPTOR,
+    ModificationDescriptor: ?*SECURITY_DESCRIPTOR,
+    ObjectsSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
-    GenericMapping: *GENERIC_MAPPING,
+    GenericMapping: ?*GENERIC_MAPPING,
     Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn SetSecurityAccessMask(
     SecurityInformation: u32,
-    DesiredAccess: *u32,
+    DesiredAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorControl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     ControlBitsOfInterest: u16,
     ControlBitsToSet: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorDacl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     bDaclPresent: BOOL,
     pDacl: ?*ACL,
     bDaclDefaulted: BOOL,
@@ -5440,27 +5440,27 @@ pub extern "ADVAPI32" fn SetSecurityDescriptorDacl(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorGroup(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pGroup: ?PSID,
     bGroupDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorOwner(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pOwner: ?PSID,
     bOwnerDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorRMControl(
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RMControl: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorSacl(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     bSaclPresent: BOOL,
     pSacl: ?*ACL,
     bSaclDefaulted: BOOL,
@@ -5468,24 +5468,24 @@ pub extern "ADVAPI32" fn SetSecurityDescriptorSacl(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetTokenInformation(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    TokenInformation: *c_void,
+    TokenInformation: ?*c_void,
     TokenInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetCachedSigningLevel(
-    SourceFiles: [*]HANDLE,
+    SourceFiles: [*]?HANDLE,
     SourceFileCount: u32,
     Flags: u32,
     TargetFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn GetCachedSigningLevel(
-    File: HANDLE,
-    Flags: *u32,
-    SigningLevel: *u32,
+    File: ?HANDLE,
+    Flags: ?*u32,
+    SigningLevel: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
     Thumbprint: ?*u8,
     ThumbprintSize: ?*u32,
@@ -5493,33 +5493,33 @@ pub extern "KERNEL32" fn GetCachedSigningLevel(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-security-base-l1-2-2" fn DeriveCapabilitySidsFromName(
-    CapName: [*:0]const u16,
-    CapabilityGroupSids: ?**PSID,
-    CapabilityGroupSidCount: *u32,
-    CapabilitySids: ?**PSID,
-    CapabilitySidCount: *u32,
+    CapName: ?[*:0]const u16,
+    CapabilityGroupSids: ?*?*?PSID,
+    CapabilityGroupSidCount: ?*u32,
+    CapabilitySids: ?*?*?PSID,
+    CapabilitySidCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptProtectData(
-    pDataIn: *CRYPTOAPI_BLOB,
+    pDataIn: ?*CRYPTOAPI_BLOB,
     szDataDescr: ?[*:0]const u16,
     pOptionalEntropy: ?*CRYPTOAPI_BLOB,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
     dwFlags: u32,
-    pDataOut: *CRYPTOAPI_BLOB,
+    pDataOut: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUnprotectData(
-    pDataIn: *CRYPTOAPI_BLOB,
-    ppszDataDescr: ?*PWSTR,
+    pDataIn: ?*CRYPTOAPI_BLOB,
+    ppszDataDescr: ?*?PWSTR,
     pOptionalEntropy: ?*CRYPTOAPI_BLOB,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
     dwFlags: u32,
-    pDataOut: *CRYPTOAPI_BLOB,
+    pDataOut: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5533,24 +5533,24 @@ pub extern "CRYPT32" fn CryptUpdateProtectedState(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CryptProtectMemory(
-    pDataIn: *c_void,
+    pDataIn: ?*c_void,
     cbDataIn: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CryptUnprotectMemory(
-    pDataIn: *c_void,
+    pDataIn: ?*c_void,
     cbDataIn: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "DSSEC" fn DSCreateISecurityInfoObject(
-    pwszObjectPath: [*:0]const u16,
-    pwszObjectClass: [*:0]const u16,
+    pwszObjectPath: ?[*:0]const u16,
+    pwszObjectClass: ?[*:0]const u16,
     dwFlags: u32,
-    ppSI: **ISecurityInformation,
+    ppSI: ?*?*ISecurityInformation,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
@@ -5558,13 +5558,13 @@ pub extern "DSSEC" fn DSCreateISecurityInfoObject(
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "DSSEC" fn DSCreateISecurityInfoObjectEx(
-    pwszObjectPath: [*:0]const u16,
-    pwszObjectClass: [*:0]const u16,
-    pwszServer: [*:0]const u16,
-    pwszUserName: [*:0]const u16,
-    pwszPassword: [*:0]const u16,
+    pwszObjectPath: ?[*:0]const u16,
+    pwszObjectClass: ?[*:0]const u16,
+    pwszServer: ?[*:0]const u16,
+    pwszUserName: ?[*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
     dwFlags: u32,
-    ppSI: **ISecurityInformation,
+    ppSI: ?*?*ISecurityInformation,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
@@ -5572,10 +5572,10 @@ pub extern "DSSEC" fn DSCreateISecurityInfoObjectEx(
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "DSSEC" fn DSCreateSecurityPage(
-    pwszObjectPath: [*:0]const u16,
-    pwszObjectClass: [*:0]const u16,
+    pwszObjectPath: ?[*:0]const u16,
+    pwszObjectClass: ?[*:0]const u16,
     dwFlags: u32,
-    phPage: *HPROPSHEETPAGE,
+    phPage: ?*?HPROPSHEETPAGE,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
@@ -5583,11 +5583,11 @@ pub extern "DSSEC" fn DSCreateSecurityPage(
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "DSSEC" fn DSEditSecurity(
-    hwndOwner: HWND,
-    pwszObjectPath: [*:0]const u16,
-    pwszObjectClass: [*:0]const u16,
+    hwndOwner: ?HWND,
+    pwszObjectPath: ?[*:0]const u16,
+    pwszObjectClass: ?[*:0]const u16,
     dwFlags: u32,
-    pwszCaption: [*:0]const u16,
+    pwszCaption: ?[*:0]const u16,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
@@ -5595,239 +5595,239 @@ pub extern "DSSEC" fn DSEditSecurity(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptSIPGetSignedDataMsg(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pdwEncodingType: *CERT_QUERY_ENCODING_TYPE,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pdwEncodingType: ?*CERT_QUERY_ENCODING_TYPE,
     dwIndex: u32,
-    pcbSignedDataMsg: *u32,
-    pbSignedDataMsg: *u8,
+    pcbSignedDataMsg: ?*u32,
+    pbSignedDataMsg: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptSIPPutSignedDataMsg(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pdwIndex: *u32,
+    pdwIndex: ?*u32,
     cbSignedDataMsg: u32,
-    pbSignedDataMsg: *u8,
+    pbSignedDataMsg: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptSIPCreateIndirectData(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pcbIndirectData: *u32,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pcbIndirectData: ?*u32,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptSIPVerifyIndirectData(
-    pSubjectInfo: *SIP_SUBJECTINFO,
-    pIndirectData: *SIP_INDIRECT_DATA,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptSIPRemoveSignedDataMsg(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSIPLoad(
-    pgSubject: *const Guid,
+    pgSubject: ?*const Guid,
     dwFlags: u32,
-    pSipDispatch: *SIP_DISPATCH_INFO,
+    pSipDispatch: ?*SIP_DISPATCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSIPRetrieveSubjectGuid(
-    FileName: [*:0]const u16,
-    hFileIn: HANDLE,
-    pgSubject: *Guid,
+    FileName: ?[*:0]const u16,
+    hFileIn: ?HANDLE,
+    pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSIPRetrieveSubjectGuidForCatalogFile(
-    FileName: [*:0]const u16,
-    hFileIn: HANDLE,
-    pgSubject: *Guid,
+    FileName: ?[*:0]const u16,
+    hFileIn: ?HANDLE,
+    pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSIPAddProvider(
-    psNewProv: *SIP_ADD_NEWPROVIDER,
+    psNewProv: ?*SIP_ADD_NEWPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSIPRemoveProvider(
-    pgProv: *Guid,
+    pgProv: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINTRUST" fn CryptSIPGetCaps(
-    pSubjInfo: *SIP_SUBJECTINFO,
-    pCaps: *SIP_CAP_SET_V3,
+    pSubjInfo: ?*SIP_SUBJECTINFO,
+    pCaps: ?*SIP_CAP_SET_V3,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINTRUST" fn CryptSIPGetSealedDigest(
-    pSubjectInfo: *SIP_SUBJECTINFO,
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
     pSig: ?[*:0]const u8,
     dwSig: u32,
     pbDigest: ?[*:0]u8,
-    pcbDigest: *u32,
+    pcbDigest: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATOpen(
-    pwszFileName: PWSTR,
+    pwszFileName: ?PWSTR,
     fdwOpenFlags: CRYPTCAT_OPEN_FLAGS,
     hProv: usize,
     dwPublicVersion: CRYPTCAT_VERSION,
     dwEncodingType: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATClose(
-    hCatalog: HANDLE,
+    hCatalog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATStoreFromHandle(
-    hCatalog: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATSTORE;
+    hCatalog: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATHandleFromStore(
-    pCatStore: *CRYPTCATSTORE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pCatStore: ?*CRYPTCATSTORE,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATPersistStore(
-    hCatalog: HANDLE,
+    hCatalog: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINTRUST" fn CryptCATGetCatAttrInfo(
-    hCatalog: HANDLE,
-    pwszReferenceTag: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    hCatalog: ?HANDLE,
+    pwszReferenceTag: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATPutCatAttrInfo(
-    hCatalog: HANDLE,
-    pwszReferenceTag: PWSTR,
+    hCatalog: ?HANDLE,
+    pwszReferenceTag: ?PWSTR,
     dwAttrTypeAndAction: u32,
     cbData: u32,
-    pbData: *u8,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    pbData: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATEnumerateCatAttr(
-    hCatalog: HANDLE,
-    pPrevAttr: *CRYPTCATATTRIBUTE,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    hCatalog: ?HANDLE,
+    pPrevAttr: ?*CRYPTCATATTRIBUTE,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATGetMemberInfo(
-    hCatalog: HANDLE,
-    pwszReferenceTag: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATMEMBER;
+    hCatalog: ?HANDLE,
+    pwszReferenceTag: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATMEMBER;
 
 pub extern "WINTRUST" fn CryptCATAllocSortedMemberInfo(
-    hCatalog: HANDLE,
-    pwszReferenceTag: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATMEMBER;
+    hCatalog: ?HANDLE,
+    pwszReferenceTag: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATMEMBER;
 
 pub extern "WINTRUST" fn CryptCATFreeSortedMemberInfo(
-    hCatalog: HANDLE,
-    pCatMember: *CRYPTCATMEMBER,
+    hCatalog: ?HANDLE,
+    pCatMember: ?*CRYPTCATMEMBER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATGetAttrInfo(
-    hCatalog: HANDLE,
-    pCatMember: *CRYPTCATMEMBER,
-    pwszReferenceTag: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    hCatalog: ?HANDLE,
+    pCatMember: ?*CRYPTCATMEMBER,
+    pwszReferenceTag: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATPutMemberInfo(
-    hCatalog: HANDLE,
+    hCatalog: ?HANDLE,
     pwszFileName: ?PWSTR,
-    pwszReferenceTag: PWSTR,
-    pgSubjectType: *Guid,
+    pwszReferenceTag: ?PWSTR,
+    pgSubjectType: ?*Guid,
     dwCertVersion: u32,
     cbSIPIndirectData: u32,
-    pbSIPIndirectData: *u8,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATMEMBER;
+    pbSIPIndirectData: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATMEMBER;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATPutAttrInfo(
-    hCatalog: HANDLE,
-    pCatMember: *CRYPTCATMEMBER,
-    pwszReferenceTag: PWSTR,
+    hCatalog: ?HANDLE,
+    pCatMember: ?*CRYPTCATMEMBER,
+    pwszReferenceTag: ?PWSTR,
     dwAttrTypeAndAction: u32,
     cbData: u32,
-    pbData: *u8,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    pbData: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATEnumerateMember(
-    hCatalog: HANDLE,
-    pPrevMember: *CRYPTCATMEMBER,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATMEMBER;
+    hCatalog: ?HANDLE,
+    pPrevMember: ?*CRYPTCATMEMBER,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATMEMBER;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATEnumerateAttr(
-    hCatalog: HANDLE,
-    pCatMember: *CRYPTCATMEMBER,
-    pPrevAttr: *CRYPTCATATTRIBUTE,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    hCatalog: ?HANDLE,
+    pCatMember: ?*CRYPTCATMEMBER,
+    pPrevAttr: ?*CRYPTCATATTRIBUTE,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATCDFOpen(
-    pwszFilePath: PWSTR,
+    pwszFilePath: ?PWSTR,
     pfnParseError: ?PFN_CDF_PARSE_ERROR_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATCDF;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATCDF;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATCDFClose(
-    pCDF: *CRYPTCATCDF,
+    pCDF: ?*CRYPTCATCDF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATCDFEnumCatAttributes(
-    pCDF: *CRYPTCATCDF,
-    pPrevAttr: *CRYPTCATATTRIBUTE,
-    pfnParseError: PFN_CDF_PARSE_ERROR_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    pCDF: ?*CRYPTCATCDF,
+    pPrevAttr: ?*CRYPTCATATTRIBUTE,
+    pfnParseError: ?PFN_CDF_PARSE_ERROR_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 pub extern "WINTRUST" fn CryptCATCDFEnumMembers(
-    pCDF: *CRYPTCATCDF,
-    pPrevMember: *CRYPTCATMEMBER,
-    pfnParseError: PFN_CDF_PARSE_ERROR_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATMEMBER;
+    pCDF: ?*CRYPTCATCDF,
+    pPrevMember: ?*CRYPTCATMEMBER,
+    pfnParseError: ?PFN_CDF_PARSE_ERROR_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATMEMBER;
 
 pub extern "WINTRUST" fn CryptCATCDFEnumAttributes(
-    pCDF: *CRYPTCATCDF,
-    pMember: *CRYPTCATMEMBER,
-    pPrevAttr: *CRYPTCATATTRIBUTE,
-    pfnParseError: PFN_CDF_PARSE_ERROR_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) *CRYPTCATATTRIBUTE;
+    pCDF: ?*CRYPTCATCDF,
+    pMember: ?*CRYPTCATMEMBER,
+    pPrevAttr: ?*CRYPTCATATTRIBUTE,
+    pfnParseError: ?PFN_CDF_PARSE_ERROR_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn IsCatalogFile(
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     pwszFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATAdminAcquireContext(
-    phCatAdmin: *isize,
+    phCatAdmin: ?*isize,
     pgSubsystem: ?*const Guid,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINTRUST" fn CryptCATAdminAcquireContext2(
-    phCatAdmin: *isize,
+    phCatAdmin: ?*isize,
     pgSubsystem: ?*const Guid,
     pwszHashAlgorithm: ?[*:0]const u16,
     pStrongHashPolicy: ?*CERT_STRONG_SIGN_PARA,
@@ -5851,7 +5851,7 @@ pub extern "WINTRUST" fn CryptCATAdminReleaseCatalogContext(
 pub extern "WINTRUST" fn CryptCATAdminEnumCatalogFromHash(
     hCatAdmin: isize,
     // TODO: what to do with BytesParamIndex 2?
-    pbHash: *u8,
+    pbHash: ?*u8,
     cbHash: u32,
     dwFlags: u32,
     phPrevCatInfo: ?*isize,
@@ -5859,8 +5859,8 @@ pub extern "WINTRUST" fn CryptCATAdminEnumCatalogFromHash(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATAdminCalcHashFromFileHandle(
-    hFile: HANDLE,
-    pcbHash: *u32,
+    hFile: ?HANDLE,
+    pcbHash: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     pbHash: ?*u8,
     dwFlags: u32,
@@ -5869,8 +5869,8 @@ pub extern "WINTRUST" fn CryptCATAdminCalcHashFromFileHandle(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINTRUST" fn CryptCATAdminCalcHashFromFileHandle2(
     hCatAdmin: isize,
-    hFile: HANDLE,
-    pcbHash: *u32,
+    hFile: ?HANDLE,
+    pcbHash: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     pbHash: ?*u8,
     dwFlags: u32,
@@ -5879,7 +5879,7 @@ pub extern "WINTRUST" fn CryptCATAdminCalcHashFromFileHandle2(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATAdminAddCatalog(
     hCatAdmin: isize,
-    pwszCatalogFile: PWSTR,
+    pwszCatalogFile: ?PWSTR,
     pwszSelectBaseName: ?PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -5887,22 +5887,22 @@ pub extern "WINTRUST" fn CryptCATAdminAddCatalog(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATAdminRemoveCatalog(
     hCatAdmin: isize,
-    pwszCatalogFile: [*:0]const u16,
+    pwszCatalogFile: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATCatalogInfoFromContext(
     hCatInfo: isize,
-    psCatInfo: *CATALOG_INFO,
+    psCatInfo: ?*CATALOG_INFO,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn CryptCATAdminResolveCatalogPath(
     hCatAdmin: isize,
-    pwszCatalogFile: PWSTR,
-    psCatInfo: *CATALOG_INFO,
+    pwszCatalogFile: ?PWSTR,
+    psCatInfo: ?*CATALOG_INFO,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5913,21 +5913,21 @@ pub extern "WINTRUST" fn CryptCATAdminPauseServiceForBackup(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WinVerifyTrust(
-    hwnd: HWND,
-    pgActionID: *Guid,
-    pWVTData: *c_void,
+    hwnd: ?HWND,
+    pgActionID: ?*Guid,
+    pWVTData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WinVerifyTrustEx(
-    hwnd: HWND,
-    pgActionID: *Guid,
-    pWinTrustData: *WINTRUST_DATA,
+    hwnd: ?HWND,
+    pgActionID: ?*Guid,
+    pWinTrustData: ?*WINTRUST_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustGetRegPolicyFlags(
-    pdwPolicyFlags: *WINTRUST_POLICY_FLAGS,
+    pdwPolicyFlags: ?*WINTRUST_POLICY_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5937,76 +5937,76 @@ pub extern "WINTRUST" fn WintrustSetRegPolicyFlags(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustAddActionID(
-    pgActionID: *Guid,
+    pgActionID: ?*Guid,
     fdwFlags: u32,
-    psProvInfo: *CRYPT_REGISTER_ACTIONID,
+    psProvInfo: ?*CRYPT_REGISTER_ACTIONID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustRemoveActionID(
-    pgActionID: *Guid,
+    pgActionID: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustLoadFunctionPointers(
-    pgActionID: *Guid,
-    pPfns: *CRYPT_PROVIDER_FUNCTIONS,
+    pgActionID: ?*Guid,
+    pPfns: ?*CRYPT_PROVIDER_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustAddDefaultForUsage(
-    pszUsageOID: [*:0]const u8,
-    psDefUsage: *CRYPT_PROVIDER_REGDEFUSAGE,
+    pszUsageOID: ?[*:0]const u8,
+    psDefUsage: ?*CRYPT_PROVIDER_REGDEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WintrustGetDefaultForUsage(
     dwAction: WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION,
-    pszUsageOID: [*:0]const u8,
-    psUsage: *CRYPT_PROVIDER_DEFUSAGE,
+    pszUsageOID: ?[*:0]const u8,
+    psUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WTHelperGetProvSignerFromChain(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_PROVIDER_SGNR;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_SGNR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WTHelperGetProvCertFromChain(
-    pSgnr: *CRYPT_PROVIDER_SGNR,
+    pSgnr: ?*CRYPT_PROVIDER_SGNR,
     idxCert: u32,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_PROVIDER_CERT;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_CERT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WTHelperProvDataFromStateData(
-    hStateData: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_PROVIDER_DATA;
+    hStateData: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_DATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WTHelperGetProvPrivateDataFromChain(
-    pProvData: *CRYPT_PROVIDER_DATA,
-    pgProviderID: *Guid,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_PROVIDER_PRIVDATA;
+    pProvData: ?*CRYPT_PROVIDER_DATA,
+    pgProviderID: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_PRIVDATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn WTHelperCertIsSelfSigned(
     dwEncoding: u32,
-    pCert: *CERT_INFO,
+    pCert: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WINTRUST" fn WTHelperCertCheckValidSignature(
-    pProvData: *CRYPT_PROVIDER_DATA,
+    pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn OpenPersonalTrustDBDialogEx(
     hwndParent: ?HWND,
     dwFlags: u32,
-    pvReserved: ?**c_void,
+    pvReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6025,9 +6025,9 @@ pub extern "ADVAPI32" fn SaferGetPolicyInformation(
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: *c_void,
-    InfoBufferRetSize: *u32,
-    lpReserved: *c_void,
+    InfoBuffer: ?*c_void,
+    InfoBufferRetSize: ?*u32,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6036,8 +6036,8 @@ pub extern "ADVAPI32" fn SaferSetPolicyInformation(
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: *c_void,
-    lpReserved: *c_void,
+    InfoBuffer: ?*c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6045,8 +6045,8 @@ pub extern "ADVAPI32" fn SaferCreateLevel(
     dwScopeId: u32,
     dwLevelId: u32,
     OpenFlags: u32,
-    pLevelHandle: *SAFER_LEVEL_HANDLE,
-    lpReserved: *c_void,
+    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6058,7 +6058,7 @@ pub extern "ADVAPI32" fn SaferCloseLevel(
 pub extern "ADVAPI32" fn SaferIdentifyLevel(
     dwNumProperties: u32,
     pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
-    pLevelHandle: *SAFER_LEVEL_HANDLE,
+    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
     lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6066,7 +6066,7 @@ pub extern "ADVAPI32" fn SaferIdentifyLevel(
 pub extern "ADVAPI32" fn SaferComputeTokenFromLevel(
     LevelHandle: SAFER_LEVEL_HANDLE,
     InAccessToken: ?HANDLE,
-    OutAccessToken: *HANDLE,
+    OutAccessToken: ?*?HANDLE,
     dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
     lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6078,7 +6078,7 @@ pub extern "ADVAPI32" fn SaferGetLevelInformation(
     // TODO: what to do with BytesParamIndex 3?
     lpQueryBuffer: ?*c_void,
     dwInBufferSize: u32,
-    lpdwOutBufferSize: *u32,
+    lpdwOutBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6086,153 +6086,153 @@ pub extern "ADVAPI32" fn SaferSetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpQueryBuffer: *c_void,
+    lpQueryBuffer: ?*c_void,
     dwInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SaferRecordEventLogEntry(
     hLevel: SAFER_LEVEL_HANDLE,
-    szTargetPath: [*:0]const u16,
-    lpReserved: *c_void,
+    szTargetPath: ?[*:0]const u16,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SaferiIsExecutableFileType(
-    szFullPathname: [*:0]const u16,
+    szFullPathname: ?[*:0]const u16,
     bFromShellExecute: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLOpen(
-    phSLC: **c_void,
+    phSLC: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLClose(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLInstallProofOfPurchase(
-    hSLC: *c_void,
-    pwszPKeyAlgorithm: [*:0]const u16,
-    pwszPKeyString: [*:0]const u16,
+    hSLC: ?*c_void,
+    pwszPKeyAlgorithm: ?[*:0]const u16,
+    pwszPKeyString: ?[*:0]const u16,
     cbPKeySpecificData: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbPKeySpecificData: ?*u8,
-    pPkeyId: *Guid,
+    pPkeyId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLUninstallProofOfPurchase(
-    hSLC: *c_void,
-    pPKeyId: *const Guid,
+    hSLC: ?*c_void,
+    pPKeyId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLInstallLicense(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     cbLicenseBlob: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pbLicenseBlob: *const u8,
-    pLicenseFileId: *Guid,
+    pbLicenseBlob: ?*const u8,
+    pLicenseFileId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLUninstallLicense(
-    hSLC: *c_void,
-    pLicenseFileId: *const Guid,
+    hSLC: ?*c_void,
+    pLicenseFileId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLConsumeRight(
-    hSLC: *c_void,
-    pAppId: *const Guid,
+    hSLC: ?*c_void,
+    pAppId: ?*const Guid,
     pProductSkuId: ?*const Guid,
     pwszRightName: ?[*:0]const u16,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetProductSkuInformation(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetPKeyInformation(
-    hSLC: *c_void,
-    pPKeyId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pPKeyId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetLicenseInformation(
-    hSLC: *c_void,
-    pSLLicenseId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pSLLicenseId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetLicensingStatusInformation(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     pAppID: ?*const Guid,
     pProductSkuId: ?*const Guid,
     pwszRightName: ?[*:0]const u16,
-    pnStatusCount: *u32,
-    ppLicensingStatus: **SL_LICENSING_STATUS,
+    pnStatusCount: ?*u32,
+    ppLicensingStatus: ?*?*SL_LICENSING_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetPolicyInformation(
-    hSLC: *c_void,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetPolicyInformationDWORD(
-    hSLC: *c_void,
-    pwszValueName: [*:0]const u16,
-    pdwValue: *u32,
+    hSLC: ?*c_void,
+    pwszValueName: ?[*:0]const u16,
+    pdwValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetServiceInformation(
-    hSLC: *c_void,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetApplicationInformation(
-    hSLC: *c_void,
-    pApplicationId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    hSLC: ?*c_void,
+    pApplicationId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "slcext" fn SLActivateProduct(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
     cbAppSpecificData: u32,
     pvAppSpecificData: ?*const c_void,
     pActivationInfo: ?*const SL_ACTIVATION_INFO_HEADER,
@@ -6242,155 +6242,155 @@ pub extern "slcext" fn SLActivateProduct(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "slcext" fn SLGetServerStatus(
-    pwszServerURL: [*:0]const u16,
-    pwszAcquisitionType: [*:0]const u16,
+    pwszServerURL: ?[*:0]const u16,
+    pwszAcquisitionType: ?[*:0]const u16,
     pwszProxyServer: ?[*:0]const u16,
     wProxyPort: u16,
-    phrStatus: *HRESULT,
+    phrStatus: ?*HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGenerateOfflineInstallationId(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
-    ppwszInstallationId: *PWSTR,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
+    ppwszInstallationId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGenerateOfflineInstallationIdEx(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     pProductSkuId: ?*const Guid,
     pActivationInfo: ?*const SL_ACTIVATION_INFO_HEADER,
-    ppwszInstallationId: *PWSTR,
+    ppwszInstallationId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLDepositOfflineConfirmationId(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
-    pwszInstallationId: [*:0]const u16,
-    pwszConfirmationId: [*:0]const u16,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
+    pwszInstallationId: ?[*:0]const u16,
+    pwszConfirmationId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLDepositOfflineConfirmationIdEx(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     pProductSkuId: ?*const Guid,
     pActivationInfo: ?*const SL_ACTIVATION_INFO_HEADER,
-    pwszInstallationId: [*:0]const u16,
-    pwszConfirmationId: [*:0]const u16,
+    pwszInstallationId: ?[*:0]const u16,
+    pwszConfirmationId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetPKeyId(
-    hSLC: *c_void,
-    pwszPKeyAlgorithm: [*:0]const u16,
-    pwszPKeyString: [*:0]const u16,
+    hSLC: ?*c_void,
+    pwszPKeyAlgorithm: ?[*:0]const u16,
+    pwszPKeyString: ?[*:0]const u16,
     cbPKeySpecificData: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbPKeySpecificData: ?*const u8,
-    pPKeyId: *Guid,
+    pPKeyId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetInstalledProductKeyIds(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
-    pnProductKeyIds: *u32,
-    ppProductKeyIds: **Guid,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
+    pnProductKeyIds: ?*u32,
+    ppProductKeyIds: ?*?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLSetCurrentProductKey(
-    hSLC: *c_void,
-    pProductSkuId: *const Guid,
-    pProductKeyId: *const Guid,
+    hSLC: ?*c_void,
+    pProductSkuId: ?*const Guid,
+    pProductKeyId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetSLIDList(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     eQueryIdType: SLIDTYPE,
     pQueryId: ?*const Guid,
     eReturnIdType: SLIDTYPE,
-    pnReturnIds: *u32,
-    ppReturnIds: **Guid,
+    pnReturnIds: ?*u32,
+    ppReturnIds: ?*?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetLicenseFileId(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     cbLicenseBlob: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pbLicenseBlob: *const u8,
-    pLicenseFileId: *Guid,
+    pbLicenseBlob: ?*const u8,
+    pLicenseFileId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLGetLicense(
-    hSLC: *c_void,
-    pLicenseFileId: *const Guid,
-    pcbLicenseFile: *u32,
-    ppbLicenseFile: **u8,
+    hSLC: ?*c_void,
+    pLicenseFileId: ?*const Guid,
+    pcbLicenseFile: ?*u32,
+    ppbLicenseFile: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLFireEvent(
-    hSLC: *c_void,
-    pwszEventId: [*:0]const u16,
-    pApplicationId: *const Guid,
+    hSLC: ?*c_void,
+    pwszEventId: ?[*:0]const u16,
+    pApplicationId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLRegisterEvent(
     hSLC: ?*c_void,
-    pwszEventId: [*:0]const u16,
-    pApplicationId: *const Guid,
-    hEvent: HANDLE,
+    pwszEventId: ?[*:0]const u16,
+    pApplicationId: ?*const Guid,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SLC" fn SLUnregisterEvent(
     hSLC: ?*c_void,
-    pwszEventId: [*:0]const u16,
-    pApplicationId: *const Guid,
-    hEvent: HANDLE,
+    pwszEventId: ?[*:0]const u16,
+    pApplicationId: ?*const Guid,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SLC" fn SLGetWindowsInformation(
-    pwszValueName: [*:0]const u16,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SLC" fn SLGetWindowsInformationDWORD(
-    pwszValueName: [*:0]const u16,
-    pdwValue: *u32,
+    pwszValueName: ?[*:0]const u16,
+    pdwValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SLWGA" fn SLIsGenuineLocal(
-    pAppId: *const Guid,
-    pGenuineState: *SL_GENUINE_STATE,
+    pAppId: ?*const Guid,
+    pGenuineState: ?*SL_GENUINE_STATE,
     pUIOptions: ?*SL_NONGENUINE_UI_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "slcext" fn SLAcquireGenuineTicket(
-    ppTicketBlob: **c_void,
-    pcbTicketBlob: *u32,
-    pwszTemplateId: [*:0]const u16,
-    pwszServerUrl: [*:0]const u16,
+    ppTicketBlob: ?*?*c_void,
+    pcbTicketBlob: ?*u32,
+    pwszTemplateId: ?[*:0]const u16,
+    pwszServerUrl: ?[*:0]const u16,
     pwszClientToken: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SLC" fn SLSetGenuineInformation(
-    pQueryId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    pQueryId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     eDataType: SLDATATYPE,
     cbValue: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -6399,36 +6399,36 @@ pub extern "SLC" fn SLSetGenuineInformation(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "slcext" fn SLGetReferralInformation(
-    hSLC: *c_void,
+    hSLC: ?*c_void,
     eReferralType: SLREFERRALTYPE,
-    pSkuOrAppId: *const Guid,
-    pwszValueName: [*:0]const u16,
-    ppwszValue: *PWSTR,
+    pSkuOrAppId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
+    ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SLC" fn SLGetGenuineInformation(
-    pQueryId: *const Guid,
-    pwszValueName: [*:0]const u16,
+    pQueryId: ?*const Guid,
+    pwszValueName: ?[*:0]const u16,
     peDataType: ?*SLDATATYPE,
-    pcbValue: *u32,
-    ppbValue: **u8,
+    pcbValue: ?*u32,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-slapi-l1-1-0" fn SLQueryLicenseValueFromApp(
-    valueName: [*:0]const u16,
+    valueName: ?[*:0]const u16,
     valueType: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     dataBuffer: ?*c_void,
     dataSize: u32,
-    resultDataSize: *u32,
+    resultDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqCreateSession(
     accessLevel: DdqAccessLevel,
-    hSession: *HDIAGNOSTIC_DATA_QUERY_SESSION,
+    hSession: ?*HDIAGNOSTIC_DATA_QUERY_SESSION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6439,35 +6439,35 @@ pub extern "DiagnosticDataQuery" fn DdqCloseSession(
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetSessionAccessLevel(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    accessLevel: *DdqAccessLevel,
+    accessLevel: ?*DdqAccessLevel,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticDataAccessLevelAllowed(
-    accessLevel: *DdqAccessLevel,
+    accessLevel: ?*DdqAccessLevel,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordStats(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    searchCriteria: *const DIAGNOSTIC_DATA_SEARCH_CRITERIA,
-    recordCount: *u32,
-    minRowId: *i64,
-    maxRowId: *i64,
+    searchCriteria: ?*const DIAGNOSTIC_DATA_SEARCH_CRITERIA,
+    recordCount: ?*u32,
+    minRowId: ?*i64,
+    maxRowId: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordPayload(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     rowId: i64,
-    payload: *PWSTR,
+    payload: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordLocaleTags(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    locale: [*:0]const u16,
-    hTagDescription: *HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
+    locale: ?[*:0]const u16,
+    hTagDescription: ?*HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6479,19 +6479,19 @@ pub extern "DiagnosticDataQuery" fn DdqFreeDiagnosticRecordLocaleTags(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordLocaleTagAtIndex(
     hTagDescription: HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
     index: u32,
-    tagDescription: *DIAGNOSTIC_DATA_EVENT_TAG_DESCRIPTION,
+    tagDescription: ?*DIAGNOSTIC_DATA_EVENT_TAG_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordLocaleTagCount(
     hTagDescription: HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
-    tagDescriptionCount: *u32,
+    tagDescriptionCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordProducers(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    hProducerDescription: *HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
+    hProducerDescription: ?*HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6503,20 +6503,20 @@ pub extern "DiagnosticDataQuery" fn DdqFreeDiagnosticRecordProducers(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordProducerAtIndex(
     hProducerDescription: HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
     index: u32,
-    producerDescription: *DIAGNOSTIC_DATA_EVENT_PRODUCER_DESCRIPTION,
+    producerDescription: ?*DIAGNOSTIC_DATA_EVENT_PRODUCER_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordProducerCount(
     hProducerDescription: HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
-    producerDescriptionCount: *u32,
+    producerDescriptionCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordProducerCategories(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerName: [*:0]const u16,
-    hCategoryDescription: *HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
+    producerName: ?[*:0]const u16,
+    hCategoryDescription: ?*HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6528,36 +6528,36 @@ pub extern "DiagnosticDataQuery" fn DdqFreeDiagnosticRecordProducerCategories(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordCategoryAtIndex(
     hCategoryDescription: HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
     index: u32,
-    categoryDescription: *DIAGNOSTIC_DATA_EVENT_CATEGORY_DESCRIPTION,
+    categoryDescription: ?*DIAGNOSTIC_DATA_EVENT_CATEGORY_DESCRIPTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordCategoryCount(
     hCategoryDescription: HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
-    categoryDescriptionCount: *u32,
+    categoryDescriptionCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqIsDiagnosticRecordSampledIn(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    providerGroup: *const Guid,
+    providerGroup: ?*const Guid,
     providerId: ?*const Guid,
-    providerName: [*:0]const u16,
+    providerName: ?[*:0]const u16,
     eventId: ?*const u32,
-    eventName: [*:0]const u16,
+    eventName: ?[*:0]const u16,
     eventVersion: ?*const u32,
     eventKeywords: ?*const u64,
-    isSampledIn: *BOOL,
+    isSampledIn: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordPage(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    searchCriteria: *DIAGNOSTIC_DATA_SEARCH_CRITERIA,
+    searchCriteria: ?*DIAGNOSTIC_DATA_SEARCH_CRITERIA,
     offset: u32,
     pageRecordCount: u32,
     baseRowId: i64,
-    hRecord: *HDIAGNOSTIC_RECORD,
+    hRecord: ?*HDIAGNOSTIC_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6569,20 +6569,20 @@ pub extern "DiagnosticDataQuery" fn DdqFreeDiagnosticRecordPage(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordAtIndex(
     hRecord: HDIAGNOSTIC_RECORD,
     index: u32,
-    record: *DIAGNOSTIC_DATA_RECORD,
+    record: ?*DIAGNOSTIC_DATA_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordCount(
     hRecord: HDIAGNOSTIC_RECORD,
-    recordCount: *u32,
+    recordCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticReportStoreReportCount(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     reportStoreType: u32,
-    reportCount: *u32,
+    reportCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6594,7 +6594,7 @@ pub extern "DiagnosticDataQuery" fn DdqCancelDiagnosticRecordOperation(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticReport(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     reportStoreType: u32,
-    hReport: *HDIAGNOSTIC_REPORT,
+    hReport: ?*HDIAGNOSTIC_REPORT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -6606,60 +6606,60 @@ pub extern "DiagnosticDataQuery" fn DdqFreeDiagnosticReport(
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticReportAtIndex(
     hReport: HDIAGNOSTIC_REPORT,
     index: u32,
-    report: *DIAGNOSTIC_REPORT_DATA,
+    report: ?*DIAGNOSTIC_REPORT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticReportCount(
     hReport: HDIAGNOSTIC_REPORT,
-    reportCount: *u32,
+    reportCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqExtractDiagnosticReport(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     reportStoreType: u32,
-    reportKey: [*:0]const u16,
-    destinationPath: [*:0]const u16,
+    reportKey: ?[*:0]const u16,
+    destinationPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordTagDistribution(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerNames: [*]PWSTR,
+    producerNames: [*]?PWSTR,
     producerNameCount: u32,
-    tagStats: [*]*DIAGNOSTIC_DATA_EVENT_TAG_STATS,
-    statCount: *u32,
+    tagStats: [*]?*DIAGNOSTIC_DATA_EVENT_TAG_STATS,
+    statCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordBinaryDistribution(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerNames: [*]PWSTR,
+    producerNames: [*]?PWSTR,
     producerNameCount: u32,
     topNBinaries: u32,
-    binaryStats: [*]*DIAGNOSTIC_DATA_EVENT_BINARY_STATS,
-    statCount: *u32,
+    binaryStats: [*]?*DIAGNOSTIC_DATA_EVENT_BINARY_STATS,
+    statCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetDiagnosticRecordSummary(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerNames: [*]const [*:0]const u16,
+    producerNames: [*]const ?[*:0]const u16,
     producerNameCount: u32,
-    generalStats: *DIAGNOSTIC_DATA_GENERAL_STATS,
+    generalStats: ?*DIAGNOSTIC_DATA_GENERAL_STATS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqSetTranscriptConfiguration(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    desiredConfig: *const DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
+    desiredConfig: ?*const DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    currentConfig: *DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
+    currentConfig: ?*DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -109,34 +109,34 @@ pub const EVT_VARIANT = extern struct {
         SingleVal: f32,
         DoubleVal: f64,
         FileTimeVal: u64,
-        SysTimeVal: *SYSTEMTIME,
-        GuidVal: *Guid,
-        StringVal: [*:0]const u16,
-        AnsiStringVal: [*:0]const u8,
-        BinaryVal: *u8,
-        SidVal: PSID,
+        SysTimeVal: ?*SYSTEMTIME,
+        GuidVal: ?*Guid,
+        StringVal: ?[*:0]const u16,
+        AnsiStringVal: ?[*:0]const u8,
+        BinaryVal: ?*u8,
+        SidVal: ?PSID,
         SizeTVal: usize,
-        BooleanArr: *BOOL,
-        SByteArr: *i8,
-        Int16Arr: *i16,
-        Int32Arr: *i32,
-        Int64Arr: *i64,
-        ByteArr: *u8,
-        UInt16Arr: *u16,
-        UInt32Arr: *u32,
-        UInt64Arr: *u64,
-        SingleArr: *f32,
-        DoubleArr: *f64,
-        FileTimeArr: *FILETIME,
-        SysTimeArr: *SYSTEMTIME,
-        GuidArr: *Guid,
-        StringArr: *PWSTR,
-        AnsiStringArr: *PSTR,
-        SidArr: *PSID,
-        SizeTArr: *usize,
+        BooleanArr: ?*BOOL,
+        SByteArr: ?*i8,
+        Int16Arr: ?*i16,
+        Int32Arr: ?*i32,
+        Int64Arr: ?*i64,
+        ByteArr: ?*u8,
+        UInt16Arr: ?*u16,
+        UInt32Arr: ?*u32,
+        UInt64Arr: ?*u64,
+        SingleArr: ?*f32,
+        DoubleArr: ?*f64,
+        FileTimeArr: ?*FILETIME,
+        SysTimeArr: ?*SYSTEMTIME,
+        GuidArr: ?*Guid,
+        StringArr: ?*?PWSTR,
+        AnsiStringArr: ?*?PSTR,
+        SidArr: ?*?PSID,
+        SizeTArr: ?*usize,
         EvtHandleVal: isize,
-        XmlVal: [*:0]const u16,
-        XmlValArr: *PWSTR,
+        XmlVal: ?[*:0]const u16,
+        XmlValArr: ?*?PWSTR,
     },
     Count: u32,
     Type: u32,
@@ -159,10 +159,10 @@ pub const EvtRpcLoginAuthKerberos = EVT_RPC_LOGIN_FLAGS.Kerberos;
 pub const EvtRpcLoginAuthNTLM = EVT_RPC_LOGIN_FLAGS.NTLM;
 
 pub const EVT_RPC_LOGIN = extern struct {
-    Server: PWSTR,
-    User: PWSTR,
-    Domain: PWSTR,
-    Password: PWSTR,
+    Server: ?PWSTR,
+    User: ?PWSTR,
+    Domain: ?PWSTR,
+    Password: ?PWSTR,
     Flags: u32,
 };
 
@@ -535,26 +535,26 @@ pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ClearEventLogA(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ClearEventLogW(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn BackupEventLogA(
-    hEventLog: HANDLE,
-    lpBackupFileName: [*:0]const u8,
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn BackupEventLogW(
-    hEventLog: HANDLE,
-    lpBackupFileName: [*:0]const u16,
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -569,124 +569,124 @@ pub extern "ADVAPI32" fn DeregisterEventSource(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn NotifyChangeEventLog(
-    hEventLog: HANDLE,
-    hEvent: HANDLE,
+    hEventLog: ?HANDLE,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetNumberOfEventLogRecords(
-    hEventLog: HANDLE,
-    NumberOfRecords: *u32,
+    hEventLog: ?HANDLE,
+    NumberOfRecords: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetOldestEventLogRecord(
-    hEventLog: HANDLE,
-    OldestRecord: *u32,
+    hEventLog: ?HANDLE,
+    OldestRecord: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenEventLogA(
     lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: [*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenEventLogW(
     lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: [*:0]const u16,
+    lpSourceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegisterEventSourceA(
     lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: [*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) EventSourceHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegisterEventSourceW(
     lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpSourceName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenBackupEventLogA(
     lpUNCServerName: ?[*:0]const u8,
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn OpenBackupEventLogW(
     lpUNCServerName: ?[*:0]const u16,
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ReadEventLogA(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
-    pnBytesRead: *u32,
-    pnMinNumberOfBytesNeeded: *u32,
+    pnBytesRead: ?*u32,
+    pnMinNumberOfBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ReadEventLogW(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
-    pnBytesRead: *u32,
-    pnMinNumberOfBytesNeeded: *u32,
+    pnBytesRead: ?*u32,
+    pnMinNumberOfBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ReportEventA(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
     lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]PSTR,
+    lpStrings: ?[*]?PSTR,
     // TODO: what to do with BytesParamIndex 6?
     lpRawData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn ReportEventW(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
     lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]PWSTR,
+    lpStrings: ?[*]?PWSTR,
     // TODO: what to do with BytesParamIndex 6?
     lpRawData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetEventLogInformation(
-    hEventLog: HANDLE,
+    hEventLog: ?HANDLE,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     cbBufSize: u32,
-    pcbBytesNeeded: *u32,
+    pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenSession(
     LoginClass: EVT_LOGIN_CLASS,
-    Login: *c_void,
+    Login: ?*c_void,
     Timeout: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -705,7 +705,7 @@ pub extern "wevtapi" fn EvtCancel(
 pub extern "wevtapi" fn EvtGetExtendedStatus(
     BufferSize: u32,
     Buffer: ?[*:0]u16,
-    BufferUsed: *u32,
+    BufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -723,7 +723,7 @@ pub extern "wevtapi" fn EvtNext(
     Events: [*]isize,
     Timeout: u32,
     Flags: u32,
-    Returned: *u32,
+    Returned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -750,7 +750,7 @@ pub extern "wevtapi" fn EvtSubscribe(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateRenderContext(
     ValuePathsCount: u32,
-    ValuePaths: ?[*]PWSTR,
+    ValuePaths: ?[*]?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -762,8 +762,8 @@ pub extern "wevtapi" fn EvtRender(
     BufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*c_void,
-    BufferUsed: *u32,
-    PropertyCount: *u32,
+    BufferUsed: ?*u32,
+    PropertyCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -776,13 +776,13 @@ pub extern "wevtapi" fn EvtFormatMessage(
     Flags: u32,
     BufferSize: u32,
     Buffer: ?[*:0]u16,
-    BufferUsed: *u32,
+    BufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenLog(
     Session: isize,
-    Path: [*:0]const u16,
+    Path: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -793,13 +793,13 @@ pub extern "wevtapi" fn EvtGetLogInfo(
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
     PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtClearLog(
     Session: isize,
-    ChannelPath: [*:0]const u16,
+    ChannelPath: ?[*:0]const u16,
     TargetFilePath: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -809,14 +809,14 @@ pub extern "wevtapi" fn EvtExportLog(
     Session: isize,
     Path: ?[*:0]const u16,
     Query: ?[*:0]const u16,
-    TargetFilePath: [*:0]const u16,
+    TargetFilePath: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtArchiveExportedLog(
     Session: isize,
-    LogFilePath: [*:0]const u16,
+    LogFilePath: ?[*:0]const u16,
     Locale: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -832,13 +832,13 @@ pub extern "wevtapi" fn EvtNextChannelPath(
     ChannelEnum: isize,
     ChannelPathBufferSize: u32,
     ChannelPathBuffer: ?[*:0]u16,
-    ChannelPathBufferUsed: *u32,
+    ChannelPathBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenChannelConfig(
     Session: isize,
-    ChannelPath: [*:0]const u16,
+    ChannelPath: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -853,7 +853,7 @@ pub extern "wevtapi" fn EvtSetChannelConfigProperty(
     ChannelConfig: isize,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
-    PropertyValue: *EVT_VARIANT,
+    PropertyValue: ?*EVT_VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -864,7 +864,7 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -878,13 +878,13 @@ pub extern "wevtapi" fn EvtNextPublisherId(
     PublisherEnum: isize,
     PublisherIdBufferSize: u32,
     PublisherIdBuffer: ?[*:0]u16,
-    PublisherIdBufferUsed: *u32,
+    PublisherIdBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenPublisherMetadata(
     Session: isize,
-    PublisherId: [*:0]const u16,
+    PublisherId: ?[*:0]const u16,
     LogFilePath: ?[*:0]const u16,
     Locale: u32,
     Flags: u32,
@@ -898,7 +898,7 @@ pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
     PublisherMetadataPropertyBufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     PublisherMetadataPropertyBuffer: ?*EVT_VARIANT,
-    PublisherMetadataPropertyBufferUsed: *u32,
+    PublisherMetadataPropertyBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -921,13 +921,13 @@ pub extern "wevtapi" fn EvtGetEventMetadataProperty(
     EventMetadataPropertyBufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     EventMetadataPropertyBuffer: ?*EVT_VARIANT,
-    EventMetadataPropertyBufferUsed: *u32,
+    EventMetadataPropertyBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetObjectArraySize(
     ObjectArray: isize,
-    ObjectArraySize: *u32,
+    ObjectArraySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -939,7 +939,7 @@ pub extern "wevtapi" fn EvtGetObjectArrayProperty(
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 4?
     PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -949,7 +949,7 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
     PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -970,7 +970,7 @@ pub extern "wevtapi" fn EvtGetEventInfo(
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
     PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

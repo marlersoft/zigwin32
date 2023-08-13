@@ -114,7 +114,7 @@ pub const JsBackgroundWorkItemCallback = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const JsThreadServiceCallback = fn(
-    callback: JsBackgroundWorkItemCallback,
+    callback: ?JsBackgroundWorkItemCallback,
     callbackState: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) bool;
 
@@ -144,12 +144,12 @@ pub const JsFinalizeCallback = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const JsNativeFunction = fn(
-    callee: *c_void,
+    callee: ?*c_void,
     isConstructCall: bool,
-    arguments: **c_void,
+    arguments: ?*?*c_void,
     argumentCount: u16,
     callbackState: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 
 //--------------------------------------------------------------------------------
@@ -159,9 +159,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "chakra" fn JsCreateContext(
-    runtime: *c_void,
-    debugApplication: *IDebugApplication32,
-    newContext: **c_void,
+    runtime: ?*c_void,
+    debugApplication: ?*IDebugApplication32,
+    newContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 }, else => struct { } };
@@ -170,7 +170,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "chakra" fn JsStartDebugging(
-    debugApplication: *IDebugApplication32,
+    debugApplication: ?*IDebugApplication32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 }, else => struct { } };
@@ -179,51 +179,51 @@ pub extern "chakra" fn JsCreateRuntime(
     attributes: JsRuntimeAttributes,
     runtimeVersion: JsRuntimeVersion,
     threadService: ?JsThreadServiceCallback,
-    runtime: **c_void,
+    runtime: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCollectGarbage(
-    runtime: *c_void,
+    runtime: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDisposeRuntime(
-    runtime: *c_void,
+    runtime: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetRuntimeMemoryUsage(
-    runtime: *c_void,
-    memoryUsage: *usize,
+    runtime: ?*c_void,
+    memoryUsage: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetRuntimeMemoryLimit(
-    runtime: *c_void,
-    memoryLimit: *usize,
+    runtime: ?*c_void,
+    memoryLimit: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetRuntimeMemoryLimit(
-    runtime: *c_void,
+    runtime: ?*c_void,
     memoryLimit: usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetRuntimeMemoryAllocationCallback(
-    runtime: *c_void,
+    runtime: ?*c_void,
     callbackState: ?*c_void,
-    allocationCallback: JsMemoryAllocationCallback,
+    allocationCallback: ?JsMemoryAllocationCallback,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetRuntimeBeforeCollectCallback(
-    runtime: *c_void,
+    runtime: ?*c_void,
     callbackState: ?*c_void,
-    beforeCollectCallback: JsBeforeCollectCallback,
+    beforeCollectCallback: ?JsBeforeCollectCallback,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsAddRef(
-    ref: *c_void,
+    ref: ?*c_void,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsRelease(
-    ref: *c_void,
+    ref: ?*c_void,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
@@ -231,31 +231,31 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "chakra" fn JsCreateContext(
-    runtime: *c_void,
-    debugApplication: *IDebugApplication64,
-    newContext: **c_void,
+    runtime: ?*c_void,
+    debugApplication: ?*IDebugApplication64,
+    newContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 }, else => struct { } };
 
 pub extern "chakra" fn JsGetCurrentContext(
-    currentContext: **c_void,
+    currentContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetCurrentContext(
-    context: *c_void,
+    context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetRuntime(
-    context: *c_void,
-    runtime: **c_void,
+    context: ?*c_void,
+    runtime: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "chakra" fn JsStartDebugging(
-    debugApplication: *IDebugApplication64,
+    debugApplication: ?*IDebugApplication64,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 }, else => struct { } };
@@ -265,353 +265,353 @@ pub extern "chakra" fn JsIdle(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsParseScript(
-    script: [*:0]const u16,
+    script: ?[*:0]const u16,
     sourceContext: usize,
-    sourceUrl: [*:0]const u16,
-    result: **c_void,
+    sourceUrl: ?[*:0]const u16,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsRunScript(
-    script: [*:0]const u16,
+    script: ?[*:0]const u16,
     sourceContext: usize,
-    sourceUrl: [*:0]const u16,
-    result: **c_void,
+    sourceUrl: ?[*:0]const u16,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSerializeScript(
-    script: [*:0]const u16,
+    script: ?[*:0]const u16,
     buffer: ?[*:0]u8,
-    bufferSize: *u32,
+    bufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsParseSerializedScript(
-    script: [*:0]const u16,
-    buffer: *u8,
+    script: ?[*:0]const u16,
+    buffer: ?*u8,
     sourceContext: usize,
-    sourceUrl: [*:0]const u16,
-    result: **c_void,
+    sourceUrl: ?[*:0]const u16,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsRunSerializedScript(
-    script: [*:0]const u16,
-    buffer: *u8,
+    script: ?[*:0]const u16,
+    buffer: ?*u8,
     sourceContext: usize,
-    sourceUrl: [*:0]const u16,
-    result: **c_void,
+    sourceUrl: ?[*:0]const u16,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetPropertyIdFromName(
-    name: [*:0]const u16,
-    propertyId: **c_void,
+    name: ?[*:0]const u16,
+    propertyId: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetPropertyNameFromId(
-    propertyId: *c_void,
-    name: *const *u16,
+    propertyId: ?*c_void,
+    name: ?*const ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetUndefinedValue(
-    undefinedValue: **c_void,
+    undefinedValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetNullValue(
-    nullValue: **c_void,
+    nullValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetTrueValue(
-    trueValue: **c_void,
+    trueValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetFalseValue(
-    falseValue: **c_void,
+    falseValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsBoolToBoolean(
     value: u8,
-    booleanValue: **c_void,
+    booleanValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsBooleanToBool(
-    value: *c_void,
-    boolValue: *bool,
+    value: ?*c_void,
+    boolValue: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConvertValueToBoolean(
-    value: *c_void,
-    booleanValue: **c_void,
+    value: ?*c_void,
+    booleanValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetValueType(
-    value: *c_void,
-    type: *JsValueType,
+    value: ?*c_void,
+    type: ?*JsValueType,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDoubleToNumber(
     doubleValue: f64,
-    value: **c_void,
+    value: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsIntToNumber(
     intValue: i32,
-    value: **c_void,
+    value: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsNumberToDouble(
-    value: *c_void,
-    doubleValue: *f64,
+    value: ?*c_void,
+    doubleValue: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConvertValueToNumber(
-    value: *c_void,
-    numberValue: **c_void,
+    value: ?*c_void,
+    numberValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetStringLength(
-    stringValue: *c_void,
-    length: *i32,
+    stringValue: ?*c_void,
+    length: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsPointerToString(
     stringValue: [*:0]const u16,
     stringLength: usize,
-    value: **c_void,
+    value: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsStringToPointer(
-    value: *c_void,
-    stringValue: *const *u16,
-    stringLength: *usize,
+    value: ?*c_void,
+    stringValue: ?*const ?*u16,
+    stringLength: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConvertValueToString(
-    value: *c_void,
-    stringValue: **c_void,
+    value: ?*c_void,
+    stringValue: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsVariantToValue(
-    variant: *VARIANT,
-    value: **c_void,
+    variant: ?*VARIANT,
+    value: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsValueToVariant(
-    object: *c_void,
-    variant: *VARIANT,
+    object: ?*c_void,
+    variant: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetGlobalObject(
-    globalObject: **c_void,
+    globalObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateObject(
-    object: **c_void,
+    object: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateExternalObject(
     data: ?*c_void,
     finalizeCallback: ?JsFinalizeCallback,
-    object: **c_void,
+    object: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConvertValueToObject(
-    value: *c_void,
-    object: **c_void,
+    value: ?*c_void,
+    object: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetPrototype(
-    object: *c_void,
-    prototypeObject: **c_void,
+    object: ?*c_void,
+    prototypeObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetPrototype(
-    object: *c_void,
-    prototypeObject: *c_void,
+    object: ?*c_void,
+    prototypeObject: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetExtensionAllowed(
-    object: *c_void,
-    value: *bool,
+    object: ?*c_void,
+    value: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsPreventExtension(
-    object: *c_void,
+    object: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetProperty(
-    object: *c_void,
-    propertyId: *c_void,
-    value: **c_void,
+    object: ?*c_void,
+    propertyId: ?*c_void,
+    value: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetOwnPropertyDescriptor(
-    object: *c_void,
-    propertyId: *c_void,
-    propertyDescriptor: **c_void,
+    object: ?*c_void,
+    propertyId: ?*c_void,
+    propertyDescriptor: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetOwnPropertyNames(
-    object: *c_void,
-    propertyNames: **c_void,
+    object: ?*c_void,
+    propertyNames: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetProperty(
-    object: *c_void,
-    propertyId: *c_void,
-    value: *c_void,
+    object: ?*c_void,
+    propertyId: ?*c_void,
+    value: ?*c_void,
     useStrictRules: u8,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsHasProperty(
-    object: *c_void,
-    propertyId: *c_void,
-    hasProperty: *bool,
+    object: ?*c_void,
+    propertyId: ?*c_void,
+    hasProperty: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDeleteProperty(
-    object: *c_void,
-    propertyId: *c_void,
+    object: ?*c_void,
+    propertyId: ?*c_void,
     useStrictRules: u8,
-    result: **c_void,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDefineProperty(
-    object: *c_void,
-    propertyId: *c_void,
-    propertyDescriptor: *c_void,
-    result: *bool,
+    object: ?*c_void,
+    propertyId: ?*c_void,
+    propertyDescriptor: ?*c_void,
+    result: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsHasIndexedProperty(
-    object: *c_void,
-    index: *c_void,
-    result: *bool,
+    object: ?*c_void,
+    index: ?*c_void,
+    result: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetIndexedProperty(
-    object: *c_void,
-    index: *c_void,
-    result: **c_void,
+    object: ?*c_void,
+    index: ?*c_void,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetIndexedProperty(
-    object: *c_void,
-    index: *c_void,
-    value: *c_void,
+    object: ?*c_void,
+    index: ?*c_void,
+    value: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDeleteIndexedProperty(
-    object: *c_void,
-    index: *c_void,
+    object: ?*c_void,
+    index: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsEquals(
-    object1: *c_void,
-    object2: *c_void,
-    result: *bool,
+    object1: ?*c_void,
+    object2: ?*c_void,
+    result: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsStrictEquals(
-    object1: *c_void,
-    object2: *c_void,
-    result: *bool,
+    object1: ?*c_void,
+    object2: ?*c_void,
+    result: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsHasExternalData(
-    object: *c_void,
-    value: *bool,
+    object: ?*c_void,
+    value: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetExternalData(
-    object: *c_void,
-    externalData: **c_void,
+    object: ?*c_void,
+    externalData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetExternalData(
-    object: *c_void,
+    object: ?*c_void,
     externalData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateArray(
     length: u32,
-    result: **c_void,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCallFunction(
-    function: *c_void,
-    arguments: [*]*c_void,
+    function: ?*c_void,
+    arguments: [*]?*c_void,
     argumentCount: u16,
-    result: ?**c_void,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConstructObject(
-    function: *c_void,
-    arguments: [*]*c_void,
+    function: ?*c_void,
+    arguments: [*]?*c_void,
     argumentCount: u16,
-    result: **c_void,
+    result: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateFunction(
-    nativeFunction: JsNativeFunction,
+    nativeFunction: ?JsNativeFunction,
     callbackState: ?*c_void,
-    function: **c_void,
+    function: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateRangeError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateReferenceError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateSyntaxError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateTypeError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsCreateURIError(
-    message: *c_void,
-    @"error": **c_void,
+    message: ?*c_void,
+    @"error": ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsHasException(
-    hasException: *bool,
+    hasException: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetAndClearException(
-    exception: **c_void,
+    exception: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetException(
-    exception: *c_void,
+    exception: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsDisableRuntimeExecution(
-    runtime: *c_void,
+    runtime: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsEnableRuntimeExecution(
-    runtime: *c_void,
+    runtime: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsIsRuntimeExecutionDisabled(
-    runtime: *c_void,
-    isDisabled: *bool,
+    runtime: ?*c_void,
+    isDisabled: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsStartProfiling(
-    callback: *IActiveScriptProfilerCallback,
+    callback: ?*IActiveScriptProfilerCallback,
     eventMask: PROFILER_EVENT_MASK,
     context: u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -621,11 +621,11 @@ pub extern "chakra" fn JsStopProfiling(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsEnumerateHeap(
-    enumerator: **IActiveScriptProfilerHeapEnum,
+    enumerator: ?*?*IActiveScriptProfilerHeapEnum,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsIsEnumeratingHeap(
-    isEnumeratingHeap: *bool,
+    isEnumeratingHeap: ?*bool,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 

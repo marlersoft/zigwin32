@@ -215,22 +215,22 @@ pub const MBN_INTERFACE_CAPS = extern struct {
     cellularClass: MBN_CELLULAR_CLASS,
     voiceClass: MBN_VOICE_CLASS,
     dataClass: u32,
-    customDataClass: BSTR,
+    customDataClass: ?BSTR,
     gsmBandClass: u32,
     cdmaBandClass: u32,
-    customBandClass: BSTR,
+    customBandClass: ?BSTR,
     smsCaps: u32,
     controlCaps: u32,
-    deviceID: BSTR,
-    manufacturer: BSTR,
-    model: BSTR,
-    firmwareInfo: BSTR,
+    deviceID: ?BSTR,
+    manufacturer: ?BSTR,
+    model: ?BSTR,
+    firmwareInfo: ?BSTR,
 };
 
 pub const MBN_PROVIDER = extern struct {
-    providerID: BSTR,
+    providerID: ?BSTR,
     providerState: u32,
-    providerName: BSTR,
+    providerName: ?BSTR,
     dataClass: u32,
 };
 
@@ -436,9 +436,9 @@ pub const MBN_CONTEXT_TYPE_PURCHASE = MBN_CONTEXT_TYPE.PURCHASE;
 pub const MBN_CONTEXT = extern struct {
     contextID: u32,
     contextType: MBN_CONTEXT_TYPE,
-    accessString: BSTR,
-    userName: BSTR,
-    password: BSTR,
+    accessString: ?BSTR,
+    userName: ?BSTR,
+    password: ?BSTR,
     compression: MBN_COMPRESSION,
     authType: MBN_AUTH_PROTOCOL,
 };
@@ -561,7 +561,7 @@ pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = enum(i32) {
 pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.D;
 
 pub const MBN_DEVICE_SERVICE = extern struct {
-    deviceServiceID: BSTR,
+    deviceServiceID: ?BSTR,
     dataWriteSupported: i16,
     dataReadSupported: i16,
 };
@@ -582,66 +582,66 @@ pub const IMbnConnection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionID: fn(
             self: *const IMbnConnection,
-            ConnectionID: ?*BSTR,
+            ConnectionID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: fn(
             self: *const IMbnConnection,
-            InterfaceID: ?*BSTR,
+            InterfaceID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const IMbnConnection,
             connectionMode: MBN_CONNECTION_MODE,
-            strProfile: [*:0]const u16,
-            requestID: *u32,
+            strProfile: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
             self: *const IMbnConnection,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionState: fn(
             self: *const IMbnConnection,
-            ConnectionState: *MBN_ACTIVATION_STATE,
-            ProfileName: ?*BSTR,
+            ConnectionState: ?*MBN_ACTIVATION_STATE,
+            ProfileName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVoiceCallState: fn(
             self: *const IMbnConnection,
-            voiceCallState: *MBN_VOICE_CALL_STATE,
+            voiceCallState: ?*MBN_VOICE_CALL_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActivationNetworkError: fn(
             self: *const IMbnConnection,
-            networkError: *u32,
+            networkError: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_ConnectionID(self: *const T, ConnectionID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_get_ConnectionID(self: *const T, ConnectionID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).get_ConnectionID(@ptrCast(*const IMbnConnection, self), ConnectionID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnConnection, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_Connect(self: *const T, connectionMode: MBN_CONNECTION_MODE, strProfile: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_Connect(self: *const T, connectionMode: MBN_CONNECTION_MODE, strProfile: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).Connect(@ptrCast(*const IMbnConnection, self), connectionMode, strProfile, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_Disconnect(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_Disconnect(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).Disconnect(@ptrCast(*const IMbnConnection, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetConnectionState(self: *const T, ConnectionState: *MBN_ACTIVATION_STATE, ProfileName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_GetConnectionState(self: *const T, ConnectionState: ?*MBN_ACTIVATION_STATE, ProfileName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).GetConnectionState(@ptrCast(*const IMbnConnection, self), ConnectionState, ProfileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetVoiceCallState(self: *const T, voiceCallState: *MBN_VOICE_CALL_STATE) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_GetVoiceCallState(self: *const T, voiceCallState: ?*MBN_VOICE_CALL_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).GetVoiceCallState(@ptrCast(*const IMbnConnection, self), voiceCallState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetActivationNetworkError(self: *const T, networkError: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_GetActivationNetworkError(self: *const T, networkError: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).GetActivationNetworkError(@ptrCast(*const IMbnConnection, self), networkError);
         }
     };}
@@ -656,42 +656,42 @@ pub const IMbnConnectionEvents = extern struct {
         base: IUnknown.VTable,
         OnConnectComplete: fn(
             self: *const IMbnConnectionEvents,
-            newConnection: *IMbnConnection,
+            newConnection: ?*IMbnConnection,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDisconnectComplete: fn(
             self: *const IMbnConnectionEvents,
-            newConnection: *IMbnConnection,
+            newConnection: ?*IMbnConnection,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnConnectStateChange: fn(
             self: *const IMbnConnectionEvents,
-            newConnection: *IMbnConnection,
+            newConnection: ?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnVoiceCallStateChange: fn(
             self: *const IMbnConnectionEvents,
-            newConnection: *IMbnConnection,
+            newConnection: ?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnConnectComplete(self: *const T, newConnection: *IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionEvents_OnConnectComplete(self: *const T, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionEvents.VTable, self.vtable).OnConnectComplete(@ptrCast(*const IMbnConnectionEvents, self), newConnection, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnDisconnectComplete(self: *const T, newConnection: *IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionEvents_OnDisconnectComplete(self: *const T, newConnection: ?*IMbnConnection, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionEvents.VTable, self.vtable).OnDisconnectComplete(@ptrCast(*const IMbnConnectionEvents, self), newConnection, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnConnectStateChange(self: *const T, newConnection: *IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionEvents_OnConnectStateChange(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionEvents.VTable, self.vtable).OnConnectStateChange(@ptrCast(*const IMbnConnectionEvents, self), newConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionEvents_OnVoiceCallStateChange(self: *const T, newConnection: *IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionEvents_OnVoiceCallStateChange(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionEvents.VTable, self.vtable).OnVoiceCallStateChange(@ptrCast(*const IMbnConnectionEvents, self), newConnection);
         }
     };}
@@ -707,96 +707,96 @@ pub const IMbnInterface = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: fn(
             self: *const IMbnInterface,
-            InterfaceID: ?*BSTR,
+            InterfaceID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterfaceCapability: fn(
             self: *const IMbnInterface,
-            interfaceCaps: *MBN_INTERFACE_CAPS,
+            interfaceCaps: ?*MBN_INTERFACE_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubscriberInformation: fn(
             self: *const IMbnInterface,
-            subscriberInformation: **IMbnSubscriberInformation,
+            subscriberInformation: ?*?*IMbnSubscriberInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReadyState: fn(
             self: *const IMbnInterface,
-            readyState: *MBN_READY_STATE,
+            readyState: ?*MBN_READY_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InEmergencyMode: fn(
             self: *const IMbnInterface,
-            emergencyMode: *i16,
+            emergencyMode: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHomeProvider: fn(
             self: *const IMbnInterface,
-            homeProvider: *MBN_PROVIDER,
+            homeProvider: ?*MBN_PROVIDER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredProviders: fn(
             self: *const IMbnInterface,
-            preferredProviders: ?**SAFEARRAY,
+            preferredProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPreferredProviders: fn(
             self: *const IMbnInterface,
-            preferredProviders: *SAFEARRAY,
-            requestID: *u32,
+            preferredProviders: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleProviders: fn(
             self: *const IMbnInterface,
-            age: *u32,
-            visibleProviders: **SAFEARRAY,
+            age: ?*u32,
+            visibleProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ScanNetwork: fn(
             self: *const IMbnInterface,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnection: fn(
             self: *const IMbnInterface,
-            mbnConnection: **IMbnConnection,
+            mbnConnection: ?*?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnInterface, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetInterfaceCapability(self: *const T, interfaceCaps: *MBN_INTERFACE_CAPS) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetInterfaceCapability(self: *const T, interfaceCaps: ?*MBN_INTERFACE_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetInterfaceCapability(@ptrCast(*const IMbnInterface, self), interfaceCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetSubscriberInformation(self: *const T, subscriberInformation: **IMbnSubscriberInformation) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetSubscriberInformation(self: *const T, subscriberInformation: ?*?*IMbnSubscriberInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetSubscriberInformation(@ptrCast(*const IMbnInterface, self), subscriberInformation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetReadyState(self: *const T, readyState: *MBN_READY_STATE) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetReadyState(self: *const T, readyState: ?*MBN_READY_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetReadyState(@ptrCast(*const IMbnInterface, self), readyState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_InEmergencyMode(self: *const T, emergencyMode: *i16) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_InEmergencyMode(self: *const T, emergencyMode: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).InEmergencyMode(@ptrCast(*const IMbnInterface, self), emergencyMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetHomeProvider(self: *const T, homeProvider: *MBN_PROVIDER) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetHomeProvider(self: *const T, homeProvider: ?*MBN_PROVIDER) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetHomeProvider(@ptrCast(*const IMbnInterface, self), homeProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetPreferredProviders(self: *const T, preferredProviders: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetPreferredProviders(self: *const T, preferredProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetPreferredProviders(@ptrCast(*const IMbnInterface, self), preferredProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_SetPreferredProviders(self: *const T, preferredProviders: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_SetPreferredProviders(self: *const T, preferredProviders: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).SetPreferredProviders(@ptrCast(*const IMbnInterface, self), preferredProviders, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetVisibleProviders(self: *const T, age: *u32, visibleProviders: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetVisibleProviders(self: *const T, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetVisibleProviders(@ptrCast(*const IMbnInterface, self), age, visibleProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_ScanNetwork(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_ScanNetwork(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).ScanNetwork(@ptrCast(*const IMbnInterface, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetConnection(self: *const T, mbnConnection: **IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetConnection(self: *const T, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetConnection(@ptrCast(*const IMbnInterface, self), mbnConnection);
         }
     };}
@@ -811,37 +811,37 @@ pub const IMbnInterfaceEvents = extern struct {
         base: IUnknown.VTable,
         OnInterfaceCapabilityAvailable: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSubscriberInformationChange: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnReadyStateChange: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEmergencyModeChange: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnHomeProviderAvailable: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPreferredProvidersChange: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetPreferredProvidersComplete: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnScanNetworkComplete: fn(
             self: *const IMbnInterfaceEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -850,35 +850,35 @@ pub const IMbnInterfaceEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnInterfaceCapabilityAvailable(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnInterfaceCapabilityAvailable(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnInterfaceCapabilityAvailable(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnSubscriberInformationChange(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnSubscriberInformationChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnSubscriberInformationChange(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnReadyStateChange(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnReadyStateChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnReadyStateChange(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnEmergencyModeChange(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnEmergencyModeChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnEmergencyModeChange(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnHomeProviderAvailable(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnHomeProviderAvailable(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnHomeProviderAvailable(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnPreferredProvidersChange(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnPreferredProvidersChange(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnPreferredProvidersChange(@ptrCast(*const IMbnInterfaceEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnSetPreferredProvidersComplete(self: *const T, newInterface: *IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnSetPreferredProvidersComplete(self: *const T, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnSetPreferredProvidersComplete(@ptrCast(*const IMbnInterfaceEvents, self), newInterface, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceEvents_OnScanNetworkComplete(self: *const T, newInterface: *IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceEvents_OnScanNetworkComplete(self: *const T, newInterface: ?*IMbnInterface, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceEvents.VTable, self.vtable).OnScanNetworkComplete(@ptrCast(*const IMbnInterfaceEvents, self), newInterface, requestID, status);
         }
     };}
@@ -893,23 +893,23 @@ pub const IMbnInterfaceManager = extern struct {
         base: IUnknown.VTable,
         GetInterface: fn(
             self: *const IMbnInterfaceManager,
-            interfaceID: [*:0]const u16,
-            mbnInterface: ?**IMbnInterface,
+            interfaceID: ?[*:0]const u16,
+            mbnInterface: ?*?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterfaces: fn(
             self: *const IMbnInterfaceManager,
-            mbnInterfaces: ?**SAFEARRAY,
+            mbnInterfaces: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterface(self: *const T, interfaceID: [*:0]const u16, mbnInterface: ?**IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManager_GetInterface(self: *const T, interfaceID: ?[*:0]const u16, mbnInterface: ?*?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManager.VTable, self.vtable).GetInterface(@ptrCast(*const IMbnInterfaceManager, self), interfaceID, mbnInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterfaces(self: *const T, mbnInterfaces: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManager_GetInterfaces(self: *const T, mbnInterfaces: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManager.VTable, self.vtable).GetInterfaces(@ptrCast(*const IMbnInterfaceManager, self), mbnInterfaces);
         }
     };}
@@ -924,22 +924,22 @@ pub const IMbnInterfaceManagerEvents = extern struct {
         base: IUnknown.VTable,
         OnInterfaceArrival: fn(
             self: *const IMbnInterfaceManagerEvents,
-            newInterface: *IMbnInterface,
+            newInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnInterfaceRemoval: fn(
             self: *const IMbnInterfaceManagerEvents,
-            oldInterface: *IMbnInterface,
+            oldInterface: ?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManagerEvents_OnInterfaceArrival(self: *const T, newInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManagerEvents_OnInterfaceArrival(self: *const T, newInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManagerEvents.VTable, self.vtable).OnInterfaceArrival(@ptrCast(*const IMbnInterfaceManagerEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManagerEvents_OnInterfaceRemoval(self: *const T, oldInterface: *IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManagerEvents_OnInterfaceRemoval(self: *const T, oldInterface: ?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManagerEvents.VTable, self.vtable).OnInterfaceRemoval(@ptrCast(*const IMbnInterfaceManagerEvents, self), oldInterface);
         }
     };}
@@ -954,89 +954,89 @@ pub const IMbnRegistration = extern struct {
         base: IUnknown.VTable,
         GetRegisterState: fn(
             self: *const IMbnRegistration,
-            registerState: *MBN_REGISTER_STATE,
+            registerState: ?*MBN_REGISTER_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisterMode: fn(
             self: *const IMbnRegistration,
-            registerMode: *MBN_REGISTER_MODE,
+            registerMode: ?*MBN_REGISTER_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderID: fn(
             self: *const IMbnRegistration,
-            providerID: ?*BSTR,
+            providerID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderName: fn(
             self: *const IMbnRegistration,
-            providerName: ?*BSTR,
+            providerName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRoamingText: fn(
             self: *const IMbnRegistration,
-            roamingText: ?*BSTR,
+            roamingText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAvailableDataClasses: fn(
             self: *const IMbnRegistration,
-            availableDataClasses: *u32,
+            availableDataClasses: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentDataClass: fn(
             self: *const IMbnRegistration,
-            currentDataClass: *u32,
+            currentDataClass: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegistrationNetworkError: fn(
             self: *const IMbnRegistration,
-            registrationNetworkError: *u32,
+            registrationNetworkError: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPacketAttachNetworkError: fn(
             self: *const IMbnRegistration,
-            packetAttachNetworkError: *u32,
+            packetAttachNetworkError: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRegisterMode: fn(
             self: *const IMbnRegistration,
             registerMode: MBN_REGISTER_MODE,
-            providerID: [*:0]const u16,
+            providerID: ?[*:0]const u16,
             dataClass: u32,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegisterState(self: *const T, registerState: *MBN_REGISTER_STATE) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetRegisterState(self: *const T, registerState: ?*MBN_REGISTER_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRegisterState(@ptrCast(*const IMbnRegistration, self), registerState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegisterMode(self: *const T, registerMode: *MBN_REGISTER_MODE) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetRegisterMode(self: *const T, registerMode: ?*MBN_REGISTER_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRegisterMode(@ptrCast(*const IMbnRegistration, self), registerMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderID(self: *const T, providerID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetProviderID(self: *const T, providerID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetProviderID(@ptrCast(*const IMbnRegistration, self), providerID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderName(self: *const T, providerName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetProviderName(self: *const T, providerName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetProviderName(@ptrCast(*const IMbnRegistration, self), providerName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRoamingText(self: *const T, roamingText: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetRoamingText(self: *const T, roamingText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRoamingText(@ptrCast(*const IMbnRegistration, self), roamingText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetAvailableDataClasses(self: *const T, availableDataClasses: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetAvailableDataClasses(self: *const T, availableDataClasses: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetAvailableDataClasses(@ptrCast(*const IMbnRegistration, self), availableDataClasses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetCurrentDataClass(self: *const T, currentDataClass: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetCurrentDataClass(self: *const T, currentDataClass: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetCurrentDataClass(@ptrCast(*const IMbnRegistration, self), currentDataClass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRegistrationNetworkError(self: *const T, registrationNetworkError: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetRegistrationNetworkError(self: *const T, registrationNetworkError: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRegistrationNetworkError(@ptrCast(*const IMbnRegistration, self), registrationNetworkError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetPacketAttachNetworkError(self: *const T, packetAttachNetworkError: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetPacketAttachNetworkError(self: *const T, packetAttachNetworkError: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetPacketAttachNetworkError(@ptrCast(*const IMbnRegistration, self), packetAttachNetworkError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_SetRegisterMode(self: *const T, registerMode: MBN_REGISTER_MODE, providerID: [*:0]const u16, dataClass: u32, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_SetRegisterMode(self: *const T, registerMode: MBN_REGISTER_MODE, providerID: ?[*:0]const u16, dataClass: u32, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).SetRegisterMode(@ptrCast(*const IMbnRegistration, self), registerMode, providerID, dataClass, requestID);
         }
     };}
@@ -1051,19 +1051,19 @@ pub const IMbnRegistrationEvents = extern struct {
         base: IUnknown.VTable,
         OnRegisterModeAvailable: fn(
             self: *const IMbnRegistrationEvents,
-            newInterface: *IMbnRegistration,
+            newInterface: ?*IMbnRegistration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnRegisterStateChange: fn(
             self: *const IMbnRegistrationEvents,
-            newInterface: *IMbnRegistration,
+            newInterface: ?*IMbnRegistration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPacketServiceStateChange: fn(
             self: *const IMbnRegistrationEvents,
-            newInterface: *IMbnRegistration,
+            newInterface: ?*IMbnRegistration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetRegisterModeComplete: fn(
             self: *const IMbnRegistrationEvents,
-            newInterface: *IMbnRegistration,
+            newInterface: ?*IMbnRegistration,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1072,19 +1072,19 @@ pub const IMbnRegistrationEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnRegisterModeAvailable(self: *const T, newInterface: *IMbnRegistration) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistrationEvents_OnRegisterModeAvailable(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistrationEvents.VTable, self.vtable).OnRegisterModeAvailable(@ptrCast(*const IMbnRegistrationEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnRegisterStateChange(self: *const T, newInterface: *IMbnRegistration) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistrationEvents_OnRegisterStateChange(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistrationEvents.VTable, self.vtable).OnRegisterStateChange(@ptrCast(*const IMbnRegistrationEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnPacketServiceStateChange(self: *const T, newInterface: *IMbnRegistration) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistrationEvents_OnPacketServiceStateChange(self: *const T, newInterface: ?*IMbnRegistration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistrationEvents.VTable, self.vtable).OnPacketServiceStateChange(@ptrCast(*const IMbnRegistrationEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistrationEvents_OnSetRegisterModeComplete(self: *const T, newInterface: *IMbnRegistration, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistrationEvents_OnSetRegisterModeComplete(self: *const T, newInterface: ?*IMbnRegistration, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistrationEvents.VTable, self.vtable).OnSetRegisterModeComplete(@ptrCast(*const IMbnRegistrationEvents, self), newInterface, requestID, status);
         }
     };}
@@ -1099,23 +1099,23 @@ pub const IMbnConnectionManager = extern struct {
         base: IUnknown.VTable,
         GetConnection: fn(
             self: *const IMbnConnectionManager,
-            connectionID: [*:0]const u16,
-            mbnConnection: ?**IMbnConnection,
+            connectionID: ?[*:0]const u16,
+            mbnConnection: ?*?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnections: fn(
             self: *const IMbnConnectionManager,
-            mbnConnections: ?**SAFEARRAY,
+            mbnConnections: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnection(self: *const T, connectionID: [*:0]const u16, mbnConnection: ?**IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManager_GetConnection(self: *const T, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManager.VTable, self.vtable).GetConnection(@ptrCast(*const IMbnConnectionManager, self), connectionID, mbnConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnections(self: *const T, mbnConnections: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManager_GetConnections(self: *const T, mbnConnections: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManager.VTable, self.vtable).GetConnections(@ptrCast(*const IMbnConnectionManager, self), mbnConnections);
         }
     };}
@@ -1130,22 +1130,22 @@ pub const IMbnConnectionManagerEvents = extern struct {
         base: IUnknown.VTable,
         OnConnectionArrival: fn(
             self: *const IMbnConnectionManagerEvents,
-            newConnection: *IMbnConnection,
+            newConnection: ?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnConnectionRemoval: fn(
             self: *const IMbnConnectionManagerEvents,
-            oldConnection: *IMbnConnection,
+            oldConnection: ?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManagerEvents_OnConnectionArrival(self: *const T, newConnection: *IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManagerEvents_OnConnectionArrival(self: *const T, newConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManagerEvents.VTable, self.vtable).OnConnectionArrival(@ptrCast(*const IMbnConnectionManagerEvents, self), newConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManagerEvents_OnConnectionRemoval(self: *const T, oldConnection: *IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManagerEvents_OnConnectionRemoval(self: *const T, oldConnection: ?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManagerEvents.VTable, self.vtable).OnConnectionRemoval(@ptrCast(*const IMbnConnectionManagerEvents, self), oldConnection);
         }
     };}
@@ -1160,31 +1160,31 @@ pub const IMbnPinManager = extern struct {
         base: IUnknown.VTable,
         GetPinList: fn(
             self: *const IMbnPinManager,
-            pinList: ?**SAFEARRAY,
+            pinList: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPin: fn(
             self: *const IMbnPinManager,
             pinType: MBN_PIN_TYPE,
-            pin: ?**IMbnPin,
+            pin: ?*?*IMbnPin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPinState: fn(
             self: *const IMbnPinManager,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPinList(self: *const T, pinList: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManager_GetPinList(self: *const T, pinList: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManager.VTable, self.vtable).GetPinList(@ptrCast(*const IMbnPinManager, self), pinList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPin(self: *const T, pinType: MBN_PIN_TYPE, pin: ?**IMbnPin) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManager_GetPin(self: *const T, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManager.VTable, self.vtable).GetPin(@ptrCast(*const IMbnPinManager, self), pinType, pin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPinState(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManager_GetPinState(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManager.VTable, self.vtable).GetPinState(@ptrCast(*const IMbnPinManager, self), requestID);
         }
     };}
@@ -1199,11 +1199,11 @@ pub const IMbnPinManagerEvents = extern struct {
         base: IUnknown.VTable,
         OnPinListAvailable: fn(
             self: *const IMbnPinManagerEvents,
-            pinManager: *IMbnPinManager,
+            pinManager: ?*IMbnPinManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnGetPinStateComplete: fn(
             self: *const IMbnPinManagerEvents,
-            pinManager: *IMbnPinManager,
+            pinManager: ?*IMbnPinManager,
             pinInfo: MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
@@ -1213,11 +1213,11 @@ pub const IMbnPinManagerEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManagerEvents_OnPinListAvailable(self: *const T, pinManager: *IMbnPinManager) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManagerEvents_OnPinListAvailable(self: *const T, pinManager: ?*IMbnPinManager) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManagerEvents.VTable, self.vtable).OnPinListAvailable(@ptrCast(*const IMbnPinManagerEvents, self), pinManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManagerEvents_OnGetPinStateComplete(self: *const T, pinManager: *IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManagerEvents_OnGetPinStateComplete(self: *const T, pinManager: ?*IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManagerEvents.VTable, self.vtable).OnGetPinStateComplete(@ptrCast(*const IMbnPinManagerEvents, self), pinManager, pinInfo, requestID, status);
         }
     };}
@@ -1232,36 +1232,36 @@ pub const IMbnPinEvents = extern struct {
         base: IUnknown.VTable,
         OnEnableComplete: fn(
             self: *const IMbnPinEvents,
-            pin: *IMbnPin,
-            pinInfo: *MBN_PIN_INFO,
+            pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDisableComplete: fn(
             self: *const IMbnPinEvents,
-            pin: *IMbnPin,
-            pinInfo: *MBN_PIN_INFO,
+            pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEnterComplete: fn(
             self: *const IMbnPinEvents,
-            Pin: *IMbnPin,
-            pinInfo: *MBN_PIN_INFO,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnChangeComplete: fn(
             self: *const IMbnPinEvents,
-            Pin: *IMbnPin,
-            pinInfo: *MBN_PIN_INFO,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnUnblockComplete: fn(
             self: *const IMbnPinEvents,
-            Pin: *IMbnPin,
-            pinInfo: *MBN_PIN_INFO,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1270,23 +1270,23 @@ pub const IMbnPinEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnEnableComplete(self: *const T, pin: *IMbnPin, pinInfo: *MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinEvents_OnEnableComplete(self: *const T, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinEvents.VTable, self.vtable).OnEnableComplete(@ptrCast(*const IMbnPinEvents, self), pin, pinInfo, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnDisableComplete(self: *const T, pin: *IMbnPin, pinInfo: *MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinEvents_OnDisableComplete(self: *const T, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinEvents.VTable, self.vtable).OnDisableComplete(@ptrCast(*const IMbnPinEvents, self), pin, pinInfo, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnEnterComplete(self: *const T, Pin: *IMbnPin, pinInfo: *MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinEvents_OnEnterComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinEvents.VTable, self.vtable).OnEnterComplete(@ptrCast(*const IMbnPinEvents, self), Pin, pinInfo, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnChangeComplete(self: *const T, Pin: *IMbnPin, pinInfo: *MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinEvents_OnChangeComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinEvents.VTable, self.vtable).OnChangeComplete(@ptrCast(*const IMbnPinEvents, self), Pin, pinInfo, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinEvents_OnUnblockComplete(self: *const T, Pin: *IMbnPin, pinInfo: *MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnPinEvents_OnUnblockComplete(self: *const T, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinEvents.VTable, self.vtable).OnUnblockComplete(@ptrCast(*const IMbnPinEvents, self), Pin, pinInfo, requestID, status);
         }
     };}
@@ -1302,32 +1302,32 @@ pub const IMbnSubscriberInformation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriberID: fn(
             self: *const IMbnSubscriberInformation,
-            SubscriberID: ?*BSTR,
+            SubscriberID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SimIccID: fn(
             self: *const IMbnSubscriberInformation,
-            SimIccID: ?*BSTR,
+            SimIccID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TelephoneNumbers: fn(
             self: *const IMbnSubscriberInformation,
-            TelephoneNumbers: ?**SAFEARRAY,
+            TelephoneNumbers: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SubscriberID(self: *const T, SubscriberID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_SubscriberID(self: *const T, SubscriberID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_SubscriberID(@ptrCast(*const IMbnSubscriberInformation, self), SubscriberID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SimIccID(self: *const T, SimIccID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_SimIccID(self: *const T, SimIccID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_SimIccID(@ptrCast(*const IMbnSubscriberInformation, self), SimIccID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_TelephoneNumbers(self: *const T, TelephoneNumbers: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_TelephoneNumbers(self: *const T, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_TelephoneNumbers(@ptrCast(*const IMbnSubscriberInformation, self), TelephoneNumbers);
         }
     };}
@@ -1342,22 +1342,22 @@ pub const IMbnSignal = extern struct {
         base: IUnknown.VTable,
         GetSignalStrength: fn(
             self: *const IMbnSignal,
-            signalStrength: *u32,
+            signalStrength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignalError: fn(
             self: *const IMbnSignal,
-            signalError: *u32,
+            signalError: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignal_GetSignalStrength(self: *const T, signalStrength: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSignal_GetSignalStrength(self: *const T, signalStrength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSignal.VTable, self.vtable).GetSignalStrength(@ptrCast(*const IMbnSignal, self), signalStrength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignal_GetSignalError(self: *const T, signalError: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSignal_GetSignalError(self: *const T, signalError: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSignal.VTable, self.vtable).GetSignalError(@ptrCast(*const IMbnSignal, self), signalError);
         }
     };}
@@ -1372,14 +1372,14 @@ pub const IMbnSignalEvents = extern struct {
         base: IUnknown.VTable,
         OnSignalStateChange: fn(
             self: *const IMbnSignalEvents,
-            newInterface: *IMbnSignal,
+            newInterface: ?*IMbnSignal,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSignalEvents_OnSignalStateChange(self: *const T, newInterface: *IMbnSignal) callconv(.Inline) HRESULT {
+        pub fn IMbnSignalEvents_OnSignalStateChange(self: *const T, newInterface: ?*IMbnSignal) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSignalEvents.VTable, self.vtable).OnSignalStateChange(@ptrCast(*const IMbnSignalEvents, self), newInterface);
         }
     };}
@@ -1394,24 +1394,24 @@ pub const IMbnConnectionContext = extern struct {
         base: IUnknown.VTable,
         GetProvisionedContexts: fn(
             self: *const IMbnConnectionContext,
-            provisionedContexts: ?**SAFEARRAY,
+            provisionedContexts: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProvisionedContext: fn(
             self: *const IMbnConnectionContext,
             provisionedContexts: MBN_CONTEXT,
-            providerID: [*:0]const u16,
-            requestID: *u32,
+            providerID: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContext_GetProvisionedContexts(self: *const T, provisionedContexts: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionContext_GetProvisionedContexts(self: *const T, provisionedContexts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionContext.VTable, self.vtable).GetProvisionedContexts(@ptrCast(*const IMbnConnectionContext, self), provisionedContexts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContext_SetProvisionedContext(self: *const T, provisionedContexts: MBN_CONTEXT, providerID: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionContext_SetProvisionedContext(self: *const T, provisionedContexts: MBN_CONTEXT, providerID: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionContext.VTable, self.vtable).SetProvisionedContext(@ptrCast(*const IMbnConnectionContext, self), provisionedContexts, providerID, requestID);
         }
     };}
@@ -1426,11 +1426,11 @@ pub const IMbnConnectionContextEvents = extern struct {
         base: IUnknown.VTable,
         OnProvisionedContextListChange: fn(
             self: *const IMbnConnectionContextEvents,
-            newInterface: *IMbnConnectionContext,
+            newInterface: ?*IMbnConnectionContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetProvisionedContextComplete: fn(
             self: *const IMbnConnectionContextEvents,
-            newInterface: *IMbnConnectionContext,
+            newInterface: ?*IMbnConnectionContext,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1439,11 +1439,11 @@ pub const IMbnConnectionContextEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContextEvents_OnProvisionedContextListChange(self: *const T, newInterface: *IMbnConnectionContext) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionContextEvents_OnProvisionedContextListChange(self: *const T, newInterface: ?*IMbnConnectionContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionContextEvents.VTable, self.vtable).OnProvisionedContextListChange(@ptrCast(*const IMbnConnectionContextEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContextEvents_OnSetProvisionedContextComplete(self: *const T, newInterface: *IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionContextEvents_OnSetProvisionedContextComplete(self: *const T, newInterface: ?*IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionContextEvents.VTable, self.vtable).OnSetProvisionedContextComplete(@ptrCast(*const IMbnConnectionContextEvents, self), newInterface, requestID, status);
         }
     };}
@@ -1458,33 +1458,33 @@ pub const IMbnConnectionProfileManager = extern struct {
         base: IUnknown.VTable,
         GetConnectionProfiles: fn(
             self: *const IMbnConnectionProfileManager,
-            mbnInterface: *IMbnInterface,
-            connectionProfiles: ?**SAFEARRAY,
+            mbnInterface: ?*IMbnInterface,
+            connectionProfiles: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionProfile: fn(
             self: *const IMbnConnectionProfileManager,
-            mbnInterface: *IMbnInterface,
-            profileName: [*:0]const u16,
-            connectionProfile: ?**IMbnConnectionProfile,
+            mbnInterface: ?*IMbnInterface,
+            profileName: ?[*:0]const u16,
+            connectionProfile: ?*?*IMbnConnectionProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateConnectionProfile: fn(
             self: *const IMbnConnectionProfileManager,
-            xmlProfile: [*:0]const u16,
+            xmlProfile: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfiles(self: *const T, mbnInterface: *IMbnInterface, connectionProfiles: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManager_GetConnectionProfiles(self: *const T, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManager.VTable, self.vtable).GetConnectionProfiles(@ptrCast(*const IMbnConnectionProfileManager, self), mbnInterface, connectionProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfile(self: *const T, mbnInterface: *IMbnInterface, profileName: [*:0]const u16, connectionProfile: ?**IMbnConnectionProfile) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManager_GetConnectionProfile(self: *const T, mbnInterface: ?*IMbnInterface, profileName: ?[*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManager.VTable, self.vtable).GetConnectionProfile(@ptrCast(*const IMbnConnectionProfileManager, self), mbnInterface, profileName, connectionProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_CreateConnectionProfile(self: *const T, xmlProfile: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManager_CreateConnectionProfile(self: *const T, xmlProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManager.VTable, self.vtable).CreateConnectionProfile(@ptrCast(*const IMbnConnectionProfileManager, self), xmlProfile);
         }
     };}
@@ -1499,11 +1499,11 @@ pub const IMbnConnectionProfile = extern struct {
         base: IUnknown.VTable,
         GetProfileXmlData: fn(
             self: *const IMbnConnectionProfile,
-            profileData: ?*BSTR,
+            profileData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateProfile: fn(
             self: *const IMbnConnectionProfile,
-            strProfile: [*:0]const u16,
+            strProfile: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IMbnConnectionProfile,
@@ -1513,11 +1513,11 @@ pub const IMbnConnectionProfile = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_GetProfileXmlData(self: *const T, profileData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfile_GetProfileXmlData(self: *const T, profileData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfile.VTable, self.vtable).GetProfileXmlData(@ptrCast(*const IMbnConnectionProfile, self), profileData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_UpdateProfile(self: *const T, strProfile: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfile_UpdateProfile(self: *const T, strProfile: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfile.VTable, self.vtable).UpdateProfile(@ptrCast(*const IMbnConnectionProfile, self), strProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1536,14 +1536,14 @@ pub const IMbnConnectionProfileEvents = extern struct {
         base: IUnknown.VTable,
         OnProfileUpdate: fn(
             self: *const IMbnConnectionProfileEvents,
-            newProfile: *IMbnConnectionProfile,
+            newProfile: ?*IMbnConnectionProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileEvents_OnProfileUpdate(self: *const T, newProfile: *IMbnConnectionProfile) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileEvents_OnProfileUpdate(self: *const T, newProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileEvents.VTable, self.vtable).OnProfileUpdate(@ptrCast(*const IMbnConnectionProfileEvents, self), newProfile);
         }
     };}
@@ -1559,27 +1559,27 @@ pub const IMbnSmsConfiguration = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceCenterAddress: fn(
             self: *const IMbnSmsConfiguration,
-            scAddress: ?*BSTR,
+            scAddress: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceCenterAddress: fn(
             self: *const IMbnSmsConfiguration,
-            scAddress: [*:0]const u16,
+            scAddress: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxMessageIndex: fn(
             self: *const IMbnSmsConfiguration,
-            index: *u32,
+            index: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CdmaShortMsgSize: fn(
             self: *const IMbnSmsConfiguration,
-            shortMsgSize: *u32,
+            shortMsgSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmsFormat: fn(
             self: *const IMbnSmsConfiguration,
-            smsFormat: *MBN_SMS_FORMAT,
+            smsFormat: ?*MBN_SMS_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmsFormat: fn(
@@ -1591,23 +1591,23 @@ pub const IMbnSmsConfiguration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_ServiceCenterAddress(self: *const T, scAddress: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_get_ServiceCenterAddress(self: *const T, scAddress: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).get_ServiceCenterAddress(@ptrCast(*const IMbnSmsConfiguration, self), scAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_put_ServiceCenterAddress(self: *const T, scAddress: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_put_ServiceCenterAddress(self: *const T, scAddress: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).put_ServiceCenterAddress(@ptrCast(*const IMbnSmsConfiguration, self), scAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_MaxMessageIndex(self: *const T, index: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_get_MaxMessageIndex(self: *const T, index: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).get_MaxMessageIndex(@ptrCast(*const IMbnSmsConfiguration, self), index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_CdmaShortMsgSize(self: *const T, shortMsgSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_get_CdmaShortMsgSize(self: *const T, shortMsgSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).get_CdmaShortMsgSize(@ptrCast(*const IMbnSmsConfiguration, self), shortMsgSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_SmsFormat(self: *const T, smsFormat: *MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_get_SmsFormat(self: *const T, smsFormat: ?*MBN_SMS_FORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).get_SmsFormat(@ptrCast(*const IMbnSmsConfiguration, self), smsFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1627,41 +1627,41 @@ pub const IMbnSmsReadMsgPdu = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Index: fn(
             self: *const IMbnSmsReadMsgPdu,
-            Index: *u32,
+            Index: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const IMbnSmsReadMsgPdu,
-            Status: *MBN_MSG_STATUS,
+            Status: ?*MBN_MSG_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PduData: fn(
             self: *const IMbnSmsReadMsgPdu,
-            PduData: ?*BSTR,
+            PduData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: fn(
             self: *const IMbnSmsReadMsgPdu,
-            Message: ?**SAFEARRAY,
+            Message: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Index(self: *const T, Index: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_Index(self: *const T, Index: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_Index(@ptrCast(*const IMbnSmsReadMsgPdu, self), Index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Status(self: *const T, Status: *MBN_MSG_STATUS) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_Status(self: *const T, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_Status(@ptrCast(*const IMbnSmsReadMsgPdu, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_PduData(self: *const T, PduData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_PduData(self: *const T, PduData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_PduData(@ptrCast(*const IMbnSmsReadMsgPdu, self), PduData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Message(self: *const T, Message: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_Message(@ptrCast(*const IMbnSmsReadMsgPdu, self), Message);
         }
     };}
@@ -1677,77 +1677,77 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Index: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Index: *u32,
+            Index: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Status: *MBN_MSG_STATUS,
+            Status: ?*MBN_MSG_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Address: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Address: ?*BSTR,
+            Address: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Timestamp: ?*BSTR,
+            Timestamp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncodingID: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            EncodingID: *MBN_SMS_CDMA_ENCODING,
+            EncodingID: ?*MBN_SMS_CDMA_ENCODING,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageID: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            LanguageID: *MBN_SMS_CDMA_LANG,
+            LanguageID: ?*MBN_SMS_CDMA_LANG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeInCharacters: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            SizeInCharacters: *u32,
+            SizeInCharacters: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Message: ?**SAFEARRAY,
+            Message: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Index(self: *const T, Index: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Index(self: *const T, Index: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Index(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Status(self: *const T, Status: *MBN_MSG_STATUS) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Status(self: *const T, Status: ?*MBN_MSG_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Status(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Address(self: *const T, Address: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Address(self: *const T, Address: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Address(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Address);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Timestamp(self: *const T, Timestamp: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Timestamp(self: *const T, Timestamp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Timestamp(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Timestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_EncodingID(self: *const T, EncodingID: *MBN_SMS_CDMA_ENCODING) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_EncodingID(self: *const T, EncodingID: ?*MBN_SMS_CDMA_ENCODING) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_EncodingID(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), EncodingID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_LanguageID(self: *const T, LanguageID: *MBN_SMS_CDMA_LANG) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_LanguageID(self: *const T, LanguageID: ?*MBN_SMS_CDMA_LANG) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_LanguageID(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), LanguageID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_SizeInCharacters(self: *const T, SizeInCharacters: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_SizeInCharacters(self: *const T, SizeInCharacters: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_SizeInCharacters(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), SizeInCharacters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Message(self: *const T, Message: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Message(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Message);
         }
     };}
@@ -1762,82 +1762,82 @@ pub const IMbnSms = extern struct {
         base: IUnknown.VTable,
         GetSmsConfiguration: fn(
             self: *const IMbnSms,
-            smsConfiguration: ?**IMbnSmsConfiguration,
+            smsConfiguration: ?*?*IMbnSmsConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSmsConfiguration: fn(
             self: *const IMbnSms,
-            smsConfiguration: *IMbnSmsConfiguration,
-            requestID: *u32,
+            smsConfiguration: ?*IMbnSmsConfiguration,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SmsSendPdu: fn(
             self: *const IMbnSms,
-            pduData: [*:0]const u16,
+            pduData: ?[*:0]const u16,
             size: u8,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SmsSendCdma: fn(
             self: *const IMbnSms,
-            address: [*:0]const u16,
+            address: ?[*:0]const u16,
             encoding: MBN_SMS_CDMA_ENCODING,
             language: MBN_SMS_CDMA_LANG,
             sizeInCharacters: u32,
-            message: *SAFEARRAY,
-            requestID: *u32,
+            message: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SmsSendCdmaPdu: fn(
             self: *const IMbnSms,
-            message: *SAFEARRAY,
-            requestID: *u32,
+            message: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SmsRead: fn(
             self: *const IMbnSms,
-            smsFilter: *MBN_SMS_FILTER,
+            smsFilter: ?*MBN_SMS_FILTER,
             smsFormat: MBN_SMS_FORMAT,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SmsDelete: fn(
             self: *const IMbnSms,
-            smsFilter: *MBN_SMS_FILTER,
-            requestID: *u32,
+            smsFilter: ?*MBN_SMS_FILTER,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSmsStatus: fn(
             self: *const IMbnSms,
-            smsStatusInfo: *MBN_SMS_STATUS_INFO,
+            smsStatusInfo: ?*MBN_SMS_STATUS_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_GetSmsConfiguration(self: *const T, smsConfiguration: ?**IMbnSmsConfiguration) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_GetSmsConfiguration(self: *const T, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).GetSmsConfiguration(@ptrCast(*const IMbnSms, self), smsConfiguration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SetSmsConfiguration(self: *const T, smsConfiguration: *IMbnSmsConfiguration, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SetSmsConfiguration(self: *const T, smsConfiguration: ?*IMbnSmsConfiguration, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SetSmsConfiguration(@ptrCast(*const IMbnSms, self), smsConfiguration, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendPdu(self: *const T, pduData: [*:0]const u16, size: u8, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SmsSendPdu(self: *const T, pduData: ?[*:0]const u16, size: u8, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SmsSendPdu(@ptrCast(*const IMbnSms, self), pduData, size, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendCdma(self: *const T, address: [*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SmsSendCdma(self: *const T, address: ?[*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SmsSendCdma(@ptrCast(*const IMbnSms, self), address, encoding, language, sizeInCharacters, message, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsSendCdmaPdu(self: *const T, message: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SmsSendCdmaPdu(self: *const T, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SmsSendCdmaPdu(@ptrCast(*const IMbnSms, self), message, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsRead(self: *const T, smsFilter: *MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SmsRead(self: *const T, smsFilter: ?*MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SmsRead(@ptrCast(*const IMbnSms, self), smsFilter, smsFormat, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_SmsDelete(self: *const T, smsFilter: *MBN_SMS_FILTER, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_SmsDelete(self: *const T, smsFilter: ?*MBN_SMS_FILTER, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).SmsDelete(@ptrCast(*const IMbnSms, self), smsFilter, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_GetSmsStatus(self: *const T, smsStatusInfo: *MBN_SMS_STATUS_INFO) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_GetSmsStatus(self: *const T, smsStatusInfo: ?*MBN_SMS_STATUS_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).GetSmsStatus(@ptrCast(*const IMbnSms, self), smsStatusInfo);
         }
     };}
@@ -1852,75 +1852,75 @@ pub const IMbnSmsEvents = extern struct {
         base: IUnknown.VTable,
         OnSmsConfigurationChange: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetSmsConfigurationComplete: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSmsSendComplete: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSmsReadComplete: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
             smsFormat: MBN_SMS_FORMAT,
-            readMsgs: *SAFEARRAY,
+            readMsgs: ?*SAFEARRAY,
             moreMsgs: i16,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSmsNewClass0Message: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
             smsFormat: MBN_SMS_FORMAT,
-            readMsgs: *SAFEARRAY,
+            readMsgs: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSmsDeleteComplete: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSmsStatusChange: fn(
             self: *const IMbnSmsEvents,
-            sms: *IMbnSms,
+            sms: ?*IMbnSms,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsConfigurationChange(self: *const T, sms: *IMbnSms) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsConfigurationChange(self: *const T, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsConfigurationChange(@ptrCast(*const IMbnSmsEvents, self), sms);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSetSmsConfigurationComplete(self: *const T, sms: *IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSetSmsConfigurationComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSetSmsConfigurationComplete(@ptrCast(*const IMbnSmsEvents, self), sms, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsSendComplete(self: *const T, sms: *IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsSendComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsSendComplete(@ptrCast(*const IMbnSmsEvents, self), sms, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsReadComplete(self: *const T, sms: *IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: *SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsReadComplete(self: *const T, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsReadComplete(@ptrCast(*const IMbnSmsEvents, self), sms, smsFormat, readMsgs, moreMsgs, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsNewClass0Message(self: *const T, sms: *IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsNewClass0Message(self: *const T, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsNewClass0Message(@ptrCast(*const IMbnSmsEvents, self), sms, smsFormat, readMsgs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsDeleteComplete(self: *const T, sms: *IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsDeleteComplete(self: *const T, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsDeleteComplete(@ptrCast(*const IMbnSmsEvents, self), sms, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsEvents_OnSmsStatusChange(self: *const T, sms: *IMbnSms) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsEvents_OnSmsStatusChange(self: *const T, sms: ?*IMbnSms) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsEvents.VTable, self.vtable).OnSmsStatusChange(@ptrCast(*const IMbnSmsEvents, self), sms);
         }
     };}
@@ -1935,15 +1935,15 @@ pub const IMbnServiceActivation = extern struct {
         base: IUnknown.VTable,
         Activate: fn(
             self: *const IMbnServiceActivation,
-            vendorSpecificData: *SAFEARRAY,
-            requestID: *u32,
+            vendorSpecificData: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnServiceActivation_Activate(self: *const T, vendorSpecificData: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnServiceActivation_Activate(self: *const T, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnServiceActivation.VTable, self.vtable).Activate(@ptrCast(*const IMbnServiceActivation, self), vendorSpecificData, requestID);
         }
     };}
@@ -1958,8 +1958,8 @@ pub const IMbnServiceActivationEvents = extern struct {
         base: IUnknown.VTable,
         OnActivationComplete: fn(
             self: *const IMbnServiceActivationEvents,
-            serviceActivation: *IMbnServiceActivation,
-            vendorSpecificData: *SAFEARRAY,
+            serviceActivation: ?*IMbnServiceActivation,
+            vendorSpecificData: ?*SAFEARRAY,
             requestID: u32,
             status: HRESULT,
             networkError: u32,
@@ -1969,7 +1969,7 @@ pub const IMbnServiceActivationEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnServiceActivationEvents_OnActivationComplete(self: *const T, serviceActivation: *IMbnServiceActivation, vendorSpecificData: *SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnServiceActivationEvents_OnActivationComplete(self: *const T, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnServiceActivationEvents.VTable, self.vtable).OnActivationComplete(@ptrCast(*const IMbnServiceActivationEvents, self), serviceActivation, vendorSpecificData, requestID, status, networkError);
         }
     };}
@@ -1984,15 +1984,15 @@ pub const IMbnVendorSpecificOperation = extern struct {
         base: IUnknown.VTable,
         SetVendorSpecific: fn(
             self: *const IMbnVendorSpecificOperation,
-            vendorSpecificData: *SAFEARRAY,
-            requestID: *u32,
+            vendorSpecificData: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificOperation_SetVendorSpecific(self: *const T, vendorSpecificData: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnVendorSpecificOperation_SetVendorSpecific(self: *const T, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnVendorSpecificOperation.VTable, self.vtable).SetVendorSpecific(@ptrCast(*const IMbnVendorSpecificOperation, self), vendorSpecificData, requestID);
         }
     };}
@@ -2007,13 +2007,13 @@ pub const IMbnVendorSpecificEvents = extern struct {
         base: IUnknown.VTable,
         OnEventNotification: fn(
             self: *const IMbnVendorSpecificEvents,
-            vendorOperation: *IMbnVendorSpecificOperation,
-            vendorSpecificData: *SAFEARRAY,
+            vendorOperation: ?*IMbnVendorSpecificOperation,
+            vendorSpecificData: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetVendorSpecificComplete: fn(
             self: *const IMbnVendorSpecificEvents,
-            vendorOperation: *IMbnVendorSpecificOperation,
-            vendorSpecificData: *SAFEARRAY,
+            vendorOperation: ?*IMbnVendorSpecificOperation,
+            vendorSpecificData: ?*SAFEARRAY,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2021,11 +2021,11 @@ pub const IMbnVendorSpecificEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificEvents_OnEventNotification(self: *const T, vendorOperation: *IMbnVendorSpecificOperation, vendorSpecificData: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnVendorSpecificEvents_OnEventNotification(self: *const T, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnVendorSpecificEvents.VTable, self.vtable).OnEventNotification(@ptrCast(*const IMbnVendorSpecificEvents, self), vendorOperation, vendorSpecificData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnVendorSpecificEvents_OnSetVendorSpecificComplete(self: *const T, vendorOperation: *IMbnVendorSpecificOperation, vendorSpecificData: *SAFEARRAY, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnVendorSpecificEvents_OnSetVendorSpecificComplete(self: *const T, vendorOperation: ?*IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnVendorSpecificEvents.VTable, self.vtable).OnSetVendorSpecificComplete(@ptrCast(*const IMbnVendorSpecificEvents, self), vendorOperation, vendorSpecificData, requestID);
         }
     };}
@@ -2040,22 +2040,22 @@ pub const IMbnConnectionProfileManagerEvents = extern struct {
         base: IUnknown.VTable,
         OnConnectionProfileArrival: fn(
             self: *const IMbnConnectionProfileManagerEvents,
-            newConnectionProfile: *IMbnConnectionProfile,
+            newConnectionProfile: ?*IMbnConnectionProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnConnectionProfileRemoval: fn(
             self: *const IMbnConnectionProfileManagerEvents,
-            oldConnectionProfile: *IMbnConnectionProfile,
+            oldConnectionProfile: ?*IMbnConnectionProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileArrival(self: *const T, newConnectionProfile: *IMbnConnectionProfile) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileArrival(self: *const T, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManagerEvents.VTable, self.vtable).OnConnectionProfileArrival(@ptrCast(*const IMbnConnectionProfileManagerEvents, self), newConnectionProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileRemoval(self: *const T, oldConnectionProfile: *IMbnConnectionProfile) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManagerEvents_OnConnectionProfileRemoval(self: *const T, oldConnectionProfile: ?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManagerEvents.VTable, self.vtable).OnConnectionProfileRemoval(@ptrCast(*const IMbnConnectionProfileManagerEvents, self), oldConnectionProfile);
         }
     };}
@@ -2071,32 +2071,32 @@ pub const IMbnRadio = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SoftwareRadioState: fn(
             self: *const IMbnRadio,
-            SoftwareRadioState: *MBN_RADIO,
+            SoftwareRadioState: ?*MBN_RADIO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HardwareRadioState: fn(
             self: *const IMbnRadio,
-            HardwareRadioState: *MBN_RADIO,
+            HardwareRadioState: ?*MBN_RADIO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSoftwareRadioState: fn(
             self: *const IMbnRadio,
             radioState: MBN_RADIO,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_get_SoftwareRadioState(self: *const T, SoftwareRadioState: *MBN_RADIO) callconv(.Inline) HRESULT {
+        pub fn IMbnRadio_get_SoftwareRadioState(self: *const T, SoftwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRadio.VTable, self.vtable).get_SoftwareRadioState(@ptrCast(*const IMbnRadio, self), SoftwareRadioState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_get_HardwareRadioState(self: *const T, HardwareRadioState: *MBN_RADIO) callconv(.Inline) HRESULT {
+        pub fn IMbnRadio_get_HardwareRadioState(self: *const T, HardwareRadioState: ?*MBN_RADIO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRadio.VTable, self.vtable).get_HardwareRadioState(@ptrCast(*const IMbnRadio, self), HardwareRadioState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadio_SetSoftwareRadioState(self: *const T, radioState: MBN_RADIO, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnRadio_SetSoftwareRadioState(self: *const T, radioState: MBN_RADIO, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRadio.VTable, self.vtable).SetSoftwareRadioState(@ptrCast(*const IMbnRadio, self), radioState, requestID);
         }
     };}
@@ -2111,11 +2111,11 @@ pub const IMbnRadioEvents = extern struct {
         base: IUnknown.VTable,
         OnRadioStateChange: fn(
             self: *const IMbnRadioEvents,
-            newInterface: *IMbnRadio,
+            newInterface: ?*IMbnRadio,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetSoftwareRadioStateComplete: fn(
             self: *const IMbnRadioEvents,
-            newInterface: *IMbnRadio,
+            newInterface: ?*IMbnRadio,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2124,11 +2124,11 @@ pub const IMbnRadioEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadioEvents_OnRadioStateChange(self: *const T, newInterface: *IMbnRadio) callconv(.Inline) HRESULT {
+        pub fn IMbnRadioEvents_OnRadioStateChange(self: *const T, newInterface: ?*IMbnRadio) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRadioEvents.VTable, self.vtable).OnRadioStateChange(@ptrCast(*const IMbnRadioEvents, self), newInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRadioEvents_OnSetSoftwareRadioStateComplete(self: *const T, newInterface: *IMbnRadio, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnRadioEvents_OnSetSoftwareRadioStateComplete(self: *const T, newInterface: ?*IMbnRadio, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRadioEvents.VTable, self.vtable).OnSetSoftwareRadioStateComplete(@ptrCast(*const IMbnRadioEvents, self), newInterface, requestID, status);
         }
     };}
@@ -2143,56 +2143,56 @@ pub const IMbnMultiCarrier = extern struct {
         base: IUnknown.VTable,
         SetHomeProvider: fn(
             self: *const IMbnMultiCarrier,
-            homeProvider: *MBN_PROVIDER2,
-            requestID: *u32,
+            homeProvider: ?*MBN_PROVIDER2,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredProviders: fn(
             self: *const IMbnMultiCarrier,
-            preferredMulticarrierProviders: ?**SAFEARRAY,
+            preferredMulticarrierProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleProviders: fn(
             self: *const IMbnMultiCarrier,
-            age: *u32,
-            visibleProviders: **SAFEARRAY,
+            age: ?*u32,
+            visibleProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedCellularClasses: fn(
             self: *const IMbnMultiCarrier,
-            cellularClasses: ?**SAFEARRAY,
+            cellularClasses: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentCellularClass: fn(
             self: *const IMbnMultiCarrier,
-            currentCellularClass: *MBN_CELLULAR_CLASS,
+            currentCellularClass: ?*MBN_CELLULAR_CLASS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ScanNetwork: fn(
             self: *const IMbnMultiCarrier,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_SetHomeProvider(self: *const T, homeProvider: *MBN_PROVIDER2, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_SetHomeProvider(self: *const T, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).SetHomeProvider(@ptrCast(*const IMbnMultiCarrier, self), homeProvider, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetPreferredProviders(self: *const T, preferredMulticarrierProviders: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetPreferredProviders(self: *const T, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetPreferredProviders(@ptrCast(*const IMbnMultiCarrier, self), preferredMulticarrierProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetVisibleProviders(self: *const T, age: *u32, visibleProviders: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetVisibleProviders(self: *const T, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetVisibleProviders(@ptrCast(*const IMbnMultiCarrier, self), age, visibleProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetSupportedCellularClasses(self: *const T, cellularClasses: ?**SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetSupportedCellularClasses(self: *const T, cellularClasses: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetSupportedCellularClasses(@ptrCast(*const IMbnMultiCarrier, self), cellularClasses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetCurrentCellularClass(self: *const T, currentCellularClass: *MBN_CELLULAR_CLASS) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetCurrentCellularClass(self: *const T, currentCellularClass: ?*MBN_CELLULAR_CLASS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetCurrentCellularClass(@ptrCast(*const IMbnMultiCarrier, self), currentCellularClass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_ScanNetwork(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_ScanNetwork(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).ScanNetwork(@ptrCast(*const IMbnMultiCarrier, self), requestID);
         }
     };}
@@ -2207,50 +2207,50 @@ pub const IMbnMultiCarrierEvents = extern struct {
         base: IUnknown.VTable,
         OnSetHomeProviderComplete: fn(
             self: *const IMbnMultiCarrierEvents,
-            mbnInterface: *IMbnMultiCarrier,
+            mbnInterface: ?*IMbnMultiCarrier,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnCurrentCellularClassChange: fn(
             self: *const IMbnMultiCarrierEvents,
-            mbnInterface: *IMbnMultiCarrier,
+            mbnInterface: ?*IMbnMultiCarrier,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPreferredProvidersChange: fn(
             self: *const IMbnMultiCarrierEvents,
-            mbnInterface: *IMbnMultiCarrier,
+            mbnInterface: ?*IMbnMultiCarrier,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnScanNetworkComplete: fn(
             self: *const IMbnMultiCarrierEvents,
-            mbnInterface: *IMbnMultiCarrier,
+            mbnInterface: ?*IMbnMultiCarrier,
             requestID: u32,
             status: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnInterfaceCapabilityChange: fn(
             self: *const IMbnMultiCarrierEvents,
-            mbnInterface: *IMbnMultiCarrier,
+            mbnInterface: ?*IMbnMultiCarrier,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnSetHomeProviderComplete(self: *const T, mbnInterface: *IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrierEvents_OnSetHomeProviderComplete(self: *const T, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrierEvents.VTable, self.vtable).OnSetHomeProviderComplete(@ptrCast(*const IMbnMultiCarrierEvents, self), mbnInterface, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnCurrentCellularClassChange(self: *const T, mbnInterface: *IMbnMultiCarrier) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrierEvents_OnCurrentCellularClassChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrierEvents.VTable, self.vtable).OnCurrentCellularClassChange(@ptrCast(*const IMbnMultiCarrierEvents, self), mbnInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnPreferredProvidersChange(self: *const T, mbnInterface: *IMbnMultiCarrier) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrierEvents_OnPreferredProvidersChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrierEvents.VTable, self.vtable).OnPreferredProvidersChange(@ptrCast(*const IMbnMultiCarrierEvents, self), mbnInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnScanNetworkComplete(self: *const T, mbnInterface: *IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrierEvents_OnScanNetworkComplete(self: *const T, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrierEvents.VTable, self.vtable).OnScanNetworkComplete(@ptrCast(*const IMbnMultiCarrierEvents, self), mbnInterface, requestID, status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrierEvents_OnInterfaceCapabilityChange(self: *const T, mbnInterface: *IMbnMultiCarrier) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrierEvents_OnInterfaceCapabilityChange(self: *const T, mbnInterface: ?*IMbnMultiCarrier) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrierEvents.VTable, self.vtable).OnInterfaceCapabilityChange(@ptrCast(*const IMbnMultiCarrierEvents, self), mbnInterface);
         }
     };}
@@ -2264,7 +2264,7 @@ pub const IMbnDeviceServiceStateEvents = extern struct {
         base: IUnknown.VTable,
         OnSessionsStateChange: fn(
             self: *const IMbnDeviceServiceStateEvents,
-            interfaceID: BSTR,
+            interfaceID: ?BSTR,
             stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2272,7 +2272,7 @@ pub const IMbnDeviceServiceStateEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServiceStateEvents_OnSessionsStateChange(self: *const T, interfaceID: BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServiceStateEvents_OnSessionsStateChange(self: *const T, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServiceStateEvents.VTable, self.vtable).OnSessionsStateChange(@ptrCast(*const IMbnDeviceServiceStateEvents, self), interfaceID, stateChange);
         }
     };}
@@ -2287,15 +2287,15 @@ pub const IMbnDeviceServicesManager = extern struct {
         base: IUnknown.VTable,
         GetDeviceServicesContext: fn(
             self: *const IMbnDeviceServicesManager,
-            networkInterfaceID: BSTR,
-            mbnDevicesContext: ?**IMbnDeviceServicesContext,
+            networkInterfaceID: ?BSTR,
+            mbnDevicesContext: ?*?*IMbnDeviceServicesContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesManager_GetDeviceServicesContext(self: *const T, networkInterfaceID: BSTR, mbnDevicesContext: ?**IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesManager_GetDeviceServicesContext(self: *const T, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesManager.VTable, self.vtable).GetDeviceServicesContext(@ptrCast(*const IMbnDeviceServicesManager, self), networkInterfaceID, mbnDevicesContext);
         }
     };}
@@ -2310,41 +2310,41 @@ pub const IMbnDeviceServicesContext = extern struct {
         base: IUnknown.VTable,
         EnumerateDeviceServices: fn(
             self: *const IMbnDeviceServicesContext,
-            deviceServices: **SAFEARRAY,
+            deviceServices: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceService: fn(
             self: *const IMbnDeviceServicesContext,
-            deviceServiceID: BSTR,
-            mbnDeviceService: ?**IMbnDeviceService,
+            deviceServiceID: ?BSTR,
+            mbnDeviceService: ?*?*IMbnDeviceService,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxCommandSize: fn(
             self: *const IMbnDeviceServicesContext,
-            maxCommandSize: *u32,
+            maxCommandSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxDataSize: fn(
             self: *const IMbnDeviceServicesContext,
-            maxDataSize: *u32,
+            maxDataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_EnumerateDeviceServices(self: *const T, deviceServices: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesContext_EnumerateDeviceServices(self: *const T, deviceServices: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).EnumerateDeviceServices(@ptrCast(*const IMbnDeviceServicesContext, self), deviceServices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_GetDeviceService(self: *const T, deviceServiceID: BSTR, mbnDeviceService: ?**IMbnDeviceService) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesContext_GetDeviceService(self: *const T, deviceServiceID: ?BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).GetDeviceService(@ptrCast(*const IMbnDeviceServicesContext, self), deviceServiceID, mbnDeviceService);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_get_MaxCommandSize(self: *const T, maxCommandSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesContext_get_MaxCommandSize(self: *const T, maxCommandSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).get_MaxCommandSize(@ptrCast(*const IMbnDeviceServicesContext, self), maxCommandSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_get_MaxDataSize(self: *const T, maxDataSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesContext_get_MaxDataSize(self: *const T, maxDataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).get_MaxDataSize(@ptrCast(*const IMbnDeviceServicesContext, self), maxDataSize);
         }
     };}
@@ -2359,71 +2359,71 @@ pub const IMbnDeviceServicesEvents = extern struct {
         base: IUnknown.VTable,
         OnQuerySupportedCommandsComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
-            commandIDList: *SAFEARRAY,
+            deviceService: ?*IMbnDeviceService,
+            commandIDList: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnOpenCommandSessionComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnCloseCommandSessionComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetCommandComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             responseID: u32,
-            deviceServiceData: *SAFEARRAY,
+            deviceServiceData: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnQueryCommandComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             responseID: u32,
-            deviceServiceData: *SAFEARRAY,
+            deviceServiceData: ?*SAFEARRAY,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEventNotification: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             eventID: u32,
-            deviceServiceData: *SAFEARRAY,
+            deviceServiceData: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnOpenDataSessionComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnCloseDataSessionComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnWriteDataComplete: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
+            deviceService: ?*IMbnDeviceService,
             status: HRESULT,
             requestID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnReadData: fn(
             self: *const IMbnDeviceServicesEvents,
-            deviceService: *IMbnDeviceService,
-            deviceServiceData: *SAFEARRAY,
+            deviceService: ?*IMbnDeviceService,
+            deviceServiceData: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnInterfaceStateChange: fn(
             self: *const IMbnDeviceServicesEvents,
-            interfaceID: BSTR,
+            interfaceID: ?BSTR,
             stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2431,47 +2431,47 @@ pub const IMbnDeviceServicesEvents = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnQuerySupportedCommandsComplete(self: *const T, deviceService: *IMbnDeviceService, commandIDList: *SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnQuerySupportedCommandsComplete(self: *const T, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnQuerySupportedCommandsComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, commandIDList, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnOpenCommandSessionComplete(self: *const T, deviceService: *IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnOpenCommandSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnOpenCommandSessionComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnCloseCommandSessionComplete(self: *const T, deviceService: *IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnCloseCommandSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnCloseCommandSessionComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnSetCommandComplete(self: *const T, deviceService: *IMbnDeviceService, responseID: u32, deviceServiceData: *SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnSetCommandComplete(self: *const T, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnSetCommandComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, responseID, deviceServiceData, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnQueryCommandComplete(self: *const T, deviceService: *IMbnDeviceService, responseID: u32, deviceServiceData: *SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnQueryCommandComplete(self: *const T, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnQueryCommandComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, responseID, deviceServiceData, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnEventNotification(self: *const T, deviceService: *IMbnDeviceService, eventID: u32, deviceServiceData: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnEventNotification(self: *const T, deviceService: ?*IMbnDeviceService, eventID: u32, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnEventNotification(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, eventID, deviceServiceData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnOpenDataSessionComplete(self: *const T, deviceService: *IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnOpenDataSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnOpenDataSessionComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnCloseDataSessionComplete(self: *const T, deviceService: *IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnCloseDataSessionComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnCloseDataSessionComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnWriteDataComplete(self: *const T, deviceService: *IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnWriteDataComplete(self: *const T, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnWriteDataComplete(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, status, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnReadData(self: *const T, deviceService: *IMbnDeviceService, deviceServiceData: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnReadData(self: *const T, deviceService: ?*IMbnDeviceService, deviceServiceData: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnReadData(@ptrCast(*const IMbnDeviceServicesEvents, self), deviceService, deviceServiceData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesEvents_OnInterfaceStateChange(self: *const T, interfaceID: BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesEvents_OnInterfaceStateChange(self: *const T, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesEvents.VTable, self.vtable).OnInterfaceStateChange(@ptrCast(*const IMbnDeviceServicesEvents, self), interfaceID, stateChange);
         }
     };}
@@ -2486,111 +2486,111 @@ pub const IMbnDeviceService = extern struct {
         base: IUnknown.VTable,
         QuerySupportedCommands: fn(
             self: *const IMbnDeviceService,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenCommandSession: fn(
             self: *const IMbnDeviceService,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseCommandSession: fn(
             self: *const IMbnDeviceService,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCommand: fn(
             self: *const IMbnDeviceService,
             commandID: u32,
-            deviceServiceData: *SAFEARRAY,
-            requestID: *u32,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryCommand: fn(
             self: *const IMbnDeviceService,
             commandID: u32,
-            deviceServiceData: *SAFEARRAY,
-            requestID: *u32,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenDataSession: fn(
             self: *const IMbnDeviceService,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseDataSession: fn(
             self: *const IMbnDeviceService,
-            requestID: *u32,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteData: fn(
             self: *const IMbnDeviceService,
-            deviceServiceData: *SAFEARRAY,
-            requestID: *u32,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InterfaceID: fn(
             self: *const IMbnDeviceService,
-            InterfaceID: ?*BSTR,
+            InterfaceID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceServiceID: fn(
             self: *const IMbnDeviceService,
-            DeviceServiceID: ?*BSTR,
+            DeviceServiceID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCommandSessionOpen: fn(
             self: *const IMbnDeviceService,
-            value: *BOOL,
+            value: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDataSessionOpen: fn(
             self: *const IMbnDeviceService,
-            value: *BOOL,
+            value: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_QuerySupportedCommands(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_QuerySupportedCommands(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).QuerySupportedCommands(@ptrCast(*const IMbnDeviceService, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_OpenCommandSession(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_OpenCommandSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).OpenCommandSession(@ptrCast(*const IMbnDeviceService, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_CloseCommandSession(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_CloseCommandSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).CloseCommandSession(@ptrCast(*const IMbnDeviceService, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_SetCommand(self: *const T, commandID: u32, deviceServiceData: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_SetCommand(self: *const T, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).SetCommand(@ptrCast(*const IMbnDeviceService, self), commandID, deviceServiceData, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_QueryCommand(self: *const T, commandID: u32, deviceServiceData: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_QueryCommand(self: *const T, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).QueryCommand(@ptrCast(*const IMbnDeviceService, self), commandID, deviceServiceData, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_OpenDataSession(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_OpenDataSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).OpenDataSession(@ptrCast(*const IMbnDeviceService, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_CloseDataSession(self: *const T, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_CloseDataSession(self: *const T, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).CloseDataSession(@ptrCast(*const IMbnDeviceService, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_WriteData(self: *const T, deviceServiceData: *SAFEARRAY, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_WriteData(self: *const T, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).WriteData(@ptrCast(*const IMbnDeviceService, self), deviceServiceData, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_InterfaceID(self: *const T, InterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnDeviceService, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_DeviceServiceID(self: *const T, DeviceServiceID: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_DeviceServiceID(self: *const T, DeviceServiceID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_DeviceServiceID(@ptrCast(*const IMbnDeviceService, self), DeviceServiceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_IsCommandSessionOpen(self: *const T, value: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_IsCommandSessionOpen(self: *const T, value: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_IsCommandSessionOpen(@ptrCast(*const IMbnDeviceService, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_IsDataSessionOpen(self: *const T, value: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_IsDataSessionOpen(self: *const T, value: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_IsDataSessionOpen(@ptrCast(*const IMbnDeviceService, self), value);
         }
     };}
@@ -2627,105 +2627,105 @@ pub const IMbnPin = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinType: fn(
             self: *const IMbnPin,
-            PinType: *MBN_PIN_TYPE,
+            PinType: ?*MBN_PIN_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinFormat: fn(
             self: *const IMbnPin,
-            PinFormat: *MBN_PIN_FORMAT,
+            PinFormat: ?*MBN_PIN_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinLengthMin: fn(
             self: *const IMbnPin,
-            PinLengthMin: *u32,
+            PinLengthMin: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinLengthMax: fn(
             self: *const IMbnPin,
-            PinLengthMax: *u32,
+            PinLengthMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PinMode: fn(
             self: *const IMbnPin,
-            PinMode: *MBN_PIN_MODE,
+            PinMode: ?*MBN_PIN_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enable: fn(
             self: *const IMbnPin,
-            pin: [*:0]const u16,
-            requestID: *u32,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disable: fn(
             self: *const IMbnPin,
-            pin: [*:0]const u16,
-            requestID: *u32,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enter: fn(
             self: *const IMbnPin,
-            pin: [*:0]const u16,
-            requestID: *u32,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Change: fn(
             self: *const IMbnPin,
-            pin: [*:0]const u16,
-            newPin: [*:0]const u16,
-            requestID: *u32,
+            pin: ?[*:0]const u16,
+            newPin: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unblock: fn(
             self: *const IMbnPin,
-            puk: [*:0]const u16,
-            newPin: [*:0]const u16,
-            requestID: *u32,
+            puk: ?[*:0]const u16,
+            newPin: ?[*:0]const u16,
+            requestID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPinManager: fn(
             self: *const IMbnPin,
-            pinManager: ?**IMbnPinManager,
+            pinManager: ?*?*IMbnPinManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinType(self: *const T, PinType: *MBN_PIN_TYPE) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_get_PinType(self: *const T, PinType: ?*MBN_PIN_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).get_PinType(@ptrCast(*const IMbnPin, self), PinType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinFormat(self: *const T, PinFormat: *MBN_PIN_FORMAT) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_get_PinFormat(self: *const T, PinFormat: ?*MBN_PIN_FORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).get_PinFormat(@ptrCast(*const IMbnPin, self), PinFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinLengthMin(self: *const T, PinLengthMin: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_get_PinLengthMin(self: *const T, PinLengthMin: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).get_PinLengthMin(@ptrCast(*const IMbnPin, self), PinLengthMin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinLengthMax(self: *const T, PinLengthMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_get_PinLengthMax(self: *const T, PinLengthMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).get_PinLengthMax(@ptrCast(*const IMbnPin, self), PinLengthMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_get_PinMode(self: *const T, PinMode: *MBN_PIN_MODE) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_get_PinMode(self: *const T, PinMode: ?*MBN_PIN_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).get_PinMode(@ptrCast(*const IMbnPin, self), PinMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Enable(self: *const T, pin: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_Enable(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Enable(@ptrCast(*const IMbnPin, self), pin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Disable(self: *const T, pin: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_Disable(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Disable(@ptrCast(*const IMbnPin, self), pin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Enter(self: *const T, pin: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_Enter(self: *const T, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Enter(@ptrCast(*const IMbnPin, self), pin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Change(self: *const T, pin: [*:0]const u16, newPin: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_Change(self: *const T, pin: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Change(@ptrCast(*const IMbnPin, self), pin, newPin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_Unblock(self: *const T, puk: [*:0]const u16, newPin: [*:0]const u16, requestID: *u32) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_Unblock(self: *const T, puk: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Unblock(@ptrCast(*const IMbnPin, self), puk, newPin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_GetPinManager(self: *const T, pinManager: ?**IMbnPinManager) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_GetPinManager(self: *const T, pinManager: ?*?*IMbnPinManager) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).GetPinManager(@ptrCast(*const IMbnPin, self), pinManager);
         }
     };}

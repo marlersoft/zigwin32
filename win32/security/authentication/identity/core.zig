@@ -867,17 +867,17 @@ pub const LsaHandle = isize;
 
 pub const LSA_TRUST_INFORMATION = extern struct {
     Name: UNICODE_STRING,
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const LSA_REFERENCED_DOMAIN_LIST = extern struct {
     Entries: u32,
-    Domains: *LSA_TRUST_INFORMATION,
+    Domains: ?*LSA_TRUST_INFORMATION,
 };
 
 pub const LSA_TRANSLATED_SID2 = extern struct {
     Use: SID_NAME_USE,
-    Sid: PSID,
+    Sid: ?PSID,
     DomainIndex: i32,
     Flags: u32,
 };
@@ -890,7 +890,7 @@ pub const LSA_TRANSLATED_NAME = extern struct {
 
 pub const POLICY_ACCOUNT_DOMAIN_INFO = extern struct {
     DomainName: UNICODE_STRING,
-    DomainSid: PSID,
+    DomainSid: ?PSID,
 };
 
 pub const POLICY_DNS_DOMAIN_INFO = extern struct {
@@ -898,7 +898,7 @@ pub const POLICY_DNS_DOMAIN_INFO = extern struct {
     DnsDomainName: UNICODE_STRING,
     DnsForestName: UNICODE_STRING,
     DomainGuid: Guid,
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const LSA_LOOKUP_DOMAIN_INFO_CLASS = enum(i32) {
@@ -1011,7 +1011,7 @@ pub const SE_ADT_PARAMETER_ARRAY_ENTRY = extern struct {
     Type: SE_ADT_PARAMETER_TYPE,
     Length: u32,
     Data: [2]usize,
-    Address: *c_void,
+    Address: ?*c_void,
 };
 
 pub const SE_ADT_ACCESS_REASON = extern struct {
@@ -1019,12 +1019,12 @@ pub const SE_ADT_ACCESS_REASON = extern struct {
     AccessReasons: [32]u32,
     ObjectTypeIndex: u32,
     AccessGranted: u32,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 };
 
 pub const SE_ADT_CLAIMS = extern struct {
     Length: u32,
-    Claims: *c_void,
+    Claims: ?*c_void,
 };
 
 pub const SE_ADT_PARAMETER_ARRAY = extern struct {
@@ -1130,23 +1130,23 @@ pub const POLICY_AUDIT_LOG_INFO = extern struct {
 
 pub const POLICY_AUDIT_EVENTS_INFO = extern struct {
     AuditingMode: u8,
-    EventAuditingOptions: *u32,
+    EventAuditingOptions: ?*u32,
     MaximumAuditEventCount: u32,
 };
 
 pub const POLICY_AUDIT_SUBCATEGORIES_INFO = extern struct {
     MaximumSubCategoryCount: u32,
-    EventAuditingOptions: *u32,
+    EventAuditingOptions: ?*u32,
 };
 
 pub const POLICY_AUDIT_CATEGORIES_INFO = extern struct {
     MaximumCategoryCount: u32,
-    SubCategoriesInfo: *POLICY_AUDIT_SUBCATEGORIES_INFO,
+    SubCategoriesInfo: ?*POLICY_AUDIT_SUBCATEGORIES_INFO,
 };
 
 pub const POLICY_PRIMARY_DOMAIN_INFO = extern struct {
     Name: UNICODE_STRING,
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const POLICY_PD_ACCOUNT_INFO = extern struct {
@@ -1189,7 +1189,7 @@ pub const PolicyDomainKerberosTicketInformation = POLICY_DOMAIN_INFORMATION_CLAS
 
 pub const POLICY_DOMAIN_EFS_INFO = extern struct {
     InfoLength: u32,
-    EfsBlob: *u8,
+    EfsBlob: ?*u8,
 };
 
 pub const POLICY_DOMAIN_KERBEROS_TICKET_INFO = extern struct {
@@ -1203,7 +1203,7 @@ pub const POLICY_DOMAIN_KERBEROS_TICKET_INFO = extern struct {
 
 pub const POLICY_MACHINE_ACCT_INFO = extern struct {
     Rid: u32,
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const POLICY_NOTIFICATION_INFORMATION_CLASS = enum(i32) {
@@ -1262,7 +1262,7 @@ pub const TRUSTED_DOMAIN_NAME_INFO = extern struct {
 
 pub const TRUSTED_CONTROLLERS_INFO = extern struct {
     Entries: u32,
-    Names: *UNICODE_STRING,
+    Names: ?*UNICODE_STRING,
 };
 
 pub const TRUSTED_POSIX_OFFSET_INFO = extern struct {
@@ -1277,7 +1277,7 @@ pub const TRUSTED_PASSWORD_INFO = extern struct {
 pub const TRUSTED_DOMAIN_INFORMATION_EX = extern struct {
     Name: UNICODE_STRING,
     FlatName: UNICODE_STRING,
-    Sid: PSID,
+    Sid: ?PSID,
     TrustDirection: TRUSTED_DOMAIN_TRUST_DIRECTION,
     TrustType: TRUSTED_DOMAIN_TRUST_TYPE,
     TrustAttributes: TRUSTED_DOMAIN_TRUST_ATTRIBUTES,
@@ -1286,28 +1286,28 @@ pub const TRUSTED_DOMAIN_INFORMATION_EX = extern struct {
 pub const TRUSTED_DOMAIN_INFORMATION_EX2 = extern struct {
     Name: UNICODE_STRING,
     FlatName: UNICODE_STRING,
-    Sid: PSID,
+    Sid: ?PSID,
     TrustDirection: u32,
     TrustType: u32,
     TrustAttributes: u32,
     ForestTrustLength: u32,
-    ForestTrustInfo: *u8,
+    ForestTrustInfo: ?*u8,
 };
 
 pub const LSA_AUTH_INFORMATION = extern struct {
     LastUpdateTime: LARGE_INTEGER,
     AuthType: LSA_AUTH_INFORMATION_AUTH_TYPE,
     AuthInfoLength: u32,
-    AuthInfo: *u8,
+    AuthInfo: ?*u8,
 };
 
 pub const TRUSTED_DOMAIN_AUTH_INFORMATION = extern struct {
     IncomingAuthInfos: u32,
-    IncomingAuthenticationInformation: *LSA_AUTH_INFORMATION,
-    IncomingPreviousAuthenticationInformation: *LSA_AUTH_INFORMATION,
+    IncomingAuthenticationInformation: ?*LSA_AUTH_INFORMATION,
+    IncomingPreviousAuthenticationInformation: ?*LSA_AUTH_INFORMATION,
     OutgoingAuthInfos: u32,
-    OutgoingAuthenticationInformation: *LSA_AUTH_INFORMATION,
-    OutgoingPreviousAuthenticationInformation: *LSA_AUTH_INFORMATION,
+    OutgoingAuthenticationInformation: ?*LSA_AUTH_INFORMATION,
+    OutgoingPreviousAuthenticationInformation: ?*LSA_AUTH_INFORMATION,
 };
 
 pub const TRUSTED_DOMAIN_FULL_INFORMATION = extern struct {
@@ -1338,14 +1338,14 @@ pub const ForestTrustDomainInfo = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
 pub const ForestTrustRecordTypeLast = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
 
 pub const LSA_FOREST_TRUST_DOMAIN_INFO = extern struct {
-    Sid: PSID,
+    Sid: ?PSID,
     DnsName: UNICODE_STRING,
     NetbiosName: UNICODE_STRING,
 };
 
 pub const LSA_FOREST_TRUST_BINARY_DATA = extern struct {
     Length: u32,
-    Buffer: *u8,
+    Buffer: ?*u8,
 };
 
 pub const LSA_FOREST_TRUST_RECORD = extern struct {
@@ -1361,7 +1361,7 @@ pub const LSA_FOREST_TRUST_RECORD = extern struct {
 
 pub const LSA_FOREST_TRUST_INFORMATION = extern struct {
     RecordCount: u32,
-    Entries: **LSA_FOREST_TRUST_RECORD,
+    Entries: ?*?*LSA_FOREST_TRUST_RECORD,
 };
 
 pub const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE = enum(i32) {
@@ -1382,11 +1382,11 @@ pub const LSA_FOREST_TRUST_COLLISION_RECORD = extern struct {
 
 pub const LSA_FOREST_TRUST_COLLISION_INFORMATION = extern struct {
     RecordCount: u32,
-    Entries: **LSA_FOREST_TRUST_COLLISION_RECORD,
+    Entries: ?*?*LSA_FOREST_TRUST_COLLISION_RECORD,
 };
 
 pub const LSA_ENUMERATION_INFORMATION = extern struct {
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const LSA_LAST_INTER_LOGON_INFO = extern struct {
@@ -1403,7 +1403,7 @@ pub const SECURITY_LOGON_SESSION_DATA = extern struct {
     AuthenticationPackage: UNICODE_STRING,
     LogonType: u32,
     Session: u32,
-    Sid: PSID,
+    Sid: ?PSID,
     LogonTime: LARGE_INTEGER,
     LogonServer: UNICODE_STRING,
     DnsDomainName: UNICODE_STRING,
@@ -1426,22 +1426,22 @@ pub const CENTRAL_ACCESS_POLICY_ENTRY = extern struct {
     Description: UNICODE_STRING,
     ChangeId: UNICODE_STRING,
     LengthAppliesTo: u32,
-    AppliesTo: *u8,
+    AppliesTo: ?*u8,
     LengthSD: u32,
-    SD: *SECURITY_DESCRIPTOR,
+    SD: ?*SECURITY_DESCRIPTOR,
     LengthStagedSD: u32,
-    StagedSD: *SECURITY_DESCRIPTOR,
+    StagedSD: ?*SECURITY_DESCRIPTOR,
     Flags: u32,
 };
 
 pub const CENTRAL_ACCESS_POLICY = extern struct {
-    CAPID: PSID,
+    CAPID: ?PSID,
     Name: UNICODE_STRING,
     Description: UNICODE_STRING,
     ChangeId: UNICODE_STRING,
     Flags: u32,
     CAPECount: u32,
-    CAPEs: **CENTRAL_ACCESS_POLICY_ENTRY,
+    CAPEs: ?*?*CENTRAL_ACCESS_POLICY_ENTRY,
 };
 
 pub const NEGOTIATE_MESSAGES = enum(i32) {
@@ -1459,8 +1459,8 @@ pub const NegCallPackageMax = NEGOTIATE_MESSAGES.CallPackageMax;
 
 pub const NEGOTIATE_PACKAGE_PREFIX = extern struct {
     PackageId: usize,
-    PackageDataA: *c_void,
-    PackageDataW: *c_void,
+    PackageDataA: ?*c_void,
+    PackageDataW: ?*c_void,
     PrefixLen: usize,
     Prefix: [32]u8,
 };
@@ -1479,7 +1479,7 @@ pub const NEGOTIATE_CALLER_NAME_REQUEST = extern struct {
 
 pub const NEGOTIATE_CALLER_NAME_RESPONSE = extern struct {
     MessageType: u32,
-    CallerName: PWSTR,
+    CallerName: ?PWSTR,
 };
 
 pub const DOMAIN_PASSWORD_INFORMATION = extern struct {
@@ -1491,18 +1491,18 @@ pub const DOMAIN_PASSWORD_INFORMATION = extern struct {
 };
 
 pub const PSAM_PASSWORD_NOTIFICATION_ROUTINE = fn(
-    UserName: *UNICODE_STRING,
+    UserName: ?*UNICODE_STRING,
     RelativeId: u32,
-    NewPassword: *UNICODE_STRING,
+    NewPassword: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PSAM_INIT_NOTIFICATION_ROUTINE = fn(
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub const PSAM_PASSWORD_FILTER_ROUTINE = fn(
-    AccountName: *UNICODE_STRING,
-    FullName: *UNICODE_STRING,
-    Password: *UNICODE_STRING,
+    AccountName: ?*UNICODE_STRING,
+    FullName: ?*UNICODE_STRING,
+    Password: ?*UNICODE_STRING,
     SetOperation: u8,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
@@ -1774,7 +1774,7 @@ pub const MSV1_0_PASSTHROUGH_REQUEST = extern struct {
     DomainName: UNICODE_STRING,
     PackageName: UNICODE_STRING,
     DataLength: u32,
-    LogonData: *u8,
+    LogonData: ?*u8,
     Pad: u32,
 };
 
@@ -1782,20 +1782,20 @@ pub const MSV1_0_PASSTHROUGH_RESPONSE = extern struct {
     MessageType: MSV1_0_PROTOCOL_MESSAGE_TYPE,
     Pad: u32,
     DataLength: u32,
-    ValidationData: *u8,
+    ValidationData: ?*u8,
 };
 
 pub const MSV1_0_SUBAUTH_REQUEST = extern struct {
     MessageType: MSV1_0_PROTOCOL_MESSAGE_TYPE,
     SubAuthPackageId: u32,
     SubAuthInfoLength: u32,
-    SubAuthSubmitBuffer: *u8,
+    SubAuthSubmitBuffer: ?*u8,
 };
 
 pub const MSV1_0_SUBAUTH_RESPONSE = extern struct {
     MessageType: MSV1_0_PROTOCOL_MESSAGE_TYPE,
     SubAuthInfoLength: u32,
-    SubAuthReturnBuffer: *u8,
+    SubAuthReturnBuffer: ?*u8,
 };
 
 pub const KERB_LOGON_SUBMIT_TYPE = enum(i32) {
@@ -1843,7 +1843,7 @@ pub const KERB_SMART_CARD_LOGON = extern struct {
     MessageType: KERB_LOGON_SUBMIT_TYPE,
     Pin: UNICODE_STRING,
     CspDataLength: u32,
-    CspData: *u8,
+    CspData: ?*u8,
 };
 
 pub const KERB_SMART_CARD_UNLOCK_LOGON = extern struct {
@@ -1858,7 +1858,7 @@ pub const KERB_CERTIFICATE_LOGON = extern struct {
     Pin: UNICODE_STRING,
     Flags: u32,
     CspDataLength: u32,
-    CspData: *u8,
+    CspData: ?*u8,
 };
 
 pub const KERB_CERTIFICATE_UNLOCK_LOGON = extern struct {
@@ -1872,7 +1872,7 @@ pub const KERB_CERTIFICATE_S4U_LOGON = extern struct {
     UserPrincipalName: UNICODE_STRING,
     DomainName: UNICODE_STRING,
     CertificateLength: u32,
-    Certificate: *u8,
+    Certificate: ?*u8,
 };
 
 pub const KERB_TICKET_LOGON = extern struct {
@@ -1880,8 +1880,8 @@ pub const KERB_TICKET_LOGON = extern struct {
     Flags: u32,
     ServiceTicketLength: u32,
     TicketGrantingTicketLength: u32,
-    ServiceTicket: *u8,
-    TicketGrantingTicket: *u8,
+    ServiceTicket: ?*u8,
+    TicketGrantingTicket: ?*u8,
 };
 
 pub const KERB_TICKET_UNLOCK_LOGON = extern struct {
@@ -1927,13 +1927,13 @@ pub const KERB_INTERACTIVE_PROFILE = extern struct {
 pub const KERB_SMART_CARD_PROFILE = extern struct {
     Profile: KERB_INTERACTIVE_PROFILE,
     CertificateSize: u32,
-    CertificateData: *u8,
+    CertificateData: ?*u8,
 };
 
 pub const KERB_CRYPTO_KEY = extern struct {
     KeyType: KERB_CRYPTO_KEY_TYPE,
     Length: u32,
-    Value: *u8,
+    Value: ?*u8,
 };
 
 pub const KERB_CRYPTO_KEY32 = extern struct {
@@ -2104,13 +2104,13 @@ pub const KERB_QUERY_TKT_CACHE_EX3_RESPONSE = extern struct {
 pub const KERB_AUTH_DATA = extern struct {
     Type: u32,
     Length: u32,
-    Data: *u8,
+    Data: ?*u8,
 };
 
 pub const KERB_NET_ADDRESS = extern struct {
     Family: u32,
     Length: u32,
-    Address: [*]u8,
+    Address: ?[*]u8,
 };
 
 pub const KERB_NET_ADDRESSES = extern struct {
@@ -2125,9 +2125,9 @@ pub const KERB_EXTERNAL_NAME = extern struct {
 };
 
 pub const KERB_EXTERNAL_TICKET = extern struct {
-    ServiceName: *KERB_EXTERNAL_NAME,
-    TargetName: *KERB_EXTERNAL_NAME,
-    ClientName: *KERB_EXTERNAL_NAME,
+    ServiceName: ?*KERB_EXTERNAL_NAME,
+    TargetName: ?*KERB_EXTERNAL_NAME,
+    ClientName: ?*KERB_EXTERNAL_NAME,
     DomainName: UNICODE_STRING,
     TargetDomainName: UNICODE_STRING,
     AltTargetDomainName: UNICODE_STRING,
@@ -2140,7 +2140,7 @@ pub const KERB_EXTERNAL_TICKET = extern struct {
     RenewUntil: LARGE_INTEGER,
     TimeSkew: LARGE_INTEGER,
     EncodedTicketSize: u32,
-    EncodedTicket: *u8,
+    EncodedTicket: ?*u8,
 };
 
 pub const KERB_RETRIEVE_TKT_REQUEST = extern struct {
@@ -2201,7 +2201,7 @@ pub const KDC_PROXY_CACHE_ENTRY_DATA = extern struct {
 pub const KERB_QUERY_KDC_PROXY_CACHE_RESPONSE = extern struct {
     MessageType: KERB_PROTOCOL_MESSAGE_TYPE,
     CountOfEntries: u32,
-    Entries: *KDC_PROXY_CACHE_ENTRY_DATA,
+    Entries: ?*KDC_PROXY_CACHE_ENTRY_DATA,
 };
 
 pub const KERB_PURGE_KDC_PROXY_CACHE_REQUEST = extern struct {
@@ -2229,7 +2229,7 @@ pub const KERB_S4U2PROXY_CRED = extern struct {
     LastStatus: NTSTATUS,
     Expiry: LARGE_INTEGER,
     CountOfEntries: u32,
-    Entries: *KERB_S4U2PROXY_CACHE_ENTRY_INFO,
+    Entries: ?*KERB_S4U2PROXY_CACHE_ENTRY_INFO,
 };
 
 pub const KERB_QUERY_S4U2PROXY_CACHE_REQUEST = extern struct {
@@ -2241,7 +2241,7 @@ pub const KERB_QUERY_S4U2PROXY_CACHE_REQUEST = extern struct {
 pub const KERB_QUERY_S4U2PROXY_CACHE_RESPONSE = extern struct {
     MessageType: KERB_PROTOCOL_MESSAGE_TYPE,
     CountOfCreds: u32,
-    Creds: *KERB_S4U2PROXY_CRED,
+    Creds: ?*KERB_S4U2PROXY_CRED,
 };
 
 pub const KERB_RETRIEVE_KEY_TAB_REQUEST = extern struct {
@@ -2255,7 +2255,7 @@ pub const KERB_RETRIEVE_KEY_TAB_REQUEST = extern struct {
 pub const KERB_RETRIEVE_KEY_TAB_RESPONSE = extern struct {
     MessageType: KERB_PROTOCOL_MESSAGE_TYPE,
     KeyTabLength: u32,
-    KeyTab: *u8,
+    KeyTab: ?*u8,
 };
 
 pub const KERB_CHANGEPASSWORD_REQUEST = extern struct {
@@ -2301,8 +2301,8 @@ pub const KERB_DECRYPT_REQUEST = extern struct {
     Key: KERB_CRYPTO_KEY,
     EncryptedDataSize: u32,
     InitialVectorSize: u32,
-    InitialVector: *u8,
-    EncryptedData: *u8,
+    InitialVector: ?*u8,
+    EncryptedData: ?*u8,
 };
 
 pub const KERB_DECRYPT_RESPONSE = extern struct {
@@ -2364,7 +2364,7 @@ pub const KERB_BINDING_CACHE_ENTRY_DATA = extern struct {
 pub const KERB_QUERY_BINDING_CACHE_RESPONSE = extern struct {
     MessageType: KERB_PROTOCOL_MESSAGE_TYPE,
     CountOfEntries: u32,
-    Entries: *KERB_BINDING_CACHE_ENTRY_DATA,
+    Entries: ?*KERB_BINDING_CACHE_ENTRY_DATA,
 };
 
 pub const KERB_ADD_BINDING_CACHE_ENTRY_EX_REQUEST = extern struct {
@@ -2413,7 +2413,7 @@ pub const KERB_CERTIFICATE_INFO = extern struct {
 
 pub const POLICY_AUDIT_SID_ARRAY = extern struct {
     UsersCount: u32,
-    UserSidArray: *PSID,
+    UserSidArray: ?*?PSID,
 };
 
 pub const AUDIT_POLICY_INFORMATION = extern struct {
@@ -2446,7 +2446,7 @@ pub const PKU2U_CERTIFICATE_S4U_LOGON = extern struct {
     UserPrincipalName: UNICODE_STRING,
     DomainName: UNICODE_STRING,
     CertificateLength: u32,
-    Certificate: *u8,
+    Certificate: ?*u8,
 };
 
 pub const SecPkgInfoW = extern struct {
@@ -2454,8 +2454,8 @@ pub const SecPkgInfoW = extern struct {
     wVersion: u16,
     wRPCID: u16,
     cbMaxToken: u32,
-    Name: *u16,
-    Comment: *u16,
+    Name: ?*u16,
+    Comment: ?*u16,
 };
 
 pub const SecPkgInfoA = extern struct {
@@ -2463,27 +2463,27 @@ pub const SecPkgInfoA = extern struct {
     wVersion: u16,
     wRPCID: u16,
     cbMaxToken: u32,
-    Name: *i8,
-    Comment: *i8,
+    Name: ?*i8,
+    Comment: ?*i8,
 };
 
 pub const SecBuffer = extern struct {
     cbBuffer: u32,
     BufferType: u32,
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
 };
 
 pub const SecBufferDesc = extern struct {
     ulVersion: u32,
     cBuffers: u32,
-    pBuffers: *SecBuffer,
+    pBuffers: ?*SecBuffer,
 };
 
 pub const SEC_NEGOTIATION_INFO = extern struct {
     Size: u32,
     NameLength: u32,
-    Name: *u16,
-    Reserved: *c_void,
+    Name: ?*u16,
+    Reserved: ?*c_void,
 };
 
 pub const SEC_CHANNEL_BINDINGS = extern struct {
@@ -2575,23 +2575,23 @@ pub const SEC_TRAFFIC_SECRETS = extern struct {
 };
 
 pub const SecPkgCredentials_NamesW = extern struct {
-    sUserName: *u16,
+    sUserName: ?*u16,
 };
 
 pub const SecPkgCredentials_NamesA = extern struct {
-    sUserName: *i8,
+    sUserName: ?*i8,
 };
 
 pub const SecPkgCredentials_SSIProviderW = extern struct {
-    sProviderName: *u16,
+    sProviderName: ?*u16,
     ProviderInfoLength: u32,
-    ProviderInfo: PSTR,
+    ProviderInfo: ?PSTR,
 };
 
 pub const SecPkgCredentials_SSIProviderA = extern struct {
-    sProviderName: *i8,
+    sProviderName: ?*i8,
     ProviderInfoLength: u32,
-    ProviderInfo: PSTR,
+    ProviderInfo: ?PSTR,
 };
 
 pub const SecPkgCredentials_KdcProxySettingsW = extern struct {
@@ -2605,11 +2605,11 @@ pub const SecPkgCredentials_KdcProxySettingsW = extern struct {
 
 pub const SecPkgCredentials_Cert = extern struct {
     EncodedCertSize: u32,
-    EncodedCert: *u8,
+    EncodedCert: ?*u8,
 };
 
 pub const SecPkgContext_SubjectAttributes = extern struct {
-    AttributeInfo: *c_void,
+    AttributeInfo: ?*c_void,
 };
 
 pub const SECPKG_CRED_CLASS = enum(i32) {
@@ -2654,7 +2654,7 @@ pub const SecPkgContext_StreamSizes = extern struct {
 };
 
 pub const SecPkgContext_NamesW = extern struct {
-    sUserName: *u16,
+    sUserName: ?*u16,
 };
 
 pub const SECPKG_ATTR_LCT_STATUS = enum(i32) {
@@ -2671,7 +2671,7 @@ pub const SecPkgContext_LastClientTokenStatus = extern struct {
 };
 
 pub const SecPkgContext_NamesA = extern struct {
-    sUserName: *i8,
+    sUserName: ?*i8,
 };
 
 pub const SecPkgContext_Lifespan = extern struct {
@@ -2681,41 +2681,41 @@ pub const SecPkgContext_Lifespan = extern struct {
 
 pub const SecPkgContext_DceInfo = extern struct {
     AuthzSvc: u32,
-    pPac: *c_void,
+    pPac: ?*c_void,
 };
 
 pub const SecPkgContext_KeyInfoA = extern struct {
-    sSignatureAlgorithmName: *i8,
-    sEncryptAlgorithmName: *i8,
+    sSignatureAlgorithmName: ?*i8,
+    sEncryptAlgorithmName: ?*i8,
     KeySize: u32,
     SignatureAlgorithm: u32,
     EncryptAlgorithm: u32,
 };
 
 pub const SecPkgContext_KeyInfoW = extern struct {
-    sSignatureAlgorithmName: *u16,
-    sEncryptAlgorithmName: *u16,
+    sSignatureAlgorithmName: ?*u16,
+    sEncryptAlgorithmName: ?*u16,
     KeySize: u32,
     SignatureAlgorithm: u32,
     EncryptAlgorithm: u32,
 };
 
 pub const SecPkgContext_AuthorityA = extern struct {
-    sAuthorityName: *i8,
+    sAuthorityName: ?*i8,
 };
 
 pub const SecPkgContext_AuthorityW = extern struct {
-    sAuthorityName: *u16,
+    sAuthorityName: ?*u16,
 };
 
 pub const SecPkgContext_ProtoInfoA = extern struct {
-    sProtocolName: *i8,
+    sProtocolName: ?*i8,
     majorVersion: u32,
     minorVersion: u32,
 };
 
 pub const SecPkgContext_ProtoInfoW = extern struct {
-    sProtocolName: *u16,
+    sProtocolName: ?*u16,
     majorVersion: u32,
     minorVersion: u32,
 };
@@ -2730,24 +2730,24 @@ pub const SecPkgContext_LogoffTime = extern struct {
 
 pub const SecPkgContext_SessionKey = extern struct {
     SessionKeyLength: u32,
-    SessionKey: *u8,
+    SessionKey: ?*u8,
 };
 
 pub const SecPkgContext_NegoKeys = extern struct {
     KeyType: u32,
     KeyLength: u16,
-    KeyValue: *u8,
+    KeyValue: ?*u8,
     VerifyKeyType: u32,
     VerifyKeyLength: u16,
-    VerifyKeyValue: *u8,
+    VerifyKeyValue: ?*u8,
 };
 
 pub const SecPkgContext_PackageInfoW = extern struct {
-    PackageInfo: *SecPkgInfoW,
+    PackageInfo: ?*SecPkgInfoW,
 };
 
 pub const SecPkgContext_PackageInfoA = extern struct {
-    PackageInfo: *SecPkgInfoA,
+    PackageInfo: ?*SecPkgInfoA,
 };
 
 pub const SecPkgContext_UserFlags = extern struct {
@@ -2759,61 +2759,61 @@ pub const SecPkgContext_Flags = extern struct {
 };
 
 pub const SecPkgContext_NegotiationInfoA = extern struct {
-    PackageInfo: *SecPkgInfoA,
+    PackageInfo: ?*SecPkgInfoA,
     NegotiationState: u32,
 };
 
 pub const SecPkgContext_NegotiationInfoW = extern struct {
-    PackageInfo: *SecPkgInfoW,
+    PackageInfo: ?*SecPkgInfoW,
     NegotiationState: u32,
 };
 
 pub const SecPkgContext_NativeNamesW = extern struct {
-    sClientName: *u16,
-    sServerName: *u16,
+    sClientName: ?*u16,
+    sServerName: ?*u16,
 };
 
 pub const SecPkgContext_NativeNamesA = extern struct {
-    sClientName: *i8,
-    sServerName: *i8,
+    sClientName: ?*i8,
+    sServerName: ?*i8,
 };
 
 pub const SecPkgContext_CredentialNameW = extern struct {
     CredentialType: u32,
-    sCredentialName: *u16,
+    sCredentialName: ?*u16,
 };
 
 pub const SecPkgContext_CredentialNameA = extern struct {
     CredentialType: u32,
-    sCredentialName: *i8,
+    sCredentialName: ?*i8,
 };
 
 pub const SecPkgContext_AccessToken = extern struct {
-    AccessToken: *c_void,
+    AccessToken: ?*c_void,
 };
 
 pub const SecPkgContext_TargetInformation = extern struct {
     MarshalledTargetInfoLength: u32,
-    MarshalledTargetInfo: *u8,
+    MarshalledTargetInfo: ?*u8,
 };
 
 pub const SecPkgContext_AuthzID = extern struct {
     AuthzIDLength: u32,
-    AuthzID: PSTR,
+    AuthzID: ?PSTR,
 };
 
 pub const SecPkgContext_Target = extern struct {
     TargetLength: u32,
-    Target: PSTR,
+    Target: ?PSTR,
 };
 
 pub const SecPkgContext_ClientSpecifiedTarget = extern struct {
-    sTargetName: *u16,
+    sTargetName: ?*u16,
 };
 
 pub const SecPkgContext_Bindings = extern struct {
     BindingsLength: u32,
-    Bindings: *SEC_CHANNEL_BINDINGS,
+    Bindings: ?*SEC_CHANNEL_BINDINGS,
 };
 
 pub const SEC_APPLICATION_PROTOCOL_NEGOTIATION_STATUS = enum(i32) {
@@ -2834,7 +2834,7 @@ pub const SecPkgContext_ApplicationProtocol = extern struct {
 
 pub const SecPkgContext_NegotiatedTlsExtensions = extern struct {
     ExtensionsCount: u32,
-    Extensions: *u16,
+    Extensions: ?*u16,
 };
 
 pub const SECPKG_APP_MODE_INFO = extern struct {
@@ -2846,284 +2846,284 @@ pub const SECPKG_APP_MODE_INFO = extern struct {
 };
 
 pub const SEC_GET_KEY_FN = fn(
-    Arg: *c_void,
-    Principal: *c_void,
+    Arg: ?*c_void,
+    Principal: ?*c_void,
     KeyVer: u32,
-    Key: **c_void,
-    Status: *i32,
+    Key: ?*?*c_void,
+    Status: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = fn(
-    param0: *u16,
-    param1: *u16,
+    param0: ?*u16,
+    param1: ?*u16,
     param2: u32,
-    param3: *c_void,
-    param4: *c_void,
-    param5: SEC_GET_KEY_FN,
-    param6: *c_void,
-    param7: *SecHandle,
-    param8: *LARGE_INTEGER,
+    param3: ?*c_void,
+    param4: ?*c_void,
+    param5: ?SEC_GET_KEY_FN,
+    param6: ?*c_void,
+    param7: ?*SecHandle,
+    param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = fn(
-    param0: *i8,
-    param1: *i8,
+    param0: ?*i8,
+    param1: ?*i8,
     param2: u32,
-    param3: *c_void,
-    param4: *c_void,
-    param5: SEC_GET_KEY_FN,
-    param6: *c_void,
-    param7: *SecHandle,
-    param8: *LARGE_INTEGER,
+    param3: ?*c_void,
+    param4: ?*c_void,
+    param5: ?SEC_GET_KEY_FN,
+    param6: ?*c_void,
+    param7: ?*SecHandle,
+    param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const FREE_CREDENTIALS_HANDLE_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ADD_CREDENTIALS_FN_W = fn(
-    param0: *SecHandle,
-    param1: *u16,
-    param2: *u16,
+    param0: ?*SecHandle,
+    param1: ?*u16,
+    param2: ?*u16,
     param3: u32,
-    param4: *c_void,
-    param5: SEC_GET_KEY_FN,
-    param6: *c_void,
-    param7: *LARGE_INTEGER,
+    param4: ?*c_void,
+    param5: ?SEC_GET_KEY_FN,
+    param6: ?*c_void,
+    param7: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ADD_CREDENTIALS_FN_A = fn(
-    param0: *SecHandle,
-    param1: *i8,
-    param2: *i8,
+    param0: ?*SecHandle,
+    param1: ?*i8,
+    param2: ?*i8,
     param3: u32,
-    param4: *c_void,
-    param5: SEC_GET_KEY_FN,
-    param6: *c_void,
-    param7: *LARGE_INTEGER,
+    param4: ?*c_void,
+    param5: ?SEC_GET_KEY_FN,
+    param6: ?*c_void,
+    param7: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const CHANGE_PASSWORD_FN_W = fn(
-    param0: *u16,
-    param1: *u16,
-    param2: *u16,
-    param3: *u16,
-    param4: *u16,
+    param0: ?*u16,
+    param1: ?*u16,
+    param2: ?*u16,
+    param3: ?*u16,
+    param4: ?*u16,
     param5: u8,
     param6: u32,
-    param7: *SecBufferDesc,
+    param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const CHANGE_PASSWORD_FN_A = fn(
-    param0: *i8,
-    param1: *i8,
-    param2: *i8,
-    param3: *i8,
-    param4: *i8,
+    param0: ?*i8,
+    param1: ?*i8,
+    param2: ?*i8,
+    param3: ?*i8,
+    param4: ?*i8,
     param5: u8,
     param6: u32,
-    param7: *SecBufferDesc,
+    param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const INITIALIZE_SECURITY_CONTEXT_FN_W = fn(
-    param0: *SecHandle,
-    param1: *SecHandle,
-    param2: *u16,
+    param0: ?*SecHandle,
+    param1: ?*SecHandle,
+    param2: ?*u16,
     param3: u32,
     param4: u32,
     param5: u32,
-    param6: *SecBufferDesc,
+    param6: ?*SecBufferDesc,
     param7: u32,
-    param8: *SecHandle,
-    param9: *SecBufferDesc,
-    param10: *u32,
-    param11: *LARGE_INTEGER,
+    param8: ?*SecHandle,
+    param9: ?*SecBufferDesc,
+    param10: ?*u32,
+    param11: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const INITIALIZE_SECURITY_CONTEXT_FN_A = fn(
-    param0: *SecHandle,
-    param1: *SecHandle,
-    param2: *i8,
+    param0: ?*SecHandle,
+    param1: ?*SecHandle,
+    param2: ?*i8,
     param3: u32,
     param4: u32,
     param5: u32,
-    param6: *SecBufferDesc,
+    param6: ?*SecBufferDesc,
     param7: u32,
-    param8: *SecHandle,
-    param9: *SecBufferDesc,
-    param10: *u32,
-    param11: *LARGE_INTEGER,
+    param8: ?*SecHandle,
+    param9: ?*SecBufferDesc,
+    param10: ?*u32,
+    param11: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ACCEPT_SECURITY_CONTEXT_FN = fn(
-    param0: *SecHandle,
-    param1: *SecHandle,
-    param2: *SecBufferDesc,
+    param0: ?*SecHandle,
+    param1: ?*SecHandle,
+    param2: ?*SecBufferDesc,
     param3: u32,
     param4: u32,
-    param5: *SecHandle,
-    param6: *SecBufferDesc,
-    param7: *u32,
-    param8: *LARGE_INTEGER,
+    param5: ?*SecHandle,
+    param6: ?*SecBufferDesc,
+    param7: ?*u32,
+    param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const COMPLETE_AUTH_TOKEN_FN = fn(
-    param0: *SecHandle,
-    param1: *SecBufferDesc,
+    param0: ?*SecHandle,
+    param1: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IMPERSONATE_SECURITY_CONTEXT_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const REVERT_SECURITY_CONTEXT_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_SECURITY_CONTEXT_TOKEN_FN = fn(
-    param0: *SecHandle,
-    param1: **c_void,
+    param0: ?*SecHandle,
+    param1: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DELETE_SECURITY_CONTEXT_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const APPLY_CONTROL_TOKEN_FN = fn(
-    param0: *SecHandle,
-    param1: *SecBufferDesc,
+    param0: ?*SecHandle,
+    param1: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SET_CONTEXT_ATTRIBUTES_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SET_CONTEXT_ATTRIBUTES_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SET_CREDENTIALS_ATTRIBUTES_FN_W = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SET_CREDENTIALS_ATTRIBUTES_FN_A = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const FREE_CONTEXT_BUFFER_FN = fn(
-    param0: *c_void,
+    param0: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const MAKE_SIGNATURE_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *SecBufferDesc,
+    param2: ?*SecBufferDesc,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VERIFY_SIGNATURE_FN = fn(
-    param0: *SecHandle,
-    param1: *SecBufferDesc,
+    param0: ?*SecHandle,
+    param1: ?*SecBufferDesc,
     param2: u32,
-    param3: *u32,
+    param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENCRYPT_MESSAGE_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *SecBufferDesc,
+    param2: ?*SecBufferDesc,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DECRYPT_MESSAGE_FN = fn(
-    param0: *SecHandle,
-    param1: *SecBufferDesc,
+    param0: ?*SecHandle,
+    param1: ?*SecBufferDesc,
     param2: u32,
-    param3: *u32,
+    param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENUMERATE_SECURITY_PACKAGES_FN_W = fn(
-    param0: *u32,
-    param1: **SecPkgInfoW,
+    param0: ?*u32,
+    param1: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENUMERATE_SECURITY_PACKAGES_FN_A = fn(
-    param0: *u32,
-    param1: **SecPkgInfoA,
+    param0: ?*u32,
+    param1: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_SECURITY_PACKAGE_INFO_FN_W = fn(
-    param0: *u16,
-    param1: **SecPkgInfoW,
+    param0: ?*u16,
+    param1: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const QUERY_SECURITY_PACKAGE_INFO_FN_A = fn(
-    param0: *i8,
-    param1: **SecPkgInfoA,
+    param0: ?*i8,
+    param1: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SecDelegationType = enum(i32) {
@@ -3140,101 +3140,101 @@ pub const SecDirectory = SecDelegationType.Directory;
 pub const SecObject = SecDelegationType.Object;
 
 pub const EXPORT_SECURITY_CONTEXT_FN = fn(
-    param0: *SecHandle,
+    param0: ?*SecHandle,
     param1: u32,
-    param2: *SecBuffer,
-    param3: **c_void,
+    param2: ?*SecBuffer,
+    param3: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IMPORT_SECURITY_CONTEXT_FN_W = fn(
-    param0: *u16,
-    param1: *SecBuffer,
-    param2: *c_void,
-    param3: *SecHandle,
+    param0: ?*u16,
+    param1: ?*SecBuffer,
+    param2: ?*c_void,
+    param3: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IMPORT_SECURITY_CONTEXT_FN_A = fn(
-    param0: *i8,
-    param1: *SecBuffer,
-    param2: *c_void,
-    param3: *SecHandle,
+    param0: ?*i8,
+    param1: ?*SecBuffer,
+    param2: ?*c_void,
+    param3: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SecurityFunctionTableW = extern struct {
     dwVersion: u32,
-    EnumerateSecurityPackagesW: ENUMERATE_SECURITY_PACKAGES_FN_W,
-    QueryCredentialsAttributesW: QUERY_CREDENTIALS_ATTRIBUTES_FN_W,
-    AcquireCredentialsHandleW: ACQUIRE_CREDENTIALS_HANDLE_FN_W,
-    FreeCredentialsHandle: FREE_CREDENTIALS_HANDLE_FN,
-    Reserved2: *c_void,
-    InitializeSecurityContextW: INITIALIZE_SECURITY_CONTEXT_FN_W,
-    AcceptSecurityContext: ACCEPT_SECURITY_CONTEXT_FN,
-    CompleteAuthToken: COMPLETE_AUTH_TOKEN_FN,
-    DeleteSecurityContext: DELETE_SECURITY_CONTEXT_FN,
-    ApplyControlToken: APPLY_CONTROL_TOKEN_FN,
-    QueryContextAttributesW: QUERY_CONTEXT_ATTRIBUTES_FN_W,
-    ImpersonateSecurityContext: IMPERSONATE_SECURITY_CONTEXT_FN,
-    RevertSecurityContext: REVERT_SECURITY_CONTEXT_FN,
-    MakeSignature: MAKE_SIGNATURE_FN,
-    VerifySignature: VERIFY_SIGNATURE_FN,
-    FreeContextBuffer: FREE_CONTEXT_BUFFER_FN,
-    QuerySecurityPackageInfoW: QUERY_SECURITY_PACKAGE_INFO_FN_W,
-    Reserved3: *c_void,
-    Reserved4: *c_void,
-    ExportSecurityContext: EXPORT_SECURITY_CONTEXT_FN,
-    ImportSecurityContextW: IMPORT_SECURITY_CONTEXT_FN_W,
-    AddCredentialsW: ADD_CREDENTIALS_FN_W,
-    Reserved8: *c_void,
-    QuerySecurityContextToken: QUERY_SECURITY_CONTEXT_TOKEN_FN,
-    EncryptMessage: ENCRYPT_MESSAGE_FN,
-    DecryptMessage: DECRYPT_MESSAGE_FN,
-    SetContextAttributesW: SET_CONTEXT_ATTRIBUTES_FN_W,
-    SetCredentialsAttributesW: SET_CREDENTIALS_ATTRIBUTES_FN_W,
-    ChangeAccountPasswordW: CHANGE_PASSWORD_FN_W,
-    QueryContextAttributesExW: QUERY_CONTEXT_ATTRIBUTES_EX_FN_W,
-    QueryCredentialsAttributesExW: QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W,
+    EnumerateSecurityPackagesW: ?ENUMERATE_SECURITY_PACKAGES_FN_W,
+    QueryCredentialsAttributesW: ?QUERY_CREDENTIALS_ATTRIBUTES_FN_W,
+    AcquireCredentialsHandleW: ?ACQUIRE_CREDENTIALS_HANDLE_FN_W,
+    FreeCredentialsHandle: ?FREE_CREDENTIALS_HANDLE_FN,
+    Reserved2: ?*c_void,
+    InitializeSecurityContextW: ?INITIALIZE_SECURITY_CONTEXT_FN_W,
+    AcceptSecurityContext: ?ACCEPT_SECURITY_CONTEXT_FN,
+    CompleteAuthToken: ?COMPLETE_AUTH_TOKEN_FN,
+    DeleteSecurityContext: ?DELETE_SECURITY_CONTEXT_FN,
+    ApplyControlToken: ?APPLY_CONTROL_TOKEN_FN,
+    QueryContextAttributesW: ?QUERY_CONTEXT_ATTRIBUTES_FN_W,
+    ImpersonateSecurityContext: ?IMPERSONATE_SECURITY_CONTEXT_FN,
+    RevertSecurityContext: ?REVERT_SECURITY_CONTEXT_FN,
+    MakeSignature: ?MAKE_SIGNATURE_FN,
+    VerifySignature: ?VERIFY_SIGNATURE_FN,
+    FreeContextBuffer: ?FREE_CONTEXT_BUFFER_FN,
+    QuerySecurityPackageInfoW: ?QUERY_SECURITY_PACKAGE_INFO_FN_W,
+    Reserved3: ?*c_void,
+    Reserved4: ?*c_void,
+    ExportSecurityContext: ?EXPORT_SECURITY_CONTEXT_FN,
+    ImportSecurityContextW: ?IMPORT_SECURITY_CONTEXT_FN_W,
+    AddCredentialsW: ?ADD_CREDENTIALS_FN_W,
+    Reserved8: ?*c_void,
+    QuerySecurityContextToken: ?QUERY_SECURITY_CONTEXT_TOKEN_FN,
+    EncryptMessage: ?ENCRYPT_MESSAGE_FN,
+    DecryptMessage: ?DECRYPT_MESSAGE_FN,
+    SetContextAttributesW: ?SET_CONTEXT_ATTRIBUTES_FN_W,
+    SetCredentialsAttributesW: ?SET_CREDENTIALS_ATTRIBUTES_FN_W,
+    ChangeAccountPasswordW: ?CHANGE_PASSWORD_FN_W,
+    QueryContextAttributesExW: ?QUERY_CONTEXT_ATTRIBUTES_EX_FN_W,
+    QueryCredentialsAttributesExW: ?QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W,
 };
 
 pub const SecurityFunctionTableA = extern struct {
     dwVersion: u32,
-    EnumerateSecurityPackagesA: ENUMERATE_SECURITY_PACKAGES_FN_A,
-    QueryCredentialsAttributesA: QUERY_CREDENTIALS_ATTRIBUTES_FN_A,
-    AcquireCredentialsHandleA: ACQUIRE_CREDENTIALS_HANDLE_FN_A,
-    FreeCredentialsHandle: FREE_CREDENTIALS_HANDLE_FN,
-    Reserved2: *c_void,
-    InitializeSecurityContextA: INITIALIZE_SECURITY_CONTEXT_FN_A,
-    AcceptSecurityContext: ACCEPT_SECURITY_CONTEXT_FN,
-    CompleteAuthToken: COMPLETE_AUTH_TOKEN_FN,
-    DeleteSecurityContext: DELETE_SECURITY_CONTEXT_FN,
-    ApplyControlToken: APPLY_CONTROL_TOKEN_FN,
-    QueryContextAttributesA: QUERY_CONTEXT_ATTRIBUTES_FN_A,
-    ImpersonateSecurityContext: IMPERSONATE_SECURITY_CONTEXT_FN,
-    RevertSecurityContext: REVERT_SECURITY_CONTEXT_FN,
-    MakeSignature: MAKE_SIGNATURE_FN,
-    VerifySignature: VERIFY_SIGNATURE_FN,
-    FreeContextBuffer: FREE_CONTEXT_BUFFER_FN,
-    QuerySecurityPackageInfoA: QUERY_SECURITY_PACKAGE_INFO_FN_A,
-    Reserved3: *c_void,
-    Reserved4: *c_void,
-    ExportSecurityContext: EXPORT_SECURITY_CONTEXT_FN,
-    ImportSecurityContextA: IMPORT_SECURITY_CONTEXT_FN_A,
-    AddCredentialsA: ADD_CREDENTIALS_FN_A,
-    Reserved8: *c_void,
-    QuerySecurityContextToken: QUERY_SECURITY_CONTEXT_TOKEN_FN,
-    EncryptMessage: ENCRYPT_MESSAGE_FN,
-    DecryptMessage: DECRYPT_MESSAGE_FN,
-    SetContextAttributesA: SET_CONTEXT_ATTRIBUTES_FN_A,
-    SetCredentialsAttributesA: SET_CREDENTIALS_ATTRIBUTES_FN_A,
-    ChangeAccountPasswordA: CHANGE_PASSWORD_FN_A,
-    QueryContextAttributesExA: QUERY_CONTEXT_ATTRIBUTES_EX_FN_A,
-    QueryCredentialsAttributesExA: QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A,
+    EnumerateSecurityPackagesA: ?ENUMERATE_SECURITY_PACKAGES_FN_A,
+    QueryCredentialsAttributesA: ?QUERY_CREDENTIALS_ATTRIBUTES_FN_A,
+    AcquireCredentialsHandleA: ?ACQUIRE_CREDENTIALS_HANDLE_FN_A,
+    FreeCredentialsHandle: ?FREE_CREDENTIALS_HANDLE_FN,
+    Reserved2: ?*c_void,
+    InitializeSecurityContextA: ?INITIALIZE_SECURITY_CONTEXT_FN_A,
+    AcceptSecurityContext: ?ACCEPT_SECURITY_CONTEXT_FN,
+    CompleteAuthToken: ?COMPLETE_AUTH_TOKEN_FN,
+    DeleteSecurityContext: ?DELETE_SECURITY_CONTEXT_FN,
+    ApplyControlToken: ?APPLY_CONTROL_TOKEN_FN,
+    QueryContextAttributesA: ?QUERY_CONTEXT_ATTRIBUTES_FN_A,
+    ImpersonateSecurityContext: ?IMPERSONATE_SECURITY_CONTEXT_FN,
+    RevertSecurityContext: ?REVERT_SECURITY_CONTEXT_FN,
+    MakeSignature: ?MAKE_SIGNATURE_FN,
+    VerifySignature: ?VERIFY_SIGNATURE_FN,
+    FreeContextBuffer: ?FREE_CONTEXT_BUFFER_FN,
+    QuerySecurityPackageInfoA: ?QUERY_SECURITY_PACKAGE_INFO_FN_A,
+    Reserved3: ?*c_void,
+    Reserved4: ?*c_void,
+    ExportSecurityContext: ?EXPORT_SECURITY_CONTEXT_FN,
+    ImportSecurityContextA: ?IMPORT_SECURITY_CONTEXT_FN_A,
+    AddCredentialsA: ?ADD_CREDENTIALS_FN_A,
+    Reserved8: ?*c_void,
+    QuerySecurityContextToken: ?QUERY_SECURITY_CONTEXT_TOKEN_FN,
+    EncryptMessage: ?ENCRYPT_MESSAGE_FN,
+    DecryptMessage: ?DECRYPT_MESSAGE_FN,
+    SetContextAttributesA: ?SET_CONTEXT_ATTRIBUTES_FN_A,
+    SetCredentialsAttributesA: ?SET_CREDENTIALS_ATTRIBUTES_FN_A,
+    ChangeAccountPasswordA: ?CHANGE_PASSWORD_FN_A,
+    QueryContextAttributesExA: ?QUERY_CONTEXT_ATTRIBUTES_EX_FN_A,
+    QueryCredentialsAttributesExA: ?QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A,
 };
 
 pub const INIT_SECURITY_INTERFACE_A = fn(
-) callconv(@import("std").os.windows.WINAPI) *SecurityFunctionTableA;
+) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
 
 pub const INIT_SECURITY_INTERFACE_W = fn(
-) callconv(@import("std").os.windows.WINAPI) *SecurityFunctionTableW;
+) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
 
 pub const SASL_AUTHZID_STATE = enum(i32) {
     Forbidden = 0,
@@ -3261,28 +3261,28 @@ pub const SEC_WINNT_AUTH_IDENTITY_EX2 = extern struct {
 pub const SEC_WINNT_AUTH_IDENTITY_EXW = extern struct {
     Version: u32,
     Length: u32,
-    User: *u16,
+    User: ?*u16,
     UserLength: u32,
-    Domain: *u16,
+    Domain: ?*u16,
     DomainLength: u32,
-    Password: *u16,
+    Password: ?*u16,
     PasswordLength: u32,
     Flags: u32,
-    PackageList: *u16,
+    PackageList: ?*u16,
     PackageListLength: u32,
 };
 
 pub const SEC_WINNT_AUTH_IDENTITY_EXA = extern struct {
     Version: u32,
     Length: u32,
-    User: *u8,
+    User: ?*u8,
     UserLength: u32,
-    Domain: *u8,
+    Domain: ?*u8,
     DomainLength: u32,
-    Password: *u8,
+    Password: ?*u8,
     PasswordLength: u32,
     Flags: u32,
-    PackageList: *u8,
+    PackageList: ?*u8,
     PackageListLength: u32,
 };
 
@@ -3299,7 +3299,7 @@ pub const SECURITY_PACKAGE_OPTIONS = extern struct {
     Type: SECURITY_PACKAGE_OPTIONS_TYPE,
     Flags: u32,
     SignatureSize: u32,
-    Signature: *c_void,
+    Signature: ?*c_void,
 };
 
 pub const LSA_TOKEN_INFORMATION_TYPE = enum(i32) {
@@ -3315,15 +3315,15 @@ pub const LsaTokenInformationV3 = LSA_TOKEN_INFORMATION_TYPE.V3;
 
 pub const LSA_TOKEN_INFORMATION_NULL = extern struct {
     ExpirationTime: LARGE_INTEGER,
-    Groups: *TOKEN_GROUPS,
+    Groups: ?*TOKEN_GROUPS,
 };
 
 pub const LSA_TOKEN_INFORMATION_V1 = extern struct {
     ExpirationTime: LARGE_INTEGER,
     User: TOKEN_USER,
-    Groups: *TOKEN_GROUPS,
+    Groups: ?*TOKEN_GROUPS,
     PrimaryGroup: TOKEN_PRIMARY_GROUP,
-    Privileges: *TOKEN_PRIVILEGES,
+    Privileges: ?*TOKEN_PRIVILEGES,
     Owner: TOKEN_OWNER,
     DefaultDacl: TOKEN_DEFAULT_DACL,
 };
@@ -3331,215 +3331,215 @@ pub const LSA_TOKEN_INFORMATION_V1 = extern struct {
 pub const LSA_TOKEN_INFORMATION_V3 = extern struct {
     ExpirationTime: LARGE_INTEGER,
     User: TOKEN_USER,
-    Groups: *TOKEN_GROUPS,
+    Groups: ?*TOKEN_GROUPS,
     PrimaryGroup: TOKEN_PRIMARY_GROUP,
-    Privileges: *TOKEN_PRIVILEGES,
+    Privileges: ?*TOKEN_PRIVILEGES,
     Owner: TOKEN_OWNER,
     DefaultDacl: TOKEN_DEFAULT_DACL,
     UserClaims: TOKEN_USER_CLAIMS,
     DeviceClaims: TOKEN_DEVICE_CLAIMS,
-    DeviceGroups: *TOKEN_GROUPS,
+    DeviceGroups: ?*TOKEN_GROUPS,
 };
 
 pub const PLSA_CREATE_LOGON_SESSION = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_DELETE_LOGON_SESSION = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_ADD_CREDENTIAL = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     AuthenticationPackage: u32,
-    PrimaryKeyValue: *STRING,
-    Credentials: *STRING,
+    PrimaryKeyValue: ?*STRING,
+    Credentials: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_CREDENTIALS = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     AuthenticationPackage: u32,
-    QueryContext: *u32,
+    QueryContext: ?*u32,
     RetrieveAllCredentials: u8,
-    PrimaryKeyValue: *STRING,
-    PrimaryKeyLength: *u32,
-    Credentials: *STRING,
+    PrimaryKeyValue: ?*STRING,
+    PrimaryKeyLength: ?*u32,
+    Credentials: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_DELETE_CREDENTIAL = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     AuthenticationPackage: u32,
-    PrimaryKeyValue: *STRING,
+    PrimaryKeyValue: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_ALLOCATE_LSA_HEAP = fn(
     Length: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PLSA_FREE_LSA_HEAP = fn(
-    Base: *c_void,
+    Base: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_ALLOCATE_PRIVATE_HEAP = fn(
     Length: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PLSA_FREE_PRIVATE_HEAP = fn(
-    Base: *c_void,
+    Base: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_ALLOCATE_CLIENT_BUFFER = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LengthRequired: u32,
-    ClientBaseAddress: **c_void,
+    ClientBaseAddress: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_FREE_CLIENT_BUFFER = fn(
-    ClientRequest: **c_void,
-    ClientBaseAddress: *c_void,
+    ClientRequest: ?*?*c_void,
+    ClientBaseAddress: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_COPY_TO_CLIENT_BUFFER = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     Length: u32,
     // TODO: what to do with BytesParamIndex 1?
-    ClientBaseAddress: *c_void,
+    ClientBaseAddress: ?*c_void,
     // TODO: what to do with BytesParamIndex 1?
-    BufferToCopy: *c_void,
+    BufferToCopy: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_COPY_FROM_CLIENT_BUFFER = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     Length: u32,
     // TODO: what to do with BytesParamIndex 1?
-    BufferToCopy: *c_void,
+    BufferToCopy: ?*c_void,
     // TODO: what to do with BytesParamIndex 1?
-    ClientBaseAddress: *c_void,
+    ClientBaseAddress: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const LSA_DISPATCH_TABLE = extern struct {
-    CreateLogonSession: PLSA_CREATE_LOGON_SESSION,
-    DeleteLogonSession: PLSA_DELETE_LOGON_SESSION,
-    AddCredential: PLSA_ADD_CREDENTIAL,
-    GetCredentials: PLSA_GET_CREDENTIALS,
-    DeleteCredential: PLSA_DELETE_CREDENTIAL,
-    AllocateLsaHeap: PLSA_ALLOCATE_LSA_HEAP,
-    FreeLsaHeap: PLSA_FREE_LSA_HEAP,
-    AllocateClientBuffer: PLSA_ALLOCATE_CLIENT_BUFFER,
-    FreeClientBuffer: PLSA_FREE_CLIENT_BUFFER,
-    CopyToClientBuffer: PLSA_COPY_TO_CLIENT_BUFFER,
-    CopyFromClientBuffer: PLSA_COPY_FROM_CLIENT_BUFFER,
+    CreateLogonSession: ?PLSA_CREATE_LOGON_SESSION,
+    DeleteLogonSession: ?PLSA_DELETE_LOGON_SESSION,
+    AddCredential: ?PLSA_ADD_CREDENTIAL,
+    GetCredentials: ?PLSA_GET_CREDENTIALS,
+    DeleteCredential: ?PLSA_DELETE_CREDENTIAL,
+    AllocateLsaHeap: ?PLSA_ALLOCATE_LSA_HEAP,
+    FreeLsaHeap: ?PLSA_FREE_LSA_HEAP,
+    AllocateClientBuffer: ?PLSA_ALLOCATE_CLIENT_BUFFER,
+    FreeClientBuffer: ?PLSA_FREE_CLIENT_BUFFER,
+    CopyToClientBuffer: ?PLSA_COPY_TO_CLIENT_BUFFER,
+    CopyFromClientBuffer: ?PLSA_COPY_FROM_CLIENT_BUFFER,
 };
 
 pub const PLSA_AP_INITIALIZE_PACKAGE = fn(
     AuthenticationPackageId: u32,
-    LsaDispatchTable: *LSA_DISPATCH_TABLE,
+    LsaDispatchTable: ?*LSA_DISPATCH_TABLE,
     Database: ?*STRING,
     Confidentiality: ?*STRING,
-    AuthenticationPackageName: **STRING,
+    AuthenticationPackageName: ?*?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_LOGON_USER = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    AuthenticationInformation: *c_void,
-    ClientAuthenticationBase: *c_void,
+    AuthenticationInformation: ?*c_void,
+    ClientAuthenticationBase: ?*c_void,
     AuthenticationInformationLength: u32,
-    ProfileBuffer: **c_void,
-    ProfileBufferLength: *u32,
-    LogonId: *LUID,
-    SubStatus: *i32,
-    TokenInformationType: *LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: **c_void,
-    AccountName: **UNICODE_STRING,
-    AuthenticatingAuthority: **UNICODE_STRING,
+    ProfileBuffer: ?*?*c_void,
+    ProfileBufferLength: ?*u32,
+    LogonId: ?*LUID,
+    SubStatus: ?*i32,
+    TokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
+    TokenInformation: ?*?*c_void,
+    AccountName: ?*?*UNICODE_STRING,
+    AuthenticatingAuthority: ?*?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_LOGON_USER_EX = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    AuthenticationInformation: *c_void,
-    ClientAuthenticationBase: *c_void,
+    AuthenticationInformation: ?*c_void,
+    ClientAuthenticationBase: ?*c_void,
     AuthenticationInformationLength: u32,
-    ProfileBuffer: **c_void,
-    ProfileBufferLength: *u32,
-    LogonId: *LUID,
-    SubStatus: *i32,
-    TokenInformationType: *LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: **c_void,
-    AccountName: **UNICODE_STRING,
-    AuthenticatingAuthority: **UNICODE_STRING,
-    MachineName: **UNICODE_STRING,
+    ProfileBuffer: ?*?*c_void,
+    ProfileBufferLength: ?*u32,
+    LogonId: ?*LUID,
+    SubStatus: ?*i32,
+    TokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
+    TokenInformation: ?*?*c_void,
+    AccountName: ?*?*UNICODE_STRING,
+    AuthenticatingAuthority: ?*?*UNICODE_STRING,
+    MachineName: ?*?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_CALL_PACKAGE = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_CALL_PACKAGE_PASSTHROUGH = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_LOGON_TERMINATED = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = fn(
-    ClearPassword: *UNICODE_STRING,
+    ClearPassword: ?*UNICODE_STRING,
     // TODO: what to do with BytesParamIndex 2?
-    OldCredentials: *c_void,
+    OldCredentials: ?*c_void,
     OldCredentialSize: u32,
     UserAccountControl: u32,
     UPN: ?*UNICODE_STRING,
-    UserName: *UNICODE_STRING,
-    NetbiosDomainName: *UNICODE_STRING,
-    DnsDomainName: *UNICODE_STRING,
-    NewCredentials: **c_void,
-    NewCredentialSize: *u32,
+    UserName: ?*UNICODE_STRING,
+    NetbiosDomainName: ?*UNICODE_STRING,
+    DnsDomainName: ?*UNICODE_STRING,
+    NewCredentials: ?*?*c_void,
+    NewCredentialSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE = fn(
-    CredentialName: *UNICODE_STRING,
+    CredentialName: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = fn(
-    p: *c_void,
+    p: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SAM_REGISTER_MAPPING_ELEMENT = extern struct {
-    Original: PSTR,
-    Mapped: PSTR,
+    Original: ?PSTR,
+    Mapped: ?PSTR,
     Continuable: u8,
 };
 
 pub const SAM_REGISTER_MAPPING_LIST = extern struct {
     Count: u32,
-    Elements: *SAM_REGISTER_MAPPING_ELEMENT,
+    Elements: ?*SAM_REGISTER_MAPPING_ELEMENT,
 };
 
 pub const SAM_REGISTER_MAPPING_TABLE = extern struct {
     Count: u32,
-    Lists: *SAM_REGISTER_MAPPING_LIST,
+    Lists: ?*SAM_REGISTER_MAPPING_LIST,
 };
 
 pub const PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE = fn(
-    Table: *SAM_REGISTER_MAPPING_TABLE,
+    Table: ?*SAM_REGISTER_MAPPING_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_CLIENT_INFO = extern struct {
@@ -3551,7 +3551,7 @@ pub const SECPKG_CLIENT_INFO = extern struct {
     Restricted: u8,
     ClientFlags: u8,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    ClientToken: HANDLE,
+    ClientToken: ?HANDLE,
 };
 
 pub const SECPKG_CALL_INFO = extern struct {
@@ -3559,13 +3559,13 @@ pub const SECPKG_CALL_INFO = extern struct {
     ThreadId: u32,
     Attributes: u32,
     CallCount: u32,
-    MechOid: *c_void,
+    MechOid: ?*c_void,
 };
 
 pub const SECPKG_SUPPLEMENTAL_CRED = extern struct {
     PackageName: UNICODE_STRING,
     CredentialSize: u32,
-    Credentials: *u8,
+    Credentials: ?*u8,
 };
 
 pub const SECPKG_BYTE_VECTOR = extern struct {
@@ -3594,7 +3594,7 @@ pub const SECPKG_CREDENTIAL = extern struct {
     ClientProcess: u32,
     ClientThread: u32,
     LogonId: LUID,
-    ClientToken: HANDLE,
+    ClientToken: ?HANDLE,
     SessionId: u32,
     ModifiedId: LUID,
     fCredentials: u32,
@@ -3611,21 +3611,21 @@ pub const SECPKG_SUPPLEMENTAL_CRED_ARRAY = extern struct {
 
 pub const SECPKG_SURROGATE_LOGON_ENTRY = extern struct {
     Type: Guid,
-    Data: *c_void,
+    Data: ?*c_void,
 };
 
 pub const SECPKG_SURROGATE_LOGON = extern struct {
     Version: u32,
     SurrogateLogonID: LUID,
     EntryCount: u32,
-    Entries: *SECPKG_SURROGATE_LOGON_ENTRY,
+    Entries: ?*SECPKG_SURROGATE_LOGON_ENTRY,
 };
 
 pub const PLSA_CALLBACK_FUNCTION = fn(
     Argument1: usize,
     Argument2: usize,
-    InputBuffer: *SecBuffer,
-    OutputBuffer: *SecBuffer,
+    InputBuffer: ?*SecBuffer,
+    OutputBuffer: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_PRIMARY_CRED = extern struct {
@@ -3634,7 +3634,7 @@ pub const SECPKG_PRIMARY_CRED = extern struct {
     DomainName: UNICODE_STRING,
     Password: UNICODE_STRING,
     OldPassword: UNICODE_STRING,
-    UserSid: PSID,
+    UserSid: ?PSID,
     Flags: u32,
     DnsDomainName: UNICODE_STRING,
     Upn: UNICODE_STRING,
@@ -3651,7 +3651,7 @@ pub const SECPKG_PRIMARY_CRED_EX = extern struct {
     DomainName: UNICODE_STRING,
     Password: UNICODE_STRING,
     OldPassword: UNICODE_STRING,
-    UserSid: PSID,
+    UserSid: ?PSID,
     Flags: u32,
     DnsDomainName: UNICODE_STRING,
     Upn: UNICODE_STRING,
@@ -3668,7 +3668,7 @@ pub const SECPKG_PARAMETERS = extern struct {
     Version: u32,
     MachineState: u32,
     SetupMode: u32,
-    DomainSid: PSID,
+    DomainSid: ?PSID,
     DomainName: UNICODE_STRING,
     DnsDomainName: UNICODE_STRING,
     DomainGuid: Guid,
@@ -3738,19 +3738,19 @@ pub const SECPKG_EXTENDED_INFORMATION = extern struct {
 };
 
 pub const SECPKG_TARGETINFO = extern struct {
-    DomainSid: PSID,
-    ComputerName: [*:0]const u16,
+    DomainSid: ?PSID,
+    ComputerName: ?[*:0]const u16,
 };
 
 pub const SecPkgContext_SaslContext = extern struct {
-    SaslContext: *c_void,
+    SaslContext: ?*c_void,
 };
 
 pub const SECURITY_USER_DATA = extern struct {
     UserName: UNICODE_STRING,
     LogonDomainName: UNICODE_STRING,
     LogonServer: UNICODE_STRING,
-    pSid: PSID,
+    pSid: ?PSID,
 };
 
 pub const SECPKG_CALL_PACKAGE_MESSAGE_TYPE = enum(i32) {
@@ -3787,43 +3787,43 @@ pub const SECPKG_CALL_PACKAGE_TRANSFER_CRED_REQUEST = extern struct {
 };
 
 pub const PLSA_REDIRECTED_LOGON_INIT = fn(
-    RedirectedLogonHandle: HANDLE,
-    PackageName: *const UNICODE_STRING,
+    RedirectedLogonHandle: ?HANDLE,
+    PackageName: ?*const UNICODE_STRING,
     SessionId: u32,
-    LogonId: *const LUID,
+    LogonId: ?*const LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_REDIRECTED_LOGON_CALLBACK = fn(
-    RedirectedLogonHandle: HANDLE,
-    Buffer: *c_void,
+    RedirectedLogonHandle: ?HANDLE,
+    Buffer: ?*c_void,
     BufferLength: u32,
-    ReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
+    ReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK = fn(
-    RedirectedLogonHandle: HANDLE,
+    RedirectedLogonHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS = fn(
-    RedirectedLogonHandle: HANDLE,
-    LogonBuffer: **u8,
-    LogonBufferLength: *u32,
+    RedirectedLogonHandle: ?HANDLE,
+    LogonBuffer: ?*?*u8,
+    LogonBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS = fn(
-    RedirectedLogonHandle: HANDLE,
-    SupplementalCredentials: **SECPKG_SUPPLEMENTAL_CRED_ARRAY,
+    RedirectedLogonHandle: ?HANDLE,
+    SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_REDIRECTED_LOGON_BUFFER = extern struct {
     RedirectedLogonGuid: Guid,
-    RedirectedLogonHandle: HANDLE,
-    Init: PLSA_REDIRECTED_LOGON_INIT,
-    Callback: PLSA_REDIRECTED_LOGON_CALLBACK,
-    CleanupCallback: PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
-    GetLogonCreds: PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS,
-    GetSupplementalCreds: PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS,
+    RedirectedLogonHandle: ?HANDLE,
+    Init: ?PLSA_REDIRECTED_LOGON_INIT,
+    Callback: ?PLSA_REDIRECTED_LOGON_CALLBACK,
+    CleanupCallback: ?PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
+    GetLogonCreds: ?PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS,
+    GetSupplementalCreds: ?PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS,
 };
 
 pub const SECPKG_POST_LOGON_USER_INFO = extern struct {
@@ -3839,64 +3839,64 @@ pub const PLSA_UNLOAD_PACKAGE = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_DUPLICATE_HANDLE = fn(
-    SourceHandle: HANDLE,
-    DestionationHandle: *HANDLE,
+    SourceHandle: ?HANDLE,
+    DestionationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     SupplementalCredSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    SupplementalCreds: *c_void,
+    SupplementalCreds: ?*c_void,
     Synchronous: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CREATE_THREAD = fn(
-    SecurityAttributes: *SECURITY_ATTRIBUTES,
+    SecurityAttributes: ?*SECURITY_ATTRIBUTES,
     StackSize: u32,
-    StartFunction: LPTHREAD_START_ROUTINE,
-    ThreadParameter: *c_void,
+    StartFunction: ?LPTHREAD_START_ROUTINE,
+    ThreadParameter: ?*c_void,
     CreationFlags: u32,
-    ThreadId: *u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    ThreadId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const PLSA_GET_CLIENT_INFO = fn(
-    ClientInfo: *SECPKG_CLIENT_INFO,
+    ClientInfo: ?*SECPKG_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_REGISTER_NOTIFICATION = fn(
-    StartFunction: LPTHREAD_START_ROUTINE,
+    StartFunction: ?LPTHREAD_START_ROUTINE,
     Parameter: ?*c_void,
     NotificationType: u32,
     NotificationClass: u32,
     NotificationFlags: u32,
     IntervalMinutes: u32,
     WaitEvent: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const PLSA_CANCEL_NOTIFICATION = fn(
-    NotifyHandle: HANDLE,
+    NotifyHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_MAP_BUFFER = fn(
-    InputBuffer: *SecBuffer,
-    OutputBuffer: *SecBuffer,
+    InputBuffer: ?*SecBuffer,
+    OutputBuffer: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CREATE_TOKEN = fn(
-    LogonId: *LUID,
-    TokenSource: *TOKEN_SOURCE,
+    LogonId: ?*LUID,
+    TokenSource: ?*TOKEN_SOURCE,
     LogonType: SECURITY_LOGON_TYPE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     TokenInformationType: LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: *c_void,
+    TokenInformation: ?*c_void,
     TokenGroups: ?*TOKEN_GROUPS,
-    AccountName: *UNICODE_STRING,
-    AuthorityName: *UNICODE_STRING,
+    AccountName: ?*UNICODE_STRING,
+    AuthorityName: ?*UNICODE_STRING,
     Workstation: ?*UNICODE_STRING,
     ProfilePath: ?*UNICODE_STRING,
-    Token: *HANDLE,
-    SubStatus: *i32,
+    Token: ?*?HANDLE,
+    SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_SESSIONINFO_TYPE = enum(i32) {
@@ -3905,19 +3905,19 @@ pub const SECPKG_SESSIONINFO_TYPE = enum(i32) {
 pub const SecSessionPrimaryCred = SECPKG_SESSIONINFO_TYPE.d;
 
 pub const PLSA_CREATE_TOKEN_EX = fn(
-    LogonId: *LUID,
-    TokenSource: *TOKEN_SOURCE,
+    LogonId: ?*LUID,
+    TokenSource: ?*TOKEN_SOURCE,
     LogonType: SECURITY_LOGON_TYPE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     TokenInformationType: LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: *c_void,
+    TokenInformation: ?*c_void,
     TokenGroups: ?*TOKEN_GROUPS,
     Workstation: ?*UNICODE_STRING,
     ProfilePath: ?*UNICODE_STRING,
-    SessionInformation: *c_void,
+    SessionInformation: ?*c_void,
     SessionInformationType: SECPKG_SESSIONINFO_TYPE,
-    Token: *HANDLE,
-    SubStatus: *i32,
+    Token: ?*?HANDLE,
+    SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AUDIT_LOGON = fn(
@@ -3928,63 +3928,63 @@ pub const PLSA_AUDIT_LOGON = fn(
     WorkstationName: ?*UNICODE_STRING,
     UserSid: ?PSID,
     LogonType: SECURITY_LOGON_TYPE,
-    TokenSource: *TOKEN_SOURCE,
-    LogonId: *LUID,
+    TokenSource: ?*TOKEN_SOURCE,
+    LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_CALL_PACKAGE = fn(
-    AuthenticationPackage: *UNICODE_STRING,
+    AuthenticationPackage: ?*UNICODE_STRING,
     // TODO: what to do with BytesParamIndex 2?
-    ProtocolSubmitBuffer: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CALL_PACKAGEEX = fn(
-    AuthenticationPackage: *UNICODE_STRING,
-    ClientBufferBase: *c_void,
+    AuthenticationPackage: ?*UNICODE_STRING,
+    ClientBufferBase: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CALL_PACKAGE_PASSTHROUGH = fn(
-    AuthenticationPackage: *UNICODE_STRING,
-    ClientBufferBase: *c_void,
+    AuthenticationPackage: ?*UNICODE_STRING,
+    ClientBufferBase: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
+    ProtocolReturnBuffer: ?*?*c_void,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_CALL_INFO = fn(
-    Info: *SECPKG_CALL_INFO,
+    Info: ?*SECPKG_CALL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub const PLSA_CREATE_SHARED_MEMORY = fn(
     MaxSize: u32,
     InitialSize: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PLSA_ALLOCATE_SHARED_MEMORY = fn(
-    SharedMem: *c_void,
+    SharedMem: ?*c_void,
     Size: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PLSA_FREE_SHARED_MEMORY = fn(
-    SharedMem: *c_void,
+    SharedMem: ?*c_void,
     Memory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_DELETE_SHARED_MEMORY = fn(
-    SharedMem: *c_void,
+    SharedMem: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub const PLSA_GET_APP_MODE_INFO = fn(
@@ -4017,63 +4017,63 @@ pub const SecNameDN = SECPKG_NAME_TYPE.DN;
 pub const SecNameSPN = SECPKG_NAME_TYPE.SPN;
 
 pub const PLSA_OPEN_SAM_USER = fn(
-    Name: *UNICODE_STRING,
+    Name: ?*UNICODE_STRING,
     NameType: SECPKG_NAME_TYPE,
-    Prefix: *UNICODE_STRING,
+    Prefix: ?*UNICODE_STRING,
     AllowGuest: u8,
     Reserved: u32,
-    UserHandle: **c_void,
+    UserHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_USER_CREDENTIALS = fn(
-    UserHandle: *c_void,
-    PrimaryCreds: **c_void,
-    PrimaryCredsSize: *u32,
-    SupplementalCreds: **c_void,
-    SupplementalCredsSize: *u32,
+    UserHandle: ?*c_void,
+    PrimaryCreds: ?*?*c_void,
+    PrimaryCredsSize: ?*u32,
+    SupplementalCreds: ?*?*c_void,
+    SupplementalCredsSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_USER_AUTH_DATA = fn(
-    UserHandle: *c_void,
-    UserAuthData: **u8,
-    UserAuthDataSize: *u32,
+    UserHandle: ?*c_void,
+    UserAuthData: ?*?*u8,
+    UserAuthDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CLOSE_SAM_USER = fn(
-    UserHandle: *c_void,
+    UserHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_AUTH_DATA_FOR_USER = fn(
-    Name: *UNICODE_STRING,
+    Name: ?*UNICODE_STRING,
     NameType: SECPKG_NAME_TYPE,
     Prefix: ?*UNICODE_STRING,
-    UserAuthData: **u8,
-    UserAuthDataSize: *u32,
+    UserAuthData: ?*?*u8,
+    UserAuthDataSize: ?*u32,
     UserFlatName: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = fn(
-    UserAuthData: *c_void,
+    UserAuthData: ?*c_void,
     UserAuthDataSize: u32,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    TokenSource: *TOKEN_SOURCE,
+    TokenSource: ?*TOKEN_SOURCE,
     LogonType: SECURITY_LOGON_TYPE,
-    AuthorityName: *UNICODE_STRING,
-    Token: *HANDLE,
-    LogonId: *LUID,
-    AccountName: *UNICODE_STRING,
-    SubStatus: *i32,
+    AuthorityName: ?*UNICODE_STRING,
+    Token: ?*?HANDLE,
+    LogonId: ?*LUID,
+    AccountName: ?*UNICODE_STRING,
+    SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CRACK_SINGLE_NAME = fn(
     FormatOffered: u32,
     PerformAtGC: u8,
-    NameInput: *UNICODE_STRING,
+    NameInput: ?*UNICODE_STRING,
     Prefix: ?*UNICODE_STRING,
     RequestedFormat: u32,
-    CrackedName: *UNICODE_STRING,
-    DnsDomainName: *UNICODE_STRING,
-    SubStatus: *u32,
+    CrackedName: ?*UNICODE_STRING,
+    DnsDomainName: ?*UNICODE_STRING,
+    SubStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AUDIT_ACCOUNT_LOGON = fn(
@@ -4086,20 +4086,20 @@ pub const PLSA_AUDIT_ACCOUNT_LOGON = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CLIENT_CALLBACK = fn(
-    Callback: [*]u8,
+    Callback: ?[*]u8,
     Argument1: usize,
     Argument2: usize,
-    Input: *SecBuffer,
-    Output: *SecBuffer,
+    Input: ?*SecBuffer,
+    Output: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_REGISTER_CALLBACK = fn(
     CallbackId: u32,
-    Callback: PLSA_CALLBACK_FUNCTION,
+    Callback: ?PLSA_CALLBACK_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_GET_EXTENDED_CALL_FLAGS = fn(
-    Flags: *u32,
+    Flags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_EVENT_PACKAGE_CHANGE = extern struct {
@@ -4117,33 +4117,33 @@ pub const SECPKG_EVENT_NOTIFY = extern struct {
     EventClass: u32,
     Reserved: u32,
     EventDataSize: u32,
-    EventData: *c_void,
-    PackageParameter: *c_void,
+    EventData: ?*c_void,
+    PackageParameter: ?*c_void,
 };
 
 pub const PLSA_UPDATE_PRIMARY_CREDENTIALS = fn(
-    PrimaryCredentials: *SECPKG_PRIMARY_CRED,
+    PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
     Credentials: ?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_PROTECT_MEMORY = fn(
     // TODO: what to do with BytesParamIndex 1?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_OPEN_TOKEN_BY_LOGON_ID = fn(
-    LogonId: *LUID,
-    RetTokenHandle: *HANDLE,
+    LogonId: ?*LUID,
+    RetTokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN = fn(
     // TODO: what to do with BytesParamIndex 1?
-    UserAuthData: *u8,
+    UserAuthData: ?*u8,
     UserAuthDataSize: u32,
-    Reserved: *c_void,
-    ExpandedAuthData: **u8,
-    ExpandedAuthDataSize: *u32,
+    Reserved: ?*c_void,
+    ExpandedAuthData: ?*?*u8,
+    ExpandedAuthDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const CRED_FETCH = enum(i32) {
@@ -4156,12 +4156,12 @@ pub const CredFetchDPAPI = CRED_FETCH.DPAPI;
 pub const CredFetchForced = CRED_FETCH.Forced;
 
 pub const PLSA_GET_SERVICE_ACCOUNT_PASSWORD = fn(
-    AccountName: *UNICODE_STRING,
+    AccountName: ?*UNICODE_STRING,
     DomainName: ?*UNICODE_STRING,
     CredFetch: CRED_FETCH,
-    FileTimeExpiry: *FILETIME,
-    CurrentPassword: *UNICODE_STRING,
-    PreviousPassword: *UNICODE_STRING,
+    FileTimeExpiry: ?*FILETIME,
+    CurrentPassword: ?*UNICODE_STRING,
+    PreviousPassword: ?*UNICODE_STRING,
     FileTimeCurrPwdValidForOutbound: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4174,19 +4174,19 @@ pub const PLSA_AUDIT_LOGON_EX = fn(
     UserSid: ?PSID,
     LogonType: SECURITY_LOGON_TYPE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    TokenSource: *TOKEN_SOURCE,
-    LogonId: *LUID,
+    TokenSource: ?*TOKEN_SOURCE,
+    LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PLSA_CHECK_PROTECTED_USER_BY_TOKEN = fn(
-    UserToken: HANDLE,
-    ProtectedUser: *u8,
+    UserToken: ?HANDLE,
+    ProtectedUser: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_QUERY_CLIENT_REQUEST = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     QueryType: u32,
-    ReplyBuffer: **c_void,
+    ReplyBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const ENCRYPTED_CREDENTIALW = extern struct {
@@ -4195,40 +4195,40 @@ pub const ENCRYPTED_CREDENTIALW = extern struct {
 };
 
 pub const CredReadFn = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     CredFlags: u32,
-    TargetName: PWSTR,
+    TargetName: ?PWSTR,
     Type: u32,
     Flags: u32,
-    Credential: **ENCRYPTED_CREDENTIALW,
+    Credential: ?*?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const CredReadDomainCredentialsFn = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     CredFlags: u32,
-    TargetInfo: *CREDENTIAL_TARGET_INFORMATIONW,
+    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
     Flags: u32,
-    Count: *u32,
-    Credential: ***ENCRYPTED_CREDENTIALW,
+    Count: ?*u32,
+    Credential: ?*?*?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const CredFreeCredentialsFn = fn(
     Count: u32,
-    Credentials: ?[*]*ENCRYPTED_CREDENTIALW,
+    Credentials: ?[*]?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CredWriteFn = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     CredFlags: u32,
-    Credential: *ENCRYPTED_CREDENTIALW,
+    Credential: ?*ENCRYPTED_CREDENTIALW,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const CrediUnmarshalandDecodeStringFn = fn(
-    MarshaledString: PWSTR,
-    Blob: **u8,
-    BlobSize: *u32,
-    IsFailureFatal: *u8,
+    MarshaledString: ?PWSTR,
+    Blob: ?*?*u8,
+    BlobSize: ?*u32,
+    IsFailureFatal: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SEC_WINNT_AUTH_IDENTITY32 = extern struct {
@@ -4256,183 +4256,183 @@ pub const SEC_WINNT_AUTH_IDENTITY_EX32 = extern struct {
 };
 
 pub const LSA_SECPKG_FUNCTION_TABLE = extern struct {
-    CreateLogonSession: PLSA_CREATE_LOGON_SESSION,
-    DeleteLogonSession: PLSA_DELETE_LOGON_SESSION,
-    AddCredential: PLSA_ADD_CREDENTIAL,
-    GetCredentials: PLSA_GET_CREDENTIALS,
-    DeleteCredential: PLSA_DELETE_CREDENTIAL,
-    AllocateLsaHeap: PLSA_ALLOCATE_LSA_HEAP,
-    FreeLsaHeap: PLSA_FREE_LSA_HEAP,
-    AllocateClientBuffer: PLSA_ALLOCATE_CLIENT_BUFFER,
-    FreeClientBuffer: PLSA_FREE_CLIENT_BUFFER,
-    CopyToClientBuffer: PLSA_COPY_TO_CLIENT_BUFFER,
-    CopyFromClientBuffer: PLSA_COPY_FROM_CLIENT_BUFFER,
-    ImpersonateClient: PLSA_IMPERSONATE_CLIENT,
-    UnloadPackage: PLSA_UNLOAD_PACKAGE,
-    DuplicateHandle: PLSA_DUPLICATE_HANDLE,
-    SaveSupplementalCredentials: PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS,
-    CreateThread: PLSA_CREATE_THREAD,
-    GetClientInfo: PLSA_GET_CLIENT_INFO,
-    RegisterNotification: PLSA_REGISTER_NOTIFICATION,
-    CancelNotification: PLSA_CANCEL_NOTIFICATION,
-    MapBuffer: PLSA_MAP_BUFFER,
-    CreateToken: PLSA_CREATE_TOKEN,
-    AuditLogon: PLSA_AUDIT_LOGON,
-    CallPackage: PLSA_CALL_PACKAGE,
-    FreeReturnBuffer: PLSA_FREE_LSA_HEAP,
-    GetCallInfo: PLSA_GET_CALL_INFO,
-    CallPackageEx: PLSA_CALL_PACKAGEEX,
-    CreateSharedMemory: PLSA_CREATE_SHARED_MEMORY,
-    AllocateSharedMemory: PLSA_ALLOCATE_SHARED_MEMORY,
-    FreeSharedMemory: PLSA_FREE_SHARED_MEMORY,
-    DeleteSharedMemory: PLSA_DELETE_SHARED_MEMORY,
-    OpenSamUser: PLSA_OPEN_SAM_USER,
-    GetUserCredentials: PLSA_GET_USER_CREDENTIALS,
-    GetUserAuthData: PLSA_GET_USER_AUTH_DATA,
-    CloseSamUser: PLSA_CLOSE_SAM_USER,
-    ConvertAuthDataToToken: PLSA_CONVERT_AUTH_DATA_TO_TOKEN,
-    ClientCallback: PLSA_CLIENT_CALLBACK,
-    UpdateCredentials: PLSA_UPDATE_PRIMARY_CREDENTIALS,
-    GetAuthDataForUser: PLSA_GET_AUTH_DATA_FOR_USER,
-    CrackSingleName: PLSA_CRACK_SINGLE_NAME,
-    AuditAccountLogon: PLSA_AUDIT_ACCOUNT_LOGON,
-    CallPackagePassthrough: PLSA_CALL_PACKAGE_PASSTHROUGH,
-    CrediRead: CredReadFn,
-    CrediReadDomainCredentials: CredReadDomainCredentialsFn,
-    CrediFreeCredentials: CredFreeCredentialsFn,
-    LsaProtectMemory: PLSA_PROTECT_MEMORY,
-    LsaUnprotectMemory: PLSA_PROTECT_MEMORY,
-    OpenTokenByLogonId: PLSA_OPEN_TOKEN_BY_LOGON_ID,
-    ExpandAuthDataForDomain: PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN,
-    AllocatePrivateHeap: PLSA_ALLOCATE_PRIVATE_HEAP,
-    FreePrivateHeap: PLSA_FREE_PRIVATE_HEAP,
-    CreateTokenEx: PLSA_CREATE_TOKEN_EX,
-    CrediWrite: CredWriteFn,
-    CrediUnmarshalandDecodeString: CrediUnmarshalandDecodeStringFn,
-    DummyFunction6: PLSA_PROTECT_MEMORY,
-    GetExtendedCallFlags: PLSA_GET_EXTENDED_CALL_FLAGS,
-    DuplicateTokenHandle: PLSA_DUPLICATE_HANDLE,
-    GetServiceAccountPassword: PLSA_GET_SERVICE_ACCOUNT_PASSWORD,
-    DummyFunction7: PLSA_PROTECT_MEMORY,
-    AuditLogonEx: PLSA_AUDIT_LOGON_EX,
-    CheckProtectedUserByToken: PLSA_CHECK_PROTECTED_USER_BY_TOKEN,
-    QueryClientRequest: PLSA_QUERY_CLIENT_REQUEST,
-    GetAppModeInfo: PLSA_GET_APP_MODE_INFO,
-    SetAppModeInfo: PLSA_SET_APP_MODE_INFO,
+    CreateLogonSession: ?PLSA_CREATE_LOGON_SESSION,
+    DeleteLogonSession: ?PLSA_DELETE_LOGON_SESSION,
+    AddCredential: ?PLSA_ADD_CREDENTIAL,
+    GetCredentials: ?PLSA_GET_CREDENTIALS,
+    DeleteCredential: ?PLSA_DELETE_CREDENTIAL,
+    AllocateLsaHeap: ?PLSA_ALLOCATE_LSA_HEAP,
+    FreeLsaHeap: ?PLSA_FREE_LSA_HEAP,
+    AllocateClientBuffer: ?PLSA_ALLOCATE_CLIENT_BUFFER,
+    FreeClientBuffer: ?PLSA_FREE_CLIENT_BUFFER,
+    CopyToClientBuffer: ?PLSA_COPY_TO_CLIENT_BUFFER,
+    CopyFromClientBuffer: ?PLSA_COPY_FROM_CLIENT_BUFFER,
+    ImpersonateClient: ?PLSA_IMPERSONATE_CLIENT,
+    UnloadPackage: ?PLSA_UNLOAD_PACKAGE,
+    DuplicateHandle: ?PLSA_DUPLICATE_HANDLE,
+    SaveSupplementalCredentials: ?PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS,
+    CreateThread: ?PLSA_CREATE_THREAD,
+    GetClientInfo: ?PLSA_GET_CLIENT_INFO,
+    RegisterNotification: ?PLSA_REGISTER_NOTIFICATION,
+    CancelNotification: ?PLSA_CANCEL_NOTIFICATION,
+    MapBuffer: ?PLSA_MAP_BUFFER,
+    CreateToken: ?PLSA_CREATE_TOKEN,
+    AuditLogon: ?PLSA_AUDIT_LOGON,
+    CallPackage: ?PLSA_CALL_PACKAGE,
+    FreeReturnBuffer: ?PLSA_FREE_LSA_HEAP,
+    GetCallInfo: ?PLSA_GET_CALL_INFO,
+    CallPackageEx: ?PLSA_CALL_PACKAGEEX,
+    CreateSharedMemory: ?PLSA_CREATE_SHARED_MEMORY,
+    AllocateSharedMemory: ?PLSA_ALLOCATE_SHARED_MEMORY,
+    FreeSharedMemory: ?PLSA_FREE_SHARED_MEMORY,
+    DeleteSharedMemory: ?PLSA_DELETE_SHARED_MEMORY,
+    OpenSamUser: ?PLSA_OPEN_SAM_USER,
+    GetUserCredentials: ?PLSA_GET_USER_CREDENTIALS,
+    GetUserAuthData: ?PLSA_GET_USER_AUTH_DATA,
+    CloseSamUser: ?PLSA_CLOSE_SAM_USER,
+    ConvertAuthDataToToken: ?PLSA_CONVERT_AUTH_DATA_TO_TOKEN,
+    ClientCallback: ?PLSA_CLIENT_CALLBACK,
+    UpdateCredentials: ?PLSA_UPDATE_PRIMARY_CREDENTIALS,
+    GetAuthDataForUser: ?PLSA_GET_AUTH_DATA_FOR_USER,
+    CrackSingleName: ?PLSA_CRACK_SINGLE_NAME,
+    AuditAccountLogon: ?PLSA_AUDIT_ACCOUNT_LOGON,
+    CallPackagePassthrough: ?PLSA_CALL_PACKAGE_PASSTHROUGH,
+    CrediRead: ?CredReadFn,
+    CrediReadDomainCredentials: ?CredReadDomainCredentialsFn,
+    CrediFreeCredentials: ?CredFreeCredentialsFn,
+    LsaProtectMemory: ?PLSA_PROTECT_MEMORY,
+    LsaUnprotectMemory: ?PLSA_PROTECT_MEMORY,
+    OpenTokenByLogonId: ?PLSA_OPEN_TOKEN_BY_LOGON_ID,
+    ExpandAuthDataForDomain: ?PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN,
+    AllocatePrivateHeap: ?PLSA_ALLOCATE_PRIVATE_HEAP,
+    FreePrivateHeap: ?PLSA_FREE_PRIVATE_HEAP,
+    CreateTokenEx: ?PLSA_CREATE_TOKEN_EX,
+    CrediWrite: ?CredWriteFn,
+    CrediUnmarshalandDecodeString: ?CrediUnmarshalandDecodeStringFn,
+    DummyFunction6: ?PLSA_PROTECT_MEMORY,
+    GetExtendedCallFlags: ?PLSA_GET_EXTENDED_CALL_FLAGS,
+    DuplicateTokenHandle: ?PLSA_DUPLICATE_HANDLE,
+    GetServiceAccountPassword: ?PLSA_GET_SERVICE_ACCOUNT_PASSWORD,
+    DummyFunction7: ?PLSA_PROTECT_MEMORY,
+    AuditLogonEx: ?PLSA_AUDIT_LOGON_EX,
+    CheckProtectedUserByToken: ?PLSA_CHECK_PROTECTED_USER_BY_TOKEN,
+    QueryClientRequest: ?PLSA_QUERY_CLIENT_REQUEST,
+    GetAppModeInfo: ?PLSA_GET_APP_MODE_INFO,
+    SetAppModeInfo: ?PLSA_SET_APP_MODE_INFO,
 };
 
 pub const PLSA_LOCATE_PKG_BY_ID = fn(
     PackgeId: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const SECPKG_DLL_FUNCTIONS = extern struct {
-    AllocateHeap: PLSA_ALLOCATE_LSA_HEAP,
-    FreeHeap: PLSA_FREE_LSA_HEAP,
-    RegisterCallback: PLSA_REGISTER_CALLBACK,
-    LocatePackageById: PLSA_LOCATE_PKG_BY_ID,
+    AllocateHeap: ?PLSA_ALLOCATE_LSA_HEAP,
+    FreeHeap: ?PLSA_FREE_LSA_HEAP,
+    RegisterCallback: ?PLSA_REGISTER_CALLBACK,
+    LocatePackageById: ?PLSA_LOCATE_PKG_BY_ID,
 };
 
 pub const SpInitializeFn = fn(
     PackageId: usize,
-    Parameters: *SECPKG_PARAMETERS,
-    FunctionTable: *LSA_SECPKG_FUNCTION_TABLE,
+    Parameters: ?*SECPKG_PARAMETERS,
+    FunctionTable: ?*LSA_SECPKG_FUNCTION_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpShutdownFn = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetInfoFn = fn(
-    PackageInfo: *SecPkgInfoA,
+    PackageInfo: ?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetExtendedInformationFn = fn(
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
-    ppInformation: **SECPKG_EXTENDED_INFORMATION,
+    ppInformation: ?*?*SECPKG_EXTENDED_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpSetExtendedInformationFn = fn(
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
-    Info: *SECPKG_EXTENDED_INFORMATION,
+    Info: ?*SECPKG_EXTENDED_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_LOGON_USER_EX2 = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferSize: u32,
-    ProfileBuffer: **c_void,
-    ProfileBufferSize: *u32,
-    LogonId: *LUID,
-    SubStatus: *i32,
-    TokenInformationType: *LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: **c_void,
-    AccountName: **UNICODE_STRING,
-    AuthenticatingAuthority: **UNICODE_STRING,
-    MachineName: **UNICODE_STRING,
-    PrimaryCredentials: *SECPKG_PRIMARY_CRED,
-    SupplementalCredentials: **SECPKG_SUPPLEMENTAL_CRED_ARRAY,
+    ProfileBuffer: ?*?*c_void,
+    ProfileBufferSize: ?*u32,
+    LogonId: ?*LUID,
+    SubStatus: ?*i32,
+    TokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
+    TokenInformation: ?*?*c_void,
+    AccountName: ?*?*UNICODE_STRING,
+    AuthenticatingAuthority: ?*?*UNICODE_STRING,
+    MachineName: ?*?*UNICODE_STRING,
+    PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
+    SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_LOGON_USER_EX3 = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferSize: u32,
-    SurrogateLogon: *SECPKG_SURROGATE_LOGON,
-    ProfileBuffer: **c_void,
-    ProfileBufferSize: *u32,
-    LogonId: *LUID,
-    SubStatus: *i32,
-    TokenInformationType: *LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: **c_void,
-    AccountName: **UNICODE_STRING,
-    AuthenticatingAuthority: **UNICODE_STRING,
-    MachineName: **UNICODE_STRING,
-    PrimaryCredentials: *SECPKG_PRIMARY_CRED,
-    SupplementalCredentials: **SECPKG_SUPPLEMENTAL_CRED_ARRAY,
+    SurrogateLogon: ?*SECPKG_SURROGATE_LOGON,
+    ProfileBuffer: ?*?*c_void,
+    ProfileBufferSize: ?*u32,
+    LogonId: ?*LUID,
+    SubStatus: ?*i32,
+    TokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
+    TokenInformation: ?*?*c_void,
+    AccountName: ?*?*UNICODE_STRING,
+    AuthenticatingAuthority: ?*?*UNICODE_STRING,
+    MachineName: ?*?*UNICODE_STRING,
+    PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
+    SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_PRE_LOGON_USER_SURROGATE = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferSize: u32,
-    SurrogateLogon: *SECPKG_SURROGATE_LOGON,
-    SubStatus: *i32,
+    SurrogateLogon: ?*SECPKG_SURROGATE_LOGON,
+    SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_AP_POST_LOGON_USER_SURROGATE = fn(
-    ClientRequest: **c_void,
+    ClientRequest: ?*?*c_void,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferSize: u32,
-    SurrogateLogon: *SECPKG_SURROGATE_LOGON,
+    SurrogateLogon: ?*SECPKG_SURROGATE_LOGON,
     // TODO: what to do with BytesParamIndex 7?
-    ProfileBuffer: *c_void,
+    ProfileBuffer: ?*c_void,
     ProfileBufferSize: u32,
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     Status: NTSTATUS,
     SubStatus: NTSTATUS,
     TokenInformationType: LSA_TOKEN_INFORMATION_TYPE,
-    TokenInformation: *c_void,
-    AccountName: *UNICODE_STRING,
-    AuthenticatingAuthority: *UNICODE_STRING,
-    MachineName: *UNICODE_STRING,
-    PrimaryCredentials: *SECPKG_PRIMARY_CRED,
-    SupplementalCredentials: *SECPKG_SUPPLEMENTAL_CRED_ARRAY,
+    TokenInformation: ?*c_void,
+    AccountName: ?*UNICODE_STRING,
+    AuthenticatingAuthority: ?*UNICODE_STRING,
+    MachineName: ?*UNICODE_STRING,
+    PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
+    SupplementalCredentials: ?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpAcceptCredentialsFn = fn(
     LogonType: SECURITY_LOGON_TYPE,
-    AccountName: *UNICODE_STRING,
+    AccountName: ?*UNICODE_STRING,
     PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
     SupplementalCredentials: ?*SECPKG_SUPPLEMENTAL_CRED,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4444,8 +4444,8 @@ pub const SpAcquireCredentialsHandleFn = fn(
     AuthorizationData: ?*c_void,
     GetKeyFunciton: ?*c_void,
     GetKeyArgument: ?*c_void,
-    CredentialHandle: *usize,
-    ExpirationTime: *LARGE_INTEGER,
+    CredentialHandle: ?*usize,
+    ExpirationTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpFreeCredentialsHandleFn = fn(
@@ -4455,41 +4455,41 @@ pub const SpFreeCredentialsHandleFn = fn(
 pub const SpQueryCredentialsAttributesFn = fn(
     CredentialHandle: usize,
     CredentialAttribute: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpSetCredentialsAttributesFn = fn(
     CredentialHandle: usize,
     CredentialAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpAddCredentialsFn = fn(
     CredentialHandle: usize,
     PrincipalName: ?*UNICODE_STRING,
-    Package: *UNICODE_STRING,
+    Package: ?*UNICODE_STRING,
     CredentialUseFlags: u32,
-    AuthorizationData: *c_void,
-    GetKeyFunciton: *c_void,
-    GetKeyArgument: *c_void,
-    ExpirationTime: *LARGE_INTEGER,
+    AuthorizationData: ?*c_void,
+    GetKeyFunciton: ?*c_void,
+    GetKeyArgument: ?*c_void,
+    ExpirationTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpSaveCredentialsFn = fn(
     CredentialHandle: usize,
-    Credentials: *SecBuffer,
+    Credentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetCredentialsFn = fn(
     CredentialHandle: usize,
-    Credentials: *SecBuffer,
+    Credentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpDeleteCredentialsFn = fn(
     CredentialHandle: usize,
-    Key: *SecBuffer,
+    Key: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpInitLsaModeContextFn = fn(
@@ -4498,13 +4498,13 @@ pub const SpInitLsaModeContextFn = fn(
     TargetName: ?*UNICODE_STRING,
     ContextRequirements: u32,
     TargetDataRep: u32,
-    InputBuffers: *SecBufferDesc,
-    NewContextHandle: *usize,
-    OutputBuffers: *SecBufferDesc,
-    ContextAttributes: *u32,
-    ExpirationTime: *LARGE_INTEGER,
-    MappedContext: *u8,
-    ContextData: *SecBuffer,
+    InputBuffers: ?*SecBufferDesc,
+    NewContextHandle: ?*usize,
+    OutputBuffers: ?*SecBufferDesc,
+    ContextAttributes: ?*u32,
+    ExpirationTime: ?*LARGE_INTEGER,
+    MappedContext: ?*u8,
+    ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpDeleteContextFn = fn(
@@ -4513,59 +4513,59 @@ pub const SpDeleteContextFn = fn(
 
 pub const SpApplyControlTokenFn = fn(
     ContextHandle: usize,
-    ControlToken: *SecBufferDesc,
+    ControlToken: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpAcceptLsaModeContextFn = fn(
     CredentialHandle: usize,
     ContextHandle: usize,
-    InputBuffer: *SecBufferDesc,
+    InputBuffer: ?*SecBufferDesc,
     ContextRequirements: u32,
     TargetDataRep: u32,
-    NewContextHandle: *usize,
-    OutputBuffer: *SecBufferDesc,
-    ContextAttributes: *u32,
-    ExpirationTime: *LARGE_INTEGER,
-    MappedContext: *u8,
-    ContextData: *SecBuffer,
+    NewContextHandle: ?*usize,
+    OutputBuffer: ?*SecBufferDesc,
+    ContextAttributes: ?*u32,
+    ExpirationTime: ?*LARGE_INTEGER,
+    MappedContext: ?*u8,
+    ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetUserInfoFn = fn(
-    LogonId: *LUID,
+    LogonId: ?*LUID,
     Flags: u32,
-    UserData: **SECURITY_USER_DATA,
+    UserData: ?*?*SECURITY_USER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpQueryContextAttributesFn = fn(
     ContextHandle: usize,
     ContextAttribute: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpSetContextAttributesFn = fn(
     ContextHandle: usize,
     ContextAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpChangeAccountPasswordFn = fn(
-    pDomainName: *UNICODE_STRING,
-    pAccountName: *UNICODE_STRING,
-    pOldPassword: *UNICODE_STRING,
-    pNewPassword: *UNICODE_STRING,
+    pDomainName: ?*UNICODE_STRING,
+    pAccountName: ?*UNICODE_STRING,
+    pOldPassword: ?*UNICODE_STRING,
+    pNewPassword: ?*UNICODE_STRING,
     Impersonating: u8,
-    pOutput: *SecBufferDesc,
+    pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpQueryMetaDataFn = fn(
     CredentialHandle: usize,
     TargetName: ?*UNICODE_STRING,
     ContextRequirements: u32,
-    MetaDataLength: *u32,
-    MetaData: **u8,
-    ContextHandle: *usize,
+    MetaDataLength: ?*u32,
+    MetaData: ?*?*u8,
+    ContextHandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpExchangeMetaDataFn = fn(
@@ -4574,131 +4574,131 @@ pub const SpExchangeMetaDataFn = fn(
     ContextRequirements: u32,
     MetaDataLength: u32,
     // TODO: what to do with BytesParamIndex 3?
-    MetaData: *u8,
-    ContextHandle: *usize,
+    MetaData: ?*u8,
+    ContextHandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetCredUIContextFn = fn(
     ContextHandle: usize,
-    CredType: *Guid,
-    FlatCredUIContextLength: *u32,
-    FlatCredUIContext: **u8,
+    CredType: ?*Guid,
+    FlatCredUIContextLength: ?*u32,
+    FlatCredUIContext: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpUpdateCredentialsFn = fn(
     ContextHandle: usize,
-    CredType: *Guid,
+    CredType: ?*Guid,
     FlatCredUIContextLength: u32,
     // TODO: what to do with BytesParamIndex 2?
-    FlatCredUIContext: *u8,
+    FlatCredUIContext: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpValidateTargetInfoFn = fn(
-    ClientRequest: ?**c_void,
+    ClientRequest: ?*?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
+    ClientBufferBase: ?*c_void,
     SubmitBufferLength: u32,
-    TargetInfo: *SECPKG_TARGETINFO,
+    TargetInfo: ?*SECPKG_TARGETINFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const LSA_AP_POST_LOGON_USER = fn(
-    PostLogonUserInfo: *SECPKG_POST_LOGON_USER_INFO,
+    PostLogonUserInfo: ?*SECPKG_POST_LOGON_USER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetRemoteCredGuardLogonBufferFn = fn(
     CredHandle: usize,
     ContextHandle: usize,
-    TargetName: *const UNICODE_STRING,
-    RedirectedLogonHandle: *HANDLE,
-    Callback: *PLSA_REDIRECTED_LOGON_CALLBACK,
-    CleanupCallback: *PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
-    LogonBufferSize: *u32,
-    LogonBuffer: **c_void,
+    TargetName: ?*const UNICODE_STRING,
+    RedirectedLogonHandle: ?*?HANDLE,
+    Callback: ?*?PLSA_REDIRECTED_LOGON_CALLBACK,
+    CleanupCallback: ?*?PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
+    LogonBufferSize: ?*u32,
+    LogonBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetRemoteCredGuardSupplementalCredsFn = fn(
     CredHandle: usize,
-    TargetName: *const UNICODE_STRING,
-    RedirectedLogonHandle: *HANDLE,
-    Callback: *PLSA_REDIRECTED_LOGON_CALLBACK,
-    CleanupCallback: *PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
-    SupplementalCredsSize: *u32,
-    SupplementalCreds: **c_void,
+    TargetName: ?*const UNICODE_STRING,
+    RedirectedLogonHandle: ?*?HANDLE,
+    Callback: ?*?PLSA_REDIRECTED_LOGON_CALLBACK,
+    CleanupCallback: ?*?PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK,
+    SupplementalCredsSize: ?*u32,
+    SupplementalCreds: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetTbalSupplementalCredsFn = fn(
     LogonId: LUID,
-    SupplementalCredsSize: *u32,
-    SupplementalCreds: **c_void,
+    SupplementalCredsSize: ?*u32,
+    SupplementalCreds: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_FUNCTION_TABLE = extern struct {
-    InitializePackage: PLSA_AP_INITIALIZE_PACKAGE,
-    LogonUserA: PLSA_AP_LOGON_USER,
-    CallPackage: PLSA_AP_CALL_PACKAGE,
-    LogonTerminated: PLSA_AP_LOGON_TERMINATED,
-    CallPackageUntrusted: PLSA_AP_CALL_PACKAGE,
-    CallPackagePassthrough: PLSA_AP_CALL_PACKAGE_PASSTHROUGH,
-    LogonUserExA: PLSA_AP_LOGON_USER_EX,
-    LogonUserEx2: PLSA_AP_LOGON_USER_EX2,
-    Initialize: SpInitializeFn,
-    Shutdown: SpShutdownFn,
-    GetInfo: SpGetInfoFn,
-    AcceptCredentials: SpAcceptCredentialsFn,
-    AcquireCredentialsHandleA: SpAcquireCredentialsHandleFn,
-    QueryCredentialsAttributesA: SpQueryCredentialsAttributesFn,
-    FreeCredentialsHandle: SpFreeCredentialsHandleFn,
-    SaveCredentials: SpSaveCredentialsFn,
-    GetCredentials: SpGetCredentialsFn,
-    DeleteCredentials: SpDeleteCredentialsFn,
-    InitLsaModeContext: SpInitLsaModeContextFn,
-    AcceptLsaModeContext: SpAcceptLsaModeContextFn,
-    DeleteContext: SpDeleteContextFn,
-    ApplyControlToken: SpApplyControlTokenFn,
-    GetUserInfo: SpGetUserInfoFn,
-    GetExtendedInformation: SpGetExtendedInformationFn,
-    QueryContextAttributesA: SpQueryContextAttributesFn,
-    AddCredentialsA: SpAddCredentialsFn,
-    SetExtendedInformation: SpSetExtendedInformationFn,
-    SetContextAttributesA: SpSetContextAttributesFn,
-    SetCredentialsAttributesA: SpSetCredentialsAttributesFn,
-    ChangeAccountPasswordA: SpChangeAccountPasswordFn,
-    QueryMetaData: SpQueryMetaDataFn,
-    ExchangeMetaData: SpExchangeMetaDataFn,
-    GetCredUIContext: SpGetCredUIContextFn,
-    UpdateCredentials: SpUpdateCredentialsFn,
-    ValidateTargetInfo: SpValidateTargetInfoFn,
-    PostLogonUser: LSA_AP_POST_LOGON_USER,
-    GetRemoteCredGuardLogonBuffer: SpGetRemoteCredGuardLogonBufferFn,
-    GetRemoteCredGuardSupplementalCreds: SpGetRemoteCredGuardSupplementalCredsFn,
-    GetTbalSupplementalCreds: SpGetTbalSupplementalCredsFn,
-    LogonUserEx3: PLSA_AP_LOGON_USER_EX3,
-    PreLogonUserSurrogate: PLSA_AP_PRE_LOGON_USER_SURROGATE,
-    PostLogonUserSurrogate: PLSA_AP_POST_LOGON_USER_SURROGATE,
+    InitializePackage: ?PLSA_AP_INITIALIZE_PACKAGE,
+    LogonUserA: ?PLSA_AP_LOGON_USER,
+    CallPackage: ?PLSA_AP_CALL_PACKAGE,
+    LogonTerminated: ?PLSA_AP_LOGON_TERMINATED,
+    CallPackageUntrusted: ?PLSA_AP_CALL_PACKAGE,
+    CallPackagePassthrough: ?PLSA_AP_CALL_PACKAGE_PASSTHROUGH,
+    LogonUserExA: ?PLSA_AP_LOGON_USER_EX,
+    LogonUserEx2: ?PLSA_AP_LOGON_USER_EX2,
+    Initialize: ?SpInitializeFn,
+    Shutdown: ?SpShutdownFn,
+    GetInfo: ?SpGetInfoFn,
+    AcceptCredentials: ?SpAcceptCredentialsFn,
+    AcquireCredentialsHandleA: ?SpAcquireCredentialsHandleFn,
+    QueryCredentialsAttributesA: ?SpQueryCredentialsAttributesFn,
+    FreeCredentialsHandle: ?SpFreeCredentialsHandleFn,
+    SaveCredentials: ?SpSaveCredentialsFn,
+    GetCredentials: ?SpGetCredentialsFn,
+    DeleteCredentials: ?SpDeleteCredentialsFn,
+    InitLsaModeContext: ?SpInitLsaModeContextFn,
+    AcceptLsaModeContext: ?SpAcceptLsaModeContextFn,
+    DeleteContext: ?SpDeleteContextFn,
+    ApplyControlToken: ?SpApplyControlTokenFn,
+    GetUserInfo: ?SpGetUserInfoFn,
+    GetExtendedInformation: ?SpGetExtendedInformationFn,
+    QueryContextAttributesA: ?SpQueryContextAttributesFn,
+    AddCredentialsA: ?SpAddCredentialsFn,
+    SetExtendedInformation: ?SpSetExtendedInformationFn,
+    SetContextAttributesA: ?SpSetContextAttributesFn,
+    SetCredentialsAttributesA: ?SpSetCredentialsAttributesFn,
+    ChangeAccountPasswordA: ?SpChangeAccountPasswordFn,
+    QueryMetaData: ?SpQueryMetaDataFn,
+    ExchangeMetaData: ?SpExchangeMetaDataFn,
+    GetCredUIContext: ?SpGetCredUIContextFn,
+    UpdateCredentials: ?SpUpdateCredentialsFn,
+    ValidateTargetInfo: ?SpValidateTargetInfoFn,
+    PostLogonUser: ?LSA_AP_POST_LOGON_USER,
+    GetRemoteCredGuardLogonBuffer: ?SpGetRemoteCredGuardLogonBufferFn,
+    GetRemoteCredGuardSupplementalCreds: ?SpGetRemoteCredGuardSupplementalCredsFn,
+    GetTbalSupplementalCreds: ?SpGetTbalSupplementalCredsFn,
+    LogonUserEx3: ?PLSA_AP_LOGON_USER_EX3,
+    PreLogonUserSurrogate: ?PLSA_AP_PRE_LOGON_USER_SURROGATE,
+    PostLogonUserSurrogate: ?PLSA_AP_POST_LOGON_USER_SURROGATE,
 };
 
 pub const SpInstanceInitFn = fn(
     Version: u32,
-    FunctionTable: *SECPKG_DLL_FUNCTIONS,
-    UserFunctions: **c_void,
+    FunctionTable: ?*SECPKG_DLL_FUNCTIONS,
+    UserFunctions: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpInitUserModeContextFn = fn(
     ContextHandle: usize,
-    PackedContext: *SecBuffer,
+    PackedContext: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpMakeSignatureFn = fn(
     ContextHandle: usize,
     QualityOfProtection: u32,
-    MessageBuffers: *SecBufferDesc,
+    MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpVerifySignatureFn = fn(
     ContextHandle: usize,
-    MessageBuffers: *SecBufferDesc,
+    MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
     QualityOfProtection: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4706,82 +4706,82 @@ pub const SpVerifySignatureFn = fn(
 pub const SpSealMessageFn = fn(
     ContextHandle: usize,
     QualityOfProtection: u32,
-    MessageBuffers: *SecBufferDesc,
+    MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpUnsealMessageFn = fn(
     ContextHandle: usize,
-    MessageBuffers: *SecBufferDesc,
+    MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
     QualityOfProtection: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpGetContextTokenFn = fn(
     ContextHandle: usize,
-    ImpersonationToken: *HANDLE,
+    ImpersonationToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpExportSecurityContextFn = fn(
     phContext: usize,
     fFlags: u32,
-    pPackedContext: *SecBuffer,
-    pToken: ?*HANDLE,
+    pPackedContext: ?*SecBuffer,
+    pToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpImportSecurityContextFn = fn(
-    pPackedContext: *SecBuffer,
+    pPackedContext: ?*SecBuffer,
     Token: ?HANDLE,
-    phContext: *usize,
+    phContext: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpCompleteAuthTokenFn = fn(
     ContextHandle: usize,
-    InputBuffer: *SecBufferDesc,
+    InputBuffer: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpFormatCredentialsFn = fn(
-    Credentials: *SecBuffer,
-    FormattedCredentials: *SecBuffer,
+    Credentials: ?*SecBuffer,
+    FormattedCredentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpMarshallSupplementalCredsFn = fn(
     CredentialSize: u32,
     // TODO: what to do with BytesParamIndex 0?
-    Credentials: *u8,
-    MarshalledCredSize: *u32,
-    MarshalledCreds: **c_void,
+    Credentials: ?*u8,
+    MarshalledCredSize: ?*u32,
+    MarshalledCreds: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_USER_FUNCTION_TABLE = extern struct {
-    InstanceInit: SpInstanceInitFn,
-    InitUserModeContext: SpInitUserModeContextFn,
-    MakeSignature: SpMakeSignatureFn,
-    VerifySignature: SpVerifySignatureFn,
-    SealMessage: SpSealMessageFn,
-    UnsealMessage: SpUnsealMessageFn,
-    GetContextToken: SpGetContextTokenFn,
-    QueryContextAttributesA: SpQueryContextAttributesFn,
-    CompleteAuthToken: SpCompleteAuthTokenFn,
-    DeleteUserModeContext: SpDeleteContextFn,
-    FormatCredentials: SpFormatCredentialsFn,
-    MarshallSupplementalCreds: SpMarshallSupplementalCredsFn,
-    ExportContext: SpExportSecurityContextFn,
-    ImportContext: SpImportSecurityContextFn,
+    InstanceInit: ?SpInstanceInitFn,
+    InitUserModeContext: ?SpInitUserModeContextFn,
+    MakeSignature: ?SpMakeSignatureFn,
+    VerifySignature: ?SpVerifySignatureFn,
+    SealMessage: ?SpSealMessageFn,
+    UnsealMessage: ?SpUnsealMessageFn,
+    GetContextToken: ?SpGetContextTokenFn,
+    QueryContextAttributesA: ?SpQueryContextAttributesFn,
+    CompleteAuthToken: ?SpCompleteAuthTokenFn,
+    DeleteUserModeContext: ?SpDeleteContextFn,
+    FormatCredentials: ?SpFormatCredentialsFn,
+    MarshallSupplementalCreds: ?SpMarshallSupplementalCredsFn,
+    ExportContext: ?SpExportSecurityContextFn,
+    ImportContext: ?SpImportSecurityContextFn,
 };
 
 pub const SpLsaModeInitializeFn = fn(
     LsaVersion: u32,
-    PackageVersion: *u32,
-    ppTables: **SECPKG_FUNCTION_TABLE,
-    pcTables: *u32,
+    PackageVersion: ?*u32,
+    ppTables: ?*?*SECPKG_FUNCTION_TABLE,
+    pcTables: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpUserModeInitializeFn = fn(
     LsaVersion: u32,
-    PackageVersion: *u32,
-    ppTables: **SECPKG_USER_FUNCTION_TABLE,
-    pcTables: *u32,
+    PackageVersion: ?*u32,
+    ppTables: ?*?*SECPKG_USER_FUNCTION_TABLE,
+    pcTables: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KSEC_CONTEXT_TYPE = enum(i32) {
@@ -4795,83 +4795,83 @@ pub const KSEC_LIST_ENTRY = extern struct {
     List: LIST_ENTRY,
     RefCount: i32,
     Signature: u32,
-    OwningList: *c_void,
-    Reserved: *c_void,
+    OwningList: ?*c_void,
+    Reserved: ?*c_void,
 };
 
 pub const PKSEC_CREATE_CONTEXT_LIST = fn(
     Type: KSEC_CONTEXT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PKSEC_INSERT_LIST_ENTRY = fn(
-    List: *c_void,
-    Entry: *KSEC_LIST_ENTRY,
+    List: ?*c_void,
+    Entry: ?*KSEC_LIST_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PKSEC_REFERENCE_LIST_ENTRY = fn(
-    Entry: *KSEC_LIST_ENTRY,
+    Entry: ?*KSEC_LIST_ENTRY,
     Signature: u32,
     RemoveNoRef: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PKSEC_DEREFERENCE_LIST_ENTRY = fn(
-    Entry: *KSEC_LIST_ENTRY,
+    Entry: ?*KSEC_LIST_ENTRY,
     Delete: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PKSEC_SERIALIZE_WINNT_AUTH_DATA = fn(
-    pvAuthData: *c_void,
-    Size: *u32,
-    SerializedData: **c_void,
+    pvAuthData: ?*c_void,
+    Size: ?*u32,
+    SerializedData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA = fn(
-    pvAuthData: *c_void,
-    Size: *u32,
-    SerializedData: **c_void,
+    pvAuthData: ?*c_void,
+    Size: ?*u32,
+    SerializedData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PKSEC_LOCATE_PKG_BY_ID = fn(
     PackageId: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const SECPKG_KERNEL_FUNCTIONS = extern struct {
-    AllocateHeap: PLSA_ALLOCATE_LSA_HEAP,
-    FreeHeap: PLSA_FREE_LSA_HEAP,
-    CreateContextList: PKSEC_CREATE_CONTEXT_LIST,
-    InsertListEntry: PKSEC_INSERT_LIST_ENTRY,
-    ReferenceListEntry: PKSEC_REFERENCE_LIST_ENTRY,
-    DereferenceListEntry: PKSEC_DEREFERENCE_LIST_ENTRY,
-    SerializeWinntAuthData: PKSEC_SERIALIZE_WINNT_AUTH_DATA,
-    SerializeSchannelAuthData: PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA,
-    LocatePackageById: PKSEC_LOCATE_PKG_BY_ID,
+    AllocateHeap: ?PLSA_ALLOCATE_LSA_HEAP,
+    FreeHeap: ?PLSA_FREE_LSA_HEAP,
+    CreateContextList: ?PKSEC_CREATE_CONTEXT_LIST,
+    InsertListEntry: ?PKSEC_INSERT_LIST_ENTRY,
+    ReferenceListEntry: ?PKSEC_REFERENCE_LIST_ENTRY,
+    DereferenceListEntry: ?PKSEC_DEREFERENCE_LIST_ENTRY,
+    SerializeWinntAuthData: ?PKSEC_SERIALIZE_WINNT_AUTH_DATA,
+    SerializeSchannelAuthData: ?PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA,
+    LocatePackageById: ?PKSEC_LOCATE_PKG_BY_ID,
 };
 
 pub const KspInitPackageFn = fn(
-    FunctionTable: *SECPKG_KERNEL_FUNCTIONS,
+    FunctionTable: ?*SECPKG_KERNEL_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspDeleteContextFn = fn(
     ContextId: usize,
-    LsaContextId: *usize,
+    LsaContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspInitContextFn = fn(
     ContextId: usize,
-    ContextData: *SecBuffer,
-    NewContextId: *usize,
+    ContextData: ?*SecBuffer,
+    NewContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspMakeSignatureFn = fn(
     ContextId: usize,
     fQOP: u32,
-    Message: *SecBufferDesc,
+    Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspVerifySignatureFn = fn(
     ContextId: usize,
-    Message: *SecBufferDesc,
+    Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4879,37 +4879,37 @@ pub const KspVerifySignatureFn = fn(
 pub const KspSealMessageFn = fn(
     ContextId: usize,
     fQOP: u32,
-    Message: *SecBufferDesc,
+    Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspUnsealMessageFn = fn(
     ContextId: usize,
-    Message: *SecBufferDesc,
+    Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspGetTokenFn = fn(
     ContextId: usize,
-    ImpersonationToken: ?*HANDLE,
-    RawToken: ?**c_void,
+    ImpersonationToken: ?*?HANDLE,
+    RawToken: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspQueryAttributesFn = fn(
     ContextId: usize,
     Attribute: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspCompleteTokenFn = fn(
     ContextId: usize,
-    Token: *SecBufferDesc,
+    Token: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspMapHandleFn = fn(
     ContextId: usize,
-    LsaContextId: *usize,
+    LsaContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspSetPagingModeFn = fn(
@@ -4917,32 +4917,32 @@ pub const KspSetPagingModeFn = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspSerializeAuthDataFn = fn(
-    pvAuthData: *c_void,
-    Size: *u32,
-    SerializedData: **c_void,
+    pvAuthData: ?*c_void,
+    Size: ?*u32,
+    SerializedData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_KERNEL_FUNCTION_TABLE = extern struct {
-    Initialize: KspInitPackageFn,
-    DeleteContext: KspDeleteContextFn,
-    InitContext: KspInitContextFn,
-    MapHandle: KspMapHandleFn,
-    Sign: KspMakeSignatureFn,
-    Verify: KspVerifySignatureFn,
-    Seal: KspSealMessageFn,
-    Unseal: KspUnsealMessageFn,
-    GetToken: KspGetTokenFn,
-    QueryAttributes: KspQueryAttributesFn,
-    CompleteToken: KspCompleteTokenFn,
-    ExportContext: SpExportSecurityContextFn,
-    ImportContext: SpImportSecurityContextFn,
-    SetPackagePagingMode: KspSetPagingModeFn,
-    SerializeAuthData: KspSerializeAuthDataFn,
+    Initialize: ?KspInitPackageFn,
+    DeleteContext: ?KspDeleteContextFn,
+    InitContext: ?KspInitContextFn,
+    MapHandle: ?KspMapHandleFn,
+    Sign: ?KspMakeSignatureFn,
+    Verify: ?KspVerifySignatureFn,
+    Seal: ?KspSealMessageFn,
+    Unseal: ?KspUnsealMessageFn,
+    GetToken: ?KspGetTokenFn,
+    QueryAttributes: ?KspQueryAttributesFn,
+    CompleteToken: ?KspCompleteTokenFn,
+    ExportContext: ?SpExportSecurityContextFn,
+    ImportContext: ?SpImportSecurityContextFn,
+    SetPackagePagingMode: ?KspSetPagingModeFn,
+    SerializeAuthData: ?KspSerializeAuthDataFn,
 };
 
 pub const SecPkgCred_SupportedAlgs = extern struct {
     cSupportedAlgs: u32,
-    palgSupportedAlgs: *u32,
+    palgSupportedAlgs: ?*u32,
 };
 
 pub const SecPkgCred_CipherStrengths = extern struct {
@@ -4962,8 +4962,8 @@ pub const SecPkgCred_ClientCertPolicy = extern struct {
     fCheckRevocationFreshnessTime: BOOL,
     dwRevocationFreshnessTime: u32,
     fOmitUsageCheck: BOOL,
-    pwszSslCtlStoreName: PWSTR,
-    pwszSslCtlIdentifier: PWSTR,
+    pwszSslCtlStoreName: ?PWSTR,
+    pwszSslCtlIdentifier: ?PWSTR,
 };
 
 pub const eTlsSignatureAlgorithm = enum(i32) {
@@ -4996,7 +4996,7 @@ pub const TlsHashAlgorithm_Sha512 = eTlsHashAlgorithm.Sha512;
 
 pub const SecPkgContext_RemoteCredentialInfo = extern struct {
     cbCertificateChain: u32,
-    pbCertificateChain: *u8,
+    pbCertificateChain: ?*u8,
     cCertificates: u32,
     fFlags: u32,
     dwBits: u32,
@@ -5004,7 +5004,7 @@ pub const SecPkgContext_RemoteCredentialInfo = extern struct {
 
 pub const SecPkgContext_LocalCredentialInfo = extern struct {
     cbCertificateChain: u32,
-    pbCertificateChain: *u8,
+    pbCertificateChain: ?*u8,
     cCertificates: u32,
     fFlags: u32,
     dwBits: u32,
@@ -5016,7 +5016,7 @@ pub const SecPkgContext_ClientCertPolicyResult = extern struct {
 };
 
 pub const SecPkgContext_IssuerListInfoEx = extern struct {
-    aIssuers: *CRYPTOAPI_BLOB,
+    aIssuers: ?*CRYPTOAPI_BLOB,
     cIssuers: u32,
 };
 
@@ -5066,7 +5066,7 @@ pub const SecPkgContext_EapKeyBlock = extern struct {
 
 pub const SecPkgContext_MappedCredAttr = extern struct {
     dwAttribute: u32,
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
 };
 
 pub const SecPkgContext_SessionInfo = extern struct {
@@ -5078,37 +5078,37 @@ pub const SecPkgContext_SessionInfo = extern struct {
 pub const SecPkgContext_SessionAppData = extern struct {
     dwFlags: u32,
     cbAppData: u32,
-    pbAppData: *u8,
+    pbAppData: ?*u8,
 };
 
 pub const SecPkgContext_EapPrfInfo = extern struct {
     dwVersion: u32,
     cbPrfData: u32,
-    pbPrfData: *u8,
+    pbPrfData: ?*u8,
 };
 
 pub const SecPkgContext_SupportedSignatures = extern struct {
     cSignatureAndHashAlgorithms: u16,
-    pSignatureAndHashAlgorithms: *u16,
+    pSignatureAndHashAlgorithms: ?*u16,
 };
 
 pub const SecPkgContext_Certificates = extern struct {
     cCertificates: u32,
     cbCertificateChain: u32,
-    pbCertificateChain: *u8,
+    pbCertificateChain: ?*u8,
 };
 
 pub const SecPkgContext_CertInfo = extern struct {
     dwVersion: u32,
     cbSubjectName: u32,
-    pwszSubjectName: PWSTR,
+    pwszSubjectName: ?PWSTR,
     cbIssuerName: u32,
-    pwszIssuerName: PWSTR,
+    pwszIssuerName: ?PWSTR,
     dwKeySize: u32,
 };
 
 pub const SecPkgContext_UiInfo = extern struct {
-    hParentWindow: HWND,
+    hParentWindow: ?HWND,
 };
 
 pub const SecPkgContext_EarlyStart = extern struct {
@@ -5117,37 +5117,37 @@ pub const SecPkgContext_EarlyStart = extern struct {
 
 pub const SecPkgContext_KeyingMaterialInfo = extern struct {
     cbLabel: u16,
-    pszLabel: PSTR,
+    pszLabel: ?PSTR,
     cbContextValue: u16,
-    pbContextValue: *u8,
+    pbContextValue: ?*u8,
     cbKeyingMaterial: u32,
 };
 
 pub const SecPkgContext_KeyingMaterial = extern struct {
     cbKeyingMaterial: u32,
-    pbKeyingMaterial: *u8,
+    pbKeyingMaterial: ?*u8,
 };
 
 pub const SecPkgContext_KeyingMaterial_Inproc = extern struct {
     cbLabel: u16,
-    pszLabel: PSTR,
+    pszLabel: ?PSTR,
     cbContextValue: u16,
-    pbContextValue: *u8,
+    pbContextValue: ?*u8,
     cbKeyingMaterial: u32,
-    pbKeyingMaterial: *u8,
+    pbKeyingMaterial: ?*u8,
 };
 
 pub const SecPkgContext_SrtpParameters = extern struct {
     ProtectionProfile: u16,
     MasterKeyIdentifierSize: u8,
-    MasterKeyIdentifier: *u8,
+    MasterKeyIdentifier: ?*u8,
 };
 
 pub const SecPkgContext_TokenBinding = extern struct {
     MajorVersion: u8,
     MinorVersion: u8,
     KeyParametersSize: u16,
-    KeyParameters: *u8,
+    KeyParameters: ?*u8,
 };
 
 pub const _HMAPPER = extern struct {
@@ -5157,12 +5157,12 @@ pub const _HMAPPER = extern struct {
 pub const SCHANNEL_CRED = extern struct {
     dwVersion: u32,
     cCreds: u32,
-    paCred: **CERT_CONTEXT,
-    hRootStore: *c_void,
+    paCred: ?*?*CERT_CONTEXT,
+    hRootStore: ?*c_void,
     cMappers: u32,
-    aphMappers: **_HMAPPER,
+    aphMappers: ?*?*_HMAPPER,
     cSupportedAlgs: u32,
-    palgSupportedAlgs: *u32,
+    palgSupportedAlgs: ?*u32,
     grbitEnabledProtocols: u32,
     dwMinimumCipherStrength: u32,
     dwMaximumCipherStrength: u32,
@@ -5225,30 +5225,30 @@ pub const SCHANNEL_CLIENT_SIGNATURE = extern struct {
 };
 
 pub const SSL_EMPTY_CACHE_FN_A = fn(
-    pszTargetName: PSTR,
+    pszTargetName: ?PSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SSL_EMPTY_CACHE_FN_W = fn(
-    pszTargetName: PWSTR,
+    pszTargetName: ?PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SSL_CREDENTIAL_CERTIFICATE = extern struct {
     cbPrivateKey: u32,
-    pPrivateKey: *u8,
+    pPrivateKey: ?*u8,
     cbCertificate: u32,
-    pCertificate: *u8,
-    pszPassword: PSTR,
+    pCertificate: ?*u8,
+    pszPassword: ?PSTR,
 };
 
 pub const SCH_CRED = extern struct {
     dwVersion: u32,
     cCreds: u32,
-    paSecret: **c_void,
-    paPublic: **c_void,
+    paSecret: ?*?*c_void,
+    paPublic: ?*?*c_void,
     cMappers: u32,
-    aphMappers: **_HMAPPER,
+    aphMappers: ?*?*_HMAPPER,
 };
 
 pub const SCH_CRED_SECRET_CAPI = extern struct {
@@ -5258,15 +5258,15 @@ pub const SCH_CRED_SECRET_CAPI = extern struct {
 
 pub const SCH_CRED_SECRET_PRIVKEY = extern struct {
     dwType: u32,
-    pPrivateKey: *u8,
+    pPrivateKey: ?*u8,
     cbPrivateKey: u32,
-    pszPassword: PSTR,
+    pszPassword: ?PSTR,
 };
 
 pub const SCH_CRED_PUBLIC_CERTCHAIN = extern struct {
     dwType: u32,
     cbCertChain: u32,
-    pCertChain: *u8,
+    pCertChain: ?*u8,
 };
 
 pub const PctPublicKey = extern struct {
@@ -5281,34 +5281,34 @@ pub const X509Certificate = extern struct {
     SignatureAlgorithm: u32,
     ValidFrom: FILETIME,
     ValidUntil: FILETIME,
-    pszIssuer: PSTR,
-    pszSubject: PSTR,
-    pPublicKey: *PctPublicKey,
+    pszIssuer: ?PSTR,
+    pszSubject: ?PSTR,
+    pPublicKey: ?*PctPublicKey,
 };
 
 pub const SSL_CRACK_CERTIFICATE_FN = fn(
-    pbCertificate: *u8,
+    pbCertificate: ?*u8,
     cbCertificate: u32,
     VerifySignature: BOOL,
-    ppCertificate: **X509Certificate,
+    ppCertificate: ?*?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SSL_FREE_CERTIFICATE_FN = fn(
-    pCertificate: *X509Certificate,
+    pCertificate: ?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SslGetServerIdentityFn = fn(
     // TODO: what to do with BytesParamIndex 1?
-    ClientHello: *u8,
+    ClientHello: ?*u8,
     ClientHelloSize: u32,
-    ServerIdentity: **u8,
-    ServerIdentitySize: *u32,
+    ServerIdentity: ?*?*u8,
+    ServerIdentitySize: ?*u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const SCH_EXTENSION_DATA = extern struct {
     ExtensionType: u16,
-    pExtData: *const u8,
+    pExtData: ?*const u8,
     cbExtData: u32,
 };
 
@@ -5334,18 +5334,18 @@ pub const SslGetExtensionsFn = fn(
     clientHelloByteSize: u32,
     genericExtensions: [*]SCH_EXTENSION_DATA,
     genericExtensionsCount: u8,
-    bytesToRead: *u32,
+    bytesToRead: ?*u32,
     flags: SchGetExtensionsOptions,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LOGON_HOURS = extern struct {
     UnitsPerWeek: u16,
-    LogonHours: *u8,
+    LogonHours: ?*u8,
 };
 
 pub const SR_SECURITY_DESCRIPTOR = extern struct {
     Length: u32,
-    SecurityDescriptor: *u8,
+    SecurityDescriptor: ?*u8,
 };
 
 pub const USER_ALL_INFORMATION = extern struct {
@@ -5441,7 +5441,7 @@ pub const NETLOGON_GENERIC_INFO = extern struct {
     Identity: NETLOGON_LOGON_IDENTITY_INFO,
     PackageName: UNICODE_STRING,
     DataLength: u32,
-    LogonData: *u8,
+    LogonData: ?*u8,
 };
 
 pub const MSV1_0_VALIDATION_INFO = extern struct {
@@ -5486,20 +5486,20 @@ pub const TOKENBINDING_IDENTIFIER = extern struct {
 pub const TOKENBINDING_RESULT_DATA = extern struct {
     bindingType: TOKENBINDING_TYPE,
     identifierSize: u32,
-    identifierData: *TOKENBINDING_IDENTIFIER,
+    identifierData: ?*TOKENBINDING_IDENTIFIER,
     extensionFormat: TOKENBINDING_EXTENSION_FORMAT,
     extensionSize: u32,
-    extensionData: *c_void,
+    extensionData: ?*c_void,
 };
 
 pub const TOKENBINDING_RESULT_LIST = extern struct {
     resultCount: u32,
-    resultData: *TOKENBINDING_RESULT_DATA,
+    resultData: ?*TOKENBINDING_RESULT_DATA,
 };
 
 pub const TOKENBINDING_KEY_TYPES = extern struct {
     keyCount: u32,
-    keyType: *TOKENBINDING_KEY_PARAMETERS_TYPE,
+    keyType: ?*TOKENBINDING_KEY_PARAMETERS_TYPE,
 };
 
 pub const EXTENDED_NAME_FORMAT = enum(i32) {
@@ -6071,50 +6071,50 @@ pub const TRUST_ATTRIBUTE_WITHIN_FOREST = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.WITHIN
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaRegisterLogonProcess(
-    LogonProcessName: *STRING,
-    LsaHandle: *LsaHandle,
-    SecurityMode: *u32,
+    LogonProcessName: ?*STRING,
+    LsaHandle: ?*LsaHandle,
+    SecurityMode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaLogonUser(
-    LsaHandle: HANDLE,
-    OriginName: *STRING,
+    LsaHandle: ?HANDLE,
+    OriginName: ?*STRING,
     LogonType: SECURITY_LOGON_TYPE,
     AuthenticationPackage: u32,
     // TODO: what to do with BytesParamIndex 5?
-    AuthenticationInformation: *c_void,
+    AuthenticationInformation: ?*c_void,
     AuthenticationInformationLength: u32,
     LocalGroups: ?*TOKEN_GROUPS,
-    SourceContext: *TOKEN_SOURCE,
-    ProfileBuffer: **c_void,
-    ProfileBufferLength: *u32,
-    LogonId: *LUID,
-    Token: *HANDLE,
-    Quotas: *QUOTA_LIMITS,
-    SubStatus: *i32,
+    SourceContext: ?*TOKEN_SOURCE,
+    ProfileBuffer: ?*?*c_void,
+    ProfileBufferLength: ?*u32,
+    LogonId: ?*LUID,
+    Token: ?*?HANDLE,
+    Quotas: ?*QUOTA_LIMITS,
+    SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaLookupAuthenticationPackage(
-    LsaHandle: HANDLE,
-    PackageName: *STRING,
-    AuthenticationPackage: *u32,
+    LsaHandle: ?HANDLE,
+    PackageName: ?*STRING,
+    AuthenticationPackage: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaFreeReturnBuffer(
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaCallAuthenticationPackage(
-    LsaHandle: HANDLE,
+    LsaHandle: ?HANDLE,
     AuthenticationPackage: u32,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
+    ProtocolSubmitBuffer: ?*c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: ?**c_void,
+    ProtocolReturnBuffer: ?*?*c_void,
     ReturnBufferLength: ?*u32,
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -6126,7 +6126,7 @@ pub extern "SECUR32" fn LsaDeregisterLogonProcess(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaConnectUntrusted(
-    LsaHandle: *HANDLE,
+    LsaHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6136,27 +6136,27 @@ pub extern "ADVAPI32" fn LsaFreeMemory(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaClose(
-    ObjectHandle: *c_void,
+    ObjectHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaEnumerateLogonSessions(
-    LogonSessionCount: *u32,
-    LogonSessionList: **LUID,
+    LogonSessionCount: ?*u32,
+    LogonSessionList: ?*?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaGetLogonSessionData(
-    LogonId: *LUID,
-    ppLogonSessionData: **SECURITY_LOGON_SESSION_DATA,
+    LogonId: ?*LUID,
+    ppLogonSessionData: ?*?*SECURITY_LOGON_SESSION_DATA,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaOpenPolicy(
     SystemName: ?*UNICODE_STRING,
-    ObjectAttributes: *OBJECT_ATTRIBUTES,
+    ObjectAttributes: ?*OBJECT_ATTRIBUTES,
     DesiredAccess: u32,
-    PolicyHandle: **c_void,
+    PolicyHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ADVAPI32" fn LsaSetCAPs(
@@ -6168,42 +6168,42 @@ pub extern "ADVAPI32" fn LsaSetCAPs(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn LsaGetAppliedCAPIDs(
     SystemName: ?*UNICODE_STRING,
-    CAPIDs: **PSID,
-    CAPIDCount: *u32,
+    CAPIDs: ?*?*?PSID,
+    CAPIDCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn LsaQueryCAPs(
-    CAPIDs: ?[*]PSID,
+    CAPIDs: ?[*]?PSID,
     CAPIDCount: u32,
-    CAPs: **CENTRAL_ACCESS_POLICY,
-    CAPCount: *u32,
+    CAPs: ?*?*CENTRAL_ACCESS_POLICY,
+    CAPCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaQueryInformationPolicy(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     InformationClass: POLICY_INFORMATION_CLASS,
-    Buffer: **c_void,
+    Buffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaSetInformationPolicy(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     InformationClass: POLICY_INFORMATION_CLASS,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaQueryDomainInformationPolicy(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     InformationClass: POLICY_DOMAIN_INFORMATION_CLASS,
-    Buffer: **c_void,
+    Buffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaSetDomainInformationPolicy(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     InformationClass: POLICY_DOMAIN_INFORMATION_CLASS,
     Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -6211,90 +6211,90 @@ pub extern "ADVAPI32" fn LsaSetDomainInformationPolicy(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaRegisterPolicyChangeNotification(
     InformationClass: POLICY_NOTIFICATION_INFORMATION_CLASS,
-    NotificationEventHandle: HANDLE,
+    NotificationEventHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn LsaUnregisterPolicyChangeNotification(
     InformationClass: POLICY_NOTIFICATION_INFORMATION_CLASS,
-    NotificationEventHandle: HANDLE,
+    NotificationEventHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaEnumerateTrustedDomains(
-    PolicyHandle: *c_void,
-    EnumerationContext: *u32,
-    Buffer: **c_void,
+    PolicyHandle: ?*c_void,
+    EnumerationContext: ?*u32,
+    Buffer: ?*?*c_void,
     PreferedMaximumLength: u32,
-    CountReturned: *u32,
+    CountReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaLookupNames(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     Count: u32,
-    Names: *UNICODE_STRING,
-    ReferencedDomains: **LSA_REFERENCED_DOMAIN_LIST,
-    Sids: **LSA_TRANSLATED_SID,
+    Names: ?*UNICODE_STRING,
+    ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
+    Sids: ?*?*LSA_TRANSLATED_SID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaLookupNames2(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     Flags: u32,
     Count: u32,
-    Names: *UNICODE_STRING,
-    ReferencedDomains: **LSA_REFERENCED_DOMAIN_LIST,
-    Sids: **LSA_TRANSLATED_SID2,
+    Names: ?*UNICODE_STRING,
+    ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
+    Sids: ?*?*LSA_TRANSLATED_SID2,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaLookupSids(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     Count: u32,
-    Sids: *PSID,
-    ReferencedDomains: **LSA_REFERENCED_DOMAIN_LIST,
-    Names: **LSA_TRANSLATED_NAME,
+    Sids: ?*?PSID,
+    ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
+    Names: ?*?*LSA_TRANSLATED_NAME,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn LsaLookupSids2(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     LookupOptions: u32,
     Count: u32,
-    Sids: *PSID,
-    ReferencedDomains: **LSA_REFERENCED_DOMAIN_LIST,
-    Names: **LSA_TRANSLATED_NAME,
+    Sids: ?*?PSID,
+    ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
+    Names: ?*?*LSA_TRANSLATED_NAME,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaEnumerateAccountsWithUserRight(
-    PolicyHandle: *c_void,
+    PolicyHandle: ?*c_void,
     UserRight: ?*UNICODE_STRING,
-    Buffer: **c_void,
-    CountReturned: *u32,
+    Buffer: ?*?*c_void,
+    CountReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaEnumerateAccountRights(
-    PolicyHandle: *c_void,
-    AccountSid: PSID,
-    UserRights: **UNICODE_STRING,
-    CountOfRights: *u32,
+    PolicyHandle: ?*c_void,
+    AccountSid: ?PSID,
+    UserRights: ?*?*UNICODE_STRING,
+    CountOfRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaAddAccountRights(
-    PolicyHandle: *c_void,
-    AccountSid: PSID,
+    PolicyHandle: ?*c_void,
+    AccountSid: ?PSID,
     UserRights: [*]UNICODE_STRING,
     CountOfRights: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaRemoveAccountRights(
-    PolicyHandle: *c_void,
-    AccountSid: PSID,
+    PolicyHandle: ?*c_void,
+    AccountSid: ?PSID,
     AllRights: u8,
     UserRights: ?[*]UNICODE_STRING,
     CountOfRights: u32,
@@ -6302,96 +6302,96 @@ pub extern "ADVAPI32" fn LsaRemoveAccountRights(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaOpenTrustedDomainByName(
-    PolicyHandle: *c_void,
-    TrustedDomainName: *UNICODE_STRING,
+    PolicyHandle: ?*c_void,
+    TrustedDomainName: ?*UNICODE_STRING,
     DesiredAccess: u32,
-    TrustedDomainHandle: **c_void,
+    TrustedDomainHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaQueryTrustedDomainInfo(
-    PolicyHandle: *c_void,
-    TrustedDomainSid: PSID,
+    PolicyHandle: ?*c_void,
+    TrustedDomainSid: ?PSID,
     InformationClass: TRUSTED_INFORMATION_CLASS,
-    Buffer: **c_void,
+    Buffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaSetTrustedDomainInformation(
-    PolicyHandle: *c_void,
-    TrustedDomainSid: PSID,
+    PolicyHandle: ?*c_void,
+    TrustedDomainSid: ?PSID,
     InformationClass: TRUSTED_INFORMATION_CLASS,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaDeleteTrustedDomain(
-    PolicyHandle: *c_void,
-    TrustedDomainSid: PSID,
+    PolicyHandle: ?*c_void,
+    TrustedDomainSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaQueryTrustedDomainInfoByName(
-    PolicyHandle: *c_void,
-    TrustedDomainName: *UNICODE_STRING,
+    PolicyHandle: ?*c_void,
+    TrustedDomainName: ?*UNICODE_STRING,
     InformationClass: TRUSTED_INFORMATION_CLASS,
-    Buffer: **c_void,
+    Buffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaSetTrustedDomainInfoByName(
-    PolicyHandle: *c_void,
-    TrustedDomainName: *UNICODE_STRING,
+    PolicyHandle: ?*c_void,
+    TrustedDomainName: ?*UNICODE_STRING,
     InformationClass: TRUSTED_INFORMATION_CLASS,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaEnumerateTrustedDomainsEx(
-    PolicyHandle: *c_void,
-    EnumerationContext: *u32,
-    Buffer: **c_void,
+    PolicyHandle: ?*c_void,
+    EnumerationContext: ?*u32,
+    Buffer: ?*?*c_void,
     PreferedMaximumLength: u32,
-    CountReturned: *u32,
+    CountReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaCreateTrustedDomainEx(
-    PolicyHandle: *c_void,
-    TrustedDomainInformation: *TRUSTED_DOMAIN_INFORMATION_EX,
-    AuthenticationInformation: *TRUSTED_DOMAIN_AUTH_INFORMATION,
+    PolicyHandle: ?*c_void,
+    TrustedDomainInformation: ?*TRUSTED_DOMAIN_INFORMATION_EX,
+    AuthenticationInformation: ?*TRUSTED_DOMAIN_AUTH_INFORMATION,
     DesiredAccess: u32,
-    TrustedDomainHandle: **c_void,
+    TrustedDomainHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "ADVAPI32" fn LsaQueryForestTrustInformation(
-    PolicyHandle: *c_void,
-    TrustedDomainName: *UNICODE_STRING,
-    ForestTrustInfo: **LSA_FOREST_TRUST_INFORMATION,
+    PolicyHandle: ?*c_void,
+    TrustedDomainName: ?*UNICODE_STRING,
+    ForestTrustInfo: ?*?*LSA_FOREST_TRUST_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "ADVAPI32" fn LsaSetForestTrustInformation(
-    PolicyHandle: *c_void,
-    TrustedDomainName: *UNICODE_STRING,
-    ForestTrustInfo: *LSA_FOREST_TRUST_INFORMATION,
+    PolicyHandle: ?*c_void,
+    TrustedDomainName: ?*UNICODE_STRING,
+    ForestTrustInfo: ?*LSA_FOREST_TRUST_INFORMATION,
     CheckOnly: u8,
-    CollisionInfo: **LSA_FOREST_TRUST_COLLISION_INFORMATION,
+    CollisionInfo: ?*?*LSA_FOREST_TRUST_COLLISION_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaStorePrivateData(
-    PolicyHandle: *c_void,
-    KeyName: *UNICODE_STRING,
+    PolicyHandle: ?*c_void,
+    KeyName: ?*UNICODE_STRING,
     PrivateData: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LsaRetrievePrivateData(
-    PolicyHandle: *c_void,
-    KeyName: *UNICODE_STRING,
-    PrivateData: **UNICODE_STRING,
+    PolicyHandle: ?*c_void,
+    KeyName: ?*UNICODE_STRING,
+    PrivateData: ?*?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6401,20 +6401,20 @@ pub extern "ADVAPI32" fn LsaNtStatusToWinError(
 
 pub extern "ADVAPI32" fn SystemFunction036(
     // TODO: what to do with BytesParamIndex 1?
-    RandomBuffer: *c_void,
+    RandomBuffer: ?*c_void,
     RandomBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "ADVAPI32" fn SystemFunction040(
     // TODO: what to do with BytesParamIndex 1?
-    Memory: *c_void,
+    Memory: ?*c_void,
     MemorySize: u32,
     OptionFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ADVAPI32" fn SystemFunction041(
     // TODO: what to do with BytesParamIndex 1?
-    Memory: *c_void,
+    Memory: ?*c_void,
     MemorySize: u32,
     OptionFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -6427,7 +6427,7 @@ pub extern "ADVAPI32" fn AuditSetSystemPolicy(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditSetPerUserPolicy(
-    pSid: PSID,
+    pSid: ?PSID,
     pAuditPolicy: [*]AUDIT_POLICY_INFORMATION,
     dwPolicyCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
@@ -6436,164 +6436,164 @@ pub extern "ADVAPI32" fn AuditSetPerUserPolicy(
 pub extern "ADVAPI32" fn AuditQuerySystemPolicy(
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
-    ppAuditPolicy: **AUDIT_POLICY_INFORMATION,
+    ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditQueryPerUserPolicy(
-    pSid: PSID,
+    pSid: ?PSID,
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
-    ppAuditPolicy: **AUDIT_POLICY_INFORMATION,
+    ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumeratePerUserPolicy(
-    ppAuditSidArray: **POLICY_AUDIT_SID_ARRAY,
+    ppAuditSidArray: ?*?*POLICY_AUDIT_SID_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditComputeEffectivePolicyBySid(
-    pSid: PSID,
+    pSid: ?PSID,
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
-    ppAuditPolicy: **AUDIT_POLICY_INFORMATION,
+    ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditComputeEffectivePolicyByToken(
-    hTokenHandle: HANDLE,
+    hTokenHandle: ?HANDLE,
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
-    ppAuditPolicy: **AUDIT_POLICY_INFORMATION,
+    ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumerateCategories(
-    ppAuditCategoriesArray: **Guid,
-    pdwCountReturned: *u32,
+    ppAuditCategoriesArray: ?*?*Guid,
+    pdwCountReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumerateSubCategories(
     pAuditCategoryGuid: ?*const Guid,
     bRetrieveAllSubCategories: u8,
-    ppAuditSubCategoriesArray: **Guid,
-    pdwCountReturned: *u32,
+    ppAuditSubCategoriesArray: ?*?*Guid,
+    pdwCountReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryNameW(
-    pAuditCategoryGuid: *const Guid,
-    ppszCategoryName: *PWSTR,
+    pAuditCategoryGuid: ?*const Guid,
+    ppszCategoryName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryNameA(
-    pAuditCategoryGuid: *const Guid,
-    ppszCategoryName: *PSTR,
+    pAuditCategoryGuid: ?*const Guid,
+    ppszCategoryName: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupSubCategoryNameW(
-    pAuditSubCategoryGuid: *const Guid,
-    ppszSubCategoryName: *PWSTR,
+    pAuditSubCategoryGuid: ?*const Guid,
+    ppszSubCategoryName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupSubCategoryNameA(
-    pAuditSubCategoryGuid: *const Guid,
-    ppszSubCategoryName: *PSTR,
+    pAuditSubCategoryGuid: ?*const Guid,
+    ppszSubCategoryName: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryIdFromCategoryGuid(
-    pAuditCategoryGuid: *const Guid,
-    pAuditCategoryId: *POLICY_AUDIT_EVENT_TYPE,
+    pAuditCategoryGuid: ?*const Guid,
+    pAuditCategoryId: ?*POLICY_AUDIT_EVENT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryGuidFromCategoryId(
     AuditCategoryId: POLICY_AUDIT_EVENT_TYPE,
-    pAuditCategoryGuid: *Guid,
+    pAuditCategoryGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditSetSecurity(
     SecurityInformation: u32,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditQuerySecurity(
     SecurityInformation: u32,
-    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditSetGlobalSaclW(
-    ObjectTypeName: [*:0]const u16,
+    ObjectTypeName: ?[*:0]const u16,
     Acl: ?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditSetGlobalSaclA(
-    ObjectTypeName: [*:0]const u8,
+    ObjectTypeName: ?[*:0]const u8,
     Acl: ?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditQueryGlobalSaclW(
-    ObjectTypeName: [*:0]const u16,
-    Acl: **ACL,
+    ObjectTypeName: ?[*:0]const u16,
+    Acl: ?*?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditQueryGlobalSaclA(
-    ObjectTypeName: [*:0]const u8,
-    Acl: **ACL,
+    ObjectTypeName: ?[*:0]const u8,
+    Acl: ?*?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditFree(
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn AcquireCredentialsHandleW(
     pszPrincipal: ?PWSTR,
-    pszPackage: PWSTR,
+    pszPackage: ?PWSTR,
     fCredentialUse: SECPKG_CRED,
     pvLogonId: ?*c_void,
     pAuthData: ?*c_void,
     pGetKeyFn: ?SEC_GET_KEY_FN,
     pvGetKeyArgument: ?*c_void,
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn AcquireCredentialsHandleA(
     pszPrincipal: ?PSTR,
-    pszPackage: PSTR,
+    pszPackage: ?PSTR,
     fCredentialUse: SECPKG_CRED,
     pvLogonId: ?*c_void,
     pAuthData: ?*c_void,
     pGetKeyFn: ?SEC_GET_KEY_FN,
     pvGetKeyArgument: ?*c_void,
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn FreeCredentialsHandle(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "SECUR32" fn AddCredentialsW(
-    hCredentials: *SecHandle,
+    hCredentials: ?*SecHandle,
     pszPrincipal: ?PWSTR,
-    pszPackage: PWSTR,
+    pszPackage: ?PWSTR,
     fCredentialUse: u32,
     pAuthData: ?*c_void,
     pGetKeyFn: ?SEC_GET_KEY_FN,
@@ -6602,9 +6602,9 @@ pub extern "SECUR32" fn AddCredentialsW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "SECUR32" fn AddCredentialsA(
-    hCredentials: *SecHandle,
+    hCredentials: ?*SecHandle,
     pszPrincipal: ?PSTR,
-    pszPackage: PSTR,
+    pszPackage: ?PSTR,
     fCredentialUse: u32,
     pAuthData: ?*c_void,
     pGetKeyFn: ?SEC_GET_KEY_FN,
@@ -6614,26 +6614,26 @@ pub extern "SECUR32" fn AddCredentialsA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn ChangeAccountPasswordW(
-    pszPackageName: *u16,
-    pszDomainName: *u16,
-    pszAccountName: *u16,
-    pszOldPassword: *u16,
-    pszNewPassword: *u16,
+    pszPackageName: ?*u16,
+    pszDomainName: ?*u16,
+    pszAccountName: ?*u16,
+    pszOldPassword: ?*u16,
+    pszNewPassword: ?*u16,
     bImpersonating: u8,
     dwReserved: u32,
-    pOutput: *SecBufferDesc,
+    pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn ChangeAccountPasswordA(
-    pszPackageName: *i8,
-    pszDomainName: *i8,
-    pszAccountName: *i8,
-    pszOldPassword: *i8,
-    pszNewPassword: *i8,
+    pszPackageName: ?*i8,
+    pszDomainName: ?*i8,
+    pszAccountName: ?*i8,
+    pszOldPassword: ?*i8,
+    pszNewPassword: ?*i8,
     bImpersonating: u8,
     dwReserved: u32,
-    pOutput: *SecBufferDesc,
+    pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6648,7 +6648,7 @@ pub extern "SECUR32" fn InitializeSecurityContextW(
     Reserved2: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6664,7 +6664,7 @@ pub extern "SECUR32" fn InitializeSecurityContextA(
     Reserved2: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6677,268 +6677,268 @@ pub extern "SECUR32" fn AcceptSecurityContext(
     TargetDataRep: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn CompleteAuthToken(
-    phContext: *SecHandle,
-    pToken: *SecBufferDesc,
+    phContext: ?*SecHandle,
+    pToken: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn ImpersonateSecurityContext(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn RevertSecurityContext(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn QuerySecurityContextToken(
-    phContext: *SecHandle,
-    Token: **c_void,
+    phContext: ?*SecHandle,
+    Token: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn DeleteSecurityContext(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn ApplyControlToken(
-    phContext: *SecHandle,
-    pInput: *SecBufferDesc,
+    phContext: ?*SecHandle,
+    pInput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn QueryContextAttributesW(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SspiCli" fn QueryContextAttributesExW(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn QueryContextAttributesA(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SspiCli" fn QueryContextAttributesExA(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn SetContextAttributesW(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn SetContextAttributesA(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn QueryCredentialsAttributesW(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "SspiCli" fn QueryCredentialsAttributesExW(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn QueryCredentialsAttributesA(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "SspiCli" fn QueryCredentialsAttributesExA(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn SetCredentialsAttributesW(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn SetCredentialsAttributesA(
-    phCredential: *SecHandle,
+    phCredential: ?*SecHandle,
     ulAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: *c_void,
+    pBuffer: ?*c_void,
     cbBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn FreeContextBuffer(
-    pvContextBuffer: *c_void,
+    pvContextBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn MakeSignature(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     fQOP: u32,
-    pMessage: *SecBufferDesc,
+    pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn VerifySignature(
-    phContext: *SecHandle,
-    pMessage: *SecBufferDesc,
+    phContext: ?*SecHandle,
+    pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
-    pfQOP: *u32,
+    pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn EncryptMessage(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     fQOP: u32,
-    pMessage: *SecBufferDesc,
+    pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn DecryptMessage(
-    phContext: *SecHandle,
-    pMessage: *SecBufferDesc,
+    phContext: ?*SecHandle,
+    pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn EnumerateSecurityPackagesW(
-    pcPackages: *u32,
-    ppPackageInfo: **SecPkgInfoW,
+    pcPackages: ?*u32,
+    ppPackageInfo: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn EnumerateSecurityPackagesA(
-    pcPackages: *u32,
-    ppPackageInfo: **SecPkgInfoA,
+    pcPackages: ?*u32,
+    ppPackageInfo: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn QuerySecurityPackageInfoW(
-    pszPackageName: PWSTR,
-    ppPackageInfo: **SecPkgInfoW,
+    pszPackageName: ?PWSTR,
+    ppPackageInfo: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn QuerySecurityPackageInfoA(
-    pszPackageName: PSTR,
-    ppPackageInfo: **SecPkgInfoA,
+    pszPackageName: ?PSTR,
+    ppPackageInfo: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn ExportSecurityContext(
-    phContext: *SecHandle,
+    phContext: ?*SecHandle,
     fFlags: EXPORT_SECURITY_CONTEXT_FLAGS,
-    pPackedContext: *SecBuffer,
-    pToken: **c_void,
+    pPackedContext: ?*SecBuffer,
+    pToken: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn ImportSecurityContextW(
-    pszPackage: PWSTR,
-    pPackedContext: *SecBuffer,
-    Token: *c_void,
-    phContext: *SecHandle,
+    pszPackage: ?PWSTR,
+    pPackedContext: ?*SecBuffer,
+    Token: ?*c_void,
+    phContext: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn ImportSecurityContextA(
-    pszPackage: PSTR,
-    pPackedContext: *SecBuffer,
-    Token: *c_void,
-    phContext: *SecHandle,
+    pszPackage: ?PSTR,
+    pPackedContext: ?*SecBuffer,
+    Token: ?*c_void,
+    phContext: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn InitSecurityInterfaceA(
-) callconv(@import("std").os.windows.WINAPI) *SecurityFunctionTableA;
+) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SECUR32" fn InitSecurityInterfaceW(
-) callconv(@import("std").os.windows.WINAPI) *SecurityFunctionTableW;
+) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslEnumerateProfilesA(
-    ProfileList: *PSTR,
-    ProfileCount: *u32,
+    ProfileList: ?*?PSTR,
+    ProfileCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslEnumerateProfilesW(
-    ProfileList: *PWSTR,
-    ProfileCount: *u32,
+    ProfileList: ?*?PWSTR,
+    ProfileCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslGetProfilePackageA(
-    ProfileName: PSTR,
-    PackageInfo: **SecPkgInfoA,
+    ProfileName: ?PSTR,
+    PackageInfo: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslGetProfilePackageW(
-    ProfileName: PWSTR,
-    PackageInfo: **SecPkgInfoW,
+    ProfileName: ?PWSTR,
+    PackageInfo: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslIdentifyPackageA(
-    pInput: *SecBufferDesc,
-    PackageInfo: **SecPkgInfoA,
+    pInput: ?*SecBufferDesc,
+    PackageInfo: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslIdentifyPackageW(
-    pInput: *SecBufferDesc,
-    PackageInfo: **SecPkgInfoW,
+    pInput: ?*SecBufferDesc,
+    PackageInfo: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -6953,7 +6953,7 @@ pub extern "SECUR32" fn SaslInitializeSecurityContextW(
     Reserved2: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6969,7 +6969,7 @@ pub extern "SECUR32" fn SaslInitializeSecurityContextA(
     Reserved2: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6982,114 +6982,114 @@ pub extern "SECUR32" fn SaslAcceptSecurityContext(
     TargetDataRep: u32,
     phNewContext: ?*SecHandle,
     pOutput: ?*SecBufferDesc,
-    pfContextAttr: *u32,
+    pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslSetContextOption(
-    ContextHandle: *SecHandle,
+    ContextHandle: ?*SecHandle,
     Option: u32,
-    Value: *c_void,
+    Value: ?*c_void,
     Size: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SECUR32" fn SaslGetContextOption(
-    ContextHandle: *SecHandle,
+    ContextHandle: ?*SecHandle,
     Option: u32,
-    Value: *c_void,
+    Value: ?*c_void,
     Size: u32,
     Needed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "credui" fn SspiPromptForCredentialsW(
-    pszTargetName: [*:0]const u16,
+    pszTargetName: ?[*:0]const u16,
     pUiInfo: ?*c_void,
     dwAuthError: u32,
-    pszPackage: [*:0]const u16,
+    pszPackage: ?[*:0]const u16,
     pInputAuthIdentity: ?*c_void,
-    ppAuthIdentity: **c_void,
+    ppAuthIdentity: ?*?*c_void,
     pfSave: ?*i32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "credui" fn SspiPromptForCredentialsA(
-    pszTargetName: [*:0]const u8,
+    pszTargetName: ?[*:0]const u8,
     pUiInfo: ?*c_void,
     dwAuthError: u32,
-    pszPackage: [*:0]const u8,
+    pszPackage: ?[*:0]const u8,
     pInputAuthIdentity: ?*c_void,
-    ppAuthIdentity: **c_void,
+    ppAuthIdentity: ?*?*c_void,
     pfSave: ?*i32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiPrepareForCredRead(
-    AuthIdentity: *c_void,
-    pszTargetName: [*:0]const u16,
-    pCredmanCredentialType: *u32,
-    ppszCredmanTargetName: *PWSTR,
+    AuthIdentity: ?*c_void,
+    pszTargetName: ?[*:0]const u16,
+    pCredmanCredentialType: ?*u32,
+    ppszCredmanTargetName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiPrepareForCredWrite(
-    AuthIdentity: *c_void,
+    AuthIdentity: ?*c_void,
     pszTargetName: ?[*:0]const u16,
-    pCredmanCredentialType: *u32,
-    ppszCredmanTargetName: *PWSTR,
-    ppszCredmanUserName: *PWSTR,
-    ppCredentialBlob: **u8,
-    pCredentialBlobSize: *u32,
+    pCredmanCredentialType: ?*u32,
+    ppszCredmanTargetName: ?*?PWSTR,
+    ppszCredmanUserName: ?*?PWSTR,
+    ppCredentialBlob: ?*?*u8,
+    pCredentialBlobSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiEncryptAuthIdentity(
-    AuthData: *c_void,
+    AuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SspiCli" fn SspiEncryptAuthIdentityEx(
     Options: u32,
-    AuthData: *c_void,
+    AuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiDecryptAuthIdentity(
-    EncryptedAuthData: *c_void,
+    EncryptedAuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SspiCli" fn SspiDecryptAuthIdentityEx(
     Options: u32,
-    EncryptedAuthData: *c_void,
+    EncryptedAuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiIsAuthIdentityEncrypted(
-    EncryptedAuthData: *c_void,
+    EncryptedAuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiEncodeAuthIdentityAsStrings(
-    pAuthIdentity: *c_void,
-    ppszUserName: ?*PWSTR,
-    ppszDomainName: ?*PWSTR,
-    ppszPackedCredentialsString: ?*PWSTR,
+    pAuthIdentity: ?*c_void,
+    ppszUserName: ?*?PWSTR,
+    ppszDomainName: ?*?PWSTR,
+    ppszPackedCredentialsString: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiValidateAuthIdentity(
-    AuthData: *c_void,
+    AuthData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiCopyAuthIdentity(
-    AuthData: *c_void,
-    AuthDataCopy: **c_void,
+    AuthData: ?*c_void,
+    AuthDataCopy: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7112,7 +7112,7 @@ pub extern "SECUR32" fn SspiEncodeStringsAsAuthIdentity(
     pszUserName: ?[*:0]const u16,
     pszDomainName: ?[*:0]const u16,
     pszPackedCredentialsString: ?[*:0]const u16,
-    ppAuthIdentity: **c_void,
+    ppAuthIdentity: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7125,17 +7125,17 @@ pub extern "SECUR32" fn SspiCompareAuthIdentities(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiMarshalAuthIdentity(
-    AuthIdentity: *c_void,
-    AuthIdentityLength: *u32,
-    AuthIdentityByteArray: **i8,
+    AuthIdentity: ?*c_void,
+    AuthIdentityLength: ?*u32,
+    AuthIdentityByteArray: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiUnmarshalAuthIdentity(
     AuthIdentityLength: u32,
     // TODO: what to do with BytesParamIndex 0?
-    AuthIdentityByteArray: PSTR,
-    ppAuthIdentity: **c_void,
+    AuthIdentityByteArray: ?PSTR,
+    ppAuthIdentity: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7145,82 +7145,82 @@ pub extern "credui" fn SspiIsPromptingNeeded(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiGetTargetHostName(
-    pszTargetName: [*:0]const u16,
-    pszHostName: *PWSTR,
+    pszTargetName: ?[*:0]const u16,
+    pszHostName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiExcludePackage(
     AuthIdentity: ?*c_void,
-    pszPackageName: [*:0]const u16,
-    ppNewAuthIdentity: **c_void,
+    pszPackageName: ?[*:0]const u16,
+    ppNewAuthIdentity: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn AddSecurityPackageA(
-    pszPackageName: PSTR,
+    pszPackageName: ?PSTR,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn AddSecurityPackageW(
-    pszPackageName: PWSTR,
+    pszPackageName: ?PWSTR,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn DeleteSecurityPackageA(
-    pszPackageName: PSTR,
+    pszPackageName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn DeleteSecurityPackageW(
-    pszPackageName: PWSTR,
+    pszPackageName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SECUR32" fn CredMarshalTargetInfo(
-    InTargetInfo: *CREDENTIAL_TARGET_INFORMATIONW,
-    Buffer: **u16,
-    BufferSize: *u32,
+    InTargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
+    Buffer: ?*?*u16,
+    BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "SECUR32" fn CredUnmarshalTargetInfo(
     // TODO: what to do with BytesParamIndex 1?
-    Buffer: *u16,
+    Buffer: ?*u16,
     BufferSize: u32,
-    RetTargetInfo: ?**CREDENTIAL_TARGET_INFORMATIONW,
+    RetTargetInfo: ?*?*CREDENTIAL_TARGET_INFORMATIONW,
     RetActualSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SCHANNEL" fn SslEmptyCacheA(
-    pszTargetName: PSTR,
+    pszTargetName: ?PSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SCHANNEL" fn SslEmptyCacheW(
-    pszTargetName: PWSTR,
+    pszTargetName: ?PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SCHANNEL" fn SslGenerateRandomBits(
-    pRandomData: *u8,
+    pRandomData: ?*u8,
     cRandomData: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SCHANNEL" fn SslCrackCertificate(
-    pbCertificate: *u8,
+    pbCertificate: ?*u8,
     cbCertificate: u32,
     dwFlags: u32,
-    ppCertificate: **X509Certificate,
+    ppCertificate: ?*?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SCHANNEL" fn SslFreeCertificate(
-    pCertificate: *X509Certificate,
+    pCertificate: ?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "SCHANNEL" fn SslGetMaximumKeySize(
@@ -7230,10 +7230,10 @@ pub extern "SCHANNEL" fn SslGetMaximumKeySize(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "SCHANNEL" fn SslGetServerIdentity(
     // TODO: what to do with BytesParamIndex 1?
-    ClientHello: *u8,
+    ClientHello: ?*u8,
     ClientHelloSize: u32,
-    ServerIdentity: **u8,
-    ServerIdentitySize: *u32,
+    ServerIdentity: ?*?*u8,
+    ServerIdentitySize: ?*u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7242,59 +7242,59 @@ pub extern "SCHANNEL" fn SslGetExtensions(
     clientHelloByteSize: u32,
     genericExtensions: [*]SCH_EXTENSION_DATA,
     genericExtensionsCount: u8,
-    bytesToRead: *u32,
+    bytesToRead: ?*u32,
     flags: SchGetExtensionsOptions,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingGenerateBinding(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
-    targetURL: [*:0]const u16,
+    targetURL: ?[*:0]const u16,
     bindingType: TOKENBINDING_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    tlsEKM: *const c_void,
+    tlsEKM: ?*const c_void,
     tlsEKMSize: u32,
     extensionFormat: TOKENBINDING_EXTENSION_FORMAT,
-    extensionData: *const c_void,
-    tokenBinding: **c_void,
-    tokenBindingSize: *u32,
-    resultData: ?**TOKENBINDING_RESULT_DATA,
+    extensionData: ?*const c_void,
+    tokenBinding: ?*?*c_void,
+    tokenBindingSize: ?*u32,
+    resultData: ?*?*TOKENBINDING_RESULT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingGenerateMessage(
-    tokenBindings: [*]const *const c_void,
+    tokenBindings: [*]const ?*const c_void,
     tokenBindingsSize: [*]const u32,
     tokenBindingsCount: u32,
-    tokenBindingMessage: **c_void,
-    tokenBindingMessageSize: *u32,
+    tokenBindingMessage: ?*?*c_void,
+    tokenBindingMessageSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingVerifyMessage(
     // TODO: what to do with BytesParamIndex 1?
-    tokenBindingMessage: *const c_void,
+    tokenBindingMessage: ?*const c_void,
     tokenBindingMessageSize: u32,
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
     // TODO: what to do with BytesParamIndex 4?
-    tlsEKM: *const c_void,
+    tlsEKM: ?*const c_void,
     tlsEKMSize: u32,
-    resultList: **TOKENBINDING_RESULT_LIST,
+    resultList: ?*?*TOKENBINDING_RESULT_LIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingGetKeyTypesClient(
-    keyTypes: **TOKENBINDING_KEY_TYPES,
+    keyTypes: ?*?*TOKENBINDING_KEY_TYPES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingGetKeyTypesServer(
-    keyTypes: **TOKENBINDING_KEY_TYPES,
+    keyTypes: ?*?*TOKENBINDING_KEY_TYPES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "TOKENBINDING" fn TokenBindingDeleteBinding(
-    targetURL: [*:0]const u16,
+    targetURL: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -7305,66 +7305,66 @@ pub extern "TOKENBINDING" fn TokenBindingDeleteAllBindings(
 pub extern "TOKENBINDING" fn TokenBindingGenerateID(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
     // TODO: what to do with BytesParamIndex 2?
-    publicKey: *const c_void,
+    publicKey: ?*const c_void,
     publicKeySize: u32,
-    resultData: **TOKENBINDING_RESULT_DATA,
+    resultData: ?*?*TOKENBINDING_RESULT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TOKENBINDING" fn TokenBindingGenerateIDForUri(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
-    targetUri: [*:0]const u16,
-    resultData: **TOKENBINDING_RESULT_DATA,
+    targetUri: ?[*:0]const u16,
+    resultData: ?*?*TOKENBINDING_RESULT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TOKENBINDING" fn TokenBindingGetHighestSupportedVersion(
-    majorVersion: *u8,
-    minorVersion: *u8,
+    majorVersion: ?*u8,
+    minorVersion: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetUserNameExA(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetUserNameExW(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetComputerObjectNameA(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetComputerObjectNameW(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn TranslateNameA(
-    lpAccountName: [*:0]const u8,
+    lpAccountName: ?[*:0]const u8,
     AccountNameFormat: EXTENDED_NAME_FORMAT,
     DesiredNameFormat: EXTENDED_NAME_FORMAT,
     lpTranslatedName: ?[*:0]u8,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn TranslateNameW(
-    lpAccountName: [*:0]const u16,
+    lpAccountName: ?[*:0]const u16,
     AccountNameFormat: EXTENDED_NAME_FORMAT,
     DesiredNameFormat: EXTENDED_NAME_FORMAT,
     lpTranslatedName: ?[*:0]u16,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 

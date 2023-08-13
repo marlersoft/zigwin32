@@ -372,8 +372,8 @@ pub const TS_SELECTION_ACP = extern struct {
 };
 
 pub const TS_SELECTION_ANCHOR = extern struct {
-    paStart: *IAnchor,
-    paEnd: *IAnchor,
+    paStart: ?*IAnchor,
+    paEnd: ?*IAnchor,
     style: TS_SELECTIONSTYLE,
 };
 
@@ -414,37 +414,37 @@ pub const ITextStoreACP = extern struct {
         base: IUnknown.VTable,
         AdviseSink: fn(
             self: *const ITextStoreACP,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
             dwMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseSink: fn(
             self: *const ITextStoreACP,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestLock: fn(
             self: *const ITextStoreACP,
             dwLockFlags: u32,
-            phrSession: *HRESULT,
+            phrSession: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITextStoreACP,
-            pdcs: *TS_STATUS,
+            pdcs: ?*TS_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsert: fn(
             self: *const ITextStoreACP,
             acpTestStart: i32,
             acpTestEnd: i32,
             cch: u32,
-            pacpResultStart: *i32,
-            pacpResultEnd: *i32,
+            pacpResultStart: ?*i32,
+            pacpResultEnd: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ITextStoreACP,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ACP,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSelection: fn(
             self: *const ITextStoreACP,
@@ -457,11 +457,11 @@ pub const ITextStoreACP = extern struct {
             acpEnd: i32,
             pchPlain: [*:0]u16,
             cchPlainReq: u32,
-            pcchPlainRet: *u32,
+            pcchPlainRet: ?*u32,
             prgRunInfo: [*]TS_RUNINFO,
             cRunInfoReq: u32,
-            pcRunInfoRet: *u32,
-            pacpNext: *i32,
+            pcRunInfoRet: ?*u32,
+            pacpNext: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetText: fn(
             self: *const ITextStoreACP,
@@ -470,51 +470,51 @@ pub const ITextStoreACP = extern struct {
             acpEnd: i32,
             pchText: [*:0]const u16,
             cch: u32,
-            pChange: *TS_TEXTCHANGE,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormattedText: fn(
             self: *const ITextStoreACP,
             acpStart: i32,
             acpEnd: i32,
-            ppDataObject: **IDataObject,
+            ppDataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEmbedded: fn(
             self: *const ITextStoreACP,
             acpPos: i32,
-            rguidService: *const Guid,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            rguidService: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsertEmbedded: fn(
             self: *const ITextStoreACP,
-            pguidService: *const Guid,
-            pFormatEtc: *const FORMATETC,
-            pfInsertable: *BOOL,
+            pguidService: ?*const Guid,
+            pFormatEtc: ?*const FORMATETC,
+            pfInsertable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
             acpStart: i32,
             acpEnd: i32,
-            pDataObject: *IDataObject,
-            pChange: *TS_TEXTCHANGE,
+            pDataObject: ?*IDataObject,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertTextAtSelection: fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
             pchText: [*:0]const u16,
             cch: u32,
-            pacpStart: *i32,
-            pacpEnd: *i32,
-            pChange: *TS_TEXTCHANGE,
+            pacpStart: ?*i32,
+            pacpEnd: ?*i32,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbeddedAtSelection: fn(
             self: *const ITextStoreACP,
             dwFlags: u32,
-            pDataObject: *IDataObject,
-            pacpStart: *i32,
-            pacpEnd: *i32,
-            pChange: *TS_TEXTCHANGE,
+            pDataObject: ?*IDataObject,
+            pacpStart: ?*i32,
+            pacpEnd: ?*i32,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestSupportedAttrs: fn(
             self: *const ITextStoreACP,
@@ -543,75 +543,75 @@ pub const ITextStoreACP = extern struct {
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-            pacpNext: *i32,
-            pfFound: *BOOL,
-            plFoundOffset: *i32,
+            pacpNext: ?*i32,
+            pfFound: ?*BOOL,
+            plFoundOffset: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RetrieveRequestedAttrs: fn(
             self: *const ITextStoreACP,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEndACP: fn(
             self: *const ITextStoreACP,
-            pacp: *i32,
+            pacp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveView: fn(
             self: *const ITextStoreACP,
-            pvcView: *u32,
+            pvcView: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetACPFromPoint: fn(
             self: *const ITextStoreACP,
             vcView: u32,
-            ptScreen: *const POINT,
+            ptScreen: ?*const POINT,
             dwFlags: u32,
-            pacp: *i32,
+            pacp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextExt: fn(
             self: *const ITextStoreACP,
             vcView: u32,
             acpStart: i32,
             acpEnd: i32,
-            prc: *RECT,
-            pfClipped: *BOOL,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScreenExt: fn(
             self: *const ITextStoreACP,
             vcView: u32,
-            prc: *RECT,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWnd: fn(
             self: *const ITextStoreACP,
             vcView: u32,
-            phwnd: *HWND,
+            phwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_AdviseSink(self: *const T, riid: *const Guid, punk: *IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_AdviseSink(self: *const T, riid: ?*const Guid, punk: ?*IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).AdviseSink(@ptrCast(*const ITextStoreACP, self), riid, punk, dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_UnadviseSink(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_UnadviseSink(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).UnadviseSink(@ptrCast(*const ITextStoreACP, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_RequestLock(self: *const T, dwLockFlags: u32, phrSession: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_RequestLock(self: *const T, dwLockFlags: u32, phrSession: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).RequestLock(@ptrCast(*const ITextStoreACP, self), dwLockFlags, phrSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetStatus(self: *const T, pdcs: *TS_STATUS) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetStatus(self: *const T, pdcs: ?*TS_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetStatus(@ptrCast(*const ITextStoreACP, self), pdcs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_QueryInsert(self: *const T, acpTestStart: i32, acpTestEnd: i32, cch: u32, pacpResultStart: *i32, pacpResultEnd: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_QueryInsert(self: *const T, acpTestStart: i32, acpTestEnd: i32, cch: u32, pacpResultStart: ?*i32, pacpResultEnd: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).QueryInsert(@ptrCast(*const ITextStoreACP, self), acpTestStart, acpTestEnd, cch, pacpResultStart, pacpResultEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ACP, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ACP, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetSelection(@ptrCast(*const ITextStoreACP, self), ulIndex, ulCount, pSelection, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -619,35 +619,35 @@ pub const ITextStoreACP = extern struct {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).SetSelection(@ptrCast(*const ITextStoreACP, self), ulCount, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetText(self: *const T, acpStart: i32, acpEnd: i32, pchPlain: [*:0]u16, cchPlainReq: u32, pcchPlainRet: *u32, prgRunInfo: [*]TS_RUNINFO, cRunInfoReq: u32, pcRunInfoRet: *u32, pacpNext: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetText(self: *const T, acpStart: i32, acpEnd: i32, pchPlain: [*:0]u16, cchPlainReq: u32, pcchPlainRet: ?*u32, prgRunInfo: [*]TS_RUNINFO, cRunInfoReq: u32, pcRunInfoRet: ?*u32, pacpNext: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetText(@ptrCast(*const ITextStoreACP, self), acpStart, acpEnd, pchPlain, cchPlainReq, pcchPlainRet, prgRunInfo, cRunInfoReq, pcRunInfoRet, pacpNext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_SetText(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pchText: [*:0]const u16, cch: u32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_SetText(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pchText: [*:0]const u16, cch: u32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).SetText(@ptrCast(*const ITextStoreACP, self), dwFlags, acpStart, acpEnd, pchText, cch, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetFormattedText(self: *const T, acpStart: i32, acpEnd: i32, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetFormattedText(self: *const T, acpStart: i32, acpEnd: i32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITextStoreACP, self), acpStart, acpEnd, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetEmbedded(self: *const T, acpPos: i32, rguidService: *const Guid, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetEmbedded(self: *const T, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetEmbedded(@ptrCast(*const ITextStoreACP, self), acpPos, rguidService, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_QueryInsertEmbedded(self: *const T, pguidService: *const Guid, pFormatEtc: *const FORMATETC, pfInsertable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_QueryInsertEmbedded(self: *const T, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).QueryInsertEmbedded(@ptrCast(*const ITextStoreACP, self), pguidService, pFormatEtc, pfInsertable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_InsertEmbedded(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pDataObject: *IDataObject, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_InsertEmbedded(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pDataObject: ?*IDataObject, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).InsertEmbedded(@ptrCast(*const ITextStoreACP, self), dwFlags, acpStart, acpEnd, pDataObject, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, pacpStart: *i32, pacpEnd: *i32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, pacpStart: ?*i32, pacpEnd: ?*i32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).InsertTextAtSelection(@ptrCast(*const ITextStoreACP, self), dwFlags, pchText, cch, pacpStart, pacpEnd, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: *IDataObject, pacpStart: *i32, pacpEnd: *i32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: ?*IDataObject, pacpStart: ?*i32, pacpEnd: ?*i32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).InsertEmbeddedAtSelection(@ptrCast(*const ITextStoreACP, self), dwFlags, pDataObject, pacpStart, pacpEnd, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -663,35 +663,35 @@ pub const ITextStoreACP = extern struct {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).RequestAttrsTransitioningAtPosition(@ptrCast(*const ITextStoreACP, self), acpPos, cFilterAttrs, paFilterAttrs, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_FindNextAttrTransition(self: *const T, acpStart: i32, acpHalt: i32, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pacpNext: *i32, pfFound: *BOOL, plFoundOffset: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_FindNextAttrTransition(self: *const T, acpStart: i32, acpHalt: i32, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pacpNext: ?*i32, pfFound: ?*BOOL, plFoundOffset: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).FindNextAttrTransition(@ptrCast(*const ITextStoreACP, self), acpStart, acpHalt, cFilterAttrs, paFilterAttrs, dwFlags, pacpNext, pfFound, plFoundOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).RetrieveRequestedAttrs(@ptrCast(*const ITextStoreACP, self), ulCount, paAttrVals, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetEndACP(self: *const T, pacp: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetEndACP(self: *const T, pacp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetEndACP(@ptrCast(*const ITextStoreACP, self), pacp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetActiveView(self: *const T, pvcView: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetActiveView(self: *const T, pvcView: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetActiveView(@ptrCast(*const ITextStoreACP, self), pvcView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetACPFromPoint(self: *const T, vcView: u32, ptScreen: *const POINT, dwFlags: u32, pacp: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetACPFromPoint(self: *const T, vcView: u32, ptScreen: ?*const POINT, dwFlags: u32, pacp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetACPFromPoint(@ptrCast(*const ITextStoreACP, self), vcView, ptScreen, dwFlags, pacp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetTextExt(self: *const T, vcView: u32, acpStart: i32, acpEnd: i32, prc: *RECT, pfClipped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetTextExt(self: *const T, vcView: u32, acpStart: i32, acpEnd: i32, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetTextExt(@ptrCast(*const ITextStoreACP, self), vcView, acpStart, acpEnd, prc, pfClipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetScreenExt(self: *const T, vcView: u32, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetScreenExt(self: *const T, vcView: u32, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetScreenExt(@ptrCast(*const ITextStoreACP, self), vcView, prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP_GetWnd(self: *const T, vcView: u32, phwnd: *HWND) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP_GetWnd(self: *const T, vcView: u32, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP.VTable, self.vtable).GetWnd(@ptrCast(*const ITextStoreACP, self), vcView, phwnd);
         }
     };}
@@ -706,37 +706,37 @@ pub const ITextStoreACP2 = extern struct {
         base: IUnknown.VTable,
         AdviseSink: fn(
             self: *const ITextStoreACP2,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
             dwMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseSink: fn(
             self: *const ITextStoreACP2,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestLock: fn(
             self: *const ITextStoreACP2,
             dwLockFlags: u32,
-            phrSession: *HRESULT,
+            phrSession: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITextStoreACP2,
-            pdcs: *TS_STATUS,
+            pdcs: ?*TS_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsert: fn(
             self: *const ITextStoreACP2,
             acpTestStart: i32,
             acpTestEnd: i32,
             cch: u32,
-            pacpResultStart: *i32,
-            pacpResultEnd: *i32,
+            pacpResultStart: ?*i32,
+            pacpResultEnd: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ITextStoreACP2,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ACP,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSelection: fn(
             self: *const ITextStoreACP2,
@@ -749,11 +749,11 @@ pub const ITextStoreACP2 = extern struct {
             acpEnd: i32,
             pchPlain: [*:0]u16,
             cchPlainReq: u32,
-            pcchPlainRet: *u32,
+            pcchPlainRet: ?*u32,
             prgRunInfo: [*]TS_RUNINFO,
             cRunInfoReq: u32,
-            pcRunInfoRet: *u32,
-            pacpNext: *i32,
+            pcRunInfoRet: ?*u32,
+            pacpNext: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetText: fn(
             self: *const ITextStoreACP2,
@@ -762,51 +762,51 @@ pub const ITextStoreACP2 = extern struct {
             acpEnd: i32,
             pchText: [*:0]const u16,
             cch: u32,
-            pChange: *TS_TEXTCHANGE,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormattedText: fn(
             self: *const ITextStoreACP2,
             acpStart: i32,
             acpEnd: i32,
-            ppDataObject: **IDataObject,
+            ppDataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEmbedded: fn(
             self: *const ITextStoreACP2,
             acpPos: i32,
-            rguidService: *const Guid,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            rguidService: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsertEmbedded: fn(
             self: *const ITextStoreACP2,
-            pguidService: *const Guid,
-            pFormatEtc: *const FORMATETC,
-            pfInsertable: *BOOL,
+            pguidService: ?*const Guid,
+            pFormatEtc: ?*const FORMATETC,
+            pfInsertable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
             acpStart: i32,
             acpEnd: i32,
-            pDataObject: *IDataObject,
-            pChange: *TS_TEXTCHANGE,
+            pDataObject: ?*IDataObject,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertTextAtSelection: fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
             pchText: [*:0]const u16,
             cch: u32,
-            pacpStart: *i32,
-            pacpEnd: *i32,
-            pChange: *TS_TEXTCHANGE,
+            pacpStart: ?*i32,
+            pacpEnd: ?*i32,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbeddedAtSelection: fn(
             self: *const ITextStoreACP2,
             dwFlags: u32,
-            pDataObject: *IDataObject,
-            pacpStart: *i32,
-            pacpEnd: *i32,
-            pChange: *TS_TEXTCHANGE,
+            pDataObject: ?*IDataObject,
+            pacpStart: ?*i32,
+            pacpEnd: ?*i32,
+            pChange: ?*TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestSupportedAttrs: fn(
             self: *const ITextStoreACP2,
@@ -835,70 +835,70 @@ pub const ITextStoreACP2 = extern struct {
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-            pacpNext: *i32,
-            pfFound: *BOOL,
-            plFoundOffset: *i32,
+            pacpNext: ?*i32,
+            pfFound: ?*BOOL,
+            plFoundOffset: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RetrieveRequestedAttrs: fn(
             self: *const ITextStoreACP2,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEndACP: fn(
             self: *const ITextStoreACP2,
-            pacp: *i32,
+            pacp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveView: fn(
             self: *const ITextStoreACP2,
-            pvcView: *u32,
+            pvcView: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetACPFromPoint: fn(
             self: *const ITextStoreACP2,
             vcView: u32,
-            ptScreen: *const POINT,
+            ptScreen: ?*const POINT,
             dwFlags: u32,
-            pacp: *i32,
+            pacp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextExt: fn(
             self: *const ITextStoreACP2,
             vcView: u32,
             acpStart: i32,
             acpEnd: i32,
-            prc: *RECT,
-            pfClipped: *BOOL,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScreenExt: fn(
             self: *const ITextStoreACP2,
             vcView: u32,
-            prc: *RECT,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_AdviseSink(self: *const T, riid: *const Guid, punk: *IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_AdviseSink(self: *const T, riid: ?*const Guid, punk: ?*IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).AdviseSink(@ptrCast(*const ITextStoreACP2, self), riid, punk, dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_UnadviseSink(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_UnadviseSink(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).UnadviseSink(@ptrCast(*const ITextStoreACP2, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_RequestLock(self: *const T, dwLockFlags: u32, phrSession: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_RequestLock(self: *const T, dwLockFlags: u32, phrSession: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).RequestLock(@ptrCast(*const ITextStoreACP2, self), dwLockFlags, phrSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetStatus(self: *const T, pdcs: *TS_STATUS) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetStatus(self: *const T, pdcs: ?*TS_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetStatus(@ptrCast(*const ITextStoreACP2, self), pdcs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_QueryInsert(self: *const T, acpTestStart: i32, acpTestEnd: i32, cch: u32, pacpResultStart: *i32, pacpResultEnd: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_QueryInsert(self: *const T, acpTestStart: i32, acpTestEnd: i32, cch: u32, pacpResultStart: ?*i32, pacpResultEnd: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).QueryInsert(@ptrCast(*const ITextStoreACP2, self), acpTestStart, acpTestEnd, cch, pacpResultStart, pacpResultEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ACP, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ACP, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetSelection(@ptrCast(*const ITextStoreACP2, self), ulIndex, ulCount, pSelection, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -906,35 +906,35 @@ pub const ITextStoreACP2 = extern struct {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).SetSelection(@ptrCast(*const ITextStoreACP2, self), ulCount, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetText(self: *const T, acpStart: i32, acpEnd: i32, pchPlain: [*:0]u16, cchPlainReq: u32, pcchPlainRet: *u32, prgRunInfo: [*]TS_RUNINFO, cRunInfoReq: u32, pcRunInfoRet: *u32, pacpNext: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetText(self: *const T, acpStart: i32, acpEnd: i32, pchPlain: [*:0]u16, cchPlainReq: u32, pcchPlainRet: ?*u32, prgRunInfo: [*]TS_RUNINFO, cRunInfoReq: u32, pcRunInfoRet: ?*u32, pacpNext: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetText(@ptrCast(*const ITextStoreACP2, self), acpStart, acpEnd, pchPlain, cchPlainReq, pcchPlainRet, prgRunInfo, cRunInfoReq, pcRunInfoRet, pacpNext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_SetText(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pchText: [*:0]const u16, cch: u32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_SetText(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pchText: [*:0]const u16, cch: u32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).SetText(@ptrCast(*const ITextStoreACP2, self), dwFlags, acpStart, acpEnd, pchText, cch, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetFormattedText(self: *const T, acpStart: i32, acpEnd: i32, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetFormattedText(self: *const T, acpStart: i32, acpEnd: i32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITextStoreACP2, self), acpStart, acpEnd, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetEmbedded(self: *const T, acpPos: i32, rguidService: *const Guid, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetEmbedded(self: *const T, acpPos: i32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetEmbedded(@ptrCast(*const ITextStoreACP2, self), acpPos, rguidService, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_QueryInsertEmbedded(self: *const T, pguidService: *const Guid, pFormatEtc: *const FORMATETC, pfInsertable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_QueryInsertEmbedded(self: *const T, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).QueryInsertEmbedded(@ptrCast(*const ITextStoreACP2, self), pguidService, pFormatEtc, pfInsertable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_InsertEmbedded(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pDataObject: *IDataObject, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_InsertEmbedded(self: *const T, dwFlags: u32, acpStart: i32, acpEnd: i32, pDataObject: ?*IDataObject, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).InsertEmbedded(@ptrCast(*const ITextStoreACP2, self), dwFlags, acpStart, acpEnd, pDataObject, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, pacpStart: *i32, pacpEnd: *i32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, pacpStart: ?*i32, pacpEnd: ?*i32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).InsertTextAtSelection(@ptrCast(*const ITextStoreACP2, self), dwFlags, pchText, cch, pacpStart, pacpEnd, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: *IDataObject, pacpStart: *i32, pacpEnd: *i32, pChange: *TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: ?*IDataObject, pacpStart: ?*i32, pacpEnd: ?*i32, pChange: ?*TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).InsertEmbeddedAtSelection(@ptrCast(*const ITextStoreACP2, self), dwFlags, pDataObject, pacpStart, pacpEnd, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -950,31 +950,31 @@ pub const ITextStoreACP2 = extern struct {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).RequestAttrsTransitioningAtPosition(@ptrCast(*const ITextStoreACP2, self), acpPos, cFilterAttrs, paFilterAttrs, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_FindNextAttrTransition(self: *const T, acpStart: i32, acpHalt: i32, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pacpNext: *i32, pfFound: *BOOL, plFoundOffset: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_FindNextAttrTransition(self: *const T, acpStart: i32, acpHalt: i32, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pacpNext: ?*i32, pfFound: ?*BOOL, plFoundOffset: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).FindNextAttrTransition(@ptrCast(*const ITextStoreACP2, self), acpStart, acpHalt, cFilterAttrs, paFilterAttrs, dwFlags, pacpNext, pfFound, plFoundOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).RetrieveRequestedAttrs(@ptrCast(*const ITextStoreACP2, self), ulCount, paAttrVals, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetEndACP(self: *const T, pacp: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetEndACP(self: *const T, pacp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetEndACP(@ptrCast(*const ITextStoreACP2, self), pacp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetActiveView(self: *const T, pvcView: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetActiveView(self: *const T, pvcView: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetActiveView(@ptrCast(*const ITextStoreACP2, self), pvcView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetACPFromPoint(self: *const T, vcView: u32, ptScreen: *const POINT, dwFlags: u32, pacp: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetACPFromPoint(self: *const T, vcView: u32, ptScreen: ?*const POINT, dwFlags: u32, pacp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetACPFromPoint(@ptrCast(*const ITextStoreACP2, self), vcView, ptScreen, dwFlags, pacp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetTextExt(self: *const T, vcView: u32, acpStart: i32, acpEnd: i32, prc: *RECT, pfClipped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetTextExt(self: *const T, vcView: u32, acpStart: i32, acpEnd: i32, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetTextExt(@ptrCast(*const ITextStoreACP2, self), vcView, acpStart, acpEnd, prc, pfClipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACP2_GetScreenExt(self: *const T, vcView: u32, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACP2_GetScreenExt(self: *const T, vcView: u32, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACP2.VTable, self.vtable).GetScreenExt(@ptrCast(*const ITextStoreACP2, self), vcView, prc);
         }
     };}
@@ -990,7 +990,7 @@ pub const ITextStoreACPSink = extern struct {
         OnTextChange: fn(
             self: *const ITextStoreACPSink,
             dwFlags: TEXT_STORE_TEXT_CHANGE_FLAGS,
-            pChange: *const TS_TEXTCHANGE,
+            pChange: ?*const TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSelectionChange: fn(
             self: *const ITextStoreACPSink,
@@ -1026,7 +1026,7 @@ pub const ITextStoreACPSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPSink_OnTextChange(self: *const T, dwFlags: TEXT_STORE_TEXT_CHANGE_FLAGS, pChange: *const TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPSink_OnTextChange(self: *const T, dwFlags: TEXT_STORE_TEXT_CHANGE_FLAGS, pChange: ?*const TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPSink.VTable, self.vtable).OnTextChange(@ptrCast(*const ITextStoreACPSink, self), dwFlags, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1087,34 +1087,34 @@ pub const IAnchor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGravity: fn(
             self: *const IAnchor,
-            pgravity: *TsGravity,
+            pgravity: ?*TsGravity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqual: fn(
             self: *const IAnchor,
-            paWith: *IAnchor,
-            pfEqual: *BOOL,
+            paWith: ?*IAnchor,
+            pfEqual: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Compare: fn(
             self: *const IAnchor,
-            paWith: *IAnchor,
-            plResult: *i32,
+            paWith: ?*IAnchor,
+            plResult: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shift: fn(
             self: *const IAnchor,
             dwFlags: u32,
             cchReq: i32,
-            pcch: *i32,
-            paHaltAnchor: *IAnchor,
+            pcch: ?*i32,
+            paHaltAnchor: ?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftTo: fn(
             self: *const IAnchor,
-            paSite: *IAnchor,
+            paSite: ?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftRegion: fn(
             self: *const IAnchor,
             dwFlags: u32,
             dir: TsShiftDir,
-            pfNoRegion: *BOOL,
+            pfNoRegion: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetChangeHistoryMask: fn(
             self: *const IAnchor,
@@ -1122,14 +1122,14 @@ pub const IAnchor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeHistory: fn(
             self: *const IAnchor,
-            pdwHistory: *ANCHOR_CHANGE_HISTORY_FLAGS,
+            pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearChangeHistory: fn(
             self: *const IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IAnchor,
-            ppaClone: **IAnchor,
+            ppaClone: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1140,27 +1140,27 @@ pub const IAnchor = extern struct {
             return @ptrCast(*const IAnchor.VTable, self.vtable).SetGravity(@ptrCast(*const IAnchor, self), gravity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_GetGravity(self: *const T, pgravity: *TsGravity) callconv(.Inline) HRESULT {
+        pub fn IAnchor_GetGravity(self: *const T, pgravity: ?*TsGravity) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).GetGravity(@ptrCast(*const IAnchor, self), pgravity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_IsEqual(self: *const T, paWith: *IAnchor, pfEqual: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAnchor_IsEqual(self: *const T, paWith: ?*IAnchor, pfEqual: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).IsEqual(@ptrCast(*const IAnchor, self), paWith, pfEqual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_Compare(self: *const T, paWith: *IAnchor, plResult: *i32) callconv(.Inline) HRESULT {
+        pub fn IAnchor_Compare(self: *const T, paWith: ?*IAnchor, plResult: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).Compare(@ptrCast(*const IAnchor, self), paWith, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_Shift(self: *const T, dwFlags: u32, cchReq: i32, pcch: *i32, paHaltAnchor: *IAnchor) callconv(.Inline) HRESULT {
+        pub fn IAnchor_Shift(self: *const T, dwFlags: u32, cchReq: i32, pcch: ?*i32, paHaltAnchor: ?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).Shift(@ptrCast(*const IAnchor, self), dwFlags, cchReq, pcch, paHaltAnchor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_ShiftTo(self: *const T, paSite: *IAnchor) callconv(.Inline) HRESULT {
+        pub fn IAnchor_ShiftTo(self: *const T, paSite: ?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).ShiftTo(@ptrCast(*const IAnchor, self), paSite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_ShiftRegion(self: *const T, dwFlags: u32, dir: TsShiftDir, pfNoRegion: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAnchor_ShiftRegion(self: *const T, dwFlags: u32, dir: TsShiftDir, pfNoRegion: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).ShiftRegion(@ptrCast(*const IAnchor, self), dwFlags, dir, pfNoRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1168,7 +1168,7 @@ pub const IAnchor = extern struct {
             return @ptrCast(*const IAnchor.VTable, self.vtable).SetChangeHistoryMask(@ptrCast(*const IAnchor, self), dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_GetChangeHistory(self: *const T, pdwHistory: *ANCHOR_CHANGE_HISTORY_FLAGS) callconv(.Inline) HRESULT {
+        pub fn IAnchor_GetChangeHistory(self: *const T, pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).GetChangeHistory(@ptrCast(*const IAnchor, self), pdwHistory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1176,7 +1176,7 @@ pub const IAnchor = extern struct {
             return @ptrCast(*const IAnchor.VTable, self.vtable).ClearChangeHistory(@ptrCast(*const IAnchor, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_Clone(self: *const T, ppaClone: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn IAnchor_Clone(self: *const T, ppaClone: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).Clone(@ptrCast(*const IAnchor, self), ppaClone);
         }
     };}
@@ -1191,37 +1191,37 @@ pub const ITextStoreAnchor = extern struct {
         base: IUnknown.VTable,
         AdviseSink: fn(
             self: *const ITextStoreAnchor,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
             dwMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseSink: fn(
             self: *const ITextStoreAnchor,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestLock: fn(
             self: *const ITextStoreAnchor,
             dwLockFlags: u32,
-            phrSession: *HRESULT,
+            phrSession: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITextStoreAnchor,
-            pdcs: *TS_STATUS,
+            pdcs: ?*TS_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsert: fn(
             self: *const ITextStoreAnchor,
-            paTestStart: *IAnchor,
-            paTestEnd: *IAnchor,
+            paTestStart: ?*IAnchor,
+            paTestEnd: ?*IAnchor,
             cch: u32,
-            ppaResultStart: **IAnchor,
-            ppaResultEnd: **IAnchor,
+            ppaResultStart: ?*?*IAnchor,
+            ppaResultEnd: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ITextStoreAnchor,
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TS_SELECTION_ANCHOR,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSelection: fn(
             self: *const ITextStoreAnchor,
@@ -1231,41 +1231,41 @@ pub const ITextStoreAnchor = extern struct {
         GetText: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
             pchText: [*:0]u16,
             cchReq: u32,
-            pcch: *u32,
+            pcch: ?*u32,
             fUpdateAnchor: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetText: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
             pchText: [*:0]const u16,
             cch: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormattedText: fn(
             self: *const ITextStoreAnchor,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
-            ppDataObject: **IDataObject,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
+            ppDataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEmbedded: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
-            paPos: *IAnchor,
-            rguidService: *const Guid,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            paPos: ?*IAnchor,
+            rguidService: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
-            pDataObject: *IDataObject,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
+            pDataObject: ?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestSupportedAttrs: fn(
             self: *const ITextStoreAnchor,
@@ -1275,118 +1275,118 @@ pub const ITextStoreAnchor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestAttrsAtPosition: fn(
             self: *const ITextStoreAnchor,
-            paPos: *IAnchor,
+            paPos: ?*IAnchor,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestAttrsTransitioningAtPosition: fn(
             self: *const ITextStoreAnchor,
-            paPos: *IAnchor,
+            paPos: ?*IAnchor,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindNextAttrTransition: fn(
             self: *const ITextStoreAnchor,
-            paStart: *IAnchor,
-            paHalt: *IAnchor,
+            paStart: ?*IAnchor,
+            paHalt: ?*IAnchor,
             cFilterAttrs: u32,
             paFilterAttrs: [*]const Guid,
             dwFlags: u32,
-            pfFound: *BOOL,
-            plFoundOffset: *i32,
+            pfFound: ?*BOOL,
+            plFoundOffset: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RetrieveRequestedAttrs: fn(
             self: *const ITextStoreAnchor,
             ulCount: u32,
             paAttrVals: [*]TS_ATTRVAL,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStart: fn(
             self: *const ITextStoreAnchor,
-            ppaStart: **IAnchor,
+            ppaStart: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnd: fn(
             self: *const ITextStoreAnchor,
-            ppaEnd: **IAnchor,
+            ppaEnd: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveView: fn(
             self: *const ITextStoreAnchor,
-            pvcView: *u32,
+            pvcView: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAnchorFromPoint: fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
-            ptScreen: *const POINT,
+            ptScreen: ?*const POINT,
             dwFlags: u32,
-            ppaSite: **IAnchor,
+            ppaSite: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextExt: fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
-            prc: *RECT,
-            pfClipped: *BOOL,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScreenExt: fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
-            prc: *RECT,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWnd: fn(
             self: *const ITextStoreAnchor,
             vcView: u32,
-            phwnd: *HWND,
+            phwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInsertEmbedded: fn(
             self: *const ITextStoreAnchor,
-            pguidService: *const Guid,
-            pFormatEtc: *const FORMATETC,
-            pfInsertable: *BOOL,
+            pguidService: ?*const Guid,
+            pFormatEtc: ?*const FORMATETC,
+            pfInsertable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertTextAtSelection: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
             pchText: [*:0]const u16,
             cch: u32,
-            ppaStart: **IAnchor,
-            ppaEnd: **IAnchor,
+            ppaStart: ?*?*IAnchor,
+            ppaEnd: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbeddedAtSelection: fn(
             self: *const ITextStoreAnchor,
             dwFlags: u32,
-            pDataObject: *IDataObject,
-            ppaStart: **IAnchor,
-            ppaEnd: **IAnchor,
+            pDataObject: ?*IDataObject,
+            ppaStart: ?*?*IAnchor,
+            ppaEnd: ?*?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_AdviseSink(self: *const T, riid: *const Guid, punk: *IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_AdviseSink(self: *const T, riid: ?*const Guid, punk: ?*IUnknown, dwMask: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).AdviseSink(@ptrCast(*const ITextStoreAnchor, self), riid, punk, dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_UnadviseSink(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_UnadviseSink(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).UnadviseSink(@ptrCast(*const ITextStoreAnchor, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_RequestLock(self: *const T, dwLockFlags: u32, phrSession: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_RequestLock(self: *const T, dwLockFlags: u32, phrSession: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).RequestLock(@ptrCast(*const ITextStoreAnchor, self), dwLockFlags, phrSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetStatus(self: *const T, pdcs: *TS_STATUS) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetStatus(self: *const T, pdcs: ?*TS_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetStatus(@ptrCast(*const ITextStoreAnchor, self), pdcs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_QueryInsert(self: *const T, paTestStart: *IAnchor, paTestEnd: *IAnchor, cch: u32, ppaResultStart: **IAnchor, ppaResultEnd: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_QueryInsert(self: *const T, paTestStart: ?*IAnchor, paTestEnd: ?*IAnchor, cch: u32, ppaResultStart: ?*?*IAnchor, ppaResultEnd: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).QueryInsert(@ptrCast(*const ITextStoreAnchor, self), paTestStart, paTestEnd, cch, ppaResultStart, ppaResultEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ANCHOR, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetSelection(self: *const T, ulIndex: u32, ulCount: u32, pSelection: [*]TS_SELECTION_ANCHOR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetSelection(@ptrCast(*const ITextStoreAnchor, self), ulIndex, ulCount, pSelection, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1394,23 +1394,23 @@ pub const ITextStoreAnchor = extern struct {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).SetSelection(@ptrCast(*const ITextStoreAnchor, self), ulCount, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetText(self: *const T, dwFlags: u32, paStart: *IAnchor, paEnd: *IAnchor, pchText: [*:0]u16, cchReq: u32, pcch: *u32, fUpdateAnchor: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetText(self: *const T, dwFlags: u32, paStart: ?*IAnchor, paEnd: ?*IAnchor, pchText: [*:0]u16, cchReq: u32, pcch: ?*u32, fUpdateAnchor: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetText(@ptrCast(*const ITextStoreAnchor, self), dwFlags, paStart, paEnd, pchText, cchReq, pcch, fUpdateAnchor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_SetText(self: *const T, dwFlags: u32, paStart: *IAnchor, paEnd: *IAnchor, pchText: [*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_SetText(self: *const T, dwFlags: u32, paStart: ?*IAnchor, paEnd: ?*IAnchor, pchText: [*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).SetText(@ptrCast(*const ITextStoreAnchor, self), dwFlags, paStart, paEnd, pchText, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetFormattedText(self: *const T, paStart: *IAnchor, paEnd: *IAnchor, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetFormattedText(self: *const T, paStart: ?*IAnchor, paEnd: ?*IAnchor, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITextStoreAnchor, self), paStart, paEnd, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetEmbedded(self: *const T, dwFlags: u32, paPos: *IAnchor, rguidService: *const Guid, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetEmbedded(self: *const T, dwFlags: u32, paPos: ?*IAnchor, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetEmbedded(@ptrCast(*const ITextStoreAnchor, self), dwFlags, paPos, rguidService, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_InsertEmbedded(self: *const T, dwFlags: u32, paStart: *IAnchor, paEnd: *IAnchor, pDataObject: *IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_InsertEmbedded(self: *const T, dwFlags: u32, paStart: ?*IAnchor, paEnd: ?*IAnchor, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).InsertEmbedded(@ptrCast(*const ITextStoreAnchor, self), dwFlags, paStart, paEnd, pDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1418,59 +1418,59 @@ pub const ITextStoreAnchor = extern struct {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).RequestSupportedAttrs(@ptrCast(*const ITextStoreAnchor, self), dwFlags, cFilterAttrs, paFilterAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_RequestAttrsAtPosition(self: *const T, paPos: *IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_RequestAttrsAtPosition(self: *const T, paPos: ?*IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).RequestAttrsAtPosition(@ptrCast(*const ITextStoreAnchor, self), paPos, cFilterAttrs, paFilterAttrs, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_RequestAttrsTransitioningAtPosition(self: *const T, paPos: *IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_RequestAttrsTransitioningAtPosition(self: *const T, paPos: ?*IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).RequestAttrsTransitioningAtPosition(@ptrCast(*const ITextStoreAnchor, self), paPos, cFilterAttrs, paFilterAttrs, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_FindNextAttrTransition(self: *const T, paStart: *IAnchor, paHalt: *IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pfFound: *BOOL, plFoundOffset: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_FindNextAttrTransition(self: *const T, paStart: ?*IAnchor, paHalt: ?*IAnchor, cFilterAttrs: u32, paFilterAttrs: [*]const Guid, dwFlags: u32, pfFound: ?*BOOL, plFoundOffset: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).FindNextAttrTransition(@ptrCast(*const ITextStoreAnchor, self), paStart, paHalt, cFilterAttrs, paFilterAttrs, dwFlags, pfFound, plFoundOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_RetrieveRequestedAttrs(self: *const T, ulCount: u32, paAttrVals: [*]TS_ATTRVAL, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).RetrieveRequestedAttrs(@ptrCast(*const ITextStoreAnchor, self), ulCount, paAttrVals, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetStart(self: *const T, ppaStart: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetStart(self: *const T, ppaStart: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetStart(@ptrCast(*const ITextStoreAnchor, self), ppaStart);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetEnd(self: *const T, ppaEnd: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetEnd(self: *const T, ppaEnd: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetEnd(@ptrCast(*const ITextStoreAnchor, self), ppaEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetActiveView(self: *const T, pvcView: *u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetActiveView(self: *const T, pvcView: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetActiveView(@ptrCast(*const ITextStoreAnchor, self), pvcView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetAnchorFromPoint(self: *const T, vcView: u32, ptScreen: *const POINT, dwFlags: u32, ppaSite: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetAnchorFromPoint(self: *const T, vcView: u32, ptScreen: ?*const POINT, dwFlags: u32, ppaSite: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetAnchorFromPoint(@ptrCast(*const ITextStoreAnchor, self), vcView, ptScreen, dwFlags, ppaSite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetTextExt(self: *const T, vcView: u32, paStart: *IAnchor, paEnd: *IAnchor, prc: *RECT, pfClipped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetTextExt(self: *const T, vcView: u32, paStart: ?*IAnchor, paEnd: ?*IAnchor, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetTextExt(@ptrCast(*const ITextStoreAnchor, self), vcView, paStart, paEnd, prc, pfClipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetScreenExt(self: *const T, vcView: u32, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetScreenExt(self: *const T, vcView: u32, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetScreenExt(@ptrCast(*const ITextStoreAnchor, self), vcView, prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_GetWnd(self: *const T, vcView: u32, phwnd: *HWND) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_GetWnd(self: *const T, vcView: u32, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).GetWnd(@ptrCast(*const ITextStoreAnchor, self), vcView, phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_QueryInsertEmbedded(self: *const T, pguidService: *const Guid, pFormatEtc: *const FORMATETC, pfInsertable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_QueryInsertEmbedded(self: *const T, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).QueryInsertEmbedded(@ptrCast(*const ITextStoreAnchor, self), pguidService, pFormatEtc, pfInsertable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, ppaStart: **IAnchor, ppaEnd: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_InsertTextAtSelection(self: *const T, dwFlags: u32, pchText: [*:0]const u16, cch: u32, ppaStart: ?*?*IAnchor, ppaEnd: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).InsertTextAtSelection(@ptrCast(*const ITextStoreAnchor, self), dwFlags, pchText, cch, ppaStart, ppaEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchor_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: *IDataObject, ppaStart: **IAnchor, ppaEnd: **IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchor_InsertEmbeddedAtSelection(self: *const T, dwFlags: u32, pDataObject: ?*IDataObject, ppaStart: ?*?*IAnchor, ppaEnd: ?*?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchor.VTable, self.vtable).InsertEmbeddedAtSelection(@ptrCast(*const ITextStoreAnchor, self), dwFlags, pDataObject, ppaStart, ppaEnd);
         }
     };}
@@ -1486,8 +1486,8 @@ pub const ITextStoreAnchorSink = extern struct {
         OnTextChange: fn(
             self: *const ITextStoreAnchorSink,
             dwFlags: TEXT_STORE_CHANGE_FLAGS,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSelectionChange: fn(
             self: *const ITextStoreAnchorSink,
@@ -1503,8 +1503,8 @@ pub const ITextStoreAnchorSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnAttrsChange: fn(
             self: *const ITextStoreAnchorSink,
-            paStart: *IAnchor,
-            paEnd: *IAnchor,
+            paStart: ?*IAnchor,
+            paEnd: ?*IAnchor,
             cAttrs: u32,
             paAttrs: [*]const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1523,7 +1523,7 @@ pub const ITextStoreAnchorSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchorSink_OnTextChange(self: *const T, dwFlags: TEXT_STORE_CHANGE_FLAGS, paStart: *IAnchor, paEnd: *IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchorSink_OnTextChange(self: *const T, dwFlags: TEXT_STORE_CHANGE_FLAGS, paStart: ?*IAnchor, paEnd: ?*IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnTextChange(@ptrCast(*const ITextStoreAnchorSink, self), dwFlags, paStart, paEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1539,7 +1539,7 @@ pub const ITextStoreAnchorSink = extern struct {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnStatusChange(@ptrCast(*const ITextStoreAnchorSink, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchorSink_OnAttrsChange(self: *const T, paStart: *IAnchor, paEnd: *IAnchor, cAttrs: u32, paAttrs: [*]const Guid) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchorSink_OnAttrsChange(self: *const T, paStart: ?*IAnchor, paEnd: ?*IAnchor, cAttrs: u32, paAttrs: [*]const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnAttrsChange(@ptrCast(*const ITextStoreAnchorSink, self), paStart, paEnd, cAttrs, paAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1566,10 +1566,10 @@ pub const ITfLangBarMgr = extern struct {
         base: IUnknown.VTable,
         AdviseEventSink: fn(
             self: *const ITfLangBarMgr,
-            pSink: *ITfLangBarEventSink,
-            hwnd: HWND,
+            pSink: ?*ITfLangBarEventSink,
+            hwnd: ?HWND,
             dwFlags: u32,
-            pdwCookie: *u32,
+            pdwCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseEventSink: fn(
             self: *const ITfLangBarMgr,
@@ -1579,29 +1579,29 @@ pub const ITfLangBarMgr = extern struct {
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
             dwType: u32,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetThreadLangBarItemMgr: fn(
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
-            pplbi: **ITfLangBarItemMgr,
-            pdwThreadid: *u32,
+            pplbi: ?*?*ITfLangBarItemMgr,
+            pdwThreadid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputProcessorProfiles: fn(
             self: *const ITfLangBarMgr,
             dwThreadId: u32,
-            ppaip: **ITfInputProcessorProfiles,
-            pdwThreadid: *u32,
+            ppaip: ?*?*ITfInputProcessorProfiles,
+            pdwThreadid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RestoreLastFocus: fn(
             self: *const ITfLangBarMgr,
-            pdwThreadId: *u32,
+            pdwThreadId: ?*u32,
             fPrev: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetModalInput: fn(
             self: *const ITfLangBarMgr,
-            pSink: *ITfLangBarEventSink,
+            pSink: ?*ITfLangBarEventSink,
             dwThreadId: u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1611,14 +1611,14 @@ pub const ITfLangBarMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetShowFloatingStatus: fn(
             self: *const ITfLangBarMgr,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_AdviseEventSink(self: *const T, pSink: *ITfLangBarEventSink, hwnd: HWND, dwFlags: u32, pdwCookie: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_AdviseEventSink(self: *const T, pSink: ?*ITfLangBarEventSink, hwnd: ?HWND, dwFlags: u32, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).AdviseEventSink(@ptrCast(*const ITfLangBarMgr, self), pSink, hwnd, dwFlags, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1626,23 +1626,23 @@ pub const ITfLangBarMgr = extern struct {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).UnadviseEventSink(@ptrCast(*const ITfLangBarMgr, self), dwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_GetThreadMarshalInterface(self: *const T, dwThreadId: u32, dwType: u32, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_GetThreadMarshalInterface(self: *const T, dwThreadId: u32, dwType: u32, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).GetThreadMarshalInterface(@ptrCast(*const ITfLangBarMgr, self), dwThreadId, dwType, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_GetThreadLangBarItemMgr(self: *const T, dwThreadId: u32, pplbi: **ITfLangBarItemMgr, pdwThreadid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_GetThreadLangBarItemMgr(self: *const T, dwThreadId: u32, pplbi: ?*?*ITfLangBarItemMgr, pdwThreadid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).GetThreadLangBarItemMgr(@ptrCast(*const ITfLangBarMgr, self), dwThreadId, pplbi, pdwThreadid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_GetInputProcessorProfiles(self: *const T, dwThreadId: u32, ppaip: **ITfInputProcessorProfiles, pdwThreadid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_GetInputProcessorProfiles(self: *const T, dwThreadId: u32, ppaip: ?*?*ITfInputProcessorProfiles, pdwThreadid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).GetInputProcessorProfiles(@ptrCast(*const ITfLangBarMgr, self), dwThreadId, ppaip, pdwThreadid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_RestoreLastFocus(self: *const T, pdwThreadId: *u32, fPrev: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_RestoreLastFocus(self: *const T, pdwThreadId: ?*u32, fPrev: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).RestoreLastFocus(@ptrCast(*const ITfLangBarMgr, self), pdwThreadId, fPrev);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_SetModalInput(self: *const T, pSink: *ITfLangBarEventSink, dwThreadId: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_SetModalInput(self: *const T, pSink: ?*ITfLangBarEventSink, dwThreadId: u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).SetModalInput(@ptrCast(*const ITfLangBarMgr, self), pSink, dwThreadId, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1650,7 +1650,7 @@ pub const ITfLangBarMgr = extern struct {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).ShowFloating(@ptrCast(*const ITfLangBarMgr, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarMgr_GetShowFloatingStatus(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarMgr_GetShowFloatingStatus(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarMgr.VTable, self.vtable).GetShowFloatingStatus(@ptrCast(*const ITfLangBarMgr, self), pdwFlags);
         }
     };}
@@ -1689,8 +1689,8 @@ pub const ITfLangBarEventSink = extern struct {
         GetItemFloatingRect: fn(
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
-            rguid: *const Guid,
-            prc: *RECT,
+            rguid: ?*const Guid,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1717,7 +1717,7 @@ pub const ITfLangBarEventSink = extern struct {
             return @ptrCast(*const ITfLangBarEventSink.VTable, self.vtable).ShowFloating(@ptrCast(*const ITfLangBarEventSink, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarEventSink_GetItemFloatingRect(self: *const T, dwThreadId: u32, rguid: *const Guid, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarEventSink_GetItemFloatingRect(self: *const T, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarEventSink.VTable, self.vtable).GetItemFloatingRect(@ptrCast(*const ITfLangBarEventSink, self), dwThreadId, rguid, prc);
         }
     };}
@@ -1754,13 +1754,13 @@ pub const IEnumTfLangBarItems = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfLangBarItems,
-            ppEnum: **IEnumTfLangBarItems,
+            ppEnum: ?*?*IEnumTfLangBarItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfLangBarItems,
             ulCount: u32,
-            ppItem: [*]*ITfLangBarItem,
-            pcFetched: *u32,
+            ppItem: [*]?*ITfLangBarItem,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfLangBarItems,
@@ -1774,11 +1774,11 @@ pub const IEnumTfLangBarItems = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLangBarItems_Clone(self: *const T, ppEnum: **IEnumTfLangBarItems) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLangBarItems_Clone(self: *const T, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLangBarItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfLangBarItems, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLangBarItems_Next(self: *const T, ulCount: u32, ppItem: [*]*ITfLangBarItem, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLangBarItems_Next(self: *const T, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLangBarItems.VTable, self.vtable).Next(@ptrCast(*const IEnumTfLangBarItems, self), ulCount, ppItem, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1809,26 +1809,26 @@ pub const ITfLangBarItemMgr = extern struct {
         base: IUnknown.VTable,
         EnumItems: fn(
             self: *const ITfLangBarItemMgr,
-            ppEnum: **IEnumTfLangBarItems,
+            ppEnum: ?*?*IEnumTfLangBarItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItem: fn(
             self: *const ITfLangBarItemMgr,
-            rguid: *const Guid,
-            ppItem: **ITfLangBarItem,
+            rguid: ?*const Guid,
+            ppItem: ?*?*ITfLangBarItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddItem: fn(
             self: *const ITfLangBarItemMgr,
-            punk: *ITfLangBarItem,
+            punk: ?*ITfLangBarItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveItem: fn(
             self: *const ITfLangBarItemMgr,
-            punk: *ITfLangBarItem,
+            punk: ?*ITfLangBarItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdviseItemSink: fn(
             self: *const ITfLangBarItemMgr,
-            punk: *ITfLangBarItemSink,
-            pdwCookie: *u32,
-            rguidItem: *const Guid,
+            punk: ?*ITfLangBarItemSink,
+            pdwCookie: ?*u32,
+            rguidItem: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseItemSink: fn(
             self: *const ITfLangBarItemMgr,
@@ -1837,8 +1837,8 @@ pub const ITfLangBarItemMgr = extern struct {
         GetItemFloatingRect: fn(
             self: *const ITfLangBarItemMgr,
             dwThreadId: u32,
-            rguid: *const Guid,
-            prc: *RECT,
+            rguid: ?*const Guid,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItemsStatus: fn(
             self: *const ITfLangBarItemMgr,
@@ -1848,20 +1848,20 @@ pub const ITfLangBarItemMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItemNum: fn(
             self: *const ITfLangBarItemMgr,
-            pulCount: *u32,
+            pulCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItems: fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
-            ppItem: [*]*ITfLangBarItem,
+            ppItem: [*]?*ITfLangBarItem,
             pInfo: [*]TF_LANGBARITEMINFO,
             pdwStatus: [*]u32,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdviseItemsSink: fn(
             self: *const ITfLangBarItemMgr,
             ulCount: u32,
-            ppunk: [*]*ITfLangBarItemSink,
+            ppunk: [*]?*ITfLangBarItemSink,
             pguidItem: [*]const Guid,
             pdwCookie: [*]u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1875,23 +1875,23 @@ pub const ITfLangBarItemMgr = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_EnumItems(self: *const T, ppEnum: **IEnumTfLangBarItems) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_EnumItems(self: *const T, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).EnumItems(@ptrCast(*const ITfLangBarItemMgr, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_GetItem(self: *const T, rguid: *const Guid, ppItem: **ITfLangBarItem) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_GetItem(self: *const T, rguid: ?*const Guid, ppItem: ?*?*ITfLangBarItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).GetItem(@ptrCast(*const ITfLangBarItemMgr, self), rguid, ppItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_AddItem(self: *const T, punk: *ITfLangBarItem) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_AddItem(self: *const T, punk: ?*ITfLangBarItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).AddItem(@ptrCast(*const ITfLangBarItemMgr, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_RemoveItem(self: *const T, punk: *ITfLangBarItem) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_RemoveItem(self: *const T, punk: ?*ITfLangBarItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).RemoveItem(@ptrCast(*const ITfLangBarItemMgr, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_AdviseItemSink(self: *const T, punk: *ITfLangBarItemSink, pdwCookie: *u32, rguidItem: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_AdviseItemSink(self: *const T, punk: ?*ITfLangBarItemSink, pdwCookie: ?*u32, rguidItem: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).AdviseItemSink(@ptrCast(*const ITfLangBarItemMgr, self), punk, pdwCookie, rguidItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1899,7 +1899,7 @@ pub const ITfLangBarItemMgr = extern struct {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).UnadviseItemSink(@ptrCast(*const ITfLangBarItemMgr, self), dwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_GetItemFloatingRect(self: *const T, dwThreadId: u32, rguid: *const Guid, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_GetItemFloatingRect(self: *const T, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).GetItemFloatingRect(@ptrCast(*const ITfLangBarItemMgr, self), dwThreadId, rguid, prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1907,15 +1907,15 @@ pub const ITfLangBarItemMgr = extern struct {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).GetItemsStatus(@ptrCast(*const ITfLangBarItemMgr, self), ulCount, prgguid, pdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_GetItemNum(self: *const T, pulCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_GetItemNum(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).GetItemNum(@ptrCast(*const ITfLangBarItemMgr, self), pulCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_GetItems(self: *const T, ulCount: u32, ppItem: [*]*ITfLangBarItem, pInfo: [*]TF_LANGBARITEMINFO, pdwStatus: [*]u32, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_GetItems(self: *const T, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pInfo: [*]TF_LANGBARITEMINFO, pdwStatus: [*]u32, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).GetItems(@ptrCast(*const ITfLangBarItemMgr, self), ulCount, ppItem, pInfo, pdwStatus, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemMgr_AdviseItemsSink(self: *const T, ulCount: u32, ppunk: [*]*ITfLangBarItemSink, pguidItem: [*]const Guid, pdwCookie: [*]u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemMgr_AdviseItemsSink(self: *const T, ulCount: u32, ppunk: [*]?*ITfLangBarItemSink, pguidItem: [*]const Guid, pdwCookie: [*]u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemMgr.VTable, self.vtable).AdviseItemsSink(@ptrCast(*const ITfLangBarItemMgr, self), ulCount, ppunk, pguidItem, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1934,11 +1934,11 @@ pub const ITfLangBarItem = extern struct {
         base: IUnknown.VTable,
         GetInfo: fn(
             self: *const ITfLangBarItem,
-            pInfo: *TF_LANGBARITEMINFO,
+            pInfo: ?*TF_LANGBARITEMINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITfLangBarItem,
-            pdwStatus: *u32,
+            pdwStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Show: fn(
             self: *const ITfLangBarItem,
@@ -1946,18 +1946,18 @@ pub const ITfLangBarItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTooltipString: fn(
             self: *const ITfLangBarItem,
-            pbstrToolTip: *BSTR,
+            pbstrToolTip: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItem_GetInfo(self: *const T, pInfo: *TF_LANGBARITEMINFO) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItem_GetInfo(self: *const T, pInfo: ?*TF_LANGBARITEMINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItem.VTable, self.vtable).GetInfo(@ptrCast(*const ITfLangBarItem, self), pInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItem_GetStatus(self: *const T, pdwStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItem_GetStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItem.VTable, self.vtable).GetStatus(@ptrCast(*const ITfLangBarItem, self), pdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1965,7 +1965,7 @@ pub const ITfLangBarItem = extern struct {
             return @ptrCast(*const ITfLangBarItem.VTable, self.vtable).Show(@ptrCast(*const ITfLangBarItem, self), fShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItem_GetTooltipString(self: *const T, pbstrToolTip: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItem_GetTooltipString(self: *const T, pbstrToolTip: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItem.VTable, self.vtable).GetTooltipString(@ptrCast(*const ITfLangBarItem, self), pbstrToolTip);
         }
     };}
@@ -1980,7 +1980,7 @@ pub const ITfSystemLangBarItemSink = extern struct {
         base: IUnknown.VTable,
         InitMenu: fn(
             self: *const ITfSystemLangBarItemSink,
-            pMenu: *ITfMenu,
+            pMenu: ?*ITfMenu,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnMenuSelect: fn(
             self: *const ITfSystemLangBarItemSink,
@@ -1991,7 +1991,7 @@ pub const ITfSystemLangBarItemSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSystemLangBarItemSink_InitMenu(self: *const T, pMenu: *ITfMenu) callconv(.Inline) HRESULT {
+        pub fn ITfSystemLangBarItemSink_InitMenu(self: *const T, pMenu: ?*ITfMenu) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSystemLangBarItemSink.VTable, self.vtable).InitMenu(@ptrCast(*const ITfSystemLangBarItemSink, self), pMenu);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2010,7 +2010,7 @@ pub const ITfSystemLangBarItem = extern struct {
         base: IUnknown.VTable,
         SetIcon: fn(
             self: *const ITfSystemLangBarItem,
-            hIcon: HICON,
+            hIcon: ?HICON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTooltipString: fn(
             self: *const ITfSystemLangBarItem,
@@ -2022,7 +2022,7 @@ pub const ITfSystemLangBarItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSystemLangBarItem_SetIcon(self: *const T, hIcon: HICON) callconv(.Inline) HRESULT {
+        pub fn ITfSystemLangBarItem_SetIcon(self: *const T, hIcon: ?HICON) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSystemLangBarItem.VTable, self.vtable).SetIcon(@ptrCast(*const ITfSystemLangBarItem, self), hIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2046,7 +2046,7 @@ pub const ITfSystemLangBarItemText = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItemText: fn(
             self: *const ITfSystemLangBarItemText,
-            pbstrText: *BSTR,
+            pbstrText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2057,7 +2057,7 @@ pub const ITfSystemLangBarItemText = extern struct {
             return @ptrCast(*const ITfSystemLangBarItemText.VTable, self.vtable).SetItemText(@ptrCast(*const ITfSystemLangBarItemText, self), pch, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSystemLangBarItemText_GetItemText(self: *const T, pbstrText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfSystemLangBarItemText_GetItemText(self: *const T, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSystemLangBarItemText.VTable, self.vtable).GetItemText(@ptrCast(*const ITfSystemLangBarItemText, self), pbstrText);
         }
     };}
@@ -2076,7 +2076,7 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIconMode: fn(
             self: *const ITfSystemDeviceTypeLangBarItem,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2087,7 +2087,7 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
             return @ptrCast(*const ITfSystemDeviceTypeLangBarItem.VTable, self.vtable).SetIconMode(@ptrCast(*const ITfSystemDeviceTypeLangBarItem, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSystemDeviceTypeLangBarItem_GetIconMode(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfSystemDeviceTypeLangBarItem_GetIconMode(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSystemDeviceTypeLangBarItem.VTable, self.vtable).GetIconMode(@ptrCast(*const ITfSystemDeviceTypeLangBarItem, self), pdwFlags);
         }
     };}
@@ -2111,11 +2111,11 @@ pub const ITfLangBarItemButton = extern struct {
             self: *const ITfLangBarItemButton,
             click: TfLBIClick,
             pt: POINT,
-            prcArea: *const RECT,
+            prcArea: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitMenu: fn(
             self: *const ITfLangBarItemButton,
-            pMenu: *ITfMenu,
+            pMenu: ?*ITfMenu,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnMenuSelect: fn(
             self: *const ITfLangBarItemButton,
@@ -2123,22 +2123,22 @@ pub const ITfLangBarItemButton = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIcon: fn(
             self: *const ITfLangBarItemButton,
-            phIcon: *HICON,
+            phIcon: ?*?HICON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const ITfLangBarItemButton,
-            pbstrText: *BSTR,
+            pbstrText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfLangBarItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemButton_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: *const RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemButton_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemButton.VTable, self.vtable).OnClick(@ptrCast(*const ITfLangBarItemButton, self), click, pt, prcArea);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemButton_InitMenu(self: *const T, pMenu: *ITfMenu) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemButton_InitMenu(self: *const T, pMenu: ?*ITfMenu) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemButton.VTable, self.vtable).InitMenu(@ptrCast(*const ITfLangBarItemButton, self), pMenu);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2146,11 +2146,11 @@ pub const ITfLangBarItemButton = extern struct {
             return @ptrCast(*const ITfLangBarItemButton.VTable, self.vtable).OnMenuSelect(@ptrCast(*const ITfLangBarItemButton, self), wID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemButton_GetIcon(self: *const T, phIcon: *HICON) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemButton_GetIcon(self: *const T, phIcon: ?*?HICON) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemButton.VTable, self.vtable).GetIcon(@ptrCast(*const ITfLangBarItemButton, self), phIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemButton_GetText(self: *const T, pbstrText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemButton_GetText(self: *const T, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemButton.VTable, self.vtable).GetText(@ptrCast(*const ITfLangBarItemButton, self), pbstrText);
         }
     };}
@@ -2167,11 +2167,11 @@ pub const ITfLangBarItemBitmapButton = extern struct {
             self: *const ITfLangBarItemBitmapButton,
             click: TfLBIClick,
             pt: POINT,
-            prcArea: *const RECT,
+            prcArea: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitMenu: fn(
             self: *const ITfLangBarItemBitmapButton,
-            pMenu: *ITfMenu,
+            pMenu: ?*ITfMenu,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnMenuSelect: fn(
             self: *const ITfLangBarItemBitmapButton,
@@ -2179,31 +2179,31 @@ pub const ITfLangBarItemBitmapButton = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredSize: fn(
             self: *const ITfLangBarItemBitmapButton,
-            pszDefault: *const SIZE,
-            psz: *SIZE,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawBitmap: fn(
             self: *const ITfLangBarItemBitmapButton,
             bmWidth: i32,
             bmHeight: i32,
             dwFlags: u32,
-            phbmp: *HBITMAP,
-            phbmpMask: *HBITMAP,
+            phbmp: ?*?HBITMAP,
+            phbmpMask: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const ITfLangBarItemBitmapButton,
-            pbstrText: *BSTR,
+            pbstrText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfLangBarItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmapButton_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: *const RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmapButton_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).OnClick(@ptrCast(*const ITfLangBarItemBitmapButton, self), click, pt, prcArea);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmapButton_InitMenu(self: *const T, pMenu: *ITfMenu) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmapButton_InitMenu(self: *const T, pMenu: ?*ITfMenu) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).InitMenu(@ptrCast(*const ITfLangBarItemBitmapButton, self), pMenu);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2211,15 +2211,15 @@ pub const ITfLangBarItemBitmapButton = extern struct {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).OnMenuSelect(@ptrCast(*const ITfLangBarItemBitmapButton, self), wID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmapButton_GetPreferredSize(self: *const T, pszDefault: *const SIZE, psz: *SIZE) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmapButton_GetPreferredSize(self: *const T, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).GetPreferredSize(@ptrCast(*const ITfLangBarItemBitmapButton, self), pszDefault, psz);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmapButton_DrawBitmap(self: *const T, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: *HBITMAP, phbmpMask: *HBITMAP) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmapButton_DrawBitmap(self: *const T, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).DrawBitmap(@ptrCast(*const ITfLangBarItemBitmapButton, self), bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmapButton_GetText(self: *const T, pbstrText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmapButton_GetText(self: *const T, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmapButton.VTable, self.vtable).GetText(@ptrCast(*const ITfLangBarItemBitmapButton, self), pbstrText);
         }
     };}
@@ -2236,35 +2236,35 @@ pub const ITfLangBarItemBitmap = extern struct {
             self: *const ITfLangBarItemBitmap,
             click: TfLBIClick,
             pt: POINT,
-            prcArea: *const RECT,
+            prcArea: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredSize: fn(
             self: *const ITfLangBarItemBitmap,
-            pszDefault: *const SIZE,
-            psz: *SIZE,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawBitmap: fn(
             self: *const ITfLangBarItemBitmap,
             bmWidth: i32,
             bmHeight: i32,
             dwFlags: u32,
-            phbmp: *HBITMAP,
-            phbmpMask: *HBITMAP,
+            phbmp: ?*?HBITMAP,
+            phbmpMask: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfLangBarItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmap_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: *const RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmap_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmap.VTable, self.vtable).OnClick(@ptrCast(*const ITfLangBarItemBitmap, self), click, pt, prcArea);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmap_GetPreferredSize(self: *const T, pszDefault: *const SIZE, psz: *SIZE) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmap_GetPreferredSize(self: *const T, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmap.VTable, self.vtable).GetPreferredSize(@ptrCast(*const ITfLangBarItemBitmap, self), pszDefault, psz);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBitmap_DrawBitmap(self: *const T, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: *HBITMAP, phbmpMask: *HBITMAP) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBitmap_DrawBitmap(self: *const T, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBitmap.VTable, self.vtable).DrawBitmap(@ptrCast(*const ITfLangBarItemBitmap, self), bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
         }
     };}
@@ -2282,7 +2282,7 @@ pub const TF_LB_BALLOON_MISS = TfLBBalloonStyle.MISS;
 
 pub const TF_LBBALLOONINFO = extern struct {
     style: TfLBBalloonStyle,
-    bstrText: BSTR,
+    bstrText: ?BSTR,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2295,31 +2295,31 @@ pub const ITfLangBarItemBalloon = extern struct {
             self: *const ITfLangBarItemBalloon,
             click: TfLBIClick,
             pt: POINT,
-            prcArea: *const RECT,
+            prcArea: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredSize: fn(
             self: *const ITfLangBarItemBalloon,
-            pszDefault: *const SIZE,
-            psz: *SIZE,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBalloonInfo: fn(
             self: *const ITfLangBarItemBalloon,
-            pInfo: *TF_LBBALLOONINFO,
+            pInfo: ?*TF_LBBALLOONINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfLangBarItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBalloon_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: *const RECT) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBalloon_OnClick(self: *const T, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBalloon.VTable, self.vtable).OnClick(@ptrCast(*const ITfLangBarItemBalloon, self), click, pt, prcArea);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBalloon_GetPreferredSize(self: *const T, pszDefault: *const SIZE, psz: *SIZE) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBalloon_GetPreferredSize(self: *const T, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBalloon.VTable, self.vtable).GetPreferredSize(@ptrCast(*const ITfLangBarItemBalloon, self), pszDefault, psz);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLangBarItemBalloon_GetBalloonInfo(self: *const T, pInfo: *TF_LBBALLOONINFO) callconv(.Inline) HRESULT {
+        pub fn ITfLangBarItemBalloon_GetBalloonInfo(self: *const T, pInfo: ?*TF_LBBALLOONINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLangBarItemBalloon.VTable, self.vtable).GetBalloonInfo(@ptrCast(*const ITfLangBarItemBalloon, self), pInfo);
         }
     };}
@@ -2336,18 +2336,18 @@ pub const ITfMenu = extern struct {
             self: *const ITfMenu,
             uId: u32,
             dwFlags: u32,
-            hbmp: HBITMAP,
-            hbmpMask: HBITMAP,
+            hbmp: ?HBITMAP,
+            hbmpMask: ?HBITMAP,
             pch: [*:0]const u16,
             cch: u32,
-            ppMenu: **ITfMenu,
+            ppMenu: ?*?*ITfMenu,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMenu_AddMenuItem(self: *const T, uId: u32, dwFlags: u32, hbmp: HBITMAP, hbmpMask: HBITMAP, pch: [*:0]const u16, cch: u32, ppMenu: **ITfMenu) callconv(.Inline) HRESULT {
+        pub fn ITfMenu_AddMenuItem(self: *const T, uId: u32, dwFlags: u32, hbmp: ?HBITMAP, hbmpMask: ?HBITMAP, pch: [*:0]const u16, cch: u32, ppMenu: ?*?*ITfMenu) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMenu.VTable, self.vtable).AddMenuItem(@ptrCast(*const ITfMenu, self), uId, dwFlags, hbmp, hbmpMask, pch, cch, ppMenu);
         }
     };}
@@ -2386,56 +2386,56 @@ pub const ITfThreadMgr = extern struct {
         base: IUnknown.VTable,
         Activate: fn(
             self: *const ITfThreadMgr,
-            ptid: *u32,
+            ptid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Deactivate: fn(
             self: *const ITfThreadMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDocumentMgr: fn(
             self: *const ITfThreadMgr,
-            ppdim: **ITfDocumentMgr,
+            ppdim: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDocumentMgrs: fn(
             self: *const ITfThreadMgr,
-            ppEnum: **IEnumTfDocumentMgrs,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocus: fn(
             self: *const ITfThreadMgr,
-            ppdimFocus: **ITfDocumentMgr,
+            ppdimFocus: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFocus: fn(
             self: *const ITfThreadMgr,
-            pdimFocus: *ITfDocumentMgr,
+            pdimFocus: ?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AssociateFocus: fn(
             self: *const ITfThreadMgr,
-            hwnd: HWND,
-            pdimNew: *ITfDocumentMgr,
-            ppdimPrev: **ITfDocumentMgr,
+            hwnd: ?HWND,
+            pdimNew: ?*ITfDocumentMgr,
+            ppdimPrev: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsThreadFocus: fn(
             self: *const ITfThreadMgr,
-            pfThreadFocus: *BOOL,
+            pfThreadFocus: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionProvider: fn(
             self: *const ITfThreadMgr,
-            clsid: *const Guid,
-            ppFuncProv: **ITfFunctionProvider,
+            clsid: ?*const Guid,
+            ppFuncProv: ?*?*ITfFunctionProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFunctionProviders: fn(
             self: *const ITfThreadMgr,
-            ppEnum: **IEnumTfFunctionProviders,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGlobalCompartment: fn(
             self: *const ITfThreadMgr,
-            ppCompMgr: **ITfCompartmentMgr,
+            ppCompMgr: ?*?*ITfCompartmentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_Activate(self: *const T, ptid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_Activate(self: *const T, ptid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).Activate(@ptrCast(*const ITfThreadMgr, self), ptid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2443,39 +2443,39 @@ pub const ITfThreadMgr = extern struct {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).Deactivate(@ptrCast(*const ITfThreadMgr, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_CreateDocumentMgr(self: *const T, ppdim: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_CreateDocumentMgr(self: *const T, ppdim: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).CreateDocumentMgr(@ptrCast(*const ITfThreadMgr, self), ppdim);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_EnumDocumentMgrs(self: *const T, ppEnum: **IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_EnumDocumentMgrs(self: *const T, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).EnumDocumentMgrs(@ptrCast(*const ITfThreadMgr, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_GetFocus(self: *const T, ppdimFocus: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_GetFocus(self: *const T, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).GetFocus(@ptrCast(*const ITfThreadMgr, self), ppdimFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_SetFocus(self: *const T, pdimFocus: *ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_SetFocus(self: *const T, pdimFocus: ?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).SetFocus(@ptrCast(*const ITfThreadMgr, self), pdimFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_AssociateFocus(self: *const T, hwnd: HWND, pdimNew: *ITfDocumentMgr, ppdimPrev: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_AssociateFocus(self: *const T, hwnd: ?HWND, pdimNew: ?*ITfDocumentMgr, ppdimPrev: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).AssociateFocus(@ptrCast(*const ITfThreadMgr, self), hwnd, pdimNew, ppdimPrev);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_IsThreadFocus(self: *const T, pfThreadFocus: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_IsThreadFocus(self: *const T, pfThreadFocus: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).IsThreadFocus(@ptrCast(*const ITfThreadMgr, self), pfThreadFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_GetFunctionProvider(self: *const T, clsid: *const Guid, ppFuncProv: **ITfFunctionProvider) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_GetFunctionProvider(self: *const T, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).GetFunctionProvider(@ptrCast(*const ITfThreadMgr, self), clsid, ppFuncProv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_EnumFunctionProviders(self: *const T, ppEnum: **IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_EnumFunctionProviders(self: *const T, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).EnumFunctionProviders(@ptrCast(*const ITfThreadMgr, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr_GetGlobalCompartment(self: *const T, ppCompMgr: **ITfCompartmentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr_GetGlobalCompartment(self: *const T, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr.VTable, self.vtable).GetGlobalCompartment(@ptrCast(*const ITfThreadMgr, self), ppCompMgr);
         }
     };}
@@ -2490,23 +2490,23 @@ pub const ITfThreadMgrEx = extern struct {
         base: ITfThreadMgr.VTable,
         ActivateEx: fn(
             self: *const ITfThreadMgrEx,
-            ptid: *u32,
+            ptid: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveFlags: fn(
             self: *const ITfThreadMgrEx,
-            lpdwFlags: *u32,
+            lpdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfThreadMgr.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEx_ActivateEx(self: *const T, ptid: *u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEx_ActivateEx(self: *const T, ptid: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEx.VTable, self.vtable).ActivateEx(@ptrCast(*const ITfThreadMgrEx, self), ptid, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEx_GetActiveFlags(self: *const T, lpdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEx_GetActiveFlags(self: *const T, lpdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEx.VTable, self.vtable).GetActiveFlags(@ptrCast(*const ITfThreadMgrEx, self), lpdwFlags);
         }
     };}
@@ -2521,52 +2521,52 @@ pub const ITfThreadMgr2 = extern struct {
         base: IUnknown.VTable,
         Activate: fn(
             self: *const ITfThreadMgr2,
-            ptid: *u32,
+            ptid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Deactivate: fn(
             self: *const ITfThreadMgr2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDocumentMgr: fn(
             self: *const ITfThreadMgr2,
-            ppdim: **ITfDocumentMgr,
+            ppdim: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDocumentMgrs: fn(
             self: *const ITfThreadMgr2,
-            ppEnum: **IEnumTfDocumentMgrs,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocus: fn(
             self: *const ITfThreadMgr2,
-            ppdimFocus: **ITfDocumentMgr,
+            ppdimFocus: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFocus: fn(
             self: *const ITfThreadMgr2,
-            pdimFocus: *ITfDocumentMgr,
+            pdimFocus: ?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsThreadFocus: fn(
             self: *const ITfThreadMgr2,
-            pfThreadFocus: *BOOL,
+            pfThreadFocus: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionProvider: fn(
             self: *const ITfThreadMgr2,
-            clsid: *const Guid,
-            ppFuncProv: **ITfFunctionProvider,
+            clsid: ?*const Guid,
+            ppFuncProv: ?*?*ITfFunctionProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFunctionProviders: fn(
             self: *const ITfThreadMgr2,
-            ppEnum: **IEnumTfFunctionProviders,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGlobalCompartment: fn(
             self: *const ITfThreadMgr2,
-            ppCompMgr: **ITfCompartmentMgr,
+            ppCompMgr: ?*?*ITfCompartmentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ActivateEx: fn(
             self: *const ITfThreadMgr2,
-            ptid: *u32,
+            ptid: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveFlags: fn(
             self: *const ITfThreadMgr2,
-            lpdwFlags: *u32,
+            lpdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SuspendKeystrokeHandling: fn(
             self: *const ITfThreadMgr2,
@@ -2579,7 +2579,7 @@ pub const ITfThreadMgr2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_Activate(self: *const T, ptid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_Activate(self: *const T, ptid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).Activate(@ptrCast(*const ITfThreadMgr2, self), ptid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2587,43 +2587,43 @@ pub const ITfThreadMgr2 = extern struct {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).Deactivate(@ptrCast(*const ITfThreadMgr2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_CreateDocumentMgr(self: *const T, ppdim: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_CreateDocumentMgr(self: *const T, ppdim: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).CreateDocumentMgr(@ptrCast(*const ITfThreadMgr2, self), ppdim);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_EnumDocumentMgrs(self: *const T, ppEnum: **IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_EnumDocumentMgrs(self: *const T, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).EnumDocumentMgrs(@ptrCast(*const ITfThreadMgr2, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_GetFocus(self: *const T, ppdimFocus: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_GetFocus(self: *const T, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).GetFocus(@ptrCast(*const ITfThreadMgr2, self), ppdimFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_SetFocus(self: *const T, pdimFocus: *ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_SetFocus(self: *const T, pdimFocus: ?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).SetFocus(@ptrCast(*const ITfThreadMgr2, self), pdimFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_IsThreadFocus(self: *const T, pfThreadFocus: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_IsThreadFocus(self: *const T, pfThreadFocus: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).IsThreadFocus(@ptrCast(*const ITfThreadMgr2, self), pfThreadFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_GetFunctionProvider(self: *const T, clsid: *const Guid, ppFuncProv: **ITfFunctionProvider) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_GetFunctionProvider(self: *const T, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).GetFunctionProvider(@ptrCast(*const ITfThreadMgr2, self), clsid, ppFuncProv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_EnumFunctionProviders(self: *const T, ppEnum: **IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_EnumFunctionProviders(self: *const T, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).EnumFunctionProviders(@ptrCast(*const ITfThreadMgr2, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_GetGlobalCompartment(self: *const T, ppCompMgr: **ITfCompartmentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_GetGlobalCompartment(self: *const T, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).GetGlobalCompartment(@ptrCast(*const ITfThreadMgr2, self), ppCompMgr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_ActivateEx(self: *const T, ptid: *u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_ActivateEx(self: *const T, ptid: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).ActivateEx(@ptrCast(*const ITfThreadMgr2, self), ptid, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgr2_GetActiveFlags(self: *const T, lpdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgr2_GetActiveFlags(self: *const T, lpdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgr2.VTable, self.vtable).GetActiveFlags(@ptrCast(*const ITfThreadMgr2, self), lpdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2646,47 +2646,47 @@ pub const ITfThreadMgrEventSink = extern struct {
         base: IUnknown.VTable,
         OnInitDocumentMgr: fn(
             self: *const ITfThreadMgrEventSink,
-            pdim: *ITfDocumentMgr,
+            pdim: ?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnUninitDocumentMgr: fn(
             self: *const ITfThreadMgrEventSink,
-            pdim: *ITfDocumentMgr,
+            pdim: ?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSetFocus: fn(
             self: *const ITfThreadMgrEventSink,
-            pdimFocus: *ITfDocumentMgr,
-            pdimPrevFocus: *ITfDocumentMgr,
+            pdimFocus: ?*ITfDocumentMgr,
+            pdimPrevFocus: ?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPushContext: fn(
             self: *const ITfThreadMgrEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPopContext: fn(
             self: *const ITfThreadMgrEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEventSink_OnInitDocumentMgr(self: *const T, pdim: *ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEventSink_OnInitDocumentMgr(self: *const T, pdim: ?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEventSink.VTable, self.vtable).OnInitDocumentMgr(@ptrCast(*const ITfThreadMgrEventSink, self), pdim);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEventSink_OnUninitDocumentMgr(self: *const T, pdim: *ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEventSink_OnUninitDocumentMgr(self: *const T, pdim: ?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEventSink.VTable, self.vtable).OnUninitDocumentMgr(@ptrCast(*const ITfThreadMgrEventSink, self), pdim);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEventSink_OnSetFocus(self: *const T, pdimFocus: *ITfDocumentMgr, pdimPrevFocus: *ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEventSink_OnSetFocus(self: *const T, pdimFocus: ?*ITfDocumentMgr, pdimPrevFocus: ?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEventSink.VTable, self.vtable).OnSetFocus(@ptrCast(*const ITfThreadMgrEventSink, self), pdimFocus, pdimPrevFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEventSink_OnPushContext(self: *const T, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEventSink_OnPushContext(self: *const T, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEventSink.VTable, self.vtable).OnPushContext(@ptrCast(*const ITfThreadMgrEventSink, self), pic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfThreadMgrEventSink_OnPopContext(self: *const T, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfThreadMgrEventSink_OnPopContext(self: *const T, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfThreadMgrEventSink.VTable, self.vtable).OnPopContext(@ptrCast(*const ITfThreadMgrEventSink, self), pic);
         }
     };}
@@ -2729,13 +2729,13 @@ pub const IEnumTfDocumentMgrs = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfDocumentMgrs,
-            ppEnum: **IEnumTfDocumentMgrs,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfDocumentMgrs,
             ulCount: u32,
-            rgDocumentMgr: [*]*ITfDocumentMgr,
-            pcFetched: *u32,
+            rgDocumentMgr: [*]?*ITfDocumentMgr,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfDocumentMgrs,
@@ -2749,11 +2749,11 @@ pub const IEnumTfDocumentMgrs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfDocumentMgrs_Clone(self: *const T, ppEnum: **IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
+        pub fn IEnumTfDocumentMgrs_Clone(self: *const T, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfDocumentMgrs.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfDocumentMgrs, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfDocumentMgrs_Next(self: *const T, ulCount: u32, rgDocumentMgr: [*]*ITfDocumentMgr, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfDocumentMgrs_Next(self: *const T, ulCount: u32, rgDocumentMgr: [*]?*ITfDocumentMgr, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfDocumentMgrs.VTable, self.vtable).Next(@ptrCast(*const IEnumTfDocumentMgrs, self), ulCount, rgDocumentMgr, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2778,13 +2778,13 @@ pub const ITfDocumentMgr = extern struct {
             self: *const ITfDocumentMgr,
             tidOwner: u32,
             dwFlags: u32,
-            punk: *IUnknown,
-            ppic: **ITfContext,
-            pecTextStore: *u32,
+            punk: ?*IUnknown,
+            ppic: ?*?*ITfContext,
+            pecTextStore: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Push: fn(
             self: *const ITfDocumentMgr,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Pop: fn(
             self: *const ITfDocumentMgr,
@@ -2792,26 +2792,26 @@ pub const ITfDocumentMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTop: fn(
             self: *const ITfDocumentMgr,
-            ppic: **ITfContext,
+            ppic: ?*?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBase: fn(
             self: *const ITfDocumentMgr,
-            ppic: **ITfContext,
+            ppic: ?*?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumContexts: fn(
             self: *const ITfDocumentMgr,
-            ppEnum: **IEnumTfContexts,
+            ppEnum: ?*?*IEnumTfContexts,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDocumentMgr_CreateContext(self: *const T, tidOwner: u32, dwFlags: u32, punk: *IUnknown, ppic: **ITfContext, pecTextStore: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfDocumentMgr_CreateContext(self: *const T, tidOwner: u32, dwFlags: u32, punk: ?*IUnknown, ppic: ?*?*ITfContext, pecTextStore: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).CreateContext(@ptrCast(*const ITfDocumentMgr, self), tidOwner, dwFlags, punk, ppic, pecTextStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDocumentMgr_Push(self: *const T, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfDocumentMgr_Push(self: *const T, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).Push(@ptrCast(*const ITfDocumentMgr, self), pic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2819,15 +2819,15 @@ pub const ITfDocumentMgr = extern struct {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).Pop(@ptrCast(*const ITfDocumentMgr, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDocumentMgr_GetTop(self: *const T, ppic: **ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfDocumentMgr_GetTop(self: *const T, ppic: ?*?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).GetTop(@ptrCast(*const ITfDocumentMgr, self), ppic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDocumentMgr_GetBase(self: *const T, ppic: **ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfDocumentMgr_GetBase(self: *const T, ppic: ?*?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).GetBase(@ptrCast(*const ITfDocumentMgr, self), ppic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDocumentMgr_EnumContexts(self: *const T, ppEnum: **IEnumTfContexts) callconv(.Inline) HRESULT {
+        pub fn ITfDocumentMgr_EnumContexts(self: *const T, ppEnum: ?*?*IEnumTfContexts) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDocumentMgr.VTable, self.vtable).EnumContexts(@ptrCast(*const ITfDocumentMgr, self), ppEnum);
         }
     };}
@@ -2842,13 +2842,13 @@ pub const IEnumTfContexts = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfContexts,
-            ppEnum: **IEnumTfContexts,
+            ppEnum: ?*?*IEnumTfContexts,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfContexts,
             ulCount: u32,
-            rgContext: [*]*ITfContext,
-            pcFetched: *u32,
+            rgContext: [*]?*ITfContext,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfContexts,
@@ -2862,11 +2862,11 @@ pub const IEnumTfContexts = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfContexts_Clone(self: *const T, ppEnum: **IEnumTfContexts) callconv(.Inline) HRESULT {
+        pub fn IEnumTfContexts_Clone(self: *const T, ppEnum: ?*?*IEnumTfContexts) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfContexts.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfContexts, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfContexts_Next(self: *const T, ulCount: u32, rgContext: [*]*ITfContext, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfContexts_Next(self: *const T, ulCount: u32, rgContext: [*]?*ITfContext, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfContexts.VTable, self.vtable).Next(@ptrCast(*const IEnumTfContexts, self), ulCount, rgContext, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2889,22 +2889,22 @@ pub const ITfCompositionView = extern struct {
         base: IUnknown.VTable,
         GetOwnerClsid: fn(
             self: *const ITfCompositionView,
-            pclsid: *Guid,
+            pclsid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRange: fn(
             self: *const ITfCompositionView,
-            ppRange: **ITfRange,
+            ppRange: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompositionView_GetOwnerClsid(self: *const T, pclsid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCompositionView_GetOwnerClsid(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompositionView.VTable, self.vtable).GetOwnerClsid(@ptrCast(*const ITfCompositionView, self), pclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompositionView_GetRange(self: *const T, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfCompositionView_GetRange(self: *const T, ppRange: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompositionView.VTable, self.vtable).GetRange(@ptrCast(*const ITfCompositionView, self), ppRange);
         }
     };}
@@ -2919,13 +2919,13 @@ pub const IEnumITfCompositionView = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumITfCompositionView,
-            ppEnum: **IEnumITfCompositionView,
+            ppEnum: ?*?*IEnumITfCompositionView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumITfCompositionView,
             ulCount: u32,
-            rgCompositionView: [*]*ITfCompositionView,
-            pcFetched: *u32,
+            rgCompositionView: [*]?*ITfCompositionView,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumITfCompositionView,
@@ -2939,11 +2939,11 @@ pub const IEnumITfCompositionView = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumITfCompositionView_Clone(self: *const T, ppEnum: **IEnumITfCompositionView) callconv(.Inline) HRESULT {
+        pub fn IEnumITfCompositionView_Clone(self: *const T, ppEnum: ?*?*IEnumITfCompositionView) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumITfCompositionView.VTable, self.vtable).Clone(@ptrCast(*const IEnumITfCompositionView, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumITfCompositionView_Next(self: *const T, ulCount: u32, rgCompositionView: [*]*ITfCompositionView, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumITfCompositionView_Next(self: *const T, ulCount: u32, rgCompositionView: [*]?*ITfCompositionView, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumITfCompositionView.VTable, self.vtable).Next(@ptrCast(*const IEnumITfCompositionView, self), ulCount, rgCompositionView, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2966,17 +2966,17 @@ pub const ITfComposition = extern struct {
         base: IUnknown.VTable,
         GetRange: fn(
             self: *const ITfComposition,
-            ppRange: **ITfRange,
+            ppRange: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftStart: fn(
             self: *const ITfComposition,
             ecWrite: u32,
-            pNewStart: *ITfRange,
+            pNewStart: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftEnd: fn(
             self: *const ITfComposition,
             ecWrite: u32,
-            pNewEnd: *ITfRange,
+            pNewEnd: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndComposition: fn(
             self: *const ITfComposition,
@@ -2987,15 +2987,15 @@ pub const ITfComposition = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfComposition_GetRange(self: *const T, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfComposition_GetRange(self: *const T, ppRange: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfComposition.VTable, self.vtable).GetRange(@ptrCast(*const ITfComposition, self), ppRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfComposition_ShiftStart(self: *const T, ecWrite: u32, pNewStart: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfComposition_ShiftStart(self: *const T, ecWrite: u32, pNewStart: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfComposition.VTable, self.vtable).ShiftStart(@ptrCast(*const ITfComposition, self), ecWrite, pNewStart);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfComposition_ShiftEnd(self: *const T, ecWrite: u32, pNewEnd: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfComposition_ShiftEnd(self: *const T, ecWrite: u32, pNewEnd: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfComposition.VTable, self.vtable).ShiftEnd(@ptrCast(*const ITfComposition, self), ecWrite, pNewEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3015,14 +3015,14 @@ pub const ITfCompositionSink = extern struct {
         OnCompositionTerminated: fn(
             self: *const ITfCompositionSink,
             ecWrite: u32,
-            pComposition: *ITfComposition,
+            pComposition: ?*ITfComposition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompositionSink_OnCompositionTerminated(self: *const T, ecWrite: u32, pComposition: *ITfComposition) callconv(.Inline) HRESULT {
+        pub fn ITfCompositionSink_OnCompositionTerminated(self: *const T, ecWrite: u32, pComposition: ?*ITfComposition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompositionSink.VTable, self.vtable).OnCompositionTerminated(@ptrCast(*const ITfCompositionSink, self), ecWrite, pComposition);
         }
     };}
@@ -3038,45 +3038,45 @@ pub const ITfContextComposition = extern struct {
         StartComposition: fn(
             self: *const ITfContextComposition,
             ecWrite: u32,
-            pCompositionRange: *ITfRange,
-            pSink: *ITfCompositionSink,
-            ppComposition: **ITfComposition,
+            pCompositionRange: ?*ITfRange,
+            pSink: ?*ITfCompositionSink,
+            ppComposition: ?*?*ITfComposition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumCompositions: fn(
             self: *const ITfContextComposition,
-            ppEnum: **IEnumITfCompositionView,
+            ppEnum: ?*?*IEnumITfCompositionView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindComposition: fn(
             self: *const ITfContextComposition,
             ecRead: u32,
-            pTestRange: *ITfRange,
-            ppEnum: **IEnumITfCompositionView,
+            pTestRange: ?*ITfRange,
+            ppEnum: ?*?*IEnumITfCompositionView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TakeOwnership: fn(
             self: *const ITfContextComposition,
             ecWrite: u32,
-            pComposition: *ITfCompositionView,
-            pSink: *ITfCompositionSink,
-            ppComposition: **ITfComposition,
+            pComposition: ?*ITfCompositionView,
+            pSink: ?*ITfCompositionSink,
+            ppComposition: ?*?*ITfComposition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextComposition_StartComposition(self: *const T, ecWrite: u32, pCompositionRange: *ITfRange, pSink: *ITfCompositionSink, ppComposition: **ITfComposition) callconv(.Inline) HRESULT {
+        pub fn ITfContextComposition_StartComposition(self: *const T, ecWrite: u32, pCompositionRange: ?*ITfRange, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextComposition.VTable, self.vtable).StartComposition(@ptrCast(*const ITfContextComposition, self), ecWrite, pCompositionRange, pSink, ppComposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextComposition_EnumCompositions(self: *const T, ppEnum: **IEnumITfCompositionView) callconv(.Inline) HRESULT {
+        pub fn ITfContextComposition_EnumCompositions(self: *const T, ppEnum: ?*?*IEnumITfCompositionView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextComposition.VTable, self.vtable).EnumCompositions(@ptrCast(*const ITfContextComposition, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextComposition_FindComposition(self: *const T, ecRead: u32, pTestRange: *ITfRange, ppEnum: **IEnumITfCompositionView) callconv(.Inline) HRESULT {
+        pub fn ITfContextComposition_FindComposition(self: *const T, ecRead: u32, pTestRange: ?*ITfRange, ppEnum: ?*?*IEnumITfCompositionView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextComposition.VTable, self.vtable).FindComposition(@ptrCast(*const ITfContextComposition, self), ecRead, pTestRange, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextComposition_TakeOwnership(self: *const T, ecWrite: u32, pComposition: *ITfCompositionView, pSink: *ITfCompositionSink, ppComposition: **ITfComposition) callconv(.Inline) HRESULT {
+        pub fn ITfContextComposition_TakeOwnership(self: *const T, ecWrite: u32, pComposition: ?*ITfCompositionView, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextComposition.VTable, self.vtable).TakeOwnership(@ptrCast(*const ITfContextComposition, self), ecWrite, pComposition, pSink, ppComposition);
         }
     };}
@@ -3091,14 +3091,14 @@ pub const ITfContextOwnerCompositionServices = extern struct {
         base: ITfContextComposition.VTable,
         TerminateComposition: fn(
             self: *const ITfContextOwnerCompositionServices,
-            pComposition: *ITfCompositionView,
+            pComposition: ?*ITfCompositionView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfContextComposition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerCompositionServices_TerminateComposition(self: *const T, pComposition: *ITfCompositionView) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerCompositionServices_TerminateComposition(self: *const T, pComposition: ?*ITfCompositionView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerCompositionServices.VTable, self.vtable).TerminateComposition(@ptrCast(*const ITfContextOwnerCompositionServices, self), pComposition);
         }
     };}
@@ -3113,32 +3113,32 @@ pub const ITfContextOwnerCompositionSink = extern struct {
         base: IUnknown.VTable,
         OnStartComposition: fn(
             self: *const ITfContextOwnerCompositionSink,
-            pComposition: *ITfCompositionView,
-            pfOk: *BOOL,
+            pComposition: ?*ITfCompositionView,
+            pfOk: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnUpdateComposition: fn(
             self: *const ITfContextOwnerCompositionSink,
-            pComposition: *ITfCompositionView,
-            pRangeNew: *ITfRange,
+            pComposition: ?*ITfCompositionView,
+            pRangeNew: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEndComposition: fn(
             self: *const ITfContextOwnerCompositionSink,
-            pComposition: *ITfCompositionView,
+            pComposition: ?*ITfCompositionView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerCompositionSink_OnStartComposition(self: *const T, pComposition: *ITfCompositionView, pfOk: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerCompositionSink_OnStartComposition(self: *const T, pComposition: ?*ITfCompositionView, pfOk: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerCompositionSink.VTable, self.vtable).OnStartComposition(@ptrCast(*const ITfContextOwnerCompositionSink, self), pComposition, pfOk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerCompositionSink_OnUpdateComposition(self: *const T, pComposition: *ITfCompositionView, pRangeNew: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerCompositionSink_OnUpdateComposition(self: *const T, pComposition: ?*ITfCompositionView, pRangeNew: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerCompositionSink.VTable, self.vtable).OnUpdateComposition(@ptrCast(*const ITfContextOwnerCompositionSink, self), pComposition, pRangeNew);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerCompositionSink_OnEndComposition(self: *const T, pComposition: *ITfCompositionView) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerCompositionSink_OnEndComposition(self: *const T, pComposition: ?*ITfCompositionView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerCompositionSink.VTable, self.vtable).OnEndComposition(@ptrCast(*const ITfContextOwnerCompositionSink, self), pComposition);
         }
     };}
@@ -3154,43 +3154,43 @@ pub const ITfContextView = extern struct {
         GetRangeFromPoint: fn(
             self: *const ITfContextView,
             ec: u32,
-            ppt: *const POINT,
+            ppt: ?*const POINT,
             dwFlags: u32,
-            ppRange: **ITfRange,
+            ppRange: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextExt: fn(
             self: *const ITfContextView,
             ec: u32,
-            pRange: *ITfRange,
-            prc: *RECT,
-            pfClipped: *BOOL,
+            pRange: ?*ITfRange,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScreenExt: fn(
             self: *const ITfContextView,
-            prc: *RECT,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWnd: fn(
             self: *const ITfContextView,
-            phwnd: *HWND,
+            phwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextView_GetRangeFromPoint(self: *const T, ec: u32, ppt: *const POINT, dwFlags: u32, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfContextView_GetRangeFromPoint(self: *const T, ec: u32, ppt: ?*const POINT, dwFlags: u32, ppRange: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextView.VTable, self.vtable).GetRangeFromPoint(@ptrCast(*const ITfContextView, self), ec, ppt, dwFlags, ppRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextView_GetTextExt(self: *const T, ec: u32, pRange: *ITfRange, prc: *RECT, pfClipped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextView_GetTextExt(self: *const T, ec: u32, pRange: ?*ITfRange, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextView.VTable, self.vtable).GetTextExt(@ptrCast(*const ITfContextView, self), ec, pRange, prc, pfClipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextView_GetScreenExt(self: *const T, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITfContextView_GetScreenExt(self: *const T, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextView.VTable, self.vtable).GetScreenExt(@ptrCast(*const ITfContextView, self), prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextView_GetWnd(self: *const T, phwnd: *HWND) callconv(.Inline) HRESULT {
+        pub fn ITfContextView_GetWnd(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextView.VTable, self.vtable).GetWnd(@ptrCast(*const ITfContextView, self), phwnd);
         }
     };}
@@ -3204,13 +3204,13 @@ pub const IEnumTfContextViews = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfContextViews,
-            ppEnum: **IEnumTfContextViews,
+            ppEnum: ?*?*IEnumTfContextViews,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfContextViews,
             ulCount: u32,
-            rgViews: [*]*ITfContextView,
-            pcFetched: *u32,
+            rgViews: [*]?*ITfContextView,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfContextViews,
@@ -3224,11 +3224,11 @@ pub const IEnumTfContextViews = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfContextViews_Clone(self: *const T, ppEnum: **IEnumTfContextViews) callconv(.Inline) HRESULT {
+        pub fn IEnumTfContextViews_Clone(self: *const T, ppEnum: ?*?*IEnumTfContextViews) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfContextViews.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfContextViews, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfContextViews_Next(self: *const T, ulCount: u32, rgViews: [*]*ITfContextView, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfContextViews_Next(self: *const T, ulCount: u32, rgViews: [*]?*ITfContextView, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfContextViews.VTable, self.vtable).Next(@ptrCast(*const IEnumTfContextViews, self), ulCount, rgViews, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3258,7 +3258,7 @@ pub const TF_SELECTIONSTYLE = extern struct {
 };
 
 pub const TF_SELECTION = extern struct {
-    range: *ITfRange,
+    range: ?*ITfRange,
     style: TF_SELECTIONSTYLE,
 };
 
@@ -3271,14 +3271,14 @@ pub const ITfContext = extern struct {
         RequestEditSession: fn(
             self: *const ITfContext,
             tid: u32,
-            pes: *ITfEditSession,
+            pes: ?*ITfEditSession,
             dwFlags: TF_CONTEXT_EDIT_CONTEXT_FLAGS,
-            phrSession: *HRESULT,
+            phrSession: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InWriteSession: fn(
             self: *const ITfContext,
             tid: u32,
-            pfWriteSession: *BOOL,
+            pfWriteSession: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ITfContext,
@@ -3286,7 +3286,7 @@ pub const ITfContext = extern struct {
             ulIndex: u32,
             ulCount: u32,
             pSelection: [*]TF_SELECTION,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSelection: fn(
             self: *const ITfContext,
@@ -3297,71 +3297,71 @@ pub const ITfContext = extern struct {
         GetStart: fn(
             self: *const ITfContext,
             ec: u32,
-            ppStart: **ITfRange,
+            ppStart: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnd: fn(
             self: *const ITfContext,
             ec: u32,
-            ppEnd: **ITfRange,
+            ppEnd: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveView: fn(
             self: *const ITfContext,
-            ppView: **ITfContextView,
+            ppView: ?*?*ITfContextView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumViews: fn(
             self: *const ITfContext,
-            ppEnum: **IEnumTfContextViews,
+            ppEnum: ?*?*IEnumTfContextViews,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITfContext,
-            pdcs: *TS_STATUS,
+            pdcs: ?*TS_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const ITfContext,
-            guidProp: *const Guid,
-            ppProp: **ITfProperty,
+            guidProp: ?*const Guid,
+            ppProp: ?*?*ITfProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAppProperty: fn(
             self: *const ITfContext,
-            guidProp: *const Guid,
-            ppProp: **ITfReadOnlyProperty,
+            guidProp: ?*const Guid,
+            ppProp: ?*?*ITfReadOnlyProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TrackProperties: fn(
             self: *const ITfContext,
-            prgProp: [*]const *const Guid,
+            prgProp: [*]const ?*const Guid,
             cProp: u32,
-            prgAppProp: [*]const *const Guid,
+            prgAppProp: [*]const ?*const Guid,
             cAppProp: u32,
-            ppProperty: **ITfReadOnlyProperty,
+            ppProperty: ?*?*ITfReadOnlyProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumProperties: fn(
             self: *const ITfContext,
-            ppEnum: **IEnumTfProperties,
+            ppEnum: ?*?*IEnumTfProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentMgr: fn(
             self: *const ITfContext,
-            ppDm: **ITfDocumentMgr,
+            ppDm: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRangeBackup: fn(
             self: *const ITfContext,
             ec: u32,
-            pRange: *ITfRange,
-            ppBackup: **ITfRangeBackup,
+            pRange: ?*ITfRange,
+            ppBackup: ?*?*ITfRangeBackup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_RequestEditSession(self: *const T, tid: u32, pes: *ITfEditSession, dwFlags: TF_CONTEXT_EDIT_CONTEXT_FLAGS, phrSession: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ITfContext_RequestEditSession(self: *const T, tid: u32, pes: ?*ITfEditSession, dwFlags: TF_CONTEXT_EDIT_CONTEXT_FLAGS, phrSession: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).RequestEditSession(@ptrCast(*const ITfContext, self), tid, pes, dwFlags, phrSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_InWriteSession(self: *const T, tid: u32, pfWriteSession: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContext_InWriteSession(self: *const T, tid: u32, pfWriteSession: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).InWriteSession(@ptrCast(*const ITfContext, self), tid, pfWriteSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetSelection(self: *const T, ec: u32, ulIndex: u32, ulCount: u32, pSelection: [*]TF_SELECTION, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetSelection(self: *const T, ec: u32, ulIndex: u32, ulCount: u32, pSelection: [*]TF_SELECTION, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetSelection(@ptrCast(*const ITfContext, self), ec, ulIndex, ulCount, pSelection, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3369,47 +3369,47 @@ pub const ITfContext = extern struct {
             return @ptrCast(*const ITfContext.VTable, self.vtable).SetSelection(@ptrCast(*const ITfContext, self), ec, ulCount, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetStart(self: *const T, ec: u32, ppStart: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetStart(self: *const T, ec: u32, ppStart: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetStart(@ptrCast(*const ITfContext, self), ec, ppStart);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetEnd(self: *const T, ec: u32, ppEnd: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetEnd(self: *const T, ec: u32, ppEnd: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetEnd(@ptrCast(*const ITfContext, self), ec, ppEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetActiveView(self: *const T, ppView: **ITfContextView) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetActiveView(self: *const T, ppView: ?*?*ITfContextView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetActiveView(@ptrCast(*const ITfContext, self), ppView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_EnumViews(self: *const T, ppEnum: **IEnumTfContextViews) callconv(.Inline) HRESULT {
+        pub fn ITfContext_EnumViews(self: *const T, ppEnum: ?*?*IEnumTfContextViews) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).EnumViews(@ptrCast(*const ITfContext, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetStatus(self: *const T, pdcs: *TS_STATUS) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetStatus(self: *const T, pdcs: ?*TS_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetStatus(@ptrCast(*const ITfContext, self), pdcs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetProperty(self: *const T, guidProp: *const Guid, ppProp: **ITfProperty) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetProperty(self: *const T, guidProp: ?*const Guid, ppProp: ?*?*ITfProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetProperty(@ptrCast(*const ITfContext, self), guidProp, ppProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetAppProperty(self: *const T, guidProp: *const Guid, ppProp: **ITfReadOnlyProperty) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetAppProperty(self: *const T, guidProp: ?*const Guid, ppProp: ?*?*ITfReadOnlyProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetAppProperty(@ptrCast(*const ITfContext, self), guidProp, ppProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_TrackProperties(self: *const T, prgProp: [*]const *const Guid, cProp: u32, prgAppProp: [*]const *const Guid, cAppProp: u32, ppProperty: **ITfReadOnlyProperty) callconv(.Inline) HRESULT {
+        pub fn ITfContext_TrackProperties(self: *const T, prgProp: [*]const ?*const Guid, cProp: u32, prgAppProp: [*]const ?*const Guid, cAppProp: u32, ppProperty: ?*?*ITfReadOnlyProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).TrackProperties(@ptrCast(*const ITfContext, self), prgProp, cProp, prgAppProp, cAppProp, ppProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_EnumProperties(self: *const T, ppEnum: **IEnumTfProperties) callconv(.Inline) HRESULT {
+        pub fn ITfContext_EnumProperties(self: *const T, ppEnum: ?*?*IEnumTfProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).EnumProperties(@ptrCast(*const ITfContext, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_GetDocumentMgr(self: *const T, ppDm: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfContext_GetDocumentMgr(self: *const T, ppDm: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).GetDocumentMgr(@ptrCast(*const ITfContext, self), ppDm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_CreateRangeBackup(self: *const T, ec: u32, pRange: *ITfRange, ppBackup: **ITfRangeBackup) callconv(.Inline) HRESULT {
+        pub fn ITfContext_CreateRangeBackup(self: *const T, ec: u32, pRange: ?*ITfRange, ppBackup: ?*?*ITfRangeBackup) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).CreateRangeBackup(@ptrCast(*const ITfContext, self), ec, pRange, ppBackup);
         }
     };}
@@ -3424,16 +3424,16 @@ pub const ITfQueryEmbedded = extern struct {
         base: IUnknown.VTable,
         QueryInsertEmbedded: fn(
             self: *const ITfQueryEmbedded,
-            pguidService: *const Guid,
-            pFormatEtc: *const FORMATETC,
-            pfInsertable: *BOOL,
+            pguidService: ?*const Guid,
+            pFormatEtc: ?*const FORMATETC,
+            pfInsertable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfQueryEmbedded_QueryInsertEmbedded(self: *const T, pguidService: *const Guid, pFormatEtc: *const FORMATETC, pfInsertable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfQueryEmbedded_QueryInsertEmbedded(self: *const T, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfQueryEmbedded.VTable, self.vtable).QueryInsertEmbedded(@ptrCast(*const ITfQueryEmbedded, self), pguidService, pFormatEtc, pfInsertable);
         }
     };}
@@ -3452,25 +3452,25 @@ pub const ITfInsertAtSelection = extern struct {
             dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS,
             pchText: [*:0]const u16,
             cch: i32,
-            ppRange: **ITfRange,
+            ppRange: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbeddedAtSelection: fn(
             self: *const ITfInsertAtSelection,
             ec: u32,
             dwFlags: u32,
-            pDataObject: *IDataObject,
-            ppRange: **ITfRange,
+            pDataObject: ?*IDataObject,
+            ppRange: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInsertAtSelection_InsertTextAtSelection(self: *const T, ec: u32, dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS, pchText: [*:0]const u16, cch: i32, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfInsertAtSelection_InsertTextAtSelection(self: *const T, ec: u32, dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS, pchText: [*:0]const u16, cch: i32, ppRange: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInsertAtSelection.VTable, self.vtable).InsertTextAtSelection(@ptrCast(*const ITfInsertAtSelection, self), ec, dwFlags, pchText, cch, ppRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInsertAtSelection_InsertEmbeddedAtSelection(self: *const T, ec: u32, dwFlags: u32, pDataObject: *IDataObject, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfInsertAtSelection_InsertEmbeddedAtSelection(self: *const T, ec: u32, dwFlags: u32, pDataObject: ?*IDataObject, ppRange: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInsertAtSelection.VTable, self.vtable).InsertEmbeddedAtSelection(@ptrCast(*const ITfInsertAtSelection, self), ec, dwFlags, pDataObject, ppRange);
         }
     };}
@@ -3486,14 +3486,14 @@ pub const ITfCleanupContextSink = extern struct {
         OnCleanupContext: fn(
             self: *const ITfCleanupContextSink,
             ecWrite: u32,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCleanupContextSink_OnCleanupContext(self: *const T, ecWrite: u32, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfCleanupContextSink_OnCleanupContext(self: *const T, ecWrite: u32, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCleanupContextSink.VTable, self.vtable).OnCleanupContext(@ptrCast(*const ITfCleanupContextSink, self), ecWrite, pic);
         }
     };}
@@ -3536,42 +3536,42 @@ pub const ITfReadOnlyProperty = extern struct {
         base: IUnknown.VTable,
         GetType: fn(
             self: *const ITfReadOnlyProperty,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRanges: fn(
             self: *const ITfReadOnlyProperty,
             ec: u32,
-            ppEnum: **IEnumTfRanges,
-            pTargetRange: *ITfRange,
+            ppEnum: ?*?*IEnumTfRanges,
+            pTargetRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const ITfReadOnlyProperty,
             ec: u32,
-            pRange: *ITfRange,
-            pvarValue: *VARIANT,
+            pRange: ?*ITfRange,
+            pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContext: fn(
             self: *const ITfReadOnlyProperty,
-            ppContext: **ITfContext,
+            ppContext: ?*?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadOnlyProperty_GetType(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfReadOnlyProperty_GetType(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadOnlyProperty.VTable, self.vtable).GetType(@ptrCast(*const ITfReadOnlyProperty, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadOnlyProperty_EnumRanges(self: *const T, ec: u32, ppEnum: **IEnumTfRanges, pTargetRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfReadOnlyProperty_EnumRanges(self: *const T, ec: u32, ppEnum: ?*?*IEnumTfRanges, pTargetRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadOnlyProperty.VTable, self.vtable).EnumRanges(@ptrCast(*const ITfReadOnlyProperty, self), ec, ppEnum, pTargetRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadOnlyProperty_GetValue(self: *const T, ec: u32, pRange: *ITfRange, pvarValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfReadOnlyProperty_GetValue(self: *const T, ec: u32, pRange: ?*ITfRange, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadOnlyProperty.VTable, self.vtable).GetValue(@ptrCast(*const ITfReadOnlyProperty, self), ec, pRange, pvarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadOnlyProperty_GetContext(self: *const T, ppContext: **ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfReadOnlyProperty_GetContext(self: *const T, ppContext: ?*?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadOnlyProperty.VTable, self.vtable).GetContext(@ptrCast(*const ITfReadOnlyProperty, self), ppContext);
         }
     };}
@@ -3591,13 +3591,13 @@ pub const IEnumTfPropertyValue = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfPropertyValue,
-            ppEnum: **IEnumTfPropertyValue,
+            ppEnum: ?*?*IEnumTfPropertyValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfPropertyValue,
             ulCount: u32,
             rgValues: [*]TF_PROPERTYVAL,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfPropertyValue,
@@ -3611,11 +3611,11 @@ pub const IEnumTfPropertyValue = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfPropertyValue_Clone(self: *const T, ppEnum: **IEnumTfPropertyValue) callconv(.Inline) HRESULT {
+        pub fn IEnumTfPropertyValue_Clone(self: *const T, ppEnum: ?*?*IEnumTfPropertyValue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfPropertyValue.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfPropertyValue, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfPropertyValue_Next(self: *const T, ulCount: u32, rgValues: [*]TF_PROPERTYVAL, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfPropertyValue_Next(self: *const T, ulCount: u32, rgValues: [*]TF_PROPERTYVAL, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfPropertyValue.VTable, self.vtable).Next(@ptrCast(*const IEnumTfPropertyValue, self), ulCount, rgValues, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3638,9 +3638,9 @@ pub const ITfMouseTracker = extern struct {
         base: IUnknown.VTable,
         AdviseMouseSink: fn(
             self: *const ITfMouseTracker,
-            range: *ITfRange,
-            pSink: *ITfMouseSink,
-            pdwCookie: *u32,
+            range: ?*ITfRange,
+            pSink: ?*ITfMouseSink,
+            pdwCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseMouseSink: fn(
             self: *const ITfMouseTracker,
@@ -3651,7 +3651,7 @@ pub const ITfMouseTracker = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMouseTracker_AdviseMouseSink(self: *const T, range: *ITfRange, pSink: *ITfMouseSink, pdwCookie: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfMouseTracker_AdviseMouseSink(self: *const T, range: ?*ITfRange, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMouseTracker.VTable, self.vtable).AdviseMouseSink(@ptrCast(*const ITfMouseTracker, self), range, pSink, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3670,9 +3670,9 @@ pub const ITfMouseTrackerACP = extern struct {
         base: IUnknown.VTable,
         AdviseMouseSink: fn(
             self: *const ITfMouseTrackerACP,
-            range: *ITfRangeACP,
-            pSink: *ITfMouseSink,
-            pdwCookie: *u32,
+            range: ?*ITfRangeACP,
+            pSink: ?*ITfMouseSink,
+            pdwCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseMouseSink: fn(
             self: *const ITfMouseTrackerACP,
@@ -3683,7 +3683,7 @@ pub const ITfMouseTrackerACP = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMouseTrackerACP_AdviseMouseSink(self: *const T, range: *ITfRangeACP, pSink: *ITfMouseSink, pdwCookie: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfMouseTrackerACP_AdviseMouseSink(self: *const T, range: ?*ITfRangeACP, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMouseTrackerACP.VTable, self.vtable).AdviseMouseSink(@ptrCast(*const ITfMouseTrackerACP, self), range, pSink, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3705,14 +3705,14 @@ pub const ITfMouseSink = extern struct {
             uEdge: u32,
             uQuadrant: u32,
             dwBtnStatus: u32,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMouseSink_OnMouseEvent(self: *const T, uEdge: u32, uQuadrant: u32, dwBtnStatus: u32, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfMouseSink_OnMouseEvent(self: *const T, uEdge: u32, uQuadrant: u32, dwBtnStatus: u32, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMouseSink.VTable, self.vtable).OnMouseEvent(@ptrCast(*const ITfMouseSink, self), uEdge, uQuadrant, dwBtnStatus, pfEaten);
         }
     };}
@@ -3727,25 +3727,25 @@ pub const ITfEditRecord = extern struct {
         base: IUnknown.VTable,
         GetSelectionStatus: fn(
             self: *const ITfEditRecord,
-            pfChanged: *BOOL,
+            pfChanged: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextAndPropertyUpdates: fn(
             self: *const ITfEditRecord,
             dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS,
-            prgProperties: [*]const *const Guid,
+            prgProperties: [*]const ?*const Guid,
             cProperties: u32,
-            ppEnum: **IEnumTfRanges,
+            ppEnum: ?*?*IEnumTfRanges,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfEditRecord_GetSelectionStatus(self: *const T, pfChanged: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfEditRecord_GetSelectionStatus(self: *const T, pfChanged: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfEditRecord.VTable, self.vtable).GetSelectionStatus(@ptrCast(*const ITfEditRecord, self), pfChanged);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfEditRecord_GetTextAndPropertyUpdates(self: *const T, dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS, prgProperties: [*]const *const Guid, cProperties: u32, ppEnum: **IEnumTfRanges) callconv(.Inline) HRESULT {
+        pub fn ITfEditRecord_GetTextAndPropertyUpdates(self: *const T, dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS, prgProperties: [*]const ?*const Guid, cProperties: u32, ppEnum: ?*?*IEnumTfRanges) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfEditRecord.VTable, self.vtable).GetTextAndPropertyUpdates(@ptrCast(*const ITfEditRecord, self), dwFlags, prgProperties, cProperties, ppEnum);
         }
     };}
@@ -3760,16 +3760,16 @@ pub const ITfTextEditSink = extern struct {
         base: IUnknown.VTable,
         OnEndEdit: fn(
             self: *const ITfTextEditSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             ecReadOnly: u32,
-            pEditRecord: *ITfEditRecord,
+            pEditRecord: ?*ITfEditRecord,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTextEditSink_OnEndEdit(self: *const T, pic: *ITfContext, ecReadOnly: u32, pEditRecord: *ITfEditRecord) callconv(.Inline) HRESULT {
+        pub fn ITfTextEditSink_OnEndEdit(self: *const T, pic: ?*ITfContext, ecReadOnly: u32, pEditRecord: ?*ITfEditRecord) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTextEditSink.VTable, self.vtable).OnEndEdit(@ptrCast(*const ITfTextEditSink, self), pic, ecReadOnly, pEditRecord);
         }
     };}
@@ -3793,16 +3793,16 @@ pub const ITfTextLayoutSink = extern struct {
         base: IUnknown.VTable,
         OnLayoutChange: fn(
             self: *const ITfTextLayoutSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             lcode: TfLayoutCode,
-            pView: *ITfContextView,
+            pView: ?*ITfContextView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTextLayoutSink_OnLayoutChange(self: *const T, pic: *ITfContext, lcode: TfLayoutCode, pView: *ITfContextView) callconv(.Inline) HRESULT {
+        pub fn ITfTextLayoutSink_OnLayoutChange(self: *const T, pic: ?*ITfContext, lcode: TfLayoutCode, pView: ?*ITfContextView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTextLayoutSink.VTable, self.vtable).OnLayoutChange(@ptrCast(*const ITfTextLayoutSink, self), pic, lcode, pView);
         }
     };}
@@ -3817,7 +3817,7 @@ pub const ITfStatusSink = extern struct {
         base: IUnknown.VTable,
         OnStatusChange: fn(
             self: *const ITfStatusSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3825,7 +3825,7 @@ pub const ITfStatusSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfStatusSink_OnStatusChange(self: *const T, pic: *ITfContext, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfStatusSink_OnStatusChange(self: *const T, pic: ?*ITfContext, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfStatusSink.VTable, self.vtable).OnStatusChange(@ptrCast(*const ITfStatusSink, self), pic, dwFlags);
         }
     };}
@@ -3840,22 +3840,22 @@ pub const ITfEditTransactionSink = extern struct {
         base: IUnknown.VTable,
         OnStartEditTransaction: fn(
             self: *const ITfEditTransactionSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEndEditTransaction: fn(
             self: *const ITfEditTransactionSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfEditTransactionSink_OnStartEditTransaction(self: *const T, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfEditTransactionSink_OnStartEditTransaction(self: *const T, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfEditTransactionSink.VTable, self.vtable).OnStartEditTransaction(@ptrCast(*const ITfEditTransactionSink, self), pic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfEditTransactionSink_OnEndEditTransaction(self: *const T, pic: *ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfEditTransactionSink_OnEndEditTransaction(self: *const T, pic: ?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfEditTransactionSink.VTable, self.vtable).OnEndEditTransaction(@ptrCast(*const ITfEditTransactionSink, self), pic);
         }
     };}
@@ -3870,60 +3870,60 @@ pub const ITfContextOwner = extern struct {
         base: IUnknown.VTable,
         GetACPFromPoint: fn(
             self: *const ITfContextOwner,
-            ptScreen: *const POINT,
+            ptScreen: ?*const POINT,
             dwFlags: u32,
-            pacp: *i32,
+            pacp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextExt: fn(
             self: *const ITfContextOwner,
             acpStart: i32,
             acpEnd: i32,
-            prc: *RECT,
-            pfClipped: *BOOL,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScreenExt: fn(
             self: *const ITfContextOwner,
-            prc: *RECT,
+            prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const ITfContextOwner,
-            pdcs: *TS_STATUS,
+            pdcs: ?*TS_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWnd: fn(
             self: *const ITfContextOwner,
-            phwnd: *HWND,
+            phwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttribute: fn(
             self: *const ITfContextOwner,
-            rguidAttribute: *const Guid,
-            pvarValue: *VARIANT,
+            rguidAttribute: ?*const Guid,
+            pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetACPFromPoint(self: *const T, ptScreen: *const POINT, dwFlags: u32, pacp: *i32) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetACPFromPoint(self: *const T, ptScreen: ?*const POINT, dwFlags: u32, pacp: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetACPFromPoint(@ptrCast(*const ITfContextOwner, self), ptScreen, dwFlags, pacp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetTextExt(self: *const T, acpStart: i32, acpEnd: i32, prc: *RECT, pfClipped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetTextExt(self: *const T, acpStart: i32, acpEnd: i32, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetTextExt(@ptrCast(*const ITfContextOwner, self), acpStart, acpEnd, prc, pfClipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetScreenExt(self: *const T, prc: *RECT) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetScreenExt(self: *const T, prc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetScreenExt(@ptrCast(*const ITfContextOwner, self), prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetStatus(self: *const T, pdcs: *TS_STATUS) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetStatus(self: *const T, pdcs: ?*TS_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetStatus(@ptrCast(*const ITfContextOwner, self), pdcs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetWnd(self: *const T, phwnd: *HWND) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetWnd(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetWnd(@ptrCast(*const ITfContextOwner, self), phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwner_GetAttribute(self: *const T, rguidAttribute: *const Guid, pvarValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwner_GetAttribute(self: *const T, rguidAttribute: ?*const Guid, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwner.VTable, self.vtable).GetAttribute(@ptrCast(*const ITfContextOwner, self), rguidAttribute, pvarValue);
         }
     };}
@@ -3945,31 +3945,31 @@ pub const ITfContextOwnerServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnAttributeChange: fn(
             self: *const ITfContextOwnerServices,
-            rguidAttribute: *const Guid,
+            rguidAttribute: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ITfContextOwnerServices,
-            pProp: *ITfProperty,
-            pRange: *ITfRange,
-            pHdr: *TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: *IStream,
+            pProp: ?*ITfProperty,
+            pRange: ?*ITfRange,
+            pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unserialize: fn(
             self: *const ITfContextOwnerServices,
-            pProp: *ITfProperty,
-            pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: *IStream,
-            pLoader: *ITfPersistentPropertyLoaderACP,
+            pProp: ?*ITfProperty,
+            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
+            pLoader: ?*ITfPersistentPropertyLoaderACP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ForceLoadProperty: fn(
             self: *const ITfContextOwnerServices,
-            pProp: *ITfProperty,
+            pProp: ?*ITfProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRange: fn(
             self: *const ITfContextOwnerServices,
             acpStart: i32,
             acpEnd: i32,
-            ppRange: **ITfRangeACP,
+            ppRange: ?*?*ITfRangeACP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3984,23 +3984,23 @@ pub const ITfContextOwnerServices = extern struct {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).OnStatusChange(@ptrCast(*const ITfContextOwnerServices, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerServices_OnAttributeChange(self: *const T, rguidAttribute: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerServices_OnAttributeChange(self: *const T, rguidAttribute: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).OnAttributeChange(@ptrCast(*const ITfContextOwnerServices, self), rguidAttribute);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerServices_Serialize(self: *const T, pProp: *ITfProperty, pRange: *ITfRange, pHdr: *TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerServices_Serialize(self: *const T, pProp: ?*ITfProperty, pRange: ?*ITfRange, pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).Serialize(@ptrCast(*const ITfContextOwnerServices, self), pProp, pRange, pHdr, pStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerServices_Unserialize(self: *const T, pProp: *ITfProperty, pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: *IStream, pLoader: *ITfPersistentPropertyLoaderACP) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerServices_Unserialize(self: *const T, pProp: ?*ITfProperty, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream, pLoader: ?*ITfPersistentPropertyLoaderACP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).Unserialize(@ptrCast(*const ITfContextOwnerServices, self), pProp, pHdr, pStream, pLoader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerServices_ForceLoadProperty(self: *const T, pProp: *ITfProperty) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerServices_ForceLoadProperty(self: *const T, pProp: ?*ITfProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).ForceLoadProperty(@ptrCast(*const ITfContextOwnerServices, self), pProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextOwnerServices_CreateRange(self: *const T, acpStart: i32, acpEnd: i32, ppRange: **ITfRangeACP) callconv(.Inline) HRESULT {
+        pub fn ITfContextOwnerServices_CreateRange(self: *const T, acpStart: i32, acpEnd: i32, ppRange: ?*?*ITfRangeACP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextOwnerServices.VTable, self.vtable).CreateRange(@ptrCast(*const ITfContextOwnerServices, self), acpStart, acpEnd, ppRange);
         }
     };}
@@ -4017,44 +4017,44 @@ pub const ITfContextKeyEventSink = extern struct {
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnKeyUp: fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTestKeyDown: fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTestKeyUp: fn(
             self: *const ITfContextKeyEventSink,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextKeyEventSink_OnKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextKeyEventSink_OnKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextKeyEventSink.VTable, self.vtable).OnKeyDown(@ptrCast(*const ITfContextKeyEventSink, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextKeyEventSink_OnKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextKeyEventSink_OnKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextKeyEventSink.VTable, self.vtable).OnKeyUp(@ptrCast(*const ITfContextKeyEventSink, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextKeyEventSink_OnTestKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextKeyEventSink_OnTestKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextKeyEventSink.VTable, self.vtable).OnTestKeyDown(@ptrCast(*const ITfContextKeyEventSink, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContextKeyEventSink_OnTestKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfContextKeyEventSink_OnTestKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContextKeyEventSink.VTable, self.vtable).OnTestKeyUp(@ptrCast(*const ITfContextKeyEventSink, self), wParam, lParam, pfEaten);
         }
     };}
@@ -4098,7 +4098,7 @@ pub const TF_SD_BACKWARD = TfShiftDir.BACKWARD;
 pub const TF_SD_FORWARD = TfShiftDir.FORWARD;
 
 pub const TF_HALTCOND = extern struct {
-    pHaltRange: *ITfRange,
+    pHaltRange: ?*ITfRange,
     aHaltPos: TfAnchor,
     dwFlags: u32,
 };
@@ -4115,7 +4115,7 @@ pub const ITfRange = extern struct {
             dwFlags: u32,
             pchText: [*:0]u16,
             cchMax: u32,
-            pcch: *u32,
+            pcch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetText: fn(
             self: *const ITfRange,
@@ -4127,63 +4127,63 @@ pub const ITfRange = extern struct {
         GetFormattedText: fn(
             self: *const ITfRange,
             ec: u32,
-            ppDataObject: **IDataObject,
+            ppDataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEmbedded: fn(
             self: *const ITfRange,
             ec: u32,
-            rguidService: *const Guid,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            rguidService: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEmbedded: fn(
             self: *const ITfRange,
             ec: u32,
             dwFlags: u32,
-            pDataObject: *IDataObject,
+            pDataObject: ?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftStart: fn(
             self: *const ITfRange,
             ec: u32,
             cchReq: i32,
-            pcch: *i32,
-            pHalt: *const TF_HALTCOND,
+            pcch: ?*i32,
+            pHalt: ?*const TF_HALTCOND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftEnd: fn(
             self: *const ITfRange,
             ec: u32,
             cchReq: i32,
-            pcch: *i32,
-            pHalt: *const TF_HALTCOND,
+            pcch: ?*i32,
+            pHalt: ?*const TF_HALTCOND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftStartToRange: fn(
             self: *const ITfRange,
             ec: u32,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
             aPos: TfAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftEndToRange: fn(
             self: *const ITfRange,
             ec: u32,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
             aPos: TfAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftStartRegion: fn(
             self: *const ITfRange,
             ec: u32,
             dir: TfShiftDir,
-            pfNoRegion: *BOOL,
+            pfNoRegion: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShiftEndRegion: fn(
             self: *const ITfRange,
             ec: u32,
             dir: TfShiftDir,
-            pfNoRegion: *BOOL,
+            pfNoRegion: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEmpty: fn(
             self: *const ITfRange,
             ec: u32,
-            pfEmpty: *BOOL,
+            pfEmpty: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Collapse: fn(
             self: *const ITfRange,
@@ -4193,41 +4193,41 @@ pub const ITfRange = extern struct {
         IsEqualStart: fn(
             self: *const ITfRange,
             ec: u32,
-            pWith: *ITfRange,
+            pWith: ?*ITfRange,
             aPos: TfAnchor,
-            pfEqual: *BOOL,
+            pfEqual: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqualEnd: fn(
             self: *const ITfRange,
             ec: u32,
-            pWith: *ITfRange,
+            pWith: ?*ITfRange,
             aPos: TfAnchor,
-            pfEqual: *BOOL,
+            pfEqual: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareStart: fn(
             self: *const ITfRange,
             ec: u32,
-            pWith: *ITfRange,
+            pWith: ?*ITfRange,
             aPos: TfAnchor,
-            plResult: *i32,
+            plResult: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareEnd: fn(
             self: *const ITfRange,
             ec: u32,
-            pWith: *ITfRange,
+            pWith: ?*ITfRange,
             aPos: TfAnchor,
-            plResult: *i32,
+            plResult: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdjustForInsert: fn(
             self: *const ITfRange,
             ec: u32,
             cchInsert: u32,
-            pfInsertOk: *BOOL,
+            pfInsertOk: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGravity: fn(
             self: *const ITfRange,
-            pgStart: *TfGravity,
-            pgEnd: *TfGravity,
+            pgStart: ?*TfGravity,
+            pgEnd: ?*TfGravity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetGravity: fn(
             self: *const ITfRange,
@@ -4237,18 +4237,18 @@ pub const ITfRange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const ITfRange,
-            ppClone: **ITfRange,
+            ppClone: ?*?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContext: fn(
             self: *const ITfRange,
-            ppContext: **ITfContext,
+            ppContext: ?*?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_GetText(self: *const T, ec: u32, dwFlags: u32, pchText: [*:0]u16, cchMax: u32, pcch: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfRange_GetText(self: *const T, ec: u32, dwFlags: u32, pchText: [*:0]u16, cchMax: u32, pcch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).GetText(@ptrCast(*const ITfRange, self), ec, dwFlags, pchText, cchMax, pcch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4256,43 +4256,43 @@ pub const ITfRange = extern struct {
             return @ptrCast(*const ITfRange.VTable, self.vtable).SetText(@ptrCast(*const ITfRange, self), ec, dwFlags, pchText, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_GetFormattedText(self: *const T, ec: u32, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITfRange_GetFormattedText(self: *const T, ec: u32, ppDataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITfRange, self), ec, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_GetEmbedded(self: *const T, ec: u32, rguidService: *const Guid, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfRange_GetEmbedded(self: *const T, ec: u32, rguidService: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).GetEmbedded(@ptrCast(*const ITfRange, self), ec, rguidService, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_InsertEmbedded(self: *const T, ec: u32, dwFlags: u32, pDataObject: *IDataObject) callconv(.Inline) HRESULT {
+        pub fn ITfRange_InsertEmbedded(self: *const T, ec: u32, dwFlags: u32, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).InsertEmbedded(@ptrCast(*const ITfRange, self), ec, dwFlags, pDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftStart(self: *const T, ec: u32, cchReq: i32, pcch: *i32, pHalt: *const TF_HALTCOND) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftStart(self: *const T, ec: u32, cchReq: i32, pcch: ?*i32, pHalt: ?*const TF_HALTCOND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftStart(@ptrCast(*const ITfRange, self), ec, cchReq, pcch, pHalt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftEnd(self: *const T, ec: u32, cchReq: i32, pcch: *i32, pHalt: *const TF_HALTCOND) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftEnd(self: *const T, ec: u32, cchReq: i32, pcch: ?*i32, pHalt: ?*const TF_HALTCOND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftEnd(@ptrCast(*const ITfRange, self), ec, cchReq, pcch, pHalt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftStartToRange(self: *const T, ec: u32, pRange: *ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftStartToRange(self: *const T, ec: u32, pRange: ?*ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftStartToRange(@ptrCast(*const ITfRange, self), ec, pRange, aPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftEndToRange(self: *const T, ec: u32, pRange: *ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftEndToRange(self: *const T, ec: u32, pRange: ?*ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftEndToRange(@ptrCast(*const ITfRange, self), ec, pRange, aPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftStartRegion(self: *const T, ec: u32, dir: TfShiftDir, pfNoRegion: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftStartRegion(self: *const T, ec: u32, dir: TfShiftDir, pfNoRegion: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftStartRegion(@ptrCast(*const ITfRange, self), ec, dir, pfNoRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_ShiftEndRegion(self: *const T, ec: u32, dir: TfShiftDir, pfNoRegion: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_ShiftEndRegion(self: *const T, ec: u32, dir: TfShiftDir, pfNoRegion: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).ShiftEndRegion(@ptrCast(*const ITfRange, self), ec, dir, pfNoRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_IsEmpty(self: *const T, ec: u32, pfEmpty: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_IsEmpty(self: *const T, ec: u32, pfEmpty: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).IsEmpty(@ptrCast(*const ITfRange, self), ec, pfEmpty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4300,27 +4300,27 @@ pub const ITfRange = extern struct {
             return @ptrCast(*const ITfRange.VTable, self.vtable).Collapse(@ptrCast(*const ITfRange, self), ec, aPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_IsEqualStart(self: *const T, ec: u32, pWith: *ITfRange, aPos: TfAnchor, pfEqual: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_IsEqualStart(self: *const T, ec: u32, pWith: ?*ITfRange, aPos: TfAnchor, pfEqual: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).IsEqualStart(@ptrCast(*const ITfRange, self), ec, pWith, aPos, pfEqual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_IsEqualEnd(self: *const T, ec: u32, pWith: *ITfRange, aPos: TfAnchor, pfEqual: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_IsEqualEnd(self: *const T, ec: u32, pWith: ?*ITfRange, aPos: TfAnchor, pfEqual: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).IsEqualEnd(@ptrCast(*const ITfRange, self), ec, pWith, aPos, pfEqual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_CompareStart(self: *const T, ec: u32, pWith: *ITfRange, aPos: TfAnchor, plResult: *i32) callconv(.Inline) HRESULT {
+        pub fn ITfRange_CompareStart(self: *const T, ec: u32, pWith: ?*ITfRange, aPos: TfAnchor, plResult: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).CompareStart(@ptrCast(*const ITfRange, self), ec, pWith, aPos, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_CompareEnd(self: *const T, ec: u32, pWith: *ITfRange, aPos: TfAnchor, plResult: *i32) callconv(.Inline) HRESULT {
+        pub fn ITfRange_CompareEnd(self: *const T, ec: u32, pWith: ?*ITfRange, aPos: TfAnchor, plResult: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).CompareEnd(@ptrCast(*const ITfRange, self), ec, pWith, aPos, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_AdjustForInsert(self: *const T, ec: u32, cchInsert: u32, pfInsertOk: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfRange_AdjustForInsert(self: *const T, ec: u32, cchInsert: u32, pfInsertOk: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).AdjustForInsert(@ptrCast(*const ITfRange, self), ec, cchInsert, pfInsertOk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_GetGravity(self: *const T, pgStart: *TfGravity, pgEnd: *TfGravity) callconv(.Inline) HRESULT {
+        pub fn ITfRange_GetGravity(self: *const T, pgStart: ?*TfGravity, pgEnd: ?*TfGravity) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).GetGravity(@ptrCast(*const ITfRange, self), pgStart, pgEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4328,11 +4328,11 @@ pub const ITfRange = extern struct {
             return @ptrCast(*const ITfRange.VTable, self.vtable).SetGravity(@ptrCast(*const ITfRange, self), ec, gStart, gEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_Clone(self: *const T, ppClone: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfRange_Clone(self: *const T, ppClone: ?*?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).Clone(@ptrCast(*const ITfRange, self), ppClone);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRange_GetContext(self: *const T, ppContext: **ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfRange_GetContext(self: *const T, ppContext: ?*?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRange.VTable, self.vtable).GetContext(@ptrCast(*const ITfRange, self), ppContext);
         }
     };}
@@ -4347,8 +4347,8 @@ pub const ITfRangeACP = extern struct {
         base: ITfRange.VTable,
         GetExtent: fn(
             self: *const ITfRangeACP,
-            pacpAnchor: *i32,
-            pcch: *i32,
+            pacpAnchor: ?*i32,
+            pcch: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetExtent: fn(
             self: *const ITfRangeACP,
@@ -4360,7 +4360,7 @@ pub const ITfRangeACP = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfRange.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRangeACP_GetExtent(self: *const T, pacpAnchor: *i32, pcch: *i32) callconv(.Inline) HRESULT {
+        pub fn ITfRangeACP_GetExtent(self: *const T, pacpAnchor: ?*i32, pcch: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRangeACP.VTable, self.vtable).GetExtent(@ptrCast(*const ITfRangeACP, self), pacpAnchor, pcch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4379,46 +4379,46 @@ pub const ITextStoreACPServices = extern struct {
         base: IUnknown.VTable,
         Serialize: fn(
             self: *const ITextStoreACPServices,
-            pProp: *ITfProperty,
-            pRange: *ITfRange,
-            pHdr: *TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: *IStream,
+            pProp: ?*ITfProperty,
+            pRange: ?*ITfRange,
+            pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unserialize: fn(
             self: *const ITextStoreACPServices,
-            pProp: *ITfProperty,
-            pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: *IStream,
-            pLoader: *ITfPersistentPropertyLoaderACP,
+            pProp: ?*ITfProperty,
+            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
+            pLoader: ?*ITfPersistentPropertyLoaderACP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ForceLoadProperty: fn(
             self: *const ITextStoreACPServices,
-            pProp: *ITfProperty,
+            pProp: ?*ITfProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRange: fn(
             self: *const ITextStoreACPServices,
             acpStart: i32,
             acpEnd: i32,
-            ppRange: **ITfRangeACP,
+            ppRange: ?*?*ITfRangeACP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPServices_Serialize(self: *const T, pProp: *ITfProperty, pRange: *ITfRange, pHdr: *TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPServices_Serialize(self: *const T, pProp: ?*ITfProperty, pRange: ?*ITfRange, pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPServices.VTable, self.vtable).Serialize(@ptrCast(*const ITextStoreACPServices, self), pProp, pRange, pHdr, pStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPServices_Unserialize(self: *const T, pProp: *ITfProperty, pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: *IStream, pLoader: *ITfPersistentPropertyLoaderACP) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPServices_Unserialize(self: *const T, pProp: ?*ITfProperty, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream, pLoader: ?*ITfPersistentPropertyLoaderACP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPServices.VTable, self.vtable).Unserialize(@ptrCast(*const ITextStoreACPServices, self), pProp, pHdr, pStream, pLoader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPServices_ForceLoadProperty(self: *const T, pProp: *ITfProperty) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPServices_ForceLoadProperty(self: *const T, pProp: ?*ITfProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPServices.VTable, self.vtable).ForceLoadProperty(@ptrCast(*const ITextStoreACPServices, self), pProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPServices_CreateRange(self: *const T, acpStart: i32, acpEnd: i32, ppRange: **ITfRangeACP) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPServices_CreateRange(self: *const T, acpStart: i32, acpEnd: i32, ppRange: ?*?*ITfRangeACP) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPServices.VTable, self.vtable).CreateRange(@ptrCast(*const ITextStoreACPServices, self), acpStart, acpEnd, ppRange);
         }
     };}
@@ -4434,14 +4434,14 @@ pub const ITfRangeBackup = extern struct {
         Restore: fn(
             self: *const ITfRangeBackup,
             ec: u32,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfRangeBackup_Restore(self: *const T, ec: u32, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfRangeBackup_Restore(self: *const T, ec: u32, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfRangeBackup.VTable, self.vtable).Restore(@ptrCast(*const ITfRangeBackup, self), ec, pRange);
         }
     };}
@@ -4456,84 +4456,84 @@ pub const ITfPropertyStore = extern struct {
         base: IUnknown.VTable,
         GetType: fn(
             self: *const ITfPropertyStore,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataType: fn(
             self: *const ITfPropertyStore,
-            pdwReserved: *u32,
+            pdwReserved: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetData: fn(
             self: *const ITfPropertyStore,
-            pvarValue: *VARIANT,
+            pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTextUpdated: fn(
             self: *const ITfPropertyStore,
             dwFlags: u32,
-            pRangeNew: *ITfRange,
-            pfAccept: *BOOL,
+            pRangeNew: ?*ITfRange,
+            pfAccept: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shrink: fn(
             self: *const ITfPropertyStore,
-            pRangeNew: *ITfRange,
-            pfFree: *BOOL,
+            pRangeNew: ?*ITfRange,
+            pfFree: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Divide: fn(
             self: *const ITfPropertyStore,
-            pRangeThis: *ITfRange,
-            pRangeNew: *ITfRange,
-            ppPropStore: **ITfPropertyStore,
+            pRangeThis: ?*ITfRange,
+            pRangeNew: ?*ITfRange,
+            ppPropStore: ?*?*ITfPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const ITfPropertyStore,
-            pPropStore: **ITfPropertyStore,
+            pPropStore: ?*?*ITfPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyRangeCreator: fn(
             self: *const ITfPropertyStore,
-            pclsid: *Guid,
+            pclsid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ITfPropertyStore,
-            pStream: *IStream,
-            pcb: *u32,
+            pStream: ?*IStream,
+            pcb: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_GetType(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_GetType(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).GetType(@ptrCast(*const ITfPropertyStore, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_GetDataType(self: *const T, pdwReserved: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_GetDataType(self: *const T, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).GetDataType(@ptrCast(*const ITfPropertyStore, self), pdwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_GetData(self: *const T, pvarValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_GetData(self: *const T, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).GetData(@ptrCast(*const ITfPropertyStore, self), pvarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_OnTextUpdated(self: *const T, dwFlags: u32, pRangeNew: *ITfRange, pfAccept: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_OnTextUpdated(self: *const T, dwFlags: u32, pRangeNew: ?*ITfRange, pfAccept: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).OnTextUpdated(@ptrCast(*const ITfPropertyStore, self), dwFlags, pRangeNew, pfAccept);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_Shrink(self: *const T, pRangeNew: *ITfRange, pfFree: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_Shrink(self: *const T, pRangeNew: ?*ITfRange, pfFree: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).Shrink(@ptrCast(*const ITfPropertyStore, self), pRangeNew, pfFree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_Divide(self: *const T, pRangeThis: *ITfRange, pRangeNew: *ITfRange, ppPropStore: **ITfPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_Divide(self: *const T, pRangeThis: ?*ITfRange, pRangeNew: ?*ITfRange, ppPropStore: ?*?*ITfPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).Divide(@ptrCast(*const ITfPropertyStore, self), pRangeThis, pRangeNew, ppPropStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_Clone(self: *const T, pPropStore: **ITfPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_Clone(self: *const T, pPropStore: ?*?*ITfPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).Clone(@ptrCast(*const ITfPropertyStore, self), pPropStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_GetPropertyRangeCreator(self: *const T, pclsid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_GetPropertyRangeCreator(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).GetPropertyRangeCreator(@ptrCast(*const ITfPropertyStore, self), pclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPropertyStore_Serialize(self: *const T, pStream: *IStream, pcb: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfPropertyStore_Serialize(self: *const T, pStream: ?*IStream, pcb: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPropertyStore.VTable, self.vtable).Serialize(@ptrCast(*const ITfPropertyStore, self), pStream, pcb);
         }
     };}
@@ -4548,13 +4548,13 @@ pub const IEnumTfRanges = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfRanges,
-            ppEnum: **IEnumTfRanges,
+            ppEnum: ?*?*IEnumTfRanges,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfRanges,
             ulCount: u32,
-            ppRange: [*]*ITfRange,
-            pcFetched: *u32,
+            ppRange: [*]?*ITfRange,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfRanges,
@@ -4568,11 +4568,11 @@ pub const IEnumTfRanges = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfRanges_Clone(self: *const T, ppEnum: **IEnumTfRanges) callconv(.Inline) HRESULT {
+        pub fn IEnumTfRanges_Clone(self: *const T, ppEnum: ?*?*IEnumTfRanges) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfRanges.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfRanges, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfRanges_Next(self: *const T, ulCount: u32, ppRange: [*]*ITfRange, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfRanges_Next(self: *const T, ulCount: u32, ppRange: [*]?*ITfRange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfRanges.VTable, self.vtable).Next(@ptrCast(*const IEnumTfRanges, self), ulCount, ppRange, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4595,29 +4595,29 @@ pub const ITfCreatePropertyStore = extern struct {
         base: IUnknown.VTable,
         IsStoreSerializable: fn(
             self: *const ITfCreatePropertyStore,
-            guidProp: *const Guid,
-            pRange: *ITfRange,
-            pPropStore: *ITfPropertyStore,
-            pfSerializable: *BOOL,
+            guidProp: ?*const Guid,
+            pRange: ?*ITfRange,
+            pPropStore: ?*ITfPropertyStore,
+            pfSerializable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePropertyStore: fn(
             self: *const ITfCreatePropertyStore,
-            guidProp: *const Guid,
-            pRange: *ITfRange,
+            guidProp: ?*const Guid,
+            pRange: ?*ITfRange,
             cb: u32,
-            pStream: *IStream,
-            ppStore: **ITfPropertyStore,
+            pStream: ?*IStream,
+            ppStore: ?*?*ITfPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCreatePropertyStore_IsStoreSerializable(self: *const T, guidProp: *const Guid, pRange: *ITfRange, pPropStore: *ITfPropertyStore, pfSerializable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfCreatePropertyStore_IsStoreSerializable(self: *const T, guidProp: ?*const Guid, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore, pfSerializable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCreatePropertyStore.VTable, self.vtable).IsStoreSerializable(@ptrCast(*const ITfCreatePropertyStore, self), guidProp, pRange, pPropStore, pfSerializable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCreatePropertyStore_CreatePropertyStore(self: *const T, guidProp: *const Guid, pRange: *ITfRange, cb: u32, pStream: *IStream, ppStore: **ITfPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ITfCreatePropertyStore_CreatePropertyStore(self: *const T, guidProp: ?*const Guid, pRange: ?*ITfRange, cb: u32, pStream: ?*IStream, ppStore: ?*?*ITfPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCreatePropertyStore.VTable, self.vtable).CreatePropertyStore(@ptrCast(*const ITfCreatePropertyStore, self), guidProp, pRange, cb, pStream, ppStore);
         }
     };}
@@ -4632,15 +4632,15 @@ pub const ITfPersistentPropertyLoaderACP = extern struct {
         base: IUnknown.VTable,
         LoadProperty: fn(
             self: *const ITfPersistentPropertyLoaderACP,
-            pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            ppStream: **IStream,
+            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            ppStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPersistentPropertyLoaderACP_LoadProperty(self: *const T, pHdr: *const TF_PERSISTENT_PROPERTY_HEADER_ACP, ppStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn ITfPersistentPropertyLoaderACP_LoadProperty(self: *const T, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPersistentPropertyLoaderACP.VTable, self.vtable).LoadProperty(@ptrCast(*const ITfPersistentPropertyLoaderACP, self), pHdr, ppStream);
         }
     };}
@@ -4656,45 +4656,45 @@ pub const ITfProperty = extern struct {
         FindRange: fn(
             self: *const ITfProperty,
             ec: u32,
-            pRange: *ITfRange,
-            ppRange: **ITfRange,
+            pRange: ?*ITfRange,
+            ppRange: ?*?*ITfRange,
             aPos: TfAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValueStore: fn(
             self: *const ITfProperty,
             ec: u32,
-            pRange: *ITfRange,
-            pPropStore: *ITfPropertyStore,
+            pRange: ?*ITfRange,
+            pPropStore: ?*ITfPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const ITfProperty,
             ec: u32,
-            pRange: *ITfRange,
-            pvarValue: *const VARIANT,
+            pRange: ?*ITfRange,
+            pvarValue: ?*const VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const ITfProperty,
             ec: u32,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfReadOnlyProperty.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfProperty_FindRange(self: *const T, ec: u32, pRange: *ITfRange, ppRange: **ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
+        pub fn ITfProperty_FindRange(self: *const T, ec: u32, pRange: ?*ITfRange, ppRange: ?*?*ITfRange, aPos: TfAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfProperty.VTable, self.vtable).FindRange(@ptrCast(*const ITfProperty, self), ec, pRange, ppRange, aPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfProperty_SetValueStore(self: *const T, ec: u32, pRange: *ITfRange, pPropStore: *ITfPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ITfProperty_SetValueStore(self: *const T, ec: u32, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfProperty.VTable, self.vtable).SetValueStore(@ptrCast(*const ITfProperty, self), ec, pRange, pPropStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfProperty_SetValue(self: *const T, ec: u32, pRange: *ITfRange, pvarValue: *const VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfProperty_SetValue(self: *const T, ec: u32, pRange: ?*ITfRange, pvarValue: ?*const VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfProperty.VTable, self.vtable).SetValue(@ptrCast(*const ITfProperty, self), ec, pRange, pvarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfProperty_Clear(self: *const T, ec: u32, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfProperty_Clear(self: *const T, ec: u32, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfProperty.VTable, self.vtable).Clear(@ptrCast(*const ITfProperty, self), ec, pRange);
         }
     };}
@@ -4709,13 +4709,13 @@ pub const IEnumTfProperties = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfProperties,
-            ppEnum: **IEnumTfProperties,
+            ppEnum: ?*?*IEnumTfProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfProperties,
             ulCount: u32,
-            ppProp: [*]*ITfProperty,
-            pcFetched: *u32,
+            ppProp: [*]?*ITfProperty,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfProperties,
@@ -4729,11 +4729,11 @@ pub const IEnumTfProperties = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfProperties_Clone(self: *const T, ppEnum: **IEnumTfProperties) callconv(.Inline) HRESULT {
+        pub fn IEnumTfProperties_Clone(self: *const T, ppEnum: ?*?*IEnumTfProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfProperties.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfProperties, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfProperties_Next(self: *const T, ulCount: u32, ppProp: [*]*ITfProperty, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfProperties_Next(self: *const T, ulCount: u32, ppProp: [*]?*ITfProperty, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfProperties.VTable, self.vtable).Next(@ptrCast(*const IEnumTfProperties, self), ulCount, ppProp, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4757,22 +4757,22 @@ pub const ITfCompartment = extern struct {
         SetValue: fn(
             self: *const ITfCompartment,
             tid: u32,
-            pvarValue: *const VARIANT,
+            pvarValue: ?*const VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const ITfCompartment,
-            pvarValue: *VARIANT,
+            pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartment_SetValue(self: *const T, tid: u32, pvarValue: *const VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfCompartment_SetValue(self: *const T, tid: u32, pvarValue: ?*const VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartment.VTable, self.vtable).SetValue(@ptrCast(*const ITfCompartment, self), tid, pvarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartment_GetValue(self: *const T, pvarValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITfCompartment_GetValue(self: *const T, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartment.VTable, self.vtable).GetValue(@ptrCast(*const ITfCompartment, self), pvarValue);
         }
     };}
@@ -4787,14 +4787,14 @@ pub const ITfCompartmentEventSink = extern struct {
         base: IUnknown.VTable,
         OnChange: fn(
             self: *const ITfCompartmentEventSink,
-            rguid: *const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartmentEventSink_OnChange(self: *const T, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCompartmentEventSink_OnChange(self: *const T, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartmentEventSink.VTable, self.vtable).OnChange(@ptrCast(*const ITfCompartmentEventSink, self), rguid);
         }
     };}
@@ -4809,32 +4809,32 @@ pub const ITfCompartmentMgr = extern struct {
         base: IUnknown.VTable,
         GetCompartment: fn(
             self: *const ITfCompartmentMgr,
-            rguid: *const Guid,
-            ppcomp: **ITfCompartment,
+            rguid: ?*const Guid,
+            ppcomp: ?*?*ITfCompartment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearCompartment: fn(
             self: *const ITfCompartmentMgr,
             tid: u32,
-            rguid: *const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumCompartments: fn(
             self: *const ITfCompartmentMgr,
-            ppEnum: **IEnumGUID,
+            ppEnum: ?*?*IEnumGUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartmentMgr_GetCompartment(self: *const T, rguid: *const Guid, ppcomp: **ITfCompartment) callconv(.Inline) HRESULT {
+        pub fn ITfCompartmentMgr_GetCompartment(self: *const T, rguid: ?*const Guid, ppcomp: ?*?*ITfCompartment) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartmentMgr.VTable, self.vtable).GetCompartment(@ptrCast(*const ITfCompartmentMgr, self), rguid, ppcomp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartmentMgr_ClearCompartment(self: *const T, tid: u32, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCompartmentMgr_ClearCompartment(self: *const T, tid: u32, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartmentMgr.VTable, self.vtable).ClearCompartment(@ptrCast(*const ITfCompartmentMgr, self), tid, rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCompartmentMgr_EnumCompartments(self: *const T, ppEnum: **IEnumGUID) callconv(.Inline) HRESULT {
+        pub fn ITfCompartmentMgr_EnumCompartments(self: *const T, ppEnum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCompartmentMgr.VTable, self.vtable).EnumCompartments(@ptrCast(*const ITfCompartmentMgr, self), ppEnum);
         }
     };}
@@ -4849,14 +4849,14 @@ pub const ITfFunction = extern struct {
         base: IUnknown.VTable,
         GetDisplayName: fn(
             self: *const ITfFunction,
-            pbstrName: *BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFunction_GetDisplayName(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfFunction_GetDisplayName(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFunction.VTable, self.vtable).GetDisplayName(@ptrCast(*const ITfFunction, self), pbstrName);
         }
     };}
@@ -4871,32 +4871,32 @@ pub const ITfFunctionProvider = extern struct {
         base: IUnknown.VTable,
         GetType: fn(
             self: *const ITfFunctionProvider,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const ITfFunctionProvider,
-            pbstrDesc: *BSTR,
+            pbstrDesc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunction: fn(
             self: *const ITfFunctionProvider,
-            rguid: *const Guid,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            rguid: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFunctionProvider_GetType(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfFunctionProvider_GetType(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFunctionProvider.VTable, self.vtable).GetType(@ptrCast(*const ITfFunctionProvider, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFunctionProvider_GetDescription(self: *const T, pbstrDesc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfFunctionProvider_GetDescription(self: *const T, pbstrDesc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFunctionProvider.VTable, self.vtable).GetDescription(@ptrCast(*const ITfFunctionProvider, self), pbstrDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFunctionProvider_GetFunction(self: *const T, rguid: *const Guid, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfFunctionProvider_GetFunction(self: *const T, rguid: ?*const Guid, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFunctionProvider.VTable, self.vtable).GetFunction(@ptrCast(*const ITfFunctionProvider, self), rguid, riid, ppunk);
         }
     };}
@@ -4911,13 +4911,13 @@ pub const IEnumTfFunctionProviders = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfFunctionProviders,
-            ppEnum: **IEnumTfFunctionProviders,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfFunctionProviders,
             ulCount: u32,
-            ppCmdobj: [*]*ITfFunctionProvider,
-            pcFetch: *u32,
+            ppCmdobj: [*]?*ITfFunctionProvider,
+            pcFetch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfFunctionProviders,
@@ -4931,11 +4931,11 @@ pub const IEnumTfFunctionProviders = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfFunctionProviders_Clone(self: *const T, ppEnum: **IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
+        pub fn IEnumTfFunctionProviders_Clone(self: *const T, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfFunctionProviders.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfFunctionProviders, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfFunctionProviders_Next(self: *const T, ulCount: u32, ppCmdobj: [*]*ITfFunctionProvider, pcFetch: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfFunctionProviders_Next(self: *const T, ulCount: u32, ppCmdobj: [*]?*ITfFunctionProvider, pcFetch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfFunctionProviders.VTable, self.vtable).Next(@ptrCast(*const IEnumTfFunctionProviders, self), ulCount, ppCmdobj, pcFetch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4958,17 +4958,17 @@ pub const ITfInputProcessorProfiles = extern struct {
         base: IUnknown.VTable,
         Register: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unregister: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
             pchIconFile: [*:0]const u16,
@@ -4977,49 +4977,49 @@ pub const ITfInputProcessorProfiles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumInputProcessorInfo: fn(
             self: *const ITfInputProcessorProfiles,
-            ppEnum: **IEnumGUID,
+            ppEnum: ?*?*IEnumGUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
-            catid: *const Guid,
-            pclsid: *Guid,
-            pguidProfile: *Guid,
+            catid: ?*const Guid,
+            pclsid: ?*Guid,
+            pguidProfile: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
-            rclsid: *const Guid,
-            guidProfiles: *const Guid,
+            rclsid: ?*const Guid,
+            guidProfiles: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ActivateLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfiles: *const Guid,
+            guidProfiles: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
-            plangid: *u16,
-            pguidProfile: *Guid,
+            rclsid: ?*const Guid,
+            plangid: ?*u16,
+            pguidProfile: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLanguageProfileDescription: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
-            pbstrProfile: *BSTR,
+            guidProfile: ?*const Guid,
+            pbstrProfile: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentLanguage: fn(
             self: *const ITfInputProcessorProfiles,
-            plangid: *u16,
+            plangid: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangeCurrentLanguage: fn(
             self: *const ITfInputProcessorProfiles,
@@ -5027,88 +5027,88 @@ pub const ITfInputProcessorProfiles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLanguageList: fn(
             self: *const ITfInputProcessorProfiles,
-            ppLangId: [*]*u16,
-            pulCount: *u32,
+            ppLangId: [*]?*u16,
+            pulCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumLanguageProfiles: fn(
             self: *const ITfInputProcessorProfiles,
             langid: u16,
-            ppEnum: **IEnumTfLanguageProfiles,
+            ppEnum: ?*?*IEnumTfLanguageProfiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnableLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             fEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEnabledLanguageProfile: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
-            pfEnable: *BOOL,
+            guidProfile: ?*const Guid,
+            pfEnable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnableLanguageProfileByDefault: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             fEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SubstituteKeyboardLayout: fn(
             self: *const ITfInputProcessorProfiles,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
-            hKL: HKL,
+            guidProfile: ?*const Guid,
+            hKL: ?HKL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_Register(self: *const T, rclsid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_Register(self: *const T, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).Register(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_Unregister(self: *const T, rclsid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_Unregister(self: *const T, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).Unregister(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_AddLanguageProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_AddLanguageProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).AddLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_RemoveLanguageProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_RemoveLanguageProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).RemoveLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_EnumInputProcessorInfo(self: *const T, ppEnum: **IEnumGUID) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_EnumInputProcessorInfo(self: *const T, ppEnum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).EnumInputProcessorInfo(@ptrCast(*const ITfInputProcessorProfiles, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_GetDefaultLanguageProfile(self: *const T, langid: u16, catid: *const Guid, pclsid: *Guid, pguidProfile: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_GetDefaultLanguageProfile(self: *const T, langid: u16, catid: ?*const Guid, pclsid: ?*Guid, pguidProfile: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).GetDefaultLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), langid, catid, pclsid, pguidProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_SetDefaultLanguageProfile(self: *const T, langid: u16, rclsid: *const Guid, guidProfiles: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_SetDefaultLanguageProfile(self: *const T, langid: u16, rclsid: ?*const Guid, guidProfiles: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).SetDefaultLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), langid, rclsid, guidProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_ActivateLanguageProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfiles: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_ActivateLanguageProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfiles: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).ActivateLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_GetActiveLanguageProfile(self: *const T, rclsid: *const Guid, plangid: *u16, pguidProfile: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_GetActiveLanguageProfile(self: *const T, rclsid: ?*const Guid, plangid: ?*u16, pguidProfile: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).GetActiveLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, plangid, pguidProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_GetLanguageProfileDescription(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, pbstrProfile: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_GetLanguageProfileDescription(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pbstrProfile: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).GetLanguageProfileDescription(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, pbstrProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_GetCurrentLanguage(self: *const T, plangid: *u16) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_GetCurrentLanguage(self: *const T, plangid: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).GetCurrentLanguage(@ptrCast(*const ITfInputProcessorProfiles, self), plangid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5116,27 +5116,27 @@ pub const ITfInputProcessorProfiles = extern struct {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).ChangeCurrentLanguage(@ptrCast(*const ITfInputProcessorProfiles, self), langid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_GetLanguageList(self: *const T, ppLangId: [*]*u16, pulCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_GetLanguageList(self: *const T, ppLangId: [*]?*u16, pulCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).GetLanguageList(@ptrCast(*const ITfInputProcessorProfiles, self), ppLangId, pulCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_EnumLanguageProfiles(self: *const T, langid: u16, ppEnum: **IEnumTfLanguageProfiles) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_EnumLanguageProfiles(self: *const T, langid: u16, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).EnumLanguageProfiles(@ptrCast(*const ITfInputProcessorProfiles, self), langid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_EnableLanguageProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, fEnable: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_EnableLanguageProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).EnableLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_IsEnabledLanguageProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, pfEnable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_IsEnabledLanguageProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).IsEnabledLanguageProfile(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, pfEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_EnableLanguageProfileByDefault(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, fEnable: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_EnableLanguageProfileByDefault(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).EnableLanguageProfileByDefault(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfiles_SubstituteKeyboardLayout(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, hKL: HKL) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfiles_SubstituteKeyboardLayout(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, hKL: ?HKL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfiles.VTable, self.vtable).SubstituteKeyboardLayout(@ptrCast(*const ITfInputProcessorProfiles, self), rclsid, langid, guidProfile, hKL);
         }
     };}
@@ -5151,9 +5151,9 @@ pub const ITfInputProcessorProfilesEx = extern struct {
         base: ITfInputProcessorProfiles.VTable,
         SetLanguageProfileDisplayName: fn(
             self: *const ITfInputProcessorProfilesEx,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             pchFile: [*:0]const u16,
             cchFile: u32,
             uResId: u32,
@@ -5163,7 +5163,7 @@ pub const ITfInputProcessorProfilesEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfInputProcessorProfiles.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfilesEx_SetLanguageProfileDisplayName(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, pchFile: [*:0]const u16, cchFile: u32, uResId: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfilesEx_SetLanguageProfileDisplayName(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchFile: [*:0]const u16, cchFile: u32, uResId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfilesEx.VTable, self.vtable).SetLanguageProfileDisplayName(@ptrCast(*const ITfInputProcessorProfilesEx, self), rclsid, langid, guidProfile, pchFile, cchFile, uResId);
         }
     };}
@@ -5178,17 +5178,17 @@ pub const ITfInputProcessorProfileSubstituteLayout = extern struct {
         base: IUnknown.VTable,
         GetSubstituteKeyboardLayout: fn(
             self: *const ITfInputProcessorProfileSubstituteLayout,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
-            phKL: *HKL,
+            guidProfile: ?*const Guid,
+            phKL: ?*?HKL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileSubstituteLayout_GetSubstituteKeyboardLayout(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, phKL: *HKL) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileSubstituteLayout_GetSubstituteKeyboardLayout(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, phKL: ?*?HKL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileSubstituteLayout.VTable, self.vtable).GetSubstituteKeyboardLayout(@ptrCast(*const ITfInputProcessorProfileSubstituteLayout, self), rclsid, langid, guidProfile, phKL);
         }
     };}
@@ -5203,8 +5203,8 @@ pub const ITfActiveLanguageProfileNotifySink = extern struct {
         base: IUnknown.VTable,
         OnActivated: fn(
             self: *const ITfActiveLanguageProfileNotifySink,
-            clsid: *const Guid,
-            guidProfile: *const Guid,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
             fActivated: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5212,7 +5212,7 @@ pub const ITfActiveLanguageProfileNotifySink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfActiveLanguageProfileNotifySink_OnActivated(self: *const T, clsid: *const Guid, guidProfile: *const Guid, fActivated: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfActiveLanguageProfileNotifySink_OnActivated(self: *const T, clsid: ?*const Guid, guidProfile: ?*const Guid, fActivated: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfActiveLanguageProfileNotifySink.VTable, self.vtable).OnActivated(@ptrCast(*const ITfActiveLanguageProfileNotifySink, self), clsid, guidProfile, fActivated);
         }
     };}
@@ -5227,13 +5227,13 @@ pub const IEnumTfLanguageProfiles = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfLanguageProfiles,
-            ppEnum: **IEnumTfLanguageProfiles,
+            ppEnum: ?*?*IEnumTfLanguageProfiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfLanguageProfiles,
             ulCount: u32,
             pProfile: [*]TF_LANGUAGEPROFILE,
-            pcFetch: *u32,
+            pcFetch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfLanguageProfiles,
@@ -5247,11 +5247,11 @@ pub const IEnumTfLanguageProfiles = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLanguageProfiles_Clone(self: *const T, ppEnum: **IEnumTfLanguageProfiles) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLanguageProfiles_Clone(self: *const T, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLanguageProfiles.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfLanguageProfiles, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLanguageProfiles_Next(self: *const T, ulCount: u32, pProfile: [*]TF_LANGUAGEPROFILE, pcFetch: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLanguageProfiles_Next(self: *const T, ulCount: u32, pProfile: [*]TF_LANGUAGEPROFILE, pcFetch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLanguageProfiles.VTable, self.vtable).Next(@ptrCast(*const IEnumTfLanguageProfiles, self), ulCount, pProfile, pcFetch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5275,7 +5275,7 @@ pub const ITfLanguageProfileNotifySink = extern struct {
         OnLanguageChange: fn(
             self: *const ITfLanguageProfileNotifySink,
             langid: u16,
-            pfAccept: *BOOL,
+            pfAccept: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnLanguageChanged: fn(
             self: *const ITfLanguageProfileNotifySink,
@@ -5285,7 +5285,7 @@ pub const ITfLanguageProfileNotifySink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLanguageProfileNotifySink_OnLanguageChange(self: *const T, langid: u16, pfAccept: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfLanguageProfileNotifySink_OnLanguageChange(self: *const T, langid: u16, pfAccept: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLanguageProfileNotifySink.VTable, self.vtable).OnLanguageChange(@ptrCast(*const ITfLanguageProfileNotifySink, self), langid, pfAccept);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5302,9 +5302,9 @@ pub const TF_INPUTPROCESSORPROFILE = extern struct {
     clsid: Guid,
     guidProfile: Guid,
     catid: Guid,
-    hklSubstitute: HKL,
+    hklSubstitute: ?HKL,
     dwCaps: u32,
-    hkl: HKL,
+    hkl: ?HKL,
     dwFlags: u32,
 };
 
@@ -5318,100 +5318,100 @@ pub const ITfInputProcessorProfileMgr = extern struct {
             self: *const ITfInputProcessorProfileMgr,
             dwProfileType: u32,
             langid: u16,
-            clsid: *const Guid,
-            guidProfile: *const Guid,
-            hkl: HKL,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeactivateProfile: fn(
             self: *const ITfInputProcessorProfileMgr,
             dwProfileType: u32,
             langid: u16,
-            clsid: *const Guid,
-            guidProfile: *const Guid,
-            hkl: HKL,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProfile: fn(
             self: *const ITfInputProcessorProfileMgr,
             dwProfileType: u32,
             langid: u16,
-            clsid: *const Guid,
-            guidProfile: *const Guid,
-            hkl: HKL,
-            pProfile: *TF_INPUTPROCESSORPROFILE,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
+            pProfile: ?*TF_INPUTPROCESSORPROFILE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumProfiles: fn(
             self: *const ITfInputProcessorProfileMgr,
             langid: u16,
-            ppEnum: **IEnumTfInputProcessorProfiles,
+            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseInputProcessor: fn(
             self: *const ITfInputProcessorProfileMgr,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterProfile: fn(
             self: *const ITfInputProcessorProfileMgr,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
             pchIconFile: [*:0]const u16,
             cchFile: u32,
             uIconIndex: u32,
-            hklsubstitute: HKL,
+            hklsubstitute: ?HKL,
             dwPreferredLayout: u32,
             bEnabledByDefault: BOOL,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterProfile: fn(
             self: *const ITfInputProcessorProfileMgr,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveProfile: fn(
             self: *const ITfInputProcessorProfileMgr,
-            catid: *const Guid,
-            pProfile: *TF_INPUTPROCESSORPROFILE,
+            catid: ?*const Guid,
+            pProfile: ?*TF_INPUTPROCESSORPROFILE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_ActivateProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: *const Guid, guidProfile: *const Guid, hkl: HKL, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_ActivateProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).ActivateProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_DeactivateProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: *const Guid, guidProfile: *const Guid, hkl: HKL, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_DeactivateProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).DeactivateProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_GetProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: *const Guid, guidProfile: *const Guid, hkl: HKL, pProfile: *TF_INPUTPROCESSORPROFILE) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_GetProfile(self: *const T, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).GetProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), dwProfileType, langid, clsid, guidProfile, hkl, pProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_EnumProfiles(self: *const T, langid: u16, ppEnum: **IEnumTfInputProcessorProfiles) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_EnumProfiles(self: *const T, langid: u16, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).EnumProfiles(@ptrCast(*const ITfInputProcessorProfileMgr, self), langid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_ReleaseInputProcessor(self: *const T, rclsid: *const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_ReleaseInputProcessor(self: *const T, rclsid: ?*const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).ReleaseInputProcessor(@ptrCast(*const ITfInputProcessorProfileMgr, self), rclsid, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_RegisterProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32, hklsubstitute: HKL, dwPreferredLayout: u32, bEnabledByDefault: BOOL, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_RegisterProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32, hklsubstitute: ?HKL, dwPreferredLayout: u32, bEnabledByDefault: BOOL, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).RegisterProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex, hklsubstitute, dwPreferredLayout, bEnabledByDefault, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_UnregisterProfile(self: *const T, rclsid: *const Guid, langid: u16, guidProfile: *const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_UnregisterProfile(self: *const T, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).UnregisterProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), rclsid, langid, guidProfile, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileMgr_GetActiveProfile(self: *const T, catid: *const Guid, pProfile: *TF_INPUTPROCESSORPROFILE) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileMgr_GetActiveProfile(self: *const T, catid: ?*const Guid, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileMgr.VTable, self.vtable).GetActiveProfile(@ptrCast(*const ITfInputProcessorProfileMgr, self), catid, pProfile);
         }
     };}
@@ -5426,13 +5426,13 @@ pub const IEnumTfInputProcessorProfiles = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfInputProcessorProfiles,
-            ppEnum: **IEnumTfInputProcessorProfiles,
+            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfInputProcessorProfiles,
             ulCount: u32,
             pProfile: [*]TF_INPUTPROCESSORPROFILE,
-            pcFetch: *u32,
+            pcFetch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfInputProcessorProfiles,
@@ -5446,11 +5446,11 @@ pub const IEnumTfInputProcessorProfiles = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfInputProcessorProfiles_Clone(self: *const T, ppEnum: **IEnumTfInputProcessorProfiles) callconv(.Inline) HRESULT {
+        pub fn IEnumTfInputProcessorProfiles_Clone(self: *const T, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfInputProcessorProfiles.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfInputProcessorProfiles, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfInputProcessorProfiles_Next(self: *const T, ulCount: u32, pProfile: [*]TF_INPUTPROCESSORPROFILE, pcFetch: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfInputProcessorProfiles_Next(self: *const T, ulCount: u32, pProfile: [*]TF_INPUTPROCESSORPROFILE, pcFetch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfInputProcessorProfiles.VTable, self.vtable).Next(@ptrCast(*const IEnumTfInputProcessorProfiles, self), ulCount, pProfile, pcFetch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5475,10 +5475,10 @@ pub const ITfInputProcessorProfileActivationSink = extern struct {
             self: *const ITfInputProcessorProfileActivationSink,
             dwProfileType: u32,
             langid: u16,
-            clsid: *const Guid,
-            catid: *const Guid,
-            guidProfile: *const Guid,
-            hkl: HKL,
+            clsid: ?*const Guid,
+            catid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5486,7 +5486,7 @@ pub const ITfInputProcessorProfileActivationSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputProcessorProfileActivationSink_OnActivated(self: *const T, dwProfileType: u32, langid: u16, clsid: *const Guid, catid: *const Guid, guidProfile: *const Guid, hkl: HKL, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputProcessorProfileActivationSink_OnActivated(self: *const T, dwProfileType: u32, langid: u16, clsid: ?*const Guid, catid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputProcessorProfileActivationSink.VTable, self.vtable).OnActivated(@ptrCast(*const ITfInputProcessorProfileActivationSink, self), dwProfileType, langid, clsid, catid, guidProfile, hkl, dwFlags);
         }
     };}
@@ -5507,7 +5507,7 @@ pub const ITfKeystrokeMgr = extern struct {
         AdviseKeyEventSink: fn(
             self: *const ITfKeystrokeMgr,
             tid: u32,
-            pSink: *ITfKeyEventSink,
+            pSink: ?*ITfKeyEventSink,
             fForeground: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseKeyEventSink: fn(
@@ -5516,80 +5516,80 @@ pub const ITfKeystrokeMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetForeground: fn(
             self: *const ITfKeystrokeMgr,
-            pclsid: *Guid,
+            pclsid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TestKeyDown: fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TestKeyUp: fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         KeyDown: fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         KeyUp: fn(
             self: *const ITfKeystrokeMgr,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreservedKey: fn(
             self: *const ITfKeystrokeMgr,
-            pic: *ITfContext,
-            pprekey: *const TF_PRESERVEDKEY,
-            pguid: *Guid,
+            pic: ?*ITfContext,
+            pprekey: ?*const TF_PRESERVEDKEY,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsPreservedKey: fn(
             self: *const ITfKeystrokeMgr,
-            rguid: *const Guid,
-            pprekey: *const TF_PRESERVEDKEY,
-            pfRegistered: *BOOL,
+            rguid: ?*const Guid,
+            pprekey: ?*const TF_PRESERVEDKEY,
+            pfRegistered: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PreserveKey: fn(
             self: *const ITfKeystrokeMgr,
             tid: u32,
-            rguid: *const Guid,
-            prekey: *const TF_PRESERVEDKEY,
+            rguid: ?*const Guid,
+            prekey: ?*const TF_PRESERVEDKEY,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnpreserveKey: fn(
             self: *const ITfKeystrokeMgr,
-            rguid: *const Guid,
-            pprekey: *const TF_PRESERVEDKEY,
+            rguid: ?*const Guid,
+            pprekey: ?*const TF_PRESERVEDKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPreservedKeyDescription: fn(
             self: *const ITfKeystrokeMgr,
-            rguid: *const Guid,
+            rguid: ?*const Guid,
             pchDesc: [*:0]const u16,
             cchDesc: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreservedKeyDescription: fn(
             self: *const ITfKeystrokeMgr,
-            rguid: *const Guid,
-            pbstrDesc: *BSTR,
+            rguid: ?*const Guid,
+            pbstrDesc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SimulatePreservedKey: fn(
             self: *const ITfKeystrokeMgr,
-            pic: *ITfContext,
-            rguid: *const Guid,
-            pfEaten: *BOOL,
+            pic: ?*ITfContext,
+            rguid: ?*const Guid,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_AdviseKeyEventSink(self: *const T, tid: u32, pSink: *ITfKeyEventSink, fForeground: BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_AdviseKeyEventSink(self: *const T, tid: u32, pSink: ?*ITfKeyEventSink, fForeground: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).AdviseKeyEventSink(@ptrCast(*const ITfKeystrokeMgr, self), tid, pSink, fForeground);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5597,51 +5597,51 @@ pub const ITfKeystrokeMgr = extern struct {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).UnadviseKeyEventSink(@ptrCast(*const ITfKeystrokeMgr, self), tid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_GetForeground(self: *const T, pclsid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_GetForeground(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).GetForeground(@ptrCast(*const ITfKeystrokeMgr, self), pclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_TestKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_TestKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).TestKeyDown(@ptrCast(*const ITfKeystrokeMgr, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_TestKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_TestKeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).TestKeyUp(@ptrCast(*const ITfKeystrokeMgr, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_KeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_KeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).KeyDown(@ptrCast(*const ITfKeystrokeMgr, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_KeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_KeyUp(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).KeyUp(@ptrCast(*const ITfKeystrokeMgr, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_GetPreservedKey(self: *const T, pic: *ITfContext, pprekey: *const TF_PRESERVEDKEY, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_GetPreservedKey(self: *const T, pic: ?*ITfContext, pprekey: ?*const TF_PRESERVEDKEY, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).GetPreservedKey(@ptrCast(*const ITfKeystrokeMgr, self), pic, pprekey, pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_IsPreservedKey(self: *const T, rguid: *const Guid, pprekey: *const TF_PRESERVEDKEY, pfRegistered: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_IsPreservedKey(self: *const T, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY, pfRegistered: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).IsPreservedKey(@ptrCast(*const ITfKeystrokeMgr, self), rguid, pprekey, pfRegistered);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_PreserveKey(self: *const T, tid: u32, rguid: *const Guid, prekey: *const TF_PRESERVEDKEY, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_PreserveKey(self: *const T, tid: u32, rguid: ?*const Guid, prekey: ?*const TF_PRESERVEDKEY, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).PreserveKey(@ptrCast(*const ITfKeystrokeMgr, self), tid, rguid, prekey, pchDesc, cchDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_UnpreserveKey(self: *const T, rguid: *const Guid, pprekey: *const TF_PRESERVEDKEY) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_UnpreserveKey(self: *const T, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).UnpreserveKey(@ptrCast(*const ITfKeystrokeMgr, self), rguid, pprekey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_SetPreservedKeyDescription(self: *const T, rguid: *const Guid, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_SetPreservedKeyDescription(self: *const T, rguid: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).SetPreservedKeyDescription(@ptrCast(*const ITfKeystrokeMgr, self), rguid, pchDesc, cchDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_GetPreservedKeyDescription(self: *const T, rguid: *const Guid, pbstrDesc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_GetPreservedKeyDescription(self: *const T, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).GetPreservedKeyDescription(@ptrCast(*const ITfKeystrokeMgr, self), rguid, pbstrDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeystrokeMgr_SimulatePreservedKey(self: *const T, pic: *ITfContext, rguid: *const Guid, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeystrokeMgr_SimulatePreservedKey(self: *const T, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeystrokeMgr.VTable, self.vtable).SimulatePreservedKey(@ptrCast(*const ITfKeystrokeMgr, self), pic, rguid, pfEaten);
         }
     };}
@@ -5660,37 +5660,37 @@ pub const ITfKeyEventSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTestKeyDown: fn(
             self: *const ITfKeyEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTestKeyUp: fn(
             self: *const ITfKeyEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnKeyDown: fn(
             self: *const ITfKeyEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnKeyUp: fn(
             self: *const ITfKeyEventSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnPreservedKey: fn(
             self: *const ITfKeyEventSink,
-            pic: *ITfContext,
-            rguid: *const Guid,
-            pfEaten: *BOOL,
+            pic: ?*ITfContext,
+            rguid: ?*const Guid,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5701,23 +5701,23 @@ pub const ITfKeyEventSink = extern struct {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnSetFocus(@ptrCast(*const ITfKeyEventSink, self), fForeground);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeyEventSink_OnTestKeyDown(self: *const T, pic: *ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeyEventSink_OnTestKeyDown(self: *const T, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnTestKeyDown(@ptrCast(*const ITfKeyEventSink, self), pic, wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeyEventSink_OnTestKeyUp(self: *const T, pic: *ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeyEventSink_OnTestKeyUp(self: *const T, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnTestKeyUp(@ptrCast(*const ITfKeyEventSink, self), pic, wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeyEventSink_OnKeyDown(self: *const T, pic: *ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeyEventSink_OnKeyDown(self: *const T, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnKeyDown(@ptrCast(*const ITfKeyEventSink, self), pic, wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeyEventSink_OnKeyUp(self: *const T, pic: *ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeyEventSink_OnKeyUp(self: *const T, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnKeyUp(@ptrCast(*const ITfKeyEventSink, self), pic, wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfKeyEventSink_OnPreservedKey(self: *const T, pic: *ITfContext, rguid: *const Guid, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfKeyEventSink_OnPreservedKey(self: *const T, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfKeyEventSink.VTable, self.vtable).OnPreservedKey(@ptrCast(*const ITfKeyEventSink, self), pic, rguid, pfEaten);
         }
     };}
@@ -5764,14 +5764,14 @@ pub const ITfPreservedKeyNotifySink = extern struct {
         base: IUnknown.VTable,
         OnUpdated: fn(
             self: *const ITfPreservedKeyNotifySink,
-            pprekey: *const TF_PRESERVEDKEY,
+            pprekey: ?*const TF_PRESERVEDKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfPreservedKeyNotifySink_OnUpdated(self: *const T, pprekey: *const TF_PRESERVEDKEY) callconv(.Inline) HRESULT {
+        pub fn ITfPreservedKeyNotifySink_OnUpdated(self: *const T, pprekey: ?*const TF_PRESERVEDKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfPreservedKeyNotifySink.VTable, self.vtable).OnUpdated(@ptrCast(*const ITfPreservedKeyNotifySink, self), pprekey);
         }
     };}
@@ -5786,56 +5786,56 @@ pub const ITfMessagePump = extern struct {
         base: IUnknown.VTable,
         PeekMessageA: fn(
             self: *const ITfMessagePump,
-            pMsg: *MSG,
-            hwnd: HWND,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
             wRemoveMsg: u32,
-            pfResult: *BOOL,
+            pfResult: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageA: fn(
             self: *const ITfMessagePump,
-            pMsg: *MSG,
-            hwnd: HWND,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
-            pfResult: *BOOL,
+            pfResult: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PeekMessageW: fn(
             self: *const ITfMessagePump,
-            pMsg: *MSG,
-            hwnd: HWND,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
             wRemoveMsg: u32,
-            pfResult: *BOOL,
+            pfResult: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageW: fn(
             self: *const ITfMessagePump,
-            pMsg: *MSG,
-            hwnd: HWND,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
             wMsgFilterMin: u32,
             wMsgFilterMax: u32,
-            pfResult: *BOOL,
+            pfResult: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMessagePump_PeekMessageA(self: *const T, pMsg: *MSG, hwnd: HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfMessagePump_PeekMessageA(self: *const T, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMessagePump.VTable, self.vtable).PeekMessageA(@ptrCast(*const ITfMessagePump, self), pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMessagePump_GetMessageA(self: *const T, pMsg: *MSG, hwnd: HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfMessagePump_GetMessageA(self: *const T, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMessagePump.VTable, self.vtable).GetMessageA(@ptrCast(*const ITfMessagePump, self), pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMessagePump_PeekMessageW(self: *const T, pMsg: *MSG, hwnd: HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfMessagePump_PeekMessageW(self: *const T, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMessagePump.VTable, self.vtable).PeekMessageW(@ptrCast(*const ITfMessagePump, self), pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMessagePump_GetMessageW(self: *const T, pMsg: *MSG, hwnd: HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfMessagePump_GetMessageW(self: *const T, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfMessagePump.VTable, self.vtable).GetMessageW(@ptrCast(*const ITfMessagePump, self), pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
         }
     };}
@@ -5878,7 +5878,7 @@ pub const ITfTextInputProcessor = extern struct {
         base: IUnknown.VTable,
         Activate: fn(
             self: *const ITfTextInputProcessor,
-            ptim: *ITfThreadMgr,
+            ptim: ?*ITfThreadMgr,
             tid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Deactivate: fn(
@@ -5889,7 +5889,7 @@ pub const ITfTextInputProcessor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTextInputProcessor_Activate(self: *const T, ptim: *ITfThreadMgr, tid: u32) callconv(.Inline) HRESULT {
+        pub fn ITfTextInputProcessor_Activate(self: *const T, ptim: ?*ITfThreadMgr, tid: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTextInputProcessor.VTable, self.vtable).Activate(@ptrCast(*const ITfTextInputProcessor, self), ptim, tid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5908,7 +5908,7 @@ pub const ITfTextInputProcessorEx = extern struct {
         base: ITfTextInputProcessor.VTable,
         ActivateEx: fn(
             self: *const ITfTextInputProcessorEx,
-            ptim: *ITfThreadMgr,
+            ptim: ?*ITfThreadMgr,
             tid: u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5917,7 +5917,7 @@ pub const ITfTextInputProcessorEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfTextInputProcessor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTextInputProcessorEx_ActivateEx(self: *const T, ptim: *ITfThreadMgr, tid: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfTextInputProcessorEx_ActivateEx(self: *const T, ptim: ?*ITfThreadMgr, tid: u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTextInputProcessorEx.VTable, self.vtable).ActivateEx(@ptrCast(*const ITfTextInputProcessorEx, self), ptim, tid, dwFlags);
         }
     };}
@@ -5932,15 +5932,15 @@ pub const ITfClientId = extern struct {
         base: IUnknown.VTable,
         GetClientId: fn(
             self: *const ITfClientId,
-            rclsid: *const Guid,
-            ptid: *u32,
+            rclsid: ?*const Guid,
+            ptid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfClientId_GetClientId(self: *const T, rclsid: *const Guid, ptid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfClientId_GetClientId(self: *const T, rclsid: ?*const Guid, ptid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfClientId.VTable, self.vtable).GetClientId(@ptrCast(*const ITfClientId, self), rclsid, ptid);
         }
     };}
@@ -6011,19 +6011,19 @@ pub const ITfDisplayAttributeInfo = extern struct {
         base: IUnknown.VTable,
         GetGUID: fn(
             self: *const ITfDisplayAttributeInfo,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const ITfDisplayAttributeInfo,
-            pbstrDesc: *BSTR,
+            pbstrDesc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeInfo: fn(
             self: *const ITfDisplayAttributeInfo,
-            pda: *TF_DISPLAYATTRIBUTE,
+            pda: ?*TF_DISPLAYATTRIBUTE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeInfo: fn(
             self: *const ITfDisplayAttributeInfo,
-            pda: *const TF_DISPLAYATTRIBUTE,
+            pda: ?*const TF_DISPLAYATTRIBUTE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ITfDisplayAttributeInfo,
@@ -6033,19 +6033,19 @@ pub const ITfDisplayAttributeInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeInfo_GetGUID(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeInfo_GetGUID(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeInfo.VTable, self.vtable).GetGUID(@ptrCast(*const ITfDisplayAttributeInfo, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeInfo_GetDescription(self: *const T, pbstrDesc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeInfo_GetDescription(self: *const T, pbstrDesc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeInfo.VTable, self.vtable).GetDescription(@ptrCast(*const ITfDisplayAttributeInfo, self), pbstrDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeInfo_GetAttributeInfo(self: *const T, pda: *TF_DISPLAYATTRIBUTE) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeInfo_GetAttributeInfo(self: *const T, pda: ?*TF_DISPLAYATTRIBUTE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeInfo.VTable, self.vtable).GetAttributeInfo(@ptrCast(*const ITfDisplayAttributeInfo, self), pda);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeInfo_SetAttributeInfo(self: *const T, pda: *const TF_DISPLAYATTRIBUTE) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeInfo_SetAttributeInfo(self: *const T, pda: ?*const TF_DISPLAYATTRIBUTE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeInfo.VTable, self.vtable).SetAttributeInfo(@ptrCast(*const ITfDisplayAttributeInfo, self), pda);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6064,13 +6064,13 @@ pub const IEnumTfDisplayAttributeInfo = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfDisplayAttributeInfo,
-            ppEnum: **IEnumTfDisplayAttributeInfo,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfDisplayAttributeInfo,
             ulCount: u32,
-            rgInfo: [*]*ITfDisplayAttributeInfo,
-            pcFetched: *u32,
+            rgInfo: [*]?*ITfDisplayAttributeInfo,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfDisplayAttributeInfo,
@@ -6084,11 +6084,11 @@ pub const IEnumTfDisplayAttributeInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfDisplayAttributeInfo_Clone(self: *const T, ppEnum: **IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
+        pub fn IEnumTfDisplayAttributeInfo_Clone(self: *const T, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfDisplayAttributeInfo.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfDisplayAttributeInfo, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfDisplayAttributeInfo_Next(self: *const T, ulCount: u32, rgInfo: [*]*ITfDisplayAttributeInfo, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfDisplayAttributeInfo_Next(self: *const T, ulCount: u32, rgInfo: [*]?*ITfDisplayAttributeInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfDisplayAttributeInfo.VTable, self.vtable).Next(@ptrCast(*const IEnumTfDisplayAttributeInfo, self), ulCount, rgInfo, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6111,23 +6111,23 @@ pub const ITfDisplayAttributeProvider = extern struct {
         base: IUnknown.VTable,
         EnumDisplayAttributeInfo: fn(
             self: *const ITfDisplayAttributeProvider,
-            ppEnum: **IEnumTfDisplayAttributeInfo,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayAttributeInfo: fn(
             self: *const ITfDisplayAttributeProvider,
-            guid: *const Guid,
-            ppInfo: **ITfDisplayAttributeInfo,
+            guid: ?*const Guid,
+            ppInfo: ?*?*ITfDisplayAttributeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeProvider_EnumDisplayAttributeInfo(self: *const T, ppEnum: **IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeProvider_EnumDisplayAttributeInfo(self: *const T, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeProvider.VTable, self.vtable).EnumDisplayAttributeInfo(@ptrCast(*const ITfDisplayAttributeProvider, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeProvider_GetDisplayAttributeInfo(self: *const T, guid: *const Guid, ppInfo: **ITfDisplayAttributeInfo) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeProvider_GetDisplayAttributeInfo(self: *const T, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeProvider.VTable, self.vtable).GetDisplayAttributeInfo(@ptrCast(*const ITfDisplayAttributeProvider, self), guid, ppInfo);
         }
     };}
@@ -6145,13 +6145,13 @@ pub const ITfDisplayAttributeMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDisplayAttributeInfo: fn(
             self: *const ITfDisplayAttributeMgr,
-            ppEnum: **IEnumTfDisplayAttributeInfo,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayAttributeInfo: fn(
             self: *const ITfDisplayAttributeMgr,
-            guid: *const Guid,
-            ppInfo: **ITfDisplayAttributeInfo,
-            pclsidOwner: *Guid,
+            guid: ?*const Guid,
+            ppInfo: ?*?*ITfDisplayAttributeInfo,
+            pclsidOwner: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6162,11 +6162,11 @@ pub const ITfDisplayAttributeMgr = extern struct {
             return @ptrCast(*const ITfDisplayAttributeMgr.VTable, self.vtable).OnUpdateInfo(@ptrCast(*const ITfDisplayAttributeMgr, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeMgr_EnumDisplayAttributeInfo(self: *const T, ppEnum: **IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeMgr_EnumDisplayAttributeInfo(self: *const T, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeMgr.VTable, self.vtable).EnumDisplayAttributeInfo(@ptrCast(*const ITfDisplayAttributeMgr, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfDisplayAttributeMgr_GetDisplayAttributeInfo(self: *const T, guid: *const Guid, ppInfo: **ITfDisplayAttributeInfo, pclsidOwner: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfDisplayAttributeMgr_GetDisplayAttributeInfo(self: *const T, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo, pclsidOwner: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfDisplayAttributeMgr.VTable, self.vtable).GetDisplayAttributeInfo(@ptrCast(*const ITfDisplayAttributeMgr, self), guid, ppInfo, pclsidOwner);
         }
     };}
@@ -6202,140 +6202,140 @@ pub const ITfCategoryMgr = extern struct {
         base: IUnknown.VTable,
         RegisterCategory: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rcatid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rcatid: ?*const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterCategory: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rcatid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rcatid: ?*const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumCategoriesInItem: fn(
             self: *const ITfCategoryMgr,
-            rguid: *const Guid,
-            ppEnum: **IEnumGUID,
+            rguid: ?*const Guid,
+            ppEnum: ?*?*IEnumGUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumItemsInCategory: fn(
             self: *const ITfCategoryMgr,
-            rcatid: *const Guid,
-            ppEnum: **IEnumGUID,
+            rcatid: ?*const Guid,
+            ppEnum: ?*?*IEnumGUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindClosestCategory: fn(
             self: *const ITfCategoryMgr,
-            rguid: *const Guid,
-            pcatid: *Guid,
-            ppcatidList: [*]const *const Guid,
+            rguid: ?*const Guid,
+            pcatid: ?*Guid,
+            ppcatidList: [*]const ?*const Guid,
             ulCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterGUIDDescription: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
             pchDesc: [*:0]const u16,
             cch: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterGUIDDescription: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGUIDDescription: fn(
             self: *const ITfCategoryMgr,
-            rguid: *const Guid,
-            pbstrDesc: *BSTR,
+            rguid: ?*const Guid,
+            pbstrDesc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterGUIDDWORD: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
             dw: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterGUIDDWORD: fn(
             self: *const ITfCategoryMgr,
-            rclsid: *const Guid,
-            rguid: *const Guid,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGUIDDWORD: fn(
             self: *const ITfCategoryMgr,
-            rguid: *const Guid,
-            pdw: *u32,
+            rguid: ?*const Guid,
+            pdw: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterGUID: fn(
             self: *const ITfCategoryMgr,
-            rguid: *const Guid,
-            pguidatom: *u32,
+            rguid: ?*const Guid,
+            pguidatom: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGUID: fn(
             self: *const ITfCategoryMgr,
             guidatom: u32,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqualTfGuidAtom: fn(
             self: *const ITfCategoryMgr,
             guidatom: u32,
-            rguid: *const Guid,
-            pfEqual: *BOOL,
+            rguid: ?*const Guid,
+            pfEqual: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_RegisterCategory(self: *const T, rclsid: *const Guid, rcatid: *const Guid, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_RegisterCategory(self: *const T, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).RegisterCategory(@ptrCast(*const ITfCategoryMgr, self), rclsid, rcatid, rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_UnregisterCategory(self: *const T, rclsid: *const Guid, rcatid: *const Guid, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_UnregisterCategory(self: *const T, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).UnregisterCategory(@ptrCast(*const ITfCategoryMgr, self), rclsid, rcatid, rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_EnumCategoriesInItem(self: *const T, rguid: *const Guid, ppEnum: **IEnumGUID) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_EnumCategoriesInItem(self: *const T, rguid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).EnumCategoriesInItem(@ptrCast(*const ITfCategoryMgr, self), rguid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_EnumItemsInCategory(self: *const T, rcatid: *const Guid, ppEnum: **IEnumGUID) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_EnumItemsInCategory(self: *const T, rcatid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).EnumItemsInCategory(@ptrCast(*const ITfCategoryMgr, self), rcatid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_FindClosestCategory(self: *const T, rguid: *const Guid, pcatid: *Guid, ppcatidList: [*]const *const Guid, ulCount: u32) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_FindClosestCategory(self: *const T, rguid: ?*const Guid, pcatid: ?*Guid, ppcatidList: [*]const ?*const Guid, ulCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).FindClosestCategory(@ptrCast(*const ITfCategoryMgr, self), rguid, pcatid, ppcatidList, ulCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_RegisterGUIDDescription(self: *const T, rclsid: *const Guid, rguid: *const Guid, pchDesc: [*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_RegisterGUIDDescription(self: *const T, rclsid: ?*const Guid, rguid: ?*const Guid, pchDesc: [*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).RegisterGUIDDescription(@ptrCast(*const ITfCategoryMgr, self), rclsid, rguid, pchDesc, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_UnregisterGUIDDescription(self: *const T, rclsid: *const Guid, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_UnregisterGUIDDescription(self: *const T, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).UnregisterGUIDDescription(@ptrCast(*const ITfCategoryMgr, self), rclsid, rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_GetGUIDDescription(self: *const T, rguid: *const Guid, pbstrDesc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_GetGUIDDescription(self: *const T, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).GetGUIDDescription(@ptrCast(*const ITfCategoryMgr, self), rguid, pbstrDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_RegisterGUIDDWORD(self: *const T, rclsid: *const Guid, rguid: *const Guid, dw: u32) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_RegisterGUIDDWORD(self: *const T, rclsid: ?*const Guid, rguid: ?*const Guid, dw: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).RegisterGUIDDWORD(@ptrCast(*const ITfCategoryMgr, self), rclsid, rguid, dw);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_UnregisterGUIDDWORD(self: *const T, rclsid: *const Guid, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_UnregisterGUIDDWORD(self: *const T, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).UnregisterGUIDDWORD(@ptrCast(*const ITfCategoryMgr, self), rclsid, rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_GetGUIDDWORD(self: *const T, rguid: *const Guid, pdw: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_GetGUIDDWORD(self: *const T, rguid: ?*const Guid, pdw: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).GetGUIDDWORD(@ptrCast(*const ITfCategoryMgr, self), rguid, pdw);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_RegisterGUID(self: *const T, rguid: *const Guid, pguidatom: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_RegisterGUID(self: *const T, rguid: ?*const Guid, pguidatom: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).RegisterGUID(@ptrCast(*const ITfCategoryMgr, self), rguid, pguidatom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_GetGUID(self: *const T, guidatom: u32, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_GetGUID(self: *const T, guidatom: u32, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).GetGUID(@ptrCast(*const ITfCategoryMgr, self), guidatom, pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCategoryMgr_IsEqualTfGuidAtom(self: *const T, guidatom: u32, rguid: *const Guid, pfEqual: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfCategoryMgr_IsEqualTfGuidAtom(self: *const T, guidatom: u32, rguid: ?*const Guid, pfEqual: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCategoryMgr.VTable, self.vtable).IsEqualTfGuidAtom(@ptrCast(*const ITfCategoryMgr, self), guidatom, rguid, pfEqual);
         }
     };}
@@ -6350,9 +6350,9 @@ pub const ITfSource = extern struct {
         base: IUnknown.VTable,
         AdviseSink: fn(
             self: *const ITfSource,
-            riid: *const Guid,
-            punk: *IUnknown,
-            pdwCookie: *u32,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+            pdwCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseSink: fn(
             self: *const ITfSource,
@@ -6363,7 +6363,7 @@ pub const ITfSource = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSource_AdviseSink(self: *const T, riid: *const Guid, punk: *IUnknown, pdwCookie: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfSource_AdviseSink(self: *const T, riid: ?*const Guid, punk: ?*IUnknown, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSource.VTable, self.vtable).AdviseSink(@ptrCast(*const ITfSource, self), riid, punk, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6383,24 +6383,24 @@ pub const ITfSourceSingle = extern struct {
         AdviseSingleSink: fn(
             self: *const ITfSourceSingle,
             tid: u32,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseSingleSink: fn(
             self: *const ITfSourceSingle,
             tid: u32,
-            riid: *const Guid,
+            riid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSourceSingle_AdviseSingleSink(self: *const T, tid: u32, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfSourceSingle_AdviseSingleSink(self: *const T, tid: u32, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSourceSingle.VTable, self.vtable).AdviseSingleSink(@ptrCast(*const ITfSourceSingle, self), tid, riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSourceSingle_UnadviseSingleSink(self: *const T, tid: u32, riid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfSourceSingle_UnadviseSingleSink(self: *const T, tid: u32, riid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSourceSingle.VTable, self.vtable).UnadviseSingleSink(@ptrCast(*const ITfSourceSingle, self), tid, riid);
         }
     };}
@@ -6415,9 +6415,9 @@ pub const ITfUIElementMgr = extern struct {
         base: IUnknown.VTable,
         BeginUIElement: fn(
             self: *const ITfUIElementMgr,
-            pElement: *ITfUIElement,
-            pbShow: *BOOL,
-            pdwUIElementId: *u32,
+            pElement: ?*ITfUIElement,
+            pbShow: ?*BOOL,
+            pdwUIElementId: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateUIElement: fn(
             self: *const ITfUIElementMgr,
@@ -6430,18 +6430,18 @@ pub const ITfUIElementMgr = extern struct {
         GetUIElement: fn(
             self: *const ITfUIElementMgr,
             dwUIELementId: u32,
-            ppElement: **ITfUIElement,
+            ppElement: ?*?*ITfUIElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumUIElements: fn(
             self: *const ITfUIElementMgr,
-            ppEnum: **IEnumTfUIElements,
+            ppEnum: ?*?*IEnumTfUIElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElementMgr_BeginUIElement(self: *const T, pElement: *ITfUIElement, pbShow: *BOOL, pdwUIElementId: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfUIElementMgr_BeginUIElement(self: *const T, pElement: ?*ITfUIElement, pbShow: ?*BOOL, pdwUIElementId: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElementMgr.VTable, self.vtable).BeginUIElement(@ptrCast(*const ITfUIElementMgr, self), pElement, pbShow, pdwUIElementId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6453,11 +6453,11 @@ pub const ITfUIElementMgr = extern struct {
             return @ptrCast(*const ITfUIElementMgr.VTable, self.vtable).EndUIElement(@ptrCast(*const ITfUIElementMgr, self), dwUIElementId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElementMgr_GetUIElement(self: *const T, dwUIELementId: u32, ppElement: **ITfUIElement) callconv(.Inline) HRESULT {
+        pub fn ITfUIElementMgr_GetUIElement(self: *const T, dwUIELementId: u32, ppElement: ?*?*ITfUIElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElementMgr.VTable, self.vtable).GetUIElement(@ptrCast(*const ITfUIElementMgr, self), dwUIELementId, ppElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElementMgr_EnumUIElements(self: *const T, ppEnum: **IEnumTfUIElements) callconv(.Inline) HRESULT {
+        pub fn ITfUIElementMgr_EnumUIElements(self: *const T, ppEnum: ?*?*IEnumTfUIElements) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElementMgr.VTable, self.vtable).EnumUIElements(@ptrCast(*const ITfUIElementMgr, self), ppEnum);
         }
     };}
@@ -6472,13 +6472,13 @@ pub const IEnumTfUIElements = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfUIElements,
-            ppEnum: **IEnumTfUIElements,
+            ppEnum: ?*?*IEnumTfUIElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfUIElements,
             ulCount: u32,
-            ppElement: [*]*ITfUIElement,
-            pcFetched: *u32,
+            ppElement: [*]?*ITfUIElement,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfUIElements,
@@ -6492,11 +6492,11 @@ pub const IEnumTfUIElements = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfUIElements_Clone(self: *const T, ppEnum: **IEnumTfUIElements) callconv(.Inline) HRESULT {
+        pub fn IEnumTfUIElements_Clone(self: *const T, ppEnum: ?*?*IEnumTfUIElements) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfUIElements.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfUIElements, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfUIElements_Next(self: *const T, ulCount: u32, ppElement: [*]*ITfUIElement, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfUIElements_Next(self: *const T, ulCount: u32, ppElement: [*]?*ITfUIElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfUIElements.VTable, self.vtable).Next(@ptrCast(*const IEnumTfUIElements, self), ulCount, ppElement, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6520,7 +6520,7 @@ pub const ITfUIElementSink = extern struct {
         BeginUIElement: fn(
             self: *const ITfUIElementSink,
             dwUIElementId: u32,
-            pbShow: *BOOL,
+            pbShow: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateUIElement: fn(
             self: *const ITfUIElementSink,
@@ -6535,7 +6535,7 @@ pub const ITfUIElementSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElementSink_BeginUIElement(self: *const T, dwUIElementId: u32, pbShow: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfUIElementSink_BeginUIElement(self: *const T, dwUIElementId: u32, pbShow: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElementSink.VTable, self.vtable).BeginUIElement(@ptrCast(*const ITfUIElementSink, self), dwUIElementId, pbShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6558,11 +6558,11 @@ pub const ITfUIElement = extern struct {
         base: IUnknown.VTable,
         GetDescription: fn(
             self: *const ITfUIElement,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGUID: fn(
             self: *const ITfUIElement,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Show: fn(
             self: *const ITfUIElement,
@@ -6570,18 +6570,18 @@ pub const ITfUIElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsShown: fn(
             self: *const ITfUIElement,
-            pbShow: *BOOL,
+            pbShow: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElement_GetDescription(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfUIElement_GetDescription(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElement.VTable, self.vtable).GetDescription(@ptrCast(*const ITfUIElement, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElement_GetGUID(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITfUIElement_GetGUID(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElement.VTable, self.vtable).GetGUID(@ptrCast(*const ITfUIElement, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6589,7 +6589,7 @@ pub const ITfUIElement = extern struct {
             return @ptrCast(*const ITfUIElement.VTable, self.vtable).Show(@ptrCast(*const ITfUIElement, self), bShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfUIElement_IsShown(self: *const T, pbShow: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfUIElement_IsShown(self: *const T, pbShow: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfUIElement.VTable, self.vtable).IsShown(@ptrCast(*const ITfUIElement, self), pbShow);
         }
     };}
@@ -6604,30 +6604,30 @@ pub const ITfCandidateListUIElement = extern struct {
         base: ITfUIElement.VTable,
         GetUpdatedFlags: fn(
             self: *const ITfCandidateListUIElement,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentMgr: fn(
             self: *const ITfCandidateListUIElement,
-            ppdim: **ITfDocumentMgr,
+            ppdim: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const ITfCandidateListUIElement,
-            puCount: *u32,
+            puCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ITfCandidateListUIElement,
-            puIndex: *u32,
+            puIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetString: fn(
             self: *const ITfCandidateListUIElement,
             uIndex: u32,
-            pstr: *BSTR,
+            pstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPageIndex: fn(
             self: *const ITfCandidateListUIElement,
             pIndex: [*]u32,
             uSize: u32,
-            puPageCnt: *u32,
+            puPageCnt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPageIndex: fn(
             self: *const ITfCandidateListUIElement,
@@ -6636,34 +6636,34 @@ pub const ITfCandidateListUIElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPage: fn(
             self: *const ITfCandidateListUIElement,
-            puPage: *u32,
+            puPage: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfUIElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetUpdatedFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetUpdatedFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetUpdatedFlags(@ptrCast(*const ITfCandidateListUIElement, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetDocumentMgr(self: *const T, ppdim: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetDocumentMgr(self: *const T, ppdim: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetDocumentMgr(@ptrCast(*const ITfCandidateListUIElement, self), ppdim);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetCount(self: *const T, puCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetCount(self: *const T, puCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetCount(@ptrCast(*const ITfCandidateListUIElement, self), puCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetSelection(self: *const T, puIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetSelection(self: *const T, puIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetSelection(@ptrCast(*const ITfCandidateListUIElement, self), puIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetString(self: *const T, uIndex: u32, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetString(self: *const T, uIndex: u32, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetString(@ptrCast(*const ITfCandidateListUIElement, self), uIndex, pstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetPageIndex(self: *const T, pIndex: [*]u32, uSize: u32, puPageCnt: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetPageIndex(self: *const T, pIndex: [*]u32, uSize: u32, puPageCnt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetPageIndex(@ptrCast(*const ITfCandidateListUIElement, self), pIndex, uSize, puPageCnt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6671,7 +6671,7 @@ pub const ITfCandidateListUIElement = extern struct {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).SetPageIndex(@ptrCast(*const ITfCandidateListUIElement, self), pIndex, uPageCnt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateListUIElement_GetCurrentPage(self: *const T, puPage: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateListUIElement_GetCurrentPage(self: *const T, puPage: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateListUIElement.VTable, self.vtable).GetCurrentPage(@ptrCast(*const ITfCandidateListUIElement, self), puPage);
         }
     };}
@@ -6722,54 +6722,54 @@ pub const ITfReadingInformationUIElement = extern struct {
         base: ITfUIElement.VTable,
         GetUpdatedFlags: fn(
             self: *const ITfReadingInformationUIElement,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContext: fn(
             self: *const ITfReadingInformationUIElement,
-            ppic: **ITfContext,
+            ppic: ?*?*ITfContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetString: fn(
             self: *const ITfReadingInformationUIElement,
-            pstr: *BSTR,
+            pstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxReadingStringLength: fn(
             self: *const ITfReadingInformationUIElement,
-            pcchMax: *u32,
+            pcchMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorIndex: fn(
             self: *const ITfReadingInformationUIElement,
-            pErrorIndex: *u32,
+            pErrorIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsVerticalOrderPreferred: fn(
             self: *const ITfReadingInformationUIElement,
-            pfVertical: *BOOL,
+            pfVertical: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfUIElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_GetUpdatedFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_GetUpdatedFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).GetUpdatedFlags(@ptrCast(*const ITfReadingInformationUIElement, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_GetContext(self: *const T, ppic: **ITfContext) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_GetContext(self: *const T, ppic: ?*?*ITfContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).GetContext(@ptrCast(*const ITfReadingInformationUIElement, self), ppic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_GetString(self: *const T, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_GetString(self: *const T, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).GetString(@ptrCast(*const ITfReadingInformationUIElement, self), pstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_GetMaxReadingStringLength(self: *const T, pcchMax: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_GetMaxReadingStringLength(self: *const T, pcchMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).GetMaxReadingStringLength(@ptrCast(*const ITfReadingInformationUIElement, self), pcchMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_GetErrorIndex(self: *const T, pErrorIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_GetErrorIndex(self: *const T, pErrorIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).GetErrorIndex(@ptrCast(*const ITfReadingInformationUIElement, self), pErrorIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReadingInformationUIElement_IsVerticalOrderPreferred(self: *const T, pfVertical: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfReadingInformationUIElement_IsVerticalOrderPreferred(self: *const T, pfVertical: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReadingInformationUIElement.VTable, self.vtable).IsVerticalOrderPreferred(@ptrCast(*const ITfReadingInformationUIElement, self), pfVertical);
         }
     };}
@@ -6784,14 +6784,14 @@ pub const ITfTransitoryExtensionUIElement = extern struct {
         base: ITfUIElement.VTable,
         GetDocumentMgr: fn(
             self: *const ITfTransitoryExtensionUIElement,
-            ppdim: **ITfDocumentMgr,
+            ppdim: ?*?*ITfDocumentMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfUIElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTransitoryExtensionUIElement_GetDocumentMgr(self: *const T, ppdim: **ITfDocumentMgr) callconv(.Inline) HRESULT {
+        pub fn ITfTransitoryExtensionUIElement_GetDocumentMgr(self: *const T, ppdim: ?*?*ITfDocumentMgr) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTransitoryExtensionUIElement.VTable, self.vtable).GetDocumentMgr(@ptrCast(*const ITfTransitoryExtensionUIElement, self), ppdim);
         }
     };}
@@ -6806,18 +6806,18 @@ pub const ITfTransitoryExtensionSink = extern struct {
         base: IUnknown.VTable,
         OnTransitoryExtensionUpdated: fn(
             self: *const ITfTransitoryExtensionSink,
-            pic: *ITfContext,
+            pic: ?*ITfContext,
             ecReadOnly: u32,
-            pResultRange: *ITfRange,
-            pCompositionRange: *ITfRange,
-            pfDeleteResultRange: *BOOL,
+            pResultRange: ?*ITfRange,
+            pCompositionRange: ?*ITfRange,
+            pfDeleteResultRange: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfTransitoryExtensionSink_OnTransitoryExtensionUpdated(self: *const T, pic: *ITfContext, ecReadOnly: u32, pResultRange: *ITfRange, pCompositionRange: *ITfRange, pfDeleteResultRange: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfTransitoryExtensionSink_OnTransitoryExtensionUpdated(self: *const T, pic: ?*ITfContext, ecReadOnly: u32, pResultRange: ?*ITfRange, pCompositionRange: ?*ITfRange, pfDeleteResultRange: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfTransitoryExtensionSink.VTable, self.vtable).OnTransitoryExtensionUpdated(@ptrCast(*const ITfTransitoryExtensionSink, self), pic, ecReadOnly, pResultRange, pCompositionRange, pfDeleteResultRange);
         }
     };}
@@ -6832,14 +6832,14 @@ pub const ITfToolTipUIElement = extern struct {
         base: ITfUIElement.VTable,
         GetString: fn(
             self: *const ITfToolTipUIElement,
-            pstr: *BSTR,
+            pstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfUIElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfToolTipUIElement_GetString(self: *const T, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfToolTipUIElement_GetString(self: *const T, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfToolTipUIElement.VTable, self.vtable).GetString(@ptrCast(*const ITfToolTipUIElement, self), pstr);
         }
     };}
@@ -6854,23 +6854,23 @@ pub const ITfReverseConversionList = extern struct {
         base: IUnknown.VTable,
         GetLength: fn(
             self: *const ITfReverseConversionList,
-            puIndex: *u32,
+            puIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetString: fn(
             self: *const ITfReverseConversionList,
             uIndex: u32,
-            pbstr: *BSTR,
+            pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReverseConversionList_GetLength(self: *const T, puIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfReverseConversionList_GetLength(self: *const T, puIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReverseConversionList.VTable, self.vtable).GetLength(@ptrCast(*const ITfReverseConversionList, self), puIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReverseConversionList_GetString(self: *const T, uIndex: u32, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfReverseConversionList_GetString(self: *const T, uIndex: u32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReverseConversionList.VTable, self.vtable).GetString(@ptrCast(*const ITfReverseConversionList, self), uIndex, pbstr);
         }
     };}
@@ -6885,15 +6885,15 @@ pub const ITfReverseConversion = extern struct {
         base: IUnknown.VTable,
         DoReverseConversion: fn(
             self: *const ITfReverseConversion,
-            lpstr: [*:0]const u16,
-            ppList: **ITfReverseConversionList,
+            lpstr: ?[*:0]const u16,
+            ppList: ?*?*ITfReverseConversionList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReverseConversion_DoReverseConversion(self: *const T, lpstr: [*:0]const u16, ppList: **ITfReverseConversionList) callconv(.Inline) HRESULT {
+        pub fn ITfReverseConversion_DoReverseConversion(self: *const T, lpstr: ?[*:0]const u16, ppList: ?*?*ITfReverseConversionList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReverseConversion.VTable, self.vtable).DoReverseConversion(@ptrCast(*const ITfReverseConversion, self), lpstr, ppList);
         }
     };}
@@ -6909,16 +6909,16 @@ pub const ITfReverseConversionMgr = extern struct {
         GetReverseConversion: fn(
             self: *const ITfReverseConversionMgr,
             langid: u16,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
             dwflag: u32,
-            ppReverseConversion: **ITfReverseConversion,
+            ppReverseConversion: ?*?*ITfReverseConversion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfReverseConversionMgr_GetReverseConversion(self: *const T, langid: u16, guidProfile: *const Guid, dwflag: u32, ppReverseConversion: **ITfReverseConversion) callconv(.Inline) HRESULT {
+        pub fn ITfReverseConversionMgr_GetReverseConversion(self: *const T, langid: u16, guidProfile: ?*const Guid, dwflag: u32, ppReverseConversion: ?*?*ITfReverseConversion) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfReverseConversionMgr.VTable, self.vtable).GetReverseConversion(@ptrCast(*const ITfReverseConversionMgr, self), langid, guidProfile, dwflag, ppReverseConversion);
         }
     };}
@@ -6933,22 +6933,22 @@ pub const ITfCandidateString = extern struct {
         base: IUnknown.VTable,
         GetString: fn(
             self: *const ITfCandidateString,
-            pbstr: *BSTR,
+            pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIndex: fn(
             self: *const ITfCandidateString,
-            pnIndex: *u32,
+            pnIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateString_GetString(self: *const T, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateString_GetString(self: *const T, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateString.VTable, self.vtable).GetString(@ptrCast(*const ITfCandidateString, self), pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateString_GetIndex(self: *const T, pnIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateString_GetIndex(self: *const T, pnIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateString.VTable, self.vtable).GetIndex(@ptrCast(*const ITfCandidateString, self), pnIndex);
         }
     };}
@@ -6963,13 +6963,13 @@ pub const IEnumTfCandidates = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfCandidates,
-            ppEnum: **IEnumTfCandidates,
+            ppEnum: ?*?*IEnumTfCandidates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfCandidates,
             ulCount: u32,
-            ppCand: [*]*ITfCandidateString,
-            pcFetched: *u32,
+            ppCand: [*]?*ITfCandidateString,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfCandidates,
@@ -6983,11 +6983,11 @@ pub const IEnumTfCandidates = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfCandidates_Clone(self: *const T, ppEnum: **IEnumTfCandidates) callconv(.Inline) HRESULT {
+        pub fn IEnumTfCandidates_Clone(self: *const T, ppEnum: ?*?*IEnumTfCandidates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfCandidates.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfCandidates, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfCandidates_Next(self: *const T, ulCount: u32, ppCand: [*]*ITfCandidateString, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfCandidates_Next(self: *const T, ulCount: u32, ppCand: [*]?*ITfCandidateString, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfCandidates.VTable, self.vtable).Next(@ptrCast(*const IEnumTfCandidates, self), ulCount, ppCand, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7019,16 +7019,16 @@ pub const ITfCandidateList = extern struct {
         base: IUnknown.VTable,
         EnumCandidates: fn(
             self: *const ITfCandidateList,
-            ppEnum: **IEnumTfCandidates,
+            ppEnum: ?*?*IEnumTfCandidates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCandidate: fn(
             self: *const ITfCandidateList,
             nIndex: u32,
-            ppCand: **ITfCandidateString,
+            ppCand: ?*?*ITfCandidateString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCandidateNum: fn(
             self: *const ITfCandidateList,
-            pnCnt: *u32,
+            pnCnt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetResult: fn(
             self: *const ITfCandidateList,
@@ -7040,15 +7040,15 @@ pub const ITfCandidateList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateList_EnumCandidates(self: *const T, ppEnum: **IEnumTfCandidates) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateList_EnumCandidates(self: *const T, ppEnum: ?*?*IEnumTfCandidates) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateList.VTable, self.vtable).EnumCandidates(@ptrCast(*const ITfCandidateList, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateList_GetCandidate(self: *const T, nIndex: u32, ppCand: **ITfCandidateString) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateList_GetCandidate(self: *const T, nIndex: u32, ppCand: ?*?*ITfCandidateString) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateList.VTable, self.vtable).GetCandidate(@ptrCast(*const ITfCandidateList, self), nIndex, ppCand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfCandidateList_GetCandidateNum(self: *const T, pnCnt: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfCandidateList_GetCandidateNum(self: *const T, pnCnt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfCandidateList.VTable, self.vtable).GetCandidateNum(@ptrCast(*const ITfCandidateList, self), pnCnt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7067,33 +7067,33 @@ pub const ITfFnReconversion = extern struct {
         base: ITfFunction.VTable,
         QueryRange: fn(
             self: *const ITfFnReconversion,
-            pRange: *ITfRange,
-            ppNewRange: **ITfRange,
-            pfConvertable: *BOOL,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfConvertable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReconversion: fn(
             self: *const ITfFnReconversion,
-            pRange: *ITfRange,
-            ppCandList: **ITfCandidateList,
+            pRange: ?*ITfRange,
+            ppCandList: ?*?*ITfCandidateList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reconvert: fn(
             self: *const ITfFnReconversion,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnReconversion_QueryRange(self: *const T, pRange: *ITfRange, ppNewRange: **ITfRange, pfConvertable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnReconversion_QueryRange(self: *const T, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfConvertable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnReconversion.VTable, self.vtable).QueryRange(@ptrCast(*const ITfFnReconversion, self), pRange, ppNewRange, pfConvertable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnReconversion_GetReconversion(self: *const T, pRange: *ITfRange, ppCandList: **ITfCandidateList) callconv(.Inline) HRESULT {
+        pub fn ITfFnReconversion_GetReconversion(self: *const T, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnReconversion.VTable, self.vtable).GetReconversion(@ptrCast(*const ITfFnReconversion, self), pRange, ppCandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnReconversion_Reconvert(self: *const T, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfFnReconversion_Reconvert(self: *const T, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnReconversion.VTable, self.vtable).Reconvert(@ptrCast(*const ITfFnReconversion, self), pRange);
         }
     };}
@@ -7108,24 +7108,24 @@ pub const ITfFnPlayBack = extern struct {
         base: ITfFunction.VTable,
         QueryRange: fn(
             self: *const ITfFnPlayBack,
-            pRange: *ITfRange,
-            ppNewRange: **ITfRange,
-            pfPlayable: *BOOL,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfPlayable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Play: fn(
             self: *const ITfFnPlayBack,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnPlayBack_QueryRange(self: *const T, pRange: *ITfRange, ppNewRange: **ITfRange, pfPlayable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnPlayBack_QueryRange(self: *const T, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfPlayable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnPlayBack.VTable, self.vtable).QueryRange(@ptrCast(*const ITfFnPlayBack, self), pRange, ppNewRange, pfPlayable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnPlayBack_Play(self: *const T, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfFnPlayBack_Play(self: *const T, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnPlayBack.VTable, self.vtable).Play(@ptrCast(*const ITfFnPlayBack, self), pRange);
         }
     };}
@@ -7144,7 +7144,7 @@ pub const ITfFnLangProfileUtil = extern struct {
         IsProfileAvailableForLang: fn(
             self: *const ITfFnLangProfileUtil,
             langid: u16,
-            pfAvailable: *BOOL,
+            pfAvailable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7155,7 +7155,7 @@ pub const ITfFnLangProfileUtil = extern struct {
             return @ptrCast(*const ITfFnLangProfileUtil.VTable, self.vtable).RegisterActiveProfiles(@ptrCast(*const ITfFnLangProfileUtil, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLangProfileUtil_IsProfileAvailableForLang(self: *const T, langid: u16, pfAvailable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnLangProfileUtil_IsProfileAvailableForLang(self: *const T, langid: u16, pfAvailable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLangProfileUtil.VTable, self.vtable).IsProfileAvailableForLang(@ptrCast(*const ITfFnLangProfileUtil, self), langid, pfAvailable);
         }
     };}
@@ -7170,16 +7170,16 @@ pub const ITfFnConfigure = extern struct {
         base: ITfFunction.VTable,
         Show: fn(
             self: *const ITfFnConfigure,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             langid: u16,
-            rguidProfile: *const Guid,
+            rguidProfile: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnConfigure_Show(self: *const T, hwndParent: HWND, langid: u16, rguidProfile: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfFnConfigure_Show(self: *const T, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnConfigure.VTable, self.vtable).Show(@ptrCast(*const ITfFnConfigure, self), hwndParent, langid, rguidProfile);
         }
     };}
@@ -7194,17 +7194,17 @@ pub const ITfFnConfigureRegisterWord = extern struct {
         base: ITfFunction.VTable,
         Show: fn(
             self: *const ITfFnConfigureRegisterWord,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             langid: u16,
-            rguidProfile: *const Guid,
-            bstrRegistered: BSTR,
+            rguidProfile: ?*const Guid,
+            bstrRegistered: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnConfigureRegisterWord_Show(self: *const T, hwndParent: HWND, langid: u16, rguidProfile: *const Guid, bstrRegistered: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfFnConfigureRegisterWord_Show(self: *const T, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnConfigureRegisterWord.VTable, self.vtable).Show(@ptrCast(*const ITfFnConfigureRegisterWord, self), hwndParent, langid, rguidProfile, bstrRegistered);
         }
     };}
@@ -7219,17 +7219,17 @@ pub const ITfFnConfigureRegisterEudc = extern struct {
         base: ITfFunction.VTable,
         Show: fn(
             self: *const ITfFnConfigureRegisterEudc,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             langid: u16,
-            rguidProfile: *const Guid,
-            bstrRegistered: BSTR,
+            rguidProfile: ?*const Guid,
+            bstrRegistered: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnConfigureRegisterEudc_Show(self: *const T, hwndParent: HWND, langid: u16, rguidProfile: *const Guid, bstrRegistered: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfFnConfigureRegisterEudc_Show(self: *const T, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnConfigureRegisterEudc.VTable, self.vtable).Show(@ptrCast(*const ITfFnConfigureRegisterEudc, self), hwndParent, langid, rguidProfile, bstrRegistered);
         }
     };}
@@ -7244,14 +7244,14 @@ pub const ITfFnShowHelp = extern struct {
         base: ITfFunction.VTable,
         Show: fn(
             self: *const ITfFnShowHelp,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnShowHelp_Show(self: *const T, hwndParent: HWND) callconv(.Inline) HRESULT {
+        pub fn ITfFnShowHelp_Show(self: *const T, hwndParent: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnShowHelp.VTable, self.vtable).Show(@ptrCast(*const ITfFnShowHelp, self), hwndParent);
         }
     };}
@@ -7306,14 +7306,14 @@ pub const ITfFnGetSAPIObject = extern struct {
         Get: fn(
             self: *const ITfFnGetSAPIObject,
             sObj: TfSapiObject,
-            ppunk: **IUnknown,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnGetSAPIObject_Get(self: *const T, sObj: TfSapiObject, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfFnGetSAPIObject_Get(self: *const T, sObj: TfSapiObject, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnGetSAPIObject.VTable, self.vtable).Get(@ptrCast(*const ITfFnGetSAPIObject, self), sObj, ppunk);
         }
     };}
@@ -7328,12 +7328,12 @@ pub const ITfFnPropertyUIStatus = extern struct {
         base: ITfFunction.VTable,
         GetStatus: fn(
             self: *const ITfFnPropertyUIStatus,
-            refguidProp: *const Guid,
-            pdw: *u32,
+            refguidProp: ?*const Guid,
+            pdw: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStatus: fn(
             self: *const ITfFnPropertyUIStatus,
-            refguidProp: *const Guid,
+            refguidProp: ?*const Guid,
             dw: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -7341,11 +7341,11 @@ pub const ITfFnPropertyUIStatus = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnPropertyUIStatus_GetStatus(self: *const T, refguidProp: *const Guid, pdw: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfFnPropertyUIStatus_GetStatus(self: *const T, refguidProp: ?*const Guid, pdw: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnPropertyUIStatus.VTable, self.vtable).GetStatus(@ptrCast(*const ITfFnPropertyUIStatus, self), refguidProp, pdw);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnPropertyUIStatus_SetStatus(self: *const T, refguidProp: *const Guid, dw: u32) callconv(.Inline) HRESULT {
+        pub fn ITfFnPropertyUIStatus_SetStatus(self: *const T, refguidProp: ?*const Guid, dw: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnPropertyUIStatus.VTable, self.vtable).SetStatus(@ptrCast(*const ITfFnPropertyUIStatus, self), refguidProp, dw);
         }
     };}
@@ -7359,13 +7359,13 @@ pub const IEnumSpeechCommands = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumSpeechCommands,
-            ppEnum: **IEnumSpeechCommands,
+            ppEnum: ?*?*IEnumSpeechCommands,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumSpeechCommands,
             ulCount: u32,
-            pSpCmds: [*]*u16,
-            pcFetched: *u32,
+            pSpCmds: [*]?*u16,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumSpeechCommands,
@@ -7379,11 +7379,11 @@ pub const IEnumSpeechCommands = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSpeechCommands_Clone(self: *const T, ppEnum: **IEnumSpeechCommands) callconv(.Inline) HRESULT {
+        pub fn IEnumSpeechCommands_Clone(self: *const T, ppEnum: ?*?*IEnumSpeechCommands) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSpeechCommands.VTable, self.vtable).Clone(@ptrCast(*const IEnumSpeechCommands, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSpeechCommands_Next(self: *const T, ulCount: u32, pSpCmds: [*]*u16, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSpeechCommands_Next(self: *const T, ulCount: u32, pSpCmds: [*]?*u16, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSpeechCommands.VTable, self.vtable).Next(@ptrCast(*const IEnumSpeechCommands, self), ulCount, pSpCmds, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7406,7 +7406,7 @@ pub const ISpeechCommandProvider = extern struct {
         EnumSpeechCommands: fn(
             self: *const ISpeechCommandProvider,
             langid: u16,
-            ppEnum: **IEnumSpeechCommands,
+            ppEnum: ?*?*IEnumSpeechCommands,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessCommand: fn(
             self: *const ISpeechCommandProvider,
@@ -7419,7 +7419,7 @@ pub const ISpeechCommandProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechCommandProvider_EnumSpeechCommands(self: *const T, langid: u16, ppEnum: **IEnumSpeechCommands) callconv(.Inline) HRESULT {
+        pub fn ISpeechCommandProvider_EnumSpeechCommands(self: *const T, langid: u16, ppEnum: ?*?*IEnumSpeechCommands) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechCommandProvider.VTable, self.vtable).EnumSpeechCommands(@ptrCast(*const ISpeechCommandProvider, self), langid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7437,14 +7437,14 @@ pub const ITfFnCustomSpeechCommand = extern struct {
         base: ITfFunction.VTable,
         SetSpeechCommandProvider: fn(
             self: *const ITfFnCustomSpeechCommand,
-            pspcmdProvider: *IUnknown,
+            pspcmdProvider: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnCustomSpeechCommand_SetSpeechCommandProvider(self: *const T, pspcmdProvider: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITfFnCustomSpeechCommand_SetSpeechCommandProvider(self: *const T, pspcmdProvider: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnCustomSpeechCommand.VTable, self.vtable).SetSpeechCommandProvider(@ptrCast(*const ITfFnCustomSpeechCommand, self), pspcmdProvider);
         }
     };}
@@ -7459,30 +7459,30 @@ pub const ITfFnLMProcessor = extern struct {
         base: ITfFunction.VTable,
         QueryRange: fn(
             self: *const ITfFnLMProcessor,
-            pRange: *ITfRange,
-            ppNewRange: **ITfRange,
-            pfAccepted: *BOOL,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfAccepted: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryLangID: fn(
             self: *const ITfFnLMProcessor,
             langid: u16,
-            pfAccepted: *BOOL,
+            pfAccepted: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReconversion: fn(
             self: *const ITfFnLMProcessor,
-            pRange: *ITfRange,
-            ppCandList: **ITfCandidateList,
+            pRange: ?*ITfRange,
+            ppCandList: ?*?*ITfCandidateList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reconvert: fn(
             self: *const ITfFnLMProcessor,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryKey: fn(
             self: *const ITfFnLMProcessor,
             fUp: BOOL,
             vKey: WPARAM,
             lparamKeydata: LPARAM,
-            pfInterested: *BOOL,
+            pfInterested: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeKey: fn(
             self: *const ITfFnLMProcessor,
@@ -7492,31 +7492,31 @@ pub const ITfFnLMProcessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeFunc: fn(
             self: *const ITfFnLMProcessor,
-            pic: *ITfContext,
-            refguidFunc: *const Guid,
+            pic: ?*ITfContext,
+            refguidFunc: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_QueryRange(self: *const T, pRange: *ITfRange, ppNewRange: **ITfRange, pfAccepted: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_QueryRange(self: *const T, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfAccepted: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).QueryRange(@ptrCast(*const ITfFnLMProcessor, self), pRange, ppNewRange, pfAccepted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_QueryLangID(self: *const T, langid: u16, pfAccepted: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_QueryLangID(self: *const T, langid: u16, pfAccepted: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).QueryLangID(@ptrCast(*const ITfFnLMProcessor, self), langid, pfAccepted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_GetReconversion(self: *const T, pRange: *ITfRange, ppCandList: **ITfCandidateList) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_GetReconversion(self: *const T, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).GetReconversion(@ptrCast(*const ITfFnLMProcessor, self), pRange, ppCandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_Reconvert(self: *const T, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_Reconvert(self: *const T, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).Reconvert(@ptrCast(*const ITfFnLMProcessor, self), pRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_QueryKey(self: *const T, fUp: BOOL, vKey: WPARAM, lparamKeydata: LPARAM, pfInterested: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_QueryKey(self: *const T, fUp: BOOL, vKey: WPARAM, lparamKeydata: LPARAM, pfInterested: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).QueryKey(@ptrCast(*const ITfFnLMProcessor, self), fUp, vKey, lparamKeydata, pfInterested);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7524,7 +7524,7 @@ pub const ITfFnLMProcessor = extern struct {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).InvokeKey(@ptrCast(*const ITfFnLMProcessor, self), fUp, vKey, lparamKeyData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMProcessor_InvokeFunc(self: *const T, pic: *ITfContext, refguidFunc: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMProcessor_InvokeFunc(self: *const T, pic: ?*ITfContext, refguidFunc: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMProcessor.VTable, self.vtable).InvokeFunc(@ptrCast(*const ITfFnLMProcessor, self), pic, refguidFunc);
         }
     };}
@@ -7539,14 +7539,14 @@ pub const ITfFnLMInternal = extern struct {
         base: ITfFnLMProcessor.VTable,
         ProcessLattice: fn(
             self: *const ITfFnLMInternal,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFnLMProcessor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnLMInternal_ProcessLattice(self: *const T, pRange: *ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfFnLMInternal_ProcessLattice(self: *const T, pRange: ?*ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnLMInternal.VTable, self.vtable).ProcessLattice(@ptrCast(*const ITfFnLMInternal, self), pRange);
         }
     };}
@@ -7560,7 +7560,7 @@ pub const TF_LMLATTELEMENT = extern struct {
     Anonymous: extern union {
         iCost: i32,
     },
-    bstrText: BSTR,
+    bstrText: ?BSTR,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7571,13 +7571,13 @@ pub const IEnumTfLatticeElements = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IEnumTfLatticeElements,
-            ppEnum: **IEnumTfLatticeElements,
+            ppEnum: ?*?*IEnumTfLatticeElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Next: fn(
             self: *const IEnumTfLatticeElements,
             ulCount: u32,
             rgsElements: [*]TF_LMLATTELEMENT,
-            pcFetched: *u32,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IEnumTfLatticeElements,
@@ -7591,11 +7591,11 @@ pub const IEnumTfLatticeElements = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLatticeElements_Clone(self: *const T, ppEnum: **IEnumTfLatticeElements) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLatticeElements_Clone(self: *const T, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLatticeElements.VTable, self.vtable).Clone(@ptrCast(*const IEnumTfLatticeElements, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumTfLatticeElements_Next(self: *const T, ulCount: u32, rgsElements: [*]TF_LMLATTELEMENT, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumTfLatticeElements_Next(self: *const T, ulCount: u32, rgsElements: [*]TF_LMLATTELEMENT, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumTfLatticeElements.VTable, self.vtable).Next(@ptrCast(*const IEnumTfLatticeElements, self), ulCount, rgsElements, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7618,25 +7618,25 @@ pub const ITfLMLattice = extern struct {
         base: IUnknown.VTable,
         QueryType: fn(
             self: *const ITfLMLattice,
-            rguidType: *const Guid,
-            pfSupported: *BOOL,
+            rguidType: ?*const Guid,
+            pfSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumLatticeElements: fn(
             self: *const ITfLMLattice,
             dwFrameStart: u32,
-            rguidType: *const Guid,
-            ppEnum: **IEnumTfLatticeElements,
+            rguidType: ?*const Guid,
+            ppEnum: ?*?*IEnumTfLatticeElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLMLattice_QueryType(self: *const T, rguidType: *const Guid, pfSupported: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfLMLattice_QueryType(self: *const T, rguidType: ?*const Guid, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLMLattice.VTable, self.vtable).QueryType(@ptrCast(*const ITfLMLattice, self), rguidType, pfSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfLMLattice_EnumLatticeElements(self: *const T, dwFrameStart: u32, rguidType: *const Guid, ppEnum: **IEnumTfLatticeElements) callconv(.Inline) HRESULT {
+        pub fn ITfLMLattice_EnumLatticeElements(self: *const T, dwFrameStart: u32, rguidType: ?*const Guid, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfLMLattice.VTable, self.vtable).EnumLatticeElements(@ptrCast(*const ITfLMLattice, self), dwFrameStart, rguidType, ppEnum);
         }
     };}
@@ -7651,25 +7651,25 @@ pub const ITfFnAdviseText = extern struct {
         base: ITfFunction.VTable,
         OnTextUpdate: fn(
             self: *const ITfFnAdviseText,
-            pRange: *ITfRange,
+            pRange: ?*ITfRange,
             pchText: [*:0]const u16,
             cch: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnLatticeUpdate: fn(
             self: *const ITfFnAdviseText,
-            pRange: *ITfRange,
-            pLattice: *ITfLMLattice,
+            pRange: ?*ITfRange,
+            pLattice: ?*ITfLMLattice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnAdviseText_OnTextUpdate(self: *const T, pRange: *ITfRange, pchText: [*:0]const u16, cch: i32) callconv(.Inline) HRESULT {
+        pub fn ITfFnAdviseText_OnTextUpdate(self: *const T, pRange: ?*ITfRange, pchText: [*:0]const u16, cch: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnAdviseText.VTable, self.vtable).OnTextUpdate(@ptrCast(*const ITfFnAdviseText, self), pRange, pchText, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnAdviseText_OnLatticeUpdate(self: *const T, pRange: *ITfRange, pLattice: *ITfLMLattice) callconv(.Inline) HRESULT {
+        pub fn ITfFnAdviseText_OnLatticeUpdate(self: *const T, pRange: ?*ITfRange, pLattice: ?*ITfLMLattice) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnAdviseText.VTable, self.vtable).OnLatticeUpdate(@ptrCast(*const ITfFnAdviseText, self), pRange, pLattice);
         }
     };}
@@ -7684,26 +7684,26 @@ pub const ITfFnSearchCandidateProvider = extern struct {
         base: ITfFunction.VTable,
         GetSearchCandidates: fn(
             self: *const ITfFnSearchCandidateProvider,
-            bstrQuery: BSTR,
-            bstrApplicationId: BSTR,
-            pplist: **ITfCandidateList,
+            bstrQuery: ?BSTR,
+            bstrApplicationId: ?BSTR,
+            pplist: ?*?*ITfCandidateList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetResult: fn(
             self: *const ITfFnSearchCandidateProvider,
-            bstrQuery: BSTR,
-            bstrApplicationID: BSTR,
-            bstrResult: BSTR,
+            bstrQuery: ?BSTR,
+            bstrApplicationID: ?BSTR,
+            bstrResult: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnSearchCandidateProvider_GetSearchCandidates(self: *const T, bstrQuery: BSTR, bstrApplicationId: BSTR, pplist: **ITfCandidateList) callconv(.Inline) HRESULT {
+        pub fn ITfFnSearchCandidateProvider_GetSearchCandidates(self: *const T, bstrQuery: ?BSTR, bstrApplicationId: ?BSTR, pplist: ?*?*ITfCandidateList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnSearchCandidateProvider.VTable, self.vtable).GetSearchCandidates(@ptrCast(*const ITfFnSearchCandidateProvider, self), bstrQuery, bstrApplicationId, pplist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnSearchCandidateProvider_SetResult(self: *const T, bstrQuery: BSTR, bstrApplicationID: BSTR, bstrResult: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfFnSearchCandidateProvider_SetResult(self: *const T, bstrQuery: ?BSTR, bstrApplicationID: ?BSTR, bstrResult: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnSearchCandidateProvider.VTable, self.vtable).SetResult(@ptrCast(*const ITfFnSearchCandidateProvider, self), bstrQuery, bstrApplicationID, bstrResult);
         }
     };}
@@ -7729,17 +7729,17 @@ pub const ITfIntegratableCandidateListUIElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelectionStyle: fn(
             self: *const ITfIntegratableCandidateListUIElement,
-            ptfSelectionStyle: *TfIntegratableCandidateListSelectionStyle,
+            ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnKeyDown: fn(
             self: *const ITfIntegratableCandidateListUIElement,
             wParam: WPARAM,
             lParam: LPARAM,
-            pfEaten: *BOOL,
+            pfEaten: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowCandidateNumbers: fn(
             self: *const ITfIntegratableCandidateListUIElement,
-            pfShow: *BOOL,
+            pfShow: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FinalizeExactCompositionString: fn(
             self: *const ITfIntegratableCandidateListUIElement,
@@ -7753,15 +7753,15 @@ pub const ITfIntegratableCandidateListUIElement = extern struct {
             return @ptrCast(*const ITfIntegratableCandidateListUIElement.VTable, self.vtable).SetIntegrationStyle(@ptrCast(*const ITfIntegratableCandidateListUIElement, self), guidIntegrationStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfIntegratableCandidateListUIElement_GetSelectionStyle(self: *const T, ptfSelectionStyle: *TfIntegratableCandidateListSelectionStyle) callconv(.Inline) HRESULT {
+        pub fn ITfIntegratableCandidateListUIElement_GetSelectionStyle(self: *const T, ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfIntegratableCandidateListUIElement.VTable, self.vtable).GetSelectionStyle(@ptrCast(*const ITfIntegratableCandidateListUIElement, self), ptfSelectionStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfIntegratableCandidateListUIElement_OnKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfIntegratableCandidateListUIElement_OnKeyDown(self: *const T, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfIntegratableCandidateListUIElement.VTable, self.vtable).OnKeyDown(@ptrCast(*const ITfIntegratableCandidateListUIElement, self), wParam, lParam, pfEaten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfIntegratableCandidateListUIElement_ShowCandidateNumbers(self: *const T, pfShow: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITfIntegratableCandidateListUIElement_ShowCandidateNumbers(self: *const T, pfShow: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfIntegratableCandidateListUIElement.VTable, self.vtable).ShowCandidateNumbers(@ptrCast(*const ITfIntegratableCandidateListUIElement, self), pfShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7789,15 +7789,15 @@ pub const ITfFnGetPreferredTouchKeyboardLayout = extern struct {
         base: ITfFunction.VTable,
         GetLayout: fn(
             self: *const ITfFnGetPreferredTouchKeyboardLayout,
-            pTKBLayoutType: *TKBLayoutType,
-            pwPreferredLayoutId: *u16,
+            pTKBLayoutType: ?*TKBLayoutType,
+            pwPreferredLayoutId: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnGetPreferredTouchKeyboardLayout_GetLayout(self: *const T, pTKBLayoutType: *TKBLayoutType, pwPreferredLayoutId: *u16) callconv(.Inline) HRESULT {
+        pub fn ITfFnGetPreferredTouchKeyboardLayout_GetLayout(self: *const T, pTKBLayoutType: ?*TKBLayoutType, pwPreferredLayoutId: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnGetPreferredTouchKeyboardLayout.VTable, self.vtable).GetLayout(@ptrCast(*const ITfFnGetPreferredTouchKeyboardLayout, self), pTKBLayoutType, pwPreferredLayoutId);
         }
     };}
@@ -7812,15 +7812,15 @@ pub const ITfFnGetLinguisticAlternates = extern struct {
         base: ITfFunction.VTable,
         GetAlternates: fn(
             self: *const ITfFnGetLinguisticAlternates,
-            pRange: *ITfRange,
-            ppCandidateList: **ITfCandidateList,
+            pRange: ?*ITfRange,
+            ppCandidateList: ?*?*ITfCandidateList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfFunction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfFnGetLinguisticAlternates_GetAlternates(self: *const T, pRange: *ITfRange, ppCandidateList: **ITfCandidateList) callconv(.Inline) HRESULT {
+        pub fn ITfFnGetLinguisticAlternates_GetAlternates(self: *const T, pRange: ?*ITfRange, ppCandidateList: ?*?*ITfCandidateList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfFnGetLinguisticAlternates.VTable, self.vtable).GetAlternates(@ptrCast(*const ITfFnGetLinguisticAlternates, self), pRange, ppCandidateList);
         }
     };}
@@ -7835,19 +7835,19 @@ pub const IUIManagerEventSink = extern struct {
         base: IUnknown.VTable,
         OnWindowOpening: fn(
             self: *const IUIManagerEventSink,
-            prcBounds: *RECT,
+            prcBounds: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnWindowOpened: fn(
             self: *const IUIManagerEventSink,
-            prcBounds: *RECT,
+            prcBounds: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnWindowUpdating: fn(
             self: *const IUIManagerEventSink,
-            prcUpdatedBounds: *RECT,
+            prcUpdatedBounds: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnWindowUpdated: fn(
             self: *const IUIManagerEventSink,
-            prcUpdatedBounds: *RECT,
+            prcUpdatedBounds: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnWindowClosing: fn(
             self: *const IUIManagerEventSink,
@@ -7860,19 +7860,19 @@ pub const IUIManagerEventSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIManagerEventSink_OnWindowOpening(self: *const T, prcBounds: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIManagerEventSink_OnWindowOpening(self: *const T, prcBounds: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIManagerEventSink.VTable, self.vtable).OnWindowOpening(@ptrCast(*const IUIManagerEventSink, self), prcBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIManagerEventSink_OnWindowOpened(self: *const T, prcBounds: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIManagerEventSink_OnWindowOpened(self: *const T, prcBounds: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIManagerEventSink.VTable, self.vtable).OnWindowOpened(@ptrCast(*const IUIManagerEventSink, self), prcBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIManagerEventSink_OnWindowUpdating(self: *const T, prcUpdatedBounds: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIManagerEventSink_OnWindowUpdating(self: *const T, prcUpdatedBounds: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIManagerEventSink.VTable, self.vtable).OnWindowUpdating(@ptrCast(*const IUIManagerEventSink, self), prcUpdatedBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIManagerEventSink_OnWindowUpdated(self: *const T, prcUpdatedBounds: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIManagerEventSink_OnWindowUpdated(self: *const T, prcUpdatedBounds: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIManagerEventSink.VTable, self.vtable).OnWindowUpdated(@ptrCast(*const IUIManagerEventSink, self), prcUpdatedBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8046,48 +8046,48 @@ pub const ITfInputScope = extern struct {
         base: IUnknown.VTable,
         GetInputScopes: fn(
             self: *const ITfInputScope,
-            pprgInputScopes: [*]*InputScope,
-            pcCount: *u32,
+            pprgInputScopes: [*]?*InputScope,
+            pcCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPhrase: fn(
             self: *const ITfInputScope,
-            ppbstrPhrases: [*]*BSTR,
-            pcCount: *u32,
+            ppbstrPhrases: [*]?*?BSTR,
+            pcCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegularExpression: fn(
             self: *const ITfInputScope,
-            pbstrRegExp: *BSTR,
+            pbstrRegExp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSRGS: fn(
             self: *const ITfInputScope,
-            pbstrSRGS: *BSTR,
+            pbstrSRGS: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetXML: fn(
             self: *const ITfInputScope,
-            pbstrXML: *BSTR,
+            pbstrXML: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope_GetInputScopes(self: *const T, pprgInputScopes: [*]*InputScope, pcCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope_GetInputScopes(self: *const T, pprgInputScopes: [*]?*InputScope, pcCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope.VTable, self.vtable).GetInputScopes(@ptrCast(*const ITfInputScope, self), pprgInputScopes, pcCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope_GetPhrase(self: *const T, ppbstrPhrases: [*]*BSTR, pcCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope_GetPhrase(self: *const T, ppbstrPhrases: [*]?*?BSTR, pcCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope.VTable, self.vtable).GetPhrase(@ptrCast(*const ITfInputScope, self), ppbstrPhrases, pcCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope_GetRegularExpression(self: *const T, pbstrRegExp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope_GetRegularExpression(self: *const T, pbstrRegExp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope.VTable, self.vtable).GetRegularExpression(@ptrCast(*const ITfInputScope, self), pbstrRegExp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope_GetSRGS(self: *const T, pbstrSRGS: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope_GetSRGS(self: *const T, pbstrSRGS: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope.VTable, self.vtable).GetSRGS(@ptrCast(*const ITfInputScope, self), pbstrSRGS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope_GetXML(self: *const T, pbstrXML: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope_GetXML(self: *const T, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope.VTable, self.vtable).GetXML(@ptrCast(*const ITfInputScope, self), pbstrXML);
         }
     };}
@@ -8102,14 +8102,14 @@ pub const ITfInputScope2 = extern struct {
         base: ITfInputScope.VTable,
         EnumWordList: fn(
             self: *const ITfInputScope2,
-            ppEnumString: **IEnumString,
+            ppEnumString: ?*?*IEnumString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITfInputScope.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInputScope2_EnumWordList(self: *const T, ppEnumString: **IEnumString) callconv(.Inline) HRESULT {
+        pub fn ITfInputScope2_EnumWordList(self: *const T, ppEnumString: ?*?*IEnumString) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInputScope2.VTable, self.vtable).EnumWordList(@ptrCast(*const ITfInputScope2, self), ppEnumString);
         }
     };}
@@ -8213,8 +8213,8 @@ pub const ITextStoreAnchorEx = extern struct {
         base: IUnknown.VTable,
         ScrollToRect: fn(
             self: *const ITextStoreAnchorEx,
-            pStart: *IAnchor,
-            pEnd: *IAnchor,
+            pStart: ?*IAnchor,
+            pEnd: ?*IAnchor,
             rc: RECT,
             dwPosition: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8223,7 +8223,7 @@ pub const ITextStoreAnchorEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchorEx_ScrollToRect(self: *const T, pStart: *IAnchor, pEnd: *IAnchor, rc: RECT, dwPosition: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchorEx_ScrollToRect(self: *const T, pStart: ?*IAnchor, pEnd: ?*IAnchor, rc: RECT, dwPosition: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchorEx.VTable, self.vtable).ScrollToRect(@ptrCast(*const ITextStoreAnchorEx, self), pStart, pEnd, rc, dwPosition);
         }
     };}
@@ -8278,56 +8278,56 @@ pub const IAccDictionary = extern struct {
         base: IUnknown.VTable,
         GetLocalizedString: fn(
             self: *const IAccDictionary,
-            Term: *const Guid,
+            Term: ?*const Guid,
             lcid: u32,
-            pResult: *BSTR,
-            plcid: *u32,
+            pResult: ?*?BSTR,
+            plcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentTerm: fn(
             self: *const IAccDictionary,
-            Term: *const Guid,
-            pParentTerm: *Guid,
+            Term: ?*const Guid,
+            pParentTerm: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMnemonicString: fn(
             self: *const IAccDictionary,
-            Term: *const Guid,
-            pResult: *BSTR,
+            Term: ?*const Guid,
+            pResult: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupMnemonicTerm: fn(
             self: *const IAccDictionary,
-            bstrMnemonic: BSTR,
-            pTerm: *Guid,
+            bstrMnemonic: ?BSTR,
+            pTerm: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertValueToString: fn(
             self: *const IAccDictionary,
-            Term: *const Guid,
+            Term: ?*const Guid,
             lcid: u32,
             varValue: VARIANT,
-            pbstrResult: *BSTR,
-            plcid: *u32,
+            pbstrResult: ?*?BSTR,
+            plcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccDictionary_GetLocalizedString(self: *const T, Term: *const Guid, lcid: u32, pResult: *BSTR, plcid: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccDictionary_GetLocalizedString(self: *const T, Term: ?*const Guid, lcid: u32, pResult: ?*?BSTR, plcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccDictionary.VTable, self.vtable).GetLocalizedString(@ptrCast(*const IAccDictionary, self), Term, lcid, pResult, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccDictionary_GetParentTerm(self: *const T, Term: *const Guid, pParentTerm: *Guid) callconv(.Inline) HRESULT {
+        pub fn IAccDictionary_GetParentTerm(self: *const T, Term: ?*const Guid, pParentTerm: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccDictionary.VTable, self.vtable).GetParentTerm(@ptrCast(*const IAccDictionary, self), Term, pParentTerm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccDictionary_GetMnemonicString(self: *const T, Term: *const Guid, pResult: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccDictionary_GetMnemonicString(self: *const T, Term: ?*const Guid, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccDictionary.VTable, self.vtable).GetMnemonicString(@ptrCast(*const IAccDictionary, self), Term, pResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccDictionary_LookupMnemonicTerm(self: *const T, bstrMnemonic: BSTR, pTerm: *Guid) callconv(.Inline) HRESULT {
+        pub fn IAccDictionary_LookupMnemonicTerm(self: *const T, bstrMnemonic: ?BSTR, pTerm: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccDictionary.VTable, self.vtable).LookupMnemonicTerm(@ptrCast(*const IAccDictionary, self), bstrMnemonic, pTerm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccDictionary_ConvertValueToString(self: *const T, Term: *const Guid, lcid: u32, varValue: VARIANT, pbstrResult: *BSTR, plcid: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccDictionary_ConvertValueToString(self: *const T, Term: ?*const Guid, lcid: u32, varValue: VARIANT, pbstrResult: ?*?BSTR, plcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccDictionary.VTable, self.vtable).ConvertValueToString(@ptrCast(*const IAccDictionary, self), Term, lcid, varValue, pbstrResult, plcid);
         }
     };}
@@ -8343,51 +8343,51 @@ pub const IVersionInfo = extern struct {
         GetSubcomponentCount: fn(
             self: *const IVersionInfo,
             ulSub: u32,
-            ulCount: *u32,
+            ulCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImplementationID: fn(
             self: *const IVersionInfo,
             ulSub: u32,
-            implid: *Guid,
+            implid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBuildVersion: fn(
             self: *const IVersionInfo,
             ulSub: u32,
-            pdwMajor: *u32,
-            pdwMinor: *u32,
+            pdwMajor: ?*u32,
+            pdwMinor: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComponentDescription: fn(
             self: *const IVersionInfo,
             ulSub: u32,
-            pImplStr: *BSTR,
+            pImplStr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInstanceDescription: fn(
             self: *const IVersionInfo,
             ulSub: u32,
-            pImplStr: *BSTR,
+            pImplStr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVersionInfo_GetSubcomponentCount(self: *const T, ulSub: u32, ulCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IVersionInfo_GetSubcomponentCount(self: *const T, ulSub: u32, ulCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVersionInfo.VTable, self.vtable).GetSubcomponentCount(@ptrCast(*const IVersionInfo, self), ulSub, ulCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVersionInfo_GetImplementationID(self: *const T, ulSub: u32, implid: *Guid) callconv(.Inline) HRESULT {
+        pub fn IVersionInfo_GetImplementationID(self: *const T, ulSub: u32, implid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVersionInfo.VTable, self.vtable).GetImplementationID(@ptrCast(*const IVersionInfo, self), ulSub, implid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVersionInfo_GetBuildVersion(self: *const T, ulSub: u32, pdwMajor: *u32, pdwMinor: *u32) callconv(.Inline) HRESULT {
+        pub fn IVersionInfo_GetBuildVersion(self: *const T, ulSub: u32, pdwMajor: ?*u32, pdwMinor: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVersionInfo.VTable, self.vtable).GetBuildVersion(@ptrCast(*const IVersionInfo, self), ulSub, pdwMajor, pdwMinor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVersionInfo_GetComponentDescription(self: *const T, ulSub: u32, pImplStr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IVersionInfo_GetComponentDescription(self: *const T, ulSub: u32, pImplStr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVersionInfo.VTable, self.vtable).GetComponentDescription(@ptrCast(*const IVersionInfo, self), ulSub, pImplStr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVersionInfo_GetInstanceDescription(self: *const T, ulSub: u32, pImplStr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IVersionInfo_GetInstanceDescription(self: *const T, ulSub: u32, pImplStr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVersionInfo.VTable, self.vtable).GetInstanceDescription(@ptrCast(*const IVersionInfo, self), ulSub, pImplStr);
         }
     };}
@@ -8402,12 +8402,12 @@ pub const ICoCreateLocally = extern struct {
         base: IUnknown.VTable,
         CoCreateLocally: fn(
             self: *const ICoCreateLocally,
-            rclsid: *const Guid,
+            rclsid: ?*const Guid,
             dwClsContext: u32,
-            riid: *const Guid,
-            punk: **IUnknown,
-            riidParam: *const Guid,
-            punkParam: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*?*IUnknown,
+            riidParam: ?*const Guid,
+            punkParam: ?*IUnknown,
             varParam: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -8415,7 +8415,7 @@ pub const ICoCreateLocally = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoCreateLocally_CoCreateLocally(self: *const T, rclsid: *const Guid, dwClsContext: u32, riid: *const Guid, punk: **IUnknown, riidParam: *const Guid, punkParam: *IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICoCreateLocally_CoCreateLocally(self: *const T, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, punk: ?*?*IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoCreateLocally.VTable, self.vtable).CoCreateLocally(@ptrCast(*const ICoCreateLocally, self), rclsid, dwClsContext, riid, punk, riidParam, punkParam, varParam);
         }
     };}
@@ -8430,9 +8430,9 @@ pub const ICoCreatedLocally = extern struct {
         base: IUnknown.VTable,
         LocalInit: fn(
             self: *const ICoCreatedLocally,
-            punkLocalObject: *IUnknown,
-            riidParam: *const Guid,
-            punkParam: *IUnknown,
+            punkLocalObject: ?*IUnknown,
+            riidParam: ?*const Guid,
+            punkParam: ?*IUnknown,
             varParam: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -8440,7 +8440,7 @@ pub const ICoCreatedLocally = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoCreatedLocally_LocalInit(self: *const T, punkLocalObject: *IUnknown, riidParam: *const Guid, punkParam: *IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICoCreatedLocally_LocalInit(self: *const T, punkLocalObject: ?*IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoCreatedLocally.VTable, self.vtable).LocalInit(@ptrCast(*const ICoCreatedLocally, self), punkLocalObject, riidParam, punkParam, varParam);
         }
     };}
@@ -8454,68 +8454,68 @@ pub const IAccStore = extern struct {
         base: IUnknown.VTable,
         Register: fn(
             self: *const IAccStore,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unregister: fn(
             self: *const IAccStore,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocuments: fn(
             self: *const IAccStore,
-            enumUnknown: **IEnumUnknown,
+            enumUnknown: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByHWND: fn(
             self: *const IAccStore,
-            hWnd: HWND,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            hWnd: ?HWND,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: fn(
             self: *const IAccStore,
             pt: POINT,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDocumentFocus: fn(
             self: *const IAccStore,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocused: fn(
             self: *const IAccStore,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_Register(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_Register(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).Register(@ptrCast(*const IAccStore, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_Unregister(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_Unregister(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).Unregister(@ptrCast(*const IAccStore, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_GetDocuments(self: *const T, enumUnknown: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_GetDocuments(self: *const T, enumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).GetDocuments(@ptrCast(*const IAccStore, self), enumUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_LookupByHWND(self: *const T, hWnd: ?HWND, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).LookupByHWND(@ptrCast(*const IAccStore, self), hWnd, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_LookupByPoint(self: *const T, pt: POINT, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).LookupByPoint(@ptrCast(*const IAccStore, self), pt, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_OnDocumentFocus(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_OnDocumentFocus(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).OnDocumentFocus(@ptrCast(*const IAccStore, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_GetFocused(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_GetFocused(self: *const T, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).GetFocused(@ptrCast(*const IAccStore, self), riid, ppunk);
         }
     };}
@@ -8530,31 +8530,31 @@ pub const IAccServerDocMgr = extern struct {
         base: IUnknown.VTable,
         NewDocument: fn(
             self: *const IAccServerDocMgr,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RevokeDocument: fn(
             self: *const IAccServerDocMgr,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDocumentFocus: fn(
             self: *const IAccServerDocMgr,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccServerDocMgr_NewDocument(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccServerDocMgr_NewDocument(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccServerDocMgr.VTable, self.vtable).NewDocument(@ptrCast(*const IAccServerDocMgr, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccServerDocMgr_RevokeDocument(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccServerDocMgr_RevokeDocument(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccServerDocMgr.VTable, self.vtable).RevokeDocument(@ptrCast(*const IAccServerDocMgr, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccServerDocMgr_OnDocumentFocus(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccServerDocMgr_OnDocumentFocus(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccServerDocMgr.VTable, self.vtable).OnDocumentFocus(@ptrCast(*const IAccServerDocMgr, self), punk);
         }
     };}
@@ -8569,43 +8569,43 @@ pub const IAccClientDocMgr = extern struct {
         base: IUnknown.VTable,
         GetDocuments: fn(
             self: *const IAccClientDocMgr,
-            enumUnknown: **IEnumUnknown,
+            enumUnknown: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByHWND: fn(
             self: *const IAccClientDocMgr,
-            hWnd: HWND,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            hWnd: ?HWND,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: fn(
             self: *const IAccClientDocMgr,
             pt: POINT,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocused: fn(
             self: *const IAccClientDocMgr,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_GetDocuments(self: *const T, enumUnknown: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_GetDocuments(self: *const T, enumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).GetDocuments(@ptrCast(*const IAccClientDocMgr, self), enumUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_LookupByHWND(self: *const T, hWnd: ?HWND, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).LookupByHWND(@ptrCast(*const IAccClientDocMgr, self), hWnd, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_LookupByPoint(self: *const T, pt: POINT, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).LookupByPoint(@ptrCast(*const IAccClientDocMgr, self), pt, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_GetFocused(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_GetFocused(self: *const T, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).GetFocused(@ptrCast(*const IAccClientDocMgr, self), riid, ppunk);
         }
     };}
@@ -8619,24 +8619,24 @@ pub const IDocWrap = extern struct {
         base: IUnknown.VTable,
         SetDoc: fn(
             self: *const IDocWrap,
-            riid: *const Guid,
-            punk: *IUnknown,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWrappedDoc: fn(
             self: *const IDocWrap,
-            riid: *const Guid,
-            ppunk: **IUnknown,
+            riid: ?*const Guid,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDocWrap_SetDoc(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDocWrap_SetDoc(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDocWrap.VTable, self.vtable).SetDoc(@ptrCast(*const IDocWrap, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDocWrap_GetWrappedDoc(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDocWrap_GetWrappedDoc(self: *const T, riid: ?*const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDocWrap.VTable, self.vtable).GetWrappedDoc(@ptrCast(*const IDocWrap, self), riid, ppunk);
         }
     };}
@@ -8650,15 +8650,15 @@ pub const IClonableWrapper = extern struct {
         base: IUnknown.VTable,
         CloneNewWrapper: fn(
             self: *const IClonableWrapper,
-            riid: *const Guid,
-            ppv: **c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClonableWrapper.VTable, self.vtable).CloneNewWrapper(@ptrCast(*const IClonableWrapper, self), riid, ppv);
         }
     };}
@@ -8832,7 +8832,7 @@ pub const HKL = *opaque{};
 //--------------------------------------------------------------------------------
 pub extern "MsCtfMonitor" fn DoMsCtfMonitor(
     dwFlags: u32,
-    hEventForServiceStop: HANDLE,
+    hEventForServiceStop: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

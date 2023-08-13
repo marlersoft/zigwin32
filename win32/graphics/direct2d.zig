@@ -620,11 +620,11 @@ pub const D2D1_LAYER_OPTIONS_FORCE_DWORD = D2D1_LAYER_OPTIONS.FORCE_DWORD;
 
 pub const D2D1_LAYER_PARAMETERS = extern struct {
     contentBounds: D2D_RECT_F,
-    geometricMask: *ID2D1Geometry,
+    geometricMask: ?*ID2D1Geometry,
     maskAntialiasMode: D2D1_ANTIALIAS_MODE,
     maskTransform: D2D_MATRIX_3X2_F,
     opacity: f32,
-    opacityBrush: *ID2D1Brush,
+    opacityBrush: ?*ID2D1Brush,
     layerOptions: D2D1_LAYER_OPTIONS,
 };
 
@@ -731,7 +731,7 @@ pub const D2D1_RENDER_TARGET_PROPERTIES = extern struct {
 };
 
 pub const D2D1_HWND_RENDER_TARGET_PROPERTIES = extern struct {
-    hwnd: HWND,
+    hwnd: ?HWND,
     pixelSize: D2D_SIZE_U,
     presentOptions: D2D1_PRESENT_OPTIONS,
 };
@@ -808,14 +808,14 @@ pub const ID2D1Resource = extern struct {
         base: IUnknown.VTable,
         GetFactory: fn(
             self: *const ID2D1Resource,
-            factory: **ID2D1Factory,
+            factory: ?*?*ID2D1Factory,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Resource_GetFactory(self: *const T, factory: **ID2D1Factory) callconv(.Inline) void {
+        pub fn ID2D1Resource_GetFactory(self: *const T, factory: ?*?*ID2D1Factory) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Resource.VTable, self.vtable).GetFactory(@ptrCast(*const ID2D1Resource, self), factory);
         }
     };}
@@ -853,25 +853,25 @@ pub const ID2D1Bitmap = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_PIXEL_FORMAT,
         GetDpi: fn(
             self: *const ID2D1Bitmap,
-            dpiX: *f32,
-            dpiY: *f32,
+            dpiX: ?*f32,
+            dpiY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CopyFromBitmap: fn(
             self: *const ID2D1Bitmap,
             destPoint: ?*const D2D_POINT_2U,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             srcRect: ?*const D2D_RECT_U,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyFromRenderTarget: fn(
             self: *const ID2D1Bitmap,
             destPoint: ?*const D2D_POINT_2U,
-            renderTarget: *ID2D1RenderTarget,
+            renderTarget: ?*ID2D1RenderTarget,
             srcRect: ?*const D2D_RECT_U,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyFromMemory: fn(
             self: *const ID2D1Bitmap,
             dstRect: ?*const D2D_RECT_U,
-            srcData: *const c_void,
+            srcData: ?*const c_void,
             pitch: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -891,19 +891,19 @@ pub const ID2D1Bitmap = extern struct {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetPixelFormat(@ptrCast(*const ID2D1Bitmap, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap_GetDpi(self: *const T, dpiX: *f32, dpiY: *f32) callconv(.Inline) void {
+        pub fn ID2D1Bitmap_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1Bitmap, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap_CopyFromBitmap(self: *const T, destPoint: ?*const D2D_POINT_2U, bitmap: *ID2D1Bitmap, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap_CopyFromBitmap(self: *const T, destPoint: ?*const D2D_POINT_2U, bitmap: ?*ID2D1Bitmap, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromBitmap(@ptrCast(*const ID2D1Bitmap, self), destPoint, bitmap, srcRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap_CopyFromRenderTarget(self: *const T, destPoint: ?*const D2D_POINT_2U, renderTarget: *ID2D1RenderTarget, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap_CopyFromRenderTarget(self: *const T, destPoint: ?*const D2D_POINT_2U, renderTarget: ?*ID2D1RenderTarget, srcRect: ?*const D2D_RECT_U) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromRenderTarget(@ptrCast(*const ID2D1Bitmap, self), destPoint, renderTarget, srcRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap_CopyFromMemory(self: *const T, dstRect: ?*const D2D_RECT_U, srcData: *const c_void, pitch: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap_CopyFromMemory(self: *const T, dstRect: ?*const D2D_RECT_U, srcData: ?*const c_void, pitch: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromMemory(@ptrCast(*const ID2D1Bitmap, self), dstRect, srcData, pitch);
         }
     };}
@@ -966,14 +966,14 @@ pub const ID2D1Brush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetTransform: fn(
             self: *const ID2D1Brush,
-            transform: *const D2D_MATRIX_3X2_F,
+            transform: ?*const D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetOpacity: fn(
             self: *const ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) f32,
         GetTransform: fn(
             self: *const ID2D1Brush,
-            transform: *D2D_MATRIX_3X2_F,
+            transform: ?*D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -984,7 +984,7 @@ pub const ID2D1Brush = extern struct {
             return @ptrCast(*const ID2D1Brush.VTable, self.vtable).SetOpacity(@ptrCast(*const ID2D1Brush, self), opacity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Brush_SetTransform(self: *const T, transform: *const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1Brush_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Brush.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1Brush, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -992,7 +992,7 @@ pub const ID2D1Brush = extern struct {
             return @ptrCast(*const ID2D1Brush.VTable, self.vtable).GetOpacity(@ptrCast(*const ID2D1Brush, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Brush_GetTransform(self: *const T, transform: *D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1Brush_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Brush.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1Brush, self), transform);
         }
     };}
@@ -1032,7 +1032,7 @@ pub const ID2D1BitmapBrush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_BITMAP_INTERPOLATION_MODE,
         GetBitmap: fn(
             self: *const ID2D1BitmapBrush,
-            bitmap: ?**ID2D1Bitmap,
+            bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -1067,7 +1067,7 @@ pub const ID2D1BitmapBrush = extern struct {
             return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetInterpolationMode(@ptrCast(*const ID2D1BitmapBrush, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BitmapBrush_GetBitmap(self: *const T, bitmap: ?**ID2D1Bitmap) callconv(.Inline) void {
+        pub fn ID2D1BitmapBrush_GetBitmap(self: *const T, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) void {
             return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetBitmap(@ptrCast(*const ID2D1BitmapBrush, self), bitmap);
         }
     };}
@@ -1082,7 +1082,7 @@ pub const ID2D1SolidColorBrush = extern struct {
         base: ID2D1Brush.VTable,
         SetColor: fn(
             self: *const ID2D1SolidColorBrush,
-            color: *const D2D1_COLOR_F,
+            color: ?*const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetColor: fn(
             self: *const ID2D1SolidColorBrush,
@@ -1092,7 +1092,7 @@ pub const ID2D1SolidColorBrush = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Brush.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: *const D2D1_COLOR_F) callconv(.Inline) void {
+        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: ?*const D2D1_COLOR_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SolidColorBrush, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1125,7 +1125,7 @@ pub const ID2D1LinearGradientBrush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D_POINT_2F,
         GetGradientStopCollection: fn(
             self: *const ID2D1LinearGradientBrush,
-            gradientStopCollection: **ID2D1GradientStopCollection,
+            gradientStopCollection: ?*?*ID2D1GradientStopCollection,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -1148,7 +1148,7 @@ pub const ID2D1LinearGradientBrush = extern struct {
             return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).GetEndPoint(@ptrCast(*const ID2D1LinearGradientBrush, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1LinearGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: **ID2D1GradientStopCollection) callconv(.Inline) void {
+        pub fn ID2D1LinearGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) void {
             return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).GetGradientStopCollection(@ptrCast(*const ID2D1LinearGradientBrush, self), gradientStopCollection);
         }
     };}
@@ -1191,7 +1191,7 @@ pub const ID2D1RadialGradientBrush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) f32,
         GetGradientStopCollection: fn(
             self: *const ID2D1RadialGradientBrush,
-            gradientStopCollection: **ID2D1GradientStopCollection,
+            gradientStopCollection: ?*?*ID2D1GradientStopCollection,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -1230,7 +1230,7 @@ pub const ID2D1RadialGradientBrush = extern struct {
             return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetRadiusY(@ptrCast(*const ID2D1RadialGradientBrush, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RadialGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: **ID2D1GradientStopCollection) callconv(.Inline) void {
+        pub fn ID2D1RadialGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetGradientStopCollection(@ptrCast(*const ID2D1RadialGradientBrush, self), gradientStopCollection);
         }
     };}
@@ -1325,7 +1325,7 @@ pub const ID2D1Geometry = extern struct {
         GetBounds: fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWidenedBounds: fn(
             self: *const ID2D1Geometry,
@@ -1333,7 +1333,7 @@ pub const ID2D1Geometry = extern struct {
             strokeStyle: ?*ID2D1StrokeStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StrokeContainsPoint: fn(
             self: *const ID2D1Geometry,
@@ -1342,60 +1342,60 @@ pub const ID2D1Geometry = extern struct {
             strokeStyle: ?*ID2D1StrokeStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            contains: *BOOL,
+            contains: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillContainsPoint: fn(
             self: *const ID2D1Geometry,
             point: D2D_POINT_2F,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            contains: *BOOL,
+            contains: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareWithGeometry: fn(
             self: *const ID2D1Geometry,
-            inputGeometry: *ID2D1Geometry,
+            inputGeometry: ?*ID2D1Geometry,
             inputGeometryTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            relation: *D2D1_GEOMETRY_RELATION,
+            relation: ?*D2D1_GEOMETRY_RELATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Simplify: fn(
             self: *const ID2D1Geometry,
             simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            geometrySink: *ID2D1SimplifiedGeometrySink,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Tessellate: fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            tessellationSink: *ID2D1TessellationSink,
+            tessellationSink: ?*ID2D1TessellationSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CombineWithGeometry: fn(
             self: *const ID2D1Geometry,
-            inputGeometry: *ID2D1Geometry,
+            inputGeometry: ?*ID2D1Geometry,
             combineMode: D2D1_COMBINE_MODE,
             inputGeometryTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            geometrySink: *ID2D1SimplifiedGeometrySink,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Outline: fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            geometrySink: *ID2D1SimplifiedGeometrySink,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComputeArea: fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            area: *f32,
+            area: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComputeLength: fn(
             self: *const ID2D1Geometry,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            length: *f32,
+            length: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComputePointAtLength: fn(
             self: *const ID2D1Geometry,
@@ -1411,54 +1411,54 @@ pub const ID2D1Geometry = extern struct {
             strokeStyle: ?*ID2D1StrokeStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            geometrySink: *ID2D1SimplifiedGeometrySink,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_GetBounds(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_GetBounds(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1Geometry, self), worldTransform, bounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_GetWidenedBounds(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_GetWidenedBounds(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).GetWidenedBounds(@ptrCast(*const ID2D1Geometry, self), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, bounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_StrokeContainsPoint(self: *const T, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_StrokeContainsPoint(self: *const T, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).StrokeContainsPoint(@ptrCast(*const ID2D1Geometry, self), point, strokeWidth, strokeStyle, worldTransform, flatteningTolerance, contains);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_FillContainsPoint(self: *const T, point: D2D_POINT_2F, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_FillContainsPoint(self: *const T, point: D2D_POINT_2F, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).FillContainsPoint(@ptrCast(*const ID2D1Geometry, self), point, worldTransform, flatteningTolerance, contains);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_CompareWithGeometry(self: *const T, inputGeometry: *ID2D1Geometry, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: *D2D1_GEOMETRY_RELATION) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_CompareWithGeometry(self: *const T, inputGeometry: ?*ID2D1Geometry, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: ?*D2D1_GEOMETRY_RELATION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).CompareWithGeometry(@ptrCast(*const ID2D1Geometry, self), inputGeometry, inputGeometryTransform, flatteningTolerance, relation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_Simplify(self: *const T, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: *ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_Simplify(self: *const T, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Simplify(@ptrCast(*const ID2D1Geometry, self), simplificationOption, worldTransform, flatteningTolerance, geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_Tessellate(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: *ID2D1TessellationSink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_Tessellate(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: ?*ID2D1TessellationSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Tessellate(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, tessellationSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_CombineWithGeometry(self: *const T, inputGeometry: *ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: *ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_CombineWithGeometry(self: *const T, inputGeometry: ?*ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).CombineWithGeometry(@ptrCast(*const ID2D1Geometry, self), inputGeometry, combineMode, inputGeometryTransform, flatteningTolerance, geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_Outline(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: *ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_Outline(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Outline(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_ComputeArea(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: *f32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_ComputeArea(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputeArea(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, area);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_ComputeLength(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: *f32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_ComputeLength(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputeLength(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, length);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1466,7 +1466,7 @@ pub const ID2D1Geometry = extern struct {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputePointAtLength(@ptrCast(*const ID2D1Geometry, self), length, worldTransform, flatteningTolerance, point, unitTangentVector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Geometry_Widen(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: *ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Geometry_Widen(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Widen(@ptrCast(*const ID2D1Geometry, self), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, geometrySink);
         }
     };}
@@ -1481,14 +1481,14 @@ pub const ID2D1RectangleGeometry = extern struct {
         base: ID2D1Geometry.VTable,
         GetRect: fn(
             self: *const ID2D1RectangleGeometry,
-            rect: *D2D_RECT_F,
+            rect: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Geometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RectangleGeometry_GetRect(self: *const T, rect: *D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1RectangleGeometry_GetRect(self: *const T, rect: ?*D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RectangleGeometry.VTable, self.vtable).GetRect(@ptrCast(*const ID2D1RectangleGeometry, self), rect);
         }
     };}
@@ -1503,14 +1503,14 @@ pub const ID2D1RoundedRectangleGeometry = extern struct {
         base: ID2D1Geometry.VTable,
         GetRoundedRect: fn(
             self: *const ID2D1RoundedRectangleGeometry,
-            roundedRect: *D2D1_ROUNDED_RECT,
+            roundedRect: ?*D2D1_ROUNDED_RECT,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Geometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RoundedRectangleGeometry_GetRoundedRect(self: *const T, roundedRect: *D2D1_ROUNDED_RECT) callconv(.Inline) void {
+        pub fn ID2D1RoundedRectangleGeometry_GetRoundedRect(self: *const T, roundedRect: ?*D2D1_ROUNDED_RECT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RoundedRectangleGeometry.VTable, self.vtable).GetRoundedRect(@ptrCast(*const ID2D1RoundedRectangleGeometry, self), roundedRect);
         }
     };}
@@ -1525,14 +1525,14 @@ pub const ID2D1EllipseGeometry = extern struct {
         base: ID2D1Geometry.VTable,
         GetEllipse: fn(
             self: *const ID2D1EllipseGeometry,
-            ellipse: *D2D1_ELLIPSE,
+            ellipse: ?*D2D1_ELLIPSE,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Geometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EllipseGeometry_GetEllipse(self: *const T, ellipse: *D2D1_ELLIPSE) callconv(.Inline) void {
+        pub fn ID2D1EllipseGeometry_GetEllipse(self: *const T, ellipse: ?*D2D1_ELLIPSE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1EllipseGeometry.VTable, self.vtable).GetEllipse(@ptrCast(*const ID2D1EllipseGeometry, self), ellipse);
         }
     };}
@@ -1553,7 +1553,7 @@ pub const ID2D1GeometryGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         GetSourceGeometries: fn(
             self: *const ID2D1GeometryGroup,
-            geometries: [*]*ID2D1Geometry,
+            geometries: [*]?*ID2D1Geometry,
             geometriesCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
@@ -1569,7 +1569,7 @@ pub const ID2D1GeometryGroup = extern struct {
             return @ptrCast(*const ID2D1GeometryGroup.VTable, self.vtable).GetSourceGeometryCount(@ptrCast(*const ID2D1GeometryGroup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GeometryGroup_GetSourceGeometries(self: *const T, geometries: [*]*ID2D1Geometry, geometriesCount: u32) callconv(.Inline) void {
+        pub fn ID2D1GeometryGroup_GetSourceGeometries(self: *const T, geometries: [*]?*ID2D1Geometry, geometriesCount: u32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1GeometryGroup.VTable, self.vtable).GetSourceGeometries(@ptrCast(*const ID2D1GeometryGroup, self), geometries, geometriesCount);
         }
     };}
@@ -1584,22 +1584,22 @@ pub const ID2D1TransformedGeometry = extern struct {
         base: ID2D1Geometry.VTable,
         GetSourceGeometry: fn(
             self: *const ID2D1TransformedGeometry,
-            sourceGeometry: **ID2D1Geometry,
+            sourceGeometry: ?*?*ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTransform: fn(
             self: *const ID2D1TransformedGeometry,
-            transform: *D2D_MATRIX_3X2_F,
+            transform: ?*D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Geometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformedGeometry_GetSourceGeometry(self: *const T, sourceGeometry: **ID2D1Geometry) callconv(.Inline) void {
+        pub fn ID2D1TransformedGeometry_GetSourceGeometry(self: *const T, sourceGeometry: ?*?*ID2D1Geometry) callconv(.Inline) void {
             return @ptrCast(*const ID2D1TransformedGeometry.VTable, self.vtable).GetSourceGeometry(@ptrCast(*const ID2D1TransformedGeometry, self), sourceGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformedGeometry_GetTransform(self: *const T, transform: *D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1TransformedGeometry_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1TransformedGeometry.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1TransformedGeometry, self), transform);
         }
     };}
@@ -1690,11 +1690,11 @@ pub const ID2D1GeometrySink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         AddBezier: fn(
             self: *const ID2D1GeometrySink,
-            bezier: *const D2D1_BEZIER_SEGMENT,
+            bezier: ?*const D2D1_BEZIER_SEGMENT,
         ) callconv(@import("std").os.windows.WINAPI) void,
         AddQuadraticBezier: fn(
             self: *const ID2D1GeometrySink,
-            bezier: *const D2D1_QUADRATIC_BEZIER_SEGMENT,
+            bezier: ?*const D2D1_QUADRATIC_BEZIER_SEGMENT,
         ) callconv(@import("std").os.windows.WINAPI) void,
         AddQuadraticBeziers: fn(
             self: *const ID2D1GeometrySink,
@@ -1703,7 +1703,7 @@ pub const ID2D1GeometrySink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         AddArc: fn(
             self: *const ID2D1GeometrySink,
-            arc: *const D2D1_ARC_SEGMENT,
+            arc: ?*const D2D1_ARC_SEGMENT,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -1714,11 +1714,11 @@ pub const ID2D1GeometrySink = extern struct {
             return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddLine(@ptrCast(*const ID2D1GeometrySink, self), point);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GeometrySink_AddBezier(self: *const T, bezier: *const D2D1_BEZIER_SEGMENT) callconv(.Inline) void {
+        pub fn ID2D1GeometrySink_AddBezier(self: *const T, bezier: ?*const D2D1_BEZIER_SEGMENT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddBezier(@ptrCast(*const ID2D1GeometrySink, self), bezier);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GeometrySink_AddQuadraticBezier(self: *const T, bezier: *const D2D1_QUADRATIC_BEZIER_SEGMENT) callconv(.Inline) void {
+        pub fn ID2D1GeometrySink_AddQuadraticBezier(self: *const T, bezier: ?*const D2D1_QUADRATIC_BEZIER_SEGMENT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddQuadraticBezier(@ptrCast(*const ID2D1GeometrySink, self), bezier);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1726,7 +1726,7 @@ pub const ID2D1GeometrySink = extern struct {
             return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddQuadraticBeziers(@ptrCast(*const ID2D1GeometrySink, self), beziers, beziersCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GeometrySink_AddArc(self: *const T, arc: *const D2D1_ARC_SEGMENT) callconv(.Inline) void {
+        pub fn ID2D1GeometrySink_AddArc(self: *const T, arc: ?*const D2D1_ARC_SEGMENT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddArc(@ptrCast(*const ID2D1GeometrySink, self), arc);
         }
     };}
@@ -1771,38 +1771,38 @@ pub const ID2D1PathGeometry = extern struct {
         base: ID2D1Geometry.VTable,
         Open: fn(
             self: *const ID2D1PathGeometry,
-            geometrySink: **ID2D1GeometrySink,
+            geometrySink: ?*?*ID2D1GeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Stream: fn(
             self: *const ID2D1PathGeometry,
-            geometrySink: *ID2D1GeometrySink,
+            geometrySink: ?*ID2D1GeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSegmentCount: fn(
             self: *const ID2D1PathGeometry,
-            count: *u32,
+            count: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFigureCount: fn(
             self: *const ID2D1PathGeometry,
-            count: *u32,
+            count: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Geometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PathGeometry_Open(self: *const T, geometrySink: **ID2D1GeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1PathGeometry_Open(self: *const T, geometrySink: ?*?*ID2D1GeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).Open(@ptrCast(*const ID2D1PathGeometry, self), geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PathGeometry_Stream(self: *const T, geometrySink: *ID2D1GeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1PathGeometry_Stream(self: *const T, geometrySink: ?*ID2D1GeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).Stream(@ptrCast(*const ID2D1PathGeometry, self), geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PathGeometry_GetSegmentCount(self: *const T, count: *u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1PathGeometry_GetSegmentCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).GetSegmentCount(@ptrCast(*const ID2D1PathGeometry, self), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PathGeometry_GetFigureCount(self: *const T, count: *u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1PathGeometry_GetFigureCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).GetFigureCount(@ptrCast(*const ID2D1PathGeometry, self), count);
         }
     };}
@@ -1817,14 +1817,14 @@ pub const ID2D1Mesh = extern struct {
         base: ID2D1Resource.VTable,
         Open: fn(
             self: *const ID2D1Mesh,
-            tessellationSink: **ID2D1TessellationSink,
+            tessellationSink: ?*?*ID2D1TessellationSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Mesh_Open(self: *const T, tessellationSink: **ID2D1TessellationSink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Mesh_Open(self: *const T, tessellationSink: ?*?*ID2D1TessellationSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Mesh.VTable, self.vtable).Open(@ptrCast(*const ID2D1Mesh, self), tessellationSink);
         }
     };}
@@ -1860,11 +1860,11 @@ pub const ID2D1DrawingStateBlock = extern struct {
         base: ID2D1Resource.VTable,
         GetDescription: fn(
             self: *const ID2D1DrawingStateBlock,
-            stateDescription: *D2D1_DRAWING_STATE_DESCRIPTION,
+            stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetDescription: fn(
             self: *const ID2D1DrawingStateBlock,
-            stateDescription: *const D2D1_DRAWING_STATE_DESCRIPTION,
+            stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetTextRenderingParams: fn(
             self: *const ID2D1DrawingStateBlock,
@@ -1872,18 +1872,18 @@ pub const ID2D1DrawingStateBlock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTextRenderingParams: fn(
             self: *const ID2D1DrawingStateBlock,
-            textRenderingParams: ?**IDWriteRenderingParams,
+            textRenderingParams: ?*?*IDWriteRenderingParams,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawingStateBlock_GetDescription(self: *const T, stateDescription: *D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
+        pub fn ID2D1DrawingStateBlock_GetDescription(self: *const T, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1DrawingStateBlock, self), stateDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawingStateBlock_SetDescription(self: *const T, stateDescription: *const D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
+        pub fn ID2D1DrawingStateBlock_SetDescription(self: *const T, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1DrawingStateBlock, self), stateDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1891,7 +1891,7 @@ pub const ID2D1DrawingStateBlock = extern struct {
             return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1DrawingStateBlock, self), textRenderingParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawingStateBlock_GetTextRenderingParams(self: *const T, textRenderingParams: ?**IDWriteRenderingParams) callconv(.Inline) void {
+        pub fn ID2D1DrawingStateBlock_GetTextRenderingParams(self: *const T, textRenderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).GetTextRenderingParams(@ptrCast(*const ID2D1DrawingStateBlock, self), textRenderingParams);
         }
     };}
@@ -1909,34 +1909,34 @@ pub const ID2D1RenderTarget = extern struct {
             size: D2D_SIZE_U,
             srcData: ?*const c_void,
             pitch: u32,
-            bitmapProperties: *const D2D1_BITMAP_PROPERTIES,
-            bitmap: **ID2D1Bitmap,
+            bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
+            bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBitmapFromWicBitmap: fn(
             self: *const ID2D1RenderTarget,
-            wicBitmapSource: *IWICBitmapSource,
+            wicBitmapSource: ?*IWICBitmapSource,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
-            bitmap: **ID2D1Bitmap,
+            bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSharedBitmap: fn(
             self: *const ID2D1RenderTarget,
-            riid: *const Guid,
-            data: *c_void,
+            riid: ?*const Guid,
+            data: ?*c_void,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
-            bitmap: **ID2D1Bitmap,
+            bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBitmapBrush: fn(
             self: *const ID2D1RenderTarget,
             bitmap: ?*ID2D1Bitmap,
             bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            bitmapBrush: **ID2D1BitmapBrush,
+            bitmapBrush: ?*?*ID2D1BitmapBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSolidColorBrush: fn(
             self: *const ID2D1RenderTarget,
-            color: *const D2D1_COLOR_F,
+            color: ?*const D2D1_COLOR_F,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            solidColorBrush: **ID2D1SolidColorBrush,
+            solidColorBrush: ?*?*ID2D1SolidColorBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGradientStopCollection: fn(
             self: *const ID2D1RenderTarget,
@@ -1944,21 +1944,21 @@ pub const ID2D1RenderTarget = extern struct {
             gradientStopsCount: u32,
             colorInterpolationGamma: D2D1_GAMMA,
             extendMode: D2D1_EXTEND_MODE,
-            gradientStopCollection: **ID2D1GradientStopCollection,
+            gradientStopCollection: ?*?*ID2D1GradientStopCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLinearGradientBrush: fn(
             self: *const ID2D1RenderTarget,
-            linearGradientBrushProperties: *const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES,
+            linearGradientBrushProperties: ?*const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            gradientStopCollection: *ID2D1GradientStopCollection,
-            linearGradientBrush: **ID2D1LinearGradientBrush,
+            gradientStopCollection: ?*ID2D1GradientStopCollection,
+            linearGradientBrush: ?*?*ID2D1LinearGradientBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRadialGradientBrush: fn(
             self: *const ID2D1RenderTarget,
-            radialGradientBrushProperties: *const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES,
+            radialGradientBrushProperties: ?*const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            gradientStopCollection: *ID2D1GradientStopCollection,
-            radialGradientBrush: **ID2D1RadialGradientBrush,
+            gradientStopCollection: ?*ID2D1GradientStopCollection,
+            radialGradientBrush: ?*?*ID2D1RadialGradientBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCompatibleRenderTarget: fn(
             self: *const ID2D1RenderTarget,
@@ -1966,90 +1966,90 @@ pub const ID2D1RenderTarget = extern struct {
             desiredPixelSize: ?*const D2D_SIZE_U,
             desiredFormat: ?*const D2D1_PIXEL_FORMAT,
             options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS,
-            bitmapRenderTarget: **ID2D1BitmapRenderTarget,
+            bitmapRenderTarget: ?*?*ID2D1BitmapRenderTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLayer: fn(
             self: *const ID2D1RenderTarget,
             size: ?*const D2D_SIZE_F,
-            layer: **ID2D1Layer,
+            layer: ?*?*ID2D1Layer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateMesh: fn(
             self: *const ID2D1RenderTarget,
-            mesh: **ID2D1Mesh,
+            mesh: ?*?*ID2D1Mesh,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawLine: fn(
             self: *const ID2D1RenderTarget,
             point0: D2D_POINT_2F,
             point1: D2D_POINT_2F,
-            brush: *ID2D1Brush,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawRectangle: fn(
             self: *const ID2D1RenderTarget,
-            rect: *const D2D_RECT_F,
-            brush: *ID2D1Brush,
+            rect: ?*const D2D_RECT_F,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillRectangle: fn(
             self: *const ID2D1RenderTarget,
-            rect: *const D2D_RECT_F,
-            brush: *ID2D1Brush,
+            rect: ?*const D2D_RECT_F,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawRoundedRectangle: fn(
             self: *const ID2D1RenderTarget,
-            roundedRect: *const D2D1_ROUNDED_RECT,
-            brush: *ID2D1Brush,
+            roundedRect: ?*const D2D1_ROUNDED_RECT,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillRoundedRectangle: fn(
             self: *const ID2D1RenderTarget,
-            roundedRect: *const D2D1_ROUNDED_RECT,
-            brush: *ID2D1Brush,
+            roundedRect: ?*const D2D1_ROUNDED_RECT,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawEllipse: fn(
             self: *const ID2D1RenderTarget,
-            ellipse: *const D2D1_ELLIPSE,
-            brush: *ID2D1Brush,
+            ellipse: ?*const D2D1_ELLIPSE,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillEllipse: fn(
             self: *const ID2D1RenderTarget,
-            ellipse: *const D2D1_ELLIPSE,
-            brush: *ID2D1Brush,
+            ellipse: ?*const D2D1_ELLIPSE,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawGeometry: fn(
             self: *const ID2D1RenderTarget,
-            geometry: *ID2D1Geometry,
-            brush: *ID2D1Brush,
+            geometry: ?*ID2D1Geometry,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillGeometry: fn(
             self: *const ID2D1RenderTarget,
-            geometry: *ID2D1Geometry,
-            brush: *ID2D1Brush,
+            geometry: ?*ID2D1Geometry,
+            brush: ?*ID2D1Brush,
             opacityBrush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillMesh: fn(
             self: *const ID2D1RenderTarget,
-            mesh: *ID2D1Mesh,
-            brush: *ID2D1Brush,
+            mesh: ?*ID2D1Mesh,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FillOpacityMask: fn(
             self: *const ID2D1RenderTarget,
-            opacityMask: *ID2D1Bitmap,
-            brush: *ID2D1Brush,
+            opacityMask: ?*ID2D1Bitmap,
+            brush: ?*ID2D1Brush,
             content: D2D1_OPACITY_MASK_CONTENT,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawBitmap: fn(
             self: *const ID2D1RenderTarget,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             destinationRectangle: ?*const D2D_RECT_F,
             opacity: f32,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
@@ -2059,33 +2059,33 @@ pub const ID2D1RenderTarget = extern struct {
             self: *const ID2D1RenderTarget,
             string: [*:0]const u16,
             stringLength: u32,
-            textFormat: *IDWriteTextFormat,
-            layoutRect: *const D2D_RECT_F,
-            defaultFillBrush: *ID2D1Brush,
+            textFormat: ?*IDWriteTextFormat,
+            layoutRect: ?*const D2D_RECT_F,
+            defaultFillBrush: ?*ID2D1Brush,
             options: D2D1_DRAW_TEXT_OPTIONS,
             measuringMode: DWRITE_MEASURING_MODE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawTextLayout: fn(
             self: *const ID2D1RenderTarget,
             origin: D2D_POINT_2F,
-            textLayout: *IDWriteTextLayout,
-            defaultFillBrush: *ID2D1Brush,
+            textLayout: ?*IDWriteTextLayout,
+            defaultFillBrush: ?*ID2D1Brush,
             options: D2D1_DRAW_TEXT_OPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawGlyphRun: fn(
             self: *const ID2D1RenderTarget,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
-            foregroundBrush: *ID2D1Brush,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetTransform: fn(
             self: *const ID2D1RenderTarget,
-            transform: *const D2D_MATRIX_3X2_F,
+            transform: ?*const D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTransform: fn(
             self: *const ID2D1RenderTarget,
-            transform: *D2D_MATRIX_3X2_F,
+            transform: ?*D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetAntialiasMode: fn(
             self: *const ID2D1RenderTarget,
@@ -2107,7 +2107,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTextRenderingParams: fn(
             self: *const ID2D1RenderTarget,
-            textRenderingParams: ?**IDWriteRenderingParams,
+            textRenderingParams: ?*?*IDWriteRenderingParams,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetTags: fn(
             self: *const ID2D1RenderTarget,
@@ -2121,7 +2121,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         PushLayer: fn(
             self: *const ID2D1RenderTarget,
-            layerParameters: *const D2D1_LAYER_PARAMETERS,
+            layerParameters: ?*const D2D1_LAYER_PARAMETERS,
             layer: ?*ID2D1Layer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PopLayer: fn(
@@ -2134,15 +2134,15 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveDrawingState: fn(
             self: *const ID2D1RenderTarget,
-            drawingStateBlock: *ID2D1DrawingStateBlock,
+            drawingStateBlock: ?*ID2D1DrawingStateBlock,
         ) callconv(@import("std").os.windows.WINAPI) void,
         RestoreDrawingState: fn(
             self: *const ID2D1RenderTarget,
-            drawingStateBlock: *ID2D1DrawingStateBlock,
+            drawingStateBlock: ?*ID2D1DrawingStateBlock,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PushAxisAlignedClip: fn(
             self: *const ID2D1RenderTarget,
-            clipRect: *const D2D_RECT_F,
+            clipRect: ?*const D2D_RECT_F,
             antialiasMode: D2D1_ANTIALIAS_MODE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PopAxisAlignedClip: fn(
@@ -2170,8 +2170,8 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetDpi: fn(
             self: *const ID2D1RenderTarget,
-            dpiX: *f32,
-            dpiY: *f32,
+            dpiX: ?*f32,
+            dpiY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetSize: fn(
             self: *const ID2D1RenderTarget,
@@ -2184,122 +2184,122 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         IsSupported: fn(
             self: *const ID2D1RenderTarget,
-            renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES,
+            renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateBitmap(self: *const T, size: D2D_SIZE_U, srcData: ?*const c_void, pitch: u32, bitmapProperties: *const D2D1_BITMAP_PROPERTIES, bitmap: **ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateBitmap(self: *const T, size: D2D_SIZE_U, srcData: ?*const c_void, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1RenderTarget, self), size, srcData, pitch, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: *IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: **ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapFromWicBitmap(@ptrCast(*const ID2D1RenderTarget, self), wicBitmapSource, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateSharedBitmap(self: *const T, riid: *const Guid, data: *c_void, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: **ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateSharedBitmap(self: *const T, riid: ?*const Guid, data: ?*c_void, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSharedBitmap(@ptrCast(*const ID2D1RenderTarget, self), riid, data, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: **ID2D1BitmapBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1RenderTarget, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: *const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: **ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: ?*const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: ?*?*ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSolidColorBrush(@ptrCast(*const ID2D1RenderTarget, self), color, brushProperties, solidColorBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateGradientStopCollection(self: *const T, gradientStops: [*]const D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: **ID2D1GradientStopCollection) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateGradientStopCollection(self: *const T, gradientStops: [*]const D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ?*?*ID2D1GradientStopCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateGradientStopCollection(@ptrCast(*const ID2D1RenderTarget, self), gradientStops, gradientStopsCount, colorInterpolationGamma, extendMode, gradientStopCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateLinearGradientBrush(self: *const T, linearGradientBrushProperties: *const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: *ID2D1GradientStopCollection, linearGradientBrush: **ID2D1LinearGradientBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateLinearGradientBrush(self: *const T, linearGradientBrushProperties: ?*const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, linearGradientBrush: ?*?*ID2D1LinearGradientBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateLinearGradientBrush(@ptrCast(*const ID2D1RenderTarget, self), linearGradientBrushProperties, brushProperties, gradientStopCollection, linearGradientBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateRadialGradientBrush(self: *const T, radialGradientBrushProperties: *const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: *ID2D1GradientStopCollection, radialGradientBrush: **ID2D1RadialGradientBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateRadialGradientBrush(self: *const T, radialGradientBrushProperties: ?*const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, radialGradientBrush: ?*?*ID2D1RadialGradientBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateRadialGradientBrush(@ptrCast(*const ID2D1RenderTarget, self), radialGradientBrushProperties, brushProperties, gradientStopCollection, radialGradientBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateCompatibleRenderTarget(self: *const T, desiredSize: ?*const D2D_SIZE_F, desiredPixelSize: ?*const D2D_SIZE_U, desiredFormat: ?*const D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: **ID2D1BitmapRenderTarget) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateCompatibleRenderTarget(self: *const T, desiredSize: ?*const D2D_SIZE_F, desiredPixelSize: ?*const D2D_SIZE_U, desiredFormat: ?*const D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: ?*?*ID2D1BitmapRenderTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateCompatibleRenderTarget(@ptrCast(*const ID2D1RenderTarget, self), desiredSize, desiredPixelSize, desiredFormat, options, bitmapRenderTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateLayer(self: *const T, size: ?*const D2D_SIZE_F, layer: **ID2D1Layer) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateLayer(self: *const T, size: ?*const D2D_SIZE_F, layer: ?*?*ID2D1Layer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateLayer(@ptrCast(*const ID2D1RenderTarget, self), size, layer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateMesh(self: *const T, mesh: **ID2D1Mesh) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateMesh(self: *const T, mesh: ?*?*ID2D1Mesh) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateMesh(@ptrCast(*const ID2D1RenderTarget, self), mesh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawLine(@ptrCast(*const ID2D1RenderTarget, self), point0, point1, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawRectangle(self: *const T, rect: *const D2D_RECT_F, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawRectangle(@ptrCast(*const ID2D1RenderTarget, self), rect, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillRectangle(self: *const T, rect: *const D2D_RECT_F, brush: *ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillRectangle(@ptrCast(*const ID2D1RenderTarget, self), rect, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawRoundedRectangle(self: *const T, roundedRect: *const D2D1_ROUNDED_RECT, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawRoundedRectangle(self: *const T, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawRoundedRectangle(@ptrCast(*const ID2D1RenderTarget, self), roundedRect, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillRoundedRectangle(self: *const T, roundedRect: *const D2D1_ROUNDED_RECT, brush: *ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillRoundedRectangle(self: *const T, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillRoundedRectangle(@ptrCast(*const ID2D1RenderTarget, self), roundedRect, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawEllipse(self: *const T, ellipse: *const D2D1_ELLIPSE, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawEllipse(self: *const T, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawEllipse(@ptrCast(*const ID2D1RenderTarget, self), ellipse, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillEllipse(self: *const T, ellipse: *const D2D1_ELLIPSE, brush: *ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillEllipse(self: *const T, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillEllipse(@ptrCast(*const ID2D1RenderTarget, self), ellipse, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawGeometry(self: *const T, geometry: *ID2D1Geometry, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawGeometry(@ptrCast(*const ID2D1RenderTarget, self), geometry, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillGeometry(self: *const T, geometry: *ID2D1Geometry, brush: *ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillGeometry(@ptrCast(*const ID2D1RenderTarget, self), geometry, brush, opacityBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillMesh(self: *const T, mesh: *ID2D1Mesh, brush: *ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillMesh(self: *const T, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillMesh(@ptrCast(*const ID2D1RenderTarget, self), mesh, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_FillOpacityMask(self: *const T, opacityMask: *ID2D1Bitmap, brush: *ID2D1Brush, content: D2D1_OPACITY_MASK_CONTENT, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, content: D2D1_OPACITY_MASK_CONTENT, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1RenderTarget, self), opacityMask, brush, content, destinationRectangle, sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawBitmap(self: *const T, bitmap: *ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1RenderTarget, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: *ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1RenderTarget, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: *IDWriteTextLayout, defaultFillBrush: *ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawTextLayout(@ptrCast(*const ID2D1RenderTarget, self), origin, textLayout, defaultFillBrush, options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, foregroundBrush: *ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1RenderTarget, self), baselineOrigin, glyphRun, foregroundBrush, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_SetTransform(self: *const T, transform: *const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1RenderTarget, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_GetTransform(self: *const T, transform: *D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1RenderTarget, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2323,7 +2323,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1RenderTarget, self), textRenderingParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_GetTextRenderingParams(self: *const T, textRenderingParams: ?**IDWriteRenderingParams) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_GetTextRenderingParams(self: *const T, textRenderingParams: ?*?*IDWriteRenderingParams) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTextRenderingParams(@ptrCast(*const ID2D1RenderTarget, self), textRenderingParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2335,7 +2335,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTags(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_PushLayer(self: *const T, layerParameters: *const D2D1_LAYER_PARAMETERS, layer: ?*ID2D1Layer) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_PushLayer(self: *const T, layerParameters: ?*const D2D1_LAYER_PARAMETERS, layer: ?*ID2D1Layer) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1RenderTarget, self), layerParameters, layer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2347,15 +2347,15 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).Flush(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_SaveDrawingState(self: *const T, drawingStateBlock: *ID2D1DrawingStateBlock) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_SaveDrawingState(self: *const T, drawingStateBlock: ?*ID2D1DrawingStateBlock) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SaveDrawingState(@ptrCast(*const ID2D1RenderTarget, self), drawingStateBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_RestoreDrawingState(self: *const T, drawingStateBlock: *ID2D1DrawingStateBlock) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_RestoreDrawingState(self: *const T, drawingStateBlock: ?*ID2D1DrawingStateBlock) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).RestoreDrawingState(@ptrCast(*const ID2D1RenderTarget, self), drawingStateBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_PushAxisAlignedClip(self: *const T, clipRect: *const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_PushAxisAlignedClip(self: *const T, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PushAxisAlignedClip(@ptrCast(*const ID2D1RenderTarget, self), clipRect, antialiasMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2383,7 +2383,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetDpi(@ptrCast(*const ID2D1RenderTarget, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_GetDpi(self: *const T, dpiX: *f32, dpiY: *f32) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1RenderTarget, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2399,7 +2399,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetMaximumBitmapSize(@ptrCast(*const ID2D1RenderTarget, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_IsSupported(self: *const T, renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES) callconv(.Inline) BOOL {
+        pub fn ID2D1RenderTarget_IsSupported(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES) callconv(.Inline) BOOL {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).IsSupported(@ptrCast(*const ID2D1RenderTarget, self), renderTargetProperties);
         }
     };}
@@ -2414,14 +2414,14 @@ pub const ID2D1BitmapRenderTarget = extern struct {
         base: ID2D1RenderTarget.VTable,
         GetBitmap: fn(
             self: *const ID2D1BitmapRenderTarget,
-            bitmap: **ID2D1Bitmap,
+            bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BitmapRenderTarget_GetBitmap(self: *const T, bitmap: **ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1BitmapRenderTarget_GetBitmap(self: *const T, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1BitmapRenderTarget.VTable, self.vtable).GetBitmap(@ptrCast(*const ID2D1BitmapRenderTarget, self), bitmap);
         }
     };}
@@ -2439,11 +2439,11 @@ pub const ID2D1HwndRenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_WINDOW_STATE,
         Resize: fn(
             self: *const ID2D1HwndRenderTarget,
-            pixelSize: *const D2D_SIZE_U,
+            pixelSize: ?*const D2D_SIZE_U,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHwnd: fn(
             self: *const ID2D1HwndRenderTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HWND,
+        ) callconv(@import("std").os.windows.WINAPI) ?HWND,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2453,11 +2453,11 @@ pub const ID2D1HwndRenderTarget = extern struct {
             return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).CheckWindowState(@ptrCast(*const ID2D1HwndRenderTarget, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1HwndRenderTarget_Resize(self: *const T, pixelSize: *const D2D_SIZE_U) callconv(.Inline) HRESULT {
+        pub fn ID2D1HwndRenderTarget_Resize(self: *const T, pixelSize: ?*const D2D_SIZE_U) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).Resize(@ptrCast(*const ID2D1HwndRenderTarget, self), pixelSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1HwndRenderTarget_GetHwnd(self: *const T) callconv(.Inline) HWND {
+        pub fn ID2D1HwndRenderTarget_GetHwnd(self: *const T) callconv(.Inline) ?HWND {
             return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).GetHwnd(@ptrCast(*const ID2D1HwndRenderTarget, self));
         }
     };}
@@ -2473,7 +2473,7 @@ pub const ID2D1GdiInteropRenderTarget = extern struct {
         GetDC: fn(
             self: *const ID2D1GdiInteropRenderTarget,
             mode: D2D1_DC_INITIALIZE_MODE,
-            hdc: *HDC,
+            hdc: ?*?HDC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseDC: fn(
             self: *const ID2D1GdiInteropRenderTarget,
@@ -2484,7 +2484,7 @@ pub const ID2D1GdiInteropRenderTarget = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiInteropRenderTarget_GetDC(self: *const T, mode: D2D1_DC_INITIALIZE_MODE, hdc: *HDC) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiInteropRenderTarget_GetDC(self: *const T, mode: D2D1_DC_INITIALIZE_MODE, hdc: ?*?HDC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiInteropRenderTarget.VTable, self.vtable).GetDC(@ptrCast(*const ID2D1GdiInteropRenderTarget, self), mode, hdc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2503,15 +2503,15 @@ pub const ID2D1DCRenderTarget = extern struct {
         base: ID2D1RenderTarget.VTable,
         BindDC: fn(
             self: *const ID2D1DCRenderTarget,
-            hDC: HDC,
-            pSubRect: *const RECT,
+            hDC: ?HDC,
+            pSubRect: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DCRenderTarget_BindDC(self: *const T, hDC: HDC, pSubRect: *const RECT) callconv(.Inline) HRESULT {
+        pub fn ID2D1DCRenderTarget_BindDC(self: *const T, hDC: ?HDC, pSubRect: ?*const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DCRenderTarget.VTable, self.vtable).BindDC(@ptrCast(*const ID2D1DCRenderTarget, self), hDC, pSubRect);
         }
     };}
@@ -2529,76 +2529,76 @@ pub const ID2D1Factory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesktopDpi: fn(
             self: *const ID2D1Factory,
-            dpiX: *f32,
-            dpiY: *f32,
+            dpiX: ?*f32,
+            dpiY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CreateRectangleGeometry: fn(
             self: *const ID2D1Factory,
-            rectangle: *const D2D_RECT_F,
-            rectangleGeometry: **ID2D1RectangleGeometry,
+            rectangle: ?*const D2D_RECT_F,
+            rectangleGeometry: ?*?*ID2D1RectangleGeometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoundedRectangleGeometry: fn(
             self: *const ID2D1Factory,
-            roundedRectangle: *const D2D1_ROUNDED_RECT,
-            roundedRectangleGeometry: **ID2D1RoundedRectangleGeometry,
+            roundedRectangle: ?*const D2D1_ROUNDED_RECT,
+            roundedRectangleGeometry: ?*?*ID2D1RoundedRectangleGeometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEllipseGeometry: fn(
             self: *const ID2D1Factory,
-            ellipse: *const D2D1_ELLIPSE,
-            ellipseGeometry: **ID2D1EllipseGeometry,
+            ellipse: ?*const D2D1_ELLIPSE,
+            ellipseGeometry: ?*?*ID2D1EllipseGeometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryGroup: fn(
             self: *const ID2D1Factory,
             fillMode: D2D1_FILL_MODE,
-            geometries: [*]*ID2D1Geometry,
+            geometries: [*]?*ID2D1Geometry,
             geometriesCount: u32,
-            geometryGroup: **ID2D1GeometryGroup,
+            geometryGroup: ?*?*ID2D1GeometryGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTransformedGeometry: fn(
             self: *const ID2D1Factory,
-            sourceGeometry: *ID2D1Geometry,
-            transform: *const D2D_MATRIX_3X2_F,
-            transformedGeometry: **ID2D1TransformedGeometry,
+            sourceGeometry: ?*ID2D1Geometry,
+            transform: ?*const D2D_MATRIX_3X2_F,
+            transformedGeometry: ?*?*ID2D1TransformedGeometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePathGeometry: fn(
             self: *const ID2D1Factory,
-            pathGeometry: **ID2D1PathGeometry,
+            pathGeometry: ?*?*ID2D1PathGeometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStrokeStyle: fn(
             self: *const ID2D1Factory,
-            strokeStyleProperties: *const D2D1_STROKE_STYLE_PROPERTIES,
+            strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES,
             dashes: ?[*]const f32,
             dashesCount: u32,
-            strokeStyle: **ID2D1StrokeStyle,
+            strokeStyle: ?*?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDrawingStateBlock: fn(
             self: *const ID2D1Factory,
             drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION,
             textRenderingParams: ?*IDWriteRenderingParams,
-            drawingStateBlock: **ID2D1DrawingStateBlock,
+            drawingStateBlock: ?*?*ID2D1DrawingStateBlock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateWicBitmapRenderTarget: fn(
             self: *const ID2D1Factory,
-            target: *IWICBitmap,
-            renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES,
-            renderTarget: **ID2D1RenderTarget,
+            target: ?*IWICBitmap,
+            renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
+            renderTarget: ?*?*ID2D1RenderTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateHwndRenderTarget: fn(
             self: *const ID2D1Factory,
-            renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES,
-            hwndRenderTargetProperties: *const D2D1_HWND_RENDER_TARGET_PROPERTIES,
-            hwndRenderTarget: **ID2D1HwndRenderTarget,
+            renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
+            hwndRenderTargetProperties: ?*const D2D1_HWND_RENDER_TARGET_PROPERTIES,
+            hwndRenderTarget: ?*?*ID2D1HwndRenderTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDxgiSurfaceRenderTarget: fn(
             self: *const ID2D1Factory,
-            dxgiSurface: *IDXGISurface,
-            renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES,
-            renderTarget: **ID2D1RenderTarget,
+            dxgiSurface: ?*IDXGISurface,
+            renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
+            renderTarget: ?*?*ID2D1RenderTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDCRenderTarget: fn(
             self: *const ID2D1Factory,
-            renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES,
-            dcRenderTarget: **ID2D1DCRenderTarget,
+            renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES,
+            dcRenderTarget: ?*?*ID2D1DCRenderTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2609,55 +2609,55 @@ pub const ID2D1Factory = extern struct {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).ReloadSystemMetrics(@ptrCast(*const ID2D1Factory, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_GetDesktopDpi(self: *const T, dpiX: *f32, dpiY: *f32) callconv(.Inline) void {
+        pub fn ID2D1Factory_GetDesktopDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).GetDesktopDpi(@ptrCast(*const ID2D1Factory, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateRectangleGeometry(self: *const T, rectangle: *const D2D_RECT_F, rectangleGeometry: **ID2D1RectangleGeometry) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateRectangleGeometry(self: *const T, rectangle: ?*const D2D_RECT_F, rectangleGeometry: ?*?*ID2D1RectangleGeometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateRectangleGeometry(@ptrCast(*const ID2D1Factory, self), rectangle, rectangleGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateRoundedRectangleGeometry(self: *const T, roundedRectangle: *const D2D1_ROUNDED_RECT, roundedRectangleGeometry: **ID2D1RoundedRectangleGeometry) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateRoundedRectangleGeometry(self: *const T, roundedRectangle: ?*const D2D1_ROUNDED_RECT, roundedRectangleGeometry: ?*?*ID2D1RoundedRectangleGeometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateRoundedRectangleGeometry(@ptrCast(*const ID2D1Factory, self), roundedRectangle, roundedRectangleGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateEllipseGeometry(self: *const T, ellipse: *const D2D1_ELLIPSE, ellipseGeometry: **ID2D1EllipseGeometry) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateEllipseGeometry(self: *const T, ellipse: ?*const D2D1_ELLIPSE, ellipseGeometry: ?*?*ID2D1EllipseGeometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateEllipseGeometry(@ptrCast(*const ID2D1Factory, self), ellipse, ellipseGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateGeometryGroup(self: *const T, fillMode: D2D1_FILL_MODE, geometries: [*]*ID2D1Geometry, geometriesCount: u32, geometryGroup: **ID2D1GeometryGroup) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateGeometryGroup(self: *const T, fillMode: D2D1_FILL_MODE, geometries: [*]?*ID2D1Geometry, geometriesCount: u32, geometryGroup: ?*?*ID2D1GeometryGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateGeometryGroup(@ptrCast(*const ID2D1Factory, self), fillMode, geometries, geometriesCount, geometryGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateTransformedGeometry(self: *const T, sourceGeometry: *ID2D1Geometry, transform: *const D2D_MATRIX_3X2_F, transformedGeometry: **ID2D1TransformedGeometry) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateTransformedGeometry(self: *const T, sourceGeometry: ?*ID2D1Geometry, transform: ?*const D2D_MATRIX_3X2_F, transformedGeometry: ?*?*ID2D1TransformedGeometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateTransformedGeometry(@ptrCast(*const ID2D1Factory, self), sourceGeometry, transform, transformedGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreatePathGeometry(self: *const T, pathGeometry: **ID2D1PathGeometry) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreatePathGeometry(self: *const T, pathGeometry: ?*?*ID2D1PathGeometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1Factory, self), pathGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateStrokeStyle(self: *const T, strokeStyleProperties: *const D2D1_STROKE_STYLE_PROPERTIES, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: **ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateStrokeStyle(self: *const T, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateStrokeStyle(@ptrCast(*const ID2D1Factory, self), strokeStyleProperties, dashes, dashesCount, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: **ID2D1DrawingStateBlock) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDrawingStateBlock(@ptrCast(*const ID2D1Factory, self), drawingStateDescription, textRenderingParams, drawingStateBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateWicBitmapRenderTarget(self: *const T, target: *IWICBitmap, renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: **ID2D1RenderTarget) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateWicBitmapRenderTarget(self: *const T, target: ?*IWICBitmap, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateWicBitmapRenderTarget(@ptrCast(*const ID2D1Factory, self), target, renderTargetProperties, renderTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateHwndRenderTarget(self: *const T, renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: *const D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: **ID2D1HwndRenderTarget) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateHwndRenderTarget(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: ?*const D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: ?*?*ID2D1HwndRenderTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateHwndRenderTarget(@ptrCast(*const ID2D1Factory, self), renderTargetProperties, hwndRenderTargetProperties, hwndRenderTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateDxgiSurfaceRenderTarget(self: *const T, dxgiSurface: *IDXGISurface, renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: **ID2D1RenderTarget) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateDxgiSurfaceRenderTarget(self: *const T, dxgiSurface: ?*IDXGISurface, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDxgiSurfaceRenderTarget(@ptrCast(*const ID2D1Factory, self), dxgiSurface, renderTargetProperties, renderTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory_CreateDCRenderTarget(self: *const T, renderTargetProperties: *const D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: **ID2D1DCRenderTarget) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory_CreateDCRenderTarget(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: ?*?*ID2D1DCRenderTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDCRenderTarget(@ptrCast(*const ID2D1Factory, self), renderTargetProperties, dcRenderTarget);
         }
     };}
@@ -3657,7 +3657,7 @@ pub const D2D1_OPACITYMETADATA_PROP_INPUT_OPAQUE_RECT = D2D1_OPACITYMETADATA_PRO
 pub const D2D1_OPACITYMETADATA_PROP_FORCE_DWORD = D2D1_OPACITYMETADATA_PROP.FORCE_DWORD;
 
 pub const PD2D1_EFFECT_FACTORY = fn(
-    effectImpl: **IUnknown,
+    effectImpl: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D2D1_PROPERTY_TYPE = enum(u32) {
@@ -3964,12 +3964,12 @@ pub const D2D1_BITMAP_PROPERTIES1 = extern struct {
     dpiX: f32,
     dpiY: f32,
     bitmapOptions: D2D1_BITMAP_OPTIONS,
-    colorContext: *ID2D1ColorContext,
+    colorContext: ?*ID2D1ColorContext,
 };
 
 pub const D2D1_MAPPED_RECT = extern struct {
     pitch: u32,
-    bits: *u8,
+    bits: ?*u8,
 };
 
 pub const D2D1_RENDERING_CONTROLS = extern struct {
@@ -3978,7 +3978,7 @@ pub const D2D1_RENDERING_CONTROLS = extern struct {
 };
 
 pub const D2D1_EFFECT_INPUT_DESCRIPTION = extern struct {
-    effect: *ID2D1Effect,
+    effect: ?*ID2D1Effect,
     inputIndex: u32,
     inputRectangle: D2D_RECT_F,
 };
@@ -4042,11 +4042,11 @@ pub const D2D1_LAYER_OPTIONS1_FORCE_DWORD = D2D1_LAYER_OPTIONS1.FORCE_DWORD;
 
 pub const D2D1_LAYER_PARAMETERS1 = extern struct {
     contentBounds: D2D_RECT_F,
-    geometricMask: *ID2D1Geometry,
+    geometricMask: ?*ID2D1Geometry,
     maskAntialiasMode: D2D1_ANTIALIAS_MODE,
     maskTransform: D2D_MATRIX_3X2_F,
     opacity: f32,
-    opacityBrush: *ID2D1Brush,
+    opacityBrush: ?*ID2D1Brush,
     layerOptions: D2D1_LAYER_OPTIONS1,
 };
 
@@ -4115,22 +4115,22 @@ pub const ID2D1GdiMetafile = extern struct {
         base: ID2D1Resource.VTable,
         Stream: fn(
             self: *const ID2D1GdiMetafile,
-            sink: *ID2D1GdiMetafileSink,
+            sink: ?*ID2D1GdiMetafileSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBounds: fn(
             self: *const ID2D1GdiMetafile,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafile_Stream(self: *const T, sink: *ID2D1GdiMetafileSink) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafile_Stream(self: *const T, sink: ?*ID2D1GdiMetafileSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafile.VTable, self.vtable).Stream(@ptrCast(*const ID2D1GdiMetafile, self), sink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafile_GetBounds(self: *const T, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafile_GetBounds(self: *const T, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafile.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1GdiMetafile, self), bounds);
         }
     };}
@@ -4168,7 +4168,7 @@ pub const ID2D1CommandSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTransform: fn(
             self: *const ID2D1CommandSink,
-            transform: *const D2D_MATRIX_3X2_F,
+            transform: ?*const D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrimitiveBlend: fn(
             self: *const ID2D1CommandSink,
@@ -4185,36 +4185,36 @@ pub const ID2D1CommandSink = extern struct {
         DrawGlyphRun: fn(
             self: *const ID2D1CommandSink,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-            foregroundBrush: *ID2D1Brush,
+            foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawLine: fn(
             self: *const ID2D1CommandSink,
             point0: D2D_POINT_2F,
             point1: D2D_POINT_2F,
-            brush: *ID2D1Brush,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGeometry: fn(
             self: *const ID2D1CommandSink,
-            geometry: *ID2D1Geometry,
-            brush: *ID2D1Brush,
+            geometry: ?*ID2D1Geometry,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawRectangle: fn(
             self: *const ID2D1CommandSink,
-            rect: *const D2D_RECT_F,
-            brush: *ID2D1Brush,
+            rect: ?*const D2D_RECT_F,
+            brush: ?*ID2D1Brush,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawBitmap: fn(
             self: *const ID2D1CommandSink,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             destinationRectangle: ?*const D2D_RECT_F,
             opacity: f32,
             interpolationMode: D2D1_INTERPOLATION_MODE,
@@ -4223,7 +4223,7 @@ pub const ID2D1CommandSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawImage: fn(
             self: *const ID2D1CommandSink,
-            image: *ID2D1Image,
+            image: ?*ID2D1Image,
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
@@ -4231,40 +4231,40 @@ pub const ID2D1CommandSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGdiMetafile: fn(
             self: *const ID2D1CommandSink,
-            gdiMetafile: *ID2D1GdiMetafile,
+            gdiMetafile: ?*ID2D1GdiMetafile,
             targetOffset: ?*const D2D_POINT_2F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillMesh: fn(
             self: *const ID2D1CommandSink,
-            mesh: *ID2D1Mesh,
-            brush: *ID2D1Brush,
+            mesh: ?*ID2D1Mesh,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillOpacityMask: fn(
             self: *const ID2D1CommandSink,
-            opacityMask: *ID2D1Bitmap,
-            brush: *ID2D1Brush,
+            opacityMask: ?*ID2D1Bitmap,
+            brush: ?*ID2D1Brush,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillGeometry: fn(
             self: *const ID2D1CommandSink,
-            geometry: *ID2D1Geometry,
-            brush: *ID2D1Brush,
+            geometry: ?*ID2D1Geometry,
+            brush: ?*ID2D1Brush,
             opacityBrush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillRectangle: fn(
             self: *const ID2D1CommandSink,
-            rect: *const D2D_RECT_F,
-            brush: *ID2D1Brush,
+            rect: ?*const D2D_RECT_F,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PushAxisAlignedClip: fn(
             self: *const ID2D1CommandSink,
-            clipRect: *const D2D_RECT_F,
+            clipRect: ?*const D2D_RECT_F,
             antialiasMode: D2D1_ANTIALIAS_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PushLayer: fn(
             self: *const ID2D1CommandSink,
-            layerParameters1: *const D2D1_LAYER_PARAMETERS1,
+            layerParameters1: ?*const D2D1_LAYER_PARAMETERS1,
             layer: ?*ID2D1Layer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PopAxisAlignedClip: fn(
@@ -4302,7 +4302,7 @@ pub const ID2D1CommandSink = extern struct {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1CommandSink, self), textRenderingParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_SetTransform(self: *const T, transform: *const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1CommandSink, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4318,55 +4318,55 @@ pub const ID2D1CommandSink = extern struct {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).Clear(@ptrCast(*const ID2D1CommandSink, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: *ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1CommandSink, self), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawLine(@ptrCast(*const ID2D1CommandSink, self), point0, point1, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawGeometry(self: *const T, geometry: *ID2D1Geometry, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGeometry(@ptrCast(*const ID2D1CommandSink, self), geometry, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawRectangle(self: *const T, rect: *const D2D_RECT_F, brush: *ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawRectangle(@ptrCast(*const ID2D1CommandSink, self), rect, brush, strokeWidth, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawBitmap(self: *const T, bitmap: *ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1CommandSink, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawImage(self: *const T, image: *ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawImage(self: *const T, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawImage(@ptrCast(*const ID2D1CommandSink, self), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_DrawGdiMetafile(self: *const T, gdiMetafile: *ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1CommandSink, self), gdiMetafile, targetOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_FillMesh(self: *const T, mesh: *ID2D1Mesh, brush: *ID2D1Brush) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_FillMesh(self: *const T, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillMesh(@ptrCast(*const ID2D1CommandSink, self), mesh, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_FillOpacityMask(self: *const T, opacityMask: *ID2D1Bitmap, brush: *ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1CommandSink, self), opacityMask, brush, destinationRectangle, sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_FillGeometry(self: *const T, geometry: *ID2D1Geometry, brush: *ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_FillGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillGeometry(@ptrCast(*const ID2D1CommandSink, self), geometry, brush, opacityBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_FillRectangle(self: *const T, rect: *const D2D_RECT_F, brush: *ID2D1Brush) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_FillRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillRectangle(@ptrCast(*const ID2D1CommandSink, self), rect, brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_PushAxisAlignedClip(self: *const T, clipRect: *const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_PushAxisAlignedClip(self: *const T, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PushAxisAlignedClip(@ptrCast(*const ID2D1CommandSink, self), clipRect, antialiasMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_PushLayer(self: *const T, layerParameters1: *const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_PushLayer(self: *const T, layerParameters1: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1CommandSink, self), layerParameters1, layer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4389,7 +4389,7 @@ pub const ID2D1CommandList = extern struct {
         base: ID2D1Image.VTable,
         Stream: fn(
             self: *const ID2D1CommandList,
-            sink: *ID2D1CommandSink,
+            sink: ?*ID2D1CommandSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const ID2D1CommandList,
@@ -4399,7 +4399,7 @@ pub const ID2D1CommandList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Image.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandList_Stream(self: *const T, sink: *ID2D1CommandSink) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandList_Stream(self: *const T, sink: ?*ID2D1CommandSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandList.VTable, self.vtable).Stream(@ptrCast(*const ID2D1CommandList, self), sink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4418,7 +4418,7 @@ pub const ID2D1PrintControl = extern struct {
         base: IUnknown.VTable,
         AddPage: fn(
             self: *const ID2D1PrintControl,
-            commandList: *ID2D1CommandList,
+            commandList: ?*ID2D1CommandList,
             pageSize: D2D_SIZE_F,
             pagePrintTicketStream: ?*IStream,
             tag1: ?*u64,
@@ -4432,7 +4432,7 @@ pub const ID2D1PrintControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PrintControl_AddPage(self: *const T, commandList: *ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ?*IStream, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) HRESULT {
+        pub fn ID2D1PrintControl_AddPage(self: *const T, commandList: ?*ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ?*IStream, tag1: ?*u64, tag2: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PrintControl.VTable, self.vtable).AddPage(@ptrCast(*const ID2D1PrintControl, self), commandList, pageSize, pagePrintTicketStream, tag1, tag2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4467,11 +4467,11 @@ pub const ID2D1ImageBrush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetSourceRectangle: fn(
             self: *const ID2D1ImageBrush,
-            sourceRectangle: *const D2D_RECT_F,
+            sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetImage: fn(
             self: *const ID2D1ImageBrush,
-            image: ?**ID2D1Image,
+            image: ?*?*ID2D1Image,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetExtendModeX: fn(
             self: *const ID2D1ImageBrush,
@@ -4484,7 +4484,7 @@ pub const ID2D1ImageBrush = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_INTERPOLATION_MODE,
         GetSourceRectangle: fn(
             self: *const ID2D1ImageBrush,
-            sourceRectangle: *D2D_RECT_F,
+            sourceRectangle: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -4507,11 +4507,11 @@ pub const ID2D1ImageBrush = extern struct {
             return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetInterpolationMode(@ptrCast(*const ID2D1ImageBrush, self), interpolationMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ImageBrush_SetSourceRectangle(self: *const T, sourceRectangle: *const D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1ImageBrush_SetSourceRectangle(self: *const T, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetSourceRectangle(@ptrCast(*const ID2D1ImageBrush, self), sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ImageBrush_GetImage(self: *const T, image: ?**ID2D1Image) callconv(.Inline) void {
+        pub fn ID2D1ImageBrush_GetImage(self: *const T, image: ?*?*ID2D1Image) callconv(.Inline) void {
             return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetImage(@ptrCast(*const ID2D1ImageBrush, self), image);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4527,7 +4527,7 @@ pub const ID2D1ImageBrush = extern struct {
             return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetInterpolationMode(@ptrCast(*const ID2D1ImageBrush, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ImageBrush_GetSourceRectangle(self: *const T, sourceRectangle: *D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1ImageBrush_GetSourceRectangle(self: *const T, sourceRectangle: ?*D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetSourceRectangle(@ptrCast(*const ID2D1ImageBrush, self), sourceRectangle);
         }
     };}
@@ -4596,14 +4596,14 @@ pub const ID2D1PathGeometry1 = extern struct {
             startSegment: u32,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            pointDescription: *D2D1_POINT_DESCRIPTION,
+            pointDescription: ?*D2D1_POINT_DESCRIPTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1PathGeometry.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1PathGeometry1_ComputePointAndSegmentAtLength(self: *const T, length: f32, startSegment: u32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: *D2D1_POINT_DESCRIPTION) callconv(.Inline) HRESULT {
+        pub fn ID2D1PathGeometry1_ComputePointAndSegmentAtLength(self: *const T, length: f32, startSegment: u32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: ?*D2D1_POINT_DESCRIPTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1PathGeometry1.VTable, self.vtable).ComputePointAndSegmentAtLength(@ptrCast(*const ID2D1PathGeometry1, self), length, startSegment, worldTransform, flatteningTolerance, pointDescription);
         }
     };}
@@ -4635,11 +4635,11 @@ pub const ID2D1Properties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_PROPERTY_TYPE,
         GetPropertyIndex: fn(
             self: *const ID2D1Properties,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) u32,
         SetValueByName: fn(
             self: *const ID2D1Properties,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]const u8,
             dataSize: u32,
@@ -4653,7 +4653,7 @@ pub const ID2D1Properties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValueByName: fn(
             self: *const ID2D1Properties,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_PROPERTY_TYPE,
             data: [*:0]u8,
             dataSize: u32,
@@ -4672,7 +4672,7 @@ pub const ID2D1Properties = extern struct {
         GetSubProperties: fn(
             self: *const ID2D1Properties,
             index: u32,
-            subProperties: ?**ID2D1Properties,
+            subProperties: ?*?*ID2D1Properties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4695,11 +4695,11 @@ pub const ID2D1Properties = extern struct {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetType(@ptrCast(*const ID2D1Properties, self), index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_GetPropertyIndex(self: *const T, name: [*:0]const u16) callconv(.Inline) u32 {
+        pub fn ID2D1Properties_GetPropertyIndex(self: *const T, name: ?[*:0]const u16) callconv(.Inline) u32 {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyIndex(@ptrCast(*const ID2D1Properties, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_SetValueByName(self: *const T, name: [*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Properties_SetValueByName(self: *const T, name: ?[*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4707,7 +4707,7 @@ pub const ID2D1Properties = extern struct {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValue(@ptrCast(*const ID2D1Properties, self), index, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_GetValueByName(self: *const T, name: [*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Properties_GetValueByName(self: *const T, name: ?[*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4719,7 +4719,7 @@ pub const ID2D1Properties = extern struct {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueSize(@ptrCast(*const ID2D1Properties, self), index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_GetSubProperties(self: *const T, index: u32, subProperties: ?**ID2D1Properties) callconv(.Inline) HRESULT {
+        pub fn ID2D1Properties_GetSubProperties(self: *const T, index: u32, subProperties: ?*?*ID2D1Properties) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetSubProperties(@ptrCast(*const ID2D1Properties, self), index, subProperties);
         }
     };}
@@ -4745,14 +4745,14 @@ pub const ID2D1Effect = extern struct {
         GetInput: fn(
             self: *const ID2D1Effect,
             index: u32,
-            input: ?**ID2D1Image,
+            input: ?*?*ID2D1Image,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetInputCount: fn(
             self: *const ID2D1Effect,
         ) callconv(@import("std").os.windows.WINAPI) u32,
         GetOutput: fn(
             self: *const ID2D1Effect,
-            outputImage: **ID2D1Image,
+            outputImage: ?*?*ID2D1Image,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -4767,7 +4767,7 @@ pub const ID2D1Effect = extern struct {
             return @ptrCast(*const ID2D1Effect.VTable, self.vtable).SetInputCount(@ptrCast(*const ID2D1Effect, self), inputCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Effect_GetInput(self: *const T, index: u32, input: ?**ID2D1Image) callconv(.Inline) void {
+        pub fn ID2D1Effect_GetInput(self: *const T, index: u32, input: ?*?*ID2D1Image) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetInput(@ptrCast(*const ID2D1Effect, self), index, input);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4775,7 +4775,7 @@ pub const ID2D1Effect = extern struct {
             return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetInputCount(@ptrCast(*const ID2D1Effect, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Effect_GetOutput(self: *const T, outputImage: **ID2D1Image) callconv(.Inline) void {
+        pub fn ID2D1Effect_GetOutput(self: *const T, outputImage: ?*?*ID2D1Image) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetOutput(@ptrCast(*const ID2D1Effect, self), outputImage);
         }
     };}
@@ -4790,19 +4790,19 @@ pub const ID2D1Bitmap1 = extern struct {
         base: ID2D1Bitmap.VTable,
         GetColorContext: fn(
             self: *const ID2D1Bitmap1,
-            colorContext: ?**ID2D1ColorContext,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetOptions: fn(
             self: *const ID2D1Bitmap1,
         ) callconv(@import("std").os.windows.WINAPI) D2D1_BITMAP_OPTIONS,
         GetSurface: fn(
             self: *const ID2D1Bitmap1,
-            dxgiSurface: ?**IDXGISurface,
+            dxgiSurface: ?*?*IDXGISurface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Map: fn(
             self: *const ID2D1Bitmap1,
             options: D2D1_MAP_OPTIONS,
-            mappedRect: *D2D1_MAPPED_RECT,
+            mappedRect: ?*D2D1_MAPPED_RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unmap: fn(
             self: *const ID2D1Bitmap1,
@@ -4812,7 +4812,7 @@ pub const ID2D1Bitmap1 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Bitmap.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap1_GetColorContext(self: *const T, colorContext: ?**ID2D1ColorContext) callconv(.Inline) void {
+        pub fn ID2D1Bitmap1_GetColorContext(self: *const T, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetColorContext(@ptrCast(*const ID2D1Bitmap1, self), colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4820,11 +4820,11 @@ pub const ID2D1Bitmap1 = extern struct {
             return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetOptions(@ptrCast(*const ID2D1Bitmap1, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap1_GetSurface(self: *const T, dxgiSurface: ?**IDXGISurface) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap1_GetSurface(self: *const T, dxgiSurface: ?*?*IDXGISurface) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetSurface(@ptrCast(*const ID2D1Bitmap1, self), dxgiSurface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap1_Map(self: *const T, options: D2D1_MAP_OPTIONS, mappedRect: *D2D1_MAPPED_RECT) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap1_Map(self: *const T, options: D2D1_MAP_OPTIONS, mappedRect: ?*D2D1_MAPPED_RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).Map(@ptrCast(*const ID2D1Bitmap1, self), options, mappedRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4931,22 +4931,22 @@ pub const ID2D1DrawingStateBlock1 = extern struct {
         base: ID2D1DrawingStateBlock.VTable,
         GetDescription: fn(
             self: *const ID2D1DrawingStateBlock1,
-            stateDescription: *D2D1_DRAWING_STATE_DESCRIPTION1,
+            stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION1,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetDescription: fn(
             self: *const ID2D1DrawingStateBlock1,
-            stateDescription: *const D2D1_DRAWING_STATE_DESCRIPTION1,
+            stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DrawingStateBlock.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawingStateBlock1_GetDescription(self: *const T, stateDescription: *D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
+        pub fn ID2D1DrawingStateBlock1_GetDescription(self: *const T, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DrawingStateBlock1.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1DrawingStateBlock1, self), stateDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawingStateBlock1_SetDescription(self: *const T, stateDescription: *const D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
+        pub fn ID2D1DrawingStateBlock1_SetDescription(self: *const T, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DrawingStateBlock1.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1DrawingStateBlock1, self), stateDescription);
         }
     };}
@@ -4964,42 +4964,42 @@ pub const ID2D1DeviceContext = extern struct {
             size: D2D_SIZE_U,
             sourceData: ?*const c_void,
             pitch: u32,
-            bitmapProperties: *const D2D1_BITMAP_PROPERTIES1,
-            bitmap: **ID2D1Bitmap1,
+            bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
+            bitmap: ?*?*ID2D1Bitmap1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBitmapFromWicBitmap: fn(
             self: *const ID2D1DeviceContext,
-            wicBitmapSource: *IWICBitmapSource,
+            wicBitmapSource: ?*IWICBitmapSource,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
-            bitmap: **ID2D1Bitmap1,
+            bitmap: ?*?*ID2D1Bitmap1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContext: fn(
             self: *const ID2D1DeviceContext,
             space: D2D1_COLOR_SPACE,
             profile: ?[*:0]const u8,
             profileSize: u32,
-            colorContext: **ID2D1ColorContext,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromFilename: fn(
             self: *const ID2D1DeviceContext,
-            filename: [*:0]const u16,
-            colorContext: **ID2D1ColorContext,
+            filename: ?[*:0]const u16,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromWicColorContext: fn(
             self: *const ID2D1DeviceContext,
-            wicColorContext: *IWICColorContext,
-            colorContext: **ID2D1ColorContext,
+            wicColorContext: ?*IWICColorContext,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBitmapFromDxgiSurface: fn(
             self: *const ID2D1DeviceContext,
-            surface: *IDXGISurface,
+            surface: ?*IDXGISurface,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
-            bitmap: **ID2D1Bitmap1,
+            bitmap: ?*?*ID2D1Bitmap1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEffect: fn(
             self: *const ID2D1DeviceContext,
-            effectId: *const Guid,
-            effect: **ID2D1Effect,
+            effectId: ?*const Guid,
+            effect: ?*?*ID2D1Effect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGradientStopCollection: fn(
             self: *const ID2D1DeviceContext,
@@ -5010,25 +5010,25 @@ pub const ID2D1DeviceContext = extern struct {
             bufferPrecision: D2D1_BUFFER_PRECISION,
             extendMode: D2D1_EXTEND_MODE,
             colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE,
-            gradientStopCollection1: **ID2D1GradientStopCollection1,
+            gradientStopCollection1: ?*?*ID2D1GradientStopCollection1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateImageBrush: fn(
             self: *const ID2D1DeviceContext,
             image: ?*ID2D1Image,
-            imageBrushProperties: *const D2D1_IMAGE_BRUSH_PROPERTIES,
+            imageBrushProperties: ?*const D2D1_IMAGE_BRUSH_PROPERTIES,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            imageBrush: **ID2D1ImageBrush,
+            imageBrush: ?*?*ID2D1ImageBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBitmapBrush: fn(
             self: *const ID2D1DeviceContext,
             bitmap: ?*ID2D1Bitmap,
             bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
-            bitmapBrush: **ID2D1BitmapBrush1,
+            bitmapBrush: ?*?*ID2D1BitmapBrush1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCommandList: fn(
             self: *const ID2D1DeviceContext,
-            commandList: **ID2D1CommandList,
+            commandList: ?*?*ID2D1CommandList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDxgiFormatSupported: fn(
             self: *const ID2D1DeviceContext,
@@ -5040,24 +5040,24 @@ pub const ID2D1DeviceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         GetImageLocalBounds: fn(
             self: *const ID2D1DeviceContext,
-            image: *ID2D1Image,
-            localBounds: *D2D_RECT_F,
+            image: ?*ID2D1Image,
+            localBounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImageWorldBounds: fn(
             self: *const ID2D1DeviceContext,
-            image: *ID2D1Image,
-            worldBounds: *D2D_RECT_F,
+            image: ?*ID2D1Image,
+            worldBounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGlyphRunWorldBounds: fn(
             self: *const ID2D1DeviceContext,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
             measuringMode: DWRITE_MEASURING_MODE,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDevice: fn(
             self: *const ID2D1DeviceContext,
-            device: **ID2D1Device,
+            device: ?*?*ID2D1Device,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetTarget: fn(
             self: *const ID2D1DeviceContext,
@@ -5065,15 +5065,15 @@ pub const ID2D1DeviceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTarget: fn(
             self: *const ID2D1DeviceContext,
-            image: ?**ID2D1Image,
+            image: ?*?*ID2D1Image,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetRenderingControls: fn(
             self: *const ID2D1DeviceContext,
-            renderingControls: *const D2D1_RENDERING_CONTROLS,
+            renderingControls: ?*const D2D1_RENDERING_CONTROLS,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetRenderingControls: fn(
             self: *const ID2D1DeviceContext,
-            renderingControls: *D2D1_RENDERING_CONTROLS,
+            renderingControls: ?*D2D1_RENDERING_CONTROLS,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetPrimitiveBlend: fn(
             self: *const ID2D1DeviceContext,
@@ -5092,14 +5092,14 @@ pub const ID2D1DeviceContext = extern struct {
         DrawGlyphRun: fn(
             self: *const ID2D1DeviceContext,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
             glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-            foregroundBrush: *ID2D1Brush,
+            foregroundBrush: ?*ID2D1Brush,
             measuringMode: DWRITE_MEASURING_MODE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawImage: fn(
             self: *const ID2D1DeviceContext,
-            image: *ID2D1Image,
+            image: ?*ID2D1Image,
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
             interpolationMode: D2D1_INTERPOLATION_MODE,
@@ -5107,12 +5107,12 @@ pub const ID2D1DeviceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawGdiMetafile: fn(
             self: *const ID2D1DeviceContext,
-            gdiMetafile: *ID2D1GdiMetafile,
+            gdiMetafile: ?*ID2D1GdiMetafile,
             targetOffset: ?*const D2D_POINT_2F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawBitmap: fn(
             self: *const ID2D1DeviceContext,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             destinationRectangle: ?*const D2D_RECT_F,
             opacity: f32,
             interpolationMode: D2D1_INTERPOLATION_MODE,
@@ -5121,29 +5121,29 @@ pub const ID2D1DeviceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         PushLayer: fn(
             self: *const ID2D1DeviceContext,
-            layerParameters: *const D2D1_LAYER_PARAMETERS1,
+            layerParameters: ?*const D2D1_LAYER_PARAMETERS1,
             layer: ?*ID2D1Layer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         InvalidateEffectInputRectangle: fn(
             self: *const ID2D1DeviceContext,
-            effect: *ID2D1Effect,
+            effect: ?*ID2D1Effect,
             input: u32,
-            inputRectangle: *const D2D_RECT_F,
+            inputRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInvalidRectangleCount: fn(
             self: *const ID2D1DeviceContext,
-            effect: *ID2D1Effect,
-            rectangleCount: *u32,
+            effect: ?*ID2D1Effect,
+            rectangleCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInvalidRectangles: fn(
             self: *const ID2D1DeviceContext,
-            effect: *ID2D1Effect,
+            effect: ?*ID2D1Effect,
             rectangles: [*]D2D_RECT_F,
             rectanglesCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectRequiredInputRectangles: fn(
             self: *const ID2D1DeviceContext,
-            renderEffect: *ID2D1Effect,
+            renderEffect: ?*ID2D1Effect,
             renderImageRectangle: ?*const D2D_RECT_F,
             inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION,
             requiredInputRects: [*]D2D_RECT_F,
@@ -5151,8 +5151,8 @@ pub const ID2D1DeviceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillOpacityMask: fn(
             self: *const ID2D1DeviceContext,
-            opacityMask: *ID2D1Bitmap,
-            brush: *ID2D1Brush,
+            opacityMask: ?*ID2D1Bitmap,
+            brush: ?*ID2D1Brush,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
@@ -5161,47 +5161,47 @@ pub const ID2D1DeviceContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateBitmap(self: *const T, size: D2D_SIZE_U, sourceData: ?*const c_void, pitch: u32, bitmapProperties: *const D2D1_BITMAP_PROPERTIES1, bitmap: **ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateBitmap(self: *const T, size: D2D_SIZE_U, sourceData: ?*const c_void, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1DeviceContext, self), size, sourceData, pitch, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: *IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: **ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapFromWicBitmap(@ptrCast(*const ID2D1DeviceContext, self), wicBitmapSource, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContext(@ptrCast(*const ID2D1DeviceContext, self), space, profile, profileSize, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateColorContextFromFilename(self: *const T, filename: [*:0]const u16, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateColorContextFromFilename(self: *const T, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContextFromFilename(@ptrCast(*const ID2D1DeviceContext, self), filename, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: *IWICColorContext, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1DeviceContext, self), wicColorContext, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateBitmapFromDxgiSurface(self: *const T, surface: *IDXGISurface, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: **ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateBitmapFromDxgiSurface(self: *const T, surface: ?*IDXGISurface, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapFromDxgiSurface(@ptrCast(*const ID2D1DeviceContext, self), surface, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateEffect(self: *const T, effectId: *const Guid, effect: **ID2D1Effect) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateEffect(self: *const T, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateEffect(@ptrCast(*const ID2D1DeviceContext, self), effectId, effect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateGradientStopCollection(self: *const T, straightAlphaGradientStops: [*]const D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: **ID2D1GradientStopCollection1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateGradientStopCollection(self: *const T, straightAlphaGradientStops: [*]const D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: ?*?*ID2D1GradientStopCollection1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateGradientStopCollection(@ptrCast(*const ID2D1DeviceContext, self), straightAlphaGradientStops, straightAlphaGradientStopsCount, preInterpolationSpace, postInterpolationSpace, bufferPrecision, extendMode, colorInterpolationMode, gradientStopCollection1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateImageBrush(self: *const T, image: ?*ID2D1Image, imageBrushProperties: *const D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, imageBrush: **ID2D1ImageBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateImageBrush(self: *const T, image: ?*ID2D1Image, imageBrushProperties: ?*const D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, imageBrush: ?*?*ID2D1ImageBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateImageBrush(@ptrCast(*const ID2D1DeviceContext, self), image, imageBrushProperties, brushProperties, imageBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: **ID2D1BitmapBrush1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1DeviceContext, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateCommandList(self: *const T, commandList: **ID2D1CommandList) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateCommandList(self: *const T, commandList: ?*?*ID2D1CommandList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateCommandList(@ptrCast(*const ID2D1DeviceContext, self), commandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5213,19 +5213,19 @@ pub const ID2D1DeviceContext = extern struct {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).IsBufferPrecisionSupported(@ptrCast(*const ID2D1DeviceContext, self), bufferPrecision);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetImageLocalBounds(self: *const T, image: *ID2D1Image, localBounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetImageLocalBounds(self: *const T, image: ?*ID2D1Image, localBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetImageLocalBounds(@ptrCast(*const ID2D1DeviceContext, self), image, localBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetImageWorldBounds(self: *const T, image: *ID2D1Image, worldBounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetImageWorldBounds(self: *const T, image: ?*ID2D1Image, worldBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetImageWorldBounds(@ptrCast(*const ID2D1DeviceContext, self), image, worldBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetGlyphRunWorldBounds(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetGlyphRunWorldBounds(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetGlyphRunWorldBounds(@ptrCast(*const ID2D1DeviceContext, self), baselineOrigin, glyphRun, measuringMode, bounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetDevice(self: *const T, device: **ID2D1Device) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_GetDevice(self: *const T, device: ?*?*ID2D1Device) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetDevice(@ptrCast(*const ID2D1DeviceContext, self), device);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5233,15 +5233,15 @@ pub const ID2D1DeviceContext = extern struct {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetTarget(@ptrCast(*const ID2D1DeviceContext, self), image);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetTarget(self: *const T, image: ?**ID2D1Image) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_GetTarget(self: *const T, image: ?*?*ID2D1Image) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetTarget(@ptrCast(*const ID2D1DeviceContext, self), image);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_SetRenderingControls(self: *const T, renderingControls: *const D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_SetRenderingControls(self: *const T, renderingControls: ?*const D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetRenderingControls(@ptrCast(*const ID2D1DeviceContext, self), renderingControls);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetRenderingControls(self: *const T, renderingControls: *D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_GetRenderingControls(self: *const T, renderingControls: ?*D2D1_RENDERING_CONTROLS) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetRenderingControls(@ptrCast(*const ID2D1DeviceContext, self), renderingControls);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5261,43 +5261,43 @@ pub const ID2D1DeviceContext = extern struct {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetUnitMode(@ptrCast(*const ID2D1DeviceContext, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: *ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1DeviceContext, self), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_DrawImage(self: *const T, image: *ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_DrawImage(self: *const T, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawImage(@ptrCast(*const ID2D1DeviceContext, self), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_DrawGdiMetafile(self: *const T, gdiMetafile: *ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1DeviceContext, self), gdiMetafile, targetOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_DrawBitmap(self: *const T, bitmap: *ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1DeviceContext, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_PushLayer(self: *const T, layerParameters: *const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_PushLayer(self: *const T, layerParameters: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1DeviceContext, self), layerParameters, layer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_InvalidateEffectInputRectangle(self: *const T, effect: *ID2D1Effect, input: u32, inputRectangle: *const D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_InvalidateEffectInputRectangle(self: *const T, effect: ?*ID2D1Effect, input: u32, inputRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).InvalidateEffectInputRectangle(@ptrCast(*const ID2D1DeviceContext, self), effect, input, inputRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetEffectInvalidRectangleCount(self: *const T, effect: *ID2D1Effect, rectangleCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetEffectInvalidRectangleCount(self: *const T, effect: ?*ID2D1Effect, rectangleCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectInvalidRectangleCount(@ptrCast(*const ID2D1DeviceContext, self), effect, rectangleCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetEffectInvalidRectangles(self: *const T, effect: *ID2D1Effect, rectangles: [*]D2D_RECT_F, rectanglesCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetEffectInvalidRectangles(self: *const T, effect: ?*ID2D1Effect, rectangles: [*]D2D_RECT_F, rectanglesCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectInvalidRectangles(@ptrCast(*const ID2D1DeviceContext, self), effect, rectangles, rectanglesCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_GetEffectRequiredInputRectangles(self: *const T, renderEffect: *ID2D1Effect, renderImageRectangle: ?*const D2D_RECT_F, inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: [*]D2D_RECT_F, inputCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_GetEffectRequiredInputRectangles(self: *const T, renderEffect: ?*ID2D1Effect, renderImageRectangle: ?*const D2D_RECT_F, inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: [*]D2D_RECT_F, inputCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectRequiredInputRectangles(@ptrCast(*const ID2D1DeviceContext, self), renderEffect, renderImageRectangle, inputDescriptions, requiredInputRects, inputCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_FillOpacityMask(self: *const T, opacityMask: *ID2D1Bitmap, brush: *ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1DeviceContext, self), opacityMask, brush, destinationRectangle, sourceRectangle);
         }
     };}
@@ -5313,14 +5313,14 @@ pub const ID2D1Device = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext: **ID2D1DeviceContext,
+            deviceContext: ?*?*ID2D1DeviceContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePrintControl: fn(
             self: *const ID2D1Device,
-            wicFactory: *IWICImagingFactory,
-            documentTarget: *IPrintDocumentPackageTarget,
+            wicFactory: ?*IWICImagingFactory,
+            documentTarget: ?*IPrintDocumentPackageTarget,
             printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES,
-            printControl: **ID2D1PrintControl,
+            printControl: ?*?*ID2D1PrintControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaximumTextureMemory: fn(
             self: *const ID2D1Device,
@@ -5338,11 +5338,11 @@ pub const ID2D1Device = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: **ID2D1DeviceContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: ?*?*ID2D1DeviceContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device, self), options, deviceContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device_CreatePrintControl(self: *const T, wicFactory: *IWICImagingFactory, documentTarget: *IPrintDocumentPackageTarget, printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES, printControl: **ID2D1PrintControl) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device_CreatePrintControl(self: *const T, wicFactory: ?*IWICImagingFactory, documentTarget: ?*IPrintDocumentPackageTarget, printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES, printControl: ?*?*ID2D1PrintControl) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device.VTable, self.vtable).CreatePrintControl(@ptrCast(*const ID2D1Device, self), wicFactory, documentTarget, printControlProperties, printControl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5369,50 +5369,50 @@ pub const ID2D1Factory1 = extern struct {
         base: ID2D1Factory.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory1,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice: **ID2D1Device,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice: ?*?*ID2D1Device,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStrokeStyle: fn(
             self: *const ID2D1Factory1,
-            strokeStyleProperties: *const D2D1_STROKE_STYLE_PROPERTIES1,
+            strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES1,
             dashes: ?[*]const f32,
             dashesCount: u32,
-            strokeStyle: **ID2D1StrokeStyle1,
+            strokeStyle: ?*?*ID2D1StrokeStyle1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePathGeometry: fn(
             self: *const ID2D1Factory1,
-            pathGeometry: **ID2D1PathGeometry1,
+            pathGeometry: ?*?*ID2D1PathGeometry1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDrawingStateBlock: fn(
             self: *const ID2D1Factory1,
             drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1,
             textRenderingParams: ?*IDWriteRenderingParams,
-            drawingStateBlock: **ID2D1DrawingStateBlock1,
+            drawingStateBlock: ?*?*ID2D1DrawingStateBlock1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGdiMetafile: fn(
             self: *const ID2D1Factory1,
-            metafileStream: *IStream,
-            metafile: **ID2D1GdiMetafile,
+            metafileStream: ?*IStream,
+            metafile: ?*?*ID2D1GdiMetafile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEffectFromStream: fn(
             self: *const ID2D1Factory1,
-            classId: *const Guid,
-            propertyXml: *IStream,
+            classId: ?*const Guid,
+            propertyXml: ?*IStream,
             bindings: ?[*]const D2D1_PROPERTY_BINDING,
             bindingsCount: u32,
-            effectFactory: PD2D1_EFFECT_FACTORY,
+            effectFactory: ?PD2D1_EFFECT_FACTORY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEffectFromString: fn(
             self: *const ID2D1Factory1,
-            classId: *const Guid,
-            propertyXml: [*:0]const u16,
+            classId: ?*const Guid,
+            propertyXml: ?[*:0]const u16,
             bindings: ?[*]const D2D1_PROPERTY_BINDING,
             bindingsCount: u32,
-            effectFactory: PD2D1_EFFECT_FACTORY,
+            effectFactory: ?PD2D1_EFFECT_FACTORY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterEffect: fn(
             self: *const ID2D1Factory1,
-            classId: *const Guid,
+            classId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredEffects: fn(
             self: *const ID2D1Factory1,
@@ -5423,43 +5423,43 @@ pub const ID2D1Factory1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectProperties: fn(
             self: *const ID2D1Factory1,
-            effectId: *const Guid,
-            properties: **ID2D1Properties,
+            effectId: ?*const Guid,
+            properties: ?*?*ID2D1Properties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice: **ID2D1Device) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice: ?*?*ID2D1Device) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory1, self), dxgiDevice, d2dDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_CreateStrokeStyle(self: *const T, strokeStyleProperties: *const D2D1_STROKE_STYLE_PROPERTIES1, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: **ID2D1StrokeStyle1) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_CreateStrokeStyle(self: *const T, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES1, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateStrokeStyle(@ptrCast(*const ID2D1Factory1, self), strokeStyleProperties, dashes, dashesCount, strokeStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_CreatePathGeometry(self: *const T, pathGeometry: **ID2D1PathGeometry1) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_CreatePathGeometry(self: *const T, pathGeometry: ?*?*ID2D1PathGeometry1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1Factory1, self), pathGeometry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: **ID2D1DrawingStateBlock1) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateDrawingStateBlock(@ptrCast(*const ID2D1Factory1, self), drawingStateDescription, textRenderingParams, drawingStateBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_CreateGdiMetafile(self: *const T, metafileStream: *IStream, metafile: **ID2D1GdiMetafile) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_CreateGdiMetafile(self: *const T, metafileStream: ?*IStream, metafile: ?*?*ID2D1GdiMetafile) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateGdiMetafile(@ptrCast(*const ID2D1Factory1, self), metafileStream, metafile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_RegisterEffectFromStream(self: *const T, classId: *const Guid, propertyXml: *IStream, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_RegisterEffectFromStream(self: *const T, classId: ?*const Guid, propertyXml: ?*IStream, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).RegisterEffectFromStream(@ptrCast(*const ID2D1Factory1, self), classId, propertyXml, bindings, bindingsCount, effectFactory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_RegisterEffectFromString(self: *const T, classId: *const Guid, propertyXml: [*:0]const u16, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_RegisterEffectFromString(self: *const T, classId: ?*const Guid, propertyXml: ?[*:0]const u16, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).RegisterEffectFromString(@ptrCast(*const ID2D1Factory1, self), classId, propertyXml, bindings, bindingsCount, effectFactory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_UnregisterEffect(self: *const T, classId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_UnregisterEffect(self: *const T, classId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).UnregisterEffect(@ptrCast(*const ID2D1Factory1, self), classId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5467,7 +5467,7 @@ pub const ID2D1Factory1 = extern struct {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).GetRegisteredEffects(@ptrCast(*const ID2D1Factory1, self), effects, effectsCount, effectsReturned, effectsRegistered);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory1_GetEffectProperties(self: *const T, effectId: *const Guid, properties: **ID2D1Properties) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory1_GetEffectProperties(self: *const T, effectId: ?*const Guid, properties: ?*?*ID2D1Properties) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).GetEffectProperties(@ptrCast(*const ID2D1Factory1, self), effectId, properties);
         }
     };}
@@ -5522,13 +5522,13 @@ pub const Matrix5x4F = extern struct {
 };
 
 pub const PD2D1_PROPERTY_SET_FUNCTION = fn(
-    effect: *IUnknown,
+    effect: ?*IUnknown,
     data: [*:0]const u8,
     dataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PD2D1_PROPERTY_GET_FUNCTION = fn(
-    effect: *IUnknown,
+    effect: ?*IUnknown,
     data: ?[*:0]u8,
     dataSize: u32,
     actualSize: ?*u32,
@@ -5712,22 +5712,22 @@ pub const D2D1_FEATURE_D3D10_X_HARDWARE_OPTIONS = D2D1_FEATURE.D3D10_X_HARDWARE_
 pub const D2D1_FEATURE_FORCE_DWORD = D2D1_FEATURE.FORCE_DWORD;
 
 pub const D2D1_PROPERTY_BINDING = extern struct {
-    propertyName: [*:0]const u16,
-    setFunction: PD2D1_PROPERTY_SET_FUNCTION,
-    getFunction: PD2D1_PROPERTY_GET_FUNCTION,
+    propertyName: ?[*:0]const u16,
+    setFunction: ?PD2D1_PROPERTY_SET_FUNCTION,
+    getFunction: ?PD2D1_PROPERTY_GET_FUNCTION,
 };
 
 pub const D2D1_RESOURCE_TEXTURE_PROPERTIES = extern struct {
-    extents: *const u32,
+    extents: ?*const u32,
     dimensions: u32,
     bufferPrecision: D2D1_BUFFER_PRECISION,
     channelDepth: D2D1_CHANNEL_DEPTH,
     filter: D2D1_FILTER,
-    extendModes: *const D2D1_EXTEND_MODE,
+    extendModes: ?*const D2D1_EXTEND_MODE,
 };
 
 pub const D2D1_INPUT_ELEMENT_DESC = extern struct {
-    semanticName: [*:0]const u8,
+    semanticName: ?[*:0]const u8,
     semanticIndex: u32,
     format: DXGI_FORMAT,
     inputSlot: u32,
@@ -5737,14 +5737,14 @@ pub const D2D1_INPUT_ELEMENT_DESC = extern struct {
 pub const D2D1_VERTEX_BUFFER_PROPERTIES = extern struct {
     inputCount: u32,
     usage: D2D1_VERTEX_USAGE,
-    data: *const u8,
+    data: ?*const u8,
     byteWidth: u32,
 };
 
 pub const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES = extern struct {
-    shaderBufferWithInputSignature: *const u8,
+    shaderBufferWithInputSignature: ?*const u8,
     shaderBufferSize: u32,
-    inputElements: *const D2D1_INPUT_ELEMENT_DESC,
+    inputElements: ?*const D2D1_INPUT_ELEMENT_DESC,
     elementCount: u32,
     stride: u32,
 };
@@ -5785,7 +5785,7 @@ pub const ID2D1VertexBuffer = extern struct {
         base: IUnknown.VTable,
         Map: fn(
             self: *const ID2D1VertexBuffer,
-            data: **u8,
+            data: ?*?*u8,
             bufferSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unmap: fn(
@@ -5796,7 +5796,7 @@ pub const ID2D1VertexBuffer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1VertexBuffer_Map(self: *const T, data: **u8, bufferSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1VertexBuffer_Map(self: *const T, data: ?*?*u8, bufferSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1VertexBuffer.VTable, self.vtable).Map(@ptrCast(*const ID2D1VertexBuffer, self), data, bufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5896,7 +5896,7 @@ pub const ID2D1DrawInfo = extern struct {
         SetResourceTexture: fn(
             self: *const ID2D1DrawInfo,
             textureIndex: u32,
-            resourceTexture: *ID2D1ResourceTexture,
+            resourceTexture: ?*ID2D1ResourceTexture,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVertexShaderConstantBuffer: fn(
             self: *const ID2D1DrawInfo,
@@ -5905,7 +5905,7 @@ pub const ID2D1DrawInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPixelShader: fn(
             self: *const ID2D1DrawInfo,
-            shaderId: *const Guid,
+            shaderId: ?*const Guid,
             pixelOptions: D2D1_PIXEL_OPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVertexProcessing: fn(
@@ -5925,7 +5925,7 @@ pub const ID2D1DrawInfo = extern struct {
             return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetPixelShaderConstantBuffer(@ptrCast(*const ID2D1DrawInfo, self), buffer, bufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: *ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        pub fn ID2D1DrawInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetResourceTexture(@ptrCast(*const ID2D1DrawInfo, self), textureIndex, resourceTexture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5933,7 +5933,7 @@ pub const ID2D1DrawInfo = extern struct {
             return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetVertexShaderConstantBuffer(@ptrCast(*const ID2D1DrawInfo, self), buffer, bufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawInfo_SetPixelShader(self: *const T, shaderId: *const Guid, pixelOptions: D2D1_PIXEL_OPTIONS) callconv(.Inline) HRESULT {
+        pub fn ID2D1DrawInfo_SetPixelShader(self: *const T, shaderId: ?*const Guid, pixelOptions: D2D1_PIXEL_OPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetPixelShader(@ptrCast(*const ID2D1DrawInfo, self), shaderId, pixelOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5957,12 +5957,12 @@ pub const ID2D1ComputeInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetComputeShader: fn(
             self: *const ID2D1ComputeInfo,
-            shaderId: *const Guid,
+            shaderId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetResourceTexture: fn(
             self: *const ID2D1ComputeInfo,
             textureIndex: u32,
-            resourceTexture: *ID2D1ResourceTexture,
+            resourceTexture: ?*ID2D1ResourceTexture,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5973,11 +5973,11 @@ pub const ID2D1ComputeInfo = extern struct {
             return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetComputeShaderConstantBuffer(@ptrCast(*const ID2D1ComputeInfo, self), buffer, bufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ComputeInfo_SetComputeShader(self: *const T, shaderId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ID2D1ComputeInfo_SetComputeShader(self: *const T, shaderId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetComputeShader(@ptrCast(*const ID2D1ComputeInfo, self), shaderId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ComputeInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: *ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        pub fn ID2D1ComputeInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetResourceTexture(@ptrCast(*const ID2D1ComputeInfo, self), textureIndex, resourceTexture);
         }
     };}
@@ -6016,30 +6016,30 @@ pub const ID2D1TransformGraph = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         SetSingleTransformNode: fn(
             self: *const ID2D1TransformGraph,
-            node: *ID2D1TransformNode,
+            node: ?*ID2D1TransformNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddNode: fn(
             self: *const ID2D1TransformGraph,
-            node: *ID2D1TransformNode,
+            node: ?*ID2D1TransformNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveNode: fn(
             self: *const ID2D1TransformGraph,
-            node: *ID2D1TransformNode,
+            node: ?*ID2D1TransformNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputNode: fn(
             self: *const ID2D1TransformGraph,
-            node: *ID2D1TransformNode,
+            node: ?*ID2D1TransformNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectNode: fn(
             self: *const ID2D1TransformGraph,
-            fromNode: *ID2D1TransformNode,
-            toNode: *ID2D1TransformNode,
+            fromNode: ?*ID2D1TransformNode,
+            toNode: ?*ID2D1TransformNode,
             toNodeInputIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectToEffectInput: fn(
             self: *const ID2D1TransformGraph,
             toEffectInputIndex: u32,
-            node: *ID2D1TransformNode,
+            node: ?*ID2D1TransformNode,
             toNodeInputIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
@@ -6058,27 +6058,27 @@ pub const ID2D1TransformGraph = extern struct {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).GetInputCount(@ptrCast(*const ID2D1TransformGraph, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_SetSingleTransformNode(self: *const T, node: *ID2D1TransformNode) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_SetSingleTransformNode(self: *const T, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).SetSingleTransformNode(@ptrCast(*const ID2D1TransformGraph, self), node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_AddNode(self: *const T, node: *ID2D1TransformNode) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_AddNode(self: *const T, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).AddNode(@ptrCast(*const ID2D1TransformGraph, self), node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_RemoveNode(self: *const T, node: *ID2D1TransformNode) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_RemoveNode(self: *const T, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).RemoveNode(@ptrCast(*const ID2D1TransformGraph, self), node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_SetOutputNode(self: *const T, node: *ID2D1TransformNode) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_SetOutputNode(self: *const T, node: ?*ID2D1TransformNode) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).SetOutputNode(@ptrCast(*const ID2D1TransformGraph, self), node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_ConnectNode(self: *const T, fromNode: *ID2D1TransformNode, toNode: *ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_ConnectNode(self: *const T, fromNode: ?*ID2D1TransformNode, toNode: ?*ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).ConnectNode(@ptrCast(*const ID2D1TransformGraph, self), fromNode, toNode, toNodeInputIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformGraph_ConnectToEffectInput(self: *const T, toEffectInputIndex: u32, node: *ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1TransformGraph_ConnectToEffectInput(self: *const T, toEffectInputIndex: u32, node: ?*ID2D1TransformNode, toNodeInputIndex: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).ConnectToEffectInput(@ptrCast(*const ID2D1TransformGraph, self), toEffectInputIndex, node, toNodeInputIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6101,7 +6101,7 @@ pub const ID2D1Transform = extern struct {
         base: ID2D1TransformNode.VTable,
         MapOutputRectToInputRects: fn(
             self: *const ID2D1Transform,
-            outputRect: *const RECT,
+            outputRect: ?*const RECT,
             inputRects: [*]RECT,
             inputRectsCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6110,29 +6110,29 @@ pub const ID2D1Transform = extern struct {
             inputRects: [*]const RECT,
             inputOpaqueSubRects: [*]const RECT,
             inputRectCount: u32,
-            outputRect: *RECT,
-            outputOpaqueSubRect: *RECT,
+            outputRect: ?*RECT,
+            outputOpaqueSubRect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MapInvalidRect: fn(
             self: *const ID2D1Transform,
             inputIndex: u32,
             invalidInputRect: RECT,
-            invalidOutputRect: *RECT,
+            invalidOutputRect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1TransformNode.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Transform_MapOutputRectToInputRects(self: *const T, outputRect: *const RECT, inputRects: [*]RECT, inputRectsCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Transform_MapOutputRectToInputRects(self: *const T, outputRect: ?*const RECT, inputRects: [*]RECT, inputRectsCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapOutputRectToInputRects(@ptrCast(*const ID2D1Transform, self), outputRect, inputRects, inputRectsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Transform_MapInputRectsToOutputRect(self: *const T, inputRects: [*]const RECT, inputOpaqueSubRects: [*]const RECT, inputRectCount: u32, outputRect: *RECT, outputOpaqueSubRect: *RECT) callconv(.Inline) HRESULT {
+        pub fn ID2D1Transform_MapInputRectsToOutputRect(self: *const T, inputRects: [*]const RECT, inputOpaqueSubRects: [*]const RECT, inputRectCount: u32, outputRect: ?*RECT, outputOpaqueSubRect: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapInputRectsToOutputRect(@ptrCast(*const ID2D1Transform, self), inputRects, inputOpaqueSubRects, inputRectCount, outputRect, outputOpaqueSubRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Transform_MapInvalidRect(self: *const T, inputIndex: u32, invalidInputRect: RECT, invalidOutputRect: *RECT) callconv(.Inline) HRESULT {
+        pub fn ID2D1Transform_MapInvalidRect(self: *const T, inputIndex: u32, invalidInputRect: RECT, invalidOutputRect: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapInvalidRect(@ptrCast(*const ID2D1Transform, self), inputIndex, invalidInputRect, invalidOutputRect);
         }
     };}
@@ -6147,14 +6147,14 @@ pub const ID2D1DrawTransform = extern struct {
         base: ID2D1Transform.VTable,
         SetDrawInfo: fn(
             self: *const ID2D1DrawTransform,
-            drawInfo: *ID2D1DrawInfo,
+            drawInfo: ?*ID2D1DrawInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Transform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DrawTransform_SetDrawInfo(self: *const T, drawInfo: *ID2D1DrawInfo) callconv(.Inline) HRESULT {
+        pub fn ID2D1DrawTransform_SetDrawInfo(self: *const T, drawInfo: ?*ID2D1DrawInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DrawTransform.VTable, self.vtable).SetDrawInfo(@ptrCast(*const ID2D1DrawTransform, self), drawInfo);
         }
     };}
@@ -6169,25 +6169,25 @@ pub const ID2D1ComputeTransform = extern struct {
         base: ID2D1Transform.VTable,
         SetComputeInfo: fn(
             self: *const ID2D1ComputeTransform,
-            computeInfo: *ID2D1ComputeInfo,
+            computeInfo: ?*ID2D1ComputeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CalculateThreadgroups: fn(
             self: *const ID2D1ComputeTransform,
-            outputRect: *const RECT,
-            dimensionX: *u32,
-            dimensionY: *u32,
-            dimensionZ: *u32,
+            outputRect: ?*const RECT,
+            dimensionX: ?*u32,
+            dimensionY: ?*u32,
+            dimensionZ: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Transform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ComputeTransform_SetComputeInfo(self: *const T, computeInfo: *ID2D1ComputeInfo) callconv(.Inline) HRESULT {
+        pub fn ID2D1ComputeTransform_SetComputeInfo(self: *const T, computeInfo: ?*ID2D1ComputeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ComputeTransform.VTable, self.vtable).SetComputeInfo(@ptrCast(*const ID2D1ComputeTransform, self), computeInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ComputeTransform_CalculateThreadgroups(self: *const T, outputRect: *const RECT, dimensionX: *u32, dimensionY: *u32, dimensionZ: *u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1ComputeTransform_CalculateThreadgroups(self: *const T, outputRect: ?*const RECT, dimensionX: ?*u32, dimensionY: ?*u32, dimensionZ: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ComputeTransform.VTable, self.vtable).CalculateThreadgroups(@ptrCast(*const ID2D1ComputeTransform, self), outputRect, dimensionX, dimensionY, dimensionZ);
         }
     };}
@@ -6225,12 +6225,12 @@ pub const ID2D1SourceTransform = extern struct {
         base: ID2D1Transform.VTable,
         SetRenderInfo: fn(
             self: *const ID2D1SourceTransform,
-            renderInfo: *ID2D1RenderInfo,
+            renderInfo: ?*ID2D1RenderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Draw: fn(
             self: *const ID2D1SourceTransform,
-            target: *ID2D1Bitmap1,
-            drawRect: *const RECT,
+            target: ?*ID2D1Bitmap1,
+            drawRect: ?*const RECT,
             targetOrigin: D2D_POINT_2U,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6238,11 +6238,11 @@ pub const ID2D1SourceTransform = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Transform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SourceTransform_SetRenderInfo(self: *const T, renderInfo: *ID2D1RenderInfo) callconv(.Inline) HRESULT {
+        pub fn ID2D1SourceTransform_SetRenderInfo(self: *const T, renderInfo: ?*ID2D1RenderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SourceTransform.VTable, self.vtable).SetRenderInfo(@ptrCast(*const ID2D1SourceTransform, self), renderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SourceTransform_Draw(self: *const T, target: *ID2D1Bitmap1, drawRect: *const RECT, targetOrigin: D2D_POINT_2U) callconv(.Inline) HRESULT {
+        pub fn ID2D1SourceTransform_Draw(self: *const T, target: ?*ID2D1Bitmap1, drawRect: ?*const RECT, targetOrigin: D2D_POINT_2U) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SourceTransform.VTable, self.vtable).Draw(@ptrCast(*const ID2D1SourceTransform, self), target, drawRect, targetOrigin);
         }
     };}
@@ -6288,22 +6288,22 @@ pub const ID2D1BlendTransform = extern struct {
         base: ID2D1ConcreteTransform.VTable,
         SetDescription: fn(
             self: *const ID2D1BlendTransform,
-            description: *const D2D1_BLEND_DESCRIPTION,
+            description: ?*const D2D1_BLEND_DESCRIPTION,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetDescription: fn(
             self: *const ID2D1BlendTransform,
-            description: *D2D1_BLEND_DESCRIPTION,
+            description: ?*D2D1_BLEND_DESCRIPTION,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1ConcreteTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BlendTransform_SetDescription(self: *const T, description: *const D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
+        pub fn ID2D1BlendTransform_SetDescription(self: *const T, description: ?*const D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
             return @ptrCast(*const ID2D1BlendTransform.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1BlendTransform, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BlendTransform_GetDescription(self: *const T, description: *D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
+        pub fn ID2D1BlendTransform_GetDescription(self: *const T, description: ?*D2D1_BLEND_DESCRIPTION) callconv(.Inline) void {
             return @ptrCast(*const ID2D1BlendTransform.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1BlendTransform, self), description);
         }
     };}
@@ -6390,22 +6390,22 @@ pub const ID2D1BoundsAdjustmentTransform = extern struct {
         base: ID2D1TransformNode.VTable,
         SetOutputBounds: fn(
             self: *const ID2D1BoundsAdjustmentTransform,
-            outputBounds: *const RECT,
+            outputBounds: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetOutputBounds: fn(
             self: *const ID2D1BoundsAdjustmentTransform,
-            outputBounds: *RECT,
+            outputBounds: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1TransformNode.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BoundsAdjustmentTransform_SetOutputBounds(self: *const T, outputBounds: *const RECT) callconv(.Inline) void {
+        pub fn ID2D1BoundsAdjustmentTransform_SetOutputBounds(self: *const T, outputBounds: ?*const RECT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1BoundsAdjustmentTransform.VTable, self.vtable).SetOutputBounds(@ptrCast(*const ID2D1BoundsAdjustmentTransform, self), outputBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1BoundsAdjustmentTransform_GetOutputBounds(self: *const T, outputBounds: *RECT) callconv(.Inline) void {
+        pub fn ID2D1BoundsAdjustmentTransform_GetOutputBounds(self: *const T, outputBounds: ?*RECT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1BoundsAdjustmentTransform.VTable, self.vtable).GetOutputBounds(@ptrCast(*const ID2D1BoundsAdjustmentTransform, self), outputBounds);
         }
     };}
@@ -6420,8 +6420,8 @@ pub const ID2D1EffectImpl = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const ID2D1EffectImpl,
-            effectContext: *ID2D1EffectContext,
-            transformGraph: *ID2D1TransformGraph,
+            effectContext: ?*ID2D1EffectContext,
+            transformGraph: ?*ID2D1TransformGraph,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PrepareForRender: fn(
             self: *const ID2D1EffectImpl,
@@ -6429,14 +6429,14 @@ pub const ID2D1EffectImpl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetGraph: fn(
             self: *const ID2D1EffectImpl,
-            transformGraph: *ID2D1TransformGraph,
+            transformGraph: ?*ID2D1TransformGraph,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectImpl_Initialize(self: *const T, effectContext: *ID2D1EffectContext, transformGraph: *ID2D1TransformGraph) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectImpl_Initialize(self: *const T, effectContext: ?*ID2D1EffectContext, transformGraph: ?*ID2D1TransformGraph) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).Initialize(@ptrCast(*const ID2D1EffectImpl, self), effectContext, transformGraph);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6444,7 +6444,7 @@ pub const ID2D1EffectImpl = extern struct {
             return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).PrepareForRender(@ptrCast(*const ID2D1EffectImpl, self), changeType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectImpl_SetGraph(self: *const T, transformGraph: *ID2D1TransformGraph) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectImpl_SetGraph(self: *const T, transformGraph: ?*ID2D1TransformGraph) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).SetGraph(@ptrCast(*const ID2D1EffectImpl, self), transformGraph);
         }
     };}
@@ -6459,117 +6459,117 @@ pub const ID2D1EffectContext = extern struct {
         base: IUnknown.VTable,
         GetDpi: fn(
             self: *const ID2D1EffectContext,
-            dpiX: *f32,
-            dpiY: *f32,
+            dpiX: ?*f32,
+            dpiY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CreateEffect: fn(
             self: *const ID2D1EffectContext,
-            effectId: *const Guid,
-            effect: **ID2D1Effect,
+            effectId: ?*const Guid,
+            effect: ?*?*ID2D1Effect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaximumSupportedFeatureLevel: fn(
             self: *const ID2D1EffectContext,
             featureLevels: [*]const D3D_FEATURE_LEVEL,
             featureLevelsCount: u32,
-            maximumSupportedFeatureLevel: *D3D_FEATURE_LEVEL,
+            maximumSupportedFeatureLevel: ?*D3D_FEATURE_LEVEL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTransformNodeFromEffect: fn(
             self: *const ID2D1EffectContext,
-            effect: *ID2D1Effect,
-            transformNode: **ID2D1TransformNode,
+            effect: ?*ID2D1Effect,
+            transformNode: ?*?*ID2D1TransformNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendTransform: fn(
             self: *const ID2D1EffectContext,
             numInputs: u32,
-            blendDescription: *const D2D1_BLEND_DESCRIPTION,
-            transform: **ID2D1BlendTransform,
+            blendDescription: ?*const D2D1_BLEND_DESCRIPTION,
+            transform: ?*?*ID2D1BlendTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBorderTransform: fn(
             self: *const ID2D1EffectContext,
             extendModeX: D2D1_EXTEND_MODE,
             extendModeY: D2D1_EXTEND_MODE,
-            transform: **ID2D1BorderTransform,
+            transform: ?*?*ID2D1BorderTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOffsetTransform: fn(
             self: *const ID2D1EffectContext,
             offset: POINT,
-            transform: **ID2D1OffsetTransform,
+            transform: ?*?*ID2D1OffsetTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBoundsAdjustmentTransform: fn(
             self: *const ID2D1EffectContext,
-            outputRectangle: *const RECT,
-            transform: **ID2D1BoundsAdjustmentTransform,
+            outputRectangle: ?*const RECT,
+            transform: ?*?*ID2D1BoundsAdjustmentTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadPixelShader: fn(
             self: *const ID2D1EffectContext,
-            shaderId: *const Guid,
+            shaderId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadVertexShader: fn(
             self: *const ID2D1EffectContext,
-            resourceId: *const Guid,
+            resourceId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadComputeShader: fn(
             self: *const ID2D1EffectContext,
-            resourceId: *const Guid,
+            resourceId: ?*const Guid,
             shaderBuffer: [*:0]const u8,
             shaderBufferCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsShaderLoaded: fn(
             self: *const ID2D1EffectContext,
-            shaderId: *const Guid,
+            shaderId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         CreateResourceTexture: fn(
             self: *const ID2D1EffectContext,
             resourceId: ?*const Guid,
-            resourceTextureProperties: *const D2D1_RESOURCE_TEXTURE_PROPERTIES,
+            resourceTextureProperties: ?*const D2D1_RESOURCE_TEXTURE_PROPERTIES,
             data: ?[*:0]const u8,
             strides: ?*const u32,
             dataSize: u32,
-            resourceTexture: **ID2D1ResourceTexture,
+            resourceTexture: ?*?*ID2D1ResourceTexture,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindResourceTexture: fn(
             self: *const ID2D1EffectContext,
-            resourceId: *const Guid,
-            resourceTexture: **ID2D1ResourceTexture,
+            resourceId: ?*const Guid,
+            resourceTexture: ?*?*ID2D1ResourceTexture,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVertexBuffer: fn(
             self: *const ID2D1EffectContext,
-            vertexBufferProperties: *const D2D1_VERTEX_BUFFER_PROPERTIES,
+            vertexBufferProperties: ?*const D2D1_VERTEX_BUFFER_PROPERTIES,
             resourceId: ?*const Guid,
             customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES,
-            buffer: **ID2D1VertexBuffer,
+            buffer: ?*?*ID2D1VertexBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindVertexBuffer: fn(
             self: *const ID2D1EffectContext,
-            resourceId: *const Guid,
-            buffer: **ID2D1VertexBuffer,
+            resourceId: ?*const Guid,
+            buffer: ?*?*ID2D1VertexBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContext: fn(
             self: *const ID2D1EffectContext,
             space: D2D1_COLOR_SPACE,
             profile: ?[*:0]const u8,
             profileSize: u32,
-            colorContext: **ID2D1ColorContext,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromFilename: fn(
             self: *const ID2D1EffectContext,
-            filename: [*:0]const u16,
-            colorContext: **ID2D1ColorContext,
+            filename: ?[*:0]const u16,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromWicColorContext: fn(
             self: *const ID2D1EffectContext,
-            wicColorContext: *IWICColorContext,
-            colorContext: **ID2D1ColorContext,
+            wicColorContext: ?*IWICColorContext,
+            colorContext: ?*?*ID2D1ColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckFeatureSupport: fn(
             self: *const ID2D1EffectContext,
             feature: D2D1_FEATURE,
             // TODO: what to do with BytesParamIndex 2?
-            featureSupportData: *c_void,
+            featureSupportData: ?*c_void,
             featureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsBufferPrecisionSupported: fn(
@@ -6581,83 +6581,83 @@ pub const ID2D1EffectContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_GetDpi(self: *const T, dpiX: *f32, dpiY: *f32) callconv(.Inline) void {
+        pub fn ID2D1EffectContext_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1EffectContext, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateEffect(self: *const T, effectId: *const Guid, effect: **ID2D1Effect) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateEffect(self: *const T, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateEffect(@ptrCast(*const ID2D1EffectContext, self), effectId, effect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_GetMaximumSupportedFeatureLevel(self: *const T, featureLevels: [*]const D3D_FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: *D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_GetMaximumSupportedFeatureLevel(self: *const T, featureLevels: [*]const D3D_FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: ?*D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).GetMaximumSupportedFeatureLevel(@ptrCast(*const ID2D1EffectContext, self), featureLevels, featureLevelsCount, maximumSupportedFeatureLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateTransformNodeFromEffect(self: *const T, effect: *ID2D1Effect, transformNode: **ID2D1TransformNode) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateTransformNodeFromEffect(self: *const T, effect: ?*ID2D1Effect, transformNode: ?*?*ID2D1TransformNode) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateTransformNodeFromEffect(@ptrCast(*const ID2D1EffectContext, self), effect, transformNode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateBlendTransform(self: *const T, numInputs: u32, blendDescription: *const D2D1_BLEND_DESCRIPTION, transform: **ID2D1BlendTransform) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateBlendTransform(self: *const T, numInputs: u32, blendDescription: ?*const D2D1_BLEND_DESCRIPTION, transform: ?*?*ID2D1BlendTransform) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBlendTransform(@ptrCast(*const ID2D1EffectContext, self), numInputs, blendDescription, transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateBorderTransform(self: *const T, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: **ID2D1BorderTransform) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateBorderTransform(self: *const T, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: ?*?*ID2D1BorderTransform) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBorderTransform(@ptrCast(*const ID2D1EffectContext, self), extendModeX, extendModeY, transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateOffsetTransform(self: *const T, offset: POINT, transform: **ID2D1OffsetTransform) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateOffsetTransform(self: *const T, offset: POINT, transform: ?*?*ID2D1OffsetTransform) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateOffsetTransform(@ptrCast(*const ID2D1EffectContext, self), offset, transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateBoundsAdjustmentTransform(self: *const T, outputRectangle: *const RECT, transform: **ID2D1BoundsAdjustmentTransform) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateBoundsAdjustmentTransform(self: *const T, outputRectangle: ?*const RECT, transform: ?*?*ID2D1BoundsAdjustmentTransform) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBoundsAdjustmentTransform(@ptrCast(*const ID2D1EffectContext, self), outputRectangle, transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_LoadPixelShader(self: *const T, shaderId: *const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_LoadPixelShader(self: *const T, shaderId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadPixelShader(@ptrCast(*const ID2D1EffectContext, self), shaderId, shaderBuffer, shaderBufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_LoadVertexShader(self: *const T, resourceId: *const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_LoadVertexShader(self: *const T, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadVertexShader(@ptrCast(*const ID2D1EffectContext, self), resourceId, shaderBuffer, shaderBufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_LoadComputeShader(self: *const T, resourceId: *const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_LoadComputeShader(self: *const T, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadComputeShader(@ptrCast(*const ID2D1EffectContext, self), resourceId, shaderBuffer, shaderBufferCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_IsShaderLoaded(self: *const T, shaderId: *const Guid) callconv(.Inline) BOOL {
+        pub fn ID2D1EffectContext_IsShaderLoaded(self: *const T, shaderId: ?*const Guid) callconv(.Inline) BOOL {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).IsShaderLoaded(@ptrCast(*const ID2D1EffectContext, self), shaderId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateResourceTexture(self: *const T, resourceId: ?*const Guid, resourceTextureProperties: *const D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ?[*:0]const u8, strides: ?*const u32, dataSize: u32, resourceTexture: **ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateResourceTexture(self: *const T, resourceId: ?*const Guid, resourceTextureProperties: ?*const D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ?[*:0]const u8, strides: ?*const u32, dataSize: u32, resourceTexture: ?*?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateResourceTexture(@ptrCast(*const ID2D1EffectContext, self), resourceId, resourceTextureProperties, data, strides, dataSize, resourceTexture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_FindResourceTexture(self: *const T, resourceId: *const Guid, resourceTexture: **ID2D1ResourceTexture) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_FindResourceTexture(self: *const T, resourceId: ?*const Guid, resourceTexture: ?*?*ID2D1ResourceTexture) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).FindResourceTexture(@ptrCast(*const ID2D1EffectContext, self), resourceId, resourceTexture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateVertexBuffer(self: *const T, vertexBufferProperties: *const D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ?*const Guid, customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: **ID2D1VertexBuffer) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateVertexBuffer(self: *const T, vertexBufferProperties: ?*const D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ?*const Guid, customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: ?*?*ID2D1VertexBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateVertexBuffer(@ptrCast(*const ID2D1EffectContext, self), vertexBufferProperties, resourceId, customVertexBufferProperties, buffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_FindVertexBuffer(self: *const T, resourceId: *const Guid, buffer: **ID2D1VertexBuffer) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_FindVertexBuffer(self: *const T, resourceId: ?*const Guid, buffer: ?*?*ID2D1VertexBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).FindVertexBuffer(@ptrCast(*const ID2D1EffectContext, self), resourceId, buffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContext(@ptrCast(*const ID2D1EffectContext, self), space, profile, profileSize, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateColorContextFromFilename(self: *const T, filename: [*:0]const u16, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateColorContextFromFilename(self: *const T, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromFilename(@ptrCast(*const ID2D1EffectContext, self), filename, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: *IWICColorContext, colorContext: **ID2D1ColorContext) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1EffectContext, self), wicColorContext, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: *c_void, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: ?*c_void, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID2D1EffectContext, self), feature, featureSupportData, featureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6996,37 +6996,37 @@ pub const ID2D1DeviceContext1 = extern struct {
         base: ID2D1DeviceContext.VTable,
         CreateFilledGeometryRealization: fn(
             self: *const ID2D1DeviceContext1,
-            geometry: *ID2D1Geometry,
+            geometry: ?*ID2D1Geometry,
             flatteningTolerance: f32,
-            geometryRealization: **ID2D1GeometryRealization,
+            geometryRealization: ?*?*ID2D1GeometryRealization,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStrokedGeometryRealization: fn(
             self: *const ID2D1DeviceContext1,
-            geometry: *ID2D1Geometry,
+            geometry: ?*ID2D1Geometry,
             flatteningTolerance: f32,
             strokeWidth: f32,
             strokeStyle: ?*ID2D1StrokeStyle,
-            geometryRealization: **ID2D1GeometryRealization,
+            geometryRealization: ?*?*ID2D1GeometryRealization,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGeometryRealization: fn(
             self: *const ID2D1DeviceContext1,
-            geometryRealization: *ID2D1GeometryRealization,
-            brush: *ID2D1Brush,
+            geometryRealization: ?*ID2D1GeometryRealization,
+            brush: ?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext1_CreateFilledGeometryRealization(self: *const T, geometry: *ID2D1Geometry, flatteningTolerance: f32, geometryRealization: **ID2D1GeometryRealization) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext1_CreateFilledGeometryRealization(self: *const T, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, geometryRealization: ?*?*ID2D1GeometryRealization) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).CreateFilledGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometry, flatteningTolerance, geometryRealization);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext1_CreateStrokedGeometryRealization(self: *const T, geometry: *ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, geometryRealization: **ID2D1GeometryRealization) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext1_CreateStrokedGeometryRealization(self: *const T, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, geometryRealization: ?*?*ID2D1GeometryRealization) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).CreateStrokedGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometry, flatteningTolerance, strokeWidth, strokeStyle, geometryRealization);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext1_DrawGeometryRealization(self: *const T, geometryRealization: *ID2D1GeometryRealization, brush: *ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext1_DrawGeometryRealization(self: *const T, geometryRealization: ?*ID2D1GeometryRealization, brush: ?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).DrawGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometryRealization, brush);
         }
     };}
@@ -7049,7 +7049,7 @@ pub const ID2D1Device1 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device1,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext1: **ID2D1DeviceContext1,
+            deviceContext1: ?*?*ID2D1DeviceContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7064,7 +7064,7 @@ pub const ID2D1Device1 = extern struct {
             return @ptrCast(*const ID2D1Device1.VTable, self.vtable).SetRenderingPriority(@ptrCast(*const ID2D1Device1, self), renderingPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device1_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: **ID2D1DeviceContext1) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device1_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: ?*?*ID2D1DeviceContext1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device1.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device1, self), options, deviceContext1);
         }
     };}
@@ -7079,15 +7079,15 @@ pub const ID2D1Factory2 = extern struct {
         base: ID2D1Factory1.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory2,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice1: **ID2D1Device1,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice1: ?*?*ID2D1Device1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory2_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice1: **ID2D1Device1) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory2_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice1: ?*?*ID2D1Device1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory2.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory2, self), dxgiDevice, d2dDevice1);
         }
     };}
@@ -7346,22 +7346,22 @@ pub const ID2D1SvgAttribute = extern struct {
         base: ID2D1Resource.VTable,
         GetElement: fn(
             self: *const ID2D1SvgAttribute,
-            element: ?**ID2D1SvgElement,
+            element: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) void,
         Clone: fn(
             self: *const ID2D1SvgAttribute,
-            attribute: **ID2D1SvgAttribute,
+            attribute: ?*?*ID2D1SvgAttribute,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgAttribute_GetElement(self: *const T, element: ?**ID2D1SvgElement) callconv(.Inline) void {
+        pub fn ID2D1SvgAttribute_GetElement(self: *const T, element: ?*?*ID2D1SvgElement) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgAttribute.VTable, self.vtable).GetElement(@ptrCast(*const ID2D1SvgAttribute, self), element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgAttribute_Clone(self: *const T, attribute: **ID2D1SvgAttribute) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgAttribute_Clone(self: *const T, attribute: ?*?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgAttribute.VTable, self.vtable).Clone(@ptrCast(*const ID2D1SvgAttribute, self), attribute);
         }
     };}
@@ -7382,15 +7382,15 @@ pub const ID2D1SvgPaint = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_SVG_PAINT_TYPE,
         SetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *const D2D1_COLOR_F,
+            color: ?*const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *D2D1_COLOR_F,
+            color: ?*D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetId: fn(
             self: *const ID2D1SvgPaint,
-            id: [*:0]const u16,
+            id: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetId: fn(
             self: *const ID2D1SvgPaint,
@@ -7413,15 +7413,15 @@ pub const ID2D1SvgPaint = extern struct {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetPaintType(@ptrCast(*const ID2D1SvgPaint, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: *const D2D1_COLOR_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: *D2D1_COLOR_F) callconv(.Inline) void {
+        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: ?*D2D1_COLOR_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_SetId(self: *const T, id: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgPaint_SetId(self: *const T, id: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetId(@ptrCast(*const ID2D1SvgPaint, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7598,7 +7598,7 @@ pub const ID2D1SvgPathData = extern struct {
         CreatePathGeometry: fn(
             self: *const ID2D1SvgPathData,
             fillMode: D2D1_FILL_MODE,
-            pathGeometry: **ID2D1PathGeometry1,
+            pathGeometry: ?*?*ID2D1PathGeometry1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7637,7 +7637,7 @@ pub const ID2D1SvgPathData = extern struct {
             return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).GetCommandsCount(@ptrCast(*const ID2D1SvgPathData, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPathData_CreatePathGeometry(self: *const T, fillMode: D2D1_FILL_MODE, pathGeometry: **ID2D1PathGeometry1) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgPathData_CreatePathGeometry(self: *const T, fillMode: D2D1_FILL_MODE, pathGeometry: ?*?*ID2D1PathGeometry1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1SvgPathData, self), fillMode, pathGeometry);
         }
     };}
@@ -7651,7 +7651,7 @@ pub const ID2D1SvgElement = extern struct {
         base: ID2D1Resource.VTable,
         GetDocument: fn(
             self: *const ID2D1SvgElement,
-            document: ?**ID2D1SvgDocument,
+            document: ?*?*ID2D1SvgDocument,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetTagName: fn(
             self: *const ID2D1SvgElement,
@@ -7666,55 +7666,55 @@ pub const ID2D1SvgElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         GetParent: fn(
             self: *const ID2D1SvgElement,
-            parent: ?**ID2D1SvgElement,
+            parent: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) void,
         HasChildren: fn(
             self: *const ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         GetFirstChild: fn(
             self: *const ID2D1SvgElement,
-            child: ?**ID2D1SvgElement,
+            child: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetLastChild: fn(
             self: *const ID2D1SvgElement,
-            child: ?**ID2D1SvgElement,
+            child: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetPreviousChild: fn(
             self: *const ID2D1SvgElement,
-            referenceChild: *ID2D1SvgElement,
-            previousChild: ?**ID2D1SvgElement,
+            referenceChild: ?*ID2D1SvgElement,
+            previousChild: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextChild: fn(
             self: *const ID2D1SvgElement,
-            referenceChild: *ID2D1SvgElement,
-            nextChild: ?**ID2D1SvgElement,
+            referenceChild: ?*ID2D1SvgElement,
+            nextChild: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertChildBefore: fn(
             self: *const ID2D1SvgElement,
-            newChild: *ID2D1SvgElement,
+            newChild: ?*ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendChild: fn(
             self: *const ID2D1SvgElement,
-            newChild: *ID2D1SvgElement,
+            newChild: ?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReplaceChild: fn(
             self: *const ID2D1SvgElement,
-            newChild: *ID2D1SvgElement,
-            oldChild: *ID2D1SvgElement,
+            newChild: ?*ID2D1SvgElement,
+            oldChild: ?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveChild: fn(
             self: *const ID2D1SvgElement,
-            oldChild: *ID2D1SvgElement,
+            oldChild: ?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateChild: fn(
             self: *const ID2D1SvgElement,
-            tagName: [*:0]const u16,
-            newChild: **ID2D1SvgElement,
+            tagName: ?[*:0]const u16,
+            newChild: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsAttributeSpecified: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             inherited: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         GetSpecifiedAttributeCount: fn(
@@ -7730,12 +7730,12 @@ pub const ID2D1SvgElement = extern struct {
         GetSpecifiedAttributeNameLength: fn(
             self: *const ID2D1SvgElement,
             index: u32,
-            nameLength: *u32,
+            nameLength: ?*u32,
             inherited: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAttribute: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTextValue: fn(
             self: *const ID2D1SvgElement,
@@ -7752,56 +7752,56 @@ pub const ID2D1SvgElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         SetAttributeValue: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
-            value: [*:0]const u16,
+            value: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
             value: [*:0]u16,
             valueCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValueLength: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_STRING_TYPE,
-            valueLength: *u32,
+            valueLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeValue1: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
             // TODO: what to do with BytesParamIndex 3?
-            value: *const c_void,
+            value: ?*const c_void,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue1: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
             // TODO: what to do with BytesParamIndex 3?
-            value: *c_void,
+            value: ?*c_void,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeValue2: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
-            value: *ID2D1SvgAttribute,
+            name: ?[*:0]const u16,
+            value: ?*ID2D1SvgAttribute,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue2: fn(
             self: *const ID2D1SvgElement,
-            name: [*:0]const u16,
-            riid: *const Guid,
-            value: ?**c_void,
+            name: ?[*:0]const u16,
+            riid: ?*const Guid,
+            value: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetDocument(self: *const T, document: ?**ID2D1SvgDocument) callconv(.Inline) void {
+        pub fn ID2D1SvgElement_GetDocument(self: *const T, document: ?*?*ID2D1SvgDocument) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetDocument(@ptrCast(*const ID2D1SvgElement, self), document);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7817,7 +7817,7 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).IsTextContent(@ptrCast(*const ID2D1SvgElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetParent(self: *const T, parent: ?**ID2D1SvgElement) callconv(.Inline) void {
+        pub fn ID2D1SvgElement_GetParent(self: *const T, parent: ?*?*ID2D1SvgElement) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetParent(@ptrCast(*const ID2D1SvgElement, self), parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7825,43 +7825,43 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).HasChildren(@ptrCast(*const ID2D1SvgElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetFirstChild(self: *const T, child: ?**ID2D1SvgElement) callconv(.Inline) void {
+        pub fn ID2D1SvgElement_GetFirstChild(self: *const T, child: ?*?*ID2D1SvgElement) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetFirstChild(@ptrCast(*const ID2D1SvgElement, self), child);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetLastChild(self: *const T, child: ?**ID2D1SvgElement) callconv(.Inline) void {
+        pub fn ID2D1SvgElement_GetLastChild(self: *const T, child: ?*?*ID2D1SvgElement) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetLastChild(@ptrCast(*const ID2D1SvgElement, self), child);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetPreviousChild(self: *const T, referenceChild: *ID2D1SvgElement, previousChild: ?**ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetPreviousChild(self: *const T, referenceChild: ?*ID2D1SvgElement, previousChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetPreviousChild(@ptrCast(*const ID2D1SvgElement, self), referenceChild, previousChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetNextChild(self: *const T, referenceChild: *ID2D1SvgElement, nextChild: ?**ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetNextChild(self: *const T, referenceChild: ?*ID2D1SvgElement, nextChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetNextChild(@ptrCast(*const ID2D1SvgElement, self), referenceChild, nextChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_InsertChildBefore(self: *const T, newChild: *ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_InsertChildBefore(self: *const T, newChild: ?*ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).InsertChildBefore(@ptrCast(*const ID2D1SvgElement, self), newChild, referenceChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_AppendChild(self: *const T, newChild: *ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_AppendChild(self: *const T, newChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).AppendChild(@ptrCast(*const ID2D1SvgElement, self), newChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_ReplaceChild(self: *const T, newChild: *ID2D1SvgElement, oldChild: *ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_ReplaceChild(self: *const T, newChild: ?*ID2D1SvgElement, oldChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).ReplaceChild(@ptrCast(*const ID2D1SvgElement, self), newChild, oldChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_RemoveChild(self: *const T, oldChild: *ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_RemoveChild(self: *const T, oldChild: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).RemoveChild(@ptrCast(*const ID2D1SvgElement, self), oldChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_CreateChild(self: *const T, tagName: [*:0]const u16, newChild: **ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_CreateChild(self: *const T, tagName: ?[*:0]const u16, newChild: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).CreateChild(@ptrCast(*const ID2D1SvgElement, self), tagName, newChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_IsAttributeSpecified(self: *const T, name: [*:0]const u16, inherited: ?*BOOL) callconv(.Inline) BOOL {
+        pub fn ID2D1SvgElement_IsAttributeSpecified(self: *const T, name: ?[*:0]const u16, inherited: ?*BOOL) callconv(.Inline) BOOL {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).IsAttributeSpecified(@ptrCast(*const ID2D1SvgElement, self), name, inherited);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7873,11 +7873,11 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetSpecifiedAttributeName(@ptrCast(*const ID2D1SvgElement, self), index, name, nameCount, inherited);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetSpecifiedAttributeNameLength(self: *const T, index: u32, nameLength: *u32, inherited: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetSpecifiedAttributeNameLength(self: *const T, index: u32, nameLength: ?*u32, inherited: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetSpecifiedAttributeNameLength(@ptrCast(*const ID2D1SvgElement, self), index, nameLength, inherited);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_RemoveAttribute(self: *const T, name: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_RemoveAttribute(self: *const T, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).RemoveAttribute(@ptrCast(*const ID2D1SvgElement, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7893,31 +7893,31 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTextValueLength(@ptrCast(*const ID2D1SvgElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_SetAttributeValue(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValueLength(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: *u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValueLength(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValueLength(@ptrCast(*const ID2D1SvgElement, self), name, type_, valueLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue2(self: *const T, name: [*:0]const u16, value: *ID2D1SvgAttribute) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_SetAttributeValue2(self: *const T, name: ?[*:0]const u16, value: ?*ID2D1SvgAttribute) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue2(self: *const T, name: [*:0]const u16, riid: *const Guid, value: ?**c_void) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue2(self: *const T, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, riid, value);
         }
     };}
@@ -7942,41 +7942,41 @@ pub const ID2D1SvgDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRoot: fn(
             self: *const ID2D1SvgDocument,
-            root: ?**ID2D1SvgElement,
+            root: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) void,
         FindElementById: fn(
             self: *const ID2D1SvgDocument,
-            id: [*:0]const u16,
-            svgElement: ?**ID2D1SvgElement,
+            id: ?[*:0]const u16,
+            svgElement: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ID2D1SvgDocument,
-            outputXmlStream: *IStream,
+            outputXmlStream: ?*IStream,
             subtree: ?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Deserialize: fn(
             self: *const ID2D1SvgDocument,
-            inputXmlStream: *IStream,
-            subtree: **ID2D1SvgElement,
+            inputXmlStream: ?*IStream,
+            subtree: ?*?*ID2D1SvgElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePaint: fn(
             self: *const ID2D1SvgDocument,
             paintType: D2D1_SVG_PAINT_TYPE,
             color: ?*const D2D1_COLOR_F,
             id: ?[*:0]const u16,
-            paint: **ID2D1SvgPaint,
+            paint: ?*?*ID2D1SvgPaint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStrokeDashArray: fn(
             self: *const ID2D1SvgDocument,
             dashes: ?[*]const D2D1_SVG_LENGTH,
             dashesCount: u32,
-            strokeDashArray: **ID2D1SvgStrokeDashArray,
+            strokeDashArray: ?*?*ID2D1SvgStrokeDashArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePointCollection: fn(
             self: *const ID2D1SvgDocument,
             points: ?[*]const D2D_POINT_2F,
             pointsCount: u32,
-            pointCollection: **ID2D1SvgPointCollection,
+            pointCollection: ?*?*ID2D1SvgPointCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePathData: fn(
             self: *const ID2D1SvgDocument,
@@ -7984,7 +7984,7 @@ pub const ID2D1SvgDocument = extern struct {
             segmentDataCount: u32,
             commands: ?[*]const D2D1_SVG_PATH_COMMAND,
             commandsCount: u32,
-            pathData: **ID2D1SvgPathData,
+            pathData: ?*?*ID2D1SvgPathData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8003,35 +8003,35 @@ pub const ID2D1SvgDocument = extern struct {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).SetRoot(@ptrCast(*const ID2D1SvgDocument, self), root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_GetRoot(self: *const T, root: ?**ID2D1SvgElement) callconv(.Inline) void {
+        pub fn ID2D1SvgDocument_GetRoot(self: *const T, root: ?*?*ID2D1SvgElement) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).GetRoot(@ptrCast(*const ID2D1SvgDocument, self), root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_FindElementById(self: *const T, id: [*:0]const u16, svgElement: ?**ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_FindElementById(self: *const T, id: ?[*:0]const u16, svgElement: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).FindElementById(@ptrCast(*const ID2D1SvgDocument, self), id, svgElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_Serialize(self: *const T, outputXmlStream: *IStream, subtree: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_Serialize(self: *const T, outputXmlStream: ?*IStream, subtree: ?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Serialize(@ptrCast(*const ID2D1SvgDocument, self), outputXmlStream, subtree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_Deserialize(self: *const T, inputXmlStream: *IStream, subtree: **ID2D1SvgElement) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_Deserialize(self: *const T, inputXmlStream: ?*IStream, subtree: ?*?*ID2D1SvgElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Deserialize(@ptrCast(*const ID2D1SvgDocument, self), inputXmlStream, subtree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: **ID2D1SvgPaint) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: ?*?*ID2D1SvgPaint) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePaint(@ptrCast(*const ID2D1SvgDocument, self), paintType, color, id, paint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreateStrokeDashArray(self: *const T, dashes: ?[*]const D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: **ID2D1SvgStrokeDashArray) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreateStrokeDashArray(self: *const T, dashes: ?[*]const D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ?*?*ID2D1SvgStrokeDashArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreateStrokeDashArray(@ptrCast(*const ID2D1SvgDocument, self), dashes, dashesCount, strokeDashArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreatePointCollection(self: *const T, points: ?[*]const D2D_POINT_2F, pointsCount: u32, pointCollection: **ID2D1SvgPointCollection) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreatePointCollection(self: *const T, points: ?[*]const D2D_POINT_2F, pointsCount: u32, pointCollection: ?*?*ID2D1SvgPointCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePointCollection(@ptrCast(*const ID2D1SvgDocument, self), points, pointsCount, pointCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreatePathData(self: *const T, segmentData: ?[*]const f32, segmentDataCount: u32, commands: ?[*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: **ID2D1SvgPathData) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreatePathData(self: *const T, segmentData: ?[*]const f32, segmentDataCount: u32, commands: ?[*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: ?*?*ID2D1SvgPathData) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePathData(@ptrCast(*const ID2D1SvgDocument, self), segmentData, segmentDataCount, commands, commandsCount, pathData);
         }
     };}
@@ -8265,11 +8265,11 @@ pub const ID2D1InkStyle = extern struct {
         base: ID2D1Resource.VTable,
         SetNibTransform: fn(
             self: *const ID2D1InkStyle,
-            transform: *const D2D_MATRIX_3X2_F,
+            transform: ?*const D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetNibTransform: fn(
             self: *const ID2D1InkStyle,
-            transform: *D2D_MATRIX_3X2_F,
+            transform: ?*D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetNibShape: fn(
             self: *const ID2D1InkStyle,
@@ -8283,11 +8283,11 @@ pub const ID2D1InkStyle = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1InkStyle_SetNibTransform(self: *const T, transform: *const D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1InkStyle_SetNibTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).SetNibTransform(@ptrCast(*const ID2D1InkStyle, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1InkStyle_GetNibTransform(self: *const T, transform: *D2D_MATRIX_3X2_F) callconv(.Inline) void {
+        pub fn ID2D1InkStyle_GetNibTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).GetNibTransform(@ptrCast(*const ID2D1InkStyle, self), transform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8309,7 +8309,7 @@ pub const ID2D1Ink = extern struct {
         base: ID2D1Resource.VTable,
         SetStartPoint: fn(
             self: *const ID2D1Ink,
-            startPoint: *const D2D1_INK_POINT,
+            startPoint: ?*const D2D1_INK_POINT,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetStartPoint: fn(
             self: *const ID2D1Ink,
@@ -8331,7 +8331,7 @@ pub const ID2D1Ink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSegmentAtEnd: fn(
             self: *const ID2D1Ink,
-            segment: *const D2D1_INK_BEZIER_SEGMENT,
+            segment: ?*const D2D1_INK_BEZIER_SEGMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSegmentCount: fn(
             self: *const ID2D1Ink,
@@ -8347,20 +8347,20 @@ pub const ID2D1Ink = extern struct {
             inkStyle: ?*ID2D1InkStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             flatteningTolerance: f32,
-            geometrySink: *ID2D1SimplifiedGeometrySink,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBounds: fn(
             self: *const ID2D1Ink,
             inkStyle: ?*ID2D1InkStyle,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Ink_SetStartPoint(self: *const T, startPoint: *const D2D1_INK_POINT) callconv(.Inline) void {
+        pub fn ID2D1Ink_SetStartPoint(self: *const T, startPoint: ?*const D2D1_INK_POINT) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetStartPoint(@ptrCast(*const ID2D1Ink, self), startPoint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8380,7 +8380,7 @@ pub const ID2D1Ink = extern struct {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetSegments(@ptrCast(*const ID2D1Ink, self), startSegment, segments, segmentsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Ink_SetSegmentAtEnd(self: *const T, segment: *const D2D1_INK_BEZIER_SEGMENT) callconv(.Inline) HRESULT {
+        pub fn ID2D1Ink_SetSegmentAtEnd(self: *const T, segment: ?*const D2D1_INK_BEZIER_SEGMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetSegmentAtEnd(@ptrCast(*const ID2D1Ink, self), segment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8392,11 +8392,11 @@ pub const ID2D1Ink = extern struct {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetSegments(@ptrCast(*const ID2D1Ink, self), startSegment, segments, segmentsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Ink_StreamAsGeometry(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: *ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        pub fn ID2D1Ink_StreamAsGeometry(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).StreamAsGeometry(@ptrCast(*const ID2D1Ink, self), inkStyle, worldTransform, flatteningTolerance, geometrySink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Ink_GetBounds(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1Ink_GetBounds(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1Ink, self), inkStyle, worldTransform, bounds);
         }
     };}
@@ -8445,7 +8445,7 @@ pub const ID2D1ImageSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TryReclaimResources: fn(
             self: *const ID2D1ImageSource,
-            resourcesDiscarded: *BOOL,
+            resourcesDiscarded: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8456,7 +8456,7 @@ pub const ID2D1ImageSource = extern struct {
             return @ptrCast(*const ID2D1ImageSource.VTable, self.vtable).OfferResources(@ptrCast(*const ID2D1ImageSource, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ImageSource_TryReclaimResources(self: *const T, resourcesDiscarded: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ID2D1ImageSource_TryReclaimResources(self: *const T, resourcesDiscarded: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ImageSource.VTable, self.vtable).TryReclaimResources(@ptrCast(*const ID2D1ImageSource, self), resourcesDiscarded);
         }
     };}
@@ -8478,7 +8478,7 @@ pub const ID2D1ImageSourceFromWic = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSource: fn(
             self: *const ID2D1ImageSourceFromWic,
-            wicBitmapSource: ?**IWICBitmapSource,
+            wicBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -8493,7 +8493,7 @@ pub const ID2D1ImageSourceFromWic = extern struct {
             return @ptrCast(*const ID2D1ImageSourceFromWic.VTable, self.vtable).TrimCache(@ptrCast(*const ID2D1ImageSourceFromWic, self), rectangleToPreserve);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ImageSourceFromWic_GetSource(self: *const T, wicBitmapSource: ?**IWICBitmapSource) callconv(.Inline) void {
+        pub fn ID2D1ImageSourceFromWic_GetSource(self: *const T, wicBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) void {
             return @ptrCast(*const ID2D1ImageSourceFromWic.VTable, self.vtable).GetSource(@ptrCast(*const ID2D1ImageSourceFromWic, self), wicBitmapSource);
         }
     };}
@@ -8507,22 +8507,22 @@ pub const ID2D1TransformedImageSource = extern struct {
         base: ID2D1Image.VTable,
         GetSource: fn(
             self: *const ID2D1TransformedImageSource,
-            imageSource: ?**ID2D1ImageSource,
+            imageSource: ?*?*ID2D1ImageSource,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetProperties: fn(
             self: *const ID2D1TransformedImageSource,
-            properties: *D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
+            properties: ?*D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Image.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformedImageSource_GetSource(self: *const T, imageSource: ?**ID2D1ImageSource) callconv(.Inline) void {
+        pub fn ID2D1TransformedImageSource_GetSource(self: *const T, imageSource: ?*?*ID2D1ImageSource) callconv(.Inline) void {
             return @ptrCast(*const ID2D1TransformedImageSource.VTable, self.vtable).GetSource(@ptrCast(*const ID2D1TransformedImageSource, self), imageSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1TransformedImageSource_GetProperties(self: *const T, properties: *D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES) callconv(.Inline) void {
+        pub fn ID2D1TransformedImageSource_GetProperties(self: *const T, properties: ?*D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES) callconv(.Inline) void {
             return @ptrCast(*const ID2D1TransformedImageSource.VTable, self.vtable).GetProperties(@ptrCast(*const ID2D1TransformedImageSource, self), properties);
         }
     };}
@@ -8550,26 +8550,26 @@ pub const ID2D1DeviceContext2 = extern struct {
         base: ID2D1DeviceContext1.VTable,
         CreateInk: fn(
             self: *const ID2D1DeviceContext2,
-            startPoint: *const D2D1_INK_POINT,
-            ink: **ID2D1Ink,
+            startPoint: ?*const D2D1_INK_POINT,
+            ink: ?*?*ID2D1Ink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInkStyle: fn(
             self: *const ID2D1DeviceContext2,
             inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES,
-            inkStyle: **ID2D1InkStyle,
+            inkStyle: ?*?*ID2D1InkStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGradientMesh: fn(
             self: *const ID2D1DeviceContext2,
             patches: [*]const D2D1_GRADIENT_MESH_PATCH,
             patchesCount: u32,
-            gradientMesh: **ID2D1GradientMesh,
+            gradientMesh: ?*?*ID2D1GradientMesh,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateImageSourceFromWic: fn(
             self: *const ID2D1DeviceContext2,
-            wicBitmapSource: *IWICBitmapSource,
+            wicBitmapSource: ?*IWICBitmapSource,
             loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS,
             alphaMode: D2D1_ALPHA_MODE,
-            imageSource: **ID2D1ImageSourceFromWic,
+            imageSource: ?*?*ID2D1ImageSourceFromWic,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLookupTable3D: fn(
             self: *const ID2D1DeviceContext2,
@@ -8578,89 +8578,89 @@ pub const ID2D1DeviceContext2 = extern struct {
             data: [*:0]const u8,
             dataCount: u32,
             strides: *[2]u32,
-            lookupTable: **ID2D1LookupTable3D,
+            lookupTable: ?*?*ID2D1LookupTable3D,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateImageSourceFromDxgi: fn(
             self: *const ID2D1DeviceContext2,
-            surfaces: [*]*IDXGISurface,
+            surfaces: [*]?*IDXGISurface,
             surfaceCount: u32,
             colorSpace: DXGI_COLOR_SPACE_TYPE,
             options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS,
-            imageSource: **ID2D1ImageSource,
+            imageSource: ?*?*ID2D1ImageSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGradientMeshWorldBounds: fn(
             self: *const ID2D1DeviceContext2,
-            gradientMesh: *ID2D1GradientMesh,
-            pBounds: *D2D_RECT_F,
+            gradientMesh: ?*ID2D1GradientMesh,
+            pBounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawInk: fn(
             self: *const ID2D1DeviceContext2,
-            ink: *ID2D1Ink,
-            brush: *ID2D1Brush,
+            ink: ?*ID2D1Ink,
+            brush: ?*ID2D1Brush,
             inkStyle: ?*ID2D1InkStyle,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawGradientMesh: fn(
             self: *const ID2D1DeviceContext2,
-            gradientMesh: *ID2D1GradientMesh,
+            gradientMesh: ?*ID2D1GradientMesh,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawGdiMetafile: fn(
             self: *const ID2D1DeviceContext2,
-            gdiMetafile: *ID2D1GdiMetafile,
+            gdiMetafile: ?*ID2D1GdiMetafile,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CreateTransformedImageSource: fn(
             self: *const ID2D1DeviceContext2,
-            imageSource: *ID2D1ImageSource,
-            properties: *const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
-            transformedImageSource: **ID2D1TransformedImageSource,
+            imageSource: ?*ID2D1ImageSource,
+            properties: ?*const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES,
+            transformedImageSource: ?*?*ID2D1TransformedImageSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateInk(self: *const T, startPoint: *const D2D1_INK_POINT, ink: **ID2D1Ink) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateInk(self: *const T, startPoint: ?*const D2D1_INK_POINT, ink: ?*?*ID2D1Ink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateInk(@ptrCast(*const ID2D1DeviceContext2, self), startPoint, ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateInkStyle(self: *const T, inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES, inkStyle: **ID2D1InkStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateInkStyle(self: *const T, inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES, inkStyle: ?*?*ID2D1InkStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateInkStyle(@ptrCast(*const ID2D1DeviceContext2, self), inkStyleProperties, inkStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateGradientMesh(self: *const T, patches: [*]const D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: **ID2D1GradientMesh) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateGradientMesh(self: *const T, patches: [*]const D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: ?*?*ID2D1GradientMesh) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateGradientMesh(@ptrCast(*const ID2D1DeviceContext2, self), patches, patchesCount, gradientMesh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateImageSourceFromWic(self: *const T, wicBitmapSource: *IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: **ID2D1ImageSourceFromWic) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateImageSourceFromWic(self: *const T, wicBitmapSource: ?*IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: ?*?*ID2D1ImageSourceFromWic) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateImageSourceFromWic(@ptrCast(*const ID2D1DeviceContext2, self), wicBitmapSource, loadingOptions, alphaMode, imageSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: **ID2D1LookupTable3D) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateLookupTable3D(@ptrCast(*const ID2D1DeviceContext2, self), precision, extents, data, dataCount, strides, lookupTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateImageSourceFromDxgi(self: *const T, surfaces: [*]*IDXGISurface, surfaceCount: u32, colorSpace: DXGI_COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: **ID2D1ImageSource) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateImageSourceFromDxgi(self: *const T, surfaces: [*]?*IDXGISurface, surfaceCount: u32, colorSpace: DXGI_COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: ?*?*ID2D1ImageSource) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateImageSourceFromDxgi(@ptrCast(*const ID2D1DeviceContext2, self), surfaces, surfaceCount, colorSpace, options, imageSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_GetGradientMeshWorldBounds(self: *const T, gradientMesh: *ID2D1GradientMesh, pBounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_GetGradientMeshWorldBounds(self: *const T, gradientMesh: ?*ID2D1GradientMesh, pBounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).GetGradientMeshWorldBounds(@ptrCast(*const ID2D1DeviceContext2, self), gradientMesh, pBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_DrawInk(self: *const T, ink: *ID2D1Ink, brush: *ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext2_DrawInk(self: *const T, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawInk(@ptrCast(*const ID2D1DeviceContext2, self), ink, brush, inkStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_DrawGradientMesh(self: *const T, gradientMesh: *ID2D1GradientMesh) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext2_DrawGradientMesh(self: *const T, gradientMesh: ?*ID2D1GradientMesh) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawGradientMesh(@ptrCast(*const ID2D1DeviceContext2, self), gradientMesh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_DrawGdiMetafile(self: *const T, gdiMetafile: *ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext2_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1DeviceContext2, self), gdiMetafile, destinationRectangle, sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext2_CreateTransformedImageSource(self: *const T, imageSource: *ID2D1ImageSource, properties: *const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: **ID2D1TransformedImageSource) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext2_CreateTransformedImageSource(self: *const T, imageSource: ?*ID2D1ImageSource, properties: ?*const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: ?*?*ID2D1TransformedImageSource) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateTransformedImageSource(@ptrCast(*const ID2D1DeviceContext2, self), imageSource, properties, transformedImageSource);
         }
     };}
@@ -8675,30 +8675,30 @@ pub const ID2D1Device2 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device2,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext2: **ID2D1DeviceContext2,
+            deviceContext2: ?*?*ID2D1DeviceContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlushDeviceContexts: fn(
             self: *const ID2D1Device2,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetDxgiDevice: fn(
             self: *const ID2D1Device2,
-            dxgiDevice: **IDXGIDevice,
+            dxgiDevice: ?*?*IDXGIDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Device1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device2_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: **ID2D1DeviceContext2) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device2_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: ?*?*ID2D1DeviceContext2) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device2.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device2, self), options, deviceContext2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device2_FlushDeviceContexts(self: *const T, bitmap: *ID2D1Bitmap) callconv(.Inline) void {
+        pub fn ID2D1Device2_FlushDeviceContexts(self: *const T, bitmap: ?*ID2D1Bitmap) callconv(.Inline) void {
             return @ptrCast(*const ID2D1Device2.VTable, self.vtable).FlushDeviceContexts(@ptrCast(*const ID2D1Device2, self), bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device2_GetDxgiDevice(self: *const T, dxgiDevice: **IDXGIDevice) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device2_GetDxgiDevice(self: *const T, dxgiDevice: ?*?*IDXGIDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device2.VTable, self.vtable).GetDxgiDevice(@ptrCast(*const ID2D1Device2, self), dxgiDevice);
         }
     };}
@@ -8712,15 +8712,15 @@ pub const ID2D1Factory3 = extern struct {
         base: ID2D1Factory2.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory3,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice2: **ID2D1Device2,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice2: ?*?*ID2D1Device2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory3_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice2: **ID2D1Device2) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory3_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice2: ?*?*ID2D1Device2) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory3.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory3, self), dxgiDevice, d2dDevice2);
         }
     };}
@@ -8735,17 +8735,17 @@ pub const ID2D1CommandSink2 = extern struct {
         base: ID2D1CommandSink1.VTable,
         DrawInk: fn(
             self: *const ID2D1CommandSink2,
-            ink: *ID2D1Ink,
-            brush: *ID2D1Brush,
+            ink: ?*ID2D1Ink,
+            brush: ?*ID2D1Brush,
             inkStyle: ?*ID2D1InkStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGradientMesh: fn(
             self: *const ID2D1CommandSink2,
-            gradientMesh: *ID2D1GradientMesh,
+            gradientMesh: ?*ID2D1GradientMesh,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGdiMetafile: fn(
             self: *const ID2D1CommandSink2,
-            gdiMetafile: *ID2D1GdiMetafile,
+            gdiMetafile: ?*ID2D1GdiMetafile,
             destinationRectangle: ?*const D2D_RECT_F,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8754,15 +8754,15 @@ pub const ID2D1CommandSink2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1CommandSink1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink2_DrawInk(self: *const T, ink: *ID2D1Ink, brush: *ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink2_DrawInk(self: *const T, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawInk(@ptrCast(*const ID2D1CommandSink2, self), ink, brush, inkStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink2_DrawGradientMesh(self: *const T, gradientMesh: *ID2D1GradientMesh) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink2_DrawGradientMesh(self: *const T, gradientMesh: ?*ID2D1GradientMesh) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawGradientMesh(@ptrCast(*const ID2D1CommandSink2, self), gradientMesh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink2_DrawGdiMetafile(self: *const T, gdiMetafile: *ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink2_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1CommandSink2, self), gdiMetafile, destinationRectangle, sourceRectangle);
         }
     };}
@@ -8777,23 +8777,23 @@ pub const ID2D1GdiMetafile1 = extern struct {
         base: ID2D1GdiMetafile.VTable,
         GetDpi: fn(
             self: *const ID2D1GdiMetafile1,
-            dpiX: *f32,
-            dpiY: *f32,
+            dpiX: ?*f32,
+            dpiY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceBounds: fn(
             self: *const ID2D1GdiMetafile1,
-            bounds: *D2D_RECT_F,
+            bounds: ?*D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1GdiMetafile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafile1_GetDpi(self: *const T, dpiX: *f32, dpiY: *f32) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafile1_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafile1.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1GdiMetafile1, self), dpiX, dpiY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafile1_GetSourceBounds(self: *const T, bounds: *D2D_RECT_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafile1_GetSourceBounds(self: *const T, bounds: ?*D2D_RECT_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafile1.VTable, self.vtable).GetSourceBounds(@ptrCast(*const ID2D1GdiMetafile1, self), bounds);
         }
     };}
@@ -8833,7 +8833,7 @@ pub const ID2D1SpriteBatch = extern struct {
         AddSprites: fn(
             self: *const ID2D1SpriteBatch,
             spriteCount: u32,
-            destinationRectangles: *const D2D_RECT_F,
+            destinationRectangles: ?*const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
             colors: ?*const D2D1_COLOR_F,
             transforms: ?*const D2D_MATRIX_3X2_F,
@@ -8875,7 +8875,7 @@ pub const ID2D1SpriteBatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: *const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).AddSprites(@ptrCast(*const ID2D1SpriteBatch, self), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8905,14 +8905,14 @@ pub const ID2D1DeviceContext3 = extern struct {
         base: ID2D1DeviceContext2.VTable,
         CreateSpriteBatch: fn(
             self: *const ID2D1DeviceContext3,
-            spriteBatch: **ID2D1SpriteBatch,
+            spriteBatch: ?*?*ID2D1SpriteBatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawSpriteBatch: fn(
             self: *const ID2D1DeviceContext3,
-            spriteBatch: *ID2D1SpriteBatch,
+            spriteBatch: ?*ID2D1SpriteBatch,
             startIndex: u32,
             spriteCount: u32,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             spriteOptions: D2D1_SPRITE_OPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) void,
@@ -8921,11 +8921,11 @@ pub const ID2D1DeviceContext3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext3_CreateSpriteBatch(self: *const T, spriteBatch: **ID2D1SpriteBatch) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext3_CreateSpriteBatch(self: *const T, spriteBatch: ?*?*ID2D1SpriteBatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext3.VTable, self.vtable).CreateSpriteBatch(@ptrCast(*const ID2D1DeviceContext3, self), spriteBatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext3_DrawSpriteBatch(self: *const T, spriteBatch: *ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: *ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext3_DrawSpriteBatch(self: *const T, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext3.VTable, self.vtable).DrawSpriteBatch(@ptrCast(*const ID2D1DeviceContext3, self), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
         }
     };}
@@ -8940,14 +8940,14 @@ pub const ID2D1Device3 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device3,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext3: **ID2D1DeviceContext3,
+            deviceContext3: ?*?*ID2D1DeviceContext3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Device2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device3_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: **ID2D1DeviceContext3) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device3_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: ?*?*ID2D1DeviceContext3) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device3.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device3, self), options, deviceContext3);
         }
     };}
@@ -8961,15 +8961,15 @@ pub const ID2D1Factory4 = extern struct {
         base: ID2D1Factory3.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory4,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice3: **ID2D1Device3,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice3: ?*?*ID2D1Device3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory4_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice3: **ID2D1Device3) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory4_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice3: ?*?*ID2D1Device3) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory4.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory4, self), dxgiDevice, d2dDevice3);
         }
     };}
@@ -8983,10 +8983,10 @@ pub const ID2D1CommandSink3 = extern struct {
         base: ID2D1CommandSink2.VTable,
         DrawSpriteBatch: fn(
             self: *const ID2D1CommandSink3,
-            spriteBatch: *ID2D1SpriteBatch,
+            spriteBatch: ?*ID2D1SpriteBatch,
             startIndex: u32,
             spriteCount: u32,
-            bitmap: *ID2D1Bitmap,
+            bitmap: ?*ID2D1Bitmap,
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             spriteOptions: D2D1_SPRITE_OPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8995,7 +8995,7 @@ pub const ID2D1CommandSink3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1CommandSink2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink3_DrawSpriteBatch(self: *const T, spriteBatch: *ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: *ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink3_DrawSpriteBatch(self: *const T, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink3.VTable, self.vtable).DrawSpriteBatch(@ptrCast(*const ID2D1CommandSink3, self), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
         }
     };}
@@ -9013,7 +9013,7 @@ pub const ID2D1SvgGlyphStyle = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFill: fn(
             self: *const ID2D1SvgGlyphStyle,
-            brush: ?**ID2D1Brush,
+            brush: ?*?*ID2D1Brush,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetStroke: fn(
             self: *const ID2D1SvgGlyphStyle,
@@ -9028,7 +9028,7 @@ pub const ID2D1SvgGlyphStyle = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         GetStroke: fn(
             self: *const ID2D1SvgGlyphStyle,
-            brush: ?**ID2D1Brush,
+            brush: ?*?*ID2D1Brush,
             strokeWidth: ?*f32,
             dashes: ?[*]f32,
             dashesCount: u32,
@@ -9043,7 +9043,7 @@ pub const ID2D1SvgGlyphStyle = extern struct {
             return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).SetFill(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgGlyphStyle_GetFill(self: *const T, brush: ?**ID2D1Brush) callconv(.Inline) void {
+        pub fn ID2D1SvgGlyphStyle_GetFill(self: *const T, brush: ?*?*ID2D1Brush) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetFill(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9055,7 +9055,7 @@ pub const ID2D1SvgGlyphStyle = extern struct {
             return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetStrokeDashesCount(@ptrCast(*const ID2D1SvgGlyphStyle, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgGlyphStyle_GetStroke(self: *const T, brush: ?**ID2D1Brush, strokeWidth: ?*f32, dashes: ?[*]f32, dashesCount: u32, dashOffset: ?*f32) callconv(.Inline) void {
+        pub fn ID2D1SvgGlyphStyle_GetStroke(self: *const T, brush: ?*?*ID2D1Brush, strokeWidth: ?*f32, dashes: ?[*]f32, dashesCount: u32, dashOffset: ?*f32) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetStroke(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush, strokeWidth, dashes, dashesCount, dashOffset);
         }
     };}
@@ -9069,14 +9069,14 @@ pub const ID2D1DeviceContext4 = extern struct {
         base: ID2D1DeviceContext3.VTable,
         CreateSvgGlyphStyle: fn(
             self: *const ID2D1DeviceContext4,
-            svgGlyphStyle: **ID2D1SvgGlyphStyle,
+            svgGlyphStyle: ?*?*ID2D1SvgGlyphStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawText: fn(
             self: *const ID2D1DeviceContext4,
             string: [*:0]const u16,
             stringLength: u32,
-            textFormat: *IDWriteTextFormat,
-            layoutRect: *const D2D_RECT_F,
+            textFormat: ?*IDWriteTextFormat,
+            layoutRect: ?*const D2D_RECT_F,
             defaultFillBrush: ?*ID2D1Brush,
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
@@ -9086,7 +9086,7 @@ pub const ID2D1DeviceContext4 = extern struct {
         DrawTextLayout: fn(
             self: *const ID2D1DeviceContext4,
             origin: D2D_POINT_2F,
-            textLayout: *IDWriteTextLayout,
+            textLayout: ?*IDWriteTextLayout,
             defaultFillBrush: ?*ID2D1Brush,
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
@@ -9096,14 +9096,14 @@ pub const ID2D1DeviceContext4 = extern struct {
             self: *const ID2D1DeviceContext4,
             glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
             measuringMode: DWRITE_MEASURING_MODE,
             bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawSvgGlyphRun: fn(
             self: *const ID2D1DeviceContext4,
             baselineOrigin: D2D_POINT_2F,
-            glyphRun: *const DWRITE_GLYPH_RUN,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
             defaultFillBrush: ?*ID2D1Brush,
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
@@ -9113,20 +9113,20 @@ pub const ID2D1DeviceContext4 = extern struct {
             self: *const ID2D1DeviceContext4,
             glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
             glyphOrigin: D2D_POINT_2F,
-            fontFace: *IDWriteFontFace,
+            fontFace: ?*IDWriteFontFace,
             fontEmSize: f32,
             glyphIndex: u16,
             isSideways: BOOL,
             worldTransform: ?*const D2D_MATRIX_3X2_F,
             dpiX: f32,
             dpiY: f32,
-            glyphTransform: *D2D_MATRIX_3X2_F,
-            glyphImage: **ID2D1Image,
+            glyphTransform: ?*D2D_MATRIX_3X2_F,
+            glyphImage: ?*?*ID2D1Image,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSvgGlyphImage: fn(
             self: *const ID2D1DeviceContext4,
             glyphOrigin: D2D_POINT_2F,
-            fontFace: *IDWriteFontFace,
+            fontFace: ?*IDWriteFontFace,
             fontEmSize: f32,
             glyphIndex: u16,
             isSideways: BOOL,
@@ -9134,39 +9134,39 @@ pub const ID2D1DeviceContext4 = extern struct {
             defaultFillBrush: ?*ID2D1Brush,
             svgGlyphStyle: ?*ID2D1SvgGlyphStyle,
             colorPaletteIndex: u32,
-            glyphTransform: *D2D_MATRIX_3X2_F,
-            glyphImage: **ID2D1CommandList,
+            glyphTransform: ?*D2D_MATRIX_3X2_F,
+            glyphImage: ?*?*ID2D1CommandList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_CreateSvgGlyphStyle(self: *const T, svgGlyphStyle: **ID2D1SvgGlyphStyle) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext4_CreateSvgGlyphStyle(self: *const T, svgGlyphStyle: ?*?*ID2D1SvgGlyphStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).CreateSvgGlyphStyle(@ptrCast(*const ID2D1DeviceContext4, self), svgGlyphStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext4_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1DeviceContext4, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: *IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext4_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawTextLayout(@ptrCast(*const ID2D1DeviceContext4, self), origin, textLayout, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_DrawColorBitmapGlyphRun(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext4_DrawColorBitmapGlyphRun(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawColorBitmapGlyphRun(@ptrCast(*const ID2D1DeviceContext4, self), glyphImageFormat, baselineOrigin, glyphRun, measuringMode, bitmapSnapOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_DrawSvgGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: *const DWRITE_GLYPH_RUN, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext4_DrawSvgGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawSvgGlyphRun(@ptrCast(*const ID2D1DeviceContext4, self), baselineOrigin, glyphRun, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_GetColorBitmapGlyphImage(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: *IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: *D2D_MATRIX_3X2_F, glyphImage: **ID2D1Image) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext4_GetColorBitmapGlyphImage(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1Image) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).GetColorBitmapGlyphImage(@ptrCast(*const ID2D1DeviceContext4, self), glyphImageFormat, glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, dpiX, dpiY, glyphTransform, glyphImage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_GetSvgGlyphImage(self: *const T, glyphOrigin: D2D_POINT_2F, fontFace: *IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: *D2D_MATRIX_3X2_F, glyphImage: **ID2D1CommandList) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext4_GetSvgGlyphImage(self: *const T, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1CommandList) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).GetSvgGlyphImage(@ptrCast(*const ID2D1DeviceContext4, self), glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, glyphTransform, glyphImage);
         }
     };}
@@ -9181,7 +9181,7 @@ pub const ID2D1Device4 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device4,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext4: **ID2D1DeviceContext4,
+            deviceContext4: ?*?*ID2D1DeviceContext4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaximumColorGlyphCacheMemory: fn(
             self: *const ID2D1Device4,
@@ -9195,7 +9195,7 @@ pub const ID2D1Device4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Device3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device4_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: **ID2D1DeviceContext4) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device4_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: ?*?*ID2D1DeviceContext4) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device4.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device4, self), options, deviceContext4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9217,15 +9217,15 @@ pub const ID2D1Factory5 = extern struct {
         base: ID2D1Factory4.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory5,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice4: **ID2D1Device4,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice4: ?*?*ID2D1Device4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory5_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice4: **ID2D1Device4) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory5_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice4: ?*?*ID2D1Device4) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory5.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory5, self), dxgiDevice, d2dDevice4);
         }
     };}
@@ -9266,7 +9266,7 @@ pub const ID2D1ColorContext1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DXGI_COLOR_SPACE_TYPE,
         GetSimpleColorProfile: fn(
             self: *const ID2D1ColorContext1,
-            simpleProfile: *D2D1_SIMPLE_COLOR_PROFILE,
+            simpleProfile: ?*D2D1_SIMPLE_COLOR_PROFILE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9281,7 +9281,7 @@ pub const ID2D1ColorContext1 = extern struct {
             return @ptrCast(*const ID2D1ColorContext1.VTable, self.vtable).GetDXGIColorSpace(@ptrCast(*const ID2D1ColorContext1, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1ColorContext1_GetSimpleColorProfile(self: *const T, simpleProfile: *D2D1_SIMPLE_COLOR_PROFILE) callconv(.Inline) HRESULT {
+        pub fn ID2D1ColorContext1_GetSimpleColorProfile(self: *const T, simpleProfile: ?*D2D1_SIMPLE_COLOR_PROFILE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1ColorContext1.VTable, self.vtable).GetSimpleColorProfile(@ptrCast(*const ID2D1ColorContext1, self), simpleProfile);
         }
     };}
@@ -9297,40 +9297,40 @@ pub const ID2D1DeviceContext5 = extern struct {
             self: *const ID2D1DeviceContext5,
             inputXmlStream: ?*IStream,
             viewportSize: D2D_SIZE_F,
-            svgDocument: **ID2D1SvgDocument,
+            svgDocument: ?*?*ID2D1SvgDocument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawSvgDocument: fn(
             self: *const ID2D1DeviceContext5,
-            svgDocument: *ID2D1SvgDocument,
+            svgDocument: ?*ID2D1SvgDocument,
         ) callconv(@import("std").os.windows.WINAPI) void,
         CreateColorContextFromDxgiColorSpace: fn(
             self: *const ID2D1DeviceContext5,
             colorSpace: DXGI_COLOR_SPACE_TYPE,
-            colorContext: **ID2D1ColorContext1,
+            colorContext: ?*?*ID2D1ColorContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromSimpleColorProfile: fn(
             self: *const ID2D1DeviceContext5,
-            simpleProfile: *const D2D1_SIMPLE_COLOR_PROFILE,
-            colorContext: **ID2D1ColorContext1,
+            simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE,
+            colorContext: ?*?*ID2D1ColorContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext5_CreateSvgDocument(self: *const T, inputXmlStream: ?*IStream, viewportSize: D2D_SIZE_F, svgDocument: **ID2D1SvgDocument) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext5_CreateSvgDocument(self: *const T, inputXmlStream: ?*IStream, viewportSize: D2D_SIZE_F, svgDocument: ?*?*ID2D1SvgDocument) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateSvgDocument(@ptrCast(*const ID2D1DeviceContext5, self), inputXmlStream, viewportSize, svgDocument);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext5_DrawSvgDocument(self: *const T, svgDocument: *ID2D1SvgDocument) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext5_DrawSvgDocument(self: *const T, svgDocument: ?*ID2D1SvgDocument) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).DrawSvgDocument(@ptrCast(*const ID2D1DeviceContext5, self), svgDocument);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext5_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: **ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext5_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateColorContextFromDxgiColorSpace(@ptrCast(*const ID2D1DeviceContext5, self), colorSpace, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext5_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: *const D2D1_SIMPLE_COLOR_PROFILE, colorContext: **ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext5_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateColorContextFromSimpleColorProfile(@ptrCast(*const ID2D1DeviceContext5, self), simpleProfile, colorContext);
         }
     };}
@@ -9345,14 +9345,14 @@ pub const ID2D1Device5 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device5,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext5: **ID2D1DeviceContext5,
+            deviceContext5: ?*?*ID2D1DeviceContext5,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Device4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device5_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: **ID2D1DeviceContext5) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device5_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: ?*?*ID2D1DeviceContext5) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device5.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device5, self), options, deviceContext5);
         }
     };}
@@ -9366,15 +9366,15 @@ pub const ID2D1Factory6 = extern struct {
         base: ID2D1Factory5.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory6,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice5: **ID2D1Device5,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice5: ?*?*ID2D1Device5,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory6_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice5: **ID2D1Device5) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory6_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice5: ?*?*ID2D1Device5) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory6.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory6, self), dxgiDevice, d2dDevice5);
         }
     };}
@@ -9388,7 +9388,7 @@ pub const ID2D1CommandSink5 = extern struct {
         base: ID2D1CommandSink4.VTable,
         BlendImage: fn(
             self: *const ID2D1CommandSink5,
-            image: *ID2D1Image,
+            image: ?*ID2D1Image,
             blendMode: D2D1_BLEND_MODE,
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
@@ -9399,7 +9399,7 @@ pub const ID2D1CommandSink5 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1CommandSink4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink5_BlendImage(self: *const T, image: *ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink5_BlendImage(self: *const T, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink5.VTable, self.vtable).BlendImage(@ptrCast(*const ID2D1CommandSink5, self), image, blendMode, targetOffset, imageRectangle, interpolationMode);
         }
     };}
@@ -9413,7 +9413,7 @@ pub const ID2D1DeviceContext6 = extern struct {
         base: ID2D1DeviceContext5.VTable,
         BlendImage: fn(
             self: *const ID2D1DeviceContext6,
-            image: *ID2D1Image,
+            image: ?*ID2D1Image,
             blendMode: D2D1_BLEND_MODE,
             targetOffset: ?*const D2D_POINT_2F,
             imageRectangle: ?*const D2D_RECT_F,
@@ -9424,7 +9424,7 @@ pub const ID2D1DeviceContext6 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1DeviceContext5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext6_BlendImage(self: *const T, image: *ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) void {
+        pub fn ID2D1DeviceContext6_BlendImage(self: *const T, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1DeviceContext6.VTable, self.vtable).BlendImage(@ptrCast(*const ID2D1DeviceContext6, self), image, blendMode, targetOffset, imageRectangle, interpolationMode);
         }
     };}
@@ -9439,14 +9439,14 @@ pub const ID2D1Device6 = extern struct {
         CreateDeviceContext: fn(
             self: *const ID2D1Device6,
             options: D2D1_DEVICE_CONTEXT_OPTIONS,
-            deviceContext6: **ID2D1DeviceContext6,
+            deviceContext6: ?*?*ID2D1DeviceContext6,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Device5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Device6_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: **ID2D1DeviceContext6) callconv(.Inline) HRESULT {
+        pub fn ID2D1Device6_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: ?*?*ID2D1DeviceContext6) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Device6.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device6, self), options, deviceContext6);
         }
     };}
@@ -9460,15 +9460,15 @@ pub const ID2D1Factory7 = extern struct {
         base: ID2D1Factory6.VTable,
         CreateDevice: fn(
             self: *const ID2D1Factory7,
-            dxgiDevice: *IDXGIDevice,
-            d2dDevice6: **ID2D1Device6,
+            dxgiDevice: ?*IDXGIDevice,
+            d2dDevice6: ?*?*ID2D1Device6,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Factory6.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Factory7_CreateDevice(self: *const T, dxgiDevice: *IDXGIDevice, d2dDevice6: **ID2D1Device6) callconv(.Inline) HRESULT {
+        pub fn ID2D1Factory7_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice6: ?*?*ID2D1Device6) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Factory7.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory7, self), dxgiDevice, d2dDevice6);
         }
     };}
@@ -9487,14 +9487,14 @@ pub const ID2D1EffectContext1 = extern struct {
             data: [*:0]const u8,
             dataCount: u32,
             strides: *[2]u32,
-            lookupTable: **ID2D1LookupTable3D,
+            lookupTable: ?*?*ID2D1LookupTable3D,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1EffectContext.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext1_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: **ID2D1LookupTable3D) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext1_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext1.VTable, self.vtable).CreateLookupTable3D(@ptrCast(*const ID2D1EffectContext1, self), precision, extents, data, dataCount, strides, lookupTable);
         }
     };}
@@ -9509,23 +9509,23 @@ pub const ID2D1EffectContext2 = extern struct {
         CreateColorContextFromDxgiColorSpace: fn(
             self: *const ID2D1EffectContext2,
             colorSpace: DXGI_COLOR_SPACE_TYPE,
-            colorContext: **ID2D1ColorContext1,
+            colorContext: ?*?*ID2D1ColorContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateColorContextFromSimpleColorProfile: fn(
             self: *const ID2D1EffectContext2,
-            simpleProfile: *const D2D1_SIMPLE_COLOR_PROFILE,
-            colorContext: **ID2D1ColorContext1,
+            simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE,
+            colorContext: ?*?*ID2D1ColorContext1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1EffectContext1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext2_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: **ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext2_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext2.VTable, self.vtable).CreateColorContextFromDxgiColorSpace(@ptrCast(*const ID2D1EffectContext2, self), colorSpace, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext2_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: *const D2D1_SIMPLE_COLOR_PROFILE, colorContext: **ID2D1ColorContext1) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext2_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext2.VTable, self.vtable).CreateColorContextFromSimpleColorProfile(@ptrCast(*const ID2D1EffectContext2, self), simpleProfile, colorContext);
         }
     };}
@@ -9539,7 +9539,7 @@ pub const ID2D1EffectContext2 = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1CreateFactory(
     factoryType: D2D1_FACTORY_TYPE,
-    riid: *const Guid,
+    riid: ?*const Guid,
     pFactoryOptions: ?*const D2D1_FACTORY_OPTIONS,
     ppIFactory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -9548,7 +9548,7 @@ pub extern "d2d1" fn D2D1CreateFactory(
 pub extern "d2d1" fn D2D1MakeRotateMatrix(
     angle: f32,
     center: D2D_POINT_2F,
-    matrix: *D2D_MATRIX_3X2_F,
+    matrix: ?*D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9556,43 +9556,43 @@ pub extern "d2d1" fn D2D1MakeSkewMatrix(
     angleX: f32,
     angleY: f32,
     center: D2D_POINT_2F,
-    matrix: *D2D_MATRIX_3X2_F,
+    matrix: ?*D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1IsMatrixInvertible(
-    matrix: *const D2D_MATRIX_3X2_F,
+    matrix: ?*const D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1InvertMatrix(
-    matrix: *D2D_MATRIX_3X2_F,
+    matrix: ?*D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDevice(
-    dxgiDevice: *IDXGIDevice,
+    dxgiDevice: ?*IDXGIDevice,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
-    d2dDevice: **ID2D1Device,
+    d2dDevice: ?*?*ID2D1Device,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDeviceContext(
-    dxgiSurface: *IDXGISurface,
+    dxgiSurface: ?*IDXGISurface,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
-    d2dDeviceContext: **ID2D1DeviceContext,
+    d2dDeviceContext: ?*?*ID2D1DeviceContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d2d1" fn D2D1ConvertColorSpace(
     sourceColorSpace: D2D1_COLOR_SPACE,
     destinationColorSpace: D2D1_COLOR_SPACE,
-    color: *const D2D1_COLOR_F,
+    color: ?*const D2D1_COLOR_F,
 ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_F;
 
 pub extern "d2d1" fn D2D1SinCos(
     angle: f32,
-    s: *f32,
-    c: *f32,
+    s: ?*f32,
+    c: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "d2d1" fn D2D1Tan(
@@ -9607,27 +9607,27 @@ pub extern "d2d1" fn D2D1Vec3Length(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "d2d1" fn D2D1ComputeMaximumScaleFactor(
-    matrix: *const D2D_MATRIX_3X2_F,
+    matrix: ?*const D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) f32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "d2d1" fn D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
-    pPoint0: *const D2D_POINT_2F,
-    pPoint1: *const D2D_POINT_2F,
-    pPoint2: *const D2D_POINT_2F,
-    pPoint3: *const D2D_POINT_2F,
-    pPoint4: *const D2D_POINT_2F,
-    pPoint5: *const D2D_POINT_2F,
-    pPoint6: *const D2D_POINT_2F,
-    pPoint7: *const D2D_POINT_2F,
-    pPoint8: *const D2D_POINT_2F,
-    pPoint9: *const D2D_POINT_2F,
-    pPoint10: *const D2D_POINT_2F,
-    pPoint11: *const D2D_POINT_2F,
-    pTensorPoint11: *D2D_POINT_2F,
-    pTensorPoint12: *D2D_POINT_2F,
-    pTensorPoint21: *D2D_POINT_2F,
-    pTensorPoint22: *D2D_POINT_2F,
+    pPoint0: ?*const D2D_POINT_2F,
+    pPoint1: ?*const D2D_POINT_2F,
+    pPoint2: ?*const D2D_POINT_2F,
+    pPoint3: ?*const D2D_POINT_2F,
+    pPoint4: ?*const D2D_POINT_2F,
+    pPoint5: ?*const D2D_POINT_2F,
+    pPoint6: ?*const D2D_POINT_2F,
+    pPoint7: ?*const D2D_POINT_2F,
+    pPoint8: ?*const D2D_POINT_2F,
+    pPoint9: ?*const D2D_POINT_2F,
+    pPoint10: ?*const D2D_POINT_2F,
+    pPoint11: ?*const D2D_POINT_2F,
+    pTensorPoint11: ?*D2D_POINT_2F,
+    pTensorPoint12: ?*D2D_POINT_2F,
+    pTensorPoint21: ?*D2D_POINT_2F,
+    pTensorPoint22: ?*D2D_POINT_2F,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 
