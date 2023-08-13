@@ -149,14 +149,14 @@ pub const IInkDesktopHost = extern struct {
 const CLSID_InkD2DRenderer_Value = @import("../zig.zig").Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
 pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
 
-pub const __MIDL___MIDL_itf_inkrenderer_0000_0000_0001 = extern enum(i32) {
-    USE_SYSTEM_COLORS_WHEN_NECESSARY = 0,
-    USE_SYSTEM_COLORS = 1,
-    USE_ORIGINAL_COLORS = 2,
+pub const INK_HIGH_CONTRAST_ADJUSTMENT = extern enum(i32) {
+    SYSTEM_COLORS_WHEN_NECESSARY = 0,
+    SYSTEM_COLORS = 1,
+    ORIGINAL_COLORS = 2,
 };
-pub const USE_SYSTEM_COLORS_WHEN_NECESSARY = __MIDL___MIDL_itf_inkrenderer_0000_0000_0001.USE_SYSTEM_COLORS_WHEN_NECESSARY;
-pub const USE_SYSTEM_COLORS = __MIDL___MIDL_itf_inkrenderer_0000_0000_0001.USE_SYSTEM_COLORS;
-pub const USE_ORIGINAL_COLORS = __MIDL___MIDL_itf_inkrenderer_0000_0000_0001.USE_ORIGINAL_COLORS;
+pub const USE_SYSTEM_COLORS_WHEN_NECESSARY = INK_HIGH_CONTRAST_ADJUSTMENT.SYSTEM_COLORS_WHEN_NECESSARY;
+pub const USE_SYSTEM_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.SYSTEM_COLORS;
+pub const USE_ORIGINAL_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.ORIGINAL_COLORS;
 
 const IID_IInkD2DRenderer_Value = @import("../zig.zig").Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
 pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
@@ -190,14 +190,14 @@ pub const IInkD2DRenderer2 = extern struct {
             self: *const IInkD2DRenderer2,
             pD2D1DeviceContext: *IUnknown,
             pInkStrokeIterable: *IUnknown,
-            highContrastAdjustment: __MIDL___MIDL_itf_inkrenderer_0000_0000_0001,
+            highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkD2DRenderer2_Draw(self: *const T, pD2D1DeviceContext: *IUnknown, pInkStrokeIterable: *IUnknown, highContrastAdjustment: __MIDL___MIDL_itf_inkrenderer_0000_0000_0001) callconv(.Inline) HRESULT {
+        pub fn IInkD2DRenderer2_Draw(self: *const T, pD2D1DeviceContext: *IUnknown, pInkStrokeIterable: *IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkD2DRenderer2.VTable, self.vtable).Draw(@ptrCast(*const IInkD2DRenderer2, self), pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
         }
     };}

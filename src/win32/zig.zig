@@ -79,6 +79,17 @@ test "Guid" {
         &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
 }
 
+pub const PropertyKey = extern struct {
+    fmtid: Guid,
+    pid: u32,
+    pub fn init(fmtid: []const u8, pid: u32) PropertyKey {
+        return .{
+            .fmtid = Guid.initString(fmtid),
+            .pid = pid,
+        };
+    }
+};
+
 pub fn FAILED(hr: @import("api/com.zig").HRESULT) bool {
     return hr < 0;
 }

@@ -4,19 +4,34 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (3)
+// Section: Types (4)
 //--------------------------------------------------------------------------------
-pub const USEROBJECTFLAGS = extern struct {
-    fInherit: BOOL,
-    fReserved: BOOL,
-    dwFlags: u32,
+pub const GetUserObjectInformation_nIndex = extern enum(u32) {
+    FLAGS = 1,
+    HEAPSIZE = 5,
+    IO = 6,
+    NAME = 2,
+    TYPE = 3,
+    USER_SID = 4,
 };
+pub const UOI_FLAGS = GetUserObjectInformation_nIndex.FLAGS;
+pub const UOI_HEAPSIZE = GetUserObjectInformation_nIndex.HEAPSIZE;
+pub const UOI_IO = GetUserObjectInformation_nIndex.IO;
+pub const UOI_NAME = GetUserObjectInformation_nIndex.NAME;
+pub const UOI_TYPE = GetUserObjectInformation_nIndex.TYPE;
+pub const UOI_USER_SID = GetUserObjectInformation_nIndex.USER_SID;
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
 pub const HDESK = ?*c_void;
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
 pub const HWINSTA = ?*c_void;
+
+pub const USEROBJECTFLAGS = extern struct {
+    fInherit: BOOL,
+    fReserved: BOOL,
+    dwFlags: u32,
+};
 
 
 //--------------------------------------------------------------------------------
@@ -165,7 +180,7 @@ pub extern "USER32" fn GetProcessWindowStation(
 
 pub extern "USER32" fn GetUserObjectInformationA(
     hObj: HANDLE,
-    nIndex: i32,
+    nIndex: GetUserObjectInformation_nIndex,
     pvInfo: ?[*]u8,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -173,7 +188,7 @@ pub extern "USER32" fn GetUserObjectInformationA(
 
 pub extern "USER32" fn GetUserObjectInformationW(
     hObj: HANDLE,
-    nIndex: i32,
+    nIndex: GetUserObjectInformation_nIndex,
     pvInfo: ?[*]u8,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -248,21 +263,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const PWSTR = @import("system_services.zig").PWSTR;
 const DEVMODEW = @import("display_devices.zig").DEVMODEW;
-const DESKTOPENUMPROCA = @import("menus_and_resources.zig").DESKTOPENUMPROCA;
+const DESKTOPENUMPROCA = @import("windows_and_messaging.zig").DESKTOPENUMPROCA;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
 const PSTR = @import("system_services.zig").PSTR;
-const DESKTOPENUMPROCW = @import("menus_and_resources.zig").DESKTOPENUMPROCW;
+const DESKTOPENUMPROCW = @import("windows_and_messaging.zig").DESKTOPENUMPROCW;
 const BOOL = @import("system_services.zig").BOOL;
 const DEVMODEA = @import("xps.zig").DEVMODEA;
 const HANDLE = @import("system_services.zig").HANDLE;
-const WINSTAENUMPROCW = @import("menus_and_resources.zig").WINSTAENUMPROCW;
-const WNDENUMPROC = @import("menus_and_resources.zig").WNDENUMPROC;
-const WINSTAENUMPROCA = @import("menus_and_resources.zig").WINSTAENUMPROCA;
+const WINSTAENUMPROCW = @import("windows_and_messaging.zig").WINSTAENUMPROCW;
+const WNDENUMPROC = @import("windows_and_messaging.zig").WNDENUMPROC;
+const WINSTAENUMPROCA = @import("windows_and_messaging.zig").WINSTAENUMPROCA;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 3;
-    const enum_value_export_count = 0;
+    const type_export_count = 4;
+    const enum_value_export_count = 6;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 27;

@@ -4,10 +4,184 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (243)
+// Section: Types (242)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
-pub const HSEMAPHORE = ?*c_void;
+const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
+pub const IDirectDrawKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: fn(
+            self: *const IDirectDrawKernel,
+            param0: *DDKERNELCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+            param0: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
+pub const IDirectDrawSurfaceKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+            param0: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DDKERNELCAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwIRQCaps: u32,
+};
+
+pub const SURFACEALIGNMENT = extern struct {
+    Anonymous: SURFACEALIGNMENT._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const HEAPALIGNMENT = extern struct {
+    dwSize: u32,
+    ddsCaps: DDSCAPS,
+    dwReserved: u32,
+    ExecuteBuffer: SURFACEALIGNMENT,
+    Overlay: SURFACEALIGNMENT,
+    Texture: SURFACEALIGNMENT,
+    ZBuffer: SURFACEALIGNMENT,
+    AlphaBuffer: SURFACEALIGNMENT,
+    Offscreen: SURFACEALIGNMENT,
+    FlipTarget: SURFACEALIGNMENT,
+};
+
+pub const VMEMHEAP = extern struct {
+    dwFlags: u32,
+    stride: u32,
+    freeList: *c_void,
+    allocList: *c_void,
+    dwTotalSize: u32,
+    fpGARTLin: ?*c_void,
+    fpGARTDev: ?*c_void,
+    dwCommitedSize: u32,
+    dwCoalesceCount: u32,
+    Alignment: HEAPALIGNMENT,
+    ddsCapsEx: DDSCAPSEX,
+    ddsCapsExAlt: DDSCAPSEX,
+    liPhysAGPBase: LARGE_INTEGER,
+    hdevAGP: HANDLE,
+    pvPhysRsrv: *c_void,
+    pAgpCommitMask: *u8,
+    dwAgpCommitMaskSize: u32,
+};
+
+pub const DDCORECAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCKeyCaps: u32,
+    dwFXCaps: u32,
+    dwFXAlphaCaps: u32,
+    dwPalCaps: u32,
+    dwSVCaps: u32,
+    dwAlphaBltConstBitDepths: u32,
+    dwAlphaBltPixelBitDepths: u32,
+    dwAlphaBltSurfaceBitDepths: u32,
+    dwAlphaOverlayConstBitDepths: u32,
+    dwAlphaOverlayPixelBitDepths: u32,
+    dwAlphaOverlaySurfaceBitDepths: u32,
+    dwZBufferBitDepths: u32,
+    dwVidMemTotal: u32,
+    dwVidMemFree: u32,
+    dwMaxVisibleOverlays: u32,
+    dwCurrVisibleOverlays: u32,
+    dwNumFourCCCodes: u32,
+    dwAlignBoundarySrc: u32,
+    dwAlignSizeSrc: u32,
+    dwAlignBoundaryDest: u32,
+    dwAlignSizeDest: u32,
+    dwAlignStrideAlign: u32,
+    dwRops: [8]u32,
+    ddsCaps: DDSCAPS,
+    dwMinOverlayStretch: u32,
+    dwMaxOverlayStretch: u32,
+    dwMinLiveVideoStretch: u32,
+    dwMaxLiveVideoStretch: u32,
+    dwMinHwCodecStretch: u32,
+    dwMaxHwCodecStretch: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+    dwSVBCaps: u32,
+    dwSVBCKeyCaps: u32,
+    dwSVBFXCaps: u32,
+    dwSVBRops: [8]u32,
+    dwVSBCaps: u32,
+    dwVSBCKeyCaps: u32,
+    dwVSBFXCaps: u32,
+    dwVSBRops: [8]u32,
+    dwSSBCaps: u32,
+    dwSSBCKeyCaps: u32,
+    dwSSBFXCaps: u32,
+    dwSSBRops: [8]u32,
+    dwMaxVideoPorts: u32,
+    dwCurrVideoPorts: u32,
+    dwSVBCaps2: u32,
+};
+
+pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
+    lpDD: *DDRAWI_DIRECTDRAW_GBL,
+    dwFlags: u32,
+    bIsInVB: u32,
+    hEvent: ?*c_void,
+    ddRVal: HRESULT,
+    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
+};
+
+pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
+    dwFlags: u32,
+    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
+    ddRVal: HRESULT,
+};
 
 pub const RECT = extern struct {
     left: i32,
@@ -115,8 +289,8 @@ pub const VIDEOMEMORY = extern struct {
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
     Anonymous2: VIDEOMEMORY._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const VIDEOMEMORYINFO = extern struct {
@@ -518,9 +692,9 @@ pub const DD_SURFACE_GLOBAL = extern struct {
     ddpfSurface: DDPIXELFORMAT,
     fpHeapOffset: ?*c_void,
     hCreatorProcess: HANDLE,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_SURFACE_MORE = extern struct {
@@ -542,8 +716,8 @@ pub const DD_SURFACE_LOCAL = extern struct {
     lpAttachList: *DD_ATTACHLIST,
     lpAttachListFrom: *DD_ATTACHLIST,
     rcOverlaySrc: RECT,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_D3DBUFCALLBACKS = extern struct {
@@ -608,8 +782,8 @@ pub const DD_MOTIONCOMP_LOCAL = extern struct {
 pub const DD_MORESURFACECAPS = extern struct {
     dwSize: u32,
     ddsCapsMore: DDSCAPSEX,
-    ddsExtendedHeapRestrictions: [1]DD_MORESURFACECAPS.tagNTExtendedHeapRestrictions,
-    const tagNTExtendedHeapRestrictions = u32; // TODO: generate this nested type!
+    ddsExtendedHeapRestrictions: [1]DD_MORESURFACECAPS.NTExtendedHeapRestrictions,
+    const NTExtendedHeapRestrictions = u32; // TODO: generate this nested type!
 };
 
 pub const DD_STEREOMODE = extern struct {
@@ -1449,8 +1623,8 @@ pub const CLIPOBJ = extern struct {
 pub const DRIVEROBJ = extern struct {
     pvObj: *c_void,
     pFreeProc: FREEOBJPROC,
-    hdev: ?*c_void,
-    dhpdev: *DHPDEV__,
+    hdev: HDEV,
+    dhpdev: DHPDEV,
 };
 
 pub const FONTOBJ = extern struct {
@@ -1480,10 +1654,10 @@ pub const PATHOBJ = extern struct {
 };
 
 pub const SURFOBJ = extern struct {
-    dhsurf: *DHSURF__,
+    dhsurf: DHSURF,
     hsurf: HSURF,
-    dhpdev: *DHPDEV__,
-    hdev: ?*c_void,
+    dhpdev: DHPDEV,
+    hdev: HDEV,
     sizlBitmap: SIZE,
     cjBits: u32,
     pvBits: *c_void,
@@ -1615,7 +1789,7 @@ pub const TYPE1_FONT = extern struct {
 };
 
 pub const ENGSAFESEMAPHORE = extern struct {
-    hsem: HSEMAPHORE,
+    hsem: *HSEMAPHORE__,
     lCount: i32,
 };
 
@@ -1648,6 +1822,32 @@ pub const PFN_DrvQueryGlyphAttrs = fn(
     param0: *FONTOBJ,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
+
+pub const VIDEOPARAMETERS = extern struct {
+    Guid: Guid,
+    dwOffset: u32,
+    dwCommand: u32,
+    dwFlags: u32,
+    dwMode: u32,
+    dwTVStandard: u32,
+    dwAvailableModes: u32,
+    dwAvailableTVStandard: u32,
+    dwFlickerFilter: u32,
+    dwOverScanX: u32,
+    dwOverScanY: u32,
+    dwMaxUnscaledX: u32,
+    dwMaxUnscaledY: u32,
+    dwPositionX: u32,
+    dwPositionY: u32,
+    dwBrightness: u32,
+    dwContrast: u32,
+    dwCPType: u32,
+    dwCPCommand: u32,
+    dwCPStandard: u32,
+    dwCPKey: u32,
+    bCP_APSTriggerBits: u32,
+    bOEMCopyProtection: [256]u8,
+};
 
 pub const DEVMODEW = extern struct {
     dmDeviceName: [32]u16,
@@ -1687,47 +1887,47 @@ pub const DISPLAYCONFIG_RATIONAL = extern struct {
 };
 
 pub const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY = extern enum(i32) {
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER = -1,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 = 0,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO = 1,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO = 2,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO = 3,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI = 4,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI = 5,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS = 6,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN = 8,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI = 9,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL = 10,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED = 11,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL = 12,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED = 13,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE = 14,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST = 15,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED = 16,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL = 17,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL = -2147483648,
-    DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32 = -1,
+    OTHER = -1,
+    HD15 = 0,
+    SVIDEO = 1,
+    COMPOSITE_VIDEO = 2,
+    COMPONENT_VIDEO = 3,
+    DVI = 4,
+    HDMI = 5,
+    LVDS = 6,
+    D_JPN = 8,
+    SDI = 9,
+    DISPLAYPORT_EXTERNAL = 10,
+    DISPLAYPORT_EMBEDDED = 11,
+    UDI_EXTERNAL = 12,
+    UDI_EMBEDDED = 13,
+    SDTVDONGLE = 14,
+    MIRACAST = 15,
+    INDIRECT_WIRED = 16,
+    INDIRECT_VIRTUAL = 17,
+    INTERNAL = -2147483648,
+    FORCE_UINT32 = -1,
 };
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.OTHER;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HD15;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SVIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPOSITE_VIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPONENT_VIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DVI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HDMI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.LVDS;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.D_JPN;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EXTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EMBEDDED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EXTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EMBEDDED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDTVDONGLE;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.MIRACAST;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_WIRED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_VIRTUAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.FORCE_UINT32;
 
 pub const DISPLAYCONFIG_SCANLINE_ORDERING = extern enum(i32) {
     UNSPECIFIED = 0,
@@ -1802,17 +2002,17 @@ pub const DISPLAYCONFIG_MODE_INFO_TYPE_DESKTOP_IMAGE = DISPLAYCONFIG_MODE_INFO_T
 pub const DISPLAYCONFIG_MODE_INFO_TYPE_FORCE_UINT32 = DISPLAYCONFIG_MODE_INFO_TYPE.FORCE_UINT32;
 
 pub const DISPLAYCONFIG_PIXELFORMAT = extern enum(i32) {
-    _8BPP = 1,
-    _16BPP = 2,
-    _24BPP = 3,
-    _32BPP = 4,
+    @"8BPP" = 1,
+    @"16BPP" = 2,
+    @"24BPP" = 3,
+    @"32BPP" = 4,
     NONGDI = 5,
     FORCE_UINT32 = -1,
 };
-pub const DISPLAYCONFIG_PIXELFORMAT_8BPP = DISPLAYCONFIG_PIXELFORMAT._8BPP;
-pub const DISPLAYCONFIG_PIXELFORMAT_16BPP = DISPLAYCONFIG_PIXELFORMAT._16BPP;
-pub const DISPLAYCONFIG_PIXELFORMAT_24BPP = DISPLAYCONFIG_PIXELFORMAT._24BPP;
-pub const DISPLAYCONFIG_PIXELFORMAT_32BPP = DISPLAYCONFIG_PIXELFORMAT._32BPP;
+pub const DISPLAYCONFIG_PIXELFORMAT_8BPP = DISPLAYCONFIG_PIXELFORMAT.@"8BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_16BPP = DISPLAYCONFIG_PIXELFORMAT.@"16BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_24BPP = DISPLAYCONFIG_PIXELFORMAT.@"24BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_32BPP = DISPLAYCONFIG_PIXELFORMAT.@"32BPP";
 pub const DISPLAYCONFIG_PIXELFORMAT_NONGDI = DISPLAYCONFIG_PIXELFORMAT.NONGDI;
 pub const DISPLAYCONFIG_PIXELFORMAT_FORCE_UINT32 = DISPLAYCONFIG_PIXELFORMAT.FORCE_UINT32;
 
@@ -1870,44 +2070,44 @@ pub const DISPLAYCONFIG_PATH_INFO = extern struct {
 };
 
 pub const DISPLAYCONFIG_TOPOLOGY_ID = extern enum(i32) {
-    DISPLAYCONFIG_TOPOLOGY_INTERNAL = 1,
-    DISPLAYCONFIG_TOPOLOGY_CLONE = 2,
-    DISPLAYCONFIG_TOPOLOGY_EXTEND = 4,
-    DISPLAYCONFIG_TOPOLOGY_EXTERNAL = 8,
-    DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32 = -1,
+    INTERNAL = 1,
+    CLONE = 2,
+    EXTEND = 4,
+    EXTERNAL = 8,
+    FORCE_UINT32 = -1,
 };
-pub const DISPLAYCONFIG_TOPOLOGY_INTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.DISPLAYCONFIG_TOPOLOGY_INTERNAL;
-pub const DISPLAYCONFIG_TOPOLOGY_CLONE = DISPLAYCONFIG_TOPOLOGY_ID.DISPLAYCONFIG_TOPOLOGY_CLONE;
-pub const DISPLAYCONFIG_TOPOLOGY_EXTEND = DISPLAYCONFIG_TOPOLOGY_ID.DISPLAYCONFIG_TOPOLOGY_EXTEND;
-pub const DISPLAYCONFIG_TOPOLOGY_EXTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.DISPLAYCONFIG_TOPOLOGY_EXTERNAL;
-pub const DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32 = DISPLAYCONFIG_TOPOLOGY_ID.DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32;
+pub const DISPLAYCONFIG_TOPOLOGY_INTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.INTERNAL;
+pub const DISPLAYCONFIG_TOPOLOGY_CLONE = DISPLAYCONFIG_TOPOLOGY_ID.CLONE;
+pub const DISPLAYCONFIG_TOPOLOGY_EXTEND = DISPLAYCONFIG_TOPOLOGY_ID.EXTEND;
+pub const DISPLAYCONFIG_TOPOLOGY_EXTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.EXTERNAL;
+pub const DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32 = DISPLAYCONFIG_TOPOLOGY_ID.FORCE_UINT32;
 
 pub const DISPLAYCONFIG_DEVICE_INFO_TYPE = extern enum(i32) {
-    DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME = 1,
-    DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME = 2,
-    DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE = 3,
-    DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = 4,
-    DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = 5,
-    DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = 6,
-    DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = 7,
-    DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = 8,
-    DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = 9,
-    DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = 10,
-    DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = 11,
-    DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = -1,
+    GET_SOURCE_NAME = 1,
+    GET_TARGET_NAME = 2,
+    GET_TARGET_PREFERRED_MODE = 3,
+    GET_ADAPTER_NAME = 4,
+    SET_TARGET_PERSISTENCE = 5,
+    GET_TARGET_BASE_TYPE = 6,
+    GET_SUPPORT_VIRTUAL_RESOLUTION = 7,
+    SET_SUPPORT_VIRTUAL_RESOLUTION = 8,
+    GET_ADVANCED_COLOR_INFO = 9,
+    SET_ADVANCED_COLOR_STATE = 10,
+    GET_SDR_WHITE_LEVEL = 11,
+    FORCE_UINT32 = -1,
 };
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL;
-pub const DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SOURCE_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_PREFERRED_MODE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADAPTER_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_TARGET_PERSISTENCE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_BASE_TYPE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SUPPORT_VIRTUAL_RESOLUTION;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_SUPPORT_VIRTUAL_RESOLUTION;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADVANCED_COLOR_INFO;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_ADVANCED_COLOR_STATE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SDR_WHITE_LEVEL;
+pub const DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = DISPLAYCONFIG_DEVICE_INFO_TYPE.FORCE_UINT32;
 
 pub const DISPLAYCONFIG_DEVICE_INFO_HEADER = extern struct {
     type: DISPLAYCONFIG_DEVICE_INFO_TYPE,
@@ -1966,240 +2166,10 @@ pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const VIDEOPARAMETERS = extern struct {
-    Guid: Guid,
-    dwOffset: u32,
-    dwCommand: u32,
-    dwFlags: u32,
-    dwMode: u32,
-    dwTVStandard: u32,
-    dwAvailableModes: u32,
-    dwAvailableTVStandard: u32,
-    dwFlickerFilter: u32,
-    dwOverScanX: u32,
-    dwOverScanY: u32,
-    dwMaxUnscaledX: u32,
-    dwMaxUnscaledY: u32,
-    dwPositionX: u32,
-    dwPositionY: u32,
-    dwBrightness: u32,
-    dwContrast: u32,
-    dwCPType: u32,
-    dwCPCommand: u32,
-    dwCPStandard: u32,
-    dwCPKey: u32,
-    bCP_APSTriggerBits: u32,
-    bOEMCopyProtection: [256]u8,
-};
-
-pub const IDirectDrawKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawKernel,
-            param0: *DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-            param0: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const IDirectDrawSurfaceKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DDKERNELCAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwIRQCaps: u32,
-};
-
-pub const SURFACEALIGNMENT = extern struct {
-    Anonymous: SURFACEALIGNMENT._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const HEAPALIGNMENT = extern struct {
-    dwSize: u32,
-    ddsCaps: DDSCAPS,
-    dwReserved: u32,
-    ExecuteBuffer: SURFACEALIGNMENT,
-    Overlay: SURFACEALIGNMENT,
-    Texture: SURFACEALIGNMENT,
-    ZBuffer: SURFACEALIGNMENT,
-    AlphaBuffer: SURFACEALIGNMENT,
-    Offscreen: SURFACEALIGNMENT,
-    FlipTarget: SURFACEALIGNMENT,
-};
-
-pub const VMEMHEAP = extern struct {
-    dwFlags: u32,
-    stride: u32,
-    freeList: *c_void,
-    allocList: *c_void,
-    dwTotalSize: u32,
-    fpGARTLin: ?*c_void,
-    fpGARTDev: ?*c_void,
-    dwCommitedSize: u32,
-    dwCoalesceCount: u32,
-    Alignment: HEAPALIGNMENT,
-    ddsCapsEx: DDSCAPSEX,
-    ddsCapsExAlt: DDSCAPSEX,
-    liPhysAGPBase: LARGE_INTEGER,
-    hdevAGP: HANDLE,
-    pvPhysRsrv: *c_void,
-    pAgpCommitMask: *u8,
-    dwAgpCommitMaskSize: u32,
-};
-
-pub const DDCORECAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCKeyCaps: u32,
-    dwFXCaps: u32,
-    dwFXAlphaCaps: u32,
-    dwPalCaps: u32,
-    dwSVCaps: u32,
-    dwAlphaBltConstBitDepths: u32,
-    dwAlphaBltPixelBitDepths: u32,
-    dwAlphaBltSurfaceBitDepths: u32,
-    dwAlphaOverlayConstBitDepths: u32,
-    dwAlphaOverlayPixelBitDepths: u32,
-    dwAlphaOverlaySurfaceBitDepths: u32,
-    dwZBufferBitDepths: u32,
-    dwVidMemTotal: u32,
-    dwVidMemFree: u32,
-    dwMaxVisibleOverlays: u32,
-    dwCurrVisibleOverlays: u32,
-    dwNumFourCCCodes: u32,
-    dwAlignBoundarySrc: u32,
-    dwAlignSizeSrc: u32,
-    dwAlignBoundaryDest: u32,
-    dwAlignSizeDest: u32,
-    dwAlignStrideAlign: u32,
-    dwRops: [8]u32,
-    ddsCaps: DDSCAPS,
-    dwMinOverlayStretch: u32,
-    dwMaxOverlayStretch: u32,
-    dwMinLiveVideoStretch: u32,
-    dwMaxLiveVideoStretch: u32,
-    dwMinHwCodecStretch: u32,
-    dwMaxHwCodecStretch: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-    dwSVBCaps: u32,
-    dwSVBCKeyCaps: u32,
-    dwSVBFXCaps: u32,
-    dwSVBRops: [8]u32,
-    dwVSBCaps: u32,
-    dwVSBCKeyCaps: u32,
-    dwVSBFXCaps: u32,
-    dwVSBRops: [8]u32,
-    dwSSBCaps: u32,
-    dwSSBCKeyCaps: u32,
-    dwSSBFXCaps: u32,
-    dwSSBRops: [8]u32,
-    dwMaxVideoPorts: u32,
-    dwCurrVideoPorts: u32,
-    dwSVBCaps2: u32,
-};
-
-pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: *DDRAWI_DIRECTDRAW_GBL,
-    dwFlags: u32,
-    bIsInVB: u32,
-    hEvent: ?*c_void,
-    ddRVal: HRESULT,
-    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
-};
-
-pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
-    dwFlags: u32,
-    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
-    ddRVal: HRESULT,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (83)
 //--------------------------------------------------------------------------------
-pub extern "USER32" fn GetDisplayConfigBufferSizes(
-    flags: u32,
-    numPathArrayElements: *u32,
-    numModeInfoArrayElements: *u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn SetDisplayConfig(
-    numPathArrayElements: u32,
-    pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
-    numModeInfoArrayElements: u32,
-    modeInfoArray: ?[*]DISPLAYCONFIG_MODE_INFO,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn QueryDisplayConfig(
-    flags: u32,
-    numPathArrayElements: *u32,
-    pathArray: [*]DISPLAYCONFIG_PATH_INFO,
-    numModeInfoArrayElements: *u32,
-    modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
-    currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DisplayConfigGetDeviceInfo(
-    requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DisplayConfigSetDeviceInfo(
-    setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 pub extern "GDI32" fn BRUSHOBJ_pvAllocRbrush(
     pbo: *BRUSHOBJ,
     cj: u32,
@@ -2372,13 +2342,13 @@ pub extern "GDI32" fn EngCreateBitmap(
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
 pub extern "GDI32" fn EngCreateDeviceSurface(
-    dhsurf: *DHSURF__,
+    dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
 ) callconv(@import("std").os.windows.WINAPI) HSURF;
 
 pub extern "GDI32" fn EngCreateDeviceBitmap(
-    dhsurf: *DHSURF__,
+    dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
@@ -2403,7 +2373,7 @@ pub extern "GDI32" fn EngEraseSurface(
 
 pub extern "GDI32" fn EngAssociateSurface(
     hsurf: HSURF,
-    hdev: ?*c_void,
+    hdev: HDEV,
     flHooks: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2624,11 +2594,11 @@ pub extern "GDI32" fn HT_Get8BPPMaskPalette(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "GDI32" fn EngGetPrinterDataFileName(
-    hdev: ?*c_void,
+    hdev: HDEV,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 pub extern "GDI32" fn EngGetDriverName(
-    hdev: ?*c_void,
+    hdev: HDEV,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 pub extern "GDI32" fn EngLoadModule(
@@ -2647,18 +2617,18 @@ pub extern "GDI32" fn EngFreeModule(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GDI32" fn EngCreateSemaphore(
-) callconv(@import("std").os.windows.WINAPI) HSEMAPHORE;
+) callconv(@import("std").os.windows.WINAPI) *HSEMAPHORE__;
 
 pub extern "GDI32" fn EngAcquireSemaphore(
-    hsem: HSEMAPHORE,
+    hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GDI32" fn EngReleaseSemaphore(
-    hsem: HSEMAPHORE,
+    hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GDI32" fn EngDeleteSemaphore(
-    hsem: HSEMAPHORE,
+    hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GDI32" fn EngMultiByteToUnicodeN(
@@ -2708,6 +2678,37 @@ pub extern "GDI32" fn EngGetCurrentCodePage(
     AnsiCodePage: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "USER32" fn GetDisplayConfigBufferSizes(
+    flags: u32,
+    numPathArrayElements: *u32,
+    numModeInfoArrayElements: *u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn SetDisplayConfig(
+    numPathArrayElements: u32,
+    pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
+    numModeInfoArrayElements: u32,
+    modeInfoArray: ?[*]DISPLAYCONFIG_MODE_INFO,
+    flags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn QueryDisplayConfig(
+    flags: u32,
+    numPathArrayElements: *u32,
+    pathArray: [*]DISPLAYCONFIG_PATH_INFO,
+    numModeInfoArrayElements: *u32,
+    modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
+    currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DisplayConfigGetDeviceInfo(
+    requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DisplayConfigSetDeviceInfo(
+    setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -2722,19 +2723,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (48)
+// Section: Imports (50)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
+const PDD_DESTROYDRIVER = @import("system_services.zig").PDD_DESTROYDRIVER;
 const DDOVERLAYFX = @import("direct_draw.zig").DDOVERLAYFX;
-const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
+const PANOSE = @import("gdi.zig").PANOSE;
 const POINTE = @import("system_services.zig").POINTE;
-const DDRAWI_DIRECTDRAW_GBL = @import("windows_programming.zig").DDRAWI_DIRECTDRAW_GBL;
+const PFN = @import("system_services.zig").PFN;
 const TRIVERTEX = @import("gdi.zig").TRIVERTEX;
 const HRESULT = @import("com.zig").HRESULT;
 const PDD_SETCOLORKEY = @import("system_services.zig").PDD_SETCOLORKEY;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
+const HSEMAPHORE__ = @import("system_services.zig").HSEMAPHORE__;
 const BOOL = @import("system_services.zig").BOOL;
+const DHSURF = @import("system_services.zig").DHSURF;
 const LUID = @import("kernel.zig").LUID;
 const PDD_SETMODE = @import("system_services.zig").PDD_SETMODE;
 const HPALETTE = @import("gdi.zig").HPALETTE;
@@ -2752,26 +2755,26 @@ const DDVIDEOPORTCONNECT = @import("core_audio.zig").DDVIDEOPORTCONNECT;
 const POINTFIX = @import("system_services.zig").POINTFIX;
 const COLORADJUSTMENT = @import("gdi.zig").COLORADJUSTMENT;
 const PWSTR = @import("system_services.zig").PWSTR;
-const DHPDEV__ = @import("system_services.zig").DHPDEV__;
 const DDRAWI_DIRECTDRAW_LCL = @import("windows_programming.zig").DDRAWI_DIRECTDRAW_LCL;
 const IUnknown = @import("com.zig").IUnknown;
 const PDD_SURFCB_SETCLIPLIST = @import("system_services.zig").PDD_SURFCB_SETCLIPLIST;
 const HBITMAP = @import("gdi.zig").HBITMAP;
+const DHPDEV = @import("system_services.zig").DHPDEV;
 const DDSCAPS2 = @import("direct_draw.zig").DDSCAPS2;
 const DDNTCORECAPS = @import("system_services.zig").DDNTCORECAPS;
 const FLOAT_LONG = @import("system_services.zig").FLOAT_LONG;
+const HDEV = @import("system_services.zig").HDEV;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
 const LPDDHAL_WAITFORVERTICALBLANK = @import("windows_programming.zig").LPDDHAL_WAITFORVERTICALBLANK;
 const BLENDFUNCTION = @import("gdi.zig").BLENDFUNCTION;
 const DDPIXELFORMAT = @import("direct_draw.zig").DDPIXELFORMAT;
-const DHSURF__ = @import("system_services.zig").DHSURF__;
 const DDBLTFX = @import("direct_draw.zig").DDBLTFX;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
-const PFN = @import("system_services.zig").PFN;
 const HANDLE = @import("system_services.zig").HANDLE;
-const PANOSE = @import("gdi.zig").PANOSE;
 const PDD_ALPHABLT = @import("system_services.zig").PDD_ALPHABLT;
-const PDD_DESTROYDRIVER = @import("system_services.zig").PDD_DESTROYDRIVER;
+const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
+const DDRAWI_DIRECTDRAW_GBL = @import("windows_programming.zig").DDRAWI_DIRECTDRAW_GBL;
+const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
@@ -2834,13 +2837,13 @@ test {
     _ = PFN_DrvQueryGlyphAttrs;
 
     const constant_export_count = 0;
-    const type_export_count = 243;
+    const type_export_count = 242;
     const enum_value_export_count = 65;
-    const com_iface_id_export_count = 0;
+    const com_iface_id_export_count = 2;
     const com_class_id_export_count = 0;
     const func_export_count = 83;
     const unicode_alias_count = 0;
-    const import_count = 48;
+    const import_count = 50;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

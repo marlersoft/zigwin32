@@ -9,96 +9,96 @@ pub const JsRuntimeVersionEdge : i32 = -1;
 // Section: Types (11)
 //--------------------------------------------------------------------------------
 pub const JsRuntimeVersion = extern enum(i32) {
-    JsRuntimeVersion10 = 0,
-    JsRuntimeVersion11 = 1,
-    JsRuntimeVersionEdge = -1,
+    @"10" = 0,
+    @"11" = 1,
+    Edge = -1,
 };
-// TODO: enum 'JsRuntimeVersion' has known value symbol conflicts, skipping the value aliases
+// TODO: enum 'JsRuntimeVersion' has known issues with its value aliases
 
 pub const JsErrorCode = extern enum(u32) {
-    JsNoError = 0,
-    JsErrorCategoryUsage = 65536,
-    JsErrorInvalidArgument = 65537,
-    JsErrorNullArgument = 65538,
-    JsErrorNoCurrentContext = 65539,
-    JsErrorInExceptionState = 65540,
-    JsErrorNotImplemented = 65541,
-    JsErrorWrongThread = 65542,
-    JsErrorRuntimeInUse = 65543,
-    JsErrorBadSerializedScript = 65544,
-    JsErrorInDisabledState = 65545,
-    JsErrorCannotDisableExecution = 65546,
-    JsErrorHeapEnumInProgress = 65547,
-    JsErrorArgumentNotObject = 65548,
-    JsErrorInProfileCallback = 65549,
-    JsErrorInThreadServiceCallback = 65550,
-    JsErrorCannotSerializeDebugScript = 65551,
-    JsErrorAlreadyDebuggingContext = 65552,
-    JsErrorAlreadyProfilingContext = 65553,
-    JsErrorIdleNotEnabled = 65554,
-    JsErrorCategoryEngine = 131072,
-    JsErrorOutOfMemory = 131073,
-    JsErrorCategoryScript = 196608,
-    JsErrorScriptException = 196609,
-    JsErrorScriptCompile = 196610,
-    JsErrorScriptTerminated = 196611,
-    JsErrorScriptEvalDisabled = 196612,
-    JsErrorCategoryFatal = 262144,
-    JsErrorFatal = 262145,
+    NoError = 0,
+    ErrorCategoryUsage = 65536,
+    ErrorInvalidArgument = 65537,
+    ErrorNullArgument = 65538,
+    ErrorNoCurrentContext = 65539,
+    ErrorInExceptionState = 65540,
+    ErrorNotImplemented = 65541,
+    ErrorWrongThread = 65542,
+    ErrorRuntimeInUse = 65543,
+    ErrorBadSerializedScript = 65544,
+    ErrorInDisabledState = 65545,
+    ErrorCannotDisableExecution = 65546,
+    ErrorHeapEnumInProgress = 65547,
+    ErrorArgumentNotObject = 65548,
+    ErrorInProfileCallback = 65549,
+    ErrorInThreadServiceCallback = 65550,
+    ErrorCannotSerializeDebugScript = 65551,
+    ErrorAlreadyDebuggingContext = 65552,
+    ErrorAlreadyProfilingContext = 65553,
+    ErrorIdleNotEnabled = 65554,
+    ErrorCategoryEngine = 131072,
+    ErrorOutOfMemory = 131073,
+    ErrorCategoryScript = 196608,
+    ErrorScriptException = 196609,
+    ErrorScriptCompile = 196610,
+    ErrorScriptTerminated = 196611,
+    ErrorScriptEvalDisabled = 196612,
+    ErrorCategoryFatal = 262144,
+    ErrorFatal = 262145,
 };
-pub const JsNoError = JsErrorCode.JsNoError;
-pub const JsErrorCategoryUsage = JsErrorCode.JsErrorCategoryUsage;
-pub const JsErrorInvalidArgument = JsErrorCode.JsErrorInvalidArgument;
-pub const JsErrorNullArgument = JsErrorCode.JsErrorNullArgument;
-pub const JsErrorNoCurrentContext = JsErrorCode.JsErrorNoCurrentContext;
-pub const JsErrorInExceptionState = JsErrorCode.JsErrorInExceptionState;
-pub const JsErrorNotImplemented = JsErrorCode.JsErrorNotImplemented;
-pub const JsErrorWrongThread = JsErrorCode.JsErrorWrongThread;
-pub const JsErrorRuntimeInUse = JsErrorCode.JsErrorRuntimeInUse;
-pub const JsErrorBadSerializedScript = JsErrorCode.JsErrorBadSerializedScript;
-pub const JsErrorInDisabledState = JsErrorCode.JsErrorInDisabledState;
-pub const JsErrorCannotDisableExecution = JsErrorCode.JsErrorCannotDisableExecution;
-pub const JsErrorHeapEnumInProgress = JsErrorCode.JsErrorHeapEnumInProgress;
-pub const JsErrorArgumentNotObject = JsErrorCode.JsErrorArgumentNotObject;
-pub const JsErrorInProfileCallback = JsErrorCode.JsErrorInProfileCallback;
-pub const JsErrorInThreadServiceCallback = JsErrorCode.JsErrorInThreadServiceCallback;
-pub const JsErrorCannotSerializeDebugScript = JsErrorCode.JsErrorCannotSerializeDebugScript;
-pub const JsErrorAlreadyDebuggingContext = JsErrorCode.JsErrorAlreadyDebuggingContext;
-pub const JsErrorAlreadyProfilingContext = JsErrorCode.JsErrorAlreadyProfilingContext;
-pub const JsErrorIdleNotEnabled = JsErrorCode.JsErrorIdleNotEnabled;
-pub const JsErrorCategoryEngine = JsErrorCode.JsErrorCategoryEngine;
-pub const JsErrorOutOfMemory = JsErrorCode.JsErrorOutOfMemory;
-pub const JsErrorCategoryScript = JsErrorCode.JsErrorCategoryScript;
-pub const JsErrorScriptException = JsErrorCode.JsErrorScriptException;
-pub const JsErrorScriptCompile = JsErrorCode.JsErrorScriptCompile;
-pub const JsErrorScriptTerminated = JsErrorCode.JsErrorScriptTerminated;
-pub const JsErrorScriptEvalDisabled = JsErrorCode.JsErrorScriptEvalDisabled;
-pub const JsErrorCategoryFatal = JsErrorCode.JsErrorCategoryFatal;
-pub const JsErrorFatal = JsErrorCode.JsErrorFatal;
+pub const JsNoError = JsErrorCode.NoError;
+pub const JsErrorCategoryUsage = JsErrorCode.ErrorCategoryUsage;
+pub const JsErrorInvalidArgument = JsErrorCode.ErrorInvalidArgument;
+pub const JsErrorNullArgument = JsErrorCode.ErrorNullArgument;
+pub const JsErrorNoCurrentContext = JsErrorCode.ErrorNoCurrentContext;
+pub const JsErrorInExceptionState = JsErrorCode.ErrorInExceptionState;
+pub const JsErrorNotImplemented = JsErrorCode.ErrorNotImplemented;
+pub const JsErrorWrongThread = JsErrorCode.ErrorWrongThread;
+pub const JsErrorRuntimeInUse = JsErrorCode.ErrorRuntimeInUse;
+pub const JsErrorBadSerializedScript = JsErrorCode.ErrorBadSerializedScript;
+pub const JsErrorInDisabledState = JsErrorCode.ErrorInDisabledState;
+pub const JsErrorCannotDisableExecution = JsErrorCode.ErrorCannotDisableExecution;
+pub const JsErrorHeapEnumInProgress = JsErrorCode.ErrorHeapEnumInProgress;
+pub const JsErrorArgumentNotObject = JsErrorCode.ErrorArgumentNotObject;
+pub const JsErrorInProfileCallback = JsErrorCode.ErrorInProfileCallback;
+pub const JsErrorInThreadServiceCallback = JsErrorCode.ErrorInThreadServiceCallback;
+pub const JsErrorCannotSerializeDebugScript = JsErrorCode.ErrorCannotSerializeDebugScript;
+pub const JsErrorAlreadyDebuggingContext = JsErrorCode.ErrorAlreadyDebuggingContext;
+pub const JsErrorAlreadyProfilingContext = JsErrorCode.ErrorAlreadyProfilingContext;
+pub const JsErrorIdleNotEnabled = JsErrorCode.ErrorIdleNotEnabled;
+pub const JsErrorCategoryEngine = JsErrorCode.ErrorCategoryEngine;
+pub const JsErrorOutOfMemory = JsErrorCode.ErrorOutOfMemory;
+pub const JsErrorCategoryScript = JsErrorCode.ErrorCategoryScript;
+pub const JsErrorScriptException = JsErrorCode.ErrorScriptException;
+pub const JsErrorScriptCompile = JsErrorCode.ErrorScriptCompile;
+pub const JsErrorScriptTerminated = JsErrorCode.ErrorScriptTerminated;
+pub const JsErrorScriptEvalDisabled = JsErrorCode.ErrorScriptEvalDisabled;
+pub const JsErrorCategoryFatal = JsErrorCode.ErrorCategoryFatal;
+pub const JsErrorFatal = JsErrorCode.ErrorFatal;
 
 pub const JsRuntimeAttributes = extern enum(i32) {
-    JsRuntimeAttributeNone = 0,
-    JsRuntimeAttributeDisableBackgroundWork = 1,
-    JsRuntimeAttributeAllowScriptInterrupt = 2,
-    JsRuntimeAttributeEnableIdleProcessing = 4,
-    JsRuntimeAttributeDisableNativeCodeGeneration = 8,
-    JsRuntimeAttributeDisableEval = 16,
+    None = 0,
+    DisableBackgroundWork = 1,
+    AllowScriptInterrupt = 2,
+    EnableIdleProcessing = 4,
+    DisableNativeCodeGeneration = 8,
+    DisableEval = 16,
 };
-pub const JsRuntimeAttributeNone = JsRuntimeAttributes.JsRuntimeAttributeNone;
-pub const JsRuntimeAttributeDisableBackgroundWork = JsRuntimeAttributes.JsRuntimeAttributeDisableBackgroundWork;
-pub const JsRuntimeAttributeAllowScriptInterrupt = JsRuntimeAttributes.JsRuntimeAttributeAllowScriptInterrupt;
-pub const JsRuntimeAttributeEnableIdleProcessing = JsRuntimeAttributes.JsRuntimeAttributeEnableIdleProcessing;
-pub const JsRuntimeAttributeDisableNativeCodeGeneration = JsRuntimeAttributes.JsRuntimeAttributeDisableNativeCodeGeneration;
-pub const JsRuntimeAttributeDisableEval = JsRuntimeAttributes.JsRuntimeAttributeDisableEval;
+pub const JsRuntimeAttributeNone = JsRuntimeAttributes.None;
+pub const JsRuntimeAttributeDisableBackgroundWork = JsRuntimeAttributes.DisableBackgroundWork;
+pub const JsRuntimeAttributeAllowScriptInterrupt = JsRuntimeAttributes.AllowScriptInterrupt;
+pub const JsRuntimeAttributeEnableIdleProcessing = JsRuntimeAttributes.EnableIdleProcessing;
+pub const JsRuntimeAttributeDisableNativeCodeGeneration = JsRuntimeAttributes.DisableNativeCodeGeneration;
+pub const JsRuntimeAttributeDisableEval = JsRuntimeAttributes.DisableEval;
 
 pub const JsMemoryEventType = extern enum(i32) {
-    JsMemoryAllocate = 0,
-    JsMemoryFree = 1,
-    JsMemoryFailure = 2,
+    Allocate = 0,
+    Free = 1,
+    Failure = 2,
 };
-pub const JsMemoryAllocate = JsMemoryEventType.JsMemoryAllocate;
-pub const JsMemoryFree = JsMemoryEventType.JsMemoryFree;
-pub const JsMemoryFailure = JsMemoryEventType.JsMemoryFailure;
+pub const JsMemoryAllocate = JsMemoryEventType.Allocate;
+pub const JsMemoryFree = JsMemoryEventType.Free;
+pub const JsMemoryFailure = JsMemoryEventType.Failure;
 
 pub const JsMemoryAllocationCallback = fn(
     callbackState: ?*c_void,
@@ -120,25 +120,25 @@ pub const JsThreadServiceCallback = fn(
 ) callconv(@import("std").os.windows.WINAPI) bool;
 
 pub const JsValueType = extern enum(i32) {
-    JsUndefined = 0,
-    JsNull = 1,
-    JsNumber = 2,
-    JsString = 3,
-    JsBoolean = 4,
-    JsObject = 5,
-    JsFunction = 6,
-    JsError = 7,
-    JsArray = 8,
+    Undefined = 0,
+    Null = 1,
+    Number = 2,
+    String = 3,
+    Boolean = 4,
+    Object = 5,
+    Function = 6,
+    Error = 7,
+    Array = 8,
 };
-pub const JsUndefined = JsValueType.JsUndefined;
-pub const JsNull = JsValueType.JsNull;
-pub const JsNumber = JsValueType.JsNumber;
-pub const JsString = JsValueType.JsString;
-pub const JsBoolean = JsValueType.JsBoolean;
-pub const JsObject = JsValueType.JsObject;
-pub const JsFunction = JsValueType.JsFunction;
-pub const JsError = JsValueType.JsError;
-pub const JsArray = JsValueType.JsArray;
+pub const JsUndefined = JsValueType.Undefined;
+pub const JsNull = JsValueType.Null;
+pub const JsNumber = JsValueType.Number;
+pub const JsString = JsValueType.String;
+pub const JsBoolean = JsValueType.Boolean;
+pub const JsObject = JsValueType.Object;
+pub const JsFunction = JsValueType.Function;
+pub const JsError = JsValueType.Error;
+pub const JsArray = JsValueType.Array;
 
 pub const JsFinalizeCallback = fn(
     data: ?*c_void,
@@ -583,7 +583,7 @@ pub extern "chakra" fn JsIsRuntimeExecutionDisabled(
 
 pub extern "chakra" fn JsStartProfiling(
     callback: *IActiveScriptProfilerCallback,
-    eventMask: __MIDL___MIDL_itf_activprof_0000_0000_0002,
+    eventMask: PROFILER_EVENT_MASK,
     context: u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
@@ -620,7 +620,7 @@ const VARIANT = @import("automation.zig").VARIANT;
 const HRESULT = @import("com.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("debug.zig").IActiveScriptProfilerHeapEnum;
-const __MIDL___MIDL_itf_activprof_0000_0000_0002 = @import("debug.zig").__MIDL___MIDL_itf_activprof_0000_0000_0002;
+const PROFILER_EVENT_MASK = @import("debug.zig").PROFILER_EVENT_MASK;
 const IDebugApplication32 = @import("debug.zig").IDebugApplication32;
 
 test {

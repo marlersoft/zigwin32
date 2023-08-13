@@ -4,8 +4,21 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (0)
+// Section: Types (1)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RegisterApplicationRestart_dwFlags = extern enum(u32) {
+    CRASH = 1,
+    HANG = 2,
+    PATCH = 4,
+    REBOOT = 8,
+    _,
+};
+pub const RESTART_NO_CRASH = RegisterApplicationRestart_dwFlags.CRASH;
+pub const RESTART_NO_HANG = RegisterApplicationRestart_dwFlags.HANG;
+pub const RESTART_NO_PATCH = RegisterApplicationRestart_dwFlags.PATCH;
+pub const RESTART_NO_REBOOT = RegisterApplicationRestart_dwFlags.REBOOT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
@@ -22,7 +35,7 @@ pub extern "KERNEL32" fn UnregisterApplicationRecoveryCallback(
 
 pub extern "KERNEL32" fn RegisterApplicationRestart(
     pwzCommandline: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: RegisterApplicationRestart_dwFlags,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "KERNEL32" fn UnregisterApplicationRestart(
@@ -75,8 +88,8 @@ const HRESULT = @import("com.zig").HRESULT;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 0;
-    const enum_value_export_count = 0;
+    const type_export_count = 1;
+    const enum_value_export_count = 4;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 8;

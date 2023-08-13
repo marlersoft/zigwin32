@@ -10,13 +10,13 @@ const CLSID_WindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Gui
 pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibrarySharingServices_Value;
 
 pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = extern enum(i32) {
-    DEVICE_AUTHORIZATION_UNKNOWN = 0,
-    DEVICE_AUTHORIZATION_ALLOWED = 1,
-    DEVICE_AUTHORIZATION_DENIED = 2,
+    UNKNOWN = 0,
+    ALLOWED = 1,
+    DENIED = 2,
 };
-pub const DEVICE_AUTHORIZATION_UNKNOWN = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DEVICE_AUTHORIZATION_UNKNOWN;
-pub const DEVICE_AUTHORIZATION_ALLOWED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DEVICE_AUTHORIZATION_ALLOWED;
-pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DEVICE_AUTHORIZATION_DENIED;
+pub const DEVICE_AUTHORIZATION_UNKNOWN = WindowsMediaLibrarySharingDeviceAuthorizationStatus.UNKNOWN;
+pub const DEVICE_AUTHORIZATION_ALLOWED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.ALLOWED;
+pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DENIED;
 
 const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = @import("../zig.zig").Guid.initString("81e26927-7a7d-40a7-81d4-bddc02960e3e");
 pub const IID_IWindowsMediaLibrarySharingDeviceProperty = &IID_IWindowsMediaLibrarySharingDeviceProperty_Value;

@@ -4,9 +4,79 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (180)
+// Section: Types (188)
 //--------------------------------------------------------------------------------
 pub const HKL = ?*c_void;
+
+pub const ITfSystemDeviceTypeLangBarItem_SetIconModeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+};
+pub const TF_DTLBI_USEPROFILEICON = ITfSystemDeviceTypeLangBarItem_SetIconModeFlags.N;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITextStoreACPSink_OnTextChangeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+    _,
+};
+pub const TS_ST_CORRECTION = ITextStoreACPSink_OnTextChangeFlags.N;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITextStoreAnchorSink_OnTextChangeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+    _,
+};
+pub const TS_TC_CORRECTION = ITextStoreAnchorSink_OnTextChangeFlags.N;
+
+pub const ITfInsertAtSelection_InsertTextAtSelectionFlags = extern enum(u32) {
+    NOQUERY = 1,
+    QUERYONLY = 2,
+    NO_DEFAULT_COMPOSITION = 2147483648,
+};
+pub const TF_IAS_NOQUERY = ITfInsertAtSelection_InsertTextAtSelectionFlags.NOQUERY;
+pub const TF_IAS_QUERYONLY = ITfInsertAtSelection_InsertTextAtSelectionFlags.QUERYONLY;
+pub const TF_IAS_NO_DEFAULT_COMPOSITION = ITfInsertAtSelection_InsertTextAtSelectionFlags.NO_DEFAULT_COMPOSITION;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const IAnchor_GetChangeHistory_pdwHistoryFlags = extern enum(u32) {
+    PRECEDING_DEL = 1,
+    FOLLOWING_DEL = 2,
+    _,
+};
+pub const TS_CH_PRECEDING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.PRECEDING_DEL;
+pub const TS_CH_FOLLOWING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.FOLLOWING_DEL;
+
+pub const OnLockGranted_dwLockFlags = extern enum(u32) {
+    D = 2,
+    WRITE = 6,
+};
+pub const TS_LF_READ = OnLockGranted_dwLockFlags.D;
+pub const TS_LF_READWRITE = OnLockGranted_dwLockFlags.WRITE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITfEditRecord_GetTextAndPropertyUpdatesFlags = extern enum(u32) {
+    None = 0,
+    T = 1,
+    _,
+};
+pub const TF_GTP_INCL_TEXT = ITfEditRecord_GetTextAndPropertyUpdatesFlags.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITfContext_RequestEditSessionFlags = extern enum(u32) {
+    ASYNCDONTCARE = 0,
+    SYNC = 1,
+    READ = 2,
+    READWRITE = 6,
+    ASYNC = 8,
+    _,
+};
+pub const TF_ES_ASYNCDONTCARE = ITfContext_RequestEditSessionFlags.ASYNCDONTCARE;
+pub const TF_ES_SYNC = ITfContext_RequestEditSessionFlags.SYNC;
+pub const TF_ES_READ = ITfContext_RequestEditSessionFlags.READ;
+pub const TF_ES_READWRITE = ITfContext_RequestEditSessionFlags.READWRITE;
+pub const TF_ES_ASYNC = ITfContext_RequestEditSessionFlags.ASYNC;
 
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,
@@ -20,13 +90,13 @@ pub const TS_TEXTCHANGE = extern struct {
 };
 
 pub const TsActiveSelEnd = extern enum(i32) {
-    TS_AE_NONE = 0,
-    TS_AE_START = 1,
-    TS_AE_END = 2,
+    NONE = 0,
+    START = 1,
+    END = 2,
 };
-pub const TS_AE_NONE = TsActiveSelEnd.TS_AE_NONE;
-pub const TS_AE_START = TsActiveSelEnd.TS_AE_START;
-pub const TS_AE_END = TsActiveSelEnd.TS_AE_END;
+pub const TS_AE_NONE = TsActiveSelEnd.NONE;
+pub const TS_AE_START = TsActiveSelEnd.START;
+pub const TS_AE_END = TsActiveSelEnd.END;
 
 pub const TS_SELECTIONSTYLE = extern struct {
     ase: TsActiveSelEnd,
@@ -52,22 +122,22 @@ pub const TS_ATTRVAL = extern struct {
 };
 
 pub const TsLayoutCode = extern enum(i32) {
-    TS_LC_CREATE = 0,
-    TS_LC_CHANGE = 1,
-    TS_LC_DESTROY = 2,
+    CREATE = 0,
+    CHANGE = 1,
+    DESTROY = 2,
 };
-pub const TS_LC_CREATE = TsLayoutCode.TS_LC_CREATE;
-pub const TS_LC_CHANGE = TsLayoutCode.TS_LC_CHANGE;
-pub const TS_LC_DESTROY = TsLayoutCode.TS_LC_DESTROY;
+pub const TS_LC_CREATE = TsLayoutCode.CREATE;
+pub const TS_LC_CHANGE = TsLayoutCode.CHANGE;
+pub const TS_LC_DESTROY = TsLayoutCode.DESTROY;
 
 pub const TsRunType = extern enum(i32) {
-    TS_RT_PLAIN = 0,
-    TS_RT_HIDDEN = 1,
-    TS_RT_OPAQUE = 2,
+    PLAIN = 0,
+    HIDDEN = 1,
+    OPAQUE = 2,
 };
-pub const TS_RT_PLAIN = TsRunType.TS_RT_PLAIN;
-pub const TS_RT_HIDDEN = TsRunType.TS_RT_HIDDEN;
-pub const TS_RT_OPAQUE = TsRunType.TS_RT_OPAQUE;
+pub const TS_RT_PLAIN = TsRunType.PLAIN;
+pub const TS_RT_HIDDEN = TsRunType.HIDDEN;
+pub const TS_RT_OPAQUE = TsRunType.OPAQUE;
 
 pub const TS_RUNINFO = extern struct {
     uCount: u32,
@@ -654,7 +724,7 @@ pub const ITextStoreACPSink = extern struct {
         base: IUnknown.VTable,
         OnTextChange: fn(
             self: *const ITextStoreACPSink,
-            dwFlags: u32,
+            dwFlags: ITextStoreACPSink_OnTextChangeFlags,
             pChange: *const TS_TEXTCHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnSelectionChange: fn(
@@ -678,7 +748,7 @@ pub const ITextStoreACPSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnLockGranted: fn(
             self: *const ITextStoreACPSink,
-            dwLockFlags: u32,
+            dwLockFlags: OnLockGranted_dwLockFlags,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnStartEditTransaction: fn(
             self: *const ITextStoreACPSink,
@@ -691,7 +761,7 @@ pub const ITextStoreACPSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPSink_OnTextChange(self: *const T, dwFlags: u32, pChange: *const TS_TEXTCHANGE) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPSink_OnTextChange(self: *const T, dwFlags: ITextStoreACPSink_OnTextChangeFlags, pChange: *const TS_TEXTCHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPSink.VTable, self.vtable).OnTextChange(@ptrCast(*const ITextStoreACPSink, self), dwFlags, pChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -711,7 +781,7 @@ pub const ITextStoreACPSink = extern struct {
             return @ptrCast(*const ITextStoreACPSink.VTable, self.vtable).OnAttrsChange(@ptrCast(*const ITextStoreACPSink, self), acpStart, acpEnd, cAttrs, paAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreACPSink_OnLockGranted(self: *const T, dwLockFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreACPSink_OnLockGranted(self: *const T, dwLockFlags: OnLockGranted_dwLockFlags) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreACPSink.VTable, self.vtable).OnLockGranted(@ptrCast(*const ITextStoreACPSink, self), dwLockFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -727,18 +797,18 @@ pub const ITextStoreACPSink = extern struct {
 };
 
 pub const TsGravity = extern enum(i32) {
-    TS_GR_BACKWARD = 0,
-    TS_GR_FORWARD = 1,
+    BACKWARD = 0,
+    FORWARD = 1,
 };
-pub const TS_GR_BACKWARD = TsGravity.TS_GR_BACKWARD;
-pub const TS_GR_FORWARD = TsGravity.TS_GR_FORWARD;
+pub const TS_GR_BACKWARD = TsGravity.BACKWARD;
+pub const TS_GR_FORWARD = TsGravity.FORWARD;
 
 pub const TsShiftDir = extern enum(i32) {
-    TS_SD_BACKWARD = 0,
-    TS_SD_FORWARD = 1,
+    BACKWARD = 0,
+    FORWARD = 1,
 };
-pub const TS_SD_BACKWARD = TsShiftDir.TS_SD_BACKWARD;
-pub const TS_SD_FORWARD = TsShiftDir.TS_SD_FORWARD;
+pub const TS_SD_BACKWARD = TsShiftDir.BACKWARD;
+pub const TS_SD_FORWARD = TsShiftDir.FORWARD;
 
 const IID_IAnchor_Value = @import("../zig.zig").Guid.initString("0feb7e34-5a60-4356-8ef7-abdec2ff7cf8");
 pub const IID_IAnchor = &IID_IAnchor_Value;
@@ -786,7 +856,7 @@ pub const IAnchor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeHistory: fn(
             self: *const IAnchor,
-            pdwHistory: *u32,
+            pdwHistory: *IAnchor_GetChangeHistory_pdwHistoryFlags,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearChangeHistory: fn(
             self: *const IAnchor,
@@ -832,7 +902,7 @@ pub const IAnchor = extern struct {
             return @ptrCast(*const IAnchor.VTable, self.vtable).SetChangeHistoryMask(@ptrCast(*const IAnchor, self), dwMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnchor_GetChangeHistory(self: *const T, pdwHistory: *u32) callconv(.Inline) HRESULT {
+        pub fn IAnchor_GetChangeHistory(self: *const T, pdwHistory: *IAnchor_GetChangeHistory_pdwHistoryFlags) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnchor.VTable, self.vtable).GetChangeHistory(@ptrCast(*const IAnchor, self), pdwHistory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1147,7 +1217,7 @@ pub const ITextStoreAnchorSink = extern struct {
         base: IUnknown.VTable,
         OnTextChange: fn(
             self: *const ITextStoreAnchorSink,
-            dwFlags: u32,
+            dwFlags: ITextStoreAnchorSink_OnTextChangeFlags,
             paStart: *IAnchor,
             paEnd: *IAnchor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1172,7 +1242,7 @@ pub const ITextStoreAnchorSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnLockGranted: fn(
             self: *const ITextStoreAnchorSink,
-            dwLockFlags: u32,
+            dwLockFlags: OnLockGranted_dwLockFlags,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnStartEditTransaction: fn(
             self: *const ITextStoreAnchorSink,
@@ -1185,7 +1255,7 @@ pub const ITextStoreAnchorSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchorSink_OnTextChange(self: *const T, dwFlags: u32, paStart: *IAnchor, paEnd: *IAnchor) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchorSink_OnTextChange(self: *const T, dwFlags: ITextStoreAnchorSink_OnTextChangeFlags, paStart: *IAnchor, paEnd: *IAnchor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnTextChange(@ptrCast(*const ITextStoreAnchorSink, self), dwFlags, paStart, paEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1205,7 +1275,7 @@ pub const ITextStoreAnchorSink = extern struct {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnAttrsChange(@ptrCast(*const ITextStoreAnchorSink, self), paStart, paEnd, cAttrs, paAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoreAnchorSink_OnLockGranted(self: *const T, dwLockFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITextStoreAnchorSink_OnLockGranted(self: *const T, dwLockFlags: OnLockGranted_dwLockFlags) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextStoreAnchorSink.VTable, self.vtable).OnLockGranted(@ptrCast(*const ITextStoreAnchorSink, self), dwLockFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1724,7 +1794,7 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
         base: IUnknown.VTable,
         SetIconMode: fn(
             self: *const ITfSystemDeviceTypeLangBarItem,
-            dwFlags: u32,
+            dwFlags: ITfSystemDeviceTypeLangBarItem_SetIconModeFlags,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIconMode: fn(
             self: *const ITfSystemDeviceTypeLangBarItem,
@@ -1735,7 +1805,7 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfSystemDeviceTypeLangBarItem_SetIconMode(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ITfSystemDeviceTypeLangBarItem_SetIconMode(self: *const T, dwFlags: ITfSystemDeviceTypeLangBarItem_SetIconModeFlags) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSystemDeviceTypeLangBarItem.VTable, self.vtable).SetIconMode(@ptrCast(*const ITfSystemDeviceTypeLangBarItem, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1747,11 +1817,11 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
 };
 
 pub const TfLBIClick = extern enum(i32) {
-    TF_LBI_CLK_RIGHT = 1,
-    TF_LBI_CLK_LEFT = 2,
+    RIGHT = 1,
+    LEFT = 2,
 };
-pub const TF_LBI_CLK_RIGHT = TfLBIClick.TF_LBI_CLK_RIGHT;
-pub const TF_LBI_CLK_LEFT = TfLBIClick.TF_LBI_CLK_LEFT;
+pub const TF_LBI_CLK_RIGHT = TfLBIClick.RIGHT;
+pub const TF_LBI_CLK_LEFT = TfLBIClick.LEFT;
 
 const IID_ITfLangBarItemButton_Value = @import("../zig.zig").Guid.initString("28c7f1d0-de25-11d2-afdd-00105a2799b5");
 pub const IID_ITfLangBarItemButton = &IID_ITfLangBarItemButton_Value;
@@ -1921,13 +1991,13 @@ pub const ITfLangBarItemBitmap = extern struct {
 };
 
 pub const TfLBBalloonStyle = extern enum(i32) {
-    TF_LB_BALLOON_RECO = 0,
-    TF_LB_BALLOON_SHOW = 1,
-    TF_LB_BALLOON_MISS = 2,
+    RECO = 0,
+    SHOW = 1,
+    MISS = 2,
 };
-pub const TF_LB_BALLOON_RECO = TfLBBalloonStyle.TF_LB_BALLOON_RECO;
-pub const TF_LB_BALLOON_SHOW = TfLBBalloonStyle.TF_LB_BALLOON_SHOW;
-pub const TF_LB_BALLOON_MISS = TfLBBalloonStyle.TF_LB_BALLOON_MISS;
+pub const TF_LB_BALLOON_RECO = TfLBBalloonStyle.RECO;
+pub const TF_LB_BALLOON_SHOW = TfLBBalloonStyle.SHOW;
+pub const TF_LB_BALLOON_MISS = TfLBBalloonStyle.MISS;
 
 pub const TF_LBBALLOONINFO = extern struct {
     style: TfLBBalloonStyle,
@@ -2019,11 +2089,11 @@ pub const TF_LANGUAGEPROFILE = extern struct {
 };
 
 pub const TfAnchor = extern enum(i32) {
-    TF_ANCHOR_START = 0,
-    TF_ANCHOR_END = 1,
+    START = 0,
+    END = 1,
 };
-pub const TF_ANCHOR_START = TfAnchor.TF_ANCHOR_START;
-pub const TF_ANCHOR_END = TfAnchor.TF_ANCHOR_END;
+pub const TF_ANCHOR_START = TfAnchor.START;
+pub const TF_ANCHOR_END = TfAnchor.END;
 
 const IID_ITfThreadMgr_Value = @import("../zig.zig").Guid.initString("aa80e801-2021-11d2-93e0-0060b067b86e");
 pub const IID_ITfThreadMgr = &IID_ITfThreadMgr_Value;
@@ -2875,13 +2945,13 @@ pub const IEnumTfContextViews = extern struct {
 };
 
 pub const TfActiveSelEnd = extern enum(i32) {
-    TF_AE_NONE = 0,
-    TF_AE_START = 1,
-    TF_AE_END = 2,
+    NONE = 0,
+    START = 1,
+    END = 2,
 };
-pub const TF_AE_NONE = TfActiveSelEnd.TF_AE_NONE;
-pub const TF_AE_START = TfActiveSelEnd.TF_AE_START;
-pub const TF_AE_END = TfActiveSelEnd.TF_AE_END;
+pub const TF_AE_NONE = TfActiveSelEnd.NONE;
+pub const TF_AE_START = TfActiveSelEnd.START;
+pub const TF_AE_END = TfActiveSelEnd.END;
 
 pub const TF_SELECTIONSTYLE = extern struct {
     ase: TfActiveSelEnd,
@@ -2902,7 +2972,7 @@ pub const ITfContext = extern struct {
             self: *const ITfContext,
             tid: u32,
             pes: *ITfEditSession,
-            dwFlags: u32,
+            dwFlags: ITfContext_RequestEditSessionFlags,
             phrSession: *HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InWriteSession: fn(
@@ -2983,7 +3053,7 @@ pub const ITfContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfContext_RequestEditSession(self: *const T, tid: u32, pes: *ITfEditSession, dwFlags: u32, phrSession: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ITfContext_RequestEditSession(self: *const T, tid: u32, pes: *ITfEditSession, dwFlags: ITfContext_RequestEditSessionFlags, phrSession: *HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfContext.VTable, self.vtable).RequestEditSession(@ptrCast(*const ITfContext, self), tid, pes, dwFlags, phrSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3077,7 +3147,7 @@ pub const ITfInsertAtSelection = extern struct {
         InsertTextAtSelection: fn(
             self: *const ITfInsertAtSelection,
             ec: u32,
-            dwFlags: u32,
+            dwFlags: ITfInsertAtSelection_InsertTextAtSelectionFlags,
             pchText: [*:0]const u16,
             cch: i32,
             ppRange: **ITfRange,
@@ -3094,7 +3164,7 @@ pub const ITfInsertAtSelection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfInsertAtSelection_InsertTextAtSelection(self: *const T, ec: u32, dwFlags: u32, pchText: [*:0]const u16, cch: i32, ppRange: **ITfRange) callconv(.Inline) HRESULT {
+        pub fn ITfInsertAtSelection_InsertTextAtSelection(self: *const T, ec: u32, dwFlags: ITfInsertAtSelection_InsertTextAtSelectionFlags, pchText: [*:0]const u16, cch: i32, ppRange: **ITfRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfInsertAtSelection.VTable, self.vtable).InsertTextAtSelection(@ptrCast(*const ITfInsertAtSelection, self), ec, dwFlags, pchText, cch, ppRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3351,7 +3421,7 @@ pub const ITfEditRecord = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextAndPropertyUpdates: fn(
             self: *const ITfEditRecord,
-            dwFlags: u32,
+            dwFlags: ITfEditRecord_GetTextAndPropertyUpdatesFlags,
             prgProperties: [*]const *const Guid,
             cProperties: u32,
             ppEnum: **IEnumTfRanges,
@@ -3365,7 +3435,7 @@ pub const ITfEditRecord = extern struct {
             return @ptrCast(*const ITfEditRecord.VTable, self.vtable).GetSelectionStatus(@ptrCast(*const ITfEditRecord, self), pfChanged);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfEditRecord_GetTextAndPropertyUpdates(self: *const T, dwFlags: u32, prgProperties: [*]const *const Guid, cProperties: u32, ppEnum: **IEnumTfRanges) callconv(.Inline) HRESULT {
+        pub fn ITfEditRecord_GetTextAndPropertyUpdates(self: *const T, dwFlags: ITfEditRecord_GetTextAndPropertyUpdatesFlags, prgProperties: [*]const *const Guid, cProperties: u32, ppEnum: **IEnumTfRanges) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfEditRecord.VTable, self.vtable).GetTextAndPropertyUpdates(@ptrCast(*const ITfEditRecord, self), dwFlags, prgProperties, cProperties, ppEnum);
         }
     };}
@@ -3396,13 +3466,13 @@ pub const ITfTextEditSink = extern struct {
 };
 
 pub const TfLayoutCode = extern enum(i32) {
-    TF_LC_CREATE = 0,
-    TF_LC_CHANGE = 1,
-    TF_LC_DESTROY = 2,
+    CREATE = 0,
+    CHANGE = 1,
+    DESTROY = 2,
 };
-pub const TF_LC_CREATE = TfLayoutCode.TF_LC_CREATE;
-pub const TF_LC_CHANGE = TfLayoutCode.TF_LC_CHANGE;
-pub const TF_LC_DESTROY = TfLayoutCode.TF_LC_DESTROY;
+pub const TF_LC_CREATE = TfLayoutCode.CREATE;
+pub const TF_LC_CHANGE = TfLayoutCode.CHANGE;
+pub const TF_LC_DESTROY = TfLayoutCode.DESTROY;
 
 const IID_ITfTextLayoutSink_Value = @import("../zig.zig").Guid.initString("2af2d06a-dd5b-4927-a0b4-54f19c91fade");
 pub const IID_ITfTextLayoutSink = &IID_ITfTextLayoutSink_Value;
@@ -3696,18 +3766,18 @@ pub const ITfEditSession = extern struct {
 };
 
 pub const TfGravity = extern enum(i32) {
-    TF_GRAVITY_BACKWARD = 0,
-    TF_GRAVITY_FORWARD = 1,
+    BACKWARD = 0,
+    FORWARD = 1,
 };
-pub const TF_GRAVITY_BACKWARD = TfGravity.TF_GRAVITY_BACKWARD;
-pub const TF_GRAVITY_FORWARD = TfGravity.TF_GRAVITY_FORWARD;
+pub const TF_GRAVITY_BACKWARD = TfGravity.BACKWARD;
+pub const TF_GRAVITY_FORWARD = TfGravity.FORWARD;
 
 pub const TfShiftDir = extern enum(i32) {
-    TF_SD_BACKWARD = 0,
-    TF_SD_FORWARD = 1,
+    BACKWARD = 0,
+    FORWARD = 1,
 };
-pub const TF_SD_BACKWARD = TfShiftDir.TF_SD_BACKWARD;
-pub const TF_SD_FORWARD = TfShiftDir.TF_SD_FORWARD;
+pub const TF_SD_BACKWARD = TfShiftDir.BACKWARD;
+pub const TF_SD_FORWARD = TfShiftDir.FORWARD;
 
 pub const TF_HALTCOND = extern struct {
     pHaltRange: *ITfRange,
@@ -5526,26 +5596,26 @@ pub const ITfClientId = extern struct {
 };
 
 pub const TF_DA_LINESTYLE = extern enum(i32) {
-    TF_LS_NONE = 0,
-    TF_LS_SOLID = 1,
-    TF_LS_DOT = 2,
-    TF_LS_DASH = 3,
-    TF_LS_SQUIGGLE = 4,
+    NONE = 0,
+    SOLID = 1,
+    DOT = 2,
+    DASH = 3,
+    SQUIGGLE = 4,
 };
-pub const TF_LS_NONE = TF_DA_LINESTYLE.TF_LS_NONE;
-pub const TF_LS_SOLID = TF_DA_LINESTYLE.TF_LS_SOLID;
-pub const TF_LS_DOT = TF_DA_LINESTYLE.TF_LS_DOT;
-pub const TF_LS_DASH = TF_DA_LINESTYLE.TF_LS_DASH;
-pub const TF_LS_SQUIGGLE = TF_DA_LINESTYLE.TF_LS_SQUIGGLE;
+pub const TF_LS_NONE = TF_DA_LINESTYLE.NONE;
+pub const TF_LS_SOLID = TF_DA_LINESTYLE.SOLID;
+pub const TF_LS_DOT = TF_DA_LINESTYLE.DOT;
+pub const TF_LS_DASH = TF_DA_LINESTYLE.DASH;
+pub const TF_LS_SQUIGGLE = TF_DA_LINESTYLE.SQUIGGLE;
 
 pub const TF_DA_COLORTYPE = extern enum(i32) {
-    TF_CT_NONE = 0,
-    TF_CT_SYSCOLOR = 1,
-    TF_CT_COLORREF = 2,
+    NONE = 0,
+    SYSCOLOR = 1,
+    COLORREF = 2,
 };
-pub const TF_CT_NONE = TF_DA_COLORTYPE.TF_CT_NONE;
-pub const TF_CT_SYSCOLOR = TF_DA_COLORTYPE.TF_CT_SYSCOLOR;
-pub const TF_CT_COLORREF = TF_DA_COLORTYPE.TF_CT_COLORREF;
+pub const TF_CT_NONE = TF_DA_COLORTYPE.NONE;
+pub const TF_CT_SYSCOLOR = TF_DA_COLORTYPE.SYSCOLOR;
+pub const TF_CT_COLORREF = TF_DA_COLORTYPE.COLORREF;
 
 pub const TF_DA_COLOR = extern struct {
     type: TF_DA_COLORTYPE,
@@ -5554,21 +5624,21 @@ pub const TF_DA_COLOR = extern struct {
 };
 
 pub const TF_DA_ATTR_INFO = extern enum(i32) {
-    TF_ATTR_INPUT = 0,
-    TF_ATTR_TARGET_CONVERTED = 1,
-    TF_ATTR_CONVERTED = 2,
-    TF_ATTR_TARGET_NOTCONVERTED = 3,
-    TF_ATTR_INPUT_ERROR = 4,
-    TF_ATTR_FIXEDCONVERTED = 5,
-    TF_ATTR_OTHER = -1,
+    INPUT = 0,
+    TARGET_CONVERTED = 1,
+    CONVERTED = 2,
+    TARGET_NOTCONVERTED = 3,
+    INPUT_ERROR = 4,
+    FIXEDCONVERTED = 5,
+    OTHER = -1,
 };
-pub const TF_ATTR_INPUT = TF_DA_ATTR_INFO.TF_ATTR_INPUT;
-pub const TF_ATTR_TARGET_CONVERTED = TF_DA_ATTR_INFO.TF_ATTR_TARGET_CONVERTED;
-pub const TF_ATTR_CONVERTED = TF_DA_ATTR_INFO.TF_ATTR_CONVERTED;
-pub const TF_ATTR_TARGET_NOTCONVERTED = TF_DA_ATTR_INFO.TF_ATTR_TARGET_NOTCONVERTED;
-pub const TF_ATTR_INPUT_ERROR = TF_DA_ATTR_INFO.TF_ATTR_INPUT_ERROR;
-pub const TF_ATTR_FIXEDCONVERTED = TF_DA_ATTR_INFO.TF_ATTR_FIXEDCONVERTED;
-pub const TF_ATTR_OTHER = TF_DA_ATTR_INFO.TF_ATTR_OTHER;
+pub const TF_ATTR_INPUT = TF_DA_ATTR_INFO.INPUT;
+pub const TF_ATTR_TARGET_CONVERTED = TF_DA_ATTR_INFO.TARGET_CONVERTED;
+pub const TF_ATTR_CONVERTED = TF_DA_ATTR_INFO.CONVERTED;
+pub const TF_ATTR_TARGET_NOTCONVERTED = TF_DA_ATTR_INFO.TARGET_NOTCONVERTED;
+pub const TF_ATTR_INPUT_ERROR = TF_DA_ATTR_INFO.INPUT_ERROR;
+pub const TF_ATTR_FIXEDCONVERTED = TF_DA_ATTR_INFO.FIXEDCONVERTED;
+pub const TF_ATTR_OTHER = TF_DA_ATTR_INFO.OTHER;
 
 pub const TF_DISPLAYATTRIBUTE = extern struct {
     crText: TF_DA_COLOR,
@@ -6556,13 +6626,13 @@ pub const IEnumTfCandidates = extern struct {
 };
 
 pub const TfCandidateResult = extern enum(i32) {
-    CAND_FINALIZED = 0,
-    CAND_SELECTED = 1,
-    CAND_CANCELED = 2,
+    FINALIZED = 0,
+    SELECTED = 1,
+    CANCELED = 2,
 };
-pub const CAND_FINALIZED = TfCandidateResult.CAND_FINALIZED;
-pub const CAND_SELECTED = TfCandidateResult.CAND_SELECTED;
-pub const CAND_CANCELED = TfCandidateResult.CAND_CANCELED;
+pub const CAND_FINALIZED = TfCandidateResult.FINALIZED;
+pub const CAND_SELECTED = TfCandidateResult.SELECTED;
+pub const CAND_CANCELED = TfCandidateResult.CANCELED;
 
 const IID_ITfCandidateList_Value = @import("../zig.zig").Guid.initString("a3ad50fb-9bdb-49e3-a843-6c76520fbf5d");
 pub const IID_ITfCandidateList = &IID_ITfCandidateList_Value;
@@ -6827,19 +6897,19 @@ pub const ITfFnBalloon = extern struct {
 };
 
 pub const TfSapiObject = extern enum(i32) {
-    GETIF_RESMGR = 0,
-    GETIF_RECOCONTEXT = 1,
-    GETIF_RECOGNIZER = 2,
-    GETIF_VOICE = 3,
-    GETIF_DICTGRAM = 4,
-    GETIF_RECOGNIZERNOINIT = 5,
+    RESMGR = 0,
+    RECOCONTEXT = 1,
+    RECOGNIZER = 2,
+    VOICE = 3,
+    DICTGRAM = 4,
+    RECOGNIZERNOINIT = 5,
 };
-pub const GETIF_RESMGR = TfSapiObject.GETIF_RESMGR;
-pub const GETIF_RECOCONTEXT = TfSapiObject.GETIF_RECOCONTEXT;
-pub const GETIF_RECOGNIZER = TfSapiObject.GETIF_RECOGNIZER;
-pub const GETIF_VOICE = TfSapiObject.GETIF_VOICE;
-pub const GETIF_DICTGRAM = TfSapiObject.GETIF_DICTGRAM;
-pub const GETIF_RECOGNIZERNOINIT = TfSapiObject.GETIF_RECOGNIZERNOINIT;
+pub const GETIF_RESMGR = TfSapiObject.RESMGR;
+pub const GETIF_RECOCONTEXT = TfSapiObject.RECOCONTEXT;
+pub const GETIF_RECOGNIZER = TfSapiObject.RECOGNIZER;
+pub const GETIF_VOICE = TfSapiObject.VOICE;
+pub const GETIF_DICTGRAM = TfSapiObject.DICTGRAM;
+pub const GETIF_RECOGNIZERNOINIT = TfSapiObject.RECOGNIZERNOINIT;
 
 const IID_ITfFnGetSAPIObject_Value = @import("../zig.zig").Guid.initString("5c0ab7ea-167d-4f59-bfb5-4693755e90ca");
 pub const IID_ITfFnGetSAPIObject = &IID_ITfFnGetSAPIObject_Value;
@@ -7147,11 +7217,11 @@ pub const ITfFnSearchCandidateProvider = extern struct {
 };
 
 pub const TfIntegratableCandidateListSelectionStyle = extern enum(i32) {
-    STYLE_ACTIVE_SELECTION = 0,
-    STYLE_IMPLIED_SELECTION = 1,
+    ACTIVE_SELECTION = 0,
+    IMPLIED_SELECTION = 1,
 };
-pub const STYLE_ACTIVE_SELECTION = TfIntegratableCandidateListSelectionStyle.STYLE_ACTIVE_SELECTION;
-pub const STYLE_IMPLIED_SELECTION = TfIntegratableCandidateListSelectionStyle.STYLE_IMPLIED_SELECTION;
+pub const STYLE_ACTIVE_SELECTION = TfIntegratableCandidateListSelectionStyle.ACTIVE_SELECTION;
+pub const STYLE_IMPLIED_SELECTION = TfIntegratableCandidateListSelectionStyle.IMPLIED_SELECTION;
 
 const IID_ITfIntegratableCandidateListUIElement_Value = @import("../zig.zig").Guid.initString("c7a6f54f-b180-416f-b2bf-7bf2e4683d7b");
 pub const IID_ITfIntegratableCandidateListUIElement = &IID_ITfIntegratableCandidateListUIElement_Value;
@@ -7208,13 +7278,13 @@ pub const ITfIntegratableCandidateListUIElement = extern struct {
 };
 
 pub const TKBLayoutType = extern enum(i32) {
-    TKBLT_UNDEFINED = 0,
-    TKBLT_CLASSIC = 1,
-    TKBLT_OPTIMIZED = 2,
+    UNDEFINED = 0,
+    CLASSIC = 1,
+    OPTIMIZED = 2,
 };
-pub const TKBLT_UNDEFINED = TKBLayoutType.TKBLT_UNDEFINED;
-pub const TKBLT_CLASSIC = TKBLayoutType.TKBLT_CLASSIC;
-pub const TKBLT_OPTIMIZED = TKBLayoutType.TKBLT_OPTIMIZED;
+pub const TKBLT_UNDEFINED = TKBLayoutType.UNDEFINED;
+pub const TKBLT_CLASSIC = TKBLayoutType.CLASSIC;
+pub const TKBLT_OPTIMIZED = TKBLayoutType.OPTIMIZED;
 
 const IID_ITfFnGetPreferredTouchKeyboardLayout_Value = @import("../zig.zig").Guid.initString("5f309a41-590a-4acc-a97f-d8efff13fdfc");
 pub const IID_ITfFnGetPreferredTouchKeyboardLayout = &IID_ITfFnGetPreferredTouchKeyboardLayout_Value;
@@ -7320,155 +7390,155 @@ pub const IUIManagerEventSink = extern struct {
 };
 
 pub const InputScope = extern enum(i32) {
-    IS_DEFAULT = 0,
-    IS_URL = 1,
-    IS_FILE_FULLFILEPATH = 2,
-    IS_FILE_FILENAME = 3,
-    IS_EMAIL_USERNAME = 4,
-    IS_EMAIL_SMTPEMAILADDRESS = 5,
-    IS_LOGINNAME = 6,
-    IS_PERSONALNAME_FULLNAME = 7,
-    IS_PERSONALNAME_PREFIX = 8,
-    IS_PERSONALNAME_GIVENNAME = 9,
-    IS_PERSONALNAME_MIDDLENAME = 10,
-    IS_PERSONALNAME_SURNAME = 11,
-    IS_PERSONALNAME_SUFFIX = 12,
-    IS_ADDRESS_FULLPOSTALADDRESS = 13,
-    IS_ADDRESS_POSTALCODE = 14,
-    IS_ADDRESS_STREET = 15,
-    IS_ADDRESS_STATEORPROVINCE = 16,
-    IS_ADDRESS_CITY = 17,
-    IS_ADDRESS_COUNTRYNAME = 18,
-    IS_ADDRESS_COUNTRYSHORTNAME = 19,
-    IS_CURRENCY_AMOUNTANDSYMBOL = 20,
-    IS_CURRENCY_AMOUNT = 21,
-    IS_DATE_FULLDATE = 22,
-    IS_DATE_MONTH = 23,
-    IS_DATE_DAY = 24,
-    IS_DATE_YEAR = 25,
-    IS_DATE_MONTHNAME = 26,
-    IS_DATE_DAYNAME = 27,
-    IS_DIGITS = 28,
-    IS_NUMBER = 29,
-    IS_ONECHAR = 30,
-    IS_PASSWORD = 31,
-    IS_TELEPHONE_FULLTELEPHONENUMBER = 32,
-    IS_TELEPHONE_COUNTRYCODE = 33,
-    IS_TELEPHONE_AREACODE = 34,
-    IS_TELEPHONE_LOCALNUMBER = 35,
-    IS_TIME_FULLTIME = 36,
-    IS_TIME_HOUR = 37,
-    IS_TIME_MINORSEC = 38,
-    IS_NUMBER_FULLWIDTH = 39,
-    IS_ALPHANUMERIC_HALFWIDTH = 40,
-    IS_ALPHANUMERIC_FULLWIDTH = 41,
-    IS_CURRENCY_CHINESE = 42,
-    IS_BOPOMOFO = 43,
-    IS_HIRAGANA = 44,
-    IS_KATAKANA_HALFWIDTH = 45,
-    IS_KATAKANA_FULLWIDTH = 46,
-    IS_HANJA = 47,
-    IS_HANGUL_HALFWIDTH = 48,
-    IS_HANGUL_FULLWIDTH = 49,
-    IS_SEARCH = 50,
-    IS_FORMULA = 51,
-    IS_SEARCH_INCREMENTAL = 52,
-    IS_CHINESE_HALFWIDTH = 53,
-    IS_CHINESE_FULLWIDTH = 54,
-    IS_NATIVE_SCRIPT = 55,
-    IS_YOMI = 56,
-    IS_TEXT = 57,
-    IS_CHAT = 58,
-    IS_NAME_OR_PHONENUMBER = 59,
-    IS_EMAILNAME_OR_ADDRESS = 60,
-    IS_PRIVATE = 61,
-    IS_MAPS = 62,
-    IS_NUMERIC_PASSWORD = 63,
-    IS_NUMERIC_PIN = 64,
-    IS_ALPHANUMERIC_PIN = 65,
-    IS_ALPHANUMERIC_PIN_SET = 66,
-    IS_FORMULA_NUMBER = 67,
-    IS_CHAT_WITHOUT_EMOJI = 68,
-    IS_PHRASELIST = -1,
-    IS_REGULAREXPRESSION = -2,
-    IS_SRGS = -3,
-    IS_XML = -4,
-    IS_ENUMSTRING = -5,
+    DEFAULT = 0,
+    URL = 1,
+    FILE_FULLFILEPATH = 2,
+    FILE_FILENAME = 3,
+    EMAIL_USERNAME = 4,
+    EMAIL_SMTPEMAILADDRESS = 5,
+    LOGINNAME = 6,
+    PERSONALNAME_FULLNAME = 7,
+    PERSONALNAME_PREFIX = 8,
+    PERSONALNAME_GIVENNAME = 9,
+    PERSONALNAME_MIDDLENAME = 10,
+    PERSONALNAME_SURNAME = 11,
+    PERSONALNAME_SUFFIX = 12,
+    ADDRESS_FULLPOSTALADDRESS = 13,
+    ADDRESS_POSTALCODE = 14,
+    ADDRESS_STREET = 15,
+    ADDRESS_STATEORPROVINCE = 16,
+    ADDRESS_CITY = 17,
+    ADDRESS_COUNTRYNAME = 18,
+    ADDRESS_COUNTRYSHORTNAME = 19,
+    CURRENCY_AMOUNTANDSYMBOL = 20,
+    CURRENCY_AMOUNT = 21,
+    DATE_FULLDATE = 22,
+    DATE_MONTH = 23,
+    DATE_DAY = 24,
+    DATE_YEAR = 25,
+    DATE_MONTHNAME = 26,
+    DATE_DAYNAME = 27,
+    DIGITS = 28,
+    NUMBER = 29,
+    ONECHAR = 30,
+    PASSWORD = 31,
+    TELEPHONE_FULLTELEPHONENUMBER = 32,
+    TELEPHONE_COUNTRYCODE = 33,
+    TELEPHONE_AREACODE = 34,
+    TELEPHONE_LOCALNUMBER = 35,
+    TIME_FULLTIME = 36,
+    TIME_HOUR = 37,
+    TIME_MINORSEC = 38,
+    NUMBER_FULLWIDTH = 39,
+    ALPHANUMERIC_HALFWIDTH = 40,
+    ALPHANUMERIC_FULLWIDTH = 41,
+    CURRENCY_CHINESE = 42,
+    BOPOMOFO = 43,
+    HIRAGANA = 44,
+    KATAKANA_HALFWIDTH = 45,
+    KATAKANA_FULLWIDTH = 46,
+    HANJA = 47,
+    HANGUL_HALFWIDTH = 48,
+    HANGUL_FULLWIDTH = 49,
+    SEARCH = 50,
+    FORMULA = 51,
+    SEARCH_INCREMENTAL = 52,
+    CHINESE_HALFWIDTH = 53,
+    CHINESE_FULLWIDTH = 54,
+    NATIVE_SCRIPT = 55,
+    YOMI = 56,
+    TEXT = 57,
+    CHAT = 58,
+    NAME_OR_PHONENUMBER = 59,
+    EMAILNAME_OR_ADDRESS = 60,
+    PRIVATE = 61,
+    MAPS = 62,
+    NUMERIC_PASSWORD = 63,
+    NUMERIC_PIN = 64,
+    ALPHANUMERIC_PIN = 65,
+    ALPHANUMERIC_PIN_SET = 66,
+    FORMULA_NUMBER = 67,
+    CHAT_WITHOUT_EMOJI = 68,
+    PHRASELIST = -1,
+    REGULAREXPRESSION = -2,
+    SRGS = -3,
+    XML = -4,
+    ENUMSTRING = -5,
 };
-pub const IS_DEFAULT = InputScope.IS_DEFAULT;
-pub const IS_URL = InputScope.IS_URL;
-pub const IS_FILE_FULLFILEPATH = InputScope.IS_FILE_FULLFILEPATH;
-pub const IS_FILE_FILENAME = InputScope.IS_FILE_FILENAME;
-pub const IS_EMAIL_USERNAME = InputScope.IS_EMAIL_USERNAME;
-pub const IS_EMAIL_SMTPEMAILADDRESS = InputScope.IS_EMAIL_SMTPEMAILADDRESS;
-pub const IS_LOGINNAME = InputScope.IS_LOGINNAME;
-pub const IS_PERSONALNAME_FULLNAME = InputScope.IS_PERSONALNAME_FULLNAME;
-pub const IS_PERSONALNAME_PREFIX = InputScope.IS_PERSONALNAME_PREFIX;
-pub const IS_PERSONALNAME_GIVENNAME = InputScope.IS_PERSONALNAME_GIVENNAME;
-pub const IS_PERSONALNAME_MIDDLENAME = InputScope.IS_PERSONALNAME_MIDDLENAME;
-pub const IS_PERSONALNAME_SURNAME = InputScope.IS_PERSONALNAME_SURNAME;
-pub const IS_PERSONALNAME_SUFFIX = InputScope.IS_PERSONALNAME_SUFFIX;
-pub const IS_ADDRESS_FULLPOSTALADDRESS = InputScope.IS_ADDRESS_FULLPOSTALADDRESS;
-pub const IS_ADDRESS_POSTALCODE = InputScope.IS_ADDRESS_POSTALCODE;
-pub const IS_ADDRESS_STREET = InputScope.IS_ADDRESS_STREET;
-pub const IS_ADDRESS_STATEORPROVINCE = InputScope.IS_ADDRESS_STATEORPROVINCE;
-pub const IS_ADDRESS_CITY = InputScope.IS_ADDRESS_CITY;
-pub const IS_ADDRESS_COUNTRYNAME = InputScope.IS_ADDRESS_COUNTRYNAME;
-pub const IS_ADDRESS_COUNTRYSHORTNAME = InputScope.IS_ADDRESS_COUNTRYSHORTNAME;
-pub const IS_CURRENCY_AMOUNTANDSYMBOL = InputScope.IS_CURRENCY_AMOUNTANDSYMBOL;
-pub const IS_CURRENCY_AMOUNT = InputScope.IS_CURRENCY_AMOUNT;
-pub const IS_DATE_FULLDATE = InputScope.IS_DATE_FULLDATE;
-pub const IS_DATE_MONTH = InputScope.IS_DATE_MONTH;
-pub const IS_DATE_DAY = InputScope.IS_DATE_DAY;
-pub const IS_DATE_YEAR = InputScope.IS_DATE_YEAR;
-pub const IS_DATE_MONTHNAME = InputScope.IS_DATE_MONTHNAME;
-pub const IS_DATE_DAYNAME = InputScope.IS_DATE_DAYNAME;
-pub const IS_DIGITS = InputScope.IS_DIGITS;
-pub const IS_NUMBER = InputScope.IS_NUMBER;
-pub const IS_ONECHAR = InputScope.IS_ONECHAR;
-pub const IS_PASSWORD = InputScope.IS_PASSWORD;
-pub const IS_TELEPHONE_FULLTELEPHONENUMBER = InputScope.IS_TELEPHONE_FULLTELEPHONENUMBER;
-pub const IS_TELEPHONE_COUNTRYCODE = InputScope.IS_TELEPHONE_COUNTRYCODE;
-pub const IS_TELEPHONE_AREACODE = InputScope.IS_TELEPHONE_AREACODE;
-pub const IS_TELEPHONE_LOCALNUMBER = InputScope.IS_TELEPHONE_LOCALNUMBER;
-pub const IS_TIME_FULLTIME = InputScope.IS_TIME_FULLTIME;
-pub const IS_TIME_HOUR = InputScope.IS_TIME_HOUR;
-pub const IS_TIME_MINORSEC = InputScope.IS_TIME_MINORSEC;
-pub const IS_NUMBER_FULLWIDTH = InputScope.IS_NUMBER_FULLWIDTH;
-pub const IS_ALPHANUMERIC_HALFWIDTH = InputScope.IS_ALPHANUMERIC_HALFWIDTH;
-pub const IS_ALPHANUMERIC_FULLWIDTH = InputScope.IS_ALPHANUMERIC_FULLWIDTH;
-pub const IS_CURRENCY_CHINESE = InputScope.IS_CURRENCY_CHINESE;
-pub const IS_BOPOMOFO = InputScope.IS_BOPOMOFO;
-pub const IS_HIRAGANA = InputScope.IS_HIRAGANA;
-pub const IS_KATAKANA_HALFWIDTH = InputScope.IS_KATAKANA_HALFWIDTH;
-pub const IS_KATAKANA_FULLWIDTH = InputScope.IS_KATAKANA_FULLWIDTH;
-pub const IS_HANJA = InputScope.IS_HANJA;
-pub const IS_HANGUL_HALFWIDTH = InputScope.IS_HANGUL_HALFWIDTH;
-pub const IS_HANGUL_FULLWIDTH = InputScope.IS_HANGUL_FULLWIDTH;
-pub const IS_SEARCH = InputScope.IS_SEARCH;
-pub const IS_FORMULA = InputScope.IS_FORMULA;
-pub const IS_SEARCH_INCREMENTAL = InputScope.IS_SEARCH_INCREMENTAL;
-pub const IS_CHINESE_HALFWIDTH = InputScope.IS_CHINESE_HALFWIDTH;
-pub const IS_CHINESE_FULLWIDTH = InputScope.IS_CHINESE_FULLWIDTH;
-pub const IS_NATIVE_SCRIPT = InputScope.IS_NATIVE_SCRIPT;
-pub const IS_YOMI = InputScope.IS_YOMI;
-pub const IS_TEXT = InputScope.IS_TEXT;
-pub const IS_CHAT = InputScope.IS_CHAT;
-pub const IS_NAME_OR_PHONENUMBER = InputScope.IS_NAME_OR_PHONENUMBER;
-pub const IS_EMAILNAME_OR_ADDRESS = InputScope.IS_EMAILNAME_OR_ADDRESS;
-pub const IS_PRIVATE = InputScope.IS_PRIVATE;
-pub const IS_MAPS = InputScope.IS_MAPS;
-pub const IS_NUMERIC_PASSWORD = InputScope.IS_NUMERIC_PASSWORD;
-pub const IS_NUMERIC_PIN = InputScope.IS_NUMERIC_PIN;
-pub const IS_ALPHANUMERIC_PIN = InputScope.IS_ALPHANUMERIC_PIN;
-pub const IS_ALPHANUMERIC_PIN_SET = InputScope.IS_ALPHANUMERIC_PIN_SET;
-pub const IS_FORMULA_NUMBER = InputScope.IS_FORMULA_NUMBER;
-pub const IS_CHAT_WITHOUT_EMOJI = InputScope.IS_CHAT_WITHOUT_EMOJI;
-pub const IS_PHRASELIST = InputScope.IS_PHRASELIST;
-pub const IS_REGULAREXPRESSION = InputScope.IS_REGULAREXPRESSION;
-pub const IS_SRGS = InputScope.IS_SRGS;
-pub const IS_XML = InputScope.IS_XML;
-pub const IS_ENUMSTRING = InputScope.IS_ENUMSTRING;
+pub const IS_DEFAULT = InputScope.DEFAULT;
+pub const IS_URL = InputScope.URL;
+pub const IS_FILE_FULLFILEPATH = InputScope.FILE_FULLFILEPATH;
+pub const IS_FILE_FILENAME = InputScope.FILE_FILENAME;
+pub const IS_EMAIL_USERNAME = InputScope.EMAIL_USERNAME;
+pub const IS_EMAIL_SMTPEMAILADDRESS = InputScope.EMAIL_SMTPEMAILADDRESS;
+pub const IS_LOGINNAME = InputScope.LOGINNAME;
+pub const IS_PERSONALNAME_FULLNAME = InputScope.PERSONALNAME_FULLNAME;
+pub const IS_PERSONALNAME_PREFIX = InputScope.PERSONALNAME_PREFIX;
+pub const IS_PERSONALNAME_GIVENNAME = InputScope.PERSONALNAME_GIVENNAME;
+pub const IS_PERSONALNAME_MIDDLENAME = InputScope.PERSONALNAME_MIDDLENAME;
+pub const IS_PERSONALNAME_SURNAME = InputScope.PERSONALNAME_SURNAME;
+pub const IS_PERSONALNAME_SUFFIX = InputScope.PERSONALNAME_SUFFIX;
+pub const IS_ADDRESS_FULLPOSTALADDRESS = InputScope.ADDRESS_FULLPOSTALADDRESS;
+pub const IS_ADDRESS_POSTALCODE = InputScope.ADDRESS_POSTALCODE;
+pub const IS_ADDRESS_STREET = InputScope.ADDRESS_STREET;
+pub const IS_ADDRESS_STATEORPROVINCE = InputScope.ADDRESS_STATEORPROVINCE;
+pub const IS_ADDRESS_CITY = InputScope.ADDRESS_CITY;
+pub const IS_ADDRESS_COUNTRYNAME = InputScope.ADDRESS_COUNTRYNAME;
+pub const IS_ADDRESS_COUNTRYSHORTNAME = InputScope.ADDRESS_COUNTRYSHORTNAME;
+pub const IS_CURRENCY_AMOUNTANDSYMBOL = InputScope.CURRENCY_AMOUNTANDSYMBOL;
+pub const IS_CURRENCY_AMOUNT = InputScope.CURRENCY_AMOUNT;
+pub const IS_DATE_FULLDATE = InputScope.DATE_FULLDATE;
+pub const IS_DATE_MONTH = InputScope.DATE_MONTH;
+pub const IS_DATE_DAY = InputScope.DATE_DAY;
+pub const IS_DATE_YEAR = InputScope.DATE_YEAR;
+pub const IS_DATE_MONTHNAME = InputScope.DATE_MONTHNAME;
+pub const IS_DATE_DAYNAME = InputScope.DATE_DAYNAME;
+pub const IS_DIGITS = InputScope.DIGITS;
+pub const IS_NUMBER = InputScope.NUMBER;
+pub const IS_ONECHAR = InputScope.ONECHAR;
+pub const IS_PASSWORD = InputScope.PASSWORD;
+pub const IS_TELEPHONE_FULLTELEPHONENUMBER = InputScope.TELEPHONE_FULLTELEPHONENUMBER;
+pub const IS_TELEPHONE_COUNTRYCODE = InputScope.TELEPHONE_COUNTRYCODE;
+pub const IS_TELEPHONE_AREACODE = InputScope.TELEPHONE_AREACODE;
+pub const IS_TELEPHONE_LOCALNUMBER = InputScope.TELEPHONE_LOCALNUMBER;
+pub const IS_TIME_FULLTIME = InputScope.TIME_FULLTIME;
+pub const IS_TIME_HOUR = InputScope.TIME_HOUR;
+pub const IS_TIME_MINORSEC = InputScope.TIME_MINORSEC;
+pub const IS_NUMBER_FULLWIDTH = InputScope.NUMBER_FULLWIDTH;
+pub const IS_ALPHANUMERIC_HALFWIDTH = InputScope.ALPHANUMERIC_HALFWIDTH;
+pub const IS_ALPHANUMERIC_FULLWIDTH = InputScope.ALPHANUMERIC_FULLWIDTH;
+pub const IS_CURRENCY_CHINESE = InputScope.CURRENCY_CHINESE;
+pub const IS_BOPOMOFO = InputScope.BOPOMOFO;
+pub const IS_HIRAGANA = InputScope.HIRAGANA;
+pub const IS_KATAKANA_HALFWIDTH = InputScope.KATAKANA_HALFWIDTH;
+pub const IS_KATAKANA_FULLWIDTH = InputScope.KATAKANA_FULLWIDTH;
+pub const IS_HANJA = InputScope.HANJA;
+pub const IS_HANGUL_HALFWIDTH = InputScope.HANGUL_HALFWIDTH;
+pub const IS_HANGUL_FULLWIDTH = InputScope.HANGUL_FULLWIDTH;
+pub const IS_SEARCH = InputScope.SEARCH;
+pub const IS_FORMULA = InputScope.FORMULA;
+pub const IS_SEARCH_INCREMENTAL = InputScope.SEARCH_INCREMENTAL;
+pub const IS_CHINESE_HALFWIDTH = InputScope.CHINESE_HALFWIDTH;
+pub const IS_CHINESE_FULLWIDTH = InputScope.CHINESE_FULLWIDTH;
+pub const IS_NATIVE_SCRIPT = InputScope.NATIVE_SCRIPT;
+pub const IS_YOMI = InputScope.YOMI;
+pub const IS_TEXT = InputScope.TEXT;
+pub const IS_CHAT = InputScope.CHAT;
+pub const IS_NAME_OR_PHONENUMBER = InputScope.NAME_OR_PHONENUMBER;
+pub const IS_EMAILNAME_OR_ADDRESS = InputScope.EMAILNAME_OR_ADDRESS;
+pub const IS_PRIVATE = InputScope.PRIVATE;
+pub const IS_MAPS = InputScope.MAPS;
+pub const IS_NUMERIC_PASSWORD = InputScope.NUMERIC_PASSWORD;
+pub const IS_NUMERIC_PIN = InputScope.NUMERIC_PIN;
+pub const IS_ALPHANUMERIC_PIN = InputScope.ALPHANUMERIC_PIN;
+pub const IS_ALPHANUMERIC_PIN_SET = InputScope.ALPHANUMERIC_PIN_SET;
+pub const IS_FORMULA_NUMBER = InputScope.FORMULA_NUMBER;
+pub const IS_CHAT_WITHOUT_EMOJI = InputScope.CHAT_WITHOUT_EMOJI;
+pub const IS_PHRASELIST = InputScope.PHRASELIST;
+pub const IS_REGULAREXPRESSION = InputScope.REGULAREXPRESSION;
+pub const IS_SRGS = InputScope.SRGS;
+pub const IS_XML = InputScope.XML;
+pub const IS_ENUMSTRING = InputScope.ENUMSTRING;
 
 const IID_ITfInputScope_Value = @import("../zig.zig").Guid.initString("fde1eaee-6924-4cdf-91e7-da38cff5559d");
 pub const IID_ITfInputScope = &IID_ITfInputScope_Value;
@@ -7662,8 +7732,8 @@ const HICON = @import("menus_and_resources.zig").HICON;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 180;
-    const enum_value_export_count = 133;
+    const type_export_count = 188;
+    const enum_value_export_count = 149;
     const com_iface_id_export_count = 139;
     const com_class_id_export_count = 0;
     const func_export_count = 2;

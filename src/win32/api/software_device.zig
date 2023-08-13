@@ -6,18 +6,20 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+pub const HSWDEVICE = ?*c_void;
+
 pub const SW_DEVICE_CAPABILITIES = extern enum(i32) {
-    SWDeviceCapabilitiesNone = 0,
-    SWDeviceCapabilitiesRemovable = 1,
-    SWDeviceCapabilitiesSilentInstall = 2,
-    SWDeviceCapabilitiesNoDisplayInUI = 4,
-    SWDeviceCapabilitiesDriverRequired = 8,
+    None = 0,
+    Removable = 1,
+    SilentInstall = 2,
+    NoDisplayInUI = 4,
+    DriverRequired = 8,
 };
-pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.SWDeviceCapabilitiesNone;
-pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.SWDeviceCapabilitiesRemovable;
-pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SWDeviceCapabilitiesSilentInstall;
-pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.SWDeviceCapabilitiesNoDisplayInUI;
-pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.SWDeviceCapabilitiesDriverRequired;
+pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.None;
+pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.Removable;
+pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SilentInstall;
+pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.NoDisplayInUI;
+pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.DriverRequired;
 
 pub const SW_DEVICE_CREATE_INFO = extern struct {
     cbSize: u32,
@@ -32,20 +34,16 @@ pub const SW_DEVICE_CREATE_INFO = extern struct {
 };
 
 pub const SW_DEVICE_LIFETIME = extern enum(i32) {
-    SWDeviceLifetimeHandle = 0,
-    SWDeviceLifetimeParentPresent = 1,
-    SWDeviceLifetimeMax = 2,
+    Handle = 0,
+    ParentPresent = 1,
+    Max = 2,
 };
-pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.SWDeviceLifetimeHandle;
-pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.SWDeviceLifetimeParentPresent;
-pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.SWDeviceLifetimeMax;
-
-pub const HSWDEVICE__ = extern struct {
-    unused: i32,
-};
+pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.Handle;
+pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.ParentPresent;
+pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
 
 pub const SW_DEVICE_CREATE_CALLBACK = fn(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     CreateResult: HRESULT,
     pContext: ?*c_void,
     pszDeviceInstanceId: ?[*:0]const u16,
@@ -63,31 +61,31 @@ pub extern "CFGMGR32" fn SwDeviceCreate(
     pProperties: ?[*]const DEVPROPERTY,
     pCallback: SW_DEVICE_CREATE_CALLBACK,
     pContext: ?*c_void,
-    phSwDevice: **HSWDEVICE__,
+    phSwDevice: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CFGMGR32" fn SwDeviceClose(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "CFGMGR32" fn SwDeviceSetLifetime(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     Lifetime: SW_DEVICE_LIFETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CFGMGR32" fn SwDeviceGetLifetime(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     pLifetime: *SW_DEVICE_LIFETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CFGMGR32" fn SwDevicePropertySet(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CFGMGR32" fn SwDeviceInterfaceRegister(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     pInterfaceClassGuid: *const Guid,
     pszReferenceString: ?[*:0]const u16,
     cPropertyCount: u32,
@@ -101,13 +99,13 @@ pub extern "CFGMGR32" fn SwMemFree(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "CFGMGR32" fn SwDeviceInterfaceSetState(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     pszDeviceInterfaceId: [*:0]const u16,
     fEnabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CFGMGR32" fn SwDeviceInterfacePropertySet(
-    hSwDevice: *HSWDEVICE__,
+    hSwDevice: HSWDEVICE,
     pszDeviceInterfaceId: [*:0]const u16,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,

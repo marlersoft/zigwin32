@@ -24,16 +24,16 @@ pub const CLSID_CAccessiblityWinSAT = &CLSID_CAccessiblityWinSAT_Value;
 const CLSID_CQueryOEMWinSATCustomization_Value = @import("../zig.zig").Guid.initString("c47a41b7-b729-424f-9af9-5cb3934f2dfa");
 pub const CLSID_CQueryOEMWinSATCustomization = &CLSID_CQueryOEMWinSATCustomization_Value;
 
-pub const __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001 = extern enum(i32) {
-    WINSAT_OEM_DATA_VALID = 0,
-    WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = 1,
-    WINSAT_OEM_DATA_INVALID = 2,
-    WINSAT_OEM_NO_DATA_SUPPLIED = 3,
+pub const WINSAT_OEM_DATA_TYPE = extern enum(i32) {
+    DATA_VALID = 0,
+    DATA_NON_SYS_CONFIG_MATCH = 1,
+    DATA_INVALID = 2,
+    NO_DATA_SUPPLIED = 3,
 };
-pub const WINSAT_OEM_DATA_VALID = __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001.WINSAT_OEM_DATA_VALID;
-pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001.WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH;
-pub const WINSAT_OEM_DATA_INVALID = __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001.WINSAT_OEM_DATA_INVALID;
-pub const WINSAT_OEM_NO_DATA_SUPPLIED = __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001.WINSAT_OEM_NO_DATA_SUPPLIED;
+pub const WINSAT_OEM_DATA_VALID = WINSAT_OEM_DATA_TYPE.DATA_VALID;
+pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = WINSAT_OEM_DATA_TYPE.DATA_NON_SYS_CONFIG_MATCH;
+pub const WINSAT_OEM_DATA_INVALID = WINSAT_OEM_DATA_TYPE.DATA_INVALID;
+pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
 
 pub const WINSAT_ASSESSMENT_STATE = extern enum(i32) {
     MIN = 0,
@@ -53,17 +53,17 @@ pub const WINSAT_ASSESSMENT_STATE_INVALID = WINSAT_ASSESSMENT_STATE.INVALID;
 pub const WINSAT_ASSESSMENT_STATE_MAX = WINSAT_ASSESSMENT_STATE.MAX;
 
 pub const WINSAT_ASSESSMENT_TYPE = extern enum(i32) {
-    WINSAT_ASSESSMENT_MEMORY = 0,
-    WINSAT_ASSESSMENT_CPU = 1,
-    WINSAT_ASSESSMENT_DISK = 2,
-    WINSAT_ASSESSMENT_D3D = 3,
-    WINSAT_ASSESSMENT_GRAPHICS = 4,
+    MEMORY = 0,
+    CPU = 1,
+    DISK = 2,
+    D3D = 3,
+    GRAPHICS = 4,
 };
-pub const WINSAT_ASSESSMENT_MEMORY = WINSAT_ASSESSMENT_TYPE.WINSAT_ASSESSMENT_MEMORY;
-pub const WINSAT_ASSESSMENT_CPU = WINSAT_ASSESSMENT_TYPE.WINSAT_ASSESSMENT_CPU;
-pub const WINSAT_ASSESSMENT_DISK = WINSAT_ASSESSMENT_TYPE.WINSAT_ASSESSMENT_DISK;
-pub const WINSAT_ASSESSMENT_D3D = WINSAT_ASSESSMENT_TYPE.WINSAT_ASSESSMENT_D3D;
-pub const WINSAT_ASSESSMENT_GRAPHICS = WINSAT_ASSESSMENT_TYPE.WINSAT_ASSESSMENT_GRAPHICS;
+pub const WINSAT_ASSESSMENT_MEMORY = WINSAT_ASSESSMENT_TYPE.MEMORY;
+pub const WINSAT_ASSESSMENT_CPU = WINSAT_ASSESSMENT_TYPE.CPU;
+pub const WINSAT_ASSESSMENT_DISK = WINSAT_ASSESSMENT_TYPE.DISK;
+pub const WINSAT_ASSESSMENT_D3D = WINSAT_ASSESSMENT_TYPE.D3D;
+pub const WINSAT_ASSESSMENT_GRAPHICS = WINSAT_ASSESSMENT_TYPE.GRAPHICS;
 
 pub const WINSAT_BITMAP_SIZE = extern enum(i32) {
     SMALL = 0,
@@ -342,14 +342,14 @@ pub const IQueryOEMWinSATCustomization = extern struct {
         base: IUnknown.VTable,
         GetOEMPrePopulationInfo: fn(
             self: *const IQueryOEMWinSATCustomization,
-            state: *__MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001,
+            state: *WINSAT_OEM_DATA_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryOEMWinSATCustomization_GetOEMPrePopulationInfo(self: *const T, state: *__MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001) callconv(.Inline) HRESULT {
+        pub fn IQueryOEMWinSATCustomization_GetOEMPrePopulationInfo(self: *const T, state: *WINSAT_OEM_DATA_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryOEMWinSATCustomization.VTable, self.vtable).GetOEMPrePopulationInfo(@ptrCast(*const IQueryOEMWinSATCustomization, self), state);
         }
     };}

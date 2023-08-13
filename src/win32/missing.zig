@@ -2,11 +2,6 @@
 
 const win32 = @import("../win32.zig");
 
-// TODO: should there be an issue for this in win32metadata?
-//       not sure how it will define this as a const because it's not a primitive type
-pub const INVALID_HANDLE_VALUE = @intToPtr(win32.api.system_services.HANDLE, @bitCast(usize, @as(isize, -1)));
-
-
 // The CLSCTX_ALL value is missing, see https://github.com/microsoft/win32metadata/issues/203
 pub const CLSCTX_ALL = @intToEnum(win32.api.com.CLSCTX,
     @enumToInt(win32.api.com.CLSCTX_INPROC_SERVER) |
@@ -62,6 +57,9 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const GetWindowLongPtr = @compileError("'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
     },
 };
+
+// https://github.com/microsoft/win32metadata/issues/353
+pub const CW_USEDEFAULT : i32 = @bitCast(i32, @intCast(u32, 0x80000000));
 
 const std = @import("std");
 test "" {

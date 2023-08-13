@@ -4,18 +4,32 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (2)
+// Section: Types (4)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const OPERATION_START_PARAMETERSFlags = extern enum(u32) {
+    D = 1,
+    _,
+};
+pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_PARAMETERSFlags.D;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const OPERATION_END_PARAMETERSFlags = extern enum(u32) {
+    D = 1,
+    _,
+};
+pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERSFlags.D;
+
 pub const OPERATION_START_PARAMETERS = extern struct {
     Version: u32,
     OperationId: u32,
-    Flags: u32,
+    Flags: OPERATION_START_PARAMETERSFlags,
 };
 
 pub const OPERATION_END_PARAMETERS = extern struct {
     Version: u32,
     OperationId: u32,
-    Flags: u32,
+    Flags: OPERATION_END_PARAMETERSFlags,
 };
 
 
@@ -50,8 +64,8 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 2;
-    const enum_value_export_count = 0;
+    const type_export_count = 4;
+    const enum_value_export_count = 2;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 2;

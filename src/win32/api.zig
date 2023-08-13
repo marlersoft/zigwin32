@@ -59,7 +59,6 @@ pub const parental_controls = @import("api/parental_controls.zig");
 pub const legacy_windows_environment_features = @import("api/legacy_windows_environment_features.zig");
 pub const compression = @import("api/compression.zig");
 pub const index_server = @import("api/index_server.zig");
-pub const services = @import("api/services.zig");
 pub const serial_controller = @import("api/serial_controller.zig");
 pub const appx_packaging = @import("api/appx_packaging.zig");
 pub const offline_files = @import("api/offline_files.zig");
@@ -193,14 +192,13 @@ pub const search = @import("api/search.zig");
 pub const windows_information_protection = @import("api/windows_information_protection.zig");
 pub const text_services = @import("api/text_services.zig");
 pub const xinput = @import("api/xinput.zig");
-pub const ipc = @import("api/ipc.zig");
 pub const game_mode = @import("api/game_mode.zig");
 pub const direct_ml = @import("api/direct_ml.zig");
 pub const network_list_manager = @import("api/network_list_manager.zig");
 pub const process_snapshotting = @import("api/process_snapshotting.zig");
 pub const xaml_diagnostics = @import("api/xaml_diagnostics.zig");
 test {
-    const api_count = 200;
+    const api_count = 198;
     @setEvalBranchQuota(api_count);
     @import("std").testing.refAllDecls(@This());
 }

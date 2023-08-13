@@ -4,8 +4,215 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (19)
+// Section: Types (32)
 //--------------------------------------------------------------------------------
+pub const HRAWINPUT = ?*c_void;
+
+pub const GetRawInputData_uiCommandFlags = extern enum(u32) {
+    HEADER = 268435461,
+    INPUT = 268435459,
+};
+pub const RID_HEADER = GetRawInputData_uiCommandFlags.HEADER;
+pub const RID_INPUT = GetRawInputData_uiCommandFlags.INPUT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RegisterHotKey_fsModifiersFlags = extern enum(u32) {
+    ALT = 1,
+    CONTROL = 2,
+    NOREPEAT = 16384,
+    SHIFT = 4,
+    WIN = 8,
+    _,
+};
+pub const MOD_ALT = RegisterHotKey_fsModifiersFlags.ALT;
+pub const MOD_CONTROL = RegisterHotKey_fsModifiersFlags.CONTROL;
+pub const MOD_NOREPEAT = RegisterHotKey_fsModifiersFlags.NOREPEAT;
+pub const MOD_SHIFT = RegisterHotKey_fsModifiersFlags.SHIFT;
+pub const MOD_WIN = RegisterHotKey_fsModifiersFlags.WIN;
+
+pub const GetRawInputDeviceInfo_uiCommand = extern enum(u32) {
+    PREPARSEDDATA = 536870917,
+    DEVICENAME = 536870919,
+    DEVICEINFO = 536870923,
+};
+pub const RIDI_PREPARSEDDATA = GetRawInputDeviceInfo_uiCommand.PREPARSEDDATA;
+pub const RIDI_DEVICENAME = GetRawInputDeviceInfo_uiCommand.DEVICENAME;
+pub const RIDI_DEVICEINFO = GetRawInputDeviceInfo_uiCommand.DEVICEINFO;
+
+pub const ActivateKeyboardLayout_Flags = extern enum(u32) {
+    REORDER = 8,
+    RESET = 1073741824,
+    SETFORPROCESS = 256,
+    SHIFTLOCK = 65536,
+    ACTIVATE = 1,
+    NOTELLSHELL = 128,
+    REPLACELANG = 16,
+    SUBSTITUTE_OK = 2,
+};
+pub const KLF_REORDER = ActivateKeyboardLayout_Flags.REORDER;
+pub const KLF_RESET = ActivateKeyboardLayout_Flags.RESET;
+pub const KLF_SETFORPROCESS = ActivateKeyboardLayout_Flags.SETFORPROCESS;
+pub const KLF_SHIFTLOCK = ActivateKeyboardLayout_Flags.SHIFTLOCK;
+pub const KLF_ACTIVATE = ActivateKeyboardLayout_Flags.ACTIVATE;
+pub const KLF_NOTELLSHELL = ActivateKeyboardLayout_Flags.NOTELLSHELL;
+pub const KLF_REPLACELANG = ActivateKeyboardLayout_Flags.REPLACELANG;
+pub const KLF_SUBSTITUTE_OK = ActivateKeyboardLayout_Flags.SUBSTITUTE_OK;
+
+pub const ActivateKeyboardLayout_hklFlags = extern enum(u32) {
+    NEXT = 1,
+    PREV = 0,
+};
+pub const HKL_NEXT = ActivateKeyboardLayout_hklFlags.NEXT;
+pub const HKL_PREV = ActivateKeyboardLayout_hklFlags.PREV;
+
+pub const GetMouseMovePointsEx_resolutionFlags = extern enum(u32) {
+    DISPLAY_POINTS = 1,
+    HIGH_RESOLUTION_POINTS = 2,
+};
+pub const GMMP_USE_DISPLAY_POINTS = GetMouseMovePointsEx_resolutionFlags.DISPLAY_POINTS;
+pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GetMouseMovePointsEx_resolutionFlags.HIGH_RESOLUTION_POINTS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const keybd_eventFlags = extern enum(u32) {
+    EXTENDEDKEY = 1,
+    KEYUP = 2,
+    SCANCODE = 8,
+    UNICODE = 4,
+    _,
+};
+pub const KEYEVENTF_EXTENDEDKEY = keybd_eventFlags.EXTENDEDKEY;
+pub const KEYEVENTF_KEYUP = keybd_eventFlags.KEYUP;
+pub const KEYEVENTF_SCANCODE = keybd_eventFlags.SCANCODE;
+pub const KEYEVENTF_UNICODE = keybd_eventFlags.UNICODE;
+
+pub const mouse_eventFlags = extern enum(u32) {
+    ABSOLUTE = 32768,
+    LEFTDOWN = 2,
+    LEFTUP = 4,
+    MIDDLEDOWN = 32,
+    MIDDLEUP = 64,
+    MOVE = 1,
+    RIGHTDOWN = 8,
+    RIGHTUP = 16,
+    WHEEL = 2048,
+    XDOWN = 128,
+    XUP = 256,
+    HWHEEL = 4096,
+    MOVE_NOCOALESCE = 8192,
+    VIRTUALDESK = 16384,
+};
+pub const MOUSEEVENTF_ABSOLUTE = mouse_eventFlags.ABSOLUTE;
+pub const MOUSEEVENTF_LEFTDOWN = mouse_eventFlags.LEFTDOWN;
+pub const MOUSEEVENTF_LEFTUP = mouse_eventFlags.LEFTUP;
+pub const MOUSEEVENTF_MIDDLEDOWN = mouse_eventFlags.MIDDLEDOWN;
+pub const MOUSEEVENTF_MIDDLEUP = mouse_eventFlags.MIDDLEUP;
+pub const MOUSEEVENTF_MOVE = mouse_eventFlags.MOVE;
+pub const MOUSEEVENTF_RIGHTDOWN = mouse_eventFlags.RIGHTDOWN;
+pub const MOUSEEVENTF_RIGHTUP = mouse_eventFlags.RIGHTUP;
+pub const MOUSEEVENTF_WHEEL = mouse_eventFlags.WHEEL;
+pub const MOUSEEVENTF_XDOWN = mouse_eventFlags.XDOWN;
+pub const MOUSEEVENTF_XUP = mouse_eventFlags.XUP;
+pub const MOUSEEVENTF_HWHEEL = mouse_eventFlags.HWHEEL;
+pub const MOUSEEVENTF_MOVE_NOCOALESCE = mouse_eventFlags.MOVE_NOCOALESCE;
+pub const MOUSEEVENTF_VIRTUALDESK = mouse_eventFlags.VIRTUALDESK;
+
+pub const RID_DEVICE_INFO_dwType = extern enum(u32) {
+    MOUSE = 0,
+    KEYBOARD = 1,
+    HID = 2,
+};
+pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_dwType.MOUSE;
+pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_dwType.KEYBOARD;
+pub const RIM_TYPEHID = RID_DEVICE_INFO_dwType.HID;
+
+pub const RAWINPUTDEVICE_dwFlags = extern enum(u32) {
+    REMOVE = 1,
+    EXCLUDE = 16,
+    PAGEONLY = 32,
+    NOLEGACY = 48,
+    INPUTSINK = 256,
+    CAPTUREMOUSE = 512,
+    NOHOTKEYS = 512,
+    APPKEYS = 1024,
+    EXINPUTSINK = 4096,
+    DEVNOTIFY = 8192,
+};
+pub const RIDEV_REMOVE = RAWINPUTDEVICE_dwFlags.REMOVE;
+pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_dwFlags.EXCLUDE;
+pub const RIDEV_PAGEONLY = RAWINPUTDEVICE_dwFlags.PAGEONLY;
+pub const RIDEV_NOLEGACY = RAWINPUTDEVICE_dwFlags.NOLEGACY;
+pub const RIDEV_INPUTSINK = RAWINPUTDEVICE_dwFlags.INPUTSINK;
+pub const RIDEV_CAPTUREMOUSE = RAWINPUTDEVICE_dwFlags.CAPTUREMOUSE;
+pub const RIDEV_NOHOTKEYS = RAWINPUTDEVICE_dwFlags.NOHOTKEYS;
+pub const RIDEV_APPKEYS = RAWINPUTDEVICE_dwFlags.APPKEYS;
+pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_dwFlags.EXINPUTSINK;
+pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_dwFlags.DEVNOTIFY;
+
+pub const INPUT_typeFlags = extern enum(u32) {
+    MOUSE = 0,
+    KEYBOARD = 1,
+    HARDWARE = 2,
+};
+pub const INPUT_MOUSE = INPUT_typeFlags.MOUSE;
+pub const INPUT_KEYBOARD = INPUT_typeFlags.KEYBOARD;
+pub const INPUT_HARDWARE = INPUT_typeFlags.HARDWARE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TRACKMOUSEEVENT_dwFlags = extern enum(u32) {
+    CANCEL = 2147483648,
+    HOVER = 1,
+    LEAVE = 2,
+    NONCLIENT = 16,
+    QUERY = 1073741824,
+    _,
+};
+pub const TME_CANCEL = TRACKMOUSEEVENT_dwFlags.CANCEL;
+pub const TME_HOVER = TRACKMOUSEEVENT_dwFlags.HOVER;
+pub const TME_LEAVE = TRACKMOUSEEVENT_dwFlags.LEAVE;
+pub const TME_NONCLIENT = TRACKMOUSEEVENT_dwFlags.NONCLIENT;
+pub const TME_QUERY = TRACKMOUSEEVENT_dwFlags.QUERY;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RAWMOUSE_usButtonFlags = extern enum(u32) {
+    LEFT_BUTTON_DOWN = 1,
+    LEFT_BUTTON_UP = 2,
+    MIDDLE_BUTTON_DOWN = 16,
+    MIDDLE_BUTTON_UP = 32,
+    RIGHT_BUTTON_DOWN = 4,
+    RIGHT_BUTTON_UP = 8,
+    BUTTON_1_DOWN = 1,
+    BUTTON_1_UP = 2,
+    BUTTON_2_DOWN = 4,
+    BUTTON_2_UP = 8,
+    BUTTON_3_DOWN = 16,
+    BUTTON_3_UP = 32,
+    BUTTON_4_DOWN = 64,
+    BUTTON_4_UP = 128,
+    BUTTON_5_DOWN = 256,
+    BUTTON_5_UP = 512,
+    WHEEL = 1024,
+    HWHEEL = 2048,
+    _,
+};
+pub const RI_MOUSE_LEFT_BUTTON_DOWN = RAWMOUSE_usButtonFlags.LEFT_BUTTON_DOWN;
+pub const RI_MOUSE_LEFT_BUTTON_UP = RAWMOUSE_usButtonFlags.LEFT_BUTTON_UP;
+pub const RI_MOUSE_MIDDLE_BUTTON_DOWN = RAWMOUSE_usButtonFlags.MIDDLE_BUTTON_DOWN;
+pub const RI_MOUSE_MIDDLE_BUTTON_UP = RAWMOUSE_usButtonFlags.MIDDLE_BUTTON_UP;
+pub const RI_MOUSE_RIGHT_BUTTON_DOWN = RAWMOUSE_usButtonFlags.RIGHT_BUTTON_DOWN;
+pub const RI_MOUSE_RIGHT_BUTTON_UP = RAWMOUSE_usButtonFlags.RIGHT_BUTTON_UP;
+pub const RI_MOUSE_BUTTON_1_DOWN = RAWMOUSE_usButtonFlags.BUTTON_1_DOWN;
+pub const RI_MOUSE_BUTTON_1_UP = RAWMOUSE_usButtonFlags.BUTTON_1_UP;
+pub const RI_MOUSE_BUTTON_2_DOWN = RAWMOUSE_usButtonFlags.BUTTON_2_DOWN;
+pub const RI_MOUSE_BUTTON_2_UP = RAWMOUSE_usButtonFlags.BUTTON_2_UP;
+pub const RI_MOUSE_BUTTON_3_DOWN = RAWMOUSE_usButtonFlags.BUTTON_3_DOWN;
+pub const RI_MOUSE_BUTTON_3_UP = RAWMOUSE_usButtonFlags.BUTTON_3_UP;
+pub const RI_MOUSE_BUTTON_4_DOWN = RAWMOUSE_usButtonFlags.BUTTON_4_DOWN;
+pub const RI_MOUSE_BUTTON_4_UP = RAWMOUSE_usButtonFlags.BUTTON_4_UP;
+pub const RI_MOUSE_BUTTON_5_DOWN = RAWMOUSE_usButtonFlags.BUTTON_5_DOWN;
+pub const RI_MOUSE_BUTTON_5_UP = RAWMOUSE_usButtonFlags.BUTTON_5_UP;
+pub const RI_MOUSE_WHEEL = RAWMOUSE_usButtonFlags.WHEEL;
+pub const RI_MOUSE_HWHEEL = RAWMOUSE_usButtonFlags.HWHEEL;
+
 pub const MOUSEMOVEPOINT = extern struct {
     x: i32,
     y: i32,
@@ -15,7 +222,7 @@ pub const MOUSEMOVEPOINT = extern struct {
 
 pub const TRACKMOUSEEVENT = extern struct {
     cbSize: u32,
-    dwFlags: u32,
+    dwFlags: TRACKMOUSEEVENT_dwFlags,
     hwndTrack: HWND,
     dwHoverTime: u32,
 };
@@ -24,7 +231,7 @@ pub const MOUSEINPUT = extern struct {
     dx: i32,
     dy: i32,
     mouseData: u32,
-    dwFlags: u32,
+    dwFlags: mouse_eventFlags,
     time: u32,
     dwExtraInfo: ?*c_void,
 };
@@ -32,7 +239,7 @@ pub const MOUSEINPUT = extern struct {
 pub const KEYBDINPUT = extern struct {
     wVk: u16,
     wScan: u16,
-    dwFlags: u32,
+    dwFlags: keybd_eventFlags,
     time: u32,
     dwExtraInfo: ?*c_void,
 };
@@ -44,7 +251,7 @@ pub const HARDWAREINPUT = extern struct {
 };
 
 pub const INPUT = extern struct {
-    type: u32,
+    type: INPUT_typeFlags,
     Anonymous: INPUT._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -118,7 +325,7 @@ pub const RID_DEVICE_INFO_HID = extern struct {
 
 pub const RID_DEVICE_INFO = extern struct {
     cbSize: u32,
-    dwType: u32,
+    dwType: RID_DEVICE_INFO_dwType,
     Anonymous: RID_DEVICE_INFO._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -126,16 +333,14 @@ pub const RID_DEVICE_INFO = extern struct {
 pub const RAWINPUTDEVICE = extern struct {
     usUsagePage: u16,
     usUsage: u16,
-    dwFlags: u32,
+    dwFlags: RAWINPUTDEVICE_dwFlags,
     hwndTarget: HWND,
 };
 
 pub const RAWINPUTDEVICELIST = extern struct {
     hDevice: HANDLE,
-    dwType: u32,
+    dwType: RID_DEVICE_INFO_dwType,
 };
-
-pub const HRAWINPUT = ?*c_void;
 
 
 //--------------------------------------------------------------------------------
@@ -147,17 +352,17 @@ pub extern "COMCTL32" fn _TrackMouseEvent(
 
 pub extern "USER32" fn LoadKeyboardLayoutA(
     pwszKLID: [*:0]const u8,
-    Flags: u32,
+    Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
 pub extern "USER32" fn LoadKeyboardLayoutW(
     pwszKLID: [*:0]const u16,
-    Flags: u32,
+    Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
 pub extern "USER32" fn ActivateKeyboardLayout(
-    hkl: HKL,
-    Flags: u32,
+    hkl: ActivateKeyboardLayout_hklFlags,
+    Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
 pub extern "USER32" fn ToUnicodeEx(
@@ -196,7 +401,7 @@ pub extern "USER32" fn GetMouseMovePointsEx(
     lppt: *MOUSEMOVEPOINT,
     lpptBuf: [*]MOUSEMOVEPOINT,
     nBufPoints: i32,
-    resolution: u32,
+    resolution: GetMouseMovePointsEx_resolutionFlags,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "USER32" fn TrackMouseEvent(
@@ -206,7 +411,7 @@ pub extern "USER32" fn TrackMouseEvent(
 pub extern "USER32" fn RegisterHotKey(
     hWnd: HWND,
     id: i32,
-    fsModifiers: u32,
+    fsModifiers: RegisterHotKey_fsModifiersFlags,
     vk: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -322,12 +527,12 @@ pub extern "USER32" fn VkKeyScanExW(
 pub extern "USER32" fn keybd_event(
     bVk: u8,
     bScan: u8,
-    dwFlags: u32,
+    dwFlags: keybd_eventFlags,
     dwExtraInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "USER32" fn mouse_event(
-    dwFlags: u32,
+    dwFlags: mouse_eventFlags,
     dx: u32,
     dy: u32,
     dwData: u32,
@@ -400,7 +605,7 @@ pub extern "USER32" fn BlockInput(
 
 pub extern "USER32" fn GetRawInputData(
     hRawInput: HRAWINPUT,
-    uiCommand: u32,
+    uiCommand: GetRawInputData_uiCommandFlags,
     pData: ?[*]u8,
     pcbSize: *u32,
     cbSizeHeader: u32,
@@ -408,14 +613,14 @@ pub extern "USER32" fn GetRawInputData(
 
 pub extern "USER32" fn GetRawInputDeviceInfoA(
     hDevice: HANDLE,
-    uiCommand: u32,
+    uiCommand: GetRawInputDeviceInfo_uiCommand,
     pData: ?[*]u8,
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "USER32" fn GetRawInputDeviceInfoW(
     hDevice: HANDLE,
-    uiCommand: u32,
+    uiCommand: GetRawInputDeviceInfo_uiCommand,
     pData: ?[*]u8,
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -510,8 +715,8 @@ const POINT = @import("display_devices.zig").POINT;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 19;
-    const enum_value_export_count = 0;
+    const type_export_count = 32;
+    const enum_value_export_count = 79;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 60;

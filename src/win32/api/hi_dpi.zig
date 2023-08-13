@@ -6,26 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = extern enum(i32) {
-    DCDC_DEFAULT = 0,
-    DCDC_DISABLE_FONT_UPDATE = 1,
-    DCDC_DISABLE_RELAYOUT = 2,
-};
-pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.DCDC_DEFAULT;
-pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.DCDC_DISABLE_FONT_UPDATE;
-pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.DCDC_DISABLE_RELAYOUT;
-
-pub const DIALOG_DPI_CHANGE_BEHAVIORS = extern enum(i32) {
-    DDC_DEFAULT = 0,
-    DDC_DISABLE_ALL = 1,
-    DDC_DISABLE_RESIZE = 2,
-    DDC_DISABLE_CONTROL_RELAYOUT = 4,
-};
-pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.DDC_DEFAULT;
-pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.DDC_DISABLE_ALL;
-pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.DDC_DISABLE_RESIZE;
-pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.DDC_DISABLE_CONTROL_RELAYOUT;
-
 pub const DPI_AWARENESS = extern enum(i32) {
     INVALID = -1,
     UNAWARE = 0,
@@ -47,24 +27,44 @@ pub const DPI_HOSTING_BEHAVIOR_DEFAULT = DPI_HOSTING_BEHAVIOR.DEFAULT;
 pub const DPI_HOSTING_BEHAVIOR_MIXED = DPI_HOSTING_BEHAVIOR.MIXED;
 
 pub const PROCESS_DPI_AWARENESS = extern enum(i32) {
-    PROCESS_DPI_UNAWARE = 0,
-    PROCESS_SYSTEM_DPI_AWARE = 1,
-    PROCESS_PER_MONITOR_DPI_AWARE = 2,
+    DPI_UNAWARE = 0,
+    SYSTEM_DPI_AWARE = 1,
+    PER_MONITOR_DPI_AWARE = 2,
 };
-pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.PROCESS_DPI_UNAWARE;
-pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.PROCESS_SYSTEM_DPI_AWARE;
-pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE;
+pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.DPI_UNAWARE;
+pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.SYSTEM_DPI_AWARE;
+pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PER_MONITOR_DPI_AWARE;
 
 pub const MONITOR_DPI_TYPE = extern enum(i32) {
-    MDT_EFFECTIVE_DPI = 0,
-    MDT_ANGULAR_DPI = 1,
-    MDT_RAW_DPI = 2,
-    MDT_DEFAULT = 0,
+    EFFECTIVE_DPI = 0,
+    ANGULAR_DPI = 1,
+    RAW_DPI = 2,
+    DEFAULT = 0,
 };
-pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.MDT_EFFECTIVE_DPI;
-pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.MDT_ANGULAR_DPI;
-pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.MDT_RAW_DPI;
-pub const MDT_DEFAULT = MONITOR_DPI_TYPE.MDT_DEFAULT;
+pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
+pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
+pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
+pub const MDT_DEFAULT = MONITOR_DPI_TYPE.DEFAULT;
+
+pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = extern enum(i32) {
+    EFAULT = 0,
+    ISABLE_FONT_UPDATE = 1,
+    ISABLE_RELAYOUT = 2,
+};
+pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
+pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE;
+pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT;
+
+pub const DIALOG_DPI_CHANGE_BEHAVIORS = extern enum(i32) {
+    EFAULT = 0,
+    ISABLE_ALL = 1,
+    ISABLE_RESIZE = 2,
+    ISABLE_CONTROL_RELAYOUT = 4,
+};
+pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
+pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;
+pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE;
+pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT;
 
 
 //--------------------------------------------------------------------------------
@@ -75,6 +75,22 @@ pub extern "UxTheme" fn OpenThemeDataForDpi(
     pszClassList: [*:0]const u16,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
+    value: PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
+    hprocess: HANDLE,
+    value: *PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
+    hmonitor: HMONITOR,
+    dpiType: MONITOR_DPI_TYPE,
+    dpiX: *u32,
+    dpiY: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "USER32" fn SetDialogControlDpiChangeBehavior(
     hWnd: HWND,
@@ -128,31 +144,31 @@ pub extern "USER32" fn SystemParametersInfoForDpi(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn SetThreadDpiAwarenessContext(
-    dpiContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    dpiContext: DPI_AWARENESS_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 pub extern "USER32" fn GetThreadDpiAwarenessContext(
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 pub extern "USER32" fn GetWindowDpiAwarenessContext(
     hwnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 pub extern "USER32" fn GetAwarenessFromDpiAwarenessContext(
-    value: ?*c_void,
+    value: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS;
 
 pub extern "USER32" fn GetDpiFromDpiAwarenessContext(
-    value: ?*c_void,
+    value: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "USER32" fn AreDpiAwarenessContextsEqual(
-    dpiContextA: ?*c_void,
-    dpiContextB: ?*c_void,
+    dpiContextA: DPI_AWARENESS_CONTEXT,
+    dpiContextB: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IsValidDpiAwarenessContext(
-    value: ?*c_void,
+    value: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn GetDpiForWindow(
@@ -171,7 +187,7 @@ pub extern "USER32" fn EnableNonClientDpiScaling(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn SetProcessDpiAwarenessContext(
-    value: ?*c_void,
+    value: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn SetThreadDpiHostingBehavior(
@@ -184,22 +200,6 @@ pub extern "USER32" fn GetThreadDpiHostingBehavior(
 pub extern "USER32" fn GetWindowDpiHostingBehavior(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
-
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
-    value: PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
-    hprocess: HANDLE,
-    value: *PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
-    hmonitor: HMONITOR,
-    dpiType: MONITOR_DPI_TYPE,
-    dpiX: *u32,
-    dpiY: *u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -215,16 +215,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const PWSTR = @import("system_services.zig").PWSTR;
 const HRESULT = @import("com.zig").HRESULT;
-const POINT = @import("display_devices.zig").POINT;
-const RECT = @import("display_devices.zig").RECT;
 const HANDLE = @import("system_services.zig").HANDLE;
+const RECT = @import("display_devices.zig").RECT;
+const POINT = @import("display_devices.zig").POINT;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
+const DPI_AWARENESS_CONTEXT = @import("system_services.zig").DPI_AWARENESS_CONTEXT;
 
 test {
     const constant_export_count = 0;
@@ -234,7 +235,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 28;
     const unicode_alias_count = 0;
-    const import_count = 8;
+    const import_count = 9;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

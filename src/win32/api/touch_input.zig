@@ -7,47 +7,8 @@ pub const NEGATIVE_INFINITY = -@import("std").math.inf(f32);
 pub const NaN = @import("std").math.nan(f32);
 
 //--------------------------------------------------------------------------------
-// Section: Types (12)
+// Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const TOUCHINPUT = extern struct {
-    x: i32,
-    y: i32,
-    hSource: HANDLE,
-    dwID: u32,
-    dwFlags: u32,
-    dwMask: u32,
-    dwTime: u32,
-    dwExtraInfo: ?*c_void,
-    cxContact: u32,
-    cyContact: u32,
-};
-
-pub const GESTUREINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwID: u32,
-    hwndTarget: HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-    dwSequenceID: u32,
-    ullArguments: u64,
-    cbExtraArgs: u32,
-};
-
-pub const GESTURENOTIFYSTRUCT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    hwndTarget: HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-};
-
-pub const GESTURECONFIG = extern struct {
-    dwID: u32,
-    dwWant: u32,
-    dwBlock: u32,
-};
-
 pub const HGESTUREINFO = ?*c_void;
 
 pub const HTOUCHINPUT = ?*c_void;
@@ -59,19 +20,19 @@ const CLSID_ManipulationProcessor_Value = @import("../zig.zig").Guid.initString(
 pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
 
 pub const MANIPULATION_PROCESSOR_MANIPULATIONS = extern enum(i32) {
-    MANIPULATION_NONE = 0,
-    MANIPULATION_TRANSLATE_X = 1,
-    MANIPULATION_TRANSLATE_Y = 2,
-    MANIPULATION_SCALE = 4,
-    MANIPULATION_ROTATE = 8,
-    MANIPULATION_ALL = 15,
+    NONE = 0,
+    TRANSLATE_X = 1,
+    TRANSLATE_Y = 2,
+    SCALE = 4,
+    ROTATE = 8,
+    ALL = 15,
 };
-pub const MANIPULATION_NONE = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_NONE;
-pub const MANIPULATION_TRANSLATE_X = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_TRANSLATE_X;
-pub const MANIPULATION_TRANSLATE_Y = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_TRANSLATE_Y;
-pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_SCALE;
-pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_ROTATE;
-pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_ALL;
+pub const MANIPULATION_NONE = MANIPULATION_PROCESSOR_MANIPULATIONS.NONE;
+pub const MANIPULATION_TRANSLATE_X = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_X;
+pub const MANIPULATION_TRANSLATE_Y = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_Y;
+pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.SCALE;
+pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.ROTATE;
+pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
 
 const IID__IManipulationEvents_Value = @import("../zig.zig").Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
 pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
@@ -727,6 +688,105 @@ pub const IManipulationProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const GESTURECONFIG_ID = extern enum(u32) {
+    BEGIN = 1,
+    END = 2,
+    ZOOM = 3,
+    PAN = 4,
+    ROTATE = 5,
+    TWOFINGERTAP = 6,
+    PRESSANDTAP = 7,
+    ROLLOVER = 7,
+    _,
+};
+pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
+pub const GID_END = GESTURECONFIG_ID.END;
+pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
+pub const GID_PAN = GESTURECONFIG_ID.PAN;
+pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
+pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
+pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
+pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
+    MOVE = 1,
+    DOWN = 2,
+    UP = 4,
+    INRANGE = 8,
+    PRIMARY = 16,
+    NOCOALESCE = 32,
+    PEN = 64,
+    PALM = 128,
+    _,
+};
+pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
+pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
+pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
+pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
+pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
+pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
+pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
+pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
+    TIMEFROMSYSTEM = 1,
+    EXTRAINFO = 2,
+    CONTACTAREA = 4,
+    _,
+};
+pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
+pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
+pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
+
+pub const RegisterTouchWindow_ulFlags = extern enum(u32) {
+    FINETOUCH = 1,
+    WANTPALM = 2,
+};
+pub const TWF_FINETOUCH = RegisterTouchWindow_ulFlags.FINETOUCH;
+pub const TWF_WANTPALM = RegisterTouchWindow_ulFlags.WANTPALM;
+
+pub const TOUCHINPUT = extern struct {
+    x: i32,
+    y: i32,
+    hSource: HANDLE,
+    dwID: u32,
+    dwFlags: TOUCHEVENTF_FLAGS,
+    dwMask: TOUCHINPUTMASKF_MASK,
+    dwTime: u32,
+    dwExtraInfo: ?*c_void,
+    cxContact: u32,
+    cyContact: u32,
+};
+
+pub const GESTUREINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwID: u32,
+    hwndTarget: HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+    dwSequenceID: u32,
+    ullArguments: u64,
+    cbExtraArgs: u32,
+};
+
+pub const GESTURENOTIFYSTRUCT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    hwndTarget: HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+};
+
+pub const GESTURECONFIG = extern struct {
+    dwID: GESTURECONFIG_ID,
+    dwWant: u32,
+    dwBlock: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -744,7 +804,7 @@ pub extern "USER32" fn CloseTouchInputHandle(
 
 pub extern "USER32" fn RegisterTouchWindow(
     hwnd: HWND,
-    ulFlags: u32,
+    ulFlags: RegisterTouchWindow_ulFlags,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn UnregisterTouchWindow(
@@ -804,17 +864,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const HRESULT = @import("com.zig").HRESULT;
-const BOOL = @import("system_services.zig").BOOL;
-const HANDLE = @import("system_services.zig").HANDLE;
-const POINTS = @import("display_devices.zig").POINTS;
 const HWND = @import("windows_and_messaging.zig").HWND;
+const POINTS = @import("display_devices.zig").POINTS;
+const HANDLE = @import("system_services.zig").HANDLE;
 const IUnknown = @import("com.zig").IUnknown;
+const BOOL = @import("system_services.zig").BOOL;
+const HRESULT = @import("com.zig").HRESULT;
 
 test {
     const constant_export_count = 3;
-    const type_export_count = 10;
-    const enum_value_export_count = 6;
+    const type_export_count = 14;
+    const enum_value_export_count = 27;
     const com_iface_id_export_count = 3;
     const com_class_id_export_count = 2;
     const func_export_count = 10;

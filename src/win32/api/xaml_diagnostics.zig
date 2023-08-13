@@ -78,22 +78,21 @@ pub const PropertyChainSource = extern struct {
 
 pub const MetadataBit = extern enum(i32) {
     None = 0,
-    IsValueHandle = 1,
-    IsPropertyReadOnly = 2,
-    IsValueCollection = 4,
-    IsValueCollectionReadOnly = 8,
-    IsValueBindingExpression = 16,
-    IsValueNull = 32,
-    IsValueHandleAndEvaluatedValue = 64,
+    ValueHandle = 1,
+    PropertyReadOnly = 2,
+    ValueCollection = 4,
+    ValueCollectionReadOnly = 8,
+    ValueBindingExpression = 16,
+    ValueNull = 32,
+    ValueHandleAndEvaluatedValue = 64,
 };
-pub const None = MetadataBit.None;
-pub const IsValueHandle = MetadataBit.IsValueHandle;
-pub const IsPropertyReadOnly = MetadataBit.IsPropertyReadOnly;
-pub const IsValueCollection = MetadataBit.IsValueCollection;
-pub const IsValueCollectionReadOnly = MetadataBit.IsValueCollectionReadOnly;
-pub const IsValueBindingExpression = MetadataBit.IsValueBindingExpression;
-pub const IsValueNull = MetadataBit.IsValueNull;
-pub const IsValueHandleAndEvaluatedValue = MetadataBit.IsValueHandleAndEvaluatedValue;
+pub const IsValueHandle = MetadataBit.ValueHandle;
+pub const IsPropertyReadOnly = MetadataBit.PropertyReadOnly;
+pub const IsValueCollection = MetadataBit.ValueCollection;
+pub const IsValueCollectionReadOnly = MetadataBit.ValueCollectionReadOnly;
+pub const IsValueBindingExpression = MetadataBit.ValueBindingExpression;
+pub const IsValueNull = MetadataBit.ValueNull;
+pub const IsValueHandleAndEvaluatedValue = MetadataBit.ValueHandleAndEvaluatedValue;
 
 pub const PropertyChainValue = extern struct {
     Index: u32,
@@ -122,11 +121,11 @@ pub const CollectionElementValue = extern struct {
 };
 
 pub const RenderTargetBitmapOptions = extern enum(i32) {
-    RenderTarget = 0,
-    RenderTargetAndChildren = 1,
+    t = 0,
+    AndChildren = 1,
 };
-pub const RenderTarget = RenderTargetBitmapOptions.RenderTarget;
-pub const RenderTargetAndChildren = RenderTargetBitmapOptions.RenderTargetAndChildren;
+pub const RenderTarget = RenderTargetBitmapOptions.t;
+pub const RenderTargetAndChildren = RenderTargetBitmapOptions.AndChildren;
 
 pub const BitmapDescription = extern struct {
     Width: u32,
@@ -136,20 +135,20 @@ pub const BitmapDescription = extern struct {
 };
 
 pub const ResourceType = extern enum(i32) {
-    ResourceTypeStatic = 0,
-    ResourceTypeTheme = 1,
+    Static = 0,
+    Theme = 1,
 };
-pub const ResourceTypeStatic = ResourceType.ResourceTypeStatic;
-pub const ResourceTypeTheme = ResourceType.ResourceTypeTheme;
+pub const ResourceTypeStatic = ResourceType.Static;
+pub const ResourceTypeTheme = ResourceType.Theme;
 
 pub const VisualElementState = extern enum(i32) {
-    ErrorResolved = 0,
-    ErrorResourceNotFound = 1,
-    ErrorInvalidResource = 2,
+    Resolved = 0,
+    ResourceNotFound = 1,
+    InvalidResource = 2,
 };
-pub const ErrorResolved = VisualElementState.ErrorResolved;
-pub const ErrorResourceNotFound = VisualElementState.ErrorResourceNotFound;
-pub const ErrorInvalidResource = VisualElementState.ErrorInvalidResource;
+pub const ErrorResolved = VisualElementState.Resolved;
+pub const ErrorResourceNotFound = VisualElementState.ResourceNotFound;
+pub const ErrorInvalidResource = VisualElementState.InvalidResource;
 
 const IID_IVisualTreeServiceCallback_Value = @import("../zig.zig").Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
 pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
@@ -614,7 +613,7 @@ const IInspectable = @import("win_rt.zig").IInspectable;
 test {
     const constant_export_count = 0;
     const type_export_count = 21;
-    const enum_value_export_count = 32;
+    const enum_value_export_count = 31;
     const com_iface_id_export_count = 7;
     const com_class_id_export_count = 0;
     const func_export_count = 2;

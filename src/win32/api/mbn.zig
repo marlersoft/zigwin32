@@ -32,9 +32,9 @@ pub const IDummyMBNUCMExt = extern struct {
 };
 
 pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = extern enum(i32) {
-    MBN_DEVICE_SERVICE_SESSIONS_RESTORED = 0,
+    D = 0,
 };
-pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.MBN_DEVICE_SERVICE_SESSIONS_RESTORED;
+pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.D;
 
 const IID_IMbnDeviceServiceStateEvents_Value = @import("../zig.zig").Guid.initString("5d3ff196-89ee-49d8-8b60-33ffddffc58d");
 pub const IID_IMbnDeviceServiceStateEvents = &IID_IMbnDeviceServiceStateEvents_Value;

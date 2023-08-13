@@ -4,8 +4,15 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (5)
+// Section: Types (6)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const wglSwapLayerBuffers_arg2Flags = extern enum(u32) {
+    E = 1,
+    _,
+};
+pub const WGL_SWAP_MAIN_PLANE = wglSwapLayerBuffers_arg2Flags.E;
+
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
 pub const HGLRC = ?*c_void;
 
@@ -256,8 +263,8 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 5;
-    const enum_value_export_count = 0;
+    const type_export_count = 6;
+    const enum_value_export_count = 1;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 24;

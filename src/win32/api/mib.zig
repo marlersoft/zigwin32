@@ -6,16 +6,20 @@
 //--------------------------------------------------------------------------------
 // Section: Types (102)
 //--------------------------------------------------------------------------------
-pub const MIB_NOTIFICATION_TYPE = extern enum(i32) {
-    MibParameterNotification = 0,
-    MibAddInstance = 1,
-    MibDeleteInstance = 2,
-    MibInitialNotification = 3,
+pub const NL_INTERFACE_OFFLOAD_ROD = extern struct {
+    _bitfield: u8,
 };
-pub const MibParameterNotification = MIB_NOTIFICATION_TYPE.MibParameterNotification;
-pub const MibAddInstance = MIB_NOTIFICATION_TYPE.MibAddInstance;
-pub const MibDeleteInstance = MIB_NOTIFICATION_TYPE.MibDeleteInstance;
-pub const MibInitialNotification = MIB_NOTIFICATION_TYPE.MibInitialNotification;
+
+pub const MIB_NOTIFICATION_TYPE = extern enum(i32) {
+    ParameterNotification = 0,
+    AddInstance = 1,
+    DeleteInstance = 2,
+    InitialNotification = 3,
+};
+pub const MibParameterNotification = MIB_NOTIFICATION_TYPE.ParameterNotification;
+pub const MibAddInstance = MIB_NOTIFICATION_TYPE.AddInstance;
+pub const MibDeleteInstance = MIB_NOTIFICATION_TYPE.DeleteInstance;
+pub const MibInitialNotification = MIB_NOTIFICATION_TYPE.InitialNotification;
 
 pub const MIB_IF_ROW2 = extern struct {
     InterfaceLuid: NET_LUID_LH,
@@ -480,33 +484,33 @@ pub const ND_REDIRECT = ICMP6_TYPE.ND_REDIRECT;
 pub const ICMP6_V2_MEMBERSHIP_REPORT = ICMP6_TYPE.ICMP6_V2_MEMBERSHIP_REPORT;
 
 pub const ICMP4_TYPE = extern enum(i32) {
-    ICMP4_ECHO_REPLY = 0,
-    ICMP4_DST_UNREACH = 3,
-    ICMP4_SOURCE_QUENCH = 4,
-    ICMP4_REDIRECT = 5,
-    ICMP4_ECHO_REQUEST = 8,
-    ICMP4_ROUTER_ADVERT = 9,
-    ICMP4_ROUTER_SOLICIT = 10,
-    ICMP4_TIME_EXCEEDED = 11,
-    ICMP4_PARAM_PROB = 12,
-    ICMP4_TIMESTAMP_REQUEST = 13,
-    ICMP4_TIMESTAMP_REPLY = 14,
-    ICMP4_MASK_REQUEST = 17,
-    ICMP4_MASK_REPLY = 18,
+    ECHO_REPLY = 0,
+    DST_UNREACH = 3,
+    SOURCE_QUENCH = 4,
+    REDIRECT = 5,
+    ECHO_REQUEST = 8,
+    ROUTER_ADVERT = 9,
+    ROUTER_SOLICIT = 10,
+    TIME_EXCEEDED = 11,
+    PARAM_PROB = 12,
+    TIMESTAMP_REQUEST = 13,
+    TIMESTAMP_REPLY = 14,
+    MASK_REQUEST = 17,
+    MASK_REPLY = 18,
 };
-pub const ICMP4_ECHO_REPLY = ICMP4_TYPE.ICMP4_ECHO_REPLY;
-pub const ICMP4_DST_UNREACH = ICMP4_TYPE.ICMP4_DST_UNREACH;
-pub const ICMP4_SOURCE_QUENCH = ICMP4_TYPE.ICMP4_SOURCE_QUENCH;
-pub const ICMP4_REDIRECT = ICMP4_TYPE.ICMP4_REDIRECT;
-pub const ICMP4_ECHO_REQUEST = ICMP4_TYPE.ICMP4_ECHO_REQUEST;
-pub const ICMP4_ROUTER_ADVERT = ICMP4_TYPE.ICMP4_ROUTER_ADVERT;
-pub const ICMP4_ROUTER_SOLICIT = ICMP4_TYPE.ICMP4_ROUTER_SOLICIT;
-pub const ICMP4_TIME_EXCEEDED = ICMP4_TYPE.ICMP4_TIME_EXCEEDED;
-pub const ICMP4_PARAM_PROB = ICMP4_TYPE.ICMP4_PARAM_PROB;
-pub const ICMP4_TIMESTAMP_REQUEST = ICMP4_TYPE.ICMP4_TIMESTAMP_REQUEST;
-pub const ICMP4_TIMESTAMP_REPLY = ICMP4_TYPE.ICMP4_TIMESTAMP_REPLY;
-pub const ICMP4_MASK_REQUEST = ICMP4_TYPE.ICMP4_MASK_REQUEST;
-pub const ICMP4_MASK_REPLY = ICMP4_TYPE.ICMP4_MASK_REPLY;
+pub const ICMP4_ECHO_REPLY = ICMP4_TYPE.ECHO_REPLY;
+pub const ICMP4_DST_UNREACH = ICMP4_TYPE.DST_UNREACH;
+pub const ICMP4_SOURCE_QUENCH = ICMP4_TYPE.SOURCE_QUENCH;
+pub const ICMP4_REDIRECT = ICMP4_TYPE.REDIRECT;
+pub const ICMP4_ECHO_REQUEST = ICMP4_TYPE.ECHO_REQUEST;
+pub const ICMP4_ROUTER_ADVERT = ICMP4_TYPE.ROUTER_ADVERT;
+pub const ICMP4_ROUTER_SOLICIT = ICMP4_TYPE.ROUTER_SOLICIT;
+pub const ICMP4_TIME_EXCEEDED = ICMP4_TYPE.TIME_EXCEEDED;
+pub const ICMP4_PARAM_PROB = ICMP4_TYPE.PARAM_PROB;
+pub const ICMP4_TIMESTAMP_REQUEST = ICMP4_TYPE.TIMESTAMP_REQUEST;
+pub const ICMP4_TIMESTAMP_REPLY = ICMP4_TYPE.TIMESTAMP_REPLY;
+pub const ICMP4_MASK_REQUEST = ICMP4_TYPE.MASK_REQUEST;
+pub const ICMP4_MASK_REPLY = ICMP4_TYPE.MASK_REPLY;
 
 pub const MIB_IPMCAST_OIF_XP = extern struct {
     dwOutIfIndex: u32,
@@ -640,17 +644,17 @@ pub const MIB_IPMCAST_IF_TABLE = extern struct {
 };
 
 pub const TCP_CONNECTION_OFFLOAD_STATE = extern enum(i32) {
-    TcpConnectionOffloadStateInHost = 0,
-    TcpConnectionOffloadStateOffloading = 1,
-    TcpConnectionOffloadStateOffloaded = 2,
-    TcpConnectionOffloadStateUploading = 3,
-    TcpConnectionOffloadStateMax = 4,
+    InHost = 0,
+    Offloading = 1,
+    Offloaded = 2,
+    Uploading = 3,
+    Max = 4,
 };
-pub const TcpConnectionOffloadStateInHost = TCP_CONNECTION_OFFLOAD_STATE.TcpConnectionOffloadStateInHost;
-pub const TcpConnectionOffloadStateOffloading = TCP_CONNECTION_OFFLOAD_STATE.TcpConnectionOffloadStateOffloading;
-pub const TcpConnectionOffloadStateOffloaded = TCP_CONNECTION_OFFLOAD_STATE.TcpConnectionOffloadStateOffloaded;
-pub const TcpConnectionOffloadStateUploading = TCP_CONNECTION_OFFLOAD_STATE.TcpConnectionOffloadStateUploading;
-pub const TcpConnectionOffloadStateMax = TCP_CONNECTION_OFFLOAD_STATE.TcpConnectionOffloadStateMax;
+pub const TcpConnectionOffloadStateInHost = TCP_CONNECTION_OFFLOAD_STATE.InHost;
+pub const TcpConnectionOffloadStateOffloading = TCP_CONNECTION_OFFLOAD_STATE.Offloading;
+pub const TcpConnectionOffloadStateOffloaded = TCP_CONNECTION_OFFLOAD_STATE.Offloaded;
+pub const TcpConnectionOffloadStateUploading = TCP_CONNECTION_OFFLOAD_STATE.Uploading;
+pub const TcpConnectionOffloadStateMax = TCP_CONNECTION_OFFLOAD_STATE.Max;
 
 pub const MIB_TCPROW_LH = extern struct {
     Anonymous: MIB_TCPROW_LH._Anonymous_e__Union,
@@ -983,10 +987,6 @@ pub const MIB_OPAQUE_INFO = extern struct {
     dwId: u32,
     Anonymous: MIB_OPAQUE_INFO._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const NL_INTERFACE_OFFLOAD_ROD = extern struct {
-    _bitfield: u8,
 };
 
 

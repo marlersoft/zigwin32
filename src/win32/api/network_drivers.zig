@@ -6,165 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
-pub const NET_IF_OPER_STATUS = extern enum(i32) {
-    UP = 1,
-    DOWN = 2,
-    TESTING = 3,
-    UNKNOWN = 4,
-    DORMANT = 5,
-    NOT_PRESENT = 6,
-    LOWER_LAYER_DOWN = 7,
-};
-pub const NET_IF_OPER_STATUS_UP = NET_IF_OPER_STATUS.UP;
-pub const NET_IF_OPER_STATUS_DOWN = NET_IF_OPER_STATUS.DOWN;
-pub const NET_IF_OPER_STATUS_TESTING = NET_IF_OPER_STATUS.TESTING;
-pub const NET_IF_OPER_STATUS_UNKNOWN = NET_IF_OPER_STATUS.UNKNOWN;
-pub const NET_IF_OPER_STATUS_DORMANT = NET_IF_OPER_STATUS.DORMANT;
-pub const NET_IF_OPER_STATUS_NOT_PRESENT = NET_IF_OPER_STATUS.NOT_PRESENT;
-pub const NET_IF_OPER_STATUS_LOWER_LAYER_DOWN = NET_IF_OPER_STATUS.LOWER_LAYER_DOWN;
-
-pub const NET_IF_ADMIN_STATUS = extern enum(i32) {
-    UP = 1,
-    DOWN = 2,
-    TESTING = 3,
-};
-pub const NET_IF_ADMIN_STATUS_UP = NET_IF_ADMIN_STATUS.UP;
-pub const NET_IF_ADMIN_STATUS_DOWN = NET_IF_ADMIN_STATUS.DOWN;
-pub const NET_IF_ADMIN_STATUS_TESTING = NET_IF_ADMIN_STATUS.TESTING;
-
-pub const NET_IF_CONNECTION_TYPE = extern enum(i32) {
-    NET_IF_CONNECTION_DEDICATED = 1,
-    NET_IF_CONNECTION_PASSIVE = 2,
-    NET_IF_CONNECTION_DEMAND = 3,
-    NET_IF_CONNECTION_MAXIMUM = 4,
-};
-pub const NET_IF_CONNECTION_DEDICATED = NET_IF_CONNECTION_TYPE.NET_IF_CONNECTION_DEDICATED;
-pub const NET_IF_CONNECTION_PASSIVE = NET_IF_CONNECTION_TYPE.NET_IF_CONNECTION_PASSIVE;
-pub const NET_IF_CONNECTION_DEMAND = NET_IF_CONNECTION_TYPE.NET_IF_CONNECTION_DEMAND;
-pub const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE.NET_IF_CONNECTION_MAXIMUM;
-
-pub const TUNNEL_TYPE = extern enum(i32) {
-    NONE = 0,
-    OTHER = 1,
-    DIRECT = 2,
-    _6TO4 = 11,
-    ISATAP = 13,
-    TEREDO = 14,
-    IPHTTPS = 15,
-};
-pub const TUNNEL_TYPE_NONE = TUNNEL_TYPE.NONE;
-pub const TUNNEL_TYPE_OTHER = TUNNEL_TYPE.OTHER;
-pub const TUNNEL_TYPE_DIRECT = TUNNEL_TYPE.DIRECT;
-pub const TUNNEL_TYPE_6TO4 = TUNNEL_TYPE._6TO4;
-pub const TUNNEL_TYPE_ISATAP = TUNNEL_TYPE.ISATAP;
-pub const TUNNEL_TYPE_TEREDO = TUNNEL_TYPE.TEREDO;
-pub const TUNNEL_TYPE_IPHTTPS = TUNNEL_TYPE.IPHTTPS;
-
-pub const NET_IF_ACCESS_TYPE = extern enum(i32) {
-    NET_IF_ACCESS_LOOPBACK = 1,
-    NET_IF_ACCESS_BROADCAST = 2,
-    NET_IF_ACCESS_POINT_TO_POINT = 3,
-    NET_IF_ACCESS_POINT_TO_MULTI_POINT = 4,
-    NET_IF_ACCESS_MAXIMUM = 5,
-};
-pub const NET_IF_ACCESS_LOOPBACK = NET_IF_ACCESS_TYPE.NET_IF_ACCESS_LOOPBACK;
-pub const NET_IF_ACCESS_BROADCAST = NET_IF_ACCESS_TYPE.NET_IF_ACCESS_BROADCAST;
-pub const NET_IF_ACCESS_POINT_TO_POINT = NET_IF_ACCESS_TYPE.NET_IF_ACCESS_POINT_TO_POINT;
-pub const NET_IF_ACCESS_POINT_TO_MULTI_POINT = NET_IF_ACCESS_TYPE.NET_IF_ACCESS_POINT_TO_MULTI_POINT;
-pub const NET_IF_ACCESS_MAXIMUM = NET_IF_ACCESS_TYPE.NET_IF_ACCESS_MAXIMUM;
-
-pub const NET_IF_DIRECTION_TYPE = extern enum(i32) {
-    NET_IF_DIRECTION_SENDRECEIVE = 0,
-    NET_IF_DIRECTION_SENDONLY = 1,
-    NET_IF_DIRECTION_RECEIVEONLY = 2,
-    NET_IF_DIRECTION_MAXIMUM = 3,
-};
-pub const NET_IF_DIRECTION_SENDRECEIVE = NET_IF_DIRECTION_TYPE.NET_IF_DIRECTION_SENDRECEIVE;
-pub const NET_IF_DIRECTION_SENDONLY = NET_IF_DIRECTION_TYPE.NET_IF_DIRECTION_SENDONLY;
-pub const NET_IF_DIRECTION_RECEIVEONLY = NET_IF_DIRECTION_TYPE.NET_IF_DIRECTION_RECEIVEONLY;
-pub const NET_IF_DIRECTION_MAXIMUM = NET_IF_DIRECTION_TYPE.NET_IF_DIRECTION_MAXIMUM;
-
-pub const NET_IF_MEDIA_CONNECT_STATE = extern enum(i32) {
-    MediaConnectStateUnknown = 0,
-    MediaConnectStateConnected = 1,
-    MediaConnectStateDisconnected = 2,
-};
-pub const MediaConnectStateUnknown = NET_IF_MEDIA_CONNECT_STATE.MediaConnectStateUnknown;
-pub const MediaConnectStateConnected = NET_IF_MEDIA_CONNECT_STATE.MediaConnectStateConnected;
-pub const MediaConnectStateDisconnected = NET_IF_MEDIA_CONNECT_STATE.MediaConnectStateDisconnected;
-
-pub const NET_IF_MEDIA_DUPLEX_STATE = extern enum(i32) {
-    MediaDuplexStateUnknown = 0,
-    MediaDuplexStateHalf = 1,
-    MediaDuplexStateFull = 2,
-};
-pub const MediaDuplexStateUnknown = NET_IF_MEDIA_DUPLEX_STATE.MediaDuplexStateUnknown;
-pub const MediaDuplexStateHalf = NET_IF_MEDIA_DUPLEX_STATE.MediaDuplexStateHalf;
-pub const MediaDuplexStateFull = NET_IF_MEDIA_DUPLEX_STATE.MediaDuplexStateFull;
-
-pub const NET_PHYSICAL_LOCATION_LH = extern struct {
-    BusNumber: u32,
-    SlotNumber: u32,
-    FunctionNumber: u32,
-};
-
-pub const IF_COUNTED_STRING_LH = extern struct {
-    Length: u16,
-    String: [257]u16,
-};
-
-pub const NDIS_INTERFACE_INFORMATION = extern struct {
-    ifOperStatus: NET_IF_OPER_STATUS,
-    ifOperStatusFlags: u32,
-    MediaConnectState: NET_IF_MEDIA_CONNECT_STATE,
-    MediaDuplexState: NET_IF_MEDIA_DUPLEX_STATE,
-    ifMtu: u32,
-    ifPromiscuousMode: u8,
-    ifDeviceWakeUpEnable: u8,
-    XmitLinkSpeed: u64,
-    RcvLinkSpeed: u64,
-    ifLastChange: u64,
-    ifCounterDiscontinuityTime: u64,
-    ifInUnknownProtos: u64,
-    ifInDiscards: u64,
-    ifInErrors: u64,
-    ifHCInOctets: u64,
-    ifHCInUcastPkts: u64,
-    ifHCInMulticastPkts: u64,
-    ifHCInBroadcastPkts: u64,
-    ifHCOutOctets: u64,
-    ifHCOutUcastPkts: u64,
-    ifHCOutMulticastPkts: u64,
-    ifHCOutBroadcastPkts: u64,
-    ifOutErrors: u64,
-    ifOutDiscards: u64,
-    ifHCInUcastOctets: u64,
-    ifHCInMulticastOctets: u64,
-    ifHCInBroadcastOctets: u64,
-    ifHCOutUcastOctets: u64,
-    ifHCOutMulticastOctets: u64,
-    ifHCOutBroadcastOctets: u64,
-    CompartmentId: u32,
-    SupportedStatistics: u32,
-};
-
-pub const MIB_IF_TABLE_LEVEL = extern enum(i32) {
-    MibIfTableNormal = 0,
-    MibIfTableRaw = 1,
-    MibIfTableNormalWithoutStatistics = 2,
-};
-pub const MibIfTableNormal = MIB_IF_TABLE_LEVEL.MibIfTableNormal;
-pub const MibIfTableRaw = MIB_IF_TABLE_LEVEL.MibIfTableRaw;
-pub const MibIfTableNormalWithoutStatistics = MIB_IF_TABLE_LEVEL.MibIfTableNormalWithoutStatistics;
-
-pub const L2_NOTIFICATION_DATA = extern struct {
-    NotificationSource: u32,
-    NotificationCode: u32,
-    InterfaceGuid: Guid,
-    dwDataSize: u32,
-    pData: *c_void,
-};
-
 pub const SOCKET_ADDRESS_LIST = extern struct {
     iAddressCount: i32,
     Address: [1]SOCKET_ADDRESS,
@@ -316,73 +157,232 @@ pub const MIB_IPPROTO_NT_STATIC_NON_DOD = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_STATI
 pub const PROTO_IP_NT_STATIC_NON_DOD = NL_ROUTE_PROTOCOL.PROTO_IP_NT_STATIC_NON_DOD;
 
 pub const NL_ADDRESS_TYPE = extern enum(i32) {
-    NlatUnspecified = 0,
-    NlatUnicast = 1,
-    NlatAnycast = 2,
-    NlatMulticast = 3,
-    NlatBroadcast = 4,
-    NlatInvalid = 5,
+    Unspecified = 0,
+    Unicast = 1,
+    Anycast = 2,
+    Multicast = 3,
+    Broadcast = 4,
+    Invalid = 5,
 };
-pub const NlatUnspecified = NL_ADDRESS_TYPE.NlatUnspecified;
-pub const NlatUnicast = NL_ADDRESS_TYPE.NlatUnicast;
-pub const NlatAnycast = NL_ADDRESS_TYPE.NlatAnycast;
-pub const NlatMulticast = NL_ADDRESS_TYPE.NlatMulticast;
-pub const NlatBroadcast = NL_ADDRESS_TYPE.NlatBroadcast;
-pub const NlatInvalid = NL_ADDRESS_TYPE.NlatInvalid;
+pub const NlatUnspecified = NL_ADDRESS_TYPE.Unspecified;
+pub const NlatUnicast = NL_ADDRESS_TYPE.Unicast;
+pub const NlatAnycast = NL_ADDRESS_TYPE.Anycast;
+pub const NlatMulticast = NL_ADDRESS_TYPE.Multicast;
+pub const NlatBroadcast = NL_ADDRESS_TYPE.Broadcast;
+pub const NlatInvalid = NL_ADDRESS_TYPE.Invalid;
 
 pub const NL_ROUTE_ORIGIN = extern enum(i32) {
-    NlroManual = 0,
-    NlroWellKnown = 1,
-    NlroDHCP = 2,
-    NlroRouterAdvertisement = 3,
-    Nlro6to4 = 4,
+    Manual = 0,
+    WellKnown = 1,
+    DHCP = 2,
+    RouterAdvertisement = 3,
+    @"6to4" = 4,
 };
-pub const NlroManual = NL_ROUTE_ORIGIN.NlroManual;
-pub const NlroWellKnown = NL_ROUTE_ORIGIN.NlroWellKnown;
-pub const NlroDHCP = NL_ROUTE_ORIGIN.NlroDHCP;
-pub const NlroRouterAdvertisement = NL_ROUTE_ORIGIN.NlroRouterAdvertisement;
-pub const Nlro6to4 = NL_ROUTE_ORIGIN.Nlro6to4;
+pub const NlroManual = NL_ROUTE_ORIGIN.Manual;
+pub const NlroWellKnown = NL_ROUTE_ORIGIN.WellKnown;
+pub const NlroDHCP = NL_ROUTE_ORIGIN.DHCP;
+pub const NlroRouterAdvertisement = NL_ROUTE_ORIGIN.RouterAdvertisement;
+pub const Nlro6to4 = NL_ROUTE_ORIGIN.@"6to4";
 
 pub const NL_NEIGHBOR_STATE = extern enum(i32) {
-    NlnsUnreachable = 0,
-    NlnsIncomplete = 1,
-    NlnsProbe = 2,
-    NlnsDelay = 3,
-    NlnsStale = 4,
-    NlnsReachable = 5,
-    NlnsPermanent = 6,
-    NlnsMaximum = 7,
+    Unreachable = 0,
+    Incomplete = 1,
+    Probe = 2,
+    Delay = 3,
+    Stale = 4,
+    Reachable = 5,
+    Permanent = 6,
+    Maximum = 7,
 };
-pub const NlnsUnreachable = NL_NEIGHBOR_STATE.NlnsUnreachable;
-pub const NlnsIncomplete = NL_NEIGHBOR_STATE.NlnsIncomplete;
-pub const NlnsProbe = NL_NEIGHBOR_STATE.NlnsProbe;
-pub const NlnsDelay = NL_NEIGHBOR_STATE.NlnsDelay;
-pub const NlnsStale = NL_NEIGHBOR_STATE.NlnsStale;
-pub const NlnsReachable = NL_NEIGHBOR_STATE.NlnsReachable;
-pub const NlnsPermanent = NL_NEIGHBOR_STATE.NlnsPermanent;
-pub const NlnsMaximum = NL_NEIGHBOR_STATE.NlnsMaximum;
+pub const NlnsUnreachable = NL_NEIGHBOR_STATE.Unreachable;
+pub const NlnsIncomplete = NL_NEIGHBOR_STATE.Incomplete;
+pub const NlnsProbe = NL_NEIGHBOR_STATE.Probe;
+pub const NlnsDelay = NL_NEIGHBOR_STATE.Delay;
+pub const NlnsStale = NL_NEIGHBOR_STATE.Stale;
+pub const NlnsReachable = NL_NEIGHBOR_STATE.Reachable;
+pub const NlnsPermanent = NL_NEIGHBOR_STATE.Permanent;
+pub const NlnsMaximum = NL_NEIGHBOR_STATE.Maximum;
 
 pub const NL_LINK_LOCAL_ADDRESS_BEHAVIOR = extern enum(i32) {
-    LinkLocalAlwaysOff = 0,
-    LinkLocalDelayed = 1,
-    LinkLocalAlwaysOn = 2,
-    LinkLocalUnchanged = -1,
+    AlwaysOff = 0,
+    Delayed = 1,
+    AlwaysOn = 2,
+    Unchanged = -1,
 };
-pub const LinkLocalAlwaysOff = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.LinkLocalAlwaysOff;
-pub const LinkLocalDelayed = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.LinkLocalDelayed;
-pub const LinkLocalAlwaysOn = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.LinkLocalAlwaysOn;
-pub const LinkLocalUnchanged = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.LinkLocalUnchanged;
+pub const LinkLocalAlwaysOff = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.AlwaysOff;
+pub const LinkLocalDelayed = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.Delayed;
+pub const LinkLocalAlwaysOn = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.AlwaysOn;
+pub const LinkLocalUnchanged = NL_LINK_LOCAL_ADDRESS_BEHAVIOR.Unchanged;
 
 pub const NL_ROUTER_DISCOVERY_BEHAVIOR = extern enum(i32) {
-    RouterDiscoveryDisabled = 0,
-    RouterDiscoveryEnabled = 1,
-    RouterDiscoveryDhcp = 2,
-    RouterDiscoveryUnchanged = -1,
+    Disabled = 0,
+    Enabled = 1,
+    Dhcp = 2,
+    Unchanged = -1,
 };
-pub const RouterDiscoveryDisabled = NL_ROUTER_DISCOVERY_BEHAVIOR.RouterDiscoveryDisabled;
-pub const RouterDiscoveryEnabled = NL_ROUTER_DISCOVERY_BEHAVIOR.RouterDiscoveryEnabled;
-pub const RouterDiscoveryDhcp = NL_ROUTER_DISCOVERY_BEHAVIOR.RouterDiscoveryDhcp;
-pub const RouterDiscoveryUnchanged = NL_ROUTER_DISCOVERY_BEHAVIOR.RouterDiscoveryUnchanged;
+pub const RouterDiscoveryDisabled = NL_ROUTER_DISCOVERY_BEHAVIOR.Disabled;
+pub const RouterDiscoveryEnabled = NL_ROUTER_DISCOVERY_BEHAVIOR.Enabled;
+pub const RouterDiscoveryDhcp = NL_ROUTER_DISCOVERY_BEHAVIOR.Dhcp;
+pub const RouterDiscoveryUnchanged = NL_ROUTER_DISCOVERY_BEHAVIOR.Unchanged;
+
+pub const L2_NOTIFICATION_DATA = extern struct {
+    NotificationSource: u32,
+    NotificationCode: u32,
+    InterfaceGuid: Guid,
+    dwDataSize: u32,
+    pData: *c_void,
+};
+
+pub const NET_IF_OPER_STATUS = extern enum(i32) {
+    UP = 1,
+    DOWN = 2,
+    TESTING = 3,
+    UNKNOWN = 4,
+    DORMANT = 5,
+    NOT_PRESENT = 6,
+    LOWER_LAYER_DOWN = 7,
+};
+pub const NET_IF_OPER_STATUS_UP = NET_IF_OPER_STATUS.UP;
+pub const NET_IF_OPER_STATUS_DOWN = NET_IF_OPER_STATUS.DOWN;
+pub const NET_IF_OPER_STATUS_TESTING = NET_IF_OPER_STATUS.TESTING;
+pub const NET_IF_OPER_STATUS_UNKNOWN = NET_IF_OPER_STATUS.UNKNOWN;
+pub const NET_IF_OPER_STATUS_DORMANT = NET_IF_OPER_STATUS.DORMANT;
+pub const NET_IF_OPER_STATUS_NOT_PRESENT = NET_IF_OPER_STATUS.NOT_PRESENT;
+pub const NET_IF_OPER_STATUS_LOWER_LAYER_DOWN = NET_IF_OPER_STATUS.LOWER_LAYER_DOWN;
+
+pub const NET_IF_ADMIN_STATUS = extern enum(i32) {
+    UP = 1,
+    DOWN = 2,
+    TESTING = 3,
+};
+pub const NET_IF_ADMIN_STATUS_UP = NET_IF_ADMIN_STATUS.UP;
+pub const NET_IF_ADMIN_STATUS_DOWN = NET_IF_ADMIN_STATUS.DOWN;
+pub const NET_IF_ADMIN_STATUS_TESTING = NET_IF_ADMIN_STATUS.TESTING;
+
+pub const NET_IF_CONNECTION_TYPE = extern enum(i32) {
+    DEDICATED = 1,
+    PASSIVE = 2,
+    DEMAND = 3,
+    MAXIMUM = 4,
+};
+pub const NET_IF_CONNECTION_DEDICATED = NET_IF_CONNECTION_TYPE.DEDICATED;
+pub const NET_IF_CONNECTION_PASSIVE = NET_IF_CONNECTION_TYPE.PASSIVE;
+pub const NET_IF_CONNECTION_DEMAND = NET_IF_CONNECTION_TYPE.DEMAND;
+pub const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE.MAXIMUM;
+
+pub const TUNNEL_TYPE = extern enum(i32) {
+    NONE = 0,
+    OTHER = 1,
+    DIRECT = 2,
+    @"6TO4" = 11,
+    ISATAP = 13,
+    TEREDO = 14,
+    IPHTTPS = 15,
+};
+pub const TUNNEL_TYPE_NONE = TUNNEL_TYPE.NONE;
+pub const TUNNEL_TYPE_OTHER = TUNNEL_TYPE.OTHER;
+pub const TUNNEL_TYPE_DIRECT = TUNNEL_TYPE.DIRECT;
+pub const TUNNEL_TYPE_6TO4 = TUNNEL_TYPE.@"6TO4";
+pub const TUNNEL_TYPE_ISATAP = TUNNEL_TYPE.ISATAP;
+pub const TUNNEL_TYPE_TEREDO = TUNNEL_TYPE.TEREDO;
+pub const TUNNEL_TYPE_IPHTTPS = TUNNEL_TYPE.IPHTTPS;
+
+pub const NET_IF_ACCESS_TYPE = extern enum(i32) {
+    LOOPBACK = 1,
+    BROADCAST = 2,
+    POINT_TO_POINT = 3,
+    POINT_TO_MULTI_POINT = 4,
+    MAXIMUM = 5,
+};
+pub const NET_IF_ACCESS_LOOPBACK = NET_IF_ACCESS_TYPE.LOOPBACK;
+pub const NET_IF_ACCESS_BROADCAST = NET_IF_ACCESS_TYPE.BROADCAST;
+pub const NET_IF_ACCESS_POINT_TO_POINT = NET_IF_ACCESS_TYPE.POINT_TO_POINT;
+pub const NET_IF_ACCESS_POINT_TO_MULTI_POINT = NET_IF_ACCESS_TYPE.POINT_TO_MULTI_POINT;
+pub const NET_IF_ACCESS_MAXIMUM = NET_IF_ACCESS_TYPE.MAXIMUM;
+
+pub const NET_IF_DIRECTION_TYPE = extern enum(i32) {
+    SENDRECEIVE = 0,
+    SENDONLY = 1,
+    RECEIVEONLY = 2,
+    MAXIMUM = 3,
+};
+pub const NET_IF_DIRECTION_SENDRECEIVE = NET_IF_DIRECTION_TYPE.SENDRECEIVE;
+pub const NET_IF_DIRECTION_SENDONLY = NET_IF_DIRECTION_TYPE.SENDONLY;
+pub const NET_IF_DIRECTION_RECEIVEONLY = NET_IF_DIRECTION_TYPE.RECEIVEONLY;
+pub const NET_IF_DIRECTION_MAXIMUM = NET_IF_DIRECTION_TYPE.MAXIMUM;
+
+pub const NET_IF_MEDIA_CONNECT_STATE = extern enum(i32) {
+    Unknown = 0,
+    Connected = 1,
+    Disconnected = 2,
+};
+pub const MediaConnectStateUnknown = NET_IF_MEDIA_CONNECT_STATE.Unknown;
+pub const MediaConnectStateConnected = NET_IF_MEDIA_CONNECT_STATE.Connected;
+pub const MediaConnectStateDisconnected = NET_IF_MEDIA_CONNECT_STATE.Disconnected;
+
+pub const NET_IF_MEDIA_DUPLEX_STATE = extern enum(i32) {
+    Unknown = 0,
+    Half = 1,
+    Full = 2,
+};
+pub const MediaDuplexStateUnknown = NET_IF_MEDIA_DUPLEX_STATE.Unknown;
+pub const MediaDuplexStateHalf = NET_IF_MEDIA_DUPLEX_STATE.Half;
+pub const MediaDuplexStateFull = NET_IF_MEDIA_DUPLEX_STATE.Full;
+
+pub const NET_PHYSICAL_LOCATION_LH = extern struct {
+    BusNumber: u32,
+    SlotNumber: u32,
+    FunctionNumber: u32,
+};
+
+pub const IF_COUNTED_STRING_LH = extern struct {
+    Length: u16,
+    String: [257]u16,
+};
+
+pub const NDIS_INTERFACE_INFORMATION = extern struct {
+    ifOperStatus: NET_IF_OPER_STATUS,
+    ifOperStatusFlags: u32,
+    MediaConnectState: NET_IF_MEDIA_CONNECT_STATE,
+    MediaDuplexState: NET_IF_MEDIA_DUPLEX_STATE,
+    ifMtu: u32,
+    ifPromiscuousMode: u8,
+    ifDeviceWakeUpEnable: u8,
+    XmitLinkSpeed: u64,
+    RcvLinkSpeed: u64,
+    ifLastChange: u64,
+    ifCounterDiscontinuityTime: u64,
+    ifInUnknownProtos: u64,
+    ifInDiscards: u64,
+    ifInErrors: u64,
+    ifHCInOctets: u64,
+    ifHCInUcastPkts: u64,
+    ifHCInMulticastPkts: u64,
+    ifHCInBroadcastPkts: u64,
+    ifHCOutOctets: u64,
+    ifHCOutUcastPkts: u64,
+    ifHCOutMulticastPkts: u64,
+    ifHCOutBroadcastPkts: u64,
+    ifOutErrors: u64,
+    ifOutDiscards: u64,
+    ifHCInUcastOctets: u64,
+    ifHCInMulticastOctets: u64,
+    ifHCInBroadcastOctets: u64,
+    ifHCOutUcastOctets: u64,
+    ifHCOutMulticastOctets: u64,
+    ifHCOutBroadcastOctets: u64,
+    CompartmentId: u32,
+    SupportedStatistics: u32,
+};
+
+pub const MIB_IF_TABLE_LEVEL = extern enum(i32) {
+    Normal = 0,
+    Raw = 1,
+    NormalWithoutStatistics = 2,
+};
+pub const MibIfTableNormal = MIB_IF_TABLE_LEVEL.Normal;
+pub const MibIfTableRaw = MIB_IF_TABLE_LEVEL.Raw;
+pub const MibIfTableNormalWithoutStatistics = MIB_IF_TABLE_LEVEL.NormalWithoutStatistics;
 
 
 //--------------------------------------------------------------------------------
