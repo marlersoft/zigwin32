@@ -4,23 +4,33 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (3)
+// Section: Types (2)
 //--------------------------------------------------------------------------------
 pub const NAMED_PIPE_MODE = enum(u32) {
     WAIT = 0,
     NOWAIT = 1,
     // READMODE_BYTE = 0, this enum value conflicts with WAIT
     READMODE_MESSAGE = 2,
+    // CLIENT_END = 0, this enum value conflicts with WAIT
+    // SERVER_END = 1, this enum value conflicts with NOWAIT
+    // TYPE_BYTE = 0, this enum value conflicts with WAIT
+    TYPE_MESSAGE = 4,
+    // ACCEPT_REMOTE_CLIENTS = 0, this enum value conflicts with WAIT
+    REJECT_REMOTE_CLIENTS = 8,
     _,
     pub fn initFlags(o: struct {
         WAIT: u1 = 0,
         NOWAIT: u1 = 0,
         READMODE_MESSAGE: u1 = 0,
+        TYPE_MESSAGE: u1 = 0,
+        REJECT_REMOTE_CLIENTS: u1 = 0,
     }) NAMED_PIPE_MODE {
         return @intToEnum(NAMED_PIPE_MODE,
               (if (o.WAIT == 1) @enumToInt(NAMED_PIPE_MODE.WAIT) else 0)
             | (if (o.NOWAIT == 1) @enumToInt(NAMED_PIPE_MODE.NOWAIT) else 0)
             | (if (o.READMODE_MESSAGE == 1) @enumToInt(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0)
+            | (if (o.TYPE_MESSAGE == 1) @enumToInt(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0)
+            | (if (o.REJECT_REMOTE_CLIENTS == 1) @enumToInt(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0)
         );
     }
 };
@@ -28,6 +38,12 @@ pub const PIPE_WAIT = NAMED_PIPE_MODE.WAIT;
 pub const PIPE_NOWAIT = NAMED_PIPE_MODE.NOWAIT;
 pub const PIPE_READMODE_BYTE = NAMED_PIPE_MODE.WAIT;
 pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_MODE.READMODE_MESSAGE;
+pub const PIPE_CLIENT_END = NAMED_PIPE_MODE.WAIT;
+pub const PIPE_SERVER_END = NAMED_PIPE_MODE.NOWAIT;
+pub const PIPE_TYPE_BYTE = NAMED_PIPE_MODE.WAIT;
+pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_MODE.TYPE_MESSAGE;
+pub const PIPE_ACCEPT_REMOTE_CLIENTS = NAMED_PIPE_MODE.WAIT;
+pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS;
 
 pub const WAIT_NAMED_PIPE_TIME_OUT_FLAGS = enum(u32) {
     USE_DEFAULT_WAIT = 0,
@@ -35,29 +51,6 @@ pub const WAIT_NAMED_PIPE_TIME_OUT_FLAGS = enum(u32) {
 };
 pub const NMPWAIT_USE_DEFAULT_WAIT = WAIT_NAMED_PIPE_TIME_OUT_FLAGS.USE_DEFAULT_WAIT;
 pub const NMPWAIT_WAIT_FOREVER = WAIT_NAMED_PIPE_TIME_OUT_FLAGS.WAIT_FOREVER;
-
-pub const NAMED_PIPE_INFO_FLAGS = enum(u32) {
-    CLIENT_END = 0,
-    SERVER_END = 1,
-    // TYPE_BYTE = 0, this enum value conflicts with CLIENT_END
-    TYPE_MESSAGE = 4,
-    _,
-    pub fn initFlags(o: struct {
-        CLIENT_END: u1 = 0,
-        SERVER_END: u1 = 0,
-        TYPE_MESSAGE: u1 = 0,
-    }) NAMED_PIPE_INFO_FLAGS {
-        return @intToEnum(NAMED_PIPE_INFO_FLAGS,
-              (if (o.CLIENT_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.CLIENT_END) else 0)
-            | (if (o.SERVER_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.SERVER_END) else 0)
-            | (if (o.TYPE_MESSAGE == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE) else 0)
-        );
-    }
-};
-pub const PIPE_CLIENT_END = NAMED_PIPE_INFO_FLAGS.CLIENT_END;
-pub const PIPE_SERVER_END = NAMED_PIPE_INFO_FLAGS.SERVER_END;
-pub const PIPE_TYPE_BYTE = NAMED_PIPE_INFO_FLAGS.CLIENT_END;
-pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE;
 
 
 //--------------------------------------------------------------------------------
@@ -116,8 +109,8 @@ pub extern "KERNEL32" fn TransactNamedPipe(
 
 pub extern "KERNEL32" fn CreateNamedPipeW(
     lpName: ?[*:0]const u16,
-    dwOpenMode: u32,
-    dwPipeMode: u32,
+    dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
+    dwPipeMode: NAMED_PIPE_MODE,
     nMaxInstances: u32,
     nOutBufferSize: u32,
     nInBufferSize: u32,
@@ -145,7 +138,7 @@ pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetNamedPipeInfo(
     hNamedPipe: ?HANDLE,
-    lpFlags: ?*NAMED_PIPE_INFO_FLAGS,
+    lpFlags: ?*NAMED_PIPE_MODE,
     lpOutBufferSize: ?*u32,
     lpInBufferSize: ?*u32,
     lpMaxInstances: ?*u32,
@@ -176,8 +169,8 @@ pub extern "KERNEL32" fn CallNamedPipeW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn CreateNamedPipeA(
     lpName: ?[*:0]const u8,
-    dwOpenMode: u32,
-    dwPipeMode: u32,
+    dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
+    dwPipeMode: NAMED_PIPE_MODE,
     nMaxInstances: u32,
     nOutBufferSize: u32,
     nInBufferSize: u32,
@@ -282,9 +275,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
+const FILE_FLAGS_AND_ATTRIBUTES = @import("../storage/file_system.zig").FILE_FLAGS_AND_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const PSTR = @import("../foundation.zig").PSTR;
