@@ -33,28 +33,6 @@ pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const TBS_CONTEXT_PARAMS = extern struct {
-    version: u32,
-};
-
-pub const TBS_CONTEXT_PARAMS2 = extern struct {
-    version: u32,
-    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const tdTPM_WNF_PROVISIONING = extern struct {
-    status: u32,
-    message: [28]u8,
-};
-
-pub const TPM_DEVICE_INFO = extern struct {
-    structVersion: u32,
-    tpmVersion: u32,
-    tpmInterfaceType: u32,
-    tpmImpRevision: u32,
-};
-
 pub const Tbsip_Submit_Command_PriorityFlags = extern enum(u32) {
     LOW = 100,
     NORMAL = 200,
@@ -81,19 +59,44 @@ pub const TBS_COMMAND_LOCALITY_TWO = Tbsip_Submit_Command_LocalityFlags.TWO;
 pub const TBS_COMMAND_LOCALITY_THREE = Tbsip_Submit_Command_LocalityFlags.THREE;
 pub const TBS_COMMAND_LOCALITY_FOUR = Tbsip_Submit_Command_LocalityFlags.FOUR;
 
+pub const TBS_CONTEXT_PARAMS = extern struct {
+    version: u32,
+};
+
+pub const TBS_CONTEXT_PARAMS2 = extern struct {
+    version: u32,
+    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const tdTPM_WNF_PROVISIONING = extern struct {
+    status: u32,
+    message: [28]u8,
+};
+
+pub const TPM_DEVICE_INFO = extern struct {
+    structVersion: u32,
+    tpmVersion: u32,
+    tpmInterfaceType: u32,
+    tpmImpRevision: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Context_Create(
     pContextParams: *TBS_CONTEXT_PARAMS,
     phContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Context_Close(
     hContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Submit_Command(
     hContext: *c_void,
     Locality: Tbsip_Submit_Command_LocalityFlags,
@@ -104,10 +107,12 @@ pub extern "tbs" fn Tbsip_Submit_Command(
     pcbResult: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Cancel_Commands(
     hContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Physical_Presence_Command(
     hContext: *c_void,
     pabInput: [*:0]u8,
@@ -116,17 +121,20 @@ pub extern "tbs" fn Tbsi_Physical_Presence_Command(
     pcbOutput: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Get_TCG_Log(
     hContext: *c_void,
     pOutputBuf: ?[*:0]u8,
     pOutputBufLen: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_GetDeviceInfo(
     Size: u32,
     Info: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_Get_OwnerAuth(
     hContext: *c_void,
     ownerauthType: u32,
@@ -134,6 +142,7 @@ pub extern "tbs" fn Tbsi_Get_OwnerAuth(
     pOutputBufLen: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_Revoke_Attestation(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -155,6 +164,7 @@ pub extern "tbs" fn Tbsi_Create_Windows_Key(
     keyHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
     logType: u32,
     pbOutput: ?[*:0]u8,

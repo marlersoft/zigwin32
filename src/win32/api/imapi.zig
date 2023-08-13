@@ -664,6 +664,7 @@ pub const IMAPI_BURN_VERIFICATION_NONE = IMAPI_BURN_VERIFICATION_LEVEL.NONE;
 pub const IMAPI_BURN_VERIFICATION_QUICK = IMAPI_BURN_VERIFICATION_LEVEL.QUICK;
 pub const IMAPI_BURN_VERIFICATION_FULL = IMAPI_BURN_VERIFICATION_LEVEL.FULL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscMaster2_Value = @import("../zig.zig").Guid.initString("27354130-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscMaster2 = &IID_IDiscMaster2_Value;
 pub const IDiscMaster2 = extern struct {
@@ -710,6 +711,7 @@ pub const IDiscMaster2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DDiscMaster2Events_Value = @import("../zig.zig").Guid.initString("27354131-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscMaster2Events = &IID_DDiscMaster2Events_Value;
 pub const DDiscMaster2Events = extern struct {
@@ -741,6 +743,7 @@ pub const DDiscMaster2Events = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscRecorder2Ex_Value = @import("../zig.zig").Guid.initString("27354132-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscRecorder2Ex = &IID_IDiscRecorder2Ex_Value;
 pub const IDiscRecorder2Ex = extern struct {
@@ -939,6 +942,7 @@ pub const IDiscRecorder2Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscRecorder2_Value = @import("../zig.zig").Guid.initString("27354133-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscRecorder2 = &IID_IDiscRecorder2_Value;
 pub const IDiscRecorder2 = extern struct {
@@ -1116,6 +1120,7 @@ pub const IDiscRecorder2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWriteEngine2_Value = @import("../zig.zig").Guid.initString("27354135-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteEngine2 = &IID_IWriteEngine2_Value;
 pub const IWriteEngine2 = extern struct {
@@ -1234,6 +1239,7 @@ pub const IWriteEngine2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWriteEngine2EventArgs_Value = @import("../zig.zig").Guid.initString("27354136-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteEngine2EventArgs = &IID_IWriteEngine2EventArgs_Value;
 pub const IWriteEngine2EventArgs = extern struct {
@@ -1303,6 +1309,7 @@ pub const IWriteEngine2EventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DWriteEngine2Events_Value = @import("../zig.zig").Guid.initString("27354137-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DWriteEngine2Events = &IID_DWriteEngine2Events_Value;
 pub const DWriteEngine2Events = extern struct {
@@ -1325,6 +1332,7 @@ pub const DWriteEngine2Events = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2_Value = @import("../zig.zig").Guid.initString("27354152-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2 = &IID_IDiscFormat2_Value;
 pub const IDiscFormat2 = extern struct {
@@ -1380,6 +1388,7 @@ pub const IDiscFormat2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2Erase_Value = @import("../zig.zig").Guid.initString("27354156-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2Erase = &IID_IDiscFormat2Erase_Value;
 pub const IDiscFormat2Erase = extern struct {
@@ -1456,6 +1465,7 @@ pub const IDiscFormat2Erase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DDiscFormat2EraseEvents_Value = @import("../zig.zig").Guid.initString("2735413a-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2EraseEvents = &IID_DDiscFormat2EraseEvents_Value;
 pub const DDiscFormat2EraseEvents = extern struct {
@@ -1479,6 +1489,7 @@ pub const DDiscFormat2EraseEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2Data_Value = @import("../zig.zig").Guid.initString("27354153-9f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2Data = &IID_IDiscFormat2Data_Value;
 pub const IDiscFormat2Data = extern struct {
@@ -1748,6 +1759,7 @@ pub const IDiscFormat2Data = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DDiscFormat2DataEvents_Value = @import("../zig.zig").Guid.initString("2735413c-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2DataEvents = &IID_DDiscFormat2DataEvents_Value;
 pub const DDiscFormat2DataEvents = extern struct {
@@ -1770,6 +1782,7 @@ pub const DDiscFormat2DataEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2DataEventArgs_Value = @import("../zig.zig").Guid.initString("2735413d-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2DataEventArgs = &IID_IDiscFormat2DataEventArgs_Value;
 pub const IDiscFormat2DataEventArgs = extern struct {
@@ -1815,6 +1828,7 @@ pub const IDiscFormat2DataEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2TrackAtOnce_Value = @import("../zig.zig").Guid.initString("27354154-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2TrackAtOnce = &IID_IDiscFormat2TrackAtOnce_Value;
 pub const IDiscFormat2TrackAtOnce = extern struct {
@@ -2026,6 +2040,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DDiscFormat2TrackAtOnceEvents_Value = @import("../zig.zig").Guid.initString("2735413f-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2TrackAtOnceEvents = &IID_DDiscFormat2TrackAtOnceEvents_Value;
 pub const DDiscFormat2TrackAtOnceEvents = extern struct {
@@ -2048,6 +2063,7 @@ pub const DDiscFormat2TrackAtOnceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2TrackAtOnceEventArgs_Value = @import("../zig.zig").Guid.initString("27354140-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2TrackAtOnceEventArgs = &IID_IDiscFormat2TrackAtOnceEventArgs_Value;
 pub const IDiscFormat2TrackAtOnceEventArgs = extern struct {
@@ -2093,6 +2109,7 @@ pub const IDiscFormat2TrackAtOnceEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2RawCD_Value = @import("../zig.zig").Guid.initString("27354155-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2RawCD = &IID_IDiscFormat2RawCD_Value;
 pub const IDiscFormat2RawCD = extern struct {
@@ -2297,6 +2314,7 @@ pub const IDiscFormat2RawCD = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DDiscFormat2RawCDEvents_Value = @import("../zig.zig").Guid.initString("27354142-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2RawCDEvents = &IID_DDiscFormat2RawCDEvents_Value;
 pub const DDiscFormat2RawCDEvents = extern struct {
@@ -2319,6 +2337,7 @@ pub const DDiscFormat2RawCDEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDiscFormat2RawCDEventArgs_Value = @import("../zig.zig").Guid.initString("27354143-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2RawCDEventArgs = &IID_IDiscFormat2RawCDEventArgs_Value;
 pub const IDiscFormat2RawCDEventArgs = extern struct {
@@ -2356,6 +2375,7 @@ pub const IDiscFormat2RawCDEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBurnVerification_Value = @import("../zig.zig").Guid.initString("d2ffd834-958b-426d-8470-2a13879c6a91");
 pub const IID_IBurnVerification = &IID_IBurnVerification_Value;
 pub const IBurnVerification = extern struct {
@@ -2385,6 +2405,7 @@ pub const IBurnVerification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWriteSpeedDescriptor_Value = @import("../zig.zig").Guid.initString("27354144-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteSpeedDescriptor = &IID_IWriteSpeedDescriptor_Value;
 pub const IWriteSpeedDescriptor = extern struct {
@@ -2422,6 +2443,7 @@ pub const IWriteSpeedDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMultisession_Value = @import("../zig.zig").Guid.initString("27354150-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IMultisession = &IID_IMultisession_Value;
 pub const IMultisession = extern struct {
@@ -2467,6 +2489,7 @@ pub const IMultisession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMultisessionSequential_Value = @import("../zig.zig").Guid.initString("27354151-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IMultisessionSequential = &IID_IMultisessionSequential_Value;
 pub const IMultisessionSequential = extern struct {
@@ -2520,6 +2543,7 @@ pub const IMultisessionSequential = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMultisessionSequential2_Value = @import("../zig.zig").Guid.initString("b507ca22-2204-11dd-966a-001aa01bbc58");
 pub const IID_IMultisessionSequential2 = &IID_IMultisessionSequential2_Value;
 pub const IMultisessionSequential2 = extern struct {
@@ -2541,6 +2565,7 @@ pub const IMultisessionSequential2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMultisessionRandomWrite_Value = @import("../zig.zig").Guid.initString("b507ca23-2204-11dd-966a-001aa01bbc58");
 pub const IID_IMultisessionRandomWrite = &IID_IMultisessionRandomWrite_Value;
 pub const IMultisessionRandomWrite = extern struct {
@@ -2578,6 +2603,7 @@ pub const IMultisessionRandomWrite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamPseudoRandomBased_Value = @import("../zig.zig").Guid.initString("27354145-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamPseudoRandomBased = &IID_IStreamPseudoRandomBased_Value;
 pub const IStreamPseudoRandomBased = extern struct {
@@ -2625,6 +2651,7 @@ pub const IStreamPseudoRandomBased = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamConcatenate_Value = @import("../zig.zig").Guid.initString("27354146-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamConcatenate = &IID_IStreamConcatenate_Value;
 pub const IStreamConcatenate = extern struct {
@@ -2673,6 +2700,7 @@ pub const IStreamConcatenate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamInterleave_Value = @import("../zig.zig").Guid.initString("27354147-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamInterleave = &IID_IStreamInterleave_Value;
 pub const IStreamInterleave = extern struct {
@@ -2696,6 +2724,7 @@ pub const IStreamInterleave = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRawCDImageCreator_Value = @import("../zig.zig").Guid.initString("25983550-9d65-49ce-b335-40630d901227");
 pub const IID_IRawCDImageCreator = &IID_IRawCDImageCreator_Value;
 pub const IRawCDImageCreator = extern struct {
@@ -2864,6 +2893,7 @@ pub const IRawCDImageCreator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRawCDImageTrackInfo_Value = @import("../zig.zig").Guid.initString("25983551-9d65-49ce-b335-40630d901227");
 pub const IID_IRawCDImageTrackInfo = &IID_IRawCDImageTrackInfo_Value;
 pub const IRawCDImageTrackInfo = extern struct {
@@ -2981,6 +3011,7 @@ pub const IRawCDImageTrackInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBlockRange_Value = @import("../zig.zig").Guid.initString("b507ca25-2204-11dd-966a-001aa01bbc58");
 pub const IID_IBlockRange = &IID_IBlockRange_Value;
 pub const IBlockRange = extern struct {
@@ -3010,6 +3041,7 @@ pub const IBlockRange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBlockRangeList_Value = @import("../zig.zig").Guid.initString("b507ca26-2204-11dd-966a-001aa01bbc58");
 pub const IID_IBlockRangeList = &IID_IBlockRangeList_Value;
 pub const IBlockRangeList = extern struct {
@@ -3119,6 +3151,7 @@ pub const PlatformPowerPC = PlatformId.PowerPC;
 pub const PlatformMac = PlatformId.Mac;
 pub const PlatformEFI = PlatformId.EFI;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBootOptions_Value = @import("../zig.zig").Guid.initString("2c941fd4-975b-59be-a960-9a2a262853a5");
 pub const IID_IBootOptions = &IID_IBootOptions_Value;
 pub const IBootOptions = extern struct {
@@ -3204,6 +3237,7 @@ pub const IBootOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProgressItem_Value = @import("../zig.zig").Guid.initString("2c941fd5-975b-59be-a960-9a2a262853a5");
 pub const IID_IProgressItem = &IID_IProgressItem_Value;
 pub const IProgressItem = extern struct {
@@ -3249,6 +3283,7 @@ pub const IProgressItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fd6-975b-59be-a960-9a2a262853a5");
 pub const IID_IEnumProgressItems = &IID_IEnumProgressItems_Value;
 pub const IEnumProgressItems = extern struct {
@@ -3295,6 +3330,7 @@ pub const IEnumProgressItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fd7-975b-59be-a960-9a2a262853a5");
 pub const IID_IProgressItems = &IID_IProgressItems_Value;
 pub const IProgressItems = extern struct {
@@ -3359,6 +3395,7 @@ pub const IProgressItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSystemImageResult_Value = @import("../zig.zig").Guid.initString("2c941fd8-975b-59be-a960-9a2a262853a5");
 pub const IID_IFileSystemImageResult = &IID_IFileSystemImageResult_Value;
 pub const IFileSystemImageResult = extern struct {
@@ -3412,6 +3449,7 @@ pub const IFileSystemImageResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFileSystemImageResult2_Value = @import("../zig.zig").Guid.initString("b507ca29-2204-11dd-966a-001aa01bbc58");
 pub const IID_IFileSystemImageResult2 = &IID_IFileSystemImageResult2_Value;
 pub const IFileSystemImageResult2 = extern struct {
@@ -3433,6 +3471,7 @@ pub const IFileSystemImageResult2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiItem_Value = @import("../zig.zig").Guid.initString("2c941fd9-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiItem = &IID_IFsiItem_Value;
 pub const IFsiItem = extern struct {
@@ -3544,6 +3583,7 @@ pub const IFsiItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumFsiItems_Value = @import("../zig.zig").Guid.initString("2c941fda-975b-59be-a960-9a2a262853a5");
 pub const IID_IEnumFsiItems = &IID_IEnumFsiItems_Value;
 pub const IEnumFsiItems = extern struct {
@@ -3590,6 +3630,7 @@ pub const IEnumFsiItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiFileItem_Value = @import("../zig.zig").Guid.initString("2c941fdb-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiFileItem = &IID_IFsiFileItem_Value;
 pub const IFsiFileItem = extern struct {
@@ -3643,6 +3684,7 @@ pub const IFsiFileItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiFileItem2_Value = @import("../zig.zig").Guid.initString("199d0c19-11e1-40eb-8ec2-c8c822a07792");
 pub const IID_IFsiFileItem2 = &IID_IFsiFileItem2_Value;
 pub const IFsiFileItem2 = extern struct {
@@ -3705,6 +3747,7 @@ pub const IFsiFileItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiNamedStreams_Value = @import("../zig.zig").Guid.initString("ed79ba56-5294-4250-8d46-f9aecee23459");
 pub const IID_IFsiNamedStreams = &IID_IFsiNamedStreams_Value;
 pub const IFsiNamedStreams = extern struct {
@@ -3751,6 +3794,7 @@ pub const IFsiNamedStreams = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiDirectoryItem_Value = @import("../zig.zig").Guid.initString("2c941fdc-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiDirectoryItem = &IID_IFsiDirectoryItem_Value;
 pub const IFsiDirectoryItem = extern struct {
@@ -3847,6 +3891,7 @@ pub const IFsiDirectoryItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFsiDirectoryItem2_Value = @import("../zig.zig").Guid.initString("f7fb4b9b-6d96-4d7b-9115-201b144811ef");
 pub const IID_IFsiDirectoryItem2 = &IID_IFsiDirectoryItem2_Value;
 pub const IFsiDirectoryItem2 = extern struct {
@@ -3869,6 +3914,7 @@ pub const IFsiDirectoryItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSystemImage_Value = @import("../zig.zig").Guid.initString("2c941fe1-975b-59be-a960-9a2a262853a5");
 pub const IID_IFileSystemImage = &IID_IFileSystemImage_Value;
 pub const IFileSystemImage = extern struct {
@@ -4286,6 +4332,7 @@ pub const IFileSystemImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSystemImage2_Value = @import("../zig.zig").Guid.initString("d7644b2c-1537-4767-b62f-f1387b02ddfd");
 pub const IID_IFileSystemImage2 = &IID_IFileSystemImage2_Value;
 pub const IFileSystemImage2 = extern struct {
@@ -4315,6 +4362,7 @@ pub const IFileSystemImage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSystemImage3_Value = @import("../zig.zig").Guid.initString("7cff842c-7e97-4807-8304-910dd8f7c051");
 pub const IID_IFileSystemImage3 = &IID_IFileSystemImage3_Value;
 pub const IFileSystemImage3 = extern struct {
@@ -4353,6 +4401,7 @@ pub const IFileSystemImage3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DFileSystemImageEvents_Value = @import("../zig.zig").Guid.initString("2c941fdf-975b-59be-a960-9a2a262853a5");
 pub const IID_DFileSystemImageEvents = &IID_DFileSystemImageEvents_Value;
 pub const DFileSystemImageEvents = extern struct {
@@ -4377,6 +4426,7 @@ pub const DFileSystemImageEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DFileSystemImageImportEvents_Value = @import("../zig.zig").Guid.initString("d25c30f9-4087-4366-9e24-e55be286424b");
 pub const IID_DFileSystemImageImportEvents = &IID_DFileSystemImageImportEvents_Value;
 pub const DFileSystemImageImportEvents = extern struct {
@@ -4404,6 +4454,7 @@ pub const DFileSystemImageImportEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IIsoImageManager_Value = @import("../zig.zig").Guid.initString("6ca38be5-fbbb-4800-95a1-a438865eb0d4");
 pub const IID_IIsoImageManager = &IID_IIsoImageManager_Value;
 pub const IIsoImageManager = extern struct {
@@ -4498,6 +4549,7 @@ pub const RECORDER_TYPES = extern enum(i32) {
 pub const RECORDER_CDR = RECORDER_TYPES.R;
 pub const RECORDER_CDRW = RECORDER_TYPES.W;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiscRecorder_Value = @import("../zig.zig").Guid.initString("85ac9776-ca88-4cf2-894e-09598c078a41");
 pub const IID_IDiscRecorder = &IID_IDiscRecorder_Value;
 pub const IDiscRecorder = extern struct {
@@ -4731,6 +4783,7 @@ pub const IEnumDiscMasterFormats = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRedbookDiscMaster_Value = @import("../zig.zig").Guid.initString("e3bc42cd-4e5c-11d3-9144-00104ba11c5e");
 pub const IID_IRedbookDiscMaster = &IID_IRedbookDiscMaster_Value;
 pub const IRedbookDiscMaster = extern struct {
@@ -4808,6 +4861,7 @@ pub const IRedbookDiscMaster = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IJolietDiscMaster_Value = @import("../zig.zig").Guid.initString("e3bc42ce-4e5c-11d3-9144-00104ba11c5e");
 pub const IID_IJolietDiscMaster = &IID_IJolietDiscMaster_Value;
 pub const IJolietDiscMaster = extern struct {
@@ -4870,6 +4924,7 @@ pub const IJolietDiscMaster = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiscMasterProgressEvents_Value = @import("../zig.zig").Guid.initString("ec9e51c1-4e5d-11d3-9144-00104ba11c5e");
 pub const IID_IDiscMasterProgressEvents = &IID_IDiscMasterProgressEvents_Value;
 pub const IDiscMasterProgressEvents = extern struct {
@@ -4957,6 +5012,7 @@ pub const IDiscMasterProgressEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDiscMaster_Value = @import("../zig.zig").Guid.initString("520cca62-51a5-11d3-9144-00104ba11c5e");
 pub const IID_IDiscMaster = &IID_IDiscMaster_Value;
 pub const IDiscMaster = extern struct {

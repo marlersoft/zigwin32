@@ -4165,6 +4165,7 @@ pub const XHR_COOKIE = extern struct {
     dwFlags: u32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXMLHTTPRequest2Callback_Value = @import("../zig.zig").Guid.initString("a44a9299-e321-40de-8866-341b41669162");
 pub const IID_IXMLHTTPRequest2Callback = &IID_IXMLHTTPRequest2Callback_Value;
 pub const IXMLHTTPRequest2Callback = extern struct {
@@ -4224,6 +4225,7 @@ pub const IXMLHTTPRequest2Callback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXMLHTTPRequest2_Value = @import("../zig.zig").Guid.initString("e5d37dc0-552a-4d52-9cc0-a14d546fbd04");
 pub const IID_IXMLHTTPRequest2 = &IID_IXMLHTTPRequest2_Value;
 pub const IXMLHTTPRequest2 = extern struct {
@@ -4336,6 +4338,7 @@ pub const XHR_CERT = extern struct {
     pbCert: *u8,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXMLHTTPRequest3Callback_Value = @import("../zig.zig").Guid.initString("b9e57830-8c6c-4a6f-9c13-47772bb047bb");
 pub const IID_IXMLHTTPRequest3Callback = &IID_IXMLHTTPRequest3Callback_Value;
 pub const IXMLHTTPRequest3Callback = extern struct {
@@ -4370,6 +4373,7 @@ pub const IXMLHTTPRequest3Callback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXMLHTTPRequest3_Value = @import("../zig.zig").Guid.initString("a1c9feee-0617-4f23-9d58-8961ea43567c");
 pub const IID_IXMLHTTPRequest3 = &IID_IXMLHTTPRequest3_Value;
 pub const IXMLHTTPRequest3 = extern struct {

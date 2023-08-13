@@ -91,8 +91,8 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {
@@ -155,6 +155,7 @@ pub const WINML_MODEL_DESC = extern struct {
     Version: ?*c_void,
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLModel_Value = @import("../zig.zig").Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
 pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
 pub const IWinMLModel = extern struct {
@@ -204,6 +205,7 @@ pub const IWinMLModel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLEvaluationContext_Value = @import("../zig.zig").Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
 pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
 pub const IWinMLEvaluationContext = extern struct {
@@ -241,6 +243,7 @@ pub const IWinMLEvaluationContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntime_Value = @import("../zig.zig").Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
 pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
 pub const IWinMLRuntime = extern struct {
@@ -285,6 +288,7 @@ pub const WINML_RUNTIME_TYPE = extern enum(i32) {
 };
 pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntimeFactory_Value = @import("../zig.zig").Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
 pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
 pub const IWinMLRuntimeFactory = extern struct {

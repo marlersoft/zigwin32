@@ -145,7 +145,7 @@ pub const SESSION_HEADER = extern struct {
 
 pub const SESSION_BUFFER = extern struct {
     lsn: u8,
-    state: SESSION_BUFFER_stateFlags,
+    state: u8,
     local_name: [16]u8,
     remote_name: [16]u8,
     rcvs_outstanding: u8,
@@ -197,6 +197,7 @@ pub const SESSION_ABORTED = SESSION_BUFFER_stateFlags.SESSION_ABORTED;
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn Netbios(
     pncb: *NCB,
 ) callconv(@import("std").os.windows.WINAPI) u8;

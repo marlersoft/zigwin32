@@ -23,6 +23,7 @@ pub const RESTART_NO_REBOOT = RegisterApplicationRestart_dwFlags.REBOOT;
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RegisterApplicationRecoveryCallback(
     pRecoveyCallback: APPLICATION_RECOVERY_CALLBACK,
     pvParameter: ?*c_void,
@@ -30,17 +31,21 @@ pub extern "KERNEL32" fn RegisterApplicationRecoveryCallback(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn UnregisterApplicationRecoveryCallback(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RegisterApplicationRestart(
     pwzCommandline: ?[*:0]const u16,
     dwFlags: RegisterApplicationRestart_dwFlags,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn UnregisterApplicationRestart(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetApplicationRecoveryCallback(
     hProcess: HANDLE,
     pRecoveryCallback: *APPLICATION_RECOVERY_CALLBACK,
@@ -49,6 +54,7 @@ pub extern "KERNEL32" fn GetApplicationRecoveryCallback(
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetApplicationRestartSettings(
     hProcess: HANDLE,
     pwzCommandline: ?[*:0]u16,
@@ -56,10 +62,12 @@ pub extern "KERNEL32" fn GetApplicationRestartSettings(
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn ApplicationRecoveryInProgress(
     pbCancelled: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn ApplicationRecoveryFinished(
     bSuccess: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;

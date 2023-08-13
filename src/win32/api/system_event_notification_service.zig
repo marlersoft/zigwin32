@@ -10,13 +10,6 @@ pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-pub const ISensNetwork_ConnectionLost_ulTypeFlags = extern enum(u32) {
-    LAN = 0,
-    WAN = 1,
-};
-pub const CONNECTION_LAN = ISensNetwork_ConnectionLost_ulTypeFlags.LAN;
-pub const CONNECTION_WAN = ISensNetwork_ConnectionLost_ulTypeFlags.WAN;
-
 pub const QOCINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -34,6 +27,7 @@ pub const SENS_QOCINFO = extern struct {
     dwInSpeed: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensNetwork_Value = @import("../zig.zig").Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
 pub const ISensNetwork = extern struct {
@@ -96,6 +90,7 @@ pub const ISensNetwork = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensOnNow_Value = @import("../zig.zig").Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
 pub const ISensOnNow = extern struct {
@@ -132,6 +127,7 @@ pub const ISensOnNow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensLogon_Value = @import("../zig.zig").Guid.initString("d597bab3-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon = &IID_ISensLogon_Value;
 pub const ISensLogon = extern struct {
@@ -201,6 +197,7 @@ pub const ISensLogon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensLogon2_Value = @import("../zig.zig").Guid.initString("d597bab4-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon2 = &IID_ISensLogon2_Value;
 pub const ISensLogon2 = extern struct {
@@ -259,20 +256,30 @@ pub const ISensLogon2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const ISensNetwork_ConnectionLost_ulTypeFlags = extern enum(u32) {
+    LAN = 0,
+    WAN = 1,
+};
+pub const CONNECTION_LAN = ISensNetwork_ConnectionLost_ulTypeFlags.LAN;
+pub const CONNECTION_WAN = ISensNetwork_ConnectionLost_ulTypeFlags.WAN;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsDestinationReachableA(
     lpszDestination: [*:0]const u8,
     lpQOCInfo: *QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsDestinationReachableW(
     lpszDestination: [*:0]const u16,
     lpQOCInfo: *QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsNetworkAlive(
     lpdwFlags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

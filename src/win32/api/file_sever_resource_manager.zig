@@ -568,6 +568,7 @@ pub const AdrClientFlags_FailForLocalPaths = AdrClientFlags.FailForLocalPaths;
 pub const AdrClientFlags_FailIfNotSupportedByServer = AdrClientFlags.FailIfNotSupportedByServer;
 pub const AdrClientFlags_FailIfNotDomainJoined = AdrClientFlags.FailIfNotDomainJoined;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmObject_Value = @import("../zig.zig").Guid.initString("22bcef93-4a3f-4183-89f9-2f8b8a628aee");
 pub const IID_IFsrmObject = &IID_IFsrmObject_Value;
 pub const IFsrmObject = extern struct {
@@ -619,6 +620,7 @@ pub const IFsrmObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmCollection_Value = @import("../zig.zig").Guid.initString("f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8");
 pub const IID_IFsrmCollection = &IID_IFsrmCollection_Value;
 pub const IFsrmCollection = extern struct {
@@ -690,6 +692,7 @@ pub const IFsrmCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmMutableCollection_Value = @import("../zig.zig").Guid.initString("1bb617b8-3886-49dc-af82-a6c90fa35dda");
 pub const IID_IFsrmMutableCollection = &IID_IFsrmMutableCollection_Value;
 pub const IFsrmMutableCollection = extern struct {
@@ -735,6 +738,7 @@ pub const IFsrmMutableCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmCommittableCollection_Value = @import("../zig.zig").Guid.initString("96deb3b5-8b91-4a2a-9d93-80a35d8aa847");
 pub const IID_IFsrmCommittableCollection = &IID_IFsrmCommittableCollection_Value;
 pub const IFsrmCommittableCollection = extern struct {
@@ -757,6 +761,7 @@ pub const IFsrmCommittableCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmAction_Value = @import("../zig.zig").Guid.initString("6cd6408a-ae60-463b-9ef1-e117534d69dc");
 pub const IID_IFsrmAction = &IID_IFsrmAction_Value;
 pub const IFsrmAction = extern struct {
@@ -809,6 +814,7 @@ pub const IFsrmAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEmail_Value = @import("../zig.zig").Guid.initString("d646567d-26ae-4caa-9f84-4e0aad207fca");
 pub const IID_IFsrmActionEmail = &IID_IFsrmActionEmail_Value;
 pub const IFsrmActionEmail = extern struct {
@@ -934,6 +940,7 @@ pub const IFsrmActionEmail = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEmail2_Value = @import("../zig.zig").Guid.initString("8276702f-2532-4839-89bf-4872609a2ea4");
 pub const IID_IFsrmActionEmail2 = &IID_IFsrmActionEmail2_Value;
 pub const IFsrmActionEmail2 = extern struct {
@@ -963,6 +970,7 @@ pub const IFsrmActionEmail2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionReport_Value = @import("../zig.zig").Guid.initString("2dbe63c4-b340-48a0-a5b0-158e07fc567e");
 pub const IID_IFsrmActionReport = &IID_IFsrmActionReport_Value;
 pub const IFsrmActionReport = extern struct {
@@ -1008,6 +1016,7 @@ pub const IFsrmActionReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEventLog_Value = @import("../zig.zig").Guid.initString("4c8f96c3-5d94-4f37-a4f4-f56ab463546f");
 pub const IID_IFsrmActionEventLog = &IID_IFsrmActionEventLog_Value;
 pub const IFsrmActionEventLog = extern struct {
@@ -1053,6 +1062,7 @@ pub const IFsrmActionEventLog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionCommand_Value = @import("../zig.zig").Guid.initString("12937789-e247-4917-9c20-f3ee9c7ee783");
 pub const IID_IFsrmActionCommand = &IID_IFsrmActionCommand_Value;
 pub const IFsrmActionCommand = extern struct {
@@ -1178,6 +1188,7 @@ pub const IFsrmActionCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmSetting_Value = @import("../zig.zig").Guid.initString("f411d4fd-14be-4260-8c40-03b7c95e608a");
 pub const IID_IFsrmSetting = &IID_IFsrmSetting_Value;
 pub const IFsrmSetting = extern struct {
@@ -1297,6 +1308,7 @@ pub const IFsrmSetting = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPathMapper_Value = @import("../zig.zig").Guid.initString("6f4dbfff-6920-4821-a6c3-b7e94c1fd60c");
 pub const IID_IFsrmPathMapper = &IID_IFsrmPathMapper_Value;
 pub const IFsrmPathMapper = extern struct {
@@ -1319,6 +1331,7 @@ pub const IFsrmPathMapper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmExportImport_Value = @import("../zig.zig").Guid.initString("efcb0ab1-16c4-4a79-812c-725614c3306b");
 pub const IID_IFsrmExportImport = &IID_IFsrmExportImport_Value;
 pub const IFsrmExportImport = extern struct {
@@ -1395,6 +1408,7 @@ pub const IFsrmExportImport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmDerivedObjectsResult_Value = @import("../zig.zig").Guid.initString("39322a2d-38ee-4d0d-8095-421a80849a82");
 pub const IID_IFsrmDerivedObjectsResult = &IID_IFsrmDerivedObjectsResult_Value;
 pub const IFsrmDerivedObjectsResult = extern struct {
@@ -1424,6 +1438,7 @@ pub const IFsrmDerivedObjectsResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmAccessDeniedRemediationClient_Value = @import("../zig.zig").Guid.initString("40002314-590b-45a5-8e1b-8c05da527e52");
 pub const IID_IFsrmAccessDeniedRemediationClient = &IID_IFsrmAccessDeniedRemediationClient_Value;
 pub const IFsrmAccessDeniedRemediationClient = extern struct {
@@ -1496,6 +1511,7 @@ pub const CLSID_AdSyncTask = &CLSID_AdSyncTask_Value;
 const CLSID_FsrmAccessDeniedRemediationClient_Value = @import("../zig.zig").Guid.initString("100b4fc8-74c1-470f-b1b7-dd7b6bae79bd");
 pub const CLSID_FsrmAccessDeniedRemediationClient = &CLSID_FsrmAccessDeniedRemediationClient_Value;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaBase_Value = @import("../zig.zig").Guid.initString("1568a795-3924-4118-b74b-68d8f0fa5daf");
 pub const IID_IFsrmQuotaBase = &IID_IFsrmQuotaBase_Value;
 pub const IFsrmQuotaBase = extern struct {
@@ -1593,6 +1609,7 @@ pub const IFsrmQuotaBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaObject_Value = @import("../zig.zig").Guid.initString("42dc3511-61d5-48ae-b6dc-59fc00c0a8d6");
 pub const IID_IFsrmQuotaObject = &IID_IFsrmQuotaObject_Value;
 pub const IFsrmQuotaObject = extern struct {
@@ -1654,6 +1671,7 @@ pub const IFsrmQuotaObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuota_Value = @import("../zig.zig").Guid.initString("377f739d-9647-4b8e-97d2-5ffce6d759cd");
 pub const IID_IFsrmQuota = &IID_IFsrmQuota_Value;
 pub const IFsrmQuota = extern struct {
@@ -1705,6 +1723,7 @@ pub const IFsrmQuota = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmAutoApplyQuota_Value = @import("../zig.zig").Guid.initString("f82e5729-6aba-4740-bfc7-c7f58f75fb7b");
 pub const IID_IFsrmAutoApplyQuota = &IID_IFsrmAutoApplyQuota_Value;
 pub const IFsrmAutoApplyQuota = extern struct {
@@ -1744,6 +1763,7 @@ pub const IFsrmAutoApplyQuota = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaManager_Value = @import("../zig.zig").Guid.initString("8bb68c7d-19d8-4ffb-809e-be4fc1734014");
 pub const IID_IFsrmQuotaManager = &IID_IFsrmQuotaManager_Value;
 pub const IFsrmQuotaManager = extern struct {
@@ -1865,6 +1885,7 @@ pub const IFsrmQuotaManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaManagerEx_Value = @import("../zig.zig").Guid.initString("4846cb01-d430-494f-abb4-b1054999fb09");
 pub const IID_IFsrmQuotaManagerEx = &IID_IFsrmQuotaManagerEx_Value;
 pub const IFsrmQuotaManagerEx = extern struct {
@@ -1888,6 +1909,7 @@ pub const IFsrmQuotaManagerEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplate_Value = @import("../zig.zig").Guid.initString("a2efab31-295e-46bb-b976-e86d58b52e8b");
 pub const IID_IFsrmQuotaTemplate = &IID_IFsrmQuotaTemplate_Value;
 pub const IFsrmQuotaTemplate = extern struct {
@@ -1935,6 +1957,7 @@ pub const IFsrmQuotaTemplate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplateImported_Value = @import("../zig.zig").Guid.initString("9a2bf113-a329-44cc-809a-5c00fce8da40");
 pub const IID_IFsrmQuotaTemplateImported = &IID_IFsrmQuotaTemplateImported_Value;
 pub const IFsrmQuotaTemplateImported = extern struct {
@@ -1964,6 +1987,7 @@ pub const IFsrmQuotaTemplateImported = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplateManager_Value = @import("../zig.zig").Guid.initString("4173ac41-172d-4d52-963c-fdc7e415f717");
 pub const IID_IFsrmQuotaTemplateManager = &IID_IFsrmQuotaTemplateManager_Value;
 pub const IFsrmQuotaTemplateManager = extern struct {
@@ -2022,6 +2046,7 @@ pub const IFsrmQuotaTemplateManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroup_Value = @import("../zig.zig").Guid.initString("8dd04909-0e34-4d55-afaa-89e1f1a1bbb9");
 pub const IID_IFsrmFileGroup = &IID_IFsrmFileGroup_Value;
 pub const IFsrmFileGroup = extern struct {
@@ -2083,6 +2108,7 @@ pub const IFsrmFileGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroupImported_Value = @import("../zig.zig").Guid.initString("ad55f10b-5f11-4be7-94ef-d9ee2e470ded");
 pub const IID_IFsrmFileGroupImported = &IID_IFsrmFileGroupImported_Value;
 pub const IFsrmFileGroupImported = extern struct {
@@ -2112,6 +2138,7 @@ pub const IFsrmFileGroupImported = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroupManager_Value = @import("../zig.zig").Guid.initString("426677d5-018c-485c-8a51-20b86d00bdc4");
 pub const IID_IFsrmFileGroupManager = &IID_IFsrmFileGroupManager_Value;
 pub const IFsrmFileGroupManager = extern struct {
@@ -2170,6 +2197,7 @@ pub const IFsrmFileGroupManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenBase_Value = @import("../zig.zig").Guid.initString("f3637e80-5b22-4a2b-a637-bbb642b41cfc");
 pub const IID_IFsrmFileScreenBase = &IID_IFsrmFileScreenBase_Value;
 pub const IFsrmFileScreenBase = extern struct {
@@ -2232,6 +2260,7 @@ pub const IFsrmFileScreenBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreen_Value = @import("../zig.zig").Guid.initString("5f6325d3-ce88-4733-84c1-2d6aefc5ea07");
 pub const IID_IFsrmFileScreen = &IID_IFsrmFileScreen_Value;
 pub const IFsrmFileScreen = extern struct {
@@ -2293,6 +2322,7 @@ pub const IFsrmFileScreen = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenException_Value = @import("../zig.zig").Guid.initString("bee7ce02-df77-4515-9389-78f01c5afc1a");
 pub const IID_IFsrmFileScreenException = &IID_IFsrmFileScreenException_Value;
 pub const IFsrmFileScreenException = extern struct {
@@ -2330,6 +2360,7 @@ pub const IFsrmFileScreenException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenManager_Value = @import("../zig.zig").Guid.initString("ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba");
 pub const IID_IFsrmFileScreenManager = &IID_IFsrmFileScreenManager_Value;
 pub const IFsrmFileScreenManager = extern struct {
@@ -2423,6 +2454,7 @@ pub const IFsrmFileScreenManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplate_Value = @import("../zig.zig").Guid.initString("205bebf8-dd93-452a-95a6-32b566b35828");
 pub const IID_IFsrmFileScreenTemplate = &IID_IFsrmFileScreenTemplate_Value;
 pub const IFsrmFileScreenTemplate = extern struct {
@@ -2470,6 +2502,7 @@ pub const IFsrmFileScreenTemplate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplateImported_Value = @import("../zig.zig").Guid.initString("e1010359-3e5d-4ecd-9fe4-ef48622fdf30");
 pub const IID_IFsrmFileScreenTemplateImported = &IID_IFsrmFileScreenTemplateImported_Value;
 pub const IFsrmFileScreenTemplateImported = extern struct {
@@ -2499,6 +2532,7 @@ pub const IFsrmFileScreenTemplateImported = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplateManager_Value = @import("../zig.zig").Guid.initString("cfe36cba-1949-4e74-a14f-f1d580ceaf13");
 pub const IID_IFsrmFileScreenTemplateManager = &IID_IFsrmFileScreenTemplateManager_Value;
 pub const IFsrmFileScreenTemplateManager = extern struct {
@@ -2557,6 +2591,7 @@ pub const IFsrmFileScreenTemplateManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportManager_Value = @import("../zig.zig").Guid.initString("27b899fe-6ffa-4481-a184-d3daade8a02b");
 pub const IID_IFsrmReportManager = &IID_IFsrmReportManager_Value;
 pub const IFsrmReportManager = extern struct {
@@ -2662,6 +2697,7 @@ pub const IFsrmReportManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportJob_Value = @import("../zig.zig").Guid.initString("38e87280-715c-4c7d-a280-ea1651a19fef");
 pub const IID_IFsrmReportJob = &IID_IFsrmReportJob_Value;
 pub const IFsrmReportJob = extern struct {
@@ -2812,6 +2848,7 @@ pub const IFsrmReportJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReport_Value = @import("../zig.zig").Guid.initString("d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638");
 pub const IID_IFsrmReport = &IID_IFsrmReport_Value;
 pub const IFsrmReport = extern struct {
@@ -2898,6 +2935,7 @@ pub const IFsrmReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportScheduler_Value = @import("../zig.zig").Guid.initString("6879caf9-6617-4484-8719-71c3d8645f94");
 pub const IID_IFsrmReportScheduler = &IID_IFsrmReportScheduler_Value;
 pub const IFsrmReportScheduler = extern struct {
@@ -2947,6 +2985,7 @@ pub const IFsrmReportScheduler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileManagementJobManager_Value = @import("../zig.zig").Guid.initString("ee321ecb-d95e-48e9-907c-c7685a013235");
 pub const IID_IFsrmFileManagementJobManager = &IID_IFsrmFileManagementJobManager_Value;
 pub const IFsrmFileManagementJobManager = extern struct {
@@ -3002,6 +3041,7 @@ pub const IFsrmFileManagementJobManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileManagementJob_Value = @import("../zig.zig").Guid.initString("0770687e-9f36-4d6f-8778-599d188461c9");
 pub const IID_IFsrmFileManagementJob = &IID_IFsrmFileManagementJob_Value;
 pub const IFsrmFileManagementJob = extern struct {
@@ -3412,6 +3452,7 @@ pub const IFsrmFileManagementJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyCondition_Value = @import("../zig.zig").Guid.initString("326af66f-2ac0-4f68-bf8c-4759f054fa29");
 pub const IID_IFsrmPropertyCondition = &IID_IFsrmPropertyCondition_Value;
 pub const IFsrmPropertyCondition = extern struct {
@@ -3508,6 +3549,7 @@ pub const IFsrmFileCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmFileConditionProperty_Value = @import("../zig.zig").Guid.initString("81926775-b981-4479-988f-da171d627360");
 pub const IID_IFsrmFileConditionProperty = &IID_IFsrmFileConditionProperty_Value;
 pub const IFsrmFileConditionProperty = extern struct {
@@ -3601,6 +3643,7 @@ pub const IFsrmFileConditionProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyDefinition_Value = @import("../zig.zig").Guid.initString("ede0150f-e9a3-419c-877c-01fe5d24c5d3");
 pub const IID_IFsrmPropertyDefinition = &IID_IFsrmPropertyDefinition_Value;
 pub const IFsrmPropertyDefinition = extern struct {
@@ -3694,6 +3737,7 @@ pub const IFsrmPropertyDefinition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyDefinition2_Value = @import("../zig.zig").Guid.initString("47782152-d16c-4229-b4e1-0ddfe308b9f6");
 pub const IID_IFsrmPropertyDefinition2 = &IID_IFsrmPropertyDefinition2_Value;
 pub const IFsrmPropertyDefinition2 = extern struct {
@@ -3747,6 +3791,7 @@ pub const IFsrmPropertyDefinition2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyDefinitionValue_Value = @import("../zig.zig").Guid.initString("e946d148-bd67-4178-8e22-1c44925ed710");
 pub const IID_IFsrmPropertyDefinitionValue = &IID_IFsrmPropertyDefinitionValue_Value;
 pub const IFsrmPropertyDefinitionValue = extern struct {
@@ -3792,6 +3837,7 @@ pub const IFsrmPropertyDefinitionValue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmProperty_Value = @import("../zig.zig").Guid.initString("4a73fee4-4102-4fcc-9ffb-38614f9ee768");
 pub const IID_IFsrmProperty = &IID_IFsrmProperty_Value;
 pub const IFsrmProperty = extern struct {
@@ -3837,6 +3883,7 @@ pub const IFsrmProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmRule_Value = @import("../zig.zig").Guid.initString("cb0df960-16f5-4495-9079-3f9360d831df");
 pub const IID_IFsrmRule = &IID_IFsrmRule_Value;
 pub const IFsrmRule = extern struct {
@@ -3946,6 +3993,7 @@ pub const IFsrmRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassificationRule_Value = @import("../zig.zig").Guid.initString("afc052c2-5315-45ab-841b-c6db0e120148");
 pub const IID_IFsrmClassificationRule = &IID_IFsrmClassificationRule_Value;
 pub const IFsrmClassificationRule = extern struct {
@@ -4007,6 +4055,7 @@ pub const IFsrmClassificationRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleDefinition_Value = @import("../zig.zig").Guid.initString("515c1277-2c81-440e-8fcf-367921ed4f59");
 pub const IID_IFsrmPipelineModuleDefinition = &IID_IFsrmPipelineModuleDefinition_Value;
 pub const IFsrmPipelineModuleDefinition = extern struct {
@@ -4172,6 +4221,7 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassifierModuleDefinition_Value = @import("../zig.zig").Guid.initString("bb36ea26-6318-4b8c-8592-f72dd602e7a5");
 pub const IID_IFsrmClassifierModuleDefinition = &IID_IFsrmClassifierModuleDefinition_Value;
 pub const IFsrmClassifierModuleDefinition = extern struct {
@@ -4233,6 +4283,7 @@ pub const IFsrmClassifierModuleDefinition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmStorageModuleDefinition_Value = @import("../zig.zig").Guid.initString("15a81350-497d-4aba-80e9-d4dbcc5521fe");
 pub const IID_IFsrmStorageModuleDefinition = &IID_IFsrmStorageModuleDefinition_Value;
 pub const IFsrmStorageModuleDefinition = extern struct {
@@ -4294,6 +4345,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IFsrmClassificationManager_Value = @import("../zig.zig").Guid.initString("d2dc89da-ee91-48a0-85d8-cc72a56f7d04");
 pub const IID_IFsrmClassificationManager = &IID_IFsrmClassificationManager_Value;
 pub const IFsrmClassificationManager = extern struct {
@@ -4544,6 +4596,7 @@ pub const IFsrmClassificationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IFsrmClassificationManager2_Value = @import("../zig.zig").Guid.initString("0004c1c9-127e-4765-ba07-6a3147bca112");
 pub const IID_IFsrmClassificationManager2 = &IID_IFsrmClassificationManager2_Value;
 pub const IFsrmClassificationManager2 = extern struct {
@@ -4568,6 +4621,7 @@ pub const IFsrmClassificationManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyBag_Value = @import("../zig.zig").Guid.initString("774589d1-d300-4f7a-9a24-f7b766800250");
 pub const IID_IFsrmPropertyBag = &IID_IFsrmPropertyBag_Value;
 pub const IFsrmPropertyBag = extern struct {
@@ -4753,6 +4807,7 @@ pub const IFsrmPropertyBag = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyBag2_Value = @import("../zig.zig").Guid.initString("0e46bdbd-2402-4fed-9c30-9266e6eb2cc9");
 pub const IID_IFsrmPropertyBag2 = &IID_IFsrmPropertyBag2_Value;
 pub const IFsrmPropertyBag2 = extern struct {
@@ -4783,6 +4838,7 @@ pub const IFsrmPropertyBag2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleImplementation_Value = @import("../zig.zig").Guid.initString("b7907906-2b02-4cb5-84a9-fdf54613d6cd");
 pub const IID_IFsrmPipelineModuleImplementation = &IID_IFsrmPipelineModuleImplementation_Value;
 pub const IFsrmPipelineModuleImplementation = extern struct {
@@ -4812,6 +4868,7 @@ pub const IFsrmPipelineModuleImplementation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassifierModuleImplementation_Value = @import("../zig.zig").Guid.initString("4c968fc6-6edb-4051-9c18-73b7291ae106");
 pub const IID_IFsrmClassifierModuleImplementation = &IID_IFsrmClassifierModuleImplementation_Value;
 pub const IFsrmClassifierModuleImplementation = extern struct {
@@ -4881,6 +4938,7 @@ pub const IFsrmClassifierModuleImplementation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmStorageModuleImplementation_Value = @import("../zig.zig").Guid.initString("0af4a0da-895a-4e50-8712-a96724bcec64");
 pub const IID_IFsrmStorageModuleImplementation = &IID_IFsrmStorageModuleImplementation_Value;
 pub const IFsrmStorageModuleImplementation = extern struct {
@@ -4918,6 +4976,7 @@ pub const IFsrmStorageModuleImplementation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleConnector_Value = @import("../zig.zig").Guid.initString("c16014f3-9aa1-46b3-b0a7-ab146eb205f2");
 pub const IID_IFsrmPipelineModuleConnector = &IID_IFsrmPipelineModuleConnector_Value;
 pub const IFsrmPipelineModuleConnector = extern struct {
@@ -4972,6 +5031,7 @@ pub const IFsrmPipelineModuleConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_DIFsrmClassificationEvents_Value = @import("../zig.zig").Guid.initString("26942db0-dabf-41d8-bbdd-b129a9f70424");
 pub const IID_DIFsrmClassificationEvents = &IID_DIFsrmClassificationEvents_Value;
 pub const DIFsrmClassificationEvents = extern struct {

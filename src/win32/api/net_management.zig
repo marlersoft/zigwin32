@@ -1013,7 +1013,7 @@ pub const USER_INFO_4 = extern struct {
     usri4_logon_server: PWSTR,
     usri4_country_code: u32,
     usri4_code_page: u32,
-    usri4_user_sid: *c_void,
+    usri4_user_sid: PSID,
     usri4_primary_group_id: u32,
     usri4_profile: PWSTR,
     usri4_home_dir_drive: PWSTR,
@@ -1094,7 +1094,7 @@ pub const USER_INFO_23 = extern struct {
     usri23_full_name: PWSTR,
     usri23_comment: PWSTR,
     usri23_flags: USER_INFO_4_usri4_flags,
-    usri23_user_sid: *c_void,
+    usri23_user_sid: PSID,
 };
 
 pub const USER_INFO_24 = extern struct {
@@ -1102,7 +1102,7 @@ pub const USER_INFO_24 = extern struct {
     usri24_flags: u32,
     usri24_internet_provider_name: PWSTR,
     usri24_internet_principal_name: PWSTR,
-    usri24_user_sid: *c_void,
+    usri24_user_sid: PSID,
 };
 
 pub const USER_INFO_1003 = extern struct {
@@ -1201,7 +1201,7 @@ pub const USER_MODALS_INFO_1 = extern struct {
 
 pub const USER_MODALS_INFO_2 = extern struct {
     usrmod2_domain_name: PWSTR,
-    usrmod2_domain_id: *c_void,
+    usrmod2_domain_id: PSID,
 };
 
 pub const USER_MODALS_INFO_3 = extern struct {
@@ -1257,7 +1257,7 @@ pub const GROUP_INFO_2 = extern struct {
 pub const GROUP_INFO_3 = extern struct {
     grpi3_name: PWSTR,
     grpi3_comment: PWSTR,
-    grpi3_group_sid: *c_void,
+    grpi3_group_sid: PSID,
     grpi3_attributes: u32,
 };
 
@@ -1292,17 +1292,17 @@ pub const LOCALGROUP_INFO_1002 = extern struct {
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
-    lgrmi0_sid: *c_void,
+    lgrmi0_sid: PSID,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_1 = extern struct {
-    lgrmi1_sid: *c_void,
+    lgrmi1_sid: PSID,
     lgrmi1_sidusage: SID_NAME_USE,
     lgrmi1_name: PWSTR,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_2 = extern struct {
-    lgrmi2_sid: *c_void,
+    lgrmi2_sid: PSID,
     lgrmi2_sidusage: SID_NAME_USE,
     lgrmi2_domainandname: PWSTR,
 };
@@ -1655,7 +1655,7 @@ pub const AT_INFO = extern struct {
     JobTime: ?*c_void,
     DaysOfMonth: u32,
     DaysOfWeek: u8,
-    Flags: AT_ENUMFlags,
+    Flags: u8,
     Command: PWSTR,
 };
 
@@ -1664,7 +1664,7 @@ pub const AT_ENUM = extern struct {
     JobTime: ?*c_void,
     DaysOfMonth: u32,
     DaysOfWeek: u8,
-    Flags: AT_ENUMFlags,
+    Flags: u8,
     Command: PWSTR,
 };
 
@@ -2739,6 +2739,7 @@ pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (113)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserAdd(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2746,6 +2747,7 @@ pub extern "samcli" fn NetUserAdd(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserEnum(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2757,6 +2759,7 @@ pub extern "samcli" fn NetUserEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "samcli" fn NetUserGetInfo(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
@@ -2764,6 +2767,7 @@ pub extern "samcli" fn NetUserGetInfo(
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserSetInfo(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
@@ -2772,11 +2776,13 @@ pub extern "samcli" fn NetUserSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserDel(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserGetGroups(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
@@ -2787,6 +2793,7 @@ pub extern "samcli" fn NetUserGetGroups(
     totalentries: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserSetGroups(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
@@ -2795,6 +2802,7 @@ pub extern "samcli" fn NetUserSetGroups(
     num_entries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserGetLocalGroups(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
@@ -2806,12 +2814,14 @@ pub extern "samcli" fn NetUserGetLocalGroups(
     totalentries: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserModalsGet(
     servername: ?[*:0]const u16,
     level: Net_level,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserModalsSet(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2819,6 +2829,7 @@ pub extern "samcli" fn NetUserModalsSet(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserChangePassword(
     domainname: ?[*:0]const u16,
     username: ?[*:0]const u16,
@@ -2826,6 +2837,7 @@ pub extern "samcli" fn NetUserChangePassword(
     newpassword: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupAdd(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2833,12 +2845,14 @@ pub extern "samcli" fn NetGroupAdd(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupAddUser(
     servername: ?[*:0]const u16,
     GroupName: [*:0]const u16,
     username: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupEnum(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2849,6 +2863,7 @@ pub extern "samcli" fn NetGroupEnum(
     resume_handle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupGetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2856,6 +2871,7 @@ pub extern "samcli" fn NetGroupGetInfo(
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2864,17 +2880,20 @@ pub extern "samcli" fn NetGroupSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupDel(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupDelUser(
     servername: ?[*:0]const u16,
     GroupName: [*:0]const u16,
     Username: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupGetUsers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2886,6 +2905,7 @@ pub extern "samcli" fn NetGroupGetUsers(
     ResumeHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupSetUsers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2894,6 +2914,7 @@ pub extern "samcli" fn NetGroupSetUsers(
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupAdd(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2904,9 +2925,10 @@ pub extern "samcli" fn NetLocalGroupAdd(
 pub extern "samcli" fn NetLocalGroupAddMember(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    membersid: *c_void,
+    membersid: PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupEnum(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -2917,6 +2939,7 @@ pub extern "samcli" fn NetLocalGroupEnum(
     resumehandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupGetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2924,6 +2947,7 @@ pub extern "samcli" fn NetLocalGroupGetInfo(
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2932,6 +2956,7 @@ pub extern "samcli" fn NetLocalGroupSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupDel(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2940,9 +2965,10 @@ pub extern "samcli" fn NetLocalGroupDel(
 pub extern "samcli" fn NetLocalGroupDelMember(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    membersid: *c_void,
+    membersid: PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupGetMembers(
     servername: ?[*:0]const u16,
     localgroupname: [*:0]const u16,
@@ -2954,6 +2980,7 @@ pub extern "samcli" fn NetLocalGroupGetMembers(
     resumehandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupSetMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2962,6 +2989,7 @@ pub extern "samcli" fn NetLocalGroupSetMembers(
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupAddMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2970,6 +2998,7 @@ pub extern "samcli" fn NetLocalGroupAddMembers(
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupDelMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
@@ -2978,6 +3007,7 @@ pub extern "samcli" fn NetLocalGroupDelMembers(
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetQueryDisplayInformation(
     ServerName: [*:0]const u16,
     Level: Net_Level,
@@ -2988,6 +3018,7 @@ pub extern "samcli" fn NetQueryDisplayInformation(
     SortedBuffer: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGetDisplayInformationIndex(
     ServerName: [*:0]const u16,
     Level: Net_Level,
@@ -2995,6 +3026,7 @@ pub extern "samcli" fn NetGetDisplayInformationIndex(
     Index: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessAdd(
     servername: ?[*:0]const u16,
     level: u32,
@@ -3002,6 +3034,7 @@ pub extern "NETAPI32" fn NetAccessAdd(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessEnum(
     servername: ?[*:0]const u16,
     BasePath: [*:0]const u16,
@@ -3014,13 +3047,15 @@ pub extern "NETAPI32" fn NetAccessEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessGetInfo(
     servername: ?[*:0]const u16,
-    resource: Net_level,
+    resource: *const Net_level,
     level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessSetInfo(
     servername: ?[*:0]const u16,
     resource: [*:0]const u16,
@@ -3029,11 +3064,13 @@ pub extern "NETAPI32" fn NetAccessSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessDel(
     servername: [*:0]const u16,
     resource: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAccessGetUserPerms(
     servername: [*:0]const u16,
     UGname: [*:0]const u16,
@@ -3041,6 +3078,7 @@ pub extern "NETAPI32" fn NetAccessGetUserPerms(
     Perms: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "samcli" fn NetValidatePasswordPolicy(
     ServerName: [*:0]const u16,
     Qualifier: *c_void,
@@ -3049,22 +3087,26 @@ pub extern "samcli" fn NetValidatePasswordPolicy(
     OutputArg: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "samcli" fn NetValidatePasswordPolicyFree(
     OutputArg: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "logoncli" fn NetGetDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "logoncli" fn NetGetAnyDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetJoinDomain(
     lpServer: ?[*:0]const u16,
     lpDomain: [*:0]const u16,
@@ -3074,6 +3116,7 @@ pub extern "wkscli" fn NetJoinDomain(
     fJoinOptions: NetJoinDomain_fJoinOptionsFlags,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUnjoinDomain(
     lpServer: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
@@ -3081,6 +3124,7 @@ pub extern "wkscli" fn NetUnjoinDomain(
     fUnjoinOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetRenameMachineInDomain(
     lpServer: ?[*:0]const u16,
     lpNewMachineName: ?[*:0]const u16,
@@ -3089,6 +3133,7 @@ pub extern "wkscli" fn NetRenameMachineInDomain(
     fRenameOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetValidateName(
     lpServer: ?[*:0]const u16,
     lpName: [*:0]const u16,
@@ -3097,6 +3142,7 @@ pub extern "wkscli" fn NetValidateName(
     NameType: NETSETUP_NAME_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetGetJoinableOUs(
     lpServer: [*:0]const u16,
     lpDomain: [*:0]const u16,
@@ -3106,6 +3152,7 @@ pub extern "wkscli" fn NetGetJoinableOUs(
     OUs: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wkscli" fn NetAddAlternateComputerName(
     Server: ?[*:0]const u16,
     AlternateName: [*:0]const u16,
@@ -3114,6 +3161,7 @@ pub extern "wkscli" fn NetAddAlternateComputerName(
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wkscli" fn NetRemoveAlternateComputerName(
     Server: ?[*:0]const u16,
     AlternateName: [*:0]const u16,
@@ -3122,6 +3170,7 @@ pub extern "wkscli" fn NetRemoveAlternateComputerName(
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wkscli" fn NetSetPrimaryComputerName(
     Server: ?[*:0]const u16,
     PrimaryName: [*:0]const u16,
@@ -3130,6 +3179,7 @@ pub extern "wkscli" fn NetSetPrimaryComputerName(
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wkscli" fn NetEnumerateComputerNames(
     Server: ?[*:0]const u16,
     NameType: NET_COMPUTER_NAME_TYPE,
@@ -3138,6 +3188,7 @@ pub extern "wkscli" fn NetEnumerateComputerNames(
     ComputerNames: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetProvisionComputerAccount(
     lpDomain: [*:0]const u16,
     lpMachineName: [*:0]const u16,
@@ -3149,6 +3200,7 @@ pub extern "NETAPI32" fn NetProvisionComputerAccount(
     pProvisionTextData: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
     pProvisionBinData: [*:0]u8,
     cbProvisionBinDataSize: u32,
@@ -3156,6 +3208,7 @@ pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
     lpWindowsPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "NETAPI32" fn NetCreateProvisioningPackage(
     pProvisioningParams: *NETSETUP_PROVISIONING_PARAMS,
     ppPackageBinData: ?*?*u8,
@@ -3163,6 +3216,7 @@ pub extern "NETAPI32" fn NetCreateProvisioningPackage(
     ppPackageTextData: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
     pPackageBinData: [*:0]u8,
     dwPackageBinDataSize: u32,
@@ -3171,39 +3225,46 @@ pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "NETAPI32" fn NetGetAadJoinInformation(
     pcszTenantId: ?[*:0]const u16,
     ppJoinInfo: ?*?*DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "NETAPI32" fn NetFreeAadJoinInformation(
     pJoinInfo: ?*DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetGetJoinInformation(
     lpServer: ?[*:0]const u16,
     lpNameBuffer: *PWSTR,
     BufferType: *NETSETUP_JOIN_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn GetNetScheduleAccountInformation(
     pwszServerName: [*:0]const u16,
     ccAccount: u32,
     wszAccount: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mstask" fn SetNetScheduleAccountInformation(
     pwszServerName: [*:0]const u16,
     pwszAccount: [*:0]const u16,
     pwszPassword: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaise(
     AlertType: [*:0]const u16,
     Buffer: *c_void,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaiseEx(
     AlertType: [*:0]const u16,
     VariableInfo: *c_void,
@@ -3211,21 +3272,25 @@ pub extern "NETAPI32" fn NetAlertRaiseEx(
     ServiceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetApiBufferAllocate(
     ByteCount: u32,
     Buffer: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetApiBufferFree(
     Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetApiBufferReallocate(
     OldBuffer: ?*c_void,
     NewByteCount: u32,
     NewBuffer: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetApiBufferSize(
     Buffer: *c_void,
     ByteCount: *u32,
@@ -3313,11 +3378,13 @@ pub extern "NETAPI32" fn NetErrorLogWrite(
     Reserved2: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameAdd(
     servername: ?[*:0]const u16,
     msgname: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameEnum(
     servername: ?[*:0]const u16,
     level: Net_level,
@@ -3328,6 +3395,7 @@ pub extern "NETAPI32" fn NetMessageNameEnum(
     resume_handle: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameGetInfo(
     servername: ?[*:0]const u16,
     msgname: [*:0]const u16,
@@ -3335,11 +3403,13 @@ pub extern "NETAPI32" fn NetMessageNameGetInfo(
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameDel(
     servername: ?[*:0]const u16,
     msgname: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageBufferSend(
     servername: ?[*:0]const u16,
     msgname: [*:0]const u16,
@@ -3348,29 +3418,34 @@ pub extern "NETAPI32" fn NetMessageBufferSend(
     buflen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetRemoteTOD(
     UncServerName: ?[*:0]const u16,
     BufferPtr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetRemoteComputerSupports(
     UncServerName: [*:0]const u16,
     OptionsWanted: NetRemoteComputerSupports_OptionsWantedFlags,
     OptionsSupported: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "schedcli" fn NetScheduleJobAdd(
     Servername: [*:0]const u16,
     Buffer: *u8,
     JobId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "schedcli" fn NetScheduleJobDel(
     Servername: [*:0]const u16,
     MinJobId: u32,
     MaxJobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "schedcli" fn NetScheduleJobEnum(
     Servername: [*:0]const u16,
     PointerToBuffer: **u8,
@@ -3380,12 +3455,14 @@ pub extern "schedcli" fn NetScheduleJobEnum(
     ResumeHandle: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "schedcli" fn NetScheduleJobGetInfo(
     Servername: [*:0]const u16,
     JobId: u32,
     PointerToBuffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerEnum(
     servername: ?[*:0]const u16,
     level: NetWkstaSetInfo_levelFlags,
@@ -3398,12 +3475,14 @@ pub extern "NETAPI32" fn NetServerEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerGetInfo(
     servername: ?PWSTR,
     level: NetWkstaSetInfo_levelFlags,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerSetInfo(
     servername: ?PWSTR,
     level: NetWkstaSetInfo_levelFlags,
@@ -3411,6 +3490,7 @@ pub extern "srvcli" fn NetServerSetInfo(
     ParmError: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerDiskEnum(
     servername: ?PWSTR,
     level: u32,
@@ -3421,35 +3501,41 @@ pub extern "srvcli" fn NetServerDiskEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerComputerNameAdd(
     ServerName: ?PWSTR,
     EmulatedDomainName: ?PWSTR,
     EmulatedServerName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerComputerNameDel(
     ServerName: ?PWSTR,
     EmulatedServerName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportAdd(
     servername: ?PWSTR,
     level: u32,
     bufptr: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportAddEx(
     servername: ?PWSTR,
     level: Net_level,
     bufptr: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportDel(
     servername: ?PWSTR,
     level: Net_level,
     bufptr: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportEnum(
     servername: ?PWSTR,
     level: Net_level,
@@ -3493,6 +3579,7 @@ pub extern "NETAPI32" fn NetServiceInstall(
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUseAdd(
     servername: ?*i8,
     LevelFlags: NetUseAdd_LevelFlags,
@@ -3500,12 +3587,14 @@ pub extern "wkscli" fn NetUseAdd(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUseDel(
     UncServerName: ?PWSTR,
     UseName: PWSTR,
     ForceLevelFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUseEnum(
     UncServerName: ?PWSTR,
     LevelFlags: u32,
@@ -3516,6 +3605,7 @@ pub extern "wkscli" fn NetUseEnum(
     ResumeHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUseGetInfo(
     UncServerName: ?PWSTR,
     UseName: PWSTR,
@@ -3523,12 +3613,14 @@ pub extern "wkscli" fn NetUseGetInfo(
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: NetWkstaSetInfo_levelFlags,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaSetInfo(
     servername: ?PWSTR,
     level: NetWkstaSetInfo_levelFlags,
@@ -3536,12 +3628,14 @@ pub extern "wkscli" fn NetWkstaSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserGetInfo(
     reserved: ?PWSTR,
     level: Net_level,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserSetInfo(
     reserved: ?PWSTR,
     level: Net_level,
@@ -3549,6 +3643,7 @@ pub extern "wkscli" fn NetWkstaUserSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserEnum(
     servername: ?PWSTR,
     level: Net_level,
@@ -3572,6 +3667,7 @@ pub extern "wkscli" fn NetWkstaTransportDel(
     ucond: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaTransportEnum(
     servername: ?*i8,
     level: u32,
@@ -3596,15 +3692,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const SID_NAME_USE = @import("security.zig").SID_NAME_USE;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const BOOL = @import("system_services.zig").BOOL;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const HRESULT = @import("com.zig").HRESULT;
+const PSID = @import("security.zig").PSID;
+const BOOL = @import("system_services.zig").BOOL;
 
 test {
     const constant_export_count = 531;
@@ -3614,7 +3711,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 113;
     const unicode_alias_count = 0;
-    const import_count = 7;
+    const import_count = 8;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

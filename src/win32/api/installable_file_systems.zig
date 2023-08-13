@@ -10,23 +10,23 @@ pub const FLT_PORT_FLAG_SYNC_HANDLE = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'FilterFindClose', what can Zig do with this information?
-pub const FilterFindHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FilterInstanceFindClose', what can Zig do with this information?
-pub const FilterInstanceFindHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FilterVolumeFindClose', what can Zig do with this information?
-pub const FilterVolumeFindHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
-pub const FilterVolumeInstanceFindHandle = ?*c_void;
-
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
 pub const HFILTER = ?*c_void;
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
 pub const HFILTER_INSTANCE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FilterFindClose', what can Zig do with this information?
+pub const FilterFindHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FilterVolumeFindClose', what can Zig do with this information?
+pub const FilterVolumeFindHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FilterInstanceFindClose', what can Zig do with this information?
+pub const FilterInstanceFindHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
+pub const FilterVolumeInstanceFindHandle = ?*c_void;
 
 pub const FLT_FILESYSTEM_TYPE = extern enum(i32) {
     UNKNOWN = 0,
@@ -203,6 +203,7 @@ pub const FILTER_REPLY_HEADER = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (29)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
     FramesToSkip: u32,
     FramesToCapture: u32,
@@ -266,7 +267,7 @@ pub extern "FLTLIB" fn FilterFindFirst(
     lpBuffer: [*]u8,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpFilterFind: *FilterFindHandle,
+    lpFilterFind: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterFindNext(
@@ -286,7 +287,7 @@ pub extern "FLTLIB" fn FilterVolumeFindFirst(
     lpBuffer: [*]u8,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpVolumeFind: *FilterVolumeFindHandle,
+    lpVolumeFind: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterVolumeFindNext(
@@ -307,7 +308,7 @@ pub extern "FLTLIB" fn FilterInstanceFindFirst(
     lpBuffer: [*]u8,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpFilterInstanceFind: *FilterInstanceFindHandle,
+    lpFilterInstanceFind: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterInstanceFindNext(
@@ -328,7 +329,7 @@ pub extern "FLTLIB" fn FilterVolumeInstanceFindFirst(
     lpBuffer: [*]u8,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpVolumeInstanceFind: *FilterVolumeInstanceFindHandle,
+    lpVolumeInstanceFind: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterVolumeInstanceFindNext(
@@ -384,6 +385,7 @@ pub extern "FLTLIB" fn FilterGetMessage(
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "FLTLIB" fn FilterReplyMessage(
     hPort: HANDLE,
     lpReplyBuffer: [*]FILTER_REPLY_HEADER,

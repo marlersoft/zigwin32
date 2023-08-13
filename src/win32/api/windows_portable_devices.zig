@@ -1482,6 +1482,7 @@ pub const IPortableDeviceContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceContent2_Value = @import("../zig.zig").Guid.initString("9b4add96-f6bf-4034-8708-eca72bf10554");
 pub const IID_IPortableDeviceContent2 = &IID_IPortableDeviceContent2_Value;
 pub const IPortableDeviceContent2 = extern struct {
@@ -1855,6 +1856,7 @@ pub const IPortableDeviceDataStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPortableDeviceUnitsStream_Value = @import("../zig.zig").Guid.initString("5e98025f-bfc4-47a2-9a5f-bc900a507c67");
 pub const IID_IPortableDeviceUnitsStream = &IID_IPortableDeviceUnitsStream_Value;
 pub const IPortableDeviceUnitsStream = extern struct {
@@ -1988,6 +1990,7 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceServiceManager_Value = @import("../zig.zig").Guid.initString("a8abc4e9-a84a-47a9-80b3-c5d9b172a961");
 pub const IID_IPortableDeviceServiceManager = &IID_IPortableDeviceServiceManager_Value;
 pub const IPortableDeviceServiceManager = extern struct {
@@ -2021,6 +2024,7 @@ pub const IPortableDeviceServiceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceService_Value = @import("../zig.zig").Guid.initString("d3bd3a44-d7b5-40a9-98b7-2fa4d01dec08");
 pub const IID_IPortableDeviceService = &IID_IPortableDeviceService_Value;
 pub const IPortableDeviceService = extern struct {
@@ -2126,6 +2130,7 @@ pub const IPortableDeviceService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceServiceCapabilities_Value = @import("../zig.zig").Guid.initString("24dbd89d-413e-43e0-bd5b-197f3c56c886");
 pub const IID_IPortableDeviceServiceCapabilities = &IID_IPortableDeviceServiceCapabilities_Value;
 pub const IPortableDeviceServiceCapabilities = extern struct {
@@ -2280,6 +2285,7 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceServiceMethods_Value = @import("../zig.zig").Guid.initString("e20333c9-fd34-412d-a381-cc6f2d820df7");
 pub const IID_IPortableDeviceServiceMethods = &IID_IPortableDeviceServiceMethods_Value;
 pub const IPortableDeviceServiceMethods = extern struct {
@@ -2321,6 +2327,7 @@ pub const IPortableDeviceServiceMethods = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceServiceMethodCallback_Value = @import("../zig.zig").Guid.initString("c424233c-afce-4828-a756-7ed7a2350083");
 pub const IID_IPortableDeviceServiceMethodCallback = &IID_IPortableDeviceServiceMethodCallback_Value;
 pub const IPortableDeviceServiceMethodCallback = extern struct {
@@ -2394,6 +2401,7 @@ pub const IPortableDeviceServiceOpenCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceDispatchFactory_Value = @import("../zig.zig").Guid.initString("5e1eafc3-e3d7-4132-96fa-759c0f9d1e0f");
 pub const IID_IPortableDeviceDispatchFactory = &IID_IPortableDeviceDispatchFactory_Value;
 pub const IPortableDeviceDispatchFactory = extern struct {
@@ -2416,6 +2424,7 @@ pub const IPortableDeviceDispatchFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPortableDeviceWebControl_Value = @import("../zig.zig").Guid.initString("94fc7953-5ca1-483a-8aee-df52e7747d00");
 pub const IID_IPortableDeviceWebControl = &IID_IPortableDeviceWebControl_Value;
 pub const IPortableDeviceWebControl = extern struct {
@@ -2497,6 +2506,7 @@ pub const IEnumPortableDeviceConnectors = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPortableDeviceConnector_Value = @import("../zig.zig").Guid.initString("625e2df8-6392-4cf0-9ad1-3cfa5f17775c");
 pub const IID_IPortableDeviceConnector = &IID_IPortableDeviceConnector_Value;
 pub const IPortableDeviceConnector = extern struct {

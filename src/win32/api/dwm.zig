@@ -245,6 +245,7 @@ pub const DWMTWR_APP_COMPAT = DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT;
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmDefWindowProc(
     hWnd: HWND,
     msg: u32,
@@ -253,34 +254,41 @@ pub extern "dwmapi" fn DwmDefWindowProc(
     plResult: *LRESULT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmEnableBlurBehindWindow(
     hWnd: HWND,
     pBlurBehind: *const DWM_BLURBEHIND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmEnableComposition(
     uCompositionAction: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmEnableMMCSS(
     fEnableMMCSS: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmExtendFrameIntoClientArea(
     hWnd: HWND,
     pMarInset: *const MARGINS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetColorizationColor(
     pcrColorization: *u32,
     pfOpaqueBlend: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetCompositionTimingInfo(
     hwnd: HWND,
     pTimingInfo: *DWM_TIMING_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetWindowAttribute(
     hwnd: HWND,
     dwAttribute: u32,
@@ -288,37 +296,44 @@ pub extern "dwmapi" fn DwmGetWindowAttribute(
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmIsCompositionEnabled(
     pfEnabled: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmModifyPreviousDxFrameDuration(
     hwnd: HWND,
     cRefreshes: i32,
     fRelative: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmQueryThumbnailSourceSize(
     hThumbnail: ?*c_void,
     pSize: *SIZE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmRegisterThumbnail(
     hwndDestination: HWND,
     hwndSource: HWND,
     phThumbnailId: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmSetDxFrameDuration(
     hwnd: HWND,
     cRefreshes: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmSetPresentParameters(
     hwnd: HWND,
     pPresentParams: *DWM_PRESENT_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmSetWindowAttribute(
     hwnd: HWND,
     dwAttribute: u32,
@@ -326,21 +341,25 @@ pub extern "dwmapi" fn DwmSetWindowAttribute(
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmUnregisterThumbnail(
     hThumbnailId: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmUpdateThumbnailProperties(
     hThumbnailId: ?*c_void,
     ptnProperties: *const DWM_THUMBNAIL_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "dwmapi" fn DwmSetIconicThumbnail(
     hwnd: HWND,
     hbmp: HBITMAP,
     dwSITFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "dwmapi" fn DwmSetIconicLivePreviewBitmap(
     hwnd: HWND,
     hbmp: HBITMAP,
@@ -348,42 +367,51 @@ pub extern "dwmapi" fn DwmSetIconicLivePreviewBitmap(
     dwSITFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "dwmapi" fn DwmInvalidateIconicBitmaps(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmAttachMilContent(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmDetachMilContent(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmFlush(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetGraphicsStreamTransformHint(
     uIndex: u32,
     pTransform: *MilMatrix3x2D,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetGraphicsStreamClient(
     uIndex: u32,
     pClientUuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetTransportAttributes(
     pfIsRemoting: *BOOL,
     pfIsConnected: *BOOL,
     pDwGeneration: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dwmapi" fn DwmTransitionOwnedWindow(
     hwnd: HWND,
     target: DWMTRANSITION_OWNEDWINDOW_TARGET,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dwmapi" fn DwmRenderGesture(
     gt: GESTURE_TYPE,
     cContacts: u32,
@@ -391,17 +419,20 @@ pub extern "dwmapi" fn DwmRenderGesture(
     pPoints: [*]const POINT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dwmapi" fn DwmTetherContact(
     dwPointerID: u32,
     fEnable: BOOL,
     ptTether: POINT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dwmapi" fn DwmShowContact(
     dwPointerID: u32,
     eShowContact: DWM_SHOWCONTACT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
     appWindow: HWND,
     value: *DWM_TAB_WINDOW_REQUIREMENTS,

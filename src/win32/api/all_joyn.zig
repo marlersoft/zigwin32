@@ -1462,14 +1462,17 @@ pub const alljoyn_sessionportlistener = ?*c_void;
 //--------------------------------------------------------------------------------
 // Section: Functions (532)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynConnectToBus(
     connectionSpec: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynCloseBusHandle(
     busHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynSendToBus(
     connectedBusHandle: HANDLE,
     buffer: ?[*]const u8,
@@ -1478,6 +1481,7 @@ pub extern "MSAJApi" fn AllJoynSendToBus(
     reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynReceiveFromBus(
     connectedBusHandle: HANDLE,
     buffer: ?[*]u8,
@@ -1486,12 +1490,14 @@ pub extern "MSAJApi" fn AllJoynReceiveFromBus(
     reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynEventSelect(
     connectedBusHandle: HANDLE,
     eventHandle: HANDLE,
     eventTypes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynEnumEvents(
     connectedBusHandle: HANDLE,
     eventToReset: HANDLE,

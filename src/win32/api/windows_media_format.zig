@@ -1413,6 +1413,7 @@ pub const IWMWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMWriter_Value = @import("../zig.zig").Guid.initString("d6ea5dd0-12a0-43f4-90ab-a3fd451e6a07");
 pub const IID_IWMDRMWriter = &IID_IWMDRMWriter_Value;
 pub const IWMDRMWriter = extern struct {
@@ -1475,6 +1476,7 @@ pub const WMDRM_IMPORT_INIT_STRUCT = extern struct {
     pbEncryptedKeyMessage: *u8,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMWriter2_Value = @import("../zig.zig").Guid.initString("38ee7a94-40e2-4e10-aa3f-33fd3210ed5b");
 pub const IID_IWMDRMWriter2 = &IID_IWMDRMWriter2_Value;
 pub const IWMDRMWriter2 = extern struct {
@@ -1498,6 +1500,7 @@ pub const IWMDRMWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMWriter3_Value = @import("../zig.zig").Guid.initString("a7184082-a4aa-4dde-ac9c-e75dbd1117ce");
 pub const IID_IWMDRMWriter3 = &IID_IWMDRMWriter3_Value;
 pub const IWMDRMWriter3 = extern struct {
@@ -2201,6 +2204,7 @@ pub const IWMMetadataEditor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMEditor_Value = @import("../zig.zig").Guid.initString("ff130ebc-a6c3-42a6-b401-c3382c3e08b3");
 pub const IID_IWMDRMEditor = &IID_IWMDRMEditor_Value;
 pub const IWMDRMEditor = extern struct {
@@ -4834,6 +4838,7 @@ pub const IWMReaderCallbackAdvanced = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMReader_Value = @import("../zig.zig").Guid.initString("d2827540-3ee7-432c-b14c-dc17f085d3b3");
 pub const IID_IWMDRMReader = &IID_IWMDRMReader_Value;
 pub const IWMDRMReader = extern struct {
@@ -4948,6 +4953,7 @@ pub const DRM_COPY_OPL = extern struct {
     oplIdExcludes: DRM_OPL_OUTPUT_IDS,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMReader2_Value = @import("../zig.zig").Guid.initString("befe7a75-9f1d-4075-b9d9-a3c37bda49a0");
 pub const IID_IWMDRMReader2 = &IID_IWMDRMReader2_Value;
 pub const IWMDRMReader2 = extern struct {
@@ -4996,6 +5002,7 @@ pub const IWMDRMReader2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMReader3_Value = @import("../zig.zig").Guid.initString("e08672de-f1e7-4ff4-a0a3-fc4b08e4caf8");
 pub const IID_IWMDRMReader3 = &IID_IWMDRMReader3_Value;
 pub const IWMDRMReader3 = extern struct {
@@ -5569,6 +5576,7 @@ pub const IWMIndexer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMLicenseBackup_Value = @import("../zig.zig").Guid.initString("05e5ac9f-3fb6-4508-bb43-a4067ba1ebe8");
 pub const IID_IWMLicenseBackup = &IID_IWMLicenseBackup_Value;
 pub const IWMLicenseBackup = extern struct {
@@ -5598,6 +5606,7 @@ pub const IWMLicenseBackup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMLicenseRestore_Value = @import("../zig.zig").Guid.initString("c70b6334-a22e-4efb-a245-15e65a004a13");
 pub const IID_IWMLicenseRestore = &IID_IWMLicenseRestore_Value;
 pub const IWMLicenseRestore = extern struct {
@@ -5627,6 +5636,7 @@ pub const IWMLicenseRestore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMBackupRestoreProps_Value = @import("../zig.zig").Guid.initString("3c8e0da6-996f-4ff3-a1af-4838f9377e2e");
 pub const IID_IWMBackupRestoreProps = &IID_IWMBackupRestoreProps_Value;
 pub const IWMBackupRestoreProps = extern struct {
@@ -5921,6 +5931,7 @@ pub const IWMWriterPushSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDeviceRegistration_Value = @import("../zig.zig").Guid.initString("f6211f03-8d21-4e94-93e6-8510805f2d99");
 pub const IID_IWMDeviceRegistration = &IID_IWMDeviceRegistration_Value;
 pub const IWMDeviceRegistration = extern struct {
@@ -6122,6 +6133,7 @@ pub const IWMRegisteredDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMProximityDetection_Value = @import("../zig.zig").Guid.initString("6a9fd8ee-b651-4bf0-b849-7d4ece79a2b1");
 pub const IID_IWMProximityDetection = &IID_IWMProximityDetection_Value;
 pub const IWMProximityDetection = extern struct {
@@ -6150,6 +6162,7 @@ pub const IWMProximityDetection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMMessageParser_Value = @import("../zig.zig").Guid.initString("a73a0072-25a0-4c99-b4a5-ede8101a6c39");
 pub const IID_IWMDRMMessageParser = &IID_IWMDRMMessageParser_Value;
 pub const IWMDRMMessageParser = extern struct {
@@ -6186,6 +6199,7 @@ pub const IWMDRMMessageParser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMTranscryptor_Value = @import("../zig.zig").Guid.initString("69059850-6e6f-4bb2-806f-71863ddfc471");
 pub const IID_IWMDRMTranscryptor = &IID_IWMDRMTranscryptor_Value;
 pub const IWMDRMTranscryptor = extern struct {
@@ -6559,6 +6573,7 @@ pub const IWMLicenseRevocationAgent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMAuthorizer_Value = @import("../zig.zig").Guid.initString("d9b67d36-a9ad-4eb4-baef-db284ef5504c");
 pub const IID_IWMAuthorizer = &IID_IWMAuthorizer_Value;
 pub const IWMAuthorizer = extern struct {
@@ -6600,6 +6615,7 @@ pub const IWMAuthorizer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMSecureChannel_Value = @import("../zig.zig").Guid.initString("2720598a-d0f2-4189-bd10-91c46ef0936f");
 pub const IID_IWMSecureChannel = &IID_IWMSecureChannel_Value;
 pub const IWMSecureChannel = extern struct {
@@ -6703,6 +6719,7 @@ pub const IWMSecureChannel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWMGetSecureChannel_Value = @import("../zig.zig").Guid.initString("94bc0598-c3d2-11d3-bedf-00c04f612986");
 pub const IID_IWMGetSecureChannel = &IID_IWMGetSecureChannel_Value;
 pub const IWMGetSecureChannel = extern struct {
@@ -7243,53 +7260,64 @@ pub const AM_WMT_EVENT_DATA = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMIsContentProtected(
     pwszFileName: [*:0]const u16,
     pfIsProtected: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriter(
     pUnkCert: *IUnknown,
     ppWriter: **IWMWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateReader(
     pUnkCert: *IUnknown,
     dwRights: u32,
     ppReader: **IWMReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateSyncReader(
     pUnkCert: *IUnknown,
     dwRights: u32,
     ppSyncReader: **IWMSyncReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateEditor(
     ppEditor: **IWMMetadataEditor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateIndexer(
     ppIndexer: **IWMIndexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateBackupRestorer(
     pCallback: *IUnknown,
     ppBackup: **IWMLicenseBackup,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateProfileManager(
     ppProfileManager: **IWMProfileManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterFileSink(
     ppSink: **IWMWriterFileSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterNetworkSink(
     ppSink: **IWMWriterNetworkSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterPushSink(
     ppSink: **IWMWriterPushSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -7319,7 +7347,7 @@ const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const BSTR = @import("automation.zig").BSTR;
 const RECT = @import("display_devices.zig").RECT;
-const BITMAPINFOHEADER = @import("direct_show.zig").BITMAPINFOHEADER;
+const BITMAPINFOHEADER = @import("gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("system_services.zig").BOOL;
 const AM_MEDIA_TYPE = @import("direct_show.zig").AM_MEDIA_TYPE;
 const VARIANT = @import("automation.zig").VARIANT;

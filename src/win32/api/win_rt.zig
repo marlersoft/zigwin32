@@ -14,6 +14,15 @@ pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-81
 //--------------------------------------------------------------------------------
 // Section: Types (82)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
+pub const HSTRING = ?*c_void;
+
+pub const HSTRING_BUFFER = ?*c_void;
+
+pub const ROPARAMIIDHANDLE = ?*c_void;
+
+pub const APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = ?*c_void;
+
 pub const ACTIVATIONTYPE = extern enum(i32) {
     UNCATEGORIZED = 0,
     FROM_MONIKER = 1,
@@ -29,6 +38,7 @@ pub const ACTIVATIONTYPE_FROM_STORAGE = ACTIVATIONTYPE.FROM_STORAGE;
 pub const ACTIVATIONTYPE_FROM_STREAM = ACTIVATIONTYPE.FROM_STREAM;
 pub const ACTIVATIONTYPE_FROM_FILE = ACTIVATIONTYPE.FROM_FILE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAgileReference_Value = @import("../zig.zig").Guid.initString("c03f6a43-65a4-9818-987e-e0b810d2a6f2");
 pub const IID_IAgileReference = &IID_IAgileReference_Value;
 pub const IAgileReference = extern struct {
@@ -64,6 +74,7 @@ pub const AgileReferenceOptions = extern enum(i32) {
 pub const AGILEREFERENCE_DEFAULT = AgileReferenceOptions.FAULT;
 pub const AGILEREFERENCE_DELAYEDMARSHAL = AgileReferenceOptions.LAYEDMARSHAL;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IApartmentShutdown_Value = @import("../zig.zig").Guid.initString("a2f05a09-27a2-42b5-bc0e-ac163ef49d9b");
 pub const IID_IApartmentShutdown = &IID_IApartmentShutdown_Value;
 pub const IApartmentShutdown = extern struct {
@@ -85,14 +96,9 @@ pub const IApartmentShutdown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
-pub const HSTRING = ?*c_void;
-
-pub const HSTRING_BUFFER = ?*c_void;
-
-pub const ROPARAMIIDHANDLE = ?*c_void;
+pub const EventRegistrationToken = extern struct {
+    value: i64,
+};
 
 pub const HSTRING_HEADER = extern struct {
     Reserved: HSTRING_HEADER._Reserved_e__Union,
@@ -108,6 +114,7 @@ pub const BaseTrust = TrustLevel.BaseTrust;
 pub const PartialTrust = TrustLevel.PartialTrust;
 pub const FullTrust = TrustLevel.FullTrust;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IInspectable_Value = @import("../zig.zig").Guid.initString("af86e2e0-b12d-4c6a-9c5a-d7aa65101e90");
 pub const IID_IInspectable = &IID_IInspectable_Value;
 pub const IInspectable = extern struct {
@@ -397,6 +404,7 @@ pub const IDragDropManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IInputPaneInterop_Value = @import("../zig.zig").Guid.initString("75cf2c57-9195-4931-8332-f0b409e916af");
 pub const IID_IInputPaneInterop = &IID_IInputPaneInterop_Value;
 pub const IInputPaneInterop = extern struct {
@@ -420,6 +428,7 @@ pub const IInputPaneInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPlayToManagerInterop_Value = @import("../zig.zig").Guid.initString("24394699-1f2c-4eb3-8cd7-0ec1da42a540");
 pub const IID_IPlayToManagerInterop = &IID_IPlayToManagerInterop_Value;
 pub const IPlayToManagerInterop = extern struct {
@@ -484,6 +493,7 @@ pub const IPrinting3DManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintManagerInterop_Value = @import("../zig.zig").Guid.initString("c5435a42-8d43-4e7b-a68a-ef311e392087");
 pub const IID_IPrintManagerInterop = &IID_IPrintManagerInterop_Value;
 pub const IPrintManagerInterop = extern struct {
@@ -1740,6 +1750,7 @@ pub const IDesktopWindowContentBridgeInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRestrictedErrorInfo_Value = @import("../zig.zig").Guid.initString("82ba7092-4c88-427d-a7bc-16dd93feb67e");
 pub const IID_IRestrictedErrorInfo = &IID_IRestrictedErrorInfo_Value;
 pub const IRestrictedErrorInfo = extern struct {
@@ -1772,6 +1783,7 @@ pub const IRestrictedErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILanguageExceptionErrorInfo_Value = @import("../zig.zig").Guid.initString("04a2dbf3-df83-116c-0946-0812abf6e07d");
 pub const IID_ILanguageExceptionErrorInfo = &IID_ILanguageExceptionErrorInfo_Value;
 pub const ILanguageExceptionErrorInfo = extern struct {
@@ -1793,6 +1805,7 @@ pub const ILanguageExceptionErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ILanguageExceptionTransform_Value = @import("../zig.zig").Guid.initString("feb5a271-a6cd-45ce-880a-696706badc65");
 pub const IID_ILanguageExceptionTransform = &IID_ILanguageExceptionTransform_Value;
 pub const ILanguageExceptionTransform = extern struct {
@@ -1814,6 +1827,7 @@ pub const ILanguageExceptionTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ILanguageExceptionStackBackTrace_Value = @import("../zig.zig").Guid.initString("cbe53fb5-f967-4258-8d34-42f5e25833de");
 pub const IID_ILanguageExceptionStackBackTrace = &IID_ILanguageExceptionStackBackTrace_Value;
 pub const ILanguageExceptionStackBackTrace = extern struct {
@@ -1837,6 +1851,7 @@ pub const ILanguageExceptionStackBackTrace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ILanguageExceptionErrorInfo2_Value = @import("../zig.zig").Guid.initString("5746e5c4-5b97-424c-b620-2822915734dd");
 pub const IID_ILanguageExceptionErrorInfo2 = &IID_ILanguageExceptionErrorInfo2_Value;
 pub const ILanguageExceptionErrorInfo2 = extern struct {
@@ -1881,7 +1896,9 @@ pub const RO_INIT_TYPE = extern enum(i32) {
 pub const RO_INIT_SINGLETHREADED = RO_INIT_TYPE.SINGLETHREADED;
 pub const RO_INIT_MULTITHREADED = RO_INIT_TYPE.MULTITHREADED;
 
-pub const __AnonymousRecord_roapi_L45_C9 = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const __AnonymousRecord_roapi_L45_C9 = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 const IID_IBufferByteAccess_Value = @import("../zig.zig").Guid.initString("905a0fef-bc53-11df-8c49-001e4fc686da");
 pub const IID_IBufferByteAccess = &IID_IBufferByteAccess_Value;
@@ -2051,10 +2068,6 @@ pub const BSOS_OPTIONS = extern enum(i32) {
 pub const BSOS_DEFAULT = BSOS_OPTIONS.DEFAULT;
 pub const BSOS_PREFERDESTINATIONSTREAM = BSOS_OPTIONS.PREFERDESTINATIONSTREAM;
 
-pub const EventRegistrationToken = extern struct {
-    value: i64,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (70)
@@ -2065,6 +2078,7 @@ pub extern "OLE32" fn CoDecodeProxy(
     pServerInformation: *ServerInformation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "OLE32" fn RoGetAgileReference(
     options: AgileReferenceOptions,
     riid: *const Guid,
@@ -2072,47 +2086,55 @@ pub extern "OLE32" fn RoGetAgileReference(
     ppAgileReference: **IAgileReference,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: *u32,
     param1: u32,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserMarshal(
     param0: *u32,
     param1: *u8,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal(
     param0: *u32,
     param1: [*:0]u8,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree(
     param0: *u32,
     param1: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize64(
     param0: *u32,
     param1: u32,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserMarshal64(
     param0: *u32,
     param1: *u8,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal64(
     param0: *u32,
     param1: [*:0]u8,
     param2: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree64(
     param0: *u32,
     param1: *HSTRING,
@@ -2123,12 +2145,14 @@ pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
     ppRenderer: **IPdfRendererNative,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateString(
     sourceString: ?[*:0]u16,
     length: u32,
     string: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateStringReference(
     sourceString: ?[*:0]const u16,
     length: u32,
@@ -2136,45 +2160,54 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateStringReference
     string: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteString(
     string: HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDuplicateString(
     string: HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringLen(
     string: HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringRawBuffer(
     string: HSTRING,
     length: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsIsStringEmpty(
     string: HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsStringHasEmbeddedNull(
     string: HSTRING,
     hasEmbedNull: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCompareStringOrdinal(
     string1: HSTRING,
     string2: HSTRING,
     result: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstring(
     string: HSTRING,
     startIndex: u32,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifiedLength(
     string: HSTRING,
     startIndex: u32,
@@ -2182,12 +2215,14 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifie
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsConcatString(
     string1: HSTRING,
     string2: HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsReplaceString(
     string: HSTRING,
     stringReplaced: HSTRING,
@@ -2195,33 +2230,39 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsReplaceString(
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringStart(
     string: HSTRING,
     trimString: HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringEnd(
     string: HSTRING,
     trimString: HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsPreallocateStringBuffer(
     length: u32,
     charBuffer: **u16,
     bufferHandle: *HSTRING_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsPromoteStringBuffer(
     bufferHandle: HSTRING_BUFFER,
     string: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteStringBuffer(
     bufferHandle: HSTRING_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
     targetHString: ?*c_void,
     machine: u16,
@@ -2231,6 +2272,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
     targetStringAddress: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-1" fn WindowsInspectString2(
     targetHString: u64,
     machine: u16,
@@ -2250,18 +2292,22 @@ pub extern "d3d11" fn CreateDirect3D11SurfaceFromDXGISurface(
     graphicsSurface: **IInspectable,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoInitialize(
     initType: RO_INIT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoUninitialize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoActivateInstance(
     activatableClassId: HSTRING,
     instance: **IInspectable,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterActivationFactories(
     activatableClassIds: [*]HSTRING,
     activationFactoryCallbacks: [*]?*c_void,
@@ -2269,66 +2315,80 @@ pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterActivationFactories(
     cookie: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRevokeActivationFactories(
     cookie: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetActivationFactory(
     activatableClassId: HSTRING,
     iid: *const Guid,
     factory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterForApartmentShutdown(
     callbackObject: *IApartmentShutdown,
     apartmentIdentifier: *u64,
     regCookie: *APARTMENT_SHUTDOWN_REGISTRATION_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoUnregisterForApartmentShutdown(
     regCookie: APARTMENT_SHUTDOWN_REGISTRATION_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetApartmentIdentifier(
     apartmentIdentifier: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-robuffer-l1-1-0" fn RoGetBufferMarshaler(
     bufferMarshaler: **IMarshal,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoGetErrorReportingFlags(
     pflags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoSetErrorReportingFlags(
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoResolveRestrictedErrorInfoReference(
     reference: [*:0]const u16,
     ppRestrictedErrorInfo: **IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn SetRestrictedErrorInfo(
     pRestrictedErrorInfo: ?*IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn GetRestrictedErrorInfo(
     ppRestrictedErrorInfo: ?*?*IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateErrorW(
     @"error": HRESULT,
     cchMax: u32,
     message: ?*[512]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateError(
     @"error": HRESULT,
     message: HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformErrorW(
     oldError: HRESULT,
     newError: HRESULT,
@@ -2336,26 +2396,31 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformErrorW(
     message: ?*[512]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformError(
     oldError: HRESULT,
     newError: HRESULT,
     message: HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoCaptureErrorContext(
     hr: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoFailFastWithErrorContext(
     hrError: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoOriginateLanguageException(
     @"error": HRESULT,
     message: HSTRING,
     languageException: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoClearError(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -2363,6 +2428,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoReportUnhandledError(
     pRestrictedErrorInfo: *IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectThreadErrorInfo(
     targetTebAddress: ?*c_void,
     machine: u16,
@@ -2371,6 +2437,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectThreadErrorInfo(
     targetErrorInfoAddress: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectCapturedStackBackTrace(
     targetErrorInfoAddress: ?*c_void,
     machine: u16,
@@ -2390,15 +2457,18 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoReportFailedDelegate(
     pRestrictedErrorInfo: *IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn IsErrorPropagationEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RoMetadata" fn MetaDataGetDispenser(
     rclsid: *const Guid,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoGetParameterizedTypeInstanceIID(
     nameElementCount: u32,
     nameElements: [*]PWSTR,
@@ -2407,20 +2477,24 @@ pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoGetParameteriz
     pExtra: ?*ROPARAMIIDHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoFreeParameterizedTypeExtra(
     extra: ROPARAMIIDHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoParameterizedTypeExtraGetTypeSignature(
     extra: ROPARAMIIDHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-registration-l1-1-0" fn RoGetServerActivatableClasses(
     serverName: HSTRING,
     activatableClassIds: **HSTRING,
     count: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOnFile(
     filePath: [*:0]const u16,
     accessMode: u32,
@@ -2428,6 +2502,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOn
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOverStream(
     stream: *IStream,
     options: BSOS_OPTIONS,
@@ -2435,6 +2510,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOv
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAccessStream(
     randomAccessStream: *IUnknown,
     riid: *const Guid,

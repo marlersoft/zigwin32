@@ -6,6 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFDeviceTransform_Value = @import("../zig.zig").Guid.initString("d818fbd8-fc46-42f2-87ac-1ea2d1f9bf32");
 pub const IID_IMFDeviceTransform = &IID_IMFDeviceTransform_Value;
 pub const IMFDeviceTransform = extern struct {
@@ -210,6 +211,7 @@ pub const IMFDeviceTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IMFDeviceTransformCallback_Value = @import("../zig.zig").Guid.initString("6d5cb646-29ec-41fb-8179-8c4c6d750811");
 pub const IID_IMFDeviceTransformCallback = &IID_IMFDeviceTransformCallback_Value;
 pub const IMFDeviceTransformCallback = extern struct {

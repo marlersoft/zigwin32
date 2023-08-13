@@ -9,6 +9,70 @@ pub const NaN = @import("std").math.nan(f32);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
+pub const HGESTUREINFO = ?*c_void;
+
+pub const HTOUCHINPUT = ?*c_void;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const GESTURECONFIG_ID = extern enum(u32) {
+    BEGIN = 1,
+    END = 2,
+    ZOOM = 3,
+    PAN = 4,
+    ROTATE = 5,
+    TWOFINGERTAP = 6,
+    PRESSANDTAP = 7,
+    ROLLOVER = 7,
+    _,
+};
+pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
+pub const GID_END = GESTURECONFIG_ID.END;
+pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
+pub const GID_PAN = GESTURECONFIG_ID.PAN;
+pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
+pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
+pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
+pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
+    MOVE = 1,
+    DOWN = 2,
+    UP = 4,
+    INRANGE = 8,
+    PRIMARY = 16,
+    NOCOALESCE = 32,
+    PEN = 64,
+    PALM = 128,
+    _,
+};
+pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
+pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
+pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
+pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
+pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
+pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
+pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
+pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
+    TIMEFROMSYSTEM = 1,
+    EXTRAINFO = 2,
+    CONTACTAREA = 4,
+    _,
+};
+pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
+pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
+pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
+
+pub const RegisterTouchWindow_ulFlags = extern enum(u32) {
+    FINETOUCH = 1,
+    WANTPALM = 2,
+};
+pub const TWF_FINETOUCH = RegisterTouchWindow_ulFlags.FINETOUCH;
+pub const TWF_WANTPALM = RegisterTouchWindow_ulFlags.WANTPALM;
+
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
@@ -30,6 +94,7 @@ pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.SCALE;
 pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.ROTATE;
 pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID__IManipulationEvents_Value = @import("../zig.zig").Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
 pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
 pub const _IManipulationEvents = extern struct {
@@ -85,6 +150,7 @@ pub const _IManipulationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IInertiaProcessor_Value = @import("../zig.zig").Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
 pub const IID_IInertiaProcessor = &IID_IInertiaProcessor_Value;
 pub const IInertiaProcessor = extern struct {
@@ -489,6 +555,7 @@ pub const IInertiaProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IManipulationProcessor_Value = @import("../zig.zig").Guid.initString("a22ac519-8300-48a0-bef4-f1be8737dba4");
 pub const IID_IManipulationProcessor = &IID_IManipulationProcessor_Value;
 pub const IManipulationProcessor = extern struct {
@@ -684,70 +751,6 @@ pub const IManipulationProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HGESTUREINFO = ?*c_void;
-
-pub const HTOUCHINPUT = ?*c_void;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const GESTURECONFIG_ID = extern enum(u32) {
-    BEGIN = 1,
-    END = 2,
-    ZOOM = 3,
-    PAN = 4,
-    ROTATE = 5,
-    TWOFINGERTAP = 6,
-    PRESSANDTAP = 7,
-    ROLLOVER = 7,
-    _,
-};
-pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
-pub const GID_END = GESTURECONFIG_ID.END;
-pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
-pub const GID_PAN = GESTURECONFIG_ID.PAN;
-pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
-pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
-pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
-pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
-    MOVE = 1,
-    DOWN = 2,
-    UP = 4,
-    INRANGE = 8,
-    PRIMARY = 16,
-    NOCOALESCE = 32,
-    PEN = 64,
-    PALM = 128,
-    _,
-};
-pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
-pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
-pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
-pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
-pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
-pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
-pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
-pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
-    TIMEFROMSYSTEM = 1,
-    EXTRAINFO = 2,
-    CONTACTAREA = 4,
-    _,
-};
-pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
-pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
-pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
-
-pub const RegisterTouchWindow_ulFlags = extern enum(u32) {
-    FINETOUCH = 1,
-    WANTPALM = 2,
-};
-pub const TWF_FINETOUCH = RegisterTouchWindow_ulFlags.FINETOUCH;
-pub const TWF_WANTPALM = RegisterTouchWindow_ulFlags.WANTPALM;
-
 pub const TOUCHINPUT = extern struct {
     x: i32,
     y: i32,
@@ -791,6 +794,7 @@ pub const GESTURECONFIG = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetTouchInputInfo(
     hTouchInput: HTOUCHINPUT,
     cInputs: u32,
@@ -798,39 +802,47 @@ pub extern "USER32" fn GetTouchInputInfo(
     cbSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn CloseTouchInputHandle(
     hTouchInput: HTOUCHINPUT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn RegisterTouchWindow(
     hwnd: HWND,
     ulFlags: RegisterTouchWindow_ulFlags,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn UnregisterTouchWindow(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn IsTouchWindow(
     hwnd: HWND,
     pulFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureInfo(
     hGestureInfo: HGESTUREINFO,
     pGestureInfo: *GESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureExtraArgs(
     hGestureInfo: HGESTUREINFO,
     cbExtraArgs: u32,
     pExtraArgs: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn CloseGestureInfoHandle(
     hGestureInfo: HGESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn SetGestureConfig(
     hwnd: HWND,
     dwReserved: u32,
@@ -839,6 +851,7 @@ pub extern "USER32" fn SetGestureConfig(
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureConfig(
     hwnd: HWND,
     dwReserved: u32,

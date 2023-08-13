@@ -156,7 +156,9 @@ pub const WSMAN_OPERATION_INFOEX = extern struct {
     dataLocale: [*:0]const u16,
 };
 
-pub const WSMAN_API = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WSMAN_API = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WSManProxyAccessType = extern enum(i32) {
     IE_PROXY_CONFIG = 1,
@@ -174,7 +176,9 @@ pub const WSMAN_PROXY_INFO = extern struct {
     authenticationCredentials: WSMAN_AUTHENTICATION_CREDENTIALS,
 };
 
-pub const WSMAN_SESSION = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WSMAN_SESSION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WSManSessionOption = extern enum(i32) {
     DEFAULT_OPERATION_TIMEOUTMS = 1,
@@ -225,7 +229,9 @@ pub const WSMAN_OPTION_ALLOW_NEGOTIATE_IMPLICIT_CREDENTIALS = WSManSessionOption
 pub const WSMAN_OPTION_USE_SSL = WSManSessionOption.USE_SSL;
 pub const WSMAN_OPTION_USE_INTEARACTIVE_TOKEN = WSManSessionOption.USE_INTEARACTIVE_TOKEN;
 
-pub const WSMAN_OPERATION = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WSMAN_OPERATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WSManCallbackFlags = extern enum(i32) {
     END_OF_OPERATION = 1,
@@ -250,9 +256,13 @@ pub const WSMAN_FLAG_CALLBACK_SHELL_AUTODISCONNECTING = WSManCallbackFlags.SHELL
 pub const WSMAN_FLAG_CALLBACK_RETRY_ABORTED_DUE_TO_INTERNAL_ERROR = WSManCallbackFlags.RETRY_ABORTED_DUE_TO_INTERNAL_ERROR;
 pub const WSMAN_FLAG_CALLBACK_RECEIVE_DELAY_STREAM_REQUEST_PROCESSED = WSManCallbackFlags.RECEIVE_DELAY_STREAM_REQUEST_PROCESSED;
 
-pub const WSMAN_SHELL = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WSMAN_SHELL = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WSMAN_COMMAND = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WSMAN_COMMAND = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WSMAN_STREAM_ID_SET = extern struct {
     streamIDsCount: u32,
@@ -548,6 +558,7 @@ pub const WSManFlagProxyAuthenticationUseNegotiate = WSManProxyAuthenticationFla
 pub const WSManFlagProxyAuthenticationUseBasic = WSManProxyAuthenticationFlags.Basic;
 pub const WSManFlagProxyAuthenticationUseDigest = WSManProxyAuthenticationFlags.Digest;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSMan_Value = @import("../zig.zig").Guid.initString("190d8637-5cd3-496d-ad24-69636bb5a3b5");
 pub const IID_IWSMan = &IID_IWSMan_Value;
 pub const IWSMan = extern struct {
@@ -596,6 +607,7 @@ pub const IWSMan = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEx_Value = @import("../zig.zig").Guid.initString("2d53bdaa-798e-49e6-a1aa-74d01256f411");
 pub const IID_IWSManEx = &IID_IWSManEx_Value;
 pub const IWSManEx = extern struct {
@@ -771,6 +783,7 @@ pub const IWSManEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEx2_Value = @import("../zig.zig").Guid.initString("1d1b5ae0-42d9-4021-8261-3987619512e9");
 pub const IID_IWSManEx2 = &IID_IWSManEx2_Value;
 pub const IWSManEx2 = extern struct {
@@ -792,6 +805,7 @@ pub const IWSManEx2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWSManEx3_Value = @import("../zig.zig").Guid.initString("6400e966-011d-4eac-8474-049e0848afad");
 pub const IID_IWSManEx3 = &IID_IWSManEx3_Value;
 pub const IWSManEx3 = extern struct {
@@ -861,6 +875,7 @@ pub const IWSManEx3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManConnectionOptions_Value = @import("../zig.zig").Guid.initString("f704e861-9e52-464f-b786-da5eb2320fdd");
 pub const IID_IWSManConnectionOptions = &IID_IWSManConnectionOptions_Value;
 pub const IWSManConnectionOptions = extern struct {
@@ -898,6 +913,7 @@ pub const IWSManConnectionOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManConnectionOptionsEx_Value = @import("../zig.zig").Guid.initString("ef43edf7-2a48-4d93-9526-8bd6ab6d4a6b");
 pub const IID_IWSManConnectionOptionsEx = &IID_IWSManConnectionOptionsEx_Value;
 pub const IWSManConnectionOptionsEx = extern struct {
@@ -927,6 +943,7 @@ pub const IWSManConnectionOptionsEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWSManConnectionOptionsEx2_Value = @import("../zig.zig").Guid.initString("f500c9ec-24ee-48ab-b38d-fc9a164c658e");
 pub const IID_IWSManConnectionOptionsEx2 = &IID_IWSManConnectionOptionsEx2_Value;
 pub const IWSManConnectionOptionsEx2 = extern struct {
@@ -1007,6 +1024,7 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManSession_Value = @import("../zig.zig").Guid.initString("fc84fc58-1286-40c4-9da0-c8ef6ec241e0");
 pub const IID_IWSManSession = &IID_IWSManSession_Value;
 pub const IWSManSession = extern struct {
@@ -1134,6 +1152,7 @@ pub const IWSManSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManEnumerator_Value = @import("../zig.zig").Guid.initString("f3457ca9-abb9-4fa5-b850-90e8ca300e7f");
 pub const IID_IWSManEnumerator = &IID_IWSManEnumerator_Value;
 pub const IWSManEnumerator = extern struct {
@@ -1171,6 +1190,7 @@ pub const IWSManEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSManResourceLocator_Value = @import("../zig.zig").Guid.initString("a7a1ba28-de41-466a-ad0a-c4059ead7428");
 pub const IID_IWSManResourceLocator = &IID_IWSManResourceLocator_Value;
 pub const IWSManResourceLocator = extern struct {
@@ -1330,16 +1350,19 @@ pub const IWSManInternal = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (33)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManInitialize(
     flags: u32,
     apiHandle: **WSMAN_API,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManDeinitialize(
     apiHandle: ?*WSMAN_API,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetErrorMessage(
     apiHandle: *WSMAN_API,
     flags: u32,
@@ -1350,6 +1373,7 @@ pub extern "WsmSvc" fn WSManGetErrorMessage(
     messageLengthUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCreateSession(
     apiHandle: *WSMAN_API,
     connection: ?[*:0]const u16,
@@ -1359,23 +1383,27 @@ pub extern "WsmSvc" fn WSManCreateSession(
     session: **WSMAN_SESSION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseSession(
     session: ?*WSMAN_SESSION,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSetSessionOption(
     session: *WSMAN_SESSION,
     option: WSManSessionOption,
     data: *WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetSessionOptionAsDword(
     session: *WSMAN_SESSION,
     option: WSManSessionOption,
     value: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetSessionOptionAsString(
     session: *WSMAN_SESSION,
     option: WSManSessionOption,
@@ -1384,11 +1412,13 @@ pub extern "WsmSvc" fn WSManGetSessionOptionAsString(
     stringLengthUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseOperation(
     operationHandle: ?*WSMAN_OPERATION,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCreateShell(
     session: *WSMAN_SESSION,
     flags: u32,
@@ -1400,6 +1430,7 @@ pub extern "WsmSvc" fn WSManCreateShell(
     shell: **WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManRunShellCommand(
     shell: *WSMAN_SHELL,
     flags: u32,
@@ -1410,6 +1441,7 @@ pub extern "WsmSvc" fn WSManRunShellCommand(
     command: **WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSignalShell(
     shell: *WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
@@ -1419,6 +1451,7 @@ pub extern "WsmSvc" fn WSManSignalShell(
     signalOperation: **WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManReceiveShellOutput(
     shell: *WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
@@ -1428,6 +1461,7 @@ pub extern "WsmSvc" fn WSManReceiveShellOutput(
     receiveOperation: **WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSendShellInput(
     shell: *WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
@@ -1439,18 +1473,21 @@ pub extern "WsmSvc" fn WSManSendShellInput(
     sendOperation: **WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseCommand(
     commandHandle: ?*WSMAN_COMMAND,
     flags: u32,
     @"async": *WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseShell(
     shellHandle: ?*WSMAN_SHELL,
     flags: u32,
     @"async": *WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManCreateShellEx(
     session: *WSMAN_SESSION,
     flags: u32,
@@ -1463,6 +1500,7 @@ pub extern "WsmSvc" fn WSManCreateShellEx(
     shell: **WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManRunShellCommandEx(
     shell: *WSMAN_SHELL,
     flags: u32,
@@ -1474,6 +1512,7 @@ pub extern "WsmSvc" fn WSManRunShellCommandEx(
     command: **WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManDisconnectShell(
     shell: *WSMAN_SHELL,
     flags: u32,
@@ -1481,18 +1520,21 @@ pub extern "WsmSvc" fn WSManDisconnectShell(
     @"async": *WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManReconnectShell(
     shell: *WSMAN_SHELL,
     flags: u32,
     @"async": *WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManReconnectShellCommand(
     commandHandle: *WSMAN_COMMAND,
     flags: u32,
     @"async": *WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManConnectShell(
     session: *WSMAN_SESSION,
     flags: u32,
@@ -1504,6 +1546,7 @@ pub extern "WsmSvc" fn WSManConnectShell(
     shell: **WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManConnectShellCommand(
     shell: *WSMAN_SHELL,
     flags: u32,
@@ -1514,12 +1557,14 @@ pub extern "WsmSvc" fn WSManConnectShellCommand(
     command: **WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginReportContext(
     requestDetails: *WSMAN_PLUGIN_REQUEST,
     flags: u32,
     context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginReceiveResult(
     requestDetails: *WSMAN_PLUGIN_REQUEST,
     flags: u32,
@@ -1529,6 +1574,7 @@ pub extern "WsmSvc" fn WSManPluginReceiveResult(
     exitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginOperationComplete(
     requestDetails: *WSMAN_PLUGIN_REQUEST,
     flags: u32,
@@ -1536,6 +1582,7 @@ pub extern "WsmSvc" fn WSManPluginOperationComplete(
     extendedInformation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginGetOperationParameters(
     requestDetails: *WSMAN_PLUGIN_REQUEST,
     flags: u32,
@@ -1553,10 +1600,12 @@ pub extern "WsmSvc" fn WSManPluginReportCompletion(
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginFreeRequestDetails(
     requestDetails: *WSMAN_PLUGIN_REQUEST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
     senderDetails: *WSMAN_SENDER_DETAILS,
     flags: u32,
@@ -1567,6 +1616,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
     extendedErrorInformation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzOperationComplete(
     senderDetails: *WSMAN_SENDER_DETAILS,
     flags: u32,
@@ -1575,6 +1625,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzOperationComplete(
     extendedErrorInformation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzQueryQuotaComplete(
     senderDetails: *WSMAN_SENDER_DETAILS,
     flags: u32,

@@ -40,183 +40,6 @@ pub const POINTS = extern struct {
     y: i16,
 };
 
-const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
-pub const IDirectDrawKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawKernel,
-            param0: *DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-            param0: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
-pub const IDirectDrawSurfaceKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DDKERNELCAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwIRQCaps: u32,
-};
-
-pub const SURFACEALIGNMENT = extern struct {
-    Anonymous: SURFACEALIGNMENT._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const HEAPALIGNMENT = extern struct {
-    dwSize: u32,
-    ddsCaps: DDSCAPS,
-    dwReserved: u32,
-    ExecuteBuffer: SURFACEALIGNMENT,
-    Overlay: SURFACEALIGNMENT,
-    Texture: SURFACEALIGNMENT,
-    ZBuffer: SURFACEALIGNMENT,
-    AlphaBuffer: SURFACEALIGNMENT,
-    Offscreen: SURFACEALIGNMENT,
-    FlipTarget: SURFACEALIGNMENT,
-};
-
-pub const VMEMHEAP = extern struct {
-    dwFlags: u32,
-    stride: u32,
-    freeList: *c_void,
-    allocList: *c_void,
-    dwTotalSize: u32,
-    fpGARTLin: ?*c_void,
-    fpGARTDev: ?*c_void,
-    dwCommitedSize: u32,
-    dwCoalesceCount: u32,
-    Alignment: HEAPALIGNMENT,
-    ddsCapsEx: DDSCAPSEX,
-    ddsCapsExAlt: DDSCAPSEX,
-    liPhysAGPBase: LARGE_INTEGER,
-    hdevAGP: HANDLE,
-    pvPhysRsrv: *c_void,
-    pAgpCommitMask: *u8,
-    dwAgpCommitMaskSize: u32,
-};
-
-pub const DDCORECAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCKeyCaps: u32,
-    dwFXCaps: u32,
-    dwFXAlphaCaps: u32,
-    dwPalCaps: u32,
-    dwSVCaps: u32,
-    dwAlphaBltConstBitDepths: u32,
-    dwAlphaBltPixelBitDepths: u32,
-    dwAlphaBltSurfaceBitDepths: u32,
-    dwAlphaOverlayConstBitDepths: u32,
-    dwAlphaOverlayPixelBitDepths: u32,
-    dwAlphaOverlaySurfaceBitDepths: u32,
-    dwZBufferBitDepths: u32,
-    dwVidMemTotal: u32,
-    dwVidMemFree: u32,
-    dwMaxVisibleOverlays: u32,
-    dwCurrVisibleOverlays: u32,
-    dwNumFourCCCodes: u32,
-    dwAlignBoundarySrc: u32,
-    dwAlignSizeSrc: u32,
-    dwAlignBoundaryDest: u32,
-    dwAlignSizeDest: u32,
-    dwAlignStrideAlign: u32,
-    dwRops: [8]u32,
-    ddsCaps: DDSCAPS,
-    dwMinOverlayStretch: u32,
-    dwMaxOverlayStretch: u32,
-    dwMinLiveVideoStretch: u32,
-    dwMaxLiveVideoStretch: u32,
-    dwMinHwCodecStretch: u32,
-    dwMaxHwCodecStretch: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-    dwSVBCaps: u32,
-    dwSVBCKeyCaps: u32,
-    dwSVBFXCaps: u32,
-    dwSVBRops: [8]u32,
-    dwVSBCaps: u32,
-    dwVSBCKeyCaps: u32,
-    dwVSBFXCaps: u32,
-    dwVSBRops: [8]u32,
-    dwSSBCaps: u32,
-    dwSSBCKeyCaps: u32,
-    dwSSBFXCaps: u32,
-    dwSSBRops: [8]u32,
-    dwMaxVideoPorts: u32,
-    dwCurrVideoPorts: u32,
-    dwSVBCaps2: u32,
-};
-
-pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: *DDRAWI_DIRECTDRAW_GBL,
-    dwFlags: u32,
-    bIsInVB: u32,
-    hEvent: ?*c_void,
-    ddRVal: HRESULT,
-    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
-};
-
-pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
-    dwFlags: u32,
-    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
-    ddRVal: HRESULT,
-};
-
 pub const DDVIDEOPORTCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -280,7 +103,9 @@ pub const DDVIDEOPORTBANDWIDTH = extern struct {
     dwReserved2: ?*c_void,
 };
 
-pub const DD_GETHEAPALIGNMENTDATA = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const DD_GETHEAPALIGNMENTDATA = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const VIDEOMEMORY = extern struct {
     dwFlags: u32,
@@ -289,8 +114,8 @@ pub const VIDEOMEMORY = extern struct {
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
     Anonymous2: VIDEOMEMORY._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const VIDEOMEMORYINFO = extern struct {
@@ -692,9 +517,9 @@ pub const DD_SURFACE_GLOBAL = extern struct {
     ddpfSurface: DDPIXELFORMAT,
     fpHeapOffset: ?*c_void,
     hCreatorProcess: HANDLE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_SURFACE_MORE = extern struct {
@@ -716,8 +541,8 @@ pub const DD_SURFACE_LOCAL = extern struct {
     lpAttachList: *DD_ATTACHLIST,
     lpAttachListFrom: *DD_ATTACHLIST,
     rcOverlaySrc: RECT,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_D3DBUFCALLBACKS = extern struct {
@@ -1849,6 +1674,183 @@ pub const VIDEOPARAMETERS = extern struct {
     bOEMCopyProtection: [256]u8,
 };
 
+const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
+pub const IDirectDrawKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: fn(
+            self: *const IDirectDrawKernel,
+            param0: *DDKERNELCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+            param0: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
+pub const IDirectDrawSurfaceKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+            param0: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DDKERNELCAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwIRQCaps: u32,
+};
+
+pub const SURFACEALIGNMENT = extern struct {
+    Anonymous: SURFACEALIGNMENT._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const HEAPALIGNMENT = extern struct {
+    dwSize: u32,
+    ddsCaps: DDSCAPS,
+    dwReserved: u32,
+    ExecuteBuffer: SURFACEALIGNMENT,
+    Overlay: SURFACEALIGNMENT,
+    Texture: SURFACEALIGNMENT,
+    ZBuffer: SURFACEALIGNMENT,
+    AlphaBuffer: SURFACEALIGNMENT,
+    Offscreen: SURFACEALIGNMENT,
+    FlipTarget: SURFACEALIGNMENT,
+};
+
+pub const VMEMHEAP = extern struct {
+    dwFlags: u32,
+    stride: u32,
+    freeList: *c_void,
+    allocList: *c_void,
+    dwTotalSize: u32,
+    fpGARTLin: ?*c_void,
+    fpGARTDev: ?*c_void,
+    dwCommitedSize: u32,
+    dwCoalesceCount: u32,
+    Alignment: HEAPALIGNMENT,
+    ddsCapsEx: DDSCAPSEX,
+    ddsCapsExAlt: DDSCAPSEX,
+    liPhysAGPBase: LARGE_INTEGER,
+    hdevAGP: HANDLE,
+    pvPhysRsrv: *c_void,
+    pAgpCommitMask: *u8,
+    dwAgpCommitMaskSize: u32,
+};
+
+pub const DDCORECAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCKeyCaps: u32,
+    dwFXCaps: u32,
+    dwFXAlphaCaps: u32,
+    dwPalCaps: u32,
+    dwSVCaps: u32,
+    dwAlphaBltConstBitDepths: u32,
+    dwAlphaBltPixelBitDepths: u32,
+    dwAlphaBltSurfaceBitDepths: u32,
+    dwAlphaOverlayConstBitDepths: u32,
+    dwAlphaOverlayPixelBitDepths: u32,
+    dwAlphaOverlaySurfaceBitDepths: u32,
+    dwZBufferBitDepths: u32,
+    dwVidMemTotal: u32,
+    dwVidMemFree: u32,
+    dwMaxVisibleOverlays: u32,
+    dwCurrVisibleOverlays: u32,
+    dwNumFourCCCodes: u32,
+    dwAlignBoundarySrc: u32,
+    dwAlignSizeSrc: u32,
+    dwAlignBoundaryDest: u32,
+    dwAlignSizeDest: u32,
+    dwAlignStrideAlign: u32,
+    dwRops: [8]u32,
+    ddsCaps: DDSCAPS,
+    dwMinOverlayStretch: u32,
+    dwMaxOverlayStretch: u32,
+    dwMinLiveVideoStretch: u32,
+    dwMaxLiveVideoStretch: u32,
+    dwMinHwCodecStretch: u32,
+    dwMaxHwCodecStretch: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+    dwSVBCaps: u32,
+    dwSVBCKeyCaps: u32,
+    dwSVBFXCaps: u32,
+    dwSVBRops: [8]u32,
+    dwVSBCaps: u32,
+    dwVSBCKeyCaps: u32,
+    dwVSBFXCaps: u32,
+    dwVSBRops: [8]u32,
+    dwSSBCaps: u32,
+    dwSSBCKeyCaps: u32,
+    dwSSBFXCaps: u32,
+    dwSSBRops: [8]u32,
+    dwMaxVideoPorts: u32,
+    dwCurrVideoPorts: u32,
+    dwSVBCaps2: u32,
+};
+
+pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
+    lpDD: *DDRAWI_DIRECTDRAW_GBL,
+    dwFlags: u32,
+    bIsInVB: u32,
+    hEvent: ?*c_void,
+    ddRVal: HRESULT,
+    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
+};
+
+pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
+    dwFlags: u32,
+    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
+    ddRVal: HRESULT,
+};
+
 pub const DEVMODEW = extern struct {
     dmDeviceName: [32]u16,
     dmSpecVersion: u16,
@@ -2170,23 +2172,28 @@ pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (83)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_pvAllocRbrush(
     pbo: *BRUSHOBJ,
     cj: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_pvGetRbrush(
     pbo: *BRUSHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_ulGetBrushColor(
     pbo: *BRUSHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_hGetColorTransform(
     pbo: *BRUSHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_cEnumStart(
     pco: *CLIPOBJ,
     bAll: BOOL,
@@ -2195,27 +2202,32 @@ pub extern "GDI32" fn CLIPOBJ_cEnumStart(
     cLimit: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_bEnum(
     pco: *CLIPOBJ,
     cj: u32,
     pul: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CLIPOBJ_ppoGetPath(
     pco: *CLIPOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *PATHOBJ;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_cGetAllGlyphHandles(
     pfo: *FONTOBJ,
     phg: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_vGetInfo(
     pfo: *FONTOBJ,
     cjSize: u32,
     pfi: *FONTINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_cGetGlyphs(
     pfo: *FONTOBJ,
     iMode: u32,
@@ -2224,37 +2236,45 @@ pub extern "GDI32" fn FONTOBJ_cGetGlyphs(
     ppvGlyph: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pxoGetXform(
     pfo: *FONTOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *XFORMOBJ;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pifi(
     pfo: *FONTOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *IFIMETRICS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pfdg(
     pfo: *FONTOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHSET;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pvTrueTypeFontFile(
     pfo: *FONTOBJ,
     pcjFile: *u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pQueryGlyphAttrs(
     pfo: *FONTOBJ,
     iMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vEnumStart(
     ppo: *PATHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_bEnum(
     ppo: *PATHOBJ,
     ppd: *PATHDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vEnumStartClipLines(
     ppo: *PATHOBJ,
     pco: *CLIPOBJ,
@@ -2262,37 +2282,44 @@ pub extern "GDI32" fn PATHOBJ_vEnumStartClipLines(
     pla: *LINEATTRS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_bEnumClipLines(
     ppo: *PATHOBJ,
     cb: u32,
     pcl: *CLIPLINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PATHOBJ_vGetBounds(
     ppo: *PATHOBJ,
     prectfx: *RECTFX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_vEnumStart(
     pstro: *STROBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bEnum(
     pstro: *STROBJ,
     pc: *u32,
     ppgpos: **GLYPHPOS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bEnumPositionsOnly(
     pstro: *STROBJ,
     pc: *u32,
     ppgpos: **GLYPHPOS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_dwGetCodePage(
     pstro: *STROBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn STROBJ_bGetAdvanceWidths(
     pso: *STROBJ,
     iFirst: u32,
@@ -2300,11 +2327,13 @@ pub extern "GDI32" fn STROBJ_bGetAdvanceWidths(
     pptqD: *POINTQF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XFORMOBJ_iGetXform(
     pxo: *XFORMOBJ,
     pxform: ?*XFORML,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XFORMOBJ_bApplyXform(
     pxo: *XFORMOBJ,
     iMode: u32,
@@ -2313,15 +2342,18 @@ pub extern "GDI32" fn XFORMOBJ_bApplyXform(
     pvOut: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_iXlate(
     pxlo: *XLATEOBJ,
     iColor: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_piVector(
     pxlo: *XLATEOBJ,
 ) callconv(@import("std").os.windows.WINAPI) *u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_cGetPalette(
     pxlo: *XLATEOBJ,
     iPal: u32,
@@ -2329,10 +2361,12 @@ pub extern "GDI32" fn XLATEOBJ_cGetPalette(
     pPal: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn XLATEOBJ_hGetColorTransform(
     pxlo: *XLATEOBJ,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateBitmap(
     sizl: SIZE,
     lWidth: i32,
@@ -2341,54 +2375,65 @@ pub extern "GDI32" fn EngCreateBitmap(
     pvBits: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateDeviceSurface(
     dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
 ) callconv(@import("std").os.windows.WINAPI) HSURF;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateDeviceBitmap(
     dhsurf: DHSURF,
     sizl: SIZE,
     iFormatCompat: u32,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteSurface(
     hsurf: HSURF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLockSurface(
     hsurf: HSURF,
 ) callconv(@import("std").os.windows.WINAPI) *SURFOBJ;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngUnlockSurface(
     pso: *SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngEraseSurface(
     pso: *SURFOBJ,
     prcl: *RECTL,
     iColor: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAssociateSurface(
     hsurf: HSURF,
     hdev: HDEV,
     flHooks: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMarkBandingSurface(
     hsurf: HSURF,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCheckAbort(
     pso: *SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeletePath(
     ppo: *PATHOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreatePalette(
     iMode: u32,
     cColors: u32,
@@ -2398,17 +2443,21 @@ pub extern "GDI32" fn EngCreatePalette(
     flBlue: u32,
 ) callconv(@import("std").os.windows.WINAPI) HPALETTE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeletePalette(
     hpal: HPALETTE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateClip(
 ) callconv(@import("std").os.windows.WINAPI) *CLIPOBJ;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteClip(
     pco: *CLIPOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngBitBlt(
     psoTrg: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2423,6 +2472,7 @@ pub extern "GDI32" fn EngBitBlt(
     rop4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLineTo(
     pso: *SURFOBJ,
     pco: *CLIPOBJ,
@@ -2435,6 +2485,7 @@ pub extern "GDI32" fn EngLineTo(
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStretchBlt(
     psoDest: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2449,6 +2500,7 @@ pub extern "GDI32" fn EngStretchBlt(
     iMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStretchBltROP(
     psoDest: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2465,6 +2517,7 @@ pub extern "GDI32" fn EngStretchBltROP(
     rop4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAlphaBlend(
     psoDest: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2475,6 +2528,7 @@ pub extern "GDI32" fn EngAlphaBlend(
     pBlendObj: *BLENDOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGradientFill(
     psoDest: *SURFOBJ,
     pco: *CLIPOBJ,
@@ -2488,6 +2542,7 @@ pub extern "GDI32" fn EngGradientFill(
     ulMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngTransparentBlt(
     psoDst: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2499,6 +2554,7 @@ pub extern "GDI32" fn EngTransparentBlt(
     bCalledFromBitBlt: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngTextOut(
     pso: *SURFOBJ,
     pstro: *STROBJ,
@@ -2512,6 +2568,7 @@ pub extern "GDI32" fn EngTextOut(
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStrokePath(
     pso: *SURFOBJ,
     ppo: *PATHOBJ,
@@ -2523,6 +2580,7 @@ pub extern "GDI32" fn EngStrokePath(
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFillPath(
     pso: *SURFOBJ,
     ppo: *PATHOBJ,
@@ -2533,6 +2591,7 @@ pub extern "GDI32" fn EngFillPath(
     flOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngStrokeAndFillPath(
     pso: *SURFOBJ,
     ppo: *PATHOBJ,
@@ -2546,6 +2605,7 @@ pub extern "GDI32" fn EngStrokeAndFillPath(
     flOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngPaint(
     pso: *SURFOBJ,
     pco: *CLIPOBJ,
@@ -2554,6 +2614,7 @@ pub extern "GDI32" fn EngPaint(
     mix: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCopyBits(
     psoDest: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2563,6 +2624,7 @@ pub extern "GDI32" fn EngCopyBits(
     pptlSrc: *POINTL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngPlgBlt(
     psoTrg: *SURFOBJ,
     psoSrc: *SURFOBJ,
@@ -2577,6 +2639,7 @@ pub extern "GDI32" fn EngPlgBlt(
     iMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn HT_Get8BPPFormatPalette(
     pPaletteEntry: ?*PALETTEENTRY,
     RedGamma: u16,
@@ -2584,6 +2647,7 @@ pub extern "GDI32" fn HT_Get8BPPFormatPalette(
     BlueGamma: u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn HT_Get8BPPMaskPalette(
     pPaletteEntry: ?*PALETTEENTRY,
     Use8BPPMaskPal: BOOL,
@@ -2593,18 +2657,22 @@ pub extern "GDI32" fn HT_Get8BPPMaskPalette(
     BlueGamma: u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetPrinterDataFileName(
     hdev: HDEV,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetDriverName(
     hdev: HDEV,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngLoadModule(
     pwsz: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFindResource(
     h: HANDLE,
     iName: i32,
@@ -2612,25 +2680,31 @@ pub extern "GDI32" fn EngFindResource(
     pulSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFreeModule(
     h: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngCreateSemaphore(
 ) callconv(@import("std").os.windows.WINAPI) *HSEMAPHORE__;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngAcquireSemaphore(
     hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngReleaseSemaphore(
     hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngDeleteSemaphore(
     hsem: *HSEMAPHORE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMultiByteToUnicodeN(
     UnicodeString: [*:0]u16,
     MaxBytesInUnicodeString: u32,
@@ -2639,6 +2713,7 @@ pub extern "GDI32" fn EngMultiByteToUnicodeN(
     BytesInMultiByteString: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngUnicodeToMultiByteN(
     MultiByteString: [*]u8,
     MaxBytesInMultiByteString: u32,
@@ -2647,16 +2722,19 @@ pub extern "GDI32" fn EngUnicodeToMultiByteN(
     BytesInUnicodeString: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngQueryLocalTime(
     param0: *ENG_TIME_FIELDS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngComputeGlyphSet(
     nCodePage: i32,
     nFirstChar: i32,
     cChars: i32,
 ) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHSET;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngMultiByteToWideChar(
     CodePage: u32,
     WideCharString: ?[*:0]u16,
@@ -2665,6 +2743,7 @@ pub extern "GDI32" fn EngMultiByteToWideChar(
     BytesInMultiByteString: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngWideCharToMultiByte(
     CodePage: u32,
     WideCharString: ?[*:0]u16,
@@ -2673,17 +2752,20 @@ pub extern "GDI32" fn EngWideCharToMultiByte(
     BytesInMultiByteString: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngGetCurrentCodePage(
     OemCodePage: *u16,
     AnsiCodePage: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn GetDisplayConfigBufferSizes(
     flags: u32,
     numPathArrayElements: *u32,
     numModeInfoArrayElements: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn SetDisplayConfig(
     numPathArrayElements: u32,
     pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
@@ -2692,6 +2774,7 @@ pub extern "USER32" fn SetDisplayConfig(
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn QueryDisplayConfig(
     flags: u32,
     numPathArrayElements: *u32,
@@ -2701,10 +2784,12 @@ pub extern "USER32" fn QueryDisplayConfig(
     currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn DisplayConfigGetDeviceInfo(
     requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn DisplayConfigSetDeviceInfo(
     setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2726,11 +2811,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (50)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PDD_DESTROYDRIVER = @import("system_services.zig").PDD_DESTROYDRIVER;
+const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
 const DDOVERLAYFX = @import("direct_draw.zig").DDOVERLAYFX;
-const PANOSE = @import("gdi.zig").PANOSE;
+const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
 const POINTE = @import("system_services.zig").POINTE;
-const PFN = @import("system_services.zig").PFN;
+const DDRAWI_DIRECTDRAW_GBL = @import("windows_programming.zig").DDRAWI_DIRECTDRAW_GBL;
 const TRIVERTEX = @import("gdi.zig").TRIVERTEX;
 const HRESULT = @import("com.zig").HRESULT;
 const PDD_SETCOLORKEY = @import("system_services.zig").PDD_SETCOLORKEY;
@@ -2770,11 +2855,11 @@ const BLENDFUNCTION = @import("gdi.zig").BLENDFUNCTION;
 const DDPIXELFORMAT = @import("direct_draw.zig").DDPIXELFORMAT;
 const DDBLTFX = @import("direct_draw.zig").DDBLTFX;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
+const PFN = @import("system_services.zig").PFN;
 const HANDLE = @import("system_services.zig").HANDLE;
+const PANOSE = @import("gdi.zig").PANOSE;
 const PDD_ALPHABLT = @import("system_services.zig").PDD_ALPHABLT;
-const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
-const DDRAWI_DIRECTDRAW_GBL = @import("windows_programming.zig").DDRAWI_DIRECTDRAW_GBL;
-const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
+const PDD_DESTROYDRIVER = @import("system_services.zig").PDD_DESTROYDRIVER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

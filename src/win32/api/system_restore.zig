@@ -82,11 +82,13 @@ pub const END_SYSTEM_CHANGE = RESTOREPOINTINFOA_dwEventType.END_SYSTEM_CHANGE;
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SRSetRestorePointA(
     pRestorePtSpec: *RESTOREPOINTINFOA,
     pSMgrStatus: *STATEMGRSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SRSetRestorePointW(
     pRestorePtSpec: *RESTOREPOINTINFOW,
     pSMgrStatus: *STATEMGRSTATUS,

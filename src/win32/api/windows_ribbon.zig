@@ -113,6 +113,7 @@ pub const UI_EVENTLOCATION_QAT = UI_EVENTLOCATION.QAT;
 pub const UI_EVENTLOCATION_ApplicationMenu = UI_EVENTLOCATION.ApplicationMenu;
 pub const UI_EVENTLOCATION_ContextPopup = UI_EVENTLOCATION.ContextPopup;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUISimplePropertySet_Value = @import("../zig.zig").Guid.initString("c205bb48-5b1c-4219-a106-15bd0a5f24e2");
 pub const IID_IUISimplePropertySet = &IID_IUISimplePropertySet_Value;
 pub const IUISimplePropertySet = extern struct {
@@ -135,6 +136,7 @@ pub const IUISimplePropertySet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIRibbon_Value = @import("../zig.zig").Guid.initString("803982ab-370a-4f7e-a9e7-8784036a6e26");
 pub const IID_IUIRibbon = &IID_IUIRibbon_Value;
 pub const IUIRibbon = extern struct {
@@ -183,6 +185,7 @@ pub const UI_INVALIDATIONS_VALUE = UI_INVALIDATIONS.VALUE;
 pub const UI_INVALIDATIONS_PROPERTY = UI_INVALIDATIONS.PROPERTY;
 pub const UI_INVALIDATIONS_ALLPROPERTIES = UI_INVALIDATIONS.ALLPROPERTIES;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIFramework_Value = @import("../zig.zig").Guid.initString("f4f0385d-6872-43a8-ad09-4c339cb3f5c5");
 pub const IID_IUIFramework = &IID_IUIFramework_Value;
 pub const IUIFramework = extern struct {
@@ -291,6 +294,7 @@ pub const UI_EVENTPARAMS = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIEventLogger_Value = @import("../zig.zig").Guid.initString("ec3e1034-dbf4-41a1-95d5-03e0f1026e05");
 pub const IID_IUIEventLogger = &IID_IUIEventLogger_Value;
 pub const IUIEventLogger = extern struct {
@@ -312,6 +316,7 @@ pub const IUIEventLogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIEventingManager_Value = @import("../zig.zig").Guid.initString("3be6ea7f-9a9b-4198-9368-9b0f923bd534");
 pub const IID_IUIEventingManager = &IID_IUIEventingManager_Value;
 pub const IUIEventingManager = extern struct {
@@ -333,6 +338,7 @@ pub const IUIEventingManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIContextualUI_Value = @import("../zig.zig").Guid.initString("eea11f37-7c46-437c-8e55-b52122b29293");
 pub const IID_IUIContextualUI = &IID_IUIContextualUI_Value;
 pub const IUIContextualUI = extern struct {
@@ -355,6 +361,7 @@ pub const IUIContextualUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUICollection_Value = @import("../zig.zig").Guid.initString("df4f45bf-6f9d-4dd7-9d68-d8f9cd18c4db");
 pub const IID_IUICollection = &IID_IUICollection_Value;
 pub const IUICollection = extern struct {
@@ -437,6 +444,7 @@ pub const UI_COLLECTIONCHANGE_REMOVE = UI_COLLECTIONCHANGE.REMOVE;
 pub const UI_COLLECTIONCHANGE_REPLACE = UI_COLLECTIONCHANGE.REPLACE;
 pub const UI_COLLECTIONCHANGE_RESET = UI_COLLECTIONCHANGE.RESET;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUICollectionChangedEvent_Value = @import("../zig.zig").Guid.initString("6502ae91-a14d-44b5-bbd0-62aacc581d52");
 pub const IID_IUICollectionChangedEvent = &IID_IUICollectionChangedEvent_Value;
 pub const IUICollectionChangedEvent = extern struct {
@@ -471,6 +479,7 @@ pub const UI_EXECUTIONVERB_EXECUTE = UI_EXECUTIONVERB.EXECUTE;
 pub const UI_EXECUTIONVERB_PREVIEW = UI_EXECUTIONVERB.PREVIEW;
 pub const UI_EXECUTIONVERB_CANCELPREVIEW = UI_EXECUTIONVERB.CANCELPREVIEW;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUICommandHandler_Value = @import("../zig.zig").Guid.initString("75ae0a2d-dc03-4c9f-8883-069660d0beb6");
 pub const IID_IUICommandHandler = &IID_IUICommandHandler_Value;
 pub const IUICommandHandler = extern struct {
@@ -552,6 +561,7 @@ pub const UI_VIEWVERB_DESTROY = UI_VIEWVERB.DESTROY;
 pub const UI_VIEWVERB_SIZE = UI_VIEWVERB.SIZE;
 pub const UI_VIEWVERB_ERROR = UI_VIEWVERB.ERROR;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIApplication_Value = @import("../zig.zig").Guid.initString("d428903c-729a-491d-910d-682a08ff2522");
 pub const IID_IUIApplication = &IID_IUIApplication_Value;
 pub const IUIApplication = extern struct {
@@ -597,6 +607,7 @@ pub const IUIApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIImage_Value = @import("../zig.zig").Guid.initString("23c8c838-4de6-436b-ab01-5554bb7c30dd");
 pub const IID_IUIImage = &IID_IUIImage_Value;
 pub const IUIImage = extern struct {
@@ -625,6 +636,7 @@ pub const UI_OWNERSHIP = extern enum(i32) {
 pub const UI_OWNERSHIP_TRANSFER = UI_OWNERSHIP.TRANSFER;
 pub const UI_OWNERSHIP_COPY = UI_OWNERSHIP.COPY;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIImageFromBitmap_Value = @import("../zig.zig").Guid.initString("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816");
 pub const IID_IUIImageFromBitmap = &IID_IUIImageFromBitmap_Value;
 pub const IUIImageFromBitmap = extern struct {

@@ -315,6 +315,7 @@ pub const IRDPSRAPIDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRDPSRAPIPerfCounterLogger_Value = @import("../zig.zig").Guid.initString("071c2533-0fa4-4e8f-ae83-9c10b4305ab5");
 pub const IID_IRDPSRAPIPerfCounterLogger = &IID_IRDPSRAPIPerfCounterLogger_Value;
 pub const IRDPSRAPIPerfCounterLogger = extern struct {
@@ -336,6 +337,7 @@ pub const IRDPSRAPIPerfCounterLogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRDPSRAPIPerfCounterLoggingManager_Value = @import("../zig.zig").Guid.initString("9a512c86-ac6e-4a8e-b1a4-fcef363f6e64");
 pub const IID_IRDPSRAPIPerfCounterLoggingManager = &IID_IRDPSRAPIPerfCounterLoggingManager_Value;
 pub const IRDPSRAPIPerfCounterLoggingManager = extern struct {
@@ -358,6 +360,7 @@ pub const IRDPSRAPIPerfCounterLoggingManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRDPSRAPIAudioStream_Value = @import("../zig.zig").Guid.initString("e3e30ef9-89c6-4541-ba3b-19336ac6d31c");
 pub const IID_IRDPSRAPIAudioStream = &IID_IRDPSRAPIAudioStream_Value;
 pub const IRDPSRAPIAudioStream = extern struct {
@@ -410,6 +413,7 @@ pub const IRDPSRAPIAudioStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPIClipboardUseEvents_Value = @import("../zig.zig").Guid.initString("d559f59a-7a27-4138-8763-247ce5f659a8");
 pub const IID_IRDPSRAPIClipboardUseEvents = &IID_IRDPSRAPIClipboardUseEvents_Value;
 pub const IRDPSRAPIClipboardUseEvents = extern struct {
@@ -433,6 +437,7 @@ pub const IRDPSRAPIClipboardUseEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIWindow_Value = @import("../zig.zig").Guid.initString("beafe0f9-c77b-4933-ba9f-a24cddcc27cf");
 pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
 pub const IRDPSRAPIWindow = extern struct {
@@ -501,6 +506,7 @@ pub const IRDPSRAPIWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIWindowList_Value = @import("../zig.zig").Guid.initString("8a05ce44-715a-4116-a189-a118f30a07bd");
 pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
 pub const IRDPSRAPIWindowList = extern struct {
@@ -531,6 +537,7 @@ pub const IRDPSRAPIWindowList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplication_Value = @import("../zig.zig").Guid.initString("41e7a09d-eb7a-436e-935d-780ca2628324");
 pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
 pub const IRDPSRAPIApplication = extern struct {
@@ -592,6 +599,7 @@ pub const IRDPSRAPIApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplicationList_Value = @import("../zig.zig").Guid.initString("d4b4aeb3-22dc-4837-b3b6-42ea2517849a");
 pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
 pub const IRDPSRAPIApplicationList = extern struct {
@@ -622,6 +630,7 @@ pub const IRDPSRAPIApplicationList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplicationFilter_Value = @import("../zig.zig").Guid.initString("d20f10ca-6637-4f06-b1d5-277ea7e5160d");
 pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value;
 pub const IRDPSRAPIApplicationFilter = extern struct {
@@ -667,6 +676,7 @@ pub const IRDPSRAPIApplicationFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPISessionProperties_Value = @import("../zig.zig").Guid.initString("339b24f2-9bc0-4f16-9aac-f165433d13d4");
 pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value;
 pub const IRDPSRAPISessionProperties = extern struct {
@@ -698,6 +708,7 @@ pub const IRDPSRAPISessionProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIInvitation_Value = @import("../zig.zig").Guid.initString("4fac1d43-fc51-45bb-b1b4-2b53aa562fa3");
 pub const IID_IRDPSRAPIInvitation = &IID_IRDPSRAPIInvitation_Value;
 pub const IRDPSRAPIInvitation = extern struct {
@@ -767,6 +778,7 @@ pub const IRDPSRAPIInvitation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIInvitationManager_Value = @import("../zig.zig").Guid.initString("4722b049-92c3-4c2d-8a65-f7348f644dcf");
 pub const IID_IRDPSRAPIInvitationManager = &IID_IRDPSRAPIInvitationManager_Value;
 pub const IRDPSRAPIInvitationManager = extern struct {
@@ -817,6 +829,7 @@ pub const IRDPSRAPIInvitationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPITcpConnectionInfo_Value = @import("../zig.zig").Guid.initString("f74049a4-3d06-4028-8193-0a8c29bc2452");
 pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value;
 pub const IRDPSRAPITcpConnectionInfo = extern struct {
@@ -870,6 +883,7 @@ pub const IRDPSRAPITcpConnectionInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendee_Value = @import("../zig.zig").Guid.initString("ec0671b3-1b78-4b80-a464-9132247543e3");
 pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
 pub const IRDPSRAPIAttendee = extern struct {
@@ -946,6 +960,7 @@ pub const IRDPSRAPIAttendee = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendeeManager_Value = @import("../zig.zig").Guid.initString("ba3a37e8-33da-4749-8da0-07fa34da7944");
 pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
 pub const IRDPSRAPIAttendeeManager = extern struct {
@@ -976,6 +991,7 @@ pub const IRDPSRAPIAttendeeManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = @import("../zig.zig").Guid.initString("c187689f-447c-44a1-9c14-fffbb3b7ec17");
 pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnectInfo_Value;
 pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
@@ -1013,6 +1029,7 @@ pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIVirtualChannel_Value = @import("../zig.zig").Guid.initString("05e12f95-28b3-4c9a-8780-d0248574a1e0");
 pub const IID_IRDPSRAPIVirtualChannel = &IID_IRDPSRAPIVirtualChannel_Value;
 pub const IRDPSRAPIVirtualChannel = extern struct {
@@ -1069,6 +1086,7 @@ pub const IRDPSRAPIVirtualChannel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIVirtualChannelManager_Value = @import("../zig.zig").Guid.initString("0d11c661-5d0d-4ee4-89df-2166ae1fdfed");
 pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManager_Value;
 pub const IRDPSRAPIVirtualChannelManager = extern struct {
@@ -1110,6 +1128,7 @@ pub const IRDPSRAPIVirtualChannelManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIViewer_Value = @import("../zig.zig").Guid.initString("c6bfcd38-8ce9-404d-8ae8-f31d00c65cb5");
 pub const IID_IRDPSRAPIViewer = &IID_IRDPSRAPIViewer_Value;
 pub const IRDPSRAPIViewer = extern struct {
@@ -1239,6 +1258,7 @@ pub const IRDPSRAPIViewer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRDPViewerRenderingSurface_Value = @import("../zig.zig").Guid.initString("56bfce32-83e9-414d-82e8-f31d01c62cb5");
 pub const IID_IRDPViewerRenderingSurface = &IID_IRDPViewerRenderingSurface_Value;
 pub const IRDPViewerRenderingSurface = extern struct {
@@ -1262,6 +1282,7 @@ pub const IRDPViewerRenderingSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRDPViewerInputSink_Value = @import("../zig.zig").Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
 pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
 pub const IRDPViewerInputSink = extern struct {
@@ -1348,6 +1369,7 @@ pub const IRDPViewerInputSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPIFrameBuffer_Value = @import("../zig.zig").Guid.initString("3d67e7d2-b27b-448e-81b3-c6110ed8b4be");
 pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
 pub const IRDPSRAPIFrameBuffer = extern struct {
@@ -1397,6 +1419,7 @@ pub const IRDPSRAPIFrameBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStreamBuffer_Value = @import("../zig.zig").Guid.initString("81c80290-5085-44b0-b460-f865c39cb4a9");
 pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuffer_Value;
 pub const IRDPSRAPITransportStreamBuffer = extern struct {
@@ -1490,6 +1513,7 @@ pub const IRDPSRAPITransportStreamBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStreamEvents_Value = @import("../zig.zig").Guid.initString("ea81c254-f5af-4e40-982e-3e63bb595276");
 pub const IID_IRDPSRAPITransportStreamEvents = &IID_IRDPSRAPITransportStreamEvents_Value;
 pub const IRDPSRAPITransportStreamEvents = extern struct {
@@ -1527,6 +1551,7 @@ pub const IRDPSRAPITransportStreamEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStream_Value = @import("../zig.zig").Guid.initString("36cfa065-43bb-4ef7-aed7-9b88a5053036");
 pub const IID_IRDPSRAPITransportStream = &IID_IRDPSRAPITransportStream_Value;
 pub const IRDPSRAPITransportStream = extern struct {
@@ -1588,6 +1613,7 @@ pub const IRDPSRAPITransportStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPISharingSession_Value = @import("../zig.zig").Guid.initString("eeb20886-e470-4cf6-842b-2739c0ec5cfb");
 pub const IID_IRDPSRAPISharingSession = &IID_IRDPSRAPISharingSession_Value;
 pub const IRDPSRAPISharingSession = extern struct {
@@ -1715,6 +1741,7 @@ pub const IRDPSRAPISharingSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPISharingSession2_Value = @import("../zig.zig").Guid.initString("fee4ee57-e3e8-4205-8fb0-8fd1d0675c21");
 pub const IID_IRDPSRAPISharingSession2 = &IID_IRDPSRAPISharingSession2_Value;
 pub const IRDPSRAPISharingSession2 = extern struct {
@@ -1784,6 +1811,7 @@ pub const __ReferenceRemainingTypes__ = extern struct {
     __rdpsrapiAppFlags__: RDPSRAPI_APP_FLAGS,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID__IRDPSessionEvents_Value = @import("../zig.zig").Guid.initString("98a97042-6698-40e9-8efd-b3200990004b");
 pub const IID__IRDPSessionEvents = &IID__IRDPSessionEvents_Value;
 pub const _IRDPSessionEvents = extern struct {

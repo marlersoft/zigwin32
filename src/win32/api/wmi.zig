@@ -90,6 +90,7 @@ pub const WBEM_GET_KEY_FLAGS = extern enum(i32) {
 pub const WBEMPATH_TEXT = WBEM_GET_KEY_FLAGS.TEXT;
 pub const WBEMPATH_QUOTEDTEXT = WBEM_GET_KEY_FLAGS.QUOTEDTEXT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemPathKeyList_Value = @import("../zig.zig").Guid.initString("9ae62877-7544-4bb0-aa26-a13824659ed6");
 pub const IID_IWbemPathKeyList = &IID_IWbemPathKeyList_Value;
 pub const IWbemPathKeyList = extern struct {
@@ -204,6 +205,7 @@ pub const IWbemPathKeyList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemPath_Value = @import("../zig.zig").Guid.initString("3bc15af2-736c-477e-9e51-238af8667dcc");
 pub const IID_IWbemPath = &IID_IWbemPath_Value;
 pub const IWbemPath = extern struct {
@@ -443,6 +445,7 @@ pub const IWbemPath = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemQuery_Value = @import("../zig.zig").Guid.initString("81166f58-dd98-11d3-a120-00105a1f515a");
 pub const IID_IWbemQuery = &IID_IWbemQuery_Value;
 pub const IWbemQuery = extern struct {
@@ -1546,6 +1549,7 @@ pub const WBEMMOF_E_ERROR_CREATING_TEMP_FILE = WBEMSTATUS.MOF_E_ERROR_CREATING_T
 pub const WBEMMOF_E_ERROR_INVALID_INCLUDE_FILE = WBEMSTATUS.MOF_E_ERROR_INVALID_INCLUDE_FILE;
 pub const WBEMMOF_E_INVALID_DELETECLASS_SYNTAX = WBEMSTATUS.MOF_E_INVALID_DELETECLASS_SYNTAX;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemClassObject_Value = @import("../zig.zig").Guid.initString("dc12a681-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemClassObject = &IID_IWbemClassObject_Value;
 pub const IWbemClassObject = extern struct {
@@ -1780,6 +1784,7 @@ pub const IWbemClassObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemObjectAccess_Value = @import("../zig.zig").Guid.initString("49353c9a-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemObjectAccess = &IID_IWbemObjectAccess_Value;
 pub const IWbemObjectAccess = extern struct {
@@ -1886,6 +1891,7 @@ pub const IWbemObjectAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemQualifierSet_Value = @import("../zig.zig").Guid.initString("dc12a680-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemQualifierSet = &IID_IWbemQualifierSet_Value;
 pub const IWbemQualifierSet = extern struct {
@@ -1963,6 +1969,7 @@ pub const IWbemQualifierSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemServices_Value = @import("../zig.zig").Guid.initString("9556dc99-828c-11cf-a37e-00aa003240c7");
 pub const IID_IWbemServices = &IID_IWbemServices_Value;
 pub const IWbemServices = extern struct {
@@ -2235,6 +2242,7 @@ pub const IWbemServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemLocator_Value = @import("../zig.zig").Guid.initString("dc12a687-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemLocator = &IID_IWbemLocator_Value;
 pub const IWbemLocator = extern struct {
@@ -2263,6 +2271,7 @@ pub const IWbemLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemObjectSink_Value = @import("../zig.zig").Guid.initString("7c857801-7381-11cf-884d-00aa004b2e24");
 pub const IID_IWbemObjectSink = &IID_IWbemObjectSink_Value;
 pub const IWbemObjectSink = extern struct {
@@ -2296,6 +2305,7 @@ pub const IWbemObjectSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumWbemClassObject_Value = @import("../zig.zig").Guid.initString("027947e1-d731-11ce-a357-000000000001");
 pub const IID_IEnumWbemClassObject = &IID_IEnumWbemClassObject_Value;
 pub const IEnumWbemClassObject = extern struct {
@@ -2353,6 +2363,7 @@ pub const IEnumWbemClassObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemCallResult_Value = @import("../zig.zig").Guid.initString("44aca675-e8fc-11d0-a07c-00c04fb68820");
 pub const IID_IWbemCallResult = &IID_IWbemCallResult_Value;
 pub const IWbemCallResult = extern struct {
@@ -2402,6 +2413,7 @@ pub const IWbemCallResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemContext_Value = @import("../zig.zig").Guid.initString("44aca674-e8fc-11d0-a07c-00c04fb68820");
 pub const IID_IWbemContext = &IID_IWbemContext_Value;
 pub const IWbemContext = extern struct {
@@ -2493,6 +2505,7 @@ pub const IWbemContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUnsecuredApartment_Value = @import("../zig.zig").Guid.initString("1cfaba8c-1523-11d1-ad79-00c04fd8fdff");
 pub const IID_IUnsecuredApartment = &IID_IUnsecuredApartment_Value;
 pub const IUnsecuredApartment = extern struct {
@@ -2515,6 +2528,7 @@ pub const IUnsecuredApartment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWbemUnsecuredApartment_Value = @import("../zig.zig").Guid.initString("31739d04-3471-4cf4-9a7c-57a44ae71956");
 pub const IID_IWbemUnsecuredApartment = &IID_IWbemUnsecuredApartment_Value;
 pub const IWbemUnsecuredApartment = extern struct {
@@ -2539,6 +2553,7 @@ pub const IWbemUnsecuredApartment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemStatusCodeText_Value = @import("../zig.zig").Guid.initString("eb87e1bc-3233-11d2-aec9-00c04fb68820");
 pub const IID_IWbemStatusCodeText = &IID_IWbemStatusCodeText_Value;
 pub const IWbemStatusCodeText = extern struct {
@@ -2574,6 +2589,7 @@ pub const IWbemStatusCodeText = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemBackupRestore_Value = @import("../zig.zig").Guid.initString("c49e32c7-bc8b-11d2-85d4-00105a1f8304");
 pub const IID_IWbemBackupRestore = &IID_IWbemBackupRestore_Value;
 pub const IWbemBackupRestore = extern struct {
@@ -2605,6 +2621,7 @@ pub const IWbemBackupRestore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemBackupRestoreEx_Value = @import("../zig.zig").Guid.initString("a359dec5-e813-4834-8a2a-ba7f1d777d76");
 pub const IID_IWbemBackupRestoreEx = &IID_IWbemBackupRestoreEx_Value;
 pub const IWbemBackupRestoreEx = extern struct {
@@ -2632,6 +2649,7 @@ pub const IWbemBackupRestoreEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemRefresher_Value = @import("../zig.zig").Guid.initString("49353c99-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemRefresher = &IID_IWbemRefresher_Value;
 pub const IWbemRefresher = extern struct {
@@ -2653,6 +2671,7 @@ pub const IWbemRefresher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemHiPerfEnum_Value = @import("../zig.zig").Guid.initString("2705c288-79ae-11d2-b348-00105a1f8177");
 pub const IID_IWbemHiPerfEnum = &IID_IWbemHiPerfEnum_Value;
 pub const IWbemHiPerfEnum = extern struct {
@@ -2706,6 +2725,7 @@ pub const IWbemHiPerfEnum = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemConfigureRefresher_Value = @import("../zig.zig").Guid.initString("49353c92-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemConfigureRefresher = &IID_IWbemConfigureRefresher_Value;
 pub const IWbemConfigureRefresher = extern struct {
@@ -2777,6 +2797,7 @@ pub const IWbemConfigureRefresher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemObjectSinkEx_Value = @import("../zig.zig").Guid.initString("e7d35cfa-348b-485e-b524-252725d697ca");
 pub const IID_IWbemObjectSinkEx = &IID_IWbemObjectSinkEx_Value;
 pub const IWbemObjectSinkEx = extern struct {
@@ -2841,6 +2862,7 @@ pub const IWbemObjectSinkEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemShutdown_Value = @import("../zig.zig").Guid.initString("b7b31df9-d515-11d3-a11c-00105a1f515a");
 pub const IID_IWbemShutdown = &IID_IWbemShutdown_Value;
 pub const IWbemShutdown = extern struct {
@@ -2893,6 +2915,7 @@ pub const WMI_OBJ_TEXT_WMI_EXT9 = WMI_OBJ_TEXT.WMI_EXT9;
 pub const WMI_OBJ_TEXT_WMI_EXT10 = WMI_OBJ_TEXT.WMI_EXT10;
 pub const WMI_OBJ_TEXT_LAST = WMI_OBJ_TEXT.LAST;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemObjectTextSrc_Value = @import("../zig.zig").Guid.initString("bfbf883a-cad7-11d3-a11b-00105a1f515a");
 pub const IID_IWbemObjectTextSrc = &IID_IWbemObjectTextSrc_Value;
 pub const IWbemObjectTextSrc = extern struct {
@@ -2965,6 +2988,7 @@ pub const WBEM_FLAG_CONNECT_REPOSITORY_ONLY = WBEM_CONNECT_OPTIONS.REPOSITORY_ON
 pub const WBEM_FLAG_CONNECT_USE_MAX_WAIT = WBEM_CONNECT_OPTIONS.USE_MAX_WAIT;
 pub const WBEM_FLAG_CONNECT_PROVIDERS = WBEM_CONNECT_OPTIONS.PROVIDERS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMofCompiler_Value = @import("../zig.zig").Guid.initString("6daf974e-2e37-11d2-aec9-00c04fb68820");
 pub const IID_IMofCompiler = &IID_IMofCompiler_Value;
 pub const IMofCompiler = extern struct {
@@ -3065,6 +3089,7 @@ pub const WBEM_REQUIREMENTS_START_POSTFILTER = WBEM_PROVIDER_REQUIREMENTS_TYPE.S
 pub const WBEM_REQUIREMENTS_STOP_POSTFILTER = WBEM_PROVIDER_REQUIREMENTS_TYPE.STOP_POSTFILTER;
 pub const WBEM_REQUIREMENTS_RECHECK_SUBSCRIPTIONS = WBEM_PROVIDER_REQUIREMENTS_TYPE.RECHECK_SUBSCRIPTIONS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemPropertyProvider_Value = @import("../zig.zig").Guid.initString("ce61e841-65bc-11d0-b6bd-00aa003240c7");
 pub const IID_IWbemPropertyProvider = &IID_IWbemPropertyProvider_Value;
 pub const IWbemPropertyProvider = extern struct {
@@ -3104,6 +3129,7 @@ pub const IWbemPropertyProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemUnboundObjectSink_Value = @import("../zig.zig").Guid.initString("e246107b-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemUnboundObjectSink = &IID_IWbemUnboundObjectSink_Value;
 pub const IWbemUnboundObjectSink = extern struct {
@@ -3127,6 +3153,7 @@ pub const IWbemUnboundObjectSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemEventProvider_Value = @import("../zig.zig").Guid.initString("e245105b-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemEventProvider = &IID_IWbemEventProvider_Value;
 pub const IWbemEventProvider = extern struct {
@@ -3149,6 +3176,7 @@ pub const IWbemEventProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemEventProviderQuerySink_Value = @import("../zig.zig").Guid.initString("580acaf8-fa1c-11d0-ad72-00c04fd8fdff");
 pub const IID_IWbemEventProviderQuerySink = &IID_IWbemEventProviderQuerySink_Value;
 pub const IWbemEventProviderQuerySink = extern struct {
@@ -3180,6 +3208,7 @@ pub const IWbemEventProviderQuerySink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemEventProviderSecurity_Value = @import("../zig.zig").Guid.initString("631f7d96-d993-11d2-b339-00105a1f4aaf");
 pub const IID_IWbemEventProviderSecurity = &IID_IWbemEventProviderSecurity_Value;
 pub const IWbemEventProviderSecurity = extern struct {
@@ -3204,6 +3233,7 @@ pub const IWbemEventProviderSecurity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemEventConsumerProvider_Value = @import("../zig.zig").Guid.initString("e246107a-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemEventConsumerProvider = &IID_IWbemEventConsumerProvider_Value;
 pub const IWbemEventConsumerProvider = extern struct {
@@ -3226,6 +3256,7 @@ pub const IWbemEventConsumerProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemProviderInitSink_Value = @import("../zig.zig").Guid.initString("1be41571-91dd-11d1-aeb2-00c04fb68820");
 pub const IID_IWbemProviderInitSink = &IID_IWbemProviderInitSink_Value;
 pub const IWbemProviderInitSink = extern struct {
@@ -3248,6 +3279,7 @@ pub const IWbemProviderInitSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemProviderInit_Value = @import("../zig.zig").Guid.initString("1be41572-91dd-11d1-aeb2-00c04fb68820");
 pub const IID_IWbemProviderInit = &IID_IWbemProviderInit_Value;
 pub const IWbemProviderInit = extern struct {
@@ -3275,6 +3307,7 @@ pub const IWbemProviderInit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemHiPerfProvider_Value = @import("../zig.zig").Guid.initString("49353c93-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemHiPerfProvider = &IID_IWbemHiPerfProvider_Value;
 pub const IWbemHiPerfProvider = extern struct {
@@ -3360,6 +3393,7 @@ pub const IWbemHiPerfProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemDecoupledRegistrar_Value = @import("../zig.zig").Guid.initString("1005cbcf-e64f-4646-bcd3-3a089d8a84b4");
 pub const IID_IWbemDecoupledRegistrar = &IID_IWbemDecoupledRegistrar_Value;
 pub const IWbemDecoupledRegistrar = extern struct {
@@ -3394,6 +3428,7 @@ pub const IWbemDecoupledRegistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemProviderIdentity_Value = @import("../zig.zig").Guid.initString("631f7d97-d993-11d2-b339-00105a1f4aaf");
 pub const IID_IWbemProviderIdentity = &IID_IWbemProviderIdentity_Value;
 pub const IWbemProviderIdentity = extern struct {
@@ -3436,6 +3471,7 @@ pub const WBEM_PROVIDER_FLAGS = extern enum(i32) {
 };
 pub const WBEM_FLAG_OWNER_UPDATE = WBEM_PROVIDER_FLAGS.E;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemDecoupledBasicEventProvider_Value = @import("../zig.zig").Guid.initString("86336d20-ca11-4786-9ef1-bc8a946b42fc");
 pub const IID_IWbemDecoupledBasicEventProvider = &IID_IWbemDecoupledBasicEventProvider_Value;
 pub const IWbemDecoupledBasicEventProvider = extern struct {
@@ -3478,6 +3514,7 @@ pub const WBEM_FLAG_BATCH_IF_NEEDED = WBEM_BATCH_TYPE.BATCH_IF_NEEDED;
 pub const WBEM_FLAG_MUST_BATCH = WBEM_BATCH_TYPE.MUST_BATCH;
 pub const WBEM_FLAG_MUST_NOT_BATCH = WBEM_BATCH_TYPE.MUST_NOT_BATCH;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWbemEventSink_Value = @import("../zig.zig").Guid.initString("3ae0080a-7e3a-4366-bf89-0feedc931659");
 pub const IID_IWbemEventSink = &IID_IWbemEventSink_Value;
 pub const IWbemEventSink = extern struct {

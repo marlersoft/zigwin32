@@ -1931,7 +1931,7 @@ pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY { .
 pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
 
 //--------------------------------------------------------------------------------
-// Section: Types (459)
+// Section: Types (458)
 //--------------------------------------------------------------------------------
 pub const DOT11_BSS_TYPE = extern enum(i32) {
     infrastructure = 1,
@@ -5478,7 +5478,7 @@ pub const WLAN_BSS_ENTRY = extern struct {
     dot11Ssid: DOT11_SSID,
     uPhyId: u32,
     dot11Bssid: [6]u8,
-    dot11BssType: WlanGetNetworkBssList_dot11BssTypeFlags,
+    dot11BssType: DOT11_BSS_TYPE,
     dot11BssPhyType: DOT11_PHY_TYPE,
     lRssi: i32,
     uLinkQuality: u32,
@@ -6409,6 +6409,7 @@ pub const DOT11_ADHOC_CONNECT_FAIL_DOMAIN_MISMATCH = DOT11_ADHOC_CONNECT_FAIL_RE
 pub const DOT11_ADHOC_CONNECT_FAIL_PASSPHRASE_MISMATCH = DOT11_ADHOC_CONNECT_FAIL_REASON.PASSPHRASE_MISMATCH;
 pub const DOT11_ADHOC_CONNECT_FAIL_OTHER = DOT11_ADHOC_CONNECT_FAIL_REASON.OTHER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocManager_Value = @import("../zig.zig").Guid.initString("8f10cc26-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManager = &IID_IDot11AdHocManager_Value;
 pub const IDot11AdHocManager = extern struct {
@@ -6472,6 +6473,7 @@ pub const IDot11AdHocManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocManagerNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc27-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManagerNotificationSink = &IID_IDot11AdHocManagerNotificationSink_Value;
 pub const IDot11AdHocManagerNotificationSink = extern struct {
@@ -6517,6 +6519,7 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocNetworks_Value = @import("../zig.zig").Guid.initString("8f10cc28-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocNetworks = &IID_IEnumDot11AdHocNetworks_Value;
 pub const IEnumDot11AdHocNetworks = extern struct {
@@ -6563,6 +6566,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocNetwork_Value = @import("../zig.zig").Guid.initString("8f10cc29-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetwork = &IID_IDot11AdHocNetwork_Value;
 pub const IDot11AdHocNetwork = extern struct {
@@ -6674,6 +6678,7 @@ pub const IDot11AdHocNetwork = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocNetworkNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2a-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetworkNotificationSink = &IID_IDot11AdHocNetworkNotificationSink_Value;
 pub const IDot11AdHocNetworkNotificationSink = extern struct {
@@ -6703,6 +6708,7 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocInterface_Value = @import("../zig.zig").Guid.initString("8f10cc2b-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterface = &IID_IDot11AdHocInterface_Value;
 pub const IDot11AdHocInterface = extern struct {
@@ -6789,6 +6795,7 @@ pub const IDot11AdHocInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocInterfaces_Value = @import("../zig.zig").Guid.initString("8f10cc2c-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocInterfaces = &IID_IEnumDot11AdHocInterfaces_Value;
 pub const IEnumDot11AdHocInterfaces = extern struct {
@@ -6835,6 +6842,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2d-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocSecuritySettings = &IID_IEnumDot11AdHocSecuritySettings_Value;
 pub const IEnumDot11AdHocSecuritySettings = extern struct {
@@ -6881,6 +6889,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2e-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocSecuritySettings = &IID_IDot11AdHocSecuritySettings_Value;
 pub const IDot11AdHocSecuritySettings = extern struct {
@@ -6910,6 +6919,7 @@ pub const IDot11AdHocSecuritySettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocInterfaceNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2f-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterfaceNotificationSink = &IID_IDot11AdHocInterfaceNotificationSink_Value;
 pub const IDot11AdHocInterfaceNotificationSink = extern struct {
@@ -6931,12 +6941,6 @@ pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WlanGetNetworkBssList_dot11BssTypeFlags = extern enum(u32) {
-    frastructure = 1,
-    dependent = 2,
-};
-// TODO: enum 'WlanGetNetworkBssList_dot11BssTypeFlags' has known issues with its value aliases
-
 pub const WlanSetProfileEap_dwFlags = extern enum(u32) {
     S = 1,
 };
@@ -6953,6 +6957,7 @@ pub const WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE = WLAN_CONNECTION_NO
 //--------------------------------------------------------------------------------
 // Section: Functions (61)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanOpenHandle(
     dwClientVersion: u32,
     pReserved: *c_void,
@@ -6960,17 +6965,20 @@ pub extern "wlanapi" fn WlanOpenHandle(
     phClientHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanCloseHandle(
     hClientHandle: HANDLE,
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanEnumInterfaces(
     hClientHandle: HANDLE,
     pReserved: *c_void,
     ppInterfaceList: **WLAN_INTERFACE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetAutoConfigParameter(
     hClientHandle: HANDLE,
     OpCode: WLAN_AUTOCONF_OPCODE,
@@ -6979,6 +6987,7 @@ pub extern "wlanapi" fn WlanSetAutoConfigParameter(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryAutoConfigParameter(
     hClientHandle: HANDLE,
     OpCode: WLAN_AUTOCONF_OPCODE,
@@ -6988,6 +6997,7 @@ pub extern "wlanapi" fn WlanQueryAutoConfigParameter(
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetInterfaceCapability(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -6995,6 +7005,7 @@ pub extern "wlanapi" fn WlanGetInterfaceCapability(
     ppCapability: **WLAN_INTERFACE_CAPABILITY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetInterface(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7004,6 +7015,7 @@ pub extern "wlanapi" fn WlanSetInterface(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryInterface(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7014,6 +7026,7 @@ pub extern "wlanapi" fn WlanQueryInterface(
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanIhvControl(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7025,6 +7038,7 @@ pub extern "wlanapi" fn WlanIhvControl(
     pdwBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanScan(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7033,6 +7047,7 @@ pub extern "wlanapi" fn WlanScan(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetAvailableNetworkList(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7049,16 +7064,18 @@ pub extern "wlanapi" fn WlanGetAvailableNetworkList2(
     ppAvailableNetworkList: **WLAN_AVAILABLE_NETWORK_LIST_V2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetNetworkBssList(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
     pDot11Ssid: ?*const DOT11_SSID,
-    dot11BssType: WlanGetNetworkBssList_dot11BssTypeFlags,
+    dot11BssType: DOT11_BSS_TYPE,
     bSecurityEnabled: BOOL,
     pReserved: *c_void,
     ppWlanBssList: **WLAN_BSS_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanConnect(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7073,12 +7090,14 @@ pub extern "wlanapi" fn WlanConnect2(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDisconnect(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRegisterNotification(
     hClientHandle: HANDLE,
     dwNotifSource: u32,
@@ -7089,6 +7108,7 @@ pub extern "wlanapi" fn WlanRegisterNotification(
     pdwPrevNotifSource: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfile(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7099,6 +7119,7 @@ pub extern "wlanapi" fn WlanGetProfile(
     pdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapUserData(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7110,6 +7131,7 @@ pub extern "wlanapi" fn WlanSetProfileEapUserData(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7119,6 +7141,7 @@ pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfile(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7130,6 +7153,7 @@ pub extern "wlanapi" fn WlanSetProfile(
     pdwReasonCode: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDeleteProfile(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7137,6 +7161,7 @@ pub extern "wlanapi" fn WlanDeleteProfile(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRenameProfile(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7145,6 +7170,7 @@ pub extern "wlanapi" fn WlanRenameProfile(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileList(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7152,6 +7178,7 @@ pub extern "wlanapi" fn WlanGetProfileList(
     ppProfileList: **WLAN_PROFILE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileList(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7160,6 +7187,7 @@ pub extern "wlanapi" fn WlanSetProfileList(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfilePosition(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7168,6 +7196,7 @@ pub extern "wlanapi" fn WlanSetProfilePosition(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileCustomUserData(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7177,6 +7206,7 @@ pub extern "wlanapi" fn WlanSetProfileCustomUserData(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileCustomUserData(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7186,6 +7216,7 @@ pub extern "wlanapi" fn WlanGetProfileCustomUserData(
     ppData: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetFilterList(
     hClientHandle: HANDLE,
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
@@ -7193,6 +7224,7 @@ pub extern "wlanapi" fn WlanSetFilterList(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetFilterList(
     hClientHandle: HANDLE,
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
@@ -7200,6 +7232,7 @@ pub extern "wlanapi" fn WlanGetFilterList(
     ppNetworkList: **DOT11_NETWORK_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetPsdIEDataList(
     hClientHandle: HANDLE,
     strFormat: ?[*:0]const u16,
@@ -7207,6 +7240,7 @@ pub extern "wlanapi" fn WlanSetPsdIEDataList(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSaveTemporaryProfile(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
@@ -7240,6 +7274,7 @@ pub extern "wlanapi" fn WlanRegisterDeviceServiceNotification(
     pDevSvcGuidList: ?*const WLAN_DEVICE_SERVICE_GUID_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanExtractPsdIEDataList(
     hClientHandle: HANDLE,
     dwIeDataSize: u32,
@@ -7249,6 +7284,7 @@ pub extern "wlanapi" fn WlanExtractPsdIEDataList(
     ppPsdIEDataList: **WLAN_RAW_DATA_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanReasonCodeToString(
     dwReasonCode: u32,
     dwBufferSize: u32,
@@ -7256,20 +7292,24 @@ pub extern "wlanapi" fn WlanReasonCodeToString(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanAllocateMemory(
     dwMemorySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanFreeMemory(
     pMemory: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetSecuritySettings(
     hClientHandle: HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
     strModifiedSDDL: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetSecuritySettings(
     hClientHandle: HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
@@ -7278,6 +7318,7 @@ pub extern "wlanapi" fn WlanGetSecuritySettings(
     pdwGrantedAccess: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanUIEditProfile(
     dwClientVersion: u32,
     wstrProfileName: [*:0]const u16,
@@ -7288,30 +7329,35 @@ pub extern "wlanapi" fn WlanUIEditProfile(
     pWlanReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStartUsing(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStopUsing(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStart(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStop(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryProperty(
     hClientHandle: HANDLE,
     OpCode: WLAN_HOSTED_NETWORK_OPCODE,
@@ -7321,6 +7367,7 @@ pub extern "wlanapi" fn WlanHostedNetworkQueryProperty(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
     hClientHandle: HANDLE,
     OpCode: WLAN_HOSTED_NETWORK_OPCODE,
@@ -7330,24 +7377,28 @@ pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkInitSettings(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkRefreshSecuritySettings(
     hClientHandle: HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryStatus(
     hClientHandle: HANDLE,
     ppWlanHostedNetworkStatus: **WLAN_HOSTED_NETWORK_STATUS,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
     hClientHandle: HANDLE,
     dwKeyLength: u32,
@@ -7358,6 +7409,7 @@ pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQuerySecondaryKey(
     hClientHandle: HANDLE,
     pdwKeyLength: *u32,
@@ -7368,22 +7420,26 @@ pub extern "wlanapi" fn WlanHostedNetworkQuerySecondaryKey(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanRegisterVirtualStationNotification(
     hClientHandle: HANDLE,
     bRegister: BOOL,
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenHandle(
     dwClientVersion: u32,
     pdwNegotiatedVersion: *u32,
     phClientHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseHandle(
     hClientHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDStartOpenSession(
     hClientHandle: HANDLE,
     pDeviceAddress: **u8,
@@ -7392,10 +7448,12 @@ pub extern "wlanapi" fn WFDStartOpenSession(
     phSessionHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCancelOpenSession(
     hSessionHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenLegacySession(
     hClientHandle: HANDLE,
     pLegacyMacAddress: **u8,
@@ -7403,10 +7461,12 @@ pub extern "wlanapi" fn WFDOpenLegacySession(
     pGuidSessionInterface: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseSession(
     hSessionHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDUpdateDeviceVisibility(
     pDeviceAddress: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -7450,7 +7510,7 @@ test {
     _ = WFD_OPEN_SESSION_COMPLETE_CALLBACK;
 
     const constant_export_count = 1927;
-    const type_export_count = 458;
+    const type_export_count = 457;
     const enum_value_export_count = 634;
     const com_iface_id_export_count = 10;
     const com_class_id_export_count = 1;

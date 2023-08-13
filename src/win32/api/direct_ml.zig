@@ -1487,6 +1487,7 @@ pub const IDMLDebugDevice = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DirectML" fn DMLCreateDevice(
     d3d12Device: *ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,

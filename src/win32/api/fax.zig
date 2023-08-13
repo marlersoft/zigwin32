@@ -1259,6 +1259,7 @@ pub const fjtSEND = FAX_JOB_TYPE_ENUM.SEND;
 pub const fjtRECEIVE = FAX_JOB_TYPE_ENUM.RECEIVE;
 pub const fjtROUTING = FAX_JOB_TYPE_ENUM.ROUTING;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxJobStatus_Value = @import("../zig.zig").Guid.initString("8b86f485-fd7f-4824-886b-40c5caa617cc");
 pub const IID_IFaxJobStatus = &IID_IFaxJobStatus_Value;
 pub const IFaxJobStatus = extern struct {
@@ -1444,6 +1445,7 @@ pub const fsAPI_VERSION_1 = FAX_SERVER_APIVERSION_ENUM.@"1";
 pub const fsAPI_VERSION_2 = FAX_SERVER_APIVERSION_ENUM.@"2";
 pub const fsAPI_VERSION_3 = FAX_SERVER_APIVERSION_ENUM.@"3";
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFaxServer_Value = @import("../zig.zig").Guid.initString("475b6469-90a5-4878-a577-17a86e8e3462");
 pub const IID_IFaxServer = &IID_IFaxServer_Value;
 pub const IFaxServer = extern struct {
@@ -1673,6 +1675,7 @@ pub const IFaxServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDeviceProviders_Value = @import("../zig.zig").Guid.initString("9fb76f62-4c7e-43a5-b6fd-502893f7e13e");
 pub const IID_IFaxDeviceProviders = &IID_IFaxDeviceProviders_Value;
 pub const IFaxDeviceProviders = extern struct {
@@ -1711,6 +1714,7 @@ pub const IFaxDeviceProviders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDevices_Value = @import("../zig.zig").Guid.initString("9e46783e-f34f-482e-a360-0416becbbd96");
 pub const IID_IFaxDevices = &IID_IFaxDevices_Value;
 pub const IFaxDevices = extern struct {
@@ -1758,6 +1762,7 @@ pub const IFaxDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxInboundRouting_Value = @import("../zig.zig").Guid.initString("8148c20f-9d52-45b1-bf96-38fc12713527");
 pub const IID_IFaxInboundRouting = &IID_IFaxInboundRouting_Value;
 pub const IFaxInboundRouting = extern struct {
@@ -1787,6 +1792,7 @@ pub const IFaxInboundRouting = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxFolders_Value = @import("../zig.zig").Guid.initString("dce3b2a8-a7ab-42bc-9d0a-3149457261a0");
 pub const IID_IFaxFolders = &IID_IFaxFolders_Value;
 pub const IFaxFolders = extern struct {
@@ -1832,6 +1838,7 @@ pub const IFaxFolders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxLoggingOptions_Value = @import("../zig.zig").Guid.initString("34e64fb9-6b31-4d32-8b27-d286c0c33606");
 pub const IID_IFaxLoggingOptions = &IID_IFaxLoggingOptions_Value;
 pub const IFaxLoggingOptions = extern struct {
@@ -1861,6 +1868,7 @@ pub const IFaxLoggingOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxActivity_Value = @import("../zig.zig").Guid.initString("4b106f97-3df5-40f2-bc3c-44cb8115ebdf");
 pub const IID_IFaxActivity = &IID_IFaxActivity_Value;
 pub const IFaxActivity = extern struct {
@@ -1913,6 +1921,7 @@ pub const IFaxActivity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutboundRouting_Value = @import("../zig.zig").Guid.initString("25dc05a4-9909-41bd-a95b-7e5d1dec1d43");
 pub const IID_IFaxOutboundRouting = &IID_IFaxOutboundRouting_Value;
 pub const IFaxOutboundRouting = extern struct {
@@ -1960,6 +1969,7 @@ pub const frtNONE = FAX_RECEIPT_TYPE_ENUM.NONE;
 pub const frtMAIL = FAX_RECEIPT_TYPE_ENUM.MAIL;
 pub const frtMSGBOX = FAX_RECEIPT_TYPE_ENUM.MSGBOX;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxReceiptOptions_Value = @import("../zig.zig").Guid.initString("378efaeb-5fcb-4afb-b2ee-e16e80614487");
 pub const IID_IFaxReceiptOptions = &IID_IFaxReceiptOptions_Value;
 pub const IFaxReceiptOptions = extern struct {
@@ -2140,6 +2150,7 @@ pub const farMANAGE_IN_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.MANAGE_IN_ARCHIVE;
 pub const farQUERY_OUT_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.QUERY_OUT_ARCHIVE;
 pub const farMANAGE_OUT_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.MANAGE_OUT_ARCHIVE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxSecurity_Value = @import("../zig.zig").Guid.initString("77b508c1-09c0-47a2-91eb-fce7fdf2690e");
 pub const IID_IFaxSecurity = &IID_IFaxSecurity_Value;
 pub const IFaxSecurity = extern struct {
@@ -2234,6 +2245,7 @@ pub const fstNOW = FAX_SCHEDULE_TYPE_ENUM.NOW;
 pub const fstSPECIFIC_TIME = FAX_SCHEDULE_TYPE_ENUM.SPECIFIC_TIME;
 pub const fstDISCOUNT_PERIOD = FAX_SCHEDULE_TYPE_ENUM.DISCOUNT_PERIOD;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDocument_Value = @import("../zig.zig").Guid.initString("b207a246-09e3-4a4e-a7dc-fea31d29458f");
 pub const IID_IFaxDocument = &IID_IFaxDocument_Value;
 pub const IFaxDocument = extern struct {
@@ -2521,6 +2533,7 @@ pub const IFaxDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxSender_Value = @import("../zig.zig").Guid.initString("0d879d7d-f57a-4cc6-a6f9-3ee5d527b46a");
 pub const IID_IFaxSender = &IID_IFaxSender_Value;
 pub const IFaxSender = extern struct {
@@ -2804,6 +2817,7 @@ pub const IFaxSender = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxRecipient_Value = @import("../zig.zig").Guid.initString("9a3da3a0-538d-42b6-9444-aaa57d0ce2bc");
 pub const IID_IFaxRecipient = &IID_IFaxRecipient_Value;
 pub const IFaxRecipient = extern struct {
@@ -2849,6 +2863,7 @@ pub const IFaxRecipient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxRecipients_Value = @import("../zig.zig").Guid.initString("b9c9de5a-894e-4492-9fa3-08c627c11d5d");
 pub const IID_IFaxRecipients = &IID_IFaxRecipients_Value;
 pub const IFaxRecipients = extern struct {
@@ -2905,6 +2920,7 @@ pub const IFaxRecipients = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingArchive_Value = @import("../zig.zig").Guid.initString("76062cc7-f714-4fbd-aa06-ed6e4a4b70f3");
 pub const IID_IFaxIncomingArchive = &IID_IFaxIncomingArchive_Value;
 pub const IFaxIncomingArchive = extern struct {
@@ -3062,6 +3078,7 @@ pub const IFaxIncomingArchive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingQueue_Value = @import("../zig.zig").Guid.initString("902e64ef-8fd8-4b75-9725-6014df161545");
 pub const IID_IFaxIncomingQueue = &IID_IFaxIncomingQueue_Value;
 pub const IFaxIncomingQueue = extern struct {
@@ -3122,6 +3139,7 @@ pub const IFaxIncomingQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingArchive_Value = @import("../zig.zig").Guid.initString("c9c28f40-8d80-4e53-810f-9a79919b49fd");
 pub const IID_IFaxOutgoingArchive = &IID_IFaxOutgoingArchive_Value;
 pub const IFaxOutgoingArchive = extern struct {
@@ -3279,6 +3297,7 @@ pub const IFaxOutgoingArchive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingQueue_Value = @import("../zig.zig").Guid.initString("80b1df24-d9ac-4333-b373-487cedc80ce5");
 pub const IID_IFaxOutgoingQueue = &IID_IFaxOutgoingQueue_Value;
 pub const IFaxOutgoingQueue = extern struct {
@@ -3483,6 +3502,7 @@ pub const IFaxOutgoingQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingMessageIterator_Value = @import("../zig.zig").Guid.initString("fd73ecc4-6f06-4f52-82a8-f7ba06ae3108");
 pub const IID_IFaxIncomingMessageIterator = &IID_IFaxIncomingMessageIterator_Value;
 pub const IFaxIncomingMessageIterator = extern struct {
@@ -3542,6 +3562,7 @@ pub const IFaxIncomingMessageIterator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingMessage_Value = @import("../zig.zig").Guid.initString("7cab88fa-2ef9-4851-b2f3-1d148fed8447");
 pub const IID_IFaxIncomingMessage = &IID_IFaxIncomingMessage_Value;
 pub const IFaxIncomingMessage = extern struct {
@@ -3658,6 +3679,7 @@ pub const IFaxIncomingMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingJobs_Value = @import("../zig.zig").Guid.initString("2c56d8e6-8c2f-4573-944c-e505f8f5aeed");
 pub const IID_IFaxOutgoingJobs = &IID_IFaxOutgoingJobs_Value;
 pub const IFaxOutgoingJobs = extern struct {
@@ -3696,6 +3718,7 @@ pub const IFaxOutgoingJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingJob_Value = @import("../zig.zig").Guid.initString("6356daad-6614-4583-bf7a-3ad67bbfc71c");
 pub const IID_IFaxOutgoingJob = &IID_IFaxOutgoingJob_Value;
 pub const IFaxOutgoingJob = extern struct {
@@ -3952,6 +3975,7 @@ pub const IFaxOutgoingJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingMessageIterator_Value = @import("../zig.zig").Guid.initString("f5ec5d4f-b840-432f-9980-112fe42a9b7a");
 pub const IID_IFaxOutgoingMessageIterator = &IID_IFaxOutgoingMessageIterator_Value;
 pub const IFaxOutgoingMessageIterator = extern struct {
@@ -4011,6 +4035,7 @@ pub const IFaxOutgoingMessageIterator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutgoingMessage_Value = @import("../zig.zig").Guid.initString("f0ea35de-caa5-4a7c-82c7-2b60ba5f2be2");
 pub const IID_IFaxOutgoingMessage = &IID_IFaxOutgoingMessage_Value;
 pub const IFaxOutgoingMessage = extern struct {
@@ -4175,6 +4200,7 @@ pub const IFaxOutgoingMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingJobs_Value = @import("../zig.zig").Guid.initString("011f04e9-4fd6-4c23-9513-b6b66bb26be9");
 pub const IID_IFaxIncomingJobs = &IID_IFaxIncomingJobs_Value;
 pub const IFaxIncomingJobs = extern struct {
@@ -4213,6 +4239,7 @@ pub const IFaxIncomingJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxIncomingJob_Value = @import("../zig.zig").Guid.initString("207529e6-654a-4916-9f88-4d232ee8a107");
 pub const IID_IFaxIncomingJob = &IID_IFaxIncomingJob_Value;
 pub const IFaxIncomingJob = extern struct {
@@ -4393,6 +4420,7 @@ pub const fpsCANT_LOAD = FAX_PROVIDER_STATUS_ENUM.CANT_LOAD;
 pub const fpsCANT_LINK = FAX_PROVIDER_STATUS_ENUM.CANT_LINK;
 pub const fpsCANT_INIT = FAX_PROVIDER_STATUS_ENUM.CANT_INIT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDeviceProvider_Value = @import("../zig.zig").Guid.initString("290eac63-83ec-449c-8417-f148df8c682a");
 pub const IID_IFaxDeviceProvider = &IID_IFaxDeviceProvider_Value;
 pub const IFaxDeviceProvider = extern struct {
@@ -4511,6 +4539,7 @@ pub const fdrmNO_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.NO_ANSWER;
 pub const fdrmAUTO_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.AUTO_ANSWER;
 pub const fdrmMANUAL_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.MANUAL_ANSWER;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDevice_Value = @import("../zig.zig").Guid.initString("49306c59-b52e-4867-9df4-ca5841c956d0");
 pub const IID_IFaxDevice = &IID_IFaxDevice_Value;
 pub const IFaxDevice = extern struct {
@@ -4732,6 +4761,7 @@ pub const IFaxDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxActivityLogging_Value = @import("../zig.zig").Guid.initString("1e29078b-5a69-497b-9592-49b7e7faddb5");
 pub const IID_IFaxActivityLogging = &IID_IFaxActivityLogging_Value;
 pub const IFaxActivityLogging = extern struct {
@@ -4818,6 +4848,7 @@ pub const fllMIN = FAX_LOG_LEVEL_ENUM.MIN;
 pub const fllMED = FAX_LOG_LEVEL_ENUM.MED;
 pub const fllMAX = FAX_LOG_LEVEL_ENUM.MAX;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxEventLogging_Value = @import("../zig.zig").Guid.initString("0880d965-20e8-42e4-8e17-944f192caad4");
 pub const IID_IFaxEventLogging = &IID_IFaxEventLogging_Value;
 pub const IFaxEventLogging = extern struct {
@@ -4909,6 +4940,7 @@ pub const IFaxEventLogging = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutboundRoutingGroups_Value = @import("../zig.zig").Guid.initString("235cbef7-c2de-4bfd-b8da-75097c82c87f");
 pub const IID_IFaxOutboundRoutingGroups = &IID_IFaxOutboundRoutingGroups_Value;
 pub const IFaxOutboundRoutingGroups = extern struct {
@@ -4975,6 +5007,7 @@ pub const fgsEMPTY = FAX_GROUP_STATUS_ENUM.EMPTY;
 pub const fgsALL_DEV_NOT_VALID = FAX_GROUP_STATUS_ENUM.ALL_DEV_NOT_VALID;
 pub const fgsSOME_DEV_NOT_VALID = FAX_GROUP_STATUS_ENUM.SOME_DEV_NOT_VALID;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutboundRoutingGroup_Value = @import("../zig.zig").Guid.initString("ca6289a1-7e25-4f87-9a0b-93365734962c");
 pub const IID_IFaxOutboundRoutingGroup = &IID_IFaxOutboundRoutingGroup_Value;
 pub const IFaxOutboundRoutingGroup = extern struct {
@@ -5012,6 +5045,7 @@ pub const IFaxOutboundRoutingGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxDeviceIds_Value = @import("../zig.zig").Guid.initString("2f0f813f-4ce9-443e-8ca1-738cfaeee149");
 pub const IID_IFaxDeviceIds = &IID_IFaxDeviceIds_Value;
 pub const IFaxDeviceIds = extern struct {
@@ -5075,6 +5109,7 @@ pub const IFaxDeviceIds = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutboundRoutingRules_Value = @import("../zig.zig").Guid.initString("dcefa1e7-ae7d-4ed6-8521-369edcca5120");
 pub const IID_IFaxOutboundRoutingRules = &IID_IFaxOutboundRoutingRules_Value;
 pub const IFaxOutboundRoutingRules = extern struct {
@@ -5166,6 +5201,7 @@ pub const frsALL_GROUP_DEV_NOT_VALID = FAX_RULE_STATUS_ENUM.ALL_GROUP_DEV_NOT_VA
 pub const frsSOME_GROUP_DEV_NOT_VALID = FAX_RULE_STATUS_ENUM.SOME_GROUP_DEV_NOT_VALID;
 pub const frsBAD_DEVICE = FAX_RULE_STATUS_ENUM.BAD_DEVICE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxOutboundRoutingRule_Value = @import("../zig.zig").Guid.initString("e1f795d5-07c2-469f-b027-acacc23219da");
 pub const IID_IFaxOutboundRoutingRule = &IID_IFaxOutboundRoutingRule_Value;
 pub const IFaxOutboundRoutingRule = extern struct {
@@ -5265,6 +5301,7 @@ pub const IFaxOutboundRoutingRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxInboundRoutingExtensions_Value = @import("../zig.zig").Guid.initString("2f6c9673-7b26-42de-8eb0-915dcd2a4f4c");
 pub const IID_IFaxInboundRoutingExtensions = &IID_IFaxInboundRoutingExtensions_Value;
 pub const IFaxInboundRoutingExtensions = extern struct {
@@ -5303,6 +5340,7 @@ pub const IFaxInboundRoutingExtensions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxInboundRoutingExtension_Value = @import("../zig.zig").Guid.initString("885b5e08-c26c-4ef9-af83-51580a750be1");
 pub const IID_IFaxInboundRoutingExtension = &IID_IFaxInboundRoutingExtension_Value;
 pub const IFaxInboundRoutingExtension = extern struct {
@@ -5404,6 +5442,7 @@ pub const IFaxInboundRoutingExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxInboundRoutingMethods_Value = @import("../zig.zig").Guid.initString("783fca10-8908-4473-9d69-f67fbea0c6b9");
 pub const IID_IFaxInboundRoutingMethods = &IID_IFaxInboundRoutingMethods_Value;
 pub const IFaxInboundRoutingMethods = extern struct {
@@ -5442,6 +5481,7 @@ pub const IFaxInboundRoutingMethods = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFaxInboundRoutingMethod_Value = @import("../zig.zig").Guid.initString("45700061-ad9d-4776-a8c4-64065492cf4b");
 pub const IID_IFaxInboundRoutingMethod = &IID_IFaxInboundRoutingMethod_Value;
 pub const IFaxInboundRoutingMethod = extern struct {
@@ -5525,6 +5565,7 @@ pub const IFaxInboundRoutingMethod = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxDocument2_Value = @import("../zig.zig").Guid.initString("e1347661-f9ef-4d6d-b4a5-c0a068b65cff");
 pub const IID_IFaxDocument2 = &IID_IFaxDocument2_Value;
 pub const IFaxDocument2 = extern struct {
@@ -5582,6 +5623,7 @@ pub const IFaxDocument2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxConfiguration_Value = @import("../zig.zig").Guid.initString("10f4d0f7-0994-4543-ab6e-506949128c40");
 pub const IID_IFaxConfiguration = &IID_IFaxConfiguration_Value;
 pub const IFaxConfiguration = extern struct {
@@ -5929,6 +5971,7 @@ pub const IFaxConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxServer2_Value = @import("../zig.zig").Guid.initString("571ced0f-5609-4f40-9176-547e3a72ca7c");
 pub const IID_IFaxServer2 = &IID_IFaxServer2_Value;
 pub const IFaxServer2 = extern struct {
@@ -5974,6 +6017,7 @@ pub const IFaxServer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountSet_Value = @import("../zig.zig").Guid.initString("7428fbae-841e-47b8-86f4-2288946dca1b");
 pub const IID_IFaxAccountSet = &IID_IFaxAccountSet_Value;
 pub const IFaxAccountSet = extern struct {
@@ -6021,6 +6065,7 @@ pub const IFaxAccountSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccounts_Value = @import("../zig.zig").Guid.initString("93ea8162-8be7-42d1-ae7b-ec74e2d989da");
 pub const IID_IFaxAccounts = &IID_IFaxAccounts_Value;
 pub const IFaxAccounts = extern struct {
@@ -6074,6 +6119,7 @@ pub const faetIN_ARCHIVE = FAX_ACCOUNT_EVENTS_TYPE_ENUM.IN_ARCHIVE;
 pub const faetOUT_ARCHIVE = FAX_ACCOUNT_EVENTS_TYPE_ENUM.OUT_ARCHIVE;
 pub const faetFXSSVC_ENDED = FAX_ACCOUNT_EVENTS_TYPE_ENUM.FXSSVC_ENDED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccount_Value = @import("../zig.zig").Guid.initString("68535b33-5dc4-4086-be26-b76f9b711006");
 pub const IID_IFaxAccount = &IID_IFaxAccount_Value;
 pub const IFaxAccount = extern struct {
@@ -6119,6 +6165,7 @@ pub const IFaxAccount = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxOutgoingJob2_Value = @import("../zig.zig").Guid.initString("418a8d96-59a0-4789-b176-edf3dc8fa8f7");
 pub const IID_IFaxOutgoingJob2 = &IID_IFaxOutgoingJob2_Value;
 pub const IFaxOutgoingJob2 = extern struct {
@@ -6156,6 +6203,7 @@ pub const IFaxOutgoingJob2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountFolders_Value = @import("../zig.zig").Guid.initString("6463f89d-23d8-46a9-8f86-c47b77ca7926");
 pub const IID_IFaxAccountFolders = &IID_IFaxAccountFolders_Value;
 pub const IFaxAccountFolders = extern struct {
@@ -6201,6 +6249,7 @@ pub const IFaxAccountFolders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountIncomingQueue_Value = @import("../zig.zig").Guid.initString("dd142d92-0186-4a95-a090-cbc3eadba6b4");
 pub const IID_IFaxAccountIncomingQueue = &IID_IFaxAccountIncomingQueue_Value;
 pub const IFaxAccountIncomingQueue = extern struct {
@@ -6231,6 +6280,7 @@ pub const IFaxAccountIncomingQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountOutgoingQueue_Value = @import("../zig.zig").Guid.initString("0f1424e9-f22d-4553-b7a5-0d24bd0d7e46");
 pub const IID_IFaxAccountOutgoingQueue = &IID_IFaxAccountOutgoingQueue_Value;
 pub const IFaxAccountOutgoingQueue = extern struct {
@@ -6261,6 +6311,7 @@ pub const IFaxAccountOutgoingQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxOutgoingMessage2_Value = @import("../zig.zig").Guid.initString("b37df687-bc88-4b46-b3be-b458b3ea9e7f");
 pub const IID_IFaxOutgoingMessage2 = &IID_IFaxOutgoingMessage2_Value;
 pub const IFaxOutgoingMessage2 = extern struct {
@@ -6328,6 +6379,7 @@ pub const IFaxOutgoingMessage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountIncomingArchive_Value = @import("../zig.zig").Guid.initString("a8a5b6ef-e0d6-4aee-955c-91625bec9db4");
 pub const IID_IFaxAccountIncomingArchive = &IID_IFaxAccountIncomingArchive_Value;
 pub const IFaxAccountIncomingArchive = extern struct {
@@ -6382,6 +6434,7 @@ pub const IFaxAccountIncomingArchive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountOutgoingArchive_Value = @import("../zig.zig").Guid.initString("5463076d-ec14-491f-926e-b3ceda5e5662");
 pub const IID_IFaxAccountOutgoingArchive = &IID_IFaxAccountOutgoingArchive_Value;
 pub const IFaxAccountOutgoingArchive = extern struct {
@@ -6459,6 +6512,7 @@ pub const far2QUERY_ARCHIVES = FAX_ACCESS_RIGHTS_ENUM_2.QUERY_ARCHIVES;
 pub const far2MANAGE_ARCHIVES = FAX_ACCESS_RIGHTS_ENUM_2.MANAGE_ARCHIVES;
 pub const far2MANAGE_RECEIVE_FOLDER = FAX_ACCESS_RIGHTS_ENUM_2.MANAGE_RECEIVE_FOLDER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxSecurity2_Value = @import("../zig.zig").Guid.initString("17d851f4-d09b-48fc-99c9-8f24c4db9ab1");
 pub const IID_IFaxSecurity2 = &IID_IFaxSecurity2_Value;
 pub const IFaxSecurity2 = extern struct {
@@ -6526,6 +6580,7 @@ pub const IFaxSecurity2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxIncomingMessage2_Value = @import("../zig.zig").Guid.initString("f9208503-e2bc-48f3-9ec0-e6236f9b509a");
 pub const IID_IFaxIncomingMessage2 = &IID_IFaxIncomingMessage2_Value;
 pub const IFaxIncomingMessage2 = extern struct {
@@ -6682,6 +6737,7 @@ pub const IFaxServerNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID__IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("ec9c69b9-5fe7-4805-9467-82fcd96af903");
 pub const IID__IFaxServerNotify2 = &IID__IFaxServerNotify2_Value;
 pub const _IFaxServerNotify2 = extern struct {
@@ -6930,6 +6986,7 @@ pub const _IFaxServerNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("616ca8d6-a77a-4062-abfd-0e471241c7aa");
 pub const IID_IFaxServerNotify2 = &IID_IFaxServerNotify2_Value;
 pub const IFaxServerNotify2 = extern struct {
@@ -6943,6 +7000,7 @@ pub const IFaxServerNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID__IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("b9b3bc81-ac1b-46f3-b39d-0adc30e1b788");
 pub const IID__IFaxAccountNotify = &IID__IFaxAccountNotify_Value;
 pub const _IFaxAccountNotify = extern struct {
@@ -7058,6 +7116,7 @@ pub const _IFaxAccountNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("0b5e5bd1-b8a9-47a0-a323-ef4a293ba06a");
 pub const IID_IFaxAccountNotify = &IID_IFaxAccountNotify_Value;
 pub const IFaxAccountNotify = extern struct {
@@ -7247,11 +7306,13 @@ pub const SEND_TO_FAX_RECIPIENT_ATTACHMENT = SendToMode.T;
 //--------------------------------------------------------------------------------
 // Section: Functions (58)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxConnectFaxServerA(
     MachineName: [*:0]const u8,
     FaxHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxConnectFaxServerW(
     MachineName: [*:0]const u16,
     FaxHandle: *HANDLE,
@@ -7268,16 +7329,19 @@ pub extern "WINFAX" fn FaxOpenPort(
     FaxPortHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxCompleteJobParamsA(
     JobParams: **FAX_JOB_PARAMA,
     CoverpageInfo: **FAX_COVERPAGE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxCompleteJobParamsW(
     JobParams: **FAX_JOB_PARAMW,
     CoverpageInfo: **FAX_COVERPAGE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSendDocumentA(
     FaxHandle: HANDLE,
     FileName: [*:0]const u8,
@@ -7286,6 +7350,7 @@ pub extern "WINFAX" fn FaxSendDocumentA(
     FaxJobId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSendDocumentW(
     FaxHandle: HANDLE,
     FileName: [*:0]const u16,
@@ -7294,6 +7359,7 @@ pub extern "WINFAX" fn FaxSendDocumentW(
     FaxJobId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSendDocumentForBroadcastA(
     FaxHandle: HANDLE,
     FileName: [*:0]const u8,
@@ -7302,6 +7368,7 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastA(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSendDocumentForBroadcastW(
     FaxHandle: HANDLE,
     FileName: [*:0]const u16,
@@ -7310,30 +7377,35 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastW(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumJobsA(
     FaxHandle: HANDLE,
     JobEntry: **FAX_JOB_ENTRYA,
     JobsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumJobsW(
     FaxHandle: HANDLE,
     JobEntry: **FAX_JOB_ENTRYW,
     JobsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetJobA(
     FaxHandle: HANDLE,
     JobId: u32,
     JobEntry: **FAX_JOB_ENTRYA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetJobW(
     FaxHandle: HANDLE,
     JobId: u32,
     JobEntry: **FAX_JOB_ENTRYW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetJobA(
     FaxHandle: HANDLE,
     JobId: u32,
@@ -7341,6 +7413,7 @@ pub extern "WINFAX" fn FaxSetJobA(
     JobEntry: *const FAX_JOB_ENTRYA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetJobW(
     FaxHandle: HANDLE,
     JobId: u32,
@@ -7357,11 +7430,13 @@ pub extern "WINFAX" fn FaxGetPageData(
     ImageHeight: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetDeviceStatusA(
     FaxPortHandle: HANDLE,
     DeviceStatus: **FAX_DEVICE_STATUSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetDeviceStatusW(
     FaxPortHandle: HANDLE,
     DeviceStatus: **FAX_DEVICE_STATUSW,
@@ -7372,128 +7447,151 @@ pub extern "WINFAX" fn FaxAbort(
     JobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetConfigurationA(
     FaxHandle: HANDLE,
     FaxConfig: **FAX_CONFIGURATIONA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetConfigurationW(
     FaxHandle: HANDLE,
     FaxConfig: **FAX_CONFIGURATIONW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetConfigurationA(
     FaxHandle: HANDLE,
     FaxConfig: *const FAX_CONFIGURATIONA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetConfigurationW(
     FaxHandle: HANDLE,
     FaxConfig: *const FAX_CONFIGURATIONW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetLoggingCategoriesA(
     FaxHandle: HANDLE,
     Categories: **FAX_LOG_CATEGORYA,
     NumberCategories: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetLoggingCategoriesW(
     FaxHandle: HANDLE,
     Categories: **FAX_LOG_CATEGORYW,
     NumberCategories: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetLoggingCategoriesA(
     FaxHandle: HANDLE,
     Categories: *const FAX_LOG_CATEGORYA,
     NumberCategories: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetLoggingCategoriesW(
     FaxHandle: HANDLE,
     Categories: *const FAX_LOG_CATEGORYW,
     NumberCategories: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumPortsA(
     FaxHandle: HANDLE,
     PortInfo: **FAX_PORT_INFOA,
     PortsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumPortsW(
     FaxHandle: HANDLE,
     PortInfo: **FAX_PORT_INFOW,
     PortsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetPortA(
     FaxPortHandle: HANDLE,
     PortInfo: **FAX_PORT_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetPortW(
     FaxPortHandle: HANDLE,
     PortInfo: **FAX_PORT_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetPortA(
     FaxPortHandle: HANDLE,
     PortInfo: *const FAX_PORT_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetPortW(
     FaxPortHandle: HANDLE,
     PortInfo: *const FAX_PORT_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumRoutingMethodsA(
     FaxPortHandle: HANDLE,
     RoutingMethod: **FAX_ROUTING_METHODA,
     MethodsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumRoutingMethodsW(
     FaxPortHandle: HANDLE,
     RoutingMethod: **FAX_ROUTING_METHODW,
     MethodsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnableRoutingMethodA(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u8,
     Enabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnableRoutingMethodW(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u16,
     Enabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumGlobalRoutingInfoA(
     FaxHandle: HANDLE,
     RoutingInfo: **FAX_GLOBAL_ROUTING_INFOA,
     MethodsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxEnumGlobalRoutingInfoW(
     FaxHandle: HANDLE,
     RoutingInfo: **FAX_GLOBAL_ROUTING_INFOW,
     MethodsReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetGlobalRoutingInfoA(
     FaxHandle: HANDLE,
     RoutingInfo: *const FAX_GLOBAL_ROUTING_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetGlobalRoutingInfoW(
     FaxHandle: HANDLE,
     RoutingInfo: *const FAX_GLOBAL_ROUTING_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetRoutingInfoA(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u8,
@@ -7501,6 +7599,7 @@ pub extern "WINFAX" fn FaxGetRoutingInfoA(
     RoutingInfoBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxGetRoutingInfoW(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u16,
@@ -7508,6 +7607,7 @@ pub extern "WINFAX" fn FaxGetRoutingInfoW(
     RoutingInfoBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetRoutingInfoA(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u8,
@@ -7515,6 +7615,7 @@ pub extern "WINFAX" fn FaxSetRoutingInfoA(
     RoutingInfoBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxSetRoutingInfoW(
     FaxPortHandle: HANDLE,
     RoutingGuid: [*:0]const u16,
@@ -7534,6 +7635,7 @@ pub extern "WINFAX" fn FaxFreeBuffer(
     Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxStartPrintJobA(
     PrinterName: [*:0]const u8,
     PrintInfo: *const FAX_PRINT_INFOA,
@@ -7541,6 +7643,7 @@ pub extern "WINFAX" fn FaxStartPrintJobA(
     FaxContextInfo: *FAX_CONTEXT_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxStartPrintJobW(
     PrinterName: [*:0]const u16,
     PrintInfo: *const FAX_PRINT_INFOW,
@@ -7548,16 +7651,19 @@ pub extern "WINFAX" fn FaxStartPrintJobW(
     FaxContextInfo: *FAX_CONTEXT_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxPrintCoverPageA(
     FaxContextInfo: *const FAX_CONTEXT_INFOA,
     CoverPageInfo: *const FAX_COVERPAGE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxPrintCoverPageW(
     FaxContextInfo: *const FAX_CONTEXT_INFOW,
     CoverPageInfo: *const FAX_COVERPAGE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxRegisterServiceProviderW(
     DeviceProvider: [*:0]const u16,
     FriendlyName: [*:0]const u16,
@@ -7569,6 +7675,7 @@ pub extern "WINFAX" fn FaxUnregisterServiceProviderW(
     DeviceProvider: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINFAX" fn FaxRegisterRoutingExtensionW(
     FaxHandle: HANDLE,
     ExtensionName: [*:0]const u16,
@@ -7583,9 +7690,11 @@ pub extern "WINFAX" fn FaxAccessCheck(
     AccessMask: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fxsutility" fn CanSendToFaxRecipient(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fxsutility" fn SendToFaxRecipient(
     sndMode: SendToMode,
     lpFileName: [*:0]const u16,

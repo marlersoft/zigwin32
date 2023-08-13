@@ -2,6 +2,11 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (444)
 //--------------------------------------------------------------------------------
+pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
+pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
+pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
+pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
+pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 pub const D3D12_16BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 65535);
 pub const D3D12_32BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 4294967295);
 pub const D3D12_8BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 255);
@@ -441,11 +446,6 @@ pub const D3D_SHADER_REQUIRES_INNER_COVERAGE = @as(u32, 1024);
 pub const D3D_SHADER_REQUIRES_TYPED_UAV_LOAD_ADDITIONAL_FORMATS = @as(u32, 2048);
 pub const D3D_SHADER_REQUIRES_ROVS = @as(u32, 4096);
 pub const D3D_SHADER_REQUIRES_VIEWPORT_AND_RT_ARRAY_INDEX_FROM_ANY_SHADER_FEEDING_RASTERIZER = @as(u32, 8192);
-pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
-pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
-pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
-pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
-pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
 
 //--------------------------------------------------------------------------------
 // Section: Types (444)
@@ -5342,6 +5342,7 @@ pub const D3D12_HIT_KIND = extern enum(i32) {
 pub const D3D12_HIT_KIND_TRIANGLE_FRONT_FACE = D3D12_HIT_KIND.FRONT_FACE;
 pub const D3D12_HIT_KIND_TRIANGLE_BACK_FACE = D3D12_HIT_KIND.BACK_FACE;
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_ID3D12Device5_Value = @import("../zig.zig").Guid.initString("8b4f173b-2fea-4b80-8f58-4307191ab95d");
 pub const IID_ID3D12Device5 = &IID_ID3D12Device5_Value;
 pub const ID3D12Device5 = extern struct {
@@ -9049,6 +9050,7 @@ pub const ID3D11On12Device = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.18362'
 const IID_ID3D11On12Device1_Value = @import("../zig.zig").Guid.initString("bdb64df4-ea2f-4c70-b861-aaab1258bb5d");
 pub const IID_ID3D11On12Device1 = &IID_ID3D11On12Device1_Value;
 pub const ID3D11On12Device1 = extern struct {
@@ -9071,6 +9073,7 @@ pub const ID3D11On12Device1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D11On12Device2_Value = @import("../zig.zig").Guid.initString("dc90f331-4740-43fa-866e-67f12cb58223");
 pub const IID_ID3D11On12Device2 = &IID_ID3D11On12Device2_Value;
 pub const ID3D11On12Device2 = extern struct {

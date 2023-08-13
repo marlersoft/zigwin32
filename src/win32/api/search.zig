@@ -533,6 +533,7 @@ pub const TEXT_SOURCE = extern struct {
     iCur: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWordBreaker_Value = @import("../zig.zig").Guid.initString("d53552c8-77e3-101a-b552-08002b33b0e6");
 pub const IID_IWordBreaker = &IID_IWordBreaker_Value;
 pub const IWordBreaker = extern struct {
@@ -588,6 +589,7 @@ pub const IWordBreaker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWordFormSink_Value = @import("../zig.zig").Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
 pub const IID_IWordFormSink = &IID_IWordFormSink_Value;
 pub const IWordFormSink = extern struct {
@@ -619,6 +621,7 @@ pub const IWordFormSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IStemmer_Value = @import("../zig.zig").Guid.initString("efbaf140-7f42-11ce-be57-00aa0051fe20");
 pub const IID_IStemmer = &IID_IStemmer_Value;
 pub const IStemmer = extern struct {
@@ -796,6 +799,7 @@ pub const FILTERED_DATA_SOURCES = extern struct {
     pwcsOverride: [*:0]const u16,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILoadFilter_Value = @import("../zig.zig").Guid.initString("c7310722-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ILoadFilter = &IID_ILoadFilter_Value;
 pub const ILoadFilter = extern struct {
@@ -923,6 +927,7 @@ pub const COP_WORD_EQUAL = CONDITION_OPERATION.WORD_EQUAL;
 pub const COP_WORD_STARTSWITH = CONDITION_OPERATION.WORD_STARTSWITH;
 pub const COP_APPLICATION_SPECIFIC = CONDITION_OPERATION.APPLICATION_SPECIFIC;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRichChunk_Value = @import("../zig.zig").Guid.initString("4fdef69c-dbc9-454e-9910-b34f3c64b510");
 pub const IID_IRichChunk = &IID_IRichChunk_Value;
 pub const IRichChunk = extern struct {
@@ -947,6 +952,7 @@ pub const IRichChunk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICondition_Value = @import("../zig.zig").Guid.initString("0fc988d4-c935-4b97-a973-46282ea175c8");
 pub const IID_ICondition = &IID_ICondition_Value;
 pub const ICondition = extern struct {
@@ -1021,6 +1027,7 @@ pub const ICondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ICondition2_Value = @import("../zig.zig").Guid.initString("0db8851d-2e5b-47eb-9208-d28c325a01d7");
 pub const IID_ICondition2 = &IID_ICondition2_Value;
 pub const ICondition2 = extern struct {
@@ -1052,7 +1059,9 @@ pub const ICondition2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IRowsetExactScroll = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IRowsetExactScroll = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const DB_NUMERIC = extern struct {
     precision: u8,
@@ -5904,6 +5913,7 @@ pub const QPMO_LOCALIZED_SCHEMA_BINARY_PATH = QUERY_PARSER_MANAGER_OPTION.LOCALI
 pub const QPMO_APPEND_LCID_TO_LOCALIZED_PATH = QUERY_PARSER_MANAGER_OPTION.APPEND_LCID_TO_LOCALIZED_PATH;
 pub const QPMO_LOCALIZER_SUPPORT = QUERY_PARSER_MANAGER_OPTION.LOCALIZER_SUPPORT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryParser_Value = @import("../zig.zig").Guid.initString("2ebdee67-3505-43f8-9946-ea44abc8e5b0");
 pub const IID_IQueryParser = &IID_IQueryParser_Value;
 pub const IQueryParser = extern struct {
@@ -5994,6 +6004,7 @@ pub const IQueryParser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConditionFactory_Value = @import("../zig.zig").Guid.initString("a5efe073-b16f-474f-9f3e-9f8b497a3e08");
 pub const IID_IConditionFactory = &IID_IConditionFactory_Value;
 pub const IConditionFactory = extern struct {
@@ -6055,6 +6066,7 @@ pub const IConditionFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQuerySolution_Value = @import("../zig.zig").Guid.initString("d6ebc66b-8921-4193-afdd-a1789fb7ff57");
 pub const IID_IQuerySolution = &IID_IQuerySolution_Value;
 pub const IQuerySolution = extern struct {
@@ -6114,6 +6126,7 @@ pub const CONDITION_CREATION_VECTOR_OR = CONDITION_CREATION_OPTIONS.VECTOR_OR;
 pub const CONDITION_CREATION_VECTOR_LEAF = CONDITION_CREATION_OPTIONS.VECTOR_LEAF;
 pub const CONDITION_CREATION_USE_CONTENT_LOCALE = CONDITION_CREATION_OPTIONS.USE_CONTENT_LOCALE;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IConditionFactory2_Value = @import("../zig.zig").Guid.initString("71d222e1-432f-429e-8c13-b6dafde5077a");
 pub const IID_IConditionFactory2 = &IID_IConditionFactory2_Value;
 pub const IConditionFactory2 = extern struct {
@@ -6244,6 +6257,7 @@ pub const IConditionFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConditionGenerator_Value = @import("../zig.zig").Guid.initString("92d2cc58-4386-45a3-b98c-7e0ce64a4117");
 pub const IID_IConditionGenerator = &IID_IConditionGenerator_Value;
 pub const IConditionGenerator = extern struct {
@@ -6306,6 +6320,7 @@ pub const IConditionGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInterval_Value = @import("../zig.zig").Guid.initString("6bf0a714-3c18-430b-8b5d-83b1c234d3db");
 pub const IID_IInterval = &IID_IInterval_Value;
 pub const IInterval = extern struct {
@@ -6330,6 +6345,7 @@ pub const IInterval = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMetaData_Value = @import("../zig.zig").Guid.initString("780102b0-c43b-4876-bc7b-5e9ba5c88794");
 pub const IID_IMetaData = &IID_IMetaData_Value;
 pub const IMetaData = extern struct {
@@ -6352,6 +6368,7 @@ pub const IMetaData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEntity_Value = @import("../zig.zig").Guid.initString("24264891-e80b-4fd3-b7ce-4ff2fae8931f");
 pub const IID_IEntity = &IID_IEntity_Value;
 pub const IEntity = extern struct {
@@ -6434,6 +6451,7 @@ pub const IEntity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRelationship_Value = @import("../zig.zig").Guid.initString("2769280b-5108-498c-9c7f-a51239b63147");
 pub const IID_IRelationship = &IID_IRelationship_Value;
 pub const IRelationship = extern struct {
@@ -6488,6 +6506,7 @@ pub const IRelationship = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamedEntity_Value = @import("../zig.zig").Guid.initString("abdbd0b1-7d54-49fb-ab5c-bff4130004cd");
 pub const IID_INamedEntity = &IID_INamedEntity_Value;
 pub const INamedEntity = extern struct {
@@ -6517,6 +6536,7 @@ pub const INamedEntity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISchemaProvider_Value = @import("../zig.zig").Guid.initString("8cf89bcb-394c-49b2-ae28-a59dd4ed7f68");
 pub const IID_ISchemaProvider = &IID_ISchemaProvider_Value;
 pub const ISchemaProvider = extern struct {
@@ -6595,6 +6615,7 @@ pub const ISchemaProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITokenCollection_Value = @import("../zig.zig").Guid.initString("22d8b4f2-f577-4adb-a335-c2ae88416fab");
 pub const IID_ITokenCollection = &IID_ITokenCollection_Value;
 pub const ITokenCollection = extern struct {
@@ -6636,6 +6657,7 @@ pub const NEC_LOW = NAMED_ENTITY_CERTAINTY.LOW;
 pub const NEC_MEDIUM = NAMED_ENTITY_CERTAINTY.MEDIUM;
 pub const NEC_HIGH = NAMED_ENTITY_CERTAINTY.HIGH;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamedEntityCollector_Value = @import("../zig.zig").Guid.initString("af2440f6-8afc-47d0-9a7f-396a0acfb43d");
 pub const IID_INamedEntityCollector = &IID_INamedEntityCollector_Value;
 pub const INamedEntityCollector = extern struct {
@@ -6663,6 +6685,7 @@ pub const INamedEntityCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISchemaLocalizerSupport_Value = @import("../zig.zig").Guid.initString("ca3fdca2-bfbe-4eed-90d7-0caef0a1bda1");
 pub const IID_ISchemaLocalizerSupport = &IID_ISchemaLocalizerSupport_Value;
 pub const ISchemaLocalizerSupport = extern struct {
@@ -6685,6 +6708,7 @@ pub const ISchemaLocalizerSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryParserManager_Value = @import("../zig.zig").Guid.initString("a879e3c4-af77-44fb-8f37-ebd1487cf920");
 pub const IID_IQueryParserManager = &IID_IQueryParserManager_Value;
 pub const IQueryParserManager = extern struct {
@@ -6733,6 +6757,7 @@ pub const HITRANGE = extern struct {
     cLength: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor_Value = @import("../zig.zig").Guid.initString("0b63e318-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IUrlAccessor = &IID_IUrlAccessor_Value;
 pub const IUrlAccessor = extern struct {
@@ -6860,6 +6885,7 @@ pub const IUrlAccessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor2_Value = @import("../zig.zig").Guid.initString("c7310734-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_IUrlAccessor2 = &IID_IUrlAccessor2_Value;
 pub const IUrlAccessor2 = extern struct {
@@ -6900,6 +6926,7 @@ pub const IUrlAccessor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor3_Value = @import("../zig.zig").Guid.initString("6fbc7005-0455-4874-b8ff-7439450241a3");
 pub const IID_IUrlAccessor3 = &IID_IUrlAccessor3_Value;
 pub const IUrlAccessor3 = extern struct {
@@ -6923,6 +6950,7 @@ pub const IUrlAccessor3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUrlAccessor4_Value = @import("../zig.zig").Guid.initString("5cc51041-c8d2-41d7-bca3-9e9e286297dc");
 pub const IID_IUrlAccessor4 = &IID_IUrlAccessor4_Value;
 pub const IUrlAccessor4 = extern struct {
@@ -6953,6 +6981,7 @@ pub const IUrlAccessor4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IOpLockStatus_Value = @import("../zig.zig").Guid.initString("c731065d-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_IOpLockStatus = &IID_IOpLockStatus_Value;
 pub const IOpLockStatus = extern struct {
@@ -6990,6 +7019,7 @@ pub const IOpLockStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocolThreadContext_Value = @import("../zig.zig").Guid.initString("c73106e1-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ISearchProtocolThreadContext = &IID_ISearchProtocolThreadContext_Value;
 pub const ISearchProtocolThreadContext = extern struct {
@@ -7079,6 +7109,7 @@ pub const ITEM_INFO = extern struct {
     pcwszContentClass: [*:0]const u16,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocol_Value = @import("../zig.zig").Guid.initString("c73106ba-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ISearchProtocol = &IID_ISearchProtocol_Value;
 pub const ISearchProtocol = extern struct {
@@ -7129,6 +7160,7 @@ pub const ISearchProtocol = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocol2_Value = @import("../zig.zig").Guid.initString("7789f0b2-b5b2-4722-8b65-5dbd150697a9");
 pub const IID_ISearchProtocol2 = &IID_ISearchProtocol2_Value;
 pub const ISearchProtocol2 = extern struct {
@@ -7155,6 +7187,7 @@ pub const ISearchProtocol2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IProtocolHandlerSite_Value = @import("../zig.zig").Guid.initString("0b63e385-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IProtocolHandlerSite = &IID_IProtocolHandlerSite_Value;
 pub const IProtocolHandlerSite = extern struct {
@@ -7179,6 +7212,7 @@ pub const IProtocolHandlerSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchRoot_Value = @import("../zig.zig").Guid.initString("04c18ccf-1f57-4cbd-88cc-3900f5195ce3");
 pub const IID_ISearchRoot = &IID_ISearchRoot_Value;
 pub const ISearchRoot = extern struct {
@@ -7368,6 +7402,7 @@ pub const ISearchRoot = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumSearchRoots_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef52");
 pub const IID_IEnumSearchRoots = &IID_IEnumSearchRoots_Value;
 pub const IEnumSearchRoots = extern struct {
@@ -7421,6 +7456,7 @@ pub const FOLLOW_FLAGS = extern enum(i32) {
 pub const FF_INDEXCOMPLEXURLS = FOLLOW_FLAGS.INDEXCOMPLEXURLS;
 pub const FF_SUPPRESSINDEXING = FOLLOW_FLAGS.SUPPRESSINDEXING;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchScopeRule_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef53");
 pub const IID_ISearchScopeRule = &IID_ISearchScopeRule_Value;
 pub const ISearchScopeRule = extern struct {
@@ -7466,6 +7502,7 @@ pub const ISearchScopeRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumSearchScopeRules_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef54");
 pub const IID_IEnumSearchScopeRules = &IID_IEnumSearchScopeRules_Value;
 pub const IEnumSearchScopeRules = extern struct {
@@ -7523,6 +7560,7 @@ pub const CLUSIONREASON_DEFAULT = CLUSION_REASON.DEFAULT;
 pub const CLUSIONREASON_USER = CLUSION_REASON.USER;
 pub const CLUSIONREASON_GROUPPOLICY = CLUSION_REASON.GROUPPOLICY;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCrawlScopeManager_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef55");
 pub const IID_ISearchCrawlScopeManager = &IID_ISearchCrawlScopeManager_Value;
 pub const ISearchCrawlScopeManager = extern struct {
@@ -7676,6 +7714,7 @@ pub const ISearchCrawlScopeManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISearchCrawlScopeManager2_Value = @import("../zig.zig").Guid.initString("6292f7ad-4e19-4717-a534-8fc22bcd5ccd");
 pub const IID_ISearchCrawlScopeManager2 = &IID_ISearchCrawlScopeManager2_Value;
 pub const ISearchCrawlScopeManager2 = extern struct {
@@ -7730,6 +7769,7 @@ pub const SEARCH_ITEM_CHANGE = extern struct {
     lpwszOldURL: PWSTR,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchItemsChangedSink_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef58");
 pub const IID_ISearchItemsChangedSink = &IID_ISearchItemsChangedSink_Value;
 pub const ISearchItemsChangedSink = extern struct {
@@ -7777,6 +7817,7 @@ pub const SEARCH_ITEM_PERSISTENT_CHANGE = extern struct {
     Priority: SEARCH_NOTIFICATION_PRIORITY,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchPersistentItemsChangedSink_Value = @import("../zig.zig").Guid.initString("a2ffdf9b-4758-4f84-b729-df81a1a0612f");
 pub const IID_ISearchPersistentItemsChangedSink = &IID_ISearchPersistentItemsChangedSink_Value;
 pub const ISearchPersistentItemsChangedSink = extern struct {
@@ -7816,6 +7857,7 @@ pub const ISearchPersistentItemsChangedSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchViewChangedSink_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef65");
 pub const IID_ISearchViewChangedSink = &IID_ISearchViewChangedSink_Value;
 pub const ISearchViewChangedSink = extern struct {
@@ -7853,6 +7895,7 @@ pub const SEARCH_ITEM_INDEXING_STATUS = extern struct {
     hrIndexingStatus: HRESULT,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchNotifyInlineSite_Value = @import("../zig.zig").Guid.initString("b5702e61-e75c-4b64-82a1-6cb4f832fccf");
 pub const IID_ISearchNotifyInlineSite = &IID_ISearchNotifyInlineSite_Value;
 pub const ISearchNotifyInlineSite = extern struct {
@@ -7928,6 +7971,7 @@ pub const CATALOG_PAUSED_REASON_USER_ACTIVE = CatalogPausedReason.USER_ACTIVE;
 pub const CATALOG_PAUSED_REASON_EXTERNAL = CatalogPausedReason.EXTERNAL;
 pub const CATALOG_PAUSED_REASON_UPGRADING = CatalogPausedReason.UPGRADING;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCatalogManager_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef50");
 pub const IID_ISearchCatalogManager = &IID_ISearchCatalogManager_Value;
 pub const ISearchCatalogManager = extern struct {
@@ -8168,6 +8212,7 @@ pub const PRIORITIZE_FLAGS = extern enum(i32) {
 pub const PRIORITIZE_FLAG_RETRYFAILEDITEMS = PRIORITIZE_FLAGS.RETRYFAILEDITEMS;
 pub const PRIORITIZE_FLAG_IGNOREFAILURECOUNT = PRIORITIZE_FLAGS.IGNOREFAILURECOUNT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCatalogManager2_Value = @import("../zig.zig").Guid.initString("7ac3286d-4d1d-4817-84fc-c1c85e3af0d9");
 pub const IID_ISearchCatalogManager2 = &IID_ISearchCatalogManager2_Value;
 pub const ISearchCatalogManager2 = extern struct {
@@ -8213,6 +8258,7 @@ pub const SEARCH_COLUMN_PROPERTIES = extern struct {
     lcid: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchQueryHelper_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef63");
 pub const IID_ISearchQueryHelper = &IID_ISearchQueryHelper_Value;
 pub const ISearchQueryHelper = extern struct {
@@ -8410,6 +8456,7 @@ pub const PRIORITY_LEVEL_HIGH = PRIORITY_LEVEL.HIGH;
 pub const PRIORITY_LEVEL_LOW = PRIORITY_LEVEL.LOW;
 pub const PRIORITY_LEVEL_DEFAULT = PRIORITY_LEVEL.DEFAULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRowsetPrioritization_Value = @import("../zig.zig").Guid.initString("42811652-079d-481b-87a2-09a69ecc5f44");
 pub const IID_IRowsetPrioritization = &IID_IRowsetPrioritization_Value;
 pub const IRowsetPrioritization = extern struct {
@@ -8469,6 +8516,7 @@ pub const ROWSETEVENT_TYPE_DATAEXPIRED = ROWSETEVENT_TYPE.DATAEXPIRED;
 pub const ROWSETEVENT_TYPE_FOREGROUNDLOST = ROWSETEVENT_TYPE.FOREGROUNDLOST;
 pub const ROWSETEVENT_TYPE_SCOPESTATISTICS = ROWSETEVENT_TYPE.SCOPESTATISTICS;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRowsetEvents_Value = @import("../zig.zig").Guid.initString("1551aea5-5d66-4b11-86f5-d5634cb211b9");
 pub const IID_IRowsetEvents = &IID_IRowsetEvents_Value;
 pub const IRowsetEvents = extern struct {
@@ -8519,6 +8567,7 @@ pub const IRowsetEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchManager_Value = @import("../zig.zig").Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef69");
 pub const IID_ISearchManager = &IID_ISearchManager_Value;
 pub const ISearchManager = extern struct {
@@ -8644,6 +8693,7 @@ pub const ISearchManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ISearchManager2_Value = @import("../zig.zig").Guid.initString("dbab3f73-db19-4a79-bfc0-a61a93886ddf");
 pub const IID_ISearchManager2 = &IID_ISearchManager2_Value;
 pub const ISearchManager2 = extern struct {
@@ -8677,6 +8727,7 @@ pub const ISearchManager2 = extern struct {
 const CLSID_CSearchLanguageSupport_Value = @import("../zig.zig").Guid.initString("6a68cc80-4337-4dbc-bd27-fbfb1053820b");
 pub const CLSID_CSearchLanguageSupport = &CLSID_CSearchLanguageSupport_Value;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchLanguageSupport_Value = @import("../zig.zig").Guid.initString("24c3cbaa-ebc1-491a-9ef1-9f6d8deb1b8f");
 pub const IID_ISearchLanguageSupport = &IID_ISearchLanguageSupport_Value;
 pub const ISearchLanguageSupport = extern struct {

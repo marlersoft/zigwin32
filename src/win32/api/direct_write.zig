@@ -9,6 +9,36 @@ pub const DWRITE_ERR_BASE = @as(u32, 20480);
 //--------------------------------------------------------------------------------
 // Section: Types (192)
 //--------------------------------------------------------------------------------
+pub const DWRITE_MEASURING_MODE = extern enum(i32) {
+    NATURAL = 0,
+    GDI_CLASSIC = 1,
+    GDI_NATURAL = 2,
+};
+pub const DWRITE_MEASURING_MODE_NATURAL = DWRITE_MEASURING_MODE.NATURAL;
+pub const DWRITE_MEASURING_MODE_GDI_CLASSIC = DWRITE_MEASURING_MODE.GDI_CLASSIC;
+pub const DWRITE_MEASURING_MODE_GDI_NATURAL = DWRITE_MEASURING_MODE.GDI_NATURAL;
+
+pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(i32) {
+    NONE = 0,
+    TRUETYPE = 1,
+    CFF = 2,
+    COLR = 4,
+    SVG = 8,
+    PNG = 16,
+    JPEG = 32,
+    TIFF = 64,
+    PREMULTIPLIED_B8G8R8A8 = 128,
+};
+pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS.NONE;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_CFF = DWRITE_GLYPH_IMAGE_FORMATS.CFF;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_COLR = DWRITE_GLYPH_IMAGE_FORMATS.COLR;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_SVG = DWRITE_GLYPH_IMAGE_FORMATS.SVG;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_PNG = DWRITE_GLYPH_IMAGE_FORMATS.PNG;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_JPEG = DWRITE_GLYPH_IMAGE_FORMATS.JPEG;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_TIFF = DWRITE_GLYPH_IMAGE_FORMATS.TIFF;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_PREMULTIPLIED_B8G8R8A8 = DWRITE_GLYPH_IMAGE_FORMATS.PREMULTIPLIED_B8G8R8A8;
+
 pub const DWRITE_FONT_FILE_TYPE = extern enum(i32) {
     UNKNOWN = 0,
     CFF = 1,
@@ -219,6 +249,7 @@ pub const DWRITE_FACTORY_TYPE = extern enum(i32) {
 pub const DWRITE_FACTORY_TYPE_SHARED = DWRITE_FACTORY_TYPE.SHARED;
 pub const DWRITE_FACTORY_TYPE_ISOLATED = DWRITE_FACTORY_TYPE.ISOLATED;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileLoader_Value = @import("../zig.zig").Guid.initString("727cad4e-d6af-4c9e-8a08-d695b11caa49");
 pub const IID_IDWriteFontFileLoader = &IID_IDWriteFontFileLoader_Value;
 pub const IDWriteFontFileLoader = extern struct {
@@ -286,6 +317,7 @@ pub const IDWriteLocalFontFileLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileStream_Value = @import("../zig.zig").Guid.initString("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0");
 pub const IID_IDWriteFontFileStream = &IID_IDWriteFontFileStream_Value;
 pub const IDWriteFontFileStream = extern struct {
@@ -334,6 +366,7 @@ pub const IDWriteFontFileStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFile_Value = @import("../zig.zig").Guid.initString("739d886a-cef5-47dc-8769-1a8b41bebbb0");
 pub const IID_IDWriteFontFile = &IID_IDWriteFontFile_Value;
 pub const IDWriteFontFile = extern struct {
@@ -418,6 +451,7 @@ pub const DWRITE_MATRIX = extern struct {
     dy: f32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteRenderingParams_Value = @import("../zig.zig").Guid.initString("2f0da53a-2add-47cd-82ee-d9ec34688e75");
 pub const IID_IDWriteRenderingParams = &IID_IDWriteRenderingParams_Value;
 pub const IDWriteRenderingParams = extern struct {
@@ -466,6 +500,7 @@ pub const IDWriteRenderingParams = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFace_Value = @import("../zig.zig").Guid.initString("5f49804d-7024-4d43-bfa9-d25984f53849");
 pub const IID_IDWriteFontFace = &IID_IDWriteFontFace_Value;
 pub const IDWriteFontFace = extern struct {
@@ -625,6 +660,7 @@ pub const IDWriteFontFace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollectionLoader_Value = @import("../zig.zig").Guid.initString("cca920e4-52f0-492b-bfa8-29c72ee0a468");
 pub const IID_IDWriteFontCollectionLoader = &IID_IDWriteFontCollectionLoader_Value;
 pub const IDWriteFontCollectionLoader = extern struct {
@@ -649,6 +685,7 @@ pub const IDWriteFontCollectionLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileEnumerator_Value = @import("../zig.zig").Guid.initString("72755049-5ff7-435d-8348-4be97cfa6c7c");
 pub const IID_IDWriteFontFileEnumerator = &IID_IDWriteFontFileEnumerator_Value;
 pub const IDWriteFontFileEnumerator = extern struct {
@@ -678,6 +715,7 @@ pub const IDWriteFontFileEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteLocalizedStrings_Value = @import("../zig.zig").Guid.initString("08256209-099a-4b34-b86d-c22b110e7771");
 pub const IID_IDWriteLocalizedStrings = &IID_IDWriteLocalizedStrings_Value;
 pub const IDWriteLocalizedStrings = extern struct {
@@ -746,6 +784,7 @@ pub const IDWriteLocalizedStrings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollection_Value = @import("../zig.zig").Guid.initString("a84cee02-3eea-4eee-a827-87c1a02a0fcc");
 pub const IID_IDWriteFontCollection = &IID_IDWriteFontCollection_Value;
 pub const IDWriteFontCollection = extern struct {
@@ -794,6 +833,7 @@ pub const IDWriteFontCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontList_Value = @import("../zig.zig").Guid.initString("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb");
 pub const IID_IDWriteFontList = &IID_IDWriteFontList_Value;
 pub const IDWriteFontList = extern struct {
@@ -831,6 +871,7 @@ pub const IDWriteFontList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFamily_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7add");
 pub const IID_IDWriteFontFamily = &IID_IDWriteFontFamily_Value;
 pub const IDWriteFontFamily = extern struct {
@@ -874,6 +915,7 @@ pub const IDWriteFontFamily = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFont_Value = @import("../zig.zig").Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32737");
 pub const IID_IDWriteFont = &IID_IDWriteFont_Value;
 pub const IDWriteFont = extern struct {
@@ -1232,6 +1274,7 @@ pub const DWRITE_TRIMMING = extern struct {
     delimiterCount: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextFormat_Value = @import("../zig.zig").Guid.initString("9c906818-31d7-4fd3-a151-7c5e225db55a");
 pub const IID_IDWriteTextFormat = &IID_IDWriteTextFormat_Value;
 pub const IDWriteTextFormat = extern struct {
@@ -1441,6 +1484,7 @@ pub const IDWriteTextFormat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTypography_Value = @import("../zig.zig").Guid.initString("55f1112b-1dc2-4b3c-9541-f46894ed85b6");
 pub const IID_IDWriteTypography = &IID_IDWriteTypography_Value;
 pub const IDWriteTypography = extern struct {
@@ -1539,6 +1583,7 @@ pub const DWRITE_SHAPING_GLYPH_PROPERTIES = extern struct {
     _bitfield: u16,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalysisSource_Value = @import("../zig.zig").Guid.initString("688e1a58-5094-47c8-adc8-fbcea60ae92b");
 pub const IID_IDWriteTextAnalysisSource = &IID_IDWriteTextAnalysisSource_Value;
 pub const IDWriteTextAnalysisSource = extern struct {
@@ -1599,6 +1644,7 @@ pub const IDWriteTextAnalysisSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalysisSink_Value = @import("../zig.zig").Guid.initString("5810cd44-0ca0-4701-b3fa-bec5182ae4f6");
 pub const IID_IDWriteTextAnalysisSink = &IID_IDWriteTextAnalysisSink_Value;
 pub const IDWriteTextAnalysisSink = extern struct {
@@ -1653,6 +1699,7 @@ pub const IDWriteTextAnalysisSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalyzer_Value = @import("../zig.zig").Guid.initString("b7e6163e-7f46-43b4-84b3-e4e6249c365d");
 pub const IID_IDWriteTextAnalyzer = &IID_IDWriteTextAnalyzer_Value;
 pub const IDWriteTextAnalyzer = extern struct {
@@ -1880,6 +1927,7 @@ pub const DWRITE_HIT_TEST_METRICS = extern struct {
     isTrimmed: BOOL,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteInlineObject_Value = @import("../zig.zig").Guid.initString("8339fde3-106f-47ab-8373-1c6295eb10b3");
 pub const IID_IDWriteInlineObject = &IID_IDWriteInlineObject_Value;
 pub const IDWriteInlineObject = extern struct {
@@ -1932,6 +1980,7 @@ pub const IDWriteInlineObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWritePixelSnapping_Value = @import("../zig.zig").Guid.initString("eaf3a2da-ecf4-4d24-b644-b34f6842024b");
 pub const IID_IDWritePixelSnapping = &IID_IDWritePixelSnapping_Value;
 pub const IDWritePixelSnapping = extern struct {
@@ -1972,6 +2021,7 @@ pub const IDWritePixelSnapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextRenderer_Value = @import("../zig.zig").Guid.initString("ef8a8135-5cc6-45fe-8825-c5a0724eb819");
 pub const IID_IDWriteTextRenderer = &IID_IDWriteTextRenderer_Value;
 pub const IDWriteTextRenderer = extern struct {
@@ -2037,6 +2087,7 @@ pub const IDWriteTextRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextLayout_Value = @import("../zig.zig").Guid.initString("53737037-6d14-410b-9bfe-0b182bb70961");
 pub const IID_IDWriteTextLayout = &IID_IDWriteTextLayout_Value;
 pub const IDWriteTextLayout = extern struct {
@@ -2423,6 +2474,7 @@ pub const IDWriteTextLayout = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteBitmapRenderTarget_Value = @import("../zig.zig").Guid.initString("5e5a32a3-8dff-4773-9ff6-0696eab77267");
 pub const IID_IDWriteBitmapRenderTarget = &IID_IDWriteBitmapRenderTarget_Value;
 pub const IDWriteBitmapRenderTarget = extern struct {
@@ -2505,6 +2557,7 @@ pub const IDWriteBitmapRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteGdiInterop_Value = @import("../zig.zig").Guid.initString("1edd9491-9853-4299-898f-6432983b6f3a");
 pub const IID_IDWriteGdiInterop = &IID_IDWriteGdiInterop_Value;
 pub const IDWriteGdiInterop = extern struct {
@@ -2573,6 +2626,7 @@ pub const DWRITE_TEXTURE_TYPE = extern enum(i32) {
 pub const DWRITE_TEXTURE_ALIASED_1x1 = DWRITE_TEXTURE_TYPE.ALIASED_1x1;
 pub const DWRITE_TEXTURE_CLEARTYPE_3x1 = DWRITE_TEXTURE_TYPE.CLEARTYPE_3x1;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteGlyphRunAnalysis_Value = @import("../zig.zig").Guid.initString("7d97dbf7-e085-42d4-81e3-6a883bded118");
 pub const IID_IDWriteGlyphRunAnalysis = &IID_IDWriteGlyphRunAnalysis_Value;
 pub const IDWriteGlyphRunAnalysis = extern struct {
@@ -2617,6 +2671,7 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFactory_Value = @import("../zig.zig").Guid.initString("b859ee5a-d838-4b5b-a2e8-1adc7d93db48");
 pub const IID_IDWriteFactory = &IID_IDWriteFactory_Value;
 pub const IDWriteFactory = extern struct {
@@ -3585,6 +3640,7 @@ pub const DWRITE_JUSTIFICATION_OPPORTUNITY = extern struct {
     _bitfield: u32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFactory1_Value = @import("../zig.zig").Guid.initString("30572f99-dac6-41db-a16e-0486307e606a");
 pub const IID_IDWriteFactory1 = &IID_IDWriteFactory1_Value;
 pub const IDWriteFactory1 = extern struct {
@@ -3621,6 +3677,7 @@ pub const IDWriteFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontFace1_Value = @import("../zig.zig").Guid.initString("a71efdb4-9fdb-4838-ad90-cfc3be8c3daf");
 pub const IID_IDWriteFontFace1 = &IID_IDWriteFontFace1_Value;
 pub const IDWriteFontFace1 = extern struct {
@@ -3753,6 +3810,7 @@ pub const IDWriteFontFace1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFont1_Value = @import("../zig.zig").Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32738");
 pub const IID_IDWriteFont1 = &IID_IDWriteFont1_Value;
 pub const IDWriteFont1 = extern struct {
@@ -3799,6 +3857,7 @@ pub const IDWriteFont1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteRenderingParams1_Value = @import("../zig.zig").Guid.initString("94413cf4-a6fc-4248-8b50-6674348fcad3");
 pub const IID_IDWriteRenderingParams1 = &IID_IDWriteRenderingParams1_Value;
 pub const IDWriteRenderingParams1 = extern struct {
@@ -3819,6 +3878,7 @@ pub const IDWriteRenderingParams1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalyzer1_Value = @import("../zig.zig").Guid.initString("80dad800-e21f-4e83-96ce-bfcce500db7c");
 pub const IID_IDWriteTextAnalyzer1 = &IID_IDWriteTextAnalyzer1_Value;
 pub const IDWriteTextAnalyzer1 = extern struct {
@@ -3962,6 +4022,7 @@ pub const IDWriteTextAnalyzer1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalysisSource1_Value = @import("../zig.zig").Guid.initString("639cfad8-0fb4-4b21-a58a-067920120009");
 pub const IID_IDWriteTextAnalysisSource1 = &IID_IDWriteTextAnalysisSource1_Value;
 pub const IDWriteTextAnalysisSource1 = extern struct {
@@ -3986,6 +4047,7 @@ pub const IDWriteTextAnalysisSource1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalysisSink1_Value = @import("../zig.zig").Guid.initString("b0d941a0-85e7-4d8b-9fd3-5ced9934482a");
 pub const IID_IDWriteTextAnalysisSink1 = &IID_IDWriteTextAnalysisSink1_Value;
 pub const IDWriteTextAnalysisSink1 = extern struct {
@@ -4012,6 +4074,7 @@ pub const IDWriteTextAnalysisSink1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextLayout1_Value = @import("../zig.zig").Guid.initString("9064d822-80a7-465c-a986-df65f78b8feb");
 pub const IID_IDWriteTextLayout1 = &IID_IDWriteTextLayout1_Value;
 pub const IDWriteTextLayout1 = extern struct {
@@ -4074,6 +4137,7 @@ pub const DWRITE_TEXT_ANTIALIAS_MODE = extern enum(i32) {
 pub const DWRITE_TEXT_ANTIALIAS_MODE_CLEARTYPE = DWRITE_TEXT_ANTIALIAS_MODE.CLEARTYPE;
 pub const DWRITE_TEXT_ANTIALIAS_MODE_GRAYSCALE = DWRITE_TEXT_ANTIALIAS_MODE.GRAYSCALE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteBitmapRenderTarget1_Value = @import("../zig.zig").Guid.initString("791e8298-3ef3-4230-9880-c9bdecc42064");
 pub const IID_IDWriteBitmapRenderTarget1 = &IID_IDWriteBitmapRenderTarget1_Value;
 pub const IDWriteBitmapRenderTarget1 = extern struct {
@@ -4123,6 +4187,7 @@ pub const DWRITE_TEXT_METRICS1 = extern struct {
     heightIncludingTrailingWhitespace: f32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextRenderer1_Value = @import("../zig.zig").Guid.initString("d3e0e934-22a0-427e-aae4-7d9574b59db1");
 pub const IID_IDWriteTextRenderer1 = &IID_IDWriteTextRenderer1_Value;
 pub const IDWriteTextRenderer1 = extern struct {
@@ -4192,6 +4257,7 @@ pub const IDWriteTextRenderer1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextFormat1_Value = @import("../zig.zig").Guid.initString("5f174b49-0d8b-4cfb-8bca-f1cce9d06c67");
 pub const IID_IDWriteTextFormat1 = &IID_IDWriteTextFormat1_Value;
 pub const IDWriteTextFormat1 = extern struct {
@@ -4266,6 +4332,7 @@ pub const IDWriteTextFormat1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextLayout2_Value = @import("../zig.zig").Guid.initString("1093c18f-8d5e-43f0-b064-0917311b525e");
 pub const IID_IDWriteTextLayout2 = &IID_IDWriteTextLayout2_Value;
 pub const IDWriteTextLayout2 = extern struct {
@@ -4348,6 +4415,7 @@ pub const IDWriteTextLayout2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalyzer2_Value = @import("../zig.zig").Guid.initString("553a9ff3-5693-4df7-b52b-74806f7f2eb9");
 pub const IID_IDWriteTextAnalyzer2 = &IID_IDWriteTextAnalyzer2_Value;
 pub const IDWriteTextAnalyzer2 = extern struct {
@@ -4400,6 +4468,7 @@ pub const IDWriteTextAnalyzer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontFallback_Value = @import("../zig.zig").Guid.initString("efa008f9-f7a1-48bf-b05c-f224713cc0ff");
 pub const IID_IDWriteFontFallback = &IID_IDWriteFontFallback_Value;
 pub const IDWriteFontFallback = extern struct {
@@ -4431,6 +4500,7 @@ pub const IDWriteFontFallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontFallbackBuilder_Value = @import("../zig.zig").Guid.initString("fd882d06-8aba-4fb8-b849-8be8b73e14de");
 pub const IID_IDWriteFontFallbackBuilder = &IID_IDWriteFontFallbackBuilder_Value;
 pub const IDWriteFontFallbackBuilder = extern struct {
@@ -4475,6 +4545,7 @@ pub const IDWriteFontFallbackBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFont2_Value = @import("../zig.zig").Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont2 = &IID_IDWriteFont2_Value;
 pub const IDWriteFont2 = extern struct {
@@ -4495,6 +4566,7 @@ pub const IDWriteFont2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontFace2_Value = @import("../zig.zig").Guid.initString("d8b768ff-64bc-4e66-982b-ec8e87f693f7");
 pub const IID_IDWriteFontFace2 = &IID_IDWriteFontFace2_Value;
 pub const IDWriteFontFace2 = extern struct {
@@ -4566,6 +4638,7 @@ pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
     paletteIndex: u16,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteColorGlyphRunEnumerator_Value = @import("../zig.zig").Guid.initString("d31fbe17-f157-41a2-8d24-cb779e0560e8");
 pub const IID_IDWriteColorGlyphRunEnumerator = &IID_IDWriteColorGlyphRunEnumerator_Value;
 pub const IDWriteColorGlyphRunEnumerator = extern struct {
@@ -4595,6 +4668,7 @@ pub const IDWriteColorGlyphRunEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteRenderingParams2_Value = @import("../zig.zig").Guid.initString("f9d711c3-9777-40ae-87e8-3e5af9bf0948");
 pub const IID_IDWriteRenderingParams2 = &IID_IDWriteRenderingParams2_Value;
 pub const IDWriteRenderingParams2 = extern struct {
@@ -4615,6 +4689,7 @@ pub const IDWriteRenderingParams2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFactory2_Value = @import("../zig.zig").Guid.initString("0439fc60-ca44-4994-8dee-3a9af7b732ec");
 pub const IID_IDWriteFactory2 = &IID_IDWriteFactory2_Value;
 pub const IDWriteFactory2 = extern struct {
@@ -4765,6 +4840,7 @@ pub const DWRITE_RENDERING_MODE1_NATURAL_SYMMETRIC = DWRITE_RENDERING_MODE1.NATU
 pub const DWRITE_RENDERING_MODE1_OUTLINE = DWRITE_RENDERING_MODE1.OUTLINE;
 pub const DWRITE_RENDERING_MODE1_NATURAL_SYMMETRIC_DOWNSAMPLED = DWRITE_RENDERING_MODE1.NATURAL_SYMMETRIC_DOWNSAMPLED;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteRenderingParams3_Value = @import("../zig.zig").Guid.initString("b7924baa-391b-412a-8c5c-e44cc2d867dc");
 pub const IID_IDWriteRenderingParams3 = &IID_IDWriteRenderingParams3_Value;
 pub const IDWriteRenderingParams3 = extern struct {
@@ -4785,6 +4861,7 @@ pub const IDWriteRenderingParams3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFactory3_Value = @import("../zig.zig").Guid.initString("9a1b41c3-d3bb-466a-87fc-fe67556a3b65");
 pub const IID_IDWriteFactory3 = &IID_IDWriteFactory3_Value;
 pub const IDWriteFactory3 = extern struct {
@@ -4895,6 +4972,7 @@ pub const IDWriteFactory3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontSet_Value = @import("../zig.zig").Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116b");
 pub const IID_IDWriteFontSet = &IID_IDWriteFontSet_Value;
 pub const IDWriteFontSet = extern struct {
@@ -5052,6 +5130,7 @@ pub const IDWriteFontSetBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollection1_Value = @import("../zig.zig").Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116c");
 pub const IID_IDWriteFontCollection1 = &IID_IDWriteFontCollection1_Value;
 pub const IDWriteFontCollection1 = extern struct {
@@ -5082,6 +5161,7 @@ pub const IDWriteFontCollection1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFamily1_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7adf");
 pub const IID_IDWriteFontFamily1 = &IID_IDWriteFontFamily1_Value;
 pub const IDWriteFontFamily1 = extern struct {
@@ -5121,6 +5201,7 @@ pub const IDWriteFontFamily1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontList1_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7ade");
 pub const IID_IDWriteFontList1 = &IID_IDWriteFontList1_Value;
 pub const IDWriteFontList1 = extern struct {
@@ -5160,6 +5241,7 @@ pub const IDWriteFontList1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFaceReference_Value = @import("../zig.zig").Guid.initString("5e7fa7ca-dde3-424c-89f0-9fcd6fed58cd");
 pub const IID_IDWriteFontFaceReference = &IID_IDWriteFontFaceReference_Value;
 pub const IDWriteFontFaceReference = extern struct {
@@ -5283,6 +5365,7 @@ pub const IDWriteFontFaceReference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFont3_Value = @import("../zig.zig").Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont3 = &IID_IDWriteFont3_Value;
 pub const IDWriteFont3 = extern struct {
@@ -5335,6 +5418,7 @@ pub const IDWriteFont3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFace3_Value = @import("../zig.zig").Guid.initString("d37d7598-09be-4222-a236-2081341cc1f2");
 pub const IID_IDWriteFontFace3 = &IID_IDWriteFontFace3_Value;
 pub const IDWriteFontFace3 = extern struct {
@@ -5532,6 +5616,7 @@ pub const IDWriteStringList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontDownloadListener_Value = @import("../zig.zig").Guid.initString("b06fe5b9-43ec-4393-881b-dbe4dc72fda7");
 pub const IID_IDWriteFontDownloadListener = &IID_IDWriteFontDownloadListener_Value;
 pub const IDWriteFontDownloadListener = extern struct {
@@ -5555,6 +5640,7 @@ pub const IDWriteFontDownloadListener = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontDownloadQueue_Value = @import("../zig.zig").Guid.initString("b71e6052-5aea-4fa3-832e-f60d431f7e91");
 pub const IID_IDWriteFontDownloadQueue = &IID_IDWriteFontDownloadQueue_Value;
 pub const IDWriteFontDownloadQueue = extern struct {
@@ -5688,6 +5774,7 @@ pub const DWRITE_LINE_SPACING = extern struct {
     fontLineGapUsage: DWRITE_FONT_LINE_GAP_USAGE,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextFormat2_Value = @import("../zig.zig").Guid.initString("f67e0edd-9e3d-4ecc-8c32-4183253dfe70");
 pub const IID_IDWriteTextFormat2 = &IID_IDWriteTextFormat2_Value;
 pub const IDWriteTextFormat2 = extern struct {
@@ -5717,6 +5804,7 @@ pub const IDWriteTextFormat2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextLayout3_Value = @import("../zig.zig").Guid.initString("07ddcd52-020e-4de8-ac33-6c953d83f92d");
 pub const IID_IDWriteTextLayout3 = &IID_IDWriteTextLayout3_Value;
 pub const IDWriteTextLayout3 = extern struct {
@@ -7038,40 +7126,11 @@ pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
 pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
 pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
 
-pub const DWRITE_MEASURING_MODE = extern enum(i32) {
-    NATURAL = 0,
-    GDI_CLASSIC = 1,
-    GDI_NATURAL = 2,
-};
-pub const DWRITE_MEASURING_MODE_NATURAL = DWRITE_MEASURING_MODE.NATURAL;
-pub const DWRITE_MEASURING_MODE_GDI_CLASSIC = DWRITE_MEASURING_MODE.GDI_CLASSIC;
-pub const DWRITE_MEASURING_MODE_GDI_NATURAL = DWRITE_MEASURING_MODE.GDI_NATURAL;
-
-pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(i32) {
-    NONE = 0,
-    TRUETYPE = 1,
-    CFF = 2,
-    COLR = 4,
-    SVG = 8,
-    PNG = 16,
-    JPEG = 32,
-    TIFF = 64,
-    PREMULTIPLIED_B8G8R8A8 = 128,
-};
-pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS.NONE;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_CFF = DWRITE_GLYPH_IMAGE_FORMATS.CFF;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_COLR = DWRITE_GLYPH_IMAGE_FORMATS.COLR;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_SVG = DWRITE_GLYPH_IMAGE_FORMATS.SVG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_PNG = DWRITE_GLYPH_IMAGE_FORMATS.PNG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_JPEG = DWRITE_GLYPH_IMAGE_FORMATS.JPEG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_TIFF = DWRITE_GLYPH_IMAGE_FORMATS.TIFF;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_PREMULTIPLIED_B8G8R8A8 = DWRITE_GLYPH_IMAGE_FORMATS.PREMULTIPLIED_B8G8R8A8;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "DWrite" fn DWriteCreateFactory(
     factoryType: DWRITE_FACTORY_TYPE,
     iid: *const Guid,

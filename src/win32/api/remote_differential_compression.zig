@@ -2,11 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (24)
 //--------------------------------------------------------------------------------
-pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
-pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
-pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
-pub const SimilarityFileIdMinSize = @as(u32, 4);
-pub const SimilarityFileIdMaxSize = @as(u32, 32);
 pub const MSRDC_VERSION = @as(u32, 65536);
 pub const MSRDC_MINIMUM_COMPATIBLE_APP_VERSION = @as(u32, 65536);
 pub const MSRDC_MINIMUM_DEPTH = @as(u32, 1);
@@ -26,6 +21,11 @@ pub const MSRDC_DEFAULT_HORIZONSIZE_N = @as(u32, 128);
 pub const MSRDC_MAXIMUM_TRAITVALUE = @as(u32, 63);
 pub const MSRDC_MINIMUM_MATCHESREQUIRED = @as(u32, 1);
 pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
+pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
+pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
+pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
+pub const SimilarityFileIdMinSize = @as(u32, 4);
+pub const SimilarityFileIdMaxSize = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (48)
@@ -191,6 +191,7 @@ pub const SimilarityFileId = extern struct {
     m_FileId: [32]u8,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGeneratorParameters_Value = @import("../zig.zig").Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorParameters = &IID_IRdcGeneratorParameters_Value;
 pub const IRdcGeneratorParameters = extern struct {
@@ -239,6 +240,7 @@ pub const IRdcGeneratorParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGeneratorFilterMaxParameters_Value = @import("../zig.zig").Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorFilterMaxParameters = &IID_IRdcGeneratorFilterMaxParameters_Value;
 pub const IRdcGeneratorFilterMaxParameters = extern struct {
@@ -284,6 +286,7 @@ pub const IRdcGeneratorFilterMaxParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGenerator_Value = @import("../zig.zig").Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGenerator = &IID_IRdcGenerator_Value;
 pub const IRdcGenerator = extern struct {
@@ -319,6 +322,7 @@ pub const IRdcGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcFileReader_Value = @import("../zig.zig").Guid.initString("96236a74-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileReader = &IID_IRdcFileReader_Value;
 pub const IRdcFileReader = extern struct {
@@ -360,6 +364,7 @@ pub const IRdcFileReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcFileWriter_Value = @import("../zig.zig").Guid.initString("96236a75-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileWriter = &IID_IRdcFileWriter_Value;
 pub const IRdcFileWriter = extern struct {
@@ -397,6 +402,7 @@ pub const IRdcFileWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcSignatureReader_Value = @import("../zig.zig").Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSignatureReader = &IID_IRdcSignatureReader_Value;
 pub const IRdcSignatureReader = extern struct {
@@ -427,6 +433,7 @@ pub const IRdcSignatureReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcComparator_Value = @import("../zig.zig").Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcComparator = &IID_IRdcComparator_Value;
 pub const IRdcComparator = extern struct {
@@ -452,6 +459,7 @@ pub const IRdcComparator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcLibrary_Value = @import("../zig.zig").Guid.initString("96236a78-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcLibrary = &IID_IRdcLibrary_Value;
 pub const IRdcLibrary = extern struct {
@@ -532,6 +540,7 @@ pub const IRdcLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityReportProgress_Value = @import("../zig.zig").Guid.initString("96236a7a-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityReportProgress = &IID_ISimilarityReportProgress_Value;
 pub const ISimilarityReportProgress = extern struct {
@@ -553,6 +562,7 @@ pub const ISimilarityReportProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTableDumpState_Value = @import("../zig.zig").Guid.initString("96236a7b-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTableDumpState = &IID_ISimilarityTableDumpState_Value;
 pub const ISimilarityTableDumpState = extern struct {
@@ -577,6 +587,7 @@ pub const ISimilarityTableDumpState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsMappedView_Value = @import("../zig.zig").Guid.initString("96236a7c-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMappedView = &IID_ISimilarityTraitsMappedView_Value;
 pub const ISimilarityTraitsMappedView = extern struct {
@@ -624,6 +635,7 @@ pub const ISimilarityTraitsMappedView = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsMapping_Value = @import("../zig.zig").Guid.initString("96236a7d-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMapping = &IID_ISimilarityTraitsMapping_Value;
 pub const ISimilarityTraitsMapping = extern struct {
@@ -700,6 +712,7 @@ pub const ISimilarityTraitsMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsTable_Value = @import("../zig.zig").Guid.initString("96236a7e-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsTable = &IID_ISimilarityTraitsTable_Value;
 pub const ISimilarityTraitsTable = extern struct {
@@ -779,6 +792,7 @@ pub const ISimilarityTraitsTable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityFileIdTable_Value = @import("../zig.zig").Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityFileIdTable = &IID_ISimilarityFileIdTable_Value;
 pub const ISimilarityFileIdTable = extern struct {
@@ -857,6 +871,7 @@ pub const ISimilarityFileIdTable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcSimilarityGenerator_Value = @import("../zig.zig").Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSimilarityGenerator = &IID_IRdcSimilarityGenerator_Value;
 pub const IRdcSimilarityGenerator = extern struct {
@@ -885,6 +900,7 @@ pub const IRdcSimilarityGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFindSimilarResults_Value = @import("../zig.zig").Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IFindSimilarResults = &IID_IFindSimilarResults_Value;
 pub const IFindSimilarResults = extern struct {
@@ -915,6 +931,7 @@ pub const IFindSimilarResults = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarity_Value = @import("../zig.zig").Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarity = &IID_ISimilarity_Value;
 pub const ISimilarity = extern struct {

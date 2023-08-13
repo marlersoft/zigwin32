@@ -265,6 +265,7 @@ pub const GPMReportingOptions = extern enum(i32) {
 pub const opReportLegacy = GPMReportingOptions.Legacy;
 pub const opReportComments = GPMReportingOptions.Comments;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPM_Value = @import("../zig.zig").Guid.initString("f5fae809-3bd6-4da9-a65e-17665b41d763");
 pub const IID_IGPM = &IID_IGPM_Value;
 pub const IGPM = extern struct {
@@ -390,6 +391,7 @@ pub const IGPM = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMDomain_Value = @import("../zig.zig").Guid.initString("6b21cc14-5a00-4f44-a738-feec8a94c7e3");
 pub const IID_IGPMDomain = &IID_IGPMDomain_Value;
 pub const IGPMDomain = extern struct {
@@ -493,6 +495,7 @@ pub const IGPMDomain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMBackupDir_Value = @import("../zig.zig").Guid.initString("b1568bed-0a93-4acc-810f-afe7081019b9");
 pub const IID_IGPMBackupDir = &IID_IGPMBackupDir_Value;
 pub const IGPMBackupDir = extern struct {
@@ -532,6 +535,7 @@ pub const IGPMBackupDir = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMSitesContainer_Value = @import("../zig.zig").Guid.initString("4725a899-2782-4d27-a6bb-d499246ffd72");
 pub const IID_IGPMSitesContainer = &IID_IGPMSitesContainer_Value;
 pub const IGPMSitesContainer = extern struct {
@@ -587,6 +591,7 @@ pub const IGPMSitesContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMSearchCriteria_Value = @import("../zig.zig").Guid.initString("d6f11c42-829b-48d4-83f5-3615b67dfc22");
 pub const IID_IGPMSearchCriteria = &IID_IGPMSearchCriteria_Value;
 pub const IGPMSearchCriteria = extern struct {
@@ -610,6 +615,7 @@ pub const IGPMSearchCriteria = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMTrustee_Value = @import("../zig.zig").Guid.initString("3b466da8-c1a4-4b2a-999a-befcdd56cefb");
 pub const IID_IGPMTrustee = &IID_IGPMTrustee_Value;
 pub const IGPMTrustee = extern struct {
@@ -663,6 +669,7 @@ pub const IGPMTrustee = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMPermission_Value = @import("../zig.zig").Guid.initString("35ebca40-e1a1-4a02-8905-d79416fb464a");
 pub const IID_IGPMPermission = &IID_IGPMPermission_Value;
 pub const IGPMPermission = extern struct {
@@ -716,6 +723,7 @@ pub const IGPMPermission = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMSecurityInfo_Value = @import("../zig.zig").Guid.initString("b6c31ed4-1c93-4d3e-ae84-eb6d61161b60");
 pub const IID_IGPMSecurityInfo = &IID_IGPMSecurityInfo_Value;
 pub const IGPMSecurityInfo = extern struct {
@@ -778,6 +786,7 @@ pub const IGPMSecurityInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMBackup_Value = @import("../zig.zig").Guid.initString("d8a16a35-3b0d-416b-8d02-4df6f95a7119");
 pub const IID_IGPMBackup = &IID_IGPMBackup_Value;
 pub const IGPMBackup = extern struct {
@@ -875,6 +884,7 @@ pub const IGPMBackup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMBackupCollection_Value = @import("../zig.zig").Guid.initString("c786fc0f-26d8-4bab-a745-39ca7e800cac");
 pub const IID_IGPMBackupCollection = &IID_IGPMBackupCollection_Value;
 pub const IGPMBackupCollection = extern struct {
@@ -922,6 +932,7 @@ pub const somSite = GPMSOMType.Site;
 pub const somDomain = GPMSOMType.Domain;
 pub const somOU = GPMSOMType.OU;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMSOM_Value = @import("../zig.zig").Guid.initString("c0a7f09e-05a1-4f0c-8158-9e5c33684f6b");
 pub const IID_IGPMSOM = &IID_IGPMSOM_Value;
 pub const IGPMSOM = extern struct {
@@ -1017,6 +1028,7 @@ pub const IGPMSOM = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMSOMCollection_Value = @import("../zig.zig").Guid.initString("adc1688e-00e4-4495-abba-bed200df0cab");
 pub const IID_IGPMSOMCollection = &IID_IGPMSOMCollection_Value;
 pub const IGPMSOMCollection = extern struct {
@@ -1055,6 +1067,7 @@ pub const IGPMSOMCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMWMIFilter_Value = @import("../zig.zig").Guid.initString("ef2ff9b4-3c27-459a-b979-038305cec75d");
 pub const IID_IGPMWMIFilter = &IID_IGPMWMIFilter_Value;
 pub const IGPMWMIFilter = extern struct {
@@ -1132,6 +1145,7 @@ pub const IGPMWMIFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMWMIFilterCollection_Value = @import("../zig.zig").Guid.initString("5782d582-1a36-4661-8a94-c3c32551945b");
 pub const IID_IGPMWMIFilterCollection = &IID_IGPMWMIFilterCollection_Value;
 pub const IGPMWMIFilterCollection = extern struct {
@@ -1170,6 +1184,7 @@ pub const IGPMWMIFilterCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMRSOP_Value = @import("../zig.zig").Guid.initString("49ed785a-3237-4ff2-b1f0-fdf5a8d5a1ee");
 pub const IID_IGPMRSOP = &IID_IGPMRSOP_Value;
 pub const IGPMRSOP = extern struct {
@@ -1466,6 +1481,7 @@ pub const IGPMRSOP = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMGPO_Value = @import("../zig.zig").Guid.initString("58cc4352-1ca3-48e5-9864-1da4d6e0d60f");
 pub const IID_IGPMGPO = &IID_IGPMGPO_Value;
 pub const IGPMGPO = extern struct {
@@ -1731,6 +1747,7 @@ pub const IGPMGPO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMGPOCollection_Value = @import("../zig.zig").Guid.initString("f0f0d5cf-70ca-4c39-9e29-b642f8726c01");
 pub const IID_IGPMGPOCollection = &IID_IGPMGPOCollection_Value;
 pub const IGPMGPOCollection = extern struct {
@@ -1769,6 +1786,7 @@ pub const IGPMGPOCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMGPOLink_Value = @import("../zig.zig").Guid.initString("434b99bd-5de7-478a-809c-c251721df70c");
 pub const IID_IGPMGPOLink = &IID_IGPMGPOLink_Value;
 pub const IGPMGPOLink = extern struct {
@@ -1853,6 +1871,7 @@ pub const IGPMGPOLink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMGPOLinksCollection_Value = @import("../zig.zig").Guid.initString("189d7b68-16bd-4d0d-a2ec-2e6aa2288c7f");
 pub const IID_IGPMGPOLinksCollection = &IID_IGPMGPOLinksCollection_Value;
 pub const IGPMGPOLinksCollection = extern struct {
@@ -1891,6 +1910,7 @@ pub const IGPMGPOLinksCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMCSECollection_Value = @import("../zig.zig").Guid.initString("2e52a97d-0a4a-4a6f-85db-201622455da0");
 pub const IID_IGPMCSECollection = &IID_IGPMCSECollection_Value;
 pub const IGPMCSECollection = extern struct {
@@ -1929,6 +1949,7 @@ pub const IGPMCSECollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMClientSideExtension_Value = @import("../zig.zig").Guid.initString("69da7488-b8db-415e-9266-901be4d49928");
 pub const IID_IGPMClientSideExtension = &IID_IGPMClientSideExtension_Value;
 pub const IGPMClientSideExtension = extern struct {
@@ -1974,6 +1995,7 @@ pub const IGPMClientSideExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMAsyncCancel_Value = @import("../zig.zig").Guid.initString("ddc67754-be67-4541-8166-f48166868c9c");
 pub const IID_IGPMAsyncCancel = &IID_IGPMAsyncCancel_Value;
 pub const IGPMAsyncCancel = extern struct {
@@ -1994,6 +2016,7 @@ pub const IGPMAsyncCancel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMAsyncProgress_Value = @import("../zig.zig").Guid.initString("6aac29f8-5948-4324-bf70-423818942dbc");
 pub const IID_IGPMAsyncProgress = &IID_IGPMAsyncProgress_Value;
 pub const IGPMAsyncProgress = extern struct {
@@ -2019,6 +2042,7 @@ pub const IGPMAsyncProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStatusMsgCollection_Value = @import("../zig.zig").Guid.initString("9b6e1af0-1a92-40f3-a59d-f36ac1f728b7");
 pub const IID_IGPMStatusMsgCollection = &IID_IGPMStatusMsgCollection_Value;
 pub const IGPMStatusMsgCollection = extern struct {
@@ -2057,6 +2081,7 @@ pub const IGPMStatusMsgCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStatusMessage_Value = @import("../zig.zig").Guid.initString("8496c22f-f3de-4a1f-8f58-603caaa93d7b");
 pub const IID_IGPMStatusMessage = &IID_IGPMStatusMessage_Value;
 pub const IGPMStatusMessage = extern struct {
@@ -2116,6 +2141,7 @@ pub const IGPMStatusMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMConstants_Value = @import("../zig.zig").Guid.initString("50ef73e6-d35c-4c8d-be63-7ea5d2aac5c4");
 pub const IID_IGPMConstants = &IID_IGPMConstants_Value;
 pub const IGPMConstants = extern struct {
@@ -2614,6 +2640,7 @@ pub const IGPMConstants = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMResult_Value = @import("../zig.zig").Guid.initString("86dff7e9-f76f-42ab-9570-cebc6be8a52d");
 pub const IID_IGPMResult = &IID_IGPMResult_Value;
 pub const IGPMResult = extern struct {
@@ -2650,6 +2677,7 @@ pub const IGPMResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMMapEntryCollection_Value = @import("../zig.zig").Guid.initString("bb0bf49b-e53f-443f-b807-8be22bfb6d42");
 pub const IID_IGPMMapEntryCollection = &IID_IGPMMapEntryCollection_Value;
 pub const IGPMMapEntryCollection = extern struct {
@@ -2688,6 +2716,7 @@ pub const IGPMMapEntryCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMMapEntry_Value = @import("../zig.zig").Guid.initString("8e79ad06-2381-4444-be4c-ff693e6e6f2b");
 pub const IID_IGPMMapEntry = &IID_IGPMMapEntry_Value;
 pub const IGPMMapEntry = extern struct {
@@ -2733,6 +2762,7 @@ pub const IGPMMapEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMMigrationTable_Value = @import("../zig.zig").Guid.initString("48f823b1-efaf-470b-b6ed-40d14ee1a4ec");
 pub const IID_IGPMMigrationTable = &IID_IGPMMigrationTable_Value;
 pub const IGPMMigrationTable = extern struct {
@@ -2831,6 +2861,7 @@ pub const GPMStarterGPOType = extern enum(i32) {
 pub const typeSystem = GPMStarterGPOType.System;
 pub const typeCustom = GPMStarterGPOType.Custom;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMBackupDirEx_Value = @import("../zig.zig").Guid.initString("f8dc55ed-3ba0-4864-aad4-d365189ee1d5");
 pub const IID_IGPMBackupDirEx = &IID_IGPMBackupDirEx_Value;
 pub const IGPMBackupDirEx = extern struct {
@@ -2878,6 +2909,7 @@ pub const IGPMBackupDirEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStarterGPOBackupCollection_Value = @import("../zig.zig").Guid.initString("c998031d-add0-4bb5-8dea-298505d8423b");
 pub const IID_IGPMStarterGPOBackupCollection = &IID_IGPMStarterGPOBackupCollection_Value;
 pub const IGPMStarterGPOBackupCollection = extern struct {
@@ -2916,6 +2948,7 @@ pub const IGPMStarterGPOBackupCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStarterGPOBackup_Value = @import("../zig.zig").Guid.initString("51d98eda-a87e-43dd-b80a-0b66ef1938d6");
 pub const IID_IGPMStarterGPOBackup = &IID_IGPMStarterGPOBackup_Value;
 pub const IGPMStarterGPOBackup = extern struct {
@@ -3021,6 +3054,7 @@ pub const IGPMStarterGPOBackup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPM2_Value = @import("../zig.zig").Guid.initString("00238f8a-3d86-41ac-8f5e-06a6638a634a");
 pub const IID_IGPM2 = &IID_IGPM2_Value;
 pub const IGPM2 = extern struct {
@@ -3053,6 +3087,7 @@ pub const IGPM2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStarterGPO_Value = @import("../zig.zig").Guid.initString("dfc3f61b-8880-4490-9337-d29c7ba8c2f0");
 pub const IID_IGPMStarterGPO = &IID_IGPMStarterGPO_Value;
 pub const IGPMStarterGPO = extern struct {
@@ -3255,6 +3290,7 @@ pub const IGPMStarterGPO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStarterGPOCollection_Value = @import("../zig.zig").Guid.initString("2e522729-2219-44ad-933a-64dfd650c423");
 pub const IID_IGPMStarterGPOCollection = &IID_IGPMStarterGPOCollection_Value;
 pub const IGPMStarterGPOCollection = extern struct {
@@ -3293,6 +3329,7 @@ pub const IGPMStarterGPOCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMDomain2_Value = @import("../zig.zig").Guid.initString("7ca6bb8b-f1eb-490a-938d-3c4e51c768e6");
 pub const IID_IGPMDomain2 = &IID_IGPMDomain2_Value;
 pub const IGPMDomain2 = extern struct {
@@ -3364,6 +3401,7 @@ pub const IGPMDomain2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMConstants2_Value = @import("../zig.zig").Guid.initString("05ae21b0-ac09-4032-a26f-9e7da786dc19");
 pub const IID_IGPMConstants2 = &IID_IGPMConstants2_Value;
 pub const IGPMConstants2 = extern struct {
@@ -3497,6 +3535,7 @@ pub const IGPMConstants2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMGPO2_Value = @import("../zig.zig").Guid.initString("8a66a210-b78b-4d99-88e2-c306a817c925");
 pub const IID_IGPMGPO2 = &IID_IGPMGPO2_Value;
 pub const IGPMGPO2 = extern struct {

@@ -1144,6 +1144,7 @@ pub const HrtfApoInit = extern struct {
     directivity: *HrtfDirectivity,
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IXAPOHrtfParameters_Value = @import("../zig.zig").Guid.initString("15b3cd66-e9de-4464-b6e6-2bc3cf63d455");
 pub const IID_IXAPOHrtfParameters = &IID_IXAPOHrtfParameters_Value;
 pub const IXAPOHrtfParameters = extern struct {

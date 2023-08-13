@@ -10,6 +10,7 @@
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteACValueIndex(
     RootPowerKey: HKEY,
     SchemeGuid: *const Guid,
@@ -18,6 +19,7 @@ pub extern "POWRPROF" fn PowerWriteACValueIndex(
     AcValueIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteDCValueIndex(
     RootPowerKey: HKEY,
     SchemeGuid: *const Guid,
@@ -26,6 +28,7 @@ pub extern "POWRPROF" fn PowerWriteDCValueIndex(
     DcValueIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadACValueIndex(
     RootPowerKey: HKEY,
     SchemeGuid: ?*const Guid,
@@ -34,6 +37,7 @@ pub extern "POWRPROF" fn PowerReadACValueIndex(
     AcValueIndex: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDCValueIndex(
     RootPowerKey: HKEY,
     SchemeGuid: ?*const Guid,
@@ -42,6 +46,7 @@ pub extern "POWRPROF" fn PowerReadDCValueIndex(
     DcValueIndex: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadACDefaultIndex(
     RootPowerKey: HKEY,
     SchemePersonalityGuid: *const Guid,
@@ -50,6 +55,7 @@ pub extern "POWRPROF" fn PowerReadACDefaultIndex(
     AcDefaultIndex: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDCDefaultIndex(
     RootPowerKey: HKEY,
     SchemePersonalityGuid: *const Guid,
@@ -58,6 +64,7 @@ pub extern "POWRPROF" fn PowerReadDCDefaultIndex(
     DcDefaultIndex: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteACDefaultIndex(
     RootSystemPowerKey: HKEY,
     SchemePersonalityGuid: *const Guid,
@@ -66,6 +73,7 @@ pub extern "POWRPROF" fn PowerWriteACDefaultIndex(
     DefaultAcIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteDCDefaultIndex(
     RootSystemPowerKey: HKEY,
     SchemePersonalityGuid: *const Guid,

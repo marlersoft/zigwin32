@@ -127,6 +127,7 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (5)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmQueryProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
@@ -136,6 +137,7 @@ pub extern "wcmapi" fn WcmQueryProperty(
     ppData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmSetProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
@@ -145,11 +147,13 @@ pub extern "wcmapi" fn WcmSetProperty(
     pbData: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmGetProfileList(
     pReserved: *c_void,
     ppProfileList: **WCM_PROFILE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmSetProfileList(
     pProfileList: *WCM_PROFILE_INFO_LIST,
     dwPosition: u32,
@@ -157,6 +161,7 @@ pub extern "wcmapi" fn WcmSetProfileList(
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmFreeMemory(
     pMemory: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;

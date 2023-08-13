@@ -27,6 +27,7 @@ pub const DEDUP_BACKUP_SUPPORT_PARAM_TYPE = extern enum(i32) {
 pub const DEDUP_RECONSTRUCT_UNOPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.UNOPTIMIZED;
 pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.OPTIMIZED;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupReadFileCallback_Value = @import("../zig.zig").Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
 pub const IDedupReadFileCallback = extern struct {
@@ -74,6 +75,7 @@ pub const IDedupReadFileCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupBackupSupport_Value = @import("../zig.zig").Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
 pub const IDedupBackupSupport = extern struct {

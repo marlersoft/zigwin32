@@ -809,13 +809,13 @@ pub const LM_HB2_FileServer = @as(i32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (302)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
+pub const HWSAEVENT = ?*c_void;
+
 pub const BLOB = extern struct {
     cbSize: u32,
     pBlobData: *u8,
 };
-
-// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
-pub const HWSAEVENT = ?*c_void;
 
 pub const in_addr = extern struct {
     S_un: in_addr._S_un_e__Union,
@@ -1974,11 +1974,17 @@ pub const WSA_COMPATIBILITY_MODE = extern struct {
     TargetOsVersion: u32,
 };
 
-pub const RIO_BUFFERID_t = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const RIO_BUFFERID_t = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const RIO_CQ_t = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const RIO_CQ_t = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const RIO_RQ_t = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const RIO_RQ_t = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const RIORESULT = extern struct {
     Status: i32,
@@ -3309,51 +3315,60 @@ pub const RESOURCEDISPLAYTYPE_TREE = SERVICE_INFOA_dwDisplayHint.TREE;
 //--------------------------------------------------------------------------------
 // Section: Functions (170)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn __WSAFDIsSet(
     fd: ?*c_void,
     param1: *fd_set,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn accept(
     s: ?*c_void,
     addr: ?[*]SOCKADDR,
     addrlen: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn bind(
     s: ?*c_void,
     name: [*]const SOCKADDR,
     namelen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn closesocket(
     s: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn connect(
     s: ?*c_void,
     name: [*]const SOCKADDR,
     namelen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn ioctlsocket(
     s: ?*c_void,
     cmd: i32,
     argp: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getpeername(
     s: ?*c_void,
     name: [*]SOCKADDR,
     namelen: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getsockname(
     s: ?*c_void,
     name: [*]SOCKADDR,
     namelen: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getsockopt(
     s: ?*c_void,
     level: i32,
@@ -3362,35 +3377,43 @@ pub extern "WS2_32" fn getsockopt(
     optlen: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn htonl(
     hostlong: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn htons(
     hostshort: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_addr(
     cp: *const i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_ntoa(
     in: in_addr,
 ) callconv(@import("std").os.windows.WINAPI) *i8;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn listen(
     s: ?*c_void,
     backlog: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn ntohl(
     netlong: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn ntohs(
     netshort: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn recv(
     s: ?*c_void,
     buf: [*]i8,
@@ -3398,6 +3421,7 @@ pub extern "WS2_32" fn recv(
     flags: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn recvfrom(
     s: ?*c_void,
     buf: [*]i8,
@@ -3407,6 +3431,7 @@ pub extern "WS2_32" fn recvfrom(
     fromlen: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn select(
     nfds: i32,
     readfds: ?*fd_set,
@@ -3415,6 +3440,7 @@ pub extern "WS2_32" fn select(
     timeout: ?*const timeval,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn send(
     s: ?*c_void,
     buf: [*]const i8,
@@ -3422,6 +3448,7 @@ pub extern "WS2_32" fn send(
     flags: send_flags,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn sendto(
     s: ?*c_void,
     buf: [*]const i8,
@@ -3431,6 +3458,7 @@ pub extern "WS2_32" fn sendto(
     tolen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn setsockopt(
     s: ?*c_void,
     level: i32,
@@ -3439,67 +3467,81 @@ pub extern "WS2_32" fn setsockopt(
     optlen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn shutdown(
     s: ?*c_void,
     how: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn socket(
     af: i32,
     type: i32,
     protocol: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostbyaddr(
     addr: [*]const i8,
     len: i32,
     type: i32,
 ) callconv(@import("std").os.windows.WINAPI) *hostent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostbyname(
     name: *const i8,
 ) callconv(@import("std").os.windows.WINAPI) *hostent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostname(
     name: [*]i8,
     namelen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn GetHostNameW(
     name: [*:0]u16,
     namelen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getservbyport(
     port: i32,
     proto: ?*const i8,
 ) callconv(@import("std").os.windows.WINAPI) *servent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getservbyname(
     name: *const i8,
     proto: ?*const i8,
 ) callconv(@import("std").os.windows.WINAPI) *servent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getprotobynumber(
     number: i32,
 ) callconv(@import("std").os.windows.WINAPI) *protoent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getprotobyname(
     name: *const i8,
 ) callconv(@import("std").os.windows.WINAPI) *protoent;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAStartup(
     wVersionRequested: u16,
     lpWSAData: *WSAData,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSACleanup(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASetLastError(
     iError: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAGetLastError(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3516,6 +3558,7 @@ pub extern "WS2_32" fn WSASetBlockingHook(
 pub extern "WS2_32" fn WSACancelBlockingCall(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetServByName(
     hWnd: HWND,
     wMsg: u32,
@@ -3525,6 +3568,7 @@ pub extern "WS2_32" fn WSAAsyncGetServByName(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetServByPort(
     hWnd: HWND,
     wMsg: u32,
@@ -3534,6 +3578,7 @@ pub extern "WS2_32" fn WSAAsyncGetServByPort(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetProtoByName(
     hWnd: HWND,
     wMsg: u32,
@@ -3542,6 +3587,7 @@ pub extern "WS2_32" fn WSAAsyncGetProtoByName(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetProtoByNumber(
     hWnd: HWND,
     wMsg: u32,
@@ -3550,6 +3596,7 @@ pub extern "WS2_32" fn WSAAsyncGetProtoByNumber(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetHostByName(
     hWnd: HWND,
     wMsg: u32,
@@ -3558,6 +3605,7 @@ pub extern "WS2_32" fn WSAAsyncGetHostByName(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncGetHostByAddr(
     hWnd: HWND,
     wMsg: u32,
@@ -3568,10 +3616,12 @@ pub extern "WS2_32" fn WSAAsyncGetHostByAddr(
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSACancelAsyncRequest(
     hAsyncTaskHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAAsyncSelect(
     s: ?*c_void,
     hWnd: HWND,
@@ -3579,6 +3629,7 @@ pub extern "WS2_32" fn WSAAsyncSelect(
     lEvent: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAAccept(
     s: ?*c_void,
     addr: ?[*]SOCKADDR,
@@ -3587,10 +3638,12 @@ pub extern "WS2_32" fn WSAAccept(
     dwCallbackData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSACloseEvent(
     hEvent: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAConnect(
     s: ?*c_void,
     name: [*]const SOCKADDR,
@@ -3601,6 +3654,7 @@ pub extern "WS2_32" fn WSAConnect(
     lpGQOS: ?*QOS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAConnectByNameW(
     s: ?*c_void,
     nodename: PWSTR,
@@ -3613,6 +3667,7 @@ pub extern "WS2_32" fn WSAConnectByNameW(
     Reserved: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAConnectByNameA(
     s: ?*c_void,
     nodename: [*:0]const u8,
@@ -3625,6 +3680,7 @@ pub extern "WS2_32" fn WSAConnectByNameA(
     Reserved: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAConnectByList(
     s: ?*c_void,
     SocketAddress: *SOCKET_ADDRESS_LIST,
@@ -3636,45 +3692,53 @@ pub extern "WS2_32" fn WSAConnectByList(
     Reserved: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSACreateEvent(
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSADuplicateSocketA(
     s: ?*c_void,
     dwProcessId: u32,
     lpProtocolInfo: *WSAPROTOCOL_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSADuplicateSocketW(
     s: ?*c_void,
     dwProcessId: u32,
     lpProtocolInfo: *WSAPROTOCOL_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumNetworkEvents(
     s: ?*c_void,
     hEventObject: HANDLE,
     lpNetworkEvents: *WSANETWORKEVENTS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumProtocolsA(
     lpiProtocols: ?*i32,
     lpProtocolBuffer: ?[*]WSAPROTOCOL_INFOA,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumProtocolsW(
     lpiProtocols: ?*i32,
     lpProtocolBuffer: ?[*]WSAPROTOCOL_INFOW,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEventSelect(
     s: ?*c_void,
     hEventObject: HANDLE,
     lNetworkEvents: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAGetOverlappedResult(
     s: ?*c_void,
     lpOverlapped: *OVERLAPPED,
@@ -3683,24 +3747,28 @@ pub extern "WS2_32" fn WSAGetOverlappedResult(
     lpdwFlags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAGetQOSByName(
     s: ?*c_void,
     lpQOSName: *WSABUF,
     lpQOS: *QOS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAHtonl(
     s: ?*c_void,
     hostlong: u32,
     lpnetlong: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAHtons(
     s: ?*c_void,
     hostshort: u16,
     lpnetshort: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAIoctl(
     s: ?*c_void,
     dwIoControlCode: u32,
@@ -3713,6 +3781,7 @@ pub extern "WS2_32" fn WSAIoctl(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAJoinLeaf(
     s: ?*c_void,
     name: [*]const SOCKADDR,
@@ -3724,18 +3793,21 @@ pub extern "WS2_32" fn WSAJoinLeaf(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSANtohl(
     s: ?*c_void,
     netlong: u32,
     lphostlong: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSANtohs(
     s: ?*c_void,
     netshort: u16,
     lphostshort: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSARecv(
     s: ?*c_void,
     lpBuffers: [*]WSABUF,
@@ -3746,11 +3818,13 @@ pub extern "WS2_32" fn WSARecv(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSARecvDisconnect(
     s: ?*c_void,
     lpInboundDisconnectData: ?*WSABUF,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSARecvFrom(
     s: ?*c_void,
     lpBuffers: [*]WSABUF,
@@ -3763,10 +3837,12 @@ pub extern "WS2_32" fn WSARecvFrom(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAResetEvent(
     hEvent: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASend(
     s: ?*c_void,
     lpBuffers: [*]WSABUF,
@@ -3777,6 +3853,7 @@ pub extern "WS2_32" fn WSASend(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASendMsg(
     Handle: ?*c_void,
     lpMsg: *WSAMSG,
@@ -3786,11 +3863,13 @@ pub extern "WS2_32" fn WSASendMsg(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSASendDisconnect(
     s: ?*c_void,
     lpOutboundDisconnectData: ?*WSABUF,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASendTo(
     s: ?*c_void,
     lpBuffers: [*]WSABUF,
@@ -3803,10 +3882,12 @@ pub extern "WS2_32" fn WSASendTo(
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASetEvent(
     hEvent: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASocketA(
     af: i32,
     type: i32,
@@ -3816,6 +3897,7 @@ pub extern "WS2_32" fn WSASocketA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASocketW(
     af: i32,
     type: i32,
@@ -3825,6 +3907,7 @@ pub extern "WS2_32" fn WSASocketW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAWaitForMultipleEvents(
     cEvents: u32,
     lphEvents: [*]const HANDLE,
@@ -3833,6 +3916,7 @@ pub extern "WS2_32" fn WSAWaitForMultipleEvents(
     fAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAAddressToStringA(
     lpsaAddress: [*]SOCKADDR,
     dwAddressLength: u32,
@@ -3841,6 +3925,7 @@ pub extern "WS2_32" fn WSAAddressToStringA(
     lpdwAddressStringLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAAddressToStringW(
     lpsaAddress: [*]SOCKADDR,
     dwAddressLength: u32,
@@ -3849,6 +3934,7 @@ pub extern "WS2_32" fn WSAAddressToStringW(
     lpdwAddressStringLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAStringToAddressA(
     AddressString: PSTR,
     AddressFamily: i32,
@@ -3857,6 +3943,7 @@ pub extern "WS2_32" fn WSAStringToAddressA(
     lpAddressLength: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAStringToAddressW(
     AddressString: PWSTR,
     AddressFamily: i32,
@@ -3865,18 +3952,21 @@ pub extern "WS2_32" fn WSAStringToAddressW(
     lpAddressLength: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSALookupServiceBeginA(
     lpqsRestrictions: *WSAQUERYSETA,
     dwControlFlags: u32,
     lphLookup: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSALookupServiceBeginW(
     lpqsRestrictions: *WSAQUERYSETW,
     dwControlFlags: u32,
     lphLookup: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSALookupServiceNextA(
     hLookup: HANDLE,
     dwControlFlags: u32,
@@ -3884,6 +3974,7 @@ pub extern "WS2_32" fn WSALookupServiceNextA(
     lpqsResults: [*]WSAQUERYSETA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSALookupServiceNextW(
     hLookup: HANDLE,
     dwControlFlags: u32,
@@ -3891,6 +3982,7 @@ pub extern "WS2_32" fn WSALookupServiceNextW(
     lpqsResults: ?[*]WSAQUERYSETW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSANSPIoctl(
     hLookup: HANDLE,
     dwControlCode: u32,
@@ -3902,22 +3994,27 @@ pub extern "WS2_32" fn WSANSPIoctl(
     lpCompletion: ?*WSACOMPLETION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSALookupServiceEnd(
     hLookup: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAInstallServiceClassA(
     lpServiceClassInfo: *WSASERVICECLASSINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAInstallServiceClassW(
     lpServiceClassInfo: *WSASERVICECLASSINFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSARemoveServiceClass(
     lpServiceClassId: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAGetServiceClassInfoA(
     lpProviderId: *Guid,
     lpServiceClassId: *Guid,
@@ -3925,6 +4022,7 @@ pub extern "WS2_32" fn WSAGetServiceClassInfoA(
     lpServiceClassInfo: [*]WSASERVICECLASSINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAGetServiceClassInfoW(
     lpProviderId: *Guid,
     lpServiceClassId: *Guid,
@@ -3932,56 +4030,66 @@ pub extern "WS2_32" fn WSAGetServiceClassInfoW(
     lpServiceClassInfo: [*]WSASERVICECLASSINFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumNameSpaceProvidersA(
     lpdwBufferLength: *u32,
     lpnspBuffer: [*]WSANAMESPACE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumNameSpaceProvidersW(
     lpdwBufferLength: *u32,
     lpnspBuffer: [*]WSANAMESPACE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumNameSpaceProvidersExA(
     lpdwBufferLength: *u32,
     lpnspBuffer: [*]WSANAMESPACE_INFOEXA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAEnumNameSpaceProvidersExW(
     lpdwBufferLength: *u32,
     lpnspBuffer: [*]WSANAMESPACE_INFOEXW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAGetServiceClassNameByClassIdA(
     lpServiceClassId: *Guid,
     lpszServiceClassName: [*:0]u8,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSAGetServiceClassNameByClassIdW(
     lpServiceClassId: *Guid,
     lpszServiceClassName: [*:0]u16,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASetServiceA(
     lpqsRegInfo: *WSAQUERYSETA,
     essoperation: WSAESETSERVICEOP,
     dwControlFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSASetServiceW(
     lpqsRegInfo: *WSAQUERYSETW,
     essoperation: WSAESETSERVICEOP,
     dwControlFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAProviderConfigChange(
     lpNotificationHandle: *HANDLE,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAPoll(
     fdArray: *WSAPOLLFD,
     fds: u32,
@@ -4017,6 +4125,7 @@ pub extern "ntdll" fn RtlIpv6StringToAddressExA(
     Port: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn WSARecvEx(
     s: ?*c_void,
     buf: [*]i8,
@@ -4024,6 +4133,7 @@ pub extern "MSWSOCK" fn WSARecvEx(
     flags: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MSWSOCK" fn TransmitFile(
     hSocket: ?*c_void,
     hFile: HANDLE,
@@ -4034,6 +4144,7 @@ pub extern "MSWSOCK" fn TransmitFile(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MSWSOCK" fn AcceptEx(
     sListenSocket: ?*c_void,
     sAcceptSocket: ?*c_void,
@@ -4045,6 +4156,7 @@ pub extern "MSWSOCK" fn AcceptEx(
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MSWSOCK" fn GetAcceptExSockaddrs(
     lpOutputBuffer: *c_void,
     dwReceiveDataLength: u32,
@@ -4056,6 +4168,7 @@ pub extern "MSWSOCK" fn GetAcceptExSockaddrs(
     RemoteSockaddrLength: *i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCEnumProtocols(
     lpiProtocols: ?*i32,
     lpProtocolBuffer: ?[*]WSAPROTOCOL_INFOW,
@@ -4063,11 +4176,13 @@ pub extern "WS2_32" fn WSCEnumProtocols(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCDeinstallProvider(
     lpProviderId: *Guid,
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCInstallProvider(
     lpProviderId: *Guid,
     lpszProviderDllPath: [*:0]const u16,
@@ -4076,6 +4191,7 @@ pub extern "WS2_32" fn WSCInstallProvider(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCGetProviderPath(
     lpProviderId: *Guid,
     lpszProviderDllPath: [*:0]u16,
@@ -4083,6 +4199,7 @@ pub extern "WS2_32" fn WSCGetProviderPath(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WS2_32" fn WSCUpdateProvider(
     lpProviderId: *Guid,
     lpszProviderDllPath: [*:0]const u16,
@@ -4091,6 +4208,7 @@ pub extern "WS2_32" fn WSCUpdateProvider(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCSetProviderInfo(
     lpProviderId: *Guid,
     InfoType: WSC_PROVIDER_INFO_TYPE,
@@ -4100,6 +4218,7 @@ pub extern "WS2_32" fn WSCSetProviderInfo(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCGetProviderInfo(
     lpProviderId: *Guid,
     InfoType: WSC_PROVIDER_INFO_TYPE,
@@ -4109,6 +4228,7 @@ pub extern "WS2_32" fn WSCGetProviderInfo(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCSetApplicationCategory(
     Path: [*:0]const u16,
     PathLength: u32,
@@ -4119,6 +4239,7 @@ pub extern "WS2_32" fn WSCSetApplicationCategory(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCGetApplicationCategory(
     Path: [*:0]const u16,
     PathLength: u32,
@@ -4128,6 +4249,7 @@ pub extern "WS2_32" fn WSCGetApplicationCategory(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WPUCompleteOverlappedRequest(
     s: ?*c_void,
     lpOverlapped: *OVERLAPPED,
@@ -4136,6 +4258,7 @@ pub extern "WS2_32" fn WPUCompleteOverlappedRequest(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCInstallNameSpace(
     lpszIdentifier: PWSTR,
     lpszPathName: PWSTR,
@@ -4144,10 +4267,12 @@ pub extern "WS2_32" fn WSCInstallNameSpace(
     lpProviderId: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCUnInstallNameSpace(
     lpProviderId: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCInstallNameSpaceEx(
     lpszIdentifier: PWSTR,
     lpszPathName: PWSTR,
@@ -4157,37 +4282,44 @@ pub extern "WS2_32" fn WSCInstallNameSpaceEx(
     lpProviderSpecific: *BLOB,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCEnableNSProvider(
     lpProviderId: *Guid,
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSAAdvertiseProvider(
     puuidProviderId: *const Guid,
     pNSPv2Routine: *const NSPV2_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSAUnadvertiseProvider(
     puuidProviderId: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSAProviderCompleteAsyncCall(
     hAsyncCall: HANDLE,
     iRetCode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn EnumProtocolsA(
     lpiProtocols: ?*i32,
     lpProtocolBuffer: [*]u8,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn EnumProtocolsW(
     lpiProtocols: ?*i32,
     lpProtocolBuffer: [*]u8,
     lpdwBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetAddressByNameA(
     dwNameSpace: u32,
     lpServiceType: *Guid,
@@ -4201,6 +4333,7 @@ pub extern "MSWSOCK" fn GetAddressByNameA(
     lpdwAliasBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetAddressByNameW(
     dwNameSpace: u32,
     lpServiceType: *Guid,
@@ -4214,28 +4347,33 @@ pub extern "MSWSOCK" fn GetAddressByNameW(
     lpdwAliasBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetTypeByNameA(
     lpServiceName: PSTR,
     lpServiceType: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetTypeByNameW(
     lpServiceName: PWSTR,
     lpServiceType: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetNameByTypeA(
     lpServiceType: *Guid,
     lpServiceName: [*:0]u8,
     dwNameLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetNameByTypeW(
     lpServiceType: *Guid,
     lpServiceName: [*:0]u16,
     dwNameLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn SetServiceA(
     dwNameSpace: u32,
     dwOperation: SetService_dwOperation,
@@ -4245,6 +4383,7 @@ pub extern "MSWSOCK" fn SetServiceA(
     lpdwStatusFlags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn SetServiceW(
     dwNameSpace: u32,
     dwOperation: SetService_dwOperation,
@@ -4254,6 +4393,7 @@ pub extern "MSWSOCK" fn SetServiceW(
     lpdwStatusFlags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetServiceA(
     dwNameSpace: u32,
     lpGuid: *Guid,
@@ -4264,6 +4404,7 @@ pub extern "MSWSOCK" fn GetServiceA(
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn GetServiceW(
     dwNameSpace: u32,
     lpGuid: *Guid,
@@ -4274,6 +4415,7 @@ pub extern "MSWSOCK" fn GetServiceW(
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getaddrinfo(
     pNodeName: ?[*:0]const u8,
     pServiceName: ?[*:0]const u8,
@@ -4281,6 +4423,7 @@ pub extern "WS2_32" fn getaddrinfo(
     ppResult: **ADDRINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn GetAddrInfoW(
     pNodeName: ?[*:0]const u16,
     pServiceName: ?[*:0]const u16,
@@ -4288,6 +4431,7 @@ pub extern "WS2_32" fn GetAddrInfoW(
     ppResult: **addrinfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn GetAddrInfoExA(
     pName: ?[*:0]const u8,
     pServiceName: ?[*:0]const u8,
@@ -4301,6 +4445,7 @@ pub extern "WS2_32" fn GetAddrInfoExA(
     lpNameHandle: ?*HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn GetAddrInfoExW(
     pName: ?[*:0]const u16,
     pServiceName: ?[*:0]const u16,
@@ -4314,14 +4459,17 @@ pub extern "WS2_32" fn GetAddrInfoExW(
     lpHandle: ?*HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn GetAddrInfoExCancel(
     lpHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn GetAddrInfoExOverlappedResult(
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn SetAddrInfoExA(
     pName: [*:0]const u8,
     pServiceName: ?[*:0]const u8,
@@ -4337,6 +4485,7 @@ pub extern "WS2_32" fn SetAddrInfoExA(
     lpNameHandle: ?*HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn SetAddrInfoExW(
     pName: [*:0]const u16,
     pServiceName: ?[*:0]const u16,
@@ -4352,22 +4501,27 @@ pub extern "WS2_32" fn SetAddrInfoExW(
     lpNameHandle: ?*HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn freeaddrinfo(
     pAddrInfo: ?*ADDRINFOA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn FreeAddrInfoW(
     pAddrInfo: ?*addrinfoW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn FreeAddrInfoEx(
     pAddrInfoEx: ?*addrinfoexA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn FreeAddrInfoExW(
     pAddrInfoEx: ?*addrinfoexW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getnameinfo(
     pSockaddr: [*]const SOCKADDR,
     SockaddrLength: i32,
@@ -4378,6 +4532,7 @@ pub extern "WS2_32" fn getnameinfo(
     Flags: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn GetNameInfoW(
     pSockaddr: [*]const SOCKADDR,
     SockaddrLength: i32,
@@ -4388,18 +4543,21 @@ pub extern "WS2_32" fn GetNameInfoW(
     Flags: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_pton(
     Family: i32,
     pszAddrString: [*:0]const u8,
     pAddrBuf: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn InetPtonW(
     Family: i32,
     pszAddrString: [*:0]const u16,
     pAddrBuf: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_ntop(
     Family: i32,
     pAddr: *const c_void,
@@ -4407,6 +4565,7 @@ pub extern "WS2_32" fn inet_ntop(
     StringBufSize: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn InetNtopW(
     Family: i32,
     pAddr: *const c_void,
@@ -4414,6 +4573,7 @@ pub extern "WS2_32" fn InetNtopW(
     StringBufSize: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSASetSocketSecurity(
     Socket: ?*c_void,
     SecuritySettings: ?[*]const SOCKET_SECURITY_SETTINGS,
@@ -4422,6 +4582,7 @@ pub extern "fwpuclnt" fn WSASetSocketSecurity(
     CompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSAQuerySocketSecurity(
     Socket: ?*c_void,
     SecurityQueryTemplate: ?[*]const SOCKET_SECURITY_QUERY_TEMPLATE,
@@ -4432,6 +4593,7 @@ pub extern "fwpuclnt" fn WSAQuerySocketSecurity(
     CompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSASetSocketPeerTargetName(
     Socket: ?*c_void,
     PeerTargetName: [*]const SOCKET_PEER_TARGET_NAME,
@@ -4440,6 +4602,7 @@ pub extern "fwpuclnt" fn WSASetSocketPeerTargetName(
     CompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSADeleteSocketPeerTargetName(
     Socket: ?*c_void,
     PeerAddr: [*]const SOCKADDR,
@@ -4448,24 +4611,29 @@ pub extern "fwpuclnt" fn WSADeleteSocketPeerTargetName(
     CompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSAImpersonateSocketPeer(
     Socket: ?*c_void,
     PeerAddr: ?[*]const SOCKADDR,
     PeerAddrLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn WSARevertImpersonation(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "Windows.Networking" fn SetSocketMediaStreamingMode(
     value: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCWriteProviderOrder(
     lpwdCatalogEntryId: *u32,
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCWriteNameSpaceOrder(
     lpProviderId: *Guid,
     dwNumberOfEntries: u32,

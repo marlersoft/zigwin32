@@ -644,9 +644,13 @@ pub const IITDatabase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IITGroup = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IITGroup = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const IITQuery = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IITQuery = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 const IID_IITWordWheel_Value = @import("../zig.zig").Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
@@ -864,7 +868,9 @@ pub const IStemmerConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IITStopWordList = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IITStopWordList = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 const IID_IWordBreakerConfig_Value = @import("../zig.zig").Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IWordBreakerConfig = &IID_IWordBreakerConfig_Value;

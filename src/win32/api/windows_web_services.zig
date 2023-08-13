@@ -101,35 +101,65 @@ pub const WS_URL_FLAGS_ZERO_TERMINATE = @as(i32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (450)
 //--------------------------------------------------------------------------------
-pub const WS_XML_READER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_XML_READER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_XML_WRITER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_XML_WRITER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_XML_BUFFER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_XML_BUFFER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_CHANNEL = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_CHANNEL = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_OPERATION_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_OPERATION_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_ERROR = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_ERROR = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_HEAP = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_HEAP = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_LISTENER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_LISTENER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_MESSAGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_MESSAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_SECURITY_TOKEN = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_SECURITY_TOKEN = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_SECURITY_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_SECURITY_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_SERVICE_HOST = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_SERVICE_HOST = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_SERVICE_PROXY = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_SERVICE_PROXY = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_METADATA = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_METADATA = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const WS_POLICY = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const WS_POLICY = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WS_XML_READER_PROPERTY_ID = extern enum(i32) {
     MAX_DEPTH = 0,
@@ -4057,6 +4087,7 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE = extern 
     securityContextSecurityBinding: WS_SECURITY_CONTEXT_SECURITY_BINDING_TEMPLATE,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IContentPrefetcherTaskTrigger_Value = @import("../zig.zig").Guid.initString("1b35a14a-6094-4799-a60e-e474e15d4dc9");
 pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger_Value;
 pub const IContentPrefetcherTaskTrigger = extern struct {
@@ -4242,6 +4273,7 @@ pub const WEBAUTHN_ASSERTION = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (203)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsStartReaderCanonicalization(
     reader: *WS_XML_READER,
     writeCallback: WS_WRITE_CALLBACK,
@@ -4251,11 +4283,13 @@ pub extern "webservices" fn WsStartReaderCanonicalization(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEndReaderCanonicalization(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsStartWriterCanonicalization(
     writer: *WS_XML_WRITER,
     writeCallback: WS_WRITE_CALLBACK,
@@ -4265,11 +4299,13 @@ pub extern "webservices" fn WsStartWriterCanonicalization(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEndWriterCanonicalization(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateXmlBuffer(
     heap: *WS_HEAP,
     properties: ?[*]const WS_XML_BUFFER_PROPERTY,
@@ -4278,11 +4314,13 @@ pub extern "webservices" fn WsCreateXmlBuffer(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveNode(
     nodePosition: *const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateReader(
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
@@ -4290,6 +4328,7 @@ pub extern "webservices" fn WsCreateReader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetInput(
     reader: *WS_XML_READER,
     encoding: ?*const WS_XML_READER_ENCODING,
@@ -4299,6 +4338,7 @@ pub extern "webservices" fn WsSetInput(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetInputToBuffer(
     reader: *WS_XML_READER,
     buffer: *WS_XML_BUFFER,
@@ -4307,10 +4347,12 @@ pub extern "webservices" fn WsSetInputToBuffer(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeReader(
     reader: *WS_XML_READER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderProperty(
     reader: *WS_XML_READER,
     id: WS_XML_READER_PROPERTY_ID,
@@ -4319,12 +4361,14 @@ pub extern "webservices" fn WsGetReaderProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderNode(
     xmlReader: *WS_XML_READER,
     node: *const *const WS_XML_NODE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFillReader(
     reader: *WS_XML_READER,
     minSize: u32,
@@ -4332,11 +4376,13 @@ pub extern "webservices" fn WsFillReader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadStartElement(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadToStartElement(
     reader: *WS_XML_READER,
     localName: ?*const WS_XML_STRING,
@@ -4345,32 +4391,38 @@ pub extern "webservices" fn WsReadToStartElement(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadStartAttribute(
     reader: *WS_XML_READER,
     attributeIndex: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndAttribute(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadNode(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSkipNode(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndElement(
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFindAttribute(
     reader: *WS_XML_READER,
     localName: *const WS_XML_STRING,
@@ -4380,6 +4432,7 @@ pub extern "webservices" fn WsFindAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadValue(
     reader: *WS_XML_READER,
     valueType: WS_VALUE_TYPE,
@@ -4388,6 +4441,7 @@ pub extern "webservices" fn WsReadValue(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadChars(
     reader: *WS_XML_READER,
     chars: [*:0]u16,
@@ -4396,6 +4450,7 @@ pub extern "webservices" fn WsReadChars(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadCharsUtf8(
     reader: *WS_XML_READER,
     bytes: [*:0]u8,
@@ -4404,6 +4459,7 @@ pub extern "webservices" fn WsReadCharsUtf8(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBytes(
     reader: *WS_XML_READER,
     bytes: [*]u8,
@@ -4412,6 +4468,7 @@ pub extern "webservices" fn WsReadBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadArray(
     reader: *WS_XML_READER,
     localName: *const WS_XML_STRING,
@@ -4425,18 +4482,21 @@ pub extern "webservices" fn WsReadArray(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderPosition(
     reader: *WS_XML_READER,
     nodePosition: *WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetReaderPosition(
     reader: *WS_XML_READER,
     nodePosition: *const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMoveReader(
     reader: *WS_XML_READER,
     moveTo: WS_MOVE_TO,
@@ -4444,6 +4504,7 @@ pub extern "webservices" fn WsMoveReader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateWriter(
     properties: ?[*]const WS_XML_WRITER_PROPERTY,
     propertyCount: u32,
@@ -4451,10 +4512,12 @@ pub extern "webservices" fn WsCreateWriter(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeWriter(
     writer: *WS_XML_WRITER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetOutput(
     writer: *WS_XML_WRITER,
     encoding: ?*const WS_XML_WRITER_ENCODING,
@@ -4464,6 +4527,7 @@ pub extern "webservices" fn WsSetOutput(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetOutputToBuffer(
     writer: *WS_XML_WRITER,
     buffer: *WS_XML_BUFFER,
@@ -4472,6 +4536,7 @@ pub extern "webservices" fn WsSetOutputToBuffer(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetWriterProperty(
     writer: *WS_XML_WRITER,
     id: WS_XML_WRITER_PROPERTY_ID,
@@ -4480,6 +4545,7 @@ pub extern "webservices" fn WsGetWriterProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFlushWriter(
     writer: *WS_XML_WRITER,
     minSize: u32,
@@ -4487,6 +4553,7 @@ pub extern "webservices" fn WsFlushWriter(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartElement(
     writer: *WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
@@ -4495,11 +4562,13 @@ pub extern "webservices" fn WsWriteStartElement(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndStartElement(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlnsAttribute(
     writer: *WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
@@ -4508,6 +4577,7 @@ pub extern "webservices" fn WsWriteXmlnsAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartAttribute(
     writer: *WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
@@ -4517,11 +4587,13 @@ pub extern "webservices" fn WsWriteStartAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndAttribute(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteValue(
     writer: *WS_XML_WRITER,
     valueType: WS_VALUE_TYPE,
@@ -4530,12 +4602,14 @@ pub extern "webservices" fn WsWriteValue(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlBuffer(
     writer: *WS_XML_WRITER,
     xmlBuffer: *WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadXmlBuffer(
     reader: *WS_XML_READER,
     heap: *WS_HEAP,
@@ -4543,6 +4617,7 @@ pub extern "webservices" fn WsReadXmlBuffer(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteXmlBufferToBytes(
     writer: *WS_XML_WRITER,
     xmlBuffer: *WS_XML_BUFFER,
@@ -4555,6 +4630,7 @@ pub extern "webservices" fn WsWriteXmlBufferToBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadXmlBufferFromBytes(
     reader: *WS_XML_READER,
     encoding: ?*const WS_XML_READER_ENCODING,
@@ -4567,6 +4643,7 @@ pub extern "webservices" fn WsReadXmlBufferFromBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteArray(
     writer: *WS_XML_WRITER,
     localName: *const WS_XML_STRING,
@@ -4579,6 +4656,7 @@ pub extern "webservices" fn WsWriteArray(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteQualifiedName(
     writer: *WS_XML_WRITER,
     prefix: ?*const WS_XML_STRING,
@@ -4587,6 +4665,7 @@ pub extern "webservices" fn WsWriteQualifiedName(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteChars(
     writer: *WS_XML_WRITER,
     chars: [*:0]const u16,
@@ -4594,6 +4673,7 @@ pub extern "webservices" fn WsWriteChars(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteCharsUtf8(
     writer: *WS_XML_WRITER,
     bytes: [*:0]const u8,
@@ -4601,6 +4681,7 @@ pub extern "webservices" fn WsWriteCharsUtf8(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBytes(
     writer: *WS_XML_WRITER,
     bytes: [*]const u8,
@@ -4608,6 +4689,7 @@ pub extern "webservices" fn WsWriteBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsPushBytes(
     writer: *WS_XML_WRITER,
     callback: WS_PUSH_BYTES_CALLBACK,
@@ -4615,6 +4697,7 @@ pub extern "webservices" fn WsPushBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsPullBytes(
     writer: *WS_XML_WRITER,
     callback: WS_PULL_BYTES_CALLBACK,
@@ -4622,33 +4705,39 @@ pub extern "webservices" fn WsPullBytes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndElement(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteText(
     writer: *WS_XML_WRITER,
     text: *const WS_XML_TEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteStartCData(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEndCData(
     writer: *WS_XML_WRITER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteNode(
     writer: *WS_XML_WRITER,
     node: *const WS_XML_NODE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPrefixFromNamespace(
     writer: *WS_XML_WRITER,
     ns: *const WS_XML_STRING,
@@ -4657,18 +4746,21 @@ pub extern "webservices" fn WsGetPrefixFromNamespace(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetWriterPosition(
     writer: *WS_XML_WRITER,
     nodePosition: *WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetWriterPosition(
     writer: *WS_XML_WRITER,
     nodePosition: *const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMoveWriter(
     writer: *WS_XML_WRITER,
     moveTo: WS_MOVE_TO,
@@ -4676,6 +4768,7 @@ pub extern "webservices" fn WsMoveWriter(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsTrimXmlWhitespace(
     chars: [*:0]u16,
     charCount: u32,
@@ -4684,18 +4777,21 @@ pub extern "webservices" fn WsTrimXmlWhitespace(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsVerifyXmlNCName(
     ncNameChars: [*:0]const u16,
     ncNameCharCount: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsXmlStringEquals(
     string1: *const WS_XML_STRING,
     string2: *const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetNamespaceFromPrefix(
     reader: *WS_XML_READER,
     prefix: *const WS_XML_STRING,
@@ -4704,6 +4800,7 @@ pub extern "webservices" fn WsGetNamespaceFromPrefix(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadQualifiedName(
     reader: *WS_XML_READER,
     heap: *WS_HEAP,
@@ -4713,6 +4810,7 @@ pub extern "webservices" fn WsReadQualifiedName(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetXmlAttribute(
     reader: *WS_XML_READER,
     localName: *const WS_XML_STRING,
@@ -4722,12 +4820,14 @@ pub extern "webservices" fn WsGetXmlAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCopyNode(
     writer: *WS_XML_WRITER,
     reader: *WS_XML_READER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAsyncExecute(
     asyncState: *WS_ASYNC_STATE,
     operation: WS_ASYNC_FUNCTION,
@@ -4737,6 +4837,7 @@ pub extern "webservices" fn WsAsyncExecute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateChannel(
     channelType: WS_CHANNEL_TYPE,
     channelBinding: WS_CHANNEL_BINDING,
@@ -4747,6 +4848,7 @@ pub extern "webservices" fn WsCreateChannel(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenChannel(
     channel: *WS_CHANNEL,
     endpointAddress: *const WS_ENDPOINT_ADDRESS,
@@ -4754,6 +4856,7 @@ pub extern "webservices" fn WsOpenChannel(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendMessage(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4765,6 +4868,7 @@ pub extern "webservices" fn WsSendMessage(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReceiveMessage(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4780,6 +4884,7 @@ pub extern "webservices" fn WsReceiveMessage(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRequestReply(
     channel: *WS_CHANNEL,
     requestMessage: *WS_MESSAGE,
@@ -4797,6 +4902,7 @@ pub extern "webservices" fn WsRequestReply(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendReplyMessage(
     channel: *WS_CHANNEL,
     replyMessage: *WS_MESSAGE,
@@ -4809,6 +4915,7 @@ pub extern "webservices" fn WsSendReplyMessage(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSendFaultMessageForError(
     channel: *WS_CHANNEL,
     replyMessage: *WS_MESSAGE,
@@ -4820,6 +4927,7 @@ pub extern "webservices" fn WsSendFaultMessageForError(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetChannelProperty(
     channel: *WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
@@ -4828,6 +4936,7 @@ pub extern "webservices" fn WsGetChannelProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetChannelProperty(
     channel: *WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
@@ -4836,6 +4945,7 @@ pub extern "webservices" fn WsSetChannelProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteMessageStart(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4843,6 +4953,7 @@ pub extern "webservices" fn WsWriteMessageStart(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteMessageEnd(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4850,6 +4961,7 @@ pub extern "webservices" fn WsWriteMessageEnd(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMessageStart(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4857,6 +4969,7 @@ pub extern "webservices" fn WsReadMessageStart(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMessageEnd(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
@@ -4864,38 +4977,45 @@ pub extern "webservices" fn WsReadMessageEnd(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseChannel(
     channel: *WS_CHANNEL,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortChannel(
     channel: *WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeChannel(
     channel: *WS_CHANNEL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetChannel(
     channel: *WS_CHANNEL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbandonMessage(
     channel: *WS_CHANNEL,
     message: *WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsShutdownSessionChannel(
     channel: *WS_CHANNEL,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetOperationContextProperty(
     context: *const WS_OPERATION_CONTEXT,
     id: WS_OPERATION_CONTEXT_PROPERTY_ID,
@@ -4904,12 +5024,14 @@ pub extern "webservices" fn WsGetOperationContextProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetDictionary(
     encoding: WS_ENCODING,
     dictionary: ?*?*WS_XML_DICTIONARY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEndpointAddressExtension(
     reader: *WS_XML_READER,
     endpointAddress: *WS_ENDPOINT_ADDRESS,
@@ -4921,28 +5043,33 @@ pub extern "webservices" fn WsReadEndpointAddressExtension(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateError(
     properties: ?[*]const WS_ERROR_PROPERTY,
     propertyCount: u32,
     @"error": **WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddErrorString(
     @"error": *WS_ERROR,
     string: *const WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetErrorString(
     @"error": *WS_ERROR,
     index: u32,
     string: *WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCopyError(
     source: *WS_ERROR,
     destination: *WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetErrorProperty(
     @"error": *WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
@@ -4950,6 +5077,7 @@ pub extern "webservices" fn WsGetErrorProperty(
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetErrorProperty(
     @"error": *WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
@@ -4957,14 +5085,17 @@ pub extern "webservices" fn WsSetErrorProperty(
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetError(
     @"error": *WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeError(
     @"error": *WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetFaultErrorProperty(
     @"error": *WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
@@ -4972,6 +5103,7 @@ pub extern "webservices" fn WsGetFaultErrorProperty(
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetFaultErrorProperty(
     @"error": *WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
@@ -4979,6 +5111,7 @@ pub extern "webservices" fn WsSetFaultErrorProperty(
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateFaultFromError(
     @"error": *WS_ERROR,
     faultErrorCode: HRESULT,
@@ -4987,6 +5120,7 @@ pub extern "webservices" fn WsCreateFaultFromError(
     fault: *WS_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetFaultErrorDetail(
     @"error": *WS_ERROR,
     faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
@@ -4995,6 +5129,7 @@ pub extern "webservices" fn WsSetFaultErrorDetail(
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetFaultErrorDetail(
     @"error": *WS_ERROR,
     faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
@@ -5004,6 +5139,7 @@ pub extern "webservices" fn WsGetFaultErrorDetail(
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateHeap(
     maxSize: ?*c_void,
     trimSize: ?*c_void,
@@ -5013,6 +5149,7 @@ pub extern "webservices" fn WsCreateHeap(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAlloc(
     heap: *WS_HEAP,
     size: ?*c_void,
@@ -5020,6 +5157,7 @@ pub extern "webservices" fn WsAlloc(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeapProperty(
     heap: *WS_HEAP,
     id: WS_HEAP_PROPERTY_ID,
@@ -5028,15 +5166,18 @@ pub extern "webservices" fn WsGetHeapProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetHeap(
     heap: *WS_HEAP,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeHeap(
     heap: *WS_HEAP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateListener(
     channelType: WS_CHANNEL_TYPE,
     channelBinding: WS_CHANNEL_BINDING,
@@ -5047,6 +5188,7 @@ pub extern "webservices" fn WsCreateListener(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenListener(
     listener: *WS_LISTENER,
     url: *const WS_STRING,
@@ -5054,6 +5196,7 @@ pub extern "webservices" fn WsOpenListener(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAcceptChannel(
     listener: *WS_LISTENER,
     channel: *WS_CHANNEL,
@@ -5061,26 +5204,31 @@ pub extern "webservices" fn WsAcceptChannel(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseListener(
     listener: *WS_LISTENER,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortListener(
     listener: *WS_LISTENER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetListener(
     listener: *WS_LISTENER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeListener(
     listener: *WS_LISTENER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetListenerProperty(
     listener: *WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
@@ -5089,6 +5237,7 @@ pub extern "webservices" fn WsGetListenerProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetListenerProperty(
     listener: *WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
@@ -5097,6 +5246,7 @@ pub extern "webservices" fn WsSetListenerProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateChannelForListener(
     listener: *WS_LISTENER,
     properties: ?[*]const WS_CHANNEL_PROPERTY,
@@ -5105,6 +5255,7 @@ pub extern "webservices" fn WsCreateChannelForListener(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateMessage(
     envelopeVersion: WS_ENVELOPE_VERSION,
     addressingVersion: WS_ADDRESSING_VERSION,
@@ -5114,6 +5265,7 @@ pub extern "webservices" fn WsCreateMessage(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateMessageForChannel(
     channel: *WS_CHANNEL,
     properties: ?[*]const WS_MESSAGE_PROPERTY,
@@ -5122,6 +5274,7 @@ pub extern "webservices" fn WsCreateMessageForChannel(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsInitializeMessage(
     message: *WS_MESSAGE,
     initialization: WS_MESSAGE_INITIALIZATION,
@@ -5129,15 +5282,18 @@ pub extern "webservices" fn WsInitializeMessage(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetMessage(
     message: *WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeMessage(
     message: *WS_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeaderAttributes(
     message: *WS_MESSAGE,
     reader: *WS_XML_READER,
@@ -5145,6 +5301,7 @@ pub extern "webservices" fn WsGetHeaderAttributes(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetHeader(
     message: *WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
@@ -5156,6 +5313,7 @@ pub extern "webservices" fn WsGetHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetCustomHeader(
     message: *WS_MESSAGE,
     customHeaderDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5169,12 +5327,14 @@ pub extern "webservices" fn WsGetCustomHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveHeader(
     message: *WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetHeader(
     message: *WS_MESSAGE,
     headerType: WS_HEADER_TYPE,
@@ -5185,6 +5345,7 @@ pub extern "webservices" fn WsSetHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveCustomHeader(
     message: *WS_MESSAGE,
     headerName: *const WS_XML_STRING,
@@ -5192,6 +5353,7 @@ pub extern "webservices" fn WsRemoveCustomHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddCustomHeader(
     message: *WS_MESSAGE,
     headerDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5202,6 +5364,7 @@ pub extern "webservices" fn WsAddCustomHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddMappedHeader(
     message: *WS_MESSAGE,
     headerName: *const WS_XML_STRING,
@@ -5212,12 +5375,14 @@ pub extern "webservices" fn WsAddMappedHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRemoveMappedHeader(
     message: *WS_MESSAGE,
     headerName: *const WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMappedHeader(
     message: *WS_MESSAGE,
     headerName: *const WS_XML_STRING,
@@ -5231,6 +5396,7 @@ pub extern "webservices" fn WsGetMappedHeader(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBody(
     message: *WS_MESSAGE,
     bodyDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5240,6 +5406,7 @@ pub extern "webservices" fn WsWriteBody(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBody(
     message: *WS_MESSAGE,
     bodyDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5250,6 +5417,7 @@ pub extern "webservices" fn WsReadBody(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEnvelopeStart(
     message: *WS_MESSAGE,
     writer: *WS_XML_WRITER,
@@ -5258,11 +5426,13 @@ pub extern "webservices" fn WsWriteEnvelopeStart(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteEnvelopeEnd(
     message: *WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEnvelopeStart(
     message: *WS_MESSAGE,
     reader: *WS_XML_READER,
@@ -5271,11 +5441,13 @@ pub extern "webservices" fn WsReadEnvelopeStart(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadEnvelopeEnd(
     message: *WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMessageProperty(
     message: *WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
@@ -5284,6 +5456,7 @@ pub extern "webservices" fn WsGetMessageProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsSetMessageProperty(
     message: *WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
@@ -5292,23 +5465,27 @@ pub extern "webservices" fn WsSetMessageProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAddressMessage(
     message: *WS_MESSAGE,
     address: ?*const WS_ENDPOINT_ADDRESS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCheckMustUnderstandHeaders(
     message: *WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMarkHeaderAsUnderstood(
     message: *WS_MESSAGE,
     headerPosition: *const WS_XML_NODE_POSITION,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFillBody(
     message: *WS_MESSAGE,
     minSize: u32,
@@ -5316,6 +5493,7 @@ pub extern "webservices" fn WsFillBody(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFlushBody(
     message: *WS_MESSAGE,
     minSize: u32,
@@ -5323,6 +5501,7 @@ pub extern "webservices" fn WsFlushBody(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRequestSecurityToken(
     channel: *WS_CHANNEL,
     properties: ?[*]const WS_REQUEST_SECURITY_TOKEN_PROPERTY,
@@ -5332,6 +5511,7 @@ pub extern "webservices" fn WsRequestSecurityToken(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetSecurityTokenProperty(
     securityToken: *WS_SECURITY_TOKEN,
     id: WS_SECURITY_TOKEN_PROPERTY_ID,
@@ -5341,6 +5521,7 @@ pub extern "webservices" fn WsGetSecurityTokenProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateXmlSecurityToken(
     tokenXml: ?*WS_XML_BUFFER,
     tokenKey: ?*WS_SECURITY_KEY_HANDLE,
@@ -5350,15 +5531,18 @@ pub extern "webservices" fn WsCreateXmlSecurityToken(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeSecurityToken(
     token: *WS_SECURITY_TOKEN,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRevokeSecurityContext(
     securityContext: *WS_SECURITY_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetSecurityContextProperty(
     securityContext: *WS_SECURITY_CONTEXT,
     id: WS_SECURITY_CONTEXT_PROPERTY_ID,
@@ -5367,6 +5551,7 @@ pub extern "webservices" fn WsGetSecurityContextProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadElement(
     reader: *WS_XML_READER,
     elementDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5377,6 +5562,7 @@ pub extern "webservices" fn WsReadElement(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadAttribute(
     reader: *WS_XML_READER,
     attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
@@ -5387,6 +5573,7 @@ pub extern "webservices" fn WsReadAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadType(
     reader: *WS_XML_READER,
     typeMapping: WS_TYPE_MAPPING,
@@ -5399,6 +5586,7 @@ pub extern "webservices" fn WsReadType(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteElement(
     writer: *WS_XML_WRITER,
     elementDescription: *const WS_ELEMENT_DESCRIPTION,
@@ -5408,6 +5596,7 @@ pub extern "webservices" fn WsWriteElement(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteAttribute(
     writer: *WS_XML_WRITER,
     attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
@@ -5417,6 +5606,7 @@ pub extern "webservices" fn WsWriteAttribute(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteType(
     writer: *WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
@@ -5428,6 +5618,7 @@ pub extern "webservices" fn WsWriteType(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsRegisterOperationForCancel(
     context: *const WS_OPERATION_CONTEXT,
     cancelCallback: WS_OPERATION_CANCEL_CALLBACK,
@@ -5436,6 +5627,7 @@ pub extern "webservices" fn WsRegisterOperationForCancel(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetServiceHostProperty(
     serviceHost: *WS_SERVICE_HOST,
     id: WS_SERVICE_PROPERTY_ID,
@@ -5444,6 +5636,7 @@ pub extern "webservices" fn WsGetServiceHostProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceHost(
     endpoints: ?[*]const ?*const WS_SERVICE_ENDPOINT,
     endpointCount: u16,
@@ -5453,32 +5646,38 @@ pub extern "webservices" fn WsCreateServiceHost(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenServiceHost(
     serviceHost: *WS_SERVICE_HOST,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseServiceHost(
     serviceHost: *WS_SERVICE_HOST,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortServiceHost(
     serviceHost: *WS_SERVICE_HOST,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeServiceHost(
     serviceHost: *WS_SERVICE_HOST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetServiceHost(
     serviceHost: *WS_SERVICE_HOST,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetServiceProxyProperty(
     serviceProxy: *WS_SERVICE_PROXY,
     id: WS_PROXY_PROPERTY_ID,
@@ -5487,6 +5686,7 @@ pub extern "webservices" fn WsGetServiceProxyProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceProxy(
     channelType: WS_CHANNEL_TYPE,
     channelBinding: WS_CHANNEL_BINDING,
@@ -5499,6 +5699,7 @@ pub extern "webservices" fn WsCreateServiceProxy(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsOpenServiceProxy(
     serviceProxy: *WS_SERVICE_PROXY,
     address: *const WS_ENDPOINT_ADDRESS,
@@ -5506,32 +5707,38 @@ pub extern "webservices" fn WsOpenServiceProxy(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCloseServiceProxy(
     serviceProxy: *WS_SERVICE_PROXY,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbortServiceProxy(
     serviceProxy: *WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeServiceProxy(
     serviceProxy: *WS_SERVICE_PROXY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetServiceProxy(
     serviceProxy: *WS_SERVICE_PROXY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAbandonCall(
     serviceProxy: *WS_SERVICE_PROXY,
     callId: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCall(
     serviceProxy: *WS_SERVICE_PROXY,
     operation: *const WS_OPERATION_DESCRIPTION,
@@ -5543,6 +5750,7 @@ pub extern "webservices" fn WsCall(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsDecodeUrl(
     url: *const WS_STRING,
     flags: u32,
@@ -5551,6 +5759,7 @@ pub extern "webservices" fn WsDecodeUrl(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsEncodeUrl(
     url: *const WS_URL,
     flags: u32,
@@ -5559,6 +5768,7 @@ pub extern "webservices" fn WsEncodeUrl(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCombineUrl(
     baseUrl: *const WS_STRING,
     referenceUrl: *const WS_STRING,
@@ -5568,18 +5778,21 @@ pub extern "webservices" fn WsCombineUrl(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsDateTimeToFileTime(
     dateTime: *const WS_DATETIME,
     fileTime: *FILETIME,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFileTimeToDateTime(
     fileTime: *const FILETIME,
     dateTime: *WS_DATETIME,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateMetadata(
     properties: ?[*]const WS_METADATA_PROPERTY,
     propertyCount: u32,
@@ -5587,6 +5800,7 @@ pub extern "webservices" fn WsCreateMetadata(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadMetadata(
     metadata: *WS_METADATA,
     reader: *WS_XML_READER,
@@ -5594,15 +5808,18 @@ pub extern "webservices" fn WsReadMetadata(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsFreeMetadata(
     metadata: *WS_METADATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsResetMetadata(
     metadata: *WS_METADATA,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMetadataProperty(
     metadata: *WS_METADATA,
     id: WS_METADATA_PROPERTY_ID,
@@ -5611,18 +5828,21 @@ pub extern "webservices" fn WsGetMetadataProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMissingMetadataDocumentAddress(
     metadata: *WS_METADATA,
     address: ?*?*WS_ENDPOINT_ADDRESS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMetadataEndpoints(
     metadata: *WS_METADATA,
     endpoints: *WS_METADATA_ENDPOINTS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsMatchPolicyAlternative(
     policy: *WS_POLICY,
     alternativeIndex: u32,
@@ -5632,6 +5852,7 @@ pub extern "webservices" fn WsMatchPolicyAlternative(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPolicyProperty(
     policy: *WS_POLICY,
     id: WS_POLICY_PROPERTY_ID,
@@ -5640,12 +5861,14 @@ pub extern "webservices" fn WsGetPolicyProperty(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetPolicyAlternativeCount(
     policy: *WS_POLICY,
     count: *u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceProxyFromTemplate(
     channelType: WS_CHANNEL_TYPE,
     properties: ?[*]const WS_PROXY_PROPERTY,
@@ -5659,6 +5882,7 @@ pub extern "webservices" fn WsCreateServiceProxyFromTemplate(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceEndpointFromTemplate(
     channelType: WS_CHANNEL_TYPE,
     properties: ?[*]const WS_SERVICE_ENDPOINT_PROPERTY,

@@ -111,12 +111,14 @@ pub const WEB_SOCKET_BUFFER = u32; // TODO: implement StructOrUnion types?
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketCreateClientHandle(
     pProperties: [*]const WEB_SOCKET_PROPERTY,
     ulPropertyCount: u32,
     phWebSocket: *WEB_SOCKET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginClientHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pszSubprotocols: ?[*]?PSTR,
@@ -129,6 +131,7 @@ pub extern "websocket" fn WebSocketBeginClientHandshake(
     pulAdditionalHeaderCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketEndClientHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pResponseHeaders: [*]const WEB_SOCKET_HTTP_HEADER,
@@ -138,12 +141,14 @@ pub extern "websocket" fn WebSocketEndClientHandshake(
     pulSelectedSubprotocol: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketCreateServerHandle(
     pProperties: [*]const WEB_SOCKET_PROPERTY,
     ulPropertyCount: u32,
     phWebSocket: *WEB_SOCKET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pszSubprotocolSelected: ?[*:0]const u8,
@@ -155,10 +160,12 @@ pub extern "websocket" fn WebSocketBeginServerHandshake(
     pulResponseHeaderCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketEndServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketSend(
     hWebSocket: WEB_SOCKET_HANDLE,
     BufferType: WEB_SOCKET_BUFFER_TYPE,
@@ -166,12 +173,14 @@ pub extern "websocket" fn WebSocketSend(
     Context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketReceive(
     hWebSocket: WEB_SOCKET_HANDLE,
     pBuffer: ?*WEB_SOCKET_BUFFER,
     pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketGetAction(
     hWebSocket: WEB_SOCKET_HANDLE,
     eActionQueue: WEB_SOCKET_ACTION_QUEUE,
@@ -183,20 +192,24 @@ pub extern "websocket" fn WebSocketGetAction(
     pvActionContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketCompleteAction(
     hWebSocket: WEB_SOCKET_HANDLE,
     pvActionContext: *c_void,
     ulBytesTransferred: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketAbortHandle(
     hWebSocket: WEB_SOCKET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketDeleteHandle(
     hWebSocket: WEB_SOCKET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketGetGlobalProperty(
     eType: WEB_SOCKET_PROPERTY_TYPE,
     pvValue: [*]u8,

@@ -27,6 +27,7 @@ pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MSChapSrvChangePassword(
     ServerName: PWSTR,
     UserName: PWSTR,
@@ -37,6 +38,7 @@ pub extern "ADVAPI32" fn MSChapSrvChangePassword(
     NtNewOwfPassword: *LM_OWF_PASSWORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MSChapSrvChangePassword2(
     ServerName: PWSTR,
     UserName: PWSTR,

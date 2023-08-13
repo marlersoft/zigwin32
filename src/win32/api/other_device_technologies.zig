@@ -94,6 +94,7 @@ pub const QueryCategoryType = extern enum(i32) {
 pub const QCT_PROVIDER = QueryCategoryType.PROVIDER;
 pub const QCT_LAYERED = QueryCategoryType.LAYERED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscoveryNotification_Value = @import("../zig.zig").Guid.initString("5f6c1ba8-5330-422e-a368-572b244d3f87");
 pub const IID_IFunctionDiscoveryNotification = &IID_IFunctionDiscoveryNotification_Value;
 pub const IFunctionDiscoveryNotification = extern struct {
@@ -137,6 +138,7 @@ pub const IFunctionDiscoveryNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscovery_Value = @import("../zig.zig").Guid.initString("4df99b70-e148-4432-b004-4c9eeb535a5e");
 pub const IID_IFunctionDiscovery = &IID_IFunctionDiscovery_Value;
 pub const IFunctionDiscovery = extern struct {
@@ -217,6 +219,7 @@ pub const IFunctionDiscovery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionInstance_Value = @import("../zig.zig").Guid.initString("33591c10-0bed-4f02-b0ab-1530d5533ee9");
 pub const IID_IFunctionInstance = &IID_IFunctionInstance_Value;
 pub const IFunctionInstance = extern struct {
@@ -264,6 +267,7 @@ pub const IFunctionInstance = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionInstanceCollection_Value = @import("../zig.zig").Guid.initString("f0a3d895-855c-42a2-948d-2f97d450ecb1");
 pub const IID_IFunctionInstanceCollection = &IID_IFunctionInstanceCollection_Value;
 pub const IFunctionInstanceCollection = extern struct {
@@ -408,6 +412,7 @@ pub const IPropertyStoreCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionInstanceQuery_Value = @import("../zig.zig").Guid.initString("6242bc6b-90ec-4b37-bb46-e229fd84ed95");
 pub const IID_IFunctionInstanceQuery = &IID_IFunctionInstanceQuery_Value;
 pub const IFunctionInstanceQuery = extern struct {
@@ -429,6 +434,7 @@ pub const IFunctionInstanceQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionInstanceCollectionQuery_Value = @import("../zig.zig").Guid.initString("57cc6fd2-c09a-4289-bb72-25f04142058e");
 pub const IID_IFunctionInstanceCollectionQuery = &IID_IFunctionInstanceCollectionQuery_Value;
 pub const IFunctionInstanceCollectionQuery = extern struct {
@@ -480,6 +486,7 @@ pub const CFunctionDiscoveryNotificationWrapper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscoveryProvider_Value = @import("../zig.zig").Guid.initString("dcde394f-1478-4813-a402-f6fb10657222");
 pub const IID_IFunctionDiscoveryProvider = &IID_IFunctionDiscoveryProvider_Value;
 pub const IFunctionDiscoveryProvider = extern struct {
@@ -571,6 +578,7 @@ pub const IFunctionDiscoveryProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProviderProperties_Value = @import("../zig.zig").Guid.initString("cf986ea6-3b5f-4c5f-b88a-2f8b20ceef17");
 pub const IID_IProviderProperties = &IID_IProviderProperties_Value;
 pub const IProviderProperties = extern struct {
@@ -627,6 +635,7 @@ pub const IProviderProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProviderPublishing_Value = @import("../zig.zig").Guid.initString("cd1b9a04-206c-4a05-a0c8-1635a21a2b7c");
 pub const IID_IProviderPublishing = &IID_IProviderPublishing_Value;
 pub const IProviderPublishing = extern struct {
@@ -661,6 +670,7 @@ pub const IProviderPublishing = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscoveryProviderFactory_Value = @import("../zig.zig").Guid.initString("86443ff0-1ad5-4e68-a45a-40c2c329de3b");
 pub const IID_IFunctionDiscoveryProviderFactory = &IID_IFunctionDiscoveryProviderFactory_Value;
 pub const IFunctionDiscoveryProviderFactory = extern struct {
@@ -703,6 +713,7 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscoveryProviderQuery_Value = @import("../zig.zig").Guid.initString("6876ea98-baec-46db-bc20-75a76e267a3a");
 pub const IID_IFunctionDiscoveryProviderQuery = &IID_IFunctionDiscoveryProviderQuery_Value;
 pub const IFunctionDiscoveryProviderQuery = extern struct {
@@ -750,6 +761,7 @@ pub const IFunctionDiscoveryProviderQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProviderQueryConstraintCollection_Value = @import("../zig.zig").Guid.initString("9c243e11-3261-4bcd-b922-84a873d460ae");
 pub const IID_IProviderQueryConstraintCollection = &IID_IProviderQueryConstraintCollection_Value;
 pub const IProviderQueryConstraintCollection = extern struct {
@@ -813,6 +825,7 @@ pub const IProviderQueryConstraintCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProviderPropertyConstraintCollection_Value = @import("../zig.zig").Guid.initString("f4fae42f-5778-4a13-8540-b5fd8c1398dd");
 pub const IID_IProviderPropertyConstraintCollection = &IID_IProviderPropertyConstraintCollection_Value;
 pub const IProviderPropertyConstraintCollection = extern struct {
@@ -879,6 +892,7 @@ pub const IProviderPropertyConstraintCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFunctionDiscoveryServiceProvider_Value = @import("../zig.zig").Guid.initString("4c81ed02-1b04-43f2-a451-69966cbcd1c2");
 pub const IID_IFunctionDiscoveryServiceProvider = &IID_IFunctionDiscoveryServiceProvider_Value;
 pub const IFunctionDiscoveryServiceProvider = extern struct {
@@ -908,6 +922,7 @@ pub const CLSID_PNPXAssociation = &CLSID_PNPXAssociation_Value;
 const CLSID_PNPXPairingHandler_Value = @import("../zig.zig").Guid.initString("b8a27942-ade7-4085-aa6e-4fadc7ada1ef");
 pub const CLSID_PNPXPairingHandler = &CLSID_PNPXPairingHandler_Value;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPNPXAssociation_Value = @import("../zig.zig").Guid.initString("0bd7e521-4da6-42d5-81ba-1981b6b94075");
 pub const IID_IPNPXAssociation = &IID_IPNPXAssociation_Value;
 pub const IPNPXAssociation = extern struct {
@@ -945,6 +960,7 @@ pub const IPNPXAssociation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPNPXDeviceAssociation_Value = @import("../zig.zig").Guid.initString("eed366d0-35b8-4fc5-8d20-7e5bd31f6ded");
 pub const IID_IPNPXDeviceAssociation = &IID_IPNPXDeviceAssociation_Value;
 pub const IPNPXDeviceAssociation = extern struct {
@@ -1108,6 +1124,7 @@ pub const OpQualifiedAttribute_ = WSDXML_OP.QualifiedAttribute_;
 pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
 pub const OpFormatMax = WSDXML_OP.FormatMax;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDXMLContext_Value = @import("../zig.zig").Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
 pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
 pub const IWSDXMLContext = extern struct {
@@ -1227,6 +1244,7 @@ pub const WSD_CONFIG_ADDRESSES = extern struct {
     dwAddressCount: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDAddress_Value = @import("../zig.zig").Guid.initString("b9574c6c-12a6-4f74-93a1-3318ff605759");
 pub const IID_IWSDAddress = &IID_IWSDAddress_Value;
 pub const IWSDAddress = extern struct {
@@ -1258,6 +1276,7 @@ pub const IWSDAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDTransportAddress_Value = @import("../zig.zig").Guid.initString("70d23498-4ee6-4340-a3df-d845d2235467");
 pub const IID_IWSDTransportAddress = &IID_IWSDTransportAddress_Value;
 pub const IWSDTransportAddress = extern struct {
@@ -1312,6 +1331,7 @@ pub const IWSDTransportAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDMessageParameters_Value = @import("../zig.zig").Guid.initString("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c");
 pub const IID_IWSDMessageParameters = &IID_IWSDMessageParameters_Value;
 pub const IWSDMessageParameters = extern struct {
@@ -1373,6 +1393,7 @@ pub const WSDUdpRetransmitParams = extern struct {
     ulRepeatUpperDelay: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDUdpMessageParameters_Value = @import("../zig.zig").Guid.initString("9934149f-8f0c-447b-aa0b-73124b0ca7f0");
 pub const IID_IWSDUdpMessageParameters = &IID_IWSDUdpMessageParameters_Value;
 pub const IWSDUdpMessageParameters = extern struct {
@@ -1402,7 +1423,9 @@ pub const IWSDUdpMessageParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SOCKADDR_STORAGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const SOCKADDR_STORAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WSDUdpMessageType = extern enum(i32) {
     ONE_WAY = 0,
@@ -1411,6 +1434,7 @@ pub const WSDUdpMessageType = extern enum(i32) {
 pub const ONE_WAY = WSDUdpMessageType.ONE_WAY;
 pub const TWO_WAY = WSDUdpMessageType.TWO_WAY;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDUdpAddress_Value = @import("../zig.zig").Guid.initString("74d6124a-a441-4f78-a1eb-97a8d1996893");
 pub const IID_IWSDUdpAddress = &IID_IWSDUdpAddress_Value;
 pub const IWSDUdpAddress = extern struct {
@@ -1503,6 +1527,7 @@ pub const IWSDUdpAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDHttpMessageParameters_Value = @import("../zig.zig").Guid.initString("540bd122-5c83-4dec-b396-ea62a2697fdf");
 pub const IID_IWSDHttpMessageParameters = &IID_IWSDHttpMessageParameters_Value;
 pub const IWSDHttpMessageParameters = extern struct {
@@ -1587,6 +1612,7 @@ pub const IWSDHttpMessageParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDHttpAddress_Value = @import("../zig.zig").Guid.initString("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0");
 pub const IID_IWSDHttpAddress = &IID_IWSDHttpAddress_Value;
 pub const IWSDHttpAddress = extern struct {
@@ -1631,6 +1657,7 @@ pub const IWSDHttpAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWSDSSLClientCertificate_Value = @import("../zig.zig").Guid.initString("de105e87-a0da-418e-98ad-27b9eed87bdc");
 pub const IID_IWSDSSLClientCertificate = &IID_IWSDSSLClientCertificate_Value;
 pub const IWSDSSLClientCertificate = extern struct {
@@ -1660,6 +1687,7 @@ pub const IWSDSSLClientCertificate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IWSDHttpAuthParameters_Value = @import("../zig.zig").Guid.initString("0b476df0-8dac-480d-b05c-99781a5884aa");
 pub const IID_IWSDHttpAuthParameters = &IID_IWSDHttpAuthParameters_Value;
 pub const IWSDHttpAuthParameters = extern struct {
@@ -1689,6 +1717,7 @@ pub const IWSDHttpAuthParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWSDSignatureProperty_Value = @import("../zig.zig").Guid.initString("03ce20aa-71c4-45e2-b32e-3766c61c790f");
 pub const IID_IWSDSignatureProperty = &IID_IWSDSignatureProperty_Value;
 pub const IWSDSignatureProperty = extern struct {
@@ -2170,6 +2199,7 @@ pub const WSDXML_ELEMENT_LIST = extern struct {
     Element: *WSDXML_ELEMENT,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDDeviceHost_Value = @import("../zig.zig").Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
 pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
 pub const IWSDDeviceHost = extern struct {
@@ -2294,6 +2324,7 @@ pub const IWSDDeviceHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDDeviceHostNotify_Value = @import("../zig.zig").Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
 pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
 pub const IWSDDeviceHostNotify = extern struct {
@@ -2316,6 +2347,7 @@ pub const IWSDDeviceHostNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDServiceMessaging_Value = @import("../zig.zig").Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
 pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
 pub const IWSDServiceMessaging = extern struct {
@@ -2349,6 +2381,7 @@ pub const IWSDServiceMessaging = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDEndpointProxy_Value = @import("../zig.zig").Guid.initString("1860d430-b24c-4975-9f90-dbb39baa24ec");
 pub const IID_IWSDEndpointProxy = &IID_IWSDEndpointProxy_Value;
 pub const IWSDEndpointProxy = extern struct {
@@ -2425,6 +2458,7 @@ pub const IWSDEndpointProxy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDMetadataExchange_Value = @import("../zig.zig").Guid.initString("06996d57-1d67-4928-9307-3d7833fdb846");
 pub const IID_IWSDMetadataExchange = &IID_IWSDMetadataExchange_Value;
 pub const IWSDMetadataExchange = extern struct {
@@ -2446,6 +2480,7 @@ pub const IWSDMetadataExchange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDServiceProxy_Value = @import("../zig.zig").Guid.initString("d4c7fb9c-03ab-4175-9d67-094fafebf487");
 pub const IID_IWSDServiceProxy = &IID_IWSDServiceProxy_Value;
 pub const IWSDServiceProxy = extern struct {
@@ -2519,6 +2554,7 @@ pub const IWSDServiceProxy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWSDServiceProxyEventing_Value = @import("../zig.zig").Guid.initString("f9279d6d-1012-4a94-b8cc-fd35d2202bfe");
 pub const IID_IWSDServiceProxyEventing = &IID_IWSDServiceProxyEventing_Value;
 pub const IWSDServiceProxyEventing = extern struct {
@@ -2682,6 +2718,7 @@ pub const IWSDServiceProxyEventing = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDDeviceProxy_Value = @import("../zig.zig").Guid.initString("eee0c031-c578-4c0e-9a3b-973c35f409db");
 pub const IID_IWSDDeviceProxy = &IID_IWSDDeviceProxy_Value;
 pub const IWSDDeviceProxy = extern struct {
@@ -2781,6 +2818,7 @@ pub const IWSDDeviceProxy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDAsyncResult_Value = @import("../zig.zig").Guid.initString("11a9852a-8dd8-423e-b537-9356db4fbfb8");
 pub const IID_IWSDAsyncResult = &IID_IWSDAsyncResult_Value;
 pub const IWSDAsyncResult = extern struct {
@@ -2849,6 +2887,7 @@ pub const IWSDAsyncResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDAsyncCallback_Value = @import("../zig.zig").Guid.initString("a63e109d-ce72-49e2-ba98-e845f5ee1666");
 pub const IID_IWSDAsyncCallback = &IID_IWSDAsyncCallback_Value;
 pub const IWSDAsyncCallback = extern struct {
@@ -2871,6 +2910,7 @@ pub const IWSDAsyncCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDEventingStatus_Value = @import("../zig.zig").Guid.initString("49b17f52-637a-407a-ae99-fbe82a4d38c0");
 pub const IID_IWSDEventingStatus = &IID_IWSDEventingStatus_Value;
 pub const IWSDEventingStatus = extern struct {
@@ -2909,6 +2949,7 @@ pub const IWSDEventingStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDiscoveryProvider_Value = @import("../zig.zig").Guid.initString("8ffc8e55-f0eb-480f-88b7-b435dd281d45");
 pub const IID_IWSDiscoveryProvider = &IID_IWSDiscoveryProvider_Value;
 pub const IWSDiscoveryProvider = extern struct {
@@ -2982,6 +3023,7 @@ pub const IWSDiscoveryProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDiscoveryProviderNotify_Value = @import("../zig.zig").Guid.initString("73ee3ced-b6e6-4329-a546-3e8ad46563d2");
 pub const IID_IWSDiscoveryProviderNotify = &IID_IWSDiscoveryProviderNotify_Value;
 pub const IWSDiscoveryProviderNotify = extern struct {
@@ -3028,6 +3070,7 @@ pub const IWSDiscoveryProviderNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDiscoveredService_Value = @import("../zig.zig").Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
 pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
 pub const IWSDiscoveredService = extern struct {
@@ -3130,6 +3173,7 @@ pub const IWSDiscoveredService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDiscoveryPublisher_Value = @import("../zig.zig").Guid.initString("ae01e1a8-3ff9-4148-8116-057cc616fe13");
 pub const IID_IWSDiscoveryPublisher = &IID_IWSDiscoveryPublisher_Value;
 pub const IWSDiscoveryPublisher = extern struct {
@@ -3316,6 +3360,7 @@ pub const IWSDiscoveryPublisher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDiscoveryPublisherNotify_Value = @import("../zig.zig").Guid.initString("e67651b0-337a-4b3c-9758-733388568251");
 pub const IID_IWSDiscoveryPublisherNotify = &IID_IWSDiscoveryPublisherNotify_Value;
 pub const IWSDiscoveryPublisherNotify = extern struct {
@@ -3347,6 +3392,7 @@ pub const IWSDiscoveryPublisherNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDScopeMatchingRule_Value = @import("../zig.zig").Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
 pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
 pub const IWSDScopeMatchingRule = extern struct {
@@ -3378,6 +3424,7 @@ pub const IWSDScopeMatchingRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDAttachment_Value = @import("../zig.zig").Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
 pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
 pub const IWSDAttachment = extern struct {
@@ -3391,6 +3438,7 @@ pub const IWSDAttachment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDOutboundAttachment_Value = @import("../zig.zig").Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
 pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
 pub const IWSDOutboundAttachment = extern struct {
@@ -3428,6 +3476,7 @@ pub const IWSDOutboundAttachment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDInboundAttachment_Value = @import("../zig.zig").Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
 pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
 pub const IWSDInboundAttachment = extern struct {
@@ -3462,68 +3511,82 @@ pub const IWSDInboundAttachment = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
     pszNamespace: [*:0]const u16,
     pszName: [*:0]const u16,
     ppName: **WSDXML_NAME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLCreateContext(
     ppContext: **IWSDXMLContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateUdpMessageParameters(
     ppTxParams: **IWSDUdpMessageParameters,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateUdpAddress(
     ppAddress: **IWSDUdpAddress,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateHttpMessageParameters(
     ppTxParams: **IWSDHttpMessageParameters,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateHttpAddress(
     ppAddress: **IWSDHttpAddress,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDSetConfigurationOption(
     dwOption: u32,
     pVoid: [*]u8,
     cbInBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGetConfigurationOption(
     dwOption: u32,
     pVoid: [*]u8,
     cbOutBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAllocateLinkedMemory(
     pParent: *c_void,
     cbSize: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDFreeLinkedMemory(
     pVoid: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAttachLinkedMemory(
     pParent: *c_void,
     pChild: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDDetachLinkedMemory(
     pVoid: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLBuildAnyForSingleElement(
     pElementName: *WSDXML_NAME,
     pszText: ?[*:0]const u16,
     ppAny: **WSDXML_ELEMENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLGetValueFromAny(
     pszNamespace: [*:0]const u16,
     pszName: [*:0]const u16,
@@ -3531,20 +3594,24 @@ pub extern "wsdapi" fn WSDXMLGetValueFromAny(
     ppszValue: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLAddSibling(
     pFirst: *WSDXML_ELEMENT,
     pSecond: *WSDXML_ELEMENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLAddChild(
     pParent: *WSDXML_ELEMENT,
     pChild: *WSDXML_ELEMENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDXMLCleanupElement(
     pAny: *WSDXML_ELEMENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGenerateFault(
     pszCode: [*:0]const u16,
     pszSubCode: ?[*:0]const u16,
@@ -3554,6 +3621,7 @@ pub extern "wsdapi" fn WSDGenerateFault(
     ppFault: **WSD_SOAP_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGenerateFaultEx(
     pCode: *WSDXML_NAME,
     pSubCode: ?*WSDXML_NAME,
@@ -3562,6 +3630,7 @@ pub extern "wsdapi" fn WSDGenerateFaultEx(
     ppFault: **WSD_SOAP_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDUriEncode(
     source: [*:0]const u16,
     cchSource: u32,
@@ -3569,6 +3638,7 @@ pub extern "wsdapi" fn WSDUriEncode(
     cchDestOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDUriDecode(
     source: [*:0]const u16,
     cchSource: u32,
@@ -3576,12 +3646,14 @@ pub extern "wsdapi" fn WSDUriDecode(
     cchDestOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceHost(
     pszLocalId: [*:0]const u16,
     pContext: *IWSDXMLContext,
     ppDeviceHost: **IWSDDeviceHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
     pszLocalId: [*:0]const u16,
     pContext: *IWSDXMLContext,
@@ -3590,6 +3662,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
     ppDeviceHost: **IWSDDeviceHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDeviceHost2(
     pszLocalId: [*:0]const u16,
     pContext: *IWSDXMLContext,
@@ -3598,6 +3671,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHost2(
     ppDeviceHost: **IWSDDeviceHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceProxy(
     pszDeviceId: [*:0]const u16,
     pszLocalId: [*:0]const u16,
@@ -3605,6 +3679,7 @@ pub extern "wsdapi" fn WSDCreateDeviceProxy(
     ppDeviceProxy: **IWSDDeviceProxy,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
     pszDeviceId: [*:0]const u16,
     pDeviceAddress: *IWSDAddress,
@@ -3613,6 +3688,7 @@ pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
     ppDeviceProxy: **IWSDDeviceProxy,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDeviceProxy2(
     pszDeviceId: [*:0]const u16,
     pszLocalId: [*:0]const u16,
@@ -3622,11 +3698,13 @@ pub extern "wsdapi" fn WSDCreateDeviceProxy2(
     ppDeviceProxy: **IWSDDeviceProxy,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDiscoveryProvider(
     pContext: *IWSDXMLContext,
     ppProvider: **IWSDiscoveryProvider,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
     pContext: *IWSDXMLContext,
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
@@ -3634,11 +3712,13 @@ pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
     ppProvider: **IWSDiscoveryProvider,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateDiscoveryPublisher(
     pContext: *IWSDXMLContext,
     ppPublisher: **IWSDiscoveryPublisher,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
     pContext: *IWSDXMLContext,
     pConfigParams: ?[*]WSD_CONFIG_PARAM,
@@ -3646,6 +3726,7 @@ pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
     ppPublisher: **IWSDiscoveryPublisher,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateOutboundAttachment(
     ppAttachment: **IWSDOutboundAttachment,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

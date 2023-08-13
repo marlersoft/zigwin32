@@ -1026,6 +1026,38 @@ pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (136)
 //--------------------------------------------------------------------------------
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
 pub const ISequentialStream = extern struct {
@@ -1102,6 +1134,7 @@ pub const LOCK_WRITE = LOCKTYPE.WRITE;
 pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
 pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IStream_Value = @import("../zig.zig").Guid.initString("0000000c-0000-0000-c000-000000000046");
 pub const IID_IStream = &IID_IStream_Value;
 pub const IStream = extern struct {
@@ -1196,6 +1229,7 @@ pub const IStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumSTATSTG_Value = @import("../zig.zig").Guid.initString("0000000d-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATSTG = &IID_IEnumSTATSTG_Value;
 pub const IEnumSTATSTG = extern struct {
@@ -1248,6 +1282,7 @@ pub const RemSNB = extern struct {
     rgString: [1]u16,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IStorage_Value = @import("../zig.zig").Guid.initString("0000000b-0000-0000-c000-000000000046");
 pub const IID_IStorage = &IID_IStorage_Value;
 pub const IStorage = extern struct {
@@ -1412,6 +1447,7 @@ pub const IStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ILockBytes_Value = @import("../zig.zig").Guid.initString("0000000a-0000-0000-c000-000000000046");
 pub const IID_ILockBytes = &IID_ILockBytes_Value;
 pub const ILockBytes = extern struct {
@@ -1491,6 +1527,7 @@ pub const ILockBytes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IRootStorage_Value = @import("../zig.zig").Guid.initString("00000012-0000-0000-c000-000000000046");
 pub const IID_IRootStorage = &IID_IRootStorage_Value;
 pub const IRootStorage = extern struct {
@@ -1512,6 +1549,7 @@ pub const IRootStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFillLockBytes_Value = @import("../zig.zig").Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
 pub const IID_IFillLockBytes = &IID_IFillLockBytes_Value;
 pub const IFillLockBytes = extern struct {
@@ -1569,6 +1607,7 @@ pub const StorageLayout = extern struct {
     cBytes: LARGE_INTEGER,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ILayoutStorage_Value = @import("../zig.zig").Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
 pub const IID_ILayoutStorage = &IID_ILayoutStorage_Value;
 pub const ILayoutStorage = extern struct {
@@ -1622,6 +1661,7 @@ pub const ILayoutStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDirectWriterLock_Value = @import("../zig.zig").Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
 pub const IID_IDirectWriterLock = &IID_IDirectWriterLock_Value;
 pub const IDirectWriterLock = extern struct {
@@ -1656,37 +1696,6 @@ pub const IDirectWriterLock = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
-
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 pub const VERSIONEDSTREAM = extern struct {
     guidVersion: Guid,
@@ -1830,6 +1839,7 @@ pub const STATPROPSETSTG = extern struct {
     dwOSVersion: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPropertyStorage_Value = @import("../zig.zig").Guid.initString("00000138-0000-0000-c000-000000000046");
 pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
 pub const IPropertyStorage = extern struct {
@@ -1951,6 +1961,7 @@ pub const IPropertyStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPropertySetStorage_Value = @import("../zig.zig").Guid.initString("0000013a-0000-0000-c000-000000000046");
 pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
 pub const IPropertySetStorage = extern struct {
@@ -2002,6 +2013,7 @@ pub const IPropertySetStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumSTATPROPSTG_Value = @import("../zig.zig").Guid.initString("00000139-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
 pub const IEnumSTATPROPSTG = extern struct {
@@ -2048,6 +2060,7 @@ pub const IEnumSTATPROPSTG = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumSTATPROPSETSTG_Value = @import("../zig.zig").Guid.initString("0000013b-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
 pub const IEnumSTATPROPSETSTG = extern struct {
@@ -2124,7 +2137,9 @@ pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
 pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
 pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
 
-pub const PMemoryAllocator = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const PMemoryAllocator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const JET_INDEXID = extern struct {
     cbStruct: u32,
@@ -3160,59 +3175,70 @@ pub const PRSPEC_PROPID = PROPSPEC_ulKind.PROPID;
 //--------------------------------------------------------------------------------
 // Section: Functions (274)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn CreateStreamOnHGlobal(
     hGlobal: ?*c_void,
     fDeleteOnRelease: BOOL,
     ppstm: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn GetHGlobalFromStream(
     pstm: *IStream,
     phglobal: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn PropVariantCopy(
     pvarDest: *PROPVARIANT,
     pvarSrc: *const PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn PropVariantClear(
     pvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn FreePropVariantArray(
     cVariants: u32,
     rgvars: [*]PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn WriteFmtUserTypeStg(
     pstg: *IStorage,
     cf: u16,
     lpszUserType: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn ReadFmtUserTypeStg(
     pstg: *IStorage,
     pcf: *u16,
     lplpszUserType: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
     lpolestream: *OLESTREAM,
     pstg: *IStorage,
     ptd: *const DVTARGETDEVICE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
     pstg: *IStorage,
     lpolestream: *OLESTREAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn SetConvertStg(
     pStg: *IStorage,
     fConvert: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
     pstg: *IStorage,
     cfFormat: u16,
@@ -3223,6 +3249,7 @@ pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
     polestm: *OLESTREAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
     polestm: *OLESTREAM,
     pstg: *IStorage,
@@ -3233,18 +3260,21 @@ pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
     pmedium: *STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "PROPSYS" fn StgSerializePropVariant(
     ppropvar: *const PROPVARIANT,
     ppProp: **SERIALIZEDPROPERTYVALUE,
     pcb: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "PROPSYS" fn StgDeserializePropVariant(
     pprop: *const SERIALIZEDPROPERTYVALUE,
     cbMax: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreateDocfile(
     pwcsName: ?[*:0]const u16,
     grfMode: u32,
@@ -3252,6 +3282,7 @@ pub extern "OLE32" fn StgCreateDocfile(
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreateDocfileOnILockBytes(
     plkbyt: *ILockBytes,
     grfMode: u32,
@@ -3259,6 +3290,7 @@ pub extern "OLE32" fn StgCreateDocfileOnILockBytes(
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgOpenStorage(
     pwcsName: ?[*:0]const u16,
     pstgPriority: ?*IStorage,
@@ -3268,6 +3300,7 @@ pub extern "OLE32" fn StgOpenStorage(
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgOpenStorageOnILockBytes(
     plkbyt: *ILockBytes,
     pstgPriority: ?*IStorage,
@@ -3277,14 +3310,17 @@ pub extern "OLE32" fn StgOpenStorageOnILockBytes(
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgIsStorageFile(
     pwcsName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgIsStorageILockBytes(
     plkbyt: *ILockBytes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgSetTimes(
     lpszName: [*:0]const u16,
     pctime: ?*const FILETIME,
@@ -3292,28 +3328,31 @@ pub extern "OLE32" fn StgSetTimes(
     pmtime: ?*const FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreateStorageEx(
     pwcsName: ?[*:0]const u16,
     grfMode: u32,
     stgfmt: u32,
     grfAttrs: u32,
     pStgOptions: ?*STGOPTIONS,
-    pSecurityDescriptor: ?*c_void,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     riid: *const Guid,
     ppObjectOpen: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgOpenStorageEx(
     pwcsName: [*:0]const u16,
     grfMode: u32,
     stgfmt: u32,
     grfAttrs: u32,
     pStgOptions: ?*STGOPTIONS,
-    pSecurityDescriptor: ?*c_void,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     riid: *const Guid,
     ppObjectOpen: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreatePropStg(
     pUnk: *IUnknown,
     fmtid: *const Guid,
@@ -3323,6 +3362,7 @@ pub extern "OLE32" fn StgCreatePropStg(
     ppPropStg: **IPropertyStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgOpenPropStg(
     pUnk: *IUnknown,
     fmtid: *const Guid,
@@ -3331,53 +3371,63 @@ pub extern "OLE32" fn StgOpenPropStg(
     ppPropStg: **IPropertyStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreatePropSetStg(
     pStorage: *IStorage,
     dwReserved: u32,
     ppPropSetStg: **IPropertySetStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn FmtIdToPropStgName(
     pfmtid: *const Guid,
     oszName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn PropStgNameToFmtId(
     oszName: [*:0]const u16,
     pfmtid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn ReadClassStg(
     pStg: *IStorage,
     pclsid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn WriteClassStg(
     pStg: *IStorage,
     rclsid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn ReadClassStm(
     pStm: *IStream,
     pclsid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn WriteClassStm(
     pStm: *IStream,
     rclsid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn GetHGlobalFromILockBytes(
     plkbyt: *ILockBytes,
     phglobal: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn CreateILockBytesOnHGlobal(
     hGlobal: ?*c_void,
     fDeleteOnRelease: BOOL,
     pplkbyt: **ILockBytes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn GetConvertStg(
     pStg: *IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -3415,6 +3465,7 @@ pub extern "dflayout" fn StgOpenLayoutDocfile(
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgConvertVariantToProperty(
     pvar: *const PROPVARIANT,
     CodePage: u16,
@@ -3425,6 +3476,7 @@ pub extern "ole32" fn StgConvertVariantToProperty(
     pcIndirect: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *SERIALIZEDPROPERTYVALUE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgConvertPropertyToVariant(
     pprop: *const SERIALIZEDPROPERTYVALUE,
     CodePage: u16,
@@ -3439,6 +3491,7 @@ pub extern "ole32" fn CreateStdProgressIndicator(
     ppIbsc: **IBindStatusCallback,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgPropertyLengthAsVariant(
     pProp: [*]const SERIALIZEDPROPERTYVALUE,
     cbProp: u32,
@@ -5425,9 +5478,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
@@ -5461,7 +5515,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 274;
     const unicode_alias_count = 85;
-    const import_count = 19;
+    const import_count = 20;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

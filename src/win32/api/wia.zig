@@ -25,6 +25,7 @@ pub const WIA_FORMAT_INFO = extern struct {
     lTymed: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaDevMgr_Value = @import("../zig.zig").Guid.initString("5eb2502a-8cf1-11d1-bf92-0060081ed811");
 pub const IID_IWiaDevMgr = &IID_IWiaDevMgr_Value;
 pub const IWiaDevMgr = extern struct {
@@ -142,6 +143,7 @@ pub const IWiaDevMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumWIA_DEV_INFO_Value = @import("../zig.zig").Guid.initString("5e38b83c-8cf1-11d1-bf92-0060081ed811");
 pub const IID_IEnumWIA_DEV_INFO = &IID_IEnumWIA_DEV_INFO_Value;
 pub const IEnumWIA_DEV_INFO = extern struct {
@@ -196,6 +198,7 @@ pub const IEnumWIA_DEV_INFO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaEventCallback_Value = @import("../zig.zig").Guid.initString("ae6287b0-0084-11d2-973b-00a0c9068f2e");
 pub const IID_IWiaEventCallback = &IID_IWiaEventCallback_Value;
 pub const IWiaEventCallback = extern struct {
@@ -231,6 +234,7 @@ pub const WIA_DATA_CALLBACK_HEADER = extern struct {
     lPageCount: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaDataCallback_Value = @import("../zig.zig").Guid.initString("a558a866-a5b0-11d2-a08f-00c04f72dc3c");
 pub const IID_IWiaDataCallback = &IID_IWiaDataCallback_Value;
 pub const IWiaDataCallback = extern struct {
@@ -277,6 +281,7 @@ pub const WIA_EXTENDED_TRANSFER_INFO = extern struct {
     ulNumBuffers: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaDataTransfer_Value = @import("../zig.zig").Guid.initString("a6cef998-a5b0-11d2-a08f-00c04f72dc3c");
 pub const IID_IWiaDataTransfer = &IID_IWiaDataTransfer_Value;
 pub const IWiaDataTransfer = extern struct {
@@ -332,6 +337,7 @@ pub const IWiaDataTransfer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaItem_Value = @import("../zig.zig").Guid.initString("4db1ad10-3391-11d2-9a33-00c04fa36145");
 pub const IID_IWiaItem = &IID_IWiaItem_Value;
 pub const IWiaItem = extern struct {
@@ -480,6 +486,7 @@ pub const IWiaItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaPropertyStorage_Value = @import("../zig.zig").Guid.initString("98b5e8a0-29cc-491a-aac0-e6db4fdcceb6");
 pub const IID_IWiaPropertyStorage = &IID_IWiaPropertyStorage_Value;
 pub const IWiaPropertyStorage = extern struct {
@@ -638,6 +645,7 @@ pub const IWiaPropertyStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumWiaItem_Value = @import("../zig.zig").Guid.initString("5e8383fc-3391-11d2-9a33-00c04fa36145");
 pub const IID_IEnumWiaItem = &IID_IEnumWiaItem_Value;
 pub const IEnumWiaItem = extern struct {
@@ -701,6 +709,7 @@ pub const WIA_DEV_CAP = extern struct {
     bstrCommandline: BSTR,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumWIA_DEV_CAPS_Value = @import("../zig.zig").Guid.initString("1fcc4287-aca6-11d2-a093-00c04f72dc3c");
 pub const IID_IEnumWIA_DEV_CAPS = &IID_IEnumWIA_DEV_CAPS_Value;
 pub const IEnumWIA_DEV_CAPS = extern struct {
@@ -755,6 +764,7 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumWIA_FORMAT_INFO_Value = @import("../zig.zig").Guid.initString("81befc5b-656d-44f1-b24c-d41d51b4dc81");
 pub const IID_IEnumWIA_FORMAT_INFO = &IID_IEnumWIA_FORMAT_INFO_Value;
 pub const IEnumWIA_FORMAT_INFO = extern struct {
@@ -809,6 +819,7 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaLog_Value = @import("../zig.zig").Guid.initString("a00c10b6-82a1-452f-8b6c-86062aad6890");
 pub const IID_IWiaLog = &IID_IWiaLog_Value;
 pub const IWiaLog = extern struct {
@@ -849,6 +860,7 @@ pub const IWiaLog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaLogEx_Value = @import("../zig.zig").Guid.initString("af1f22ac-7a40-4787-b421-aeb47a1fbd0b");
 pub const IID_IWiaLogEx = &IID_IWiaLogEx_Value;
 pub const IWiaLogEx = extern struct {
@@ -910,6 +922,7 @@ pub const IWiaLogEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaNotifyDevMgr_Value = @import("../zig.zig").Guid.initString("70681ea0-e7bf-4291-9fb1-4e8813a3f78e");
 pub const IID_IWiaNotifyDevMgr = &IID_IWiaNotifyDevMgr_Value;
 pub const IWiaNotifyDevMgr = extern struct {
@@ -930,6 +943,7 @@ pub const IWiaNotifyDevMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWiaItemExtras_Value = @import("../zig.zig").Guid.initString("6291ef2c-36ef-4532-876a-8e132593778d");
 pub const IID_IWiaItemExtras = &IID_IWiaItemExtras_Value;
 pub const IWiaItemExtras = extern struct {
@@ -989,6 +1003,7 @@ pub const WIAVIDEO_VIDEO_PLAYING = WIAVIDEO_STATE.VIDEO_PLAYING;
 pub const WIAVIDEO_VIDEO_PAUSED = WIAVIDEO_STATE.VIDEO_PAUSED;
 pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWiaVideo_Value = @import("../zig.zig").Guid.initString("d52920aa-db88-41f0-946c-e00dc0a19cfa");
 pub const IID_IWiaVideo = &IID_IWiaVideo_Value;
 pub const IWiaVideo = extern struct {

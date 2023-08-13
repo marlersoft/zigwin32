@@ -555,6 +555,7 @@ pub const WCN_VENDOR_EXTENSION_SPEC = extern struct {
     Flags: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWCNDevice_Value = @import("../zig.zig").Guid.initString("c100be9c-d33a-4a4b-bf23-bbef4663d017");
 pub const IID_IWCNDevice = &IID_IWCNDevice_Value;
 pub const IWCNDevice = extern struct {
@@ -676,6 +677,7 @@ pub const IWCNDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWCNConnectNotify_Value = @import("../zig.zig").Guid.initString("c100be9f-d33a-4a4b-bf23-bbef4663d017");
 pub const IID_IWCNConnectNotify = &IID_IWCNConnectNotify_Value;
 pub const IWCNConnectNotify = extern struct {

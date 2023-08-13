@@ -136,7 +136,7 @@ pub const DFS_INFO_8 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
 };
 
@@ -149,7 +149,7 @@ pub const DFS_INFO_9 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
     Storage: *DFS_STORAGE_INFO_1,
 };
@@ -201,12 +201,12 @@ pub const DFS_INFO_107 = extern struct {
     PropertyFlagMask: u32,
     PropertyFlags: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_150 = extern struct {
     SdLengthReserved: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_200 = extern struct {
@@ -258,6 +258,7 @@ pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (22)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsAdd(
     DfsEntryPath: PWSTR,
     ServerName: PWSTR,
@@ -266,6 +267,7 @@ pub extern "dfscli" fn NetDfsAdd(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsAddStdRoot(
     ServerName: PWSTR,
     RootShare: PWSTR,
@@ -273,12 +275,14 @@ pub extern "dfscli" fn NetDfsAddStdRoot(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsRemoveStdRoot(
     ServerName: PWSTR,
     RootShare: PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsAddFtRoot(
     ServerName: PWSTR,
     RootShare: PWSTR,
@@ -287,6 +291,7 @@ pub extern "dfscli" fn NetDfsAddFtRoot(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsRemoveFtRoot(
     ServerName: PWSTR,
     RootShare: PWSTR,
@@ -294,6 +299,7 @@ pub extern "dfscli" fn NetDfsRemoveFtRoot(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsRemoveFtRootForced(
     DomainName: PWSTR,
     ServerName: PWSTR,
@@ -302,12 +308,14 @@ pub extern "dfscli" fn NetDfsRemoveFtRootForced(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsRemove(
     DfsEntryPath: PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsEnum(
     DfsName: PWSTR,
     Level: u32,
@@ -317,6 +325,7 @@ pub extern "dfscli" fn NetDfsEnum(
     ResumeHandle: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetInfo(
     DfsEntryPath: PWSTR,
     ServerName: ?PWSTR,
@@ -325,6 +334,7 @@ pub extern "dfscli" fn NetDfsGetInfo(
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsSetInfo(
     DfsEntryPath: PWSTR,
     ServerName: ?PWSTR,
@@ -333,6 +343,7 @@ pub extern "dfscli" fn NetDfsSetInfo(
     Buffer: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetClientInfo(
     DfsEntryPath: PWSTR,
     ServerName: ?PWSTR,
@@ -341,6 +352,7 @@ pub extern "dfscli" fn NetDfsGetClientInfo(
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsSetClientInfo(
     DfsEntryPath: PWSTR,
     ServerName: ?PWSTR,
@@ -349,12 +361,14 @@ pub extern "dfscli" fn NetDfsSetClientInfo(
     Buffer: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsMove(
     OldDfsEntryPath: PWSTR,
     NewDfsEntryPath: PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsAddRootTarget(
     pDfsPath: PWSTR,
     pTargetPath: ?PWSTR,
@@ -363,51 +377,59 @@ pub extern "dfscli" fn NetDfsAddRootTarget(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsRemoveRootTarget(
     pDfsPath: PWSTR,
     pTargetPath: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetSecurity(
     DfsEntryPath: PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: **c_void,
+    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsSetSecurity(
     DfsEntryPath: PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetStdContainerSecurity(
     MachineName: PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: **c_void,
+    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsSetStdContainerSecurity(
     MachineName: PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetFtContainerSecurity(
     DomainName: PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: **c_void,
+    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsSetFtContainerSecurity(
     DomainName: PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dfscli" fn NetDfsGetSupportedNamespaceVersion(
     Origin: DFS_NAMESPACE_VERSION_ORIGIN,
     pName: ?PWSTR,
@@ -428,9 +450,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("system_services.zig").PWSTR;
 
 test {
@@ -441,7 +464,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 22;
     const unicode_alias_count = 0;
-    const import_count = 2;
+    const import_count = 3;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

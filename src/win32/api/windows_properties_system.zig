@@ -7,6 +7,11 @@ pub const PKEY_PIDSTR_MAX = @as(u32, 10);
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
+pub const PROPERTYKEY = extern struct {
+    fmtid: Guid,
+    pid: u32,
+};
+
 const CLSID_InMemoryPropertyStore_Value = @import("../zig.zig").Guid.initString("9a02e012-6303-4e1e-b9a1-630f802592c5");
 pub const CLSID_InMemoryPropertyStore = &CLSID_InMemoryPropertyStore_Value;
 
@@ -58,6 +63,7 @@ pub const PKA_SET = PKA_FLAGS.SET;
 pub const PKA_APPEND = PKA_FLAGS.APPEND;
 pub const PKA_DELETE = PKA_FLAGS.DELETE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyChange_Value = @import("../zig.zig").Guid.initString("f917bc8a-1bba-4478-a245-1bde03eb9431");
 pub const IID_IPropertyChange = &IID_IPropertyChange_Value;
 pub const IPropertyChange = extern struct {
@@ -80,6 +86,7 @@ pub const IPropertyChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyChangeArray_Value = @import("../zig.zig").Guid.initString("380f5cad-1b5e-42f2-805d-637fd392d31e");
 pub const IID_IPropertyChangeArray = &IID_IPropertyChangeArray_Value;
 pub const IPropertyChangeArray = extern struct {
@@ -152,6 +159,7 @@ pub const IPropertyChangeArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyStoreCapabilities_Value = @import("../zig.zig").Guid.initString("c8e2d566-186e-4d49-bf41-6909ead56acc");
 pub const IID_IPropertyStoreCapabilities = &IID_IPropertyStoreCapabilities_Value;
 pub const IPropertyStoreCapabilities = extern struct {
@@ -184,6 +192,7 @@ pub const PSC_NOTINSOURCE = PSC_STATE.NOTINSOURCE;
 pub const PSC_DIRTY = PSC_STATE.DIRTY;
 pub const PSC_READONLY = PSC_STATE.READONLY;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyStoreCache_Value = @import("../zig.zig").Guid.initString("3017056d-9a91-4e90-937d-746c72abbf4f");
 pub const IID_IPropertyStoreCache = &IID_IPropertyStoreCache_Value;
 pub const IPropertyStoreCache = extern struct {
@@ -246,6 +255,7 @@ pub const PET_RANGEDVALUE = PROPENUMTYPE.RANGEDVALUE;
 pub const PET_DEFAULTVALUE = PROPENUMTYPE.DEFAULTVALUE;
 pub const PET_ENDRANGE = PROPENUMTYPE.ENDRANGE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyEnumType_Value = @import("../zig.zig").Guid.initString("11e1fbf9-2d56-4a6b-8db3-7cd193a471f2");
 pub const IID_IPropertyEnumType = &IID_IPropertyEnumType_Value;
 pub const IPropertyEnumType = extern struct {
@@ -299,6 +309,7 @@ pub const IPropertyEnumType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPropertyEnumType2_Value = @import("../zig.zig").Guid.initString("9b6e051c-5ddd-4321-9070-fe2acb55e794");
 pub const IID_IPropertyEnumType2 = &IID_IPropertyEnumType2_Value;
 pub const IPropertyEnumType2 = extern struct {
@@ -320,6 +331,7 @@ pub const IPropertyEnumType2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyEnumTypeList_Value = @import("../zig.zig").Guid.initString("a99400f4-3d84-4557-94ba-1242fb2cc9a6");
 pub const IID_IPropertyEnumTypeList = &IID_IPropertyEnumTypeList_Value;
 pub const IPropertyEnumTypeList = extern struct {
@@ -571,6 +583,7 @@ pub const PDCOT_DATETIME = PROPDESC_CONDITION_TYPE.DATETIME;
 pub const PDCOT_BOOLEAN = PROPDESC_CONDITION_TYPE.BOOLEAN;
 pub const PDCOT_NUMBER = PROPDESC_CONDITION_TYPE.NUMBER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyDescription_Value = @import("../zig.zig").Guid.initString("6f79d558-3e96-4549-a1d1-7d75d2288814");
 pub const IID_IPropertyDescription = &IID_IPropertyDescription_Value;
 pub const IPropertyDescription = extern struct {
@@ -761,6 +774,7 @@ pub const IPropertyDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPropertyDescription2_Value = @import("../zig.zig").Guid.initString("57d2eded-5062-400e-b107-5dae79fe57a6");
 pub const IID_IPropertyDescription2 = &IID_IPropertyDescription2_Value;
 pub const IPropertyDescription2 = extern struct {
@@ -783,6 +797,7 @@ pub const IPropertyDescription2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyDescriptionAliasInfo_Value = @import("../zig.zig").Guid.initString("f67104fc-2af9-46fd-b32d-243c1404f3d1");
 pub const IID_IPropertyDescriptionAliasInfo = &IID_IPropertyDescriptionAliasInfo_Value;
 pub const IPropertyDescriptionAliasInfo = extern struct {
@@ -844,6 +859,7 @@ pub const PDCIT_ONDEMAND = PROPDESC_COLUMNINDEX_TYPE.ONDEMAND;
 pub const PDCIT_ONDISKALL = PROPDESC_COLUMNINDEX_TYPE.ONDISKALL;
 pub const PDCIT_ONDISKVECTOR = PROPDESC_COLUMNINDEX_TYPE.ONDISKVECTOR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyDescriptionSearchInfo_Value = @import("../zig.zig").Guid.initString("078f91bd-29a2-440f-924e-46a291524520");
 pub const IID_IPropertyDescriptionSearchInfo = &IID_IPropertyDescriptionSearchInfo_Value;
 pub const IPropertyDescriptionSearchInfo = extern struct {
@@ -889,6 +905,7 @@ pub const IPropertyDescriptionSearchInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPropertyDescriptionRelatedPropertyInfo_Value = @import("../zig.zig").Guid.initString("507393f4-2a3d-4a60-b59e-d9c75716c2dd");
 pub const IID_IPropertyDescriptionRelatedPropertyInfo = &IID_IPropertyDescriptionRelatedPropertyInfo_Value;
 pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
@@ -929,6 +946,7 @@ pub const PDEF_QUERYABLE = PROPDESC_ENUMFILTER.QUERYABLE;
 pub const PDEF_INFULLTEXTQUERY = PROPDESC_ENUMFILTER.INFULLTEXTQUERY;
 pub const PDEF_COLUMN = PROPDESC_ENUMFILTER.COLUMN;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPropertySystem_Value = @import("../zig.zig").Guid.initString("ca724e8a-c3e6-442b-88a4-6fb0db8035a3");
 pub const IID_IPropertySystem = &IID_IPropertySystem_Value;
 pub const IPropertySystem = extern struct {
@@ -1028,6 +1046,7 @@ pub const IPropertySystem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyDescriptionList_Value = @import("../zig.zig").Guid.initString("1f9fc1d0-c39b-4b26-817f-011967d3440e");
 pub const IID_IPropertyDescriptionList = &IID_IPropertyDescriptionList_Value;
 pub const IPropertyDescriptionList = extern struct {
@@ -1059,6 +1078,7 @@ pub const IPropertyDescriptionList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("bc110b6d-57e8-4148-a9c6-91015ab2f3a5");
 pub const IID_IPropertyStoreFactory = &IID_IPropertyStoreFactory_Value;
 pub const IPropertyStoreFactory = extern struct {
@@ -1104,7 +1124,9 @@ pub const FPSPS_DEFAULT = _PERSIST_SPROPSTORE_FLAGS.DEFAULT;
 pub const FPSPS_READONLY = _PERSIST_SPROPSTORE_FLAGS.READONLY;
 pub const FPSPS_TREAT_NEW_VALUES_AS_DIRTY = _PERSIST_SPROPSTORE_FLAGS.TREAT_NEW_VALUES_AS_DIRTY;
 
-pub const SERIALIZEDPROPSTORAGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const SERIALIZEDPROPSTORAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 const IID_IPropertySystemChangeNotify_Value = @import("../zig.zig").Guid.initString("fa955fd9-38be-4879-a6ce-824cf52d609f");
 pub const IID_IPropertySystemChangeNotify = &IID_IPropertySystemChangeNotify_Value;
@@ -1197,11 +1219,6 @@ pub const DPF_ERROR = DRAWPROGRESSFLAGS.ERROR;
 pub const DPF_WARNING = DRAWPROGRESSFLAGS.WARNING;
 pub const DPF_STOPPED = DRAWPROGRESSFLAGS.STOPPED;
 
-pub const PROPERTYKEY = extern struct {
-    fmtid: Guid,
-    pid: u32,
-};
-
 pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
     NONE = 0,
     NEEDSUPLOAD = 1,
@@ -1255,6 +1272,7 @@ pub const PUIF_DEFAULT = _PROPERTYUI_FLAGS.DEFAULT;
 pub const PUIF_RIGHTALIGN = _PROPERTYUI_FLAGS.RIGHTALIGN;
 pub const PUIF_NOLABELININFOTIP = _PROPERTYUI_FLAGS.NOLABELININFOTIP;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPropertyUI_Value = @import("../zig.zig").Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
 pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
 pub const IPropertyUI = extern struct {
@@ -1415,17 +1433,20 @@ pub const PROPPRG = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (227)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "PROPSYS" fn PropVariantToWinRTPropertyValue(
     propvar: *const PROPVARIANT,
     riid: *const Guid,
     ppv: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "PROPSYS" fn WinRTPropertyValueToPropVariant(
     punkPropertyValue: ?*IUnknown,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "PROPSYS" fn PSFormatForDisplay(
     propkey: *const PROPERTYKEY,
     propvar: *const PROPVARIANT,
@@ -1434,6 +1455,7 @@ pub extern "PROPSYS" fn PSFormatForDisplay(
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "PROPSYS" fn PSFormatForDisplayAlloc(
     key: *const PROPERTYKEY,
     propvar: *const PROPVARIANT,
@@ -1441,6 +1463,7 @@ pub extern "PROPSYS" fn PSFormatForDisplayAlloc(
     ppszDisplay: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "PROPSYS" fn PSFormatPropertyValue(
     pps: *IPropertyStore,
     ppd: *IPropertyDescription,
@@ -1448,28 +1471,33 @@ pub extern "PROPSYS" fn PSFormatPropertyValue(
     ppszDisplay: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSGetImageReferenceForValue(
     propkey: *const PROPERTYKEY,
     propvar: *const PROPVARIANT,
     ppszImageRes: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSStringFromPropertyKey(
     pkey: *const PROPERTYKEY,
     psz: [*:0]u16,
     cch: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSPropertyKeyFromString(
     pszString: [*:0]const u16,
     pkey: *PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreateMemoryPropertyStore(
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreateDelayedMultiplexPropertyStore(
     flags: GETPROPERTYSTOREFLAGS,
     pdpsf: *IDelayedPropertyStoreFactory,
@@ -1479,6 +1507,7 @@ pub extern "PROPSYS" fn PSCreateDelayedMultiplexPropertyStore(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreateMultiplexPropertyStore(
     prgpunkStores: [*]*IUnknown,
     cStores: u32,
@@ -1486,6 +1515,7 @@ pub extern "PROPSYS" fn PSCreateMultiplexPropertyStore(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreatePropertyChangeArray(
     rgpropkey: ?[*]const PROPERTYKEY,
     rgflags: ?[*]const PKA_FLAGS,
@@ -1495,6 +1525,7 @@ pub extern "PROPSYS" fn PSCreatePropertyChangeArray(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreateSimplePropertyChange(
     flags: PKA_FLAGS,
     key: *const PROPERTYKEY,
@@ -1503,23 +1534,27 @@ pub extern "PROPSYS" fn PSCreateSimplePropertyChange(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyDescription(
     propkey: *const PROPERTYKEY,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyDescriptionByName(
     pszCanonicalName: [*:0]const u16,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSLookupPropertyHandlerCLSID(
     pszFilePath: [*:0]const u16,
     pclsid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetItemPropertyHandler(
     punkItem: *IUnknown,
     fReadWrite: BOOL,
@@ -1527,6 +1562,7 @@ pub extern "PROPSYS" fn PSGetItemPropertyHandler(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetItemPropertyHandlerWithCreateObject(
     punkItem: *IUnknown,
     fReadWrite: BOOL,
@@ -1535,56 +1571,67 @@ pub extern "PROPSYS" fn PSGetItemPropertyHandlerWithCreateObject(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyValue(
     pps: *IPropertyStore,
     ppd: *IPropertyDescription,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSSetPropertyValue(
     pps: *IPropertyStore,
     ppd: *IPropertyDescription,
     propvar: *const PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSRegisterPropertySchema(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSUnregisterPropertySchema(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSRefreshPropertySchema(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSEnumeratePropertyDescriptions(
     filterOn: PROPDESC_ENUMFILTER,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyKeyFromName(
     pszName: [*:0]const u16,
     ppropkey: *PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetNameFromPropertyKey(
     propkey: *const PROPERTYKEY,
     ppszCanonicalName: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCoerceToCanonicalValue(
     key: *const PROPERTYKEY,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyDescriptionListFromString(
     pszPropList: [*:0]const u16,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreatePropertyStoreFromPropertySetStorage(
     ppss: *IPropertySetStorage,
     grfMode: u32,
@@ -1592,6 +1639,7 @@ pub extern "PROPSYS" fn PSCreatePropertyStoreFromPropertySetStorage(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreatePropertyStoreFromObject(
     punk: *IUnknown,
     grfMode: u32,
@@ -1599,17 +1647,20 @@ pub extern "PROPSYS" fn PSCreatePropertyStoreFromObject(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSCreateAdapterFromPropertyStore(
     pps: *IPropertyStore,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertySystem(
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyFromPropertyStorage(
     psps: [*]SERIALIZEDPROPSTORAGE,
     cb: u32,
@@ -1617,6 +1668,7 @@ pub extern "PROPSYS" fn PSGetPropertyFromPropertyStorage(
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetNamedPropertyFromPropertyStorage(
     psps: [*]SERIALIZEDPROPSTORAGE,
     cb: u32,
@@ -1624,6 +1676,7 @@ pub extern "PROPSYS" fn PSGetNamedPropertyFromPropertyStorage(
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadType(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
@@ -1631,6 +1684,7 @@ pub extern "PROPSYS" fn PSPropertyBag_ReadType(
     type: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadStr(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
@@ -1638,155 +1692,181 @@ pub extern "PROPSYS" fn PSPropertyBag_ReadStr(
     characterCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadStrAlloc(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadBSTR(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteStr(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteBSTR(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadInt(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteInt(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadSHORT(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteSHORT(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadLONG(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteLONG(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadDWORD(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteDWORD(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadBOOL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteBOOL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadPOINTL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *POINTL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WritePOINTL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *const POINTL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadPOINTS(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *POINTS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WritePOINTS(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *const POINTS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadRECTL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *RECTL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteRECTL(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *const RECTL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadStream(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteStream(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_Delete(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadULONGLONG(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteULONGLONG(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadUnknown(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
@@ -1794,272 +1874,322 @@ pub extern "PROPSYS" fn PSPropertyBag_ReadUnknown(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteUnknown(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     punk: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadGUID(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WriteGUID(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_ReadPropertyKey(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "PROPSYS" fn PSPropertyBag_WritePropertyKey(
     propBag: *IPropertyBag,
     propName: [*:0]const u16,
     value: *const PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromResource(
     hinst: HINSTANCE,
     id: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromBuffer(
     pv: [*]const u8,
     cb: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromCLSID(
     clsid: *const Guid,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromGUIDAsString(
     guid: *const Guid,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromFileTime(
     pftIn: *const FILETIME,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromPropVariantVectorElem(
     propvarIn: *const PROPVARIANT,
     iElem: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantVectorFromPropVariant(
     propvarSingle: *const PROPVARIANT,
     ppropvarVector: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromStrRet(
     pstrret: *STRRET,
     pidl: ?*ITEMIDLIST,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromBooleanVector(
     prgf: ?[*]const BOOL,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromInt16Vector(
     prgn: ?[*]const i16,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromUInt16Vector(
     prgn: ?[*:0]const u16,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromInt32Vector(
     prgn: ?[*]const i32,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromUInt32Vector(
     prgn: ?[*]const u32,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromInt64Vector(
     prgn: ?[*]const i64,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromUInt64Vector(
     prgn: ?[*]const u64,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromDoubleVector(
     prgn: ?[*]const f64,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromFileTimeVector(
     prgft: ?[*]const FILETIME,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromStringVector(
     prgsz: ?[*]?PWSTR,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromStringAsVector(
     psz: ?[*:0]const u16,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBooleanWithDefault(
     propvarIn: *const PROPVARIANT,
     fDefault: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt16WithDefault(
     propvarIn: *const PROPVARIANT,
     iDefault: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt16WithDefault(
     propvarIn: *const PROPVARIANT,
     uiDefault: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt32WithDefault(
     propvarIn: *const PROPVARIANT,
     lDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt32WithDefault(
     propvarIn: *const PROPVARIANT,
     ulDefault: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt64WithDefault(
     propvarIn: *const PROPVARIANT,
     llDefault: i64,
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt64WithDefault(
     propvarIn: *const PROPVARIANT,
     ullDefault: u64,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToDoubleWithDefault(
     propvarIn: *const PROPVARIANT,
     dblDefault: f64,
 ) callconv(@import("std").os.windows.WINAPI) f64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToStringWithDefault(
     propvarIn: *const PROPVARIANT,
     pszDefault: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBoolean(
     propvarIn: *const PROPVARIANT,
     pfRet: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt16(
     propvarIn: *const PROPVARIANT,
     piRet: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt16(
     propvarIn: *const PROPVARIANT,
     puiRet: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt32(
     propvarIn: *const PROPVARIANT,
     plRet: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt32(
     propvarIn: *const PROPVARIANT,
     pulRet: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt64(
     propvarIn: *const PROPVARIANT,
     pllRet: *i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt64(
     propvarIn: *const PROPVARIANT,
     pullRet: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToDouble(
     propvarIn: *const PROPVARIANT,
     pdblRet: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBuffer(
     propvar: *const PROPVARIANT,
     pv: [*]u8,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToString(
     propvar: *const PROPVARIANT,
     psz: [*:0]u16,
     cch: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToGUID(
     propvar: *const PROPVARIANT,
     pguid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToStringAlloc(
     propvar: *const PROPVARIANT,
     ppszOut: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBSTR(
     propvar: *const PROPVARIANT,
     pbstrOut: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToStrRet(
     propvar: *const PROPVARIANT,
     pstrret: *STRRET,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToFileTime(
     propvar: *const PROPVARIANT,
     pstfOut: PSTIME_FLAGS,
     pftOut: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetElementCount(
     propvar: *const PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBooleanVector(
     propvar: *const PROPVARIANT,
     prgf: [*]BOOL,
@@ -2067,6 +2197,7 @@ pub extern "PROPSYS" fn PropVariantToBooleanVector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt16Vector(
     propvar: *const PROPVARIANT,
     prgn: [*]i16,
@@ -2074,6 +2205,7 @@ pub extern "PROPSYS" fn PropVariantToInt16Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt16Vector(
     propvar: *const PROPVARIANT,
     prgn: [*:0]u16,
@@ -2081,6 +2213,7 @@ pub extern "PROPSYS" fn PropVariantToUInt16Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt32Vector(
     propvar: *const PROPVARIANT,
     prgn: [*]i32,
@@ -2088,6 +2221,7 @@ pub extern "PROPSYS" fn PropVariantToInt32Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt32Vector(
     propvar: *const PROPVARIANT,
     prgn: [*]u32,
@@ -2095,6 +2229,7 @@ pub extern "PROPSYS" fn PropVariantToUInt32Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt64Vector(
     propvar: *const PROPVARIANT,
     prgn: [*]i64,
@@ -2102,6 +2237,7 @@ pub extern "PROPSYS" fn PropVariantToInt64Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt64Vector(
     propvar: *const PROPVARIANT,
     prgn: [*]u64,
@@ -2109,6 +2245,7 @@ pub extern "PROPSYS" fn PropVariantToUInt64Vector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToDoubleVector(
     propvar: *const PROPVARIANT,
     prgn: [*]f64,
@@ -2116,6 +2253,7 @@ pub extern "PROPSYS" fn PropVariantToDoubleVector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToFileTimeVector(
     propvar: *const PROPVARIANT,
     prgft: [*]FILETIME,
@@ -2123,6 +2261,7 @@ pub extern "PROPSYS" fn PropVariantToFileTimeVector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToStringVector(
     propvar: *const PROPVARIANT,
     prgsz: [*]PWSTR,
@@ -2130,131 +2269,153 @@ pub extern "PROPSYS" fn PropVariantToStringVector(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBooleanVectorAlloc(
     propvar: *const PROPVARIANT,
     pprgf: **BOOL,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt16VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **i16,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt16VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **u16,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt32VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **i32,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt32VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **u32,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToInt64VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **i64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToUInt64VectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **u64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToDoubleVectorAlloc(
     propvar: *const PROPVARIANT,
     pprgn: **f64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToFileTimeVectorAlloc(
     propvar: *const PROPVARIANT,
     pprgft: **FILETIME,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToStringVectorAlloc(
     propvar: *const PROPVARIANT,
     pprgsz: **PWSTR,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetBooleanElem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pfVal: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetInt16Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetUInt16Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetInt32Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetUInt32Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetInt64Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetUInt64Elem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetDoubleElem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pnVal: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetFileTimeElem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     pftVal: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantGetStringElem(
     propvar: *const PROPVARIANT,
     iElem: u32,
     ppszVal: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn ClearPropVariantArray(
     rgPropVar: [*]PROPVARIANT,
     cVars: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantCompareEx(
     propvar1: *const PROPVARIANT,
     propvar2: *const PROPVARIANT,
@@ -2262,6 +2423,7 @@ pub extern "PROPSYS" fn PropVariantCompareEx(
     flags: PROPVAR_COMPARE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantChangeType(
     ppropvarDest: *PROPVARIANT,
     propvarSrc: *const PROPVARIANT,
@@ -2269,238 +2431,282 @@ pub extern "PROPSYS" fn PropVariantChangeType(
     vt: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "PROPSYS" fn PropVariantToVariant(
     pPropVar: *const PROPVARIANT,
     pVar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "PROPSYS" fn VariantToPropVariant(
     pVar: *const VARIANT,
     pPropVar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromResource(
     hinst: HINSTANCE,
     id: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromBuffer(
     pv: [*]const u8,
     cb: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromGUIDAsString(
     guid: *const Guid,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromFileTime(
     pft: *const FILETIME,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromFileTimeArray(
     prgft: ?[*]const FILETIME,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromStrRet(
     pstrret: *STRRET,
     pidl: *ITEMIDLIST,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromVariantArrayElem(
     varIn: *const VARIANT,
     iElem: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromBooleanArray(
     prgf: [*]const BOOL,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromInt16Array(
     prgn: [*]const i16,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromUInt16Array(
     prgn: [*:0]const u16,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromInt32Array(
     prgn: [*]const i32,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromUInt32Array(
     prgn: [*]const u32,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromInt64Array(
     prgn: [*]const i64,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromUInt64Array(
     prgn: [*]const u64,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromDoubleArray(
     prgn: [*]const f64,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromStringArray(
     prgsz: [*]PWSTR,
     cElems: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBooleanWithDefault(
     varIn: *const VARIANT,
     fDefault: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt16WithDefault(
     varIn: *const VARIANT,
     iDefault: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt16WithDefault(
     varIn: *const VARIANT,
     uiDefault: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt32WithDefault(
     varIn: *const VARIANT,
     lDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt32WithDefault(
     varIn: *const VARIANT,
     ulDefault: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt64WithDefault(
     varIn: *const VARIANT,
     llDefault: i64,
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt64WithDefault(
     varIn: *const VARIANT,
     ullDefault: u64,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToDoubleWithDefault(
     varIn: *const VARIANT,
     dblDefault: f64,
 ) callconv(@import("std").os.windows.WINAPI) f64;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToStringWithDefault(
     varIn: *const VARIANT,
     pszDefault: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBoolean(
     varIn: *const VARIANT,
     pfRet: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt16(
     varIn: *const VARIANT,
     piRet: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt16(
     varIn: *const VARIANT,
     puiRet: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt32(
     varIn: *const VARIANT,
     plRet: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt32(
     varIn: *const VARIANT,
     pulRet: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt64(
     varIn: *const VARIANT,
     pllRet: *i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt64(
     varIn: *const VARIANT,
     pullRet: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToDouble(
     varIn: *const VARIANT,
     pdblRet: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBuffer(
     varIn: *const VARIANT,
     pv: [*]u8,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToGUID(
     varIn: *const VARIANT,
     pguid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToString(
     varIn: *const VARIANT,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToStringAlloc(
     varIn: *const VARIANT,
     ppszBuf: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToDosDateTime(
     varIn: *const VARIANT,
     pwDate: *u16,
     pwTime: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToStrRet(
     varIn: *const VARIANT,
     pstrret: *STRRET,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToFileTime(
     varIn: *const VARIANT,
     stfOut: PSTIME_FLAGS,
     pftOut: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetElementCount(
     varIn: *const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBooleanArray(
     @"var": *const VARIANT,
     prgf: [*]BOOL,
@@ -2508,6 +2714,7 @@ pub extern "PROPSYS" fn VariantToBooleanArray(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt16Array(
     @"var": *const VARIANT,
     prgn: [*]i16,
@@ -2515,6 +2722,7 @@ pub extern "PROPSYS" fn VariantToInt16Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt16Array(
     @"var": *const VARIANT,
     prgn: [*:0]u16,
@@ -2522,6 +2730,7 @@ pub extern "PROPSYS" fn VariantToUInt16Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt32Array(
     @"var": *const VARIANT,
     prgn: [*]i32,
@@ -2529,6 +2738,7 @@ pub extern "PROPSYS" fn VariantToInt32Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt32Array(
     @"var": *const VARIANT,
     prgn: [*]u32,
@@ -2536,6 +2746,7 @@ pub extern "PROPSYS" fn VariantToUInt32Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt64Array(
     @"var": *const VARIANT,
     prgn: [*]i64,
@@ -2543,6 +2754,7 @@ pub extern "PROPSYS" fn VariantToInt64Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt64Array(
     @"var": *const VARIANT,
     prgn: [*]u64,
@@ -2550,6 +2762,7 @@ pub extern "PROPSYS" fn VariantToUInt64Array(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToDoubleArray(
     @"var": *const VARIANT,
     prgn: [*]f64,
@@ -2557,6 +2770,7 @@ pub extern "PROPSYS" fn VariantToDoubleArray(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToStringArray(
     @"var": *const VARIANT,
     prgsz: [*]PWSTR,
@@ -2564,130 +2778,152 @@ pub extern "PROPSYS" fn VariantToStringArray(
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBooleanArrayAlloc(
     @"var": *const VARIANT,
     pprgf: **BOOL,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt16ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **i16,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt16ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **u16,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt32ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **i32,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt32ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **u32,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToInt64ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **i64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToUInt64ArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **u64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToDoubleArrayAlloc(
     @"var": *const VARIANT,
     pprgn: **f64,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToStringArrayAlloc(
     @"var": *const VARIANT,
     pprgsz: **PWSTR,
     pcElem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetBooleanElem(
     @"var": *const VARIANT,
     iElem: u32,
     pfVal: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetInt16Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetUInt16Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetInt32Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetUInt32Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetInt64Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetUInt64Elem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetDoubleElem(
     @"var": *const VARIANT,
     iElem: u32,
     pnVal: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantGetStringElem(
     @"var": *const VARIANT,
     iElem: u32,
     ppszVal: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn ClearVariantArray(
     pvars: [*]VARIANT,
     cvars: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantCompare(
     var1: *const VARIANT,
     var2: *const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
     hwnd: HWND,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
     pidl: *ITEMIDLIST,
     flags: GETPROPERTYSTOREFLAGS,
@@ -2695,6 +2931,7 @@ pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
     pszPath: [*:0]const u16,
     pbc: ?*IBindCtx,
@@ -2703,11 +2940,13 @@ pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHAddDefaultPropertiesByExt(
     pszExt: [*:0]const u16,
     pPropStore: *IPropertyStore,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_OpenProperties(
     pszApp: [*:0]const u16,
     pszPIF: ?[*:0]const u16,
@@ -2715,6 +2954,7 @@ pub extern "SHELL32" fn PifMgr_OpenProperties(
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_GetProperties(
     hProps: HANDLE,
     pszGroup: ?[*:0]const u8,
@@ -2723,6 +2963,7 @@ pub extern "SHELL32" fn PifMgr_GetProperties(
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_SetProperties(
     hProps: HANDLE,
     pszGroup: ?[*:0]const u8,
@@ -2731,11 +2972,13 @@ pub extern "SHELL32" fn PifMgr_SetProperties(
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_CloseProperties(
     hProps: HANDLE,
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHPropStgCreate(
     psstg: *IPropertySetStorage,
     fmtid: *const Guid,
@@ -2747,6 +2990,7 @@ pub extern "SHELL32" fn SHPropStgCreate(
     puCodePage: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHPropStgReadMultiple(
     pps: *IPropertyStorage,
     uCodePage: u32,
@@ -2755,6 +2999,7 @@ pub extern "SHELL32" fn SHPropStgReadMultiple(
     rgvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHPropStgWriteMultiple(
     pps: *IPropertyStorage,
     puCodePage: ?*u32,

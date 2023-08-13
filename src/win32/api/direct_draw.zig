@@ -434,7 +434,9 @@ pub const DDENUMRET_OK = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (48)
 //--------------------------------------------------------------------------------
-pub const _DDFXROP = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _DDFXROP = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const LPDDENUMCALLBACKA = fn(
     param0: *Guid,

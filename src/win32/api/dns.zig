@@ -310,6 +310,9 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (93)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+pub const DnsContextHandle = ?*c_void;
+
 pub const IP4_ARRAY = extern struct {
     AddrCount: u32,
     AddrArray: [1]u32,
@@ -1077,13 +1080,11 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-pub const DnsContextHandle = ?*c_void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (57)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQueryConfig(
     Config: DNS_CONFIG_TYPE,
     Flag: u32,
@@ -1093,23 +1094,27 @@ pub extern "DNSAPI" fn DnsQueryConfig(
     pBufLen: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordCopyEx(
     pRecord: *DNS_RECORDA,
     CharSetIn: DNS_CHARSET,
     CharSetOut: DNS_CHARSET,
 ) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetCopyEx(
     pRecordSet: *DNS_RECORDA,
     CharSetIn: DNS_CHARSET,
     CharSetOut: DNS_CHARSET,
 ) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordCompare(
     pRecord1: *DNS_RECORDA,
     pRecord2: *DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetCompare(
     pRR1: *DNS_RECORDA,
     pRR2: *DNS_RECORDA,
@@ -1117,15 +1122,18 @@ pub extern "DNSAPI" fn DnsRecordSetCompare(
     ppDiff2: ?*?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetDetach(
     pRecordList: *DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "DNSAPI" fn DnsFree(
     pData: ?*c_void,
     FreeType: DNS_FREE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_A(
     pszName: [*:0]const u8,
     wType: u16,
@@ -1135,6 +1143,7 @@ pub extern "DNSAPI" fn DnsQuery_A(
     pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_UTF8(
     pszName: [*:0]const u8,
     wType: u16,
@@ -1144,6 +1153,7 @@ pub extern "DNSAPI" fn DnsQuery_UTF8(
     pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_W(
     pszName: [*:0]const u16,
     wType: u16,
@@ -1153,32 +1163,38 @@ pub extern "DNSAPI" fn DnsQuery_W(
     pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "DNSAPI" fn DnsQueryEx(
     pQueryRequest: *DNS_QUERY_REQUEST,
     pQueryResults: *DNS_QUERY_RESULT,
     pCancelHandle: ?*DNS_QUERY_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "DNSAPI" fn DnsCancelQuery(
     pCancelHandle: *DNS_QUERY_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_W(
     CredentialFlags: u32,
     Credentials: ?*c_void,
-    pContext: *DnsContextHandle,
+    pContext: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_A(
     CredentialFlags: u32,
     Credentials: ?*c_void,
-    pContext: *DnsContextHandle,
+    pContext: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReleaseContextHandle(
     hContext: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsModifyRecordsInSet_W(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
@@ -1188,6 +1204,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_W(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsModifyRecordsInSet_A(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
@@ -1197,6 +1214,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_A(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
@@ -1206,6 +1224,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetW(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
@@ -1214,6 +1233,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetW(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetA(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
@@ -1222,6 +1242,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetA(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
@@ -1230,31 +1251,37 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_W(
     pszName: [*:0]const u16,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_A(
     pszName: [*:0]const u8,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_UTF8(
     pszName: [*:0]const u8,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsNameCompare_A(
     pName1: [*:0]const u8,
     pName2: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsNameCompare_W(
     pName1: [*:0]const u16,
     pName2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_W(
     pDnsBuffer: *DNS_MESSAGE_BUFFER,
     pdwBufferSize: *u32,
@@ -1264,6 +1291,7 @@ pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_W(
     fRecursionDesired: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_UTF8(
     pDnsBuffer: *DNS_MESSAGE_BUFFER,
     pdwBufferSize: *u32,
@@ -1273,18 +1301,21 @@ pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_UTF8(
     fRecursionDesired: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsExtractRecordsFromMessage_W(
     pDnsBuffer: *DNS_MESSAGE_BUFFER,
     wMessageLength: u16,
     ppRecord: **DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsExtractRecordsFromMessage_UTF8(
     pDnsBuffer: *DNS_MESSAGE_BUFFER,
     wMessageLength: u16,
     ppRecord: **DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "DNSAPI" fn DnsGetProxyInformation(
     hostName: [*:0]const u16,
     proxyInformation: *DNS_PROXY_INFORMATION,
@@ -1293,6 +1324,7 @@ pub extern "DNSAPI" fn DnsGetProxyInformation(
     completionContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "DNSAPI" fn DnsFreeProxyName(
     proxyName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1360,6 +1392,7 @@ pub extern "DNSAPI" fn DnsConnectionDeletePolicyEntries(
     PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceConstructInstance(
     pServiceName: [*:0]const u16,
     pHostName: [*:0]const u16,
@@ -1373,51 +1406,62 @@ pub extern "DNSAPI" fn DnsServiceConstructInstance(
     values: [*]PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) *DNS_SERVICE_INSTANCE;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceCopyInstance(
     pOrig: *DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) *DNS_SERVICE_INSTANCE;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceFreeInstance(
     pInstance: *DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceBrowse(
     pRequest: *DNS_SERVICE_BROWSE_REQUEST,
     pCancel: *DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceBrowseCancel(
     pCancelHandle: *DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceResolve(
     pRequest: *DNS_SERVICE_RESOLVE_REQUEST,
     pCancel: *DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceResolveCancel(
     pCancelHandle: *DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceRegister(
     pRequest: *DNS_SERVICE_REGISTER_REQUEST,
     pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceDeRegister(
     pRequest: *DNS_SERVICE_REGISTER_REQUEST,
     pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceRegisterCancel(
     pCancelHandle: *DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsStartMulticastQuery(
     pQueryRequest: *MDNS_QUERY_REQUEST,
     pHandle: *MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsStopMulticastQuery(
     pHandle: *MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;

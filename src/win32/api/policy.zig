@@ -280,6 +280,7 @@ pub const GPHintSite = GROUP_POLICY_HINT_TYPE.Site;
 pub const GPHintDomain = GROUP_POLICY_HINT_TYPE.Domain;
 pub const GPHintOrganizationalUnit = GROUP_POLICY_HINT_TYPE.OrganizationalUnit;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPEInformation_Value = @import("../zig.zig").Guid.initString("8fc0b735-a0e1-11d1-a7d3-0000f87571e3");
 pub const IID_IGPEInformation = &IID_IGPEInformation_Value;
 pub const IGPEInformation = extern struct {
@@ -375,6 +376,7 @@ pub const IGPEInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGroupPolicyObject_Value = @import("../zig.zig").Guid.initString("ea502723-a23d-11d1-a7d3-0000f87571e3");
 pub const IID_IGroupPolicyObject = &IID_IGroupPolicyObject_Value;
 pub const IGroupPolicyObject = extern struct {
@@ -549,6 +551,7 @@ pub const IGroupPolicyObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRSOPInformation_Value = @import("../zig.zig").Guid.initString("9a5a81b5-d9c7-49ef-9d11-ddf50968c48d");
 pub const IID_IRSOPInformation = &IID_IRSOPInformation_Value;
 pub const IRSOPInformation = extern struct {
@@ -610,32 +613,39 @@ pub const GPOBROWSEINFO = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RefreshPolicy(
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RefreshPolicyEx(
     bMachine: BOOL,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn EnterCriticalPolicySection(
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn LeaveCriticalPolicySection(
     hSection: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RegisterGPNotification(
     hEvent: HANDLE,
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn UnregisterGPNotification(
     hEvent: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetGPOListA(
     hToken: HANDLE,
     lpName: ?[*:0]const u8,
@@ -645,6 +655,7 @@ pub extern "USERENV" fn GetGPOListA(
     pGPOList: **GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetGPOListW(
     hToken: HANDLE,
     lpName: ?[*:0]const u16,
@@ -654,36 +665,42 @@ pub extern "USERENV" fn GetGPOListW(
     pGPOList: **GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn FreeGPOListA(
     pGPOList: *GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn FreeGPOListW(
     pGPOList: *GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetAppliedGPOListA(
     dwFlags: u32,
     pMachineName: ?[*:0]const u8,
-    pSidUser: ?*c_void,
+    pSidUser: PSID,
     pGuidExtension: *Guid,
     ppGPOList: **GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetAppliedGPOListW(
     dwFlags: u32,
     pMachineName: ?[*:0]const u16,
-    pSidUser: ?*c_void,
+    pSidUser: PSID,
     pGuidExtension: *Guid,
     ppGPOList: **GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompleted(
     extensionId: *Guid,
     pAsyncHandle: ?*c_void,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
     extensionId: *Guid,
     pAsyncHandle: ?*c_void,
@@ -691,9 +708,10 @@ pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
     RsopStatus: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopAccessCheckByType(
-    pSecurityDescriptor: *c_void,
-    pPrincipalSelfSid: ?*c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pPrincipalSelfSid: PSID,
     pRsopToken: *c_void,
     dwDesiredAccessMask: u32,
     pObjectTypeList: ?[*]OBJECT_TYPE_LIST,
@@ -705,6 +723,7 @@ pub extern "USERENV" fn RsopAccessCheckByType(
     pbAccessStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopFileAccessCheck(
     pszFileName: PWSTR,
     pRsopToken: *c_void,
@@ -713,6 +732,7 @@ pub extern "USERENV" fn RsopFileAccessCheck(
     pbAccessStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopSetPolicySettingStatus(
     dwFlags: u32,
     pServices: *IWbemServices,
@@ -721,6 +741,7 @@ pub extern "USERENV" fn RsopSetPolicySettingStatus(
     pStatus: [*]POLICYSETTINGSTATUSINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopResetPolicySettingStatus(
     dwFlags: u32,
     pServices: *IWbemServices,
@@ -733,10 +754,12 @@ pub extern "USERENV" fn GenerateGPNotification(
     dwMgmtProductOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn InstallApplication(
     pInstallInfo: *INSTALLDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn UninstallApplication(
     ProductCode: PWSTR,
     dwStatus: u32,
@@ -748,6 +771,7 @@ pub extern "ADVAPI32" fn CommandLineFromMsiDescriptor(
     CommandLineLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetManagedApplications(
     pCategory: *Guid,
     dwQueryFlags: u32,
@@ -756,6 +780,7 @@ pub extern "ADVAPI32" fn GetManagedApplications(
     prgManagedApps: **MANAGEDAPPLICATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetLocalManagedApplications(
     bUserApps: BOOL,
     pdwApps: *u32,
@@ -768,35 +793,42 @@ pub extern "ADVAPI32" fn GetLocalManagedApplicationData(
     SupportUrl: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetManagedApplicationCategories(
     dwReserved: u32,
     pAppCategory: *APPCATEGORYINFOLIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn CreateGPOLink(
     lpGPO: PWSTR,
     lpContainer: PWSTR,
     fHighPriority: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn DeleteGPOLink(
     lpGPO: PWSTR,
     lpContainer: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn DeleteAllGPOLinks(
     lpContainer: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn BrowseForGPO(
     lpBrowseInfo: *GPOBROWSEINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn ImportRSoPData(
     lpNameSpace: PWSTR,
     lpFileName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "GPEDIT" fn ExportRSoPData(
     lpNameSpace: PWSTR,
     lpFileName: PWSTR,
@@ -832,22 +864,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const HKEY = @import("windows_programming.zig").HKEY;
 const PWSTR = @import("system_services.zig").PWSTR;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
-const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const IUnknown = @import("com.zig").IUnknown;
-const IWbemClassObject = @import("wmi.zig").IWbemClassObject;
+const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
 const HRESULT = @import("com.zig").HRESULT;
+const IWbemClassObject = @import("wmi.zig").IWbemClassObject;
 const APPCATEGORYINFOLIST = @import("shell.zig").APPCATEGORYINFOLIST;
 const PSTR = @import("system_services.zig").PSTR;
-const GENERIC_MAPPING = @import("security.zig").GENERIC_MAPPING;
+const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
+const GENERIC_MAPPING = @import("security.zig").GENERIC_MAPPING;
 const PRIVILEGE_SET = @import("security.zig").PRIVILEGE_SET;
 const IWbemServices = @import("wmi.zig").IWbemServices;
 const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
@@ -868,7 +902,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 32;
     const unicode_alias_count = 4;
-    const import_count = 19;
+    const import_count = 21;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

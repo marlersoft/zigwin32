@@ -712,10 +712,12 @@ pub const CF_PLACEHOLDER_RANGE_INFO_MODIFIED = CF_PLACEHOLDER_RANGE_INFO_CLASS.M
 //--------------------------------------------------------------------------------
 // Section: Functions (35)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlatformInfo(
     PlatformVersion: *CF_PLATFORM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfRegisterSyncRoot(
     SyncRootPath: [*:0]const u16,
     Registration: *const CF_SYNC_REGISTRATION,
@@ -723,10 +725,12 @@ pub extern "cldapi" fn CfRegisterSyncRoot(
     RegisterFlags: CF_REGISTER_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfUnregisterSyncRoot(
     SyncRootPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConnectSyncRoot(
     SyncRootPath: [*:0]const u16,
     CallbackTable: *const CF_CALLBACK_REGISTRATION,
@@ -735,40 +739,48 @@ pub extern "cldapi" fn CfConnectSyncRoot(
     ConnectionKey: *CF_CONNECTION_KEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfDisconnectSyncRoot(
     ConnectionKey: CF_CONNECTION_KEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetTransferKey(
     FileHandle: HANDLE,
     TransferKey: *LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReleaseTransferKey(
     FileHandle: HANDLE,
     TransferKey: *LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfExecute(
     OpInfo: *const CF_OPERATION_INFO,
     OpParams: *CF_OPERATION_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfUpdateSyncProviderStatus(
     ConnectionKey: CF_CONNECTION_KEY,
     ProviderStatus: CF_SYNC_PROVIDER_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfQuerySyncProviderStatus(
     ConnectionKey: CF_CONNECTION_KEY,
     ProviderStatus: *CF_SYNC_PROVIDER_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "cldapi" fn CfReportSyncStatus(
     SyncRootPath: [*:0]const u16,
     SyncStatus: ?*CF_SYNC_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfCreatePlaceholders(
     BaseDirectoryPath: [*:0]const u16,
     PlaceholderArray: [*]CF_PLACEHOLDER_CREATE_INFO,
@@ -777,28 +789,34 @@ pub extern "cldapi" fn CfCreatePlaceholders(
     EntriesProcessed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfOpenFileWithOplock(
     FilePath: [*:0]const u16,
     Flags: CF_OPEN_FILE_FLAGS,
     ProtectedHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReferenceProtectedHandle(
     ProtectedHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetWin32HandleFromProtectedHandle(
     ProtectedHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReleaseProtectedHandle(
     ProtectedHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfCloseHandle(
     FileHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConvertToPlaceholder(
     FileHandle: HANDLE,
     FileIdentity: ?[*]const u8,
@@ -808,6 +826,7 @@ pub extern "cldapi" fn CfConvertToPlaceholder(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfUpdatePlaceholder(
     FileHandle: HANDLE,
     FsMetadata: ?*const CF_FS_METADATA,
@@ -820,12 +839,14 @@ pub extern "cldapi" fn CfUpdatePlaceholder(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfRevertPlaceholder(
     FileHandle: HANDLE,
     RevertFlags: CF_REVERT_FLAGS,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfHydratePlaceholder(
     FileHandle: HANDLE,
     StartingOffset: LARGE_INTEGER,
@@ -842,6 +863,7 @@ pub extern "cldapi" fn CfDehydratePlaceholder(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetPinState(
     FileHandle: HANDLE,
     PinState: CF_PIN_STATE,
@@ -849,6 +871,7 @@ pub extern "cldapi" fn CfSetPinState(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetInSyncState(
     FileHandle: HANDLE,
     InSyncState: CF_IN_SYNC_STATE,
@@ -856,30 +879,36 @@ pub extern "cldapi" fn CfSetInSyncState(
     InSyncUsn: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfSetCorrelationVector(
     FileHandle: HANDLE,
     CorrelationVector: *const CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetCorrelationVector(
     FileHandle: HANDLE,
     CorrelationVector: *CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromAttributeTag(
     FileAttributes: u32,
     ReparseTag: u32,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromFileInfo(
     InfoBuffer: *const c_void,
     InfoClass: FILE_INFO_BY_HANDLE_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromFindData(
     FindData: *const WIN32_FIND_DATAA,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderInfo(
     FileHandle: HANDLE,
     InfoClass: CF_PLACEHOLDER_INFO_CLASS,
@@ -888,6 +917,7 @@ pub extern "cldapi" fn CfGetPlaceholderInfo(
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetSyncRootInfoByPath(
     FilePath: [*:0]const u16,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
@@ -896,6 +926,7 @@ pub extern "cldapi" fn CfGetSyncRootInfoByPath(
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetSyncRootInfoByHandle(
     FileHandle: HANDLE,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
@@ -904,6 +935,7 @@ pub extern "cldapi" fn CfGetSyncRootInfoByHandle(
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
     FileHandle: HANDLE,
     InfoClass: CF_PLACEHOLDER_RANGE_INFO_CLASS,
@@ -914,6 +946,7 @@ pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReportProviderProgress(
     ConnectionKey: CF_CONNECTION_KEY,
     TransferKey: LARGE_INTEGER,

@@ -6,17 +6,17 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
-pub const HACCEL = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
-pub const HCURSOR = ?*c_void;
-
 // TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
 pub const HICON = ?*c_void;
 
 // TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
 pub const HMENU = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
+pub const HCURSOR = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
+pub const HACCEL = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

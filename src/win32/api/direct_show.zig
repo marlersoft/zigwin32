@@ -681,8 +681,683 @@ pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
 
 //--------------------------------------------------------------------------------
-// Section: Types (1478)
+// Section: Types (1477)
 //--------------------------------------------------------------------------------
+pub const DMO_MEDIA_TYPE = extern struct {
+    majortype: Guid,
+    subtype: Guid,
+    bFixedSizeSamples: BOOL,
+    bTemporalCompression: BOOL,
+    lSampleSize: u32,
+    formattype: Guid,
+    pUnk: *IUnknown,
+    cbFormat: u32,
+    pbFormat: *u8,
+};
+
+const IID_IMediaBuffer_Value = @import("../zig.zig").Guid.initString("59eff8b9-938c-4a26-82f2-95cb84cdc837");
+pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
+pub const IMediaBuffer = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetLength: fn(
+            self: *const IMediaBuffer,
+            cbLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxLength: fn(
+            self: *const IMediaBuffer,
+            pcbMaxLength: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBufferAndLength: fn(
+            self: *const IMediaBuffer,
+            ppBuffer: ?*?*u8,
+            pcbLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_SetLength(self: *const T, cbLength: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).SetLength(@ptrCast(*const IMediaBuffer, self), cbLength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
+    pBuffer: *IMediaBuffer,
+    dwStatus: u32,
+    rtTimestamp: i64,
+    rtTimelength: i64,
+};
+
+const IID_IMediaObject_Value = @import("../zig.zig").Guid.initString("d8ad0f58-5494-4102-97c5-ec798e59bcf4");
+pub const IID_IMediaObject = &IID_IMediaObject_Value;
+pub const IMediaObject = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStreamCount: fn(
+            self: *const IMediaObject,
+            pcInputStreams: *u32,
+            pcOutputStreams: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputStreamInfo: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputStreamInfo: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            dwTypeIndex: u32,
+            pmt: ?*DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            dwTypeIndex: u32,
+            pmt: ?*DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInputType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pmt: ?*const DMO_MEDIA_TYPE,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pmt: ?*const DMO_MEDIA_TYPE,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputCurrentType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pmt: *DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputCurrentType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pmt: *DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputSizeInfo: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pcbSize: *u32,
+            pcbMaxLookahead: *u32,
+            pcbAlignment: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputSizeInfo: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pcbSize: *u32,
+            pcbAlignment: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputMaxLatency: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            prtMaxLatency: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInputMaxLatency: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            rtMaxLatency: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Discontinuity: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AllocateStreamingResources: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeStreamingResources: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputStatus: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            dwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessInput: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pBuffer: *IMediaBuffer,
+            dwFlags: u32,
+            rtTimestamp: i64,
+            rtTimelength: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessOutput: fn(
+            self: *const IMediaObject,
+            dwFlags: u32,
+            cOutputBufferCount: u32,
+            pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
+            pdwStatus: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Lock: fn(
+            self: *const IMediaObject,
+            bLock: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetStreamCount(self: *const T, pcInputStreams: *u32, pcOutputStreams: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMediaObject, self), pcInputStreams, pcOutputStreams);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputStreamInfo(self: *const T, dwInputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pdwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputStreamInfo(self: *const T, dwOutputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pdwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputType(self: *const T, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwTypeIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputType(self: *const T, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, dwTypeIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetInputType(self: *const T, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetOutputType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputCurrentType(self: *const T, dwInputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputCurrentType(self: *const T, dwOutputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputSizeInfo(self: *const T, dwInputStreamIndex: u32, pcbSize: *u32, pcbMaxLookahead: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputSizeInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputSizeInfo(self: *const T, dwOutputStreamIndex: u32, pcbSize: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputSizeInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pcbSize, pcbAlignment);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, prtMaxLatency: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, prtMaxLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, rtMaxLatency: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, rtMaxLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Flush(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Flush(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Discontinuity(self: *const T, dwInputStreamIndex: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Discontinuity(@ptrCast(*const IMediaObject, self), dwInputStreamIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_AllocateStreamingResources(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).AllocateStreamingResources(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_FreeStreamingResources(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).FreeStreamingResources(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputStatus(self: *const T, dwInputStreamIndex: u32, dwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_ProcessInput(self: *const T, dwInputStreamIndex: u32, pBuffer: *IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessInput(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMediaObject, self), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Lock(self: *const T, bLock: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Lock(@ptrCast(*const IMediaObject, self), bLock);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDMO_Value = @import("../zig.zig").Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
+pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
+pub const IEnumDMO = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDMO,
+            cItemsToFetch: u32,
+            pCLSID: [*]Guid,
+            Names: [*]PWSTR,
+            pcItemsFetched: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDMO,
+            cItemsToSkip: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDMO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDMO,
+            ppEnum: **IEnumDMO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Next(self: *const T, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]PWSTR, pcItemsFetched: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Next(@ptrCast(*const IEnumDMO, self), cItemsToFetch, pCLSID, Names, pcItemsFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Skip(self: *const T, cItemsToSkip: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Skip(@ptrCast(*const IEnumDMO, self), cItemsToSkip);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Reset(@ptrCast(*const IEnumDMO, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Clone(self: *const T, ppEnum: **IEnumDMO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Clone(@ptrCast(*const IEnumDMO, self), ppEnum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IMediaObjectInPlace_Value = @import("../zig.zig").Guid.initString("651b9ad0-0fc7-4aa9-9538-d89931010741");
+pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
+pub const IMediaObjectInPlace = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Process: fn(
+            self: *const IMediaObjectInPlace,
+            ulSize: u32,
+            pData: [*:0]u8,
+            refTimeStart: i64,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IMediaObjectInPlace,
+            ppMediaObject: **IMediaObjectInPlace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLatency: fn(
+            self: *const IMediaObjectInPlace,
+            pLatencyTime: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_Process(self: *const T, ulSize: u32, pData: [*:0]u8, refTimeStart: i64, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Process(@ptrCast(*const IMediaObjectInPlace, self), ulSize, pData, refTimeStart, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_Clone(self: *const T, ppMediaObject: **IMediaObjectInPlace) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Clone(@ptrCast(*const IMediaObjectInPlace, self), ppMediaObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_GetLatency(self: *const T, pLatencyTime: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).GetLatency(@ptrCast(*const IMediaObjectInPlace, self), pLatencyTime);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDMOQualityControl_Value = @import("../zig.zig").Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
+pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
+pub const IDMOQualityControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNow: fn(
+            self: *const IDMOQualityControl,
+            rtNow: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatus: fn(
+            self: *const IDMOQualityControl,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatus: fn(
+            self: *const IDMOQualityControl,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_SetNow(self: *const T, rtNow: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetNow(@ptrCast(*const IDMOQualityControl, self), rtNow);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_SetStatus(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetStatus(@ptrCast(*const IDMOQualityControl, self), dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_GetStatus(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).GetStatus(@ptrCast(*const IDMOQualityControl, self), pdwFlags);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDMOVideoOutputOptimizations_Value = @import("../zig.zig").Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
+pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
+pub const IDMOVideoOutputOptimizations = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryOperationModePreferences: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedCapabilities: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOperationMode: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            dwEnabledFeatures: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentOperationMode: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwEnabledFeatures: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentSampleRequirements: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedFeatures: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_QueryOperationModePreferences(self: *const T, ulOutputStreamIndex: u32, pdwRequestedCapabilities: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).QueryOperationModePreferences(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedCapabilities);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_SetOperationMode(self: *const T, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).SetOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, dwEnabledFeatures);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_GetCurrentOperationMode(self: *const T, ulOutputStreamIndex: u32, pdwEnabledFeatures: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwEnabledFeatures);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_GetCurrentSampleRequirements(self: *const T, ulOutputStreamIndex: u32, pdwRequestedFeatures: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentSampleRequirements(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedFeatures);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DXVA_COPPSetProtectionLevelCmdData = extern struct {
+    ProtType: u32,
+    ProtLevel: u32,
+    ExtendedInfoChangeMask: u32,
+    ExtendedInfoData: u32,
+};
+
+pub const COPP_HDCP_Protection_Level = extern enum(i32) {
+    Level0 = 0,
+    LevelMin = 0,
+    Level1 = 1,
+    LevelMax = 1,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_HDCP_Level0 = COPP_HDCP_Protection_Level.Level0;
+pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.LevelMin;
+pub const COPP_HDCP_Level1 = COPP_HDCP_Protection_Level.Level1;
+pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.LevelMax;
+pub const COPP_HDCP_ForceDWORD = COPP_HDCP_Protection_Level.ForceDWORD;
+
+pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
+    Disabled = 0,
+    LevelMin = 0,
+    CopyFreely = 1,
+    CopyNoMore = 2,
+    CopyOneGeneration = 3,
+    CopyNever = 4,
+    RedistributionControlRequired = 8,
+    LevelMax = 12,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_CGMSA_Disabled = COPP_CGMSA_Protection_Level.Disabled;
+pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.LevelMin;
+pub const COPP_CGMSA_CopyFreely = COPP_CGMSA_Protection_Level.CopyFreely;
+pub const COPP_CGMSA_CopyNoMore = COPP_CGMSA_Protection_Level.CopyNoMore;
+pub const COPP_CGMSA_CopyOneGeneration = COPP_CGMSA_Protection_Level.CopyOneGeneration;
+pub const COPP_CGMSA_CopyNever = COPP_CGMSA_Protection_Level.CopyNever;
+pub const COPP_CGMSA_RedistributionControlRequired = COPP_CGMSA_Protection_Level.RedistributionControlRequired;
+pub const COPP_CGMSA_LevelMax = COPP_CGMSA_Protection_Level.LevelMax;
+pub const COPP_CGMSA_ForceDWORD = COPP_CGMSA_Protection_Level.ForceDWORD;
+
+pub const COPP_ACP_Protection_Level = extern enum(i32) {
+    Level0 = 0,
+    LevelMin = 0,
+    Level1 = 1,
+    Level2 = 2,
+    Level3 = 3,
+    LevelMax = 3,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_ACP_Level0 = COPP_ACP_Protection_Level.Level0;
+pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.LevelMin;
+pub const COPP_ACP_Level1 = COPP_ACP_Protection_Level.Level1;
+pub const COPP_ACP_Level2 = COPP_ACP_Protection_Level.Level2;
+pub const COPP_ACP_Level3 = COPP_ACP_Protection_Level.Level3;
+pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.LevelMax;
+pub const COPP_ACP_ForceDWORD = COPP_ACP_Protection_Level.ForceDWORD;
+
+pub const DXVA_COPPSetSignalingCmdData = extern struct {
+    ActiveTVProtectionStandard: u32,
+    AspectRatioChangeMask1: u32,
+    AspectRatioData1: u32,
+    AspectRatioChangeMask2: u32,
+    AspectRatioData2: u32,
+    AspectRatioChangeMask3: u32,
+    AspectRatioData3: u32,
+    ExtendedInfoChangeMask: [4]u32,
+    ExtendedInfoData: [4]u32,
+    Reserved: u32,
+};
+
+pub const COPP_TVProtectionStandard = extern enum(i32) {
+    Unknown = -2147483648,
+    None = 0,
+    IEC61880_525i = 1,
+    IEC61880_2_525i = 2,
+    IEC62375_625p = 4,
+    EIA608B_525 = 8,
+    EN300294_625i = 16,
+    CEA805A_TypeA_525p = 32,
+    CEA805A_TypeA_750p = 64,
+    CEA805A_TypeA_1125i = 128,
+    CEA805A_TypeB_525p = 256,
+    CEA805A_TypeB_750p = 512,
+    CEA805A_TypeB_1125i = 1024,
+    ARIBTRB15_525i = 2048,
+    ARIBTRB15_525p = 4096,
+    ARIBTRB15_750p = 8192,
+    ARIBTRB15_1125i = 16384,
+    Mask = -2147450881,
+    Reserved = 2147450880,
+};
+pub const COPP_ProtectionStandard_Unknown = COPP_TVProtectionStandard.Unknown;
+pub const COPP_ProtectionStandard_None = COPP_TVProtectionStandard.None;
+pub const COPP_ProtectionStandard_IEC61880_525i = COPP_TVProtectionStandard.IEC61880_525i;
+pub const COPP_ProtectionStandard_IEC61880_2_525i = COPP_TVProtectionStandard.IEC61880_2_525i;
+pub const COPP_ProtectionStandard_IEC62375_625p = COPP_TVProtectionStandard.IEC62375_625p;
+pub const COPP_ProtectionStandard_EIA608B_525 = COPP_TVProtectionStandard.EIA608B_525;
+pub const COPP_ProtectionStandard_EN300294_625i = COPP_TVProtectionStandard.EN300294_625i;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_525p = COPP_TVProtectionStandard.CEA805A_TypeA_525p;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_750p = COPP_TVProtectionStandard.CEA805A_TypeA_750p;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_1125i = COPP_TVProtectionStandard.CEA805A_TypeA_1125i;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_525p = COPP_TVProtectionStandard.CEA805A_TypeB_525p;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_750p = COPP_TVProtectionStandard.CEA805A_TypeB_750p;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_1125i = COPP_TVProtectionStandard.CEA805A_TypeB_1125i;
+pub const COPP_ProtectionStandard_ARIBTRB15_525i = COPP_TVProtectionStandard.ARIBTRB15_525i;
+pub const COPP_ProtectionStandard_ARIBTRB15_525p = COPP_TVProtectionStandard.ARIBTRB15_525p;
+pub const COPP_ProtectionStandard_ARIBTRB15_750p = COPP_TVProtectionStandard.ARIBTRB15_750p;
+pub const COPP_ProtectionStandard_ARIBTRB15_1125i = COPP_TVProtectionStandard.ARIBTRB15_1125i;
+pub const COPP_ProtectionStandard_Mask = COPP_TVProtectionStandard.Mask;
+pub const COPP_ProtectionStandard_Reserved = COPP_TVProtectionStandard.Reserved;
+
+pub const COPP_ImageAspectRatio_EN300294 = extern enum(i32) {
+    EN300294_FullFormat4by3 = 0,
+    EN300294_Box14by9Center = 1,
+    EN300294_Box14by9Top = 2,
+    EN300294_Box16by9Center = 3,
+    EN300294_Box16by9Top = 4,
+    EN300294_BoxGT16by9Center = 5,
+    EN300294_FullFormat4by3ProtectedCenter = 6,
+    EN300294_FullFormat16by9Anamorphic = 7,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_AspectRatio_EN300294_FullFormat4by3 = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3;
+pub const COPP_AspectRatio_EN300294_Box14by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Center;
+pub const COPP_AspectRatio_EN300294_Box14by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Top;
+pub const COPP_AspectRatio_EN300294_Box16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Center;
+pub const COPP_AspectRatio_EN300294_Box16by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Top;
+pub const COPP_AspectRatio_EN300294_BoxGT16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_BoxGT16by9Center;
+pub const COPP_AspectRatio_EN300294_FullFormat4by3ProtectedCenter = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3ProtectedCenter;
+pub const COPP_AspectRatio_EN300294_FullFormat16by9Anamorphic = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat16by9Anamorphic;
+pub const COPP_AspectRatio_ForceDWORD = COPP_ImageAspectRatio_EN300294.ForceDWORD;
+
+pub const COPP_StatusFlags = extern enum(i32) {
+    StatusNormal = 0,
+    LinkLost = 1,
+    RenegotiationRequired = 2,
+    StatusFlagsReserved = -4,
+};
+pub const COPP_StatusNormal = COPP_StatusFlags.StatusNormal;
+pub const COPP_LinkLost = COPP_StatusFlags.LinkLost;
+pub const COPP_RenegotiationRequired = COPP_StatusFlags.RenegotiationRequired;
+pub const COPP_StatusFlagsReserved = COPP_StatusFlags.StatusFlagsReserved;
+
+pub const DXVA_COPPStatusData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    dwData: u32,
+    ExtendedInfoValidMask: u32,
+    ExtendedInfoData: u32,
+};
+
+pub const DXVA_COPPStatusDisplayData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    DisplayWidth: u32,
+    DisplayHeight: u32,
+    Format: u32,
+    d3dFormat: u32,
+    FreqNumerator: u32,
+    FreqDenominator: u32,
+};
+
+pub const COPP_StatusHDCPFlags = extern enum(i32) {
+    Repeater = 1,
+    FlagsReserved = -2,
+};
+pub const COPP_HDCPRepeater = COPP_StatusHDCPFlags.Repeater;
+pub const COPP_HDCPFlagsReserved = COPP_StatusHDCPFlags.FlagsReserved;
+
+pub const DXVA_COPPStatusHDCPKeyData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    dwHDCPFlags: u32,
+    BKey: Guid,
+    Reserved1: Guid,
+    Reserved2: Guid,
+};
+
+pub const COPP_ConnectorType = extern enum(i32) {
+    Unknown = -1,
+    VGA = 0,
+    SVideo = 1,
+    CompositeVideo = 2,
+    ComponentVideo = 3,
+    DVI = 4,
+    HDMI = 5,
+    LVDS = 6,
+    TMDS = 7,
+    D_JPN = 8,
+    Internal = -2147483648,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_ConnectorType_Unknown = COPP_ConnectorType.Unknown;
+pub const COPP_ConnectorType_VGA = COPP_ConnectorType.VGA;
+pub const COPP_ConnectorType_SVideo = COPP_ConnectorType.SVideo;
+pub const COPP_ConnectorType_CompositeVideo = COPP_ConnectorType.CompositeVideo;
+pub const COPP_ConnectorType_ComponentVideo = COPP_ConnectorType.ComponentVideo;
+pub const COPP_ConnectorType_DVI = COPP_ConnectorType.DVI;
+pub const COPP_ConnectorType_HDMI = COPP_ConnectorType.HDMI;
+pub const COPP_ConnectorType_LVDS = COPP_ConnectorType.LVDS;
+pub const COPP_ConnectorType_TMDS = COPP_ConnectorType.TMDS;
+pub const COPP_ConnectorType_D_JPN = COPP_ConnectorType.D_JPN;
+pub const COPP_ConnectorType_Internal = COPP_ConnectorType.Internal;
+pub const COPP_ConnectorType_ForceDWORD = COPP_ConnectorType.ForceDWORD;
+
+pub const COPP_BusType = extern enum(i32) {
+    Unknown = 0,
+    PCI = 1,
+    PCIX = 2,
+    PCIExpress = 3,
+    AGP = 4,
+    Integrated = -2147483648,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_BusType_Unknown = COPP_BusType.Unknown;
+pub const COPP_BusType_PCI = COPP_BusType.PCI;
+pub const COPP_BusType_PCIX = COPP_BusType.PCIX;
+pub const COPP_BusType_PCIExpress = COPP_BusType.PCIExpress;
+pub const COPP_BusType_AGP = COPP_BusType.AGP;
+pub const COPP_BusType_Integrated = COPP_BusType.Integrated;
+pub const COPP_BusType_ForceDWORD = COPP_BusType.ForceDWORD;
+
+pub const DXVA_COPPStatusSignalingCmdData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    AvailableTVProtectionStandards: u32,
+    ActiveTVProtectionStandard: u32,
+    TVType: u32,
+    AspectRatioValidMask1: u32,
+    AspectRatioData1: u32,
+    AspectRatioValidMask2: u32,
+    AspectRatioData2: u32,
+    AspectRatioValidMask3: u32,
+    AspectRatioData3: u32,
+    ExtendedInfoValidMask: [4]u32,
+    ExtendedInfoData: [4]u32,
+};
+
 pub const READYSTATE = extern enum(i32) {
     UNINITIALIZED = 0,
     LOADING = 1,
@@ -850,6 +1525,7 @@ pub const CLSID_ESEventService = &CLSID_ESEventService_Value;
 const CLSID_ESEventFactory_Value = @import("../zig.zig").Guid.initString("8e8a07da-71f8-40c1-a929-5e3a868ac2c6");
 pub const CLSID_ESEventFactory = &CLSID_ESEventFactory_Value;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICreatePropBagOnRegKey_Value = @import("../zig.zig").Guid.initString("8a674b48-1f63-11d3-b64c-00c04f79498e");
 pub const IID_ICreatePropBagOnRegKey = &IID_ICreatePropBagOnRegKey_Value;
 pub const ICreatePropBagOnRegKey = extern struct {
@@ -1103,6 +1779,7 @@ pub const DISPID_MP2TUNER_TSID = DISPID_TUNER.MP2TUNER_TSID;
 pub const DISPID_MP2TUNER_PROGNO = DISPID_TUNER.MP2TUNER_PROGNO;
 pub const DISPID_MP2TUNERFACTORY_CREATETUNEREQUEST = DISPID_TUNER.MP2TUNERFACTORY_CREATETUNEREQUEST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITuningSpaces_Value = @import("../zig.zig").Guid.initString("901284e4-33fe-4b69-8d63-634a596f3756");
 pub const IID_ITuningSpaces = &IID_ITuningSpaces_Value;
 pub const ITuningSpaces = extern struct {
@@ -1149,6 +1826,7 @@ pub const ITuningSpaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITuningSpaceContainer_Value = @import("../zig.zig").Guid.initString("5b692e84-e2f1-11d2-9493-00c04f72d980");
 pub const IID_ITuningSpaceContainer = &IID_ITuningSpaceContainer_Value;
 pub const ITuningSpaceContainer = extern struct {
@@ -1273,6 +1951,7 @@ pub const ITuningSpaceContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITuningSpace_Value = @import("../zig.zig").Guid.initString("061c6e30-e622-11d2-9493-00c04f72d980");
 pub const IID_ITuningSpace = &IID_ITuningSpace_Value;
 pub const ITuningSpace = extern struct {
@@ -1438,6 +2117,7 @@ pub const ITuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumTuningSpaces_Value = @import("../zig.zig").Guid.initString("8b8eb248-fc2b-11d2-9d8c-00c04f72d980");
 pub const IID_IEnumTuningSpaces = &IID_IEnumTuningSpaces_Value;
 pub const IEnumTuningSpaces = extern struct {
@@ -1484,6 +2164,7 @@ pub const IEnumTuningSpaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBTuningSpace_Value = @import("../zig.zig").Guid.initString("ada0b268-3b19-4e5b-acc4-49f852be13ba");
 pub const IID_IDVBTuningSpace = &IID_IDVBTuningSpace_Value;
 pub const IDVBTuningSpace = extern struct {
@@ -1513,6 +2194,7 @@ pub const IDVBTuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBTuningSpace2_Value = @import("../zig.zig").Guid.initString("843188b4-ce62-43db-966b-8145a094e040");
 pub const IID_IDVBTuningSpace2 = &IID_IDVBTuningSpace2_Value;
 pub const IDVBTuningSpace2 = extern struct {
@@ -1542,6 +2224,7 @@ pub const IDVBTuningSpace2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBSTuningSpace_Value = @import("../zig.zig").Guid.initString("cdf7be60-d954-42fd-a972-78971958e470");
 pub const IID_IDVBSTuningSpace = &IID_IDVBSTuningSpace_Value;
 pub const IDVBSTuningSpace = extern struct {
@@ -1635,6 +2318,7 @@ pub const IDVBSTuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAuxInTuningSpace_Value = @import("../zig.zig").Guid.initString("e48244b8-7e17-4f76-a763-5090ff1e2f30");
 pub const IID_IAuxInTuningSpace = &IID_IAuxInTuningSpace_Value;
 pub const IAuxInTuningSpace = extern struct {
@@ -1677,6 +2361,7 @@ pub const IAuxInTuningSpace2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAnalogTVTuningSpace_Value = @import("../zig.zig").Guid.initString("2a6e293c-2595-11d3-b64c-00c04f79498e");
 pub const IID_IAnalogTVTuningSpace = &IID_IAnalogTVTuningSpace_Value;
 pub const IAnalogTVTuningSpace = extern struct {
@@ -1754,6 +2439,7 @@ pub const IAnalogTVTuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IATSCTuningSpace_Value = @import("../zig.zig").Guid.initString("0369b4e2-45b6-11d3-b650-00c04f79498e");
 pub const IID_IATSCTuningSpace = &IID_IATSCTuningSpace_Value;
 pub const IATSCTuningSpace = extern struct {
@@ -1831,6 +2517,7 @@ pub const IATSCTuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDigitalCableTuningSpace_Value = @import("../zig.zig").Guid.initString("013f9f9c-b449-4ec7-a6d2-9d4f2fc70ae5");
 pub const IID_IDigitalCableTuningSpace = &IID_IDigitalCableTuningSpace_Value;
 pub const IDigitalCableTuningSpace = extern struct {
@@ -1908,6 +2595,7 @@ pub const IDigitalCableTuningSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAnalogRadioTuningSpace_Value = @import("../zig.zig").Guid.initString("2a6e293b-2595-11d3-b64c-00c04f79498e");
 pub const IID_IAnalogRadioTuningSpace = &IID_IAnalogRadioTuningSpace_Value;
 pub const IAnalogRadioTuningSpace = extern struct {
@@ -1998,6 +2686,7 @@ pub const IAnalogRadioTuningSpace2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITuneRequest_Value = @import("../zig.zig").Guid.initString("07ddc146-fc3d-11d2-9d8c-00c04f72d980");
 pub const IID_ITuneRequest = &IID_ITuneRequest_Value;
 pub const ITuneRequest = extern struct {
@@ -2051,6 +2740,7 @@ pub const ITuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IChannelIDTuneRequest_Value = @import("../zig.zig").Guid.initString("156eff60-86f4-4e28-89fc-109799fd57ee");
 pub const IID_IChannelIDTuneRequest = &IID_IChannelIDTuneRequest_Value;
 pub const IChannelIDTuneRequest = extern struct {
@@ -2080,6 +2770,7 @@ pub const IChannelIDTuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IChannelTuneRequest_Value = @import("../zig.zig").Guid.initString("0369b4e0-45b6-11d3-b650-00c04f79498e");
 pub const IID_IChannelTuneRequest = &IID_IChannelTuneRequest_Value;
 pub const IChannelTuneRequest = extern struct {
@@ -2109,6 +2800,7 @@ pub const IChannelTuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IATSCChannelTuneRequest_Value = @import("../zig.zig").Guid.initString("0369b4e1-45b6-11d3-b650-00c04f79498e");
 pub const IID_IATSCChannelTuneRequest = &IID_IATSCChannelTuneRequest_Value;
 pub const IATSCChannelTuneRequest = extern struct {
@@ -2138,6 +2830,7 @@ pub const IATSCChannelTuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDigitalCableTuneRequest_Value = @import("../zig.zig").Guid.initString("bad7753b-6b37-4810-ae57-3ce0c4a9e6cb");
 pub const IID_IDigitalCableTuneRequest = &IID_IDigitalCableTuneRequest_Value;
 pub const IDigitalCableTuneRequest = extern struct {
@@ -2183,6 +2876,7 @@ pub const IDigitalCableTuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBTuneRequest_Value = @import("../zig.zig").Guid.initString("0d6f567e-a636-42bb-83ba-ce4c1704afa2");
 pub const IID_IDVBTuneRequest = &IID_IDVBTuneRequest_Value;
 pub const IDVBTuneRequest = extern struct {
@@ -2244,6 +2938,7 @@ pub const IDVBTuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2TuneRequest_Value = @import("../zig.zig").Guid.initString("eb7d987f-8a01-42ad-b8ae-574deee44d1a");
 pub const IID_IMPEG2TuneRequest = &IID_IMPEG2TuneRequest_Value;
 pub const IMPEG2TuneRequest = extern struct {
@@ -2289,6 +2984,7 @@ pub const IMPEG2TuneRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2TuneRequestFactory_Value = @import("../zig.zig").Guid.initString("14e11abd-ee37-4893-9ea1-6964de933e39");
 pub const IID_IMPEG2TuneRequestFactory = &IID_IMPEG2TuneRequestFactory_Value;
 pub const IMPEG2TuneRequestFactory = extern struct {
@@ -2311,6 +3007,7 @@ pub const IMPEG2TuneRequestFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2TuneRequestSupport_Value = @import("../zig.zig").Guid.initString("1b9d5fc3-5bbc-4b6c-bb18-b9d10e3eeebf");
 pub const IID_IMPEG2TuneRequestSupport = &IID_IMPEG2TuneRequestSupport_Value;
 pub const IMPEG2TuneRequestSupport = extern struct {
@@ -2365,6 +3062,7 @@ pub const ITunerCap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ITunerCapEx_Value = @import("../zig.zig").Guid.initString("ed3e0c66-18c8-4ea6-9300-f6841fdd35dc");
 pub const IID_ITunerCapEx = &IID_ITunerCapEx_Value;
 pub const ITunerCapEx = extern struct {
@@ -2617,6 +3315,7 @@ pub const IScanningTunerEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IComponentType_Value = @import("../zig.zig").Guid.initString("6a340dc0-0311-11d3-9d8e-00c04f72d980");
 pub const IID_IComponentType = &IID_IComponentType_Value;
 pub const IComponentType = extern struct {
@@ -2766,6 +3465,7 @@ pub const IComponentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ILanguageComponentType_Value = @import("../zig.zig").Guid.initString("b874c8ba-0fa2-11d3-9d8e-00c04f72d980");
 pub const IID_ILanguageComponentType = &IID_ILanguageComponentType_Value;
 pub const ILanguageComponentType = extern struct {
@@ -2795,6 +3495,7 @@ pub const ILanguageComponentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2ComponentType_Value = @import("../zig.zig").Guid.initString("2c073d84-b51c-48c9-aa9f-68971e1f6e38");
 pub const IID_IMPEG2ComponentType = &IID_IMPEG2ComponentType_Value;
 pub const IMPEG2ComponentType = extern struct {
@@ -2824,6 +3525,7 @@ pub const IMPEG2ComponentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IATSCComponentType_Value = @import("../zig.zig").Guid.initString("fc189e4d-7bd4-4125-b3b3-3a76a332cc96");
 pub const IID_IATSCComponentType = &IID_IATSCComponentType_Value;
 pub const IATSCComponentType = extern struct {
@@ -2853,6 +3555,7 @@ pub const IATSCComponentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumComponentTypes_Value = @import("../zig.zig").Guid.initString("8a674b4a-1f63-11d3-b64c-00c04f79498e");
 pub const IID_IEnumComponentTypes = &IID_IEnumComponentTypes_Value;
 pub const IEnumComponentTypes = extern struct {
@@ -2899,6 +3602,7 @@ pub const IEnumComponentTypes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IComponentTypes_Value = @import("../zig.zig").Guid.initString("0dc13d4a-0313-11d3-9d8e-00c04f72d980");
 pub const IID_IComponentTypes = &IID_IComponentTypes_Value;
 pub const IComponentTypes = extern struct {
@@ -2979,6 +3683,7 @@ pub const IComponentTypes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IComponent_Value = @import("../zig.zig").Guid.initString("1a5576fc-0e19-11d3-9d8e-00c04f72d980");
 pub const IID_IComponent = &IID_IComponent_Value;
 pub const IComponent = extern struct {
@@ -3064,6 +3769,7 @@ pub const IComponent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAnalogAudioComponentType_Value = @import("../zig.zig").Guid.initString("2cfeb2a8-1787-4a24-a941-c6eaec39c842");
 pub const IID_IAnalogAudioComponentType = &IID_IAnalogAudioComponentType_Value;
 pub const IAnalogAudioComponentType = extern struct {
@@ -3094,6 +3800,7 @@ pub const IAnalogAudioComponentType = extern struct {
 };
 
 // WARNING: this COM type has been skipped because it causes some sort of error
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2Component_Value = @import("../zig.zig").Guid.initString("1493e353-1eb6-473c-802d-8e6b8ec9d2a9");
 pub const IID_IMPEG2Component = &IID_IMPEG2Component_Value;
 pub const IMPEG2Component = extern struct {
@@ -3106,6 +3813,7 @@ pub const IMPEG2Component = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumComponents_Value = @import("../zig.zig").Guid.initString("2a6e2939-2595-11d3-b64c-00c04f79498e");
 pub const IID_IEnumComponents = &IID_IEnumComponents_Value;
 pub const IEnumComponents = extern struct {
@@ -3152,6 +3860,7 @@ pub const IEnumComponents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IComponents_Value = @import("../zig.zig").Guid.initString("39a48091-fffe-4182-a161-3ff802640e26");
 pub const IID_IComponents = &IID_IComponents_Value;
 pub const IComponents = extern struct {
@@ -3303,6 +4012,7 @@ pub const IComponentsOld = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ILocator_Value = @import("../zig.zig").Guid.initString("286d7f89-760c-4f89-80c4-66841d2507aa");
 pub const IID_ILocator = &IID_ILocator_Value;
 pub const ILocator = extern struct {
@@ -3436,6 +4146,7 @@ pub const ILocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAnalogLocator_Value = @import("../zig.zig").Guid.initString("34d1f26b-e339-430d-abce-738cb48984dc");
 pub const IID_IAnalogLocator = &IID_IAnalogLocator_Value;
 pub const IAnalogLocator = extern struct {
@@ -3465,6 +4176,7 @@ pub const IAnalogLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDigitalLocator_Value = @import("../zig.zig").Guid.initString("19b595d8-839a-47f0-96df-4f194f3c768c");
 pub const IID_IDigitalLocator = &IID_IDigitalLocator_Value;
 pub const IDigitalLocator = extern struct {
@@ -3478,6 +4190,7 @@ pub const IDigitalLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IATSCLocator_Value = @import("../zig.zig").Guid.initString("bf8d986f-8c2b-4131-94d7-4d3d9fcc21ef");
 pub const IID_IATSCLocator = &IID_IATSCLocator_Value;
 pub const IATSCLocator = extern struct {
@@ -3523,6 +4236,7 @@ pub const IATSCLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IATSCLocator2_Value = @import("../zig.zig").Guid.initString("612aa885-66cf-4090-ba0a-566f5312e4ca");
 pub const IID_IATSCLocator2 = &IID_IATSCLocator2_Value;
 pub const IATSCLocator2 = extern struct {
@@ -3552,6 +4266,7 @@ pub const IATSCLocator2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDigitalCableLocator_Value = @import("../zig.zig").Guid.initString("48f66a11-171a-419a-9525-beeecd51584c");
 pub const IID_IDigitalCableLocator = &IID_IDigitalCableLocator_Value;
 pub const IDigitalCableLocator = extern struct {
@@ -3565,6 +4280,7 @@ pub const IDigitalCableLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBTLocator_Value = @import("../zig.zig").Guid.initString("8664da16-dda2-42ac-926a-c18f9127c302");
 pub const IID_IDVBTLocator = &IID_IDVBTLocator_Value;
 pub const IDVBTLocator = extern struct {
@@ -3690,6 +4406,7 @@ pub const IDVBTLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDVBTLocator2_Value = @import("../zig.zig").Guid.initString("448a2edf-ae95-4b43-a3cc-747843c453d4");
 pub const IID_IDVBTLocator2 = &IID_IDVBTLocator2_Value;
 pub const IDVBTLocator2 = extern struct {
@@ -3719,6 +4436,7 @@ pub const IDVBTLocator2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBSLocator_Value = @import("../zig.zig").Guid.initString("3d7c353c-0d04-45f1-a742-f97cc1188dc8");
 pub const IID_IDVBSLocator = &IID_IDVBSLocator_Value;
 pub const IDVBSLocator = extern struct {
@@ -3812,6 +4530,7 @@ pub const IDVBSLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDVBSLocator2_Value = @import("../zig.zig").Guid.initString("6044634a-1733-4f99-b982-5fb12afce4f0");
 pub const IID_IDVBSLocator2 = &IID_IDVBSLocator2_Value;
 pub const IDVBSLocator2 = extern struct {
@@ -3937,6 +4656,7 @@ pub const IDVBSLocator2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVBCLocator_Value = @import("../zig.zig").Guid.initString("6e42f36e-1dd2-43c4-9f78-69d25ae39034");
 pub const IID_IDVBCLocator = &IID_IDVBCLocator_Value;
 pub const IDVBCLocator = extern struct {
@@ -3963,6 +4683,7 @@ pub const IISDBSLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESOpenMmiEvent_Value = @import("../zig.zig").Guid.initString("ba4b6526-1a35-4635-8b56-3ec612746a8c");
 pub const IID_IESOpenMmiEvent = &IID_IESOpenMmiEvent_Value;
 pub const IESOpenMmiEvent = extern struct {
@@ -4010,6 +4731,7 @@ pub const IESOpenMmiEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESCloseMmiEvent_Value = @import("../zig.zig").Guid.initString("6b80e96f-55e2-45aa-b754-0c23c8e7d5c1");
 pub const IID_IESCloseMmiEvent = &IID_IESCloseMmiEvent_Value;
 pub const IESCloseMmiEvent = extern struct {
@@ -4031,6 +4753,7 @@ pub const IESCloseMmiEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESValueUpdatedEvent_Value = @import("../zig.zig").Guid.initString("8a24c46e-bb63-4664-8602-5d9c718c146d");
 pub const IID_IESValueUpdatedEvent = &IID_IESValueUpdatedEvent_Value;
 pub const IESValueUpdatedEvent = extern struct {
@@ -4052,6 +4775,7 @@ pub const IESValueUpdatedEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESRequestTunerEvent_Value = @import("../zig.zig").Guid.initString("54c7a5e8-c3bb-4f51-af14-e0e2c0e34c6d");
 pub const IID_IESRequestTunerEvent = &IID_IESRequestTunerEvent_Value;
 pub const IESRequestTunerEvent = extern struct {
@@ -4097,6 +4821,7 @@ pub const IESRequestTunerEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESIsdbCasResponseEvent_Value = @import("../zig.zig").Guid.initString("2017cb03-dc0f-4c24-83ca-36307b2cd19f");
 pub const IID_IESIsdbCasResponseEvent = &IID_IESIsdbCasResponseEvent_Value;
 pub const IESIsdbCasResponseEvent = extern struct {
@@ -4191,6 +4916,7 @@ pub const IESEventFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESLicenseRenewalResultEvent_Value = @import("../zig.zig").Guid.initString("d5a48ef5-a81b-4df0-acaa-5e35e7ea45d4");
 pub const IID_IESLicenseRenewalResultEvent = &IID_IESLicenseRenewalResultEvent_Value;
 pub const IESLicenseRenewalResultEvent = extern struct {
@@ -4292,6 +5018,7 @@ pub const IESLicenseRenewalResultEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESFileExpiryDateEvent_Value = @import("../zig.zig").Guid.initString("ba9edcb6-4d36-4cfe-8c56-87a6b0ca48e1");
 pub const IID_IESFileExpiryDateEvent = &IID_IESFileExpiryDateEvent_Value;
 pub const IESFileExpiryDateEvent = extern struct {
@@ -4353,6 +5080,7 @@ pub const IESFileExpiryDateEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESEventService_Value = @import("../zig.zig").Guid.initString("ed89a619-4c06-4b2f-99eb-c7669b13047c");
 pub const IID_IESEventService = &IID_IESEventService_Value;
 pub const IESEventService = extern struct {
@@ -4374,6 +5102,7 @@ pub const IESEventService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESEventServiceConfiguration_Value = @import("../zig.zig").Guid.initString("33b9daae-9309-491d-a051-bcad2a70cd66");
 pub const IID_IESEventServiceConfiguration = &IID_IESEventServiceConfiguration_Value;
 pub const IESEventServiceConfiguration = extern struct {
@@ -4530,6 +5259,7 @@ pub const IBDAComparable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPersistTuneXml_Value = @import("../zig.zig").Guid.initString("0754cd31-8d15-47a9-8215-d20064157244");
 pub const IID_IPersistTuneXml = &IID_IPersistTuneXml_Value;
 pub const IPersistTuneXml = extern struct {
@@ -4566,6 +5296,7 @@ pub const IPersistTuneXml = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPersistTuneXmlUtility_Value = @import("../zig.zig").Guid.initString("990237ae-ac11-4614-be8f-dd217a4cb4cb");
 pub const IID_IPersistTuneXmlUtility = &IID_IPersistTuneXmlUtility_Value;
 pub const IPersistTuneXmlUtility = extern struct {
@@ -4588,6 +5319,7 @@ pub const IPersistTuneXmlUtility = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPersistTuneXmlUtility2_Value = @import("../zig.zig").Guid.initString("992e165f-ea24-4b2f-9a1d-009d92120451");
 pub const IID_IPersistTuneXmlUtility2 = &IID_IPersistTuneXmlUtility2_Value;
 pub const IPersistTuneXmlUtility2 = extern struct {
@@ -4610,6 +5342,7 @@ pub const IPersistTuneXmlUtility2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDACreateTuneRequestEx_Value = @import("../zig.zig").Guid.initString("c0a4a1d4-2b3c-491a-ba22-499fbadd4d12");
 pub const IID_IBDACreateTuneRequestEx = &IID_IBDACreateTuneRequestEx_Value;
 pub const IBDACreateTuneRequestEx = extern struct {
@@ -5035,6 +5768,7 @@ pub const DOWNRES_Always = DownResEventParam.Always;
 pub const DOWNRES_InWindowOnly = DownResEventParam.InWindowOnly;
 pub const DOWNRES_Undefined = DownResEventParam.Undefined;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IETFilterConfig_Value = @import("../zig.zig").Guid.initString("c4c4c4d1-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IETFilterConfig = &IID_IETFilterConfig_Value;
 pub const IETFilterConfig = extern struct {
@@ -5064,6 +5798,7 @@ pub const IETFilterConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDTFilterConfig_Value = @import("../zig.zig").Guid.initString("c4c4c4d2-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IDTFilterConfig = &IID_IDTFilterConfig_Value;
 pub const IDTFilterConfig = extern struct {
@@ -5188,6 +5923,7 @@ pub const IMceBurnerControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IETFilter_Value = @import("../zig.zig").Guid.initString("c4c4c4b1-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IETFilter = &IID_IETFilter_Value;
 pub const IETFilter = extern struct {
@@ -5256,6 +5992,7 @@ pub const IETFilterEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDTFilter_Value = @import("../zig.zig").Guid.initString("c4c4c4b2-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IDTFilter = &IID_IDTFilter_Value;
 pub const IDTFilter = extern struct {
@@ -5339,6 +6076,7 @@ pub const IDTFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDTFilter2_Value = @import("../zig.zig").Guid.initString("c4c4c4b4-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IDTFilter2 = &IID_IDTFilter2_Value;
 pub const IDTFilter2 = extern struct {
@@ -5376,6 +6114,7 @@ pub const IDTFilter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDTFilter3_Value = @import("../zig.zig").Guid.initString("513998cc-e929-4cdf-9fbd-bad1e0314866");
 pub const IID_IDTFilter3 = &IID_IDTFilter3_Value;
 pub const IDTFilter3 = extern struct {
@@ -5426,6 +6165,7 @@ pub const IDTFilterEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IXDSCodec_Value = @import("../zig.zig").Guid.initString("c4c4c4b3-0049-4e2b-98fb-9537f6ce516d");
 pub const IID_IXDSCodec = &IID_IXDSCodec_Value;
 pub const IXDSCodec = extern struct {
@@ -5518,6 +6258,7 @@ pub const IXDSCodecEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IXDSToRat_Value = @import("../zig.zig").Guid.initString("c5c5c5b0-3abc-11d6-b25b-00c04fa0c026");
 pub const IID_IXDSToRat = &IID_IXDSToRat_Value;
 pub const IXDSToRat = extern struct {
@@ -5550,6 +6291,7 @@ pub const IXDSToRat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEvalRat_Value = @import("../zig.zig").Guid.initString("c5c5c5b1-3abc-11d6-b25b-00c04fa0c026");
 pub const IID_IEvalRat = &IID_IEvalRat_Value;
 pub const IEvalRat = extern struct {
@@ -6232,6 +6974,7 @@ pub const MSVidSink_Video = MSVidSinkStreams.Video;
 pub const MSVidSink_Audio = MSVidSinkStreams.Audio;
 pub const MSVidSink_Other = MSVidSinkStreams.Other;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidRect_Value = @import("../zig.zig").Guid.initString("7f5000a6-a440-47ca-8acc-c0e75531a2c2");
 pub const IID_IMSVidRect = &IID_IMSVidRect_Value;
 pub const IMSVidRect = extern struct {
@@ -6333,6 +7076,7 @@ pub const IMSVidRect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidGraphSegmentContainer_Value = @import("../zig.zig").Guid.initString("3dd2903d-e0aa-11d2-b63a-00c04f79498e");
 pub const IID_IMSVidGraphSegmentContainer = &IID_IMSVidGraphSegmentContainer_Value;
 pub const IMSVidGraphSegmentContainer = extern struct {
@@ -6938,6 +7682,7 @@ pub const IMSVidVRGraphSegment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidDevice_Value = @import("../zig.zig").Guid.initString("1c15d47c-911d-11d2-b632-00c04f79498e");
 pub const IID_IMSVidDevice = &IID_IMSVidDevice_Value;
 pub const IMSVidDevice = extern struct {
@@ -7045,6 +7790,7 @@ pub const IMSVidDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidInputDevice_Value = @import("../zig.zig").Guid.initString("37b0353d-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidInputDevice = &IID_IMSVidInputDevice_Value;
 pub const IMSVidInputDevice = extern struct {
@@ -7111,6 +7857,7 @@ pub const IMSVidInputDeviceEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidVideoInputDevice_Value = @import("../zig.zig").Guid.initString("1c15d47f-911d-11d2-b632-00c04f79498e");
 pub const IID_IMSVidVideoInputDevice = &IID_IMSVidVideoInputDevice_Value;
 pub const IMSVidVideoInputDevice = extern struct {
@@ -7124,6 +7871,7 @@ pub const IMSVidVideoInputDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidPlayback_Value = @import("../zig.zig").Guid.initString("37b03538-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidPlayback = &IID_IMSVidPlayback_Value;
 pub const IMSVidPlayback = extern struct {
@@ -7268,6 +8016,7 @@ pub const IMSVidPlaybackEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidTuner_Value = @import("../zig.zig").Guid.initString("1c15d47d-911d-11d2-b632-00c04f79498e");
 pub const IID_IMSVidTuner = &IID_IMSVidTuner_Value;
 pub const IMSVidTuner = extern struct {
@@ -7334,6 +8083,7 @@ pub const IMSVidTunerEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidAnalogTuner_Value = @import("../zig.zig").Guid.initString("1c15d47e-911d-11d2-b632-00c04f79498e");
 pub const IID_IMSVidAnalogTuner = &IID_IMSVidAnalogTuner_Value;
 pub const IMSVidAnalogTuner = extern struct {
@@ -7471,6 +8221,7 @@ pub const IMSVidAnalogTunerEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidFilePlayback_Value = @import("../zig.zig").Guid.initString("37b03539-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidFilePlayback = &IID_IMSVidFilePlayback_Value;
 pub const IMSVidFilePlayback = extern struct {
@@ -8461,6 +9212,7 @@ pub const IMSVidWebDVD = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMSVidWebDVD2_Value = @import("../zig.zig").Guid.initString("7027212f-ee9a-4a7c-8b67-f023714cdaff");
 pub const IID_IMSVidWebDVD2 = &IID_IMSVidWebDVD2_Value;
 pub const IMSVidWebDVD2 = extern struct {
@@ -8825,6 +9577,7 @@ pub const IMSVidWebDVDAdm = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidOutputDevice_Value = @import("../zig.zig").Guid.initString("37b03546-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidOutputDevice = &IID_IMSVidOutputDevice_Value;
 pub const IMSVidOutputDevice = extern struct {
@@ -8851,6 +9604,7 @@ pub const IMSVidOutputDeviceEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidFeature_Value = @import("../zig.zig").Guid.initString("37b03547-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidFeature = &IID_IMSVidFeature_Value;
 pub const IMSVidFeature = extern struct {
@@ -8877,6 +9631,7 @@ pub const IMSVidFeatureEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidEncoder_Value = @import("../zig.zig").Guid.initString("c0020fd4-bee7-43d9-a495-9f213117103d");
 pub const IID_IMSVidEncoder = &IID_IMSVidEncoder_Value;
 pub const IMSVidEncoder = extern struct {
@@ -8906,6 +9661,7 @@ pub const IMSVidEncoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidClosedCaptioning_Value = @import("../zig.zig").Guid.initString("99652ea1-c1f7-414f-bb7b-1c967de75983");
 pub const IID_IMSVidClosedCaptioning = &IID_IMSVidClosedCaptioning_Value;
 pub const IMSVidClosedCaptioning = extern struct {
@@ -8935,6 +9691,7 @@ pub const IMSVidClosedCaptioning = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidClosedCaptioning2_Value = @import("../zig.zig").Guid.initString("e00cb864-a029-4310-9987-a873f5887d97");
 pub const IID_IMSVidClosedCaptioning2 = &IID_IMSVidClosedCaptioning2_Value;
 pub const IMSVidClosedCaptioning2 = extern struct {
@@ -9032,6 +9789,7 @@ pub const IMSVidXDSEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidDataServices_Value = @import("../zig.zig").Guid.initString("334125c1-77e5-11d3-b653-00c04f79498e");
 pub const IID_IMSVidDataServices = &IID_IMSVidDataServices_Value;
 pub const IMSVidDataServices = extern struct {
@@ -9067,6 +9825,7 @@ pub const sslFullSize = SourceSizeList.FullSize;
 pub const sslClipByOverScan = SourceSizeList.ClipByOverScan;
 pub const sslClipByClipRect = SourceSizeList.ClipByClipRect;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidVideoRenderer_Value = @import("../zig.zig").Guid.initString("37b03540-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidVideoRenderer = &IID_IMSVidVideoRenderer_Value;
 pub const IMSVidVideoRenderer = extern struct {
@@ -9407,6 +10166,7 @@ pub const IMSVidGenericSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidStreamBufferRecordingControl_Value = @import("../zig.zig").Guid.initString("160621aa-bbbc-4326-a824-c395aebc6e74");
 pub const IID_IMSVidStreamBufferRecordingControl = &IID_IMSVidStreamBufferRecordingControl_Value;
 pub const IMSVidStreamBufferRecordingControl = extern struct {
@@ -9484,6 +10244,7 @@ pub const IMSVidStreamBufferRecordingControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidStreamBufferSink_Value = @import("../zig.zig").Guid.initString("159dbb45-cd1b-4dab-83ea-5cb1f4f21d07");
 pub const IID_IMSVidStreamBufferSink = &IID_IMSVidStreamBufferSink_Value;
 pub const IMSVidStreamBufferSink = extern struct {
@@ -9805,6 +10566,7 @@ pub const IMSVidStreamBufferSinkEvent3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMSVidStreamBufferSinkEvent4_Value = @import("../zig.zig").Guid.initString("1b01dcb0-daf0-412c-a5d1-590c7f62e2b8");
 pub const IID_IMSVidStreamBufferSinkEvent4 = &IID_IMSVidStreamBufferSinkEvent4_Value;
 pub const IMSVidStreamBufferSinkEvent4 = extern struct {
@@ -9825,6 +10587,7 @@ pub const IMSVidStreamBufferSinkEvent4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidStreamBufferSource_Value = @import("../zig.zig").Guid.initString("eb0c8cf9-6950-4772-87b1-47d11cf3a02f");
 pub const IID_IMSVidStreamBufferSource = &IID_IMSVidStreamBufferSource_Value;
 pub const IMSVidStreamBufferSource = extern struct {
@@ -10106,6 +10869,7 @@ pub const IMSVidStreamBufferSourceEvent3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMSVidStreamBufferV2SourceEvent_Value = @import("../zig.zig").Guid.initString("49c771f9-41b2-4cf7-9f9a-a313a8f6027e");
 pub const IID_IMSVidStreamBufferV2SourceEvent = &IID_IMSVidStreamBufferV2SourceEvent_Value;
 pub const IMSVidStreamBufferV2SourceEvent = extern struct {
@@ -10192,6 +10956,7 @@ pub const IMSVidStreamBufferV2SourceEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidVideoRenderer2_Value = @import("../zig.zig").Guid.initString("6bdd5c1e-2810-4159-94bc-05511ae8549b");
 pub const IID_IMSVidVideoRenderer2 = &IID_IMSVidVideoRenderer2_Value;
 pub const IMSVidVideoRenderer2 = extern struct {
@@ -10337,6 +11102,7 @@ pub const IMSVidVMR9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMSVidEVR_Value = @import("../zig.zig").Guid.initString("15e496ae-82a8-4cf9-a6b6-c561dc60398f");
 pub const IID_IMSVidEVR = &IID_IMSVidEVR_Value;
 pub const IMSVidEVR = extern struct {
@@ -10403,6 +11169,7 @@ pub const IMSVidEVREvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidAudioRenderer_Value = @import("../zig.zig").Guid.initString("37b0353f-a4c8-11d2-b634-00c04f79498e");
 pub const IID_IMSVidAudioRenderer = &IID_IMSVidAudioRenderer_Value;
 pub const IMSVidAudioRenderer = extern struct {
@@ -10461,6 +11228,7 @@ pub const IMSVidAudioRendererEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMSVidAudioRendererEvent2_Value = @import("../zig.zig").Guid.initString("e3f55729-353b-4c43-a028-50f79aa9a907");
 pub const IID_IMSVidAudioRendererEvent2 = &IID_IMSVidAudioRendererEvent2_Value;
 pub const IMSVidAudioRendererEvent2 = extern struct {
@@ -10530,6 +11298,7 @@ pub const IMSVidAudioRendererEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidInputDevices_Value = @import("../zig.zig").Guid.initString("c5702cd1-9b79-11d3-b654-00c04f79498e");
 pub const IID_IMSVidInputDevices = &IID_IMSVidInputDevices_Value;
 pub const IMSVidInputDevices = extern struct {
@@ -10584,6 +11353,7 @@ pub const IMSVidInputDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidOutputDevices_Value = @import("../zig.zig").Guid.initString("c5702cd2-9b79-11d3-b654-00c04f79498e");
 pub const IID_IMSVidOutputDevices = &IID_IMSVidOutputDevices_Value;
 pub const IMSVidOutputDevices = extern struct {
@@ -10638,6 +11408,7 @@ pub const IMSVidOutputDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidVideoRendererDevices_Value = @import("../zig.zig").Guid.initString("c5702cd3-9b79-11d3-b654-00c04f79498e");
 pub const IID_IMSVidVideoRendererDevices = &IID_IMSVidVideoRendererDevices_Value;
 pub const IMSVidVideoRendererDevices = extern struct {
@@ -10692,6 +11463,7 @@ pub const IMSVidVideoRendererDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidAudioRendererDevices_Value = @import("../zig.zig").Guid.initString("c5702cd4-9b79-11d3-b654-00c04f79498e");
 pub const IID_IMSVidAudioRendererDevices = &IID_IMSVidAudioRendererDevices_Value;
 pub const IMSVidAudioRendererDevices = extern struct {
@@ -10746,6 +11518,7 @@ pub const IMSVidAudioRendererDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidFeatures_Value = @import("../zig.zig").Guid.initString("c5702cd5-9b79-11d3-b654-00c04f79498e");
 pub const IID_IMSVidFeatures = &IID_IMSVidFeatures_Value;
 pub const IMSVidFeatures = extern struct {
@@ -11080,6 +11853,7 @@ pub const STATE_STOP = MSVidCtlStateList.STOP;
 pub const STATE_PAUSE = MSVidCtlStateList.PAUSE;
 pub const STATE_PLAY = MSVidCtlStateList.PLAY;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMSVidCtl_Value = @import("../zig.zig").Guid.initString("b0edf162-910a-11d2-b632-00c04f79498e");
 pub const IID_IMSVidCtl = &IID_IMSVidCtl_Value;
 pub const IMSVidCtl = extern struct {
@@ -11478,6 +12252,7 @@ pub const _IMSVidCtlEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferInitialize_Value = @import("../zig.zig").Guid.initString("9ce50f2d-6ba7-40fb-a034-50b1a674ec78");
 pub const IID_IStreamBufferInitialize = &IID_IStreamBufferInitialize_Value;
 pub const IStreamBufferInitialize = extern struct {
@@ -11490,7 +12265,7 @@ pub const IStreamBufferInitialize = extern struct {
         SetSIDs: fn(
             self: *const IStreamBufferInitialize,
             cSIDs: u32,
-            ppSID: **c_void,
+            ppSID: *PSID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -11501,7 +12276,7 @@ pub const IStreamBufferInitialize = extern struct {
             return @ptrCast(*const IStreamBufferInitialize.VTable, self.vtable).SetHKEY(@ptrCast(*const IStreamBufferInitialize, self), hkeyRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStreamBufferInitialize_SetSIDs(self: *const T, cSIDs: u32, ppSID: **c_void) callconv(.Inline) HRESULT {
+        pub fn IStreamBufferInitialize_SetSIDs(self: *const T, cSIDs: u32, ppSID: *PSID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStreamBufferInitialize.VTable, self.vtable).SetSIDs(@ptrCast(*const IStreamBufferInitialize, self), cSIDs, ppSID);
         }
     };}
@@ -11515,6 +12290,7 @@ pub const RECORDING_TYPE = extern enum(i32) {
 pub const RECORDING_TYPE_CONTENT = RECORDING_TYPE.CONTENT;
 pub const RECORDING_TYPE_REFERENCE = RECORDING_TYPE.REFERENCE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferSink_Value = @import("../zig.zig").Guid.initString("afd1f242-7efd-45ee-ba4e-407a25c9a77a");
 pub const IID_IStreamBufferSink = &IID_IStreamBufferSink_Value;
 pub const IStreamBufferSink = extern struct {
@@ -11553,6 +12329,7 @@ pub const IStreamBufferSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferSink2_Value = @import("../zig.zig").Guid.initString("db94a660-f4fb-4bfa-bcc6-fe159a4eea93");
 pub const IID_IStreamBufferSink2 = &IID_IStreamBufferSink2_Value;
 pub const IStreamBufferSink2 = extern struct {
@@ -11573,6 +12350,7 @@ pub const IStreamBufferSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferSink3_Value = @import("../zig.zig").Guid.initString("974723f2-887a-4452-9366-2cff3057bc8f");
 pub const IID_IStreamBufferSink3 = &IID_IStreamBufferSink3_Value;
 pub const IStreamBufferSink3 = extern struct {
@@ -11594,6 +12372,7 @@ pub const IStreamBufferSink3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferSource_Value = @import("../zig.zig").Guid.initString("1c5bd776-6ced-4f44-8164-5eab0e98db12");
 pub const IID_IStreamBufferSource = &IID_IStreamBufferSource_Value;
 pub const IStreamBufferSource = extern struct {
@@ -11615,6 +12394,7 @@ pub const IStreamBufferSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferRecordControl_Value = @import("../zig.zig").Guid.initString("ba9b6c99-f3c7-4ff2-92db-cfdd4851bf31");
 pub const IID_IStreamBufferRecordControl = &IID_IStreamBufferRecordControl_Value;
 pub const IStreamBufferRecordControl = extern struct {
@@ -11654,6 +12434,7 @@ pub const IStreamBufferRecordControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferRecComp_Value = @import("../zig.zig").Guid.initString("9e259a9b-8815-42ae-b09f-221970b154fd");
 pub const IID_IStreamBufferRecComp = &IID_IStreamBufferRecComp_Value;
 pub const IStreamBufferRecComp = extern struct {
@@ -11733,6 +12514,7 @@ pub const STREAMBUFFER_TYPE_QWORD = STREAMBUFFER_ATTR_DATATYPE.QWORD;
 pub const STREAMBUFFER_TYPE_WORD = STREAMBUFFER_ATTR_DATATYPE.WORD;
 pub const STREAMBUFFER_TYPE_GUID = STREAMBUFFER_ATTR_DATATYPE.GUID;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferRecordingAttribute_Value = @import("../zig.zig").Guid.initString("16ca4e03-fe69-4705-bd41-5b7dfc0c95f3");
 pub const IID_IStreamBufferRecordingAttribute = &IID_IStreamBufferRecordingAttribute_Value;
 pub const IStreamBufferRecordingAttribute = extern struct {
@@ -11808,6 +12590,7 @@ pub const STREAMBUFFER_ATTRIBUTE = extern struct {
     cbLength: u16,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumStreamBufferRecordingAttrib_Value = @import("../zig.zig").Guid.initString("c18a9162-1e82-4142-8c73-5690fa62fe33");
 pub const IID_IEnumStreamBufferRecordingAttrib = &IID_IEnumStreamBufferRecordingAttrib_Value;
 pub const IEnumStreamBufferRecordingAttrib = extern struct {
@@ -11854,6 +12637,7 @@ pub const IEnumStreamBufferRecordingAttrib = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferConfigure_Value = @import("../zig.zig").Guid.initString("ce14dfae-4098-4af7-bbf7-d6511f835414");
 pub const IID_IStreamBufferConfigure = &IID_IStreamBufferConfigure_Value;
 pub const IStreamBufferConfigure = extern struct {
@@ -11917,6 +12701,7 @@ pub const IStreamBufferConfigure = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferConfigure2_Value = @import("../zig.zig").Guid.initString("53e037bf-3992-4282-ae34-2487b4dae06b");
 pub const IID_IStreamBufferConfigure2 = &IID_IStreamBufferConfigure2_Value;
 pub const IStreamBufferConfigure2 = extern struct {
@@ -11964,6 +12749,7 @@ pub const IStreamBufferConfigure2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamBufferConfigure3_Value = @import("../zig.zig").Guid.initString("7e2d2a1e-7192-4bd7-80c1-061fd1d10402");
 pub const IID_IStreamBufferConfigure3 = &IID_IStreamBufferConfigure3_Value;
 pub const IStreamBufferConfigure3 = extern struct {
@@ -12009,6 +12795,7 @@ pub const IStreamBufferConfigure3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferMediaSeeking_Value = @import("../zig.zig").Guid.initString("f61f5c26-863d-4afa-b0ba-2f81dc978596");
 pub const IID_IStreamBufferMediaSeeking = &IID_IStreamBufferMediaSeeking_Value;
 pub const IStreamBufferMediaSeeking = extern struct {
@@ -12022,6 +12809,7 @@ pub const IStreamBufferMediaSeeking = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferMediaSeeking2_Value = @import("../zig.zig").Guid.initString("3a439ab0-155f-470a-86a6-9ea54afd6eaf");
 pub const IID_IStreamBufferMediaSeeking2 = &IID_IStreamBufferMediaSeeking2_Value;
 pub const IStreamBufferMediaSeeking2 = extern struct {
@@ -12052,6 +12840,7 @@ pub const SBE_PIN_DATA = extern struct {
     cTimestamps: u64,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStreamBufferDataCounters_Value = @import("../zig.zig").Guid.initString("9d2a2563-31ab-402e-9a6b-adb903489440");
 pub const IID_IStreamBufferDataCounters = &IID_IStreamBufferDataCounters_Value;
 pub const IStreamBufferDataCounters = extern struct {
@@ -12105,6 +12894,7 @@ pub const DVR_STREAM_DESC = extern struct {
     MediaType: AM_MEDIA_TYPE,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2GlobalEvent_Value = @import("../zig.zig").Guid.initString("caede759-b6b1-11db-a578-0018f3fa24c6");
 pub const IID_ISBE2GlobalEvent = &IID_ISBE2GlobalEvent_Value;
 pub const ISBE2GlobalEvent = extern struct {
@@ -12133,6 +12923,7 @@ pub const ISBE2GlobalEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2GlobalEvent2_Value = @import("../zig.zig").Guid.initString("6d8309bf-00fe-4506-8b03-f8c65b5c9b39");
 pub const IID_ISBE2GlobalEvent2 = &IID_ISBE2GlobalEvent2_Value;
 pub const ISBE2GlobalEvent2 = extern struct {
@@ -12162,6 +12953,7 @@ pub const ISBE2GlobalEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2SpanningEvent_Value = @import("../zig.zig").Guid.initString("caede760-b6b1-11db-a578-0018f3fa24c6");
 pub const IID_ISBE2SpanningEvent = &IID_ISBE2SpanningEvent_Value;
 pub const ISBE2SpanningEvent = extern struct {
@@ -12186,6 +12978,7 @@ pub const ISBE2SpanningEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2Crossbar_Value = @import("../zig.zig").Guid.initString("547b6d26-3226-487e-8253-8aa168749434");
 pub const IID_ISBE2Crossbar = &IID_ISBE2Crossbar_Value;
 pub const ISBE2Crossbar = extern struct {
@@ -12233,6 +13026,7 @@ pub const ISBE2Crossbar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2StreamMap_Value = @import("../zig.zig").Guid.initString("667c7745-85b1-4c55-ae55-4e25056159fc");
 pub const IID_ISBE2StreamMap = &IID_ISBE2StreamMap_Value;
 pub const ISBE2StreamMap = extern struct {
@@ -12270,6 +13064,7 @@ pub const ISBE2StreamMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2EnumStream_Value = @import("../zig.zig").Guid.initString("f7611092-9fbc-46ec-a7c7-548ea78b71a4");
 pub const IID_ISBE2EnumStream = &IID_ISBE2EnumStream_Value;
 pub const ISBE2EnumStream = extern struct {
@@ -12316,6 +13111,7 @@ pub const ISBE2EnumStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2MediaTypeProfile_Value = @import("../zig.zig").Guid.initString("f238267d-4671-40d7-997e-25dc32cfed2a");
 pub const IID_ISBE2MediaTypeProfile = &IID_ISBE2MediaTypeProfile_Value;
 pub const ISBE2MediaTypeProfile = extern struct {
@@ -12362,6 +13158,7 @@ pub const ISBE2MediaTypeProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISBE2FileScan_Value = @import("../zig.zig").Guid.initString("3e2bf5a5-4f96-4899-a1a3-75e8be9a5ac0");
 pub const IID_ISBE2FileScan = &IID_ISBE2FileScan_Value;
 pub const ISBE2FileScan = extern struct {
@@ -13398,6 +14195,7 @@ pub const ITSDT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPSITables_Value = @import("../zig.zig").Guid.initString("919f24c5-7b14-42ac-a4b0-2ae08daf00ac");
 pub const IID_IPSITables = &IID_IPSITables_Value;
 pub const IPSITables = extern struct {
@@ -14178,6 +14976,7 @@ pub const IATSC_STT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISCTE_EAS_Value = @import("../zig.zig").Guid.initString("1ff544d6-161d-4fae-9faa-4f9f492ae999");
 pub const IID_ISCTE_EAS = &IID_ISCTE_EAS_Value;
 pub const ISCTE_EAS = extern struct {
@@ -14586,6 +15385,7 @@ pub const ICaptionServiceDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IServiceLocationDescriptor_Value = @import("../zig.zig").Guid.initString("58c3c827-9d91-4215-bff3-820a49f0904c");
 pub const IID_IServiceLocationDescriptor = &IID_IServiceLocationDescriptor_Value;
 pub const IServiceLocationDescriptor = extern struct {
@@ -15003,6 +15803,7 @@ pub const IDvbSiParser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbSiParser2_Value = @import("../zig.zig").Guid.initString("0ac5525f-f816-42f4-93ba-4c0f32f46e54");
 pub const IID_IDvbSiParser2 = &IID_IDvbSiParser2_Value;
 pub const IDvbSiParser2 = extern struct {
@@ -15010,7 +15811,7 @@ pub const IDvbSiParser2 = extern struct {
         base: IDvbSiParser.VTable,
         GetEIT2: fn(
             self: *const IDvbSiParser2,
-            tableId: IDvbSiParser2_GetEIT2_tableIdFlags,
+            tableId: u8,
             pwServiceId: ?*u16,
             pbSegment: ?*u8,
             ppEIT: **IDVB_EIT2,
@@ -15020,7 +15821,7 @@ pub const IDvbSiParser2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDvbSiParser.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDvbSiParser2_GetEIT2(self: *const T, tableId: IDvbSiParser2_GetEIT2_tableIdFlags, pwServiceId: ?*u16, pbSegment: ?*u8, ppEIT: **IDVB_EIT2) callconv(.Inline) HRESULT {
+        pub fn IDvbSiParser2_GetEIT2(self: *const T, tableId: u8, pwServiceId: ?*u16, pbSegment: ?*u8, ppEIT: **IDVB_EIT2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDvbSiParser2.VTable, self.vtable).GetEIT2(@ptrCast(*const IDvbSiParser2, self), tableId, pwServiceId, pbSegment, ppEIT);
         }
     };}
@@ -15439,6 +16240,7 @@ pub const IDVB_SDT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_SDT_Value = @import("../zig.zig").Guid.initString("3f3dc9a2-bb32-4fb9-ae9e-d856848927a3");
 pub const IID_IISDB_SDT = &IID_IISDB_SDT_Value;
 pub const IISDB_SDT = extern struct {
@@ -15653,6 +16455,7 @@ pub const IDVB_EIT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDVB_EIT2_Value = @import("../zig.zig").Guid.initString("61a389e0-9b9e-4ba0-aeea-5ddd159820ea");
 pub const IID_IDVB_EIT2 = &IID_IDVB_EIT2_Value;
 pub const IDVB_EIT2 = extern struct {
@@ -16206,6 +17009,7 @@ pub const IDVB_SIT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_BIT_Value = @import("../zig.zig").Guid.initString("537cd71e-0e46-4173-9001-ba043f3e49e2");
 pub const IID_IISDB_BIT = &IID_IISDB_BIT_Value;
 pub const IISDB_BIT = extern struct {
@@ -16334,6 +17138,7 @@ pub const IISDB_BIT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_NBIT_Value = @import("../zig.zig").Guid.initString("1b1863ef-08f1-40b7-a559-3b1eff8cafa6");
 pub const IID_IISDB_NBIT = &IID_IISDB_NBIT_Value;
 pub const IISDB_NBIT = extern struct {
@@ -16481,6 +17286,7 @@ pub const IISDB_NBIT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_LDT_Value = @import("../zig.zig").Guid.initString("141a546b-02ff-4fb9-a3a3-2f074b74a9a9");
 pub const IID_IISDB_LDT = &IID_IISDB_LDT_Value;
 pub const IISDB_LDT = extern struct {
@@ -16590,6 +17396,7 @@ pub const IISDB_LDT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_SDTT_Value = @import("../zig.zig").Guid.initString("ee60ef2d-813a-4dc7-bf92-ea13dac85313");
 pub const IID_IISDB_SDTT = &IID_IISDB_SDTT_Value;
 pub const IISDB_SDTT = extern struct {
@@ -16781,6 +17588,7 @@ pub const IISDB_SDTT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_CDT_Value = @import("../zig.zig").Guid.initString("25fa92c2-8b80-4787-a841-3a0e8f17984b");
 pub const IID_IISDB_CDT = &IID_IISDB_CDT_Value;
 pub const IISDB_CDT = extern struct {
@@ -16895,6 +17703,7 @@ pub const IISDB_CDT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IISDB_EMM_Value = @import("../zig.zig").Guid.initString("0edb556d-43ad-4938-9668-321b2ffecfd3");
 pub const IID_IISDB_EMM = &IID_IISDB_EMM_Value;
 pub const IISDB_EMM = extern struct {
@@ -17044,6 +17853,7 @@ pub const CRID_LOCATION_IN_CIT = CRID_LOCATION.IN_CIT;
 pub const CRID_LOCATION_DVB_RESERVED1 = CRID_LOCATION.DVB_RESERVED1;
 pub const CRID_LOCATION_DVB_RESERVED2 = CRID_LOCATION.DVB_RESERVED2;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbContentIdentifierDescriptor_Value = @import("../zig.zig").Guid.initString("05e0c1ea-f661-4053-9fbf-d93b28359838");
 pub const IID_IDvbContentIdentifierDescriptor = &IID_IDvbContentIdentifierDescriptor_Value;
 pub const IDvbContentIdentifierDescriptor = extern struct {
@@ -17093,6 +17903,7 @@ pub const IDvbContentIdentifierDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbDefaultAuthorityDescriptor_Value = @import("../zig.zig").Guid.initString("05ec24d1-3a31-44e7-b408-67c60a352276");
 pub const IID_IDvbDefaultAuthorityDescriptor = &IID_IDvbDefaultAuthorityDescriptor_Value;
 pub const IDvbDefaultAuthorityDescriptor = extern struct {
@@ -17557,6 +18368,7 @@ pub const IDvbFrequencyListDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbPrivateDataSpecifierDescriptor_Value = @import("../zig.zig").Guid.initString("5660a019-e75a-4b82-9b4c-ed2256d165a2");
 pub const IID_IDvbPrivateDataSpecifierDescriptor = &IID_IDvbPrivateDataSpecifierDescriptor_Value;
 pub const IDvbPrivateDataSpecifierDescriptor = extern struct {
@@ -17649,6 +18461,7 @@ pub const IDvbLogicalChannelDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbLogicalChannelDescriptor2_Value = @import("../zig.zig").Guid.initString("43aca974-4be8-4b98-bc17-9eafd788b1d7");
 pub const IID_IDvbLogicalChannelDescriptor2 = &IID_IDvbLogicalChannelDescriptor2_Value;
 pub const IDvbLogicalChannelDescriptor2 = extern struct {
@@ -17671,6 +18484,7 @@ pub const IDvbLogicalChannelDescriptor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbLogicalChannel2Descriptor_Value = @import("../zig.zig").Guid.initString("f69c3747-8a30-4980-998c-01fe7f0ba35a");
 pub const IID_IDvbLogicalChannel2Descriptor = &IID_IDvbLogicalChannel2Descriptor_Value;
 pub const IDvbLogicalChannel2Descriptor = extern struct {
@@ -17759,6 +18573,7 @@ pub const IDvbLogicalChannel2Descriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbHDSimulcastLogicalChannelDescriptor_Value = @import("../zig.zig").Guid.initString("1ea8b738-a307-4680-9e26-d0a908c824f4");
 pub const IID_IDvbHDSimulcastLogicalChannelDescriptor = &IID_IDvbHDSimulcastLogicalChannelDescriptor_Value;
 pub const IDvbHDSimulcastLogicalChannelDescriptor = extern struct {
@@ -17772,6 +18587,7 @@ pub const IDvbHDSimulcastLogicalChannelDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbDataBroadcastIDDescriptor_Value = @import("../zig.zig").Guid.initString("5f26f518-65c8-4048-91f2-9290f59f7b90");
 pub const IID_IDvbDataBroadcastIDDescriptor = &IID_IDvbDataBroadcastIDDescriptor_Value;
 pub const IDvbDataBroadcastIDDescriptor = extern struct {
@@ -17818,6 +18634,7 @@ pub const IDvbDataBroadcastIDDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbDataBroadcastDescriptor_Value = @import("../zig.zig").Guid.initString("d1ebc1d6-8b60-4c20-9caf-e59382e7c400");
 pub const IID_IDvbDataBroadcastDescriptor = &IID_IDvbDataBroadcastDescriptor_Value;
 pub const IDvbDataBroadcastDescriptor = extern struct {
@@ -17928,6 +18745,7 @@ pub const DESC_LINKAGE_RESERVED1 = DESC_LINKAGE_TYPE.RESERVED1;
 pub const DESC_LINKAGE_USER = DESC_LINKAGE_TYPE.USER;
 pub const DESC_LINKAGE_RESERVED2 = DESC_LINKAGE_TYPE.RESERVED2;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbLinkageDescriptor_Value = @import("../zig.zig").Guid.initString("1cdf8b31-994a-46fc-acfd-6a6be8934dd5");
 pub const IID_IDvbLinkageDescriptor = &IID_IDvbLinkageDescriptor_Value;
 pub const IDvbLinkageDescriptor = extern struct {
@@ -18006,6 +18824,7 @@ pub const IDvbLinkageDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbTeletextDescriptor_Value = @import("../zig.zig").Guid.initString("9cd29d47-69c6-4f92-98a9-210af1b7303a");
 pub const IID_IDvbTeletextDescriptor = &IID_IDvbTeletextDescriptor_Value;
 pub const IDvbTeletextDescriptor = extern struct {
@@ -18079,6 +18898,7 @@ pub const IDvbTeletextDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbSubtitlingDescriptor_Value = @import("../zig.zig").Guid.initString("9b25fe1d-fa23-4e50-9784-6df8b26f8a49");
 pub const IID_IDvbSubtitlingDescriptor = &IID_IDvbSubtitlingDescriptor_Value;
 pub const IDvbSubtitlingDescriptor = extern struct {
@@ -18229,6 +19049,7 @@ pub const IDvbServiceDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbServiceDescriptor2_Value = @import("../zig.zig").Guid.initString("d6c76506-85ab-487c-9b2b-36416511e4a2");
 pub const IID_IDvbServiceDescriptor2 = &IID_IDvbServiceDescriptor2_Value;
 pub const IDvbServiceDescriptor2 = extern struct {
@@ -18260,6 +19081,7 @@ pub const IDvbServiceDescriptor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbServiceListDescriptor_Value = @import("../zig.zig").Guid.initString("05db0d8f-6008-491a-acd3-7090952707d0");
 pub const IID_IDvbServiceListDescriptor = &IID_IDvbServiceListDescriptor_Value;
 pub const IDvbServiceListDescriptor = extern struct {
@@ -18315,6 +19137,7 @@ pub const IDvbServiceListDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbMultilingualServiceNameDescriptor_Value = @import("../zig.zig").Guid.initString("2d80433b-b32c-47ef-987f-e78ebb773e34");
 pub const IID_IDvbMultilingualServiceNameDescriptor = &IID_IDvbMultilingualServiceNameDescriptor_Value;
 pub const IDvbMultilingualServiceNameDescriptor = extern struct {
@@ -18381,6 +19204,7 @@ pub const IDvbMultilingualServiceNameDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbNetworkNameDescriptor_Value = @import("../zig.zig").Guid.initString("5b2a80cf-35b9-446c-b3e4-048b761dbc51");
 pub const IID_IDvbNetworkNameDescriptor = &IID_IDvbNetworkNameDescriptor_Value;
 pub const IDvbNetworkNameDescriptor = extern struct {
@@ -18427,6 +19251,7 @@ pub const IDvbNetworkNameDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbShortEventDescriptor_Value = @import("../zig.zig").Guid.initString("b170be92-5b75-458e-9c6e-b0008231491a");
 pub const IID_IDvbShortEventDescriptor = &IID_IDvbShortEventDescriptor_Value;
 pub const IDvbShortEventDescriptor = extern struct {
@@ -18482,6 +19307,7 @@ pub const IDvbShortEventDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbExtendedEventDescriptor_Value = @import("../zig.zig").Guid.initString("c9b22eca-85f4-499f-b1db-efa93a91ee57");
 pub const IID_IDvbExtendedEventDescriptor = &IID_IDvbExtendedEventDescriptor_Value;
 pub const IDvbExtendedEventDescriptor = extern struct {
@@ -18594,6 +19420,7 @@ pub const IDvbExtendedEventDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbComponentDescriptor_Value = @import("../zig.zig").Guid.initString("91e405cf-80e7-457f-9096-1b9d1ce32141");
 pub const IID_IDvbComponentDescriptor = &IID_IDvbComponentDescriptor_Value;
 pub const IDvbComponentDescriptor = extern struct {
@@ -18664,6 +19491,7 @@ pub const IDvbComponentDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbContentDescriptor_Value = @import("../zig.zig").Guid.initString("2e883881-a467-412a-9d63-6f2b6da05bf0");
 pub const IID_IDvbContentDescriptor = &IID_IDvbContentDescriptor_Value;
 pub const IDvbContentDescriptor = extern struct {
@@ -18721,6 +19549,7 @@ pub const IDvbContentDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDvbParentalRatingDescriptor_Value = @import("../zig.zig").Guid.initString("3ad9dde1-fb1b-4186-937f-22e6b5a72a10");
 pub const IID_IDvbParentalRatingDescriptor = &IID_IDvbParentalRatingDescriptor_Value;
 pub const IDvbParentalRatingDescriptor = extern struct {
@@ -18768,6 +19597,7 @@ pub const IDvbParentalRatingDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbTerrestrialDeliverySystemDescriptor_Value = @import("../zig.zig").Guid.initString("39fae0a6-d151-44dd-a28a-765de5991670");
 pub const IID_IIsdbTerrestrialDeliverySystemDescriptor = &IID_IIsdbTerrestrialDeliverySystemDescriptor_Value;
 pub const IIsdbTerrestrialDeliverySystemDescriptor = extern struct {
@@ -18838,6 +19668,7 @@ pub const IIsdbTerrestrialDeliverySystemDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbTSInformationDescriptor_Value = @import("../zig.zig").Guid.initString("d7ad183e-38f5-4210-b55f-ec8d601bbd47");
 pub const IID_IIsdbTSInformationDescriptor = &IID_IIsdbTSInformationDescriptor_Value;
 pub const IIsdbTSInformationDescriptor = extern struct {
@@ -18920,6 +19751,7 @@ pub const IIsdbTSInformationDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbDigitalCopyControlDescriptor_Value = @import("../zig.zig").Guid.initString("1a28417e-266a-4bb8-a4bd-d782bcfb8161");
 pub const IID_IIsdbDigitalCopyControlDescriptor = &IID_IIsdbDigitalCopyControlDescriptor_Value;
 pub const IIsdbDigitalCopyControlDescriptor = extern struct {
@@ -18981,6 +19813,7 @@ pub const IIsdbDigitalCopyControlDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbAudioComponentDescriptor_Value = @import("../zig.zig").Guid.initString("679d2002-2425-4be4-a4c7-d6632a574f4d");
 pub const IID_IIsdbAudioComponentDescriptor = &IID_IIsdbAudioComponentDescriptor_Value;
 pub const IIsdbAudioComponentDescriptor = extern struct {
@@ -19107,6 +19940,7 @@ pub const IIsdbAudioComponentDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbDataContentDescriptor_Value = @import("../zig.zig").Guid.initString("a428100a-e646-4bd6-aa14-6087bdc08cd5");
 pub const IID_IIsdbDataContentDescriptor = &IID_IIsdbDataContentDescriptor_Value;
 pub const IIsdbDataContentDescriptor = extern struct {
@@ -19203,6 +20037,7 @@ pub const IIsdbDataContentDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbCAContractInformationDescriptor_Value = @import("../zig.zig").Guid.initString("08e18b25-a28f-4e92-821e-4fced5cc2291");
 pub const IID_IIsdbCAContractInformationDescriptor = &IID_IIsdbCAContractInformationDescriptor_Value;
 pub const IIsdbCAContractInformationDescriptor = extern struct {
@@ -19291,6 +20126,7 @@ pub const IIsdbCAContractInformationDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbEventGroupDescriptor_Value = @import("../zig.zig").Guid.initString("94b06780-2e2a-44dc-a966-cc56fdabc6c2");
 pub const IID_IIsdbEventGroupDescriptor = &IID_IIsdbEventGroupDescriptor_Value;
 pub const IIsdbEventGroupDescriptor = extern struct {
@@ -19366,6 +20202,7 @@ pub const IIsdbEventGroupDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbComponentGroupDescriptor_Value = @import("../zig.zig").Guid.initString("a494f17f-c592-47d8-8943-64c9a34be7b9");
 pub const IID_IIsdbComponentGroupDescriptor = &IID_IIsdbComponentGroupDescriptor_Value;
 pub const IIsdbComponentGroupDescriptor = extern struct {
@@ -19479,6 +20316,7 @@ pub const IIsdbComponentGroupDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbSeriesDescriptor_Value = @import("../zig.zig").Guid.initString("07ef6370-1660-4f26-87fc-614adab24b11");
 pub const IID_IIsdbSeriesDescriptor = &IID_IIsdbSeriesDescriptor_Value;
 pub const IIsdbSeriesDescriptor = extern struct {
@@ -19566,6 +20404,7 @@ pub const IIsdbSeriesDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbDownloadContentDescriptor_Value = @import("../zig.zig").Guid.initString("5298661e-cb88-4f5f-a1de-5f440c185b92");
 pub const IID_IIsdbDownloadContentDescriptor = &IID_IIsdbDownloadContentDescriptor_Value;
 pub const IIsdbDownloadContentDescriptor = extern struct {
@@ -19724,6 +20563,7 @@ pub const IIsdbDownloadContentDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbLogoTransmissionDescriptor_Value = @import("../zig.zig").Guid.initString("e0103f49-4ae1-4f07-9098-756db1fa88cd");
 pub const IID_IIsdbLogoTransmissionDescriptor = &IID_IIsdbLogoTransmissionDescriptor_Value;
 pub const IIsdbLogoTransmissionDescriptor = extern struct {
@@ -19794,6 +20634,7 @@ pub const IIsdbLogoTransmissionDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbSIParameterDescriptor_Value = @import("../zig.zig").Guid.initString("f837dc36-867c-426a-9111-f62093951a45");
 pub const IID_IIsdbSIParameterDescriptor = &IID_IIsdbSIParameterDescriptor_Value;
 pub const IIsdbSIParameterDescriptor = extern struct {
@@ -19875,6 +20716,7 @@ pub const IIsdbSIParameterDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbEmergencyInformationDescriptor_Value = @import("../zig.zig").Guid.initString("ba6fa681-b973-4da1-9207-ac3e7f0341eb");
 pub const IID_IIsdbEmergencyInformationDescriptor = &IID_IIsdbEmergencyInformationDescriptor_Value;
 pub const IIsdbEmergencyInformationDescriptor = extern struct {
@@ -19949,6 +20791,7 @@ pub const IIsdbEmergencyInformationDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbCADescriptor_Value = @import("../zig.zig").Guid.initString("0570aa47-52bc-42ae-8ca5-969f41e81aea");
 pub const IID_IIsdbCADescriptor = &IID_IIsdbCADescriptor_Value;
 pub const IIsdbCADescriptor = extern struct {
@@ -20011,6 +20854,7 @@ pub const IIsdbCADescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbCAServiceDescriptor_Value = @import("../zig.zig").Guid.initString("39cbeb97-ff0b-42a7-9ab9-7b9cfe70a77a");
 pub const IID_IIsdbCAServiceDescriptor = &IID_IIsdbCAServiceDescriptor_Value;
 pub const IIsdbCAServiceDescriptor = extern struct {
@@ -20073,6 +20917,7 @@ pub const IIsdbCAServiceDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IIsdbHierarchicalTransmissionDescriptor_Value = @import("../zig.zig").Guid.initString("b7b3ae90-ee0b-446d-8769-f7e2aa266aa6");
 pub const IID_IIsdbHierarchicalTransmissionDescriptor = &IID_IIsdbHierarchicalTransmissionDescriptor_Value;
 pub const IIsdbHierarchicalTransmissionDescriptor = extern struct {
@@ -20134,6 +20979,7 @@ pub const IIsdbHierarchicalTransmissionDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPBDASiParser_Value = @import("../zig.zig").Guid.initString("9de49a74-aba2-4a18-93e1-21f17f95c3c3");
 pub const IID_IPBDASiParser = &IID_IPBDASiParser_Value;
 pub const IPBDASiParser = extern struct {
@@ -20175,6 +21021,7 @@ pub const IPBDASiParser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPBDA_EIT_Value = @import("../zig.zig").Guid.initString("a35f2dea-098f-4ebd-984c-2bd4c3c8ce0a");
 pub const IID_IPBDA_EIT = &IID_IPBDA_EIT_Value;
 pub const IPBDA_EIT = extern struct {
@@ -20286,6 +21133,7 @@ pub const IPBDA_EIT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPBDA_Services_Value = @import("../zig.zig").Guid.initString("944eab37-eed4-4850-afd2-77e7efeb4427");
 pub const IID_IPBDA_Services = &IID_IPBDA_Services_Value;
 pub const IPBDA_Services = extern struct {
@@ -20325,6 +21173,7 @@ pub const IPBDA_Services = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPBDAEntitlementDescriptor_Value = @import("../zig.zig").Guid.initString("22632497-0de3-4587-aadc-d8d99017e760");
 pub const IID_IPBDAEntitlementDescriptor = &IID_IPBDAEntitlementDescriptor_Value;
 pub const IPBDAEntitlementDescriptor = extern struct {
@@ -20363,6 +21212,7 @@ pub const IPBDAEntitlementDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPBDAAttributesDescriptor_Value = @import("../zig.zig").Guid.initString("313b3620-3263-45a6-9533-968befbeac03");
 pub const IID_IPBDAAttributesDescriptor = &IID_IPBDAAttributesDescriptor_Value;
 pub const IPBDAAttributesDescriptor = extern struct {
@@ -22309,6 +23159,87 @@ pub const MPEG_HEADER_VERSION_BITS = extern struct {
     _bitfield: u8,
 };
 
+pub const MPEG1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    fwHeadLayer: u16,
+    dwHeadBitrate: u32,
+    fwHeadMode: u16,
+    fwHeadModeExt: u16,
+    wHeadEmphasis: u16,
+    fwHeadFlags: u16,
+    dwPTSLow: u32,
+    dwPTSHigh: u32,
+};
+
+pub const MPEGLAYER3WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    wID: u16,
+    fdwFlags: MPEGLAYER3WAVEFORMAT_fdwFlags,
+    nBlockSize: u16,
+    nFramesPerBlock: u16,
+    nCodecDelay: u16,
+};
+
+pub const HEAACWAVEINFO = extern struct {
+    wfx: WAVEFORMATEX,
+    wPayloadType: u16,
+    wAudioProfileLevelIndication: u16,
+    wStructType: u16,
+    wReserved1: u16,
+    dwReserved2: u32,
+};
+
+pub const HEAACWAVEFORMAT = extern struct {
+    wfInfo: HEAACWAVEINFO,
+    pbAudioSpecificConfig: [1]u8,
+};
+
+pub const DDCOLORKEY = extern struct {
+    dwColorSpaceLowValue: u32,
+    dwColorSpaceHighValue: u32,
+};
+
+pub const IDvbSiParser2_GetEIT2_tableIdFlags = extern enum(u32) {
+    ACTUAL_TID = 78,
+    OTHER_TID_ = 79,
+};
+pub const DVB_EIT_ACTUAL_TID = IDvbSiParser2_GetEIT2_tableIdFlags.ACTUAL_TID;
+pub const DVB_EIT_OTHER_TID_ = IDvbSiParser2_GetEIT2_tableIdFlags.OTHER_TID_;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MPEG2VIDEOINFO_dwFlags = extern enum(u32) {
+    DoPanScan = 1,
+    DVDLine21Field1 = 2,
+    DVDLine21Field2 = 4,
+    SourceIsLetterboxed = 8,
+    FilmCameraMode = 16,
+    LetterboxAnalogOut = 32,
+    DSS_UserData = 64,
+    DVB_UserData = 128,
+    @"27MhzTimebase" = 256,
+    WidescreenAnalogOut = 512,
+    _,
+};
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_dwFlags.DoPanScan;
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field1;
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field2;
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_dwFlags.SourceIsLetterboxed;
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_dwFlags.FilmCameraMode;
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_dwFlags.LetterboxAnalogOut;
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_dwFlags.DSS_UserData;
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_dwFlags.DVB_UserData;
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_dwFlags.@"27MhzTimebase";
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_dwFlags.WidescreenAnalogOut;
+
+pub const MPEGLAYER3WAVEFORMAT_fdwFlags = extern enum(u32) {
+    ISO = 0,
+    ON = 1,
+    OFF = 2,
+};
+pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_fdwFlags.ISO;
+pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_fdwFlags.ON;
+pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_fdwFlags.OFF;
+
 pub const AMVP_SELECT_FORMAT_BY = extern enum(i32) {
     DO_NOT_CARE = 0,
     BEST_BANDWIDTH = 1,
@@ -22360,6 +23291,7 @@ pub const AMVPDATAINFO = extern struct {
     dwReserved1: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ICreateDevEnum_Value = @import("../zig.zig").Guid.initString("29840822-5b84-11d0-bd3b-00a0c911ce86");
 pub const IID_ICreateDevEnum = &IID_ICreateDevEnum_Value;
 pub const ICreateDevEnum = extern struct {
@@ -22415,6 +23347,7 @@ pub const PIN_INFO = extern struct {
     achName: [128]u16,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPin_Value = @import("../zig.zig").Guid.initString("56a86891-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IPin = &IID_IPin_Value;
 pub const IPin = extern struct {
@@ -22549,6 +23482,7 @@ pub const IPin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumPins_Value = @import("../zig.zig").Guid.initString("56a86892-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IEnumPins = &IID_IEnumPins_Value;
 pub const IEnumPins = extern struct {
@@ -22595,6 +23529,7 @@ pub const IEnumPins = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumMediaTypes_Value = @import("../zig.zig").Guid.initString("89c31040-846b-11ce-97d3-00aa0055595a");
 pub const IID_IEnumMediaTypes = &IID_IEnumMediaTypes_Value;
 pub const IEnumMediaTypes = extern struct {
@@ -22641,6 +23576,7 @@ pub const IEnumMediaTypes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFilterGraph_Value = @import("../zig.zig").Guid.initString("56a8689f-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IFilterGraph = &IID_IFilterGraph_Value;
 pub const IFilterGraph = extern struct {
@@ -22721,6 +23657,7 @@ pub const IFilterGraph = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumFilters_Value = @import("../zig.zig").Guid.initString("56a86893-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IEnumFilters = &IID_IEnumFilters_Value;
 pub const IEnumFilters = extern struct {
@@ -22776,6 +23713,7 @@ pub const State_Stopped = FILTER_STATE.Stopped;
 pub const State_Paused = FILTER_STATE.Paused;
 pub const State_Running = FILTER_STATE.Running;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaFilter_Value = @import("../zig.zig").Guid.initString("56a86899-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaFilter = &IID_IMediaFilter_Value;
 pub const IMediaFilter = extern struct {
@@ -22841,6 +23779,7 @@ pub const FILTER_INFO = extern struct {
     pGraph: *IFilterGraph,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBaseFilter_Value = @import("../zig.zig").Guid.initString("56a86895-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IBaseFilter = &IID_IBaseFilter_Value;
 pub const IBaseFilter = extern struct {
@@ -22896,6 +23835,7 @@ pub const IBaseFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IReferenceClock_Value = @import("../zig.zig").Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IReferenceClock = &IID_IReferenceClock_Value;
 pub const IReferenceClock = extern struct {
@@ -22947,6 +23887,7 @@ pub const IReferenceClock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IReferenceClockTimerControl_Value = @import("../zig.zig").Guid.initString("ebec459c-2eca-4d42-a8af-30df557614b8");
 pub const IID_IReferenceClockTimerControl = &IID_IReferenceClockTimerControl_Value;
 pub const IReferenceClockTimerControl = extern struct {
@@ -22989,6 +23930,7 @@ pub const IReferenceClock2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaSample_Value = @import("../zig.zig").Guid.initString("56a8689a-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaSample = &IID_IMediaSample_Value;
 pub const IMediaSample = extern struct {
@@ -23167,6 +24109,7 @@ pub const AM_SAMPLE2_PROPERTIES = extern struct {
     cbBuffer: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaSample2_Value = @import("../zig.zig").Guid.initString("36b73884-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IMediaSample2 = &IID_IMediaSample2_Value;
 pub const IMediaSample2 = extern struct {
@@ -23198,6 +24141,7 @@ pub const IMediaSample2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMediaSample2Config_Value = @import("../zig.zig").Guid.initString("68961e68-832b-41ea-bc91-63593f3e70e3");
 pub const IID_IMediaSample2Config = &IID_IMediaSample2Config_Value;
 pub const IMediaSample2Config = extern struct {
@@ -23219,6 +24163,7 @@ pub const IMediaSample2Config = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMemAllocator_Value = @import("../zig.zig").Guid.initString("56a8689c-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMemAllocator = &IID_IMemAllocator_Value;
 pub const IMemAllocator = extern struct {
@@ -23282,6 +24227,7 @@ pub const IMemAllocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMemAllocatorCallbackTemp_Value = @import("../zig.zig").Guid.initString("379a0cf0-c1de-11d2-abf5-00a0c905f375");
 pub const IID_IMemAllocatorCallbackTemp = &IID_IMemAllocatorCallbackTemp_Value;
 pub const IMemAllocatorCallbackTemp = extern struct {
@@ -23311,6 +24257,7 @@ pub const IMemAllocatorCallbackTemp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMemAllocatorNotifyCallbackTemp_Value = @import("../zig.zig").Guid.initString("92980b30-c1de-11d2-abf5-00a0c905f375");
 pub const IID_IMemAllocatorNotifyCallbackTemp = &IID_IMemAllocatorNotifyCallbackTemp_Value;
 pub const IMemAllocatorNotifyCallbackTemp = extern struct {
@@ -23331,6 +24278,7 @@ pub const IMemAllocatorNotifyCallbackTemp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMemInputPin_Value = @import("../zig.zig").Guid.initString("56a8689d-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMemInputPin = &IID_IMemInputPin_Value;
 pub const IMemInputPin = extern struct {
@@ -23463,6 +24411,7 @@ pub const AM_SEEKING_CanPlayBackwards = AM_SEEKING_SEEKING_CAPABILITIES.CanPlayB
 pub const AM_SEEKING_CanDoSegments = AM_SEEKING_SEEKING_CAPABILITIES.CanDoSegments;
 pub const AM_SEEKING_Source = AM_SEEKING_SEEKING_CAPABILITIES.Source;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaSeeking_Value = @import("../zig.zig").Guid.initString("36b73880-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IMediaSeeking = &IID_IMediaSeeking_Value;
 pub const IMediaSeeking = extern struct {
@@ -23844,6 +24793,7 @@ pub const REGFILTER2 = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFilterMapper2_Value = @import("../zig.zig").Guid.initString("b79bb0b0-33c1-11d1-abe1-00a0c905f375");
 pub const IID_IFilterMapper2 = &IID_IFilterMapper2_Value;
 pub const IFilterMapper2 = extern struct {
@@ -23912,6 +24862,7 @@ pub const IFilterMapper2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFilterMapper3_Value = @import("../zig.zig").Guid.initString("b79bb0b1-33c1-11d1-abe1-00a0c905f375");
 pub const IID_IFilterMapper3 = &IID_IFilterMapper3_Value;
 pub const IFilterMapper3 = extern struct {
@@ -23947,6 +24898,7 @@ pub const Quality = extern struct {
     TimeStamp: i64,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IQualityControl_Value = @import("../zig.zig").Guid.initString("56a868a5-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IQualityControl = &IID_IQualityControl_Value;
 pub const IQualityControl = extern struct {
@@ -24010,6 +24962,7 @@ pub const ADVISE_COLORKEY = ADVISE_TYPE.COLORKEY;
 pub const ADVISE_POSITION = ADVISE_TYPE.POSITION;
 pub const ADVISE_DISPLAY_CHANGE = ADVISE_TYPE.DISPLAY_CHANGE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IOverlayNotify_Value = @import("../zig.zig").Guid.initString("56a868a0-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IOverlayNotify = &IID_IOverlayNotify_Value;
 pub const IOverlayNotify = extern struct {
@@ -24059,6 +25012,7 @@ pub const IOverlayNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IOverlayNotify2_Value = @import("../zig.zig").Guid.initString("680efa10-d535-11d1-87c8-00a0c9223196");
 pub const IID_IOverlayNotify2 = &IID_IOverlayNotify2_Value;
 pub const IOverlayNotify2 = extern struct {
@@ -24080,6 +25034,7 @@ pub const IOverlayNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IOverlay_Value = @import("../zig.zig").Guid.initString("56a868a1-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IOverlay = &IID_IOverlay_Value;
 pub const IOverlay = extern struct {
@@ -24178,6 +25133,7 @@ pub const IOverlay = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaEventSink_Value = @import("../zig.zig").Guid.initString("56a868a2-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaEventSink = &IID_IMediaEventSink_Value;
 pub const IMediaEventSink = extern struct {
@@ -24201,6 +25157,7 @@ pub const IMediaEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFileSourceFilter_Value = @import("../zig.zig").Guid.initString("56a868a6-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IFileSourceFilter = &IID_IFileSourceFilter_Value;
 pub const IFileSourceFilter = extern struct {
@@ -24232,6 +25189,7 @@ pub const IFileSourceFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFileSinkFilter_Value = @import("../zig.zig").Guid.initString("a2104830-7c70-11cf-8bce-00aa00a3f1a6");
 pub const IID_IFileSinkFilter = &IID_IFileSinkFilter_Value;
 pub const IFileSinkFilter = extern struct {
@@ -24263,6 +25221,7 @@ pub const IFileSinkFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFileSinkFilter2_Value = @import("../zig.zig").Guid.initString("00855b90-ce1b-11d0-bd4f-00a0c911ce86");
 pub const IID_IFileSinkFilter2 = &IID_IFileSinkFilter2_Value;
 pub const IFileSinkFilter2 = extern struct {
@@ -24297,6 +25256,7 @@ pub const AM_FILESINK_FLAGS = extern enum(i32) {
 };
 pub const AM_FILE_OVERWRITE = AM_FILESINK_FLAGS.E;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IGraphBuilder_Value = @import("../zig.zig").Guid.initString("56a868a9-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IGraphBuilder = &IID_IGraphBuilder_Value;
 pub const IGraphBuilder = extern struct {
@@ -24463,6 +25423,7 @@ pub const ICaptureGraphBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMCopyCaptureFileProgress_Value = @import("../zig.zig").Guid.initString("670d1d20-a068-11d0-b3f0-00aa003761c5");
 pub const IID_IAMCopyCaptureFileProgress = &IID_IAMCopyCaptureFileProgress_Value;
 pub const IAMCopyCaptureFileProgress = extern struct {
@@ -24484,6 +25445,7 @@ pub const IAMCopyCaptureFileProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ICaptureGraphBuilder2_Value = @import("../zig.zig").Guid.initString("93e5a4e0-2d50-11d2-abfa-00a0c9c6e38d");
 pub const IID_ICaptureGraphBuilder2 = &IID_ICaptureGraphBuilder2_Value;
 pub const ICaptureGraphBuilder2 = extern struct {
@@ -24601,6 +25563,7 @@ pub const _AM_RENSDEREXFLAGS = extern enum(i32) {
 };
 pub const AM_RENDEREX_RENDERTOEXISTINGRENDERERS = _AM_RENSDEREXFLAGS.S;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFilterGraph2_Value = @import("../zig.zig").Guid.initString("36b73882-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IFilterGraph2 = &IID_IFilterGraph2_Value;
 pub const IFilterGraph2 = extern struct {
@@ -24644,6 +25607,7 @@ pub const IFilterGraph2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFilterGraph3_Value = @import("../zig.zig").Guid.initString("aaf38154-b80b-422f-91e6-b66467509a07");
 pub const IID_IFilterGraph3 = &IID_IFilterGraph3_Value;
 pub const IFilterGraph3 = extern struct {
@@ -24667,6 +25631,7 @@ pub const IFilterGraph3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IStreamBuilder_Value = @import("../zig.zig").Guid.initString("56a868bf-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IStreamBuilder = &IID_IStreamBuilder_Value;
 pub const IStreamBuilder = extern struct {
@@ -24698,6 +25663,7 @@ pub const IStreamBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAsyncReader_Value = @import("../zig.zig").Guid.initString("56a868aa-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IAsyncReader = &IID_IAsyncReader_Value;
 pub const IAsyncReader = extern struct {
@@ -24781,6 +25747,7 @@ pub const IAsyncReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IGraphVersion_Value = @import("../zig.zig").Guid.initString("56a868ab-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IGraphVersion = &IID_IGraphVersion_Value;
 pub const IGraphVersion = extern struct {
@@ -24802,6 +25769,7 @@ pub const IGraphVersion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IResourceConsumer_Value = @import("../zig.zig").Guid.initString("56a868ad-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IResourceConsumer = &IID_IResourceConsumer_Value;
 pub const IResourceConsumer = extern struct {
@@ -24831,6 +25799,7 @@ pub const IResourceConsumer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IResourceManager_Value = @import("../zig.zig").Guid.initString("56a868ac-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IResourceManager = &IID_IResourceManager_Value;
 pub const IResourceManager = extern struct {
@@ -24920,6 +25889,7 @@ pub const IResourceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDistributorNotify_Value = @import("../zig.zig").Guid.initString("56a868af-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IDistributorNotify = &IID_IDistributorNotify_Value;
 pub const IDistributorNotify = extern struct {
@@ -24989,6 +25959,7 @@ pub const AM_STREAM_INFO = extern struct {
     dwFlags: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMStreamControl_Value = @import("../zig.zig").Guid.initString("36b73881-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IAMStreamControl = &IID_IAMStreamControl_Value;
 pub const IAMStreamControl = extern struct {
@@ -25029,6 +26000,7 @@ pub const IAMStreamControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISeekingPassThru_Value = @import("../zig.zig").Guid.initString("36b73883-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_ISeekingPassThru = &IID_ISeekingPassThru_Value;
 pub const ISeekingPassThru = extern struct {
@@ -25088,6 +26060,7 @@ pub const AUDIO_STREAM_CONFIG_CAPS = extern struct {
     SampleFrequencyGranularity: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMStreamConfig_Value = @import("../zig.zig").Guid.initString("c6e13340-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMStreamConfig = &IID_IAMStreamConfig_Value;
 pub const IAMStreamConfig = extern struct {
@@ -25147,6 +26120,7 @@ pub const INTERLEAVE_CAPTURE = InterleavingMode.CAPTURE;
 pub const INTERLEAVE_FULL = InterleavingMode.FULL;
 pub const INTERLEAVE_NONE_BUFFERED = InterleavingMode.NONE_BUFFERED;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IConfigInterleaving_Value = @import("../zig.zig").Guid.initString("bee3d220-157b-11d0-bd23-00a0c911ce86");
 pub const IID_IConfigInterleaving = &IID_IConfigInterleaving_Value;
 pub const IConfigInterleaving = extern struct {
@@ -25194,6 +26168,7 @@ pub const IConfigInterleaving = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IConfigAviMux_Value = @import("../zig.zig").Guid.initString("5acd6aa0-f482-11ce-8b67-00aa00a3f1a6");
 pub const IID_IConfigAviMux = &IID_IConfigAviMux_Value;
 pub const IConfigAviMux = extern struct {
@@ -25252,6 +26227,7 @@ pub const CompressionCaps_CanKeyFrame = CompressionCaps.KeyFrame;
 pub const CompressionCaps_CanBFrame = CompressionCaps.BFrame;
 pub const CompressionCaps_CanWindow = CompressionCaps.Window;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVideoCompression_Value = @import("../zig.zig").Guid.initString("c6e13343-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMVideoCompression = &IID_IAMVideoCompression_Value;
 pub const IAMVideoCompression = extern struct {
@@ -25381,6 +26357,7 @@ pub const VfwCompressDialog_About = VfwCompressDialogs.About;
 pub const VfwCompressDialog_QueryConfig = VfwCompressDialogs.QueryConfig;
 pub const VfwCompressDialog_QueryAbout = VfwCompressDialogs.QueryAbout;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVfwCaptureDialogs_Value = @import("../zig.zig").Guid.initString("d8d715a0-6e5e-11d0-b3f0-00aa003761c5");
 pub const IID_IAMVfwCaptureDialogs = &IID_IAMVfwCaptureDialogs_Value;
 pub const IAMVfwCaptureDialogs = extern struct {
@@ -25422,6 +26399,7 @@ pub const IAMVfwCaptureDialogs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVfwCompressDialogs_Value = @import("../zig.zig").Guid.initString("d8d715a3-6e5e-11d0-b3f0-00aa003761c5");
 pub const IID_IAMVfwCompressDialogs = &IID_IAMVfwCompressDialogs_Value;
 pub const IAMVfwCompressDialogs = extern struct {
@@ -25472,6 +26450,7 @@ pub const IAMVfwCompressDialogs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMDroppedFrames_Value = @import("../zig.zig").Guid.initString("c6e13344-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMDroppedFrames = &IID_IAMDroppedFrames_Value;
 pub const IAMDroppedFrames = extern struct {
@@ -25519,6 +26498,7 @@ pub const IAMDroppedFrames = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMAudioInputMixer_Value = @import("../zig.zig").Guid.initString("54c39221-8380-11d0-b3f0-00aa003761c5");
 pub const IID_IAMAudioInputMixer = &IID_IAMAudioInputMixer_Value;
 pub const IAMAudioInputMixer = extern struct {
@@ -25660,6 +26640,7 @@ pub const IAMAudioInputMixer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMBufferNegotiation_Value = @import("../zig.zig").Guid.initString("56ed71a0-af5f-11d0-b3f0-00aa003761c5");
 pub const IID_IAMBufferNegotiation = &IID_IAMBufferNegotiation_Value;
 pub const IAMBufferNegotiation = extern struct {
@@ -25807,6 +26788,7 @@ pub const PhysConn_Audio_1394 = PhysicalConnectorType.Audio_1394;
 pub const PhysConn_Audio_USB = PhysicalConnectorType.Audio_USB;
 pub const PhysConn_Audio_AudioDecoder = PhysicalConnectorType.Audio_AudioDecoder;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMAnalogVideoDecoder_Value = @import("../zig.zig").Guid.initString("c6e13350-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMAnalogVideoDecoder = &IID_IAMAnalogVideoDecoder_Value;
 pub const IAMAnalogVideoDecoder = extern struct {
@@ -25922,6 +26904,7 @@ pub const VideoProcAmpFlags = extern enum(i32) {
 pub const VideoProcAmp_Flags_Auto = VideoProcAmpFlags.Auto;
 pub const VideoProcAmp_Flags_Manual = VideoProcAmpFlags.Manual;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVideoProcAmp_Value = @import("../zig.zig").Guid.initString("c6e13360-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMVideoProcAmp = &IID_IAMVideoProcAmp_Value;
 pub const IAMVideoProcAmp = extern struct {
@@ -25992,6 +26975,7 @@ pub const CameraControlFlags = extern enum(i32) {
 pub const CameraControl_Flags_Auto = CameraControlFlags.Auto;
 pub const CameraControl_Flags_Manual = CameraControlFlags.Manual;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMCameraControl_Value = @import("../zig.zig").Guid.initString("c6e13370-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMCameraControl = &IID_IAMCameraControl_Value;
 pub const IAMCameraControl = extern struct {
@@ -26049,6 +27033,7 @@ pub const VideoControlFlag_FlipVertical = VideoControlFlags.FlipVertical;
 pub const VideoControlFlag_ExternalTriggerEnable = VideoControlFlags.ExternalTriggerEnable;
 pub const VideoControlFlag_Trigger = VideoControlFlags.Trigger;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVideoControl_Value = @import("../zig.zig").Guid.initString("6a2e0670-28e4-11d0-a18c-00a0c9118956");
 pub const IID_IAMVideoControl = &IID_IAMVideoControl_Value;
 pub const IAMVideoControl = extern struct {
@@ -26121,6 +27106,7 @@ pub const IAMVideoControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMCrossbar_Value = @import("../zig.zig").Guid.initString("c6e13380-30ac-11d0-a18c-00a0c9118956");
 pub const IID_IAMCrossbar = &IID_IAMCrossbar_Value;
 pub const IAMCrossbar = extern struct {
@@ -26215,6 +27201,7 @@ pub const AMTunerEventType = extern enum(i32) {
 };
 pub const AMTUNER_EVENT_CHANGED = AMTunerEventType.D;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTuner_Value = @import("../zig.zig").Guid.initString("211a8761-03ac-11d1-8d13-00aa00bd8339");
 pub const IID_IAMTuner = &IID_IAMTuner_Value;
 pub const IAMTuner = extern struct {
@@ -26374,6 +27361,7 @@ pub const IAMTunerNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTVTuner_Value = @import("../zig.zig").Guid.initString("211a8766-03ac-11d1-8d13-00aa00bd8339");
 pub const IID_IAMTVTuner = &IID_IAMTVTuner_Value;
 pub const IAMTVTuner = extern struct {
@@ -26541,6 +27529,7 @@ pub const AMTVAudioEventType = extern enum(i32) {
 };
 pub const AMTVAUDIO_EVENT_CHANGED = AMTVAudioEventType.D;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTVAudio_Value = @import("../zig.zig").Guid.initString("83ec1c30-23d1-11d1-99e6-00a0c9560266");
 pub const IID_IAMTVAudio = &IID_IAMTVAudio_Value;
 pub const IAMTVAudio = extern struct {
@@ -26750,6 +27739,7 @@ pub const IKsPropertySet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaPropertyBag_Value = @import("../zig.zig").Guid.initString("6025a880-c0d5-11d0-bd4e-00a0c911ce86");
 pub const IID_IMediaPropertyBag = &IID_IMediaPropertyBag_Value;
 pub const IMediaPropertyBag = extern struct {
@@ -26773,6 +27763,7 @@ pub const IMediaPropertyBag = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPersistMediaPropertyBag_Value = @import("../zig.zig").Guid.initString("5738e040-b67f-11d0-bd4d-00a0c911ce86");
 pub const IID_IPersistMediaPropertyBag = &IID_IPersistMediaPropertyBag_Value;
 pub const IPersistMediaPropertyBag = extern struct {
@@ -26834,6 +27825,7 @@ pub const IAMPhysicalPinInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMExtDevice_Value = @import("../zig.zig").Guid.initString("b5730a90-1a2c-11cf-8c23-00aa006b6814");
 pub const IID_IAMExtDevice = &IID_IAMExtDevice_Value;
 pub const IAMExtDevice = extern struct {
@@ -26915,6 +27907,7 @@ pub const IAMExtDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMExtTransport_Value = @import("../zig.zig").Guid.initString("a03cd5f0-3045-11cf-8c44-00aa006b6814");
 pub const IID_IAMExtTransport = &IID_IAMExtTransport_Value;
 pub const IAMExtTransport = extern struct {
@@ -27175,6 +28168,7 @@ pub const IAMExtTransport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTimecodeReader_Value = @import("../zig.zig").Guid.initString("9b496ce1-811b-11cf-8c77-00aa006b6814");
 pub const IID_IAMTimecodeReader = &IID_IAMTimecodeReader_Value;
 pub const IAMTimecodeReader = extern struct {
@@ -27230,6 +28224,7 @@ pub const IAMTimecodeReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTimecodeGenerator_Value = @import("../zig.zig").Guid.initString("9b496ce0-811b-11cf-8c77-00aa006b6814");
 pub const IID_IAMTimecodeGenerator = &IID_IAMTimecodeGenerator_Value;
 pub const IAMTimecodeGenerator = extern struct {
@@ -27293,6 +28288,7 @@ pub const IAMTimecodeGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMTimecodeDisplay_Value = @import("../zig.zig").Guid.initString("9b496ce2-811b-11cf-8c77-00aa006b6814");
 pub const IID_IAMTimecodeDisplay = &IID_IAMTimecodeDisplay_Value;
 pub const IAMTimecodeDisplay = extern struct {
@@ -27447,6 +28443,7 @@ pub const _AMSTREAMSELECTENABLEFLAGS = extern enum(i32) {
 pub const AMSTREAMSELECTENABLE_ENABLE = _AMSTREAMSELECTENABLEFLAGS.E;
 pub const AMSTREAMSELECTENABLE_ENABLEALL = _AMSTREAMSELECTENABLEFLAGS.ALL;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMStreamSelect_Value = @import("../zig.zig").Guid.initString("c1960960-17f5-11d1-abe1-00a0c905f375");
 pub const IID_IAMStreamSelect = &IID_IAMStreamSelect_Value;
 pub const IAMStreamSelect = extern struct {
@@ -27499,6 +28496,7 @@ pub const _AMRESCTL_RESERVEFLAGS = extern enum(i32) {
 pub const AMRESCTL_RESERVEFLAGS_RESERVE = _AMRESCTL_RESERVEFLAGS.RESERVE;
 pub const AMRESCTL_RESERVEFLAGS_UNRESERVE = _AMRESCTL_RESERVEFLAGS.UNRESERVE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMResourceControl_Value = @import("../zig.zig").Guid.initString("8389d2d0-77d7-11d1-abe6-00a0c905f375");
 pub const IID_IAMResourceControl = &IID_IAMResourceControl_Value;
 pub const IAMResourceControl = extern struct {
@@ -27521,6 +28519,7 @@ pub const IAMResourceControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMClockAdjust_Value = @import("../zig.zig").Guid.initString("4d5466b0-a49c-11d1-abe8-00a0c905f375");
 pub const IID_IAMClockAdjust = &IID_IAMClockAdjust_Value;
 pub const IAMClockAdjust = extern struct {
@@ -27549,6 +28548,7 @@ pub const _AM_FILTER_MISC_FLAGS = extern enum(i32) {
 pub const AM_FILTER_MISC_FLAGS_IS_RENDERER = _AM_FILTER_MISC_FLAGS.RENDERER;
 pub const AM_FILTER_MISC_FLAGS_IS_SOURCE = _AM_FILTER_MISC_FLAGS.SOURCE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMFilterMiscFlags_Value = @import("../zig.zig").Guid.initString("2dd74950-a890-11d1-abe8-00a0c905f375");
 pub const IID_IAMFilterMiscFlags = &IID_IAMFilterMiscFlags_Value;
 pub const IAMFilterMiscFlags = extern struct {
@@ -27606,6 +28606,7 @@ pub const IDrawVideoImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDecimateVideoImage_Value = @import("../zig.zig").Guid.initString("2e5ea3e0-e924-11d2-b6da-00a0c995e8df");
 pub const IID_IDecimateVideoImage = &IID_IDecimateVideoImage_Value;
 pub const IDecimateVideoImage = extern struct {
@@ -27648,6 +28649,7 @@ pub const DECIMATION_USE_VIDEOPORT_ONLY = DECIMATION_USAGE.USE_VIDEOPORT_ONLY;
 pub const DECIMATION_USE_OVERLAY_ONLY = DECIMATION_USAGE.USE_OVERLAY_ONLY;
 pub const DECIMATION_DEFAULT = DECIMATION_USAGE.DEFAULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMVideoDecimationProperties_Value = @import("../zig.zig").Guid.initString("60d32930-13da-11d3-9ec6-c4fcaef5c7be");
 pub const IID_IAMVideoDecimationProperties = &IID_IAMVideoDecimationProperties_Value;
 pub const IAMVideoDecimationProperties = extern struct {
@@ -27677,6 +28679,7 @@ pub const IAMVideoDecimationProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVideoFrameStep_Value = @import("../zig.zig").Guid.initString("e46a9787-2b71-444d-a4b5-1fab7b708d6a");
 pub const IID_IVideoFrameStep = &IID_IVideoFrameStep_Value;
 pub const IVideoFrameStep = extern struct {
@@ -27728,6 +28731,7 @@ pub const AM_PUSHSOURCECAPS_PRIVATE_CLOCK = _AM_PUSHSOURCE_FLAGS.CAPS_PRIVATE_CL
 pub const AM_PUSHSOURCEREQS_USE_STREAM_CLOCK = _AM_PUSHSOURCE_FLAGS.REQS_USE_STREAM_CLOCK;
 pub const AM_PUSHSOURCEREQS_USE_CLOCK_CHAIN = _AM_PUSHSOURCE_FLAGS.REQS_USE_CLOCK_CHAIN;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMLatency_Value = @import("../zig.zig").Guid.initString("62ea93ba-ec62-11d2-b770-00c04fb6bd3d");
 pub const IID_IAMLatency = &IID_IAMLatency_Value;
 pub const IAMLatency = extern struct {
@@ -27749,6 +28753,7 @@ pub const IAMLatency = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMPushSource_Value = @import("../zig.zig").Guid.initString("f185fe76-e64e-11d2-b76e-00c04fb6bd3d");
 pub const IID_IAMPushSource = &IID_IAMPushSource_Value;
 pub const IAMPushSource = extern struct {
@@ -27810,6 +28815,7 @@ pub const IAMPushSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMDeviceRemoval_Value = @import("../zig.zig").Guid.initString("f90a6130-b658-11d2-ae49-0000f8754b99");
 pub const IID_IAMDeviceRemoval = &IID_IAMDeviceRemoval_Value;
 pub const IAMDeviceRemoval = extern struct {
@@ -27883,6 +28889,7 @@ pub const DVENCODERFORMAT_DVSD = _DVENCODERFORMAT.SD;
 pub const DVENCODERFORMAT_DVHD = _DVENCODERFORMAT.HD;
 pub const DVENCODERFORMAT_DVSL = _DVENCODERFORMAT.SL;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDVEnc_Value = @import("../zig.zig").Guid.initString("d18e17a0-aacb-11d0-afb0-00aa00b67a42");
 pub const IID_IDVEnc = &IID_IDVEnc_Value;
 pub const IDVEnc = extern struct {
@@ -27942,6 +28949,7 @@ pub const DVRESOLUTION_HALF = _DVRESOLUTION.HALF;
 pub const DVRESOLUTION_QUARTER = _DVRESOLUTION.QUARTER;
 pub const DVRESOLUTION_DC = _DVRESOLUTION.DC;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IIPDVDec_Value = @import("../zig.zig").Guid.initString("b8e8bd60-0bfe-11d0-af91-00aa00b67a42");
 pub const IID_IIPDVDec = &IID_IIPDVDec_Value;
 pub const IIPDVDec = extern struct {
@@ -27971,6 +28979,7 @@ pub const IIPDVDec = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVRGB219_Value = @import("../zig.zig").Guid.initString("58473a19-2bc8-4663-8012-25f81babddd1");
 pub const IID_IDVRGB219 = &IID_IDVRGB219_Value;
 pub const IDVRGB219 = extern struct {
@@ -27992,6 +29001,7 @@ pub const IDVRGB219 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDVSplitter_Value = @import("../zig.zig").Guid.initString("92a3a302-da7c-4a1f-ba7e-1802bb5d2d02");
 pub const IID_IDVSplitter = &IID_IDVSplitter_Value;
 pub const IDVSplitter = extern struct {
@@ -28040,6 +29050,7 @@ pub const AM_AUDREND_STAT_PARAM_SLAVE_ACCUMERROR = _AM_AUDIO_RENDERER_STAT_PARAM
 pub const AM_AUDREND_STAT_PARAM_BUFFERFULLNESS = _AM_AUDIO_RENDERER_STAT_PARAM.BUFFERFULLNESS;
 pub const AM_AUDREND_STAT_PARAM_JITTER = _AM_AUDIO_RENDERER_STAT_PARAM.JITTER;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMAudioRendererStats_Value = @import("../zig.zig").Guid.initString("22320cb2-d41a-11d2-bf7c-d7cb9df0bf93");
 pub const IID_IAMAudioRendererStats = &IID_IAMAudioRendererStats_Value;
 pub const IAMAudioRendererStats = extern struct {
@@ -28072,6 +29083,7 @@ pub const AM_INTF_SEARCH_INPUT_PIN = _AM_INTF_SEARCH_FLAGS.INPUT_PIN;
 pub const AM_INTF_SEARCH_OUTPUT_PIN = _AM_INTF_SEARCH_FLAGS.OUTPUT_PIN;
 pub const AM_INTF_SEARCH_FILTER = _AM_INTF_SEARCH_FLAGS.FILTER;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMGraphStreams_Value = @import("../zig.zig").Guid.initString("632105fa-072e-11d3-8af9-00c04fb6bd3d");
 pub const IID_IAMGraphStreams = &IID_IAMGraphStreams_Value;
 pub const IAMGraphStreams = extern struct {
@@ -28123,6 +29135,7 @@ pub const AMOVERFX_MIRRORLEFTRIGHT = AMOVERLAYFX.MIRRORLEFTRIGHT;
 pub const AMOVERFX_MIRRORUPDOWN = AMOVERLAYFX.MIRRORUPDOWN;
 pub const AMOVERFX_DEINTERLACE = AMOVERLAYFX.DEINTERLACE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMOverlayFX_Value = @import("../zig.zig").Guid.initString("62fae250-7e65-4460-bfc9-6398b322073c");
 pub const IID_IAMOverlayFX = &IID_IAMOverlayFX_Value;
 pub const IAMOverlayFX = extern struct {
@@ -28160,6 +29173,7 @@ pub const IAMOverlayFX = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMOpenProgress_Value = @import("../zig.zig").Guid.initString("8e1c39a1-de53-11cf-aa63-0080c744528d");
 pub const IID_IAMOpenProgress = &IID_IAMOpenProgress_Value;
 pub const IAMOpenProgress = extern struct {
@@ -28189,6 +29203,7 @@ pub const IAMOpenProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMpeg2Demultiplexer_Value = @import("../zig.zig").Guid.initString("436eee9c-264f-4242-90e1-4e330c107512");
 pub const IID_IMpeg2Demultiplexer = &IID_IMpeg2Demultiplexer_Value;
 pub const IMpeg2Demultiplexer = extern struct {
@@ -28236,6 +29251,7 @@ pub const STREAM_ID_MAP = extern struct {
     iDataOffset: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumStreamIdMap_Value = @import("../zig.zig").Guid.initString("945c1566-6202-46fc-96c7-d87f289c6534");
 pub const IID_IEnumStreamIdMap = &IID_IEnumStreamIdMap_Value;
 pub const IEnumStreamIdMap = extern struct {
@@ -28282,6 +29298,7 @@ pub const IEnumStreamIdMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2StreamIdMap_Value = @import("../zig.zig").Guid.initString("d0e04c47-25b8-4369-925a-362a01d95444");
 pub const IID_IMPEG2StreamIdMap = &IID_IMPEG2StreamIdMap_Value;
 pub const IMPEG2StreamIdMap = extern struct {
@@ -28323,6 +29340,7 @@ pub const IMPEG2StreamIdMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRegisterServiceProvider_Value = @import("../zig.zig").Guid.initString("7b3a2f01-0751-48dd-b556-004785171c54");
 pub const IID_IRegisterServiceProvider = &IID_IRegisterServiceProvider_Value;
 pub const IRegisterServiceProvider = extern struct {
@@ -28345,6 +29363,7 @@ pub const IRegisterServiceProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMClockSlave_Value = @import("../zig.zig").Guid.initString("9fd52741-176d-4b36-8f51-ca8f933223be");
 pub const IID_IAMClockSlave = &IID_IAMClockSlave_Value;
 pub const IAMClockSlave = extern struct {
@@ -28374,6 +29393,7 @@ pub const IAMClockSlave = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMGraphBuilderCallback_Value = @import("../zig.zig").Guid.initString("4995f511-9ddb-4f12-bd3b-f04611807b79");
 pub const IID_IAMGraphBuilderCallback = &IID_IAMGraphBuilderCallback_Value;
 pub const IAMGraphBuilderCallback = extern struct {
@@ -28403,6 +29423,7 @@ pub const IAMGraphBuilderCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMFilterGraphCallback_Value = @import("../zig.zig").Guid.initString("56a868fd-0ad4-11ce-b0a3-0020af0ba770");
 pub const IID_IAMFilterGraphCallback = &IID_IAMFilterGraphCallback_Value;
 pub const IAMFilterGraphCallback = extern struct {
@@ -28424,6 +29445,7 @@ pub const IAMFilterGraphCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGetCapabilitiesKey_Value = @import("../zig.zig").Guid.initString("a8809222-07bb-48ea-951c-33158100625b");
 pub const IID_IGetCapabilitiesKey = &IID_IGetCapabilitiesKey_Value;
 pub const IGetCapabilitiesKey = extern struct {
@@ -28535,6 +29557,7 @@ pub const IVideoEncoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMDecoderCaps_Value = @import("../zig.zig").Guid.initString("c0dff467-d499-4986-972b-e1d9090fa941");
 pub const IID_IAMDecoderCaps = &IID_IAMDecoderCaps_Value;
 pub const IAMDecoderCaps = extern struct {
@@ -28583,6 +29606,7 @@ pub const AMCOPPStatusOutput = extern struct {
     COPPStatus: [4076]u8,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMCertifiedOutputProtection_Value = @import("../zig.zig").Guid.initString("6feded3e-0ff1-4901-a2f1-43f7012c8515");
 pub const IID_IAMCertifiedOutputProtection = &IID_IAMCertifiedOutputProtection_Value;
 pub const IAMCertifiedOutputProtection = extern struct {
@@ -28631,6 +29655,7 @@ pub const IAMCertifiedOutputProtection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAMAsyncReaderTimestampScaling_Value = @import("../zig.zig").Guid.initString("cf7b26fc-9a00-485b-8147-3e789d5e8f67");
 pub const IID_IAMAsyncReaderTimestampScaling = &IID_IAMAsyncReaderTimestampScaling_Value;
 pub const IAMAsyncReaderTimestampScaling = extern struct {
@@ -28660,6 +29685,7 @@ pub const IAMAsyncReaderTimestampScaling = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAMPluginControl_Value = @import("../zig.zig").Guid.initString("0e26a181-f40c-4635-8786-976284b52981");
 pub const IID_IAMPluginControl = &IID_IAMPluginControl_Value;
 pub const IAMPluginControl = extern struct {
@@ -28735,6 +29761,7 @@ pub const IAMPluginControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPinConnection_Value = @import("../zig.zig").Guid.initString("4a9a62d3-27d4-403d-91e9-89f540e55534");
 pub const IID_IPinConnection = &IID_IPinConnection_Value;
 pub const IPinConnection = extern struct {
@@ -28778,6 +29805,7 @@ pub const IPinConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPinFlowControl_Value = @import("../zig.zig").Guid.initString("c56e9858-dbf3-4f6b-8119-384af2060deb");
 pub const IID_IPinFlowControl = &IID_IPinFlowControl_Value;
 pub const IPinFlowControl = extern struct {
@@ -28824,6 +29852,7 @@ pub const AM_FILTER_FLAGS = extern enum(i32) {
 };
 pub const AM_FILTER_FLAGS_REMOVABLE = AM_FILTER_FLAGS.E;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGraphConfig_Value = @import("../zig.zig").Guid.initString("03a1eb8e-32bf-4245-8502-114d08a9cb88");
 pub const IID_IGraphConfig = &IID_IGraphConfig_Value;
 pub const IGraphConfig = extern struct {
@@ -28930,6 +29959,7 @@ pub const IGraphConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGraphConfigCallback_Value = @import("../zig.zig").Guid.initString("ade0fd60-d19d-11d2-abf6-00a0c905f375");
 pub const IID_IGraphConfigCallback = &IID_IGraphConfigCallback_Value;
 pub const IGraphConfigCallback = extern struct {
@@ -28952,6 +29982,7 @@ pub const IGraphConfigCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFilterChain_Value = @import("../zig.zig").Guid.initString("dcfbdcf6-0dc2-45f5-9ab2-7c330ea09c29");
 pub const IID_IFilterChain = &IID_IFilterChain_Value;
 pub const IFilterChain = extern struct {
@@ -29026,6 +30057,7 @@ pub const VMRPRESENTATIONINFO = extern struct {
     dwInterlaceFlags: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenter_Value = @import("../zig.zig").Guid.initString("ce704fe7-e71e-41fb-baa2-c4403e1182f5");
 pub const IID_IVMRImagePresenter = &IID_IVMRImagePresenter_Value;
 pub const IVMRImagePresenter = extern struct {
@@ -29090,6 +30122,7 @@ pub const VMRALLOCATIONINFO = extern struct {
     szNativeSize: SIZE,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurfaceAllocator_Value = @import("../zig.zig").Guid.initString("31ce832e-4484-458b-8cca-f4d7e3db0b52");
 pub const IID_IVMRSurfaceAllocator = &IID_IVMRSurfaceAllocator_Value;
 pub const IVMRSurfaceAllocator = extern struct {
@@ -29140,6 +30173,7 @@ pub const IVMRSurfaceAllocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurfaceAllocatorNotify_Value = @import("../zig.zig").Guid.initString("aada05a8-5a4e-4729-af0b-cea27aed51e2");
 pub const IID_IVMRSurfaceAllocatorNotify = &IID_IVMRSurfaceAllocatorNotify_Value;
 pub const IVMRSurfaceAllocatorNotify = extern struct {
@@ -29212,6 +30246,7 @@ pub const VMR_ASPECT_RATIO_MODE = extern enum(i32) {
 pub const VMR_ARMODE_NONE = VMR_ASPECT_RATIO_MODE.NONE;
 pub const VMR_ARMODE_LETTER_BOX = VMR_ASPECT_RATIO_MODE.LETTER_BOX;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRWindowlessControl_Value = @import("../zig.zig").Guid.initString("0eb1088c-4dcd-46f0-878f-39dae86a51b7");
 pub const IID_IVMRWindowlessControl = &IID_IVMRWindowlessControl_Value;
 pub const IVMRWindowlessControl = extern struct {
@@ -29400,6 +30435,7 @@ pub const NORMALIZEDRECT = extern struct {
     bottom: f32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMixerControl_Value = @import("../zig.zig").Guid.initString("1c1a17b0-bed0-415d-974b-dc6696131599");
 pub const IID_IVMRMixerControl = &IID_IVMRMixerControl_Value;
 pub const IVMRMixerControl = extern struct {
@@ -29518,6 +30554,7 @@ pub const VMRMONITORINFO = extern struct {
     dwRevision: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMonitorConfig_Value = @import("../zig.zig").Guid.initString("9cf0b1b6-fbaa-4b7f-88cf-cf1f130a0dce");
 pub const IID_IVMRMonitorConfig = &IID_IVMRMonitorConfig_Value;
 pub const IVMRMonitorConfig = extern struct {
@@ -29610,6 +30647,7 @@ pub const STREAMIF_CONSTANTS = extern enum(i32) {
 };
 pub const MAX_NUMBER_OF_STREAMS = STREAMIF_CONSTANTS.S;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRFilterConfig_Value = @import("../zig.zig").Guid.initString("9e5530c5-7034-48b4-bb46-0b8a6efc8e36");
 pub const IID_IVMRFilterConfig = &IID_IVMRFilterConfig_Value;
 pub const IVMRFilterConfig = extern struct {
@@ -29679,6 +30717,7 @@ pub const IVMRFilterConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRAspectRatioControl_Value = @import("../zig.zig").Guid.initString("ede80b5c-bad6-4623-b537-65586c9f8dfd");
 pub const IID_IVMRAspectRatioControl = &IID_IVMRAspectRatioControl_Value;
 pub const IVMRAspectRatioControl = extern struct {
@@ -29761,6 +30800,7 @@ pub const VMRDeinterlaceCaps = extern struct {
     DeinterlaceTechnology: VMRDeinterlaceTech,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRDeinterlaceControl_Value = @import("../zig.zig").Guid.initString("bb057577-0db8-4e6a-87a7-1a8c9a505a0f");
 pub const IID_IVMRDeinterlaceControl = &IID_IVMRDeinterlaceControl_Value;
 pub const IVMRDeinterlaceControl = extern struct {
@@ -29847,6 +30887,7 @@ pub const VMRALPHABITMAP = extern struct {
     clrSrcKey: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMixerBitmap_Value = @import("../zig.zig").Guid.initString("1e673275-0257-40aa-af20-7c608d4a0428");
 pub const IID_IVMRMixerBitmap = &IID_IVMRMixerBitmap_Value;
 pub const IVMRMixerBitmap = extern struct {
@@ -29894,6 +30935,7 @@ pub const VMRVIDEOSTREAMINFO = extern struct {
     rNormal: NORMALIZEDRECT,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImageCompositor_Value = @import("../zig.zig").Guid.initString("7a4fb5af-479f-4074-bb40-ce6722e43c82");
 pub const IID_IVMRImageCompositor = &IID_IVMRImageCompositor_Value;
 pub const IVMRImageCompositor = extern struct {
@@ -29950,6 +30992,7 @@ pub const IVMRImageCompositor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRVideoStreamControl_Value = @import("../zig.zig").Guid.initString("058d1f11-2a54-4bef-bd54-df706626b727");
 pub const IID_IVMRVideoStreamControl = &IID_IVMRVideoStreamControl_Value;
 pub const IVMRVideoStreamControl = extern struct {
@@ -29995,6 +31038,7 @@ pub const IVMRVideoStreamControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurface_Value = @import("../zig.zig").Guid.initString("a9849bbe-9ec8-4263-b764-62730f0d15d0");
 pub const IID_IVMRSurface = &IID_IVMRSurface_Value;
 pub const IVMRSurface = extern struct {
@@ -30038,6 +31082,7 @@ pub const IVMRSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenterConfig_Value = @import("../zig.zig").Guid.initString("9f3a1c85-8555-49ba-935f-be5b5b29d178");
 pub const IID_IVMRImagePresenterConfig = &IID_IVMRImagePresenterConfig_Value;
 pub const IVMRImagePresenterConfig = extern struct {
@@ -30067,6 +31112,7 @@ pub const IVMRImagePresenterConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenterExclModeConfig_Value = @import("../zig.zig").Guid.initString("e6f7ce40-4673-44f1-8f77-5499d68cb4ea");
 pub const IID_IVMRImagePresenterExclModeConfig = &IID_IVMRImagePresenterExclModeConfig_Value;
 pub const IVMRImagePresenterExclModeConfig = extern struct {
@@ -30098,6 +31144,7 @@ pub const IVMRImagePresenterExclModeConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVPManager_Value = @import("../zig.zig").Guid.initString("aac18c18-e186-46d2-825d-a1f8dc8e395a");
 pub const IID_IVPManager = &IID_IVPManager_Value;
 pub const IVPManager = extern struct {
@@ -31126,6 +32173,7 @@ pub const IDvdInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDvdCmd_Value = @import("../zig.zig").Guid.initString("5a4a97e4-94ee-4a55-9751-74b5643aa27d");
 pub const IID_IDvdCmd = &IID_IDvdCmd_Value;
 pub const IDvdCmd = extern struct {
@@ -31153,6 +32201,7 @@ pub const IDvdCmd = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDvdState_Value = @import("../zig.zig").Guid.initString("86303d6d-1c4a-4087-ab42-f711167048ef");
 pub const IID_IDvdState = &IID_IDvdState_Value;
 pub const IDvdState = extern struct {
@@ -31182,6 +32231,7 @@ pub const IDvdState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDvdControl2_Value = @import("../zig.zig").Guid.initString("33bc7430-eec0-11d2-8201-00a0c9d74842");
 pub const IID_IDvdControl2 = &IID_IDvdControl2_Value;
 pub const IDvdControl2 = extern struct {
@@ -31654,6 +32704,7 @@ pub const DVD_DECODER_CAPS = extern struct {
     dwRes4: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDvdInfo2_Value = @import("../zig.zig").Guid.initString("34151510-eec0-11d2-8201-00a0c9d74842");
 pub const IID_IDvdInfo2 = &IID_IDvdInfo2_Value;
 pub const IDvdInfo2 = extern struct {
@@ -32068,6 +33119,7 @@ pub const AM_DVD_RENDERSTATUS = extern struct {
     dwFailedStreamsFlag: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDvdGraphBuilder_Value = @import("../zig.zig").Guid.initString("fcc152b6-f372-11d0-8e00-00c04fd7c08b");
 pub const IID_IDvdGraphBuilder = &IID_IDvdGraphBuilder_Value;
 pub const IDvdGraphBuilder = extern struct {
@@ -32108,6 +33160,7 @@ pub const IDvdGraphBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDDrawExclModeVideo_Value = @import("../zig.zig").Guid.initString("153acc21-d83b-11d1-82bf-00a0c9696c8f");
 pub const IID_IDDrawExclModeVideo = &IID_IDDrawExclModeVideo_Value;
 pub const IDDrawExclModeVideo = extern struct {
@@ -32193,6 +33246,7 @@ pub const AM_OVERLAY_NOTIFY_VISIBLE_CHANGE = _AM_OVERLAY_NOTIFY_FLAGS.VISIBLE_CH
 pub const AM_OVERLAY_NOTIFY_SOURCE_CHANGE = _AM_OVERLAY_NOTIFY_FLAGS.SOURCE_CHANGE;
 pub const AM_OVERLAY_NOTIFY_DEST_CHANGE = _AM_OVERLAY_NOTIFY_FLAGS.DEST_CHANGE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDDrawExclModeVideoCallback_Value = @import("../zig.zig").Guid.initString("913c24a0-20ab-11d2-9038-00a0c9697298");
 pub const IID_IDDrawExclModeVideoCallback = &IID_IDDrawExclModeVideoCallback_Value;
 pub const IDDrawExclModeVideoCallback = extern struct {
@@ -34217,6 +35271,7 @@ pub const IBDA_AutoDemodulate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBDA_AutoDemodulateEx_Value = @import("../zig.zig").Guid.initString("34518d13-1182-48e6-b28f-b24987787326");
 pub const IID_IBDA_AutoDemodulateEx = &IID_IBDA_AutoDemodulateEx_Value;
 pub const IBDA_AutoDemodulateEx = extern struct {
@@ -34614,6 +35669,7 @@ pub const IBDA_IPSinkInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumPIDMap_Value = @import("../zig.zig").Guid.initString("afb6c2a2-2c41-11d3-8a60-0000f81e0e4a");
 pub const IID_IEnumPIDMap = &IID_IEnumPIDMap_Value;
 pub const IEnumPIDMap = extern struct {
@@ -34660,6 +35716,7 @@ pub const IEnumPIDMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2PIDMap_Value = @import("../zig.zig").Guid.initString("afb6c2a1-2c41-11d3-8a60-0000f81e0e4a");
 pub const IID_IMPEG2PIDMap = &IID_IMPEG2PIDMap_Value;
 pub const IMPEG2PIDMap = extern struct {
@@ -34766,6 +35823,7 @@ pub const IFrequencyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBDA_EasMessage_Value = @import("../zig.zig").Guid.initString("d806973d-3ebe-46de-8fbb-6358fe784208");
 pub const IID_IBDA_EasMessage = &IID_IBDA_EasMessage_Value;
 pub const IBDA_EasMessage = extern struct {
@@ -34809,6 +35867,7 @@ pub const IBDA_TransportStreamInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBDA_ConditionalAccess_Value = @import("../zig.zig").Guid.initString("cd51f1e0-7be9-4123-8482-a2a796c0a6b0");
 pub const IID_IBDA_ConditionalAccess = &IID_IBDA_ConditionalAccess_Value;
 pub const IBDA_ConditionalAccess = extern struct {
@@ -34929,6 +35988,7 @@ pub const IBDA_DiagnosticProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBDA_DRM_Value = @import("../zig.zig").Guid.initString("f98d88b0-1992-4cd6-a6d9-b9afab99330d");
 pub const IID_IBDA_DRM = &IID_IBDA_DRM_Value;
 pub const IBDA_DRM = extern struct {
@@ -35003,6 +36063,7 @@ pub const IBDA_NameValueService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_ConditionalAccessEx_Value = @import("../zig.zig").Guid.initString("497c3418-23cb-44ba-bb62-769f506fcea7");
 pub const IID_IBDA_ConditionalAccessEx = &IID_IBDA_ConditionalAccessEx_Value;
 pub const IBDA_ConditionalAccessEx = extern struct {
@@ -35068,6 +36129,7 @@ pub const IBDA_ConditionalAccessEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_ISDBConditionalAccess_Value = @import("../zig.zig").Guid.initString("5e68c627-16c2-4e6c-b1e2-d00170cdaa0f");
 pub const IID_IBDA_ISDBConditionalAccess = &IID_IBDA_ISDBConditionalAccess_Value;
 pub const IBDA_ISDBConditionalAccess = extern struct {
@@ -35091,6 +36153,7 @@ pub const IBDA_ISDBConditionalAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_EventingService_Value = @import("../zig.zig").Guid.initString("207c413f-00dc-4c61-bad6-6fee1ff07064");
 pub const IID_IBDA_EventingService = &IID_IBDA_EventingService_Value;
 pub const IBDA_EventingService = extern struct {
@@ -35147,6 +36210,7 @@ pub const IBDA_AUX = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_Encoder_Value = @import("../zig.zig").Guid.initString("3a8bad59-59fe-4559-a0ba-396cfaa98ae3");
 pub const IID_IBDA_Encoder = &IID_IBDA_Encoder_Value;
 pub const IBDA_Encoder = extern struct {
@@ -35237,6 +36301,7 @@ pub const IBDA_Encoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_FDC_Value = @import("../zig.zig").Guid.initString("138adc7e-58ae-437f-b0b4-c9fe19d5b4ac");
 pub const IID_IBDA_FDC = &IID_IBDA_FDC_Value;
 pub const IBDA_FDC = extern struct {
@@ -35317,6 +36382,7 @@ pub const IBDA_FDC = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_GuideDataDeliveryService_Value = @import("../zig.zig").Guid.initString("c0afcb73-23e7-4bc6-bafa-fdc167b4719f");
 pub const IID_IBDA_GuideDataDeliveryService = &IID_IBDA_GuideDataDeliveryService_Value;
 pub const IBDA_GuideDataDeliveryService = extern struct {
@@ -35582,6 +36648,7 @@ pub const IBDA_WMDRMTuner = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_DRIDRMService_Value = @import("../zig.zig").Guid.initString("1f9bc2a5-44a3-4c52-aab1-0bbce5a1381d");
 pub const IID_IBDA_DRIDRMService = &IID_IBDA_DRIDRMService_Value;
 pub const IBDA_DRIDRMService = extern struct {
@@ -35698,6 +36765,7 @@ pub const IBDA_DRIWMDRMSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_MUX_Value = @import("../zig.zig").Guid.initString("942aafec-4c05-4c74-b8eb-8706c2a4943f");
 pub const IID_IBDA_MUX = &IID_IBDA_MUX_Value;
 pub const IBDA_MUX = extern struct {
@@ -35759,6 +36827,7 @@ pub const IBDA_TransportStreamSelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBDA_UserActivityService_Value = @import("../zig.zig").Guid.initString("53b14189-e478-4b7a-a1ff-506db4b99dfe");
 pub const IID_IBDA_UserActivityService = &IID_IBDA_UserActivityService_Value;
 pub const IBDA_UserActivityService = extern struct {
@@ -35795,6 +36864,7 @@ pub const IBDA_UserActivityService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESEvent_Value = @import("../zig.zig").Guid.initString("1f0e5357-af43-44e6-8547-654c645145d2");
 pub const IID_IESEvent = &IID_IESEvent_Value;
 pub const IESEvent = extern struct {
@@ -35848,6 +36918,7 @@ pub const IESEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IESEvents_Value = @import("../zig.zig").Guid.initString("abd414bf-cfe5-4e5e-af5b-4b4e49c5bfeb");
 pub const IID_IESEvents = &IID_IESEvents_Value;
 pub const IESEvents = extern struct {
@@ -35870,6 +36941,7 @@ pub const IESEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBroadcastEvent_Value = @import("../zig.zig").Guid.initString("3b21263f-26e8-489d-aac4-924f7efd9511");
 pub const IID_IBroadcastEvent = &IID_IBroadcastEvent_Value;
 pub const IBroadcastEvent = extern struct {
@@ -35916,6 +36988,7 @@ pub const IBroadcastEventEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMNetShowConfig_Value = @import("../zig.zig").Guid.initString("fa2aa8f1-8b62-11d0-a520-000000000000");
 pub const IID_IAMNetShowConfig = &IID_IAMNetShowConfig_Value;
 pub const IAMNetShowConfig = extern struct {
@@ -36105,6 +37178,7 @@ pub const IAMNetShowConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMChannelInfo_Value = @import("../zig.zig").Guid.initString("fa2aa8f2-8b62-11d0-a520-000000000000");
 pub const IID_IAMChannelInfo = &IID_IAMChannelInfo_Value;
 pub const IAMChannelInfo = extern struct {
@@ -36166,6 +37240,7 @@ pub const IAMChannelInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMNetworkStatus_Value = @import("../zig.zig").Guid.initString("fa2aa8f3-8b62-11d0-a520-000000000000");
 pub const IID_IAMNetworkStatus = &IID_IAMNetworkStatus_Value;
 pub const IAMNetworkStatus = extern struct {
@@ -36252,6 +37327,7 @@ pub const AM_EXSEEK_NOSTANDARDREPAINT = AMExtendedSeekingCapabilities.NOSTANDARD
 pub const AM_EXSEEK_BUFFERING = AMExtendedSeekingCapabilities.BUFFERING;
 pub const AM_EXSEEK_SENDS_VIDEOFRAMEREADY = AMExtendedSeekingCapabilities.SENDS_VIDEOFRAMEREADY;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMExtendedSeeking_Value = @import("../zig.zig").Guid.initString("fa2aa8f9-8b62-11d0-a520-000000000000");
 pub const IID_IAMExtendedSeeking = &IID_IAMExtendedSeeking_Value;
 pub const IAMExtendedSeeking = extern struct {
@@ -36323,6 +37399,7 @@ pub const IAMExtendedSeeking = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMNetShowExProps_Value = @import("../zig.zig").Guid.initString("fa2aa8f5-8b62-11d0-a520-000000000000");
 pub const IID_IAMNetShowExProps = &IID_IAMNetShowExProps_Value;
 pub const IAMNetShowExProps = extern struct {
@@ -36411,6 +37488,7 @@ pub const IAMNetShowExProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMExtendedErrorInfo_Value = @import("../zig.zig").Guid.initString("fa2aa8f6-8b62-11d0-a520-000000000000");
 pub const IID_IAMExtendedErrorInfo = &IID_IAMExtendedErrorInfo_Value;
 pub const IAMExtendedErrorInfo = extern struct {
@@ -36448,6 +37526,7 @@ pub const IAMExtendedErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMMediaContent_Value = @import("../zig.zig").Guid.initString("fa2aa8f4-8b62-11d0-a520-000000000000");
 pub const IID_IAMMediaContent = &IID_IAMMediaContent_Value;
 pub const IAMMediaContent = extern struct {
@@ -36565,6 +37644,7 @@ pub const IAMMediaContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMMediaContent2_Value = @import("../zig.zig").Guid.initString("ce8f78c1-74d9-11d2-b09d-00a0c9a81117");
 pub const IID_IAMMediaContent2 = &IID_IAMMediaContent2_Value;
 pub const IAMMediaContent2 = extern struct {
@@ -36606,6 +37686,7 @@ pub const IAMMediaContent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMNetShowPreroll_Value = @import("../zig.zig").Guid.initString("aae7e4e2-6388-11d1-8d93-006097c9a2b2");
 pub const IID_IAMNetShowPreroll = &IID_IAMNetShowPreroll_Value;
 pub const IAMNetShowPreroll = extern struct {
@@ -36635,6 +37716,7 @@ pub const IAMNetShowPreroll = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDShowPlugin_Value = @import("../zig.zig").Guid.initString("4746b7c8-700e-11d1-becc-00c04fb6e937");
 pub const IID_IDShowPlugin = &IID_IDShowPlugin_Value;
 pub const IDShowPlugin = extern struct {
@@ -36664,6 +37746,7 @@ pub const IDShowPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IAMDirectSound = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -36790,6 +37873,7 @@ pub const AM_LINE21_DRAWBGMODE = extern enum(i32) {
 pub const AM_L21_DRAWBGMODE_Opaque = AM_LINE21_DRAWBGMODE.Opaque;
 pub const AM_L21_DRAWBGMODE_Transparent = AM_LINE21_DRAWBGMODE.Transparent;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IAMLine21Decoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -36905,6 +37989,7 @@ pub const IAMLine21Decoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMParse_Value = @import("../zig.zig").Guid.initString("c47a3420-005c-11d2-9038-00a0c9697298");
 pub const IID_IAMParse = &IID_IAMParse_Value;
 pub const IAMParse = extern struct {
@@ -36982,6 +38067,7 @@ pub const IAMCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaControl_Value = @import("../zig.zig").Guid.initString("56a868b1-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaControl = &IID_IMediaControl_Value;
 pub const IMediaControl = extern struct {
@@ -37065,6 +38151,7 @@ pub const IMediaControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaEvent_Value = @import("../zig.zig").Guid.initString("56a868b6-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaEvent = &IID_IMediaEvent_Value;
 pub const IMediaEvent = extern struct {
@@ -37132,6 +38219,7 @@ pub const IMediaEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaEventEx_Value = @import("../zig.zig").Guid.initString("56a868c0-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaEventEx = &IID_IMediaEventEx_Value;
 pub const IMediaEventEx = extern struct {
@@ -37171,6 +38259,7 @@ pub const IMediaEventEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMediaPosition_Value = @import("../zig.zig").Guid.initString("56a868b2-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IMediaPosition = &IID_IMediaPosition_Value;
 pub const IMediaPosition = extern struct {
@@ -37272,6 +38361,7 @@ pub const IMediaPosition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBasicAudio_Value = @import("../zig.zig").Guid.initString("56a868b3-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IBasicAudio = &IID_IBasicAudio_Value;
 pub const IBasicAudio = extern struct {
@@ -37317,6 +38407,7 @@ pub const IBasicAudio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IVideoWindow_Value = @import("../zig.zig").Guid.initString("56a868b4-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IVideoWindow = &IID_IVideoWindow_Value;
 pub const IVideoWindow = extern struct {
@@ -37656,6 +38747,7 @@ pub const IVideoWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBasicVideo_Value = @import("../zig.zig").Guid.initString("56a868b5-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IBasicVideo = &IID_IBasicVideo_Value;
 pub const IBasicVideo = extern struct {
@@ -37938,6 +39030,7 @@ pub const IBasicVideo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBasicVideo2_Value = @import("../zig.zig").Guid.initString("329bb360-f6ea-11d1-9038-00a0c9697298");
 pub const IID_IBasicVideo2 = &IID_IBasicVideo2_Value;
 pub const IBasicVideo2 = extern struct {
@@ -37960,6 +39053,7 @@ pub const IBasicVideo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDeferredCommand_Value = @import("../zig.zig").Guid.initString("56a868b8-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IDeferredCommand = &IID_IDeferredCommand_Value;
 pub const IDeferredCommand = extern struct {
@@ -38004,6 +39098,7 @@ pub const IDeferredCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IQueueCommand_Value = @import("../zig.zig").Guid.initString("56a868b7-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IQueueCommand = &IID_IQueueCommand_Value;
 pub const IQueueCommand = extern struct {
@@ -38301,6 +39396,7 @@ pub const IPinInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAMStats_Value = @import("../zig.zig").Guid.initString("bc9bcf80-dcd2-11d2-abf6-00a0c905f375");
 pub const IID_IAMStats = &IID_IAMStats_Value;
 pub const IAMStats = extern struct {
@@ -38423,6 +39519,7 @@ pub const AMVABUFFERINFO = extern struct {
     dwDataSize: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVideoAcceleratorNotify_Value = @import("../zig.zig").Guid.initString("256a6a21-fbad-11d1-82bf-00a0c9696c8f");
 pub const IID_IAMVideoAcceleratorNotify = &IID_IAMVideoAcceleratorNotify_Value;
 pub const IAMVideoAcceleratorNotify = extern struct {
@@ -38463,6 +39560,7 @@ pub const IAMVideoAcceleratorNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAMVideoAccelerator_Value = @import("../zig.zig").Guid.initString("256a6a22-fbad-11d1-82bf-00a0c9696c8f");
 pub const IID_IAMVideoAccelerator = &IID_IAMVideoAccelerator_Value;
 pub const IAMVideoAccelerator = extern struct {
@@ -38638,6 +39736,7 @@ pub const AM_WST_DRAWBGMODE = extern enum(i32) {
 pub const AM_WST_DRAWBGMODE_Opaque = AM_WST_DRAWBGMODE.Opaque;
 pub const AM_WST_DRAWBGMODE_Transparent = AM_WST_DRAWBGMODE.Transparent;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub const IAMWstDecoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -38793,6 +39892,7 @@ pub const IAMWstDecoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IKsTopologyInfo_Value = @import("../zig.zig").Guid.initString("720d4ac0-7533-11d0-a5d6-28db04c10000");
 pub const IID_IKsTopologyInfo = &IID_IKsTopologyInfo_Value;
 pub const IKsTopologyInfo = extern struct {
@@ -38878,6 +39978,7 @@ pub const IKsTopologyInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISelector_Value = @import("../zig.zig").Guid.initString("1abdaeca-68b6-4f83-9371-b413907c7b9f");
 pub const IID_ISelector = &IID_ISelector_Value;
 pub const ISelector = extern struct {
@@ -38915,6 +40016,7 @@ pub const ISelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICameraControl_Value = @import("../zig.zig").Guid.initString("2ba1785d-4d1b-44ef-85e8-c7f1d3f20184");
 pub const IID_ICameraControl = &IID_ICameraControl_Value;
 pub const ICameraControl = extern struct {
@@ -39434,6 +40536,7 @@ pub const ICameraControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVideoProcAmp_Value = @import("../zig.zig").Guid.initString("4050560e-42a7-413a-85c2-09269a2d0f44");
 pub const IID_IVideoProcAmp = &IID_IVideoProcAmp_Value;
 pub const IVideoProcAmp = extern struct {
@@ -39839,6 +40942,7 @@ pub const IVideoProcAmp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IKsNodeControl_Value = @import("../zig.zig").Guid.initString("11737c14-24a7-4bb5-81a0-0d003813b0c4");
 pub const IID_IKsNodeControl = &IID_IKsNodeControl_Value;
 pub const IKsNodeControl = extern struct {
@@ -39868,6 +40972,7 @@ pub const IKsNodeControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConfigAsfWriter_Value = @import("../zig.zig").Guid.initString("45086030-f7e4-486a-b504-826bb5792a3b");
 pub const IID_IConfigAsfWriter = &IID_IConfigAsfWriter_Value;
 pub const IConfigAsfWriter = extern struct {
@@ -39945,6 +41050,7 @@ pub const IConfigAsfWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConfigAsfWriter2_Value = @import("../zig.zig").Guid.initString("7989ccaa-53f0-44f0-884a-f3b03f6ae066");
 pub const IID_IConfigAsfWriter2 = &IID_IConfigAsfWriter2_Value;
 pub const IConfigAsfWriter2 = extern struct {
@@ -40753,6 +41859,7 @@ pub const IMediaStreamFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDirectDrawMediaSampleAllocator_Value = @import("../zig.zig").Guid.initString("ab6b4afc-f6e4-11d0-900d-00c04fd9189d");
 pub const IID_IDirectDrawMediaSampleAllocator = &IID_IDirectDrawMediaSampleAllocator_Value;
 pub const IDirectDrawMediaSampleAllocator = extern struct {
@@ -40774,6 +41881,7 @@ pub const IDirectDrawMediaSampleAllocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDirectDrawMediaSample_Value = @import("../zig.zig").Guid.initString("ab6b4afe-f6e4-11d0-900d-00c04fd9189d");
 pub const IID_IDirectDrawMediaSample = &IID_IDirectDrawMediaSample_Value;
 pub const IDirectDrawMediaSample = extern struct {
@@ -41011,6 +42119,7 @@ pub const IAMMediaTypeSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IDirectDrawVideo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -41150,6 +42259,7 @@ pub const IDirectDrawVideo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IQualProp = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -41358,6 +42468,7 @@ pub const IFullScreenVideo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IFullScreenVideoEx = extern struct {
     pub const VTable = extern struct {
         base: IFullScreenVideo.VTable,
@@ -41525,6 +42636,7 @@ pub const AM_FRAMESTEP_STEP = extern struct {
     dwFramesToStep: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDMOWrapperFilter_Value = @import("../zig.zig").Guid.initString("52d6f586-9f0f-4824-8fc8-e32ca04930c2");
 pub const IID_IDMOWrapperFilter = &IID_IDMOWrapperFilter_Value;
 pub const IDMOWrapperFilter = extern struct {
@@ -41582,11 +42694,17 @@ pub const OPTIMAL_WEIGHT_TOTALS = extern struct {
     TotalDenominator: i64,
 };
 
-pub const IKsPin = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IKsPin = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const IKsAllocator = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IKsAllocator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const IKsAllocatorEx = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const IKsAllocatorEx = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const PIPE_STATE = extern enum(i32) {
     DontCare = 0,
@@ -41775,6 +42893,7 @@ pub const IKsTopology = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMixerOCXNotify_Value = @import("../zig.zig").Guid.initString("81a3bd31-dee1-11d1-8508-00a0c91f9ca0");
 pub const IID_IMixerOCXNotify = &IID_IMixerOCXNotify_Value;
 pub const IMixerOCXNotify = extern struct {
@@ -41812,6 +42931,7 @@ pub const IMixerOCXNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IMixerOCX_Value = @import("../zig.zig").Guid.initString("81a3bd32-dee1-11d1-8508-00a0c91f9ca0");
 pub const IID_IMixerOCX = &IID_IMixerOCX_Value;
 pub const IMixerOCX = extern struct {
@@ -41906,6 +43026,7 @@ pub const AM_ARMODE_LETTER_BOX = AM_ASPECT_RATIO_MODE.LETTER_BOX;
 pub const AM_ARMODE_CROP = AM_ASPECT_RATIO_MODE.CROP;
 pub const AM_ARMODE_STRETCHED_AS_PRIMARY = AM_ASPECT_RATIO_MODE.STRETCHED_AS_PRIMARY;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IMixerPinConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -42020,6 +43141,7 @@ pub const IMixerPinConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IMixerPinConfig2 = extern struct {
     pub const VTable = extern struct {
         base: IMixerPinConfig.VTable,
@@ -42060,6 +43182,7 @@ pub const AM_MPEGSYSTEMTYPE = extern struct {
     Streams: [1]AM_MPEGSTREAMTYPE,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IMpegAudioDecoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -42200,6 +43323,7 @@ pub const VMR9PresentationInfo = extern struct {
     dwReserved2: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenter9_Value = @import("../zig.zig").Guid.initString("69188c61-12a3-40f0-8ffc-342e7b433fd7");
 pub const IID_IVMRImagePresenter9 = &IID_IVMRImagePresenter9_Value;
 pub const IVMRImagePresenter9 = extern struct {
@@ -42266,6 +43390,7 @@ pub const VMR9AllocationInfo = extern struct {
     szNativeSize: SIZE,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurfaceAllocator9_Value = @import("../zig.zig").Guid.initString("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f");
 pub const IID_IVMRSurfaceAllocator9 = &IID_IVMRSurfaceAllocator9_Value;
 pub const IVMRSurfaceAllocator9 = extern struct {
@@ -42316,6 +43441,7 @@ pub const IVMRSurfaceAllocator9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurfaceAllocatorEx9_Value = @import("../zig.zig").Guid.initString("6de9a68a-a928-4522-bf57-655ae3866456");
 pub const IID_IVMRSurfaceAllocatorEx9 = &IID_IVMRSurfaceAllocatorEx9_Value;
 pub const IVMRSurfaceAllocatorEx9 = extern struct {
@@ -42341,6 +43467,7 @@ pub const IVMRSurfaceAllocatorEx9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurfaceAllocatorNotify9_Value = @import("../zig.zig").Guid.initString("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c");
 pub const IID_IVMRSurfaceAllocatorNotify9 = &IID_IVMRSurfaceAllocatorNotify9_Value;
 pub const IVMRSurfaceAllocatorNotify9 = extern struct {
@@ -42408,6 +43535,7 @@ pub const VMR9AspectRatioMode = extern enum(i32) {
 pub const VMR9ARMode_None = VMR9AspectRatioMode.None;
 pub const VMR9ARMode_LetterBox = VMR9AspectRatioMode.LetterBox;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRWindowlessControl9_Value = @import("../zig.zig").Guid.initString("8f537d09-f85e-4414-b23b-502e54c79927");
 pub const IID_IVMRWindowlessControl9 = &IID_IVMRWindowlessControl9_Value;
 pub const IVMRWindowlessControl9 = extern struct {
@@ -42613,6 +43741,7 @@ pub const VMR9ProcAmpControlRange = extern struct {
     StepSize: f32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMixerControl9_Value = @import("../zig.zig").Guid.initString("1a777eaa-47c8-4930-b2c9-8fee1c1b0f3b");
 pub const IID_IVMRMixerControl9 = &IID_IVMRMixerControl9_Value;
 pub const IVMRMixerControl9 = extern struct {
@@ -42765,6 +43894,7 @@ pub const VMR9AlphaBitmap_SrcColorKey = VMR9AlphaBitmapFlags.SrcColorKey;
 pub const VMR9AlphaBitmap_SrcRect = VMR9AlphaBitmapFlags.SrcRect;
 pub const VMR9AlphaBitmap_FilterMode = VMR9AlphaBitmapFlags.FilterMode;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMixerBitmap9_Value = @import("../zig.zig").Guid.initString("ced175e5-1935-4820-81bd-ff6ad00c9108");
 pub const IID_IVMRMixerBitmap9 = &IID_IVMRMixerBitmap9_Value;
 pub const IVMRMixerBitmap9 = extern struct {
@@ -42802,6 +43932,7 @@ pub const IVMRMixerBitmap9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRSurface9_Value = @import("../zig.zig").Guid.initString("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc");
 pub const IID_IVMRSurface9 = &IID_IVMRSurface9_Value;
 pub const IVMRSurface9 = extern struct {
@@ -42852,6 +43983,7 @@ pub const VMR9RenderPrefs = extern enum(i32) {
 pub const RenderPrefs9_DoNotRenderBorder = VMR9RenderPrefs.DoNotRenderBorder;
 pub const RenderPrefs9_Mask = VMR9RenderPrefs.Mask;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenterConfig9_Value = @import("../zig.zig").Guid.initString("45c15cab-6e22-420a-8043-ae1f0ac02c7d");
 pub const IID_IVMRImagePresenterConfig9 = &IID_IVMRImagePresenterConfig9_Value;
 pub const IVMRImagePresenterConfig9 = extern struct {
@@ -42881,6 +44013,7 @@ pub const IVMRImagePresenterConfig9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRVideoStreamControl9_Value = @import("../zig.zig").Guid.initString("d0cfe38b-93e7-4772-8957-0400c49a4485");
 pub const IID_IVMRVideoStreamControl9 = &IID_IVMRVideoStreamControl9_Value;
 pub const IVMRVideoStreamControl9 = extern struct {
@@ -42921,6 +44054,7 @@ pub const VMR9Mode_Windowless = VMR9Mode.Windowless;
 pub const VMR9Mode_Renderless = VMR9Mode.Renderless;
 pub const VMR9Mode_Mask = VMR9Mode.Mask;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRFilterConfig9_Value = @import("../zig.zig").Guid.initString("5a804648-4f66-4867-9c43-4f5c822cf1b8");
 pub const IID_IVMRFilterConfig9 = &IID_IVMRFilterConfig9_Value;
 pub const IVMRFilterConfig9 = extern struct {
@@ -42990,6 +44124,7 @@ pub const IVMRFilterConfig9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRAspectRatioControl9_Value = @import("../zig.zig").Guid.initString("00d96c29-bbde-4efc-9901-bb5036392146");
 pub const IID_IVMRAspectRatioControl9 = &IID_IVMRAspectRatioControl9_Value;
 pub const IVMRAspectRatioControl9 = extern struct {
@@ -43033,6 +44168,7 @@ pub const VMR9MonitorInfo = extern struct {
     dwRevision: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRMonitorConfig9_Value = @import("../zig.zig").Guid.initString("46c2e457-8ba0-4eef-b80b-0680f0978749");
 pub const IID_IVMRMonitorConfig9 = &IID_IVMRMonitorConfig9_Value;
 pub const IVMRMonitorConfig9 = extern struct {
@@ -43156,6 +44292,7 @@ pub const VMR9DeinterlaceCaps = extern struct {
     DeinterlaceTechnology: VMR9DeinterlaceTech,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRDeinterlaceControl9_Value = @import("../zig.zig").Guid.initString("a215fb8d-13c2-4f7f-993c-003d6271a459");
 pub const IID_IVMRDeinterlaceControl9 = &IID_IVMRDeinterlaceControl9_Value;
 pub const IVMRDeinterlaceControl9 = extern struct {
@@ -43244,6 +44381,7 @@ pub const VMR9VideoStreamInfo = extern struct {
     SampleFormat: VMR9_SampleFormat,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImageCompositor9_Value = @import("../zig.zig").Guid.initString("4a5c89eb-df51-4654-ac2a-e48e02bbabf6");
 pub const IID_IVMRImageCompositor9 = &IID_IVMRImageCompositor9_Value;
 pub const IVMRImageCompositor9 = extern struct {
@@ -43298,6 +44436,7 @@ pub const IVMRImageCompositor9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IVPBaseConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -43419,6 +44558,7 @@ pub const IVPBaseConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IVPConfig = extern struct {
     pub const VTable = extern struct {
         base: IVPBaseConfig.VTable,
@@ -43457,6 +44597,7 @@ pub const IVPVBIConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IVPBaseNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -43475,6 +44616,7 @@ pub const IVPBaseNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IVPNotify = extern struct {
     pub const VTable = extern struct {
         base: IVPBaseNotify.VTable,
@@ -43502,6 +44644,7 @@ pub const IVPNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IVPNotify2 = extern struct {
     pub const VTable = extern struct {
         base: IVPNotify.VTable,
@@ -43540,6 +44683,7 @@ pub const IVPVBINotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IXMLGraphBuilder_Value = @import("../zig.zig").Guid.initString("1bb05960-5fbf-11d2-a521-44df07c10000");
 pub const IID_IXMLGraphBuilder = &IID_IXMLGraphBuilder_Value;
 pub const IXMLGraphBuilder = extern struct {
@@ -44411,776 +45555,6 @@ pub const DMO_ENUM_FLAGS = extern enum(i32) {
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
 
-pub const MPEG1WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    fwHeadLayer: u16,
-    dwHeadBitrate: u32,
-    fwHeadMode: u16,
-    fwHeadModeExt: u16,
-    wHeadEmphasis: u16,
-    fwHeadFlags: u16,
-    dwPTSLow: u32,
-    dwPTSHigh: u32,
-};
-
-pub const MPEGLAYER3WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    wID: u16,
-    fdwFlags: MPEGLAYER3WAVEFORMAT_fdwFlags,
-    nBlockSize: u16,
-    nFramesPerBlock: u16,
-    nCodecDelay: u16,
-};
-
-pub const HEAACWAVEINFO = extern struct {
-    wfx: WAVEFORMATEX,
-    wPayloadType: u16,
-    wAudioProfileLevelIndication: u16,
-    wStructType: u16,
-    wReserved1: u16,
-    dwReserved2: u32,
-};
-
-pub const HEAACWAVEFORMAT = extern struct {
-    wfInfo: HEAACWAVEINFO,
-    pbAudioSpecificConfig: [1]u8,
-};
-
-pub const DDCOLORKEY = extern struct {
-    dwColorSpaceLowValue: u32,
-    dwColorSpaceHighValue: u32,
-};
-
-pub const IDvbSiParser2_GetEIT2_tableIdFlags = extern enum(u32) {
-    ACTUAL_TID = 78,
-    OTHER_TID_ = 79,
-};
-pub const DVB_EIT_ACTUAL_TID = IDvbSiParser2_GetEIT2_tableIdFlags.ACTUAL_TID;
-pub const DVB_EIT_OTHER_TID_ = IDvbSiParser2_GetEIT2_tableIdFlags.OTHER_TID_;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MPEG2VIDEOINFO_dwFlags = extern enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-};
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_dwFlags.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_dwFlags.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_dwFlags.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_dwFlags.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_dwFlags.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_dwFlags.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_dwFlags.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_dwFlags.WidescreenAnalogOut;
-
-pub const MPEGLAYER3WAVEFORMAT_fdwFlags = extern enum(u32) {
-    ISO = 0,
-    ON = 1,
-    OFF = 2,
-};
-pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_fdwFlags.ISO;
-pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_fdwFlags.ON;
-pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_fdwFlags.OFF;
-
-pub const BITMAPINFOHEADER = extern struct {
-    biSize: u32,
-    biWidth: i32,
-    biHeight: i32,
-    biPlanes: u16,
-    biBitCount: u16,
-    biCompression: u32,
-    biSizeImage: u32,
-    biXPelsPerMeter: i32,
-    biYPelsPerMeter: i32,
-    biClrUsed: u32,
-    biClrImportant: u32,
-};
-
-pub const DMO_MEDIA_TYPE = extern struct {
-    majortype: Guid,
-    subtype: Guid,
-    bFixedSizeSamples: BOOL,
-    bTemporalCompression: BOOL,
-    lSampleSize: u32,
-    formattype: Guid,
-    pUnk: *IUnknown,
-    cbFormat: u32,
-    pbFormat: *u8,
-};
-
-const IID_IMediaBuffer_Value = @import("../zig.zig").Guid.initString("59eff8b9-938c-4a26-82f2-95cb84cdc837");
-pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
-pub const IMediaBuffer = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetLength: fn(
-            self: *const IMediaBuffer,
-            cbLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxLength: fn(
-            self: *const IMediaBuffer,
-            pcbMaxLength: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferAndLength: fn(
-            self: *const IMediaBuffer,
-            ppBuffer: ?*?*u8,
-            pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_SetLength(self: *const T, cbLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).SetLength(@ptrCast(*const IMediaBuffer, self), cbLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
-    pBuffer: *IMediaBuffer,
-    dwStatus: u32,
-    rtTimestamp: i64,
-    rtTimelength: i64,
-};
-
-const IID_IMediaObject_Value = @import("../zig.zig").Guid.initString("d8ad0f58-5494-4102-97c5-ec798e59bcf4");
-pub const IID_IMediaObject = &IID_IMediaObject_Value;
-pub const IMediaObject = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStreamCount: fn(
-            self: *const IMediaObject,
-            pcInputStreams: *u32,
-            pcOutputStreams: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputCurrentType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: *DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCurrentType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: *DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pcbSize: *u32,
-            pcbMaxLookahead: *u32,
-            pcbAlignment: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pcbSize: *u32,
-            pcbAlignment: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            prtMaxLatency: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            rtMaxLatency: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Discontinuity: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreeStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStatus: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessInput: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pBuffer: *IMediaBuffer,
-            dwFlags: u32,
-            rtTimestamp: i64,
-            rtTimelength: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessOutput: fn(
-            self: *const IMediaObject,
-            dwFlags: u32,
-            cOutputBufferCount: u32,
-            pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
-            pdwStatus: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IMediaObject,
-            bLock: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetStreamCount(self: *const T, pcInputStreams: *u32, pcOutputStreams: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMediaObject, self), pcInputStreams, pcOutputStreams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputStreamInfo(self: *const T, dwInputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputStreamInfo(self: *const T, dwOutputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputType(self: *const T, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwTypeIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputType(self: *const T, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, dwTypeIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetInputType(self: *const T, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetOutputType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputCurrentType(self: *const T, dwInputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputCurrentType(self: *const T, dwOutputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputSizeInfo(self: *const T, dwInputStreamIndex: u32, pcbSize: *u32, pcbMaxLookahead: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputSizeInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputSizeInfo(self: *const T, dwOutputStreamIndex: u32, pcbSize: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputSizeInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pcbSize, pcbAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, prtMaxLatency: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, prtMaxLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, rtMaxLatency: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, rtMaxLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Flush(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Discontinuity(self: *const T, dwInputStreamIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Discontinuity(@ptrCast(*const IMediaObject, self), dwInputStreamIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_AllocateStreamingResources(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).AllocateStreamingResources(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_FreeStreamingResources(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).FreeStreamingResources(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputStatus(self: *const T, dwInputStreamIndex: u32, dwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_ProcessInput(self: *const T, dwInputStreamIndex: u32, pBuffer: *IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessInput(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMediaObject, self), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Lock(self: *const T, bLock: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Lock(@ptrCast(*const IMediaObject, self), bLock);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDMO_Value = @import("../zig.zig").Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
-pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
-pub const IEnumDMO = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDMO,
-            cItemsToFetch: u32,
-            pCLSID: [*]Guid,
-            Names: [*]PWSTR,
-            pcItemsFetched: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDMO,
-            cItemsToSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDMO,
-            ppEnum: **IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Next(self: *const T, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]PWSTR, pcItemsFetched: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Next(@ptrCast(*const IEnumDMO, self), cItemsToFetch, pCLSID, Names, pcItemsFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Skip(self: *const T, cItemsToSkip: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Skip(@ptrCast(*const IEnumDMO, self), cItemsToSkip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Reset(@ptrCast(*const IEnumDMO, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Clone(self: *const T, ppEnum: **IEnumDMO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Clone(@ptrCast(*const IEnumDMO, self), ppEnum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IMediaObjectInPlace_Value = @import("../zig.zig").Guid.initString("651b9ad0-0fc7-4aa9-9538-d89931010741");
-pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
-pub const IMediaObjectInPlace = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Process: fn(
-            self: *const IMediaObjectInPlace,
-            ulSize: u32,
-            pData: [*:0]u8,
-            refTimeStart: i64,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IMediaObjectInPlace,
-            ppMediaObject: **IMediaObjectInPlace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLatency: fn(
-            self: *const IMediaObjectInPlace,
-            pLatencyTime: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_Process(self: *const T, ulSize: u32, pData: [*:0]u8, refTimeStart: i64, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Process(@ptrCast(*const IMediaObjectInPlace, self), ulSize, pData, refTimeStart, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_Clone(self: *const T, ppMediaObject: **IMediaObjectInPlace) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Clone(@ptrCast(*const IMediaObjectInPlace, self), ppMediaObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_GetLatency(self: *const T, pLatencyTime: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).GetLatency(@ptrCast(*const IMediaObjectInPlace, self), pLatencyTime);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDMOQualityControl_Value = @import("../zig.zig").Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
-pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
-pub const IDMOQualityControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNow: fn(
-            self: *const IDMOQualityControl,
-            rtNow: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStatus: fn(
-            self: *const IDMOQualityControl,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDMOQualityControl,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_SetNow(self: *const T, rtNow: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetNow(@ptrCast(*const IDMOQualityControl, self), rtNow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_SetStatus(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetStatus(@ptrCast(*const IDMOQualityControl, self), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_GetStatus(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).GetStatus(@ptrCast(*const IDMOQualityControl, self), pdwFlags);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDMOVideoOutputOptimizations_Value = @import("../zig.zig").Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
-pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
-pub const IDMOVideoOutputOptimizations = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryOperationModePreferences: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedCapabilities: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            dwEnabledFeatures: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwEnabledFeatures: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentSampleRequirements: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedFeatures: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_QueryOperationModePreferences(self: *const T, ulOutputStreamIndex: u32, pdwRequestedCapabilities: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).QueryOperationModePreferences(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_SetOperationMode(self: *const T, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).SetOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, dwEnabledFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_GetCurrentOperationMode(self: *const T, ulOutputStreamIndex: u32, pdwEnabledFeatures: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwEnabledFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_GetCurrentSampleRequirements(self: *const T, ulOutputStreamIndex: u32, pdwRequestedFeatures: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentSampleRequirements(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedFeatures);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DXVA_COPPSetProtectionLevelCmdData = extern struct {
-    ProtType: u32,
-    ProtLevel: u32,
-    ExtendedInfoChangeMask: u32,
-    ExtendedInfoData: u32,
-};
-
-pub const COPP_HDCP_Protection_Level = extern enum(i32) {
-    Level0 = 0,
-    LevelMin = 0,
-    Level1 = 1,
-    LevelMax = 1,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_HDCP_Level0 = COPP_HDCP_Protection_Level.Level0;
-pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.LevelMin;
-pub const COPP_HDCP_Level1 = COPP_HDCP_Protection_Level.Level1;
-pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.LevelMax;
-pub const COPP_HDCP_ForceDWORD = COPP_HDCP_Protection_Level.ForceDWORD;
-
-pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
-    Disabled = 0,
-    LevelMin = 0,
-    CopyFreely = 1,
-    CopyNoMore = 2,
-    CopyOneGeneration = 3,
-    CopyNever = 4,
-    RedistributionControlRequired = 8,
-    LevelMax = 12,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_CGMSA_Disabled = COPP_CGMSA_Protection_Level.Disabled;
-pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.LevelMin;
-pub const COPP_CGMSA_CopyFreely = COPP_CGMSA_Protection_Level.CopyFreely;
-pub const COPP_CGMSA_CopyNoMore = COPP_CGMSA_Protection_Level.CopyNoMore;
-pub const COPP_CGMSA_CopyOneGeneration = COPP_CGMSA_Protection_Level.CopyOneGeneration;
-pub const COPP_CGMSA_CopyNever = COPP_CGMSA_Protection_Level.CopyNever;
-pub const COPP_CGMSA_RedistributionControlRequired = COPP_CGMSA_Protection_Level.RedistributionControlRequired;
-pub const COPP_CGMSA_LevelMax = COPP_CGMSA_Protection_Level.LevelMax;
-pub const COPP_CGMSA_ForceDWORD = COPP_CGMSA_Protection_Level.ForceDWORD;
-
-pub const COPP_ACP_Protection_Level = extern enum(i32) {
-    Level0 = 0,
-    LevelMin = 0,
-    Level1 = 1,
-    Level2 = 2,
-    Level3 = 3,
-    LevelMax = 3,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_ACP_Level0 = COPP_ACP_Protection_Level.Level0;
-pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.LevelMin;
-pub const COPP_ACP_Level1 = COPP_ACP_Protection_Level.Level1;
-pub const COPP_ACP_Level2 = COPP_ACP_Protection_Level.Level2;
-pub const COPP_ACP_Level3 = COPP_ACP_Protection_Level.Level3;
-pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.LevelMax;
-pub const COPP_ACP_ForceDWORD = COPP_ACP_Protection_Level.ForceDWORD;
-
-pub const DXVA_COPPSetSignalingCmdData = extern struct {
-    ActiveTVProtectionStandard: u32,
-    AspectRatioChangeMask1: u32,
-    AspectRatioData1: u32,
-    AspectRatioChangeMask2: u32,
-    AspectRatioData2: u32,
-    AspectRatioChangeMask3: u32,
-    AspectRatioData3: u32,
-    ExtendedInfoChangeMask: [4]u32,
-    ExtendedInfoData: [4]u32,
-    Reserved: u32,
-};
-
-pub const COPP_TVProtectionStandard = extern enum(i32) {
-    Unknown = -2147483648,
-    None = 0,
-    IEC61880_525i = 1,
-    IEC61880_2_525i = 2,
-    IEC62375_625p = 4,
-    EIA608B_525 = 8,
-    EN300294_625i = 16,
-    CEA805A_TypeA_525p = 32,
-    CEA805A_TypeA_750p = 64,
-    CEA805A_TypeA_1125i = 128,
-    CEA805A_TypeB_525p = 256,
-    CEA805A_TypeB_750p = 512,
-    CEA805A_TypeB_1125i = 1024,
-    ARIBTRB15_525i = 2048,
-    ARIBTRB15_525p = 4096,
-    ARIBTRB15_750p = 8192,
-    ARIBTRB15_1125i = 16384,
-    Mask = -2147450881,
-    Reserved = 2147450880,
-};
-pub const COPP_ProtectionStandard_Unknown = COPP_TVProtectionStandard.Unknown;
-pub const COPP_ProtectionStandard_None = COPP_TVProtectionStandard.None;
-pub const COPP_ProtectionStandard_IEC61880_525i = COPP_TVProtectionStandard.IEC61880_525i;
-pub const COPP_ProtectionStandard_IEC61880_2_525i = COPP_TVProtectionStandard.IEC61880_2_525i;
-pub const COPP_ProtectionStandard_IEC62375_625p = COPP_TVProtectionStandard.IEC62375_625p;
-pub const COPP_ProtectionStandard_EIA608B_525 = COPP_TVProtectionStandard.EIA608B_525;
-pub const COPP_ProtectionStandard_EN300294_625i = COPP_TVProtectionStandard.EN300294_625i;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_525p = COPP_TVProtectionStandard.CEA805A_TypeA_525p;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_750p = COPP_TVProtectionStandard.CEA805A_TypeA_750p;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_1125i = COPP_TVProtectionStandard.CEA805A_TypeA_1125i;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_525p = COPP_TVProtectionStandard.CEA805A_TypeB_525p;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_750p = COPP_TVProtectionStandard.CEA805A_TypeB_750p;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_1125i = COPP_TVProtectionStandard.CEA805A_TypeB_1125i;
-pub const COPP_ProtectionStandard_ARIBTRB15_525i = COPP_TVProtectionStandard.ARIBTRB15_525i;
-pub const COPP_ProtectionStandard_ARIBTRB15_525p = COPP_TVProtectionStandard.ARIBTRB15_525p;
-pub const COPP_ProtectionStandard_ARIBTRB15_750p = COPP_TVProtectionStandard.ARIBTRB15_750p;
-pub const COPP_ProtectionStandard_ARIBTRB15_1125i = COPP_TVProtectionStandard.ARIBTRB15_1125i;
-pub const COPP_ProtectionStandard_Mask = COPP_TVProtectionStandard.Mask;
-pub const COPP_ProtectionStandard_Reserved = COPP_TVProtectionStandard.Reserved;
-
-pub const COPP_ImageAspectRatio_EN300294 = extern enum(i32) {
-    EN300294_FullFormat4by3 = 0,
-    EN300294_Box14by9Center = 1,
-    EN300294_Box14by9Top = 2,
-    EN300294_Box16by9Center = 3,
-    EN300294_Box16by9Top = 4,
-    EN300294_BoxGT16by9Center = 5,
-    EN300294_FullFormat4by3ProtectedCenter = 6,
-    EN300294_FullFormat16by9Anamorphic = 7,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_AspectRatio_EN300294_FullFormat4by3 = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3;
-pub const COPP_AspectRatio_EN300294_Box14by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Center;
-pub const COPP_AspectRatio_EN300294_Box14by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Top;
-pub const COPP_AspectRatio_EN300294_Box16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Center;
-pub const COPP_AspectRatio_EN300294_Box16by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Top;
-pub const COPP_AspectRatio_EN300294_BoxGT16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_BoxGT16by9Center;
-pub const COPP_AspectRatio_EN300294_FullFormat4by3ProtectedCenter = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3ProtectedCenter;
-pub const COPP_AspectRatio_EN300294_FullFormat16by9Anamorphic = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat16by9Anamorphic;
-pub const COPP_AspectRatio_ForceDWORD = COPP_ImageAspectRatio_EN300294.ForceDWORD;
-
-pub const COPP_StatusFlags = extern enum(i32) {
-    StatusNormal = 0,
-    LinkLost = 1,
-    RenegotiationRequired = 2,
-    StatusFlagsReserved = -4,
-};
-pub const COPP_StatusNormal = COPP_StatusFlags.StatusNormal;
-pub const COPP_LinkLost = COPP_StatusFlags.LinkLost;
-pub const COPP_RenegotiationRequired = COPP_StatusFlags.RenegotiationRequired;
-pub const COPP_StatusFlagsReserved = COPP_StatusFlags.StatusFlagsReserved;
-
-pub const DXVA_COPPStatusData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    dwData: u32,
-    ExtendedInfoValidMask: u32,
-    ExtendedInfoData: u32,
-};
-
-pub const DXVA_COPPStatusDisplayData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    DisplayWidth: u32,
-    DisplayHeight: u32,
-    Format: u32,
-    d3dFormat: u32,
-    FreqNumerator: u32,
-    FreqDenominator: u32,
-};
-
-pub const COPP_StatusHDCPFlags = extern enum(i32) {
-    Repeater = 1,
-    FlagsReserved = -2,
-};
-pub const COPP_HDCPRepeater = COPP_StatusHDCPFlags.Repeater;
-pub const COPP_HDCPFlagsReserved = COPP_StatusHDCPFlags.FlagsReserved;
-
-pub const DXVA_COPPStatusHDCPKeyData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    dwHDCPFlags: u32,
-    BKey: Guid,
-    Reserved1: Guid,
-    Reserved2: Guid,
-};
-
-pub const COPP_ConnectorType = extern enum(i32) {
-    Unknown = -1,
-    VGA = 0,
-    SVideo = 1,
-    CompositeVideo = 2,
-    ComponentVideo = 3,
-    DVI = 4,
-    HDMI = 5,
-    LVDS = 6,
-    TMDS = 7,
-    D_JPN = 8,
-    Internal = -2147483648,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_ConnectorType_Unknown = COPP_ConnectorType.Unknown;
-pub const COPP_ConnectorType_VGA = COPP_ConnectorType.VGA;
-pub const COPP_ConnectorType_SVideo = COPP_ConnectorType.SVideo;
-pub const COPP_ConnectorType_CompositeVideo = COPP_ConnectorType.CompositeVideo;
-pub const COPP_ConnectorType_ComponentVideo = COPP_ConnectorType.ComponentVideo;
-pub const COPP_ConnectorType_DVI = COPP_ConnectorType.DVI;
-pub const COPP_ConnectorType_HDMI = COPP_ConnectorType.HDMI;
-pub const COPP_ConnectorType_LVDS = COPP_ConnectorType.LVDS;
-pub const COPP_ConnectorType_TMDS = COPP_ConnectorType.TMDS;
-pub const COPP_ConnectorType_D_JPN = COPP_ConnectorType.D_JPN;
-pub const COPP_ConnectorType_Internal = COPP_ConnectorType.Internal;
-pub const COPP_ConnectorType_ForceDWORD = COPP_ConnectorType.ForceDWORD;
-
-pub const COPP_BusType = extern enum(i32) {
-    Unknown = 0,
-    PCI = 1,
-    PCIX = 2,
-    PCIExpress = 3,
-    AGP = 4,
-    Integrated = -2147483648,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_BusType_Unknown = COPP_BusType.Unknown;
-pub const COPP_BusType_PCI = COPP_BusType.PCI;
-pub const COPP_BusType_PCIX = COPP_BusType.PCIX;
-pub const COPP_BusType_PCIExpress = COPP_BusType.PCIExpress;
-pub const COPP_BusType_AGP = COPP_BusType.AGP;
-pub const COPP_BusType_Integrated = COPP_BusType.Integrated;
-pub const COPP_BusType_ForceDWORD = COPP_BusType.ForceDWORD;
-
-pub const DXVA_COPPStatusSignalingCmdData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    AvailableTVProtectionStandards: u32,
-    ActiveTVProtectionStandard: u32,
-    TVType: u32,
-    AspectRatioValidMask1: u32,
-    AspectRatioData1: u32,
-    AspectRatioValidMask2: u32,
-    AspectRatioData2: u32,
-    AspectRatioValidMask3: u32,
-    AspectRatioData3: u32,
-    ExtendedInfoValidMask: [4]u32,
-    ExtendedInfoData: [4]u32,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
@@ -45288,7 +45662,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (63)
+// Section: Imports (65)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
@@ -45316,9 +45690,9 @@ const IErrorLog = @import("automation.zig").IErrorLog;
 const BITMAPINFO = @import("gdi.zig").BITMAPINFO;
 const KS_FRAMING_RANGE = @import("core_audio.zig").KS_FRAMING_RANGE;
 const IEnumMoniker = @import("com.zig").IEnumMoniker;
+const RGNDATA = @import("gdi.zig").RGNDATA;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
-const RGNDATA = @import("gdi.zig").RGNDATA;
 const RGBQUAD = @import("gdi.zig").RGBQUAD;
 const HKEY = @import("windows_programming.zig").HKEY;
 const IEnumVARIANT = @import("automation.zig").IEnumVARIANT;
@@ -45330,9 +45704,11 @@ const IDirect3DDevice9 = @import("direct3d9.zig").IDirect3DDevice9;
 const HRESULT = @import("com.zig").HRESULT;
 const IDirectDrawSurface7 = @import("direct_draw.zig").IDirectDrawSurface7;
 const IEnumGUID = @import("com.zig").IEnumGUID;
-const IDirectSoundBuffer = @import("audio.zig").IDirectSoundBuffer;
+const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
+const BITMAPINFOHEADER = @import("gdi.zig").BITMAPINFOHEADER;
 const IPersist = @import("com.zig").IPersist;
+const IDirectSoundBuffer = @import("audio.zig").IDirectSoundBuffer;
 const DDSURFACEDESC = @import("direct_draw.zig").DDSURFACEDESC;
 const KSIDENTIFIER = @import("core_audio.zig").KSIDENTIFIER;
 const KS_FRAMING_RANGE_WEIGHTED = @import("core_audio.zig").KS_FRAMING_RANGE_WEIGHTED;
@@ -45360,13 +45736,13 @@ test {
     _ = AMGETERRORTEXTPROCW;
 
     const constant_export_count = 677;
-    const type_export_count = 1184;
+    const type_export_count = 1183;
     const enum_value_export_count = 2136;
     const com_iface_id_export_count = 560;
     const com_class_id_export_count = 294;
     const func_export_count = 13;
     const unicode_alias_count = 2;
-    const import_count = 63;
+    const import_count = 65;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

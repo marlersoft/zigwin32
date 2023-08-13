@@ -6,18 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-pub const OPERATION_START_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_START_PARAMETERSFlags,
-};
-
-pub const OPERATION_END_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_END_PARAMETERSFlags,
-};
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPERATION_START_PARAMETERSFlags = extern enum(u32) {
     D = 1,
@@ -32,14 +20,28 @@ pub const OPERATION_END_PARAMETERSFlags = extern enum(u32) {
 };
 pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERSFlags.D;
 
+pub const OPERATION_START_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_START_PARAMETERSFlags,
+};
+
+pub const OPERATION_END_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_END_PARAMETERSFlags,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn OperationStart(
     OperationStartParams: *OPERATION_START_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn OperationEnd(
     OperationEndParams: *OPERATION_END_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

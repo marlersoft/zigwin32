@@ -242,6 +242,7 @@ pub const searchScopeMachineAndCurrentUser = SearchScope.MachineAndCurrentUser;
 pub const searchScopeMachineAndAllUsers = SearchScope.MachineAndAllUsers;
 pub const searchScopeAllUsers = SearchScope.AllUsers;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateLockdown_Value = @import("../zig.zig").Guid.initString("a976c28d-75a1-42aa-94ae-8af8b872089a");
 pub const IID_IUpdateLockdown = &IID_IUpdateLockdown_Value;
 pub const IUpdateLockdown = extern struct {
@@ -263,6 +264,7 @@ pub const IUpdateLockdown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStringCollection_Value = @import("../zig.zig").Guid.initString("eff90582-2ddc-480f-a06d-60f3fbc362c3");
 pub const IID_IStringCollection = &IID_IStringCollection_Value;
 pub const IStringCollection = extern struct {
@@ -359,6 +361,7 @@ pub const IStringCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWebProxy_Value = @import("../zig.zig").Guid.initString("174c81fe-aecd-4dae-b8a0-2c6318dd86a8");
 pub const IID_IWebProxy = &IID_IWebProxy_Value;
 pub const IWebProxy = extern struct {
@@ -486,6 +489,7 @@ pub const IWebProxy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISystemInformation_Value = @import("../zig.zig").Guid.initString("ade87bf7-7b56-4275-8fab-b9b0e591844b");
 pub const IID_ISystemInformation = &IID_ISystemInformation_Value;
 pub const ISystemInformation = extern struct {
@@ -515,6 +519,7 @@ pub const ISystemInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsUpdateAgentInfo_Value = @import("../zig.zig").Guid.initString("85713fa1-7796-4fa2-be3b-e2d6124dd373");
 pub const IID_IWindowsUpdateAgentInfo = &IID_IWindowsUpdateAgentInfo_Value;
 pub const IWindowsUpdateAgentInfo = extern struct {
@@ -537,6 +542,7 @@ pub const IWindowsUpdateAgentInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdatesResults_Value = @import("../zig.zig").Guid.initString("e7a4d634-7942-4dd9-a111-82228ba33901");
 pub const IID_IAutomaticUpdatesResults = &IID_IAutomaticUpdatesResults_Value;
 pub const IAutomaticUpdatesResults = extern struct {
@@ -566,6 +572,7 @@ pub const IAutomaticUpdatesResults = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdatesSettings_Value = @import("../zig.zig").Guid.initString("2ee48f22-af3c-405f-8970-f71be12ee9a2");
 pub const IID_IAutomaticUpdatesSettings = &IID_IAutomaticUpdatesSettings_Value;
 pub const IAutomaticUpdatesSettings = extern struct {
@@ -657,6 +664,7 @@ pub const IAutomaticUpdatesSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdatesSettings2_Value = @import("../zig.zig").Guid.initString("6abc136a-c3ca-4384-8171-cb2b1e59b8dc");
 pub const IID_IAutomaticUpdatesSettings2 = &IID_IAutomaticUpdatesSettings2_Value;
 pub const IAutomaticUpdatesSettings2 = extern struct {
@@ -696,6 +704,7 @@ pub const IAutomaticUpdatesSettings2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdatesSettings3_Value = @import("../zig.zig").Guid.initString("b587f5c3-f57e-485f-bbf5-0d181c5cd0dc");
 pub const IID_IAutomaticUpdatesSettings3 = &IID_IAutomaticUpdatesSettings3_Value;
 pub const IAutomaticUpdatesSettings3 = extern struct {
@@ -741,6 +750,7 @@ pub const IAutomaticUpdatesSettings3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdates_Value = @import("../zig.zig").Guid.initString("673425bf-c082-4c7c-bdfd-569464b8e0ce");
 pub const IID_IAutomaticUpdates = &IID_IAutomaticUpdates_Value;
 pub const IAutomaticUpdates = extern struct {
@@ -805,6 +815,7 @@ pub const IAutomaticUpdates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutomaticUpdates2_Value = @import("../zig.zig").Guid.initString("4a2f5c31-cfd9-410e-b7fb-29a653973a0f");
 pub const IID_IAutomaticUpdates2 = &IID_IAutomaticUpdates2_Value;
 pub const IAutomaticUpdates2 = extern struct {
@@ -826,6 +837,7 @@ pub const IAutomaticUpdates2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateIdentity_Value = @import("../zig.zig").Guid.initString("46297823-9940-4c09-aed9-cd3ea6d05968");
 pub const IID_IUpdateIdentity = &IID_IUpdateIdentity_Value;
 pub const IUpdateIdentity = extern struct {
@@ -855,6 +867,7 @@ pub const IUpdateIdentity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IImageInformation_Value = @import("../zig.zig").Guid.initString("7c907864-346c-4aeb-8f3f-57da289f969f");
 pub const IID_IImageInformation = &IID_IImageInformation_Value;
 pub const IImageInformation = extern struct {
@@ -900,6 +913,7 @@ pub const IImageInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICategory_Value = @import("../zig.zig").Guid.initString("81ddc1b8-9d35-47a6-b471-5b80f519223b");
 pub const IID_ICategory = &IID_ICategory_Value;
 pub const ICategory = extern struct {
@@ -985,6 +999,7 @@ pub const ICategory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICategoryCollection_Value = @import("../zig.zig").Guid.initString("3a56bfb8-576c-43f7-9335-fe4838fd7e37");
 pub const IID_ICategoryCollection = &IID_ICategoryCollection_Value;
 pub const ICategoryCollection = extern struct {
@@ -1023,6 +1038,7 @@ pub const ICategoryCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationBehavior_Value = @import("../zig.zig").Guid.initString("d9a59339-e245-4dbd-9686-4d5763e39624");
 pub const IID_IInstallationBehavior = &IID_IInstallationBehavior_Value;
 pub const IInstallationBehavior = extern struct {
@@ -1068,6 +1084,7 @@ pub const IInstallationBehavior = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateDownloadContent_Value = @import("../zig.zig").Guid.initString("54a2cb2d-9a0c-48b6-8a50-9abb69ee2d02");
 pub const IID_IUpdateDownloadContent = &IID_IUpdateDownloadContent_Value;
 pub const IUpdateDownloadContent = extern struct {
@@ -1089,6 +1106,7 @@ pub const IUpdateDownloadContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateDownloadContent2_Value = @import("../zig.zig").Guid.initString("c97ad11b-f257-420b-9d9f-377f733f6f68");
 pub const IID_IUpdateDownloadContent2 = &IID_IUpdateDownloadContent2_Value;
 pub const IUpdateDownloadContent2 = extern struct {
@@ -1110,6 +1128,7 @@ pub const IUpdateDownloadContent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateDownloadContentCollection_Value = @import("../zig.zig").Guid.initString("bc5513c8-b3b8-4bf7-a4d4-361c0d8c88ba");
 pub const IID_IUpdateDownloadContentCollection = &IID_IUpdateDownloadContentCollection_Value;
 pub const IUpdateDownloadContentCollection = extern struct {
@@ -1148,6 +1167,7 @@ pub const IUpdateDownloadContentCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate_Value = @import("../zig.zig").Guid.initString("6a92b07a-d821-4682-b423-5c805022cc4d");
 pub const IID_IUpdate = &IID_IUpdate_Value;
 pub const IUpdate = extern struct {
@@ -1521,6 +1541,7 @@ pub const IUpdate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdate_Value = @import("../zig.zig").Guid.initString("b383cd1a-5ce9-4504-9f63-764b1236f191");
 pub const IID_IWindowsDriverUpdate = &IID_IWindowsDriverUpdate_Value;
 pub const IWindowsDriverUpdate = extern struct {
@@ -1598,6 +1619,7 @@ pub const IWindowsDriverUpdate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate2_Value = @import("../zig.zig").Guid.initString("144fe9b0-d23d-4a8b-8634-fb4457533b7a");
 pub const IID_IUpdate2 = &IID_IUpdate2_Value;
 pub const IUpdate2 = extern struct {
@@ -1643,6 +1665,7 @@ pub const IUpdate2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate3_Value = @import("../zig.zig").Guid.initString("112eda6b-95b3-476f-9d90-aee82c6b8181");
 pub const IID_IUpdate3 = &IID_IUpdate3_Value;
 pub const IUpdate3 = extern struct {
@@ -1664,6 +1687,7 @@ pub const IUpdate3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate4_Value = @import("../zig.zig").Guid.initString("27e94b0d-5139-49a2-9a61-93522dc54652");
 pub const IID_IUpdate4 = &IID_IUpdate4_Value;
 pub const IUpdate4 = extern struct {
@@ -1685,6 +1709,7 @@ pub const IUpdate4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate5_Value = @import("../zig.zig").Guid.initString("c1c2f21a-d2f4-4902-b5c6-8a081c19a890");
 pub const IID_IUpdate5 = &IID_IUpdate5_Value;
 pub const IUpdate5 = extern struct {
@@ -1714,6 +1739,7 @@ pub const IUpdate5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdate2_Value = @import("../zig.zig").Guid.initString("615c4269-7a48-43bd-96b7-bf6ca27d6c3e");
 pub const IID_IWindowsDriverUpdate2 = &IID_IWindowsDriverUpdate2_Value;
 pub const IWindowsDriverUpdate2 = extern struct {
@@ -1759,6 +1785,7 @@ pub const IWindowsDriverUpdate2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdate3_Value = @import("../zig.zig").Guid.initString("49ebd502-4a96-41bd-9e3e-4c5057f4250c");
 pub const IID_IWindowsDriverUpdate3 = &IID_IWindowsDriverUpdate3_Value;
 pub const IWindowsDriverUpdate3 = extern struct {
@@ -1780,6 +1807,7 @@ pub const IWindowsDriverUpdate3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdateEntry_Value = @import("../zig.zig").Guid.initString("ed8bfe40-a60b-42ea-9652-817dfcfa23ec");
 pub const IID_IWindowsDriverUpdateEntry = &IID_IWindowsDriverUpdateEntry_Value;
 pub const IWindowsDriverUpdateEntry = extern struct {
@@ -1857,6 +1885,7 @@ pub const IWindowsDriverUpdateEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdateEntryCollection_Value = @import("../zig.zig").Guid.initString("0d521700-a372-4bef-828b-3d00c10adebd");
 pub const IID_IWindowsDriverUpdateEntryCollection = &IID_IWindowsDriverUpdateEntryCollection_Value;
 pub const IWindowsDriverUpdateEntryCollection = extern struct {
@@ -1895,6 +1924,7 @@ pub const IWindowsDriverUpdateEntryCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdate4_Value = @import("../zig.zig").Guid.initString("004c6a2b-0c19-4c69-9f5c-a269b2560db9");
 pub const IID_IWindowsDriverUpdate4 = &IID_IWindowsDriverUpdate4_Value;
 pub const IWindowsDriverUpdate4 = extern struct {
@@ -1924,6 +1954,7 @@ pub const IWindowsDriverUpdate4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowsDriverUpdate5_Value = @import("../zig.zig").Guid.initString("70cf5c82-8642-42bb-9dbc-0cfd263c6c4f");
 pub const IID_IWindowsDriverUpdate5 = &IID_IWindowsDriverUpdate5_Value;
 pub const IWindowsDriverUpdate5 = extern struct {
@@ -1953,6 +1984,7 @@ pub const IWindowsDriverUpdate5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateCollection_Value = @import("../zig.zig").Guid.initString("07f7438c-7709-4ca5-b518-91279288134e");
 pub const IID_IUpdateCollection = &IID_IUpdateCollection_Value;
 pub const IUpdateCollection = extern struct {
@@ -2049,6 +2081,7 @@ pub const IUpdateCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateException_Value = @import("../zig.zig").Guid.initString("a376dd5e-09d4-427f-af7c-fed5b6e1c1d6");
 pub const IID_IUpdateException = &IID_IUpdateException_Value;
 pub const IUpdateException = extern struct {
@@ -2086,6 +2119,7 @@ pub const IUpdateException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInvalidProductLicenseException_Value = @import("../zig.zig").Guid.initString("a37d00f5-7bb0-4953-b414-f9e98326f2e8");
 pub const IID_IInvalidProductLicenseException = &IID_IInvalidProductLicenseException_Value;
 pub const IInvalidProductLicenseException = extern struct {
@@ -2107,6 +2141,7 @@ pub const IInvalidProductLicenseException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateExceptionCollection_Value = @import("../zig.zig").Guid.initString("503626a3-8e14-4729-9355-0fe664bd2321");
 pub const IID_IUpdateExceptionCollection = &IID_IUpdateExceptionCollection_Value;
 pub const IUpdateExceptionCollection = extern struct {
@@ -2145,6 +2180,7 @@ pub const IUpdateExceptionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchResult_Value = @import("../zig.zig").Guid.initString("d40cff62-e08c-4498-941a-01e25f0fd33c");
 pub const IID_ISearchResult = &IID_ISearchResult_Value;
 pub const ISearchResult = extern struct {
@@ -2190,6 +2226,7 @@ pub const ISearchResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchJob_Value = @import("../zig.zig").Guid.initString("7366ea16-7a1a-4ea2-b042-973d3e9cd99b");
 pub const IID_ISearchJob = &IID_ISearchJob_Value;
 pub const ISearchJob = extern struct {
@@ -2233,6 +2270,7 @@ pub const ISearchJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCompletedCallbackArgs_Value = @import("../zig.zig").Guid.initString("a700a634-2850-4c47-938a-9e4b6e5af9a6");
 pub const IID_ISearchCompletedCallbackArgs = &IID_ISearchCompletedCallbackArgs_Value;
 pub const ISearchCompletedCallbackArgs = extern struct {
@@ -2246,6 +2284,7 @@ pub const ISearchCompletedCallbackArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCompletedCallback_Value = @import("../zig.zig").Guid.initString("88aee058-d4b0-4725-a2f1-814a67ae964c");
 pub const IID_ISearchCompletedCallback = &IID_ISearchCompletedCallback_Value;
 pub const ISearchCompletedCallback = extern struct {
@@ -2268,6 +2307,7 @@ pub const ISearchCompletedCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateHistoryEntry_Value = @import("../zig.zig").Guid.initString("be56a644-af0e-4e0e-a311-c1d8e695cbff");
 pub const IID_IUpdateHistoryEntry = &IID_IUpdateHistoryEntry_Value;
 pub const IUpdateHistoryEntry = extern struct {
@@ -2393,6 +2433,7 @@ pub const IUpdateHistoryEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateHistoryEntry2_Value = @import("../zig.zig").Guid.initString("c2bfb780-4539-4132-ab8c-0a8772013ab6");
 pub const IID_IUpdateHistoryEntry2 = &IID_IUpdateHistoryEntry2_Value;
 pub const IUpdateHistoryEntry2 = extern struct {
@@ -2414,6 +2455,7 @@ pub const IUpdateHistoryEntry2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateHistoryEntryCollection_Value = @import("../zig.zig").Guid.initString("a7f04f3c-a290-435b-aadf-a116c3357a5c");
 pub const IID_IUpdateHistoryEntryCollection = &IID_IUpdateHistoryEntryCollection_Value;
 pub const IUpdateHistoryEntryCollection = extern struct {
@@ -2452,6 +2494,7 @@ pub const IUpdateHistoryEntryCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSearcher_Value = @import("../zig.zig").Guid.initString("8f45abf1-f9ae-4b95-a933-f0f66e5056ea");
 pub const IID_IUpdateSearcher = &IID_IUpdateSearcher_Value;
 pub const IUpdateSearcher = extern struct {
@@ -2617,6 +2660,7 @@ pub const IUpdateSearcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSearcher2_Value = @import("../zig.zig").Guid.initString("4cbdcb2d-1589-4beb-bd1c-3e582ff0add0");
 pub const IID_IUpdateSearcher2 = &IID_IUpdateSearcher2_Value;
 pub const IUpdateSearcher2 = extern struct {
@@ -2646,6 +2690,7 @@ pub const IUpdateSearcher2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSearcher3_Value = @import("../zig.zig").Guid.initString("04c6895d-eaf2-4034-97f3-311de9be413a");
 pub const IID_IUpdateSearcher3 = &IID_IUpdateSearcher3_Value;
 pub const IUpdateSearcher3 = extern struct {
@@ -2675,6 +2720,7 @@ pub const IUpdateSearcher3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateDownloadResult_Value = @import("../zig.zig").Guid.initString("bf99af76-b575-42ad-8aa4-33cbb5477af1");
 pub const IID_IUpdateDownloadResult = &IID_IUpdateDownloadResult_Value;
 pub const IUpdateDownloadResult = extern struct {
@@ -2704,6 +2750,7 @@ pub const IUpdateDownloadResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadResult_Value = @import("../zig.zig").Guid.initString("daa4fdd0-4727-4dbe-a1e7-745dca317144");
 pub const IID_IDownloadResult = &IID_IDownloadResult_Value;
 pub const IDownloadResult = extern struct {
@@ -2742,6 +2789,7 @@ pub const IDownloadResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadProgress_Value = @import("../zig.zig").Guid.initString("d31a5bac-f719-4178-9dbb-5e2cb47fd18a");
 pub const IID_IDownloadProgress = &IID_IDownloadProgress_Value;
 pub const IDownloadProgress = extern struct {
@@ -2828,6 +2876,7 @@ pub const IDownloadProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadJob_Value = @import("../zig.zig").Guid.initString("c574de85-7358-43f6-aae8-8697e62d8ba7");
 pub const IID_IDownloadJob = &IID_IDownloadJob_Value;
 pub const IDownloadJob = extern struct {
@@ -2887,6 +2936,7 @@ pub const IDownloadJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadCompletedCallbackArgs_Value = @import("../zig.zig").Guid.initString("fa565b23-498c-47a0-979d-e7d5b1813360");
 pub const IID_IDownloadCompletedCallbackArgs = &IID_IDownloadCompletedCallbackArgs_Value;
 pub const IDownloadCompletedCallbackArgs = extern struct {
@@ -2900,6 +2950,7 @@ pub const IDownloadCompletedCallbackArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadCompletedCallback_Value = @import("../zig.zig").Guid.initString("77254866-9f5b-4c8e-b9e2-c77a8530d64b");
 pub const IID_IDownloadCompletedCallback = &IID_IDownloadCompletedCallback_Value;
 pub const IDownloadCompletedCallback = extern struct {
@@ -2922,6 +2973,7 @@ pub const IDownloadCompletedCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadProgressChangedCallbackArgs_Value = @import("../zig.zig").Guid.initString("324ff2c6-4981-4b04-9412-57481745ab24");
 pub const IID_IDownloadProgressChangedCallbackArgs = &IID_IDownloadProgressChangedCallbackArgs_Value;
 pub const IDownloadProgressChangedCallbackArgs = extern struct {
@@ -2943,6 +2995,7 @@ pub const IDownloadProgressChangedCallbackArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDownloadProgressChangedCallback_Value = @import("../zig.zig").Guid.initString("8c3f1cdd-6173-4591-aebd-a56a53ca77c1");
 pub const IID_IDownloadProgressChangedCallback = &IID_IDownloadProgressChangedCallback_Value;
 pub const IDownloadProgressChangedCallback = extern struct {
@@ -2965,6 +3018,7 @@ pub const IDownloadProgressChangedCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateDownloader_Value = @import("../zig.zig").Guid.initString("68f1c6f9-7ecc-4666-a464-247fe12496c3");
 pub const IID_IUpdateDownloader = &IID_IUpdateDownloader_Value;
 pub const IUpdateDownloader = extern struct {
@@ -3070,6 +3124,7 @@ pub const IUpdateDownloader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateInstallationResult_Value = @import("../zig.zig").Guid.initString("d940f0f8-3cbb-4fd0-993f-471e7f2328ad");
 pub const IID_IUpdateInstallationResult = &IID_IUpdateInstallationResult_Value;
 pub const IUpdateInstallationResult = extern struct {
@@ -3107,6 +3162,7 @@ pub const IUpdateInstallationResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationResult_Value = @import("../zig.zig").Guid.initString("a43c56d6-7451-48d4-af96-b6cd2d0d9b7a");
 pub const IID_IInstallationResult = &IID_IInstallationResult_Value;
 pub const IInstallationResult = extern struct {
@@ -3153,6 +3209,7 @@ pub const IInstallationResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationProgress_Value = @import("../zig.zig").Guid.initString("345c8244-43a3-4e32-a368-65f073b76f36");
 pub const IID_IInstallationProgress = &IID_IInstallationProgress_Value;
 pub const IInstallationProgress = extern struct {
@@ -3199,6 +3256,7 @@ pub const IInstallationProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationJob_Value = @import("../zig.zig").Guid.initString("5c209f0b-bad5-432a-9556-4699bed2638a");
 pub const IID_IInstallationJob = &IID_IInstallationJob_Value;
 pub const IInstallationJob = extern struct {
@@ -3258,6 +3316,7 @@ pub const IInstallationJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationCompletedCallbackArgs_Value = @import("../zig.zig").Guid.initString("250e2106-8efb-4705-9653-ef13c581b6a1");
 pub const IID_IInstallationCompletedCallbackArgs = &IID_IInstallationCompletedCallbackArgs_Value;
 pub const IInstallationCompletedCallbackArgs = extern struct {
@@ -3271,6 +3330,7 @@ pub const IInstallationCompletedCallbackArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationCompletedCallback_Value = @import("../zig.zig").Guid.initString("45f4f6f3-d602-4f98-9a8a-3efa152ad2d3");
 pub const IID_IInstallationCompletedCallback = &IID_IInstallationCompletedCallback_Value;
 pub const IInstallationCompletedCallback = extern struct {
@@ -3293,6 +3353,7 @@ pub const IInstallationCompletedCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationProgressChangedCallbackArgs_Value = @import("../zig.zig").Guid.initString("e4f14e1e-689d-4218-a0b9-bc189c484a01");
 pub const IID_IInstallationProgressChangedCallbackArgs = &IID_IInstallationProgressChangedCallbackArgs_Value;
 pub const IInstallationProgressChangedCallbackArgs = extern struct {
@@ -3314,6 +3375,7 @@ pub const IInstallationProgressChangedCallbackArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationProgressChangedCallback_Value = @import("../zig.zig").Guid.initString("e01402d5-f8da-43ba-a012-38894bd048f1");
 pub const IID_IInstallationProgressChangedCallback = &IID_IInstallationProgressChangedCallback_Value;
 pub const IInstallationProgressChangedCallback = extern struct {
@@ -3336,6 +3398,7 @@ pub const IInstallationProgressChangedCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateInstaller_Value = @import("../zig.zig").Guid.initString("7b929c68-ccdc-4226-96b1-8724600b54c2");
 pub const IID_IUpdateInstaller = &IID_IUpdateInstaller_Value;
 pub const IUpdateInstaller = extern struct {
@@ -3526,6 +3589,7 @@ pub const IUpdateInstaller = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateInstaller2_Value = @import("../zig.zig").Guid.initString("3442d4fe-224d-4cee-98cf-30e0c4d229e6");
 pub const IID_IUpdateInstaller2 = &IID_IUpdateInstaller2_Value;
 pub const IUpdateInstaller2 = extern struct {
@@ -3555,6 +3619,7 @@ pub const IUpdateInstaller2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IUpdateInstaller3_Value = @import("../zig.zig").Guid.initString("16d11c35-099a-48d0-8338-5fae64047f8e");
 pub const IID_IUpdateInstaller3 = &IID_IUpdateInstaller3_Value;
 pub const IUpdateInstaller3 = extern struct {
@@ -3584,6 +3649,7 @@ pub const IUpdateInstaller3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IUpdateInstaller4_Value = @import("../zig.zig").Guid.initString("ef8208ea-2304-492d-9109-23813b0958e1");
 pub const IID_IUpdateInstaller4 = &IID_IUpdateInstaller4_Value;
 pub const IUpdateInstaller4 = extern struct {
@@ -3605,6 +3671,7 @@ pub const IUpdateInstaller4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSession_Value = @import("../zig.zig").Guid.initString("816858a4-260d-4260-933a-2585f1abc76b");
 pub const IID_IUpdateSession = &IID_IUpdateSession_Value;
 pub const IUpdateSession = extern struct {
@@ -3682,6 +3749,7 @@ pub const IUpdateSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSession2_Value = @import("../zig.zig").Guid.initString("91caf7b0-eb23-49ed-9937-c52d817f46f7");
 pub const IID_IUpdateSession2 = &IID_IUpdateSession2_Value;
 pub const IUpdateSession2 = extern struct {
@@ -3711,6 +3779,7 @@ pub const IUpdateSession2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateSession3_Value = @import("../zig.zig").Guid.initString("918efd1e-b5d8-4c90-8540-aeb9bdc56f9d");
 pub const IID_IUpdateSession3 = &IID_IUpdateSession3_Value;
 pub const IUpdateSession3 = extern struct {
@@ -3743,6 +3812,7 @@ pub const IUpdateSession3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateService_Value = @import("../zig.zig").Guid.initString("76b3b17e-aed6-4da5-85f0-83587f81abe3");
 pub const IID_IUpdateService = &IID_IUpdateService_Value;
 pub const IUpdateService = extern struct {
@@ -3860,6 +3930,7 @@ pub const IUpdateService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateService2_Value = @import("../zig.zig").Guid.initString("1518b460-6518-4172-940f-c75883b24ceb");
 pub const IID_IUpdateService2 = &IID_IUpdateService2_Value;
 pub const IUpdateService2 = extern struct {
@@ -3881,6 +3952,7 @@ pub const IUpdateService2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateServiceCollection_Value = @import("../zig.zig").Guid.initString("9b0353aa-0e52-44ff-b8b0-1f7fa0437f88");
 pub const IID_IUpdateServiceCollection = &IID_IUpdateServiceCollection_Value;
 pub const IUpdateServiceCollection = extern struct {
@@ -3919,6 +3991,7 @@ pub const IUpdateServiceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateServiceRegistration_Value = @import("../zig.zig").Guid.initString("dde02280-12b3-4e0b-937b-6747f6acb286");
 pub const IID_IUpdateServiceRegistration = &IID_IUpdateServiceRegistration_Value;
 pub const IUpdateServiceRegistration = extern struct {
@@ -3964,6 +4037,7 @@ pub const IUpdateServiceRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateServiceManager_Value = @import("../zig.zig").Guid.initString("23857e3c-02ba-44a3-9423-b1c900805f37");
 pub const IID_IUpdateServiceManager = &IID_IUpdateServiceManager_Value;
 pub const IUpdateServiceManager = extern struct {
@@ -4039,6 +4113,7 @@ pub const IUpdateServiceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateServiceManager2_Value = @import("../zig.zig").Guid.initString("0bb8531d-7e8d-424f-986c-a0b8f60a3e7b");
 pub const IID_IUpdateServiceManager2 = &IID_IUpdateServiceManager2_Value;
 pub const IUpdateServiceManager2 = extern struct {
@@ -4088,6 +4163,7 @@ pub const IUpdateServiceManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationAgent_Value = @import("../zig.zig").Guid.initString("925cbc18-a2ea-4648-bf1c-ec8badcfe20a");
 pub const IID_IInstallationAgent = &IID_IInstallationAgent_Value;
 pub const IInstallationAgent = extern struct {

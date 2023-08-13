@@ -932,6 +932,17 @@ pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 //--------------------------------------------------------------------------------
 // Section: Types (258)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = ?*c_void;
+
+pub const HUIANODE = ?*c_void;
+
+pub const HUIAPATTERNOBJECT = ?*c_void;
+
+pub const HUIATEXTRANGE = ?*c_void;
+
+pub const HUIAEVENT = ?*c_void;
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STICKYKEYS_FLAGS = extern enum(u32) {
     STICKYKEYSON = 1,
@@ -1074,17 +1085,6 @@ pub const SSWF_NONE = SOUNDSENTRYA_iWindowsEffect.NONE;
 pub const SSWF_TITLE = SOUNDSENTRYA_iWindowsEffect.TITLE;
 pub const SSWF_WINDOW = SOUNDSENTRYA_iWindowsEffect.WINDOW;
 
-pub const HUIAEVENT = ?*c_void;
-
-pub const HUIANODE = ?*c_void;
-
-pub const HUIAPATTERNOBJECT = ?*c_void;
-
-pub const HUIATEXTRANGE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = ?*c_void;
-
 const CLSID_MSAAControl_Value = @import("../zig.zig").Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
 pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
 
@@ -1211,6 +1211,7 @@ pub const ITextStoreSinkAnchorEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccDictionary_Value = @import("../zig.zig").Guid.initString("1dc4cb5f-d737-474d-ade9-5ccfc9bc1cc9");
 pub const IID_IAccDictionary = &IID_IAccDictionary_Value;
 pub const IAccDictionary = extern struct {
@@ -1274,6 +1275,7 @@ pub const IAccDictionary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVersionInfo_Value = @import("../zig.zig").Guid.initString("401518ec-db00-4611-9b29-2a0e4b9afa85");
 pub const IID_IVersionInfo = &IID_IVersionInfo_Value;
 pub const IVersionInfo = extern struct {
@@ -1333,6 +1335,7 @@ pub const IVersionInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICoCreateLocally_Value = @import("../zig.zig").Guid.initString("03de00aa-f272-41e3-99cb-03c5e8114ea0");
 pub const IID_ICoCreateLocally = &IID_ICoCreateLocally_Value;
 pub const ICoCreateLocally = extern struct {
@@ -1360,6 +1363,7 @@ pub const ICoCreateLocally = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICoCreatedLocally_Value = @import("../zig.zig").Guid.initString("0a53eb6c-1908-4742-8cff-2cee2e93f94c");
 pub const IID_ICoCreatedLocally = &IID_ICoCreatedLocally_Value;
 pub const ICoCreatedLocally = extern struct {
@@ -1459,6 +1463,7 @@ pub const IAccStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccServerDocMgr_Value = @import("../zig.zig").Guid.initString("ad7c73cf-6dd5-4855-abc2-b04bad5b9153");
 pub const IID_IAccServerDocMgr = &IID_IAccServerDocMgr_Value;
 pub const IAccServerDocMgr = extern struct {
@@ -1497,6 +1502,7 @@ pub const IAccServerDocMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccClientDocMgr_Value = @import("../zig.zig").Guid.initString("4c896039-7b6d-49e6-a8c1-45116a98292b");
 pub const IID_IAccClientDocMgr = &IID_IAccClientDocMgr_Value;
 pub const IAccClientDocMgr = extern struct {
@@ -1650,6 +1656,7 @@ pub const MSAAMENUINFO = extern struct {
     pszWText: PWSTR,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAccessible_Value = @import("../zig.zig").Guid.initString("618736e0-3c3d-11cf-810c-00aa00389b71");
 pub const IID_IAccessible = &IID_IAccessible_Value;
 pub const IAccessible = extern struct {
@@ -1853,6 +1860,7 @@ pub const IAccessible = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccessibleHandler_Value = @import("../zig.zig").Guid.initString("03022430-abc4-11d0-bde2-00aa001a1953");
 pub const IID_IAccessibleHandler = &IID_IAccessibleHandler_Value;
 pub const IAccessibleHandler = extern struct {
@@ -1876,6 +1884,7 @@ pub const IAccessibleHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAccessibleWindowlessSite_Value = @import("../zig.zig").Guid.initString("bf3abd9c-76da-4389-9eb6-1427d25abab7");
 pub const IID_IAccessibleWindowlessSite = &IID_IAccessibleWindowlessSite_Value;
 pub const IAccessibleWindowlessSite = extern struct {
@@ -1932,6 +1941,7 @@ pub const AnnoScope = extern enum(i32) {
 pub const ANNO_THIS = AnnoScope.THIS;
 pub const ANNO_CONTAINER = AnnoScope.CONTAINER;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAccIdentity_Value = @import("../zig.zig").Guid.initString("7852b78d-1cfd-41c1-a615-9c0c85960b5f");
 pub const IID_IAccIdentity = &IID_IAccIdentity_Value;
 pub const IAccIdentity = extern struct {
@@ -1955,6 +1965,7 @@ pub const IAccIdentity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccPropServer_Value = @import("../zig.zig").Guid.initString("76c0dbbb-15e0-4e7b-b61b-20eeea2001e0");
 pub const IID_IAccPropServer = &IID_IAccPropServer_Value;
 pub const IAccPropServer = extern struct {
@@ -1980,6 +1991,7 @@ pub const IAccPropServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccPropServices_Value = @import("../zig.zig").Guid.initString("6e26e776-04f0-495d-80e4-3330352e3169");
 pub const IID_IAccPropServices = &IID_IAccPropServices_Value;
 pub const IAccPropServices = extern struct {
@@ -2780,6 +2792,7 @@ pub const UIAutomationPatternInfo = extern struct {
     pPatternHandler: *IUIAutomationPatternHandler,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRawElementProviderSimple_Value = @import("../zig.zig").Guid.initString("d6dd68d1-86fd-4332-8666-9abedea2d24c");
 pub const IID_IRawElementProviderSimple = &IID_IRawElementProviderSimple_Value;
 pub const IRawElementProviderSimple = extern struct {
@@ -2827,6 +2840,7 @@ pub const IRawElementProviderSimple = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAccessibleEx_Value = @import("../zig.zig").Guid.initString("f8b80ada-2c44-48d0-89be-5ff23c9cd875");
 pub const IID_IAccessibleEx = &IID_IAccessibleEx_Value;
 pub const IAccessibleEx = extern struct {
@@ -2875,6 +2889,7 @@ pub const IAccessibleEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRawElementProviderSimple2_Value = @import("../zig.zig").Guid.initString("a0a839a9-8da1-4a82-806a-8e0d44e79f56");
 pub const IID_IRawElementProviderSimple2 = &IID_IRawElementProviderSimple2_Value;
 pub const IRawElementProviderSimple2 = extern struct {
@@ -2895,6 +2910,7 @@ pub const IRawElementProviderSimple2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IRawElementProviderSimple3_Value = @import("../zig.zig").Guid.initString("fcf5d820-d7ec-4613-bdf6-42a84ce7daaf");
 pub const IID_IRawElementProviderSimple3 = &IID_IRawElementProviderSimple3_Value;
 pub const IRawElementProviderSimple3 = extern struct {
@@ -2918,6 +2934,7 @@ pub const IRawElementProviderSimple3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRawElementProviderFragmentRoot_Value = @import("../zig.zig").Guid.initString("620ce2a5-ab8f-40a9-86cb-de3c75599b58");
 pub const IID_IRawElementProviderFragmentRoot = &IID_IRawElementProviderFragmentRoot_Value;
 pub const IRawElementProviderFragmentRoot = extern struct {
@@ -2949,6 +2966,7 @@ pub const IRawElementProviderFragmentRoot = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRawElementProviderFragment_Value = @import("../zig.zig").Guid.initString("f7063da8-8359-439c-9297-bbc5299a7d87");
 pub const IID_IRawElementProviderFragment = &IID_IRawElementProviderFragment_Value;
 pub const IRawElementProviderFragment = extern struct {
@@ -3010,6 +3028,7 @@ pub const IRawElementProviderFragment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRawElementProviderAdviseEvents_Value = @import("../zig.zig").Guid.initString("a407b27b-0f6d-4427-9292-473c7bf93258");
 pub const IID_IRawElementProviderAdviseEvents = &IID_IRawElementProviderAdviseEvents_Value;
 pub const IRawElementProviderAdviseEvents = extern struct {
@@ -3041,6 +3060,7 @@ pub const IRawElementProviderAdviseEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRawElementProviderHwndOverride_Value = @import("../zig.zig").Guid.initString("1d5df27c-8947-4425-b8d9-79787bb460b8");
 pub const IID_IRawElementProviderHwndOverride = &IID_IRawElementProviderHwndOverride_Value;
 pub const IRawElementProviderHwndOverride = extern struct {
@@ -3063,6 +3083,7 @@ pub const IRawElementProviderHwndOverride = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IProxyProviderWinEventSink_Value = @import("../zig.zig").Guid.initString("4fd82b78-a43e-46ac-9803-0a6969c7c183");
 pub const IID_IProxyProviderWinEventSink = &IID_IProxyProviderWinEventSink_Value;
 pub const IProxyProviderWinEventSink = extern struct {
@@ -3105,6 +3126,7 @@ pub const IProxyProviderWinEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IProxyProviderWinEventHandler_Value = @import("../zig.zig").Guid.initString("89592ad4-f4e0-43d5-a3b6-bad7e111b435");
 pub const IID_IProxyProviderWinEventHandler = &IID_IProxyProviderWinEventHandler_Value;
 pub const IProxyProviderWinEventHandler = extern struct {
@@ -3130,6 +3152,7 @@ pub const IProxyProviderWinEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRawElementProviderWindowlessSite_Value = @import("../zig.zig").Guid.initString("0a2a93cc-bfad-42ac-9b2e-0991fb0d3ea0");
 pub const IID_IRawElementProviderWindowlessSite = &IID_IRawElementProviderWindowlessSite_Value;
 pub const IRawElementProviderWindowlessSite = extern struct {
@@ -3160,6 +3183,7 @@ pub const IRawElementProviderWindowlessSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAccessibleHostingElementProviders_Value = @import("../zig.zig").Guid.initString("33ac331b-943e-4020-b295-db37784974a3");
 pub const IID_IAccessibleHostingElementProviders = &IID_IAccessibleHostingElementProviders_Value;
 pub const IAccessibleHostingElementProviders = extern struct {
@@ -3190,6 +3214,7 @@ pub const IAccessibleHostingElementProviders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IRawElementProviderHostingAccessibles_Value = @import("../zig.zig").Guid.initString("24be0b07-d37d-487a-98cf-a13ed465e9b3");
 pub const IID_IRawElementProviderHostingAccessibles = &IID_IRawElementProviderHostingAccessibles_Value;
 pub const IRawElementProviderHostingAccessibles = extern struct {
@@ -3211,6 +3236,7 @@ pub const IRawElementProviderHostingAccessibles = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDockProvider_Value = @import("../zig.zig").Guid.initString("159bc72c-4ad3-485e-9637-d7052edf0146");
 pub const IID_IDockProvider = &IID_IDockProvider_Value;
 pub const IDockProvider = extern struct {
@@ -3240,6 +3266,7 @@ pub const IDockProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IExpandCollapseProvider_Value = @import("../zig.zig").Guid.initString("d847d3a5-cab0-4a98-8c32-ecb45c59ad24");
 pub const IID_IExpandCollapseProvider = &IID_IExpandCollapseProvider_Value;
 pub const IExpandCollapseProvider = extern struct {
@@ -3275,6 +3302,7 @@ pub const IExpandCollapseProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGridProvider_Value = @import("../zig.zig").Guid.initString("b17d6187-0907-464b-a168-0ef17a1572b1");
 pub const IID_IGridProvider = &IID_IGridProvider_Value;
 pub const IGridProvider = extern struct {
@@ -3314,6 +3342,7 @@ pub const IGridProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGridItemProvider_Value = @import("../zig.zig").Guid.initString("d02541f1-fb81-4d64-ae32-f520f8a6dbd1");
 pub const IID_IGridItemProvider = &IID_IGridItemProvider_Value;
 pub const IGridItemProvider = extern struct {
@@ -3367,6 +3396,7 @@ pub const IGridItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInvokeProvider_Value = @import("../zig.zig").Guid.initString("54fcb24b-e18e-47a2-b4d3-eccbe77599a2");
 pub const IID_IInvokeProvider = &IID_IInvokeProvider_Value;
 pub const IInvokeProvider = extern struct {
@@ -3387,6 +3417,7 @@ pub const IInvokeProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMultipleViewProvider_Value = @import("../zig.zig").Guid.initString("6278cab1-b556-4a1a-b4e0-418acc523201");
 pub const IID_IMultipleViewProvider = &IID_IMultipleViewProvider_Value;
 pub const IMultipleViewProvider = extern struct {
@@ -3433,6 +3464,7 @@ pub const IMultipleViewProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRangeValueProvider_Value = @import("../zig.zig").Guid.initString("36dc7aef-33e6-4691-afe1-2be7274b3d33");
 pub const IID_IRangeValueProvider = &IID_IRangeValueProvider_Value;
 pub const IRangeValueProvider = extern struct {
@@ -3502,6 +3534,7 @@ pub const IRangeValueProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IScrollItemProvider_Value = @import("../zig.zig").Guid.initString("2360c714-4bf1-4b26-ba65-9b21316127eb");
 pub const IID_IScrollItemProvider = &IID_IScrollItemProvider_Value;
 pub const IScrollItemProvider = extern struct {
@@ -3522,6 +3555,7 @@ pub const IScrollItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISelectionProvider_Value = @import("../zig.zig").Guid.initString("fb8b03af-3bdf-48d4-bd36-1a65793be168");
 pub const IID_ISelectionProvider = &IID_ISelectionProvider_Value;
 pub const ISelectionProvider = extern struct {
@@ -3559,6 +3593,7 @@ pub const ISelectionProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 const IID_ISelectionProvider2_Value = @import("../zig.zig").Guid.initString("14f68475-ee1c-44f6-a869-d239381f0fe7");
 pub const IID_ISelectionProvider2 = &IID_ISelectionProvider2_Value;
 pub const ISelectionProvider2 = extern struct {
@@ -3604,6 +3639,7 @@ pub const ISelectionProvider2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IScrollProvider_Value = @import("../zig.zig").Guid.initString("b38b8077-1fc3-42a5-8cae-d40c2215055a");
 pub const IID_IScrollProvider = &IID_IScrollProvider_Value;
 pub const IScrollProvider = extern struct {
@@ -3683,6 +3719,7 @@ pub const IScrollProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISelectionItemProvider_Value = @import("../zig.zig").Guid.initString("2acad808-b2d4-452d-a407-91ff1ad167b2");
 pub const IID_ISelectionItemProvider = &IID_ISelectionItemProvider_Value;
 pub const ISelectionItemProvider = extern struct {
@@ -3733,6 +3770,7 @@ pub const ISelectionItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISynchronizedInputProvider_Value = @import("../zig.zig").Guid.initString("29db1a06-02ce-4cf7-9b42-565d4fab20ee");
 pub const IID_ISynchronizedInputProvider = &IID_ISynchronizedInputProvider_Value;
 pub const ISynchronizedInputProvider = extern struct {
@@ -3761,6 +3799,7 @@ pub const ISynchronizedInputProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITableProvider_Value = @import("../zig.zig").Guid.initString("9c860395-97b3-490a-b52a-858cc22af166");
 pub const IID_ITableProvider = &IID_ITableProvider_Value;
 pub const ITableProvider = extern struct {
@@ -3798,6 +3837,7 @@ pub const ITableProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITableItemProvider_Value = @import("../zig.zig").Guid.initString("b9734fa6-771f-4d78-9c90-2517999349cd");
 pub const IID_ITableItemProvider = &IID_ITableItemProvider_Value;
 pub const ITableItemProvider = extern struct {
@@ -3827,6 +3867,7 @@ pub const ITableItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IToggleProvider_Value = @import("../zig.zig").Guid.initString("56d00bd0-c4f4-433c-a836-1a52a57e0892");
 pub const IID_IToggleProvider = &IID_IToggleProvider_Value;
 pub const IToggleProvider = extern struct {
@@ -3855,6 +3896,7 @@ pub const IToggleProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITransformProvider_Value = @import("../zig.zig").Guid.initString("6829ddc4-4f91-4ffa-b86f-bd3e2987cb4c");
 pub const IID_ITransformProvider = &IID_ITransformProvider_Value;
 pub const ITransformProvider = extern struct {
@@ -3918,6 +3960,7 @@ pub const ITransformProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IValueProvider_Value = @import("../zig.zig").Guid.initString("c7935180-6fb3-4201-b174-7df73adbf64a");
 pub const IID_IValueProvider = &IID_IValueProvider_Value;
 pub const IValueProvider = extern struct {
@@ -3955,6 +3998,7 @@ pub const IValueProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWindowProvider_Value = @import("../zig.zig").Guid.initString("987df77b-db06-4d77-8f8a-86a9c3bb90b9");
 pub const IID_IWindowProvider = &IID_IWindowProvider_Value;
 pub const IWindowProvider = extern struct {
@@ -4040,6 +4084,7 @@ pub const IWindowProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILegacyIAccessibleProvider_Value = @import("../zig.zig").Guid.initString("e44c3566-915d-4070-99c6-047bff5a08f5");
 pub const IID_ILegacyIAccessibleProvider = &IID_ILegacyIAccessibleProvider_Value;
 pub const ILegacyIAccessibleProvider = extern struct {
@@ -4164,6 +4209,7 @@ pub const ILegacyIAccessibleProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IItemContainerProvider_Value = @import("../zig.zig").Guid.initString("e747770b-39ce-4382-ab30-d8fb3f336f24");
 pub const IID_IItemContainerProvider = &IID_IItemContainerProvider_Value;
 pub const IItemContainerProvider = extern struct {
@@ -4188,6 +4234,7 @@ pub const IItemContainerProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IVirtualizedItemProvider_Value = @import("../zig.zig").Guid.initString("cb98b665-2d35-4fac-ad35-f3c60d0c0b8b");
 pub const IID_IVirtualizedItemProvider = &IID_IVirtualizedItemProvider_Value;
 pub const IVirtualizedItemProvider = extern struct {
@@ -4208,6 +4255,7 @@ pub const IVirtualizedItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IObjectModelProvider_Value = @import("../zig.zig").Guid.initString("3ad86ebd-f5ef-483d-bb18-b1042a475d64");
 pub const IID_IObjectModelProvider = &IID_IObjectModelProvider_Value;
 pub const IObjectModelProvider = extern struct {
@@ -4229,6 +4277,7 @@ pub const IObjectModelProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAnnotationProvider_Value = @import("../zig.zig").Guid.initString("f95c7e80-bd63-4601-9782-445ebff011fc");
 pub const IID_IAnnotationProvider = &IID_IAnnotationProvider_Value;
 pub const IAnnotationProvider = extern struct {
@@ -4282,6 +4331,7 @@ pub const IAnnotationProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IStylesProvider_Value = @import("../zig.zig").Guid.initString("19b6b649-f5d7-4a6d-bdcb-129252be588a");
 pub const IID_IStylesProvider = &IID_IStylesProvider_Value;
 pub const IStylesProvider = extern struct {
@@ -4351,6 +4401,7 @@ pub const IStylesProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ISpreadsheetProvider_Value = @import("../zig.zig").Guid.initString("6f6b5d35-5525-4f80-b758-85473832ffc7");
 pub const IID_ISpreadsheetProvider = &IID_ISpreadsheetProvider_Value;
 pub const ISpreadsheetProvider = extern struct {
@@ -4373,6 +4424,7 @@ pub const ISpreadsheetProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ISpreadsheetItemProvider_Value = @import("../zig.zig").Guid.initString("eaed4660-7b3d-4879-a2e6-365ce603f3d0");
 pub const IID_ISpreadsheetItemProvider = &IID_ISpreadsheetItemProvider_Value;
 pub const ISpreadsheetItemProvider = extern struct {
@@ -4410,6 +4462,7 @@ pub const ISpreadsheetItemProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ITransformProvider2_Value = @import("../zig.zig").Guid.initString("4758742f-7ac2-460c-bc48-09fc09308a93");
 pub const IID_ITransformProvider2 = &IID_ITransformProvider2_Value;
 pub const ITransformProvider2 = extern struct {
@@ -4471,6 +4524,7 @@ pub const ITransformProvider2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDragProvider_Value = @import("../zig.zig").Guid.initString("6aa7bbbb-7ff9-497d-904f-d20b897929d8");
 pub const IID_IDragProvider = &IID_IDragProvider_Value;
 pub const IDragProvider = extern struct {
@@ -4516,6 +4570,7 @@ pub const IDragProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDropTargetProvider_Value = @import("../zig.zig").Guid.initString("bae82bfd-358a-481c-85a0-d8b4d90a5d61");
 pub const IID_IDropTargetProvider = &IID_IDropTargetProvider_Value;
 pub const IDropTargetProvider = extern struct {
@@ -4545,6 +4600,7 @@ pub const IDropTargetProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITextRangeProvider_Value = @import("../zig.zig").Guid.initString("5347ad7b-c355-46f8-aff5-909033582f63");
 pub const IID_ITextRangeProvider = &IID_ITextRangeProvider_Value;
 pub const ITextRangeProvider = extern struct {
@@ -4718,6 +4774,7 @@ pub const ITextRangeProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITextProvider_Value = @import("../zig.zig").Guid.initString("3589c92c-63f3-4367-99bb-ada653b77cf2");
 pub const IID_ITextProvider = &IID_ITextProvider_Value;
 pub const ITextProvider = extern struct {
@@ -4781,6 +4838,7 @@ pub const ITextProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ITextProvider2_Value = @import("../zig.zig").Guid.initString("0dc5e6ed-3e16-4bf1-8f9a-a979878bc195");
 pub const IID_ITextProvider2 = &IID_ITextProvider2_Value;
 pub const ITextProvider2 = extern struct {
@@ -4812,6 +4870,7 @@ pub const ITextProvider2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ITextEditProvider_Value = @import("../zig.zig").Guid.initString("ea3605b4-3a05-400e-b5f9-4e91b40f6176");
 pub const IID_ITextEditProvider = &IID_ITextEditProvider_Value;
 pub const ITextEditProvider = extern struct {
@@ -4841,6 +4900,7 @@ pub const ITextEditProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ITextRangeProvider2_Value = @import("../zig.zig").Guid.initString("9bbce42c-1921-4f18-89ca-dba1910a0386");
 pub const IID_ITextRangeProvider2 = &IID_ITextRangeProvider2_Value;
 pub const ITextRangeProvider2 = extern struct {
@@ -4861,6 +4921,7 @@ pub const ITextRangeProvider2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ITextChildProvider_Value = @import("../zig.zig").Guid.initString("4c2de2b9-c88f-4f88-a111-f1d336b7d1a9");
 pub const IID_ITextChildProvider = &IID_ITextChildProvider_Value;
 pub const ITextChildProvider = extern struct {
@@ -4912,6 +4973,7 @@ pub const ICustomNavigationProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationPatternInstance_Value = @import("../zig.zig").Guid.initString("c03a7fe4-9431-409f-bed8-ae7c2299bc8d");
 pub const IID_IUIAutomationPatternInstance = &IID_IUIAutomationPatternInstance_Value;
 pub const IUIAutomationPatternInstance = extern struct {
@@ -4946,6 +5008,7 @@ pub const IUIAutomationPatternInstance = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationPatternHandler_Value = @import("../zig.zig").Guid.initString("d97022f3-a947-465e-8b2a-ac4315fa54e8");
 pub const IID_IUIAutomationPatternHandler = &IID_IUIAutomationPatternHandler_Value;
 pub const IUIAutomationPatternHandler = extern struct {
@@ -4979,6 +5042,7 @@ pub const IUIAutomationPatternHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationRegistrar_Value = @import("../zig.zig").Guid.initString("8609c4ec-4a1a-4d88-a357-5a66e060e1cf");
 pub const IID_IUIAutomationRegistrar = &IID_IUIAutomationRegistrar_Value;
 pub const IUIAutomationRegistrar = extern struct {
@@ -5262,6 +5326,7 @@ pub const ExtendedProperty = extern struct {
     PropertyValue: BSTR,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationElement_Value = @import("../zig.zig").Guid.initString("d22108aa-8ac5-49a5-837b-37bbb3d7591e");
 pub const IID_IUIAutomationElement = &IID_IUIAutomationElement_Value;
 pub const IUIAutomationElement = extern struct {
@@ -5954,6 +6019,7 @@ pub const IUIAutomationElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationElementArray_Value = @import("../zig.zig").Guid.initString("14314595-b4bc-4055-95f2-58f2e42c9855");
 pub const IID_IUIAutomationElementArray = &IID_IUIAutomationElementArray_Value;
 pub const IUIAutomationElementArray = extern struct {
@@ -5984,6 +6050,7 @@ pub const IUIAutomationElementArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationCondition_Value = @import("../zig.zig").Guid.initString("352ffba8-0973-437c-a61f-f64cafd81df9");
 pub const IID_IUIAutomationCondition = &IID_IUIAutomationCondition_Value;
 pub const IUIAutomationCondition = extern struct {
@@ -5997,6 +6064,7 @@ pub const IUIAutomationCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationBoolCondition_Value = @import("../zig.zig").Guid.initString("1b4e1f2e-75eb-4d0b-8952-5a69988e2307");
 pub const IID_IUIAutomationBoolCondition = &IID_IUIAutomationBoolCondition_Value;
 pub const IUIAutomationBoolCondition = extern struct {
@@ -6018,6 +6086,7 @@ pub const IUIAutomationBoolCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationPropertyCondition_Value = @import("../zig.zig").Guid.initString("99ebf2cb-5578-4267-9ad4-afd6ea77e94b");
 pub const IID_IUIAutomationPropertyCondition = &IID_IUIAutomationPropertyCondition_Value;
 pub const IUIAutomationPropertyCondition = extern struct {
@@ -6055,6 +6124,7 @@ pub const IUIAutomationPropertyCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationAndCondition_Value = @import("../zig.zig").Guid.initString("a7d0af36-b912-45fe-9855-091ddc174aec");
 pub const IID_IUIAutomationAndCondition = &IID_IUIAutomationAndCondition_Value;
 pub const IUIAutomationAndCondition = extern struct {
@@ -6093,6 +6163,7 @@ pub const IUIAutomationAndCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationOrCondition_Value = @import("../zig.zig").Guid.initString("8753f032-3db1-47b5-a1fc-6e34a266c712");
 pub const IID_IUIAutomationOrCondition = &IID_IUIAutomationOrCondition_Value;
 pub const IUIAutomationOrCondition = extern struct {
@@ -6131,6 +6202,7 @@ pub const IUIAutomationOrCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationNotCondition_Value = @import("../zig.zig").Guid.initString("f528b657-847b-498c-8896-d52b565407a1");
 pub const IID_IUIAutomationNotCondition = &IID_IUIAutomationNotCondition_Value;
 pub const IUIAutomationNotCondition = extern struct {
@@ -6152,6 +6224,7 @@ pub const IUIAutomationNotCondition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationCacheRequest_Value = @import("../zig.zig").Guid.initString("b32a92b5-bc25-4078-9c08-d7ee95c48e03");
 pub const IID_IUIAutomationCacheRequest = &IID_IUIAutomationCacheRequest_Value;
 pub const IUIAutomationCacheRequest = extern struct {
@@ -6237,6 +6310,7 @@ pub const IUIAutomationCacheRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTreeWalker_Value = @import("../zig.zig").Guid.initString("4042c624-389c-4afc-a630-9df854a541fc");
 pub const IID_IUIAutomationTreeWalker = &IID_IUIAutomationTreeWalker_Value;
 pub const IUIAutomationTreeWalker = extern struct {
@@ -6372,6 +6446,7 @@ pub const IUIAutomationTreeWalker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationEventHandler_Value = @import("../zig.zig").Guid.initString("146c3c17-f12e-4e22-8c27-f894b9b79c69");
 pub const IID_IUIAutomationEventHandler = &IID_IUIAutomationEventHandler_Value;
 pub const IUIAutomationEventHandler = extern struct {
@@ -6394,6 +6469,7 @@ pub const IUIAutomationEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationPropertyChangedEventHandler_Value = @import("../zig.zig").Guid.initString("40cd37d4-c756-4b0c-8c6f-bddfeeb13b50");
 pub const IID_IUIAutomationPropertyChangedEventHandler = &IID_IUIAutomationPropertyChangedEventHandler_Value;
 pub const IUIAutomationPropertyChangedEventHandler = extern struct {
@@ -6417,6 +6493,7 @@ pub const IUIAutomationPropertyChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationStructureChangedEventHandler_Value = @import("../zig.zig").Guid.initString("e81d1b4e-11c5-42f8-9754-e7036c79f054");
 pub const IID_IUIAutomationStructureChangedEventHandler = &IID_IUIAutomationStructureChangedEventHandler_Value;
 pub const IUIAutomationStructureChangedEventHandler = extern struct {
@@ -6440,6 +6517,7 @@ pub const IUIAutomationStructureChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationFocusChangedEventHandler_Value = @import("../zig.zig").Guid.initString("c270f6b5-5c69-4290-9745-7a7f97169468");
 pub const IID_IUIAutomationFocusChangedEventHandler = &IID_IUIAutomationFocusChangedEventHandler_Value;
 pub const IUIAutomationFocusChangedEventHandler = extern struct {
@@ -6461,6 +6539,7 @@ pub const IUIAutomationFocusChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTextEditTextChangedEventHandler_Value = @import("../zig.zig").Guid.initString("92faa680-e704-4156-931a-e32d5bb38f3f");
 pub const IID_IUIAutomationTextEditTextChangedEventHandler = &IID_IUIAutomationTextEditTextChangedEventHandler_Value;
 pub const IUIAutomationTextEditTextChangedEventHandler = extern struct {
@@ -6484,6 +6563,7 @@ pub const IUIAutomationTextEditTextChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IUIAutomationChangesEventHandler_Value = @import("../zig.zig").Guid.initString("58edca55-2c3e-4980-b1b9-56c17f27a2a0");
 pub const IID_IUIAutomationChangesEventHandler = &IID_IUIAutomationChangesEventHandler_Value;
 pub const IUIAutomationChangesEventHandler = extern struct {
@@ -6507,6 +6587,7 @@ pub const IUIAutomationChangesEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 const IID_IUIAutomationNotificationEventHandler_Value = @import("../zig.zig").Guid.initString("c7cb2637-e6c2-4d0c-85de-4948c02175c7");
 pub const IID_IUIAutomationNotificationEventHandler = &IID_IUIAutomationNotificationEventHandler_Value;
 pub const IUIAutomationNotificationEventHandler = extern struct {
@@ -6532,6 +6613,7 @@ pub const IUIAutomationNotificationEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationInvokePattern_Value = @import("../zig.zig").Guid.initString("fb377fbe-8ea6-46d5-9c73-6499642d3059");
 pub const IID_IUIAutomationInvokePattern = &IID_IUIAutomationInvokePattern_Value;
 pub const IUIAutomationInvokePattern = extern struct {
@@ -6552,6 +6634,7 @@ pub const IUIAutomationInvokePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationDockPattern_Value = @import("../zig.zig").Guid.initString("fde5ef97-1464-48f6-90bf-43d0948e86ec");
 pub const IID_IUIAutomationDockPattern = &IID_IUIAutomationDockPattern_Value;
 pub const IUIAutomationDockPattern = extern struct {
@@ -6589,6 +6672,7 @@ pub const IUIAutomationDockPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationExpandCollapsePattern_Value = @import("../zig.zig").Guid.initString("619be086-1f4e-4ee4-bafa-210128738730");
 pub const IID_IUIAutomationExpandCollapsePattern = &IID_IUIAutomationExpandCollapsePattern_Value;
 pub const IUIAutomationExpandCollapsePattern = extern struct {
@@ -6632,6 +6716,7 @@ pub const IUIAutomationExpandCollapsePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationGridPattern_Value = @import("../zig.zig").Guid.initString("414c3cdc-856b-4f5b-8538-3131c6302550");
 pub const IID_IUIAutomationGridPattern = &IID_IUIAutomationGridPattern_Value;
 pub const IUIAutomationGridPattern = extern struct {
@@ -6687,6 +6772,7 @@ pub const IUIAutomationGridPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationGridItemPattern_Value = @import("../zig.zig").Guid.initString("78f8ef57-66c3-4e09-bd7c-e79b2004894d");
 pub const IID_IUIAutomationGridItemPattern = &IID_IUIAutomationGridItemPattern_Value;
 pub const IUIAutomationGridItemPattern = extern struct {
@@ -6780,6 +6866,7 @@ pub const IUIAutomationGridItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationMultipleViewPattern_Value = @import("../zig.zig").Guid.initString("8d253c91-1dc5-4bb5-b18f-ade16fa495e8");
 pub const IID_IUIAutomationMultipleViewPattern = &IID_IUIAutomationMultipleViewPattern_Value;
 pub const IUIAutomationMultipleViewPattern = extern struct {
@@ -6842,6 +6929,7 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationObjectModelPattern_Value = @import("../zig.zig").Guid.initString("71c284b3-c14d-4d14-981e-19751b0d756d");
 pub const IID_IUIAutomationObjectModelPattern = &IID_IUIAutomationObjectModelPattern_Value;
 pub const IUIAutomationObjectModelPattern = extern struct {
@@ -6863,6 +6951,7 @@ pub const IUIAutomationObjectModelPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationRangeValuePattern_Value = @import("../zig.zig").Guid.initString("59213f4f-7346-49e5-b120-80555987a148");
 pub const IID_IUIAutomationRangeValuePattern = &IID_IUIAutomationRangeValuePattern_Value;
 pub const IUIAutomationRangeValuePattern = extern struct {
@@ -6980,6 +7069,7 @@ pub const IUIAutomationRangeValuePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationScrollPattern_Value = @import("../zig.zig").Guid.initString("88f4d42a-e881-459d-a77c-73bbbb7e02dc");
 pub const IID_IUIAutomationScrollPattern = &IID_IUIAutomationScrollPattern_Value;
 pub const IUIAutomationScrollPattern = extern struct {
@@ -7107,6 +7197,7 @@ pub const IUIAutomationScrollPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationScrollItemPattern_Value = @import("../zig.zig").Guid.initString("b488300f-d015-4f19-9c29-bb595e3645ef");
 pub const IID_IUIAutomationScrollItemPattern = &IID_IUIAutomationScrollItemPattern_Value;
 pub const IUIAutomationScrollItemPattern = extern struct {
@@ -7127,6 +7218,7 @@ pub const IUIAutomationScrollItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationSelectionPattern_Value = @import("../zig.zig").Guid.initString("5ed5202e-b2ac-47a6-b638-4b0bf140d78e");
 pub const IID_IUIAutomationSelectionPattern = &IID_IUIAutomationSelectionPattern_Value;
 pub const IUIAutomationSelectionPattern = extern struct {
@@ -7188,6 +7280,7 @@ pub const IUIAutomationSelectionPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 const IID_IUIAutomationSelectionPattern2_Value = @import("../zig.zig").Guid.initString("0532bfae-c011-4e32-a343-6d642d798555");
 pub const IID_IUIAutomationSelectionPattern2 = &IID_IUIAutomationSelectionPattern2_Value;
 pub const IUIAutomationSelectionPattern2 = extern struct {
@@ -7265,6 +7358,7 @@ pub const IUIAutomationSelectionPattern2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationSelectionItemPattern_Value = @import("../zig.zig").Guid.initString("a8efa66a-0fda-421a-9194-38021f3578ea");
 pub const IID_IUIAutomationSelectionItemPattern = &IID_IUIAutomationSelectionItemPattern_Value;
 pub const IUIAutomationSelectionItemPattern = extern struct {
@@ -7331,6 +7425,7 @@ pub const IUIAutomationSelectionItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationSynchronizedInputPattern_Value = @import("../zig.zig").Guid.initString("2233be0b-afb7-448b-9fda-3b378aa5eae1");
 pub const IID_IUIAutomationSynchronizedInputPattern = &IID_IUIAutomationSynchronizedInputPattern_Value;
 pub const IUIAutomationSynchronizedInputPattern = extern struct {
@@ -7359,6 +7454,7 @@ pub const IUIAutomationSynchronizedInputPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTablePattern_Value = @import("../zig.zig").Guid.initString("620e691c-ea96-4710-a850-754b24ce2417");
 pub const IID_IUIAutomationTablePattern = &IID_IUIAutomationTablePattern_Value;
 pub const IUIAutomationTablePattern = extern struct {
@@ -7420,6 +7516,7 @@ pub const IUIAutomationTablePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTableItemPattern_Value = @import("../zig.zig").Guid.initString("0b964eb3-ef2e-4464-9c79-61d61737a27e");
 pub const IID_IUIAutomationTableItemPattern = &IID_IUIAutomationTableItemPattern_Value;
 pub const IUIAutomationTableItemPattern = extern struct {
@@ -7465,6 +7562,7 @@ pub const IUIAutomationTableItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTogglePattern_Value = @import("../zig.zig").Guid.initString("94cf8058-9b8d-4ab9-8bfd-4cd0a33c8c70");
 pub const IID_IUIAutomationTogglePattern = &IID_IUIAutomationTogglePattern_Value;
 pub const IUIAutomationTogglePattern = extern struct {
@@ -7501,6 +7599,7 @@ pub const IUIAutomationTogglePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTransformPattern_Value = @import("../zig.zig").Guid.initString("a9b55844-a55d-4ef0-926d-569c16ff89bb");
 pub const IID_IUIAutomationTransformPattern = &IID_IUIAutomationTransformPattern_Value;
 pub const IUIAutomationTransformPattern = extern struct {
@@ -7588,6 +7687,7 @@ pub const IUIAutomationTransformPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationValuePattern_Value = @import("../zig.zig").Guid.initString("a94cd8b1-0844-4cd6-9d2d-640537ab39e9");
 pub const IID_IUIAutomationValuePattern = &IID_IUIAutomationValuePattern_Value;
 pub const IUIAutomationValuePattern = extern struct {
@@ -7641,6 +7741,7 @@ pub const IUIAutomationValuePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationWindowPattern_Value = @import("../zig.zig").Guid.initString("0faef453-9208-43ef-bbb2-3b485177864f");
 pub const IID_IUIAutomationWindowPattern = &IID_IUIAutomationWindowPattern_Value;
 pub const IUIAutomationWindowPattern = extern struct {
@@ -7774,6 +7875,7 @@ pub const IUIAutomationWindowPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTextRange_Value = @import("../zig.zig").Guid.initString("a543cc6a-f4ae-494b-8239-c814481187a8");
 pub const IID_IUIAutomationTextRange = &IID_IUIAutomationTextRange_Value;
 pub const IUIAutomationTextRange = extern struct {
@@ -7947,6 +8049,7 @@ pub const IUIAutomationTextRange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTextRange2_Value = @import("../zig.zig").Guid.initString("bb9b40e0-5e04-46bd-9be0-4b601b9afad4");
 pub const IID_IUIAutomationTextRange2 = &IID_IUIAutomationTextRange2_Value;
 pub const IUIAutomationTextRange2 = extern struct {
@@ -7967,6 +8070,7 @@ pub const IUIAutomationTextRange2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IUIAutomationTextRange3_Value = @import("../zig.zig").Guid.initString("6a315d69-5512-4c2e-85f0-53fce6dd4bc2");
 pub const IID_IUIAutomationTextRange3 = &IID_IUIAutomationTextRange3_Value;
 pub const IUIAutomationTextRange3 = extern struct {
@@ -8008,6 +8112,7 @@ pub const IUIAutomationTextRange3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTextRangeArray_Value = @import("../zig.zig").Guid.initString("ce4ae76a-e717-4c98-81ea-47371d028eb6");
 pub const IID_IUIAutomationTextRangeArray = &IID_IUIAutomationTextRangeArray_Value;
 pub const IUIAutomationTextRangeArray = extern struct {
@@ -8038,6 +8143,7 @@ pub const IUIAutomationTextRangeArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationTextPattern_Value = @import("../zig.zig").Guid.initString("32eba289-3583-42c9-9c59-3b6d9a1e9b6a");
 pub const IID_IUIAutomationTextPattern = &IID_IUIAutomationTextPattern_Value;
 pub const IUIAutomationTextPattern = extern struct {
@@ -8101,6 +8207,7 @@ pub const IUIAutomationTextPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTextPattern2_Value = @import("../zig.zig").Guid.initString("506a921a-fcc9-409f-b23b-37eb74106872");
 pub const IID_IUIAutomationTextPattern2 = &IID_IUIAutomationTextPattern2_Value;
 pub const IUIAutomationTextPattern2 = extern struct {
@@ -8132,6 +8239,7 @@ pub const IUIAutomationTextPattern2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTextEditPattern_Value = @import("../zig.zig").Guid.initString("17e21576-996c-4870-99d9-bff323380c06");
 pub const IID_IUIAutomationTextEditPattern = &IID_IUIAutomationTextEditPattern_Value;
 pub const IUIAutomationTextEditPattern = extern struct {
@@ -8161,6 +8269,7 @@ pub const IUIAutomationTextEditPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IUIAutomationCustomNavigationPattern_Value = @import("../zig.zig").Guid.initString("01ea217a-1766-47ed-a6cc-acf492854b1f");
 pub const IID_IUIAutomationCustomNavigationPattern = &IID_IUIAutomationCustomNavigationPattern_Value;
 pub const IUIAutomationCustomNavigationPattern = extern struct {
@@ -8183,6 +8292,7 @@ pub const IUIAutomationCustomNavigationPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IUIAutomationActiveTextPositionChangedEventHandler_Value = @import("../zig.zig").Guid.initString("f97933b0-8dae-4496-8997-5ba015fe0d82");
 pub const IID_IUIAutomationActiveTextPositionChangedEventHandler = &IID_IUIAutomationActiveTextPositionChangedEventHandler_Value;
 pub const IUIAutomationActiveTextPositionChangedEventHandler = extern struct {
@@ -8205,6 +8315,7 @@ pub const IUIAutomationActiveTextPositionChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationLegacyIAccessiblePattern_Value = @import("../zig.zig").Guid.initString("828055ad-355b-4435-86d5-3b51c14a9b1b");
 pub const IID_IUIAutomationLegacyIAccessiblePattern = &IID_IUIAutomationLegacyIAccessiblePattern_Value;
 pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
@@ -8409,6 +8520,7 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationItemContainerPattern_Value = @import("../zig.zig").Guid.initString("c690fdb2-27a8-423c-812d-429773c9084e");
 pub const IID_IUIAutomationItemContainerPattern = &IID_IUIAutomationItemContainerPattern_Value;
 pub const IUIAutomationItemContainerPattern = extern struct {
@@ -8433,6 +8545,7 @@ pub const IUIAutomationItemContainerPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationVirtualizedItemPattern_Value = @import("../zig.zig").Guid.initString("6ba3d7a6-04cf-4f11-8793-a8d1cde9969f");
 pub const IID_IUIAutomationVirtualizedItemPattern = &IID_IUIAutomationVirtualizedItemPattern_Value;
 pub const IUIAutomationVirtualizedItemPattern = extern struct {
@@ -8453,6 +8566,7 @@ pub const IUIAutomationVirtualizedItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationAnnotationPattern_Value = @import("../zig.zig").Guid.initString("9a175b21-339e-41b1-8e8b-623f6b681098");
 pub const IID_IUIAutomationAnnotationPattern = &IID_IUIAutomationAnnotationPattern_Value;
 pub const IUIAutomationAnnotationPattern = extern struct {
@@ -8546,6 +8660,7 @@ pub const IUIAutomationAnnotationPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationStylesPattern_Value = @import("../zig.zig").Guid.initString("85b5f0a2-bd79-484a-ad2b-388c9838d5fb");
 pub const IID_IUIAutomationStylesPattern = &IID_IUIAutomationStylesPattern_Value;
 pub const IUIAutomationStylesPattern = extern struct {
@@ -8689,6 +8804,7 @@ pub const IUIAutomationStylesPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationSpreadsheetPattern_Value = @import("../zig.zig").Guid.initString("7517a7c8-faae-4de9-9f08-29b91e8595c1");
 pub const IID_IUIAutomationSpreadsheetPattern = &IID_IUIAutomationSpreadsheetPattern_Value;
 pub const IUIAutomationSpreadsheetPattern = extern struct {
@@ -8711,6 +8827,7 @@ pub const IUIAutomationSpreadsheetPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationSpreadsheetItemPattern_Value = @import("../zig.zig").Guid.initString("7d4fb86c-8d34-40e1-8e83-62c15204e335");
 pub const IID_IUIAutomationSpreadsheetItemPattern = &IID_IUIAutomationSpreadsheetItemPattern_Value;
 pub const IUIAutomationSpreadsheetItemPattern = extern struct {
@@ -8772,6 +8889,7 @@ pub const IUIAutomationSpreadsheetItemPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTransformPattern2_Value = @import("../zig.zig").Guid.initString("6d74d017-6ecb-4381-b38b-3c17a48ff1c2");
 pub const IID_IUIAutomationTransformPattern2 = &IID_IUIAutomationTransformPattern2_Value;
 pub const IUIAutomationTransformPattern2 = extern struct {
@@ -8865,6 +8983,7 @@ pub const IUIAutomationTransformPattern2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationTextChildPattern_Value = @import("../zig.zig").Guid.initString("6552b038-ae05-40c8-abfd-aa08352aab86");
 pub const IID_IUIAutomationTextChildPattern = &IID_IUIAutomationTextChildPattern_Value;
 pub const IUIAutomationTextChildPattern = extern struct {
@@ -8894,6 +9013,7 @@ pub const IUIAutomationTextChildPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationDragPattern_Value = @import("../zig.zig").Guid.initString("1dc7b570-1f54-4bad-bcda-d36a722fb7bd");
 pub const IID_IUIAutomationDragPattern = &IID_IUIAutomationDragPattern_Value;
 pub const IUIAutomationDragPattern = extern struct {
@@ -8971,6 +9091,7 @@ pub const IUIAutomationDragPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationDropTargetPattern_Value = @import("../zig.zig").Guid.initString("69a095f7-eee4-430e-a46b-fb73b1ae39a5");
 pub const IID_IUIAutomationDropTargetPattern = &IID_IUIAutomationDropTargetPattern_Value;
 pub const IUIAutomationDropTargetPattern = extern struct {
@@ -9016,6 +9137,7 @@ pub const IUIAutomationDropTargetPattern = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationElement2_Value = @import("../zig.zig").Guid.initString("6749c683-f70d-4487-a698-5f79d55290d6");
 pub const IID_IUIAutomationElement2 = &IID_IUIAutomationElement2_Value;
 pub const IUIAutomationElement2 = extern struct {
@@ -9077,6 +9199,7 @@ pub const IUIAutomationElement2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomationElement3_Value = @import("../zig.zig").Guid.initString("8471df34-aee0-4a01-a7de-7db9af12c296");
 pub const IID_IUIAutomationElement3 = &IID_IUIAutomationElement3_Value;
 pub const IUIAutomationElement3 = extern struct {
@@ -9113,6 +9236,7 @@ pub const IUIAutomationElement3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IUIAutomationElement4_Value = @import("../zig.zig").Guid.initString("3b6e233c-52fb-4063-a4c9-77c075c2a06b");
 pub const IID_IUIAutomationElement4 = &IID_IUIAutomationElement4_Value;
 pub const IUIAutomationElement4 = extern struct {
@@ -9206,6 +9330,7 @@ pub const IUIAutomationElement4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IUIAutomationElement5_Value = @import("../zig.zig").Guid.initString("98141c1d-0d0e-4175-bbe2-6bff455842a7");
 pub const IID_IUIAutomationElement5 = &IID_IUIAutomationElement5_Value;
 pub const IUIAutomationElement5 = extern struct {
@@ -9251,6 +9376,7 @@ pub const IUIAutomationElement5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IUIAutomationElement6_Value = @import("../zig.zig").Guid.initString("4780d450-8bca-4977-afa5-a4a517f555e3");
 pub const IID_IUIAutomationElement6 = &IID_IUIAutomationElement6_Value;
 pub const IUIAutomationElement6 = extern struct {
@@ -9280,6 +9406,7 @@ pub const IUIAutomationElement6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IUIAutomationElement7_Value = @import("../zig.zig").Guid.initString("204e8572-cfc3-4c11-b0c8-7da7420750b7");
 pub const IID_IUIAutomationElement7 = &IID_IUIAutomationElement7_Value;
 pub const IUIAutomationElement7 = extern struct {
@@ -9353,6 +9480,7 @@ pub const IUIAutomationElement7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IUIAutomationElement8_Value = @import("../zig.zig").Guid.initString("8c60217d-5411-4cde-bcc0-1ceda223830c");
 pub const IID_IUIAutomationElement8 = &IID_IUIAutomationElement8_Value;
 pub const IUIAutomationElement8 = extern struct {
@@ -9382,6 +9510,7 @@ pub const IUIAutomationElement8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IUIAutomationElement9_Value = @import("../zig.zig").Guid.initString("39325fac-039d-440e-a3a3-5eb81a5cecc3");
 pub const IID_IUIAutomationElement9 = &IID_IUIAutomationElement9_Value;
 pub const IUIAutomationElement9 = extern struct {
@@ -9411,6 +9540,7 @@ pub const IUIAutomationElement9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationProxyFactory_Value = @import("../zig.zig").Guid.initString("85b94ecd-849d-42b6-b94d-d6db23fdf5a4");
 pub const IID_IUIAutomationProxyFactory = &IID_IUIAutomationProxyFactory_Value;
 pub const IUIAutomationProxyFactory = extern struct {
@@ -9443,6 +9573,7 @@ pub const IUIAutomationProxyFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationProxyFactoryEntry_Value = @import("../zig.zig").Guid.initString("d50e472e-b64b-490c-bca1-d30696f9f289");
 pub const IID_IUIAutomationProxyFactoryEntry = &IID_IUIAutomationProxyFactoryEntry_Value;
 pub const IUIAutomationProxyFactoryEntry = extern struct {
@@ -9564,6 +9695,7 @@ pub const IUIAutomationProxyFactoryEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomationProxyFactoryMapping_Value = @import("../zig.zig").Guid.initString("09e31e18-872d-4873-93d1-1e541ec133fd");
 pub const IID_IUIAutomationProxyFactoryMapping = &IID_IUIAutomationProxyFactoryMapping_Value;
 pub const IUIAutomationProxyFactoryMapping = extern struct {
@@ -9650,6 +9782,7 @@ pub const IUIAutomationProxyFactoryMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IUIAutomationEventHandlerGroup_Value = @import("../zig.zig").Guid.initString("c9ee12f2-c13b-4408-997c-639914377f4e");
 pub const IID_IUIAutomationEventHandlerGroup = &IID_IUIAutomationEventHandlerGroup_Value;
 pub const IUIAutomationEventHandlerGroup = extern struct {
@@ -9739,6 +9872,7 @@ pub const IUIAutomationEventHandlerGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAutomation_Value = @import("../zig.zig").Guid.initString("30cbe57d-d9d0-452a-ab13-7ac5ac4825ee");
 pub const IID_IUIAutomation = &IID_IUIAutomation_Value;
 pub const IUIAutomation = extern struct {
@@ -10262,6 +10396,7 @@ pub const IUIAutomation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomation2_Value = @import("../zig.zig").Guid.initString("34723aff-0c9d-49d0-9896-7ab52df8cd8a");
 pub const IID_IUIAutomation2 = &IID_IUIAutomation2_Value;
 pub const IUIAutomation2 = extern struct {
@@ -10323,6 +10458,7 @@ pub const IUIAutomation2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAutomation3_Value = @import("../zig.zig").Guid.initString("73d768da-9b51-4b89-936e-c209290973e7");
 pub const IID_IUIAutomation3 = &IID_IUIAutomation3_Value;
 pub const IUIAutomation3 = extern struct {
@@ -10357,6 +10493,7 @@ pub const IUIAutomation3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IUIAutomation4_Value = @import("../zig.zig").Guid.initString("1189c02a-05f8-4319-8e21-e817e3db2860");
 pub const IID_IUIAutomation4 = &IID_IUIAutomation4_Value;
 pub const IUIAutomation4 = extern struct {
@@ -10392,6 +10529,7 @@ pub const IUIAutomation4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IUIAutomation5_Value = @import("../zig.zig").Guid.initString("25f700c8-d816-4057-a9dc-3cbdee77e256");
 pub const IID_IUIAutomation5 = &IID_IUIAutomation5_Value;
 pub const IUIAutomation5 = extern struct {
@@ -10536,12 +10674,14 @@ pub const WINEVENTPROC = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (123)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn LresultFromObject(
     riid: *const Guid,
     wParam: WPARAM,
     punk: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEACC" fn ObjectFromLresult(
     lResult: LRESULT,
     riid: *const Guid,
@@ -10549,11 +10689,13 @@ pub extern "OLEACC" fn ObjectFromLresult(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn WindowFromAccessibleObject(
     param0: *IAccessible,
     phwnd: ?*HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromWindow(
     hwnd: HWND,
     dwId: u32,
@@ -10561,6 +10703,7 @@ pub extern "OLEACC" fn AccessibleObjectFromWindow(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromEvent(
     hwnd: HWND,
     dwId: u32,
@@ -10569,12 +10712,14 @@ pub extern "OLEACC" fn AccessibleObjectFromEvent(
     pvarChild: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromPoint(
     ptScreen: POINT,
     ppacc: **IAccessible,
     pvarChild: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleChildren(
     paccContainer: *IAccessible,
     iChildStart: i32,
@@ -10583,35 +10728,41 @@ pub extern "OLEACC" fn AccessibleChildren(
     pcObtained: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetRoleTextA(
     lRole: u32,
     lpszRole: ?[*:0]u8,
     cchRoleMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetRoleTextW(
     lRole: u32,
     lpszRole: ?[*:0]u16,
     cchRoleMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetStateTextA(
     lStateBit: u32,
     lpszState: ?[*:0]u8,
     cchState: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetStateTextW(
     lStateBit: u32,
     lpszState: ?[*:0]u16,
     cchState: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetOleaccVersionInfo(
     pVer: *u32,
     pBuild: *u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleObject(
     hwnd: HWND,
     idObject: i32,
@@ -10619,6 +10770,7 @@ pub extern "OLEACC" fn CreateStdAccessibleObject(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleProxyA(
     hwnd: HWND,
     pClassName: [*:0]const u8,
@@ -10627,6 +10779,7 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyA(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleProxyW(
     hwnd: HWND,
     pClassName: [*:0]const u16,
@@ -10635,62 +10788,74 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyW(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "OLEACC" fn AccSetRunningUtilityState(
     hwndApp: HWND,
     dwUtilityStateMask: u32,
     dwUtilityState: AccSetRunningUtilityState_dwUtilityStateFlags,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "OLEACC" fn AccNotifyTouchInteraction(
     hwndApp: HWND,
     hwndTarget: HWND,
     ptTarget: POINT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetErrorDescription(
     pDescription: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHUiaNodeFromVariant(
     pvar: *VARIANT,
     phnode: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHPatternObjectFromVariant(
     pvar: *VARIANT,
     phobj: *HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHTextRangeFromVariant(
     pvar: *VARIANT,
     phtextrange: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeRelease(
     hnode: HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetPropertyValue(
     hnode: HUIANODE,
     propertyId: i32,
     pValue: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetPatternProvider(
     hnode: HUIANODE,
     patternId: i32,
     phobj: *HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetRuntimeId(
     hnode: HUIANODE,
     pruntimeId: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaSetFocus(
     hnode: HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNavigate(
     hnode: HUIANODE,
     direction: NavigateDirection,
@@ -10700,6 +10865,7 @@ pub extern "UIAutomationCore" fn UiaNavigate(
     ppTreeStructure: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetUpdatedCache(
     hnode: HUIANODE,
     pRequest: *UiaCacheRequest,
@@ -10709,6 +10875,7 @@ pub extern "UIAutomationCore" fn UiaGetUpdatedCache(
     ppTreeStructure: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaFind(
     hnode: HUIANODE,
     pParams: *UiaFindParams,
@@ -10718,6 +10885,7 @@ pub extern "UIAutomationCore" fn UiaFind(
     ppTreeStructures: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromPoint(
     x: f64,
     y: f64,
@@ -10726,46 +10894,56 @@ pub extern "UIAutomationCore" fn UiaNodeFromPoint(
     ppTreeStructure: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromFocus(
     pRequest: *UiaCacheRequest,
     ppRequestedData: **SAFEARRAY,
     ppTreeStructure: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromHandle(
     hwnd: HWND,
     phnode: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromProvider(
     pProvider: *IRawElementProviderSimple,
     phnode: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetRootNode(
     phnode: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRegisterProviderCallback(
     pCallback: *UiaProviderCallback,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaLookupId(
     type: AutomationIdentifierType,
     pGuid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetReservedNotSupportedValue(
     punkNotSupportedValue: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetReservedMixedAttributeValue(
     punkMixedAttributeValue: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaClientsAreListening(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
     pProvider: *IRawElementProviderSimple,
     id: i32,
@@ -10773,11 +10951,13 @@ pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
     newValue: VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAutomationEvent(
     pProvider: *IRawElementProviderSimple,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseStructureChangedEvent(
     pProvider: *IRawElementProviderSimple,
     structureChangeType: StructureChangeType,
@@ -10785,24 +10965,28 @@ pub extern "UIAutomationCore" fn UiaRaiseStructureChangedEvent(
     cRuntimeIdLen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAsyncContentLoadedEvent(
     pProvider: *IRawElementProviderSimple,
     asyncContentLoadedState: AsyncContentLoadedState,
     percentComplete: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaRaiseTextEditTextChangedEvent(
     pProvider: *IRawElementProviderSimple,
     textEditChangeType: TextEditChangeType,
     pChangedData: *SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "UIAutomationCore" fn UiaRaiseChangesEvent(
     pProvider: *IRawElementProviderSimple,
     eventIdCount: i32,
     pUiaChanges: *UiaChangeInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
     provider: *IRawElementProviderSimple,
     notificationKind: NotificationKind,
@@ -10811,11 +10995,13 @@ pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
     activityId: BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaRaiseActiveTextPositionChangedEvent(
     provider: *IRawElementProviderSimple,
     textRange: ?*ITextRangeProvider,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaAddEvent(
     hnode: HUIANODE,
     eventId: i32,
@@ -10827,33 +11013,40 @@ pub extern "UIAutomationCore" fn UiaAddEvent(
     phEvent: *HUIAEVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRemoveEvent(
     hEvent: HUIAEVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaEventAddWindow(
     hEvent: HUIAEVENT,
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaEventRemoveWindow(
     hEvent: HUIAEVENT,
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn DockPattern_SetDockPosition(
     hobj: HUIAPATTERNOBJECT,
     dockPosition: DockPosition,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ExpandCollapsePattern_Collapse(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ExpandCollapsePattern_Expand(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn GridPattern_GetItem(
     hobj: HUIAPATTERNOBJECT,
     row: i32,
@@ -10861,138 +11054,165 @@ pub extern "UIAutomationCore" fn GridPattern_GetItem(
     pResult: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn InvokePattern_Invoke(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn MultipleViewPattern_GetViewName(
     hobj: HUIAPATTERNOBJECT,
     viewId: i32,
     ppStr: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn MultipleViewPattern_SetCurrentView(
     hobj: HUIAPATTERNOBJECT,
     viewId: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn RangeValuePattern_SetValue(
     hobj: HUIAPATTERNOBJECT,
     val: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollItemPattern_ScrollIntoView(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollPattern_Scroll(
     hobj: HUIAPATTERNOBJECT,
     horizontalAmount: ScrollAmount,
     verticalAmount: ScrollAmount,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollPattern_SetScrollPercent(
     hobj: HUIAPATTERNOBJECT,
     horizontalPercent: f64,
     verticalPercent: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_AddToSelection(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_RemoveFromSelection(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_Select(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TogglePattern_Toggle(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Move(
     hobj: HUIAPATTERNOBJECT,
     x: f64,
     y: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Resize(
     hobj: HUIAPATTERNOBJECT,
     width: f64,
     height: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Rotate(
     hobj: HUIAPATTERNOBJECT,
     degrees: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ValuePattern_SetValue(
     hobj: HUIAPATTERNOBJECT,
     pVal: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_Close(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_SetWindowVisualState(
     hobj: HUIAPATTERNOBJECT,
     state: WindowVisualState,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_WaitForInputIdle(
     hobj: HUIAPATTERNOBJECT,
     milliseconds: i32,
     pResult: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_GetSelection(
     hobj: HUIAPATTERNOBJECT,
     pRetVal: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_GetVisibleRanges(
     hobj: HUIAPATTERNOBJECT,
     pRetVal: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_RangeFromChild(
     hobj: HUIAPATTERNOBJECT,
     hnodeChild: HUIANODE,
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_RangeFromPoint(
     hobj: HUIAPATTERNOBJECT,
     point: UiaPoint,
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_get_DocumentRange(
     hobj: HUIAPATTERNOBJECT,
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_get_SupportedTextSelection(
     hobj: HUIAPATTERNOBJECT,
     pRetVal: *SupportedTextSelection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Clone(
     hobj: HUIATEXTRANGE,
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Compare(
     hobj: HUIATEXTRANGE,
     range: HUIATEXTRANGE,
     pRetVal: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_CompareEndpoints(
     hobj: HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
@@ -11001,17 +11221,20 @@ pub extern "UIAutomationCore" fn TextRange_CompareEndpoints(
     pRetVal: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_ExpandToEnclosingUnit(
     hobj: HUIATEXTRANGE,
     unit: TextUnit,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetAttributeValue(
     hobj: HUIATEXTRANGE,
     attributeId: i32,
     pRetVal: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_FindAttribute(
     hobj: HUIATEXTRANGE,
     attributeId: i32,
@@ -11020,6 +11243,7 @@ pub extern "UIAutomationCore" fn TextRange_FindAttribute(
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_FindText(
     hobj: HUIATEXTRANGE,
     text: BSTR,
@@ -11028,22 +11252,26 @@ pub extern "UIAutomationCore" fn TextRange_FindText(
     pRetVal: *HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetBoundingRectangles(
     hobj: HUIATEXTRANGE,
     pRetVal: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetEnclosingElement(
     hobj: HUIATEXTRANGE,
     pRetVal: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetText(
     hobj: HUIATEXTRANGE,
     maxLength: i32,
     pRetVal: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Move(
     hobj: HUIATEXTRANGE,
     unit: TextUnit,
@@ -11051,6 +11279,7 @@ pub extern "UIAutomationCore" fn TextRange_Move(
     pRetVal: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_MoveEndpointByUnit(
     hobj: HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
@@ -11059,6 +11288,7 @@ pub extern "UIAutomationCore" fn TextRange_MoveEndpointByUnit(
     pRetVal: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_MoveEndpointByRange(
     hobj: HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
@@ -11066,28 +11296,34 @@ pub extern "UIAutomationCore" fn TextRange_MoveEndpointByRange(
     targetEndpoint: TextPatternRangeEndpoint,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Select(
     hobj: HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_AddToSelection(
     hobj: HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_RemoveFromSelection(
     hobj: HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_ScrollIntoView(
     hobj: HUIATEXTRANGE,
     alignToTop: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetChildren(
     hobj: HUIATEXTRANGE,
     pRetVal: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn ItemContainerPattern_FindItemByProperty(
     hobj: HUIAPATTERNOBJECT,
     hnodeStartAfter: HUIANODE,
@@ -11096,46 +11332,56 @@ pub extern "UIAutomationCore" fn ItemContainerPattern_FindItemByProperty(
     pFound: *HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_Select(
     hobj: HUIAPATTERNOBJECT,
     flagsSelect: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_DoDefaultAction(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_SetValue(
     hobj: HUIAPATTERNOBJECT,
     szValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_GetIAccessible(
     hobj: HUIAPATTERNOBJECT,
     pAccessible: **IAccessible,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn SynchronizedInputPattern_StartListening(
     hobj: HUIAPATTERNOBJECT,
     inputType: SynchronizedInputType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn SynchronizedInputPattern_Cancel(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn VirtualizedItemPattern_Realize(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaPatternRelease(
     hobj: HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaTextRangeRelease(
     hobj: HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaReturnRawElementProvider(
     hwnd: HWND,
     wParam: WPARAM,
@@ -11143,11 +11389,13 @@ pub extern "UIAutomationCore" fn UiaReturnRawElementProvider(
     el: *IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHostProviderFromHwnd(
     hwnd: HWND,
     ppProvider: **IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaProviderForNonClient(
     hwnd: HWND,
     idObject: i32,
@@ -11155,6 +11403,7 @@ pub extern "UIAutomationCore" fn UiaProviderForNonClient(
     ppProvider: **IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaIAccessibleFromProvider(
     pProvider: *IRawElementProviderSimple,
     dwFlags: u32,
@@ -11162,6 +11411,7 @@ pub extern "UIAutomationCore" fn UiaIAccessibleFromProvider(
     pvarChild: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaProviderFromIAccessible(
     pAccessible: *IAccessible,
     idChild: i32,
@@ -11169,38 +11419,46 @@ pub extern "UIAutomationCore" fn UiaProviderFromIAccessible(
     ppProvider: **IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaDisconnectAllProviders(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaDisconnectProvider(
     pProvider: *IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn RegisterPointerInputTarget(
     hwnd: HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn UnregisterPointerInputTarget(
     hwnd: HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USER32" fn RegisterPointerInputTargetEx(
     hwnd: HWND,
     pointerType: POINTER_INPUT_TYPE,
     fObserve: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USER32" fn UnregisterPointerInputTargetEx(
     hwnd: HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn NotifyWinEvent(
     event: u32,
     hwnd: HWND,
@@ -11208,6 +11466,7 @@ pub extern "USER32" fn NotifyWinEvent(
     idChild: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetWinEventHook(
     eventMin: u32,
     eventMax: u32,
@@ -11218,10 +11477,12 @@ pub extern "USER32" fn SetWinEventHook(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HWINEVENTHOOK;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn IsWinEventHookInstalled(
     event: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnhookWinEvent(
     hWinEventHook: HWINEVENTHOOK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

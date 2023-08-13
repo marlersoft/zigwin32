@@ -63,6 +63,7 @@ pub const UI_ANIMATION_REPEAT_MODE = extern enum(i32) {
 pub const UI_ANIMATION_REPEAT_MODE_NORMAL = UI_ANIMATION_REPEAT_MODE.NORMAL;
 pub const UI_ANIMATION_REPEAT_MODE_ALTERNATE = UI_ANIMATION_REPEAT_MODE.ALTERNATE;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationManager_Value = @import("../zig.zig").Guid.initString("9169896c-ac8d-4e7d-94e5-67fa4dc2f2e8");
 pub const IID_IUIAnimationManager = &IID_IUIAnimationManager_Value;
 pub const IUIAnimationManager = extern struct {
@@ -241,6 +242,7 @@ pub const UI_ANIMATION_ROUNDING_NEAREST = UI_ANIMATION_ROUNDING_MODE.NEAREST;
 pub const UI_ANIMATION_ROUNDING_FLOOR = UI_ANIMATION_ROUNDING_MODE.FLOOR;
 pub const UI_ANIMATION_ROUNDING_CEILING = UI_ANIMATION_ROUNDING_MODE.CEILING;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariable_Value = @import("../zig.zig").Guid.initString("8ceeb155-2849-4ce5-9448-91ff70e1e4d9");
 pub const IID_IUIAnimationVariable = &IID_IUIAnimationVariable_Value;
 pub const IUIAnimationVariable = extern struct {
@@ -400,6 +402,7 @@ pub const UI_ANIMATION_SCHEDULING_ALREADY_SCHEDULED = UI_ANIMATION_SCHEDULING_RE
 pub const UI_ANIMATION_SCHEDULING_SUCCEEDED = UI_ANIMATION_SCHEDULING_RESULT.SUCCEEDED;
 pub const UI_ANIMATION_SCHEDULING_DEFERRED = UI_ANIMATION_SCHEDULING_RESULT.DEFERRED;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationStoryboard_Value = @import("../zig.zig").Guid.initString("a8ff128f-9bf9-4af1-9e67-e5e410defb84");
 pub const IID_IUIAnimationStoryboard = &IID_IUIAnimationStoryboard_Value;
 pub const IUIAnimationStoryboard = extern struct {
@@ -561,6 +564,7 @@ pub const IUIAnimationStoryboard = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransition_Value = @import("../zig.zig").Guid.initString("dc6ce252-f731-41cf-b610-614b6ca049ad");
 pub const IID_IUIAnimationTransition = &IID_IUIAnimationTransition_Value;
 pub const IUIAnimationTransition = extern struct {
@@ -605,6 +609,7 @@ pub const IUIAnimationTransition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationManagerEventHandler_Value = @import("../zig.zig").Guid.initString("783321ed-78a3-4366-b574-6af607a64788");
 pub const IID_IUIAnimationManagerEventHandler = &IID_IUIAnimationManagerEventHandler_Value;
 pub const IUIAnimationManagerEventHandler = extern struct {
@@ -627,6 +632,7 @@ pub const IUIAnimationManagerEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariableChangeHandler_Value = @import("../zig.zig").Guid.initString("6358b7ba-87d2-42d5-bf71-82e919dd5862");
 pub const IID_IUIAnimationVariableChangeHandler = &IID_IUIAnimationVariableChangeHandler_Value;
 pub const IUIAnimationVariableChangeHandler = extern struct {
@@ -651,6 +657,7 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariableIntegerChangeHandler_Value = @import("../zig.zig").Guid.initString("bb3e1550-356e-44b0-99da-85ac6017865e");
 pub const IID_IUIAnimationVariableIntegerChangeHandler = &IID_IUIAnimationVariableIntegerChangeHandler_Value;
 pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
@@ -675,6 +682,7 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationStoryboardEventHandler_Value = @import("../zig.zig").Guid.initString("3d5c9008-ec7c-4364-9f8a-9af3c58cbae6");
 pub const IID_IUIAnimationStoryboardEventHandler = &IID_IUIAnimationStoryboardEventHandler_Value;
 pub const IUIAnimationStoryboardEventHandler = extern struct {
@@ -713,6 +721,7 @@ pub const UI_ANIMATION_PRIORITY_EFFECT = extern enum(i32) {
 pub const UI_ANIMATION_PRIORITY_EFFECT_FAILURE = UI_ANIMATION_PRIORITY_EFFECT.FAILURE;
 pub const UI_ANIMATION_PRIORITY_EFFECT_DELAY = UI_ANIMATION_PRIORITY_EFFECT.DELAY;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationPriorityComparison_Value = @import("../zig.zig").Guid.initString("83fa9b74-5f86-4618-bc6a-a2fac19b3f44");
 pub const IID_IUIAnimationPriorityComparison = &IID_IUIAnimationPriorityComparison_Value;
 pub const IUIAnimationPriorityComparison = extern struct {
@@ -743,6 +752,7 @@ pub const UI_ANIMATION_SLOPE = extern enum(i32) {
 pub const UI_ANIMATION_SLOPE_INCREASING = UI_ANIMATION_SLOPE.INCREASING;
 pub const UI_ANIMATION_SLOPE_DECREASING = UI_ANIMATION_SLOPE.DECREASING;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransitionLibrary_Value = @import("../zig.zig").Guid.initString("ca5a14b1-d24f-48b8-8fe4-c78169ba954e");
 pub const IID_IUIAnimationTransitionLibrary = &IID_IUIAnimationTransitionLibrary_Value;
 pub const IUIAnimationTransitionLibrary = extern struct {
@@ -894,6 +904,7 @@ pub const UI_ANIMATION_DEPENDENCY_FINAL_VALUE = UI_ANIMATION_DEPENDENCIES.FINAL_
 pub const UI_ANIMATION_DEPENDENCY_FINAL_VELOCITY = UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY;
 pub const UI_ANIMATION_DEPENDENCY_DURATION = UI_ANIMATION_DEPENDENCIES.DURATION;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationInterpolator_Value = @import("../zig.zig").Guid.initString("7815cbba-ddf7-478c-a46c-7b6c738b7978");
 pub const IID_IUIAnimationInterpolator = &IID_IUIAnimationInterpolator_Value;
 pub const IUIAnimationInterpolator = extern struct {
@@ -968,6 +979,7 @@ pub const IUIAnimationInterpolator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransitionFactory_Value = @import("../zig.zig").Guid.initString("fcd91e03-3e3b-45ad-bbb1-6dfc8153743d");
 pub const IID_IUIAnimationTransitionFactory = &IID_IUIAnimationTransitionFactory_Value;
 pub const IUIAnimationTransitionFactory = extern struct {
@@ -997,6 +1009,7 @@ pub const UI_ANIMATION_IDLE_BEHAVIOR = extern enum(i32) {
 pub const UI_ANIMATION_IDLE_BEHAVIOR_CONTINUE = UI_ANIMATION_IDLE_BEHAVIOR.CONTINUE;
 pub const UI_ANIMATION_IDLE_BEHAVIOR_DISABLE = UI_ANIMATION_IDLE_BEHAVIOR.DISABLE;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimer_Value = @import("../zig.zig").Guid.initString("6b0efad1-a053-41d6-9085-33a689144665");
 pub const IID_IUIAnimationTimer = &IID_IUIAnimationTimer_Value;
 pub const IUIAnimationTimer = extern struct {
@@ -1064,6 +1077,7 @@ pub const IUIAnimationTimer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerUpdateHandler_Value = @import("../zig.zig").Guid.initString("195509b7-5d5e-4e3e-b278-ee3759b367ad");
 pub const IID_IUIAnimationTimerUpdateHandler = &IID_IUIAnimationTimerUpdateHandler_Value;
 pub const IUIAnimationTimerUpdateHandler = extern struct {
@@ -1108,6 +1122,7 @@ pub const UI_ANIMATION_TIMER_CLIENT_STATUS = extern enum(i32) {
 pub const UI_ANIMATION_TIMER_CLIENT_IDLE = UI_ANIMATION_TIMER_CLIENT_STATUS.IDLE;
 pub const UI_ANIMATION_TIMER_CLIENT_BUSY = UI_ANIMATION_TIMER_CLIENT_STATUS.BUSY;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerClientEventHandler_Value = @import("../zig.zig").Guid.initString("bedb4db6-94fa-4bfb-a47f-ef2d9e408c25");
 pub const IID_IUIAnimationTimerClientEventHandler = &IID_IUIAnimationTimerClientEventHandler_Value;
 pub const IUIAnimationTimerClientEventHandler = extern struct {
@@ -1130,6 +1145,7 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerEventHandler_Value = @import("../zig.zig").Guid.initString("274a7dea-d771-4095-abbd-8df7abd23ce3");
 pub const IID_IUIAnimationTimerEventHandler = &IID_IUIAnimationTimerEventHandler_Value;
 pub const IUIAnimationTimerEventHandler = extern struct {
@@ -1165,6 +1181,7 @@ pub const IUIAnimationTimerEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationManager2_Value = @import("../zig.zig").Guid.initString("d8b6f7d4-4109-4d3f-acee-879926968cb1");
 pub const IID_IUIAnimationManager2 = &IID_IUIAnimationManager2_Value;
 pub const IUIAnimationManager2 = extern struct {
@@ -1353,6 +1370,7 @@ pub const IUIAnimationManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariable2_Value = @import("../zig.zig").Guid.initString("4914b304-96ab-44d9-9e77-d5109b7e7466");
 pub const IID_IUIAnimationVariable2 = &IID_IUIAnimationVariable2_Value;
 pub const IUIAnimationVariable2 = extern struct {
@@ -1587,6 +1605,7 @@ pub const IUIAnimationVariable2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransition2_Value = @import("../zig.zig").Guid.initString("62ff9123-a85a-4e9b-a218-435a93e268fd");
 pub const IID_IUIAnimationTransition2 = &IID_IUIAnimationTransition2_Value;
 pub const IUIAnimationTransition2 = extern struct {
@@ -1657,6 +1676,7 @@ pub const IUIAnimationTransition2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationManagerEventHandler2_Value = @import("../zig.zig").Guid.initString("f6e022ba-bff3-42ec-9033-e073f33e83c3");
 pub const IID_IUIAnimationManagerEventHandler2 = &IID_IUIAnimationManagerEventHandler2_Value;
 pub const IUIAnimationManagerEventHandler2 = extern struct {
@@ -1679,6 +1699,7 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableChangeHandler2_Value = @import("../zig.zig").Guid.initString("63acc8d2-6eae-4bb0-b879-586dd8cfbe42");
 pub const IID_IUIAnimationVariableChangeHandler2 = &IID_IUIAnimationVariableChangeHandler2_Value;
 pub const IUIAnimationVariableChangeHandler2 = extern struct {
@@ -1704,6 +1725,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableIntegerChangeHandler2_Value = @import("../zig.zig").Guid.initString("829b6cf1-4f3a-4412-ae09-b243eb4c6b58");
 pub const IID_IUIAnimationVariableIntegerChangeHandler2 = &IID_IUIAnimationVariableIntegerChangeHandler2_Value;
 pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
@@ -1729,6 +1751,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableCurveChangeHandler2_Value = @import("../zig.zig").Guid.initString("72895e91-0145-4c21-9192-5aab40eddf80");
 pub const IID_IUIAnimationVariableCurveChangeHandler2 = &IID_IUIAnimationVariableCurveChangeHandler2_Value;
 pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
@@ -1750,6 +1773,7 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationStoryboardEventHandler2_Value = @import("../zig.zig").Guid.initString("bac5f55a-ba7c-414c-b599-fbf850f553c6");
 pub const IID_IUIAnimationStoryboardEventHandler2 = &IID_IUIAnimationStoryboardEventHandler2_Value;
 pub const IUIAnimationStoryboardEventHandler2 = extern struct {
@@ -1781,6 +1805,7 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationLoopIterationChangeHandler2_Value = @import("../zig.zig").Guid.initString("2d3b15a4-4762-47ab-a030-b23221df3ae0");
 pub const IID_IUIAnimationLoopIterationChangeHandler2 = &IID_IUIAnimationLoopIterationChangeHandler2_Value;
 pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
@@ -1805,6 +1830,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationPriorityComparison2_Value = @import("../zig.zig").Guid.initString("5b6d7a37-4621-467c-8b05-70131de62ddb");
 pub const IID_IUIAnimationPriorityComparison2 = &IID_IUIAnimationPriorityComparison2_Value;
 pub const IUIAnimationPriorityComparison2 = extern struct {
@@ -1828,6 +1854,7 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransitionLibrary2_Value = @import("../zig.zig").Guid.initString("03cfae53-9580-4ee3-b363-2ece51b4af6a");
 pub const IID_IUIAnimationTransitionLibrary2 = &IID_IUIAnimationTransitionLibrary2_Value;
 pub const IUIAnimationTransitionLibrary2 = extern struct {
@@ -2051,6 +2078,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationPrimitiveInterpolation_Value = @import("../zig.zig").Guid.initString("bab20d63-4361-45da-a24f-ab8508846b5b");
 pub const IID_IUIAnimationPrimitiveInterpolation = &IID_IUIAnimationPrimitiveInterpolation_Value;
 pub const IUIAnimationPrimitiveInterpolation = extern struct {
@@ -2090,6 +2118,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationInterpolator2_Value = @import("../zig.zig").Guid.initString("ea76aff8-ea22-4a23-a0ef-a6a966703518");
 pub const IID_IUIAnimationInterpolator2 = &IID_IUIAnimationInterpolator2_Value;
 pub const IUIAnimationInterpolator2 = extern struct {
@@ -2185,6 +2214,7 @@ pub const IUIAnimationInterpolator2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransitionFactory2_Value = @import("../zig.zig").Guid.initString("937d4916-c1a6-42d5-88d8-30344d6efe31");
 pub const IID_IUIAnimationTransitionFactory2 = &IID_IUIAnimationTransitionFactory2_Value;
 pub const IUIAnimationTransitionFactory2 = extern struct {

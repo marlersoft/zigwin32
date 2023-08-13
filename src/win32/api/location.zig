@@ -44,6 +44,7 @@ pub const REPORT_ACCESS_DENIED = LOCATION_REPORT_STATUS.ACCESS_DENIED;
 pub const REPORT_INITIALIZING = LOCATION_REPORT_STATUS.INITIALIZING;
 pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILocationReport_Value = @import("../zig.zig").Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
 pub const IID_ILocationReport = &IID_ILocationReport_Value;
 pub const ILocationReport = extern struct {
@@ -82,6 +83,7 @@ pub const ILocationReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILatLongReport_Value = @import("../zig.zig").Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
 pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
 pub const ILatLongReport = extern struct {
@@ -135,6 +137,7 @@ pub const ILatLongReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ICivicAddressReport_Value = @import("../zig.zig").Guid.initString("c0b19f70-4adf-445d-87f2-cad8fd711792");
 pub const IID_ICivicAddressReport = &IID_ICivicAddressReport_Value;
 pub const ICivicAddressReport = extern struct {
@@ -204,6 +207,7 @@ pub const ICivicAddressReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILocation_Value = @import("../zig.zig").Guid.initString("ab2ece69-56d9-4f28-b525-de1b0ee44237");
 pub const IID_ILocation = &IID_ILocation_Value;
 pub const ILocation = extern struct {
@@ -300,6 +304,7 @@ pub const ILocation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILocationPower_Value = @import("../zig.zig").Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
 pub const IID_ILocationPower = &IID_ILocationPower_Value;
 pub const ILocationPower = extern struct {
@@ -327,6 +332,7 @@ pub const ILocationPower = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDefaultLocation_Value = @import("../zig.zig").Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
 pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
 pub const IDefaultLocation = extern struct {
@@ -358,6 +364,7 @@ pub const IDefaultLocation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILocationEvents_Value = @import("../zig.zig").Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
 pub const IID_ILocationEvents = &IID_ILocationEvents_Value;
 pub const ILocationEvents = extern struct {

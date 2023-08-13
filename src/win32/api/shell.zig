@@ -2,6 +2,55 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1391)
 //--------------------------------------------------------------------------------
+pub const GPFIDL_DEFAULT = @as(i32, 0);
+pub const GPFIDL_ALTNAME = @as(i32, 1);
+pub const GPFIDL_UNCPRINTER = @as(i32, 2);
+pub const ISHCUTCMDID_DOWNLOADICON = @as(i32, 0);
+pub const ISHCUTCMDID_INTSHORTCUTCREATE = @as(i32, 1);
+pub const ISHCUTCMDID_COMMITHISTORY = @as(i32, 2);
+pub const ISHCUTCMDID_SETUSERAWURL = @as(i32, 3);
+pub const SFBID_PIDLCHANGED = @as(i32, 0);
+pub const DBCID_EMPTY = @as(i32, 0);
+pub const DBCID_ONDRAG = @as(i32, 1);
+pub const DBCID_CLSIDOFBAR = @as(i32, 2);
+pub const DBCID_RESIZE = @as(i32, 3);
+pub const DBCID_GETBAR = @as(i32, 4);
+pub const BMICON_LARGE = @as(i32, 0);
+pub const BMICON_SMALL = @as(i32, 1);
+pub const ASSOCF_NONE = @as(i32, 0);
+pub const ASSOCF_INIT_NOREMAPCLSID = @as(i32, 1);
+pub const ASSOCF_INIT_BYEXENAME = @as(i32, 2);
+pub const ASSOCF_OPEN_BYEXENAME = @as(i32, 2);
+pub const ASSOCF_INIT_DEFAULTTOSTAR = @as(i32, 4);
+pub const ASSOCF_INIT_DEFAULTTOFOLDER = @as(i32, 8);
+pub const ASSOCF_NOUSERSETTINGS = @as(i32, 16);
+pub const ASSOCF_NOTRUNCATE = @as(i32, 32);
+pub const ASSOCF_VERIFY = @as(i32, 64);
+pub const ASSOCF_REMAPRUNDLL = @as(i32, 128);
+pub const ASSOCF_NOFIXUPS = @as(i32, 256);
+pub const ASSOCF_IGNOREBASECLASS = @as(i32, 512);
+pub const ASSOCF_INIT_IGNOREUNKNOWN = @as(i32, 1024);
+pub const ASSOCF_INIT_FIXED_PROGID = @as(i32, 2048);
+pub const ASSOCF_IS_PROTOCOL = @as(i32, 4096);
+pub const ASSOCF_INIT_FOR_FILE = @as(i32, 8192);
+pub const ASSOCF_IS_FULL_URI = @as(i32, 16384);
+pub const ASSOCF_PER_MACHINE_ONLY = @as(i32, 32768);
+pub const ASSOCF_APP_TO_APP = @as(i32, 65536);
+pub const CTF_INSIST = @as(i32, 1);
+pub const CTF_THREAD_REF = @as(i32, 2);
+pub const CTF_PROCESS_REF = @as(i32, 4);
+pub const CTF_COINIT_STA = @as(i32, 8);
+pub const CTF_COINIT = @as(i32, 8);
+pub const CTF_FREELIBANDEXIT = @as(i32, 16);
+pub const CTF_REF_COUNTED = @as(i32, 32);
+pub const CTF_WAIT_ALLOWCOM = @as(i32, 64);
+pub const CTF_UNUSED = @as(i32, 128);
+pub const CTF_INHERITWOW64 = @as(i32, 256);
+pub const CTF_WAIT_NO_REENTRANCY = @as(i32, 512);
+pub const CTF_KEYBOARD_LOCALE = @as(i32, 1024);
+pub const CTF_OLEINITIALIZE = @as(i32, 2048);
+pub const CTF_COINIT_MTA = @as(i32, 4096);
+pub const CTF_NOADDREFLIB = @as(i32, 8192);
 pub const CPL_DYNAMIC_RES = @as(u32, 0);
 pub const CPL_INIT = @as(u32, 1);
 pub const CPL_GETCOUNT = @as(u32, 2);
@@ -1344,59 +1393,26 @@ pub const TITLEBARNAMELEN = @as(u32, 40);
 pub const APPNAMEBUFFERLEN = @as(u32, 40);
 pub const BUFFLEN = @as(u32, 255);
 pub const PID_FIRST_USABLE = @as(u32, 2);
-pub const GPFIDL_DEFAULT = @as(i32, 0);
-pub const GPFIDL_ALTNAME = @as(i32, 1);
-pub const GPFIDL_UNCPRINTER = @as(i32, 2);
-pub const ISHCUTCMDID_DOWNLOADICON = @as(i32, 0);
-pub const ISHCUTCMDID_INTSHORTCUTCREATE = @as(i32, 1);
-pub const ISHCUTCMDID_COMMITHISTORY = @as(i32, 2);
-pub const ISHCUTCMDID_SETUSERAWURL = @as(i32, 3);
-pub const SFBID_PIDLCHANGED = @as(i32, 0);
-pub const DBCID_EMPTY = @as(i32, 0);
-pub const DBCID_ONDRAG = @as(i32, 1);
-pub const DBCID_CLSIDOFBAR = @as(i32, 2);
-pub const DBCID_RESIZE = @as(i32, 3);
-pub const DBCID_GETBAR = @as(i32, 4);
-pub const BMICON_LARGE = @as(i32, 0);
-pub const BMICON_SMALL = @as(i32, 1);
-pub const ASSOCF_NONE = @as(i32, 0);
-pub const ASSOCF_INIT_NOREMAPCLSID = @as(i32, 1);
-pub const ASSOCF_INIT_BYEXENAME = @as(i32, 2);
-pub const ASSOCF_OPEN_BYEXENAME = @as(i32, 2);
-pub const ASSOCF_INIT_DEFAULTTOSTAR = @as(i32, 4);
-pub const ASSOCF_INIT_DEFAULTTOFOLDER = @as(i32, 8);
-pub const ASSOCF_NOUSERSETTINGS = @as(i32, 16);
-pub const ASSOCF_NOTRUNCATE = @as(i32, 32);
-pub const ASSOCF_VERIFY = @as(i32, 64);
-pub const ASSOCF_REMAPRUNDLL = @as(i32, 128);
-pub const ASSOCF_NOFIXUPS = @as(i32, 256);
-pub const ASSOCF_IGNOREBASECLASS = @as(i32, 512);
-pub const ASSOCF_INIT_IGNOREUNKNOWN = @as(i32, 1024);
-pub const ASSOCF_INIT_FIXED_PROGID = @as(i32, 2048);
-pub const ASSOCF_IS_PROTOCOL = @as(i32, 4096);
-pub const ASSOCF_INIT_FOR_FILE = @as(i32, 8192);
-pub const ASSOCF_IS_FULL_URI = @as(i32, 16384);
-pub const ASSOCF_PER_MACHINE_ONLY = @as(i32, 32768);
-pub const ASSOCF_APP_TO_APP = @as(i32, 65536);
-pub const CTF_INSIST = @as(i32, 1);
-pub const CTF_THREAD_REF = @as(i32, 2);
-pub const CTF_PROCESS_REF = @as(i32, 4);
-pub const CTF_COINIT_STA = @as(i32, 8);
-pub const CTF_COINIT = @as(i32, 8);
-pub const CTF_FREELIBANDEXIT = @as(i32, 16);
-pub const CTF_REF_COUNTED = @as(i32, 32);
-pub const CTF_WAIT_ALLOWCOM = @as(i32, 64);
-pub const CTF_UNUSED = @as(i32, 128);
-pub const CTF_INHERITWOW64 = @as(i32, 256);
-pub const CTF_WAIT_NO_REENTRANCY = @as(i32, 512);
-pub const CTF_KEYBOARD_LOCALE = @as(i32, 1024);
-pub const CTF_OLEINITIALIZE = @as(i32, 2048);
-pub const CTF_COINIT_MTA = @as(i32, 4096);
-pub const CTF_NOADDREFLIB = @as(i32, 8192);
 
 //--------------------------------------------------------------------------------
 // Section: Types (928)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
+pub const ShFindChangeNotificationHandle = ?*c_void;
+
+pub const HDROP = ?*c_void;
+
+pub const HPSXA = ?*c_void;
+
+pub const SUBCLASSPROC = fn(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    uIdSubclass: ?*c_void,
+    dwRefData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
 pub const SOFTDISTINFO = extern struct {
     cbSize: u32,
     dwFlags: u32,
@@ -1413,22 +1429,6 @@ pub const SOFTDISTINFO = extern struct {
     dwReserved: u32,
 };
 
-pub const SUBCLASSPROC = fn(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    uIdSubclass: ?*c_void,
-    dwRefData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const HDROP = ?*c_void;
-
-pub const HPSXA = ?*c_void;
-
-// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
-pub const ShFindChangeNotifcationHandle = ?*c_void;
-
 pub const APPCATEGORYINFO = extern struct {
     Locale: u32,
     pszDescription: PWSTR,
@@ -1440,6 +1440,7 @@ pub const APPCATEGORYINFOLIST = extern struct {
     pCategoryInfo: *APPCATEGORYINFO,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
 pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
 pub const IInitializeWithFile = extern struct {
@@ -1462,6 +1463,7 @@ pub const IInitializeWithFile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitializeWithStream_Value = @import("../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
 pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
 pub const IInitializeWithStream = extern struct {
@@ -1484,6 +1486,7 @@ pub const IInitializeWithStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INamedPropertyStore_Value = @import("../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
 pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
 pub const INamedPropertyStore = extern struct {
@@ -1532,6 +1535,7 @@ pub const INamedPropertyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IObjectWithPropertyKey_Value = @import("../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
 pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
 pub const IObjectWithPropertyKey = extern struct {
@@ -1561,6 +1565,7 @@ pub const IObjectWithPropertyKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDelayedPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
 pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
 pub const IDelayedPropertyStoreFactory = extern struct {
@@ -1585,6 +1590,7 @@ pub const IDelayedPropertyStoreFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPersistSerializedPropStorage_Value = @import("../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
 pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
 pub const IPersistSerializedPropStorage = extern struct {
@@ -1624,6 +1630,7 @@ pub const IPersistSerializedPropStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPersistSerializedPropStorage2_Value = @import("../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
 pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
 pub const IPersistSerializedPropStorage2 = extern struct {
@@ -1655,6 +1662,7 @@ pub const IPersistSerializedPropStorage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICreateObject_Value = @import("../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
 pub const IID_ICreateObject = &IID_ICreateObject_Value;
 pub const ICreateObject = extern struct {
@@ -1674,850 +1682,6 @@ pub const ICreateObject = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const ShellWindowTypeConstants = extern enum(i32) {
-    EXPLORER = 0,
-    BROWSER = 1,
-    @"3RDPARTY" = 2,
-    CALLBACK = 4,
-    DESKTOP = 8,
-};
-pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
-pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
-pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
-pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
-pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
-
-pub const ShellWindowFindWindowOptions = extern enum(i32) {
-    NEEDDISPATCH = 1,
-    INCLUDEPENDING = 2,
-    COOKIEPASSED = 4,
-};
-pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
-pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
-pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
-
-const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
-pub const IID_IShellWindows = &IID_IShellWindows_Value;
-pub const IShellWindows = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Count: fn(
-            self: *const IShellWindows,
-            Count: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const IShellWindows,
-            index: VARIANT,
-            Folder: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        _NewEnum: fn(
-            self: *const IShellWindows,
-            ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Register: fn(
-            self: *const IShellWindows,
-            pid: *IDispatch,
-            hwnd: i32,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPending: fn(
-            self: *const IShellWindows,
-            lThreadId: i32,
-            pvarloc: *VARIANT,
-            pvarlocRoot: *VARIANT,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revoke: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnNavigate: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            pvarLoc: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnActivated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            fActive: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindWindowSW: fn(
-            self: *const IShellWindows,
-            pvarLoc: *VARIANT,
-            pvarLocRoot: *VARIANT,
-            swClass: i32,
-            phwnd: *i32,
-            swfwOptions: i32,
-            ppdispOut: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            punk: *IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessAttachDetach: fn(
-            self: *const IShellWindows,
-            fAttach: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHGFI_FLAGS = extern enum(i32) {
-    ADDOVERLAYS = 32,
-    ATTR_SPECIFIED = 131072,
-    ATTRIBUTES = 2048,
-    DISPLAYNAME = 512,
-    EXETYPE = 8192,
-    ICON = 256,
-    ICONLOCATION = 4096,
-    LARGEICON = 0,
-    LINKOVERLAY = 32768,
-    OPENICON = 2,
-    OVERLAYINDEX = 64,
-    PIDL = 8,
-    SELECTED = 65536,
-    SHELLICONSIZE = 4,
-    SMALLICON = 1,
-    SYSICONINDEX = 16384,
-    TYPENAME = 1024,
-    USEFILEATTRIBUTES = 16,
-    _,
-};
-pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
-pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
-pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
-pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
-pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
-pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
-pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
-pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
-pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
-pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
-pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
-pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
-pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
-pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
-pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
-pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
-pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
-pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNE_ID = extern enum(u32) {
-    RENAMEITEM = 1,
-    CREATE = 2,
-    DELETE = 4,
-    MKDIR = 8,
-    RMDIR = 16,
-    MEDIAINSERTED = 32,
-    MEDIAREMOVED = 64,
-    DRIVEREMOVED = 128,
-    DRIVEADD = 256,
-    NETSHARE = 512,
-    NETUNSHARE = 1024,
-    ATTRIBUTES = 2048,
-    UPDATEDIR = 4096,
-    UPDATEITEM = 8192,
-    SERVERDISCONNECT = 16384,
-    UPDATEIMAGE = 32768,
-    DRIVEADDGUI = 65536,
-    RENAMEFOLDER = 131072,
-    FREESPACE = 262144,
-    EXTENDED_EVENT = 67108864,
-    ASSOCCHANGED = 134217728,
-    DISKEVENTS = 145439,
-    GLOBALEVENTS = 201687520,
-    ALLEVENTS = 2147483647,
-    INTERRUPT = 2147483648,
-    _,
-};
-pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
-pub const SHCNE_CREATE = SHCNE_ID.CREATE;
-pub const SHCNE_DELETE = SHCNE_ID.DELETE;
-pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
-pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
-pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
-pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
-pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
-pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
-pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
-pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
-pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
-pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
-pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
-pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
-pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
-pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
-pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
-pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
-pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
-pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
-pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
-pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
-pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
-pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNRF_SOURCE = extern enum(i32) {
-    InterruptLevel = 1,
-    ShellLevel = 2,
-    RecursiveInterrupt = 4096,
-    NewDelivery = 32768,
-    _,
-};
-pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
-pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
-pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
-pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNF_FLAGS = extern enum(u32) {
-    IDLIST = 0,
-    PATHA = 1,
-    PRINTERA = 2,
-    DWORD = 3,
-    PATHW = 5,
-    PRINTERW = 6,
-    TYPE = 255,
-    FLUSH = 4096,
-    FLUSHNOWAIT = 12288,
-    NOTIFYRECURSIVE = 65536,
-    PATH = 5,
-    PRINTER = 6,
-    _,
-};
-pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
-pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
-pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
-pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
-pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
-pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
-pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
-pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
-pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
-pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
-pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
-pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const QITIPF_FLAGS = extern enum(i32) {
-    TIPF_DEFAULT = 0,
-    TIPF_USENAME = 1,
-    TIPF_LINKNOTARGET = 2,
-    TIPF_LINKUSETARGET = 4,
-    TIPF_USESLOWTIP = 8,
-    TIPF_SINGLELINE = 16,
-    F_CACHED = 1,
-    F_DONTEXPANDFOLDER = 2,
-    _,
-};
-pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
-pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
-pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
-pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
-pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
-pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
-pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
-pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
-
-pub const SHDID_ID = extern enum(i32) {
-    ROOT_REGITEM = 1,
-    FS_FILE = 2,
-    FS_DIRECTORY = 3,
-    FS_OTHER = 4,
-    COMPUTER_DRIVE35 = 5,
-    COMPUTER_DRIVE525 = 6,
-    COMPUTER_REMOVABLE = 7,
-    COMPUTER_FIXED = 8,
-    COMPUTER_NETDRIVE = 9,
-    COMPUTER_CDROM = 10,
-    COMPUTER_RAMDISK = 11,
-    COMPUTER_OTHER = 12,
-    NET_DOMAIN = 13,
-    NET_SERVER = 14,
-    NET_SHARE = 15,
-    NET_RESTOFNET = 16,
-    NET_OTHER = 17,
-    COMPUTER_IMAGING = 18,
-    COMPUTER_AUDIO = 19,
-    COMPUTER_SHAREDDOCS = 20,
-    MOBILE_DEVICE = 21,
-    REMOTE_DESKTOP_DRIVE = 22,
-};
-pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
-pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
-pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
-pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
-pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
-pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
-pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
-pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
-pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
-pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
-pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
-pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
-pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
-pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
-pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
-pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
-pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
-pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
-pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
-pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
-pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
-pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
-
-pub const SHGDFIL_FORMAT = extern enum(i32) {
-    FINDDATA = 1,
-    NETRESOURCE = 2,
-    DESCRIPTIONID = 3,
-};
-pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
-pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
-pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PRF_FLAGS = extern enum(i32) {
-    VERIFYEXISTS = 1,
-    TRYPROGRAMEXTENSIONS = 3,
-    FIRSTDIRDEF = 4,
-    DONTFINDLNK = 8,
-    REQUIREABSOLUTE = 16,
-    _,
-};
-pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
-pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
-pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
-pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
-pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PCS_RET = extern enum(u32) {
-    FATAL = 2147483648,
-    REPLACEDCHAR = 1,
-    REMOVEDCHAR = 2,
-    TRUNCATED = 4,
-    PATHTOOLONG = 8,
-    _,
-};
-pub const PCS_FATAL = PCS_RET.FATAL;
-pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
-pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
-pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
-pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MM_FLAGS = extern enum(u32) {
-    ADDSEPARATOR = 1,
-    SUBMENUSHAVEIDS = 2,
-    DONTREMOVESEPS = 4,
-    _,
-};
-pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
-pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
-pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHOP_TYPE = extern enum(i32) {
-    PRINTERNAME = 1,
-    FILEPATH = 2,
-    VOLUMEGUID = 4,
-    _,
-};
-pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
-pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
-pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
-
-pub const SHFMT_ID = extern enum(u32) {
-    T = 65535,
-};
-pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHFMT_OPT = extern enum(i32) {
-    NONE = 0,
-    FULL = 1,
-    SYSONLY = 2,
-    _,
-};
-pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
-pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
-pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
-
-pub const SHFMT_RET = extern enum(u32) {
-    ERROR = 4294967295,
-    CANCEL = 4294967294,
-    NOFORMAT = 4294967293,
-};
-pub const SHFMT_ERROR = SHFMT_RET.ERROR;
-pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
-pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VALIDATEUNC_OPTION = extern enum(i32) {
-    CONNECT = 1,
-    NOUI = 2,
-    PRINT = 4,
-    PERSIST = 8,
-    VALID = 15,
-    _,
-};
-pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
-pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
-pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
-pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
-pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
-
-pub const SFVM_MESSAGE_ID = extern enum(i32) {
-    MERGEMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 3,
-    GETTOOLTIPTEXT = 4,
-    GETBUTTONINFO = 5,
-    GETBUTTONS = 6,
-    INITMENUPOPUP = 7,
-    FSNOTIFY = 14,
-    WINDOWCREATED = 15,
-    GETDETAILSOF = 23,
-    COLUMNCLICK = 24,
-    QUERYFSNOTIFY = 25,
-    DEFITEMCOUNT = 26,
-    DEFVIEWMODE = 27,
-    UNMERGEMENU = 28,
-    UPDATESTATUSBAR = 31,
-    BACKGROUNDENUM = 32,
-    DIDDRAGDROP = 36,
-    SETISFV = 39,
-    THISIDLIST = 41,
-    ADDPROPERTYPAGES = 47,
-    BACKGROUNDENUMDONE = 48,
-    GETNOTIFY = 49,
-    GETSORTDEFAULTS = 53,
-    SIZE = 57,
-    GETZONE = 58,
-    GETPANE = 59,
-    GETHELPTOPIC = 63,
-    GETANIMATION = 68,
-};
-pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
-pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
-pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
-pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
-pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
-pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
-pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
-pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
-pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
-pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
-pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
-pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
-pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
-pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
-pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
-pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
-pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
-pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
-pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
-pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
-pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
-pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
-pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
-pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
-pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
-pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
-pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
-pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
-pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
-
-pub const SFVS_SELECT = extern enum(i32) {
-    NONE = 0,
-    ALLITEMS = 1,
-    INVERT = 2,
-};
-pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
-pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
-pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
-
-pub const DFM_MESSAGE_ID = extern enum(i32) {
-    MERGECONTEXTMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 5,
-    WM_MEASUREITEM = 6,
-    WM_DRAWITEM = 7,
-    WM_INITMENUPOPUP = 8,
-    VALIDATECMD = 9,
-    MERGECONTEXTMENU_TOP = 10,
-    GETHELPTEXTW = 11,
-    INVOKECOMMANDEX = 12,
-    MAPCOMMANDNAME = 13,
-    GETDEFSTATICID = 14,
-    GETVERBW = 15,
-    GETVERBA = 16,
-    MERGECONTEXTMENU_BOTTOM = 17,
-    MODIFYQCMFLAGS = 18,
-};
-pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
-pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
-pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
-pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
-pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
-pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
-pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
-pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
-pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
-pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
-pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
-pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
-pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
-pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
-pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
-pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
-
-pub const DFM_CMD = extern enum(i32) {
-    DELETE = -1,
-    MOVE = -2,
-    COPY = -3,
-    LINK = -4,
-    PROPERTIES = -5,
-    NEWFOLDER = -6,
-    PASTE = -7,
-    VIEWLIST = -8,
-    VIEWDETAILS = -9,
-    PASTELINK = -10,
-    PASTESPECIAL = -11,
-    MODALPROP = -12,
-    RENAME = -13,
-};
-pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
-pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
-pub const DFM_CMD_COPY = DFM_CMD.COPY;
-pub const DFM_CMD_LINK = DFM_CMD.LINK;
-pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
-pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
-pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
-pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
-pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
-pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
-pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
-pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
-pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
-
-pub const PID_IS = extern enum(i32) {
-    URL = 2,
-    NAME = 4,
-    WORKINGDIR = 5,
-    HOTKEY = 6,
-    SHOWCMD = 7,
-    ICONINDEX = 8,
-    ICONFILE = 9,
-    WHATSNEW = 10,
-    AUTHOR = 11,
-    DESCRIPTION = 12,
-    COMMENT = 13,
-    ROAMED = 15,
-};
-pub const PID_IS_URL = PID_IS.URL;
-pub const PID_IS_NAME = PID_IS.NAME;
-pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
-pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
-pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
-pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
-pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
-pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
-pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
-pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
-pub const PID_IS_COMMENT = PID_IS.COMMENT;
-pub const PID_IS_ROAMED = PID_IS.ROAMED;
-
-pub const PID_INTSITE = extern enum(i32) {
-    WHATSNEW = 2,
-    AUTHOR = 3,
-    LASTVISIT = 4,
-    LASTMOD = 5,
-    VISITCOUNT = 6,
-    DESCRIPTION = 7,
-    COMMENT = 8,
-    FLAGS = 9,
-    CONTENTLEN = 10,
-    CONTENTCODE = 11,
-    RECURSE = 12,
-    WATCH = 13,
-    SUBSCRIPTION = 14,
-    URL = 15,
-    TITLE = 16,
-    CODEPAGE = 18,
-    TRACKING = 19,
-    ICONINDEX = 20,
-    ICONFILE = 21,
-    ROAMED = 34,
-};
-pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
-pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
-pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
-pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
-pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
-pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
-pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
-pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
-pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
-pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
-pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
-pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
-pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
-pub const PID_INTSITE_URL = PID_INTSITE.URL;
-pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
-pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
-pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
-pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
-pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
-pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PIDISF_FLAGS = extern enum(i32) {
-    RECENTLYCHANGED = 1,
-    CACHEDSTICKY = 2,
-    CACHEIMAGES = 16,
-    FOLLOWALLLINKS = 32,
-    _,
-};
-pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
-pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
-pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
-pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
-
-pub const PIDISM_OPTIONS = extern enum(i32) {
-    GLOBAL = 0,
-    WATCH = 1,
-    DONTWATCH = 2,
-};
-pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
-pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
-pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
-
-pub const PIDISR_INFO = extern enum(i32) {
-    UP_TO_DATE = 0,
-    NEEDS_ADD = 1,
-    NEEDS_UPDATE = 2,
-    NEEDS_DELETE = 3,
-};
-pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
-pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
-pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
-pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SSF_MASK = extern enum(u32) {
-    SHOWALLOBJECTS = 1,
-    SHOWEXTENSIONS = 2,
-    HIDDENFILEEXTS = 4,
-    SERVERADMINUI = 4,
-    SHOWCOMPCOLOR = 8,
-    SORTCOLUMNS = 16,
-    SHOWSYSFILES = 32,
-    DOUBLECLICKINWEBVIEW = 128,
-    SHOWATTRIBCOL = 256,
-    DESKTOPHTML = 512,
-    WIN95CLASSIC = 1024,
-    DONTPRETTYPATH = 2048,
-    SHOWINFOTIP = 8192,
-    MAPNETDRVBUTTON = 4096,
-    NOCONFIRMRECYCLE = 32768,
-    HIDEICONS = 16384,
-    FILTER = 65536,
-    WEBVIEW = 131072,
-    SHOWSUPERHIDDEN = 262144,
-    SEPPROCESS = 524288,
-    NONETCRAWLING = 1048576,
-    STARTPANELON = 2097152,
-    SHOWSTARTPAGE = 4194304,
-    AUTOCHECKSELECT = 8388608,
-    ICONSONLY = 16777216,
-    SHOWTYPEOVERLAY = 33554432,
-    SHOWSTATUSBAR = 67108864,
-    _,
-};
-pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
-pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
-pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
-pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
-pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
-pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
-pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
-pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
-pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
-pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
-pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
-pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
-pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
-pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
-pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
-pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
-pub const SSF_FILTER = SSF_MASK.FILTER;
-pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
-pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
-pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
-pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
-pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
-pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
-pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
-pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
-pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
-pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
-
-pub const SERIALIZEDPROPERTYVALUE = extern struct {
-    dwType: u32,
-    rgb: [1]u8,
-};
-
-pub const LOGFONTA = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]i8,
-};
-
-pub const LOGFONTW = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]u16,
-};
-
-pub const HELPINFO = extern struct {
-    cbSize: u32,
-    iContextType: i32,
-    iCtrlId: i32,
-    hItemHandle: HANDLE,
-    dwContextId: ?*c_void,
-    MousePos: POINT,
-};
-
-pub const MULTIKEYHELPA = extern struct {
-    mkSize: u32,
-    mkKeylist: i8,
-    szKeyphrase: [1]i8,
-};
-
-pub const MULTIKEYHELPW = extern struct {
-    mkSize: u32,
-    mkKeylist: u16,
-    szKeyphrase: [1]u16,
-};
-
-pub const HELPWININFOA = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]i8,
-};
-
-pub const HELPWININFOW = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]u16,
-};
-
-const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
-pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
-pub const INotifyReplica = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        YouAreAReplica: fn(
-            self: *const INotifyReplica,
-            ulcOtherReplicas: u32,
-            rgpmkOtherReplicas: [*]*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3213,6 +2377,7 @@ pub const SCALE_400_PERCENT = DEVICE_SCALE_FACTOR.SCALE_400_PERCENT;
 pub const SCALE_450_PERCENT = DEVICE_SCALE_FACTOR.SCALE_450_PERCENT;
 pub const SCALE_500_PERCENT = DEVICE_SCALE_FACTOR.SCALE_500_PERCENT;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectArray_Value = @import("../zig.zig").Guid.initString("92ca9dcd-5622-4bba-a805-5e9f541bd8c9");
 pub const IID_IObjectArray = &IID_IObjectArray_Value;
 pub const IObjectArray = extern struct {
@@ -3244,6 +2409,7 @@ pub const IObjectArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectCollection_Value = @import("../zig.zig").Guid.initString("5632b1a4-e38a-400a-928a-d4cd63230295");
 pub const IID_IObjectCollection = &IID_IObjectCollection_Value;
 pub const IObjectCollection = extern struct {
@@ -3444,6 +2610,7 @@ pub const CMINVOKECOMMANDINFOEX = extern struct {
     ptInvoke: POINT,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IContextMenu_Value = @import("../zig.zig").Guid.initString("000214e4-0000-0000-c000-000000000046");
 pub const IID_IContextMenu = &IID_IContextMenu_Value;
 pub const IContextMenu = extern struct {
@@ -3489,6 +2656,7 @@ pub const IContextMenu = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IContextMenu2_Value = @import("../zig.zig").Guid.initString("000214f4-0000-0000-c000-000000000046");
 pub const IID_IContextMenu2 = &IID_IContextMenu2_Value;
 pub const IContextMenu2 = extern struct {
@@ -3512,6 +2680,7 @@ pub const IContextMenu2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IContextMenu3_Value = @import("../zig.zig").Guid.initString("bcfce0a0-ec17-11d0-8d10-00a0c90f2719");
 pub const IID_IContextMenu3 = &IID_IContextMenu3_Value;
 pub const IContextMenu3 = extern struct {
@@ -3536,6 +2705,7 @@ pub const IContextMenu3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IExecuteCommand_Value = @import("../zig.zig").Guid.initString("7f9185b0-cb92-43c5-80a9-92277a4f7b54");
 pub const IID_IExecuteCommand = &IID_IExecuteCommand_Value;
 pub const IExecuteCommand = extern struct {
@@ -3604,6 +2774,7 @@ pub const IExecuteCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPersistFolder_Value = @import("../zig.zig").Guid.initString("000214ea-0000-0000-c000-000000000046");
 pub const IID_IPersistFolder = &IID_IPersistFolder_Value;
 pub const IPersistFolder = extern struct {
@@ -3625,6 +2796,7 @@ pub const IPersistFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IRunnableTask_Value = @import("../zig.zig").Guid.initString("85788d00-6807-11d0-b810-00c04fd706ec");
 pub const IID_IRunnableTask = &IID_IRunnableTask_Value;
 pub const IRunnableTask = extern struct {
@@ -3674,6 +2846,7 @@ pub const IRunnableTask = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellTaskScheduler_Value = @import("../zig.zig").Guid.initString("6ccb7be0-6807-11d0-b810-00c04fd706ec");
 pub const IID_IShellTaskScheduler = &IID_IShellTaskScheduler_Value;
 pub const IShellTaskScheduler = extern struct {
@@ -3725,6 +2898,7 @@ pub const IShellTaskScheduler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPersistFolder2_Value = @import("../zig.zig").Guid.initString("1ac3d9f0-175c-11d1-95be-00609797ea4f");
 pub const IID_IPersistFolder2 = &IID_IPersistFolder2_Value;
 pub const IPersistFolder2 = extern struct {
@@ -3754,6 +2928,7 @@ pub const PERSIST_FOLDER_TARGET_INFO = extern struct {
     csidl: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPersistFolder3_Value = @import("../zig.zig").Guid.initString("cef04fdf-fe72-11d2-87a5-00c04f6837cf");
 pub const IID_IPersistFolder3 = &IID_IPersistFolder3_Value;
 pub const IPersistFolder3 = extern struct {
@@ -3785,6 +2960,7 @@ pub const IPersistFolder3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPersistIDList_Value = @import("../zig.zig").Guid.initString("1079acfc-29bd-11d3-8e0d-00c04f6837d5");
 pub const IID_IPersistIDList = &IID_IPersistIDList_Value;
 pub const IPersistIDList = extern struct {
@@ -3814,6 +2990,7 @@ pub const IPersistIDList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumIDList_Value = @import("../zig.zig").Guid.initString("000214f2-0000-0000-c000-000000000046");
 pub const IID_IEnumIDList = &IID_IEnumIDList_Value;
 pub const IEnumIDList = extern struct {
@@ -3860,6 +3037,7 @@ pub const IEnumIDList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumFullIDList_Value = @import("../zig.zig").Guid.initString("d0191542-7954-4908-bc06-b2360bbe45ba");
 pub const IID_IEnumFullIDList = &IID_IEnumFullIDList_Value;
 pub const IEnumFullIDList = extern struct {
@@ -3966,6 +3144,7 @@ pub const MUS_COMPLETE = MERGE_UPDATE_STATUS.COMPLETE;
 pub const MUS_USERINPUTNEEDED = MERGE_UPDATE_STATUS.USERINPUTNEEDED;
 pub const MUS_FAILED = MERGE_UPDATE_STATUS.FAILED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IFileSyncMergeHandler_Value = @import("../zig.zig").Guid.initString("d97b5aac-c792-433c-975d-35c4eadc7a9d");
 pub const IID_IFileSyncMergeHandler = &IID_IFileSyncMergeHandler_Value;
 pub const IFileSyncMergeHandler = extern struct {
@@ -4005,6 +3184,7 @@ pub const FOLDER_ENUM_MODE = extern enum(i32) {
 pub const FEM_VIEWRESULT = FOLDER_ENUM_MODE.VIEWRESULT;
 pub const FEM_NAVIGATION = FOLDER_ENUM_MODE.NAVIGATION;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectWithFolderEnumMode_Value = @import("../zig.zig").Guid.initString("6a9d9026-0e6e-464c-b000-42ecc07de673");
 pub const IID_IObjectWithFolderEnumMode = &IID_IObjectWithFolderEnumMode_Value;
 pub const IObjectWithFolderEnumMode = extern struct {
@@ -4034,6 +3214,7 @@ pub const IObjectWithFolderEnumMode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IParseAndCreateItem_Value = @import("../zig.zig").Guid.initString("67efed0e-e827-4408-b493-78f3982b685c");
 pub const IID_IParseAndCreateItem = &IID_IParseAndCreateItem_Value;
 pub const IParseAndCreateItem = extern struct {
@@ -4064,6 +3245,7 @@ pub const IParseAndCreateItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellFolder_Value = @import("../zig.zig").Guid.initString("000214e6-0000-0000-c000-000000000046");
 pub const IID_IShellFolder = &IID_IShellFolder_Value;
 pub const IShellFolder = extern struct {
@@ -4193,6 +3375,7 @@ pub const EXTRASEARCH = extern struct {
     wszUrl: [2084]u16,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumExtraSearch_Value = @import("../zig.zig").Guid.initString("0e700be1-9db6-11d1-a1ce-00c04fd75d13");
 pub const IID_IEnumExtraSearch = &IID_IEnumExtraSearch_Value;
 pub const IEnumExtraSearch = extern struct {
@@ -4239,6 +3422,7 @@ pub const IEnumExtraSearch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellFolder2_Value = @import("../zig.zig").Guid.initString("93f2f68c-1d1b-11d3-a30e-00c04f79abd1");
 pub const IID_IShellFolder2 = &IID_IShellFolder2_Value;
 pub const IShellFolder2 = extern struct {
@@ -4489,6 +3673,7 @@ pub const SVUIA_ACTIVATE_NOFOCUS = SVUIA_STATUS.ACTIVATE_NOFOCUS;
 pub const SVUIA_ACTIVATE_FOCUS = SVUIA_STATUS.ACTIVATE_FOCUS;
 pub const SVUIA_INPLACEACTIVATE = SVUIA_STATUS.INPLACEACTIVATE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellView_Value = @import("../zig.zig").Guid.initString("000214e3-0000-0000-c000-000000000046");
 pub const IID_IShellView = &IID_IShellView_Value;
 pub const IShellView = extern struct {
@@ -4606,6 +3791,7 @@ pub const SV2CVW2_PARAMS = extern struct {
     hwndView: HWND,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellView2_Value = @import("../zig.zig").Guid.initString("88e39e80-3578-11cf-ae69-08002b2e1262");
 pub const IID_IShellView2 = &IID_IShellView2_Value;
 pub const IShellView2 = extern struct {
@@ -4654,6 +3840,7 @@ pub const IShellView2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFolderView_Value = @import("../zig.zig").Guid.initString("cde725b0-ccc9-4519-917e-325d72fab4ce");
 pub const IID_IFolderView = &IID_IFolderView_Value;
 pub const IFolderView = extern struct {
@@ -4805,6 +3992,7 @@ pub const FVTEXTTYPE = extern enum(i32) {
 };
 pub const FVST_EMPTYTEXT = FVTEXTTYPE.T;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFolderView2_Value = @import("../zig.zig").Guid.initString("1af3a467-214f-4298-908e-06b03e0b39f9");
 pub const IID_IFolderView2 = &IID_IFolderView2_Value;
 pub const IFolderView2 = extern struct {
@@ -5037,6 +4225,7 @@ pub const IFolderView2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFolderViewSettings_Value = @import("../zig.zig").Guid.initString("ae8c987d-8797-4ed3-be72-2a47dd938db0");
 pub const IID_IFolderViewSettings = &IID_IFolderViewSettings_Value;
 pub const IFolderViewSettings = extern struct {
@@ -5111,6 +4300,7 @@ pub const IFolderViewSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitializeNetworkFolder_Value = @import("../zig.zig").Guid.initString("6e0f9881-42a8-4f2a-97f8-8af4e026d92d");
 pub const IID_IInitializeNetworkFolder = &IID_IInitializeNetworkFolder_Value;
 pub const IInitializeNetworkFolder = extern struct {
@@ -5176,6 +4366,7 @@ pub const INetworkFolderInternal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPreviewHandlerVisuals_Value = @import("../zig.zig").Guid.initString("196bf9a5-b346-4ef0-aa1e-5dcdb76768b1");
 pub const IID_IPreviewHandlerVisuals = &IID_IPreviewHandlerVisuals_Value;
 pub const IPreviewHandlerVisuals = extern struct {
@@ -5213,6 +4404,7 @@ pub const IPreviewHandlerVisuals = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICommDlgBrowser_Value = @import("../zig.zig").Guid.initString("000214f1-0000-0000-c000-000000000046");
 pub const IID_ICommDlgBrowser = &IID_ICommDlgBrowser_Value;
 pub const ICommDlgBrowser = extern struct {
@@ -5252,6 +4444,7 @@ pub const ICommDlgBrowser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ICommDlgBrowser2_Value = @import("../zig.zig").Guid.initString("10339516-2894-11d2-9039-00c04f8eeb3e");
 pub const IID_ICommDlgBrowser2 = &IID_ICommDlgBrowser2_Value;
 pub const ICommDlgBrowser2 = extern struct {
@@ -5342,6 +4535,7 @@ pub const CM_COLUMNINFO = extern struct {
     wszName: [80]u16,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IColumnManager_Value = @import("../zig.zig").Guid.initString("d8ec27bb-3f3b-4042-b10a-4acfd924d453");
 pub const IID_IColumnManager = &IID_IColumnManager_Value;
 pub const IColumnManager = extern struct {
@@ -5401,6 +4595,7 @@ pub const IColumnManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFolderFilterSite_Value = @import("../zig.zig").Guid.initString("c0a651f5-b48b-11d2-b5ed-006097c686f6");
 pub const IID_IFolderFilterSite = &IID_IFolderFilterSite_Value;
 pub const IFolderFilterSite = extern struct {
@@ -5422,6 +4617,7 @@ pub const IFolderFilterSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFolderFilter_Value = @import("../zig.zig").Guid.initString("9cc22886-dc8e-11d2-b1d0-00c04f8eeb3e");
 pub const IID_IFolderFilter = &IID_IFolderFilter_Value;
 pub const IFolderFilter = extern struct {
@@ -5456,6 +4652,7 @@ pub const IFolderFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IInputObjectSite_Value = @import("../zig.zig").Guid.initString("f1db8392-7331-11d0-8c99-00a0c92dbfe8");
 pub const IID_IInputObjectSite = &IID_IInputObjectSite_Value;
 pub const IInputObjectSite = extern struct {
@@ -5478,6 +4675,7 @@ pub const IInputObjectSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IInputObject_Value = @import("../zig.zig").Guid.initString("68284faa-6a48-11d0-8c78-00c04fd918b4");
 pub const IID_IInputObject = &IID_IInputObject_Value;
 pub const IInputObject = extern struct {
@@ -5515,6 +4713,7 @@ pub const IInputObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInputObject2_Value = @import("../zig.zig").Guid.initString("6915c085-510b-44cd-94af-28dfa56cf92b");
 pub const IID_IInputObject2 = &IID_IInputObject2_Value;
 pub const IInputObject2 = extern struct {
@@ -5536,6 +4735,7 @@ pub const IInputObject2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellIcon_Value = @import("../zig.zig").Guid.initString("000214e5-0000-0000-c000-000000000046");
 pub const IID_IShellIcon = &IID_IShellIcon_Value;
 pub const IShellIcon = extern struct {
@@ -5559,6 +4759,7 @@ pub const IShellIcon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellBrowser_Value = @import("../zig.zig").Guid.initString("000214e2-0000-0000-c000-000000000046");
 pub const IID_IShellBrowser = &IID_IShellBrowser_Value;
 pub const IShellBrowser = extern struct {
@@ -5689,6 +4890,7 @@ pub const IShellBrowser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IProfferService_Value = @import("../zig.zig").Guid.initString("cb728b20-f786-11ce-92ad-00aa00a74cd0");
 pub const IID_IProfferService = &IID_IProfferService_Value;
 pub const IProfferService = extern struct {
@@ -5754,6 +4956,7 @@ pub const SICHINT_ALLFIELDS = _SICHINTF.ALLFIELDS;
 pub const SICHINT_CANONICAL = _SICHINTF.CANONICAL;
 pub const SICHINT_TEST_FILESYSPATH_IF_NOT_EQUAL = _SICHINTF.TEST_FILESYSPATH_IF_NOT_EQUAL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellItem_Value = @import("../zig.zig").Guid.initString("43826d1e-e718-42ee-bc55-a1e261c37bfe");
 pub const IID_IShellItem = &IID_IShellItem_Value;
 pub const IShellItem = extern struct {
@@ -5827,6 +5030,7 @@ pub const DOGIF_NO_HDROP = DATAOBJ_GET_ITEM_FLAGS.NO_HDROP;
 pub const DOGIF_NO_URL = DATAOBJ_GET_ITEM_FLAGS.NO_URL;
 pub const DOGIF_ONLY_IF_ONE = DATAOBJ_GET_ITEM_FLAGS.ONLY_IF_ONE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItem2_Value = @import("../zig.zig").Guid.initString("7e9fb0d3-919f-4307-ab2e-9b1860310c93");
 pub const IID_IShellItem2 = &IID_IShellItem2_Value;
 pub const IShellItem2 = extern struct {
@@ -5986,6 +5190,7 @@ pub const SIIGBF_WIDETHUMBNAILS = _SIIGBF.WIDETHUMBNAILS;
 pub const SIIGBF_ICONBACKGROUND = _SIIGBF.ICONBACKGROUND;
 pub const SIIGBF_SCALEUP = _SIIGBF.SCALEUP;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItemImageFactory_Value = @import("../zig.zig").Guid.initString("bcc18b79-ba16-442f-80c4-8a59c30c463b");
 pub const IID_IShellItemImageFactory = &IID_IShellItemImageFactory_Value;
 pub const IShellItemImageFactory = extern struct {
@@ -6009,6 +5214,7 @@ pub const IShellItemImageFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumShellItems_Value = @import("../zig.zig").Guid.initString("70629033-e363-4a28-a567-0db78006e6d7");
 pub const IID_IEnumShellItems = &IID_IEnumShellItems_Value;
 pub const IEnumShellItems = extern struct {
@@ -6114,6 +5320,7 @@ pub const TS_PERFORMING = _TRANSFER_ADVISE_STATE.PERFORMING;
 pub const TS_PREPARING = _TRANSFER_ADVISE_STATE.PREPARING;
 pub const TS_INDETERMINATE = _TRANSFER_ADVISE_STATE.INDETERMINATE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITransferAdviseSink_Value = @import("../zig.zig").Guid.initString("d594d0d8-8da7-457b-b3b4-ce5dbaac0b88");
 pub const IID_ITransferAdviseSink = &IID_ITransferAdviseSink_Value;
 pub const ITransferAdviseSink = extern struct {
@@ -6198,6 +5405,7 @@ pub const ITransferAdviseSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITransferSource_Value = @import("../zig.zig").Guid.initString("00adb003-bde9-45c6-8e29-d09f9353e108");
 pub const IID_ITransferSource = &IID_ITransferSource_Value;
 pub const ITransferSource = extern struct {
@@ -6342,6 +5550,7 @@ pub const SHELL_ITEM_RESOURCE = extern struct {
     szName: [260]u16,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumResources_Value = @import("../zig.zig").Guid.initString("2dd81fe3-a83c-4da9-a330-47249d345ba1");
 pub const IID_IEnumResources = &IID_IEnumResources_Value;
 pub const IEnumResources = extern struct {
@@ -6388,6 +5597,7 @@ pub const IEnumResources = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItemResources_Value = @import("../zig.zig").Guid.initString("ff5693be-2ce0-4d48-b5c5-40817d1acdb9");
 pub const IID_IShellItemResources = &IID_IShellItemResources_Value;
 pub const IShellItemResources = extern struct {
@@ -6489,6 +5699,7 @@ pub const IShellItemResources = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITransferDestination_Value = @import("../zig.zig").Guid.initString("48addd32-3ca5-4124-abe3-b5a72531b207");
 pub const IID_ITransferDestination = &IID_ITransferDestination_Value;
 pub const ITransferDestination = extern struct {
@@ -6534,6 +5745,7 @@ pub const ITransferDestination = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileOperationProgressSink_Value = @import("../zig.zig").Guid.initString("04b0f1a7-9490-44bc-96e1-4296a31252e2");
 pub const IID_IFileOperationProgressSink = &IID_IFileOperationProgressSink_Value;
 pub const IFileOperationProgressSink = extern struct {
@@ -6719,6 +5931,7 @@ pub const SIATTRIBFLAGS_APPCOMPAT = SIATTRIBFLAGS.APPCOMPAT;
 pub const SIATTRIBFLAGS_MASK = SIATTRIBFLAGS.MASK;
 pub const SIATTRIBFLAGS_ALLITEMS = SIATTRIBFLAGS.ALLITEMS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItemArray_Value = @import("../zig.zig").Guid.initString("b63ea76d-1f85-456f-a19c-48159efa858b");
 pub const IID_IShellItemArray = &IID_IShellItemArray_Value;
 pub const IShellItemArray = extern struct {
@@ -6798,6 +6011,7 @@ pub const IShellItemArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitializeWithItem_Value = @import("../zig.zig").Guid.initString("7f73be3f-fb79-493c-a6c7-7ee14e245841");
 pub const IID_IInitializeWithItem = &IID_IInitializeWithItem_Value;
 pub const IInitializeWithItem = extern struct {
@@ -6820,6 +6034,7 @@ pub const IInitializeWithItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectWithSelection_Value = @import("../zig.zig").Guid.initString("1c9cd5bb-98e9-4491-a60f-31aacc72b83c");
 pub const IID_IObjectWithSelection = &IID_IObjectWithSelection_Value;
 pub const IObjectWithSelection = extern struct {
@@ -6850,6 +6065,7 @@ pub const IObjectWithSelection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IObjectWithBackReferences_Value = @import("../zig.zig").Guid.initString("321a6a6a-d61f-4bf3-97ae-14be2986bb36");
 pub const IID_IObjectWithBackReferences = &IID_IObjectWithBackReferences_Value;
 pub const IObjectWithBackReferences = extern struct {
@@ -6890,6 +6106,7 @@ pub const PUIFFDF_SHORTFORMAT = _PROPERTYUI_FORMAT_FLAGS.SHORTFORMAT;
 pub const PUIFFDF_NOTIME = _PROPERTYUI_FORMAT_FLAGS.NOTIME;
 pub const PUIFFDF_FRIENDLYDATE = _PROPERTYUI_FORMAT_FLAGS.FRIENDLYDATE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICategoryProvider_Value = @import("../zig.zig").Guid.initString("9af64809-5864-4c26-a720-c1f78c086ee3");
 pub const IID_ICategoryProvider = &IID_ICategoryProvider_Value;
 pub const ICategoryProvider = extern struct {
@@ -6992,6 +6209,7 @@ pub const CATEGORY_INFO = extern struct {
     wszName: [260]u16,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICategorizer_Value = @import("../zig.zig").Guid.initString("a3b14589-9174-49a8-89a3-06a1ae2b9ba7");
 pub const IID_ICategorizer = &IID_ICategorizer_Value;
 pub const ICategorizer = extern struct {
@@ -7050,6 +6268,7 @@ pub const SHDRAGIMAGE = extern struct {
     crColorKey: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDropTargetHelper_Value = @import("../zig.zig").Guid.initString("4657278b-411b-11d2-839a-00c04fd918d0");
 pub const IID_IDropTargetHelper = &IID_IDropTargetHelper_Value;
 pub const IDropTargetHelper = extern struct {
@@ -7108,6 +6327,7 @@ pub const IDropTargetHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDragSourceHelper_Value = @import("../zig.zig").Guid.initString("de5bf786-477a-11d2-839d-00c04fd918d0");
 pub const IID_IDragSourceHelper = &IID_IDragSourceHelper_Value;
 pub const IDragSourceHelper = extern struct {
@@ -7184,6 +6404,7 @@ pub const SLGP_UNCPRIORITY = SLGP_FLAGS.UNCPRIORITY;
 pub const SLGP_RAWPATH = SLGP_FLAGS.RAWPATH;
 pub const SLGP_RELATIVEPRIORITY = SLGP_FLAGS.RELATIVEPRIORITY;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellLinkA_Value = @import("../zig.zig").Guid.initString("000214ee-0000-0000-c000-000000000046");
 pub const IID_IShellLinkA = &IID_IShellLinkA_Value;
 pub const IShellLinkA = extern struct {
@@ -7352,6 +6573,7 @@ pub const IShellLinkA = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellLinkW_Value = @import("../zig.zig").Guid.initString("000214f9-0000-0000-c000-000000000046");
 pub const IID_IShellLinkW = &IID_IShellLinkW_Value;
 pub const IShellLinkW = extern struct {
@@ -7520,6 +6742,7 @@ pub const IShellLinkW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellLinkDataList_Value = @import("../zig.zig").Guid.initString("45e2b4ae-b1c3-11d0-b92f-00a0c90312e1");
 pub const IID_IShellLinkDataList = &IID_IShellLinkDataList_Value;
 pub const IShellLinkDataList = extern struct {
@@ -7574,6 +6797,7 @@ pub const IShellLinkDataList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IResolveShellLink_Value = @import("../zig.zig").Guid.initString("5cd52983-9449-11d2-963a-00c04f79adf0");
 pub const IID_IResolveShellLink = &IID_IResolveShellLink_Value;
 pub const IResolveShellLink = extern struct {
@@ -7606,6 +6830,7 @@ pub const SPINITF_NORMAL = _SPINITF.NORMAL;
 pub const SPINITF_MODAL = _SPINITF.MODAL;
 pub const SPINITF_NOMINIMIZE = _SPINITF.NOMINIMIZE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IActionProgressDialog_Value = @import("../zig.zig").Guid.initString("49ff1172-eadc-446d-9285-156453a6431c");
 pub const IID_IActionProgressDialog = &IID_IActionProgressDialog_Value;
 pub const IActionProgressDialog = extern struct {
@@ -7687,6 +6912,7 @@ pub const SPTEXT = extern enum(i32) {
 pub const SPTEXT_ACTIONDESCRIPTION = SPTEXT.SCRIPTION;
 pub const SPTEXT_ACTIONDETAIL = SPTEXT.TAIL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IActionProgress_Value = @import("../zig.zig").Guid.initString("49ff1173-eadc-446d-9285-156453a6431c");
 pub const IID_IActionProgress = &IID_IActionProgress_Value;
 pub const IActionProgress = extern struct {
@@ -7750,6 +6976,7 @@ pub const IActionProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellExtInit_Value = @import("../zig.zig").Guid.initString("000214e8-0000-0000-c000-000000000046");
 pub const IID_IShellExtInit = &IID_IShellExtInit_Value;
 pub const IShellExtInit = extern struct {
@@ -7778,6 +7005,7 @@ pub const _EXPPS = extern enum(i32) {
 };
 pub const EXPPS_FILETYPES = _EXPPS.S;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellPropSheetExt_Value = @import("../zig.zig").Guid.initString("000214e9-0000-0000-c000-000000000046");
 pub const IID_IShellPropSheetExt = &IID_IShellPropSheetExt_Value;
 pub const IShellPropSheetExt = extern struct {
@@ -7810,6 +7038,7 @@ pub const IShellPropSheetExt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IRemoteComputer_Value = @import("../zig.zig").Guid.initString("000214fe-0000-0000-c000-000000000046");
 pub const IID_IRemoteComputer = &IID_IRemoteComputer_Value;
 pub const IRemoteComputer = extern struct {
@@ -7832,6 +7061,7 @@ pub const IRemoteComputer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryContinue_Value = @import("../zig.zig").Guid.initString("7307055c-b24a-486b-9f25-163e597a28a9");
 pub const IID_IQueryContinue = &IID_IQueryContinue_Value;
 pub const IQueryContinue = extern struct {
@@ -7852,6 +7082,7 @@ pub const IQueryContinue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectWithCancelEvent_Value = @import("../zig.zig").Guid.initString("f279b885-0ae9-4b85-ac06-ddecf9408941");
 pub const IID_IObjectWithCancelEvent = &IID_IObjectWithCancelEvent_Value;
 pub const IObjectWithCancelEvent = extern struct {
@@ -7873,6 +7104,7 @@ pub const IObjectWithCancelEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUserNotification_Value = @import("../zig.zig").Guid.initString("ba9711ba-5893-4787-a7e1-41277151550b");
 pub const IID_IUserNotification = &IID_IUserNotification_Value;
 pub const IUserNotification = extern struct {
@@ -7932,6 +7164,7 @@ pub const IUserNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IItemNameLimits_Value = @import("../zig.zig").Guid.initString("1df0d7f1-b267-4d28-8b10-12e23202a5c4");
 pub const IID_IItemNameLimits = &IID_IItemNameLimits_Value;
 pub const IItemNameLimits = extern struct {
@@ -7963,6 +7196,7 @@ pub const IItemNameLimits = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISearchFolderItemFactory_Value = @import("../zig.zig").Guid.initString("a0ffbc28-5482-4366-be27-3e81e78e06c2");
 pub const IID_ISearchFolderItemFactory = &IID_ISearchFolderItemFactory_Value;
 pub const ISearchFolderItemFactory = extern struct {
@@ -8076,6 +7310,7 @@ pub const ISearchFolderItemFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IExtractImage_Value = @import("../zig.zig").Guid.initString("bb2e617c-0920-11d1-9a0b-00c04fc2d6c1");
 pub const IID_IExtractImage = &IID_IExtractImage_Value;
 pub const IExtractImage = extern struct {
@@ -8110,6 +7345,7 @@ pub const IExtractImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IExtractImage2_Value = @import("../zig.zig").Guid.initString("953bb1ee-93b4-11d1-98a3-00c04fb687da");
 pub const IID_IExtractImage2 = &IID_IExtractImage2_Value;
 pub const IExtractImage2 = extern struct {
@@ -8131,6 +7367,7 @@ pub const IExtractImage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IThumbnailHandlerFactory_Value = @import("../zig.zig").Guid.initString("e35b4b2e-00da-4bc1-9f13-38bc11f5d417");
 pub const IID_IThumbnailHandlerFactory = &IID_IThumbnailHandlerFactory_Value;
 pub const IThumbnailHandlerFactory = extern struct {
@@ -8155,6 +7392,7 @@ pub const IThumbnailHandlerFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IParentAndItem_Value = @import("../zig.zig").Guid.initString("b3a4b685-b685-4805-99d9-5dead2873236");
 pub const IID_IParentAndItem = &IID_IParentAndItem_Value;
 pub const IParentAndItem = extern struct {
@@ -8188,6 +7426,7 @@ pub const IParentAndItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDockingWindow_Value = @import("../zig.zig").Guid.initString("012dd920-7b26-11d0-8ca9-00a0c92dbfe8");
 pub const IID_IDockingWindow = &IID_IDockingWindow_Value;
 pub const IDockingWindow = extern struct {
@@ -8257,6 +7496,7 @@ pub const DBID_FINISHINIT = DESKBANDCID.FINISHINIT;
 pub const DBID_SETWINDOWTHEME = DESKBANDCID.SETWINDOWTHEME;
 pub const DBID_PERMITAUTOHIDE = DESKBANDCID.PERMITAUTOHIDE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDeskBand_Value = @import("../zig.zig").Guid.initString("eb0fe172-1a3a-11d0-89b3-00a0c90a90ac");
 pub const IID_IDeskBand = &IID_IDeskBand_Value;
 pub const IDeskBand = extern struct {
@@ -8280,6 +7520,7 @@ pub const IDeskBand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDeskBandInfo_Value = @import("../zig.zig").Guid.initString("77e425fc-cbf9-4307-ba6a-bb5727745661");
 pub const IID_IDeskBandInfo = &IID_IDeskBandInfo_Value;
 pub const IDeskBandInfo = extern struct {
@@ -8303,6 +7544,7 @@ pub const IDeskBandInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ITaskbarList_Value = @import("../zig.zig").Guid.initString("56fdf342-fd6d-11d0-958a-006097c9a090");
 pub const IID_ITaskbarList = &IID_ITaskbarList_Value;
 pub const ITaskbarList = extern struct {
@@ -8355,6 +7597,7 @@ pub const ITaskbarList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITaskbarList2_Value = @import("../zig.zig").Guid.initString("602d4995-b13a-429b-a66e-1935e44f4317");
 pub const IID_ITaskbarList2 = &IID_ITaskbarList2_Value;
 pub const ITaskbarList2 = extern struct {
@@ -8425,6 +7668,7 @@ pub const TBPF_NORMAL = TBPFLAG.NORMAL;
 pub const TBPF_ERROR = TBPFLAG.ERROR;
 pub const TBPF_PAUSED = TBPFLAG.PAUSED;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ITaskbarList3_Value = @import("../zig.zig").Guid.initString("ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf");
 pub const IID_ITaskbarList3 = &IID_ITaskbarList3_Value;
 pub const ITaskbarList3 = extern struct {
@@ -8563,6 +7807,7 @@ pub const STPF_USEAPPTHUMBNAILWHENACTIVE = STPFLAG.USEAPPTHUMBNAILWHENACTIVE;
 pub const STPF_USEAPPPEEKALWAYS = STPFLAG.USEAPPPEEKALWAYS;
 pub const STPF_USEAPPPEEKWHENACTIVE = STPFLAG.USEAPPPEEKWHENACTIVE;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ITaskbarList4_Value = @import("../zig.zig").Guid.initString("c43dc798-95d1-4bea-9030-bb99e2983a1a");
 pub const IID_ITaskbarList4 = &IID_ITaskbarList4_Value;
 pub const ITaskbarList4 = extern struct {
@@ -8585,6 +7830,7 @@ pub const ITaskbarList4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExplorerBrowserEvents_Value = @import("../zig.zig").Guid.initString("361bbdc7-e6ee-4e13-be58-58e2240c810f");
 pub const IID_IExplorerBrowserEvents = &IID_IExplorerBrowserEvents_Value;
 pub const IExplorerBrowserEvents = extern struct {
@@ -8660,6 +7906,7 @@ pub const EBF_NONE = EXPLORER_BROWSER_FILL_FLAGS.NONE;
 pub const EBF_SELECTFROMDATAOBJECT = EXPLORER_BROWSER_FILL_FLAGS.SELECTFROMDATAOBJECT;
 pub const EBF_NODROPTARGET = EXPLORER_BROWSER_FILL_FLAGS.NODROPTARGET;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExplorerBrowser_Value = @import("../zig.zig").Guid.initString("dfd3b6b5-c10c-4be9-85f6-a66969f402f6");
 pub const IID_IExplorerBrowser = &IID_IExplorerBrowser_Value;
 pub const IExplorerBrowser = extern struct {
@@ -8799,6 +8046,7 @@ pub const IExplorerBrowser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumObjects_Value = @import("../zig.zig").Guid.initString("2c1c7e2e-2d0e-4059-831e-1e6f82335c2e");
 pub const IID_IEnumObjects = &IID_IEnumObjects_Value;
 pub const IEnumObjects = extern struct {
@@ -8878,6 +8126,7 @@ pub const PDM_UNDOING = _PDMODE.UNDOING;
 pub const PDM_ERRORSBLOCKING = _PDMODE.ERRORSBLOCKING;
 pub const PDM_INDETERMINATE = _PDMODE.INDETERMINATE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOperationsProgressDialog_Value = @import("../zig.zig").Guid.initString("0c9fb851-e5c9-43eb-a370-f0677b13874c");
 pub const IID_IOperationsProgressDialog = &IID_IOperationsProgressDialog_Value;
 pub const IOperationsProgressDialog = extern struct {
@@ -8984,6 +8233,7 @@ pub const IOperationsProgressDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IIOCancelInformation_Value = @import("../zig.zig").Guid.initString("f5b0bf81-8cb5-4b1b-9449-1a159e0c733c");
 pub const IID_IIOCancelInformation = &IID_IIOCancelInformation_Value;
 pub const IIOCancelInformation = extern struct {
@@ -9015,6 +8265,7 @@ pub const IIOCancelInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileOperation_Value = @import("../zig.zig").Guid.initString("947aab5f-0a5c-4c13-b4d6-4bf7836fc9f8");
 pub const IID_IFileOperation = &IID_IFileOperation_Value;
 pub const IFileOperation = extern struct {
@@ -9232,6 +8483,7 @@ pub const IFileOperation2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IObjectProvider_Value = @import("../zig.zig").Guid.initString("a6087428-3be3-4d73-b308-7c04a540bf1a");
 pub const IID_IObjectProvider = &IID_IObjectProvider_Value;
 pub const IObjectProvider = extern struct {
@@ -9255,6 +8507,7 @@ pub const IObjectProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamespaceWalkCB_Value = @import("../zig.zig").Guid.initString("d92995f8-cf5e-4a76-bf59-ead39ea2b97e");
 pub const IID_INamespaceWalkCB = &IID_INamespaceWalkCB_Value;
 pub const INamespaceWalkCB = extern struct {
@@ -9304,6 +8557,7 @@ pub const INamespaceWalkCB = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INamespaceWalkCB2_Value = @import("../zig.zig").Guid.initString("7ac7492b-c38e-438a-87db-68737844ff70");
 pub const IID_INamespaceWalkCB2 = &IID_INamespaceWalkCB2_Value;
 pub const INamespaceWalkCB2 = extern struct {
@@ -9362,6 +8616,7 @@ pub const NSWF_USE_TRANSFER_MEDIUM = NAMESPACEWALKFLAG.USE_TRANSFER_MEDIUM;
 pub const NSWF_DONT_TRAVERSE_STREAM_JUNCTIONS = NAMESPACEWALKFLAG.DONT_TRAVERSE_STREAM_JUNCTIONS;
 pub const NSWF_ANY_IMPLIES_ALL = NAMESPACEWALKFLAG.ANY_IMPLIES_ALL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamespaceWalk_Value = @import("../zig.zig").Guid.initString("57ced8a7-3f4a-432c-9350-30f24483f74f");
 pub const IID_INamespaceWalk = &IID_INamespaceWalk_Value;
 pub const INamespaceWalk = extern struct {
@@ -9408,6 +8663,7 @@ pub const BANDSITECID = extern enum(i32) {
 pub const BSID_BANDADDED = BANDSITECID.ADDED;
 pub const BSID_BANDREMOVED = BANDSITECID.REMOVED;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBandSite_Value = @import("../zig.zig").Guid.initString("4cf504b0-de96-11d0-8b3f-00a0c911e8e5");
 pub const IID_IBandSite = &IID_IBandSite_Value;
 pub const IBandSite = extern struct {
@@ -9494,6 +8750,7 @@ pub const IBandSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IModalWindow_Value = @import("../zig.zig").Guid.initString("b4db1657-70d7-485e-8e3e-6fcb5a5c1802");
 pub const IID_IModalWindow = &IID_IModalWindow_Value;
 pub const IModalWindow = extern struct {
@@ -9515,6 +8772,7 @@ pub const IModalWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IContextMenuSite_Value = @import("../zig.zig").Guid.initString("0811aebe-0b87-4c54-9e72-548cf649016b");
 pub const IID_IContextMenuSite = &IID_IContextMenuSite_Value;
 pub const IContextMenuSite = extern struct {
@@ -9543,6 +8801,7 @@ pub const MENUBANDHANDLERCID = extern enum(i32) {
 };
 pub const MBHANDCID_PIDLSELECT = MENUBANDHANDLERCID.T;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMenuBand_Value = @import("../zig.zig").Guid.initString("568804cd-cbd7-11d0-9816-00c04fd91972");
 pub const IID_IMenuBand = &IID_IMenuBand_Value;
 pub const IMenuBand = extern struct {
@@ -9573,6 +8832,7 @@ pub const IMenuBand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IRegTreeItem_Value = @import("../zig.zig").Guid.initString("a9521922-0812-4d44-9ec3-7fd38c726f3d");
 pub const IID_IRegTreeItem = &IID_IRegTreeItem_Value;
 pub const IRegTreeItem = extern struct {
@@ -9602,6 +8862,7 @@ pub const IRegTreeItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDeskBar_Value = @import("../zig.zig").Guid.initString("eb0fe173-1a3a-11d0-89b3-00a0c90a90ac");
 pub const IID_IDeskBar = &IID_IDeskBar_Value;
 pub const IDeskBar = extern struct {
@@ -9685,6 +8946,7 @@ pub const MPPF_POS_MASK = MENUPOPUPPOPUPFLAGS.POS_MASK;
 pub const MPPF_ALIGN_LEFT = MENUPOPUPPOPUPFLAGS.ALIGN_LEFT;
 pub const MPPF_ALIGN_RIGHT = MENUPOPUPPOPUPFLAGS.ALIGN_RIGHT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMenuPopup_Value = @import("../zig.zig").Guid.initString("d1e7afeb-6a2e-11d0-8c78-00c04fd918b4");
 pub const IID_IMenuPopup = &IID_IMenuPopup_Value;
 pub const IMenuPopup = extern struct {
@@ -9734,6 +8996,7 @@ pub const FUT_PLAYING = FILE_USAGE_TYPE.PLAYING;
 pub const FUT_EDITING = FILE_USAGE_TYPE.EDITING;
 pub const FUT_GENERIC = FILE_USAGE_TYPE.GENERIC;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileIsInUse_Value = @import("../zig.zig").Guid.initString("64a1cbf0-3a1a-4461-9158-376969693950");
 pub const IID_IFileIsInUse = &IID_IFileIsInUse_Value;
 pub const IFileIsInUse = extern struct {
@@ -9811,6 +9074,7 @@ pub const FDAP = extern enum(i32) {
 pub const FDAP_BOTTOM = FDAP.BOTTOM;
 pub const FDAP_TOP = FDAP.TOP;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileDialogEvents_Value = @import("../zig.zig").Guid.initString("973510db-7d7f-452b-8975-74a85828d354");
 pub const IID_IFileDialogEvents = &IID_IFileDialogEvents_Value;
 pub const IFileDialogEvents = extern struct {
@@ -9934,6 +9198,7 @@ pub const FOS_DEFAULTNOMINIMODE = _FILEOPENDIALOGOPTIONS.DEFAULTNOMINIMODE;
 pub const FOS_FORCEPREVIEWPANEON = _FILEOPENDIALOGOPTIONS.FORCEPREVIEWPANEON;
 pub const FOS_SUPPORTSTREAMABLEITEMS = _FILEOPENDIALOGOPTIONS.SUPPORTSTREAMABLEITEMS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileDialog_Value = @import("../zig.zig").Guid.initString("42f85136-db7e-439c-85f1-e4075d135fc8");
 pub const IID_IFileDialog = &IID_IFileDialog_Value;
 pub const IFileDialog = extern struct {
@@ -10133,6 +9398,7 @@ pub const IFileDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSaveDialog_Value = @import("../zig.zig").Guid.initString("84bccd23-5fde-4cdb-aea4-af64b83d78ab");
 pub const IID_IFileSaveDialog = &IID_IFileSaveDialog_Value;
 pub const IFileSaveDialog = extern struct {
@@ -10190,6 +9456,7 @@ pub const IFileSaveDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileOpenDialog_Value = @import("../zig.zig").Guid.initString("d57c7288-d4ad-4768-be02-9d969532d960");
 pub const IID_IFileOpenDialog = &IID_IFileOpenDialog_Value;
 pub const IFileOpenDialog = extern struct {
@@ -10230,6 +9497,7 @@ pub const CDCS_ENABLED = CDCONTROLSTATEF.ENABLED;
 pub const CDCS_VISIBLE = CDCONTROLSTATEF.VISIBLE;
 pub const CDCS_ENABLEDVISIBLE = CDCONTROLSTATEF.ENABLEDVISIBLE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileDialogCustomize_Value = @import("../zig.zig").Guid.initString("e6fdd21a-163f-4975-9c8c-a69f1ba37034");
 pub const IID_IFileDialogCustomize = &IID_IFileDialogCustomize_Value;
 pub const IFileDialogCustomize = extern struct {
@@ -10503,6 +9771,7 @@ pub const AT_URLPROTOCOL = ASSOCIATIONTYPE.URLPROTOCOL;
 pub const AT_STARTMENUCLIENT = ASSOCIATIONTYPE.STARTMENUCLIENT;
 pub const AT_MIMETYPE = ASSOCIATIONTYPE.MIMETYPE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IApplicationAssociationRegistration_Value = @import("../zig.zig").Guid.initString("4e530b0a-e611-4c77-a3ac-9031d022281b");
 pub const IID_IApplicationAssociationRegistration = &IID_IApplicationAssociationRegistration_Value;
 pub const IApplicationAssociationRegistration = extern struct {
@@ -10581,6 +9850,7 @@ pub const DELEGATEITEMID = extern struct {
     rgb: [1]u8,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDelegateFolder_Value = @import("../zig.zig").Guid.initString("add8ba80-002b-11d0-8f0f-00c04fd7d062");
 pub const IID_IDelegateFolder = &IID_IDelegateFolder_Value;
 pub const IDelegateFolder = extern struct {
@@ -10645,6 +9915,7 @@ pub const BFO_SHOW_NAVIGATION_CANCELLED = _BROWSERFRAMEOPTIONS.FO_SHOW_NAVIGATIO
 pub const BFO_USE_IE_STATUSBAR = _BROWSERFRAMEOPTIONS.FO_USE_IE_STATUSBAR;
 pub const BFO_QUERY_ALL = _BROWSERFRAMEOPTIONS.FO_QUERY_ALL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBrowserFrameOptions_Value = @import("../zig.zig").Guid.initString("10df43c8-1dbe-11d3-8b34-006097df5bd4");
 pub const IID_IBrowserFrameOptions = &IID_IBrowserFrameOptions_Value;
 pub const IBrowserFrameOptions = extern struct {
@@ -10698,6 +9969,7 @@ pub const NWMF_SUGGESTWINDOW = NWMF.SUGGESTWINDOW;
 pub const NWMF_SUGGESTTAB = NWMF.SUGGESTTAB;
 pub const NWMF_INACTIVETAB = NWMF.INACTIVETAB;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INewWindowManager_Value = @import("../zig.zig").Guid.initString("d2bc4c84-3f72-4a52-a604-7bcbf3982cbb");
 pub const IID_INewWindowManager = &IID_INewWindowManager_Value;
 pub const INewWindowManager = extern struct {
@@ -10745,6 +10017,7 @@ pub const ATTACHMENT_ACTION_CANCEL = ATTACHMENT_ACTION.CANCEL;
 pub const ATTACHMENT_ACTION_SAVE = ATTACHMENT_ACTION.SAVE;
 pub const ATTACHMENT_ACTION_EXEC = ATTACHMENT_ACTION.EXEC;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAttachmentExecute_Value = @import("../zig.zig").Guid.initString("73db1241-1e85-4581-8e4f-a81e1d0f8c57");
 pub const IID_IAttachmentExecute = &IID_IAttachmentExecute_Value;
 pub const IAttachmentExecute = extern struct {
@@ -10928,6 +10201,7 @@ pub const SMIF_ALTSTATE = SMINFOFLAGS.ALTSTATE;
 pub const SMIF_DRAGNDROP = SMINFOFLAGS.DRAGNDROP;
 pub const SMIF_NEW = SMINFOFLAGS.NEW;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellMenuCallback_Value = @import("../zig.zig").Guid.initString("4ca300a1-9b8d-11d1-8b22-00c04fd918d0");
 pub const IID_IShellMenuCallback = &IID_IShellMenuCallback_Value;
 pub const IShellMenuCallback = extern struct {
@@ -10952,6 +10226,7 @@ pub const IShellMenuCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellMenu_Value = @import("../zig.zig").Guid.initString("ee1f7637-e138-11d1-8379-00c04fd918d0");
 pub const IID_IShellMenu = &IID_IShellMenu_Value;
 pub const IShellMenu = extern struct {
@@ -11137,6 +10412,7 @@ pub const KNOWNFOLDER_DEFINITION = extern struct {
     ftidType: Guid,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKnownFolder_Value = @import("../zig.zig").Guid.initString("3aa7af7e-9b36-420c-a8e3-f77d4674a488");
 pub const IID_IKnownFolder = &IID_IKnownFolder_Value;
 pub const IKnownFolder = extern struct {
@@ -11234,6 +10510,7 @@ pub const FFFP_MODE = extern enum(i32) {
 pub const FFFP_EXACTMATCH = FFFP_MODE.EXACTMATCH;
 pub const FFFP_NEARESTPARENTMATCH = FFFP_MODE.NEARESTPARENTMATCH;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKnownFolderManager_Value = @import("../zig.zig").Guid.initString("8be2d872-86aa-4d47-b776-32cca40c7018");
 pub const IID_IKnownFolderManager = &IID_IKnownFolderManager_Value;
 pub const IKnownFolderManager = extern struct {
@@ -11366,6 +10643,7 @@ pub const DEF_SHARE_ID = extern enum(i32) {
 pub const DEFSHAREID_USERS = DEF_SHARE_ID.USERS;
 pub const DEFSHAREID_PUBLIC = DEF_SHARE_ID.PUBLIC;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISharingConfigurationManager_Value = @import("../zig.zig").Guid.initString("b4cd448a-9c86-4466-9201-2e62105b87ae");
 pub const IID_ISharingConfigurationManager = &IID_ISharingConfigurationManager_Value;
 pub const ISharingConfigurationManager = extern struct {
@@ -11434,6 +10712,7 @@ pub const ISharingConfigurationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRelatedItem_Value = @import("../zig.zig").Guid.initString("a73ce67a-8ab1-44f1-8d43-d2fcbf6b1cd0");
 pub const IID_IRelatedItem = &IID_IRelatedItem_Value;
 pub const IRelatedItem = extern struct {
@@ -11463,6 +10742,7 @@ pub const IRelatedItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IIdentityName_Value = @import("../zig.zig").Guid.initString("7d903fca-d6f9-4810-8332-946c0177e247");
 pub const IID_IIdentityName = &IID_IIdentityName_Value;
 pub const IIdentityName = extern struct {
@@ -11476,6 +10756,7 @@ pub const IIdentityName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDelegateItem_Value = @import("../zig.zig").Guid.initString("3c5a1c94-c951-4cb7-bb6d-3b93f30cce93");
 pub const IID_IDelegateItem = &IID_IDelegateItem_Value;
 pub const IDelegateItem = extern struct {
@@ -11489,6 +10770,7 @@ pub const IDelegateItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICurrentItem_Value = @import("../zig.zig").Guid.initString("240a7174-d653-4a1d-a6d3-d4943cfbfe3d");
 pub const IID_ICurrentItem = &IID_ICurrentItem_Value;
 pub const ICurrentItem = extern struct {
@@ -11502,6 +10784,7 @@ pub const ICurrentItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITransferMediumItem_Value = @import("../zig.zig").Guid.initString("77f295d5-2d6f-4e19-b8ae-322f3e721ab5");
 pub const IID_ITransferMediumItem = &IID_ITransferMediumItem_Value;
 pub const ITransferMediumItem = extern struct {
@@ -11515,6 +10798,7 @@ pub const ITransferMediumItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDisplayItem_Value = @import("../zig.zig").Guid.initString("c6fd5997-9f6b-4888-8703-94e80e8cde3f");
 pub const IID_IDisplayItem = &IID_IDisplayItem_Value;
 pub const IDisplayItem = extern struct {
@@ -11528,6 +10812,7 @@ pub const IDisplayItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IViewStateIdentityItem_Value = @import("../zig.zig").Guid.initString("9d264146-a94f-4195-9f9f-3bb12ce0c955");
 pub const IID_IViewStateIdentityItem = &IID_IViewStateIdentityItem_Value;
 pub const IViewStateIdentityItem = extern struct {
@@ -11541,6 +10826,7 @@ pub const IViewStateIdentityItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IPreviewItem_Value = @import("../zig.zig").Guid.initString("36149969-0a8f-49c8-8b00-4aecb20222fb");
 pub const IID_IPreviewItem = &IID_IPreviewItem_Value;
 pub const IPreviewItem = extern struct {
@@ -11554,6 +10840,7 @@ pub const IPreviewItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDestinationStreamFactory_Value = @import("../zig.zig").Guid.initString("8a87781b-39a7-4a1f-aab3-a39b9c34a7d9");
 pub const IID_IDestinationStreamFactory = &IID_IDestinationStreamFactory_Value;
 pub const IDestinationStreamFactory = extern struct {
@@ -11575,6 +10862,7 @@ pub const IDestinationStreamFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICreateProcessInputs_Value = @import("../zig.zig").Guid.initString("f6ef6140-e26f-4d82-bac4-e9ba5fd239a8");
 pub const IID_ICreateProcessInputs = &IID_ICreateProcessInputs_Value;
 pub const ICreateProcessInputs = extern struct {
@@ -11645,6 +10933,7 @@ pub const ICreateProcessInputs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICreatingProcess_Value = @import("../zig.zig").Guid.initString("c2b937a9-3110-4398-8a56-f34c6342d244");
 pub const IID_ICreatingProcess = &IID_ICreatingProcess_Value;
 pub const ICreatingProcess = extern struct {
@@ -11732,6 +11021,7 @@ pub const _NMCSAEI_FLAGS = extern enum(i32) {
 pub const NMCSAEI_SELECT = _NMCSAEI_FLAGS.SELECT;
 pub const NMCSAEI_EDIT = _NMCSAEI_FLAGS.EDIT;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_INewMenuClient_Value = @import("../zig.zig").Guid.initString("dcb07fdc-3bb5-451c-90be-966644fed7b0");
 pub const IID_INewMenuClient = &IID_INewMenuClient_Value;
 pub const INewMenuClient = extern struct {
@@ -11762,6 +11052,7 @@ pub const INewMenuClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IInitializeWithBindCtx_Value = @import("../zig.zig").Guid.initString("71c0d2bc-726d-45cc-a6c0-2e31c1db2159");
 pub const IID_IInitializeWithBindCtx = &IID_IInitializeWithBindCtx_Value;
 pub const IInitializeWithBindCtx = extern struct {
@@ -11783,6 +11074,7 @@ pub const IInitializeWithBindCtx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItemFilter_Value = @import("../zig.zig").Guid.initString("2659b475-eeb8-48b7-8f07-b378810f48cf");
 pub const IID_IShellItemFilter = &IID_IShellItemFilter_Value;
 pub const IShellItemFilter = extern struct {
@@ -11919,6 +11211,7 @@ pub const NSTCGNI_CHILD = NSTCGNI.CHILD;
 pub const NSTCGNI_FIRSTVISIBLE = NSTCGNI.FIRSTVISIBLE;
 pub const NSTCGNI_LASTVISIBLE = NSTCGNI.LASTVISIBLE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INameSpaceTreeControl_Value = @import("../zig.zig").Guid.initString("028212a3-b627-47e9-8856-c14265554e4f");
 pub const IID_INameSpaceTreeControl = &IID_INameSpaceTreeControl_Value;
 pub const INameSpaceTreeControl = extern struct {
@@ -12111,6 +11404,7 @@ pub const NSTCFC_NONE = NSTCFOLDERCAPABILITIES.NONE;
 pub const NSTCFC_PINNEDITEMFILTERING = NSTCFOLDERCAPABILITIES.PINNEDITEMFILTERING;
 pub const NSTCFC_DELAY_REGISTER_NOTIFY = NSTCFOLDERCAPABILITIES.DELAY_REGISTER_NOTIFY;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_INameSpaceTreeControlFolderCapabilities_Value = @import("../zig.zig").Guid.initString("e9701183-e6b3-4ff2-8568-813615fec7be");
 pub const IID_INameSpaceTreeControlFolderCapabilities = &IID_INameSpaceTreeControlFolderCapabilities_Value;
 pub const INameSpaceTreeControlFolderCapabilities = extern struct {
@@ -12133,6 +11427,7 @@ pub const INameSpaceTreeControlFolderCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPreviewHandler_Value = @import("../zig.zig").Guid.initString("8895b1c6-b41f-4c1c-a562-0d564250836f");
 pub const IID_IPreviewHandler = &IID_IPreviewHandler_Value;
 pub const IPreviewHandler = extern struct {
@@ -12205,6 +11500,7 @@ pub const PREVIEWHANDLERFRAMEINFO = extern struct {
     cAccelEntries: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPreviewHandlerFrame_Value = @import("../zig.zig").Guid.initString("fec87aaf-35f9-447a-adb7-20234491401a");
 pub const IID_IPreviewHandlerFrame = &IID_IPreviewHandlerFrame_Value;
 pub const IPreviewHandlerFrame = extern struct {
@@ -12249,6 +11545,7 @@ pub const EPS_STATEMASK = _EXPLORERPANESTATE.STATEMASK;
 pub const EPS_INITIALSTATE = _EXPLORERPANESTATE.INITIALSTATE;
 pub const EPS_FORCE = _EXPLORERPANESTATE.FORCE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExplorerPaneVisibility_Value = @import("../zig.zig").Guid.initString("e07010ec-bc17-44c0-97b0-46c7c95b9edc");
 pub const IID_IExplorerPaneVisibility = &IID_IExplorerPaneVisibility_Value;
 pub const IExplorerPaneVisibility = extern struct {
@@ -12271,6 +11568,7 @@ pub const IExplorerPaneVisibility = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContextMenuCB_Value = @import("../zig.zig").Guid.initString("3409e930-5a39-11d1-83fa-00a0c90dc849");
 pub const IID_IContextMenuCB = &IID_IContextMenuCB_Value;
 pub const IContextMenuCB = extern struct {
@@ -12297,6 +11595,7 @@ pub const IContextMenuCB = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDefaultExtractIconInit_Value = @import("../zig.zig").Guid.initString("41ded17d-d6b3-4261-997d-88c60e4b1d58");
 pub const IID_IDefaultExtractIconInit = &IID_IDefaultExtractIconInit_Value;
 pub const IDefaultExtractIconInit = extern struct {
@@ -12402,6 +11701,7 @@ pub const ECF_ISDROPDOWN = _EXPCMDFLAGS.ISDROPDOWN;
 pub const ECF_TOGGLEABLE = _EXPCMDFLAGS.TOGGLEABLE;
 pub const ECF_AUTOMENUICONS = _EXPCMDFLAGS.AUTOMENUICONS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExplorerCommand_Value = @import("../zig.zig").Guid.initString("a08ce4d0-fa25-44ab-b57c-c7b1c323e0b9");
 pub const IID_IExplorerCommand = &IID_IExplorerCommand_Value;
 pub const IExplorerCommand = extern struct {
@@ -12485,6 +11785,7 @@ pub const IExplorerCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IExplorerCommandState_Value = @import("../zig.zig").Guid.initString("bddacb60-7657-47ae-8445-d23e1acf82ae");
 pub const IID_IExplorerCommandState = &IID_IExplorerCommandState_Value;
 pub const IExplorerCommandState = extern struct {
@@ -12508,6 +11809,7 @@ pub const IExplorerCommandState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IInitializeCommand_Value = @import("../zig.zig").Guid.initString("85075acf-231f-40ea-9610-d26b7b58f638");
 pub const IID_IInitializeCommand = &IID_IInitializeCommand_Value;
 pub const IInitializeCommand = extern struct {
@@ -12530,6 +11832,7 @@ pub const IInitializeCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumExplorerCommand_Value = @import("../zig.zig").Guid.initString("a88826f8-186f-4987-aade-ea0cef8fbfe8");
 pub const IID_IEnumExplorerCommand = &IID_IEnumExplorerCommand_Value;
 pub const IEnumExplorerCommand = extern struct {
@@ -12576,6 +11879,7 @@ pub const IEnumExplorerCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExplorerCommandProvider_Value = @import("../zig.zig").Guid.initString("64961751-0835-43c0-8ffe-d57686530e64");
 pub const IID_IExplorerCommandProvider = &IID_IExplorerCommandProvider_Value;
 pub const IExplorerCommandProvider = extern struct {
@@ -12620,6 +11924,7 @@ pub const CPVIEW_ALLITEMS = CPVIEW.ALLITEMS;
 pub const CPVIEW_CATEGORY = CPVIEW.CATEGORY;
 pub const CPVIEW_HOME = CPVIEW.HOME;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOpenControlPanel_Value = @import("../zig.zig").Guid.initString("d11ad862-66de-4df4-bf6c-1f5621996af1");
 pub const IID_IOpenControlPanel = &IID_IOpenControlPanel_Value;
 pub const IOpenControlPanel = extern struct {
@@ -12661,6 +11966,7 @@ pub const IOpenControlPanel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFileSystemBindData_Value = @import("../zig.zig").Guid.initString("01e18d10-4d8b-11d2-855d-006008059367");
 pub const IID_IFileSystemBindData = &IID_IFileSystemBindData_Value;
 pub const IFileSystemBindData = extern struct {
@@ -12690,6 +11996,7 @@ pub const IFileSystemBindData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileSystemBindData2_Value = @import("../zig.zig").Guid.initString("3acf075f-71db-4afa-81f0-3fc4fdf2a5b8");
 pub const IID_IFileSystemBindData2 = &IID_IFileSystemBindData2_Value;
 pub const IFileSystemBindData2 = extern struct {
@@ -12742,6 +12049,7 @@ pub const KNOWNDESTCATEGORY = extern enum(i32) {
 pub const KDC_FREQUENT = KNOWNDESTCATEGORY.FREQUENT;
 pub const KDC_RECENT = KNOWNDESTCATEGORY.RECENT;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ICustomDestinationList_Value = @import("../zig.zig").Guid.initString("6332debf-87b5-4670-90c0-5e57b408a49e");
 pub const IID_ICustomDestinationList = &IID_ICustomDestinationList_Value;
 pub const ICustomDestinationList = extern struct {
@@ -12829,6 +12137,7 @@ pub const ICustomDestinationList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IApplicationDestinations_Value = @import("../zig.zig").Guid.initString("12337d35-94c6-48a0-bce7-6a9c69d4d600");
 pub const IID_IApplicationDestinations = &IID_IApplicationDestinations_Value;
 pub const IApplicationDestinations = extern struct {
@@ -12872,6 +12181,7 @@ pub const APPDOCLISTTYPE = extern enum(i32) {
 pub const ADLT_RECENT = APPDOCLISTTYPE.RECENT;
 pub const ADLT_FREQUENT = APPDOCLISTTYPE.FREQUENT;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IApplicationDocumentLists_Value = @import("../zig.zig").Guid.initString("3c594f9f-9f30-47a1-979a-c9e83d3d0a06");
 pub const IID_IApplicationDocumentLists = &IID_IApplicationDocumentLists_Value;
 pub const IApplicationDocumentLists = extern struct {
@@ -12904,6 +12214,7 @@ pub const IApplicationDocumentLists = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectWithAppUserModelID_Value = @import("../zig.zig").Guid.initString("36db0196-9665-46d1-9ba7-d3709eecf9ed");
 pub const IID_IObjectWithAppUserModelID = &IID_IObjectWithAppUserModelID_Value;
 pub const IObjectWithAppUserModelID = extern struct {
@@ -12933,6 +12244,7 @@ pub const IObjectWithAppUserModelID = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectWithProgID_Value = @import("../zig.zig").Guid.initString("71e806fb-8dee-46fc-bf8c-7748a8a1ae13");
 pub const IID_IObjectWithProgID = &IID_IObjectWithProgID_Value;
 pub const IObjectWithProgID = extern struct {
@@ -12962,6 +12274,7 @@ pub const IObjectWithProgID = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUpdateIDList_Value = @import("../zig.zig").Guid.initString("6589b6d2-5f8d-4b9e-b7e0-23cdd9717d8c");
 pub const IID_IUpdateIDList = &IID_IUpdateIDList_Value;
 pub const IUpdateIDList = extern struct {
@@ -13021,6 +12334,7 @@ pub const DWPOS_FIT = DESKTOP_WALLPAPER_POSITION.FIT;
 pub const DWPOS_FILL = DESKTOP_WALLPAPER_POSITION.FILL;
 pub const DWPOS_SPAN = DESKTOP_WALLPAPER_POSITION.SPAN;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDesktopWallpaper_Value = @import("../zig.zig").Guid.initString("b92b56a9-8b55-4e14-9a89-0199bbb6f93b");
 pub const IID_IDesktopWallpaper = &IID_IDesktopWallpaper_Value;
 pub const IDesktopWallpaper = extern struct {
@@ -13184,6 +12498,7 @@ pub const HGSC_VIDEOSLIBRARY = HOMEGROUPSHARINGCHOICES.VIDEOSLIBRARY;
 pub const HGSC_DOCUMENTSLIBRARY = HOMEGROUPSHARINGCHOICES.DOCUMENTSLIBRARY;
 pub const HGSC_PRINTERS = HOMEGROUPSHARINGCHOICES.PRINTERS;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IHomeGroup_Value = @import("../zig.zig").Guid.initString("7a3bd1d9-35a9-4fb3-a467-f48cac35e2d0");
 pub const IID_IHomeGroup = &IID_IHomeGroup_Value;
 pub const IHomeGroup = extern struct {
@@ -13214,6 +12529,7 @@ pub const IHomeGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IInitializeWithPropertyStore_Value = @import("../zig.zig").Guid.initString("c3e12eb5-7d8d-44f8-b6dd-0e77b34d6de4");
 pub const IID_IInitializeWithPropertyStore = &IID_IInitializeWithPropertyStore_Value;
 pub const IInitializeWithPropertyStore = extern struct {
@@ -13235,6 +12551,7 @@ pub const IInitializeWithPropertyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IOpenSearchSource_Value = @import("../zig.zig").Guid.initString("f0ee7333-e6fc-479b-9f25-a860c234a38e");
 pub const IID_IOpenSearchSource = &IID_IOpenSearchSource_Value;
 pub const IOpenSearchSource = extern struct {
@@ -13297,6 +12614,7 @@ pub const LSF_FAILIFTHERE = LIBRARYSAVEFLAGS.FAILIFTHERE;
 pub const LSF_OVERRIDEEXISTING = LIBRARYSAVEFLAGS.OVERRIDEEXISTING;
 pub const LSF_MAKEUNIQUENAME = LIBRARYSAVEFLAGS.MAKEUNIQUENAME;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IShellLibrary_Value = @import("../zig.zig").Guid.initString("11a66efa-382e-451a-9234-1e0e12ef3085");
 pub const IID_IShellLibrary = &IID_IShellLibrary_Value;
 pub const IShellLibrary = extern struct {
@@ -13485,6 +12803,7 @@ pub const DFMR_USE_SPECIFIED_VERBS = DEFAULT_FOLDER_MENU_RESTRICTIONS.USE_SPECIF
 pub const DFMR_NO_ASYNC_VERBS = DEFAULT_FOLDER_MENU_RESTRICTIONS.NO_ASYNC_VERBS;
 pub const DFMR_NO_NATIVECPU_VERBS = DEFAULT_FOLDER_MENU_RESTRICTIONS.NO_NATIVECPU_VERBS;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDefaultFolderMenuInitialize_Value = @import("../zig.zig").Guid.initString("7690aa79-f8fc-4615-a327-36f7d18f5d91");
 pub const IID_IDefaultFolderMenuInitialize = &IID_IDefaultFolderMenuInitialize_Value;
 pub const IDefaultFolderMenuInitialize = extern struct {
@@ -13552,6 +12871,7 @@ pub const AO_NOERRORUI = ACTIVATEOPTIONS.NOERRORUI;
 pub const AO_NOSPLASHSCREEN = ACTIVATEOPTIONS.NOSPLASHSCREEN;
 pub const AO_PRELAUNCH = ACTIVATEOPTIONS.PRELAUNCH;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IApplicationActivationManager_Value = @import("../zig.zig").Guid.initString("2e941141-7f97-4756-ba1d-9decde894a3d");
 pub const IID_IApplicationActivationManager = &IID_IApplicationActivationManager_Value;
 pub const IApplicationActivationManager = extern struct {
@@ -13597,6 +12917,7 @@ pub const IApplicationActivationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IVirtualDesktopManager_Value = @import("../zig.zig").Guid.initString("a5cd92ff-29be-454c-8d04-d82879fb3f1b");
 pub const IID_IVirtualDesktopManager = &IID_IVirtualDesktopManager_Value;
 pub const IVirtualDesktopManager = extern struct {
@@ -13644,6 +12965,7 @@ pub const LIBRARYMANAGEDIALOGOPTIONS = extern enum(i32) {
 pub const LMD_DEFAULT = LIBRARYMANAGEDIALOGOPTIONS.DEFAULT;
 pub const LMD_ALLOWUNINDEXABLENETWORKLOCATIONS = LIBRARYMANAGEDIALOGOPTIONS.ALLOWUNINDEXABLENETWORKLOCATIONS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssocHandlerInvoker_Value = @import("../zig.zig").Guid.initString("92218cab-ecaa-4335-8133-807fd234c2ee");
 pub const IID_IAssocHandlerInvoker = &IID_IAssocHandlerInvoker_Value;
 pub const IAssocHandlerInvoker = extern struct {
@@ -13690,6 +13012,7 @@ pub const AHTYPE_APPLICATION = AHTYPE.APPLICATION;
 pub const AHTYPE_CLASS_APPLICATION = AHTYPE.CLASS_APPLICATION;
 pub const AHTYPE_ANY_PROGID = AHTYPE.ANY_PROGID;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssocHandler_Value = @import("../zig.zig").Guid.initString("f04061ac-1659-4a3f-a954-775aa57fc083");
 pub const IID_IAssocHandler = &IID_IAssocHandler_Value;
 pub const IAssocHandler = extern struct {
@@ -13760,6 +13083,7 @@ pub const IAssocHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumAssocHandlers_Value = @import("../zig.zig").Guid.initString("973810ae-9599-4b88-9e4d-6ee98c9552da");
 pub const IID_IEnumAssocHandlers = &IID_IEnumAssocHandlers_Value;
 pub const IEnumAssocHandlers = extern struct {
@@ -13790,6 +13114,7 @@ pub const ASSOC_FILTER = extern enum(i32) {
 pub const ASSOC_FILTER_NONE = ASSOC_FILTER.NONE;
 pub const ASSOC_FILTER_RECOMMENDED = ASSOC_FILTER.RECOMMENDED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDataObjectProvider_Value = @import("../zig.zig").Guid.initString("3d25f6d6-4b2a-433c-9184-7c33ad35d001");
 pub const IID_IDataObjectProvider = &IID_IDataObjectProvider_Value;
 pub const IDataObjectProvider = extern struct {
@@ -13819,6 +13144,7 @@ pub const IDataObjectProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDataTransferManagerInterop_Value = @import("../zig.zig").Guid.initString("3a3dcd6c-3eab-43dc-bcde-45671ce800c8");
 pub const IID_IDataTransferManagerInterop = &IID_IDataTransferManagerInterop_Value;
 pub const IDataTransferManagerInterop = extern struct {
@@ -13850,6 +13176,7 @@ pub const IDataTransferManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IFrameworkInputPaneHandler_Value = @import("../zig.zig").Guid.initString("226c537b-1e76-4d9e-a760-33db29922f18");
 pub const IID_IFrameworkInputPaneHandler = &IID_IFrameworkInputPaneHandler_Value;
 pub const IFrameworkInputPaneHandler = extern struct {
@@ -13880,6 +13207,7 @@ pub const IFrameworkInputPaneHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IFrameworkInputPane_Value = @import("../zig.zig").Guid.initString("5752238b-24f0-495a-82f1-2fd593056796");
 pub const IID_IFrameworkInputPane = &IID_IFrameworkInputPane_Value;
 pub const IFrameworkInputPane = extern struct {
@@ -13938,6 +13266,7 @@ pub const MAV_UNKNOWN = MONITOR_APP_VISIBILITY.UNKNOWN;
 pub const MAV_NO_APP_VISIBLE = MONITOR_APP_VISIBILITY.NO_APP_VISIBLE;
 pub const MAV_APP_VISIBLE = MONITOR_APP_VISIBILITY.APP_VISIBLE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppVisibilityEvents_Value = @import("../zig.zig").Guid.initString("6584ce6b-7d82-49c2-89c9-c6bc02ba8c38");
 pub const IID_IAppVisibilityEvents = &IID_IAppVisibilityEvents_Value;
 pub const IAppVisibilityEvents = extern struct {
@@ -13969,6 +13298,7 @@ pub const IAppVisibilityEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppVisibility_Value = @import("../zig.zig").Guid.initString("2246ea2d-caea-4444-a3c4-6de827e44313");
 pub const IID_IAppVisibility = &IID_IAppVisibility_Value;
 pub const IAppVisibility = extern struct {
@@ -14029,6 +13359,7 @@ pub const PES_SUSPENDING = PACKAGE_EXECUTION_STATE.SUSPENDING;
 pub const PES_SUSPENDED = PACKAGE_EXECUTION_STATE.SUSPENDED;
 pub const PES_TERMINATED = PACKAGE_EXECUTION_STATE.TERMINATED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPackageExecutionStateChangeNotification_Value = @import("../zig.zig").Guid.initString("1bb12a62-2ad8-432b-8ccf-0c2c52afcd5b");
 pub const IID_IPackageExecutionStateChangeNotification = &IID_IPackageExecutionStateChangeNotification_Value;
 pub const IPackageExecutionStateChangeNotification = extern struct {
@@ -14051,6 +13382,7 @@ pub const IPackageExecutionStateChangeNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPackageDebugSettings_Value = @import("../zig.zig").Guid.initString("f27c3930-8029-4ad1-94e3-3dba417810c1");
 pub const IID_IPackageDebugSettings = &IID_IPackageDebugSettings_Value;
 pub const IPackageDebugSettings = extern struct {
@@ -14217,6 +13549,7 @@ pub const IPackageDebugSettings2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ISuspensionDependencyManager_Value = @import("../zig.zig").Guid.initString("52b83a42-2543-416a-81d9-c0de7969c8b3");
 pub const IID_ISuspensionDependencyManager = &IID_ISuspensionDependencyManager_Value;
 pub const ISuspensionDependencyManager = extern struct {
@@ -14261,6 +13594,7 @@ pub const AHE_TYPE = extern enum(i32) {
 pub const AHE_DESKTOP = AHE_TYPE.DESKTOP;
 pub const AHE_IMMERSIVE = AHE_TYPE.IMMERSIVE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IExecuteCommandApplicationHostEnvironment_Value = @import("../zig.zig").Guid.initString("18b21aa9-e184-4ff0-9f5e-f882d03771b3");
 pub const IID_IExecuteCommandApplicationHostEnvironment = &IID_IExecuteCommandApplicationHostEnvironment_Value;
 pub const IExecuteCommandApplicationHostEnvironment = extern struct {
@@ -14291,6 +13625,7 @@ pub const ECHUIM_DESKTOP = EC_HOST_UI_MODE.DESKTOP;
 pub const ECHUIM_IMMERSIVE = EC_HOST_UI_MODE.IMMERSIVE;
 pub const ECHUIM_SYSTEM_LAUNCHER = EC_HOST_UI_MODE.SYSTEM_LAUNCHER;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IExecuteCommandHost_Value = @import("../zig.zig").Guid.initString("4b6832a2-5f04-4c9d-b89d-727a15d103e7");
 pub const IID_IExecuteCommandHost = &IID_IExecuteCommandHost_Value;
 pub const IExecuteCommandHost = extern struct {
@@ -14332,6 +13667,7 @@ pub const EGK_TOUCH = EDGE_GESTURE_KIND.TOUCH;
 pub const EGK_KEYBOARD = EDGE_GESTURE_KIND.KEYBOARD;
 pub const EGK_MOUSE = EDGE_GESTURE_KIND.MOUSE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IApplicationDesignModeSettings_Value = @import("../zig.zig").Guid.initString("2a3dee9a-e31d-46d6-8508-bcc597db3557");
 pub const IID_IApplicationDesignModeSettings = &IID_IApplicationDesignModeSettings_Value;
 pub const IApplicationDesignModeSettings = extern struct {
@@ -14428,6 +13764,7 @@ pub const AVMW_DEFAULT = APPLICATION_VIEW_MIN_WIDTH.DEFAULT;
 pub const AVMW_320 = APPLICATION_VIEW_MIN_WIDTH.@"320";
 pub const AVMW_500 = APPLICATION_VIEW_MIN_WIDTH.@"500";
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IApplicationDesignModeSettings2_Value = @import("../zig.zig").Guid.initString("490514e1-675a-4d6e-a58d-e54901b4ca2f");
 pub const IID_IApplicationDesignModeSettings2 = &IID_IApplicationDesignModeSettings2_Value;
 pub const IApplicationDesignModeSettings2 = extern struct {
@@ -14499,6 +13836,7 @@ pub const IApplicationDesignModeSettings2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILaunchTargetMonitor_Value = @import("../zig.zig").Guid.initString("266fbc7e-490d-46ed-a96b-2274db252003");
 pub const IID_ILaunchTargetMonitor = &IID_ILaunchTargetMonitor_Value;
 pub const ILaunchTargetMonitor = extern struct {
@@ -14537,6 +13875,7 @@ pub const AVSP_USE_MINIMUM = APPLICATION_VIEW_SIZE_PREFERENCE.USE_MINIMUM;
 pub const AVSP_USE_NONE = APPLICATION_VIEW_SIZE_PREFERENCE.USE_NONE;
 pub const AVSP_CUSTOM = APPLICATION_VIEW_SIZE_PREFERENCE.CUSTOM;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILaunchSourceViewSizePreference_Value = @import("../zig.zig").Guid.initString("e5aa01f7-1fb8-4830-8720-4e6734cbd5f3");
 pub const IID_ILaunchSourceViewSizePreference = &IID_ILaunchSourceViewSizePreference_Value;
 pub const ILaunchSourceViewSizePreference = extern struct {
@@ -14566,6 +13905,7 @@ pub const ILaunchSourceViewSizePreference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILaunchTargetViewSizePreference_Value = @import("../zig.zig").Guid.initString("2f0666c6-12f7-4360-b511-a394a0553725");
 pub const IID_ILaunchTargetViewSizePreference = &IID_ILaunchTargetViewSizePreference_Value;
 pub const ILaunchTargetViewSizePreference = extern struct {
@@ -14587,6 +13927,7 @@ pub const ILaunchTargetViewSizePreference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILaunchSourceAppUserModelId_Value = @import("../zig.zig").Guid.initString("989191ac-28ff-4cf0-9584-e0d078bc2396");
 pub const IID_ILaunchSourceAppUserModelId = &IID_ILaunchSourceAppUserModelId_Value;
 pub const ILaunchSourceAppUserModelId = extern struct {
@@ -14608,6 +13949,7 @@ pub const ILaunchSourceAppUserModelId = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IInitializeWithWindow_Value = @import("../zig.zig").Guid.initString("3e68d4bd-7135-4d10-8018-9fb6d9f33fa1");
 pub const IID_IInitializeWithWindow = &IID_IInitializeWithWindow_Value;
 pub const IInitializeWithWindow = extern struct {
@@ -14629,6 +13971,7 @@ pub const IInitializeWithWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IHandlerInfo_Value = @import("../zig.zig").Guid.initString("997706ef-f880-453b-8118-39e1a2d2655a");
 pub const IID_IHandlerInfo = &IID_IHandlerInfo_Value;
 pub const IHandlerInfo = extern struct {
@@ -14687,6 +14030,7 @@ pub const IHandlerInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IHandlerActivationHost_Value = @import("../zig.zig").Guid.initString("35094a87-8bb1-4237-96c6-c417eebdb078");
 pub const IID_IHandlerActivationHost = &IID_IHandlerActivationHost_Value;
 pub const IHandlerActivationHost = extern struct {
@@ -14786,6 +14130,7 @@ pub const FP_BELOW = FLYOUT_PLACEMENT.BELOW;
 pub const FP_LEFT = FLYOUT_PLACEMENT.LEFT;
 pub const FP_RIGHT = FLYOUT_PLACEMENT.RIGHT;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IContactManagerInterop_Value = @import("../zig.zig").Guid.initString("99eacba7-e073-43b6-a896-55afe48a0833");
 pub const IID_IContactManagerInterop = &IID_IContactManagerInterop_Value;
 pub const IContactManagerInterop = extern struct {
@@ -14810,6 +14155,7 @@ pub const IContactManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellIconOverlayIdentifier_Value = @import("../zig.zig").Guid.initString("0c6c4200-c589-11d0-999a-00c04fd655e1");
 pub const IID_IShellIconOverlayIdentifier = &IID_IShellIconOverlayIdentifier_Value;
 pub const IShellIconOverlayIdentifier = extern struct {
@@ -15000,6 +14346,7 @@ pub const IPropertyKeyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IQueryCodePage_Value = @import("../zig.zig").Guid.initString("c7b236ce-ee80-11d0-985f-006008059382");
 pub const IID_IQueryCodePage = &IID_IQueryCodePage_Value;
 pub const IQueryCodePage = extern struct {
@@ -15046,6 +14393,7 @@ pub const FVO_SUPPORTHYPERLINKS = FOLDERVIEWOPTIONS.SUPPORTHYPERLINKS;
 pub const FVO_NOANIMATIONS = FOLDERVIEWOPTIONS.NOANIMATIONS;
 pub const FVO_NOSCROLLTIPS = FOLDERVIEWOPTIONS.NOSCROLLTIPS;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFolderViewOptions_Value = @import("../zig.zig").Guid.initString("3cc974d2-b302-4d36-ad3e-06d93f695d3f");
 pub const IID_IFolderViewOptions = &IID_IFolderViewOptions_Value;
 pub const IFolderViewOptions = extern struct {
@@ -15087,6 +14435,7 @@ pub const SV3CVW3_NONINTERACTIVE = _SV3CVW3_FLAGS.NONINTERACTIVE;
 pub const SV3CVW3_FORCEVIEWMODE = _SV3CVW3_FLAGS.FORCEVIEWMODE;
 pub const SV3CVW3_FORCEFOLDERFLAGS = _SV3CVW3_FLAGS.FORCEFOLDERFLAGS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellView3_Value = @import("../zig.zig").Guid.initString("ec39fa88-f8af-41c5-8421-38bed28f4673");
 pub const IID_IShellView3 = &IID_IShellView3_Value;
 pub const IShellView3 = extern struct {
@@ -15116,6 +14465,7 @@ pub const IShellView3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISearchBoxInfo_Value = @import("../zig.zig").Guid.initString("6af6e03f-d664-4ef4-9626-f7e0ed36755e");
 pub const IID_ISearchBoxInfo = &IID_ISearchBoxInfo_Value;
 pub const ISearchBoxInfo = extern struct {
@@ -15166,6 +14516,7 @@ pub const VPCF_SORTCOLUMN = VPCOLORFLAGS.SORTCOLUMN;
 pub const VPCF_SUBTEXT = VPCOLORFLAGS.SUBTEXT;
 pub const VPCF_TEXTBACKGROUND = VPCOLORFLAGS.TEXTBACKGROUND;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVisualProperties_Value = @import("../zig.zig").Guid.initString("e693cf68-d967-4112-8763-99172aee5e5a");
 pub const IID_IVisualProperties = &IID_IVisualProperties_Value;
 pub const IVisualProperties = extern struct {
@@ -15248,6 +14599,7 @@ pub const IVisualProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICommDlgBrowser3_Value = @import("../zig.zig").Guid.initString("c8ad25a1-3294-41ee-8165-71174bd01c57");
 pub const IID_ICommDlgBrowser3 = &IID_ICommDlgBrowser3_Value;
 pub const ICommDlgBrowser3 = extern struct {
@@ -15287,6 +14639,7 @@ pub const ICommDlgBrowser3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUserAccountChangeCallback_Value = @import("../zig.zig").Guid.initString("a561e69a-b4b8-4113-91a5-64c6bcca3430");
 pub const IID_IUserAccountChangeCallback = &IID_IUserAccountChangeCallback_Value;
 pub const IUserAccountChangeCallback = extern struct {
@@ -15308,6 +14661,7 @@ pub const IUserAccountChangeCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamAsync_Value = @import("../zig.zig").Guid.initString("fe0b6665-e0ca-49b9-a178-2b5cb48d92a5");
 pub const IID_IStreamAsync = &IID_IStreamAsync_Value;
 pub const IStreamAsync = extern struct {
@@ -15360,6 +14714,7 @@ pub const IStreamAsync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStreamUnbufferedInfo_Value = @import("../zig.zig").Guid.initString("8a68fdda-1fdc-4c20-8ceb-416643b5a625");
 pub const IID_IStreamUnbufferedInfo = &IID_IStreamUnbufferedInfo_Value;
 pub const IStreamUnbufferedInfo = extern struct {
@@ -15386,6 +14741,7 @@ pub const DSH_FLAGS = extern enum(i32) {
 };
 pub const DSH_ALLOWDROPDESCRIPTIONTEXT = DSH_FLAGS.T;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDragSourceHelper2_Value = @import("../zig.zig").Guid.initString("83e07d0d-0c5f-4163-bf1a-60b274051e40");
 pub const IID_IDragSourceHelper2 = &IID_IDragSourceHelper2_Value;
 pub const IDragSourceHelper2 = extern struct {
@@ -15407,6 +14763,7 @@ pub const IDragSourceHelper2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IHWEventHandler_Value = @import("../zig.zig").Guid.initString("c1fb73d0-ec3a-4ba2-b512-8cdb9187b6d1");
 pub const IID_IHWEventHandler = &IID_IHWEventHandler_Value;
 pub const IHWEventHandler = extern struct {
@@ -15450,6 +14807,7 @@ pub const IHWEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IHWEventHandler2_Value = @import("../zig.zig").Guid.initString("cfcc809f-295d-42e8-9ffc-424b33c487e6");
 pub const IID_IHWEventHandler2 = &IID_IHWEventHandler2_Value;
 pub const IHWEventHandler2 = extern struct {
@@ -15474,6 +14832,7 @@ pub const IHWEventHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("ddefe873-6997-4e68-be26-39b633adbe12");
 pub const IID_IQueryCancelAutoPlay = &IID_IQueryCancelAutoPlay_Value;
 pub const IQueryCancelAutoPlay = extern struct {
@@ -15498,6 +14857,7 @@ pub const IQueryCancelAutoPlay = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDynamicHWHandler_Value = @import("../zig.zig").Guid.initString("dc2601d7-059e-42fc-a09d-2afd21b6d5f7");
 pub const IID_IDynamicHWHandler = &IID_IDynamicHWHandler_Value;
 pub const IDynamicHWHandler = extern struct {
@@ -15521,6 +14881,7 @@ pub const IDynamicHWHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUserNotificationCallback_Value = @import("../zig.zig").Guid.initString("19108294-0441-4aff-8013-fa0a730b0bea");
 pub const IID_IUserNotificationCallback = &IID_IUserNotificationCallback_Value;
 pub const IUserNotificationCallback = extern struct {
@@ -15558,6 +14919,7 @@ pub const IUserNotificationCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUserNotification2_Value = @import("../zig.zig").Guid.initString("215913cc-57eb-4fab-ab5a-e5fa7bea2a6c");
 pub const IID_IUserNotification2 = &IID_IUserNotification2_Value;
 pub const IUserNotification2 = extern struct {
@@ -15618,6 +14980,7 @@ pub const IUserNotification2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDeskBand2_Value = @import("../zig.zig").Guid.initString("79d16de4-abee-4021-8d9d-9169b261d657");
 pub const IID_IDeskBand2 = &IID_IDeskBand2_Value;
 pub const IDeskBand2 = extern struct {
@@ -15655,6 +15018,7 @@ pub const IDeskBand2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IStartMenuPinnedList_Value = @import("../zig.zig").Guid.initString("4cd19ada-25a5-4a32-b3b7-347bee5be36b");
 pub const IID_IStartMenuPinnedList = &IID_IStartMenuPinnedList_Value;
 pub const IStartMenuPinnedList = extern struct {
@@ -15676,6 +15040,7 @@ pub const IStartMenuPinnedList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICDBurn_Value = @import("../zig.zig").Guid.initString("3d73a659-e5d0-4d42-afc0-5121ba425c8d");
 pub const IID_ICDBurn = &IID_ICDBurn_Value;
 pub const ICDBurn = extern struct {
@@ -15714,6 +15079,7 @@ pub const ICDBurn = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWizardSite_Value = @import("../zig.zig").Guid.initString("88960f5b-422f-4e7b-8013-73415381c3c3");
 pub const IID_IWizardSite = &IID_IWizardSite_Value;
 pub const IWizardSite = extern struct {
@@ -15751,6 +15117,7 @@ pub const IWizardSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWizardExtension_Value = @import("../zig.zig").Guid.initString("c02ea696-86cc-491e-9b23-74394a0444a8");
 pub const IID_IWizardExtension = &IID_IWizardExtension_Value;
 pub const IWizardExtension = extern struct {
@@ -15790,6 +15157,7 @@ pub const IWizardExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWebWizardExtension_Value = @import("../zig.zig").Guid.initString("0e6b3f66-98d1-48c0-a222-fbde74e2fbc5");
 pub const IID_IWebWizardExtension = &IID_IWebWizardExtension_Value;
 pub const IWebWizardExtension = extern struct {
@@ -15819,6 +15187,7 @@ pub const IWebWizardExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPublishingWizard_Value = @import("../zig.zig").Guid.initString("aa9198bb-ccec-472d-beed-19a4f6733f7a");
 pub const IID_IPublishingWizard = &IID_IPublishingWizard_Value;
 pub const IPublishingWizard = extern struct {
@@ -15851,6 +15220,7 @@ pub const IPublishingWizard = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFolderViewHost_Value = @import("../zig.zig").Guid.initString("1ea58f02-d55a-411d-b09e-9e65ac21605b");
 pub const IID_IFolderViewHost = &IID_IFolderViewHost_Value;
 pub const IFolderViewHost = extern struct {
@@ -15874,6 +15244,7 @@ pub const IFolderViewHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAccessibleObject_Value = @import("../zig.zig").Guid.initString("95a391c5-9ed4-4c28-8401-ab9e06719e11");
 pub const IID_IAccessibleObject = &IID_IAccessibleObject_Value;
 pub const IAccessibleObject = extern struct {
@@ -15895,6 +15266,7 @@ pub const IAccessibleObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IResultsFolder_Value = @import("../zig.zig").Guid.initString("96e5ae6d-6ae1-4b1c-900c-c6480eaa8828");
 pub const IID_IResultsFolder = &IID_IResultsFolder_Value;
 pub const IResultsFolder = extern struct {
@@ -15948,6 +15320,7 @@ pub const IResultsFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAutoCompleteDropDown_Value = @import("../zig.zig").Guid.initString("3cd141f4-3c6a-11d2-bcaa-00c04fd929db");
 pub const IID_IAutoCompleteDropDown = &IID_IAutoCompleteDropDown_Value;
 pub const IAutoCompleteDropDown = extern struct {
@@ -15995,6 +15368,7 @@ pub const CDBE_TYPE_MUSIC = _CDBE_ACTIONS.MUSIC;
 pub const CDBE_TYPE_DATA = _CDBE_ACTIONS.DATA;
 pub const CDBE_TYPE_ALL = _CDBE_ACTIONS.ALL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICDBurnExt_Value = @import("../zig.zig").Guid.initString("2271dcca-74fc-4414-8fb7-c56b05ace2d7");
 pub const IID_ICDBurnExt = &IID_ICDBurnExt_Value;
 pub const ICDBurnExt = extern struct {
@@ -16016,6 +15390,7 @@ pub const ICDBurnExt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumReadyCallback_Value = @import("../zig.zig").Guid.initString("61e00d45-8fff-4e60-924e-6537b61612dd");
 pub const IID_IEnumReadyCallback = &IID_IEnumReadyCallback_Value;
 pub const IEnumReadyCallback = extern struct {
@@ -16036,6 +15411,7 @@ pub const IEnumReadyCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumerableView_Value = @import("../zig.zig").Guid.initString("8c8bf236-1aec-495f-9894-91d57c3c686f");
 pub const IID_IEnumerableView = &IID_IEnumerableView_Value;
 pub const IEnumerableView = extern struct {
@@ -16067,6 +15443,7 @@ pub const IEnumerableView = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInsertItem_Value = @import("../zig.zig").Guid.initString("d2b57227-3d23-4b95-93c0-492bd454c356");
 pub const IID_IInsertItem = &IID_IInsertItem_Value;
 pub const IInsertItem = extern struct {
@@ -16088,6 +15465,7 @@ pub const IInsertItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IFolderBandPriv_Value = @import("../zig.zig").Guid.initString("47c01f95-e185-412c-b5c5-4f27df965aea");
 pub const IID_IFolderBandPriv = &IID_IFolderBandPriv_Value;
 pub const IFolderBandPriv = extern struct {
@@ -16133,6 +15511,7 @@ pub const IFolderBandPriv = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IImageRecompress_Value = @import("../zig.zig").Guid.initString("505f1513-6b3e-4892-a272-59f8889a4d3e");
 pub const IID_IImageRecompress = &IID_IImageRecompress_Value;
 pub const IImageRecompress = extern struct {
@@ -16159,6 +15538,7 @@ pub const IImageRecompress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileDialogControlEvents_Value = @import("../zig.zig").Guid.initString("36116642-d713-4b97-9b83-7484a9d00433");
 pub const IID_IFileDialogControlEvents = &IID_IFileDialogControlEvents_Value;
 pub const IFileDialogControlEvents = extern struct {
@@ -16210,6 +15590,7 @@ pub const IFileDialogControlEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFileDialog2_Value = @import("../zig.zig").Guid.initString("61744fc7-85b5-4791-a9b0-272276309b13");
 pub const IID_IFileDialog2 = &IID_IFileDialog2_Value;
 pub const IFileDialog2 = extern struct {
@@ -16239,6 +15620,7 @@ pub const IFileDialog2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IApplicationAssociationRegistrationUI_Value = @import("../zig.zig").Guid.initString("1f76a169-f994-40ac-8fc8-0959e8874710");
 pub const IID_IApplicationAssociationRegistrationUI = &IID_IApplicationAssociationRegistrationUI_Value;
 pub const IApplicationAssociationRegistrationUI = extern struct {
@@ -16260,6 +15642,7 @@ pub const IApplicationAssociationRegistrationUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellRunDll_Value = @import("../zig.zig").Guid.initString("fce4bde0-4b68-4b80-8e9c-7426315a7388");
 pub const IID_IShellRunDll = &IID_IShellRunDll_Value;
 pub const IShellRunDll = extern struct {
@@ -16281,6 +15664,7 @@ pub const IShellRunDll = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPreviousVersionsInfo_Value = @import("../zig.zig").Guid.initString("76e54780-ad74-48e3-a695-3ba9a0aff10d");
 pub const IID_IPreviousVersionsInfo = &IID_IPreviousVersionsInfo_Value;
 pub const IPreviousVersionsInfo = extern struct {
@@ -16304,6 +15688,7 @@ pub const IPreviousVersionsInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUseToBrowseItem_Value = @import("../zig.zig").Guid.initString("05edda5c-98a3-4717-8adb-c5e7da991eb1");
 pub const IID_IUseToBrowseItem = &IID_IUseToBrowseItem_Value;
 pub const IUseToBrowseItem = extern struct {
@@ -16334,6 +15719,7 @@ pub const NSTCS2_DISPLAYPINNEDONLY = NSTCSTYLE2.STCS2_DISPLAYPINNEDONLY;
 pub const NTSCS2_NOSINGLETONAUTOEXPAND = NSTCSTYLE2.TSCS2_NOSINGLETONAUTOEXPAND;
 pub const NTSCS2_NEVERINSERTNONENUMERATED = NSTCSTYLE2.TSCS2_NEVERINSERTNONENUMERATED;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_INameSpaceTreeControl2_Value = @import("../zig.zig").Guid.initString("7cc7aed8-290e-49bc-8945-c1401cc9306c");
 pub const IID_INameSpaceTreeControl2 = &IID_INameSpaceTreeControl2_Value;
 pub const INameSpaceTreeControl2 = extern struct {
@@ -16417,6 +15803,7 @@ pub const NSTCECT_RBUTTON = _NSTCECLICKTYPE.RBUTTON;
 pub const NSTCECT_BUTTON = _NSTCECLICKTYPE.BUTTON;
 pub const NSTCECT_DBLCLICK = _NSTCECLICKTYPE.DBLCLICK;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INameSpaceTreeControlEvents_Value = @import("../zig.zig").Guid.initString("93d77985-b3d8-4484-8318-672cdda002ce");
 pub const IID_INameSpaceTreeControlEvents = &IID_INameSpaceTreeControlEvents_Value;
 pub const INameSpaceTreeControlEvents = extern struct {
@@ -16593,6 +15980,7 @@ pub const INameSpaceTreeControlEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INameSpaceTreeControlDropHandler_Value = @import("../zig.zig").Guid.initString("f9c665d6-c2f2-4c19-bf33-8322d7352f51");
 pub const IID_INameSpaceTreeControlDropHandler = &IID_INameSpaceTreeControlDropHandler_Value;
 pub const INameSpaceTreeControlDropHandler = extern struct {
@@ -16671,6 +16059,7 @@ pub const INameSpaceTreeControlDropHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INameSpaceTreeAccessible_Value = @import("../zig.zig").Guid.initString("71f312de-43ed-4190-8477-e9536b82350b");
 pub const IID_INameSpaceTreeAccessible = &IID_INameSpaceTreeAccessible_Value;
 pub const INameSpaceTreeAccessible = extern struct {
@@ -16721,6 +16110,7 @@ pub const NSTCCUSTOMDRAW = extern struct {
     iIndent: i32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INameSpaceTreeControlCustomDraw_Value = @import("../zig.zig").Guid.initString("2d3ba758-33ee-42d5-bb7b-5f3431d86c78");
 pub const IID_INameSpaceTreeControlCustomDraw = &IID_INameSpaceTreeControlCustomDraw_Value;
 pub const INameSpaceTreeControlCustomDraw = extern struct {
@@ -16776,6 +16166,7 @@ pub const INameSpaceTreeControlCustomDraw = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITrayDeskBand_Value = @import("../zig.zig").Guid.initString("6d67e846-5b9c-4db8-9cbc-dde12f4254f1");
 pub const IID_ITrayDeskBand = &IID_ITrayDeskBand_Value;
 pub const ITrayDeskBand = extern struct {
@@ -16820,6 +16211,7 @@ pub const ITrayDeskBand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBandHost_Value = @import("../zig.zig").Guid.initString("b9075c7c-d48e-403f-ab99-d6c77a1084ac");
 pub const IID_IBandHost = &IID_IBandHost_Value;
 pub const IBandHost = extern struct {
@@ -16862,6 +16254,7 @@ pub const IBandHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IComputerInfoChangeNotify_Value = @import("../zig.zig").Guid.initString("0df60d92-6818-46d6-b358-d66170dde466");
 pub const IID_IComputerInfoChangeNotify = &IID_IComputerInfoChangeNotify_Value;
 pub const IComputerInfoChangeNotify = extern struct {
@@ -16882,6 +16275,7 @@ pub const IComputerInfoChangeNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDesktopGadget_Value = @import("../zig.zig").Guid.initString("c1646bc4-f298-4f91-a204-eb2dd1709d1a");
 pub const IID_IDesktopGadget = &IID_IDesktopGadget_Value;
 pub const IDesktopGadget = extern struct {
@@ -17880,6 +17274,7 @@ pub const IShellLinkDual2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellFolderViewDual_Value = @import("../zig.zig").Guid.initString("e7a1af80-4d96-11cf-960c-0080c7f4ee85");
 pub const IID_IShellFolderViewDual = &IID_IShellFolderViewDual_Value;
 pub const IShellFolderViewDual = extern struct {
@@ -17969,6 +17364,7 @@ pub const IShellFolderViewDual = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellFolderViewDual2_Value = @import("../zig.zig").Guid.initString("31c147b6-0ade-4a3c-b514-ddf932ef6d17");
 pub const IID_IShellFolderViewDual2 = &IID_IShellFolderViewDual2_Value;
 pub const IShellFolderViewDual2 = extern struct {
@@ -18006,6 +17402,7 @@ pub const IShellFolderViewDual2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellFolderViewDual3_Value = @import("../zig.zig").Guid.initString("29ec8e6c-46d3-411f-baaa-611a6c9cac66");
 pub const IID_IShellFolderViewDual3 = &IID_IShellFolderViewDual3_Value;
 pub const IShellFolderViewDual3 = extern struct {
@@ -18673,6 +18070,7 @@ pub const INewWDEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAutoComplete_Value = @import("../zig.zig").Guid.initString("00bb2762-6a77-11d0-a535-00c04fd7d062");
 pub const IID_IAutoComplete = &IID_IAutoComplete_Value;
 pub const IAutoComplete = extern struct {
@@ -18728,6 +18126,7 @@ pub const ACO_RTLREADING = AUTOCOMPLETEOPTIONS.RTLREADING;
 pub const ACO_WORD_FILTER = AUTOCOMPLETEOPTIONS.WORD_FILTER;
 pub const ACO_NOPREFIXFILTERING = AUTOCOMPLETEOPTIONS.NOPREFIXFILTERING;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IAutoComplete2_Value = @import("../zig.zig").Guid.initString("eac04bc0-3791-11d2-bb95-0060977b464c");
 pub const IID_IAutoComplete2 = &IID_IAutoComplete2_Value;
 pub const IAutoComplete2 = extern struct {
@@ -18805,6 +18204,7 @@ pub const IEnumACString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDataObjectAsyncCapability_Value = @import("../zig.zig").Guid.initString("3d8b0590-f691-11d2-8ea9-006097df5bd4");
 pub const IID_IDataObjectAsyncCapability = &IID_IDataObjectAsyncCapability_Value;
 pub const IDataObjectAsyncCapability = extern struct {
@@ -18860,6 +18260,7 @@ pub const IDataObjectAsyncCapability = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IExtractIconA_Value = @import("../zig.zig").Guid.initString("000214eb-0000-0000-c000-000000000046");
 pub const IID_IExtractIconA = &IID_IExtractIconA_Value;
 pub const IExtractIconA = extern struct {
@@ -18897,6 +18298,7 @@ pub const IExtractIconA = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IExtractIconW_Value = @import("../zig.zig").Guid.initString("000214fa-0000-0000-c000-000000000046");
 pub const IID_IExtractIconW = &IID_IExtractIconW_Value;
 pub const IExtractIconW = extern struct {
@@ -18934,6 +18336,7 @@ pub const IExtractIconW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellIconOverlayManager_Value = @import("../zig.zig").Guid.initString("f10b5e34-dd3b-42a7-aa7d-2f4ec54bb09b");
 pub const IID_IShellIconOverlayManager = &IID_IShellIconOverlayManager_Value;
 pub const IShellIconOverlayManager = extern struct {
@@ -18995,6 +18398,7 @@ pub const IShellIconOverlayManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellIconOverlay_Value = @import("../zig.zig").Guid.initString("7d688a70-c613-11d0-999b-00c04fd655e1");
 pub const IID_IShellIconOverlay = &IID_IShellIconOverlay_Value;
 pub const IShellIconOverlay = extern struct {
@@ -19191,6 +18595,7 @@ pub const IShellExecuteHookW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IURLSearchHook_Value = @import("../zig.zig").Guid.initString("ac60f6a0-0fd9-11d0-99cb-00c04fd64497");
 pub const IID_IURLSearchHook = &IID_IURLSearchHook_Value;
 pub const IURLSearchHook = extern struct {
@@ -19213,6 +18618,7 @@ pub const IURLSearchHook = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchContext_Value = @import("../zig.zig").Guid.initString("09f656a2-41af-480c-88f7-16cc0d164615");
 pub const IID_ISearchContext = &IID_ISearchContext_Value;
 pub const ISearchContext = extern struct {
@@ -19250,6 +18656,7 @@ pub const ISearchContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IURLSearchHook2_Value = @import("../zig.zig").Guid.initString("5ee44da4-6d32-46e3-86bc-07540dedd0e0");
 pub const IID_IURLSearchHook2 = &IID_IURLSearchHook2_Value;
 pub const IURLSearchHook2 = extern struct {
@@ -19355,6 +18762,7 @@ pub const BROWSEINFOW = extern struct {
     iImage: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellDetails_Value = @import("../zig.zig").Guid.initString("000214ec-0000-0000-c000-000000000046");
 pub const IID_IShellDetails = &IID_IShellDetails_Value;
 pub const IShellDetails = extern struct {
@@ -19386,6 +18794,7 @@ pub const IShellDetails = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IObjMgr_Value = @import("../zig.zig").Guid.initString("00bb2761-6a77-11d0-a535-00c04fd7d062");
 pub const IID_IObjMgr = &IID_IObjMgr_Value;
 pub const IObjMgr = extern struct {
@@ -19415,6 +18824,7 @@ pub const IObjMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IACList_Value = @import("../zig.zig").Guid.initString("77a130b0-94fd-11d0-a544-00c04fd7d062");
 pub const IID_IACList = &IID_IACList_Value;
 pub const IACList = extern struct {
@@ -19455,6 +18865,7 @@ pub const ACLO_FILESYSONLY = AUTOCOMPLETELISTOPTIONS.FILESYSONLY;
 pub const ACLO_FILESYSDIRS = AUTOCOMPLETELISTOPTIONS.FILESYSDIRS;
 pub const ACLO_VIRTUALNAMESPACE = AUTOCOMPLETELISTOPTIONS.VIRTUALNAMESPACE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IACList2_Value = @import("../zig.zig").Guid.initString("470141a0-5186-11d2-bbb6-0060977b464c");
 pub const IID_IACList2 = &IID_IACList2_Value;
 pub const IACList2 = extern struct {
@@ -19484,6 +18895,7 @@ pub const IACList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IProgressDialog_Value = @import("../zig.zig").Guid.initString("ebbc7c04-315e-11d2-b62f-006097df5bd4");
 pub const IID_IProgressDialog = &IID_IProgressDialog_Value;
 pub const IProgressDialog = extern struct {
@@ -19586,6 +18998,7 @@ pub const IProgressDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDockingWindowSite_Value = @import("../zig.zig").Guid.initString("2a342fc2-7b26-11d0-8ca9-00a0c92dbfe8");
 pub const IID_IDockingWindowSite = &IID_IDockingWindowSite_Value;
 pub const IDockingWindowSite = extern struct {
@@ -19741,6 +19154,7 @@ pub const SHChangeNotifyEntry = extern struct {
     fRecursive: BOOL,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellChangeNotify_Value = @import("../zig.zig").Guid.initString("d82be2b1-5764-11d0-a96e-00c04fd705a2");
 pub const IID_IShellChangeNotify = &IID_IShellChangeNotify_Value;
 pub const IShellChangeNotify = extern struct {
@@ -19764,6 +19178,7 @@ pub const IShellChangeNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IQueryInfo_Value = @import("../zig.zig").Guid.initString("00021500-0000-0000-c000-000000000046");
 pub const IID_IQueryInfo = &IID_IQueryInfo_Value;
 pub const IQueryInfo = extern struct {
@@ -20228,6 +19643,7 @@ pub const OPENASINFO = extern struct {
     oaifInFlags: OPEN_AS_INFO_FLAGS,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IShellFolderViewCB_Value = @import("../zig.zig").Guid.initString("2047e320-f2a9-11ce-ae65-08002b2e1262");
 pub const IID_IShellFolderViewCB = &IID_IShellFolderViewCB_Value;
 pub const IShellFolderViewCB = extern struct {
@@ -20295,6 +19711,7 @@ pub const ITEMSPACING = extern struct {
     cyLarge: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellFolderView_Value = @import("../zig.zig").Guid.initString("37a378c0-f82d-11ce-ae65-08002b2e1262");
 pub const IID_IShellFolderView = &IID_IShellFolderView_Value;
 pub const IShellFolderView = extern struct {
@@ -20622,6 +20039,7 @@ pub const SHELLFLAGSTATE = extern struct {
     _bitfield: i32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamedPropertyBag_Value = @import("../zig.zig").Guid.initString("fb700430-952c-11d1-946f-000000000000");
 pub const IID_INamedPropertyBag = &IID_INamedPropertyBag_Value;
 pub const INamedPropertyBag = extern struct {
@@ -20675,6 +20093,7 @@ pub const IESHORTCUT_OPENNEWTAB = IESHORTCUTFLAGS.OPENNEWTAB;
 pub const IESHORTCUT_FORCENAVIGATE = IESHORTCUTFLAGS.FORCENAVIGATE;
 pub const IESHORTCUT_BACKGROUNDTAB = IESHORTCUTFLAGS.BACKGROUNDTAB;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INewShortcutHookA_Value = @import("../zig.zig").Guid.initString("000214e1-0000-0000-c000-000000000046");
 pub const IID_INewShortcutHookA = &IID_INewShortcutHookA_Value;
 pub const INewShortcutHookA = extern struct {
@@ -20741,6 +20160,7 @@ pub const INewShortcutHookA = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INewShortcutHookW_Value = @import("../zig.zig").Guid.initString("000214f7-0000-0000-c000-000000000046");
 pub const IID_INewShortcutHookW = &IID_INewShortcutHookW_Value;
 pub const INewShortcutHookW = extern struct {
@@ -20861,6 +20281,7 @@ pub const ICopyHookW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ICurrentWorkingDirectory_Value = @import("../zig.zig").Guid.initString("91956d21-9276-11d1-921a-006097df5bd4");
 pub const IID_ICurrentWorkingDirectory = &IID_ICurrentWorkingDirectory_Value;
 pub const ICurrentWorkingDirectory = extern struct {
@@ -20891,6 +20312,7 @@ pub const ICurrentWorkingDirectory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDockingWindowFrame_Value = @import("../zig.zig").Guid.initString("47d2657a-7b27-11d0-8ca9-00a0c92dbfe8");
 pub const IID_IDockingWindowFrame = &IID_IDockingWindowFrame_Value;
 pub const IDockingWindowFrame = extern struct {
@@ -20933,6 +20355,7 @@ pub const IDockingWindowFrame = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IThumbnailCapture_Value = @import("../zig.zig").Guid.initString("4ea39266-7211-409f-b622-f63dbd16c533");
 pub const IID_IThumbnailCapture = &IID_IThumbnailCapture_Value;
 pub const IThumbnailCapture = extern struct {
@@ -20969,6 +20392,7 @@ pub const BANDINFOSFB = extern struct {
     pidl: *ITEMIDLIST,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellFolderBand_Value = @import("../zig.zig").Guid.initString("7fe80cc8-c247-11d0-b93a-00a0c90312e1");
 pub const IID_IShellFolderBand = &IID_IShellFolderBand_Value;
 pub const IShellFolderBand = extern struct {
@@ -21077,6 +20501,7 @@ pub const SHCOLUMNDATA = extern struct {
     wszFile: [260]u16,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IColumnProvider_Value = @import("../zig.zig").Guid.initString("e8025004-1c42-11d2-be2c-00a0c9a83da1");
 pub const IID_IColumnProvider = &IID_IColumnProvider_Value;
 pub const IColumnProvider = extern struct {
@@ -21123,6 +20548,7 @@ pub const SHChangeProductKeyAsIDList = extern struct {
     cbZero: u16,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IDocViewSite_Value = @import("../zig.zig").Guid.initString("87d605e0-c511-11cf-89a9-00a0c9054129");
 pub const IID_IDocViewSite = &IID_IDocViewSite_Value;
 pub const IDocViewSite = extern struct {
@@ -21531,6 +20957,7 @@ pub const FTA_NoRecentDocs = FILETYPEATTRIBUTEFLAGS.NoRecentDocs;
 pub const FTA_SafeForElevation = FILETYPEATTRIBUTEFLAGS.SafeForElevation;
 pub const FTA_AlwaysUseDirectInvoke = FILETYPEATTRIBUTEFLAGS.AlwaysUseDirectInvoke;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IQueryAssociations_Value = @import("../zig.zig").Guid.initString("c46ca590-3c3f-11d2-bee6-0000f805ca57");
 pub const IID_IQueryAssociations = &IID_IQueryAssociations_Value;
 pub const IQueryAssociations = extern struct {
@@ -21838,6 +21265,7 @@ pub const SLOWAPPINFO = extern struct {
     pszImage: PWSTR,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellApp_Value = @import("../zig.zig").Guid.initString("a3e14960-935f-11d1-b8b8-006008059382");
 pub const IID_IShellApp = &IID_IShellApp_Value;
 pub const IShellApp = extern struct {
@@ -21913,6 +21341,7 @@ pub const PUBAPPINFO = extern struct {
     stExpire: SYSTEMTIME,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IPublishedApp_Value = @import("../zig.zig").Guid.initString("1bc752e0-9046-11d1-b8b3-006008059382");
 pub const IID_IPublishedApp = &IID_IPublishedApp_Value;
 pub const IPublishedApp = extern struct {
@@ -21949,6 +21378,7 @@ pub const IPublishedApp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPublishedApp2_Value = @import("../zig.zig").Guid.initString("12b81347-1b3a-4a04-aa61-3f768b67fd7e");
 pub const IID_IPublishedApp2 = &IID_IPublishedApp2_Value;
 pub const IPublishedApp2 = extern struct {
@@ -21971,6 +21401,7 @@ pub const IPublishedApp2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumPublishedApps_Value = @import("../zig.zig").Guid.initString("0b124f8c-91f0-11d1-b8b5-006008059382");
 pub const IID_IEnumPublishedApps = &IID_IEnumPublishedApps_Value;
 pub const IEnumPublishedApps = extern struct {
@@ -21999,6 +21430,7 @@ pub const IEnumPublishedApps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAppPublisher_Value = @import("../zig.zig").Guid.initString("07250a10-9cf9-11d1-9076-006008059382");
 pub const IID_IAppPublisher = &IID_IAppPublisher_Value;
 pub const IAppPublisher = extern struct {
@@ -22213,6 +21645,7 @@ pub const CPCFO_ENABLE_TOUCH_KEYBOARD_AUTO_INVOKE = CREDENTIAL_PROVIDER_CREDENTI
 pub const CPCFO_NUMBERS_ONLY = CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS.NUMBERS_ONLY;
 pub const CPCFO_SHOW_ENGLISH_KEYBOARD = CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS.SHOW_ENGLISH_KEYBOARD;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICredentialProviderCredential_Value = @import("../zig.zig").Guid.initString("63913a93-40c1-481a-818d-4072ff8c70cc");
 pub const IID_ICredentialProviderCredential = &IID_ICredentialProviderCredential_Value;
 pub const ICredentialProviderCredential = extern struct {
@@ -22380,6 +21813,7 @@ pub const ICredentialProviderCredential = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IQueryContinueWithStatus_Value = @import("../zig.zig").Guid.initString("9090be5b-502b-41fb-bccc-0049a6c7254b");
 pub const IID_IQueryContinueWithStatus = &IID_IQueryContinueWithStatus_Value;
 pub const IQueryContinueWithStatus = extern struct {
@@ -22401,6 +21835,7 @@ pub const IQueryContinueWithStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IConnectableCredentialProviderCredential_Value = @import("../zig.zig").Guid.initString("9387928b-ac75-4bf9-8ab2-2b93c4a55290");
 pub const IID_IConnectableCredentialProviderCredential = &IID_IConnectableCredentialProviderCredential_Value;
 pub const IConnectableCredentialProviderCredential = extern struct {
@@ -22429,6 +21864,7 @@ pub const IConnectableCredentialProviderCredential = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICredentialProviderCredentialEvents_Value = @import("../zig.zig").Guid.initString("fa6fa76b-66b7-4b11-95f1-86171118e816");
 pub const IID_ICredentialProviderCredentialEvents = &IID_ICredentialProviderCredentialEvents_Value;
 pub const ICredentialProviderCredentialEvents = extern struct {
@@ -22541,6 +21977,7 @@ pub const ICredentialProviderCredentialEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICredentialProvider_Value = @import("../zig.zig").Guid.initString("d27c3481-5a1c-45b2-8aaa-c20ebbe8229e");
 pub const IID_ICredentialProvider = &IID_ICredentialProvider_Value;
 pub const ICredentialProvider = extern struct {
@@ -22623,6 +22060,7 @@ pub const ICredentialProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICredentialProviderEvents_Value = @import("../zig.zig").Guid.initString("34201e5a-a787-41a3-a5a4-bd6dcf2a854e");
 pub const IID_ICredentialProviderEvents = &IID_ICredentialProviderEvents_Value;
 pub const ICredentialProviderEvents = extern struct {
@@ -22644,6 +22082,7 @@ pub const ICredentialProviderEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICredentialProviderFilter_Value = @import("../zig.zig").Guid.initString("a5da53f9-d475-4080-a120-910c4a739880");
 pub const IID_ICredentialProviderFilter = &IID_ICredentialProviderFilter_Value;
 pub const ICredentialProviderFilter = extern struct {
@@ -22678,6 +22117,7 @@ pub const ICredentialProviderFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderCredential2_Value = @import("../zig.zig").Guid.initString("fd672c54-40ea-4d6e-9b49-cfb1a7507bd7");
 pub const IID_ICredentialProviderCredential2 = &IID_ICredentialProviderCredential2_Value;
 pub const ICredentialProviderCredential2 = extern struct {
@@ -22699,6 +22139,7 @@ pub const ICredentialProviderCredential2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderCredentialWithFieldOptions_Value = @import("../zig.zig").Guid.initString("dbc6fb30-c843-49e3-a645-573e6f39446a");
 pub const IID_ICredentialProviderCredentialWithFieldOptions = &IID_ICredentialProviderCredentialWithFieldOptions_Value;
 pub const ICredentialProviderCredentialWithFieldOptions = extern struct {
@@ -22721,6 +22162,7 @@ pub const ICredentialProviderCredentialWithFieldOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderCredentialEvents2_Value = @import("../zig.zig").Guid.initString("b53c00b6-9922-4b78-b1f4-ddfe774dc39b");
 pub const IID_ICredentialProviderCredentialEvents2 = &IID_ICredentialProviderCredentialEvents2_Value;
 pub const ICredentialProviderCredentialEvents2 = extern struct {
@@ -22758,6 +22200,7 @@ pub const ICredentialProviderCredentialEvents2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderUser_Value = @import("../zig.zig").Guid.initString("13793285-3ea6-40fd-b420-15f47da41fbb");
 pub const IID_ICredentialProviderUser = &IID_ICredentialProviderUser_Value;
 pub const ICredentialProviderUser = extern struct {
@@ -22805,6 +22248,7 @@ pub const ICredentialProviderUser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderUserArray_Value = @import("../zig.zig").Guid.initString("90c119ae-0f18-4520-a1f1-114366a40fe8");
 pub const IID_ICredentialProviderUserArray = &IID_ICredentialProviderUserArray_Value;
 pub const ICredentialProviderUserArray = extern struct {
@@ -22851,6 +22295,7 @@ pub const ICredentialProviderUserArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ICredentialProviderSetUserArray_Value = @import("../zig.zig").Guid.initString("095c1484-1c0c-4388-9c6d-500e61bf84bd");
 pub const IID_ICredentialProviderSetUserArray = &IID_ICredentialProviderSetUserArray_Value;
 pub const ICredentialProviderSetUserArray = extern struct {
@@ -22896,6 +22341,7 @@ pub const CLSID_SyncResultsFolder = &CLSID_SyncResultsFolder_Value;
 const CLSID_SimpleConflictPresenter_Value = @import("../zig.zig").Guid.initString("7a0f6ab7-ed84-46b6-b47e-02aa159a152b");
 pub const CLSID_SimpleConflictPresenter = &CLSID_SimpleConflictPresenter_Value;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrHandlerCollection_Value = @import("../zig.zig").Guid.initString("a7f337a3-d20b-45cb-9ed7-87d094ca5045");
 pub const IID_ISyncMgrHandlerCollection = &IID_ISyncMgrHandlerCollection_Value;
 pub const ISyncMgrHandlerCollection = extern struct {
@@ -22989,6 +22435,7 @@ pub const SYNCMGR_HPM_HIDDEN_BY_DEFAULT = SYNCMGR_HANDLER_POLICIES.HIDDEN_BY_DEF
 pub const SYNCMGR_HPM_BACKGROUND_SYNC_ONLY = SYNCMGR_HANDLER_POLICIES.BACKGROUND_SYNC_ONLY;
 pub const SYNCMGR_HPM_VALID_MASK = SYNCMGR_HANDLER_POLICIES.VALID_MASK;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrHandler_Value = @import("../zig.zig").Guid.initString("04ec2e43-ac77-49f9-9b98-0307ef7a72a2");
 pub const IID_ISyncMgrHandler = &IID_ISyncMgrHandler_Value;
 pub const ISyncMgrHandler = extern struct {
@@ -23091,6 +22538,7 @@ pub const SYNCMGR_HT_COMPUTER = SYNCMGR_HANDLER_TYPE.COMPUTER;
 pub const SYNCMGR_HT_MIN = SYNCMGR_HANDLER_TYPE.MIN;
 pub const SYNCMGR_HT_MAX = SYNCMGR_HANDLER_TYPE.MAX;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrHandlerInfo_Value = @import("../zig.zig").Guid.initString("4ff1d798-ecf7-4524-aa81-1e362a0aef3a");
 pub const IID_ISyncMgrHandlerInfo = &IID_ISyncMgrHandlerInfo_Value;
 pub const ISyncMgrHandlerInfo = extern struct {
@@ -23157,6 +22605,7 @@ pub const ISyncMgrHandlerInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSyncItemContainer_Value = @import("../zig.zig").Guid.initString("90701133-be32-4129-a65c-99e616cafff4");
 pub const IID_ISyncMgrSyncItemContainer = &IID_ISyncMgrSyncItemContainer_Value;
 pub const ISyncMgrSyncItemContainer = extern struct {
@@ -23247,6 +22696,7 @@ pub const SYNCMGR_IPM_DISABLE_DELETE = SYNCMGR_ITEM_POLICIES.DISABLE_DELETE;
 pub const SYNCMGR_IPM_HIDDEN_BY_DEFAULT = SYNCMGR_ITEM_POLICIES.HIDDEN_BY_DEFAULT;
 pub const SYNCMGR_IPM_VALID_MASK = SYNCMGR_ITEM_POLICIES.VALID_MASK;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSyncItem_Value = @import("../zig.zig").Guid.initString("b20b24ce-2593-4f04-bd8b-7ad6c45051cd");
 pub const IID_ISyncMgrSyncItem = &IID_ISyncMgrSyncItem_Value;
 pub const ISyncMgrSyncItem = extern struct {
@@ -23325,6 +22775,7 @@ pub const ISyncMgrSyncItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSyncItemInfo_Value = @import("../zig.zig").Guid.initString("e7fd9502-be0c-4464-90a1-2b5277031232");
 pub const IID_ISyncMgrSyncItemInfo = &IID_ISyncMgrSyncItemInfo_Value;
 pub const ISyncMgrSyncItemInfo = extern struct {
@@ -23376,6 +22827,7 @@ pub const ISyncMgrSyncItemInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumSyncMgrSyncItems_Value = @import("../zig.zig").Guid.initString("54b3abf3-f085-4181-b546-e29c403c726b");
 pub const IID_IEnumSyncMgrSyncItems = &IID_IEnumSyncMgrSyncItems_Value;
 pub const IEnumSyncMgrSyncItems = extern struct {
@@ -23468,6 +22920,7 @@ pub const SYNCMGR_EVENT_FLAGS = extern enum(i32) {
 pub const SYNCMGR_EF_NONE = SYNCMGR_EVENT_FLAGS.NONE;
 pub const SYNCMGR_EF_VALID = SYNCMGR_EVENT_FLAGS.VALID;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSessionCreator_Value = @import("../zig.zig").Guid.initString("17f48517-f305-4321-a08d-b25a834918fd");
 pub const IID_ISyncMgrSessionCreator = &IID_ISyncMgrSessionCreator_Value;
 pub const ISyncMgrSessionCreator = extern struct {
@@ -23492,6 +22945,7 @@ pub const ISyncMgrSessionCreator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSyncCallback_Value = @import("../zig.zig").Guid.initString("884ccd87-b139-4937-a4ba-4f8e19513fbe");
 pub const IID_ISyncMgrSyncCallback = &IID_ISyncMgrSyncCallback_Value;
 pub const ISyncMgrSyncCallback = extern struct {
@@ -23599,6 +23053,7 @@ pub const ISyncMgrSyncCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrUIOperation_Value = @import("../zig.zig").Guid.initString("fc7cfa47-dfe1-45b5-a049-8cfd82bec271");
 pub const IID_ISyncMgrUIOperation = &IID_ISyncMgrUIOperation_Value;
 pub const ISyncMgrUIOperation = extern struct {
@@ -23620,6 +23075,7 @@ pub const ISyncMgrUIOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrEventLinkUIOperation_Value = @import("../zig.zig").Guid.initString("64522e52-848b-4015-89ce-5a36f00b94ff");
 pub const IID_ISyncMgrEventLinkUIOperation = &IID_ISyncMgrEventLinkUIOperation_Value;
 pub const ISyncMgrEventLinkUIOperation = extern struct {
@@ -23642,6 +23098,7 @@ pub const ISyncMgrEventLinkUIOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrScheduleWizardUIOperation_Value = @import("../zig.zig").Guid.initString("459a6c84-21d2-4ddc-8a53-f023a46066f2");
 pub const IID_ISyncMgrScheduleWizardUIOperation = &IID_ISyncMgrScheduleWizardUIOperation_Value;
 pub const ISyncMgrScheduleWizardUIOperation = extern struct {
@@ -23663,6 +23120,7 @@ pub const ISyncMgrScheduleWizardUIOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSyncResult_Value = @import("../zig.zig").Guid.initString("2b90f17e-5a3e-4b33-bb7f-1bc48056b94d");
 pub const IID_ISyncMgrSyncResult = &IID_ISyncMgrSyncResult_Value;
 pub const ISyncMgrSyncResult = extern struct {
@@ -23719,6 +23177,7 @@ pub const SYNCMGR_UR_CHANGED = SYNCMGR_UPDATE_REASON.CHANGED;
 pub const SYNCMGR_UR_REMOVED = SYNCMGR_UPDATE_REASON.REMOVED;
 pub const SYNCMGR_UR_MAX = SYNCMGR_UPDATE_REASON.MAX;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrControl_Value = @import("../zig.zig").Guid.initString("9b63616c-36b2-46bc-959f-c1593952d19b");
 pub const IID_ISyncMgrControl = &IID_ISyncMgrControl_Value;
 pub const ISyncMgrControl = extern struct {
@@ -23884,6 +23343,7 @@ pub const ISyncMgrControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrEventStore_Value = @import("../zig.zig").Guid.initString("37e412f9-016e-44c2-81ff-db3add774266");
 pub const IID_ISyncMgrEventStore = &IID_ISyncMgrEventStore_Value;
 pub const ISyncMgrEventStore = extern struct {
@@ -23931,6 +23391,7 @@ pub const ISyncMgrEventStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrEvent_Value = @import("../zig.zig").Guid.initString("fee0ef8b-46bd-4db4-b7e6-ff2c687313bc");
 pub const IID_ISyncMgrEvent = &IID_ISyncMgrEvent_Value;
 pub const ISyncMgrEvent = extern struct {
@@ -24032,6 +23493,7 @@ pub const ISyncMgrEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumSyncMgrEvents_Value = @import("../zig.zig").Guid.initString("c81a1d4e-8cf7-4683-80e0-bcae88d677b6");
 pub const IID_IEnumSyncMgrEvents = &IID_IEnumSyncMgrEvents_Value;
 pub const IEnumSyncMgrEvents = extern struct {
@@ -24083,6 +23545,7 @@ pub const SYNCMGR_CONFLICT_ID_INFO = extern struct {
     pblobExtra: *BYTE_BLOB,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictStore_Value = @import("../zig.zig").Guid.initString("cf8fc579-c396-4774-85f1-d908a831156e");
 pub const IID_ISyncMgrConflictStore = &IID_ISyncMgrConflictStore_Value;
 pub const ISyncMgrConflictStore = extern struct {
@@ -24135,6 +23598,7 @@ pub const ISyncMgrConflictStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumSyncMgrConflict_Value = @import("../zig.zig").Guid.initString("82705914-dda3-4893-ba99-49de6c8c8036");
 pub const IID_IEnumSyncMgrConflict = &IID_IEnumSyncMgrConflict_Value;
 pub const IEnumSyncMgrConflict = extern struct {
@@ -24188,6 +23652,7 @@ pub const SYNCMGR_CONFLICT_ITEM_TYPE = extern enum(i32) {
 pub const SYNCMGR_CIT_UPDATED = SYNCMGR_CONFLICT_ITEM_TYPE.UPDATED;
 pub const SYNCMGR_CIT_DELETED = SYNCMGR_CONFLICT_ITEM_TYPE.DELETED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflict_Value = @import("../zig.zig").Guid.initString("9c204249-c443-4ba4-85ed-c972681db137");
 pub const IID_ISyncMgrConflict = &IID_ISyncMgrConflict_Value;
 pub const ISyncMgrConflict = extern struct {
@@ -24267,6 +23732,7 @@ pub const SYNCMGR_RF_CONTINUE = SYNCMGR_RESOLUTION_FEEDBACK.CONTINUE;
 pub const SYNCMGR_RF_REFRESH = SYNCMGR_RESOLUTION_FEEDBACK.REFRESH;
 pub const SYNCMGR_RF_CANCEL = SYNCMGR_RESOLUTION_FEEDBACK.CANCEL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrResolutionHandler_Value = @import("../zig.zig").Guid.initString("40a3d052-8bff-4c4b-a338-d4a395700de9");
 pub const IID_ISyncMgrResolutionHandler = &IID_ISyncMgrResolutionHandler_Value;
 pub const ISyncMgrResolutionHandler = extern struct {
@@ -24322,6 +23788,7 @@ pub const ISyncMgrResolutionHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictPresenter_Value = @import("../zig.zig").Guid.initString("0b4f5353-fd2b-42cd-8763-4779f2d508a3");
 pub const IID_ISyncMgrConflictPresenter = &IID_ISyncMgrConflictPresenter_Value;
 pub const ISyncMgrConflictPresenter = extern struct {
@@ -24368,6 +23835,7 @@ pub const SYNCMGR_PC_KEEP_RECENT = SYNCMGR_PRESENTER_CHOICE.KEEP_RECENT;
 pub const SYNCMGR_PC_REMOVE_FROM_SYNC_SET = SYNCMGR_PRESENTER_CHOICE.REMOVE_FROM_SYNC_SET;
 pub const SYNCMGR_PC_SKIP = SYNCMGR_PRESENTER_CHOICE.SKIP;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictResolveInfo_Value = @import("../zig.zig").Guid.initString("c405a219-25a2-442e-8743-b845a2cee93f");
 pub const IID_ISyncMgrConflictResolveInfo = &IID_ISyncMgrConflictResolveInfo_Value;
 pub const ISyncMgrConflictResolveInfo = extern struct {
@@ -24451,6 +23919,7 @@ pub const ISyncMgrConflictResolveInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictFolder_Value = @import("../zig.zig").Guid.initString("59287f5e-bc81-4fca-a7f1-e5a8ecdb1d69");
 pub const IID_ISyncMgrConflictFolder = &IID_ISyncMgrConflictFolder_Value;
 pub const ISyncMgrConflictFolder = extern struct {
@@ -24487,6 +23956,7 @@ pub const CONFIRM_CONFLICT_RESULT_INFO = extern struct {
     iItemIndex: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictItems_Value = @import("../zig.zig").Guid.initString("9c7ead52-8023-4936-a4db-d2a9a99e436a");
 pub const IID_ISyncMgrConflictItems = &IID_ISyncMgrConflictItems_Value;
 pub const ISyncMgrConflictItems = extern struct {
@@ -24517,6 +23987,7 @@ pub const ISyncMgrConflictItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrConflictResolutionItems_Value = @import("../zig.zig").Guid.initString("458725b9-129d-4135-a998-9ceafec27007");
 pub const IID_ISyncMgrConflictResolutionItems = &IID_ISyncMgrConflictResolutionItems_Value;
 pub const ISyncMgrConflictResolutionItems = extern struct {
@@ -24550,6 +24021,7 @@ pub const ISyncMgrConflictResolutionItems = extern struct {
 const CLSID_InputPanelConfiguration_Value = @import("../zig.zig").Guid.initString("2853add3-f096-4c63-a78f-7fa3ea837fb7");
 pub const CLSID_InputPanelConfiguration = &CLSID_InputPanelConfiguration_Value;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IInputPanelConfiguration_Value = @import("../zig.zig").Guid.initString("41c81592-514c-48bd-a22e-e6af638521a6");
 pub const IID_IInputPanelConfiguration = &IID_IInputPanelConfiguration_Value;
 pub const IInputPanelConfiguration = extern struct {
@@ -24570,6 +24042,7 @@ pub const IInputPanelConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IInputPanelInvocationConfiguration_Value = @import("../zig.zig").Guid.initString("a213f136-3b45-4362-a332-efb6547cd432");
 pub const IID_IInputPanelInvocationConfiguration = &IID_IInputPanelInvocationConfiguration_Value;
 pub const IInputPanelInvocationConfiguration = extern struct {
@@ -24668,6 +24141,7 @@ pub const WTS_THUMBNAILID = extern struct {
     rgbKey: [16]u8,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISharedBitmap_Value = @import("../zig.zig").Guid.initString("091162a4-bc96-411f-aae8-c5122cd03363");
 pub const IID_ISharedBitmap = &IID_ISharedBitmap_Value;
 pub const ISharedBitmap = extern struct {
@@ -24722,6 +24196,7 @@ pub const ISharedBitmap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IThumbnailCache_Value = @import("../zig.zig").Guid.initString("f676c15d-596a-4ce2-8234-33996f445db1");
 pub const IID_IThumbnailCache = &IID_IThumbnailCache_Value;
 pub const IThumbnailCache = extern struct {
@@ -24759,6 +24234,7 @@ pub const IThumbnailCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IThumbnailProvider_Value = @import("../zig.zig").Guid.initString("e357fccd-a995-4576-b01f-234630154e96");
 pub const IID_IThumbnailProvider = &IID_IThumbnailProvider_Value;
 pub const IThumbnailProvider = extern struct {
@@ -24782,6 +24258,7 @@ pub const IThumbnailProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IThumbnailSettings_Value = @import("../zig.zig").Guid.initString("f4376f00-bef5-4d45-80f3-1e023bbf1209");
 pub const IID_IThumbnailSettings = &IID_IThumbnailSettings_Value;
 pub const IThumbnailSettings = extern struct {
@@ -24803,6 +24280,7 @@ pub const IThumbnailSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IThumbnailCachePrimer_Value = @import("../zig.zig").Guid.initString("0f03f8fe-2b26-46f0-965a-212aa8d66b76");
 pub const IID_IThumbnailCachePrimer = &IID_IThumbnailCachePrimer_Value;
 pub const IThumbnailCachePrimer = extern struct {
@@ -24829,6 +24307,7 @@ pub const IThumbnailCachePrimer = extern struct {
 const CLSID_ShellImageDataFactory_Value = @import("../zig.zig").Guid.initString("66e4e4fb-f385-4dd0-8d74-a2efd1bc6178");
 pub const CLSID_ShellImageDataFactory = &CLSID_ShellImageDataFactory_Value;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellImageDataFactory_Value = @import("../zig.zig").Guid.initString("9be8ed5c-edab-4d75-90f3-bd5bdbb21c82");
 pub const IID_IShellImageDataFactory = &IID_IShellImageDataFactory_Value;
 pub const IShellImageDataFactory = extern struct {
@@ -24877,6 +24356,7 @@ pub const IShellImageDataFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellImageData_Value = @import("../zig.zig").Guid.initString("bfdeec12-8040-4403-a5ea-9e07dafcf530");
 pub const IID_IShellImageData = &IID_IShellImageData_Value;
 pub const IShellImageData = extern struct {
@@ -25130,6 +24610,7 @@ pub const IShellImageData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IShellImageDataAbort_Value = @import("../zig.zig").Guid.initString("53fb8e58-50c0-4003-b4aa-0c8df28e7f3a");
 pub const IID_IShellImageDataAbort = &IID_IShellImageDataAbort_Value;
 pub const IShellImageDataAbort = extern struct {
@@ -25280,6 +24761,7 @@ pub const SYNCMGRLOGERRORINFO = extern struct {
     ItemID: Guid,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISyncMgrSynchronizeCallback_Value = @import("../zig.zig").Guid.initString("6295df41-35ee-11d1-8707-00c04fd93327");
 pub const IID_ISyncMgrSynchronizeCallback = &IID_ISyncMgrSynchronizeCallback_Value;
 pub const ISyncMgrSynchronizeCallback = extern struct {
@@ -25397,6 +24879,7 @@ pub const SYNCMGRITEM = extern struct {
     ftLastUpdate: FILETIME,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISyncMgrEnumItems_Value = @import("../zig.zig").Guid.initString("6295df2a-35ee-11d1-8707-00c04fd93327");
 pub const IID_ISyncMgrEnumItems = &IID_ISyncMgrEnumItems_Value;
 pub const ISyncMgrEnumItems = extern struct {
@@ -25489,6 +24972,7 @@ pub const SYNCMGRITEMSTATE = extern enum(i32) {
 pub const SYNCMGRITEMSTATE_UNCHECKED = SYNCMGRITEMSTATE.UNCHECKED;
 pub const SYNCMGRITEMSTATE_CHECKED = SYNCMGRITEMSTATE.CHECKED;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISyncMgrSynchronize_Value = @import("../zig.zig").Guid.initString("6295df40-35ee-11d1-8707-00c04fd93327");
 pub const IID_ISyncMgrSynchronize = &IID_ISyncMgrSynchronize_Value;
 pub const ISyncMgrSynchronize = extern struct {
@@ -25600,6 +25084,7 @@ pub const SYNCMGRINVOKEFLAGS = extern enum(i32) {
 pub const SYNCMGRINVOKE_STARTSYNC = SYNCMGRINVOKEFLAGS.STARTSYNC;
 pub const SYNCMGRINVOKE_MINIMIZED = SYNCMGRINVOKEFLAGS.MINIMIZED;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISyncMgrSynchronizeInvoke_Value = @import("../zig.zig").Guid.initString("6295df2c-35ee-11d1-8707-00c04fd93327");
 pub const IID_ISyncMgrSynchronizeInvoke = &IID_ISyncMgrSynchronizeInvoke_Value;
 pub const ISyncMgrSynchronizeInvoke = extern struct {
@@ -25640,6 +25125,7 @@ pub const SYNCMGRREGISTERFLAG_CONNECT = SYNCMGRREGISTERFLAGS.CONNECT;
 pub const SYNCMGRREGISTERFLAG_PENDINGDISCONNECT = SYNCMGRREGISTERFLAGS.PENDINGDISCONNECT;
 pub const SYNCMGRREGISTERFLAG_IDLE = SYNCMGRREGISTERFLAGS.IDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ISyncMgrRegister_Value = @import("../zig.zig").Guid.initString("6295df42-35ee-11d1-8707-00c04fd93327");
 pub const IID_ISyncMgrRegister = &IID_ISyncMgrRegister_Value;
 pub const ISyncMgrRegister = extern struct {
@@ -25695,6 +25181,7 @@ pub const ReturnOnlyIfCached = ThumbnailStreamCacheOptions.ReturnOnlyIfCached;
 pub const ResizeThumbnail = ThumbnailStreamCacheOptions.ResizeThumbnail;
 pub const AllowSmallerSize = ThumbnailStreamCacheOptions.AllowSmallerSize;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IThumbnailStreamCache_Value = @import("../zig.zig").Guid.initString("90e11430-9569-41d8-ae75-6d4d2ae7cca0");
 pub const IID_IThumbnailStreamCache = &IID_IThumbnailStreamCache_Value;
 pub const IThumbnailStreamCache = extern struct {
@@ -26836,6 +26323,7 @@ pub const CIE4ConnectionPoint = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IExpDispSupportXP_Value = @import("../zig.zig").Guid.initString("2f0dd58c-f789-4f14-99fb-9293b3c9c212");
 pub const IID_IExpDispSupportXP = &IID_IExpDispSupportXP_Value;
 pub const IExpDispSupportXP = extern struct {
@@ -27349,6 +26837,7 @@ pub const TOOLBARITEM = extern struct {
     hMon: HMONITOR,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IBrowserService2_Value = @import("../zig.zig").Guid.initString("68bd21cc-438b-11d2-a560-00a0c92dbfe8");
 pub const IID_IBrowserService2 = &IID_IBrowserService2_Value;
 pub const IBrowserService2 = extern struct {
@@ -27882,6 +27371,7 @@ pub const IEPDNFLAGS = extern enum(i32) {
 };
 pub const IEPDN_BINDINGUI = IEPDNFLAGS.I;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBrowserService3_Value = @import("../zig.zig").Guid.initString("27d7ce21-762d-48f3-86f3-40e2fd3749c4");
 pub const IID_IBrowserService3 = &IID_IBrowserService3_Value;
 pub const IBrowserService3 = extern struct {
@@ -27915,6 +27405,7 @@ pub const IBrowserService3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBrowserService4_Value = @import("../zig.zig").Guid.initString("639f1bff-e135-4096-abd8-e0f504d649a4");
 pub const IID_IBrowserService4 = &IID_IBrowserService4_Value;
 pub const IBrowserService4 = extern struct {
@@ -27950,6 +27441,7 @@ pub const IBrowserService4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITrackShellMenu_Value = @import("../zig.zig").Guid.initString("8278f932-2a3e-11d2-838f-00c04fd918d0");
 pub const IID_ITrackShellMenu = &IID_ITrackShellMenu_Value;
 pub const ITrackShellMenu = extern struct {
@@ -27994,6 +27486,7 @@ pub const TI_FLAGS = extern enum(i32) {
 pub const TI_BITMAP = TI_FLAGS.BITMAP;
 pub const TI_JPEG = TI_FLAGS.JPEG;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITranscodeImage_Value = @import("../zig.zig").Guid.initString("bae86ddd-dc11-421c-b7ab-cc55d1d65c44");
 pub const IID_ITranscodeImage = &IID_ITranscodeImage_Value;
 pub const ITranscodeImage = extern struct {
@@ -28230,14 +27723,18 @@ pub const PAPPSTATE_CHANGE_ROUTINE = fn(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const _APPSTATE_REGISTRATION = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _APPSTATE_REGISTRATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const PAPPCONSTRAIN_CHANGE_ROUTINE = fn(
     Constrained: u8,
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const _APPCONSTRAIN_REGISTRATION = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _APPCONSTRAIN_REGISTRATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const NC_ADDRESS = extern struct {
     pAddrInfo: *NET_ADDRESS_INFO,
@@ -28245,10 +27742,856 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHGFI_FLAGS = extern enum(i32) {
+    ADDOVERLAYS = 32,
+    ATTR_SPECIFIED = 131072,
+    ATTRIBUTES = 2048,
+    DISPLAYNAME = 512,
+    EXETYPE = 8192,
+    ICON = 256,
+    ICONLOCATION = 4096,
+    LARGEICON = 0,
+    LINKOVERLAY = 32768,
+    OPENICON = 2,
+    OVERLAYINDEX = 64,
+    PIDL = 8,
+    SELECTED = 65536,
+    SHELLICONSIZE = 4,
+    SMALLICON = 1,
+    SYSICONINDEX = 16384,
+    TYPENAME = 1024,
+    USEFILEATTRIBUTES = 16,
+    _,
+};
+pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
+pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
+pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
+pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
+pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
+pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
+pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
+pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
+pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
+pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
+pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
+pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
+pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
+pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
+pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
+pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
+pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
+pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNE_ID = extern enum(u32) {
+    RENAMEITEM = 1,
+    CREATE = 2,
+    DELETE = 4,
+    MKDIR = 8,
+    RMDIR = 16,
+    MEDIAINSERTED = 32,
+    MEDIAREMOVED = 64,
+    DRIVEREMOVED = 128,
+    DRIVEADD = 256,
+    NETSHARE = 512,
+    NETUNSHARE = 1024,
+    ATTRIBUTES = 2048,
+    UPDATEDIR = 4096,
+    UPDATEITEM = 8192,
+    SERVERDISCONNECT = 16384,
+    UPDATEIMAGE = 32768,
+    DRIVEADDGUI = 65536,
+    RENAMEFOLDER = 131072,
+    FREESPACE = 262144,
+    EXTENDED_EVENT = 67108864,
+    ASSOCCHANGED = 134217728,
+    DISKEVENTS = 145439,
+    GLOBALEVENTS = 201687520,
+    ALLEVENTS = 2147483647,
+    INTERRUPT = 2147483648,
+    _,
+};
+pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
+pub const SHCNE_CREATE = SHCNE_ID.CREATE;
+pub const SHCNE_DELETE = SHCNE_ID.DELETE;
+pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
+pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
+pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
+pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
+pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
+pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
+pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
+pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
+pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
+pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
+pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
+pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
+pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
+pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
+pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
+pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
+pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
+pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
+pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
+pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
+pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
+pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNRF_SOURCE = extern enum(i32) {
+    InterruptLevel = 1,
+    ShellLevel = 2,
+    RecursiveInterrupt = 4096,
+    NewDelivery = 32768,
+    _,
+};
+pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
+pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
+pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
+pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNF_FLAGS = extern enum(u32) {
+    IDLIST = 0,
+    PATHA = 1,
+    PRINTERA = 2,
+    DWORD = 3,
+    PATHW = 5,
+    PRINTERW = 6,
+    TYPE = 255,
+    FLUSH = 4096,
+    FLUSHNOWAIT = 12288,
+    NOTIFYRECURSIVE = 65536,
+    PATH = 5,
+    PRINTER = 6,
+    _,
+};
+pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
+pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
+pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
+pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
+pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
+pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
+pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
+pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
+pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
+pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
+pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
+pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const QITIPF_FLAGS = extern enum(i32) {
+    TIPF_DEFAULT = 0,
+    TIPF_USENAME = 1,
+    TIPF_LINKNOTARGET = 2,
+    TIPF_LINKUSETARGET = 4,
+    TIPF_USESLOWTIP = 8,
+    TIPF_SINGLELINE = 16,
+    F_CACHED = 1,
+    F_DONTEXPANDFOLDER = 2,
+    _,
+};
+pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
+pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
+pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
+pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
+pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
+pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
+pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
+pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+
+pub const SHDID_ID = extern enum(i32) {
+    ROOT_REGITEM = 1,
+    FS_FILE = 2,
+    FS_DIRECTORY = 3,
+    FS_OTHER = 4,
+    COMPUTER_DRIVE35 = 5,
+    COMPUTER_DRIVE525 = 6,
+    COMPUTER_REMOVABLE = 7,
+    COMPUTER_FIXED = 8,
+    COMPUTER_NETDRIVE = 9,
+    COMPUTER_CDROM = 10,
+    COMPUTER_RAMDISK = 11,
+    COMPUTER_OTHER = 12,
+    NET_DOMAIN = 13,
+    NET_SERVER = 14,
+    NET_SHARE = 15,
+    NET_RESTOFNET = 16,
+    NET_OTHER = 17,
+    COMPUTER_IMAGING = 18,
+    COMPUTER_AUDIO = 19,
+    COMPUTER_SHAREDDOCS = 20,
+    MOBILE_DEVICE = 21,
+    REMOTE_DESKTOP_DRIVE = 22,
+};
+pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
+pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
+pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
+pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
+pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
+pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
+pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
+pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
+pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
+pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
+pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
+pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
+pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
+pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
+pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
+pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
+pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
+pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
+pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
+pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
+pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
+pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
+
+pub const SHGDFIL_FORMAT = extern enum(i32) {
+    FINDDATA = 1,
+    NETRESOURCE = 2,
+    DESCRIPTIONID = 3,
+};
+pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
+pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
+pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRF_FLAGS = extern enum(i32) {
+    VERIFYEXISTS = 1,
+    TRYPROGRAMEXTENSIONS = 3,
+    FIRSTDIRDEF = 4,
+    DONTFINDLNK = 8,
+    REQUIREABSOLUTE = 16,
+    _,
+};
+pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
+pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
+pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
+pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
+pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PCS_RET = extern enum(u32) {
+    FATAL = 2147483648,
+    REPLACEDCHAR = 1,
+    REMOVEDCHAR = 2,
+    TRUNCATED = 4,
+    PATHTOOLONG = 8,
+    _,
+};
+pub const PCS_FATAL = PCS_RET.FATAL;
+pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
+pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
+pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
+pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MM_FLAGS = extern enum(u32) {
+    ADDSEPARATOR = 1,
+    SUBMENUSHAVEIDS = 2,
+    DONTREMOVESEPS = 4,
+    _,
+};
+pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
+pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
+pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHOP_TYPE = extern enum(i32) {
+    PRINTERNAME = 1,
+    FILEPATH = 2,
+    VOLUMEGUID = 4,
+    _,
+};
+pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
+pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
+pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
+
+pub const SHFMT_ID = extern enum(u32) {
+    T = 65535,
+};
+pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHFMT_OPT = extern enum(i32) {
+    NONE = 0,
+    FULL = 1,
+    SYSONLY = 2,
+    _,
+};
+pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
+pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
+pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
+
+pub const SHFMT_RET = extern enum(u32) {
+    ERROR = 4294967295,
+    CANCEL = 4294967294,
+    NOFORMAT = 4294967293,
+};
+pub const SHFMT_ERROR = SHFMT_RET.ERROR;
+pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
+pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VALIDATEUNC_OPTION = extern enum(i32) {
+    CONNECT = 1,
+    NOUI = 2,
+    PRINT = 4,
+    PERSIST = 8,
+    VALID = 15,
+    _,
+};
+pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
+pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
+pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
+pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
+pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
+
+pub const SFVM_MESSAGE_ID = extern enum(i32) {
+    MERGEMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 3,
+    GETTOOLTIPTEXT = 4,
+    GETBUTTONINFO = 5,
+    GETBUTTONS = 6,
+    INITMENUPOPUP = 7,
+    FSNOTIFY = 14,
+    WINDOWCREATED = 15,
+    GETDETAILSOF = 23,
+    COLUMNCLICK = 24,
+    QUERYFSNOTIFY = 25,
+    DEFITEMCOUNT = 26,
+    DEFVIEWMODE = 27,
+    UNMERGEMENU = 28,
+    UPDATESTATUSBAR = 31,
+    BACKGROUNDENUM = 32,
+    DIDDRAGDROP = 36,
+    SETISFV = 39,
+    THISIDLIST = 41,
+    ADDPROPERTYPAGES = 47,
+    BACKGROUNDENUMDONE = 48,
+    GETNOTIFY = 49,
+    GETSORTDEFAULTS = 53,
+    SIZE = 57,
+    GETZONE = 58,
+    GETPANE = 59,
+    GETHELPTOPIC = 63,
+    GETANIMATION = 68,
+};
+pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
+pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
+pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
+pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
+pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
+pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
+pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
+pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
+pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
+pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
+pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
+pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
+pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
+pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
+pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
+pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
+pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
+pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
+pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
+pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
+pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
+pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
+pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
+pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
+pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
+pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
+pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
+pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
+pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
+
+pub const SFVS_SELECT = extern enum(i32) {
+    NONE = 0,
+    ALLITEMS = 1,
+    INVERT = 2,
+};
+pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
+pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
+pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
+
+pub const DFM_MESSAGE_ID = extern enum(i32) {
+    MERGECONTEXTMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 5,
+    WM_MEASUREITEM = 6,
+    WM_DRAWITEM = 7,
+    WM_INITMENUPOPUP = 8,
+    VALIDATECMD = 9,
+    MERGECONTEXTMENU_TOP = 10,
+    GETHELPTEXTW = 11,
+    INVOKECOMMANDEX = 12,
+    MAPCOMMANDNAME = 13,
+    GETDEFSTATICID = 14,
+    GETVERBW = 15,
+    GETVERBA = 16,
+    MERGECONTEXTMENU_BOTTOM = 17,
+    MODIFYQCMFLAGS = 18,
+};
+pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
+pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
+pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
+pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
+pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
+pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
+pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
+pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
+pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
+pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
+pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
+pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
+pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
+pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
+pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
+pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
+
+pub const DFM_CMD = extern enum(i32) {
+    DELETE = -1,
+    MOVE = -2,
+    COPY = -3,
+    LINK = -4,
+    PROPERTIES = -5,
+    NEWFOLDER = -6,
+    PASTE = -7,
+    VIEWLIST = -8,
+    VIEWDETAILS = -9,
+    PASTELINK = -10,
+    PASTESPECIAL = -11,
+    MODALPROP = -12,
+    RENAME = -13,
+};
+pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
+pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
+pub const DFM_CMD_COPY = DFM_CMD.COPY;
+pub const DFM_CMD_LINK = DFM_CMD.LINK;
+pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
+pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
+pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
+pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
+pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
+pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
+pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
+pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
+pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
+
+pub const PID_IS = extern enum(i32) {
+    URL = 2,
+    NAME = 4,
+    WORKINGDIR = 5,
+    HOTKEY = 6,
+    SHOWCMD = 7,
+    ICONINDEX = 8,
+    ICONFILE = 9,
+    WHATSNEW = 10,
+    AUTHOR = 11,
+    DESCRIPTION = 12,
+    COMMENT = 13,
+    ROAMED = 15,
+};
+pub const PID_IS_URL = PID_IS.URL;
+pub const PID_IS_NAME = PID_IS.NAME;
+pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
+pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
+pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
+pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
+pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
+pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
+pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
+pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
+pub const PID_IS_COMMENT = PID_IS.COMMENT;
+pub const PID_IS_ROAMED = PID_IS.ROAMED;
+
+pub const PID_INTSITE = extern enum(i32) {
+    WHATSNEW = 2,
+    AUTHOR = 3,
+    LASTVISIT = 4,
+    LASTMOD = 5,
+    VISITCOUNT = 6,
+    DESCRIPTION = 7,
+    COMMENT = 8,
+    FLAGS = 9,
+    CONTENTLEN = 10,
+    CONTENTCODE = 11,
+    RECURSE = 12,
+    WATCH = 13,
+    SUBSCRIPTION = 14,
+    URL = 15,
+    TITLE = 16,
+    CODEPAGE = 18,
+    TRACKING = 19,
+    ICONINDEX = 20,
+    ICONFILE = 21,
+    ROAMED = 34,
+};
+pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
+pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
+pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
+pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
+pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
+pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
+pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
+pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
+pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
+pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
+pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
+pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
+pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
+pub const PID_INTSITE_URL = PID_INTSITE.URL;
+pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
+pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
+pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
+pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
+pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
+pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PIDISF_FLAGS = extern enum(i32) {
+    RECENTLYCHANGED = 1,
+    CACHEDSTICKY = 2,
+    CACHEIMAGES = 16,
+    FOLLOWALLLINKS = 32,
+    _,
+};
+pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
+pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
+pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
+pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
+
+pub const PIDISM_OPTIONS = extern enum(i32) {
+    GLOBAL = 0,
+    WATCH = 1,
+    DONTWATCH = 2,
+};
+pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
+pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
+pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
+
+pub const PIDISR_INFO = extern enum(i32) {
+    UP_TO_DATE = 0,
+    NEEDS_ADD = 1,
+    NEEDS_UPDATE = 2,
+    NEEDS_DELETE = 3,
+};
+pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
+pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
+pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
+pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SSF_MASK = extern enum(u32) {
+    SHOWALLOBJECTS = 1,
+    SHOWEXTENSIONS = 2,
+    HIDDENFILEEXTS = 4,
+    SERVERADMINUI = 4,
+    SHOWCOMPCOLOR = 8,
+    SORTCOLUMNS = 16,
+    SHOWSYSFILES = 32,
+    DOUBLECLICKINWEBVIEW = 128,
+    SHOWATTRIBCOL = 256,
+    DESKTOPHTML = 512,
+    WIN95CLASSIC = 1024,
+    DONTPRETTYPATH = 2048,
+    SHOWINFOTIP = 8192,
+    MAPNETDRVBUTTON = 4096,
+    NOCONFIRMRECYCLE = 32768,
+    HIDEICONS = 16384,
+    FILTER = 65536,
+    WEBVIEW = 131072,
+    SHOWSUPERHIDDEN = 262144,
+    SEPPROCESS = 524288,
+    NONETCRAWLING = 1048576,
+    STARTPANELON = 2097152,
+    SHOWSTARTPAGE = 4194304,
+    AUTOCHECKSELECT = 8388608,
+    ICONSONLY = 16777216,
+    SHOWTYPEOVERLAY = 33554432,
+    SHOWSTATUSBAR = 67108864,
+    _,
+};
+pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
+pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
+pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
+pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
+pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
+pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
+pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
+pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
+pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
+pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
+pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
+pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
+pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
+pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
+pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
+pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
+pub const SSF_FILTER = SSF_MASK.FILTER;
+pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
+pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
+pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
+pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
+pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
+pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
+pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
+pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
+pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
+pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
+
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
+};
+
+pub const ShellWindowTypeConstants = extern enum(i32) {
+    EXPLORER = 0,
+    BROWSER = 1,
+    @"3RDPARTY" = 2,
+    CALLBACK = 4,
+    DESKTOP = 8,
+};
+pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
+pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
+pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
+pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
+pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
+
+pub const ShellWindowFindWindowOptions = extern enum(i32) {
+    NEEDDISPATCH = 1,
+    INCLUDEPENDING = 2,
+    COOKIEPASSED = 4,
+};
+pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
+pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
+pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
+
+const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
+pub const IID_IShellWindows = &IID_IShellWindows_Value;
+pub const IShellWindows = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Count: fn(
+            self: *const IShellWindows,
+            Count: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: fn(
+            self: *const IShellWindows,
+            index: VARIANT,
+            Folder: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        _NewEnum: fn(
+            self: *const IShellWindows,
+            ppunk: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: fn(
+            self: *const IShellWindows,
+            pid: *IDispatch,
+            hwnd: i32,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterPending: fn(
+            self: *const IShellWindows,
+            lThreadId: i32,
+            pvarloc: *VARIANT,
+            pvarlocRoot: *VARIANT,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Revoke: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnNavigate: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            pvarLoc: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnActivated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            fActive: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindWindowSW: fn(
+            self: *const IShellWindows,
+            pvarLoc: *VARIANT,
+            pvarLocRoot: *VARIANT,
+            swClass: i32,
+            phwnd: *i32,
+            swfwOptions: i32,
+            ppdispOut: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            punk: *IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessAttachDetach: fn(
+            self: *const IShellWindows,
+            fAttach: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const LOGFONTA = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]i8,
+};
+
+pub const LOGFONTW = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]u16,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
+pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
+pub const INotifyReplica = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        YouAreAReplica: fn(
+            self: *const INotifyReplica,
+            ulcOtherReplicas: u32,
+            rgpmkOtherReplicas: [*]*IMoniker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const HELPINFO = extern struct {
+    cbSize: u32,
+    iContextType: i32,
+    iCtrlId: i32,
+    hItemHandle: HANDLE,
+    dwContextId: ?*c_void,
+    MousePos: POINT,
+};
+
+pub const MULTIKEYHELPA = extern struct {
+    mkSize: u32,
+    mkKeylist: i8,
+    szKeyphrase: [1]i8,
+};
+
+pub const MULTIKEYHELPW = extern struct {
+    mkSize: u32,
+    mkKeylist: u16,
+    szKeyphrase: [1]u16,
+};
+
+pub const HELPWININFOA = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]i8,
+};
+
+pub const HELPWININFOW = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]u16,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (699)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "COMCTL32" fn SetWindowSubclass(
     hWnd: HWND,
     pfnSubclass: SUBCLASSPROC,
@@ -28256,6 +28599,7 @@ pub extern "COMCTL32" fn SetWindowSubclass(
     dwRefData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "COMCTL32" fn GetWindowSubclass(
     hWnd: HWND,
     pfnSubclass: SUBCLASSPROC,
@@ -28263,12 +28607,14 @@ pub extern "COMCTL32" fn GetWindowSubclass(
     pdwRefData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "COMCTL32" fn RemoveWindowSubclass(
     hWnd: HWND,
     pfnSubclass: SUBCLASSPROC,
     uIdSubclass: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "COMCTL32" fn DefSubclassProc(
     hWnd: HWND,
     uMsg: u32,
@@ -28276,47 +28622,56 @@ pub extern "COMCTL32" fn DefSubclassProc(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn LoadUserProfileA(
     hToken: HANDLE,
     lpProfileInfo: *PROFILEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn LoadUserProfileW(
     hToken: HANDLE,
     lpProfileInfo: *PROFILEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn UnloadUserProfile(
     hToken: HANDLE,
     hProfile: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetProfilesDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetProfilesDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetProfileType(
     dwFlags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn DeleteProfileA(
     lpSidString: [*:0]const u8,
     lpProfilePath: ?[*:0]const u8,
     lpComputerName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn DeleteProfileW(
     lpSidString: [*:0]const u16,
     lpProfilePath: ?[*:0]const u16,
     lpComputerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn CreateProfile(
     pszUserSid: [*:0]const u16,
     pszUserName: [*:0]const u16,
@@ -28324,48 +28679,57 @@ pub extern "USERENV" fn CreateProfile(
     cchProfilePath: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetUserProfileDirectoryA(
     hToken: HANDLE,
     lpProfileDir: ?[*:0]u8,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn GetUserProfileDirectoryW(
     hToken: HANDLE,
     lpProfileDir: ?[*:0]u16,
     lpcchSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn CreateEnvironmentBlock(
     lpEnvironment: **c_void,
     hToken: HANDLE,
     bInherit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn DestroyEnvironmentBlock(
     lpEnvironment: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
     hToken: HANDLE,
     lpSrc: [*:0]const u8,
@@ -28373,6 +28737,7 @@ pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
     hToken: HANDLE,
     lpSrc: [*:0]const u16,
@@ -28380,77 +28745,53 @@ pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn CreateAppContainerProfile(
     pszAppContainerName: [*:0]const u16,
     pszDisplayName: [*:0]const u16,
     pszDescription: [*:0]const u16,
     pCapabilities: ?[*]SID_AND_ATTRIBUTES,
     dwCapabilityCount: u32,
-    ppSidAppContainerSid: **c_void,
+    ppSidAppContainerSid: *PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn DeleteAppContainerProfile(
     pszAppContainerName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn GetAppContainerRegistryLocation(
     desiredAccess: u32,
     phAppContainerKey: *HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn GetAppContainerFolderPath(
     pszAppContainerSid: [*:0]const u16,
     ppszPath: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
     pszAppContainerName: [*:0]const u16,
-    ppsidAppContainerSid: **c_void,
+    ppsidAppContainerSid: *PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
-    psidAppContainerSid: *c_void,
+    psidAppContainerSid: PSID,
     pszRestrictedAppContainerName: [*:0]const u16,
-    ppsidRestrictedAppContainerSid: **c_void,
+    ppsidRestrictedAppContainerSid: *PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "USER32" fn SetWindowContextHelpId(
-    param0: HWND,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetWindowContextHelpId(
-    param0: HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn SetMenuContextHelpId(
-    param0: HMENU,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetMenuContextHelpId(
-    param0: HMENU,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn WinHelpA(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u8,
-    uCommand: u32,
-    dwData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn WinHelpW(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u16,
-    uCommand: u32,
-    dwData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn CommandLineToArgvW(
     lpCmdLine: [*:0]const u16,
     pNumArgs: *i32,
 ) callconv(@import("std").os.windows.WINAPI) *PWSTR;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DragQueryFileA(
     hDrop: HDROP,
     iFile: u32,
@@ -28458,6 +28799,7 @@ pub extern "SHELL32" fn DragQueryFileA(
     cch: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DragQueryFileW(
     hDrop: HDROP,
     iFile: u32,
@@ -28465,20 +28807,24 @@ pub extern "SHELL32" fn DragQueryFileW(
     cch: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DragQueryPoint(
     hDrop: HDROP,
     ppt: *POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DragFinish(
     hDrop: HDROP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DragAcceptFiles(
     hWnd: HWND,
     fAccept: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellExecuteA(
     hwnd: HWND,
     lpOperation: ?[*:0]const u8,
@@ -28488,6 +28834,7 @@ pub extern "SHELL32" fn ShellExecuteA(
     nShowCmd: i32,
 ) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellExecuteW(
     hwnd: HWND,
     lpOperation: ?[*:0]const u16,
@@ -28497,18 +28844,21 @@ pub extern "SHELL32" fn ShellExecuteW(
     nShowCmd: i32,
 ) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn FindExecutableA(
     lpFile: [*:0]const u8,
     lpDirectory: ?[*:0]const u8,
     lpResult: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn FindExecutableW(
     lpFile: [*:0]const u16,
     lpDirectory: ?[*:0]const u16,
     lpResult: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellAboutA(
     hWnd: HWND,
     szApp: [*:0]const u8,
@@ -28516,6 +28866,7 @@ pub extern "SHELL32" fn ShellAboutA(
     hIcon: HICON,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellAboutW(
     hWnd: HWND,
     szApp: [*:0]const u16,
@@ -28523,23 +28874,27 @@ pub extern "SHELL32" fn ShellAboutW(
     hIcon: HICON,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DuplicateIcon(
     hInst: HINSTANCE,
     hIcon: HICON,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractAssociatedIconA(
     hInst: HINSTANCE,
     pszIconPath: *[128]u8,
     piIcon: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractAssociatedIconW(
     hInst: HINSTANCE,
     pszIconPath: *[128]u16,
     piIcon: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractAssociatedIconExA(
     hInst: HINSTANCE,
     pszIconPath: *[128]u8,
@@ -28547,6 +28902,7 @@ pub extern "SHELL32" fn ExtractAssociatedIconExA(
     piIconId: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractAssociatedIconExW(
     hInst: HINSTANCE,
     pszIconPath: *[128]u16,
@@ -28554,33 +28910,39 @@ pub extern "SHELL32" fn ExtractAssociatedIconExW(
     piIconId: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractIconA(
     hInst: HINSTANCE,
     pszExeFileName: [*:0]const u8,
     nIconIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractIconW(
     hInst: HINSTANCE,
     pszExeFileName: [*:0]const u16,
     nIconIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHAppBarMessage(
     dwMessage: u32,
     pData: *APPBARDATA,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DoEnvironmentSubstA(
     pszSrc: [*:0]u8,
     cchSrc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DoEnvironmentSubstW(
     pszSrc: [*:0]u16,
     cchSrc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractIconExA(
     lpszFile: [*:0]const u8,
     nIconIndex: i32,
@@ -28589,6 +28951,7 @@ pub extern "SHELL32" fn ExtractIconExA(
     nIcons: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ExtractIconExW(
     lpszFile: [*:0]const u16,
     nIconIndex: i32,
@@ -28597,30 +28960,37 @@ pub extern "SHELL32" fn ExtractIconExW(
     nIcons: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFileOperationA(
     lpFileOp: *SHFILEOPSTRUCTA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFileOperationW(
     lpFileOp: *SHFILEOPSTRUCTW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFreeNameMappings(
     hNameMappings: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellExecuteExA(
     pExecInfo: *SHELLEXECUTEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ShellExecuteExW(
     pExecInfo: *SHELLEXECUTEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCreateProcessAsUserW(
     pscpi: *SHCREATEPROCESSINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHEvaluateSystemCommandTemplate(
     pszCmdTemplate: [*:0]const u16,
     ppszApplication: *PWSTR,
@@ -28628,6 +28998,7 @@ pub extern "SHELL32" fn SHEvaluateSystemCommandTemplate(
     ppszParameters: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn AssocCreateForClasses(
     rgClasses: [*]const ASSOCIATIONELEMENT,
     cClasses: u32,
@@ -28635,47 +29006,56 @@ pub extern "SHELL32" fn AssocCreateForClasses(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHQueryRecycleBinA(
     pszRootPath: ?[*:0]const u8,
     pSHQueryRBInfo: *SHQUERYRBINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHQueryRecycleBinW(
     pszRootPath: ?[*:0]const u16,
     pSHQueryRBInfo: *SHQUERYRBINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHEmptyRecycleBinA(
     hwnd: HWND,
     pszRootPath: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHEmptyRecycleBinW(
     hwnd: HWND,
     pszRootPath: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHQueryUserNotificationState(
     pquns: *QUERY_USER_NOTIFICATION_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_NotifyIconA(
     dwMessage: u32,
     lpData: *NOTIFYICONDATAA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_NotifyIconW(
     dwMessage: u32,
     lpData: *NOTIFYICONDATAW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn Shell_NotifyIconGetRect(
     identifier: *const NOTIFYICONIDENTIFIER,
     iconLocation: *RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetFileInfoA(
     pszPath: [*:0]const u8,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
@@ -28684,6 +29064,7 @@ pub extern "SHELL32" fn SHGetFileInfoA(
     uFlags: SHGFI_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetFileInfoW(
     pszPath: [*:0]const u16,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
@@ -28692,12 +29073,14 @@ pub extern "SHELL32" fn SHGetFileInfoW(
     uFlags: SHGFI_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetStockIconInfo(
     siid: SHSTOCKICONID,
     uFlags: u32,
     psii: *SHSTOCKICONINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetDiskFreeSpaceExA(
     pszDirectoryName: [*:0]const u8,
     pulFreeBytesAvailableToCaller: ?*ULARGE_INTEGER,
@@ -28705,6 +29088,7 @@ pub extern "SHELL32" fn SHGetDiskFreeSpaceExA(
     pulTotalNumberOfFreeBytes: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetDiskFreeSpaceExW(
     pszDirectoryName: [*:0]const u16,
     pulFreeBytesAvailableToCaller: ?*ULARGE_INTEGER,
@@ -28712,6 +29096,7 @@ pub extern "SHELL32" fn SHGetDiskFreeSpaceExW(
     pulTotalNumberOfFreeBytes: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetNewLinkInfoA(
     pszLinkTo: [*:0]const u8,
     pszDir: [*:0]const u8,
@@ -28720,6 +29105,7 @@ pub extern "SHELL32" fn SHGetNewLinkInfoA(
     uFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetNewLinkInfoW(
     pszLinkTo: [*:0]const u16,
     pszDir: [*:0]const u16,
@@ -28728,6 +29114,7 @@ pub extern "SHELL32" fn SHGetNewLinkInfoW(
     uFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHInvokePrinterCommandA(
     hwnd: HWND,
     uAction: u32,
@@ -28736,6 +29123,7 @@ pub extern "SHELL32" fn SHInvokePrinterCommandA(
     fModal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHInvokePrinterCommandW(
     hwnd: HWND,
     uAction: u32,
@@ -28744,24 +29132,29 @@ pub extern "SHELL32" fn SHInvokePrinterCommandW(
     fModal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHLoadNonloadedIconOverlayIdentifiers(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHIsFileAvailableOffline(
     pwszPath: [*:0]const u16,
     pdwStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHSetLocalizedName(
     pszPath: [*:0]const u16,
     pszResModule: [*:0]const u16,
     idsRes: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHRemoveLocalizedName(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetLocalizedName(
     pszPath: [*:0]const u16,
     pszResModule: [*:0]u16,
@@ -28769,6 +29162,7 @@ pub extern "SHELL32" fn SHGetLocalizedName(
     pidsRes: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn ShellMessageBoxA(
     hAppInst: HINSTANCE,
     hWnd: HWND,
@@ -28777,6 +29171,7 @@ pub extern "SHLWAPI" fn ShellMessageBoxA(
     fuStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn ShellMessageBoxW(
     hAppInst: HINSTANCE,
     hWnd: HWND,
@@ -28793,6 +29188,7 @@ pub extern "SHELL32" fn IsLFNDriveW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHEnumerateUnreadMailAccountsW(
     hKeyUser: HKEY,
     dwIndex: u32,
@@ -28800,6 +29196,7 @@ pub extern "SHELL32" fn SHEnumerateUnreadMailAccountsW(
     cchMailAddress: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetUnreadMailCountW(
     hKeyUser: HKEY,
     pszMailAddress: ?[*:0]const u16,
@@ -28809,41 +29206,49 @@ pub extern "SHELL32" fn SHGetUnreadMailCountW(
     cchShellExecuteCommand: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHSetUnreadMailCountW(
     pszMailAddress: [*:0]const u16,
     dwCount: u32,
     pszShellExecuteCommand: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHTestTokenMembership(
     hToken: HANDLE,
     ulRID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetImageList(
     iImageList: i32,
     riid: *const Guid,
     ppvObj: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn InitNetworkAddressControl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetDriveMedia(
     pszDrive: [*:0]const u16,
     pdwMediaContent: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHSimpleIDListFromPath(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateItemFromIDList(
     pidl: *ITEMIDLIST,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateItemFromParsingName(
     pszPath: [*:0]const u16,
     pbc: ?*IBindCtx,
@@ -28851,6 +29256,7 @@ pub extern "SHELL32" fn SHCreateItemFromParsingName(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateItemWithParent(
     pidlParent: ?*ITEMIDLIST,
     psfParent: ?*IShellFolder,
@@ -28859,6 +29265,7 @@ pub extern "SHELL32" fn SHCreateItemWithParent(
     ppvItem: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateItemFromRelativeName(
     psiParent: *IShellItem,
     pszName: [*:0]const u16,
@@ -28867,6 +29274,7 @@ pub extern "SHELL32" fn SHCreateItemFromRelativeName(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateItemInKnownFolder(
     kfid: *const Guid,
     dwKFFlags: u32,
@@ -28875,23 +29283,27 @@ pub extern "SHELL32" fn SHCreateItemInKnownFolder(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetIDListFromObject(
     punk: *IUnknown,
     ppidl: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHGetItemFromObject(
     punk: *IUnknown,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetNameFromIDList(
     pidl: *ITEMIDLIST,
     sigdnName: SIGDN,
     ppszName: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHGetItemFromDataObject(
     pdtobj: *IDataObject,
     dwFlags: DATAOBJ_GET_ITEM_FLAGS,
@@ -28899,6 +29311,7 @@ pub extern "SHELL32" fn SHGetItemFromDataObject(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateShellItemArray(
     pidlParent: ?*ITEMIDLIST,
     psf: ?*IShellFolder,
@@ -28907,54 +29320,64 @@ pub extern "SHELL32" fn SHCreateShellItemArray(
     ppsiItemArray: **IShellItemArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateShellItemArrayFromDataObject(
     pdo: *IDataObject,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateShellItemArrayFromIDLists(
     cidl: u32,
     rgpidl: [*]*ITEMIDLIST,
     ppsiItemArray: **IShellItemArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateShellItemArrayFromShellItem(
     psi: *IShellItem,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateAssociationRegistration(
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateDefaultExtractIcon(
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SetCurrentProcessExplicitAppUserModelID(
     AppID: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn GetCurrentProcessExplicitAppUserModelID(
     AppID: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetTemporaryPropertyForItem(
     psi: *IShellItem,
     propkey: *const PROPERTYKEY,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHSetTemporaryPropertyForItem(
     psi: *IShellItem,
     propkey: *const PROPERTYKEY,
     propvar: *const PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHShowManageLibraryUI(
     psiLibrary: *IShellItem,
     hwndOwner: HWND,
@@ -28963,16 +29386,19 @@ pub extern "SHELL32" fn SHShowManageLibraryUI(
     lmdOptions: LIBRARYMANAGEDIALOGOPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHResolveLibrary(
     psiLibrary: *IShellItem,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHAssocEnumHandlers(
     pszExtra: [*:0]const u16,
     afFilter: ASSOC_FILTER,
     ppEnumHandler: **IEnumAssocHandlers,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHAssocEnumHandlersForProtocolByApplication(
     protocol: [*:0]const u16,
     riid: *const Guid,
@@ -29025,11 +29451,13 @@ pub extern "OLE32" fn HMONITOR_UserFree64(
     param1: *HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateDefaultPropertiesOp(
     psi: *IShellItem,
     ppFileOp: **IFileOperation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHSetDefaultProperties(
     hwnd: HWND,
     psi: *IShellItem,
@@ -29037,107 +29465,130 @@ pub extern "SHELL32" fn SHSetDefaultProperties(
     pfops: ?*IFileOperationProgressSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetMalloc(
     ppMalloc: **IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHAlloc(
     cb: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHFree(
     pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetIconOverlayIndexA(
     pszIconPath: ?[*:0]const u8,
     iIconIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetIconOverlayIndexW(
     pszIconPath: ?[*:0]const u16,
     iIconIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILClone(
     pidl: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILCloneFirst(
     pidl: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILCombine(
     pidl1: ?*ITEMIDLIST,
     pidl2: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILFree(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILGetNext(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILGetSize(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILFindChild(
     pidlParent: *ITEMIDLIST,
     pidlChild: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILFindLastID(
     pidl: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILRemoveLastID(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILIsEqual(
     pidl1: *ITEMIDLIST,
     pidl2: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILIsParent(
     pidl1: *ITEMIDLIST,
     pidl2: *ITEMIDLIST,
     fImmediate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILSaveToStream(
     pstm: *IStream,
     pidl: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn ILLoadFromStreamEx(
     pstm: *IStream,
     pidl: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILCreateFromPathA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILCreateFromPathW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHILCreateFromPath(
     pszPath: [*:0]const u16,
     ppidl: **ITEMIDLIST,
     rgfInOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ILAppendID(
     pidl: ?*ITEMIDLIST,
     pmkid: *SHITEMID,
     fAppend: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetPathFromIDListEx(
     pidl: *ITEMIDLIST,
     pszPath: [*:0]u16,
@@ -29145,33 +29596,39 @@ pub extern "SHELL32" fn SHGetPathFromIDListEx(
     uOpts: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetPathFromIDListA(
     pidl: *ITEMIDLIST,
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetPathFromIDListW(
     pidl: *ITEMIDLIST,
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreateDirectory(
     hwnd: HWND,
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCreateDirectoryExA(
     hwnd: HWND,
     pszPath: [*:0]const u8,
     psa: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCreateDirectoryExW(
     hwnd: HWND,
     pszPath: [*:0]const u16,
     psa: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHOpenFolderAndSelectItems(
     pidlFolder: *ITEMIDLIST,
     cidl: u32,
@@ -29179,6 +29636,7 @@ pub extern "SHELL32" fn SHOpenFolderAndSelectItems(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreateShellItem(
     pidlParent: ?*ITEMIDLIST,
     psfParent: ?*IShellFolder,
@@ -29186,18 +29644,21 @@ pub extern "SHELL32" fn SHCreateShellItem(
     ppsi: **IShellItem,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetSpecialFolderLocation(
     hwnd: HWND,
     csidl: i32,
     ppidl: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCloneSpecialIDList(
     hwnd: HWND,
     csidl: i32,
     fCreate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetSpecialFolderPathA(
     hwnd: HWND,
     pszPath: *[260]u8,
@@ -29205,6 +29666,7 @@ pub extern "SHELL32" fn SHGetSpecialFolderPathA(
     fCreate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetSpecialFolderPathW(
     hwnd: HWND,
     pszPath: *[260]u16,
@@ -29212,9 +29674,11 @@ pub extern "SHELL32" fn SHGetSpecialFolderPathW(
     fCreate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFlushSFCache(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetFolderPathA(
     hwnd: HWND,
     csidl: i32,
@@ -29223,6 +29687,7 @@ pub extern "SHELL32" fn SHGetFolderPathA(
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetFolderPathW(
     hwnd: HWND,
     csidl: i32,
@@ -29231,6 +29696,7 @@ pub extern "SHELL32" fn SHGetFolderPathW(
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetFolderLocation(
     hwnd: HWND,
     csidl: i32,
@@ -29239,6 +29705,7 @@ pub extern "SHELL32" fn SHGetFolderLocation(
     ppidl: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHSetFolderPathA(
     csidl: i32,
     hToken: HANDLE,
@@ -29246,6 +29713,7 @@ pub extern "SHELL32" fn SHSetFolderPathA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHSetFolderPathW(
     csidl: i32,
     hToken: HANDLE,
@@ -29253,6 +29721,7 @@ pub extern "SHELL32" fn SHSetFolderPathW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetFolderPathAndSubDirA(
     hwnd: HWND,
     csidl: i32,
@@ -29262,6 +29731,7 @@ pub extern "SHELL32" fn SHGetFolderPathAndSubDirA(
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetFolderPathAndSubDirW(
     hwnd: HWND,
     csidl: i32,
@@ -29271,6 +29741,7 @@ pub extern "SHELL32" fn SHGetFolderPathAndSubDirW(
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetKnownFolderIDList(
     rfid: *const Guid,
     dwFlags: u32,
@@ -29278,6 +29749,7 @@ pub extern "SHELL32" fn SHGetKnownFolderIDList(
     ppidl: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHSetKnownFolderPath(
     rfid: *const Guid,
     dwFlags: u32,
@@ -29285,6 +29757,7 @@ pub extern "SHELL32" fn SHSetKnownFolderPath(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetKnownFolderPath(
     rfid: *const Guid,
     dwFlags: u32,
@@ -29292,6 +29765,7 @@ pub extern "SHELL32" fn SHGetKnownFolderPath(
     ppszPath: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn SHGetKnownFolderItem(
     rfid: *const Guid,
     flags: KNOWN_FOLDER_FLAG,
@@ -29300,28 +29774,34 @@ pub extern "SHELL32" fn SHGetKnownFolderItem(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetSetFolderCustomSettings(
     pfcs: *SHFOLDERCUSTOMSETTINGS,
     pszPath: [*:0]const u16,
     dwReadWrite: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHBrowseForFolderA(
     lpbi: *BROWSEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHBrowseForFolderW(
     lpbi: *BROWSEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) *ITEMIDLIST;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHLoadInProc(
     rclsid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetDesktopFolder(
     ppshf: **IShellFolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHChangeNotify(
     wEventId: SHCNE_ID,
     uFlags: SHCNF_FLAGS,
@@ -29329,15 +29809,18 @@ pub extern "SHELL32" fn SHChangeNotify(
     dwItem2: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHAddToRecentDocs(
     uFlags: u32,
     pv: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHHandleUpdateImage(
     pidlExtra: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHUpdateImageA(
     pszHashItem: [*:0]const u8,
     iIndex: i32,
@@ -29345,6 +29828,7 @@ pub extern "SHELL32" fn SHUpdateImageA(
     iImageIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHUpdateImageW(
     pszHashItem: [*:0]const u16,
     iIndex: i32,
@@ -29352,6 +29836,7 @@ pub extern "SHELL32" fn SHUpdateImageW(
     iImageIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHChangeNotifyRegister(
     hwnd: HWND,
     fSources: SHCNRF_SOURCE,
@@ -29361,31 +29846,37 @@ pub extern "SHELL32" fn SHChangeNotifyRegister(
     pshcne: *const SHChangeNotifyEntry,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHChangeNotifyDeregister(
     ulID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHChangeNotification_Lock(
     hChange: HANDLE,
     dwProcId: u32,
     pppidl: ?*?*?*ITEMIDLIST,
     plEvent: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) ShFindChangeNotifcationHandle;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHChangeNotification_Unlock(
     hLock: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetRealIDL(
     psf: *IShellFolder,
     pidlSimple: *ITEMIDLIST,
     ppidlReal: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetInstanceExplorer(
     ppunk: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetDataFromIDListA(
     psf: *IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29394,6 +29885,7 @@ pub extern "SHELL32" fn SHGetDataFromIDListA(
     cb: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetDataFromIDListW(
     psf: *IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29402,12 +29894,14 @@ pub extern "SHELL32" fn SHGetDataFromIDListW(
     cb: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn RestartDialog(
     hwnd: HWND,
     pszPrompt: ?[*:0]const u16,
     dwReturn: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn RestartDialogEx(
     hwnd: HWND,
     pszPrompt: ?[*:0]const u16,
@@ -29415,6 +29909,7 @@ pub extern "SHELL32" fn RestartDialogEx(
     dwReasonCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCoCreateInstance(
     pszCLSID: ?[*:0]const u16,
     pclsid: ?*const Guid,
@@ -29423,6 +29918,7 @@ pub extern "SHELL32" fn SHCoCreateInstance(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateDataObject(
     pidlFolder: ?*ITEMIDLIST,
     cidl: u32,
@@ -29432,6 +29928,7 @@ pub extern "SHELL32" fn SHCreateDataObject(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn CIDLData_CreateFromIDArray(
     pidlFolder: *ITEMIDLIST,
     cidl: u32,
@@ -29439,12 +29936,14 @@ pub extern "SHELL32" fn CIDLData_CreateFromIDArray(
     ppdtobj: **IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreateStdEnumFmtEtc(
     cfmt: u32,
     afmt: [*]const FORMATETC,
     ppenumFormatEtc: **IEnumFORMATETC,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHDoDragDrop(
     hwnd: HWND,
     pdata: *IDataObject,
@@ -29453,48 +29952,58 @@ pub extern "SHELL32" fn SHDoDragDrop(
     pdwEffect: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_SetDragImage(
     him: HIMAGELIST,
     pptOffset: *POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_DragEnterEx(
     hwndTarget: HWND,
     ptStart: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_DragEnterEx2(
     hwndTarget: HWND,
     ptStart: POINT,
     pdtObject: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_ShowDragImage(
     fShow: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_DragMove(
     pt: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_DragLeave(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn DAD_AutoScroll(
     hwnd: HWND,
     pad: *AUTO_SCROLL_DATA,
     pptNow: *const POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn ReadCabinetState(
     pcs: [*]CABINETSTATE,
     cLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn WriteCabinetState(
     pcs: *CABINETSTATE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PathMakeUniqueName(
     pszUniqueName: [*:0]u16,
     cchMax: u32,
@@ -29503,21 +30012,25 @@ pub extern "SHELL32" fn PathMakeUniqueName(
     pszDir: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathIsExe(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathCleanupSpec(
     pszDir: ?[*:0]const u16,
     pszSpec: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) PCS_RET;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathResolve(
     pszPath: *[260]u16,
     dirs: ?*?*u16,
     fFlags: PRF_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn GetFileNameFromBrowse(
     hwnd: HWND,
     pszFilePath: [*:0]u16,
@@ -29528,19 +30041,23 @@ pub extern "SHELL32" fn GetFileNameFromBrowse(
     pszTitle: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn DriveType(
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn RealDriveType(
     iDrive: i32,
     fOKToHitNet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn IsNetDrive(
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_MergeMenus(
     hmDst: HMENU,
     hmSrc: HMENU,
@@ -29550,6 +30067,7 @@ pub extern "SHELL32" fn Shell_MergeMenus(
     uFlags: MM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHObjectProperties(
     hwnd: HWND,
     shopObjectType: SHOP_TYPE,
@@ -29557,6 +30075,7 @@ pub extern "SHELL32" fn SHObjectProperties(
     pszPropertyPage: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFormatDrive(
     hwnd: HWND,
     drive: u32,
@@ -29564,16 +30083,19 @@ pub extern "SHELL32" fn SHFormatDrive(
     options: SHFMT_OPT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHDestroyPropSheetExtArray(
     hpsxa: HPSXA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHAddFromPropSheetExtArray(
     hpsxa: HPSXA,
     lpfnAddPage: LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHReplaceFromPropSheetExtArray(
     hpsxa: HPSXA,
     uPageID: u32,
@@ -29581,6 +30103,7 @@ pub extern "SHELL32" fn SHReplaceFromPropSheetExtArray(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn OpenRegStream(
     hkey: HKEY,
     pszSubkey: ?[*:0]const u16,
@@ -29588,15 +30111,18 @@ pub extern "SHELL32" fn OpenRegStream(
     grfMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFindFiles(
     pidlFolder: ?*ITEMIDLIST,
     pidlSaveFile: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathGetShortPath(
     pszLongPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PathYetAnotherMakeUniqueName(
     pszUniqueName: *[260]u16,
     pszPath: [*:0]const u16,
@@ -29604,18 +30130,22 @@ pub extern "SHELL32" fn PathYetAnotherMakeUniqueName(
     pszFileSpec: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Win32DeleteFile(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHRestricted(
     rest: RESTRICTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SignalFileOpen(
     pidl: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn AssocGetDetailsOfPropKey(
     psf: *IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29624,12 +30154,14 @@ pub extern "SHELL32" fn AssocGetDetailsOfPropKey(
     pfFoundPropKey: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHStartNetConnectionDialogW(
     hwnd: HWND,
     pszRemoteName: ?[*:0]const u16,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHDefExtractIconA(
     pszIconFile: [*:0]const u8,
     iIndex: i32,
@@ -29639,6 +30171,7 @@ pub extern "SHELL32" fn SHDefExtractIconA(
     nIconSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHDefExtractIconW(
     pszIconFile: [*:0]const u16,
     iIndex: i32,
@@ -29648,58 +30181,69 @@ pub extern "SHELL32" fn SHDefExtractIconW(
     nIconSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHOpenWithDialog(
     hwndParent: HWND,
     poainfo: *const OPENASINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_GetImageLists(
     phiml: ?*HIMAGELIST,
     phimlSmall: ?*HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_GetCachedImageIndex(
     pwszIconPath: [*:0]const u16,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_GetCachedImageIndexA(
     pszIconPath: [*:0]const u8,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn Shell_GetCachedImageIndexW(
     pszIconPath: [*:0]const u16,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHValidateUNC(
     hwndOwner: HWND,
     pszFile: PWSTR,
     fConnect: VALIDATEUNC_OPTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHSetInstanceExplorer(
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn IsUserAnAdmin(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHShellFolderView_Message(
     hwndMain: HWND,
     uMsg: u32,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCreateShellFolderView(
     pcsfv: *const SFV_CREATE,
     ppsv: **IShellView,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn CDefFolderMenu_Create2(
     pidlFolder: ?*ITEMIDLIST,
     hwnd: HWND,
@@ -29712,12 +30256,14 @@ pub extern "SHELL32" fn CDefFolderMenu_Create2(
     ppcm: **IContextMenu,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateDefaultContextMenu(
     pdcm: *const DEFCONTEXTMENU,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHFind_InitMenuPopup(
     hmenu: HMENU,
     hwndOwner: HWND,
@@ -29725,22 +30271,26 @@ pub extern "SHELL32" fn SHFind_InitMenuPopup(
     idCmdLast: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IContextMenu;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCreateShellFolderViewEx(
     pcsfv: *CSFV,
     ppsv: **IShellView,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetSetSettings(
     lpss: ?*SHELLSTATEA,
     dwMask: SSF_MASK,
     bSet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHGetSettings(
     psfs: *SHELLFLAGSTATE,
     dwMask: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHBindToParent(
     pidl: *ITEMIDLIST,
     riid: *const Guid,
@@ -29748,6 +30298,7 @@ pub extern "SHELL32" fn SHBindToParent(
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHBindToFolderIDListParent(
     psfRoot: ?*IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29756,6 +30307,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParent(
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHBindToFolderIDListParentEx(
     psfRoot: ?*IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29765,6 +30317,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParentEx(
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHBindToObject(
     psf: ?*IShellFolder,
     pidl: *ITEMIDLIST,
@@ -29773,6 +30326,7 @@ pub extern "SHELL32" fn SHBindToObject(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHParseDisplayName(
     pszName: [*:0]const u16,
     pbc: ?*IBindCtx,
@@ -29781,6 +30335,7 @@ pub extern "SHELL32" fn SHParseDisplayName(
     psfgaoOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHPathPrepareForWriteA(
     hwnd: HWND,
     punkEnableModless: ?*IUnknown,
@@ -29788,6 +30343,7 @@ pub extern "SHELL32" fn SHPathPrepareForWriteA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHPathPrepareForWriteW(
     hwnd: HWND,
     punkEnableModless: ?*IUnknown,
@@ -29795,6 +30351,7 @@ pub extern "SHELL32" fn SHPathPrepareForWriteW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreateFileExtractIconW(
     pszFile: [*:0]const u16,
     dwFileAttributes: u32,
@@ -29802,11 +30359,13 @@ pub extern "SHELL32" fn SHCreateFileExtractIconW(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHLimitInputEdit(
     hwndEdit: HWND,
     psf: *IShellFolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHGetAttributesFromDataObject(
     pdo: ?*IDataObject,
     dwAttributeMask: u32,
@@ -29814,17 +30373,20 @@ pub extern "SHELL32" fn SHGetAttributesFromDataObject(
     pcItems: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHMapPIDLToSystemImageListIndex(
     pshf: *IShellFolder,
     pidl: *ITEMIDLIST,
     piIndexSel: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHCLSIDFromString(
     psz: [*:0]const u16,
     pclsid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PickIconDlg(
     hwnd: HWND,
     pszIconPath: [*:0]u16,
@@ -29832,6 +30394,7 @@ pub extern "SHELL32" fn PickIconDlg(
     piIconIndex: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHELL32" fn StgMakeUniqueName(
     pstgParent: *IStorage,
     pszFileSpec: [*:0]const u16,
@@ -29840,6 +30403,7 @@ pub extern "SHELL32" fn StgMakeUniqueName(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHChangeNotifyRegisterThread(
     status: SCNRT_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -29848,22 +30412,26 @@ pub extern "SHELL32" fn PathQualify(
     psz: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathIsSlowA(
     pszFile: [*:0]const u8,
     dwAttr: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn PathIsSlowW(
     pszFile: [*:0]const u16,
     dwAttr: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreatePropSheetExtArray(
     hKey: HKEY,
     pszSubKey: ?[*:0]const u16,
     max_iface: u32,
 ) callconv(@import("std").os.windows.WINAPI) HPSXA;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHOpenPropSheetW(
     pszCaption: ?[*:0]const u16,
     ahkeys: ?[*]?*HKEY,
@@ -29874,6 +30442,7 @@ pub extern "SHELL32" fn SHOpenPropSheetW(
     pStartPage: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHDOCVW" fn SoftwareUpdateMessageBox(
     hWnd: HWND,
     pszDistUnit: [*:0]const u16,
@@ -29881,11 +30450,13 @@ pub extern "SHDOCVW" fn SoftwareUpdateMessageBox(
     psdi: ?*SOFTDISTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHMultiFileProperties(
     pdtobj: *IDataObject,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHCreateQueryCancelAutoPlayMoniker(
     ppmoniker: **IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -29903,10 +30474,12 @@ pub extern "SHDOCVW" fn DoPrivacyDlg(
     fReportAllSites: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-0" fn GetScaleFactorForDevice(
     deviceType: DISPLAY_DEVICE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) DEVICE_SCALE_FACTOR;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-0" fn RegisterScaleChangeNotifications(
     displayDevice: DISPLAY_DEVICE_TYPE,
     hwndNotify: HWND,
@@ -29914,113 +30487,135 @@ pub extern "api-ms-win-shcore-scaling-l1-1-0" fn RegisterScaleChangeNotification
     pdwCookie: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-0" fn RevokeScaleChangeNotifications(
     displayDevice: DISPLAY_DEVICE_TYPE,
     dwCookie: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetScaleFactorForMonitor(
     hMon: HMONITOR,
     pScale: *DEVICE_SCALE_FACTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn RegisterScaleChangeEvent(
     hEvent: HANDLE,
     pdwCookie: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn UnregisterScaleChangeEvent(
     dwCookie: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-2" fn GetDpiForShellUIComponent(
     param0: SHELL_UI_COMPONENT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrChrA(
     pszStart: [*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrChrW(
     pszStart: [*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrChrIA(
     pszStart: [*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrChrIW(
     pszStart: [*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn StrChrNW(
     pszStart: [*:0]const u16,
     wMatch: u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn StrChrNIW(
     pszStart: [*:0]const u16,
     wMatch: u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNA(
     psz1: [*:0]const u8,
     psz2: [*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNIA(
     psz1: [*:0]const u8,
     psz2: [*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNIW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCSpnA(
     pszStr: [*:0]const u8,
     pszSet: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCSpnW(
     pszStr: [*:0]const u16,
     pszSet: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCSpnIA(
     pszStr: [*:0]const u8,
     pszSet: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCSpnIW(
     pszStr: [*:0]const u16,
     pszSet: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrDupA(
     pszSrch: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrDupW(
     pszSrch: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn StrFormatByteSizeEx(
     ull: u64,
     flags: SFBS_FLAGS,
@@ -30028,36 +30623,42 @@ pub extern "SHLWAPI" fn StrFormatByteSizeEx(
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFormatByteSizeA(
     dw: u32,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFormatByteSize64A(
     qdw: i64,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFormatByteSizeW(
     qdw: i64,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFormatKBSizeW(
     qdw: i64,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFormatKBSizeA(
     qdw: i64,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFromTimeIntervalA(
     pszOut: [*:0]u8,
     cchMax: u32,
@@ -30065,6 +30666,7 @@ pub extern "SHLWAPI" fn StrFromTimeIntervalA(
     digits: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrFromTimeIntervalW(
     pszOut: [*:0]u16,
     cchMax: u32,
@@ -30072,6 +30674,7 @@ pub extern "SHLWAPI" fn StrFromTimeIntervalW(
     digits: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrIsIntlEqualA(
     fCaseSens: BOOL,
     pszString1: [*:0]const u8,
@@ -30079,6 +30682,7 @@ pub extern "SHLWAPI" fn StrIsIntlEqualA(
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrIsIntlEqualW(
     fCaseSens: BOOL,
     pszString1: [*:0]const u16,
@@ -30086,196 +30690,232 @@ pub extern "SHLWAPI" fn StrIsIntlEqualW(
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrNCatA(
     psz1: [*:0]u8,
     psz2: [*:0]const u8,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrNCatW(
     psz1: [*:0]u16,
     psz2: [*:0]const u16,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrPBrkA(
     psz: [*:0]const u8,
     pszSet: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrPBrkW(
     psz: [*:0]const u16,
     pszSet: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRChrA(
     pszStart: [*:0]const u8,
     pszEnd: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRChrW(
     pszStart: [*:0]const u16,
     pszEnd: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRChrIA(
     pszStart: [*:0]const u8,
     pszEnd: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRChrIW(
     pszStart: [*:0]const u16,
     pszEnd: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRStrIA(
     pszSource: [*:0]const u8,
     pszLast: ?[*:0]const u8,
     pszSrch: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRStrIW(
     pszSource: [*:0]const u16,
     pszLast: ?[*:0]const u16,
     pszSrch: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrSpnA(
     psz: [*:0]const u8,
     pszSet: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrSpnW(
     psz: [*:0]const u16,
     pszSet: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrStrA(
     pszFirst: [*:0]const u8,
     pszSrch: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrStrW(
     pszFirst: [*:0]const u16,
     pszSrch: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrStrIA(
     pszFirst: [*:0]const u8,
     pszSrch: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrStrIW(
     pszFirst: [*:0]const u16,
     pszSrch: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn StrStrNW(
     pszFirst: [*:0]const u16,
     pszSrch: [*:0]const u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn StrStrNIW(
     pszFirst: [*:0]const u16,
     pszSrch: [*:0]const u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToIntA(
     pszSrc: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToIntW(
     pszSrc: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToIntExA(
     pszString: [*:0]const u8,
     dwFlags: i32,
     piRet: *i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToIntExW(
     pszString: [*:0]const u16,
     dwFlags: i32,
     piRet: *i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToInt64ExA(
     pszString: [*:0]const u8,
     dwFlags: i32,
     pllRet: *i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrToInt64ExW(
     pszString: [*:0]const u16,
     dwFlags: i32,
     pllRet: *i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrTrimA(
     psz: PSTR,
     pszTrimChars: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrTrimW(
     psz: PWSTR,
     pszTrimChars: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCatW(
     psz1: PWSTR,
     psz2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpIW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCpyW(
     psz1: PWSTR,
     psz2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCpyNW(
     pszDst: [*:0]u16,
     pszSrc: [*:0]const u16,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCatBuffW(
     pszDest: [*:0]u16,
     pszSrc: [*:0]const u16,
     cchDestBuffSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCatBuffA(
     pszDest: [*:0]u8,
     pszSrc: [*:0]const u8,
     cchDestBuffSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ChrCmpIA(
     w1: u16,
     w2: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ChrCmpIW(
     w1: u16,
     w2: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn wvnsprintfA(
     pszDest: [*:0]u8,
     cchDest: i32,
@@ -30283,6 +30923,7 @@ pub extern "SHLWAPI" fn wvnsprintfA(
     arglist: *i8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn wvnsprintfW(
     pszDest: [*:0]u16,
     cchDest: i32,
@@ -30290,30 +30931,35 @@ pub extern "SHLWAPI" fn wvnsprintfW(
     arglist: *i8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn wnsprintfA(
     pszDest: [*:0]u8,
     cchDest: i32,
     pszFmt: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn wnsprintfW(
     pszDest: [*:0]u16,
     cchDest: i32,
     pszFmt: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRetToStrA(
     pstr: *STRRET,
     pidl: ?*ITEMIDLIST,
     ppsz: *PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRetToStrW(
     pstr: *STRRET,
     pidl: ?*ITEMIDLIST,
     ppsz: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRetToBufA(
     pstr: *STRRET,
     pidl: ?*ITEMIDLIST,
@@ -30321,6 +30967,7 @@ pub extern "SHLWAPI" fn StrRetToBufA(
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrRetToBufW(
     pstr: *STRRET,
     pidl: ?*ITEMIDLIST,
@@ -30328,21 +30975,25 @@ pub extern "SHLWAPI" fn StrRetToBufW(
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStrDupA(
     psz: [*:0]const u8,
     ppwsz: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStrDupW(
     psz: [*:0]const u16,
     ppwsz: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn StrCmpLogicalW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn StrCatChainW(
     pszDst: [*:0]u16,
     cchDst: u32,
@@ -30350,12 +31001,14 @@ pub extern "SHLWAPI" fn StrCatChainW(
     pszSrc: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn StrRetToBSTR(
     pstr: *STRRET,
     pidl: ?*ITEMIDLIST,
     pbstr: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHLoadIndirectString(
     pszSource: [*:0]const u16,
     pszOutBuf: [*:0]u16,
@@ -30363,58 +31016,69 @@ pub extern "SHLWAPI" fn SHLoadIndirectString(
     ppvReserved: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IsCharSpaceA(
     wch: i8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IsCharSpaceW(
     wch: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpCA(
     pszStr1: [*:0]const u8,
     pszStr2: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpCW(
     pszStr1: [*:0]const u16,
     pszStr2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpICA(
     pszStr1: [*:0]const u8,
     pszStr2: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpICW(
     pszStr1: [*:0]const u16,
     pszStr2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNCA(
     pszStr1: [*:0]const u8,
     pszStr2: [*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNCW(
     pszStr1: [*:0]const u16,
     pszStr2: [*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNICA(
     pszStr1: [*:0]const u8,
     pszStr2: [*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn StrCmpNICW(
     pszStr1: [*:0]const u16,
     pszStr2: [*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IntlStrEqWorkerA(
     fCaseSens: BOOL,
     lpString1: [*:0]const u8,
@@ -30422,6 +31086,7 @@ pub extern "SHLWAPI" fn IntlStrEqWorkerA(
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IntlStrEqWorkerW(
     fCaseSens: BOOL,
     lpString1: [*:0]const u16,
@@ -30429,78 +31094,93 @@ pub extern "SHLWAPI" fn IntlStrEqWorkerW(
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAddBackslashA(
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAddBackslashW(
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAddExtensionA(
     pszPath: *[260]u8,
     pszExt: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAddExtensionW(
     pszPath: *[260]u16,
     pszExt: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAppendA(
     pszPath: *[260]u8,
     pszMore: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathAppendW(
     pszPath: *[260]u16,
     pszMore: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathBuildRootA(
     pszRoot: *[4]u8,
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathBuildRootW(
     pszRoot: *[4]u16,
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCanonicalizeA(
     pszBuf: *[260]u8,
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCanonicalizeW(
     pszBuf: *[260]u16,
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCombineA(
     pszDest: *[260]u8,
     pszDir: ?[*:0]const u8,
     pszFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCombineW(
     pszDest: *[260]u16,
     pszDir: ?[*:0]const u16,
     pszFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCompactPathA(
     hDC: HDC,
     pszPath: *[260]u8,
     dx: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCompactPathW(
     hDC: HDC,
     pszPath: *[260]u16,
     dx: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCompactPathExA(
     pszOut: [*:0]u8,
     pszSrc: [*:0]const u8,
@@ -30508,6 +31188,7 @@ pub extern "SHLWAPI" fn PathCompactPathExA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCompactPathExW(
     pszOut: [*:0]u16,
     pszSrc: [*:0]const u16,
@@ -30515,260 +31196,319 @@ pub extern "SHLWAPI" fn PathCompactPathExW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCommonPrefixA(
     pszFile1: [*:0]const u8,
     pszFile2: [*:0]const u8,
     achPath: ?*[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCommonPrefixW(
     pszFile1: [*:0]const u16,
     pszFile2: [*:0]const u16,
     achPath: ?*[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFileExistsA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFileExistsW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindExtensionA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindExtensionW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindFileNameA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindFileNameW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindNextComponentA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindNextComponentW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindOnPathA(
     pszPath: *[260]u8,
     ppszOtherDirs: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindOnPathW(
     pszPath: *[260]u16,
     ppszOtherDirs: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindSuffixArrayA(
     pszPath: [*:0]const u8,
     apszSuffix: [*]const [*:0]const u8,
     iArraySize: i32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathFindSuffixArrayW(
     pszPath: [*:0]const u16,
     apszSuffix: [*]const [*:0]const u16,
     iArraySize: i32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetArgsA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetArgsW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsLFNFileSpecA(
     pszName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsLFNFileSpecW(
     pszName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetCharTypeA(
     ch: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetCharTypeW(
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetDriveNumberA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathGetDriveNumberW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsDirectoryA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsDirectoryW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsDirectoryEmptyA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsDirectoryEmptyW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsFileSpecA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsFileSpecW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsPrefixA(
     pszPrefix: [*:0]const u8,
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsPrefixW(
     pszPrefix: [*:0]const u16,
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsRelativeA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsRelativeW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsRootA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsRootW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsSameRootA(
     pszPath1: [*:0]const u8,
     pszPath2: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsSameRootW(
     pszPath1: [*:0]const u16,
     pszPath2: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsNetworkPathA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsNetworkPathW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCServerA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCServerW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCServerShareA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsUNCServerShareW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsContentTypeA(
     pszPath: [*:0]const u8,
     pszContentType: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsContentTypeW(
     pszPath: [*:0]const u16,
     pszContentType: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsURLA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsURLW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMakePrettyA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMakePrettyW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMatchSpecA(
     pszFile: [*:0]const u8,
     pszSpec: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMatchSpecW(
     pszFile: [*:0]const u16,
     pszSpec: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn PathMatchSpecExA(
     pszFile: [*:0]const u8,
     pszSpec: [*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn PathMatchSpecExW(
     pszFile: [*:0]const u16,
     pszSpec: [*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathParseIconLocationA(
     pszIconFile: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathParseIconLocationW(
     pszIconFile: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathQuoteSpacesA(
     lpsz: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathQuoteSpacesW(
     lpsz: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRelativePathToA(
     pszPath: *[260]u8,
     pszFrom: [*:0]const u8,
@@ -30777,6 +31517,7 @@ pub extern "SHLWAPI" fn PathRelativePathToA(
     dwAttrTo: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRelativePathToW(
     pszPath: *[260]u16,
     pszFrom: [*:0]const u16,
@@ -30785,170 +31526,207 @@ pub extern "SHLWAPI" fn PathRelativePathToW(
     dwAttrTo: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveArgsA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveArgsW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveBackslashA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveBackslashW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveBlanksA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveBlanksW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveExtensionA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveExtensionW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveFileSpecA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRemoveFileSpecW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRenameExtensionA(
     pszPath: *[260]u8,
     pszExt: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathRenameExtensionW(
     pszPath: *[260]u16,
     pszExt: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSearchAndQualifyA(
     pszPath: [*:0]const u8,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSearchAndQualifyW(
     pszPath: [*:0]const u16,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSetDlgItemPathA(
     hDlg: HWND,
     id: i32,
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSetDlgItemPathW(
     hDlg: HWND,
     id: i32,
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSkipRootA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathSkipRootW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathStripPathA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathStripPathW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathStripToRootA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathStripToRootW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnquoteSpacesA(
     lpsz: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnquoteSpacesW(
     lpsz: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMakeSystemFolderA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathMakeSystemFolderW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnmakeSystemFolderA(
     pszPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnmakeSystemFolderW(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsSystemFolderA(
     pszPath: ?[*:0]const u8,
     dwAttrb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathIsSystemFolderW(
     pszPath: ?[*:0]const u16,
     dwAttrb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUndecorateA(
     pszPath: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUndecorateW(
     pszPath: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnExpandEnvStringsA(
     pszPath: [*:0]const u8,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathUnExpandEnvStringsW(
     pszPath: [*:0]const u16,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCompareA(
     psz1: [*:0]const u8,
     psz2: [*:0]const u8,
     fIgnoreSlash: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCompareW(
     psz1: [*:0]const u16,
     psz2: [*:0]const u16,
     fIgnoreSlash: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCombineA(
     pszBase: [*:0]const u8,
     pszRelative: [*:0]const u8,
@@ -30957,6 +31735,7 @@ pub extern "SHLWAPI" fn UrlCombineA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCombineW(
     pszBase: [*:0]const u16,
     pszRelative: [*:0]const u16,
@@ -30965,6 +31744,7 @@ pub extern "SHLWAPI" fn UrlCombineW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCanonicalizeA(
     pszUrl: [*:0]const u8,
     pszCanonicalized: [*:0]u8,
@@ -30972,6 +31752,7 @@ pub extern "SHLWAPI" fn UrlCanonicalizeA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCanonicalizeW(
     pszUrl: [*:0]const u16,
     pszCanonicalized: [*:0]u16,
@@ -30979,40 +31760,49 @@ pub extern "SHLWAPI" fn UrlCanonicalizeW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsOpaqueA(
     pszURL: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsOpaqueW(
     pszURL: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsNoHistoryA(
     pszURL: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsNoHistoryW(
     pszURL: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsA(
     pszUrl: [*:0]const u8,
     UrlIs: URLIS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlIsW(
     pszUrl: [*:0]const u16,
     UrlIs: URLIS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlGetLocationA(
     pszURL: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlGetLocationW(
     pszURL: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlUnescapeA(
     pszUrl: PSTR,
     pszUnescaped: ?[*:0]u8,
@@ -31020,6 +31810,7 @@ pub extern "SHLWAPI" fn UrlUnescapeA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlUnescapeW(
     pszUrl: PWSTR,
     pszUnescaped: ?[*:0]u16,
@@ -31027,6 +31818,7 @@ pub extern "SHLWAPI" fn UrlUnescapeW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlEscapeA(
     pszUrl: [*:0]const u8,
     pszEscaped: [*:0]u8,
@@ -31034,6 +31826,7 @@ pub extern "SHLWAPI" fn UrlEscapeA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlEscapeW(
     pszUrl: [*:0]const u16,
     pszEscaped: [*:0]u16,
@@ -31041,6 +31834,7 @@ pub extern "SHLWAPI" fn UrlEscapeW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCreateFromPathA(
     pszPath: [*:0]const u8,
     pszUrl: [*:0]u8,
@@ -31048,6 +31842,7 @@ pub extern "SHLWAPI" fn UrlCreateFromPathA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlCreateFromPathW(
     pszPath: [*:0]const u16,
     pszUrl: [*:0]u16,
@@ -31055,6 +31850,7 @@ pub extern "SHLWAPI" fn UrlCreateFromPathW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCreateFromUrlA(
     pszUrl: [*:0]const u8,
     pszPath: [*:0]u8,
@@ -31062,6 +31858,7 @@ pub extern "SHLWAPI" fn PathCreateFromUrlA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn PathCreateFromUrlW(
     pszUrl: [*:0]const u16,
     pszPath: [*:0]u16,
@@ -31069,24 +31866,28 @@ pub extern "SHLWAPI" fn PathCreateFromUrlW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn PathCreateFromUrlAlloc(
     pszIn: [*:0]const u16,
     ppszOut: *PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlHashA(
     pszUrl: [*:0]const u8,
     pbHash: [*:0]u8,
     cbHash: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlHashW(
     pszUrl: [*:0]const u16,
     pbHash: [*:0]u8,
     cbHash: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlGetPartW(
     pszIn: [*:0]const u16,
     pszOut: [*:0]u16,
@@ -31095,6 +31896,7 @@ pub extern "SHLWAPI" fn UrlGetPartW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlGetPartA(
     pszIn: [*:0]const u8,
     pszOut: [*:0]u8,
@@ -31103,6 +31905,7 @@ pub extern "SHLWAPI" fn UrlGetPartA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlApplySchemeA(
     pszIn: [*:0]const u8,
     pszOut: [*:0]u8,
@@ -31110,6 +31913,7 @@ pub extern "SHLWAPI" fn UrlApplySchemeA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn UrlApplySchemeW(
     pszIn: [*:0]const u16,
     pszOut: [*:0]u16,
@@ -31117,6 +31921,7 @@ pub extern "SHLWAPI" fn UrlApplySchemeW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn HashData(
     pbData: [*:0]u8,
     cbData: u32,
@@ -31124,58 +31929,69 @@ pub extern "SHLWAPI" fn HashData(
     cbHash: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn UrlFixupW(
     pcszUrl: [*:0]const u16,
     pszTranslatedUrl: [*:0]u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn ParseURLA(
     pcszURL: [*:0]const u8,
     ppu: *PARSEDURLA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn ParseURLW(
     pcszURL: [*:0]const u16,
     ppu: *PARSEDURLW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteEmptyKeyA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteEmptyKeyW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteKeyA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteKeyW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegDuplicateHKey(
     hkey: HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteValueA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
     pszValue: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHDeleteValueW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
     pszValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHGetValueA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
@@ -31185,6 +32001,7 @@ pub extern "SHLWAPI" fn SHGetValueA(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHGetValueW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
@@ -31194,6 +32011,7 @@ pub extern "SHLWAPI" fn SHGetValueW(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHSetValueA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
@@ -31203,6 +32021,7 @@ pub extern "SHLWAPI" fn SHSetValueA(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHSetValueW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
@@ -31212,6 +32031,7 @@ pub extern "SHLWAPI" fn SHSetValueW(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHRegGetValueA(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u8,
@@ -31222,6 +32042,7 @@ pub extern "SHLWAPI" fn SHRegGetValueA(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHRegGetValueW(
     hkey: HKEY,
     pszSubKey: ?[*:0]const u16,
@@ -31232,6 +32053,7 @@ pub extern "SHLWAPI" fn SHRegGetValueW(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn SHRegGetValueFromHKCUHKLM(
     pwszKey: [*:0]const u16,
     pwszValue: ?[*:0]const u16,
@@ -31241,6 +32063,7 @@ pub extern "SHLWAPI" fn SHRegGetValueFromHKCUHKLM(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHQueryValueExA(
     hkey: HKEY,
     pszValue: ?[*:0]const u8,
@@ -31250,6 +32073,7 @@ pub extern "SHLWAPI" fn SHQueryValueExA(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHQueryValueExW(
     hkey: HKEY,
     pszValue: ?[*:0]const u16,
@@ -31259,6 +32083,7 @@ pub extern "SHLWAPI" fn SHQueryValueExW(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHEnumKeyExA(
     hkey: HKEY,
     dwIndex: u32,
@@ -31266,6 +32091,7 @@ pub extern "SHLWAPI" fn SHEnumKeyExA(
     pcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHEnumKeyExW(
     hkey: HKEY,
     dwIndex: u32,
@@ -31273,6 +32099,7 @@ pub extern "SHLWAPI" fn SHEnumKeyExW(
     pcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHEnumValueA(
     hkey: HKEY,
     dwIndex: u32,
@@ -31283,6 +32110,7 @@ pub extern "SHLWAPI" fn SHEnumValueA(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHEnumValueW(
     hkey: HKEY,
     dwIndex: u32,
@@ -31293,6 +32121,7 @@ pub extern "SHLWAPI" fn SHEnumValueW(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHQueryInfoKeyA(
     hkey: HKEY,
     pcSubKeys: ?*u32,
@@ -31301,6 +32130,7 @@ pub extern "SHLWAPI" fn SHQueryInfoKeyA(
     pcchMaxValueNameLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHQueryInfoKeyW(
     hkey: HKEY,
     pcSubKeys: ?*u32,
@@ -31309,6 +32139,7 @@ pub extern "SHLWAPI" fn SHQueryInfoKeyW(
     pcchMaxValueNameLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCopyKeyA(
     hkeySrc: HKEY,
     pszSrcSubKey: ?[*:0]const u8,
@@ -31316,6 +32147,7 @@ pub extern "SHLWAPI" fn SHCopyKeyA(
     fReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCopyKeyW(
     hkeySrc: HKEY,
     pszSrcSubKey: ?[*:0]const u16,
@@ -31323,6 +32155,7 @@ pub extern "SHLWAPI" fn SHCopyKeyW(
     fReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetPathA(
     hKey: HKEY,
     pcszSubKey: ?[*:0]const u8,
@@ -31331,6 +32164,7 @@ pub extern "SHLWAPI" fn SHRegGetPathA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetPathW(
     hKey: HKEY,
     pcszSubKey: ?[*:0]const u16,
@@ -31339,6 +32173,7 @@ pub extern "SHLWAPI" fn SHRegGetPathW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegSetPathA(
     hKey: HKEY,
     pcszSubKey: ?[*:0]const u8,
@@ -31347,6 +32182,7 @@ pub extern "SHLWAPI" fn SHRegSetPathA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegSetPathW(
     hKey: HKEY,
     pcszSubKey: ?[*:0]const u16,
@@ -31355,6 +32191,7 @@ pub extern "SHLWAPI" fn SHRegSetPathW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegCreateUSKeyA(
     pszPath: [*:0]const u8,
     samDesired: u32,
@@ -31363,6 +32200,7 @@ pub extern "SHLWAPI" fn SHRegCreateUSKeyA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegCreateUSKeyW(
     pwzPath: [*:0]const u16,
     samDesired: u32,
@@ -31371,6 +32209,7 @@ pub extern "SHLWAPI" fn SHRegCreateUSKeyW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegOpenUSKeyA(
     pszPath: [*:0]const u8,
     samDesired: u32,
@@ -31379,6 +32218,7 @@ pub extern "SHLWAPI" fn SHRegOpenUSKeyA(
     fIgnoreHKCU: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegOpenUSKeyW(
     pwzPath: [*:0]const u16,
     samDesired: u32,
@@ -31387,6 +32227,7 @@ pub extern "SHLWAPI" fn SHRegOpenUSKeyW(
     fIgnoreHKCU: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegQueryUSValueA(
     hUSKey: ?*c_void,
     pszValue: ?[*:0]const u8,
@@ -31398,6 +32239,7 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueA(
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegQueryUSValueW(
     hUSKey: ?*c_void,
     pszValue: ?[*:0]const u16,
@@ -31409,6 +32251,7 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueW(
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegWriteUSValueA(
     hUSKey: ?*c_void,
     pszValue: [*:0]const u8,
@@ -31418,6 +32261,7 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegWriteUSValueW(
     hUSKey: ?*c_void,
     pwzValue: [*:0]const u16,
@@ -31427,30 +32271,35 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegDeleteUSValueA(
     hUSKey: ?*c_void,
     pszValue: [*:0]const u8,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegDeleteUSValueW(
     hUSKey: ?*c_void,
     pwzValue: [*:0]const u16,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegDeleteEmptyUSKeyW(
     hUSKey: ?*c_void,
     pwzSubKey: [*:0]const u16,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegDeleteEmptyUSKeyA(
     hUSKey: ?*c_void,
     pszSubKey: [*:0]const u8,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegEnumUSKeyA(
     hUSKey: ?*c_void,
     dwIndex: u32,
@@ -31459,6 +32308,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSKeyA(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegEnumUSKeyW(
     hUSKey: ?*c_void,
     dwIndex: u32,
@@ -31467,6 +32317,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSKeyW(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegEnumUSValueA(
     hUSkey: ?*c_void,
     dwIndex: u32,
@@ -31478,6 +32329,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueA(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegEnumUSValueW(
     hUSkey: ?*c_void,
     dwIndex: u32,
@@ -31489,6 +32341,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueW(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyA(
     hUSKey: ?*c_void,
     pcSubKeys: ?*u32,
@@ -31498,6 +32351,7 @@ pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyA(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyW(
     hUSKey: ?*c_void,
     pcSubKeys: ?*u32,
@@ -31507,10 +32361,12 @@ pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyW(
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegCloseUSKey(
     hUSKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetUSValueA(
     pszSubKey: [*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -31522,6 +32378,7 @@ pub extern "SHLWAPI" fn SHRegGetUSValueA(
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetUSValueW(
     pszSubKey: [*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -31533,6 +32390,7 @@ pub extern "SHLWAPI" fn SHRegGetUSValueW(
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegSetUSValueA(
     pszSubKey: [*:0]const u8,
     pszValue: [*:0]const u8,
@@ -31542,6 +32400,7 @@ pub extern "SHLWAPI" fn SHRegSetUSValueA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegSetUSValueW(
     pwzSubKey: [*:0]const u16,
     pwzValue: [*:0]const u16,
@@ -31551,12 +32410,14 @@ pub extern "SHLWAPI" fn SHRegSetUSValueW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetIntW(
     hk: HKEY,
     pwzKey: ?[*:0]const u16,
     iDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetBoolUSValueA(
     pszSubKey: [*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -31564,6 +32425,7 @@ pub extern "SHLWAPI" fn SHRegGetBoolUSValueA(
     fDefault: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHRegGetBoolUSValueW(
     pszSubKey: [*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -31571,12 +32433,14 @@ pub extern "SHLWAPI" fn SHRegGetBoolUSValueW(
     fDefault: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocCreate(
     clsid: Guid,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryStringA(
     flags: u32,
     str: ASSOCSTR,
@@ -31586,6 +32450,7 @@ pub extern "SHLWAPI" fn AssocQueryStringA(
     pcchOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryStringW(
     flags: u32,
     str: ASSOCSTR,
@@ -31595,6 +32460,7 @@ pub extern "SHLWAPI" fn AssocQueryStringW(
     pcchOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryStringByKeyA(
     flags: u32,
     str: ASSOCSTR,
@@ -31604,6 +32470,7 @@ pub extern "SHLWAPI" fn AssocQueryStringByKeyA(
     pcchOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryStringByKeyW(
     flags: u32,
     str: ASSOCSTR,
@@ -31613,6 +32480,7 @@ pub extern "SHLWAPI" fn AssocQueryStringByKeyW(
     pcchOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryKeyA(
     flags: u32,
     key: ASSOCKEY,
@@ -31621,6 +32489,7 @@ pub extern "SHLWAPI" fn AssocQueryKeyA(
     phkeyOut: *HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn AssocQueryKeyW(
     flags: u32,
     key: ASSOCKEY,
@@ -31629,10 +32498,12 @@ pub extern "SHLWAPI" fn AssocQueryKeyW(
     phkeyOut: *HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn AssocIsDangerous(
     pszAssoc: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn AssocGetPerceivedType(
     pszExt: [*:0]const u16,
     ptype: *PERCEIVED,
@@ -31640,6 +32511,7 @@ pub extern "SHLWAPI" fn AssocGetPerceivedType(
     ppszType: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHOpenRegStreamA(
     hkey: HKEY,
     pszSubkey: ?[*:0]const u8,
@@ -31647,6 +32519,7 @@ pub extern "SHLWAPI" fn SHOpenRegStreamA(
     grfMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHOpenRegStreamW(
     hkey: HKEY,
     pszSubkey: ?[*:0]const u16,
@@ -31654,6 +32527,7 @@ pub extern "SHLWAPI" fn SHOpenRegStreamW(
     grfMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHOpenRegStream2A(
     hkey: HKEY,
     pszSubkey: ?[*:0]const u8,
@@ -31661,6 +32535,7 @@ pub extern "SHLWAPI" fn SHOpenRegStream2A(
     grfMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHOpenRegStream2W(
     hkey: HKEY,
     pszSubkey: ?[*:0]const u16,
@@ -31668,18 +32543,21 @@ pub extern "SHLWAPI" fn SHOpenRegStream2W(
     grfMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHCreateStreamOnFileA(
     pszFile: [*:0]const u8,
     grfMode: u32,
     ppstm: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHCreateStreamOnFileW(
     pszFile: [*:0]const u16,
     grfMode: u32,
     ppstm: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHCreateStreamOnFileEx(
     pszFile: [*:0]const u16,
     grfMode: u32,
@@ -31689,46 +32567,55 @@ pub extern "SHLWAPI" fn SHCreateStreamOnFileEx(
     ppstm: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCreateMemStream(
     pInit: ?[*:0]const u8,
     cbInit: u32,
 ) callconv(@import("std").os.windows.WINAPI) *IStream;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn GetAcceptLanguagesA(
     pszLanguages: [*:0]u8,
     pcchLanguages: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn GetAcceptLanguagesW(
     pszLanguages: [*:0]u16,
     pcchLanguages: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_Set(
     ppunk: **IUnknown,
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_AtomicRelease(
     ppunk: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_GetWindow(
     punk: *IUnknown,
     phwnd: *HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_SetSite(
     punk: *IUnknown,
     punkSite: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_GetSite(
     punk: *IUnknown,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_QueryService(
     punk: ?*IUnknown,
     guidService: *const Guid,
@@ -31736,27 +32623,32 @@ pub extern "SHLWAPI" fn IUnknown_QueryService(
     ppvOut: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IStream_Read(
     pstm: *IStream,
     pv: *c_void,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_Write(
     pstm: *IStream,
     pv: [*]const u8,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IStream_Reset(
     pstm: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IStream_Size(
     pstm: *IStream,
     pui: *ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ConnectToConnectionPoint(
     punk: ?*IUnknown,
     riidEvent: *const Guid,
@@ -31766,32 +32658,38 @@ pub extern "SHLWAPI" fn ConnectToConnectionPoint(
     ppcpOut: ?*?*IConnectionPoint,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_ReadPidl(
     pstm: *IStream,
     ppidlOut: **ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_WritePidl(
     pstm: *IStream,
     pidlWrite: *ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_ReadStr(
     pstm: *IStream,
     ppsz: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_WriteStr(
     pstm: *IStream,
     psz: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn IStream_Copy(
     pstmFrom: *IStream,
     pstmTo: *IStream,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
     pidl: ?*ITEMIDLIST,
     pszBagName: ?[*:0]const u16,
@@ -31800,6 +32698,7 @@ pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHFormatDateTimeA(
     pft: *const FILETIME,
     pdwFlags: ?*u32,
@@ -31807,6 +32706,7 @@ pub extern "SHLWAPI" fn SHFormatDateTimeA(
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHFormatDateTimeW(
     pft: *const FILETIME,
     pdwFlags: ?*u32,
@@ -31814,30 +32714,35 @@ pub extern "SHLWAPI" fn SHFormatDateTimeW(
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHAnsiToUnicode(
     pszSrc: [*:0]const u8,
     pwszDst: [*:0]u16,
     cwchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHAnsiToAnsi(
     pszSrc: [*:0]const u8,
     pszDst: [*:0]u8,
     cchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHUnicodeToAnsi(
     pwszSrc: [*:0]const u16,
     pszDst: [*:0]u8,
     cchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHUnicodeToUnicode(
     pwzSrc: [*:0]const u16,
     pwzDst: [*:0]u16,
     cwchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHMessageBoxCheckA(
     hwnd: HWND,
     pszText: [*:0]const u8,
@@ -31847,6 +32752,7 @@ pub extern "SHLWAPI" fn SHMessageBoxCheckA(
     pszRegVal: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHMessageBoxCheckW(
     hwnd: HWND,
     pszText: [*:0]const u16,
@@ -31856,65 +32762,79 @@ pub extern "SHLWAPI" fn SHMessageBoxCheckW(
     pszRegVal: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHSendMessageBroadcastA(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHSendMessageBroadcastW(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStripMneumonicA(
     pszMenu: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStripMneumonicW(
     pszMenu: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IsOS(
     dwOS: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHLWAPI" fn SHGlobalCounterGetValue(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHLWAPI" fn SHGlobalCounterIncrement(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "SHLWAPI" fn SHGlobalCounterDecrement(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHAllocShared(
     pvData: ?[*]const u8,
     dwSize: u32,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHFreeShared(
     hData: HANDLE,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHLockShared(
     hData: HANDLE,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHUnlockShared(
     pvData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn WhichPlatform(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn QISearch(
     that: *c_void,
     pqit: *QITAB,
@@ -31922,43 +32842,52 @@ pub extern "SHLWAPI" fn QISearch(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHIsLowMemoryMachine(
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn GetMenuPosFromID(
     hmenu: HMENU,
     id: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHGetInverseCMAP(
     pbMap: [*:0]u8,
     cbMap: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHAutoComplete(
     hwndEdit: HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHCreateThreadRef(
     pcRef: *i32,
     ppunk: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHSetThreadRef(
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHGetThreadRef(
     ppunk: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHSkipJunction(
     pbc: ?*IBindCtx,
     pclsid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCreateThread(
     pfnThreadProc: LPTHREAD_START_ROUTINE,
     pData: ?*c_void,
@@ -31966,6 +32895,7 @@ pub extern "SHLWAPI" fn SHCreateThread(
     pfnCallback: ?LPTHREAD_START_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn SHCreateThreadWithHandle(
     pfnThreadProc: LPTHREAD_START_ROUTINE,
     pData: ?*c_void,
@@ -31974,13 +32904,16 @@ pub extern "SHLWAPI" fn SHCreateThreadWithHandle(
     pHandle: ?*HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHReleaseThreadRef(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCreateShellPalette(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) HPALETTE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ColorRGBToHLS(
     clrRGB: u32,
     pwHue: *u16,
@@ -31988,18 +32921,21 @@ pub extern "SHLWAPI" fn ColorRGBToHLS(
     pwSaturation: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ColorHLSToRGB(
     wHue: u16,
     wLuminance: u16,
     wSaturation: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn ColorAdjustLuma(
     clrRGB: u32,
     n: i32,
     fScale: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn IsInternetESCEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -32225,15 +33161,18 @@ pub extern "hlink" fn HlinkTranslateURL(
     ppwzTranslatedURL: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathIsUNCEx(
     pszPath: [*:0]const u16,
     ppszServer: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchIsRoot(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAddBackslashEx(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
@@ -32241,11 +33180,13 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAddBackslashEx(
     pcchRemaining: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAddBackslash(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRemoveBackslashEx(
     pszPath: PWSTR,
     cchPath: ?*c_void,
@@ -32253,49 +33194,58 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRemoveBackslashEx(
     pcchRemaining: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRemoveBackslash(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchSkipRoot(
     pszPath: [*:0]const u16,
     ppszRootEnd: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchStripToRoot(
     pszPath: PWSTR,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRemoveFileSpec(
     pszPath: PWSTR,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchFindExtension(
     pszPath: [*:0]const u16,
     cchPath: ?*c_void,
     ppszExt: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAddExtension(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
     pszExt: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRenameExtension(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
     pszExt: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchRemoveExtension(
     pszPath: PWSTR,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCanonicalizeEx(
     pszPathOut: [*:0]u16,
     cchPathOut: ?*c_void,
@@ -32303,12 +33253,14 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCanonicalizeEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCanonicalize(
     pszPathOut: [*:0]u16,
     cchPathOut: ?*c_void,
     pszPathIn: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCombineEx(
     pszPathOut: [*:0]u16,
     cchPathOut: ?*c_void,
@@ -32317,6 +33269,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCombineEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCombine(
     pszPathOut: [*:0]u16,
     cchPathOut: ?*c_void,
@@ -32324,6 +33277,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCombine(
     pszMore: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAppendEx(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
@@ -32331,17 +33285,20 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAppendEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAppend(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
     pszMore: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathCchStripPrefix(
     pszPath: [*:0]u16,
     cchPath: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCombine(
     pszPathIn: ?[*:0]const u16,
     pszMore: ?[*:0]const u16,
@@ -32349,6 +33306,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCombine(
     ppszPathOut: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCanonicalize(
     pszPathIn: [*:0]const u16,
     dwFlags: u32,
@@ -32375,15 +33333,50 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
     Registration: *_APPCONSTRAIN_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetWindowContextHelpId(
+    param0: HWND,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetWindowContextHelpId(
+    param0: HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetMenuContextHelpId(
+    param0: HMENU,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetMenuContextHelpId(
+    param0: HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpA(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u8,
+    uCommand: u32,
+    dwData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpW(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u16,
+    uCommand: u32,
+    dwData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (208)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const LOGFONT = LOGFONTA;
-        pub const MULTIKEYHELP = MULTIKEYHELPA;
-        pub const HELPWININFO = HELPWININFOA;
         pub const DRAGINFO = DRAGINFOA;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
@@ -32405,6 +33398,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOA;
         pub const urlinvokecommandinfo = urlinvokecommandinfoA;
         pub const IUniformResourceLocator = IUniformResourceLocatorA;
+        pub const LOGFONT = LOGFONTA;
+        pub const MULTIKEYHELP = MULTIKEYHELPA;
+        pub const HELPWININFO = HELPWININFOA;
         pub const LoadUserProfile = LoadUserProfileA;
         pub const GetProfilesDirectory = GetProfilesDirectoryA;
         pub const DeleteProfile = DeleteProfileA;
@@ -32412,7 +33408,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
         pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
         pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
-        pub const WinHelp = WinHelpA;
         pub const DragQueryFile = DragQueryFileA;
         pub const ShellExecute = ShellExecuteA;
         pub const FindExecutable = FindExecutableA;
@@ -32589,11 +33584,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckA;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
         pub const SHStripMneumonic = SHStripMneumonicA;
+        pub const WinHelp = WinHelpA;
     },
     .wide => struct {
-        pub const LOGFONT = LOGFONTW;
-        pub const MULTIKEYHELP = MULTIKEYHELPW;
-        pub const HELPWININFO = HELPWININFOW;
         pub const DRAGINFO = DRAGINFOW;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
@@ -32615,6 +33608,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOW;
         pub const urlinvokecommandinfo = urlinvokecommandinfoW;
         pub const IUniformResourceLocator = IUniformResourceLocatorW;
+        pub const LOGFONT = LOGFONTW;
+        pub const MULTIKEYHELP = MULTIKEYHELPW;
+        pub const HELPWININFO = HELPWININFOW;
         pub const LoadUserProfile = LoadUserProfileW;
         pub const GetProfilesDirectory = GetProfilesDirectoryW;
         pub const DeleteProfile = DeleteProfileW;
@@ -32622,7 +33618,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
         pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
         pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
-        pub const WinHelp = WinHelpW;
         pub const DragQueryFile = DragQueryFileW;
         pub const ShellExecute = ShellExecuteW;
         pub const FindExecutable = FindExecutableW;
@@ -32799,11 +33794,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckW;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
         pub const SHStripMneumonic = SHStripMneumonicW;
+        pub const WinHelp = WinHelpW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const LOGFONT = *opaque{};
-        pub const MULTIKEYHELP = *opaque{};
-        pub const HELPWININFO = *opaque{};
         pub const DRAGINFO = *opaque{};
         pub const SHFILEOPSTRUCT = *opaque{};
         pub const SHNAMEMAPPING = *opaque{};
@@ -32825,6 +33818,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = *opaque{};
         pub const urlinvokecommandinfo = *opaque{};
         pub const IUniformResourceLocator = *opaque{};
+        pub const LOGFONT = *opaque{};
+        pub const MULTIKEYHELP = *opaque{};
+        pub const HELPWININFO = *opaque{};
         pub const LoadUserProfile = *opaque{};
         pub const GetProfilesDirectory = *opaque{};
         pub const DeleteProfile = *opaque{};
@@ -32832,7 +33828,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = *opaque{};
         pub const GetUserProfileDirectory = *opaque{};
         pub const ExpandEnvironmentStringsForUser = *opaque{};
-        pub const WinHelp = *opaque{};
         pub const DragQueryFile = *opaque{};
         pub const ShellExecute = *opaque{};
         pub const FindExecutable = *opaque{};
@@ -33009,10 +34004,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = *opaque{};
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
+        pub const WinHelp = *opaque{};
     } else struct {
-        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
-        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
-        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
         pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
         pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
@@ -33034,6 +34027,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
         pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
+        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
+        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
+        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
         pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
         pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
@@ -33041,7 +34037,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
         pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
-        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
         pub const DragQueryFile = @compileError("'DragQueryFile' requires that UNICODE be set to true or false in the root module");
         pub const ShellExecute = @compileError("'ShellExecute' requires that UNICODE be set to true or false in the root module");
         pub const FindExecutable = @compileError("'FindExecutable' requires that UNICODE be set to true or false in the root module");
@@ -33218,10 +34213,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
         pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
         pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
+        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (94)
+// Section: Imports (95)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
@@ -33286,6 +34282,7 @@ const IEnumGUID = @import("com.zig").IEnumGUID;
 const IOleObject = @import("com.zig").IOleObject;
 const NMHDR = @import("controls.zig").NMHDR;
 const BOOL = @import("system_services.zig").BOOL;
+const PSID = @import("security.zig").PSID;
 const IPersist = @import("com.zig").IPersist;
 const BFFCALLBACK = @import("active_directory.zig").BFFCALLBACK;
 const LPFNSVADDPROPSHEETPAGE = @import("controls.zig").LPFNSVADDPROPSHEETPAGE;
@@ -33337,7 +34334,7 @@ test {
     const com_class_id_export_count = 109;
     const func_export_count = 699;
     const unicode_alias_count = 208;
-    const import_count = 94;
+    const import_count = 95;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

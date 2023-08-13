@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (102)
 //--------------------------------------------------------------------------------
+pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 pub const ARRAY_SEP_CHAR = @as(u32, 9);
 pub const WPCCHANNEL = @as(u32, 16);
 pub const WPC_SETTINGS_LOCATE = @as(u32, 20);
@@ -103,35 +104,10 @@ pub const MSG_Event_WebsiteVisit = @as(i32, -1342177261);
 pub const MSG_Event_Application = @as(i32, -1342177260);
 pub const MSG_Event_ComputerUsage = @as(i32, -1342177259);
 pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
-pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 
 //--------------------------------------------------------------------------------
-// Section: Types (47)
+// Section: Types (46)
 //--------------------------------------------------------------------------------
-pub const IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags = extern enum(u32) {
-    VISIBLE = 0,
-    HIDDEN = 1,
-};
-// TODO: enum 'IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags' has known issues with its value aliases
-
-pub const GetRestrictions_pdwRestrictions = extern enum(u32) {
-    NO_RESTRICTION = 0,
-    LOGGING_REQUIRED = 1,
-    WEB_FILTERED = 2,
-    HOURS_RESTRICTED = 4,
-    GAMES_BLOCKED = 8,
-    APPS_RESTRICTED = 16,
-};
-// TODO: enum 'GetRestrictions_pdwRestrictions' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IWPCWebSettings_GetSettings_pdwSettingsFlags = extern enum(u32) {
-    NOTBLOCKED = 0,
-    DOWNLOADSBLOCKED = 1,
-    _,
-};
-// TODO: enum 'IWPCWebSettings_GetSettings_pdwSettingsFlags' has known issues with its value aliases
-
 pub const WPCFLAG_ISBLOCKED = extern enum(i32) {
     NOTBLOCKED = 0,
     IMBLOCKED = 1,
@@ -790,6 +766,7 @@ pub const CLSID_WpcProviderSupport = &CLSID_WpcProviderSupport_Value;
 const CLSID_WindowsParentalControls_Value = @import("../zig.zig").Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
 pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderState_Value = @import("../zig.zig").Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
 pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
 pub const IWPCProviderState = extern struct {
@@ -822,6 +799,7 @@ pub const WPCFLAG_OVERRIDE = extern enum(i32) {
 };
 pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.N;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderConfig_Value = @import("../zig.zig").Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
 pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
 pub const IWPCProviderConfig = extern struct {
@@ -882,6 +860,7 @@ pub const WPCFLAG_APPS_RESTRICTED = WPCFLAG_RESTRICTION.APPS_RESTRICTED;
 pub const WPCFLAG_TIME_ALLOWANCE_RESTRICTED = WPCFLAG_RESTRICTION.TIME_ALLOWANCE_RESTRICTED;
 pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.GAMES_RESTRICTED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCSettings_Value = @import("../zig.zig").Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
 pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
 pub const IWPCSettings = extern struct {
@@ -919,6 +898,7 @@ pub const IWPCSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCGamesSettings_Value = @import("../zig.zig").Guid.initString("95e87780-e158-489e-b452-bbb850790715");
 pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
 pub const IWPCGamesSettings = extern struct {
@@ -948,6 +928,7 @@ pub const WPCFLAG_WEB_SETTING = extern enum(i32) {
 pub const WPCFLAG_WEB_SETTING_NOTBLOCKED = WPCFLAG_WEB_SETTING.NOTBLOCKED;
 pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBLOCKED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCWebSettings_Value = @import("../zig.zig").Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
 pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
 pub const IWPCWebSettings = extern struct {
@@ -988,6 +969,7 @@ pub const WPCFLAG_VISIBILITY = extern enum(i32) {
 pub const WPCFLAG_WPC_VISIBLE = WPCFLAG_VISIBILITY.VISIBLE;
 pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.HIDDEN;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWindowsParentalControlsCore_Value = @import("../zig.zig").Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
 pub const IID_IWindowsParentalControlsCore = &IID_IWindowsParentalControlsCore_Value;
 pub const IWindowsParentalControlsCore = extern struct {
@@ -995,7 +977,7 @@ pub const IWindowsParentalControlsCore = extern struct {
         base: IUnknown.VTable,
         GetVisibility: fn(
             self: *const IWindowsParentalControlsCore,
-            peVisibility: IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags,
+            peVisibility: *WPCFLAG_VISIBILITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUserSettings: fn(
             self: *const IWindowsParentalControlsCore,
@@ -1017,7 +999,7 @@ pub const IWindowsParentalControlsCore = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetVisibility(self: *const T, peVisibility: IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetVisibility(self: *const T, peVisibility: *WPCFLAG_VISIBILITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetVisibility(@ptrCast(*const IWindowsParentalControlsCore, self), peVisibility);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1036,6 +1018,7 @@ pub const IWindowsParentalControlsCore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWindowsParentalControls_Value = @import("../zig.zig").Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
 pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
 pub const IWindowsParentalControls = extern struct {
@@ -1058,6 +1041,7 @@ pub const IWindowsParentalControls = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderSupport_Value = @import("../zig.zig").Guid.initString("41eba572-23ed-4779-bec1-8df96206c44c");
 pub const IID_IWPCProviderSupport = &IID_IWPCProviderSupport_Value;
 pub const IWPCProviderSupport = extern struct {
@@ -1078,6 +1062,24 @@ pub const IWPCProviderSupport = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const GetRestrictions_pdwRestrictions = extern enum(u32) {
+    NO_RESTRICTION = 0,
+    LOGGING_REQUIRED = 1,
+    WEB_FILTERED = 2,
+    HOURS_RESTRICTED = 4,
+    GAMES_BLOCKED = 8,
+    APPS_RESTRICTED = 16,
+};
+// TODO: enum 'GetRestrictions_pdwRestrictions' has known issues with its value aliases
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const IWPCWebSettings_GetSettings_pdwSettingsFlags = extern enum(u32) {
+    NOTBLOCKED = 0,
+    DOWNLOADSBLOCKED = 1,
+    _,
+};
+// TODO: enum 'IWPCWebSettings_GetSettings_pdwSettingsFlags' has known issues with its value aliases
 
 
 //--------------------------------------------------------------------------------
@@ -1110,7 +1112,7 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     const constant_export_count = 102;
-    const type_export_count = 44;
+    const type_export_count = 43;
     const enum_value_export_count = 294;
     const com_iface_id_export_count = 8;
     const com_class_id_export_count = 3;

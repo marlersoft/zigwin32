@@ -180,6 +180,7 @@ pub const MAGNETOMETER_ACCURACY_UNRELIABLE = MagnetometerAccuracy.UNRELIABLE;
 pub const MAGNETOMETER_ACCURACY_APPROXIMATE = MagnetometerAccuracy.APPROXIMATE;
 pub const MAGNETOMETER_ACCURACY_HIGH = MagnetometerAccuracy.HIGH;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensorManager_Value = @import("../zig.zig").Guid.initString("bd77db67-45a8-42dc-8d00-6dcf15f8377a");
 pub const IID_ISensorManager = &IID_ISensorManager_Value;
 pub const ISensorManager = extern struct {
@@ -238,6 +239,7 @@ pub const ISensorManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ILocationPermissions_Value = @import("../zig.zig").Guid.initString("d5fb0a7f-e74e-44f5-8e02-4806863a274f");
 pub const IID_ILocationPermissions = &IID_ILocationPermissions_Value;
 pub const ILocationPermissions = extern struct {
@@ -267,6 +269,7 @@ pub const ILocationPermissions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensorCollection_Value = @import("../zig.zig").Guid.initString("23571e11-e545-4dd8-a337-b89bf44b10df");
 pub const IID_ISensorCollection = &IID_ISensorCollection_Value;
 pub const ISensorCollection = extern struct {
@@ -328,6 +331,7 @@ pub const ISensorCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensor_Value = @import("../zig.zig").Guid.initString("5fa08f80-2657-458e-af75-46f73fa6ac5c");
 pub const IID_ISensor = &IID_ISensor_Value;
 pub const ISensor = extern struct {
@@ -468,6 +472,7 @@ pub const ISensor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensorDataReport_Value = @import("../zig.zig").Guid.initString("0ab9df9b-c4b5-4796-8898-0470706a2e1d");
 pub const IID_ISensorDataReport = &IID_ISensorDataReport_Value;
 pub const ISensorDataReport = extern struct {
@@ -507,6 +512,7 @@ pub const ISensorDataReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensorManagerEvents_Value = @import("../zig.zig").Guid.initString("9b3b0b86-266a-4aad-b21f-fde5501001b7");
 pub const IID_ISensorManagerEvents = &IID_ISensorManagerEvents_Value;
 pub const ISensorManagerEvents = extern struct {
@@ -529,6 +535,7 @@ pub const ISensorManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISensorEvents_Value = @import("../zig.zig").Guid.initString("5d8dcc91-4641-47e7-b7c3-b74f48a6c391");
 pub const IID_ISensorEvents = &IID_ISensorEvents_Value;
 pub const ISensorEvents = extern struct {

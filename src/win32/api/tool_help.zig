@@ -9,6 +9,34 @@ pub const HF32_SHARED = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CreateToolhelp32Snapshot_dwFlags = extern enum(u32) {
+    INHERIT = 2147483648,
+    SNAPALL = 15,
+    SNAPHEAPLIST = 1,
+    SNAPMODULE = 8,
+    SNAPMODULE32 = 16,
+    SNAPPROCESS = 2,
+    SNAPTHREAD = 4,
+    _,
+};
+pub const TH32CS_INHERIT = CreateToolhelp32Snapshot_dwFlags.INHERIT;
+pub const TH32CS_SNAPALL = CreateToolhelp32Snapshot_dwFlags.SNAPALL;
+pub const TH32CS_SNAPHEAPLIST = CreateToolhelp32Snapshot_dwFlags.SNAPHEAPLIST;
+pub const TH32CS_SNAPMODULE = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE;
+pub const TH32CS_SNAPMODULE32 = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE32;
+pub const TH32CS_SNAPPROCESS = CreateToolhelp32Snapshot_dwFlags.SNAPPROCESS;
+pub const TH32CS_SNAPTHREAD = CreateToolhelp32Snapshot_dwFlags.SNAPTHREAD;
+
+pub const HEAPENTRY32_dwFlags = extern enum(u32) {
+    FIXED = 1,
+    FREE = 2,
+    MOVEABLE = 4,
+};
+pub const LF32_FIXED = HEAPENTRY32_dwFlags.FIXED;
+pub const LF32_FREE = HEAPENTRY32_dwFlags.FREE;
+pub const LF32_MOVEABLE = HEAPENTRY32_dwFlags.MOVEABLE;
+
 pub const HEAPLIST32 = extern struct {
     dwSize: ?*c_void,
     th32ProcessID: u32,
@@ -90,63 +118,41 @@ pub const MODULEENTRY32 = extern struct {
     szExePath: [260]i8,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CreateToolhelp32Snapshot_dwFlags = extern enum(u32) {
-    INHERIT = 2147483648,
-    SNAPALL = 15,
-    SNAPHEAPLIST = 1,
-    SNAPMODULE = 8,
-    SNAPMODULE32 = 16,
-    SNAPPROCESS = 2,
-    SNAPTHREAD = 4,
-    _,
-};
-pub const TH32CS_INHERIT = CreateToolhelp32Snapshot_dwFlags.INHERIT;
-pub const TH32CS_SNAPALL = CreateToolhelp32Snapshot_dwFlags.SNAPALL;
-pub const TH32CS_SNAPHEAPLIST = CreateToolhelp32Snapshot_dwFlags.SNAPHEAPLIST;
-pub const TH32CS_SNAPMODULE = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE;
-pub const TH32CS_SNAPMODULE32 = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE32;
-pub const TH32CS_SNAPPROCESS = CreateToolhelp32Snapshot_dwFlags.SNAPPROCESS;
-pub const TH32CS_SNAPTHREAD = CreateToolhelp32Snapshot_dwFlags.SNAPTHREAD;
-
-pub const HEAPENTRY32_dwFlags = extern enum(u32) {
-    FIXED = 1,
-    FREE = 2,
-    MOVEABLE = 4,
-};
-pub const LF32_FIXED = HEAPENTRY32_dwFlags.FIXED;
-pub const LF32_FREE = HEAPENTRY32_dwFlags.FREE;
-pub const LF32_MOVEABLE = HEAPENTRY32_dwFlags.MOVEABLE;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (16)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateToolhelp32Snapshot(
     dwFlags: CreateToolhelp32Snapshot_dwFlags,
     th32ProcessID: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32ListFirst(
     hSnapshot: HANDLE,
     lphl: *HEAPLIST32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32ListNext(
     hSnapshot: HANDLE,
     lphl: *HEAPLIST32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32First(
     lphe: *HEAPENTRY32,
     th32ProcessID: u32,
     th32HeapID: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Heap32Next(
     lphe: *HEAPENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Toolhelp32ReadProcessMemory(
     th32ProcessID: u32,
     lpBaseAddress: *const c_void,
@@ -155,51 +161,61 @@ pub extern "KERNEL32" fn Toolhelp32ReadProcessMemory(
     lpNumberOfBytesRead: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32FirstW(
     hSnapshot: HANDLE,
     lppe: *PROCESSENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32NextW(
     hSnapshot: HANDLE,
     lppe: *PROCESSENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32First(
     hSnapshot: HANDLE,
     lppe: *PROCESSENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Process32Next(
     hSnapshot: HANDLE,
     lppe: *PROCESSENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Thread32First(
     hSnapshot: HANDLE,
     lpte: *THREADENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Thread32Next(
     hSnapshot: HANDLE,
     lpte: *THREADENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32FirstW(
     hSnapshot: HANDLE,
     lpme: *MODULEENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32NextW(
     hSnapshot: HANDLE,
     lpme: *MODULEENTRY32W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32First(
     hSnapshot: HANDLE,
     lpme: *MODULEENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn Module32Next(
     hSnapshot: HANDLE,
     lpme: *MODULEENTRY32,

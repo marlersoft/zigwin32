@@ -4,17 +4,10 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (6)
+// Section: Types (5)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
 pub const HGLRC = ?*c_void;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const wglSwapLayerBuffers_arg2Flags = extern enum(u32) {
-    E = 1,
-    _,
-};
-pub const WGL_SWAP_MAIN_PLANE = wglSwapLayerBuffers_arg2Flags.E;
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
@@ -89,11 +82,13 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (24)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ChoosePixelFormat(
     hdc: HDC,
     ppfd: *const PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DescribePixelFormat(
     hdc: HDC,
     iPixelFormat: i32,
@@ -101,61 +96,74 @@ pub extern "GDI32" fn DescribePixelFormat(
     ppfd: ?[*]PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetPixelFormat(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetPixelFormat(
     hdc: HDC,
     format: i32,
     ppfd: *const PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFilePixelFormat(
     hemf: HENHMETAFILE,
     cbBuffer: u32,
     ppfd: ?[*]PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglCopyContext(
     param0: HGLRC,
     param1: HGLRC,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglCreateContext(
     param0: HDC,
 ) callconv(@import("std").os.windows.WINAPI) HGLRC;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglCreateLayerContext(
     param0: HDC,
     param1: i32,
 ) callconv(@import("std").os.windows.WINAPI) HGLRC;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglDeleteContext(
     param0: HGLRC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglGetCurrentContext(
 ) callconv(@import("std").os.windows.WINAPI) HGLRC;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglGetCurrentDC(
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglGetProcAddress(
     param0: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PROC;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglMakeCurrent(
     param0: HDC,
     param1: HGLRC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglShareLists(
     param0: HGLRC,
     param1: HGLRC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglUseFontBitmapsA(
     param0: HDC,
     param1: u32,
@@ -163,6 +171,7 @@ pub extern "OPENGL32" fn wglUseFontBitmapsA(
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglUseFontBitmapsW(
     param0: HDC,
     param1: u32,
@@ -170,10 +179,12 @@ pub extern "OPENGL32" fn wglUseFontBitmapsW(
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SwapBuffers(
     param0: HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglUseFontOutlinesA(
     param0: HDC,
     param1: u32,
@@ -185,6 +196,7 @@ pub extern "OPENGL32" fn wglUseFontOutlinesA(
     param7: *GLYPHMETRICSFLOAT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglUseFontOutlinesW(
     param0: HDC,
     param1: u32,
@@ -196,6 +208,7 @@ pub extern "OPENGL32" fn wglUseFontOutlinesW(
     param7: *GLYPHMETRICSFLOAT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglDescribeLayerPlane(
     param0: HDC,
     param1: i32,
@@ -204,6 +217,7 @@ pub extern "OPENGL32" fn wglDescribeLayerPlane(
     param4: *LAYERPLANEDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglSetLayerPaletteEntries(
     param0: HDC,
     param1: i32,
@@ -212,6 +226,7 @@ pub extern "OPENGL32" fn wglSetLayerPaletteEntries(
     param4: *const u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglGetLayerPaletteEntries(
     param0: HDC,
     param1: i32,
@@ -220,12 +235,14 @@ pub extern "OPENGL32" fn wglGetLayerPaletteEntries(
     param4: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglRealizeLayerPalette(
     param0: HDC,
     param1: i32,
     param2: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "OPENGL32" fn wglSwapLayerBuffers(
     param0: HDC,
     param1: u32,
@@ -263,8 +280,8 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 6;
-    const enum_value_export_count = 1;
+    const type_export_count = 5;
+    const enum_value_export_count = 0;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 24;

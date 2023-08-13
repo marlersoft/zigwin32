@@ -125,37 +125,44 @@ pub const MC_COLOR_TEMPERATURE_11500K = MC_COLOR_TEMPERATURE.@"11500K";
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromHMONITOR(
     hMonitor: HMONITOR,
     pdwNumberOfPhysicalMonitors: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromIDirect3DDevice9(
     pDirect3DDevice9: *IDirect3DDevice9,
     pdwNumberOfPhysicalMonitors: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetPhysicalMonitorsFromHMONITOR(
     hMonitor: HMONITOR,
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetPhysicalMonitorsFromIDirect3DDevice9(
     pDirect3DDevice9: *IDirect3DDevice9,
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DestroyPhysicalMonitor(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DestroyPhysicalMonitors(
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetVCPFeatureAndVCPFeatureReply(
     hMonitor: HANDLE,
     bVCPCode: u8,
@@ -164,47 +171,56 @@ pub extern "dxva2" fn GetVCPFeatureAndVCPFeatureReply(
     pdwMaximumValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetVCPFeature(
     hMonitor: HANDLE,
     bVCPCode: u8,
     dwNewValue: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SaveCurrentSettings(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetCapabilitiesStringLength(
     hMonitor: HANDLE,
     pdwCapabilitiesStringLengthInCharacters: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn CapabilitiesRequestAndCapabilitiesReply(
     hMonitor: HANDLE,
     pszASCIICapabilitiesString: [*:0]u8,
     dwCapabilitiesStringLengthInCharacters: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetTimingReport(
     hMonitor: HANDLE,
     pmtrMonitorTimingReport: *MC_TIMING_REPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorCapabilities(
     hMonitor: HANDLE,
     pdwMonitorCapabilities: *u32,
     pdwSupportedColorTemperatures: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SaveCurrentMonitorSettings(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorTechnologyType(
     hMonitor: HANDLE,
     pdtyDisplayTechnologyType: *MC_DISPLAY_TECHNOLOGY_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorBrightness(
     hMonitor: HANDLE,
     pdwMinimumBrightness: *u32,
@@ -212,6 +228,7 @@ pub extern "dxva2" fn GetMonitorBrightness(
     pdwMaximumBrightness: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorContrast(
     hMonitor: HANDLE,
     pdwMinimumContrast: *u32,
@@ -219,11 +236,13 @@ pub extern "dxva2" fn GetMonitorContrast(
     pdwMaximumContrast: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorColorTemperature(
     hMonitor: HANDLE,
     pctCurrentColorTemperature: *MC_COLOR_TEMPERATURE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorRedGreenOrBlueDrive(
     hMonitor: HANDLE,
     dtDriveType: MC_DRIVE_TYPE,
@@ -232,6 +251,7 @@ pub extern "dxva2" fn GetMonitorRedGreenOrBlueDrive(
     pdwMaximumDrive: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorRedGreenOrBlueGain(
     hMonitor: HANDLE,
     gtGainType: MC_GAIN_TYPE,
@@ -240,37 +260,44 @@ pub extern "dxva2" fn GetMonitorRedGreenOrBlueGain(
     pdwMaximumGain: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorBrightness(
     hMonitor: HANDLE,
     dwNewBrightness: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorContrast(
     hMonitor: HANDLE,
     dwNewContrast: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorColorTemperature(
     hMonitor: HANDLE,
     ctCurrentColorTemperature: MC_COLOR_TEMPERATURE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorRedGreenOrBlueDrive(
     hMonitor: HANDLE,
     dtDriveType: MC_DRIVE_TYPE,
     dwNewDrive: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorRedGreenOrBlueGain(
     hMonitor: HANDLE,
     gtGainType: MC_GAIN_TYPE,
     dwNewGain: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DegaussMonitor(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorDisplayAreaSize(
     hMonitor: HANDLE,
     stSizeType: MC_SIZE_TYPE,
@@ -279,6 +306,7 @@ pub extern "dxva2" fn GetMonitorDisplayAreaSize(
     pdwMaximumWidthOrHeight: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorDisplayAreaPosition(
     hMonitor: HANDLE,
     ptPositionType: MC_POSITION_TYPE,
@@ -287,22 +315,26 @@ pub extern "dxva2" fn GetMonitorDisplayAreaPosition(
     pdwMaximumPosition: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorDisplayAreaSize(
     hMonitor: HANDLE,
     stSizeType: MC_SIZE_TYPE,
     dwNewDisplayAreaWidthOrHeight: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn SetMonitorDisplayAreaPosition(
     hMonitor: HANDLE,
     ptPositionType: MC_POSITION_TYPE,
     dwNewPosition: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn RestoreMonitorFactoryColorDefaults(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn RestoreMonitorFactoryDefaults(
     hMonitor: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;

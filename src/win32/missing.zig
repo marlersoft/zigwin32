@@ -14,24 +14,24 @@ pub const CLSCTX_ALL = @intToEnum(win32.api.com.CLSCTX,
 pub usingnamespace if (@sizeOf(isize) > 4) struct {
     pub extern "USER32" fn SetWindowLongPtrA(
         hWnd: win32.api.windows_and_messaging.HWND,
-        nIndex: win32.api.windows_and_messaging.GetWindowLongPtr_nIndex,
+        nIndex: win32.api.windows_and_messaging.SetWindowLong_nIndex,
         dwNewLong: isize,
     ) callconv(@import("std").os.windows.WINAPI) i32;
 
     pub extern "USER32" fn SetWindowLongPtrW(
         hWnd: win32.api.windows_and_messaging.HWND,
-        nIndex: win32.api.windows_and_messaging.GetWindowLongPtr_nIndex,
+        nIndex: win32.api.windows_and_messaging.SetWindowLong_nIndex,
         dwNewLong: isize,
     ) callconv(@import("std").os.windows.WINAPI) i32;
 
     pub extern "USER32" fn GetWindowLongPtrA(
         hWnd: win32.api.windows_and_messaging.HWND,
-        nIndex: win32.api.windows_and_messaging.GetWindowLongPtr_nIndex,
+        nIndex: win32.api.windows_and_messaging.SetWindowLong_nIndex,
     ) callconv(@import("std").os.windows.WINAPI) isize;
 
     pub extern "USER32" fn GetWindowLongPtrW(
         hWnd: win32.api.windows_and_messaging.HWND,
-        nIndex: win32.api.windows_and_messaging.GetWindowLongPtr_nIndex,
+        nIndex: win32.api.windows_and_messaging.SetWindowLong_nIndex,
     ) callconv(@import("std").os.windows.WINAPI) isize;
 } else struct {
     pub const SetWindowLongPtrA = win32.api.windows_and_messaging.SetWindowLongA;
@@ -57,9 +57,6 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const GetWindowLongPtr = @compileError("'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
     },
 };
-
-// https://github.com/microsoft/win32metadata/issues/353
-pub const CW_USEDEFAULT : i32 = @bitCast(i32, @intCast(u32, 0x80000000));
 
 const std = @import("std");
 test "" {

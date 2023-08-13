@@ -47,6 +47,7 @@ pub const RSF_ORIGINAL_INVITER = RENDEZVOUS_SESSION_FLAGS.ORIGINAL_INVITER;
 pub const RSF_REMOTE_LEGACYSESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_LEGACYSESSION;
 pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousSession_Value = @import("../zig.zig").Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
 pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
 pub const IRendezvousSession = extern struct {
@@ -101,6 +102,7 @@ pub const IRendezvousSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DRendezvousSessionEvents_Value = @import("../zig.zig").Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
 pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
 pub const DRendezvousSessionEvents = extern struct {
@@ -114,6 +116,7 @@ pub const DRendezvousSessionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousApplication_Value = @import("../zig.zig").Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
 pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
 pub const IRendezvousApplication = extern struct {

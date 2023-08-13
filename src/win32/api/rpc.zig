@@ -2,6 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (242)
 //--------------------------------------------------------------------------------
+pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
+pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 pub const RPC_C_BINDING_INFINITE_TIMEOUT = @as(u32, 10);
 pub const RPC_C_BINDING_MIN_TIMEOUT = @as(u32, 0);
 pub const RPC_C_BINDING_DEFAULT_TIMEOUT = @as(u32, 5);
@@ -242,8 +244,6 @@ pub const USER_MARSHAL_FC_ULONG = @as(u32, 9);
 pub const USER_MARSHAL_FC_FLOAT = @as(u32, 10);
 pub const USER_MARSHAL_FC_HYPER = @as(u32, 11);
 pub const USER_MARSHAL_FC_DOUBLE = @as(u32, 12);
-pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
-pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (164)
@@ -1147,15 +1147,25 @@ pub const ARRAY_INFO = extern struct {
     ActualCountArray: *u32,
 };
 
-pub const _NDR_ASYNC_MESSAGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _NDR_ASYNC_MESSAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _NDR_CORRELATION_INFO = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _NDR_CORRELATION_INFO = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const NDR_ALLOC_ALL_NODES_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const NDR_ALLOC_ALL_NODES_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const NDR_POINTER_QUEUE_STATE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const NDR_POINTER_QUEUE_STATE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _NDR_PROC_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _NDR_PROC_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const MIDL_STUB_MESSAGE = extern struct {
     RpcMsg: *RPC_MESSAGE,
@@ -1663,46 +1673,55 @@ pub const NDR_SCONTEXT_1 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (491)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
     This: *IUnknown,
     riid: *const Guid,
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn IUnknown_AddRef_Proxy(
     This: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn IUnknown_Release_Proxy(
     This: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingCopy(
     SourceBinding: *c_void,
     DestinationBinding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingFree(
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetOption(
     hBinding: *c_void,
     option: u32,
     optionValue: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqOption(
     hBinding: *c_void,
     option: u32,
     pOptionValue: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingFromStringBindingA(
     StringBinding: *u8,
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingFromStringBindingW(
     StringBinding: *u16,
     Binding: **c_void,
@@ -1713,39 +1732,47 @@ pub extern "RPCRT4" fn RpcSsGetContextBinding(
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqObject(
     Binding: *c_void,
     ObjectUuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingReset(
     Binding: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetObject(
     Binding: *c_void,
     ObjectUuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqDefaultProtectLevel(
     AuthnSvc: u32,
     AuthnLevel: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingToStringBindingA(
     Binding: *c_void,
     StringBinding: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingToStringBindingW(
     Binding: *c_void,
     StringBinding: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingVectorFree(
     BindingVector: **RPC_BINDING_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingComposeA(
     ObjUuid: ?*u8,
     ProtSeq: ?*u8,
@@ -1755,6 +1782,7 @@ pub extern "RPCRT4" fn RpcStringBindingComposeA(
     StringBinding: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingComposeW(
     ObjUuid: ?*u16,
     ProtSeq: ?*u16,
@@ -1764,6 +1792,7 @@ pub extern "RPCRT4" fn RpcStringBindingComposeW(
     StringBinding: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingParseA(
     StringBinding: *u8,
     ObjUuid: ?*?*u8,
@@ -1773,6 +1802,7 @@ pub extern "RPCRT4" fn RpcStringBindingParseA(
     NetworkOptions: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingParseW(
     StringBinding: *u16,
     ObjUuid: ?*?*u16,
@@ -1782,71 +1812,87 @@ pub extern "RPCRT4" fn RpcStringBindingParseW(
     NetworkOptions: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringFreeA(
     String: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringFreeW(
     String: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcIfInqId(
     RpcIfHandle: *c_void,
     RpcIfId: *RPC_IF_ID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNetworkIsProtseqValidA(
     Protseq: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNetworkIsProtseqValidW(
     Protseq: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqComTimeout(
     Binding: *c_void,
     Timeout: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtSetComTimeout(
     Binding: *c_void,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtSetCancelTimeout(
     Timeout: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNetworkInqProtseqsA(
     ProtseqVector: **RPC_PROTSEQ_VECTORA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNetworkInqProtseqsW(
     ProtseqVector: **RPC_PROTSEQ_VECTORW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcObjectInqType(
     ObjUuid: *Guid,
     TypeUuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcObjectSetInqFn(
     InquiryFn: RPC_OBJECT_INQ_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcObjectSetType(
     ObjUuid: *Guid,
     TypeUuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcProtseqVectorFreeA(
     ProtseqVector: **RPC_PROTSEQ_VECTORA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcProtseqVectorFreeW(
     ProtseqVector: **RPC_PROTSEQ_VECTORW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerInqBindings(
     BindingVector: **RPC_BINDING_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1856,24 +1902,28 @@ pub extern "RPCRT4" fn RpcServerInqBindingsEx(
     BindingVector: **RPC_BINDING_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerInqIf(
     IfSpec: *c_void,
     MgrTypeUuid: ?*Guid,
     MgrEpv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerListen(
     MinimumCallThreads: u32,
     MaxCalls: u32,
     DontWait: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerRegisterIf(
     IfSpec: *c_void,
     MgrTypeUuid: ?*Guid,
     MgrEpv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerRegisterIfEx(
     IfSpec: *c_void,
     MgrTypeUuid: ?*Guid,
@@ -1883,6 +1933,7 @@ pub extern "RPCRT4" fn RpcServerRegisterIfEx(
     IfCallback: ?RPC_IF_CALLBACK_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerRegisterIf2(
     IfSpec: *c_void,
     MgrTypeUuid: ?*Guid,
@@ -1893,6 +1944,7 @@ pub extern "RPCRT4" fn RpcServerRegisterIf2(
     IfCallbackFn: ?RPC_IF_CALLBACK_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerRegisterIf3(
     IfSpec: *c_void,
     MgrTypeUuid: ?*Guid,
@@ -1904,35 +1956,41 @@ pub extern "RPCRT4" fn RpcServerRegisterIf3(
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUnregisterIf(
     IfSpec: ?*c_void,
     MgrTypeUuid: ?*Guid,
     WaitForCallsToComplete: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerUnregisterIfEx(
     IfSpec: ?*c_void,
     MgrTypeUuid: ?*Guid,
     RundownContextHandles: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseAllProtseqs(
     MaxCalls: u32,
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseAllProtseqsEx(
     MaxCalls: u32,
     SecurityDescriptor: ?*c_void,
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseAllProtseqsIf(
     MaxCalls: u32,
     IfSpec: *c_void,
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerUseAllProtseqsIfEx(
     MaxCalls: u32,
     IfSpec: *c_void,
@@ -1940,12 +1998,14 @@ pub extern "RPCRT4" fn RpcServerUseAllProtseqsIfEx(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqA(
     Protseq: *u8,
     MaxCalls: u32,
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqExA(
     Protseq: *u8,
     MaxCalls: u32,
@@ -1953,12 +2013,14 @@ pub extern "RPCRT4" fn RpcServerUseProtseqExA(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqW(
     Protseq: *u16,
     MaxCalls: u32,
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqExW(
     Protseq: *u16,
     MaxCalls: u32,
@@ -1966,6 +2028,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqExW(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqEpA(
     Protseq: *u8,
     MaxCalls: u32,
@@ -1973,6 +2036,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqEpA(
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqEpExA(
     Protseq: *u8,
     MaxCalls: u32,
@@ -1981,6 +2045,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqEpExA(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqEpW(
     Protseq: *u16,
     MaxCalls: u32,
@@ -1988,6 +2053,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqEpW(
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqEpExW(
     Protseq: *u16,
     MaxCalls: u32,
@@ -1996,6 +2062,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqEpExW(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqIfA(
     Protseq: *u8,
     MaxCalls: u32,
@@ -2003,6 +2070,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqIfA(
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerUseProtseqIfExA(
     Protseq: *u8,
     MaxCalls: u32,
@@ -2011,6 +2079,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqIfExA(
     Policy: *RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerUseProtseqIfW(
     Protseq: *u16,
     MaxCalls: u32,
@@ -2018,6 +2087,7 @@ pub extern "RPCRT4" fn RpcServerUseProtseqIfW(
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerUseProtseqIfExW(
     Protseq: *u16,
     MaxCalls: u32,
@@ -2029,84 +2099,102 @@ pub extern "RPCRT4" fn RpcServerUseProtseqIfExW(
 pub extern "RPCRT4" fn RpcServerYield(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtStatsVectorFree(
     StatsVector: **RPC_STATS_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqStats(
     Binding: ?*c_void,
     Statistics: **RPC_STATS_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtIsServerListening(
     Binding: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtStopServerListening(
     Binding: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtWaitServerListen(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtSetServerStackSize(
     ThreadStackSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsDontSerializeContext(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEnableIdleCleanup(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqIfIds(
     Binding: ?*c_void,
     IfIdVector: **RPC_IF_ID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcIfIdVectorFree(
     IfIdVector: **RPC_IF_ID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqServerPrincNameA(
     Binding: ?*c_void,
     AuthnSvc: u32,
     ServerPrincName: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtInqServerPrincNameW(
     Binding: ?*c_void,
     AuthnSvc: u32,
     ServerPrincName: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerInqDefaultPrincNameA(
     AuthnSvc: u32,
     PrincName: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerInqDefaultPrincNameW(
     AuthnSvc: u32,
     PrincName: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpResolveBinding(
     Binding: *c_void,
     IfSpec: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNsBindingInqEntryNameA(
     Binding: *c_void,
     EntryNameSyntax: u32,
     EntryName: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcNsBindingInqEntryNameW(
     Binding: *c_void,
     EntryNameSyntax: u32,
     EntryName: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcBindingCreateA(
     Template: *RPC_BINDING_HANDLE_TEMPLATE_V1_A,
     Security: ?*RPC_BINDING_HANDLE_SECURITY_V1_A,
@@ -2114,6 +2202,7 @@ pub extern "RPCRT4" fn RpcBindingCreateA(
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcBindingCreateW(
     Template: *RPC_BINDING_HANDLE_TEMPLATE_V1_W,
     Security: ?*RPC_BINDING_HANDLE_SECURITY_V1_W,
@@ -2121,10 +2210,12 @@ pub extern "RPCRT4" fn RpcBindingCreateW(
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcServerInqBindingHandle(
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcImpersonateClient(
     BindingHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2133,20 +2224,25 @@ pub extern "RPCRT4" fn RpcImpersonateClient2(
     BindingHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcRevertToSelfEx(
     BindingHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcRevertToSelf(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "RPCRT4" fn RpcImpersonateClientContainer(
     BindingHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "RPCRT4" fn RpcRevertContainerImpersonation(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthClientA(
     ClientBinding: ?*c_void,
     Privs: **c_void,
@@ -2156,6 +2252,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientA(
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthClientW(
     ClientBinding: ?*c_void,
     Privs: **c_void,
@@ -2165,6 +2262,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientW(
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthClientExA(
     ClientBinding: ?*c_void,
     Privs: **c_void,
@@ -2175,6 +2273,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientExA(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthClientExW(
     ClientBinding: ?*c_void,
     Privs: **c_void,
@@ -2185,6 +2284,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientExW(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoA(
     Binding: *c_void,
     ServerPrincName: ?*?*u8,
@@ -2194,6 +2294,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthInfoA(
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoW(
     Binding: *c_void,
     ServerPrincName: ?*?*u16,
@@ -2203,6 +2304,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthInfoW(
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetAuthInfoA(
     Binding: *c_void,
     ServerPrincName: ?*u8,
@@ -2212,6 +2314,7 @@ pub extern "RPCRT4" fn RpcBindingSetAuthInfoA(
     AuthzSvc: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetAuthInfoExA(
     Binding: *c_void,
     ServerPrincName: ?*u8,
@@ -2222,6 +2325,7 @@ pub extern "RPCRT4" fn RpcBindingSetAuthInfoExA(
     SecurityQos: ?*RPC_SECURITY_QOS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetAuthInfoW(
     Binding: *c_void,
     ServerPrincName: ?*u16,
@@ -2231,6 +2335,7 @@ pub extern "RPCRT4" fn RpcBindingSetAuthInfoW(
     AuthzSvc: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingSetAuthInfoExW(
     Binding: *c_void,
     ServerPrincName: ?*u16,
@@ -2241,6 +2346,7 @@ pub extern "RPCRT4" fn RpcBindingSetAuthInfoExW(
     SecurityQOS: ?*RPC_SECURITY_QOS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoExA(
     Binding: *c_void,
     ServerPrincName: ?*?*u8,
@@ -2252,6 +2358,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthInfoExA(
     SecurityQOS: ?*RPC_SECURITY_QOS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoExW(
     Binding: *c_void,
     ServerPrincName: ?*?*u16,
@@ -2263,11 +2370,13 @@ pub extern "RPCRT4" fn RpcBindingInqAuthInfoExW(
     SecurityQOS: ?*RPC_SECURITY_QOS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerCompleteSecurityCallback(
     BindingHandle: *c_void,
     Status: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerRegisterAuthInfoA(
     ServerPrincName: ?*u8,
     AuthnSvc: u32,
@@ -2275,6 +2384,7 @@ pub extern "RPCRT4" fn RpcServerRegisterAuthInfoA(
     Arg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerRegisterAuthInfoW(
     ServerPrincName: ?*u16,
     AuthnSvc: u32,
@@ -2282,85 +2392,103 @@ pub extern "RPCRT4" fn RpcServerRegisterAuthInfoW(
     Arg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingServerFromClient(
     ClientBinding: ?*c_void,
     ServerBinding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcRaiseException(
     exception: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcTestCancel(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcServerTestCancel(
     BindingHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcCancelThread(
     Thread: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcCancelThreadEx(
     Thread: *c_void,
     Timeout: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidCreate(
     Uuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidCreateSequential(
     Uuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidToStringA(
     Uuid: *const Guid,
     StringUuid: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidFromStringA(
     StringUuid: ?*u8,
     Uuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidToStringW(
     Uuid: *const Guid,
     StringUuid: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidFromStringW(
     StringUuid: ?*u16,
     Uuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidCompare(
     Uuid1: *Guid,
     Uuid2: *Guid,
     Status: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidCreateNil(
     NilUuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidEqual(
     Uuid1: *Guid,
     Uuid2: *Guid,
     Status: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidHash(
     Uuid: *Guid,
     Status: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn UuidIsNil(
     Uuid: *Guid,
     Status: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpRegisterNoReplaceA(
     IfSpec: *c_void,
     BindingVector: *RPC_BINDING_VECTOR,
@@ -2368,6 +2496,7 @@ pub extern "RPCRT4" fn RpcEpRegisterNoReplaceA(
     Annotation: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpRegisterNoReplaceW(
     IfSpec: *c_void,
     BindingVector: *RPC_BINDING_VECTOR,
@@ -2375,6 +2504,7 @@ pub extern "RPCRT4" fn RpcEpRegisterNoReplaceW(
     Annotation: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpRegisterA(
     IfSpec: *c_void,
     BindingVector: *RPC_BINDING_VECTOR,
@@ -2382,6 +2512,7 @@ pub extern "RPCRT4" fn RpcEpRegisterA(
     Annotation: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpRegisterW(
     IfSpec: *c_void,
     BindingVector: *RPC_BINDING_VECTOR,
@@ -2389,22 +2520,26 @@ pub extern "RPCRT4" fn RpcEpRegisterW(
     Annotation: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcEpUnregister(
     IfSpec: *c_void,
     BindingVector: *RPC_BINDING_VECTOR,
     UuidVector: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn DceErrorInqTextA(
     RpcStatus: i32,
     ErrorText: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn DceErrorInqTextW(
     RpcStatus: i32,
     ErrorText: *[256]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEpEltInqBegin(
     EpBinding: ?*c_void,
     InquiryType: u32,
@@ -2414,10 +2549,12 @@ pub extern "RPCRT4" fn RpcMgmtEpEltInqBegin(
     InquiryContext: ***c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEpEltInqDone(
     InquiryContext: ***c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEpEltInqNextA(
     InquiryContext: **c_void,
     IfId: *RPC_IF_ID,
@@ -2426,6 +2563,7 @@ pub extern "RPCRT4" fn RpcMgmtEpEltInqNextA(
     Annotation: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEpEltInqNextW(
     InquiryContext: **c_void,
     IfId: *RPC_IF_ID,
@@ -2441,14 +2579,17 @@ pub extern "RPCRT4" fn RpcMgmtEpUnregister(
     ObjectUuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtSetAuthorizationFn(
     AuthorizationFn: RPC_MGMT_AUTHORIZATION_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcExceptionFilter(
     ExceptionCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupCreateW(
     Interfaces: [*]RPC_INTERFACE_TEMPLATEW,
     NumIfs: u32,
@@ -2460,6 +2601,7 @@ pub extern "RPCRT4" fn RpcServerInterfaceGroupCreateW(
     IfGroup: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupCreateA(
     Interfaces: [*]RPC_INTERFACE_TEMPLATEA,
     NumIfs: u32,
@@ -2471,19 +2613,23 @@ pub extern "RPCRT4" fn RpcServerInterfaceGroupCreateA(
     IfGroup: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupClose(
     IfGroup: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupActivate(
     IfGroup: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupDeactivate(
     IfGroup: *c_void,
     ForceDeactivation: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "RPCRT4" fn RpcServerInterfaceGroupInqBindings(
     IfGroup: *c_void,
     BindingVector: **RPC_BINDING_VECTOR,
@@ -2603,6 +2749,7 @@ pub extern "RPCRT4" fn I_RpcBindingInqMarshalledTargetInfo(
     MarshalledTargetInfo: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn I_RpcBindingInqLocalClientPID(
     Binding: *c_void,
     Pid: *u32,
@@ -2808,6 +2955,7 @@ pub extern "RPCRT4" fn I_RpcServerUnsubscribeForDisconnectNotification(
     SubscriptionId: Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingExportA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -2816,6 +2964,7 @@ pub extern "RPCNS4" fn RpcNsBindingExportA(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingUnexportA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -2823,6 +2972,7 @@ pub extern "RPCNS4" fn RpcNsBindingUnexportA(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingExportW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -2831,6 +2981,7 @@ pub extern "RPCNS4" fn RpcNsBindingExportW(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingUnexportW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -2838,6 +2989,7 @@ pub extern "RPCNS4" fn RpcNsBindingUnexportW(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingExportPnPA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -2845,6 +2997,7 @@ pub extern "RPCNS4" fn RpcNsBindingExportPnPA(
     ObjectVector: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingUnexportPnPA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -2852,6 +3005,7 @@ pub extern "RPCNS4" fn RpcNsBindingUnexportPnPA(
     ObjectVector: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingExportPnPW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -2859,6 +3013,7 @@ pub extern "RPCNS4" fn RpcNsBindingExportPnPW(
     ObjectVector: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingUnexportPnPW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -2866,6 +3021,7 @@ pub extern "RPCNS4" fn RpcNsBindingUnexportPnPW(
     ObjectVector: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingLookupBeginA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -2875,6 +3031,7 @@ pub extern "RPCNS4" fn RpcNsBindingLookupBeginA(
     LookupContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingLookupBeginW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -2884,20 +3041,24 @@ pub extern "RPCNS4" fn RpcNsBindingLookupBeginW(
     LookupContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingLookupNext(
     LookupContext: *c_void,
     BindingVec: **RPC_BINDING_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingLookupDone(
     LookupContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupDeleteA(
     GroupNameSyntax: RpcNsGroupDelete_GroupNameSyntax,
     GroupName: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrAddA(
     GroupNameSyntax: u32,
     GroupName: *u8,
@@ -2905,6 +3066,7 @@ pub extern "RPCNS4" fn RpcNsGroupMbrAddA(
     MemberName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrRemoveA(
     GroupNameSyntax: u32,
     GroupName: *u8,
@@ -2912,6 +3074,7 @@ pub extern "RPCNS4" fn RpcNsGroupMbrRemoveA(
     MemberName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrInqBeginA(
     GroupNameSyntax: u32,
     GroupName: *u8,
@@ -2919,16 +3082,19 @@ pub extern "RPCNS4" fn RpcNsGroupMbrInqBeginA(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrInqNextA(
     InquiryContext: *c_void,
     MemberName: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupDeleteW(
     GroupNameSyntax: RpcNsGroupDelete_GroupNameSyntax,
     GroupName: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrAddW(
     GroupNameSyntax: u32,
     GroupName: *u16,
@@ -2936,6 +3102,7 @@ pub extern "RPCNS4" fn RpcNsGroupMbrAddW(
     MemberName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrRemoveW(
     GroupNameSyntax: u32,
     GroupName: *u16,
@@ -2943,6 +3110,7 @@ pub extern "RPCNS4" fn RpcNsGroupMbrRemoveW(
     MemberName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrInqBeginW(
     GroupNameSyntax: u32,
     GroupName: *u16,
@@ -2950,20 +3118,24 @@ pub extern "RPCNS4" fn RpcNsGroupMbrInqBeginW(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrInqNextW(
     InquiryContext: *c_void,
     MemberName: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsGroupMbrInqDone(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileDeleteA(
     ProfileNameSyntax: u32,
     ProfileName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltAddA(
     ProfileNameSyntax: u32,
     ProfileName: *u8,
@@ -2974,6 +3146,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltAddA(
     Annotation: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltRemoveA(
     ProfileNameSyntax: u32,
     ProfileName: *u8,
@@ -2982,6 +3155,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltRemoveA(
     MemberName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltInqBeginA(
     ProfileNameSyntax: u32,
     ProfileName: *u8,
@@ -2993,6 +3167,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltInqBeginA(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltInqNextA(
     InquiryContext: *c_void,
     IfId: ?*RPC_IF_ID,
@@ -3001,11 +3176,13 @@ pub extern "RPCNS4" fn RpcNsProfileEltInqNextA(
     Annotation: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileDeleteW(
     ProfileNameSyntax: u32,
     ProfileName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltAddW(
     ProfileNameSyntax: u32,
     ProfileName: *u16,
@@ -3016,6 +3193,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltAddW(
     Annotation: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltRemoveW(
     ProfileNameSyntax: u32,
     ProfileName: *u16,
@@ -3024,6 +3202,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltRemoveW(
     MemberName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltInqBeginW(
     ProfileNameSyntax: u32,
     ProfileName: *u16,
@@ -3035,6 +3214,7 @@ pub extern "RPCNS4" fn RpcNsProfileEltInqBeginW(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltInqNextW(
     InquiryContext: *c_void,
     IfId: ?*RPC_IF_ID,
@@ -3043,37 +3223,44 @@ pub extern "RPCNS4" fn RpcNsProfileEltInqNextW(
     Annotation: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsProfileEltInqDone(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryObjectInqBeginA(
     EntryNameSyntax: u32,
     EntryName: *u8,
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryObjectInqBeginW(
     EntryNameSyntax: u32,
     EntryName: *u16,
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryObjectInqNext(
     InquiryContext: *c_void,
     ObjUuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryObjectInqDone(
     InquiryContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryExpandNameA(
     EntryNameSyntax: u32,
     EntryName: *u8,
     ExpandedName: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtBindingUnexportA(
     EntryNameSyntax: u32,
     EntryName: *u8,
@@ -3082,41 +3269,49 @@ pub extern "RPCNS4" fn RpcNsMgmtBindingUnexportA(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryCreateA(
     EntryNameSyntax: u32,
     EntryName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryDeleteA(
     EntryNameSyntax: u32,
     EntryName: *u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryInqIfIdsA(
     EntryNameSyntax: u32,
     EntryName: *u8,
     IfIdVec: **RPC_IF_ID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtHandleSetExpAge(
     NsHandle: *c_void,
     ExpirationAge: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtInqExpAge(
     ExpirationAge: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtSetExpAge(
     ExpirationAge: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsEntryExpandNameW(
     EntryNameSyntax: u32,
     EntryName: *u16,
     ExpandedName: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtBindingUnexportW(
     EntryNameSyntax: u32,
     EntryName: *u16,
@@ -3125,22 +3320,26 @@ pub extern "RPCNS4" fn RpcNsMgmtBindingUnexportW(
     ObjectUuidVec: ?*UUID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryCreateW(
     EntryNameSyntax: u32,
     EntryName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryDeleteW(
     EntryNameSyntax: u32,
     EntryName: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsMgmtEntryInqIfIdsW(
     EntryNameSyntax: u32,
     EntryName: *u16,
     IfIdVec: **RPC_IF_ID_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingImportBeginA(
     EntryNameSyntax: u32,
     EntryName: ?*u8,
@@ -3149,6 +3348,7 @@ pub extern "RPCNS4" fn RpcNsBindingImportBeginA(
     ImportContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingImportBeginW(
     EntryNameSyntax: u32,
     EntryName: ?*u16,
@@ -3157,90 +3357,109 @@ pub extern "RPCNS4" fn RpcNsBindingImportBeginW(
     ImportContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingImportNext(
     ImportContext: *c_void,
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingImportDone(
     ImportContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCNS4" fn RpcNsBindingSelect(
     BindingVec: *RPC_BINDING_VECTOR,
     Binding: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncRegisterInfo(
     pAsync: *RPC_ASYNC_STATE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncInitializeHandle(
     pAsync: [*]RPC_ASYNC_STATE,
     Size: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncGetCallStatus(
     pAsync: *RPC_ASYNC_STATE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncCompleteCall(
     pAsync: *RPC_ASYNC_STATE,
     Reply: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncAbortCall(
     pAsync: *RPC_ASYNC_STATE,
     ExceptionCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcAsyncCancelCall(
     pAsync: *RPC_ASYNC_STATE,
     fAbort: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorStartEnumeration(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorGetNextRecord(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
     CopyStrings: BOOL,
     ErrorInfo: *RPC_EXTENDED_ERROR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorEndEnumeration(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorResetEnumeration(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorGetNumberOfRecords(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
     Records: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorSaveErrorInfo(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
     ErrorBlob: **c_void,
     BlobSize: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorLoadErrorInfo(
     ErrorBlob: [*]u8,
     BlobSize: ?*c_void,
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorAddRecord(
     ErrorInfo: *RPC_EXTENDED_ERROR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorClearInformation(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcGetAuthorizationContextForClient(
     ClientBinding: ?*c_void,
     ImpersonateOnReturn: BOOL,
@@ -3252,30 +3471,36 @@ pub extern "RPCRT4" fn RpcGetAuthorizationContextForClient(
     pAuthzClientContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcFreeAuthorizationContext(
     pAuthzClientContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcSsContextLockExclusive(
     ServerBindingHandle: ?*c_void,
     UserContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcSsContextLockShared(
     ServerBindingHandle: *c_void,
     UserContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerInqCallAttributesW(
     ClientBinding: ?*c_void,
     RpcCallAttributes: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcServerInqCallAttributesA(
     ClientBinding: ?*c_void,
     RpcCallAttributes: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcServerSubscribeForNotification(
     Binding: ?*c_void,
     Notification: RPC_NOTIFICATIONS,
@@ -3283,18 +3508,21 @@ pub extern "RPCRT4" fn RpcServerSubscribeForNotification(
     NotificationInfo: *RPC_ASYNC_NOTIFICATION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcServerUnsubscribeForNotification(
     Binding: ?*c_void,
     Notification: RPC_NOTIFICATIONS,
     NotificationsQueued: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcBindingBind(
     pAsync: ?*RPC_ASYNC_STATE,
     Binding: *c_void,
     IfSpec: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RPCRT4" fn RpcBindingUnbind(
     Binding: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3377,16 +3605,19 @@ pub extern "RPCRT4" fn NDRSContextUnmarshall2(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *NDR_SCONTEXT_1;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsDestroyClientContext(
     ContextHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrSimpleTypeMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     FormatChar: u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrPointerMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3429,6 +3660,7 @@ pub extern "RPCRT4" fn NdrNonConformantStringMarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrConformantStringMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3459,12 +3691,14 @@ pub extern "RPCRT4" fn NdrXmitOrRepAsMarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrUserMarshalMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrInterfacePointerMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3490,6 +3724,7 @@ pub extern "RPCRT4" fn NdrServerContextNewMarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrSimpleTypeUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3518,6 +3753,7 @@ pub extern "RPCRT4" fn NdrCorrelationFree(
     pStubMsg: *MIDL_STUB_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrPointerUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -3546,6 +3782,7 @@ pub extern "RPCRT4" fn NdrFixedArrayUnmarshall(
     fMustAlloc: u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrConformantArrayUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -3574,6 +3811,7 @@ pub extern "RPCRT4" fn NdrNonConformantStringUnmarshall(
     fMustAlloc: u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrConformantStringUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -3609,6 +3847,7 @@ pub extern "RPCRT4" fn NdrXmitOrRepAsUnmarshall(
     fMustAlloc: u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrInterfacePointerUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -3626,6 +3865,7 @@ pub extern "RPCRT4" fn NdrServerContextUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) *NDR_SCONTEXT_1;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn NdrContextHandleInitialize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pFormat: *u8,
@@ -3636,6 +3876,7 @@ pub extern "RPCRT4" fn NdrServerContextNewUnmarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *NDR_SCONTEXT_1;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrPointerBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3672,6 +3913,7 @@ pub extern "RPCRT4" fn NdrVaryingArrayBufferSize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrConformantStringBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3708,18 +3950,21 @@ pub extern "RPCRT4" fn NdrXmitOrRepAsBufferSize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrUserMarshalBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrInterfacePointerBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn NdrContextHandleSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3811,6 +4056,7 @@ pub extern "RPCRT4" fn NdrInterfacePointerMemorySize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrPointerFree(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3895,12 +4141,14 @@ pub extern "RPCRT4" fn NdrXmitOrRepAsFree(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrUserMarshalFree(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrInterfacePointerFree(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3913,6 +4161,7 @@ pub extern "RPCRT4" fn NdrConvert2(
     NumberParams: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrConvert(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pFormat: *u8,
@@ -4000,21 +4249,25 @@ pub extern "RPCRT4" fn NdrGetDcomProtocolVersion(
     pVersion: *RPC_VERSION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrClientCall2(
     pStubDescriptor: *MIDL_STUB_DESC,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) CLIENT_CALL_RETURN;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrAsyncClientCall(
     pStubDescriptor: *MIDL_STUB_DESC,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) CLIENT_CALL_RETURN;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrDcomAsyncClientCall(
     pStubDescriptor: *MIDL_STUB_DESC,
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) CLIENT_CALL_RETURN;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrAsyncServerCall(
     pRpcMsg: *RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -4026,6 +4279,7 @@ pub extern "RPCRT4" fn NdrDcomAsyncStubCall(
     pdwStubPhase: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrStubCall2(
     pThis: *c_void,
     pChannel: *c_void,
@@ -4033,6 +4287,7 @@ pub extern "RPCRT4" fn NdrStubCall2(
     pdwStubPhase: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrServerCall2(
     pRpcMsg: *RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -4044,32 +4299,40 @@ pub extern "RPCRT4" fn NdrMapCommAndFaultStatus(
     Status: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsAllocate(
     Size: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsDisableAllocate(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsEnableAllocate(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsFree(
     NodeToFree: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsGetThreadHandle(
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsSetClientAllocFree(
     ClientAlloc: RPC_CLIENT_ALLOC,
     ClientFree: RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsSetThreadHandle(
     Id: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsSwapClientAllocFree(
     ClientAlloc: RPC_CLIENT_ALLOC,
     ClientFree: RPC_CLIENT_FREE,
@@ -4077,42 +4340,52 @@ pub extern "RPCRT4" fn RpcSsSwapClientAllocFree(
     OldClientFree: *RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmAllocate(
     Size: ?*c_void,
     pStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmClientFree(
     pNodeToFree: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmDestroyClientContext(
     ContextHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmDisableAllocate(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmEnableAllocate(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmFree(
     NodeToFree: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmGetThreadHandle(
     pStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmSetClientAllocFree(
     ClientAlloc: RPC_CLIENT_ALLOC,
     ClientFree: RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmSetThreadHandle(
     Id: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmSwapClientAllocFree(
     ClientAlloc: RPC_CLIENT_ALLOC,
     ClientFree: RPC_CLIENT_FREE,
@@ -4162,20 +4435,24 @@ pub extern "RPCRT4" fn NdrAllocate(
     Len: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrClearOutParameters(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pFormat: *u8,
     ArgAddr: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrOleAllocate(
     Size: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrOleFree(
     NodeToFree: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrGetUserMarshalInfo(
     pFlags: *u32,
     InformationLevel: u32,
@@ -4187,12 +4464,14 @@ pub extern "RPCRT4" fn NdrCreateServerInterfaceFromStub(
     pServerIf: *RPC_SERVER_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrClientCall3(
     pProxyInfo: *MIDL_STUBLESS_PROXY_INFO,
     nProcNum: u32,
     pReturnValue: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) CLIENT_CALL_RETURN;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn Ndr64AsyncClientCall(
     pProxyInfo: *MIDL_STUBLESS_PROXY_INFO,
     nProcNum: u32,
@@ -4209,6 +4488,7 @@ pub extern "RPCRT4" fn Ndr64AsyncServerCall64(
     pRpcMsg: *RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn Ndr64AsyncServerCallAll(
     pRpcMsg: *RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -4220,6 +4500,7 @@ pub extern "RPCRT4" fn Ndr64DcomAsyncStubCall(
     pdwStubPhase: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn NdrStubCall3(
     pThis: *c_void,
     pChannel: *c_void,
@@ -4227,6 +4508,7 @@ pub extern "RPCRT4" fn NdrStubCall3(
     pdwStubPhase: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn NdrServerCallAll(
     pRpcMsg: *RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -4256,11 +4538,13 @@ pub extern "RPCRT4" fn NdrPartialIgnoreServerInitialize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcUserFree(
     AsyncHandle: *c_void,
     pBuffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesEncodeIncrementalHandleCreate(
     UserState: *c_void,
     AllocFn: MIDL_ES_ALLOC,
@@ -4268,12 +4552,14 @@ pub extern "RPCRT4" fn MesEncodeIncrementalHandleCreate(
     pHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesDecodeIncrementalHandleCreate(
     UserState: *c_void,
     ReadFn: MIDL_ES_READ,
     pHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesIncrementalHandleReset(
     Handle: *c_void,
     UserState: *c_void,
@@ -4283,6 +4569,7 @@ pub extern "RPCRT4" fn MesIncrementalHandleReset(
     Operation: MIDL_ES_CODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesEncodeFixedBufferHandleCreate(
     pBuffer: [*]i8,
     BufferSize: u32,
@@ -4290,18 +4577,21 @@ pub extern "RPCRT4" fn MesEncodeFixedBufferHandleCreate(
     pHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesEncodeDynBufferHandleCreate(
     pBuffer: **i8,
     pEncodedSize: *u32,
     pHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesDecodeBufferHandleCreate(
     Buffer: [*]i8,
     BufferSize: u32,
     pHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesBufferHandleReset(
     Handle: *c_void,
     HandleStyle: u32,
@@ -4311,10 +4601,12 @@ pub extern "RPCRT4" fn MesBufferHandleReset(
     pEncodedSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesHandleFree(
     Handle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn MesInqProcEncodingId(
     Handle: *c_void,
     pInterfaceId: *RPC_SYNTAX_IDENTIFIER,
@@ -4397,6 +4689,7 @@ pub extern "RPCRT4" fn NdrMesProcEncodeDecode(
     pFormatString: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrMesProcEncodeDecode2(
     Handle: *c_void,
     pStubDesc: *const MIDL_STUB_DESC,
@@ -4465,12 +4758,14 @@ pub extern "RPCRT4" fn NdrMesSimpleTypeAlignSizeAll(
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcCertGeneratePrincipalNameW(
     Context: *CERT_CONTEXT,
     Flags: u32,
     pBuffer: **u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcCertGeneratePrincipalNameA(
     Context: *CERT_CONTEXT,
     Flags: u32,

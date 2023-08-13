@@ -616,6 +616,7 @@ pub const D2D1_FACTORY_OPTIONS = extern struct {
     debugLevel: D2D1_DEBUG_LEVEL,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Resource_Value = @import("../zig.zig").Guid.initString("2cd90691-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1Resource = &IID_ID2D1Resource_Value;
 pub const ID2D1Resource = extern struct {
@@ -637,6 +638,7 @@ pub const ID2D1Resource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Image_Value = @import("../zig.zig").Guid.initString("65019f75-8da2-497c-b32c-dfa34e48ede6");
 pub const IID_ID2D1Image = &IID_ID2D1Image_Value;
 pub const ID2D1Image = extern struct {
@@ -650,6 +652,7 @@ pub const ID2D1Image = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Bitmap_Value = @import("../zig.zig").Guid.initString("a2296057-ea42-4099-983b-539fb6505426");
 pub const IID_ID2D1Bitmap = &IID_ID2D1Bitmap_Value;
 pub const ID2D1Bitmap = extern struct {
@@ -723,6 +726,7 @@ pub const ID2D1Bitmap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1GradientStopCollection_Value = @import("../zig.zig").Guid.initString("2cd906a7-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1GradientStopCollection = &IID_ID2D1GradientStopCollection_Value;
 pub const ID2D1GradientStopCollection = extern struct {
@@ -766,6 +770,7 @@ pub const ID2D1GradientStopCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Brush_Value = @import("../zig.zig").Guid.initString("2cd906a8-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1Brush = &IID_ID2D1Brush_Value;
 pub const ID2D1Brush = extern struct {
@@ -810,6 +815,7 @@ pub const ID2D1Brush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1BitmapBrush_Value = @import("../zig.zig").Guid.initString("2cd906aa-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1BitmapBrush = &IID_ID2D1BitmapBrush_Value;
 pub const ID2D1BitmapBrush = extern struct {
@@ -884,6 +890,7 @@ pub const ID2D1BitmapBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1SolidColorBrush_Value = @import("../zig.zig").Guid.initString("2cd906a9-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1SolidColorBrush = &IID_ID2D1SolidColorBrush_Value;
 pub const ID2D1SolidColorBrush = extern struct {
@@ -912,6 +919,7 @@ pub const ID2D1SolidColorBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1LinearGradientBrush_Value = @import("../zig.zig").Guid.initString("2cd906ab-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1LinearGradientBrush = &IID_ID2D1LinearGradientBrush_Value;
 pub const ID2D1LinearGradientBrush = extern struct {
@@ -963,6 +971,7 @@ pub const ID2D1LinearGradientBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1RadialGradientBrush_Value = @import("../zig.zig").Guid.initString("2cd906ac-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1RadialGradientBrush = &IID_ID2D1RadialGradientBrush_Value;
 pub const ID2D1RadialGradientBrush = extern struct {
@@ -1044,6 +1053,7 @@ pub const ID2D1RadialGradientBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1StrokeStyle_Value = @import("../zig.zig").Guid.initString("2cd9069d-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1StrokeStyle = &IID_ID2D1StrokeStyle_Value;
 pub const ID2D1StrokeStyle = extern struct {
@@ -1122,6 +1132,7 @@ pub const ID2D1StrokeStyle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Geometry_Value = @import("../zig.zig").Guid.initString("2cd906a1-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1Geometry = &IID_ID2D1Geometry_Value;
 pub const ID2D1Geometry = extern struct {
@@ -1278,6 +1289,7 @@ pub const ID2D1Geometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1RectangleGeometry_Value = @import("../zig.zig").Guid.initString("2cd906a2-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1RectangleGeometry = &IID_ID2D1RectangleGeometry_Value;
 pub const ID2D1RectangleGeometry = extern struct {
@@ -1299,6 +1311,7 @@ pub const ID2D1RectangleGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1RoundedRectangleGeometry_Value = @import("../zig.zig").Guid.initString("2cd906a3-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1RoundedRectangleGeometry = &IID_ID2D1RoundedRectangleGeometry_Value;
 pub const ID2D1RoundedRectangleGeometry = extern struct {
@@ -1320,6 +1333,7 @@ pub const ID2D1RoundedRectangleGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1EllipseGeometry_Value = @import("../zig.zig").Guid.initString("2cd906a4-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1EllipseGeometry = &IID_ID2D1EllipseGeometry_Value;
 pub const ID2D1EllipseGeometry = extern struct {
@@ -1341,6 +1355,7 @@ pub const ID2D1EllipseGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1GeometryGroup_Value = @import("../zig.zig").Guid.initString("2cd906a6-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1GeometryGroup = &IID_ID2D1GeometryGroup_Value;
 pub const ID2D1GeometryGroup = extern struct {
@@ -1377,6 +1392,7 @@ pub const ID2D1GeometryGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1TransformedGeometry_Value = @import("../zig.zig").Guid.initString("2cd906bb-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1TransformedGeometry = &IID_ID2D1TransformedGeometry_Value;
 pub const ID2D1TransformedGeometry = extern struct {
@@ -1406,6 +1422,7 @@ pub const ID2D1TransformedGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1SimplifiedGeometrySink_Value = @import("../zig.zig").Guid.initString("2cd9069e-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1SimplifiedGeometrySink = &IID_ID2D1SimplifiedGeometrySink_Value;
 pub const ID2D1SimplifiedGeometrySink = extern struct {
@@ -1477,6 +1494,7 @@ pub const ID2D1SimplifiedGeometrySink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1GeometrySink_Value = @import("../zig.zig").Guid.initString("2cd9069f-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1GeometrySink = &IID_ID2D1GeometrySink_Value;
 pub const ID2D1GeometrySink = extern struct {
@@ -1531,6 +1549,7 @@ pub const ID2D1GeometrySink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1TessellationSink_Value = @import("../zig.zig").Guid.initString("2cd906c1-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1TessellationSink = &IID_ID2D1TessellationSink_Value;
 pub const ID2D1TessellationSink = extern struct {
@@ -1560,6 +1579,7 @@ pub const ID2D1TessellationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1PathGeometry_Value = @import("../zig.zig").Guid.initString("2cd906a5-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1PathGeometry = &IID_ID2D1PathGeometry_Value;
 pub const ID2D1PathGeometry = extern struct {
@@ -1605,6 +1625,7 @@ pub const ID2D1PathGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Mesh_Value = @import("../zig.zig").Guid.initString("2cd906c2-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1Mesh = &IID_ID2D1Mesh_Value;
 pub const ID2D1Mesh = extern struct {
@@ -1626,6 +1647,7 @@ pub const ID2D1Mesh = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Layer_Value = @import("../zig.zig").Guid.initString("2cd9069b-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1Layer = &IID_ID2D1Layer_Value;
 pub const ID2D1Layer = extern struct {
@@ -1646,6 +1668,7 @@ pub const ID2D1Layer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1DrawingStateBlock_Value = @import("../zig.zig").Guid.initString("28506e39-ebf6-46a1-bb47-fd85565ab957");
 pub const IID_ID2D1DrawingStateBlock = &IID_ID2D1DrawingStateBlock_Value;
 pub const ID2D1DrawingStateBlock = extern struct {
@@ -1691,6 +1714,7 @@ pub const ID2D1DrawingStateBlock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1RenderTarget_Value = @import("../zig.zig").Guid.initString("2cd90694-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1RenderTarget = &IID_ID2D1RenderTarget_Value;
 pub const ID2D1RenderTarget = extern struct {
@@ -2198,6 +2222,7 @@ pub const ID2D1RenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1BitmapRenderTarget_Value = @import("../zig.zig").Guid.initString("2cd90695-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1BitmapRenderTarget = &IID_ID2D1BitmapRenderTarget_Value;
 pub const ID2D1BitmapRenderTarget = extern struct {
@@ -2219,6 +2244,7 @@ pub const ID2D1BitmapRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1HwndRenderTarget_Value = @import("../zig.zig").Guid.initString("2cd90698-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1HwndRenderTarget = &IID_ID2D1HwndRenderTarget_Value;
 pub const ID2D1HwndRenderTarget = extern struct {
@@ -2254,6 +2280,7 @@ pub const ID2D1HwndRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1GdiInteropRenderTarget_Value = @import("../zig.zig").Guid.initString("e0db51c3-6f77-4bae-b3d5-e47509b35838");
 pub const IID_ID2D1GdiInteropRenderTarget = &IID_ID2D1GdiInteropRenderTarget_Value;
 pub const ID2D1GdiInteropRenderTarget = extern struct {
@@ -2284,6 +2311,7 @@ pub const ID2D1GdiInteropRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1DCRenderTarget_Value = @import("../zig.zig").Guid.initString("1c51bc64-de61-46fd-9899-63a5d8f03950");
 pub const IID_ID2D1DCRenderTarget = &IID_ID2D1DCRenderTarget_Value;
 pub const ID2D1DCRenderTarget = extern struct {
@@ -2306,6 +2334,7 @@ pub const ID2D1DCRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1Factory_Value = @import("../zig.zig").Guid.initString("06152247-6f50-465a-9245-118bfd3b6007");
 pub const IID_ID2D1Factory = &IID_ID2D1Factory_Value;
 pub const ID2D1Factory = extern struct {
@@ -3810,6 +3839,7 @@ pub const D2D1_CREATION_PROPERTIES = extern struct {
     options: D2D1_DEVICE_CONTEXT_OPTIONS,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1GdiMetafileSink_Value = @import("../zig.zig").Guid.initString("82237326-8111-4f7c-bcf4-b5c1175564fe");
 pub const IID_ID2D1GdiMetafileSink = &IID_ID2D1GdiMetafileSink_Value;
 pub const ID2D1GdiMetafileSink = extern struct {
@@ -3833,6 +3863,7 @@ pub const ID2D1GdiMetafileSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1GdiMetafile_Value = @import("../zig.zig").Guid.initString("2f543dc3-cfc1-4211-864f-cfd91c6f3395");
 pub const IID_ID2D1GdiMetafile = &IID_ID2D1GdiMetafile_Value;
 pub const ID2D1GdiMetafile = extern struct {
@@ -3862,6 +3893,7 @@ pub const ID2D1GdiMetafile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1CommandSink_Value = @import("../zig.zig").Guid.initString("54d7898a-a061-40a7-bec7-e465bcba2c4f");
 pub const IID_ID2D1CommandSink = &IID_ID2D1CommandSink_Value;
 pub const ID2D1CommandSink = extern struct {
@@ -4105,6 +4137,7 @@ pub const ID2D1CommandSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1CommandList_Value = @import("../zig.zig").Guid.initString("b4f34a19-2383-4d76-94f6-ec343657c3dc");
 pub const IID_ID2D1CommandList = &IID_ID2D1CommandList_Value;
 pub const ID2D1CommandList = extern struct {
@@ -4133,6 +4166,7 @@ pub const ID2D1CommandList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1PrintControl_Value = @import("../zig.zig").Guid.initString("2c1d867d-c290-41c8-ae7e-34a98702e9a5");
 pub const IID_ID2D1PrintControl = &IID_ID2D1PrintControl_Value;
 pub const ID2D1PrintControl = extern struct {
@@ -4165,6 +4199,7 @@ pub const ID2D1PrintControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ImageBrush_Value = @import("../zig.zig").Guid.initString("fe9e984d-3f95-407c-b5db-cb94d4e8f87c");
 pub const IID_ID2D1ImageBrush = &IID_ID2D1ImageBrush_Value;
 pub const ID2D1ImageBrush = extern struct {
@@ -4255,6 +4290,7 @@ pub const ID2D1ImageBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1BitmapBrush1_Value = @import("../zig.zig").Guid.initString("41343a53-e41a-49a2-91cd-21793bbb62e5");
 pub const IID_ID2D1BitmapBrush1 = &IID_ID2D1BitmapBrush1_Value;
 pub const ID2D1BitmapBrush1 = extern struct {
@@ -4283,6 +4319,7 @@ pub const ID2D1BitmapBrush1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1StrokeStyle1_Value = @import("../zig.zig").Guid.initString("10a72a66-e91c-43f4-993f-ddf4b82b0b4a");
 pub const IID_ID2D1StrokeStyle1 = &IID_ID2D1StrokeStyle1_Value;
 pub const ID2D1StrokeStyle1 = extern struct {
@@ -4303,6 +4340,7 @@ pub const ID2D1StrokeStyle1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1PathGeometry1_Value = @import("../zig.zig").Guid.initString("62baa2d2-ab54-41b7-b872-787e0106a421");
 pub const IID_ID2D1PathGeometry1 = &IID_ID2D1PathGeometry1_Value;
 pub const ID2D1PathGeometry1 = extern struct {
@@ -4328,6 +4366,7 @@ pub const ID2D1PathGeometry1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Properties_Value = @import("../zig.zig").Guid.initString("483473d7-cd46-4f9d-9d3a-3112aa80159d");
 pub const IID_ID2D1Properties = &IID_ID2D1Properties_Value;
 pub const ID2D1Properties = extern struct {
@@ -4443,6 +4482,7 @@ pub const ID2D1Properties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Effect_Value = @import("../zig.zig").Guid.initString("28211a43-7d89-476f-8181-2d6159b220ad");
 pub const IID_ID2D1Effect = &IID_ID2D1Effect_Value;
 pub const ID2D1Effect = extern struct {
@@ -4498,6 +4538,7 @@ pub const ID2D1Effect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Bitmap1_Value = @import("../zig.zig").Guid.initString("a898a84c-3873-4588-b08b-ebbf978df041");
 pub const IID_ID2D1Bitmap1 = &IID_ID2D1Bitmap1_Value;
 pub const ID2D1Bitmap1 = extern struct {
@@ -4550,6 +4591,7 @@ pub const ID2D1Bitmap1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ColorContext_Value = @import("../zig.zig").Guid.initString("1c4820bb-5771-4518-a581-2fe4dd0ec657");
 pub const IID_ID2D1ColorContext = &IID_ID2D1ColorContext_Value;
 pub const ID2D1ColorContext = extern struct {
@@ -4586,6 +4628,7 @@ pub const ID2D1ColorContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1GradientStopCollection1_Value = @import("../zig.zig").Guid.initString("ae1572f4-5dd0-4777-998b-9279472ae63b");
 pub const IID_ID2D1GradientStopCollection1 = &IID_ID2D1GradientStopCollection1_Value;
 pub const ID2D1GradientStopCollection1 = extern struct {
@@ -4636,6 +4679,7 @@ pub const ID2D1GradientStopCollection1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1DrawingStateBlock1_Value = @import("../zig.zig").Guid.initString("689f1f85-c72e-4e33-8f19-85754efd5ace");
 pub const IID_ID2D1DrawingStateBlock1 = &IID_ID2D1DrawingStateBlock1_Value;
 pub const ID2D1DrawingStateBlock1 = extern struct {
@@ -4665,6 +4709,7 @@ pub const ID2D1DrawingStateBlock1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1DeviceContext_Value = @import("../zig.zig").Guid.initString("e8f7fe7a-191c-466d-ad95-975678bda998");
 pub const IID_ID2D1DeviceContext = &IID_ID2D1DeviceContext_Value;
 pub const ID2D1DeviceContext = extern struct {
@@ -5015,6 +5060,7 @@ pub const ID2D1DeviceContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Device_Value = @import("../zig.zig").Guid.initString("47dd575d-ac05-4cdd-8049-9b02cd16f44c");
 pub const IID_ID2D1Device = &IID_ID2D1Device_Value;
 pub const ID2D1Device = extern struct {
@@ -5071,6 +5117,7 @@ pub const ID2D1Device = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Factory1_Value = @import("../zig.zig").Guid.initString("bb12d362-daee-4b9a-aa1d-14ba401cfa1f");
 pub const IID_ID2D1Factory1 = &IID_ID2D1Factory1_Value;
 pub const ID2D1Factory1 = extern struct {
@@ -5183,6 +5230,7 @@ pub const ID2D1Factory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Multithread_Value = @import("../zig.zig").Guid.initString("31e6e7bc-e0ff-4d46-8c64-a0a8c41c15d3");
 pub const IID_ID2D1Multithread = &IID_ID2D1Multithread_Value;
 pub const ID2D1Multithread = extern struct {
@@ -5441,6 +5489,7 @@ pub const D2D1_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS = extern struct {
     computeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x: BOOL,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1VertexBuffer_Value = @import("../zig.zig").Guid.initString("9b8b1336-00a5-4668-92b7-ced5d8bf9b7b");
 pub const IID_ID2D1VertexBuffer = &IID_ID2D1VertexBuffer_Value;
 pub const ID2D1VertexBuffer = extern struct {
@@ -5470,6 +5519,7 @@ pub const ID2D1VertexBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ResourceTexture_Value = @import("../zig.zig").Guid.initString("688d15c3-02b0-438d-b13a-d1b44c32c39a");
 pub const IID_ID2D1ResourceTexture = &IID_ID2D1ResourceTexture_Value;
 pub const ID2D1ResourceTexture = extern struct {
@@ -5496,6 +5546,7 @@ pub const ID2D1ResourceTexture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1RenderInfo_Value = @import("../zig.zig").Guid.initString("519ae1bd-d19a-420d-b849-364f594776b7");
 pub const IID_ID2D1RenderInfo = &IID_ID2D1RenderInfo_Value;
 pub const ID2D1RenderInfo = extern struct {
@@ -5543,6 +5594,7 @@ pub const ID2D1RenderInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1DrawInfo_Value = @import("../zig.zig").Guid.initString("693ce632-7f2f-45de-93fe-18d88b37aa21");
 pub const IID_ID2D1DrawInfo = &IID_ID2D1DrawInfo_Value;
 pub const ID2D1DrawInfo = extern struct {
@@ -5604,6 +5656,7 @@ pub const ID2D1DrawInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ComputeInfo_Value = @import("../zig.zig").Guid.initString("5598b14b-9fd7-48b7-9bdb-8f0964eb38bc");
 pub const IID_ID2D1ComputeInfo = &IID_ID2D1ComputeInfo_Value;
 pub const ID2D1ComputeInfo = extern struct {
@@ -5643,6 +5696,7 @@ pub const ID2D1ComputeInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1TransformNode_Value = @import("../zig.zig").Guid.initString("b2efe1e7-729f-4102-949f-505fa21bf666");
 pub const IID_ID2D1TransformNode = &IID_ID2D1TransformNode_Value;
 pub const ID2D1TransformNode = extern struct {
@@ -5663,6 +5717,7 @@ pub const ID2D1TransformNode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1TransformGraph_Value = @import("../zig.zig").Guid.initString("13d29038-c3e6-4034-9081-13b53a417992");
 pub const IID_ID2D1TransformGraph = &IID_ID2D1TransformGraph_Value;
 pub const ID2D1TransformGraph = extern struct {
@@ -5750,6 +5805,7 @@ pub const ID2D1TransformGraph = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Transform_Value = @import("../zig.zig").Guid.initString("ef1a287d-342a-4f76-8fdb-da0d6ea9f92b");
 pub const IID_ID2D1Transform = &IID_ID2D1Transform_Value;
 pub const ID2D1Transform = extern struct {
@@ -5795,6 +5851,7 @@ pub const ID2D1Transform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1DrawTransform_Value = @import("../zig.zig").Guid.initString("36bfdcb6-9739-435d-a30d-a653beff6a6f");
 pub const IID_ID2D1DrawTransform = &IID_ID2D1DrawTransform_Value;
 pub const ID2D1DrawTransform = extern struct {
@@ -5816,6 +5873,7 @@ pub const ID2D1DrawTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ComputeTransform_Value = @import("../zig.zig").Guid.initString("0d85573c-01e3-4f7d-bfd9-0d60608bf3c3");
 pub const IID_ID2D1ComputeTransform = &IID_ID2D1ComputeTransform_Value;
 pub const ID2D1ComputeTransform = extern struct {
@@ -5848,6 +5906,7 @@ pub const ID2D1ComputeTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1AnalysisTransform_Value = @import("../zig.zig").Guid.initString("0359dc30-95e6-4568-9055-27720d130e93");
 pub const IID_ID2D1AnalysisTransform = &IID_ID2D1AnalysisTransform_Value;
 pub const ID2D1AnalysisTransform = extern struct {
@@ -5870,6 +5929,7 @@ pub const ID2D1AnalysisTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1SourceTransform_Value = @import("../zig.zig").Guid.initString("db1800dd-0c34-4cf9-be90-31cc0a5653e1");
 pub const IID_ID2D1SourceTransform = &IID_ID2D1SourceTransform_Value;
 pub const ID2D1SourceTransform = extern struct {
@@ -5901,6 +5961,7 @@ pub const ID2D1SourceTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1ConcreteTransform_Value = @import("../zig.zig").Guid.initString("1a799d8a-69f7-4e4c-9fed-437ccc6684cc");
 pub const IID_ID2D1ConcreteTransform = &IID_ID2D1ConcreteTransform_Value;
 pub const ID2D1ConcreteTransform = extern struct {
@@ -5931,6 +5992,7 @@ pub const ID2D1ConcreteTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1BlendTransform_Value = @import("../zig.zig").Guid.initString("63ac0b32-ba44-450f-8806-7f4ca1ff2f1b");
 pub const IID_ID2D1BlendTransform = &IID_ID2D1BlendTransform_Value;
 pub const ID2D1BlendTransform = extern struct {
@@ -5960,6 +6022,7 @@ pub const ID2D1BlendTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1BorderTransform_Value = @import("../zig.zig").Guid.initString("4998735c-3a19-473c-9781-656847e3a347");
 pub const IID_ID2D1BorderTransform = &IID_ID2D1BorderTransform_Value;
 pub const ID2D1BorderTransform = extern struct {
@@ -6003,6 +6066,7 @@ pub const ID2D1BorderTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1OffsetTransform_Value = @import("../zig.zig").Guid.initString("3fe6adea-7643-4f53-bd14-a0ce63f24042");
 pub const IID_ID2D1OffsetTransform = &IID_ID2D1OffsetTransform_Value;
 pub const ID2D1OffsetTransform = extern struct {
@@ -6060,6 +6124,7 @@ pub const ID2D1BoundsAdjustmentTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1EffectImpl_Value = @import("../zig.zig").Guid.initString("a248fd3f-3e6c-4e63-9f03-7f68ecc91db9");
 pub const IID_ID2D1EffectImpl = &IID_ID2D1EffectImpl_Value;
 pub const ID2D1EffectImpl = extern struct {
@@ -6098,6 +6163,7 @@ pub const ID2D1EffectImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1EffectContext_Value = @import("../zig.zig").Guid.initString("3d9f916b-27dc-4ad7-b4f1-64945340f563");
 pub const IID_ID2D1EffectContext = &IID_ID2D1EffectContext_Value;
 pub const ID2D1EffectContext = extern struct {
@@ -6619,6 +6685,7 @@ pub const D2D1_RENDERING_PRIORITY_NORMAL = D2D1_RENDERING_PRIORITY.NORMAL;
 pub const D2D1_RENDERING_PRIORITY_LOW = D2D1_RENDERING_PRIORITY.LOW;
 pub const D2D1_RENDERING_PRIORITY_FORCE_DWORD = D2D1_RENDERING_PRIORITY.FORCE_DWORD;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1GeometryRealization_Value = @import("../zig.zig").Guid.initString("a16907d7-bc02-4801-99e8-8cf7f485f774");
 pub const IID_ID2D1GeometryRealization = &IID_ID2D1GeometryRealization_Value;
 pub const ID2D1GeometryRealization = extern struct {
@@ -6632,6 +6699,7 @@ pub const ID2D1GeometryRealization = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1DeviceContext1_Value = @import("../zig.zig").Guid.initString("d37f57e4-6908-459f-a199-e72f24f79987");
 pub const IID_ID2D1DeviceContext1 = &IID_ID2D1DeviceContext1_Value;
 pub const ID2D1DeviceContext1 = extern struct {
@@ -6676,6 +6744,7 @@ pub const ID2D1DeviceContext1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Device1_Value = @import("../zig.zig").Guid.initString("d21768e1-23a4-4823-a14b-7c3eba85d658");
 pub const IID_ID2D1Device1 = &IID_ID2D1Device1_Value;
 pub const ID2D1Device1 = extern struct {
@@ -6713,6 +6782,7 @@ pub const ID2D1Device1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1Factory2_Value = @import("../zig.zig").Guid.initString("94f81a73-9212-4376-9c58-b16a3a0d3992");
 pub const IID_ID2D1Factory2 = &IID_ID2D1Factory2_Value;
 pub const ID2D1Factory2 = extern struct {
@@ -6735,6 +6805,7 @@ pub const ID2D1Factory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1CommandSink1_Value = @import("../zig.zig").Guid.initString("9eb767fd-4269-4467-b8c2-eb30cb305743");
 pub const IID_ID2D1CommandSink1 = &IID_ID2D1CommandSink1_Value;
 pub const ID2D1CommandSink1 = extern struct {
@@ -7991,6 +8062,7 @@ pub const ID2D1Ink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1GradientMesh_Value = @import("../zig.zig").Guid.initString("f292e401-c050-4cde-83d7-04962d3b23c2");
 pub const IID_ID2D1GradientMesh = &IID_ID2D1GradientMesh_Value;
 pub const ID2D1GradientMesh = extern struct {
@@ -8021,6 +8093,7 @@ pub const ID2D1GradientMesh = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_ID2D1ImageSource_Value = @import("../zig.zig").Guid.initString("c9b664e5-74a1-4378-9ac2-eefc37a3f4d8");
 pub const IID_ID2D1ImageSource = &IID_ID2D1ImageSource_Value;
 pub const ID2D1ImageSource = extern struct {
@@ -8128,6 +8201,7 @@ pub const ID2D1LookupTable3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_ID2D1DeviceContext2_Value = @import("../zig.zig").Guid.initString("394ea6a3-0c34-4321-950b-6ca20f0be6c7");
 pub const IID_ID2D1DeviceContext2 = &IID_ID2D1DeviceContext2_Value;
 pub const ID2D1DeviceContext2 = extern struct {
@@ -8312,6 +8386,7 @@ pub const ID2D1Factory3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ID2D1CommandSink2_Value = @import("../zig.zig").Guid.initString("3bab440e-417e-47df-a2e2-bc0be6a00916");
 pub const IID_ID2D1CommandSink2 = &IID_ID2D1CommandSink2_Value;
 pub const ID2D1CommandSink2 = extern struct {
@@ -8353,6 +8428,7 @@ pub const ID2D1CommandSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_ID2D1GdiMetafile1_Value = @import("../zig.zig").Guid.initString("2e69f9e8-dd3f-4bf9-95ba-c04f49d788df");
 pub const IID_ID2D1GdiMetafile1 = &IID_ID2D1GdiMetafile1_Value;
 pub const ID2D1GdiMetafile1 = extern struct {
@@ -8383,6 +8459,7 @@ pub const ID2D1GdiMetafile1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_ID2D1GdiMetafileSink1_Value = @import("../zig.zig").Guid.initString("fd0ecb6b-91e6-411e-8655-395e760f91b4");
 pub const IID_ID2D1GdiMetafileSink1 = &IID_ID2D1GdiMetafileSink1_Value;
 pub const ID2D1GdiMetafileSink1 = extern struct {
@@ -9118,6 +9195,7 @@ pub const ID2D1EffectContext2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1CreateFactory(
     factoryType: D2D1_FACTORY_TYPE,
     riid: *const Guid,
@@ -9125,12 +9203,14 @@ pub extern "d2d1" fn D2D1CreateFactory(
     ppIFactory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1MakeRotateMatrix(
     angle: f32,
     center: D2D_POINT_2F,
     matrix: *D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1MakeSkewMatrix(
     angleX: f32,
     angleY: f32,
@@ -9138,20 +9218,24 @@ pub extern "d2d1" fn D2D1MakeSkewMatrix(
     matrix: *D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1IsMatrixInvertible(
     matrix: *const D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "d2d1" fn D2D1InvertMatrix(
     matrix: *D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDevice(
     dxgiDevice: *IDXGIDevice,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
     d2dDevice: **ID2D1Device,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1CreateDeviceContext(
     dxgiSurface: *IDXGISurface,
     creationProperties: ?*const D2D1_CREATION_PROPERTIES,
@@ -9180,10 +9264,12 @@ pub extern "d2d1" fn D2D1Vec3Length(
     z: f32,
 ) callconv(@import("std").os.windows.WINAPI) f32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "d2d1" fn D2D1ComputeMaximumScaleFactor(
     matrix: *const D2D_MATRIX_3X2_F,
 ) callconv(@import("std").os.windows.WINAPI) f32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "d2d1" fn D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
     pPoint0: *const D2D_POINT_2F,
     pPoint1: *const D2D_POINT_2F,

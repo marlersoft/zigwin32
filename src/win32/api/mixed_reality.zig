@@ -6,6 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialInteractionManagerInterop_Value = @import("../zig.zig").Guid.initString("5c4ee536-6a98-4b86-a170-587013d6fd4b");
 pub const IID_ISpatialInteractionManagerInterop = &IID_ISpatialInteractionManagerInterop_Value;
 pub const ISpatialInteractionManagerInterop = extern struct {
@@ -29,6 +30,7 @@ pub const ISpatialInteractionManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IHolographicSpaceInterop_Value = @import("../zig.zig").Guid.initString("5c4ee536-6a98-4b86-a170-587013d6fd4b");
 pub const IID_IHolographicSpaceInterop = &IID_IHolographicSpaceInterop_Value;
 pub const IHolographicSpaceInterop = extern struct {

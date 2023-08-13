@@ -52,17 +52,21 @@ pub const MCAST_LEASE_RESPONSE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastApiStartup(
     Version: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastApiCleanup(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastGenUID(
     pRequestID: *MCAST_CLIENT_UID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastEnumerateScopes(
     AddrFamily: u16,
     ReQuery: BOOL,
@@ -71,6 +75,7 @@ pub extern "dhcpcsvc" fn McastEnumerateScopes(
     pScopeCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastRequestAddress(
     AddrFamily: u16,
     pRequestID: *MCAST_CLIENT_UID,
@@ -79,6 +84,7 @@ pub extern "dhcpcsvc" fn McastRequestAddress(
     pAddrResponse: *MCAST_LEASE_RESPONSE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastRenewAddress(
     AddrFamily: u16,
     pRequestID: *MCAST_CLIENT_UID,
@@ -86,6 +92,7 @@ pub extern "dhcpcsvc" fn McastRenewAddress(
     pRenewResponse: *MCAST_LEASE_RESPONSE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastReleaseAddress(
     AddrFamily: u16,
     pRequestID: *MCAST_CLIENT_UID,

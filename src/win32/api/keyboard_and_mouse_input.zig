@@ -4,214 +4,9 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (32)
+// Section: Types (30)
 //--------------------------------------------------------------------------------
 pub const HRAWINPUT = ?*c_void;
-
-pub const GetRawInputData_uiCommandFlags = extern enum(u32) {
-    HEADER = 268435461,
-    INPUT = 268435459,
-};
-pub const RID_HEADER = GetRawInputData_uiCommandFlags.HEADER;
-pub const RID_INPUT = GetRawInputData_uiCommandFlags.INPUT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RegisterHotKey_fsModifiersFlags = extern enum(u32) {
-    ALT = 1,
-    CONTROL = 2,
-    NOREPEAT = 16384,
-    SHIFT = 4,
-    WIN = 8,
-    _,
-};
-pub const MOD_ALT = RegisterHotKey_fsModifiersFlags.ALT;
-pub const MOD_CONTROL = RegisterHotKey_fsModifiersFlags.CONTROL;
-pub const MOD_NOREPEAT = RegisterHotKey_fsModifiersFlags.NOREPEAT;
-pub const MOD_SHIFT = RegisterHotKey_fsModifiersFlags.SHIFT;
-pub const MOD_WIN = RegisterHotKey_fsModifiersFlags.WIN;
-
-pub const GetRawInputDeviceInfo_uiCommand = extern enum(u32) {
-    PREPARSEDDATA = 536870917,
-    DEVICENAME = 536870919,
-    DEVICEINFO = 536870923,
-};
-pub const RIDI_PREPARSEDDATA = GetRawInputDeviceInfo_uiCommand.PREPARSEDDATA;
-pub const RIDI_DEVICENAME = GetRawInputDeviceInfo_uiCommand.DEVICENAME;
-pub const RIDI_DEVICEINFO = GetRawInputDeviceInfo_uiCommand.DEVICEINFO;
-
-pub const ActivateKeyboardLayout_Flags = extern enum(u32) {
-    REORDER = 8,
-    RESET = 1073741824,
-    SETFORPROCESS = 256,
-    SHIFTLOCK = 65536,
-    ACTIVATE = 1,
-    NOTELLSHELL = 128,
-    REPLACELANG = 16,
-    SUBSTITUTE_OK = 2,
-};
-pub const KLF_REORDER = ActivateKeyboardLayout_Flags.REORDER;
-pub const KLF_RESET = ActivateKeyboardLayout_Flags.RESET;
-pub const KLF_SETFORPROCESS = ActivateKeyboardLayout_Flags.SETFORPROCESS;
-pub const KLF_SHIFTLOCK = ActivateKeyboardLayout_Flags.SHIFTLOCK;
-pub const KLF_ACTIVATE = ActivateKeyboardLayout_Flags.ACTIVATE;
-pub const KLF_NOTELLSHELL = ActivateKeyboardLayout_Flags.NOTELLSHELL;
-pub const KLF_REPLACELANG = ActivateKeyboardLayout_Flags.REPLACELANG;
-pub const KLF_SUBSTITUTE_OK = ActivateKeyboardLayout_Flags.SUBSTITUTE_OK;
-
-pub const ActivateKeyboardLayout_hklFlags = extern enum(u32) {
-    NEXT = 1,
-    PREV = 0,
-};
-pub const HKL_NEXT = ActivateKeyboardLayout_hklFlags.NEXT;
-pub const HKL_PREV = ActivateKeyboardLayout_hklFlags.PREV;
-
-pub const GetMouseMovePointsEx_resolutionFlags = extern enum(u32) {
-    DISPLAY_POINTS = 1,
-    HIGH_RESOLUTION_POINTS = 2,
-};
-pub const GMMP_USE_DISPLAY_POINTS = GetMouseMovePointsEx_resolutionFlags.DISPLAY_POINTS;
-pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GetMouseMovePointsEx_resolutionFlags.HIGH_RESOLUTION_POINTS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const keybd_eventFlags = extern enum(u32) {
-    EXTENDEDKEY = 1,
-    KEYUP = 2,
-    SCANCODE = 8,
-    UNICODE = 4,
-    _,
-};
-pub const KEYEVENTF_EXTENDEDKEY = keybd_eventFlags.EXTENDEDKEY;
-pub const KEYEVENTF_KEYUP = keybd_eventFlags.KEYUP;
-pub const KEYEVENTF_SCANCODE = keybd_eventFlags.SCANCODE;
-pub const KEYEVENTF_UNICODE = keybd_eventFlags.UNICODE;
-
-pub const mouse_eventFlags = extern enum(u32) {
-    ABSOLUTE = 32768,
-    LEFTDOWN = 2,
-    LEFTUP = 4,
-    MIDDLEDOWN = 32,
-    MIDDLEUP = 64,
-    MOVE = 1,
-    RIGHTDOWN = 8,
-    RIGHTUP = 16,
-    WHEEL = 2048,
-    XDOWN = 128,
-    XUP = 256,
-    HWHEEL = 4096,
-    MOVE_NOCOALESCE = 8192,
-    VIRTUALDESK = 16384,
-};
-pub const MOUSEEVENTF_ABSOLUTE = mouse_eventFlags.ABSOLUTE;
-pub const MOUSEEVENTF_LEFTDOWN = mouse_eventFlags.LEFTDOWN;
-pub const MOUSEEVENTF_LEFTUP = mouse_eventFlags.LEFTUP;
-pub const MOUSEEVENTF_MIDDLEDOWN = mouse_eventFlags.MIDDLEDOWN;
-pub const MOUSEEVENTF_MIDDLEUP = mouse_eventFlags.MIDDLEUP;
-pub const MOUSEEVENTF_MOVE = mouse_eventFlags.MOVE;
-pub const MOUSEEVENTF_RIGHTDOWN = mouse_eventFlags.RIGHTDOWN;
-pub const MOUSEEVENTF_RIGHTUP = mouse_eventFlags.RIGHTUP;
-pub const MOUSEEVENTF_WHEEL = mouse_eventFlags.WHEEL;
-pub const MOUSEEVENTF_XDOWN = mouse_eventFlags.XDOWN;
-pub const MOUSEEVENTF_XUP = mouse_eventFlags.XUP;
-pub const MOUSEEVENTF_HWHEEL = mouse_eventFlags.HWHEEL;
-pub const MOUSEEVENTF_MOVE_NOCOALESCE = mouse_eventFlags.MOVE_NOCOALESCE;
-pub const MOUSEEVENTF_VIRTUALDESK = mouse_eventFlags.VIRTUALDESK;
-
-pub const RID_DEVICE_INFO_dwType = extern enum(u32) {
-    MOUSE = 0,
-    KEYBOARD = 1,
-    HID = 2,
-};
-pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_dwType.MOUSE;
-pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_dwType.KEYBOARD;
-pub const RIM_TYPEHID = RID_DEVICE_INFO_dwType.HID;
-
-pub const RAWINPUTDEVICE_dwFlags = extern enum(u32) {
-    REMOVE = 1,
-    EXCLUDE = 16,
-    PAGEONLY = 32,
-    NOLEGACY = 48,
-    INPUTSINK = 256,
-    CAPTUREMOUSE = 512,
-    NOHOTKEYS = 512,
-    APPKEYS = 1024,
-    EXINPUTSINK = 4096,
-    DEVNOTIFY = 8192,
-};
-pub const RIDEV_REMOVE = RAWINPUTDEVICE_dwFlags.REMOVE;
-pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_dwFlags.EXCLUDE;
-pub const RIDEV_PAGEONLY = RAWINPUTDEVICE_dwFlags.PAGEONLY;
-pub const RIDEV_NOLEGACY = RAWINPUTDEVICE_dwFlags.NOLEGACY;
-pub const RIDEV_INPUTSINK = RAWINPUTDEVICE_dwFlags.INPUTSINK;
-pub const RIDEV_CAPTUREMOUSE = RAWINPUTDEVICE_dwFlags.CAPTUREMOUSE;
-pub const RIDEV_NOHOTKEYS = RAWINPUTDEVICE_dwFlags.NOHOTKEYS;
-pub const RIDEV_APPKEYS = RAWINPUTDEVICE_dwFlags.APPKEYS;
-pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_dwFlags.EXINPUTSINK;
-pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_dwFlags.DEVNOTIFY;
-
-pub const INPUT_typeFlags = extern enum(u32) {
-    MOUSE = 0,
-    KEYBOARD = 1,
-    HARDWARE = 2,
-};
-pub const INPUT_MOUSE = INPUT_typeFlags.MOUSE;
-pub const INPUT_KEYBOARD = INPUT_typeFlags.KEYBOARD;
-pub const INPUT_HARDWARE = INPUT_typeFlags.HARDWARE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TRACKMOUSEEVENT_dwFlags = extern enum(u32) {
-    CANCEL = 2147483648,
-    HOVER = 1,
-    LEAVE = 2,
-    NONCLIENT = 16,
-    QUERY = 1073741824,
-    _,
-};
-pub const TME_CANCEL = TRACKMOUSEEVENT_dwFlags.CANCEL;
-pub const TME_HOVER = TRACKMOUSEEVENT_dwFlags.HOVER;
-pub const TME_LEAVE = TRACKMOUSEEVENT_dwFlags.LEAVE;
-pub const TME_NONCLIENT = TRACKMOUSEEVENT_dwFlags.NONCLIENT;
-pub const TME_QUERY = TRACKMOUSEEVENT_dwFlags.QUERY;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RAWMOUSE_usButtonFlags = extern enum(u32) {
-    LEFT_BUTTON_DOWN = 1,
-    LEFT_BUTTON_UP = 2,
-    MIDDLE_BUTTON_DOWN = 16,
-    MIDDLE_BUTTON_UP = 32,
-    RIGHT_BUTTON_DOWN = 4,
-    RIGHT_BUTTON_UP = 8,
-    BUTTON_1_DOWN = 1,
-    BUTTON_1_UP = 2,
-    BUTTON_2_DOWN = 4,
-    BUTTON_2_UP = 8,
-    BUTTON_3_DOWN = 16,
-    BUTTON_3_UP = 32,
-    BUTTON_4_DOWN = 64,
-    BUTTON_4_UP = 128,
-    BUTTON_5_DOWN = 256,
-    BUTTON_5_UP = 512,
-    WHEEL = 1024,
-    HWHEEL = 2048,
-    _,
-};
-pub const RI_MOUSE_LEFT_BUTTON_DOWN = RAWMOUSE_usButtonFlags.LEFT_BUTTON_DOWN;
-pub const RI_MOUSE_LEFT_BUTTON_UP = RAWMOUSE_usButtonFlags.LEFT_BUTTON_UP;
-pub const RI_MOUSE_MIDDLE_BUTTON_DOWN = RAWMOUSE_usButtonFlags.MIDDLE_BUTTON_DOWN;
-pub const RI_MOUSE_MIDDLE_BUTTON_UP = RAWMOUSE_usButtonFlags.MIDDLE_BUTTON_UP;
-pub const RI_MOUSE_RIGHT_BUTTON_DOWN = RAWMOUSE_usButtonFlags.RIGHT_BUTTON_DOWN;
-pub const RI_MOUSE_RIGHT_BUTTON_UP = RAWMOUSE_usButtonFlags.RIGHT_BUTTON_UP;
-pub const RI_MOUSE_BUTTON_1_DOWN = RAWMOUSE_usButtonFlags.BUTTON_1_DOWN;
-pub const RI_MOUSE_BUTTON_1_UP = RAWMOUSE_usButtonFlags.BUTTON_1_UP;
-pub const RI_MOUSE_BUTTON_2_DOWN = RAWMOUSE_usButtonFlags.BUTTON_2_DOWN;
-pub const RI_MOUSE_BUTTON_2_UP = RAWMOUSE_usButtonFlags.BUTTON_2_UP;
-pub const RI_MOUSE_BUTTON_3_DOWN = RAWMOUSE_usButtonFlags.BUTTON_3_DOWN;
-pub const RI_MOUSE_BUTTON_3_UP = RAWMOUSE_usButtonFlags.BUTTON_3_UP;
-pub const RI_MOUSE_BUTTON_4_DOWN = RAWMOUSE_usButtonFlags.BUTTON_4_DOWN;
-pub const RI_MOUSE_BUTTON_4_UP = RAWMOUSE_usButtonFlags.BUTTON_4_UP;
-pub const RI_MOUSE_BUTTON_5_DOWN = RAWMOUSE_usButtonFlags.BUTTON_5_DOWN;
-pub const RI_MOUSE_BUTTON_5_UP = RAWMOUSE_usButtonFlags.BUTTON_5_UP;
-pub const RI_MOUSE_WHEEL = RAWMOUSE_usButtonFlags.WHEEL;
-pub const RI_MOUSE_HWHEEL = RAWMOUSE_usButtonFlags.HWHEEL;
 
 pub const MOUSEMOVEPOINT = extern struct {
     x: i32,
@@ -342,29 +137,191 @@ pub const RAWINPUTDEVICELIST = extern struct {
     dwType: RID_DEVICE_INFO_dwType,
 };
 
+pub const GetRawInputData_uiCommandFlags = extern enum(u32) {
+    HEADER = 268435461,
+    INPUT = 268435459,
+};
+pub const RID_HEADER = GetRawInputData_uiCommandFlags.HEADER;
+pub const RID_INPUT = GetRawInputData_uiCommandFlags.INPUT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RegisterHotKey_fsModifiersFlags = extern enum(u32) {
+    ALT = 1,
+    CONTROL = 2,
+    NOREPEAT = 16384,
+    SHIFT = 4,
+    WIN = 8,
+    _,
+};
+pub const MOD_ALT = RegisterHotKey_fsModifiersFlags.ALT;
+pub const MOD_CONTROL = RegisterHotKey_fsModifiersFlags.CONTROL;
+pub const MOD_NOREPEAT = RegisterHotKey_fsModifiersFlags.NOREPEAT;
+pub const MOD_SHIFT = RegisterHotKey_fsModifiersFlags.SHIFT;
+pub const MOD_WIN = RegisterHotKey_fsModifiersFlags.WIN;
+
+pub const GetRawInputDeviceInfo_uiCommand = extern enum(u32) {
+    PREPARSEDDATA = 536870917,
+    DEVICENAME = 536870919,
+    DEVICEINFO = 536870923,
+};
+pub const RIDI_PREPARSEDDATA = GetRawInputDeviceInfo_uiCommand.PREPARSEDDATA;
+pub const RIDI_DEVICENAME = GetRawInputDeviceInfo_uiCommand.DEVICENAME;
+pub const RIDI_DEVICEINFO = GetRawInputDeviceInfo_uiCommand.DEVICEINFO;
+
+pub const ActivateKeyboardLayout_Flags = extern enum(u32) {
+    REORDER = 8,
+    RESET = 1073741824,
+    SETFORPROCESS = 256,
+    SHIFTLOCK = 65536,
+    ACTIVATE = 1,
+    NOTELLSHELL = 128,
+    REPLACELANG = 16,
+    SUBSTITUTE_OK = 2,
+};
+pub const KLF_REORDER = ActivateKeyboardLayout_Flags.REORDER;
+pub const KLF_RESET = ActivateKeyboardLayout_Flags.RESET;
+pub const KLF_SETFORPROCESS = ActivateKeyboardLayout_Flags.SETFORPROCESS;
+pub const KLF_SHIFTLOCK = ActivateKeyboardLayout_Flags.SHIFTLOCK;
+pub const KLF_ACTIVATE = ActivateKeyboardLayout_Flags.ACTIVATE;
+pub const KLF_NOTELLSHELL = ActivateKeyboardLayout_Flags.NOTELLSHELL;
+pub const KLF_REPLACELANG = ActivateKeyboardLayout_Flags.REPLACELANG;
+pub const KLF_SUBSTITUTE_OK = ActivateKeyboardLayout_Flags.SUBSTITUTE_OK;
+
+pub const GetMouseMovePointsEx_resolutionFlags = extern enum(u32) {
+    DISPLAY_POINTS = 1,
+    HIGH_RESOLUTION_POINTS = 2,
+};
+pub const GMMP_USE_DISPLAY_POINTS = GetMouseMovePointsEx_resolutionFlags.DISPLAY_POINTS;
+pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GetMouseMovePointsEx_resolutionFlags.HIGH_RESOLUTION_POINTS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const keybd_eventFlags = extern enum(u32) {
+    EXTENDEDKEY = 1,
+    KEYUP = 2,
+    SCANCODE = 8,
+    UNICODE = 4,
+    _,
+};
+pub const KEYEVENTF_EXTENDEDKEY = keybd_eventFlags.EXTENDEDKEY;
+pub const KEYEVENTF_KEYUP = keybd_eventFlags.KEYUP;
+pub const KEYEVENTF_SCANCODE = keybd_eventFlags.SCANCODE;
+pub const KEYEVENTF_UNICODE = keybd_eventFlags.UNICODE;
+
+pub const mouse_eventFlags = extern enum(u32) {
+    ABSOLUTE = 32768,
+    LEFTDOWN = 2,
+    LEFTUP = 4,
+    MIDDLEDOWN = 32,
+    MIDDLEUP = 64,
+    MOVE = 1,
+    RIGHTDOWN = 8,
+    RIGHTUP = 16,
+    WHEEL = 2048,
+    XDOWN = 128,
+    XUP = 256,
+    HWHEEL = 4096,
+    MOVE_NOCOALESCE = 8192,
+    VIRTUALDESK = 16384,
+};
+pub const MOUSEEVENTF_ABSOLUTE = mouse_eventFlags.ABSOLUTE;
+pub const MOUSEEVENTF_LEFTDOWN = mouse_eventFlags.LEFTDOWN;
+pub const MOUSEEVENTF_LEFTUP = mouse_eventFlags.LEFTUP;
+pub const MOUSEEVENTF_MIDDLEDOWN = mouse_eventFlags.MIDDLEDOWN;
+pub const MOUSEEVENTF_MIDDLEUP = mouse_eventFlags.MIDDLEUP;
+pub const MOUSEEVENTF_MOVE = mouse_eventFlags.MOVE;
+pub const MOUSEEVENTF_RIGHTDOWN = mouse_eventFlags.RIGHTDOWN;
+pub const MOUSEEVENTF_RIGHTUP = mouse_eventFlags.RIGHTUP;
+pub const MOUSEEVENTF_WHEEL = mouse_eventFlags.WHEEL;
+pub const MOUSEEVENTF_XDOWN = mouse_eventFlags.XDOWN;
+pub const MOUSEEVENTF_XUP = mouse_eventFlags.XUP;
+pub const MOUSEEVENTF_HWHEEL = mouse_eventFlags.HWHEEL;
+pub const MOUSEEVENTF_MOVE_NOCOALESCE = mouse_eventFlags.MOVE_NOCOALESCE;
+pub const MOUSEEVENTF_VIRTUALDESK = mouse_eventFlags.VIRTUALDESK;
+
+pub const RID_DEVICE_INFO_dwType = extern enum(u32) {
+    MOUSE = 0,
+    KEYBOARD = 1,
+    HID = 2,
+};
+pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_dwType.MOUSE;
+pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_dwType.KEYBOARD;
+pub const RIM_TYPEHID = RID_DEVICE_INFO_dwType.HID;
+
+pub const RAWINPUTDEVICE_dwFlags = extern enum(u32) {
+    REMOVE = 1,
+    EXCLUDE = 16,
+    PAGEONLY = 32,
+    NOLEGACY = 48,
+    INPUTSINK = 256,
+    CAPTUREMOUSE = 512,
+    NOHOTKEYS = 512,
+    APPKEYS = 1024,
+    EXINPUTSINK = 4096,
+    DEVNOTIFY = 8192,
+};
+pub const RIDEV_REMOVE = RAWINPUTDEVICE_dwFlags.REMOVE;
+pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_dwFlags.EXCLUDE;
+pub const RIDEV_PAGEONLY = RAWINPUTDEVICE_dwFlags.PAGEONLY;
+pub const RIDEV_NOLEGACY = RAWINPUTDEVICE_dwFlags.NOLEGACY;
+pub const RIDEV_INPUTSINK = RAWINPUTDEVICE_dwFlags.INPUTSINK;
+pub const RIDEV_CAPTUREMOUSE = RAWINPUTDEVICE_dwFlags.CAPTUREMOUSE;
+pub const RIDEV_NOHOTKEYS = RAWINPUTDEVICE_dwFlags.NOHOTKEYS;
+pub const RIDEV_APPKEYS = RAWINPUTDEVICE_dwFlags.APPKEYS;
+pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_dwFlags.EXINPUTSINK;
+pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_dwFlags.DEVNOTIFY;
+
+pub const INPUT_typeFlags = extern enum(u32) {
+    MOUSE = 0,
+    KEYBOARD = 1,
+    HARDWARE = 2,
+};
+pub const INPUT_MOUSE = INPUT_typeFlags.MOUSE;
+pub const INPUT_KEYBOARD = INPUT_typeFlags.KEYBOARD;
+pub const INPUT_HARDWARE = INPUT_typeFlags.HARDWARE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TRACKMOUSEEVENT_dwFlags = extern enum(u32) {
+    CANCEL = 2147483648,
+    HOVER = 1,
+    LEAVE = 2,
+    NONCLIENT = 16,
+    QUERY = 1073741824,
+    _,
+};
+pub const TME_CANCEL = TRACKMOUSEEVENT_dwFlags.CANCEL;
+pub const TME_HOVER = TRACKMOUSEEVENT_dwFlags.HOVER;
+pub const TME_LEAVE = TRACKMOUSEEVENT_dwFlags.LEAVE;
+pub const TME_NONCLIENT = TRACKMOUSEEVENT_dwFlags.NONCLIENT;
+pub const TME_QUERY = TRACKMOUSEEVENT_dwFlags.QUERY;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (60)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "COMCTL32" fn _TrackMouseEvent(
     lpEventTrack: *TRACKMOUSEEVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadKeyboardLayoutA(
     pwszKLID: [*:0]const u8,
     Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadKeyboardLayoutW(
     pwszKLID: [*:0]const u16,
     Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ActivateKeyboardLayout(
-    hkl: ActivateKeyboardLayout_hklFlags,
+    hkl: HKL,
     Flags: ActivateKeyboardLayout_Flags,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ToUnicodeEx(
     wVirtKey: u32,
     wScanCode: u32,
@@ -375,27 +332,33 @@ pub extern "USER32" fn ToUnicodeEx(
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnloadKeyboardLayout(
     hkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardLayoutNameA(
     pwszKLID: *[9]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardLayoutNameW(
     pwszKLID: *[9]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardLayoutList(
     nBuff: i32,
     lpList: ?[*]HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardLayout(
     idThread: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetMouseMovePointsEx(
     cbSize: u32,
     lppt: *MOUSEMOVEPOINT,
@@ -404,10 +367,12 @@ pub extern "USER32" fn GetMouseMovePointsEx(
     resolution: GetMouseMovePointsEx_resolutionFlags,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn TrackMouseEvent(
     lpEventTrack: *TRACKMOUSEEVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn RegisterHotKey(
     hWnd: HWND,
     id: i32,
@@ -415,67 +380,83 @@ pub extern "USER32" fn RegisterHotKey(
     vk: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnregisterHotKey(
     hWnd: HWND,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SwapMouseButton(
     fSwap: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetDoubleClickTime(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetDoubleClickTime(
     param0: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetFocus(
     hWnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetActiveWindow(
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetFocus(
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKBCodePage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyState(
     nVirtKey: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetAsyncKeyState(
     vKey: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardState(
     lpKeyState: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetKeyboardState(
     lpKeyState: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyNameTextA(
     lParam: i32,
     lpString: [*:0]u8,
     cchSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyNameTextW(
     lParam: i32,
     lpString: [*:0]u16,
     cchSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetKeyboardType(
     nTypeFlag: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ToAscii(
     uVirtKey: u32,
     uScanCode: u32,
@@ -484,6 +465,7 @@ pub extern "USER32" fn ToAscii(
     uFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ToAsciiEx(
     uVirtKey: u32,
     uScanCode: u32,
@@ -493,6 +475,7 @@ pub extern "USER32" fn ToAsciiEx(
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ToUnicode(
     wVirtKey: u32,
     wScanCode: u32,
@@ -502,28 +485,34 @@ pub extern "USER32" fn ToUnicode(
     wFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn OemKeyScan(
     wOemChar: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn VkKeyScanA(
     ch: i8,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn VkKeyScanW(
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn VkKeyScanExA(
     ch: i8,
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn VkKeyScanExW(
     ch: u16,
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn keybd_event(
     bVk: u8,
     bScan: u8,
@@ -531,6 +520,7 @@ pub extern "USER32" fn keybd_event(
     dwExtraInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn mouse_event(
     dwFlags: mouse_eventFlags,
     dx: u32,
@@ -539,70 +529,85 @@ pub extern "USER32" fn mouse_event(
     dwExtraInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SendInput(
     cInputs: u32,
     pInputs: [*]INPUT,
     cbSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetLastInputInfo(
     plii: *LASTINPUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapVirtualKeyA(
     uCode: u32,
     uMapType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapVirtualKeyW(
     uCode: u32,
     uMapType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapVirtualKeyExA(
     uCode: u32,
     uMapType: u32,
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapVirtualKeyExW(
     uCode: u32,
     uMapType: u32,
     dwhkl: HKL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetCapture(
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetCapture(
     hWnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ReleaseCapture(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnableWindow(
     hWnd: HWND,
     bEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn IsWindowEnabled(
     hWnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DragDetect(
     hwnd: HWND,
     pt: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetActiveWindow(
     hWnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn BlockInput(
     fBlockIt: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputData(
     hRawInput: HRAWINPUT,
     uiCommand: GetRawInputData_uiCommandFlags,
@@ -611,6 +616,7 @@ pub extern "USER32" fn GetRawInputData(
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputDeviceInfoA(
     hDevice: HANDLE,
     uiCommand: GetRawInputDeviceInfo_uiCommand,
@@ -618,6 +624,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoA(
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputDeviceInfoW(
     hDevice: HANDLE,
     uiCommand: GetRawInputDeviceInfo_uiCommand,
@@ -625,30 +632,35 @@ pub extern "USER32" fn GetRawInputDeviceInfoW(
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputBuffer(
     pData: ?[*]RAWINPUT,
     pcbSize: *u32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn RegisterRawInputDevices(
     pRawInputDevices: [*]RAWINPUTDEVICE,
     uiNumDevices: u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRegisteredRawInputDevices(
     pRawInputDevices: ?[*]RAWINPUTDEVICE,
     puiNumDevices: *u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputDeviceList(
     pRawInputDeviceList: ?[*]RAWINPUTDEVICELIST,
     puiNumDevices: *u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn DefRawInputProc(
     paRawInput: [*]*RAWINPUT,
     nInput: i32,
@@ -715,8 +727,8 @@ const POINT = @import("display_devices.zig").POINT;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 32;
-    const enum_value_export_count = 79;
+    const type_export_count = 30;
+    const enum_value_export_count = 59;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 60;

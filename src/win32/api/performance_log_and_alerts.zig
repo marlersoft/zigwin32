@@ -228,6 +228,7 @@ pub const PLA_CABEXTRACT_CALLBACK = fn(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837520-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorSet = &IID_IDataCollectorSet_Value;
 pub const IDataCollectorSet = extern struct {
@@ -728,6 +729,7 @@ pub const IDataCollectorSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataManager_Value = @import("../zig.zig").Guid.initString("03837541-098b-11d8-9414-505054503030");
 pub const IID_IDataManager = &IID_IDataManager_Value;
 pub const IDataManager = extern struct {
@@ -944,6 +946,7 @@ pub const IDataManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFolderAction_Value = @import("../zig.zig").Guid.initString("03837543-098b-11d8-9414-505054503030");
 pub const IID_IFolderAction = &IID_IFolderAction_Value;
 pub const IFolderAction = extern struct {
@@ -1021,6 +1024,7 @@ pub const IFolderAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFolderActionCollection_Value = @import("../zig.zig").Guid.initString("03837544-098b-11d8-9414-505054503030");
 pub const IID_IFolderActionCollection = &IID_IFolderActionCollection_Value;
 pub const IFolderActionCollection = extern struct {
@@ -1098,6 +1102,7 @@ pub const IFolderActionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollector_Value = @import("../zig.zig").Guid.initString("038374ff-098b-11d8-9414-505054503030");
 pub const IID_IDataCollector = &IID_IDataCollector_Value;
 pub const IDataCollector = extern struct {
@@ -1313,6 +1318,7 @@ pub const IDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPerformanceCounterDataCollector_Value = @import("../zig.zig").Guid.initString("03837506-098b-11d8-9414-505054503030");
 pub const IID_IPerformanceCounterDataCollector = &IID_IPerformanceCounterDataCollector_Value;
 pub const IPerformanceCounterDataCollector = extern struct {
@@ -1406,6 +1412,7 @@ pub const IPerformanceCounterDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITraceDataCollector_Value = @import("../zig.zig").Guid.initString("0383750b-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataCollector = &IID_ITraceDataCollector_Value;
 pub const ITraceDataCollector = extern struct {
@@ -1739,6 +1746,7 @@ pub const ITraceDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IConfigurationDataCollector_Value = @import("../zig.zig").Guid.initString("03837514-098b-11d8-9414-505054503030");
 pub const IID_IConfigurationDataCollector = &IID_IConfigurationDataCollector_Value;
 pub const IConfigurationDataCollector = extern struct {
@@ -1896,6 +1904,7 @@ pub const IConfigurationDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAlertDataCollector_Value = @import("../zig.zig").Guid.initString("03837516-098b-11d8-9414-505054503030");
 pub const IID_IAlertDataCollector = &IID_IAlertDataCollector_Value;
 pub const IAlertDataCollector = extern struct {
@@ -2037,6 +2046,7 @@ pub const IAlertDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IApiTracingDataCollector_Value = @import("../zig.zig").Guid.initString("0383751a-098b-11d8-9414-505054503030");
 pub const IID_IApiTracingDataCollector = &IID_IApiTracingDataCollector_Value;
 pub const IApiTracingDataCollector = extern struct {
@@ -2162,6 +2172,7 @@ pub const IApiTracingDataCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollectorCollection_Value = @import("../zig.zig").Guid.initString("03837502-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorCollection = &IID_IDataCollectorCollection_Value;
 pub const IDataCollectorCollection = extern struct {
@@ -2250,6 +2261,7 @@ pub const IDataCollectorCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837524-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorSetCollection = &IID_IDataCollectorSetCollection_Value;
 pub const IDataCollectorSetCollection = extern struct {
@@ -2328,6 +2340,7 @@ pub const IDataCollectorSetCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITraceDataProvider_Value = @import("../zig.zig").Guid.initString("03837512-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataProvider = &IID_ITraceDataProvider_Value;
 pub const ITraceDataProvider = extern struct {
@@ -2495,6 +2508,7 @@ pub const ITraceDataProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITraceDataProviderCollection_Value = @import("../zig.zig").Guid.initString("03837510-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataProviderCollection = &IID_ITraceDataProviderCollection_Value;
 pub const ITraceDataProviderCollection = extern struct {
@@ -2589,6 +2603,7 @@ pub const ITraceDataProviderCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISchedule_Value = @import("../zig.zig").Guid.initString("0383753a-098b-11d8-9414-505054503030");
 pub const IID_ISchedule = &IID_ISchedule_Value;
 pub const ISchedule = extern struct {
@@ -2666,6 +2681,7 @@ pub const ISchedule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IScheduleCollection_Value = @import("../zig.zig").Guid.initString("0383753d-098b-11d8-9414-505054503030");
 pub const IID_IScheduleCollection = &IID_IScheduleCollection_Value;
 pub const IScheduleCollection = extern struct {
@@ -2743,6 +2759,7 @@ pub const IScheduleCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IValueMapItem_Value = @import("../zig.zig").Guid.initString("03837533-098b-11d8-9414-505054503030");
 pub const IID_IValueMapItem = &IID_IValueMapItem_Value;
 pub const IValueMapItem = extern struct {
@@ -2836,6 +2853,7 @@ pub const IValueMapItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IValueMap_Value = @import("../zig.zig").Guid.initString("03837534-098b-11d8-9414-505054503030");
 pub const IID_IValueMap = &IID_IValueMap_Value;
 pub const IValueMap = extern struct {

@@ -578,6 +578,7 @@ pub const SRestriction = extern struct {
     const _res_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IMAPITable = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -937,6 +938,7 @@ pub const _flaglist = extern struct {
     ulFlag: [1]u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IABContainer = extern struct {
     pub const VTable = extern struct {
         base: IMAPIContainer.VTable,
@@ -990,6 +992,7 @@ pub const IABContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IMailUser = extern struct {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
@@ -1001,6 +1004,7 @@ pub const IMailUser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IDistList = extern struct {
     pub const VTable = extern struct {
         base: IMAPIContainer.VTable,
@@ -1648,6 +1652,7 @@ pub const IProviderAdmin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IAddrBook = extern struct {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
@@ -1855,8 +1860,11 @@ pub const IAddrBook = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _WABACTIONITEM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _WABACTIONITEM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
+// TODO: this type is limited to platform 'windows5.0'
 pub const IWABObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
@@ -2291,6 +2299,7 @@ pub const WABEXTDISPLAY = extern struct {
     lpsz: *i8,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IWABExtInit_Value = @import("../zig.zig").Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
 pub const IID_IWABExtInit = &IID_IWABExtInit_Value;
 pub const IWABExtInit = extern struct {

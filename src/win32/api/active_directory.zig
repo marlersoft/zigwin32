@@ -484,6 +484,7 @@ pub const CQPAGE = extern struct {
     lParam: LPARAM,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IQueryForm_Value = @import("../zig.zig").Guid.initString("8cfcee30-39bd-11d0-b8d1-00a024ab2dbb");
 pub const IID_IQueryForm = &IID_IQueryForm_Value;
 pub const IQueryForm = extern struct {
@@ -523,6 +524,7 @@ pub const IQueryForm = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPersistQuery_Value = @import("../zig.zig").Guid.initString("1a3114b8-a62e-11d0-a6c5-00a0c906af45");
 pub const IID_IPersistQuery = &IID_IPersistQuery_Value;
 pub const IPersistQuery = extern struct {
@@ -617,6 +619,7 @@ pub const OPENQUERYWINDOW = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ICommonQuery_Value = @import("../zig.zig").Guid.initString("ab50dec0-6f1d-11d0-a1c4-00aa00c16e65");
 pub const IID_ICommonQuery = &IID_ICommonQuery_Value;
 pub const ICommonQuery = extern struct {
@@ -1461,6 +1464,7 @@ pub const ADS_SD_FORMAT_IID = ADS_SD_FORMAT_ENUM.IID;
 pub const ADS_SD_FORMAT_RAW = ADS_SD_FORMAT_ENUM.RAW;
 pub const ADS_SD_FORMAT_HEXSTRING = ADS_SD_FORMAT_ENUM.HEXSTRING;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADs_Value = @import("../zig.zig").Guid.initString("fd8256d0-fd15-11ce-abc4-02608c9e7553");
 pub const IID_IADs = &IID_IADs_Value;
 pub const IADs = extern struct {
@@ -1582,6 +1586,7 @@ pub const IADs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsContainer_Value = @import("../zig.zig").Guid.initString("001677d0-fd16-11ce-abc4-02608c9e7553");
 pub const IID_IADsContainer = &IID_IADsContainer_Value;
 pub const IADsContainer = extern struct {
@@ -1692,6 +1697,7 @@ pub const IADsContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsCollection_Value = @import("../zig.zig").Guid.initString("72b945e0-253b-11cf-a988-00aa006bc149");
 pub const IID_IADsCollection = &IID_IADsCollection_Value;
 pub const IADsCollection = extern struct {
@@ -1739,6 +1745,7 @@ pub const IADsCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsMembers_Value = @import("../zig.zig").Guid.initString("451a0030-72ec-11cf-b03b-00aa006e0975");
 pub const IID_IADsMembers = &IID_IADsMembers_Value;
 pub const IADsMembers = extern struct {
@@ -1784,6 +1791,7 @@ pub const IADsMembers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPropertyList_Value = @import("../zig.zig").Guid.initString("c6f602b6-8f69-11d0-8528-00c04fd8d503");
 pub const IID_IADsPropertyList = &IID_IADsPropertyList_Value;
 pub const IADsPropertyList = extern struct {
@@ -1870,6 +1878,7 @@ pub const IADsPropertyList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPropertyEntry_Value = @import("../zig.zig").Guid.initString("05792c8e-941f-11d0-8529-00c04fd8d503");
 pub const IID_IADsPropertyEntry = &IID_IADsPropertyEntry_Value;
 pub const IADsPropertyEntry = extern struct {
@@ -1954,6 +1963,7 @@ pub const IADsPropertyEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPropertyValue_Value = @import("../zig.zig").Guid.initString("79fa9ad0-a97c-11d0-8534-00c04fd8d503");
 pub const IID_IADsPropertyValue = &IID_IADsPropertyValue_Value;
 pub const IADsPropertyValue = extern struct {
@@ -2166,6 +2176,7 @@ pub const IADsPropertyValue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPropertyValue2_Value = @import("../zig.zig").Guid.initString("306e831c-5bc7-11d1-a3b8-00c04fb950dc");
 pub const IID_IADsPropertyValue2 = &IID_IADsPropertyValue2_Value;
 pub const IADsPropertyValue2 = extern struct {
@@ -2293,6 +2304,7 @@ pub const IPrivateUnknown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsExtension_Value = @import("../zig.zig").Guid.initString("3d35553c-d2b0-11d1-b17b-0000f87593a0");
 pub const IID_IADsExtension = &IID_IADsExtension_Value;
 pub const IADsExtension = extern struct {
@@ -2344,6 +2356,7 @@ pub const IADsExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsDeleteOps_Value = @import("../zig.zig").Guid.initString("b2bd0902-8878-11d1-8c21-00c04fd8d503");
 pub const IID_IADsDeleteOps = &IID_IADsDeleteOps_Value;
 pub const IADsDeleteOps = extern struct {
@@ -2365,6 +2378,7 @@ pub const IADsDeleteOps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsNamespaces_Value = @import("../zig.zig").Guid.initString("28b96ba0-b330-11cf-a9ad-00aa006bc149");
 pub const IID_IADsNamespaces = &IID_IADsNamespaces_Value;
 pub const IADsNamespaces = extern struct {
@@ -2394,6 +2408,7 @@ pub const IADsNamespaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsClass_Value = @import("../zig.zig").Guid.initString("c8f93dd0-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsClass = &IID_IADsClass_Value;
 pub const IADsClass = extern struct {
@@ -2647,6 +2662,7 @@ pub const IADsClass = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsProperty_Value = @import("../zig.zig").Guid.initString("c8f93dd3-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsProperty = &IID_IADsProperty_Value;
 pub const IADsProperty = extern struct {
@@ -2748,6 +2764,7 @@ pub const IADsProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsSyntax_Value = @import("../zig.zig").Guid.initString("c8f93dd2-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsSyntax = &IID_IADsSyntax_Value;
 pub const IADsSyntax = extern struct {
@@ -2777,6 +2794,7 @@ pub const IADsSyntax = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsLocality_Value = @import("../zig.zig").Guid.initString("a05e03a2-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsLocality = &IID_IADsLocality_Value;
 pub const IADsLocality = extern struct {
@@ -2854,6 +2872,7 @@ pub const IADsLocality = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsO_Value = @import("../zig.zig").Guid.initString("a1cd2dc6-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsO = &IID_IADsO_Value;
 pub const IADsO = extern struct {
@@ -2963,6 +2982,7 @@ pub const IADsO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsOU_Value = @import("../zig.zig").Guid.initString("a2f733b8-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsOU = &IID_IADsOU_Value;
 pub const IADsOU = extern struct {
@@ -3088,6 +3108,7 @@ pub const IADsOU = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsDomain_Value = @import("../zig.zig").Guid.initString("00e4c220-fd16-11ce-abc4-02608c9e7553");
 pub const IID_IADsDomain = &IID_IADsDomain_Value;
 pub const IADsDomain = extern struct {
@@ -3237,6 +3258,7 @@ pub const IADsDomain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsComputer_Value = @import("../zig.zig").Guid.initString("efe3cc70-1d9f-11cf-b1f3-02608c9e7553");
 pub const IID_IADsComputer = &IID_IADsComputer_Value;
 pub const IADsComputer = extern struct {
@@ -3506,6 +3528,7 @@ pub const IADsComputer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsComputerOperations_Value = @import("../zig.zig").Guid.initString("ef497680-1d9f-11cf-b1f3-02608c9e7553");
 pub const IID_IADsComputerOperations = &IID_IADsComputerOperations_Value;
 pub const IADsComputerOperations = extern struct {
@@ -3535,6 +3558,7 @@ pub const IADsComputerOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsGroup_Value = @import("../zig.zig").Guid.initString("27636b00-410f-11cf-b1ff-02608c9e7553");
 pub const IID_IADsGroup = &IID_IADsGroup_Value;
 pub const IADsGroup = extern struct {
@@ -3597,6 +3621,7 @@ pub const IADsGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsUser_Value = @import("../zig.zig").Guid.initString("3e37e320-17e2-11cf-abc4-02608c9e7553");
 pub const IID_IADsUser = &IID_IADsUser_Value;
 pub const IADsUser = extern struct {
@@ -4339,6 +4364,7 @@ pub const IADsUser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPrintQueue_Value = @import("../zig.zig").Guid.initString("b15160d0-1226-11cf-a985-00aa006bc149");
 pub const IID_IADsPrintQueue = &IID_IADsPrintQueue_Value;
 pub const IADsPrintQueue = extern struct {
@@ -4560,6 +4586,7 @@ pub const IADsPrintQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPrintQueueOperations_Value = @import("../zig.zig").Guid.initString("124be5c0-156e-11cf-a986-00aa006bc149");
 pub const IID_IADsPrintQueueOperations = &IID_IADsPrintQueueOperations_Value;
 pub const IADsPrintQueueOperations = extern struct {
@@ -4610,6 +4637,7 @@ pub const IADsPrintQueueOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPrintJob_Value = @import("../zig.zig").Guid.initString("32fb6780-1ed0-11cf-a988-00aa006bc149");
 pub const IID_IADsPrintJob = &IID_IADsPrintJob_Value;
 pub const IADsPrintJob = extern struct {
@@ -4767,6 +4795,7 @@ pub const IADsPrintJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPrintJobOperations_Value = @import("../zig.zig").Guid.initString("9a52db30-1ecf-11cf-a988-00aa006bc149");
 pub const IID_IADsPrintJobOperations = &IID_IADsPrintJobOperations_Value;
 pub const IADsPrintJobOperations = extern struct {
@@ -4834,6 +4863,7 @@ pub const IADsPrintJobOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsService_Value = @import("../zig.zig").Guid.initString("68af66e0-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsService = &IID_IADsService_Value;
 pub const IADsService = extern struct {
@@ -5039,6 +5069,7 @@ pub const IADsService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsServiceOperations_Value = @import("../zig.zig").Guid.initString("5d7b33f0-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsServiceOperations = &IID_IADsServiceOperations_Value;
 pub const IADsServiceOperations = extern struct {
@@ -5096,6 +5127,7 @@ pub const IADsServiceOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsFileService_Value = @import("../zig.zig").Guid.initString("a89d1900-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsFileService = &IID_IADsFileService_Value;
 pub const IADsFileService = extern struct {
@@ -5141,6 +5173,7 @@ pub const IADsFileService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsFileServiceOperations_Value = @import("../zig.zig").Guid.initString("a02ded10-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsFileServiceOperations = &IID_IADsFileServiceOperations_Value;
 pub const IADsFileServiceOperations = extern struct {
@@ -5170,6 +5203,7 @@ pub const IADsFileServiceOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsFileShare_Value = @import("../zig.zig").Guid.initString("eb6dcaf0-4b83-11cf-a995-00aa006bc149");
 pub const IID_IADsFileShare = &IID_IADsFileShare_Value;
 pub const IADsFileShare = extern struct {
@@ -5255,6 +5289,7 @@ pub const IADsFileShare = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsSession_Value = @import("../zig.zig").Guid.initString("398b7da0-4aab-11cf-ae2c-00aa006ebfb9");
 pub const IID_IADsSession = &IID_IADsSession_Value;
 pub const IADsSession = extern struct {
@@ -5316,6 +5351,7 @@ pub const IADsSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsResource_Value = @import("../zig.zig").Guid.initString("34a05b20-4aab-11cf-ae2c-00aa006ebfb9");
 pub const IID_IADsResource = &IID_IADsResource_Value;
 pub const IADsResource = extern struct {
@@ -5361,6 +5397,7 @@ pub const IADsResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsOpenDSObject_Value = @import("../zig.zig").Guid.initString("ddf2891e-0f9c-11d0-8ad4-00c04fd8d503");
 pub const IID_IADsOpenDSObject = &IID_IADsOpenDSObject_Value;
 pub const IADsOpenDSObject = extern struct {
@@ -5386,6 +5423,7 @@ pub const IADsOpenDSObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectoryObject_Value = @import("../zig.zig").Guid.initString("e798de2c-22e4-11d0-84fe-00c04fd8d503");
 pub const IID_IDirectoryObject = &IID_IDirectoryObject_Value;
 pub const IDirectoryObject = extern struct {
@@ -5447,6 +5485,7 @@ pub const IDirectoryObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectorySearch_Value = @import("../zig.zig").Guid.initString("109ba8ec-92f0-11d0-a790-00c04fd8d5a8");
 pub const IID_IDirectorySearch = &IID_IDirectorySearch_Value;
 pub const IDirectorySearch = extern struct {
@@ -5547,6 +5586,7 @@ pub const IDirectorySearch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectorySchemaMgmt_Value = @import("../zig.zig").Guid.initString("75db3b9c-a4d8-11d0-a79c-00c04fd8d5a8");
 pub const IID_IDirectorySchemaMgmt = &IID_IDirectorySchemaMgmt_Value;
 pub const IDirectorySchemaMgmt = extern struct {
@@ -5706,6 +5746,7 @@ pub const IADsAggregator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsAccessControlEntry_Value = @import("../zig.zig").Guid.initString("b4f3a14c-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsAccessControlEntry = &IID_IADsAccessControlEntry_Value;
 pub const IADsAccessControlEntry = extern struct {
@@ -5831,6 +5872,7 @@ pub const IADsAccessControlEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsAccessControlList_Value = @import("../zig.zig").Guid.initString("b7ee91cc-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsAccessControlList = &IID_IADsAccessControlList_Value;
 pub const IADsAccessControlList = extern struct {
@@ -5908,6 +5950,7 @@ pub const IADsAccessControlList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsSecurityDescriptor_Value = @import("../zig.zig").Guid.initString("b8c787ca-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsSecurityDescriptor = &IID_IADsSecurityDescriptor_Value;
 pub const IADsSecurityDescriptor = extern struct {
@@ -6089,6 +6132,7 @@ pub const IADsSecurityDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsLargeInteger_Value = @import("../zig.zig").Guid.initString("9068270b-0939-11d1-8be1-00c04fd8d503");
 pub const IID_IADsLargeInteger = &IID_IADsLargeInteger_Value;
 pub const IADsLargeInteger = extern struct {
@@ -6134,6 +6178,7 @@ pub const IADsLargeInteger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsNameTranslate_Value = @import("../zig.zig").Guid.initString("b1b272a3-3625-11d1-a3a4-00c04fb950dc");
 pub const IID_IADsNameTranslate = &IID_IADsNameTranslate_Value;
 pub const IADsNameTranslate = extern struct {
@@ -6212,6 +6257,7 @@ pub const IADsNameTranslate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsCaseIgnoreList_Value = @import("../zig.zig").Guid.initString("7b66b533-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsCaseIgnoreList = &IID_IADsCaseIgnoreList_Value;
 pub const IADsCaseIgnoreList = extern struct {
@@ -6241,6 +6287,7 @@ pub const IADsCaseIgnoreList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsFaxNumber_Value = @import("../zig.zig").Guid.initString("a910dea9-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsFaxNumber = &IID_IADsFaxNumber_Value;
 pub const IADsFaxNumber = extern struct {
@@ -6286,6 +6333,7 @@ pub const IADsFaxNumber = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsNetAddress_Value = @import("../zig.zig").Guid.initString("b21a50a9-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsNetAddress = &IID_IADsNetAddress_Value;
 pub const IADsNetAddress = extern struct {
@@ -6331,6 +6379,7 @@ pub const IADsNetAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsOctetList_Value = @import("../zig.zig").Guid.initString("7b28b80f-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsOctetList = &IID_IADsOctetList_Value;
 pub const IADsOctetList = extern struct {
@@ -6360,6 +6409,7 @@ pub const IADsOctetList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsEmail_Value = @import("../zig.zig").Guid.initString("97af011a-478e-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsEmail = &IID_IADsEmail_Value;
 pub const IADsEmail = extern struct {
@@ -6405,6 +6455,7 @@ pub const IADsEmail = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPath_Value = @import("../zig.zig").Guid.initString("b287fcd5-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsPath = &IID_IADsPath_Value;
 pub const IADsPath = extern struct {
@@ -6466,6 +6517,7 @@ pub const IADsPath = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsReplicaPointer_Value = @import("../zig.zig").Guid.initString("f60fb803-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsReplicaPointer = &IID_IADsReplicaPointer_Value;
 pub const IADsReplicaPointer = extern struct {
@@ -6559,6 +6611,7 @@ pub const IADsReplicaPointer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsAcl_Value = @import("../zig.zig").Guid.initString("8452d3ab-0869-11d1-a377-00c04fb950dc");
 pub const IID_IADsAcl = &IID_IADsAcl_Value;
 pub const IADsAcl = extern struct {
@@ -6628,6 +6681,7 @@ pub const IADsAcl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsTimestamp_Value = @import("../zig.zig").Guid.initString("b2f5a901-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsTimestamp = &IID_IADsTimestamp_Value;
 pub const IADsTimestamp = extern struct {
@@ -6673,6 +6727,7 @@ pub const IADsTimestamp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPostalAddress_Value = @import("../zig.zig").Guid.initString("7adecf29-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsPostalAddress = &IID_IADsPostalAddress_Value;
 pub const IADsPostalAddress = extern struct {
@@ -6702,6 +6757,7 @@ pub const IADsPostalAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsBackLink_Value = @import("../zig.zig").Guid.initString("fd1302bd-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsBackLink = &IID_IADsBackLink_Value;
 pub const IADsBackLink = extern struct {
@@ -6747,6 +6803,7 @@ pub const IADsBackLink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsTypedName_Value = @import("../zig.zig").Guid.initString("b371a349-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsTypedName = &IID_IADsTypedName_Value;
 pub const IADsTypedName = extern struct {
@@ -6808,6 +6865,7 @@ pub const IADsTypedName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsHold_Value = @import("../zig.zig").Guid.initString("b3eb3b37-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsHold = &IID_IADsHold_Value;
 pub const IADsHold = extern struct {
@@ -6853,6 +6911,7 @@ pub const IADsHold = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsObjectOptions_Value = @import("../zig.zig").Guid.initString("46f14fda-232b-11d1-a808-00c04fd8d5a8");
 pub const IID_IADsObjectOptions = &IID_IADsObjectOptions_Value;
 pub const IADsObjectOptions = extern struct {
@@ -6884,6 +6943,7 @@ pub const IADsObjectOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsPathname_Value = @import("../zig.zig").Guid.initString("d592aed4-f420-11d0-a36e-00c04fb950dc");
 pub const IID_IADsPathname = &IID_IADsPathname_Value;
 pub const IADsPathname = extern struct {
@@ -6989,6 +7049,7 @@ pub const IADsPathname = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsADSystemInfo_Value = @import("../zig.zig").Guid.initString("5bb11929-afd1-11d2-9cb9-0000f87a369e");
 pub const IID_IADsADSystemInfo = &IID_IADsADSystemInfo_Value;
 pub const IADsADSystemInfo = extern struct {
@@ -7106,6 +7167,7 @@ pub const IADsADSystemInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsWinNTSystemInfo_Value = @import("../zig.zig").Guid.initString("6c6d65dc-afd1-11d2-9cb9-0000f87a369e");
 pub const IID_IADsWinNTSystemInfo = &IID_IADsWinNTSystemInfo_Value;
 pub const IADsWinNTSystemInfo = extern struct {
@@ -7151,6 +7213,7 @@ pub const IADsWinNTSystemInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsDNWithBinary_Value = @import("../zig.zig").Guid.initString("7e99c0a2-f935-11d2-ba96-00c04fb6d0d1");
 pub const IID_IADsDNWithBinary = &IID_IADsDNWithBinary_Value;
 pub const IADsDNWithBinary = extern struct {
@@ -7196,6 +7259,7 @@ pub const IADsDNWithBinary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsDNWithString_Value = @import("../zig.zig").Guid.initString("370df02e-f934-11d2-ba96-00c04fb6d0d1");
 pub const IID_IADsDNWithString = &IID_IADsDNWithString_Value;
 pub const IADsDNWithString = extern struct {
@@ -7241,6 +7305,7 @@ pub const IADsDNWithString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IADsSecurityUtility_Value = @import("../zig.zig").Guid.initString("a63251b2-5f21-474b-ab52-4a8efad10895");
 pub const IID_IADsSecurityUtility = &IID_IADsSecurityUtility_Value;
 pub const IADsSecurityUtility = extern struct {
@@ -7348,6 +7413,7 @@ pub const DOMAIN_TREE = extern struct {
     aDomains: [1]DOMAINDESC,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsBrowseDomainTree_Value = @import("../zig.zig").Guid.initString("7cabcf1e-78f5-11d2-960c-00c04fa31a86");
 pub const IID_IDsBrowseDomainTree = &IID_IDsBrowseDomainTree_Value;
 pub const IDsBrowseDomainTree = extern struct {
@@ -7420,6 +7486,7 @@ pub const DSCLASSCREATIONINFO = extern struct {
     aWizardExtensions: [1]Guid,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsDisplaySpecifier_Value = @import("../zig.zig").Guid.initString("1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86");
 pub const IID_IDsDisplaySpecifier = &IID_IDsDisplaySpecifier_Value;
 pub const IDsDisplaySpecifier = extern struct {
@@ -7649,6 +7716,7 @@ pub const DS_SELECTION_LIST = extern struct {
     aDsSelection: [1]DS_SELECTION,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsObjectPicker_Value = @import("../zig.zig").Guid.initString("0c87e64e-3b7a-11d2-b9e0-00c04fd8dbf7");
 pub const IID_IDsObjectPicker = &IID_IDsObjectPicker_Value;
 pub const IDsObjectPicker = extern struct {
@@ -7679,6 +7747,7 @@ pub const IDsObjectPicker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IDsObjectPickerCredentials_Value = @import("../zig.zig").Guid.initString("e2d3ec9b-d041-445a-8f16-4748de8fb1cf");
 pub const IID_IDsObjectPickerCredentials = &IID_IDsObjectPickerCredentials_Value;
 pub const IDsObjectPickerCredentials = extern struct {
@@ -7736,6 +7805,7 @@ pub const DSQUERYCLASSLIST = extern struct {
     offsetClass: [1]u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsAdminCreateObj_Value = @import("../zig.zig").Guid.initString("53554a38-f902-11d2-82b9-00c04f68928b");
 pub const IID_IDsAdminCreateObj = &IID_IDsAdminCreateObj_Value;
 pub const IDsAdminCreateObj = extern struct {
@@ -7768,6 +7838,7 @@ pub const IDsAdminCreateObj = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsAdminNewObj_Value = @import("../zig.zig").Guid.initString("f2573587-e6fc-11d2-82af-00c04f68928b");
 pub const IID_IDsAdminNewObj = &IID_IDsAdminNewObj_Value;
 pub const IDsAdminNewObj = extern struct {
@@ -7799,6 +7870,7 @@ pub const IDsAdminNewObj = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsAdminNewObjPrimarySite_Value = @import("../zig.zig").Guid.initString("be2b487e-f904-11d2-82b9-00c04f68928b");
 pub const IID_IDsAdminNewObjPrimarySite = &IID_IDsAdminNewObjPrimarySite_Value;
 pub const IDsAdminNewObjPrimarySite = extern struct {
@@ -7834,6 +7906,7 @@ pub const DSA_NEWOBJ_DISPINFO = extern struct {
     lpszContDisplayName: PWSTR,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsAdminNewObjExt_Value = @import("../zig.zig").Guid.initString("6088eae2-e7bf-11d2-82af-00c04f68928b");
 pub const IID_IDsAdminNewObjExt = &IID_IDsAdminNewObjExt_Value;
 pub const IDsAdminNewObjExt = extern struct {
@@ -7903,6 +7976,7 @@ pub const IDsAdminNewObjExt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDsAdminNotifyHandler_Value = @import("../zig.zig").Guid.initString("e4a2b8b3-5a18-11d2-97c1-00a0c9a06d2d");
 pub const IID_IDsAdminNotifyHandler = &IID_IDsAdminNotifyHandler_Value;
 pub const IDsAdminNotifyHandler = extern struct {
@@ -8692,7 +8766,7 @@ pub const DS_DOMAIN_TRUSTSW = extern struct {
     ParentIndex: u32,
     TrustType: u32,
     TrustAttributes: u32,
-    DomainSid: *c_void,
+    DomainSid: PSID,
     DomainGuid: Guid,
 };
 
@@ -8703,7 +8777,7 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
     ParentIndex: u32,
     TrustType: u32,
     TrustAttributes: u32,
-    DomainSid: *c_void,
+    DomainSid: PSID,
     DomainGuid: Guid,
 };
 
@@ -8721,21 +8795,25 @@ pub const BFFCALLBACK = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (158)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsGetObject(
     lpszPathName: [*:0]const u16,
     riid: *const Guid,
     ppObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsBuildEnumerator(
     pADsContainer: *IADsContainer,
     ppEnumVariant: **IEnumVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsFreeEnumerator(
     pEnumVariant: *IEnumVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsEnumerateNext(
     pEnumVariant: *IEnumVARIANT,
     cElements: u32,
@@ -8743,18 +8821,21 @@ pub extern "ACTIVEDS" fn ADsEnumerateNext(
     pcElementsFetched: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsBuildVarArrayStr(
     lppPathNames: [*]PWSTR,
     dwPathNames: u32,
     pVar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsBuildVarArrayInt(
     lpdwObjectTypes: *u32,
     dwObjectTypes: u32,
     pVar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsOpenObject(
     lpszPathName: [*:0]const u16,
     lpszUserName: [*:0]const u16,
@@ -8764,6 +8845,7 @@ pub extern "ACTIVEDS" fn ADsOpenObject(
     ppObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsGetLastError(
     lpError: *u32,
     lpErrorBuf: [*:0]u16,
@@ -8772,39 +8854,47 @@ pub extern "ACTIVEDS" fn ADsGetLastError(
     dwNameBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsSetLastError(
     dwErr: u32,
     pszError: [*:0]const u16,
     pszProvider: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn AllocADsMem(
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn FreeADsMem(
     pMem: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ReallocADsMem(
     pOldMem: *c_void,
     cbOld: u32,
     cbNew: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn AllocADsStr(
     pStr: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn FreeADsStr(
     pStr: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ReallocADsStr(
     ppStr: *PWSTR,
     pStr: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ADsEncodeBinaryData(
     pbSrcData: *u8,
     dwSrcLen: u32,
@@ -8835,8 +8925,9 @@ pub extern "ACTIVEDS" fn AdsFreeAdsValues(
     dwNumValues: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn BinarySDToSecurityDescriptor(
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
     pVarsec: *VARIANT,
     pszServerName: [*:0]const u16,
     userName: [*:0]const u16,
@@ -8844,9 +8935,10 @@ pub extern "ACTIVEDS" fn BinarySDToSecurityDescriptor(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn SecurityDescriptorToBinarySD(
     vVarSecDes: VARIANT,
-    ppSecurityDescriptor: **c_void,
+    ppSecurityDescriptor: **SECURITY_DESCRIPTOR,
     pdwSDLength: *u32,
     pszServerName: [*:0]const u16,
     userName: [*:0]const u16,
@@ -8854,14 +8946,17 @@ pub extern "ACTIVEDS" fn SecurityDescriptorToBinarySD(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsuiext" fn DsBrowseForContainerW(
     pInfo: *DSBROWSEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsuiext" fn DsBrowseForContainerA(
     pInfo: *DSBROWSEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsuiext" fn DsGetIcon(
     dwFlags: u32,
     pszObjectClass: [*:0]const u16,
@@ -8869,49 +8964,58 @@ pub extern "dsuiext" fn DsGetIcon(
     cyImage: i32,
 ) callconv(@import("std").os.windows.WINAPI) HICON;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsuiext" fn DsGetFriendlyClassName(
     pszObjectClass: [*:0]const u16,
     pszBuffer: [*:0]u16,
     cchBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropCreateNotifyObj(
     pAppThdDataObj: *IDataObject,
     pwzADsObjName: PWSTR,
     phNotifyObj: *HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropGetInitInfo(
     hNotifyObj: HWND,
     pInitParams: *ADSPROPINITPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropSetHwndWithTitle(
     hNotifyObj: HWND,
     hPage: HWND,
     ptzTitle: *i8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropSetHwnd(
     hNotifyObj: HWND,
     hPage: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropCheckIfWritable(
     pwzAttr: [*:0]const u16,
     pWritableAttrs: *const ADS_ATTR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropSendErrorMessage(
     hNotifyObj: HWND,
     pError: *ADSPROPERROR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropShowErrorDialog(
     hNotifyObj: HWND,
     hPage: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsMakeSpnW(
     ServiceClass: [*:0]const u16,
     ServiceName: [*:0]const u16,
@@ -8922,6 +9026,7 @@ pub extern "DSPARSE" fn DsMakeSpnW(
     pszSpn: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsMakeSpnA(
     ServiceClass: [*:0]const u8,
     ServiceName: [*:0]const u8,
@@ -8932,6 +9037,7 @@ pub extern "DSPARSE" fn DsMakeSpnA(
     pszSpn: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsCrackSpnA(
     pszSpn: [*:0]const u8,
     pcServiceClass: ?*u32,
@@ -8943,6 +9049,7 @@ pub extern "DSPARSE" fn DsCrackSpnA(
     pInstancePort: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsCrackSpnW(
     pszSpn: [*:0]const u16,
     pcServiceClass: ?*u32,
@@ -8954,6 +9061,7 @@ pub extern "DSPARSE" fn DsCrackSpnW(
     pInstancePort: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsQuoteRdnValueW(
     cUnquotedRdnValueLength: u32,
     psUnquotedRdnValue: [*:0]const u16,
@@ -8961,6 +9069,7 @@ pub extern "DSPARSE" fn DsQuoteRdnValueW(
     psQuotedRdnValue: [*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsQuoteRdnValueA(
     cUnquotedRdnValueLength: u32,
     psUnquotedRdnValue: [*]const u8,
@@ -8968,6 +9077,7 @@ pub extern "DSPARSE" fn DsQuoteRdnValueA(
     psQuotedRdnValue: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsUnquoteRdnValueW(
     cQuotedRdnValueLength: u32,
     psQuotedRdnValue: [*:0]const u16,
@@ -8975,6 +9085,7 @@ pub extern "DSPARSE" fn DsUnquoteRdnValueW(
     psUnquotedRdnValue: [*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsUnquoteRdnValueA(
     cQuotedRdnValueLength: u32,
     psQuotedRdnValue: [*]const u8,
@@ -8982,6 +9093,7 @@ pub extern "DSPARSE" fn DsUnquoteRdnValueA(
     psUnquotedRdnValue: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsGetRdnW(
     ppDN: [*]PWSTR,
     pcDN: *u32,
@@ -8991,6 +9103,7 @@ pub extern "DSPARSE" fn DsGetRdnW(
     pcVal: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnW(
     pszRDN: [*:0]const u16,
     cchRDN: u32,
@@ -8998,6 +9111,7 @@ pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnW(
     peDsMangleFor: ?*DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnA(
     pszRDN: [*:0]const u8,
     cchRDN: u32,
@@ -9005,23 +9119,27 @@ pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnA(
     peDsMangleFor: ?*DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsIsMangledRdnValueW(
     pszRdn: [*:0]const u16,
     cRdn: u32,
     eDsMangleForDesired: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsIsMangledRdnValueA(
     pszRdn: [*:0]const u8,
     cRdn: u32,
     eDsMangleForDesired: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsIsMangledDnA(
     pszDn: [*:0]const u8,
     eDsMangleFor: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSPARSE" fn DsIsMangledDnW(
     pszDn: [*:0]const u16,
     eDsMangleFor: DS_MANGLE_FOR,
@@ -9080,18 +9198,21 @@ pub extern "DSPARSE" fn DsCrackSpn4W(
     RealmName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithCredW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
@@ -9099,6 +9220,7 @@ pub extern "NTDSAPI" fn DsBindWithCredW(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithCredA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
@@ -9106,6 +9228,7 @@ pub extern "NTDSAPI" fn DsBindWithCredA(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithSpnW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
@@ -9114,6 +9237,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnW(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithSpnA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
@@ -9122,6 +9246,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnA(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithSpnExW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
@@ -9131,6 +9256,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnExW(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindWithSpnExA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
@@ -9140,6 +9266,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnExA(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindByInstanceW(
     ServerName: ?[*:0]const u16,
     Annotation: ?[*:0]const u16,
@@ -9151,6 +9278,7 @@ pub extern "NTDSAPI" fn DsBindByInstanceW(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindByInstanceA(
     ServerName: ?[*:0]const u8,
     Annotation: ?[*:0]const u8,
@@ -9162,29 +9290,35 @@ pub extern "NTDSAPI" fn DsBindByInstanceA(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindToISTGW(
     SiteName: ?[*:0]const u16,
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindToISTGA(
     SiteName: ?[*:0]const u8,
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsBindingSetTimeout(
     hDS: HANDLE,
     cTimeoutSecs: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsUnBindW(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsUnBindA(
     phDS: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsMakePasswordCredentialsW(
     User: ?[*:0]const u16,
     Domain: ?[*:0]const u16,
@@ -9192,6 +9326,7 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsW(
     pAuthIdentity: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsMakePasswordCredentialsA(
     User: ?[*:0]const u8,
     Domain: ?[*:0]const u8,
@@ -9199,10 +9334,12 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsA(
     pAuthIdentity: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreePasswordCredentials(
     AuthIdentity: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsCrackNamesW(
     hDS: HANDLE,
     flags: DS_NAME_FLAGS,
@@ -9213,6 +9350,7 @@ pub extern "NTDSAPI" fn DsCrackNamesW(
     ppResult: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsCrackNamesA(
     hDS: HANDLE,
     flags: DS_NAME_FLAGS,
@@ -9223,14 +9361,17 @@ pub extern "NTDSAPI" fn DsCrackNamesA(
     ppResult: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeNameResultW(
     pResult: *DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeNameResultA(
     pResult: *DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsGetSpnA(
     ServiceType: DS_SPN_NAME_TYPE,
     ServiceClass: [*:0]const u8,
@@ -9243,6 +9384,7 @@ pub extern "NTDSAPI" fn DsGetSpnA(
     prpszSpn: **PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsGetSpnW(
     ServiceType: DS_SPN_NAME_TYPE,
     ServiceClass: [*:0]const u16,
@@ -9255,16 +9397,19 @@ pub extern "NTDSAPI" fn DsGetSpnW(
     prpszSpn: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeSpnArrayA(
     cSpn: u32,
     rpszSpn: [*]PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeSpnArrayW(
     cSpn: u32,
     rpszSpn: [*]PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsWriteAccountSpnA(
     hDS: HANDLE,
     Operation: DS_SPN_WRITE_OP,
@@ -9273,6 +9418,7 @@ pub extern "NTDSAPI" fn DsWriteAccountSpnA(
     rpszSpn: [*]PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsWriteAccountSpnW(
     hDS: HANDLE,
     Operation: DS_SPN_WRITE_OP,
@@ -9281,6 +9427,7 @@ pub extern "NTDSAPI" fn DsWriteAccountSpnW(
     rpszSpn: [*]PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerW(
     ServiceClass: [*:0]const u16,
     ServiceName: [*:0]const u16,
@@ -9288,6 +9435,7 @@ pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerW(
     pszSpn: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerA(
     ServiceClass: [*:0]const u8,
     ServiceName: [*:0]const u8,
@@ -9295,18 +9443,21 @@ pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerA(
     pszSpn: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsServerRegisterSpnA(
     Operation: DS_SPN_WRITE_OP,
     ServiceClass: [*:0]const u8,
     UserObjectDN: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsServerRegisterSpnW(
     Operation: DS_SPN_WRITE_OP,
     ServiceClass: [*:0]const u16,
     UserObjectDN: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaSyncA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9314,6 +9465,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncA(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaSyncW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9321,6 +9473,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncW(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaAddA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9331,6 +9484,7 @@ pub extern "NTDSAPI" fn DsReplicaAddA(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaAddW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9341,6 +9495,7 @@ pub extern "NTDSAPI" fn DsReplicaAddW(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaDelA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9348,6 +9503,7 @@ pub extern "NTDSAPI" fn DsReplicaDelA(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaDelW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9355,6 +9511,7 @@ pub extern "NTDSAPI" fn DsReplicaDelW(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaModifyA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9367,6 +9524,7 @@ pub extern "NTDSAPI" fn DsReplicaModifyA(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaModifyW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9379,6 +9537,7 @@ pub extern "NTDSAPI" fn DsReplicaModifyW(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaUpdateRefsA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9387,6 +9546,7 @@ pub extern "NTDSAPI" fn DsReplicaUpdateRefsA(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaUpdateRefsW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9395,6 +9555,7 @@ pub extern "NTDSAPI" fn DsReplicaUpdateRefsW(
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaSyncAllA(
     hDS: HANDLE,
     pszNameContext: [*:0]const u8,
@@ -9404,6 +9565,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllA(
     pErrors: ?*?*?*DS_REPSYNCALL_ERRINFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaSyncAllW(
     hDS: HANDLE,
     pszNameContext: [*:0]const u16,
@@ -9413,6 +9575,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllW(
     pErrors: ?*?*?*DS_REPSYNCALL_ERRINFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsRemoveDsServerW(
     hDs: HANDLE,
     ServerDN: PWSTR,
@@ -9421,6 +9584,7 @@ pub extern "NTDSAPI" fn DsRemoveDsServerW(
     fCommit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsRemoveDsServerA(
     hDs: HANDLE,
     ServerDN: PSTR,
@@ -9429,50 +9593,59 @@ pub extern "NTDSAPI" fn DsRemoveDsServerA(
     fCommit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsRemoveDsDomainW(
     hDs: HANDLE,
     DomainDN: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsRemoveDsDomainA(
     hDs: HANDLE,
     DomainDN: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListSitesA(
     hDs: HANDLE,
     ppSites: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListSitesW(
     hDs: HANDLE,
     ppSites: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListServersInSiteA(
     hDs: HANDLE,
     site: [*:0]const u8,
     ppServers: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListServersInSiteW(
     hDs: HANDLE,
     site: [*:0]const u16,
     ppServers: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListDomainsInSiteA(
     hDs: HANDLE,
     site: [*:0]const u8,
     ppDomains: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListDomainsInSiteW(
     hDs: HANDLE,
     site: [*:0]const u16,
     ppDomains: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListServersForDomainInSiteA(
     hDs: HANDLE,
     domain: [*:0]const u8,
@@ -9480,6 +9653,7 @@ pub extern "NTDSAPI" fn DsListServersForDomainInSiteA(
     ppServers: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListServersForDomainInSiteW(
     hDs: HANDLE,
     domain: [*:0]const u16,
@@ -9487,28 +9661,33 @@ pub extern "NTDSAPI" fn DsListServersForDomainInSiteW(
     ppServers: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListInfoForServerA(
     hDs: HANDLE,
     server: [*:0]const u8,
     ppInfo: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListInfoForServerW(
     hDs: HANDLE,
     server: [*:0]const u16,
     ppInfo: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListRolesA(
     hDs: HANDLE,
     ppRoles: **DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsListRolesW(
     hDs: HANDLE,
     ppRoles: **DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsQuerySitesByCostW(
     hDS: HANDLE,
     pwszFromSite: PWSTR,
@@ -9518,6 +9697,7 @@ pub extern "NTDSAPI" fn DsQuerySitesByCostW(
     prgSiteInfo: **DS_SITE_COST_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsQuerySitesByCostA(
     hDS: HANDLE,
     pszFromSite: PSTR,
@@ -9527,10 +9707,12 @@ pub extern "NTDSAPI" fn DsQuerySitesByCostA(
     prgSiteInfo: **DS_SITE_COST_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsQuerySitesFree(
     rgSiteInfo: *DS_SITE_COST_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsMapSchemaGuidsA(
     hDs: HANDLE,
     cGuids: u32,
@@ -9538,10 +9720,12 @@ pub extern "NTDSAPI" fn DsMapSchemaGuidsA(
     ppGuidMap: **DS_SCHEMA_GUID_MAPA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeSchemaGuidMapA(
     pGuidMap: *DS_SCHEMA_GUID_MAPA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsMapSchemaGuidsW(
     hDs: HANDLE,
     cGuids: u32,
@@ -9549,10 +9733,12 @@ pub extern "NTDSAPI" fn DsMapSchemaGuidsW(
     ppGuidMap: **DS_SCHEMA_GUID_MAPW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeSchemaGuidMapW(
     pGuidMap: *DS_SCHEMA_GUID_MAPW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsGetDomainControllerInfoA(
     hDs: HANDLE,
     DomainName: [*:0]const u8,
@@ -9561,6 +9747,7 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoA(
     ppInfo: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsGetDomainControllerInfoW(
     hDs: HANDLE,
     DomainName: [*:0]const u16,
@@ -9569,24 +9756,28 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoW(
     ppInfo: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeDomainControllerInfoA(
     InfoLevel: u32,
     cInfo: u32,
     pInfo: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreeDomainControllerInfoW(
     InfoLevel: u32,
     cInfo: u32,
     pInfo: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaConsistencyCheck(
     hDS: HANDLE,
     TaskID: DS_KCC_TASKID,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaVerifyObjectsW(
     hDS: HANDLE,
     NameContext: [*:0]const u16,
@@ -9594,6 +9785,7 @@ pub extern "NTDSAPI" fn DsReplicaVerifyObjectsW(
     ulOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaVerifyObjectsA(
     hDS: HANDLE,
     NameContext: [*:0]const u8,
@@ -9601,6 +9793,7 @@ pub extern "NTDSAPI" fn DsReplicaVerifyObjectsA(
     ulOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaGetInfoW(
     hDS: HANDLE,
     InfoType: DS_REPL_INFO_TYPE,
@@ -9609,6 +9802,7 @@ pub extern "NTDSAPI" fn DsReplicaGetInfoW(
     ppInfo: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaGetInfo2W(
     hDS: HANDLE,
     InfoType: DS_REPL_INFO_TYPE,
@@ -9621,11 +9815,13 @@ pub extern "NTDSAPI" fn DsReplicaGetInfo2W(
     ppInfo: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaFreeInfo(
     InfoType: DS_REPL_INFO_TYPE,
     pInfo: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsAddSidHistoryW(
     hDS: HANDLE,
     Flags: u32,
@@ -9637,6 +9833,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryW(
     DstPrincipal: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsAddSidHistoryA(
     hDS: HANDLE,
     Flags: u32,
@@ -9648,6 +9845,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryA(
     DstPrincipal: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsInheritSecurityIdentityW(
     hDS: HANDLE,
     Flags: u32,
@@ -9655,6 +9853,7 @@ pub extern "NTDSAPI" fn DsInheritSecurityIdentityW(
     DstPrincipal: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsInheritSecurityIdentityA(
     hDS: HANDLE,
     Flags: u32,
@@ -9662,16 +9861,19 @@ pub extern "NTDSAPI" fn DsInheritSecurityIdentityA(
     DstPrincipal: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSROLE" fn DsRoleGetPrimaryDomainInformation(
     lpServer: [*:0]const u16,
     InfoLevel: DSROLE_PRIMARY_DOMAIN_INFO_LEVEL,
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "DSROLE" fn DsRoleFreeMemory(
     Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcNameA(
     ComputerName: ?[*:0]const u8,
     DomainName: ?[*:0]const u8,
@@ -9681,6 +9883,7 @@ pub extern "logoncli" fn DsGetDcNameA(
     DomainControllerInfo: **DOMAIN_CONTROLLER_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcNameW(
     ComputerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
@@ -9690,24 +9893,29 @@ pub extern "logoncli" fn DsGetDcNameW(
     DomainControllerInfo: **DOMAIN_CONTROLLER_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetSiteNameA(
     ComputerName: ?[*:0]const u8,
     SiteName: *PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetSiteNameW(
     ComputerName: ?[*:0]const u16,
     SiteName: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsValidateSubnetNameW(
     SubnetName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsValidateSubnetNameA(
     SubnetName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsAddressToSiteNamesW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
@@ -9715,6 +9923,7 @@ pub extern "logoncli" fn DsAddressToSiteNamesW(
     SiteNames: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsAddressToSiteNamesA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
@@ -9722,6 +9931,7 @@ pub extern "logoncli" fn DsAddressToSiteNamesA(
     SiteNames: **PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsAddressToSiteNamesExW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
@@ -9730,6 +9940,7 @@ pub extern "logoncli" fn DsAddressToSiteNamesExW(
     SubnetNames: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsAddressToSiteNamesExA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
@@ -9738,6 +9949,7 @@ pub extern "logoncli" fn DsAddressToSiteNamesExA(
     SubnetNames: **PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsEnumerateDomainTrustsW(
     ServerName: ?PWSTR,
     Flags: u32,
@@ -9745,6 +9957,7 @@ pub extern "logoncli" fn DsEnumerateDomainTrustsW(
     DomainCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsEnumerateDomainTrustsA(
     ServerName: ?PSTR,
     Flags: u32,
@@ -9752,6 +9965,7 @@ pub extern "logoncli" fn DsEnumerateDomainTrustsA(
     DomainCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetForestTrustInformationW(
     ServerName: ?[*:0]const u16,
     TrustedDomainName: ?[*:0]const u16,
@@ -9759,6 +9973,7 @@ pub extern "logoncli" fn DsGetForestTrustInformationW(
     ForestTrustInfo: **LSA_FOREST_TRUST_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsMergeForestTrustInformationW(
     DomainName: [*:0]const u16,
     NewForestTrustInfo: *LSA_FOREST_TRUST_INFORMATION,
@@ -9766,18 +9981,21 @@ pub extern "logoncli" fn DsMergeForestTrustInformationW(
     MergedForestTrustInfo: **LSA_FOREST_TRUST_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcSiteCoverageW(
     ServerName: ?[*:0]const u16,
     EntryCount: *u32,
     SiteNames: **PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcSiteCoverageA(
     ServerName: ?[*:0]const u8,
     EntryCount: *u32,
     SiteNames: **PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsDeregisterDnsHostRecordsW(
     ServerName: ?PWSTR,
     DnsDomainName: ?PWSTR,
@@ -9786,6 +10004,7 @@ pub extern "logoncli" fn DsDeregisterDnsHostRecordsW(
     DnsHostName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsDeregisterDnsHostRecordsA(
     ServerName: ?PSTR,
     DnsDomainName: ?PSTR,
@@ -9794,6 +10013,7 @@ pub extern "logoncli" fn DsDeregisterDnsHostRecordsA(
     DnsHostName: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcOpenW(
     DnsName: [*:0]const u16,
     OptionFlags: u32,
@@ -9801,9 +10021,10 @@ pub extern "logoncli" fn DsGetDcOpenW(
     DomainGuid: ?*Guid,
     DnsForestName: ?[*:0]const u16,
     DcFlags: u32,
-    RetGetDcContext: *GetDcContextHandle,
+    RetGetDcContext: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcOpenA(
     DnsName: [*:0]const u8,
     OptionFlags: u32,
@@ -9811,9 +10032,10 @@ pub extern "logoncli" fn DsGetDcOpenA(
     DomainGuid: ?*Guid,
     DnsForestName: ?[*:0]const u8,
     DcFlags: u32,
-    RetGetDcContext: *GetDcContextHandle,
+    RetGetDcContext: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcNextW(
     GetDcContextHandle: HANDLE,
     SockAddressCount: ?*u32,
@@ -9821,6 +10043,7 @@ pub extern "logoncli" fn DsGetDcNextW(
     DnsHostName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcNextA(
     GetDcContextHandle: HANDLE,
     SockAddressCount: ?*u32,
@@ -9828,8 +10051,9 @@ pub extern "logoncli" fn DsGetDcNextA(
     DnsHostName: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "logoncli" fn DsGetDcCloseW(
-    GetDcContextHandle: GetDcContextHandle,
+    GetDcContextHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 
@@ -10122,7 +10346,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
@@ -10132,6 +10356,7 @@ const IDispatch = @import("automation.zig").IDispatch;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const IEnumVARIANT = @import("automation.zig").IEnumVARIANT;
 const HRESULT = @import("com.zig").HRESULT;
+const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
 const IPersist = @import("com.zig").IPersist;
 const DISPPARAMS = @import("automation.zig").DISPPARAMS;
@@ -10140,6 +10365,7 @@ const DLGPROC = @import("windows_and_messaging.zig").DLGPROC;
 const LPFNSVADDPROPSHEETPAGE = @import("controls.zig").LPFNSVADDPROPSHEETPAGE;
 const ITypeInfo = @import("automation.zig").ITypeInfo;
 const HICON = @import("menus_and_resources.zig").HICON;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("system_services.zig").PWSTR;
 const EXCEPINFO = @import("automation.zig").EXCEPINFO;
 const IUnknown = @import("com.zig").IUnknown;
@@ -10167,7 +10393,7 @@ test {
     const com_class_id_export_count = 25;
     const func_export_count = 158;
     const unicode_alias_count = 69;
-    const import_count = 27;
+    const import_count = 29;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -86,8 +86,183 @@ pub const SFC_SCAN_IMMEDIATE = @as(u32, 3);
 pub const SFC_QUOTA_DEFAULT = @as(u32, 50);
 
 //--------------------------------------------------------------------------------
-// Section: Types (120)
+// Section: Types (118)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SP_COPY_STYLE = extern enum(u32) {
+    DELETESOURCE = 1,
+    REPLACEONLY = 2,
+    NEWER_OR_SAME = 4,
+    NEWER_ONLY = 65536,
+    NOOVERWRITE = 8,
+    NODECOMP = 16,
+    LANGUAGEAWARE = 32,
+    SOURCE_ABSOLUTE = 64,
+    SOURCEPATH_ABSOLUTE = 128,
+    FORCE_IN_USE = 512,
+    IN_USE_NEEDS_REBOOT = 256,
+    NOSKIP = 1024,
+    FORCE_NOOVERWRITE = 4096,
+    FORCE_NEWER = 8192,
+    WARNIFSKIP = 16384,
+    NOBROWSE = 32768,
+    NEWER = 4,
+    RESERVED = 131072,
+    OEMINF_CATALOG_ONLY = 262144,
+    REPLACE_BOOT_FILE = 524288,
+    NOPRUNE = 1048576,
+    OEM_F6_INF = 2097152,
+    ALREADYDECOMP = 4194304,
+    WINDOWS_SIGNED = 16777216,
+    PNPLOCKED = 33554432,
+    IN_USE_TRY_RENAME = 67108864,
+    INBOX_INF = 134217728,
+    HARDLINK = 268435456,
+    _,
+};
+pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
+pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;
+pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE.NEWER_OR_SAME;
+pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE.NEWER_ONLY;
+pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE.NOOVERWRITE;
+pub const SP_COPY_NODECOMP = SP_COPY_STYLE.NODECOMP;
+pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE.LANGUAGEAWARE;
+pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE.SOURCE_ABSOLUTE;
+pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE.SOURCEPATH_ABSOLUTE;
+pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE.FORCE_IN_USE;
+pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE.IN_USE_NEEDS_REBOOT;
+pub const SP_COPY_NOSKIP = SP_COPY_STYLE.NOSKIP;
+pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
+pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
+pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
+pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
+pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER;
+pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
+pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
+pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
+pub const SP_COPY_NOPRUNE = SP_COPY_STYLE.NOPRUNE;
+pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE.OEM_F6_INF;
+pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE.ALREADYDECOMP;
+pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE.WINDOWS_SIGNED;
+pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE.PNPLOCKED;
+pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
+pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
+pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MsiCreateTransformSummaryInfo_iErrorConditions = extern enum(u32) {
+    none = 0,
+    ADDEXISTINGROW = 1,
+    DELMISSINGROW = 2,
+    ADDEXISTINGTABLE = 4,
+    DELMISSINGTABLE = 8,
+    UPDATEMISSINGROW = 16,
+    CHANGECODEPAGE = 32,
+    _,
+};
+// TODO: enum 'MsiCreateTransformSummaryInfo_iErrorConditions' has known issues with its value aliases
+
+pub const Setup_Operation = extern enum(u32) {
+    DELETE = 2,
+    COPY = 0,
+};
+pub const FILEOP_DELETE = Setup_Operation.DELETE;
+pub const FILEOP_COPY = Setup_Operation.COPY;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MsiCreateTransformSummaryInfo_iValidation = extern enum(u32) {
+    none = 0,
+    LANGUAGE = 1,
+    PRODUCT = 2,
+    _,
+};
+// TODO: enum 'MsiCreateTransformSummaryInfo_iValidation' has known issues with its value aliases
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MsiGetFeatureValidStates_lpInstallStates = extern enum(u32) {
+    @"2" = 2,
+    @"4" = 4,
+    @"8" = 8,
+    @"16" = 16,
+    @"32" = 32,
+    _,
+};
+pub const lpInstallStates2 = MsiGetFeatureValidStates_lpInstallStates.@"2";
+pub const lpInstallStates4 = MsiGetFeatureValidStates_lpInstallStates.@"4";
+pub const lpInstallStates8 = MsiGetFeatureValidStates_lpInstallStates.@"8";
+pub const lpInstallStates16 = MsiGetFeatureValidStates_lpInstallStates.@"16";
+pub const lpInstallStates32 = MsiGetFeatureValidStates_lpInstallStates.@"32";
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MsiEnumClientsEx_dwContext = extern enum(u32) {
+    USERMANAGED = 1,
+    USERUNMANAGED = 2,
+    MACHINE = 4,
+    _,
+};
+// TODO: enum 'MsiEnumClientsEx_dwContext' has known issues with its value aliases
+
+pub const SetupCopyOEMInf_OEMSourceMediaType = extern enum(u32) {
+    NONE = 0,
+    PATH = 1,
+    URL = 2,
+};
+pub const SPOST_NONE = SetupCopyOEMInf_OEMSourceMediaType.NONE;
+pub const SPOST_PATH = SetupCopyOEMInf_OEMSourceMediaType.PATH;
+pub const SPOST_URL = SetupCopyOEMInf_OEMSourceMediaType.URL;
+
+pub const MsiProvideAssembly_dwAssemblyInfo = extern enum(u32) {
+    NETASSEMBLY = 0,
+    WIN32ASSEMBLY = 1,
+};
+pub const MSIASSEMBLYINFO_NETASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.NETASSEMBLY;
+pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.WIN32ASSEMBLY;
+
+pub const IAssemblyCache_UninstallAssembly_pulDispositionFlags = extern enum(u32) {
+    UNINSTALLED = 1,
+    STILL_IN_USE = 2,
+    ALREADY_UNINSTALLED = 3,
+    DELETE_PENDING = 4,
+};
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IAssemblyCache_UninstallAssembly_pulDispositionFlags.STILL_IN_USE;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.ALREADY_UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IAssemblyCache_UninstallAssembly_pulDispositionFlags.DELETE_PENDING;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MsiAdvertiseScript_dwFlags = extern enum(u32) {
+    CACHEINFO = 1,
+    SHORTCUTS = 4,
+    MACHINEASSIGN = 8,
+    REGDATA_CNFGINFO = 32,
+    VALIDATE_TRANSFORMS_LIST = 64,
+    REGDATA_CLASSINFO = 128,
+    REGDATA_EXTENSIONINFO = 256,
+    REGDATA_APPINFO = 384,
+    REGDATA = 416,
+    _,
+};
+// TODO: enum 'MsiAdvertiseScript_dwFlags' has known issues with its value aliases
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const IAssemblyCache_QueryAssemblyInfoFlags = extern enum(u32) {
+    E = 1,
+    _,
+};
+pub const QUERYASMINFO_FLAG_VALIDATE = IAssemblyCache_QueryAssemblyInfoFlags.E;
+
+pub const SP_INF_INFORMATION_InfStyleFlags = extern enum(u32) {
+    NONE = 0,
+    OLDNT = 1,
+    WIN4 = 2,
+};
+pub const INF_STYLE_NONE = SP_INF_INFORMATION_InfStyleFlags.NONE;
+pub const INF_STYLE_OLDNT = SP_INF_INFORMATION_InfStyleFlags.OLDNT;
+pub const INF_STYLE_WIN4 = SP_INF_INFORMATION_InfStyleFlags.WIN4;
+
+// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
+pub const MSIHANDLE = u32;
+
 pub const ACTIVATION_CONTEXT_QUERY_INDEX = extern struct {
     ulAssemblyIndex: u32,
     ulFileIndexInAssembly: u32,
@@ -177,242 +352,6 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     lpRootManifestPath: [*:0]const u16,
     lpRootConfigurationPath: [*:0]const u16,
     lpAppDirPath: [*:0]const u16,
-};
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SP_COPY_STYLE = extern enum(u32) {
-    DELETESOURCE = 1,
-    REPLACEONLY = 2,
-    NEWER_OR_SAME = 4,
-    NEWER_ONLY = 65536,
-    NOOVERWRITE = 8,
-    NODECOMP = 16,
-    LANGUAGEAWARE = 32,
-    SOURCE_ABSOLUTE = 64,
-    SOURCEPATH_ABSOLUTE = 128,
-    FORCE_IN_USE = 512,
-    IN_USE_NEEDS_REBOOT = 256,
-    NOSKIP = 1024,
-    FORCE_NOOVERWRITE = 4096,
-    FORCE_NEWER = 8192,
-    WARNIFSKIP = 16384,
-    NOBROWSE = 32768,
-    NEWER = 4,
-    RESERVED = 131072,
-    OEMINF_CATALOG_ONLY = 262144,
-    REPLACE_BOOT_FILE = 524288,
-    NOPRUNE = 1048576,
-    OEM_F6_INF = 2097152,
-    ALREADYDECOMP = 4194304,
-    WINDOWS_SIGNED = 16777216,
-    PNPLOCKED = 33554432,
-    IN_USE_TRY_RENAME = 67108864,
-    INBOX_INF = 134217728,
-    HARDLINK = 268435456,
-    _,
-};
-pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
-pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;
-pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE.NEWER_OR_SAME;
-pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE.NEWER_ONLY;
-pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE.NOOVERWRITE;
-pub const SP_COPY_NODECOMP = SP_COPY_STYLE.NODECOMP;
-pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE.LANGUAGEAWARE;
-pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE.SOURCE_ABSOLUTE;
-pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE.SOURCEPATH_ABSOLUTE;
-pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE.FORCE_IN_USE;
-pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE.IN_USE_NEEDS_REBOOT;
-pub const SP_COPY_NOSKIP = SP_COPY_STYLE.NOSKIP;
-pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
-pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
-pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
-pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
-pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER;
-pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
-pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
-pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
-pub const SP_COPY_NOPRUNE = SP_COPY_STYLE.NOPRUNE;
-pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE.OEM_F6_INF;
-pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE.ALREADYDECOMP;
-pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE.WINDOWS_SIGNED;
-pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE.PNPLOCKED;
-pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
-pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
-pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
-
-pub const MsiSourceList_dwContext = extern enum(u32) {
-    USERMANAGED = 1,
-    USERUNMANAGED = 2,
-    MACHINE = 4,
-};
-// TODO: enum 'MsiSourceList_dwContext' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiCreateTransformSummaryInfo_iErrorConditions = extern enum(u32) {
-    none = 0,
-    ADDEXISTINGROW = 1,
-    DELMISSINGROW = 2,
-    ADDEXISTINGTABLE = 4,
-    DELMISSINGTABLE = 8,
-    UPDATEMISSINGROW = 16,
-    CHANGECODEPAGE = 32,
-    _,
-};
-// TODO: enum 'MsiCreateTransformSummaryInfo_iErrorConditions' has known issues with its value aliases
-
-pub const Setup_Operation = extern enum(u32) {
-    DELETE = 2,
-    COPY = 0,
-};
-pub const FILEOP_DELETE = Setup_Operation.DELETE;
-pub const FILEOP_COPY = Setup_Operation.COPY;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiCreateTransformSummaryInfo_iValidation = extern enum(u32) {
-    none = 0,
-    LANGUAGE = 1,
-    PRODUCT = 2,
-    _,
-};
-// TODO: enum 'MsiCreateTransformSummaryInfo_iValidation' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiGetFeatureValidStates_lpInstallStates = extern enum(u32) {
-    @"2" = 2,
-    @"4" = 4,
-    @"8" = 8,
-    @"16" = 16,
-    @"32" = 32,
-    _,
-};
-pub const lpInstallStates2 = MsiGetFeatureValidStates_lpInstallStates.@"2";
-pub const lpInstallStates4 = MsiGetFeatureValidStates_lpInstallStates.@"4";
-pub const lpInstallStates8 = MsiGetFeatureValidStates_lpInstallStates.@"8";
-pub const lpInstallStates16 = MsiGetFeatureValidStates_lpInstallStates.@"16";
-pub const lpInstallStates32 = MsiGetFeatureValidStates_lpInstallStates.@"32";
-
-pub const MsiViewModify_eModifyModeFlags = extern enum(u32) {
-    REFRESH = 0,
-    INSERT = 1,
-    UPDATE = 2,
-    ASSIGN = 3,
-    REPLACE = 4,
-    MERGE = 5,
-    DELETE = 6,
-    INSERT_TEMPORARY = 7,
-    VALIDATE = 8,
-    VALIDATE_NEW = 9,
-    VALIDATE_FIELD = 10,
-    VALIDATE_DELETE = 11,
-};
-// TODO: enum 'MsiViewModify_eModifyModeFlags' has known issues with its value aliases
-
-pub const SetupCopyOEMInf_OEMSourceMediaType = extern enum(u32) {
-    NONE = 0,
-    PATH = 1,
-    URL = 2,
-};
-pub const SPOST_NONE = SetupCopyOEMInf_OEMSourceMediaType.NONE;
-pub const SPOST_PATH = SetupCopyOEMInf_OEMSourceMediaType.PATH;
-pub const SPOST_URL = SetupCopyOEMInf_OEMSourceMediaType.URL;
-
-pub const LPDISPLAYVAL_uiTypeFlags = extern enum(u32) {
-    Unknown = 0,
-    Error = 1,
-    Warning = 2,
-    Info = 3,
-};
-// TODO: enum 'LPDISPLAYVAL_uiTypeFlags' has known issues with its value aliases
-
-pub const MsiProvideAssembly_dwAssemblyInfo = extern enum(u32) {
-    NETASSEMBLY = 0,
-    WIN32ASSEMBLY = 1,
-};
-pub const MSIASSEMBLYINFO_NETASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.NETASSEMBLY;
-pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.WIN32ASSEMBLY;
-
-pub const IAssemblyCache_UninstallAssembly_pulDispositionFlags = extern enum(u32) {
-    UNINSTALLED = 1,
-    STILL_IN_USE = 2,
-    ALREADY_UNINSTALLED = 3,
-    DELETE_PENDING = 4,
-};
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IAssemblyCache_UninstallAssembly_pulDispositionFlags.STILL_IN_USE;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.ALREADY_UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IAssemblyCache_UninstallAssembly_pulDispositionFlags.DELETE_PENDING;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiAdvertiseScript_dwFlags = extern enum(u32) {
-    CACHEINFO = 1,
-    SHORTCUTS = 4,
-    MACHINEASSIGN = 8,
-    REGDATA_CNFGINFO = 32,
-    VALIDATE_TRANSFORMS_LIST = 64,
-    REGDATA_CLASSINFO = 128,
-    REGDATA_EXTENSIONINFO = 256,
-    REGDATA_APPINFO = 384,
-    REGDATA = 416,
-    _,
-};
-// TODO: enum 'MsiAdvertiseScript_dwFlags' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IAssemblyCache_QueryAssemblyInfoFlags = extern enum(u32) {
-    E = 1,
-    _,
-};
-pub const QUERYASMINFO_FLAG_VALIDATE = IAssemblyCache_QueryAssemblyInfoFlags.E;
-
-pub const SP_INF_INFORMATION_InfStyleFlags = extern enum(u32) {
-    NONE = 0,
-    OLDNT = 1,
-    WIN4 = 2,
-};
-pub const INF_STYLE_NONE = SP_INF_INFORMATION_InfStyleFlags.NONE;
-pub const INF_STYLE_OLDNT = SP_INF_INFORMATION_InfStyleFlags.OLDNT;
-pub const INF_STYLE_WIN4 = SP_INF_INFORMATION_InfStyleFlags.WIN4;
-
-// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
-pub const MSIHANDLE = u32;
-
-pub const ACTCTXA = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: [*:0]const u8,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u8,
-    lpResourceName: [*:0]const u8,
-    lpApplicationName: [*:0]const u8,
-    hModule: ?*c_void,
-};
-
-pub const ACTCTXW = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: [*:0]const u16,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u16,
-    lpResourceName: [*:0]const u16,
-    lpApplicationName: [*:0]const u16,
-    hModule: ?*c_void,
-};
-
-pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
-    cbSize: u32,
-    ulDataFormatVersion: u32,
-    lpData: *c_void,
-    ulLength: u32,
-    lpSectionGlobalData: *c_void,
-    ulSectionGlobalDataLength: u32,
-    lpSectionBase: *c_void,
-    ulSectionTotalLength: u32,
-    hActCtx: HANDLE,
-    ulAssemblyRosterIndex: u32,
-    ulFlags: u32,
-    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
 };
 
 pub const INFCONTEXT = extern struct {
@@ -675,7 +614,7 @@ pub const ieStatusCancel = STATUSTYPES.Cancel;
 
 pub const LPDISPLAYVAL = fn(
     pContext: *c_void,
-    uiType: LPDISPLAYVAL_uiTypeFlags,
+    uiType: RESULTTYPES,
     szwVal: [*:0]const u16,
     szwDescription: [*:0]const u16,
     szwLocation: [*:0]const u16,
@@ -2013,6 +1952,7 @@ pub const ASM_CMPF_CUSTOM = ASM_CMP_FLAGS.CUSTOM;
 pub const ASM_CMPF_ALL = ASM_CMP_FLAGS.ALL;
 pub const ASM_CMPF_DEFAULT = ASM_CMP_FLAGS.DEFAULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyName_Value = @import("../zig.zig").Guid.initString("cd193bc0-b4bc-11d2-9833-00c04fc31d2e");
 pub const IID_IAssemblyName = &IID_IAssemblyName_Value;
 pub const IAssemblyName = extern struct {
@@ -2113,6 +2053,7 @@ pub const IAssemblyName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyCacheItem_Value = @import("../zig.zig").Guid.initString("9e3aaeb4-d1cd-11d2-bab9-00c04f8eceae");
 pub const IID_IAssemblyCacheItem = &IID_IAssemblyCacheItem_Value;
 pub const IAssemblyCacheItem = extern struct {
@@ -2155,6 +2096,7 @@ pub const IAssemblyCacheItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAssemblyCache_Value = @import("../zig.zig").Guid.initString("e707dcde-d1cd-11d2-bab9-00c04f8eceae");
 pub const IID_IAssemblyCache = &IID_IAssemblyCache_Value;
 pub const IAssemblyCache = extern struct {
@@ -2230,88 +2172,50 @@ pub const PROTECTED_FILE_DATA = extern struct {
     FileNumber: u32,
 };
 
+pub const ACTCTXA = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: [*:0]const u8,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: [*:0]const u8,
+    lpResourceName: [*:0]const u8,
+    lpApplicationName: [*:0]const u8,
+    hModule: ?*c_void,
+};
+
+pub const ACTCTXW = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: [*:0]const u16,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: [*:0]const u16,
+    lpResourceName: [*:0]const u16,
+    lpApplicationName: [*:0]const u16,
+    hModule: ?*c_void,
+};
+
+pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
+    cbSize: u32,
+    ulDataFormatVersion: u32,
+    lpData: *c_void,
+    ulLength: u32,
+    lpSectionGlobalData: *c_void,
+    ulSectionGlobalDataLength: u32,
+    lpSectionBase: *c_void,
+    ulSectionTotalLength: u32,
+    hActCtx: HANDLE,
+    ulAssemblyRosterIndex: u32,
+    ulFlags: u32,
+    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (453)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn CreateActCtxA(
-    pActCtx: *ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateActCtxW(
-    pActCtx: *ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn AddRefActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ZombifyActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ActivateActCtx(
-    hActCtx: HANDLE,
-    lpCookie: *?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeactivateActCtx(
-    dwFlags: u32,
-    ulCookie: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetCurrentActCtx(
-    lphActCtx: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionStringA(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u8,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionStringW(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u16,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionGuid(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpGuidToFind: ?*const Guid,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryActCtxW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    pvSubInstance: ?*c_void,
-    ulInfoClass: u32,
-    pvBuffer: ?[*]u8,
-    cbBuffer: ?*c_void,
-    pcbWrittenOrRequired: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryActCtxSettingsW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    settingsNameSpace: ?[*:0]const u16,
-    settingName: [*:0]const u16,
-    pvBuffer: ?[*:0]u16,
-    dwBuffer: ?*c_void,
-    pdwWrittenOrRequired: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetInfInformationA(
     InfSpec: *const c_void,
     SearchControl: u32,
@@ -2320,6 +2224,7 @@ pub extern "SETUPAPI" fn SetupGetInfInformationA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetInfInformationW(
     InfSpec: *const c_void,
     SearchControl: u32,
@@ -2328,6 +2233,7 @@ pub extern "SETUPAPI" fn SetupGetInfInformationW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfFileInformationA(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2336,6 +2242,7 @@ pub extern "SETUPAPI" fn SetupQueryInfFileInformationA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfFileInformationW(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2344,6 +2251,7 @@ pub extern "SETUPAPI" fn SetupQueryInfFileInformationW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationA(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2351,6 +2259,7 @@ pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationA(
     OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationW(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2358,6 +2267,7 @@ pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationW(
     OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfVersionInformationA(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2367,6 +2277,7 @@ pub extern "SETUPAPI" fn SetupQueryInfVersionInformationA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryInfVersionInformationW(
     InfInformation: *SP_INF_INFORMATION,
     InfIndex: u32,
@@ -2376,6 +2287,7 @@ pub extern "SETUPAPI" fn SetupQueryInfVersionInformationW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetInfFileListA(
     DirectoryPath: ?[*:0]const u8,
     InfStyle: u32,
@@ -2384,6 +2296,7 @@ pub extern "SETUPAPI" fn SetupGetInfFileListA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetInfFileListW(
     DirectoryPath: ?[*:0]const u16,
     InfStyle: u32,
@@ -2392,6 +2305,7 @@ pub extern "SETUPAPI" fn SetupGetInfFileListW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenInfFileW(
     FileName: [*:0]const u16,
     InfClass: ?[*:0]const u16,
@@ -2399,6 +2313,7 @@ pub extern "SETUPAPI" fn SetupOpenInfFileW(
     ErrorLine: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenInfFileA(
     FileName: [*:0]const u8,
     InfClass: ?[*:0]const u8,
@@ -2406,25 +2321,30 @@ pub extern "SETUPAPI" fn SetupOpenInfFileA(
     ErrorLine: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenMasterInf(
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenAppendInfFileW(
     FileName: ?[*:0]const u16,
     InfHandle: *c_void,
     ErrorLine: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenAppendInfFileA(
     FileName: ?[*:0]const u8,
     InfHandle: *c_void,
     ErrorLine: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCloseInfFile(
     InfHandle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFindFirstLineA(
     InfHandle: *c_void,
     Section: [*:0]const u8,
@@ -2432,6 +2352,7 @@ pub extern "SETUPAPI" fn SetupFindFirstLineA(
     Context: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFindFirstLineW(
     InfHandle: *c_void,
     Section: [*:0]const u16,
@@ -2439,23 +2360,27 @@ pub extern "SETUPAPI" fn SetupFindFirstLineW(
     Context: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFindNextLine(
     ContextIn: *INFCONTEXT,
     ContextOut: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFindNextMatchLineA(
     ContextIn: *INFCONTEXT,
     Key: ?[*:0]const u8,
     ContextOut: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFindNextMatchLineW(
     ContextIn: *INFCONTEXT,
     Key: ?[*:0]const u16,
     ContextOut: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineByIndexA(
     InfHandle: *c_void,
     Section: [*:0]const u8,
@@ -2463,6 +2388,7 @@ pub extern "SETUPAPI" fn SetupGetLineByIndexA(
     Context: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineByIndexW(
     InfHandle: *c_void,
     Section: [*:0]const u16,
@@ -2470,16 +2396,19 @@ pub extern "SETUPAPI" fn SetupGetLineByIndexW(
     Context: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineCountA(
     InfHandle: *c_void,
     Section: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineCountW(
     InfHandle: *c_void,
     Section: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineTextA(
     Context: ?*INFCONTEXT,
     InfHandle: ?*c_void,
@@ -2490,6 +2419,7 @@ pub extern "SETUPAPI" fn SetupGetLineTextA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetLineTextW(
     Context: ?*INFCONTEXT,
     InfHandle: ?*c_void,
@@ -2500,10 +2430,12 @@ pub extern "SETUPAPI" fn SetupGetLineTextW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFieldCount(
     Context: *INFCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetStringFieldA(
     Context: *INFCONTEXT,
     FieldIndex: u32,
@@ -2512,6 +2444,7 @@ pub extern "SETUPAPI" fn SetupGetStringFieldA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetStringFieldW(
     Context: *INFCONTEXT,
     FieldIndex: u32,
@@ -2520,12 +2453,14 @@ pub extern "SETUPAPI" fn SetupGetStringFieldW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetIntField(
     Context: *INFCONTEXT,
     FieldIndex: u32,
     IntegerValue: *i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetMultiSzFieldA(
     Context: *INFCONTEXT,
     FieldIndex: u32,
@@ -2534,6 +2469,7 @@ pub extern "SETUPAPI" fn SetupGetMultiSzFieldA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetMultiSzFieldW(
     Context: *INFCONTEXT,
     FieldIndex: u32,
@@ -2542,6 +2478,7 @@ pub extern "SETUPAPI" fn SetupGetMultiSzFieldW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetBinaryField(
     Context: *INFCONTEXT,
     FieldIndex: u32,
@@ -2550,6 +2487,7 @@ pub extern "SETUPAPI" fn SetupGetBinaryField(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileCompressionInfoA(
     SourceFileName: [*:0]const u8,
     ActualSourceFileName: *PSTR,
@@ -2558,6 +2496,7 @@ pub extern "SETUPAPI" fn SetupGetFileCompressionInfoA(
     CompressionType: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileCompressionInfoW(
     SourceFileName: [*:0]const u16,
     ActualSourceFileName: *PWSTR,
@@ -2566,6 +2505,7 @@ pub extern "SETUPAPI" fn SetupGetFileCompressionInfoW(
     CompressionType: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExA(
     SourceFileName: [*:0]const u8,
     ActualSourceFileNameBuffer: ?[*:0]u8,
@@ -2576,6 +2516,7 @@ pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExA(
     CompressionType: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExW(
     SourceFileName: [*:0]const u16,
     ActualSourceFileNameBuffer: ?[*:0]u16,
@@ -2586,18 +2527,21 @@ pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExW(
     CompressionType: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDecompressOrCopyFileA(
     SourceFileName: [*:0]const u8,
     TargetFileName: [*:0]const u8,
     CompressionType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDecompressOrCopyFileW(
     SourceFileName: [*:0]const u16,
     TargetFileName: [*:0]const u16,
     CompressionType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceFileLocationA(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2608,6 +2552,7 @@ pub extern "SETUPAPI" fn SetupGetSourceFileLocationA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceFileLocationW(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2618,6 +2563,7 @@ pub extern "SETUPAPI" fn SetupGetSourceFileLocationW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceFileSizeA(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2627,6 +2573,7 @@ pub extern "SETUPAPI" fn SetupGetSourceFileSizeA(
     RoundingFactor: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceFileSizeW(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2636,6 +2583,7 @@ pub extern "SETUPAPI" fn SetupGetSourceFileSizeW(
     RoundingFactor: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetTargetPathA(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2645,6 +2593,7 @@ pub extern "SETUPAPI" fn SetupGetTargetPathA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetTargetPathW(
     InfHandle: *c_void,
     InfContext: ?*INFCONTEXT,
@@ -2654,63 +2603,75 @@ pub extern "SETUPAPI" fn SetupGetTargetPathW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetSourceListA(
     Flags: u32,
     SourceList: [*]PSTR,
     SourceCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetSourceListW(
     Flags: u32,
     SourceList: [*]PWSTR,
     SourceCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCancelTemporarySourceList(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddToSourceListA(
     Flags: u32,
     Source: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddToSourceListW(
     Flags: u32,
     Source: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFromSourceListA(
     Flags: u32,
     Source: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFromSourceListW(
     Flags: u32,
     Source: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQuerySourceListA(
     Flags: u32,
     List: **PSTR,
     Count: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQuerySourceListW(
     Flags: u32,
     List: **PWSTR,
     Count: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFreeSourceListA(
     List: [*]*PSTR,
     Count: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupFreeSourceListW(
     List: [*]*PWSTR,
     Count: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupPromptForDiskA(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u8,
@@ -2724,6 +2685,7 @@ pub extern "SETUPAPI" fn SetupPromptForDiskA(
     PathRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupPromptForDiskW(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u16,
@@ -2737,6 +2699,7 @@ pub extern "SETUPAPI" fn SetupPromptForDiskW(
     PathRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCopyErrorA(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u8,
@@ -2751,6 +2714,7 @@ pub extern "SETUPAPI" fn SetupCopyErrorA(
     PathRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCopyErrorW(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u16,
@@ -2765,6 +2729,7 @@ pub extern "SETUPAPI" fn SetupCopyErrorW(
     PathRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRenameErrorA(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u8,
@@ -2774,6 +2739,7 @@ pub extern "SETUPAPI" fn SetupRenameErrorA(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRenameErrorW(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u16,
@@ -2783,6 +2749,7 @@ pub extern "SETUPAPI" fn SetupRenameErrorW(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDeleteErrorA(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u8,
@@ -2791,6 +2758,7 @@ pub extern "SETUPAPI" fn SetupDeleteErrorA(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDeleteErrorW(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u16,
@@ -2799,6 +2767,7 @@ pub extern "SETUPAPI" fn SetupDeleteErrorW(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupBackupErrorA(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u8,
@@ -2808,6 +2777,7 @@ pub extern "SETUPAPI" fn SetupBackupErrorA(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupBackupErrorW(
     hwndParent: HWND,
     DialogTitle: ?[*:0]const u16,
@@ -2817,18 +2787,21 @@ pub extern "SETUPAPI" fn SetupBackupErrorW(
     Style: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetDirectoryIdA(
     InfHandle: *c_void,
     Id: u32,
     Directory: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetDirectoryIdW(
     InfHandle: *c_void,
     Id: u32,
     Directory: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetDirectoryIdExA(
     InfHandle: *c_void,
     Id: u32,
@@ -2838,6 +2811,7 @@ pub extern "SETUPAPI" fn SetupSetDirectoryIdExA(
     Reserved2: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetDirectoryIdExW(
     InfHandle: *c_void,
     Id: u32,
@@ -2847,6 +2821,7 @@ pub extern "SETUPAPI" fn SetupSetDirectoryIdExW(
     Reserved2: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceInfoA(
     InfHandle: *c_void,
     SourceId: u32,
@@ -2856,6 +2831,7 @@ pub extern "SETUPAPI" fn SetupGetSourceInfoA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetSourceInfoW(
     InfHandle: *c_void,
     SourceId: u32,
@@ -2865,6 +2841,7 @@ pub extern "SETUPAPI" fn SetupGetSourceInfoW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFileA(
     InfHandle: ?*c_void,
     InfContext: ?*INFCONTEXT,
@@ -2876,6 +2853,7 @@ pub extern "SETUPAPI" fn SetupInstallFileA(
     Context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFileW(
     InfHandle: ?*c_void,
     InfContext: ?*INFCONTEXT,
@@ -2887,6 +2865,7 @@ pub extern "SETUPAPI" fn SetupInstallFileW(
     Context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFileExA(
     InfHandle: ?*c_void,
     InfContext: ?*INFCONTEXT,
@@ -2899,6 +2878,7 @@ pub extern "SETUPAPI" fn SetupInstallFileExA(
     FileWasInUse: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFileExW(
     InfHandle: ?*c_void,
     InfContext: ?*INFCONTEXT,
@@ -2911,33 +2891,40 @@ pub extern "SETUPAPI" fn SetupInstallFileExW(
     FileWasInUse: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenFileQueue(
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCloseFileQueue(
     QueueHandle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformA(
     QueueHandle: *c_void,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     AlternateDefaultCatalogFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformW(
     QueueHandle: *c_void,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     AlternateDefaultCatalogFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideA(
     Override: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideW(
     Override: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopyA(
     QueueHandle: *c_void,
     SourceRootPath: ?[*:0]const u8,
@@ -2950,6 +2937,7 @@ pub extern "SETUPAPI" fn SetupQueueCopyA(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopyW(
     QueueHandle: *c_void,
     SourceRootPath: ?[*:0]const u16,
@@ -2962,14 +2950,17 @@ pub extern "SETUPAPI" fn SetupQueueCopyW(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopyIndirectA(
     CopyParams: *SP_FILE_COPY_PARAMS_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopyIndirectW(
     CopyParams: *SP_FILE_COPY_PARAMS_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDefaultCopyA(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -2979,6 +2970,7 @@ pub extern "SETUPAPI" fn SetupQueueDefaultCopyA(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDefaultCopyW(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -2988,6 +2980,7 @@ pub extern "SETUPAPI" fn SetupQueueDefaultCopyW(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopySectionA(
     QueueHandle: *c_void,
     SourceRootPath: ?[*:0]const u8,
@@ -2997,6 +2990,7 @@ pub extern "SETUPAPI" fn SetupQueueCopySectionA(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueCopySectionW(
     QueueHandle: *c_void,
     SourceRootPath: ?[*:0]const u16,
@@ -3006,18 +3000,21 @@ pub extern "SETUPAPI" fn SetupQueueCopySectionW(
     CopyStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDeleteA(
     QueueHandle: *c_void,
     PathPart1: [*:0]const u8,
     PathPart2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDeleteW(
     QueueHandle: *c_void,
     PathPart1: [*:0]const u16,
     PathPart2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDeleteSectionA(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -3025,6 +3022,7 @@ pub extern "SETUPAPI" fn SetupQueueDeleteSectionA(
     Section: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueDeleteSectionW(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -3032,6 +3030,7 @@ pub extern "SETUPAPI" fn SetupQueueDeleteSectionW(
     Section: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueRenameA(
     QueueHandle: *c_void,
     SourcePath: [*:0]const u8,
@@ -3040,6 +3039,7 @@ pub extern "SETUPAPI" fn SetupQueueRenameA(
     TargetFilename: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueRenameW(
     QueueHandle: *c_void,
     SourcePath: [*:0]const u16,
@@ -3048,6 +3048,7 @@ pub extern "SETUPAPI" fn SetupQueueRenameW(
     TargetFilename: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueRenameSectionA(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -3055,6 +3056,7 @@ pub extern "SETUPAPI" fn SetupQueueRenameSectionA(
     Section: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueueRenameSectionW(
     QueueHandle: *c_void,
     InfHandle: *c_void,
@@ -3062,6 +3064,7 @@ pub extern "SETUPAPI" fn SetupQueueRenameSectionW(
     Section: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCommitFileQueueA(
     Owner: HWND,
     QueueHandle: *c_void,
@@ -3069,6 +3072,7 @@ pub extern "SETUPAPI" fn SetupCommitFileQueueA(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCommitFileQueueW(
     Owner: HWND,
     QueueHandle: *c_void,
@@ -3076,6 +3080,7 @@ pub extern "SETUPAPI" fn SetupCommitFileQueueW(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupScanFileQueueA(
     FileQueue: *c_void,
     Flags: u32,
@@ -3085,6 +3090,7 @@ pub extern "SETUPAPI" fn SetupScanFileQueueA(
     Result: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupScanFileQueueW(
     FileQueue: *c_void,
     Flags: u32,
@@ -3094,23 +3100,27 @@ pub extern "SETUPAPI" fn SetupScanFileQueueW(
     Result: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileQueueCount(
     FileQueue: *c_void,
     SubQueueFileOp: u32,
     NumOperations: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetFileQueueFlags(
     FileQueue: *c_void,
     Flags: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupSetFileQueueFlags(
     FileQueue: *c_void,
     FlagMask: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCopyOEMInfA(
     SourceInfFileName: [*:0]const u8,
     OEMSourceMediaLocation: ?[*:0]const u8,
@@ -3122,6 +3132,7 @@ pub extern "SETUPAPI" fn SetupCopyOEMInfA(
     DestinationInfFileNameComponent: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCopyOEMInfW(
     SourceInfFileName: [*:0]const u16,
     OEMSourceMediaLocation: ?[*:0]const u16,
@@ -3133,36 +3144,42 @@ pub extern "SETUPAPI" fn SetupCopyOEMInfW(
     DestinationInfFileNameComponent: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupUninstallOEMInfA(
     InfFileName: [*:0]const u8,
     Flags: u32,
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupUninstallOEMInfW(
     InfFileName: [*:0]const u16,
     Flags: u32,
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupUninstallNewlyCopiedInfs(
     FileQueue: *c_void,
     Flags: u32,
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCreateDiskSpaceListA(
     Reserved1: *c_void,
     Reserved2: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCreateDiskSpaceListW(
     Reserved1: *c_void,
     Reserved2: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListA(
     DiskSpace: *c_void,
     Reserved1: *c_void,
@@ -3170,6 +3187,7 @@ pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListA(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListW(
     DiskSpace: *c_void,
     Reserved1: *c_void,
@@ -3177,10 +3195,12 @@ pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListW(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDestroyDiskSpaceList(
     DiskSpace: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListA(
     DiskSpace: *c_void,
     ReturnBuffer: ?[*:0]u8,
@@ -3188,6 +3208,7 @@ pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListW(
     DiskSpace: *c_void,
     ReturnBuffer: ?[*:0]u16,
@@ -3195,6 +3216,7 @@ pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveA(
     DiskSpace: *c_void,
     DriveSpec: [*:0]const u8,
@@ -3203,6 +3225,7 @@ pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveW(
     DiskSpace: *c_void,
     DriveSpec: [*:0]const u16,
@@ -3211,6 +3234,7 @@ pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListA(
     DiskSpace: *c_void,
     DriveRoot: [*:0]const u8,
@@ -3219,6 +3243,7 @@ pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListW(
     DiskSpace: *c_void,
     DriveRoot: [*:0]const u16,
@@ -3227,6 +3252,7 @@ pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddToDiskSpaceListA(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u8,
@@ -3236,6 +3262,7 @@ pub extern "SETUPAPI" fn SetupAddToDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddToDiskSpaceListW(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u16,
@@ -3245,6 +3272,7 @@ pub extern "SETUPAPI" fn SetupAddToDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListA(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3255,6 +3283,7 @@ pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListW(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3265,6 +3294,7 @@ pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListA(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3274,6 +3304,7 @@ pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListW(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3283,6 +3314,7 @@ pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u8,
@@ -3291,6 +3323,7 @@ pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListW(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u16,
@@ -3299,6 +3332,7 @@ pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListA(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3309,6 +3343,7 @@ pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListW(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3319,6 +3354,7 @@ pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListA(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3328,6 +3364,7 @@ pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListA(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListW(
     DiskSpace: *c_void,
     InfHandle: *c_void,
@@ -3337,6 +3374,7 @@ pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListW(
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupIterateCabinetA(
     CabinetFile: [*:0]const u8,
     Reserved: u32,
@@ -3344,6 +3382,7 @@ pub extern "SETUPAPI" fn SetupIterateCabinetA(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupIterateCabinetW(
     CabinetFile: [*:0]const u16,
     Reserved: u32,
@@ -3351,16 +3390,19 @@ pub extern "SETUPAPI" fn SetupIterateCabinetW(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupPromptReboot(
     FileQueue: ?*c_void,
     Owner: HWND,
     ScanOnly: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInitDefaultQueueCallback(
     OwnerWindow: HWND,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInitDefaultQueueCallbackEx(
     OwnerWindow: HWND,
     AlternateProgressWindow: HWND,
@@ -3369,10 +3411,12 @@ pub extern "SETUPAPI" fn SetupInitDefaultQueueCallbackEx(
     Reserved2: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupTermDefaultQueueCallback(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDefaultQueueCallbackA(
     Context: *c_void,
     Notification: u32,
@@ -3380,6 +3424,7 @@ pub extern "SETUPAPI" fn SetupDefaultQueueCallbackA(
     Param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupDefaultQueueCallbackW(
     Context: *c_void,
     Notification: u32,
@@ -3387,6 +3432,7 @@ pub extern "SETUPAPI" fn SetupDefaultQueueCallbackW(
     Param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFromInfSectionA(
     Owner: HWND,
     InfHandle: *c_void,
@@ -3401,6 +3447,7 @@ pub extern "SETUPAPI" fn SetupInstallFromInfSectionA(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFromInfSectionW(
     Owner: HWND,
     InfHandle: *c_void,
@@ -3415,6 +3462,7 @@ pub extern "SETUPAPI" fn SetupInstallFromInfSectionW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionA(
     InfHandle: *c_void,
     LayoutInfHandle: ?*c_void,
@@ -3424,6 +3472,7 @@ pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionA(
     CopyFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionW(
     InfHandle: *c_void,
     LayoutInfHandle: ?*c_void,
@@ -3433,18 +3482,21 @@ pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionW(
     CopyFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionA(
     InfHandle: *c_void,
     SectionName: [*:0]const u8,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionW(
     InfHandle: *c_void,
     SectionName: [*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExA(
     InfHandle: *c_void,
     SectionName: [*:0]const u8,
@@ -3455,6 +3507,7 @@ pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExA(
     Reserved2: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExW(
     InfHandle: *c_void,
     SectionName: [*:0]const u16,
@@ -3465,6 +3518,7 @@ pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExW(
     Reserved2: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn InstallHinfSectionA(
     Window: HWND,
     ModuleHandle: HINSTANCE,
@@ -3472,6 +3526,7 @@ pub extern "SETUPAPI" fn InstallHinfSectionA(
     ShowCommand: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn InstallHinfSectionW(
     Window: HWND,
     ModuleHandle: HINSTANCE,
@@ -3479,20 +3534,24 @@ pub extern "SETUPAPI" fn InstallHinfSectionW(
     ShowCommand: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInitializeFileLogA(
     LogFileName: ?[*:0]const u8,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupInitializeFileLogW(
     LogFileName: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupTerminateFileLog(
     FileLogHandle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupLogFileA(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u8,
@@ -3505,6 +3564,7 @@ pub extern "SETUPAPI" fn SetupLogFileA(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupLogFileW(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u16,
@@ -3517,18 +3577,21 @@ pub extern "SETUPAPI" fn SetupLogFileW(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFileLogEntryA(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u8,
     TargetFilename: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupRemoveFileLogEntryW(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u16,
     TargetFilename: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryFileLogA(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u8,
@@ -3539,6 +3602,7 @@ pub extern "SETUPAPI" fn SetupQueryFileLogA(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupQueryFileLogW(
     FileLogHandle: *c_void,
     LogSectionName: ?[*:0]const u16,
@@ -3549,23 +3613,28 @@ pub extern "SETUPAPI" fn SetupQueryFileLogW(
     RequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupOpenLog(
     Erase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupLogErrorA(
     MessageString: [*:0]const u8,
     Severity: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupLogErrorW(
     MessageString: [*:0]const u16,
     Severity: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupCloseLog(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn SetupDiGetClassDevsA(
     ClassGuid: ?*const Guid,
     Enumerator: ?[*:0]const u8,
@@ -3573,6 +3642,7 @@ pub extern "SETUPAPI" fn SetupDiGetClassDevsA(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupEnumInfSectionsA(
     InfHandle: *c_void,
     Index: u32,
@@ -3581,6 +3651,7 @@ pub extern "SETUPAPI" fn SetupEnumInfSectionsA(
     SizeNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupEnumInfSectionsW(
     InfHandle: *c_void,
     Index: u32,
@@ -3589,54 +3660,64 @@ pub extern "SETUPAPI" fn SetupEnumInfSectionsW(
     SizeNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupVerifyInfFileA(
     InfName: [*:0]const u8,
     AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     InfSignerInfo: *SP_INF_SIGNER_INFO_V2_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupVerifyInfFileW(
     InfName: [*:0]const u16,
     AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     InfSignerInfo: *SP_INF_SIGNER_INFO_V2_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionA(
     InfHandle: *c_void,
     SectionName: [*:0]const u8,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionW(
     InfHandle: *c_void,
     SectionName: [*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCloseHandle(
     hAny: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCloseAllHandles(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetInternalUI(
     dwUILevel: INSTALLUILEVEL,
     phWnd: ?*HWND,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLUILEVEL;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIA(
     puiHandler: ?INSTALLUI_HANDLERA,
     dwMessageFilter: u32,
     pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLUI_HANDLERA;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIW(
     puiHandler: ?INSTALLUI_HANDLERW,
     dwMessageFilter: u32,
     pvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLUI_HANDLERW;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIRecord(
     puiHandler: ?PINSTALLUI_HANDLER_RECORD,
     dwMessageFilter: u32,
@@ -3644,26 +3725,31 @@ pub extern "msi" fn MsiSetExternalUIRecord(
     ppuiPrevHandler: ?PINSTALLUI_HANDLER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableLogA(
     dwLogMode: u32,
     szLogFile: ?[*:0]const u8,
     dwLogAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableLogW(
     dwLogMode: u32,
     szLogFile: ?[*:0]const u16,
     dwLogAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryProductStateA(
     szProduct: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryProductStateW(
     szProduct: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoA(
     szProduct: [*:0]const u8,
     szAttribute: [*:0]const u8,
@@ -3671,6 +3757,7 @@ pub extern "msi" fn MsiGetProductInfoA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoW(
     szProduct: [*:0]const u16,
     szAttribute: [*:0]const u16,
@@ -3678,6 +3765,7 @@ pub extern "msi" fn MsiGetProductInfoW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoExA(
     szProductCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -3687,6 +3775,7 @@ pub extern "msi" fn MsiGetProductInfoExA(
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoExW(
     szProductCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -3696,28 +3785,33 @@ pub extern "msi" fn MsiGetProductInfoExW(
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallProductA(
     szPackagePath: [*:0]const u8,
     szCommandLine: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallProductW(
     szPackagePath: [*:0]const u16,
     szCommandLine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductA(
     szProduct: [*:0]const u8,
     iInstallLevel: i32,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductW(
     szProduct: [*:0]const u16,
     iInstallLevel: i32,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExA(
     szProduct: [*:0]const u8,
     iInstallLevel: i32,
@@ -3725,6 +3819,7 @@ pub extern "msi" fn MsiConfigureProductExA(
     szCommandLine: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExW(
     szProduct: [*:0]const u16,
     iInstallLevel: i32,
@@ -3732,16 +3827,19 @@ pub extern "msi" fn MsiConfigureProductExW(
     szCommandLine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductA(
     szProduct: [*:0]const u8,
     szReinstallMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductW(
     szProduct: [*:0]const u16,
     szReinstallMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductExA(
     szPackagePath: [*:0]const u8,
     szScriptfilePath: ?[*:0]const u8,
@@ -3751,6 +3849,7 @@ pub extern "msi" fn MsiAdvertiseProductExA(
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductExW(
     szPackagePath: [*:0]const u16,
     szScriptfilePath: ?[*:0]const u16,
@@ -3760,6 +3859,7 @@ pub extern "msi" fn MsiAdvertiseProductExW(
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductA(
     szPackagePath: [*:0]const u8,
     szScriptfilePath: ?[*:0]const u8,
@@ -3767,6 +3867,7 @@ pub extern "msi" fn MsiAdvertiseProductA(
     lgidLanguage: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseProductW(
     szPackagePath: [*:0]const u16,
     szScriptfilePath: ?[*:0]const u16,
@@ -3774,6 +3875,7 @@ pub extern "msi" fn MsiAdvertiseProductW(
     lgidLanguage: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProcessAdvertiseScriptA(
     szScriptFile: [*:0]const u8,
     szIconFolder: ?[*:0]const u8,
@@ -3782,6 +3884,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptA(
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProcessAdvertiseScriptW(
     szScriptFile: [*:0]const u16,
     szIconFolder: ?[*:0]const u16,
@@ -3790,6 +3893,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptW(
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptA(
     szScriptFile: [*:0]const u8,
     dwFlags: MsiAdvertiseScript_dwFlags,
@@ -3797,6 +3901,7 @@ pub extern "msi" fn MsiAdvertiseScriptA(
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptW(
     szScriptFile: [*:0]const u16,
     dwFlags: MsiAdvertiseScript_dwFlags,
@@ -3804,6 +3909,7 @@ pub extern "msi" fn MsiAdvertiseScriptW(
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoFromScriptA(
     szScriptFile: [*:0]const u8,
     lpProductBuf39: ?PSTR,
@@ -3815,6 +3921,7 @@ pub extern "msi" fn MsiGetProductInfoFromScriptA(
     pcchPackageBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductInfoFromScriptW(
     szScriptFile: [*:0]const u16,
     lpProductBuf39: ?PWSTR,
@@ -3826,16 +3933,19 @@ pub extern "msi" fn MsiGetProductInfoFromScriptW(
     pcchPackageBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductCodeA(
     szComponent: [*:0]const u8,
     lpBuf39: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductCodeW(
     szComponent: [*:0]const u16,
     lpBuf39: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetUserInfoA(
     szProduct: [*:0]const u8,
     lpUserNameBuf: ?[*:0]u8,
@@ -3846,6 +3956,7 @@ pub extern "msi" fn MsiGetUserInfoA(
     pcchSerialBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) USERINFOSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetUserInfoW(
     szProduct: [*:0]const u16,
     lpUserNameBuf: ?[*:0]u16,
@@ -3856,14 +3967,17 @@ pub extern "msi" fn MsiGetUserInfoW(
     pcchSerialBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) USERINFOSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCollectUserInfoA(
     szProduct: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCollectUserInfoW(
     szProduct: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyPatchA(
     szPatchPackage: [*:0]const u8,
     szInstallPackage: ?[*:0]const u8,
@@ -3871,6 +3985,7 @@ pub extern "msi" fn MsiApplyPatchA(
     szCommandLine: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyPatchW(
     szPatchPackage: [*:0]const u16,
     szInstallPackage: ?[*:0]const u16,
@@ -3878,6 +3993,7 @@ pub extern "msi" fn MsiApplyPatchW(
     szCommandLine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoA(
     szPatch: [*:0]const u8,
     szAttribute: [*:0]const u8,
@@ -3885,6 +4001,7 @@ pub extern "msi" fn MsiGetPatchInfoA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoW(
     szPatch: [*:0]const u16,
     szAttribute: [*:0]const u16,
@@ -3892,6 +4009,7 @@ pub extern "msi" fn MsiGetPatchInfoW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesA(
     szProduct: [*:0]const u8,
     iPatchIndex: u32,
@@ -3900,6 +4018,7 @@ pub extern "msi" fn MsiEnumPatchesA(
     pcchTransformsBuf: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesW(
     szProduct: [*:0]const u16,
     iPatchIndex: u32,
@@ -3908,6 +4027,7 @@ pub extern "msi" fn MsiEnumPatchesW(
     pcchTransformsBuf: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRemovePatchesA(
     szPatchList: [*:0]const u8,
     szProductCode: [*:0]const u8,
@@ -3915,6 +4035,7 @@ pub extern "msi" fn MsiRemovePatchesA(
     szPropertyList: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRemovePatchesW(
     szPatchList: [*:0]const u16,
     szProductCode: [*:0]const u16,
@@ -3922,6 +4043,7 @@ pub extern "msi" fn MsiRemovePatchesW(
     szPropertyList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows Vista'
 pub extern "msi" fn MsiExtractPatchXMLDataA(
     szPatchPath: [*:0]const u8,
     dwReserved: u32,
@@ -3929,6 +4051,7 @@ pub extern "msi" fn MsiExtractPatchXMLDataA(
     pcchXMLData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows Vista'
 pub extern "msi" fn MsiExtractPatchXMLDataW(
     szPatchPath: [*:0]const u16,
     dwReserved: u32,
@@ -3936,6 +4059,7 @@ pub extern "msi" fn MsiExtractPatchXMLDataW(
     pcchXMLData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoExA(
     szPatchCode: [*:0]const u8,
     szProductCode: [*:0]const u8,
@@ -3946,6 +4070,7 @@ pub extern "msi" fn MsiGetPatchInfoExA(
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchInfoExW(
     szPatchCode: [*:0]const u16,
     szProductCode: [*:0]const u16,
@@ -3956,18 +4081,21 @@ pub extern "msi" fn MsiGetPatchInfoExW(
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyMultiplePatchesA(
     szPatchPackages: [*:0]const u8,
     szProductCode: ?[*:0]const u8,
     szPropertiesList: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiApplyMultiplePatchesW(
     szPatchPackages: [*:0]const u16,
     szProductCode: ?[*:0]const u16,
     szPropertiesList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDeterminePatchSequenceA(
     szProductCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -3976,6 +4104,7 @@ pub extern "msi" fn MsiDeterminePatchSequenceA(
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDeterminePatchSequenceW(
     szProductCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -3984,18 +4113,21 @@ pub extern "msi" fn MsiDeterminePatchSequenceW(
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDetermineApplicablePatchesA(
     szProductPackagePath: [*:0]const u8,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDetermineApplicablePatchesW(
     szProductPackagePath: [*:0]const u16,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesExA(
     szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -4009,6 +4141,7 @@ pub extern "msi" fn MsiEnumPatchesExA(
     pcchTargetUserSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumPatchesExW(
     szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -4022,16 +4155,19 @@ pub extern "msi" fn MsiEnumPatchesExW(
     pcchTargetUserSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateExA(
     szProductCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -4040,6 +4176,7 @@ pub extern "msi" fn MsiQueryFeatureStateExA(
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryFeatureStateExW(
     szProductCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -4048,16 +4185,19 @@ pub extern "msi" fn MsiQueryFeatureStateExW(
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureExA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
@@ -4065,6 +4205,7 @@ pub extern "msi" fn MsiUseFeatureExA(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiUseFeatureExW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
@@ -4072,6 +4213,7 @@ pub extern "msi" fn MsiUseFeatureExW(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureUsageA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
@@ -4079,6 +4221,7 @@ pub extern "msi" fn MsiGetFeatureUsageA(
     pwDateUsed: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureUsageW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
@@ -4086,30 +4229,35 @@ pub extern "msi" fn MsiGetFeatureUsageW(
     pwDateUsed: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureFeatureA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureFeatureW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallFeatureA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
     dwReinstallMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallFeatureW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
     dwReinstallMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideComponentA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
@@ -4119,6 +4267,7 @@ pub extern "msi" fn MsiProvideComponentA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideComponentW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
@@ -4128,6 +4277,7 @@ pub extern "msi" fn MsiProvideComponentW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentA(
     szCategory: [*:0]const u8,
     szQualifier: [*:0]const u8,
@@ -4136,6 +4286,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentW(
     szCategory: [*:0]const u16,
     szQualifier: [*:0]const u16,
@@ -4144,6 +4295,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentExA(
     szCategory: [*:0]const u8,
     szQualifier: [*:0]const u8,
@@ -4155,6 +4307,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentExA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideQualifiedComponentExW(
     szCategory: [*:0]const u16,
     szQualifier: [*:0]const u16,
@@ -4166,6 +4319,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentExW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathA(
     szProduct: [*:0]const u8,
     szComponent: [*:0]const u8,
@@ -4173,6 +4327,7 @@ pub extern "msi" fn MsiGetComponentPathA(
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathW(
     szProduct: [*:0]const u16,
     szComponent: [*:0]const u16,
@@ -4180,24 +4335,27 @@ pub extern "msi" fn MsiGetComponentPathW(
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathExA(
     szProductCode: [*:0]const u8,
     szComponentCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     lpOutPathBuffer: ?[*:0]u8,
     pcchOutPathBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentPathExW(
     szProductCode: [*:0]const u16,
     szComponentCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     lpOutPathBuffer: ?[*:0]u16,
     pcchOutPathBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideAssemblyA(
     szAssemblyName: [*:0]const u8,
     szAppContext: ?[*:0]const u8,
@@ -4207,6 +4365,7 @@ pub extern "msi" fn MsiProvideAssemblyA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideAssemblyW(
     szAssemblyName: [*:0]const u16,
     szAppContext: ?[*:0]const u16,
@@ -4216,6 +4375,7 @@ pub extern "msi" fn MsiProvideAssemblyW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryComponentStateA(
     szProductCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -4224,6 +4384,7 @@ pub extern "msi" fn MsiQueryComponentStateA(
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiQueryComponentStateW(
     szProductCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -4232,16 +4393,19 @@ pub extern "msi" fn MsiQueryComponentStateW(
     pdwState: ?*INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsA(
     iProductIndex: u32,
     lpProductBuf: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsW(
     iProductIndex: u32,
     lpProductBuf: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsExA(
     szProductCode: ?[*:0]const u8,
     szUserSid: ?[*:0]const u8,
@@ -4253,6 +4417,7 @@ pub extern "msi" fn MsiEnumProductsExA(
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumProductsExW(
     szProductCode: ?[*:0]const u16,
     szUserSid: ?[*:0]const u16,
@@ -4264,6 +4429,7 @@ pub extern "msi" fn MsiEnumProductsExW(
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumRelatedProductsA(
     lpUpgradeCode: [*:0]const u8,
     dwReserved: u32,
@@ -4271,6 +4437,7 @@ pub extern "msi" fn MsiEnumRelatedProductsA(
     lpProductBuf: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumRelatedProductsW(
     lpUpgradeCode: [*:0]const u16,
     dwReserved: u32,
@@ -4278,6 +4445,7 @@ pub extern "msi" fn MsiEnumRelatedProductsW(
     lpProductBuf: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumFeaturesA(
     szProduct: [*:0]const u8,
     iFeatureIndex: u32,
@@ -4285,6 +4453,7 @@ pub extern "msi" fn MsiEnumFeaturesA(
     lpParentBuf: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumFeaturesW(
     szProduct: [*:0]const u16,
     iFeatureIndex: u32,
@@ -4292,16 +4461,19 @@ pub extern "msi" fn MsiEnumFeaturesW(
     lpParentBuf: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsA(
     iComponentIndex: u32,
     lpComponentBuf: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsW(
     iComponentIndex: u32,
     lpComponentBuf: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: u32,
@@ -4312,6 +4484,7 @@ pub extern "msi" fn MsiEnumComponentsExA(
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: u32,
@@ -4322,40 +4495,45 @@ pub extern "msi" fn MsiEnumComponentsExW(
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsA(
     szComponent: [*:0]const u8,
     iProductIndex: u32,
     lpProductBuf: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsW(
     szComponent: [*:0]const u16,
     iProductIndex: u32,
     lpProductBuf: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsExA(
     szComponent: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MsiEnumClientsEx_dwContext,
     dwProductIndex: u32,
     szProductBuf: ?*i8,
-    pdwInstalledContext: MsiSourceList_dwContext,
+    pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumClientsExW(
     szComponent: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MsiEnumClientsEx_dwContext,
     dwProductIndex: u32,
     szProductBuf: ?*u16,
-    pdwInstalledContext: MsiSourceList_dwContext,
+    pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentQualifiersA(
     szComponent: [*:0]const u8,
     iIndex: u32,
@@ -4365,6 +4543,7 @@ pub extern "msi" fn MsiEnumComponentQualifiersA(
     pcchApplicationDataBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentQualifiersW(
     szComponent: [*:0]const u16,
     iIndex: u32,
@@ -4374,38 +4553,45 @@ pub extern "msi" fn MsiEnumComponentQualifiersW(
     pcchApplicationDataBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenProductA(
     szProduct: [*:0]const u8,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenProductW(
     szProduct: [*:0]const u16,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageA(
     szPackagePath: [*:0]const u8,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageW(
     szPackagePath: [*:0]const u16,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageExA(
     szPackagePath: [*:0]const u8,
     dwOptions: u32,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenPackageExW(
     szPackagePath: [*:0]const u16,
     dwOptions: u32,
     hProduct: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchFileListA(
     szProductCode: [*:0]const u8,
     szPatchPackages: [*:0]const u8,
@@ -4413,6 +4599,7 @@ pub extern "msi" fn MsiGetPatchFileListA(
     pphFileRecords: ?*?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPatchFileListW(
     szProductCode: [*:0]const u16,
     szPatchPackages: [*:0]const u16,
@@ -4420,6 +4607,7 @@ pub extern "msi" fn MsiGetPatchFileListW(
     pphFileRecords: ?*?*MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductPropertyA(
     hProduct: MSIHANDLE,
     szProperty: [*:0]const u8,
@@ -4427,6 +4615,7 @@ pub extern "msi" fn MsiGetProductPropertyA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetProductPropertyW(
     hProduct: MSIHANDLE,
     szProperty: [*:0]const u16,
@@ -4434,14 +4623,17 @@ pub extern "msi" fn MsiGetProductPropertyW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiVerifyPackageA(
     szPackagePath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiVerifyPackageW(
     szPackagePath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureInfoA(
     hProduct: MSIHANDLE,
     szFeature: [*:0]const u8,
@@ -4452,6 +4644,7 @@ pub extern "msi" fn MsiGetFeatureInfoA(
     pcchHelpBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureInfoW(
     hProduct: MSIHANDLE,
     szFeature: [*:0]const u16,
@@ -4462,52 +4655,61 @@ pub extern "msi" fn MsiGetFeatureInfoW(
     pcchHelpBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingComponentA(
     szProduct: [*:0]const u8,
     szComponent: [*:0]const u8,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingComponentW(
     szProduct: [*:0]const u16,
     szComponent: [*:0]const u16,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingFileA(
     szProduct: [*:0]const u8,
     szFile: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiInstallMissingFileW(
     szProduct: [*:0]const u16,
     szFile: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiLocateComponentA(
     szComponent: [*:0]const u8,
     lpPathBuf: ?[*:0]u8,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiLocateComponentW(
     szComponent: [*:0]const u16,
     lpPathBuf: ?[*:0]u16,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllA(
     szProduct: [*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllW(
     szProduct: [*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceA(
     szProduct: [*:0]const u8,
     szUserName: ?[*:0]const u8,
@@ -4515,6 +4717,7 @@ pub extern "msi" fn MsiSourceListAddSourceA(
     szSource: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceW(
     szProduct: [*:0]const u16,
     szUserName: ?[*:0]const u16,
@@ -4522,178 +4725,199 @@ pub extern "msi" fn MsiSourceListAddSourceW(
     szSource: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionA(
     szProduct: [*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionW(
     szProduct: [*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceExA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: [*:0]const u8,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddSourceExW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: [*:0]const u16,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddMediaDiskA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
     szVolumeLabel: ?[*:0]const u8,
     szDiskPrompt: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListAddMediaDiskW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
     szVolumeLabel: ?[*:0]const u16,
     szDiskPrompt: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearSourceA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearSourceW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearMediaDiskA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearMediaDiskW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllExA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListClearAllExW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionExA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListForceResolutionExW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListSetInfoA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szProperty: [*:0]const u8,
     szValue: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListSetInfoW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szProperty: [*:0]const u16,
     szValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListGetInfoA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szProperty: [*:0]const u8,
     szValue: ?[*:0]u8,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListGetInfoW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szProperty: [*:0]const u16,
     szValue: ?[*:0]u16,
     pcchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumSourcesA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwIndex: u32,
     szSource: ?[*:0]u8,
     pcchSource: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumSourcesW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwIndex: u32,
     szSource: ?[*:0]u16,
     pcchSource: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumMediaDisksA(
     szProductCodeOrPatchCode: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwIndex: u32,
     pdwDiskId: ?*u32,
@@ -4703,10 +4927,11 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksA(
     pcchDiskPrompt: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSourceListEnumMediaDisksW(
     szProductCodeOrPatchCode: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiSourceList_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwIndex: u32,
     pdwDiskId: ?*u32,
@@ -4716,6 +4941,7 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksW(
     pcchDiskPrompt: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileVersionA(
     szFilePath: [*:0]const u8,
     lpVersionBuf: ?[*:0]u8,
@@ -4724,6 +4950,7 @@ pub extern "msi" fn MsiGetFileVersionA(
     pcchLangBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileVersionW(
     szFilePath: [*:0]const u16,
     lpVersionBuf: ?[*:0]u16,
@@ -4732,18 +4959,21 @@ pub extern "msi" fn MsiGetFileVersionW(
     pcchLangBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileHashA(
     szFilePath: [*:0]const u8,
     dwOptions: u32,
     pHash: *MSIFILEHASHINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileHashW(
     szFilePath: [*:0]const u16,
     dwOptions: u32,
     pHash: *MSIFILEHASHINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileSignatureInformationA(
     szSignedObjectPath: [*:0]const u8,
     dwFlags: u32,
@@ -4752,6 +4982,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationA(
     pcbHashData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFileSignatureInformationW(
     szSignedObjectPath: [*:0]const u16,
     dwFlags: u32,
@@ -4760,6 +4991,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationW(
     pcbHashData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetShortcutTargetA(
     szShortcutPath: [*:0]const u8,
     szProductCode: ?PSTR,
@@ -4767,6 +4999,7 @@ pub extern "msi" fn MsiGetShortcutTargetA(
     szComponentCode: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetShortcutTargetW(
     szShortcutPath: [*:0]const u16,
     szProductCode: ?PWSTR,
@@ -4774,26 +5007,31 @@ pub extern "msi" fn MsiGetShortcutTargetW(
     szComponentCode: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiIsProductElevatedA(
     szProduct: [*:0]const u8,
     pfElevated: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiIsProductElevatedW(
     szProduct: [*:0]const u16,
     pfElevated: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiNotifySidChangeA(
     pOldSid: [*:0]const u8,
     pNewSid: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiNotifySidChangeW(
     pOldSid: [*:0]const u16,
     pNewSid: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiBeginTransactionA(
     szName: [*:0]const u8,
     dwTransactionAttributes: u32,
@@ -4801,6 +5039,7 @@ pub extern "msi" fn MsiBeginTransactionA(
     phChangeOfOwnerEvent: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiBeginTransactionW(
     szName: [*:0]const u16,
     dwTransactionAttributes: u32,
@@ -4808,88 +5047,104 @@ pub extern "msi" fn MsiBeginTransactionW(
     phChangeOfOwnerEvent: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEndTransaction(
     dwTransactionState: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiJoinTransaction(
     hTransactionHandle: MSIHANDLE,
     dwTransactionAttributes: u32,
     phChangeOfOwnerEvent: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseOpenViewA(
     hDatabase: MSIHANDLE,
     szQuery: [*:0]const u8,
     phView: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseOpenViewW(
     hDatabase: MSIHANDLE,
     szQuery: [*:0]const u16,
     phView: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewGetErrorA(
     hView: MSIHANDLE,
     szColumnNameBuffer: ?[*:0]u8,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) MSIDBERROR;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewGetErrorW(
     hView: MSIHANDLE,
     szColumnNameBuffer: ?[*:0]u16,
     pcchBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) MSIDBERROR;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewExecute(
     hView: MSIHANDLE,
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewFetch(
     hView: MSIHANDLE,
     phRecord: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewModify(
     hView: MSIHANDLE,
-    eModifyMode: MsiViewModify_eModifyModeFlags,
+    eModifyMode: MSIMODIFY,
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewGetColumnInfo(
     hView: MSIHANDLE,
     eColumnInfo: MSICOLINFO,
     phRecord: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiViewClose(
     hView: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysA(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u8,
     phRecord: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysW(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u16,
     phRecord: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseIsTablePersistentA(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseIsTablePersistentW(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSummaryInformationA(
     hDatabase: MSIHANDLE,
     szDatabasePath: [*:0]const u8,
@@ -4897,6 +5152,7 @@ pub extern "msi" fn MsiGetSummaryInformationA(
     phSummaryInfo: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSummaryInformationW(
     hDatabase: MSIHANDLE,
     szDatabasePath: [*:0]const u16,
@@ -4904,11 +5160,13 @@ pub extern "msi" fn MsiGetSummaryInformationW(
     phSummaryInfo: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoGetPropertyCount(
     hSummaryInfo: MSIHANDLE,
     puiPropertyCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoSetPropertyA(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
@@ -4918,6 +5176,7 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyA(
     szValue: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoSetPropertyW(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
@@ -4927,6 +5186,7 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyW(
     szValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoGetPropertyA(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
@@ -4937,6 +5197,7 @@ pub extern "msi" fn MsiSummaryInfoGetPropertyA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoGetPropertyW(
     hSummaryInfo: MSIHANDLE,
     uiProperty: u32,
@@ -4947,34 +5208,40 @@ pub extern "msi" fn MsiSummaryInfoGetPropertyW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSummaryInfoPersist(
     hSummaryInfo: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenDatabaseA(
     szDatabasePath: [*:0]const u8,
     szPersist: [*:0]const u8,
     phDatabase: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiOpenDatabaseW(
     szDatabasePath: [*:0]const u16,
     szPersist: [*:0]const u16,
     phDatabase: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseImportA(
     hDatabase: MSIHANDLE,
     szFolderPath: [*:0]const u8,
     szFileName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseImportW(
     hDatabase: MSIHANDLE,
     szFolderPath: [*:0]const u16,
     szFileName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseExportA(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u8,
@@ -4982,6 +5249,7 @@ pub extern "msi" fn MsiDatabaseExportA(
     szFileName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseExportW(
     hDatabase: MSIHANDLE,
     szTableName: [*:0]const u16,
@@ -4989,18 +5257,21 @@ pub extern "msi" fn MsiDatabaseExportW(
     szFileName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseMergeA(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
     szTableName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseMergeW(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
     szTableName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGenerateTransformA(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
@@ -5009,6 +5280,7 @@ pub extern "msi" fn MsiDatabaseGenerateTransformA(
     iReserved2: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseGenerateTransformW(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
@@ -5017,18 +5289,21 @@ pub extern "msi" fn MsiDatabaseGenerateTransformW(
     iReserved2: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseApplyTransformA(
     hDatabase: MSIHANDLE,
     szTransformFile: [*:0]const u8,
     iErrorConditions: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseApplyTransformW(
     hDatabase: MSIHANDLE,
     szTransformFile: [*:0]const u16,
     iErrorConditions: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCreateTransformSummaryInfoA(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
@@ -5037,6 +5312,7 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoA(
     iValidation: MsiCreateTransformSummaryInfo_iValidation,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCreateTransformSummaryInfoW(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
@@ -5045,51 +5321,61 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoW(
     iValidation: MsiCreateTransformSummaryInfo_iValidation,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseCommit(
     hDatabase: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetDatabaseState(
     hDatabase: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) MSIDBSTATE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCreateRecord(
     cParams: u32,
 ) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordIsNull(
     hRecord: MSIHANDLE,
     iField: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordDataSize(
     hRecord: MSIHANDLE,
     iField: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetInteger(
     hRecord: MSIHANDLE,
     iField: u32,
     iValue: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStringA(
     hRecord: MSIHANDLE,
     iField: u32,
     szValue: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStringW(
     hRecord: MSIHANDLE,
     iField: u32,
     szValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordGetInteger(
     hRecord: MSIHANDLE,
     iField: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordGetStringA(
     hRecord: MSIHANDLE,
     iField: u32,
@@ -5097,6 +5383,7 @@ pub extern "msi" fn MsiRecordGetStringA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordGetStringW(
     hRecord: MSIHANDLE,
     iField: u32,
@@ -5104,22 +5391,26 @@ pub extern "msi" fn MsiRecordGetStringW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordGetFieldCount(
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStreamA(
     hRecord: MSIHANDLE,
     iField: u32,
     szFilePath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordSetStreamW(
     hRecord: MSIHANDLE,
     iField: u32,
     szFilePath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordReadStream(
     hRecord: MSIHANDLE,
     iField: u32,
@@ -5127,26 +5418,31 @@ pub extern "msi" fn MsiRecordReadStream(
     pcbDataBuf: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiRecordClearData(
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetActiveDatabase(
     hInstall: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetPropertyA(
     hInstall: MSIHANDLE,
     szName: [*:0]const u8,
     szValue: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetPropertyW(
     hInstall: MSIHANDLE,
     szName: [*:0]const u16,
     szValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPropertyA(
     hInstall: MSIHANDLE,
     szName: [*:0]const u8,
@@ -5154,6 +5450,7 @@ pub extern "msi" fn MsiGetPropertyA(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetPropertyW(
     hInstall: MSIHANDLE,
     szName: [*:0]const u16,
@@ -5161,21 +5458,25 @@ pub extern "msi" fn MsiGetPropertyW(
     pcchValueBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetLanguage(
     hInstall: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetMode(
     hInstall: MSIHANDLE,
     eRunMode: MSIRUNMODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetMode(
     hInstall: MSIHANDLE,
     eRunMode: MSIRUNMODE,
     fState: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiFormatRecordA(
     hInstall: MSIHANDLE,
     hRecord: MSIHANDLE,
@@ -5183,6 +5484,7 @@ pub extern "msi" fn MsiFormatRecordA(
     pcchResultBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiFormatRecordW(
     hInstall: MSIHANDLE,
     hRecord: MSIHANDLE,
@@ -5190,44 +5492,52 @@ pub extern "msi" fn MsiFormatRecordW(
     pcchResultBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDoActionA(
     hInstall: MSIHANDLE,
     szAction: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDoActionW(
     hInstall: MSIHANDLE,
     szAction: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSequenceA(
     hInstall: MSIHANDLE,
     szTable: [*:0]const u8,
     iSequenceMode: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSequenceW(
     hInstall: MSIHANDLE,
     szTable: [*:0]const u16,
     iSequenceMode: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProcessMessage(
     hInstall: MSIHANDLE,
     eMessageType: INSTALLMESSAGE,
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEvaluateConditionA(
     hInstall: MSIHANDLE,
     szCondition: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEvaluateConditionW(
     hInstall: MSIHANDLE,
     szCondition: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureStateA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
@@ -5235,6 +5545,7 @@ pub extern "msi" fn MsiGetFeatureStateA(
     piAction: *INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureStateW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
@@ -5242,30 +5553,35 @@ pub extern "msi" fn MsiGetFeatureStateW(
     piAction: *INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureStateA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureStateW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureAttributesA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetFeatureAttributesW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentStateA(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u8,
@@ -5273,6 +5589,7 @@ pub extern "msi" fn MsiGetComponentStateA(
     piAction: *INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetComponentStateW(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u16,
@@ -5280,18 +5597,21 @@ pub extern "msi" fn MsiGetComponentStateW(
     piAction: *INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetComponentStateA(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u8,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetComponentStateW(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u16,
     iState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureCostA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
@@ -5300,6 +5620,7 @@ pub extern "msi" fn MsiGetFeatureCostA(
     piCost: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureCostW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
@@ -5308,6 +5629,7 @@ pub extern "msi" fn MsiGetFeatureCostW(
     piCost: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentCostsA(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u8,
@@ -5319,6 +5641,7 @@ pub extern "msi" fn MsiEnumComponentCostsA(
     piTempCost: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnumComponentCostsW(
     hInstall: MSIHANDLE,
     szComponent: [*:0]const u16,
@@ -5330,23 +5653,27 @@ pub extern "msi" fn MsiEnumComponentCostsW(
     piTempCost: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetInstallLevel(
     hInstall: MSIHANDLE,
     iInstallLevel: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureValidStatesA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
     lpInstallStates: *MsiGetFeatureValidStates_lpInstallStates,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureValidStatesW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
     lpInstallStates: *MsiGetFeatureValidStates_lpInstallStates,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSourcePathA(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u8,
@@ -5354,6 +5681,7 @@ pub extern "msi" fn MsiGetSourcePathA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetSourcePathW(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u16,
@@ -5361,6 +5689,7 @@ pub extern "msi" fn MsiGetSourcePathW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetTargetPathA(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u8,
@@ -5368,6 +5697,7 @@ pub extern "msi" fn MsiGetTargetPathA(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetTargetPathW(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u16,
@@ -5375,62 +5705,74 @@ pub extern "msi" fn MsiGetTargetPathW(
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetTargetPathA(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u8,
     szFolderPath: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetTargetPathW(
     hInstall: MSIHANDLE,
     szFolder: [*:0]const u16,
     szFolderPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiVerifyDiskSpace(
     hInstall: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableUIPreview(
     hDatabase: MSIHANDLE,
     phPreview: *MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewDialogA(
     hPreview: MSIHANDLE,
     szDialogName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewDialogW(
     hPreview: MSIHANDLE,
     szDialogName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewBillboardA(
     hPreview: MSIHANDLE,
     szControlName: [*:0]const u8,
     szBillboard: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiPreviewBillboardW(
     hPreview: MSIHANDLE,
     szControlName: [*:0]const u16,
     szBillboard: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetLastErrorRecord(
 ) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcGetNextProtectedFile(
     RpcHandle: HANDLE,
     ProtFileData: *PROTECTED_FILE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcIsFileProtected(
     RpcHandle: HANDLE,
     ProtFileName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "sfc" fn SfcIsKeyProtected(
     KeyHandle: HKEY,
     SubKeyName: [*:0]const u16,
@@ -5443,13 +5785,103 @@ pub extern "sfc" fn SfpVerifyFile(
     dwErrSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxA(
+    pActCtx: *ACTCTXA,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxW(
+    pActCtx: *ACTCTXW,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn AddRefActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ReleaseActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ZombifyActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ActivateActCtx(
+    hActCtx: HANDLE,
+    lpCookie: *?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DeactivateActCtx(
+    dwFlags: u32,
+    ulCookie: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetCurrentActCtx(
+    lphActCtx: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringA(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u8,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringW(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u16,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionGuid(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpGuidToFind: ?*const Guid,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn QueryActCtxW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    pvSubInstance: ?*c_void,
+    ulInfoClass: u32,
+    pvBuffer: ?[*]u8,
+    cbBuffer: ?*c_void,
+    pcbWrittenOrRequired: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn QueryActCtxSettingsW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    settingsNameSpace: ?[*:0]const u16,
+    settingName: [*:0]const u16,
+    pvBuffer: ?[*:0]u16,
+    dwBuffer: ?*c_void,
+    pdwWrittenOrRequired: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (207)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ACTCTX = ACTCTXA;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_A;
         pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_A;
         pub const FILEPATHS_ = FILEPATHS_A;
@@ -5463,8 +5895,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_A;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERA;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOA;
-        pub const CreateActCtx = CreateActCtxA;
-        pub const FindActCtxSectionString = FindActCtxSectionStringA;
+        pub const ACTCTX = ACTCTXA;
         pub const SetupGetInfInformation = SetupGetInfInformationA;
         pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationA;
         pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationA;
@@ -5656,9 +6087,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathA;
         pub const MsiPreviewDialog = MsiPreviewDialogA;
         pub const MsiPreviewBillboard = MsiPreviewBillboardA;
+        pub const CreateActCtx = CreateActCtxA;
+        pub const FindActCtxSectionString = FindActCtxSectionStringA;
     },
     .wide => struct {
-        pub const ACTCTX = ACTCTXW;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_W;
         pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_W;
         pub const FILEPATHS_ = FILEPATHS_W;
@@ -5672,8 +6104,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_W;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERW;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOW;
-        pub const CreateActCtx = CreateActCtxW;
-        pub const FindActCtxSectionString = FindActCtxSectionStringW;
+        pub const ACTCTX = ACTCTXW;
         pub const SetupGetInfInformation = SetupGetInfInformationW;
         pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationW;
         pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationW;
@@ -5865,9 +6296,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathW;
         pub const MsiPreviewDialog = MsiPreviewDialogW;
         pub const MsiPreviewBillboard = MsiPreviewBillboardW;
+        pub const CreateActCtx = CreateActCtxW;
+        pub const FindActCtxSectionString = FindActCtxSectionStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ACTCTX = *opaque{};
         pub const SP_ORIGINAL_FILE_INFO_ = *opaque{};
         pub const PSP_FILE_CALLBACK_ = *opaque{};
         pub const FILEPATHS_ = *opaque{};
@@ -5881,8 +6313,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_INF_SIGNER_INFO_V2_ = *opaque{};
         pub const INSTALLUI_HANDLER = *opaque{};
         pub const MSIPATCHSEQUENCEINFO = *opaque{};
-        pub const CreateActCtx = *opaque{};
-        pub const FindActCtxSectionString = *opaque{};
+        pub const ACTCTX = *opaque{};
         pub const SetupGetInfInformation = *opaque{};
         pub const SetupQueryInfFileInformation = *opaque{};
         pub const SetupQueryInfOriginalFileInformation = *opaque{};
@@ -6074,8 +6505,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = *opaque{};
         pub const MsiPreviewDialog = *opaque{};
         pub const MsiPreviewBillboard = *opaque{};
+        pub const CreateActCtx = *opaque{};
+        pub const FindActCtxSectionString = *opaque{};
     } else struct {
-        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const SP_ORIGINAL_FILE_INFO_ = @compileError("'SP_ORIGINAL_FILE_INFO_' requires that UNICODE be set to true or false in the root module");
         pub const PSP_FILE_CALLBACK_ = @compileError("'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module");
         pub const FILEPATHS_ = @compileError("'FILEPATHS_' requires that UNICODE be set to true or false in the root module");
@@ -6089,8 +6521,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_INF_SIGNER_INFO_V2_ = @compileError("'SP_INF_SIGNER_INFO_V2_' requires that UNICODE be set to true or false in the root module");
         pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
         pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
-        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
+        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const SetupGetInfInformation = @compileError("'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module");
         pub const SetupQueryInfFileInformation = @compileError("'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module");
         pub const SetupQueryInfOriginalFileInformation = @compileError("'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module");
@@ -6282,6 +6713,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = @compileError("'MsiSetTargetPath' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewDialog = @compileError("'MsiPreviewDialog' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewBillboard = @compileError("'MsiPreviewBillboard' requires that UNICODE be set to true or false in the root module");
+        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
+        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -6305,8 +6738,8 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
 const SetupFileLogInfo = @import("device_and_driver_installation.zig").SetupFileLogInfo;
 const SP_DEVINFO_DATA = @import("device_and_driver_installation.zig").SP_DEVINFO_DATA;
-const HANDLE = @import("system_services.zig").HANDLE;
 const MINIDUMP_SYSTEM_INFO_PlatformIdFlags = @import("debug.zig").MINIDUMP_SYSTEM_INFO_PlatformIdFlags;
+const HANDLE = @import("system_services.zig").HANDLE;
 const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("windows_programming.zig").ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
 
 test {
@@ -6320,7 +6753,7 @@ test {
     _ = PINSTALLUI_HANDLER_RECORD;
 
     const constant_export_count = 82;
-    const type_export_count = 119;
+    const type_export_count = 117;
     const enum_value_export_count = 368;
     const com_iface_id_export_count = 14;
     const com_class_id_export_count = 1;

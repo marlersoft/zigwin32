@@ -378,11 +378,17 @@ pub const PWINBIO_CAPTURE_CALLBACK = fn(
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const _WINIBIO_SENSOR_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _WINIBIO_ENGINE_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _WINIBIO_STORAGE_CONTEXT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const WINBIO_STORAGE_RECORD = extern struct {
     Identity: *WINBIO_IDENTITY,
@@ -1330,24 +1336,28 @@ pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (52)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumServiceProviders(
     Factor: u32,
     BspSchemaArray: **WINBIO_BSP_SCHEMA,
     BspCount: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumBiometricUnits(
     Factor: u32,
     UnitSchemaArray: **WINBIO_UNIT_SCHEMA,
     UnitCount: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumDatabases(
     Factor: u32,
     StorageSchemaArray: **WINBIO_STORAGE_SCHEMA,
     StorageCount: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncOpenFramework(
     NotificationMethod: WINBIO_ASYNC_NOTIFICATION_METHOD,
     TargetWindow: HWND,
@@ -1358,30 +1368,36 @@ pub extern "winbio" fn WinBioAsyncOpenFramework(
     FrameworkHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioCloseFramework(
     FrameworkHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumServiceProviders(
     FrameworkHandle: u32,
     Factor: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumBiometricUnits(
     FrameworkHandle: u32,
     Factor: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumDatabases(
     FrameworkHandle: u32,
     Factor: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncMonitorFrameworkChanges(
     FrameworkHandle: u32,
     ChangeTypes: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioOpenSession(
     Factor: u32,
     PoolType: WINBIO_POOL,
@@ -1392,6 +1408,7 @@ pub extern "winbio" fn WinBioOpenSession(
     SessionHandle: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncOpenSession(
     Factor: u32,
     PoolType: WINBIO_POOL,
@@ -1408,10 +1425,12 @@ pub extern "winbio" fn WinBioAsyncOpenSession(
     SessionHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCloseSession(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerify(
     SessionHandle: u32,
     Identity: *WINBIO_IDENTITY,
@@ -1421,6 +1440,7 @@ pub extern "winbio" fn WinBioVerify(
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerifyWithCallback(
     SessionHandle: u32,
     Identity: *WINBIO_IDENTITY,
@@ -1429,6 +1449,7 @@ pub extern "winbio" fn WinBioVerifyWithCallback(
     VerifyCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioIdentify(
     SessionHandle: u32,
     UnitId: ?*u32,
@@ -1437,63 +1458,75 @@ pub extern "winbio" fn WinBioIdentify(
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioIdentifyWithCallback(
     SessionHandle: u32,
     IdentifyCallback: PWINBIO_IDENTIFY_CALLBACK,
     IdentifyCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioWait(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCancel(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLocateSensor(
     SessionHandle: u32,
     UnitId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLocateSensorWithCallback(
     SessionHandle: u32,
     LocateCallback: PWINBIO_LOCATE_SENSOR_CALLBACK,
     LocateCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollBegin(
     SessionHandle: u32,
     SubFactor: u8,
     UnitId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioEnrollSelect(
     SessionHandle: u32,
     SelectorValue: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCapture(
     SessionHandle: u32,
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCaptureWithCallback(
     SessionHandle: u32,
     EnrollCallback: PWINBIO_ENROLL_CAPTURE_CALLBACK,
     EnrollCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCommit(
     SessionHandle: u32,
     Identity: ?*WINBIO_IDENTITY,
     IsNewTemplate: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollDiscard(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumEnrollments(
     SessionHandle: u32,
     UnitId: u32,
@@ -1502,6 +1535,7 @@ pub extern "winbio" fn WinBioEnumEnrollments(
     SubFactorCount: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRegisterEventMonitor(
     SessionHandle: u32,
     EventMask: u32,
@@ -1509,15 +1543,18 @@ pub extern "winbio" fn WinBioRegisterEventMonitor(
     EventCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioUnregisterEventMonitor(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioMonitorPresence(
     SessionHandle: u32,
     UnitId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCaptureSample(
     SessionHandle: u32,
     Purpose: u8,
@@ -1528,6 +1565,7 @@ pub extern "winbio" fn WinBioCaptureSample(
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCaptureSampleWithCallback(
     SessionHandle: u32,
     Purpose: u8,
@@ -1536,6 +1574,7 @@ pub extern "winbio" fn WinBioCaptureSampleWithCallback(
     CaptureCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioDeleteTemplate(
     SessionHandle: u32,
     UnitId: u32,
@@ -1543,16 +1582,19 @@ pub extern "winbio" fn WinBioDeleteTemplate(
     SubFactor: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLockUnit(
     SessionHandle: u32,
     UnitId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioUnlockUnit(
     SessionHandle: u32,
     UnitId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioControlUnit(
     SessionHandle: u32,
     UnitId: u32,
@@ -1566,6 +1608,7 @@ pub extern "winbio" fn WinBioControlUnit(
     OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioControlUnitPrivileged(
     SessionHandle: u32,
     UnitId: u32,
@@ -1579,6 +1622,7 @@ pub extern "winbio" fn WinBioControlUnitPrivileged(
     OperationStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetProperty(
     SessionHandle: u32,
     PropertyType: u32,
@@ -1590,6 +1634,7 @@ pub extern "winbio" fn WinBioGetProperty(
     PropertyBufferSize: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioSetProperty(
     SessionHandle: u32,
     PropertyType: u32,
@@ -1601,10 +1646,12 @@ pub extern "winbio" fn WinBioSetProperty(
     PropertyBufferSize: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioFree(
     Address: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioSetCredential(
     Type: WINBIO_CREDENTIAL_TYPE,
     Credential: [*:0]u8,
@@ -1612,50 +1659,61 @@ pub extern "winbio" fn WinBioSetCredential(
     Format: WINBIO_CREDENTIAL_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveCredential(
     Identity: WINBIO_IDENTITY,
     Type: WINBIO_CREDENTIAL_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveAllCredentials(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveAllDomainCredentials(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetCredentialState(
     Identity: WINBIO_IDENTITY,
     Type: WINBIO_CREDENTIAL_TYPE,
     CredentialState: *WINBIO_CREDENTIAL_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLogonIdentifiedUser(
     SessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioGetEnrolledFactors(
     AccountOwner: *WINBIO_IDENTITY,
     EnrolledFactors: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetEnabledSetting(
     Value: *u8,
     Source: *WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetLogonSetting(
     Value: *u8,
     Source: *WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetDomainLogonSetting(
     Value: *u8,
     Source: *WINBIO_SETTING_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioAcquireFocus(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioReleaseFocus(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

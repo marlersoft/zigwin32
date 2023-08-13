@@ -595,6 +595,7 @@ pub const MBN_DEVICE_SERVICES_INTERFACE_STATE = extern enum(i32) {
 pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_ARRIVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.ARRIVAL;
 pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_REMOVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.REMOVAL;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnection_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200d-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnection = &IID_IMbnConnection_Value;
 pub const IMbnConnection = extern struct {
@@ -667,6 +668,7 @@ pub const IMbnConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200e-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionEvents = &IID_IMbnConnectionEvents_Value;
 pub const IMbnConnectionEvents = extern struct {
@@ -716,6 +718,7 @@ pub const IMbnConnectionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnInterface_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2001-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterface = &IID_IMbnInterface_Value;
 pub const IMbnInterface = extern struct {
@@ -819,6 +822,7 @@ pub const IMbnInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnInterfaceEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2002-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceEvents = &IID_IMbnInterfaceEvents_Value;
 pub const IMbnInterfaceEvents = extern struct {
@@ -900,6 +904,7 @@ pub const IMbnInterfaceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnInterfaceManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201b-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceManager = &IID_IMbnInterfaceManager_Value;
 pub const IMbnInterfaceManager = extern struct {
@@ -930,6 +935,7 @@ pub const IMbnInterfaceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnInterfaceManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201c-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceManagerEvents = &IID_IMbnInterfaceManagerEvents_Value;
 pub const IMbnInterfaceManagerEvents = extern struct {
@@ -959,6 +965,7 @@ pub const IMbnInterfaceManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnRegistration_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2009-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRegistration = &IID_IMbnRegistration_Value;
 pub const IMbnRegistration = extern struct {
@@ -1055,6 +1062,7 @@ pub const IMbnRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnRegistrationEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200a-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRegistrationEvents = &IID_IMbnRegistrationEvents_Value;
 pub const IMbnRegistrationEvents = extern struct {
@@ -1102,6 +1110,7 @@ pub const IMbnRegistrationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201d-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionManager = &IID_IMbnConnectionManager_Value;
 pub const IMbnConnectionManager = extern struct {
@@ -1132,6 +1141,7 @@ pub const IMbnConnectionManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201e-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionManagerEvents = &IID_IMbnConnectionManagerEvents_Value;
 pub const IMbnConnectionManagerEvents = extern struct {
@@ -1161,6 +1171,7 @@ pub const IMbnConnectionManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnPinManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2005-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinManager = &IID_IMbnPinManager_Value;
 pub const IMbnPinManager = extern struct {
@@ -1199,6 +1210,7 @@ pub const IMbnPinManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnPinManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2006-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinManagerEvents = &IID_IMbnPinManagerEvents_Value;
 pub const IMbnPinManagerEvents = extern struct {
@@ -1231,6 +1243,7 @@ pub const IMbnPinManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnPinEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2008-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinEvents = &IID_IMbnPinEvents_Value;
 pub const IMbnPinEvents = extern struct {
@@ -1299,6 +1312,7 @@ pub const IMbnPinEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSubscriberInformation_Value = @import("../zig.zig").Guid.initString("459ecc43-bcf5-11dc-a8a8-001321f1405f");
 pub const IID_IMbnSubscriberInformation = &IID_IMbnSubscriberInformation_Value;
 pub const IMbnSubscriberInformation = extern struct {
@@ -1336,6 +1350,7 @@ pub const IMbnSubscriberInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSignal_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2003-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSignal = &IID_IMbnSignal_Value;
 pub const IMbnSignal = extern struct {
@@ -1365,6 +1380,7 @@ pub const IMbnSignal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSignalEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2004-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSignalEvents = &IID_IMbnSignalEvents_Value;
 pub const IMbnSignalEvents = extern struct {
@@ -1386,6 +1402,7 @@ pub const IMbnSignalEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionContext_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200b-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionContext = &IID_IMbnConnectionContext_Value;
 pub const IMbnConnectionContext = extern struct {
@@ -1417,6 +1434,7 @@ pub const IMbnConnectionContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionContextEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200c-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionContextEvents = &IID_IMbnConnectionContextEvents_Value;
 pub const IMbnConnectionContextEvents = extern struct {
@@ -1448,6 +1466,7 @@ pub const IMbnConnectionContextEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionProfileManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileManager = &IID_IMbnConnectionProfileManager_Value;
 pub const IMbnConnectionProfileManager = extern struct {
@@ -1488,6 +1507,7 @@ pub const IMbnConnectionProfileManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionProfile_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2010-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfile = &IID_IMbnConnectionProfile_Value;
 pub const IMbnConnectionProfile = extern struct {
@@ -1524,6 +1544,7 @@ pub const IMbnConnectionProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionProfileEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2011-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileEvents = &IID_IMbnConnectionProfileEvents_Value;
 pub const IMbnConnectionProfileEvents = extern struct {
@@ -1545,6 +1566,7 @@ pub const IMbnConnectionProfileEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSmsConfiguration_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2012-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsConfiguration = &IID_IMbnSmsConfiguration_Value;
 pub const IMbnSmsConfiguration = extern struct {
@@ -1606,6 +1628,7 @@ pub const IMbnSmsConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSmsReadMsgPdu_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2013-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsReadMsgPdu = &IID_IMbnSmsReadMsgPdu_Value;
 pub const IMbnSmsReadMsgPdu = extern struct {
@@ -1651,6 +1674,7 @@ pub const IMbnSmsReadMsgPdu = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSmsReadMsgTextCdma_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2014-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsReadMsgTextCdma = &IID_IMbnSmsReadMsgTextCdma_Value;
 pub const IMbnSmsReadMsgTextCdma = extern struct {
@@ -1728,6 +1752,7 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSms_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2015-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSms = &IID_IMbnSms_Value;
 pub const IMbnSms = extern struct {
@@ -1817,6 +1842,7 @@ pub const IMbnSms = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnSmsEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2016-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsEvents = &IID_IMbnSmsEvents_Value;
 pub const IMbnSmsEvents = extern struct {
@@ -1899,6 +1925,7 @@ pub const IMbnSmsEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnServiceActivation_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2017-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnServiceActivation = &IID_IMbnServiceActivation_Value;
 pub const IMbnServiceActivation = extern struct {
@@ -1921,6 +1948,7 @@ pub const IMbnServiceActivation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnServiceActivationEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2018-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnServiceActivationEvents = &IID_IMbnServiceActivationEvents_Value;
 pub const IMbnServiceActivationEvents = extern struct {
@@ -1946,6 +1974,7 @@ pub const IMbnServiceActivationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnVendorSpecificOperation_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2019-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnVendorSpecificOperation = &IID_IMbnVendorSpecificOperation_Value;
 pub const IMbnVendorSpecificOperation = extern struct {
@@ -1968,6 +1997,7 @@ pub const IMbnVendorSpecificOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnVendorSpecificEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201a-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnVendorSpecificEvents = &IID_IMbnVendorSpecificEvents_Value;
 pub const IMbnVendorSpecificEvents = extern struct {
@@ -2000,6 +2030,7 @@ pub const IMbnVendorSpecificEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionProfileManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileManagerEvents = &IID_IMbnConnectionProfileManagerEvents_Value;
 pub const IMbnConnectionProfileManagerEvents = extern struct {
@@ -2029,6 +2060,7 @@ pub const IMbnConnectionProfileManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnRadio_Value = @import("../zig.zig").Guid.initString("dccccab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRadio = &IID_IMbnRadio_Value;
 pub const IMbnRadio = extern struct {
@@ -2067,6 +2099,7 @@ pub const IMbnRadio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnRadioEvents_Value = @import("../zig.zig").Guid.initString("dcdddab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRadioEvents = &IID_IMbnRadioEvents_Value;
 pub const IMbnRadioEvents = extern struct {
@@ -2098,6 +2131,7 @@ pub const IMbnRadioEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnMultiCarrier_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2020-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnMultiCarrier = &IID_IMbnMultiCarrier_Value;
 pub const IMbnMultiCarrier = extern struct {
@@ -2161,6 +2195,7 @@ pub const IMbnMultiCarrier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnMultiCarrierEvents_Value = @import("../zig.zig").Guid.initString("dcdddab6-2021-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnMultiCarrierEvents = &IID_IMbnMultiCarrierEvents_Value;
 pub const IMbnMultiCarrierEvents = extern struct {
@@ -2218,6 +2253,7 @@ pub const IMbnMultiCarrierEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnDeviceServicesManager_Value = @import("../zig.zig").Guid.initString("20a26258-6811-4478-ac1d-13324e45e41c");
 pub const IID_IMbnDeviceServicesManager = &IID_IMbnDeviceServicesManager_Value;
 pub const IMbnDeviceServicesManager = extern struct {
@@ -2240,6 +2276,7 @@ pub const IMbnDeviceServicesManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnDeviceServicesContext_Value = @import("../zig.zig").Guid.initString("fc5ac347-1592-4068-80bb-6a57580150d8");
 pub const IID_IMbnDeviceServicesContext = &IID_IMbnDeviceServicesContext_Value;
 pub const IMbnDeviceServicesContext = extern struct {
@@ -2286,6 +2323,7 @@ pub const IMbnDeviceServicesContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnDeviceServicesEvents_Value = @import("../zig.zig").Guid.initString("0a900c19-6824-4e97-b76e-cf239d0ca642");
 pub const IID_IMbnDeviceServicesEvents = &IID_IMbnDeviceServicesEvents_Value;
 pub const IMbnDeviceServicesEvents = extern struct {
@@ -2412,6 +2450,7 @@ pub const IMbnDeviceServicesEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMbnDeviceService_Value = @import("../zig.zig").Guid.initString("b3bb9a71-dc70-4be9-a4da-7886ae8b191b");
 pub const IID_IMbnDeviceService = &IID_IMbnDeviceService_Value;
 pub const IMbnDeviceService = extern struct {
@@ -2526,6 +2565,7 @@ pub const IMbnDeviceService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnPin_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2007-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPin = &IID_IMbnPin_Value;
 pub const IMbnPin = extern struct {

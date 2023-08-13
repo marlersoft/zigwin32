@@ -129,6 +129,7 @@ pub const PROXIMITY_UNIT_CHAPTER = @as(u32, 3);
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
 pub const IPhraseSink = extern struct {
@@ -195,8 +196,8 @@ pub const DBID = extern struct {
     uGuid: DBID._uGuid_e__Union,
     eKind: u32,
     uName: DBID._uName_e__Union,
-    const _uName_e__Union = u32; // TODO: generate this nested type!
     const _uGuid_e__Union = u32; // TODO: generate this nested type!
+    const _uName_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CI_STATE = extern struct {
@@ -295,6 +296,7 @@ pub const STAT_CHUNK = extern struct {
     cwcLenSource: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFilter_Value = @import("../zig.zig").Guid.initString("89bcb740-6119-101a-bcb7-00dd010655af");
 pub const IID_IFilter = &IID_IFilter_Value;
 pub const IFilter = extern struct {
@@ -358,6 +360,7 @@ pub const IFilter = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn LoadIFilter(
     pwcsPath: [*:0]const u16,
     pUnkOuter: *IUnknown,
@@ -371,12 +374,14 @@ pub extern "query" fn LoadIFilterEx(
     ppIUnk: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStorage(
     pStg: *IStorage,
     pUnkOuter: *IUnknown,
     ppIUnk: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStream(
     pStm: *IStream,
     pUnkOuter: *IUnknown,

@@ -41,6 +41,7 @@ pub const CLSID_UPnPDeviceFinderEx = &CLSID_UPnPDeviceFinderEx_Value;
 const CLSID_UPnPDescriptionDocumentEx_Value = @import("../zig.zig").Guid.initString("33fd0563-d81a-4393-83cc-0195b1da2f91");
 pub const CLSID_UPnPDescriptionDocumentEx = &CLSID_UPnPDescriptionDocumentEx_Value;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceFinder_Value = @import("../zig.zig").Guid.initString("adda3d55-6f72-4319-bff9-18600a539b10");
 pub const IID_IUPnPDeviceFinder = &IID_IUPnPDeviceFinder_Value;
 pub const IUPnPDeviceFinder = extern struct {
@@ -100,6 +101,7 @@ pub const IUPnPDeviceFinder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUPnPAddressFamilyControl_Value = @import("../zig.zig").Guid.initString("e3bf6178-694e-459f-a5a6-191ea0ffa1c7");
 pub const IID_IUPnPAddressFamilyControl = &IID_IUPnPAddressFamilyControl_Value;
 pub const IUPnPAddressFamilyControl = extern struct {
@@ -129,6 +131,7 @@ pub const IUPnPAddressFamilyControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUPnPHttpHeaderControl_Value = @import("../zig.zig").Guid.initString("0405af4f-8b5c-447c-80f2-b75984a31f3c");
 pub const IID_IUPnPHttpHeaderControl = &IID_IUPnPHttpHeaderControl_Value;
 pub const IUPnPHttpHeaderControl = extern struct {
@@ -150,6 +153,7 @@ pub const IUPnPHttpHeaderControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceFinderCallback_Value = @import("../zig.zig").Guid.initString("415a984a-88b3-49f3-92af-0508bedf0d6c");
 pub const IID_IUPnPDeviceFinderCallback = &IID_IUPnPDeviceFinderCallback_Value;
 pub const IUPnPDeviceFinderCallback = extern struct {
@@ -189,6 +193,7 @@ pub const IUPnPDeviceFinderCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPServices_Value = @import("../zig.zig").Guid.initString("3f8c8e9e-9a7a-4dc8-bc41-ff31fa374956");
 pub const IID_IUPnPServices = &IID_IUPnPServices_Value;
 pub const IUPnPServices = extern struct {
@@ -227,6 +232,7 @@ pub const IUPnPServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPService_Value = @import("../zig.zig").Guid.initString("a295019c-dc65-47dd-90dc-7fe918a1ab44");
 pub const IID_IUPnPService = &IID_IUPnPService_Value;
 pub const IUPnPService = extern struct {
@@ -292,6 +298,7 @@ pub const IUPnPService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUPnPAsyncResult_Value = @import("../zig.zig").Guid.initString("4d65fd08-d13e-4274-9c8b-dd8d028c8644");
 pub const IID_IUPnPAsyncResult = &IID_IUPnPAsyncResult_Value;
 pub const IUPnPAsyncResult = extern struct {
@@ -313,6 +320,7 @@ pub const IUPnPAsyncResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUPnPServiceAsync_Value = @import("../zig.zig").Guid.initString("098bdaf5-5ec1-49e7-a260-b3a11dd8680c");
 pub const IID_IUPnPServiceAsync = &IID_IUPnPServiceAsync_Value;
 pub const IUPnPServiceAsync = extern struct {
@@ -410,6 +418,7 @@ pub const IUPnPServiceAsync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPServiceCallback_Value = @import("../zig.zig").Guid.initString("31fadca9-ab73-464b-b67d-5c1d0f83c8b8");
 pub const IID_IUPnPServiceCallback = &IID_IUPnPServiceCallback_Value;
 pub const IUPnPServiceCallback = extern struct {
@@ -441,6 +450,7 @@ pub const IUPnPServiceCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUPnPServiceEnumProperty_Value = @import("../zig.zig").Guid.initString("38873b37-91bb-49f4-b249-2e8efbb8a816");
 pub const IID_IUPnPServiceEnumProperty = &IID_IUPnPServiceEnumProperty_Value;
 pub const IUPnPServiceEnumProperty = extern struct {
@@ -462,6 +472,7 @@ pub const IUPnPServiceEnumProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IUPnPServiceDocumentAccess_Value = @import("../zig.zig").Guid.initString("21905529-0a5e-4589-825d-7e6d87ea6998");
 pub const IID_IUPnPServiceDocumentAccess = &IID_IUPnPServiceDocumentAccess_Value;
 pub const IUPnPServiceDocumentAccess = extern struct {
@@ -491,6 +502,7 @@ pub const IUPnPServiceDocumentAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDevices_Value = @import("../zig.zig").Guid.initString("fdbc0c73-bda3-4c66-ac4f-f2d96fdad68c");
 pub const IID_IUPnPDevices = &IID_IUPnPDevices_Value;
 pub const IUPnPDevices = extern struct {
@@ -529,6 +541,7 @@ pub const IUPnPDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDevice_Value = @import("../zig.zig").Guid.initString("3d44d0d1-98c9-4889-acd1-f9d674bf2221");
 pub const IID_IUPnPDevice = &IID_IUPnPDevice_Value;
 pub const IUPnPDevice = extern struct {
@@ -698,6 +711,7 @@ pub const IUPnPDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceDocumentAccess_Value = @import("../zig.zig").Guid.initString("e7772804-3287-418e-9072-cf2b47238981");
 pub const IID_IUPnPDeviceDocumentAccess = &IID_IUPnPDeviceDocumentAccess_Value;
 pub const IUPnPDeviceDocumentAccess = extern struct {
@@ -719,6 +733,7 @@ pub const IUPnPDeviceDocumentAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IUPnPDeviceDocumentAccessEx_Value = @import("../zig.zig").Guid.initString("c4bc4050-6178-4bd1-a4b8-6398321f3247");
 pub const IID_IUPnPDeviceDocumentAccessEx = &IID_IUPnPDeviceDocumentAccessEx_Value;
 pub const IUPnPDeviceDocumentAccessEx = extern struct {
@@ -740,6 +755,7 @@ pub const IUPnPDeviceDocumentAccessEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDescriptionDocument_Value = @import("../zig.zig").Guid.initString("11d1c1b2-7daa-4c9e-9595-7f82ed206d1e");
 pub const IID_IUPnPDescriptionDocument = &IID_IUPnPDescriptionDocument_Value;
 pub const IUPnPDescriptionDocument = extern struct {
@@ -810,6 +826,7 @@ pub const IUPnPDescriptionDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUPnPDeviceFinderAddCallbackWithInterface_Value = @import("../zig.zig").Guid.initString("983dfc0b-1796-44df-8975-ca545b620ee5");
 pub const IID_IUPnPDeviceFinderAddCallbackWithInterface = &IID_IUPnPDeviceFinderAddCallbackWithInterface_Value;
 pub const IUPnPDeviceFinderAddCallbackWithInterface = extern struct {
@@ -833,6 +850,7 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDescriptionDocumentCallback_Value = @import("../zig.zig").Guid.initString("77394c69-5486-40d6-9bc3-4991983e02da");
 pub const IID_IUPnPDescriptionDocumentCallback = &IID_IUPnPDescriptionDocumentCallback_Value;
 pub const IUPnPDescriptionDocumentCallback = extern struct {
@@ -860,6 +878,7 @@ pub const CLSID_UPnPRegistrar = &CLSID_UPnPRegistrar_Value;
 const CLSID_UPnPRemoteEndpointInfo_Value = @import("../zig.zig").Guid.initString("2e5e84e9-4049-4244-b728-2d24227157c7");
 pub const CLSID_UPnPRemoteEndpointInfo = &CLSID_UPnPRemoteEndpointInfo_Value;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPEventSink_Value = @import("../zig.zig").Guid.initString("204810b4-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPEventSink = &IID_IUPnPEventSink_Value;
 pub const IUPnPEventSink = extern struct {
@@ -890,6 +909,7 @@ pub const IUPnPEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPEventSource_Value = @import("../zig.zig").Guid.initString("204810b5-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPEventSource = &IID_IUPnPEventSource_Value;
 pub const IUPnPEventSource = extern struct {
@@ -919,6 +939,7 @@ pub const IUPnPEventSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPRegistrar_Value = @import("../zig.zig").Guid.initString("204810b6-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPRegistrar = &IID_IUPnPRegistrar_Value;
 pub const IUPnPRegistrar = extern struct {
@@ -997,6 +1018,7 @@ pub const IUPnPRegistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPReregistrar_Value = @import("../zig.zig").Guid.initString("204810b7-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPReregistrar = &IID_IUPnPReregistrar_Value;
 pub const IUPnPReregistrar = extern struct {
@@ -1037,6 +1059,7 @@ pub const IUPnPReregistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceControl_Value = @import("../zig.zig").Guid.initString("204810ba-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPDeviceControl = &IID_IUPnPDeviceControl_Value;
 pub const IUPnPDeviceControl = extern struct {
@@ -1091,6 +1114,7 @@ pub const IUPnPDeviceControlHttpHeaders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceProvider_Value = @import("../zig.zig").Guid.initString("204810b8-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPDeviceProvider = &IID_IUPnPDeviceProvider_Value;
 pub const IUPnPDeviceProvider = extern struct {
@@ -1119,6 +1143,7 @@ pub const IUPnPDeviceProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUPnPRemoteEndpointInfo_Value = @import("../zig.zig").Guid.initString("c92eb863-0269-4aff-9c72-75321bba2952");
 pub const IID_IUPnPRemoteEndpointInfo = &IID_IUPnPRemoteEndpointInfo_Value;
 pub const IUPnPRemoteEndpointInfo = extern struct {

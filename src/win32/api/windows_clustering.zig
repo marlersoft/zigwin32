@@ -210,55 +210,105 @@ pub const SET_APPINSTANCE_CSV_FLAGS_VALID_ONLY_IF_CSV_COORDINATOR = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (684)
 //--------------------------------------------------------------------------------
-pub const _HCLUSTER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HCLUSTER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNODE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNODE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HRESOURCE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HRESOURCE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HGROUP = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HGROUP = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNETWORK = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNETWORK = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNETINTERFACE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNETINTERFACE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HCHANGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HCHANGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HCLUSENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HCLUSENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HGROUPENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HGROUPENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HRESENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HRESENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNETWORKENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNETWORKENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNODEENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNODEENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNETINTERFACEENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNETINTERFACEENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HRESTYPEENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HRESTYPEENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HREGBATCH = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HREGBATCH = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HREGBATCHPORT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HREGBATCHPORT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HREGBATCHNOTIFICATION = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HREGBATCHNOTIFICATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HREGREADBATCH = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HREGREADBATCH = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HREGREADBATCHREPLY = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HREGREADBATCHREPLY = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HNODEENUMEX = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HNODEENUMEX = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HCLUSENUMEX = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HCLUSENUMEX = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HGROUPENUMEX = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HGROUPENUMEX = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HRESENUMEX = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HRESENUMEX = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HGROUPSET = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HGROUPSET = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
-pub const _HGROUPSETENUM = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HGROUPSETENUM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const CLUSTER_QUORUM_TYPE = extern enum(i32) {
     OperationalQuorum = 0,
@@ -3996,14 +4046,14 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = fn(
 pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = fn(
     hKey: HKEY,
     RequestedInformation: u32,
-    pSecurityDescriptor: [*]u8,
+    pSecurityDescriptor: [*]SECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = fn(
     hKey: HKEY,
     SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = fn(
@@ -5627,7 +5677,9 @@ pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = fn(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const _HCLUSCRYPTPROVIDER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HCLUSCRYPTPROVIDER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const POPEN_CLUSTER_CRYPT_PROVIDER = fn(
     lpszResource: [*:0]const u16,
@@ -5742,6 +5794,7 @@ pub const CLUADMEX_OT_RESOURCETYPE = CLUADMEX_OBJECT_TYPE.RESOURCETYPE;
 pub const CLUADMEX_OT_NETWORK = CLUADMEX_OBJECT_TYPE.NETWORK;
 pub const CLUADMEX_OT_NETINTERFACE = CLUADMEX_OBJECT_TYPE.NETINTERFACE;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterUIInfo_Value = @import("../zig.zig").Guid.initString("97dede50-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterUIInfo = &IID_IGetClusterUIInfo_Value;
 pub const IGetClusterUIInfo = extern struct {
@@ -5785,6 +5838,7 @@ pub const IGetClusterUIInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterDataInfo_Value = @import("../zig.zig").Guid.initString("97dede51-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterDataInfo = &IID_IGetClusterDataInfo_Value;
 pub const IGetClusterDataInfo = extern struct {
@@ -5821,6 +5875,7 @@ pub const IGetClusterDataInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterObjectInfo_Value = @import("../zig.zig").Guid.initString("97dede52-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterObjectInfo = &IID_IGetClusterObjectInfo_Value;
 pub const IGetClusterObjectInfo = extern struct {
@@ -5852,6 +5907,7 @@ pub const IGetClusterObjectInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterNodeInfo_Value = @import("../zig.zig").Guid.initString("97dede53-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterNodeInfo = &IID_IGetClusterNodeInfo_Value;
 pub const IGetClusterNodeInfo = extern struct {
@@ -5873,6 +5929,7 @@ pub const IGetClusterNodeInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterGroupInfo_Value = @import("../zig.zig").Guid.initString("97dede54-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterGroupInfo = &IID_IGetClusterGroupInfo_Value;
 pub const IGetClusterGroupInfo = extern struct {
@@ -5894,6 +5951,7 @@ pub const IGetClusterGroupInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterResourceInfo_Value = @import("../zig.zig").Guid.initString("97dede55-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterResourceInfo = &IID_IGetClusterResourceInfo_Value;
 pub const IGetClusterResourceInfo = extern struct {
@@ -5935,6 +5993,7 @@ pub const IGetClusterResourceInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterNetworkInfo_Value = @import("../zig.zig").Guid.initString("97dede56-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterNetworkInfo = &IID_IGetClusterNetworkInfo_Value;
 pub const IGetClusterNetworkInfo = extern struct {
@@ -5956,6 +6015,7 @@ pub const IGetClusterNetworkInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterNetInterfaceInfo_Value = @import("../zig.zig").Guid.initString("97dede57-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterNetInterfaceInfo = &IID_IGetClusterNetInterfaceInfo_Value;
 pub const IGetClusterNetInterfaceInfo = extern struct {
@@ -5977,6 +6037,7 @@ pub const IGetClusterNetInterfaceInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWCPropertySheetCallback_Value = @import("../zig.zig").Guid.initString("97dede60-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWCPropertySheetCallback = &IID_IWCPropertySheetCallback_Value;
 pub const IWCPropertySheetCallback = extern struct {
@@ -5998,6 +6059,7 @@ pub const IWCPropertySheetCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWEExtendPropertySheet_Value = @import("../zig.zig").Guid.initString("97dede61-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWEExtendPropertySheet = &IID_IWEExtendPropertySheet_Value;
 pub const IWEExtendPropertySheet = extern struct {
@@ -6020,6 +6082,7 @@ pub const IWEExtendPropertySheet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWCWizardCallback_Value = @import("../zig.zig").Guid.initString("97dede62-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWCWizardCallback = &IID_IWCWizardCallback_Value;
 pub const IWCWizardCallback = extern struct {
@@ -6050,6 +6113,7 @@ pub const IWCWizardCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWEExtendWizard_Value = @import("../zig.zig").Guid.initString("97dede63-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWEExtendWizard = &IID_IWEExtendWizard_Value;
 pub const IWEExtendWizard = extern struct {
@@ -6072,6 +6136,7 @@ pub const IWEExtendWizard = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWCContextMenuCallback_Value = @import("../zig.zig").Guid.initString("97dede64-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWCContextMenuCallback = &IID_IWCContextMenuCallback_Value;
 pub const IWCContextMenuCallback = extern struct {
@@ -6097,6 +6162,7 @@ pub const IWCContextMenuCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWEExtendContextMenu_Value = @import("../zig.zig").Guid.initString("97dede65-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWEExtendContextMenu = &IID_IWEExtendContextMenu_Value;
 pub const IWEExtendContextMenu = extern struct {
@@ -6119,6 +6185,7 @@ pub const IWEExtendContextMenu = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWEInvokeCommand_Value = @import("../zig.zig").Guid.initString("97dede66-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWEInvokeCommand = &IID_IWEInvokeCommand_Value;
 pub const IWEInvokeCommand = extern struct {
@@ -6141,6 +6208,7 @@ pub const IWEInvokeCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWCWizard97Callback_Value = @import("../zig.zig").Guid.initString("97dede67-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWCWizard97Callback = &IID_IWCWizard97Callback_Value;
 pub const IWCWizard97Callback = extern struct {
@@ -6171,6 +6239,7 @@ pub const IWCWizard97Callback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IWEExtendWizard97_Value = @import("../zig.zig").Guid.initString("97dede68-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IWEExtendWizard97 = &IID_IWEExtendWizard97_Value;
 pub const IWEExtendWizard97 = extern struct {
@@ -8878,6 +8947,7 @@ pub const ISClusPartition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISClusPartitionEx_Value = @import("../zig.zig").Guid.initString("8802d4fe-b32e-4ad1-9dbd-64f18e1166ce");
 pub const IID_ISClusPartitionEx = &IID_ISClusPartitionEx_Value;
 pub const ISClusPartitionEx = extern struct {
@@ -9303,30 +9373,36 @@ pub const ISClusResDependents = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (349)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetNodeClusterState(
     lpszNodeName: ?[*:0]const u16,
     pdwClusterState: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenCluster(
     lpszClusterName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterEx(
     lpszClusterName: ?[*:0]const u16,
     DesiredAccess: u32,
     GrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseCluster(
     hCluster: *_HCLUSTER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterName(
     hCluster: *_HCLUSTER,
     lpszNewClusterName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterInformation(
     hCluster: *_HCLUSTER,
     lpszClusterName: [*:0]u16,
@@ -9334,6 +9410,7 @@ pub extern "CLUSAPI" fn GetClusterInformation(
     lpClusterInfo: ?*CLUSTERVERSIONINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterQuorumResource(
     hCluster: *_HCLUSTER,
     lpszResourceName: [*:0]u16,
@@ -9343,29 +9420,34 @@ pub extern "CLUSAPI" fn GetClusterQuorumResource(
     lpdwMaxQuorumLogSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterQuorumResource(
     hResource: *_HRESOURCE,
     lpszDeviceName: ?[*:0]const u16,
     dwMaxQuoLogSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "CLUSAPI" fn BackupClusterDatabase(
     hCluster: *_HCLUSTER,
     lpszPathName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "CLUSAPI" fn RestoreClusterDatabase(
     lpszPathName: [*:0]const u16,
     bForce: BOOL,
     lpszQuorumDriveLetter: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "CLUSAPI" fn SetClusterNetworkPriorityOrder(
     hCluster: *_HCLUSTER,
     NetworkCount: u32,
     NetworkList: [*]*_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
 pub extern "CLUSAPI" fn SetClusterServiceAccountPassword(
     lpszClusterName: [*:0]const u16,
     lpszNewPassword: [*:0]const u16,
@@ -9374,6 +9456,7 @@ pub extern "CLUSAPI" fn SetClusterServiceAccountPassword(
     lpcbReturnStatusBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterControl(
     hCluster: *_HCLUSTER,
     hHostNode: ?*_HNODE,
@@ -9385,6 +9468,7 @@ pub extern "CLUSAPI" fn ClusterControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterUpgradeFunctionalLevel(
     hCluster: *_HCLUSTER,
     perform: BOOL,
@@ -9392,6 +9476,7 @@ pub extern "CLUSAPI" fn ClusterUpgradeFunctionalLevel(
     pvCallbackArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn CreateClusterNotifyPortV2(
     hChange: *_HCHANGE,
     hCluster: *_HCLUSTER,
@@ -9400,6 +9485,7 @@ pub extern "CLUSAPI" fn CreateClusterNotifyPortV2(
     dwNotifyKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn RegisterClusterNotifyV2(
     hChange: *_HCHANGE,
     Filter: NOTIFY_FILTER_AND_TYPE,
@@ -9407,11 +9493,13 @@ pub extern "CLUSAPI" fn RegisterClusterNotifyV2(
     dwNotifyKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn GetNotifyEventHandle(
     hChange: *_HCHANGE,
     lphTargetEvent: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn GetClusterNotifyV2(
     hChange: *_HCHANGE,
     lpdwNotifyKey: *?*c_void,
@@ -9429,6 +9517,7 @@ pub extern "CLUSAPI" fn GetClusterNotifyV2(
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CreateClusterNotifyPort(
     hChange: *_HCHANGE,
     hCluster: *_HCLUSTER,
@@ -9436,6 +9525,7 @@ pub extern "CLUSAPI" fn CreateClusterNotifyPort(
     dwNotifyKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn RegisterClusterNotify(
     hChange: *_HCHANGE,
     dwFilterType: u32,
@@ -9443,6 +9533,7 @@ pub extern "CLUSAPI" fn RegisterClusterNotify(
     dwNotifyKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNotify(
     hChange: *_HCHANGE,
     lpdwNotifyKey: *?*c_void,
@@ -9452,19 +9543,23 @@ pub extern "CLUSAPI" fn GetClusterNotify(
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterNotifyPort(
     hChange: *_HCHANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterOpenEnum(
     hCluster: *_HCLUSTER,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGetEnumCount(
     hEnum: *_HCLUSENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterEnum(
     hEnum: *_HCLUSENUM,
     dwIndex: u32,
@@ -9473,20 +9568,24 @@ pub extern "CLUSAPI" fn ClusterEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterCloseEnum(
     hEnum: *_HCLUSENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterOpenEnumEx(
     hCluster: *_HCLUSTER,
     dwType: u32,
     pOptions: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSENUMEX;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGetEnumCountEx(
     hClusterEnum: *_HCLUSENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterEnumEx(
     hClusterEnum: *_HCLUSENUMEX,
     dwIndex: u32,
@@ -9494,28 +9593,34 @@ pub extern "CLUSAPI" fn ClusterEnumEx(
     cbItem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterCloseEnumEx(
     hClusterEnum: *_HCLUSENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn CreateClusterGroupSet(
     hCluster: *_HCLUSTER,
     groupSetName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUPSET;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn OpenClusterGroupSet(
     hCluster: *_HCLUSTER,
     lpszGroupSetName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUPSET;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn CloseClusterGroupSet(
     hGroupSet: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn DeleteClusterGroupSet(
     hGroupSet: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterAddGroupToGroupSet(
     hGroupSet: *_HGROUPSET,
     hGroup: *_HGROUP,
@@ -9528,10 +9633,12 @@ pub extern "CLUSAPI" fn ClusterAddGroupToGroupSetWithDomains(
     updateDomain: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterRemoveGroupFromGroupSet(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterGroupSetControl(
     hGroupSet: *_HGROUPSET,
     hHostNode: ?*_HNODE,
@@ -9543,54 +9650,65 @@ pub extern "CLUSAPI" fn ClusterGroupSetControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn AddClusterGroupDependency(
     hDependentGroup: *_HGROUP,
     hProviderGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn SetGroupDependencyExpression(
     hGroup: *_HGROUP,
     lpszDependencyExpression: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn RemoveClusterGroupDependency(
     hGroup: *_HGROUP,
     hDependsOn: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn AddClusterGroupSetDependency(
     hDependentGroupSet: *_HGROUPSET,
     hProviderGroupSet: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn SetClusterGroupSetDependencyExpression(
     hGroupSet: *_HGROUPSET,
     lpszDependencyExprssion: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn RemoveClusterGroupSetDependency(
     hGroupSet: *_HGROUPSET,
     hDependsOn: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn AddClusterGroupToGroupSetDependency(
     hDependentGroup: *_HGROUP,
     hProviderGroupSet: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn RemoveClusterGroupToGroupSetDependency(
     hGroup: *_HGROUP,
     hDependsOn: *_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterGroupSetOpenEnum(
     hCluster: *_HCLUSTER,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUPSETENUM;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterGroupSetGetEnumCount(
     hGroupSetEnum: *_HGROUPSETENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterGroupSetEnum(
     hGroupSetEnum: *_HGROUPSETENUM,
     dwIndex: u32,
@@ -9598,6 +9716,7 @@ pub extern "CLUSAPI" fn ClusterGroupSetEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterGroupSetCloseEnum(
     hGroupSetEnum: *_HGROUPSETENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -9661,11 +9780,13 @@ pub extern "CLUSAPI" fn ClusterAffinityRuleControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNode(
     hCluster: *_HCLUSTER,
     lpszNodeName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HNODE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNodeEx(
     hCluster: *_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
@@ -9678,42 +9799,51 @@ pub extern "CLUSAPI" fn OpenClusterNodeById(
     nodeId: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HNODE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterNode(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNodeState(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNodeId(
     hNode: ?*_HNODE,
     lpszNodeId: [*:0]u16,
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterFromNode(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn PauseClusterNode(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ResumeClusterNode(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn EvictClusterNode(
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterNetInterfaceOpenEnum(
     hCluster: *_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     lpszNetworkName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETINTERFACEENUM;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterNetInterfaceEnum(
     hNetInterfaceEnum: *_HNETINTERFACEENUM,
     dwIndex: u32,
@@ -9721,25 +9851,30 @@ pub extern "CLUSAPI" fn ClusterNetInterfaceEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterNetInterfaceCloseEnum(
     hNetInterfaceEnum: *_HNETINTERFACEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeOpenEnum(
     hNode: *_HNODE,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HNODEENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeOpenEnumEx(
     hNode: *_HNODE,
     dwType: u32,
     pOptions: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *_HNODEENUMEX;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeGetEnumCountEx(
     hNodeEnum: *_HNODEENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeEnumEx(
     hNodeEnum: *_HNODEENUMEX,
     dwIndex: u32,
@@ -9747,18 +9882,22 @@ pub extern "CLUSAPI" fn ClusterNodeEnumEx(
     cbItem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeCloseEnumEx(
     hNodeEnum: *_HNODEENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeGetEnumCount(
     hNodeEnum: *_HNODEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeCloseEnum(
     hNodeEnum: *_HNODEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeEnum(
     hNodeEnum: *_HNODEENUM,
     dwIndex: u32,
@@ -9767,28 +9906,33 @@ pub extern "CLUSAPI" fn ClusterNodeEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn EvictClusterNodeEx(
     hNode: *_HNODE,
     dwTimeOut: u32,
     phrCleanupStatus: *HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterResourceTypeKey(
     hCluster: *_HCLUSTER,
     lpszTypeName: [*:0]const u16,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CreateClusterGroup(
     hCluster: *_HCLUSTER,
     lpszGroupName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUP;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterGroup(
     hCluster: *_HCLUSTER,
     lpszGroupName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUP;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterGroupEx(
     hCluster: *_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
@@ -9796,6 +9940,7 @@ pub extern "CLUSAPI" fn OpenClusterGroupEx(
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUP;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn PauseClusterNodeEx(
     hNode: *_HNODE,
     bDrainNode: BOOL,
@@ -9803,18 +9948,21 @@ pub extern "CLUSAPI" fn PauseClusterNodeEx(
     hNodeDrainTarget: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ResumeClusterNodeEx(
     hNode: *_HNODE,
     eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
     dwResumeFlagsReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn CreateClusterGroupEx(
     hCluster: *_HCLUSTER,
     lpszGroupName: [*:0]const u16,
     pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUP;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterGroupOpenEnumEx(
     hCluster: *_HCLUSTER,
     lpszProperties: ?[*:0]const u16,
@@ -9824,10 +9972,12 @@ pub extern "CLUSAPI" fn ClusterGroupOpenEnumEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUPENUMEX;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterGroupGetEnumCountEx(
     hGroupEnumEx: *_HGROUPENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterGroupEnumEx(
     hGroupEnumEx: *_HGROUPENUMEX,
     dwIndex: u32,
@@ -9835,10 +9985,12 @@ pub extern "CLUSAPI" fn ClusterGroupEnumEx(
     cbItem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterGroupCloseEnumEx(
     hGroupEnumEx: *_HGROUPENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterResourceOpenEnumEx(
     hCluster: *_HCLUSTER,
     lpszProperties: ?[*:0]const u16,
@@ -9848,10 +10000,12 @@ pub extern "CLUSAPI" fn ClusterResourceOpenEnumEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESENUMEX;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterResourceGetEnumCountEx(
     hResourceEnumEx: *_HRESENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterResourceEnumEx(
     hResourceEnumEx: *_HRESENUMEX,
     dwIndex: u32,
@@ -9859,10 +10013,12 @@ pub extern "CLUSAPI" fn ClusterResourceEnumEx(
     cbItem: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterResourceCloseEnumEx(
     hResourceEnumEx: *_HRESENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn OnlineClusterGroupEx(
     hGroup: *_HGROUP,
     hDestinationNode: ?*_HNODE,
@@ -9871,6 +10027,7 @@ pub extern "CLUSAPI" fn OnlineClusterGroupEx(
     cbInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn OfflineClusterGroupEx(
     hGroup: *_HGROUP,
     dwOfflineFlags: u32,
@@ -9878,6 +10035,7 @@ pub extern "CLUSAPI" fn OfflineClusterGroupEx(
     cbInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn OnlineClusterResourceEx(
     hResource: *_HRESOURCE,
     dwOnlineFlags: u32,
@@ -9885,6 +10043,7 @@ pub extern "CLUSAPI" fn OnlineClusterResourceEx(
     cbInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn OfflineClusterResourceEx(
     hResource: *_HRESOURCE,
     dwOfflineFlags: u32,
@@ -9892,6 +10051,7 @@ pub extern "CLUSAPI" fn OfflineClusterResourceEx(
     cbInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn MoveClusterGroupEx(
     hGroup: *_HGROUP,
     hDestinationNode: ?*_HNODE,
@@ -9900,72 +10060,87 @@ pub extern "CLUSAPI" fn MoveClusterGroupEx(
     cbInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn CancelClusterGroupOperation(
     hGroup: *_HGROUP,
     dwCancelFlags_RESERVED: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn RestartClusterResource(
     hResource: *_HRESOURCE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterGroup(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterFromGroup(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterGroupState(
     hGroup: *_HGROUP,
     lpszNodeName: ?[*:0]u16,
     lpcchNodeName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterGroupName(
     hGroup: *_HGROUP,
     lpszGroupName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterGroupNodeList(
     hGroup: *_HGROUP,
     NodeCount: u32,
     NodeList: ?[*]?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OnlineClusterGroup(
     hGroup: *_HGROUP,
     hDestinationNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn MoveClusterGroup(
     hGroup: *_HGROUP,
     hDestinationNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OfflineClusterGroup(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn DeleteClusterGroup(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn DestroyClusterGroup(
     hGroup: *_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGroupOpenEnum(
     hGroup: *_HGROUP,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HGROUPENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGroupGetEnumCount(
     hGroupEnum: *_HGROUPENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGroupEnum(
     hGroupEnum: *_HGROUPENUM,
     dwIndex: u32,
@@ -9974,10 +10149,12 @@ pub extern "CLUSAPI" fn ClusterGroupEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGroupCloseEnum(
     hGroupEnum: *_HGROUPENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CreateClusterResource(
     hGroup: *_HGROUP,
     lpszResourceName: [*:0]const u16,
@@ -9985,11 +10162,13 @@ pub extern "CLUSAPI" fn CreateClusterResource(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterResource(
     hCluster: *_HCLUSTER,
     lpszResourceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterResourceEx(
     hCluster: *_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
@@ -9997,18 +10176,22 @@ pub extern "CLUSAPI" fn OpenClusterResourceEx(
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterFromResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn DeleteClusterResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterResourceState(
     hResource: *_HRESOURCE,
     lpszNodeName: ?[*:0]u16,
@@ -10017,23 +10200,28 @@ pub extern "CLUSAPI" fn GetClusterResourceState(
     lpcchGroupName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterResourceName(
     hResource: *_HRESOURCE,
     lpszResourceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn FailClusterResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OnlineClusterResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OfflineClusterResource(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ChangeClusterResourceGroup(
     hResource: *_HRESOURCE,
     hGroup: *_HGROUP,
@@ -10045,61 +10233,73 @@ pub extern "CLUSAPI" fn ChangeClusterResourceGroupEx(
     Flags: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn AddClusterResourceNode(
     hResource: *_HRESOURCE,
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn RemoveClusterResourceNode(
     hResource: *_HRESOURCE,
     hNode: *_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn AddClusterResourceDependency(
     hResource: *_HRESOURCE,
     hDependsOn: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn RemoveClusterResourceDependency(
     hResource: *_HRESOURCE,
     hDependsOn: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterResourceDependencyExpression(
     hResource: *_HRESOURCE,
     lpszDependencyExpression: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterResourceDependencyExpression(
     hResource: *_HRESOURCE,
     lpszDependencyExpression: ?[*:0]u16,
     lpcchDependencyExpression: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn AddResourceToClusterSharedVolumes(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn RemoveResourceFromClusterSharedVolumes(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn IsFileOnClusterSharedVolume(
     lpszPathName: [*:0]const u16,
     pbFileIsOnSharedVolume: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterSharedVolumeSetSnapshotState(
     guidSnapshotSet: Guid,
     lpszVolumeName: [*:0]const u16,
     state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CanResourceBeDependent(
     hResource: *_HRESOURCE,
     hResourceDependent: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceControl(
     hResource: *_HRESOURCE,
     hHostNode: ?*_HNODE,
@@ -10111,6 +10311,7 @@ pub extern "CLUSAPI" fn ClusterResourceControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterResourceControlAsUser(
     hResource: *_HRESOURCE,
     hHostNode: ?*_HNODE,
@@ -10122,6 +10323,7 @@ pub extern "CLUSAPI" fn ClusterResourceControlAsUser(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceTypeControl(
     hCluster: *_HCLUSTER,
     lpszResourceTypeName: [*:0]const u16,
@@ -10134,6 +10336,7 @@ pub extern "CLUSAPI" fn ClusterResourceTypeControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterResourceTypeControlAsUser(
     hCluster: *_HCLUSTER,
     lpszResourceTypeName: [*:0]const u16,
@@ -10146,6 +10349,7 @@ pub extern "CLUSAPI" fn ClusterResourceTypeControlAsUser(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterGroupControl(
     hGroup: *_HGROUP,
     hHostNode: ?*_HNODE,
@@ -10157,6 +10361,7 @@ pub extern "CLUSAPI" fn ClusterGroupControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNodeControl(
     hNode: *_HNODE,
     hHostNode: ?*_HNODE,
@@ -10168,21 +10373,25 @@ pub extern "CLUSAPI" fn ClusterNodeControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterResourceNetworkName(
     hResource: *_HRESOURCE,
     lpBuffer: [*:0]u16,
     nSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceOpenEnum(
     hResource: *_HRESOURCE,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceGetEnumCount(
     hResEnum: *_HRESENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceEnum(
     hResEnum: *_HRESENUM,
     dwIndex: u32,
@@ -10191,10 +10400,12 @@ pub extern "CLUSAPI" fn ClusterResourceEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceCloseEnum(
     hResEnum: *_HRESENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CreateClusterResourceType(
     hCluster: *_HCLUSTER,
     lpszResourceTypeName: [*:0]const u16,
@@ -10204,21 +10415,25 @@ pub extern "CLUSAPI" fn CreateClusterResourceType(
     dwIsAlivePollInterval: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn DeleteClusterResourceType(
     hCluster: *_HCLUSTER,
     lpszResourceTypeName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceTypeOpenEnum(
     hCluster: *_HCLUSTER,
     lpszResourceTypeName: [*:0]const u16,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESTYPEENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceTypeGetEnumCount(
     hResTypeEnum: *_HRESTYPEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceTypeEnum(
     hResTypeEnum: *_HRESTYPEENUM,
     dwIndex: u32,
@@ -10227,15 +10442,18 @@ pub extern "CLUSAPI" fn ClusterResourceTypeEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterResourceTypeCloseEnum(
     hResTypeEnum: *_HRESTYPEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNetwork(
     hCluster: *_HCLUSTER,
     lpszNetworkName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETWORK;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNetworkEx(
     hCluster: *_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
@@ -10243,23 +10461,28 @@ pub extern "CLUSAPI" fn OpenClusterNetworkEx(
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETWORK;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterNetwork(
     hNetwork: *_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterFromNetwork(
     hNetwork: *_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetworkOpenEnum(
     hNetwork: *_HNETWORK,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETWORKENUM;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetworkGetEnumCount(
     hNetworkEnum: *_HNETWORKENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetworkEnum(
     hNetworkEnum: *_HNETWORKENUM,
     dwIndex: u32,
@@ -10268,25 +10491,30 @@ pub extern "CLUSAPI" fn ClusterNetworkEnum(
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetworkCloseEnum(
     hNetworkEnum: *_HNETWORKENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetworkState(
     hNetwork: *_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn SetClusterNetworkName(
     hNetwork: *_HNETWORK,
     lpszName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetworkId(
     hNetwork: *_HNETWORK,
     lpszNetworkId: [*:0]u16,
     lpcchName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetworkControl(
     hNetwork: *_HNETWORK,
     hHostNode: ?*_HNODE,
@@ -10298,11 +10526,13 @@ pub extern "CLUSAPI" fn ClusterNetworkControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNetInterface(
     hCluster: *_HCLUSTER,
     lpszInterfaceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETINTERFACE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn OpenClusterNetInterfaceEx(
     hCluster: *_HCLUSTER,
     lpszInterfaceName: ?[*:0]const u16,
@@ -10310,6 +10540,7 @@ pub extern "CLUSAPI" fn OpenClusterNetInterfaceEx(
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HNETINTERFACE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetInterface(
     hCluster: *_HCLUSTER,
     lpszNodeName: [*:0]const u16,
@@ -10318,18 +10549,22 @@ pub extern "CLUSAPI" fn GetClusterNetInterface(
     lpcchInterfaceName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CloseClusterNetInterface(
     hNetInterface: *_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterFromNetInterface(
     hNetInterface: *_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetInterfaceState(
     hNetInterface: *_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterNetInterfaceControl(
     hNetInterface: *_HNETINTERFACE,
     hHostNode: ?*_HNODE,
@@ -10341,36 +10576,43 @@ pub extern "CLUSAPI" fn ClusterNetInterfaceControl(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterKey(
     hCluster: *_HCLUSTER,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterGroupKey(
     hGroup: *_HGROUP,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterResourceKey(
     hResource: *_HRESOURCE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNodeKey(
     hNode: *_HNODE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetworkKey(
     hNetwork: *_HNETWORK,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNetInterfaceKey(
     hNetInterface: *_HNETINTERFACE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) HKEY;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCreateKey(
     hKey: HKEY,
     lpszSubKey: [*:0]const u16,
@@ -10381,6 +10623,7 @@ pub extern "CLUSAPI" fn ClusterRegCreateKey(
     lpdwDisposition: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegOpenKey(
     hKey: HKEY,
     lpszSubKey: [*:0]const u16,
@@ -10388,15 +10631,18 @@ pub extern "CLUSAPI" fn ClusterRegOpenKey(
     phkResult: *HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegDeleteKey(
     hKey: HKEY,
     lpszSubKey: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCloseKey(
     hKey: HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegEnumKey(
     hKey: HKEY,
     dwIndex: u32,
@@ -10405,6 +10651,7 @@ pub extern "CLUSAPI" fn ClusterRegEnumKey(
     lpftLastWriteTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegSetValue(
     hKey: HKEY,
     lpszValueName: [*:0]const u16,
@@ -10413,11 +10660,13 @@ pub extern "CLUSAPI" fn ClusterRegSetValue(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegDeleteValue(
     hKey: HKEY,
     lpszValueName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegQueryValue(
     hKey: HKEY,
     lpszValueName: [*:0]const u16,
@@ -10426,6 +10675,7 @@ pub extern "CLUSAPI" fn ClusterRegQueryValue(
     lpcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegEnumValue(
     hKey: HKEY,
     dwIndex: u32,
@@ -10436,6 +10686,7 @@ pub extern "CLUSAPI" fn ClusterRegEnumValue(
     lpcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegQueryInfoKey(
     hKey: HKEY,
     lpcSubKeys: *u32,
@@ -10447,29 +10698,34 @@ pub extern "CLUSAPI" fn ClusterRegQueryInfoKey(
     lpftLastWriteTime: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegGetKeySecurity(
     hKey: HKEY,
     RequestedInformation: u32,
-    pSecurityDescriptor: [*]u8,
+    pSecurityDescriptor: [*]SECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegSetKeySecurity(
     hKey: HKEY,
     SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
+    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegSyncDatabase(
     hCluster: *_HCLUSTER,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCreateBatch(
     hKey: HKEY,
     pHREGBATCH: **_HREGBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegBatchAddCommand(
     hRegBatch: *_HREGBATCH,
     dwCommand: CLUSTER_REG_COMMAND,
@@ -10479,72 +10735,86 @@ pub extern "CLUSAPI" fn ClusterRegBatchAddCommand(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCloseBatch(
     hRegBatch: *_HREGBATCH,
     bCommit: BOOL,
     failedCommandNumber: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegCloseBatchEx(
     hRegBatch: *_HREGBATCH,
     flags: u32,
     failedCommandNumber: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegBatchReadCommand(
     hBatchNotification: *_HREGBATCHNOTIFICATION,
     pBatchCommand: *CLUSTER_BATCH_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegBatchCloseNotification(
     hBatchNotification: *_HREGBATCHNOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCreateBatchNotifyPort(
     hKey: HKEY,
     phBatchNotifyPort: **_HREGBATCHPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCloseBatchNotifyPort(
     hBatchNotifyPort: *_HREGBATCHPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegGetBatchNotification(
     hBatchNotify: *_HREGBATCHPORT,
     phBatchNotification: **_HREGBATCHNOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegCreateReadBatch(
     hKey: HKEY,
     phRegReadBatch: **_HREGREADBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegReadBatchAddCommand(
     hRegReadBatch: *_HREGREADBATCH,
     wzSubkeyName: [*:0]const u16,
     wzValueName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegCloseReadBatch(
     hRegReadBatch: *_HREGREADBATCH,
     phRegReadBatchReply: **_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterRegCloseReadBatchEx(
     hRegReadBatch: *_HREGREADBATCH,
     flags: u32,
     phRegReadBatchReply: **_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegReadBatchReplyNextCommand(
     hRegReadBatchReply: *_HREGREADBATCHREPLY,
     pBatchCommand: *CLUSTER_READ_BATCH_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn ClusterRegCloseReadBatchReply(
     hRegReadBatchReply: *_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn ClusterSetAccountAccess(
     hCluster: *_HCLUSTER,
     szAccountSID: [*:0]const u16,
@@ -10552,12 +10822,14 @@ pub extern "CLUSAPI" fn ClusterSetAccountAccess(
     dwControlType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn CreateCluster(
     pConfig: *CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSTER;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn CreateClusterNameAccount(
     hCluster: *_HCLUSTER,
     pConfig: *CREATE_CLUSTER_NAME_ACCOUNT,
@@ -10597,6 +10869,7 @@ pub extern "CLUSAPI" fn GetNodeCloudTypeDW(
     NodeCloudType: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "CLUSAPI" fn RegisterClusterResourceTypeNotifyV2(
     hChange: *_HCHANGE,
     hCluster: *_HCLUSTER,
@@ -10605,6 +10878,7 @@ pub extern "CLUSAPI" fn RegisterClusterResourceTypeNotifyV2(
     dwNotifyKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn AddClusterNode(
     hCluster: *_HCLUSTER,
     lpszNodeName: [*:0]const u16,
@@ -10628,6 +10902,7 @@ pub extern "CLUSAPI" fn RemoveClusterStorageNode(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn DestroyCluster(
     hCluster: *_HCLUSTER,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
@@ -10635,69 +10910,84 @@ pub extern "CLUSAPI" fn DestroyCluster(
     fdeleteVirtualComputerObjects: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn InitializeClusterHealthFault(
     clusterHealthFault: *CLUSTER_HEALTH_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn InitializeClusterHealthFaultArray(
     clusterHealthFaultArray: *CLUSTER_HEALTH_FAULT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn FreeClusterHealthFault(
     clusterHealthFault: *CLUSTER_HEALTH_FAULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn FreeClusterHealthFaultArray(
     clusterHealthFaultArray: *CLUSTER_HEALTH_FAULT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusGetClusterHealthFaults(
     hCluster: *_HCLUSTER,
     objects: *CLUSTER_HEALTH_FAULT_ARRAY,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusRemoveClusterHealthFault(
     hCluster: *_HCLUSTER,
     id: [*:0]const u16,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusAddClusterHealthFault(
     hCluster: *_HCLUSTER,
     failure: *CLUSTER_HEALTH_FAULT,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilStartResourceService(
     pszServiceName: [*:0]const u16,
     phServiceHandle: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilVerifyResourceService(
     pszServiceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilStopResourceService(
     pszServiceName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilVerifyService(
     hServiceHandle: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilStopService(
     hServiceHandle: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilCreateDirectoryTree(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilIsPathValid(
     pszPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilEnumProperties(
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
     pszOutProperties: [*:0]u16,
@@ -10706,6 +10996,7 @@ pub extern "RESUTILS" fn ResUtilEnumProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilEnumPrivateProperties(
     hkeyClusterKey: HKEY,
     pszOutProperties: [*:0]u16,
@@ -10714,6 +11005,7 @@ pub extern "RESUTILS" fn ResUtilEnumPrivateProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetProperties(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10723,6 +11015,7 @@ pub extern "RESUTILS" fn ResUtilGetProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetAllProperties(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10732,6 +11025,7 @@ pub extern "RESUTILS" fn ResUtilGetAllProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetPrivateProperties(
     hkeyClusterKey: HKEY,
     pOutPropertyList: [*]u8,
@@ -10740,6 +11034,7 @@ pub extern "RESUTILS" fn ResUtilGetPrivateProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetPropertySize(
     hkeyClusterKey: HKEY,
     pPropertyTableItem: *const RESUTIL_PROPERTY_ITEM,
@@ -10747,6 +11042,7 @@ pub extern "RESUTILS" fn ResUtilGetPropertySize(
     pnPropertyCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetProperty(
     hkeyClusterKey: HKEY,
     pPropertyTableItem: *const RESUTIL_PROPERTY_ITEM,
@@ -10754,6 +11050,7 @@ pub extern "RESUTILS" fn ResUtilGetProperty(
     pcbOutPropertyItemSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilVerifyPropertyTable(
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
     Reserved: *c_void,
@@ -10763,6 +11060,7 @@ pub extern "RESUTILS" fn ResUtilVerifyPropertyTable(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetPropertyTable(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10773,6 +11071,7 @@ pub extern "RESUTILS" fn ResUtilSetPropertyTable(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetPropertyTableEx(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10784,6 +11083,7 @@ pub extern "RESUTILS" fn ResUtilSetPropertyTableEx(
     pOutParams: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetPropertyParameterBlock(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10794,6 +11094,7 @@ pub extern "RESUTILS" fn ResUtilSetPropertyParameterBlock(
     pOutParams: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetPropertyParameterBlockEx(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10805,6 +11106,7 @@ pub extern "RESUTILS" fn ResUtilSetPropertyParameterBlockEx(
     pOutParams: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetUnknownProperties(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10812,6 +11114,7 @@ pub extern "RESUTILS" fn ResUtilSetUnknownProperties(
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetPropertiesToParameterBlock(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10820,6 +11123,7 @@ pub extern "RESUTILS" fn ResUtilGetPropertiesToParameterBlock(
     pszNameOfPropInError: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilPropertyListFromParameterBlock(
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
     pOutPropertyList: ?[*]u8,
@@ -10829,18 +11133,21 @@ pub extern "RESUTILS" fn ResUtilPropertyListFromParameterBlock(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilDupParameterBlock(
     pOutParams: *u8,
     pInParams: *const u8,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFreeParameterBlock(
     pOutParams: *u8,
     pInParams: *const u8,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilAddUnknownProperties(
     hkeyClusterKey: HKEY,
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
@@ -10850,21 +11157,25 @@ pub extern "RESUTILS" fn ResUtilAddUnknownProperties(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetPrivatePropertyList(
     hkeyClusterKey: HKEY,
     pInPropertyList: [*]const u8,
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilVerifyPrivatePropertyList(
     pInPropertyList: [*]const u8,
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilDupString(
     pszInString: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetBinaryValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10872,11 +11183,13 @@ pub extern "RESUTILS" fn ResUtilGetBinaryValue(
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetDwordValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10884,6 +11197,7 @@ pub extern "RESUTILS" fn ResUtilGetDwordValue(
     dwDefaultValue: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetQwordValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10891,6 +11205,7 @@ pub extern "RESUTILS" fn ResUtilGetQwordValue(
     qwDefaultValue: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetBinaryValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10900,6 +11215,7 @@ pub extern "RESUTILS" fn ResUtilSetBinaryValue(
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10907,6 +11223,7 @@ pub extern "RESUTILS" fn ResUtilSetSzValue(
     ppszOutString: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetExpandSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10914,6 +11231,7 @@ pub extern "RESUTILS" fn ResUtilSetExpandSzValue(
     ppszOutString: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetMultiSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10923,6 +11241,7 @@ pub extern "RESUTILS" fn ResUtilSetMultiSzValue(
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetDwordValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10930,6 +11249,7 @@ pub extern "RESUTILS" fn ResUtilSetDwordValue(
     pdwOutValue: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetQwordValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
@@ -10937,6 +11257,7 @@ pub extern "RESUTILS" fn ResUtilSetQwordValue(
     pqwOutValue: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilSetValueEx(
     hkeyClusterKey: HKEY,
     valueName: [*:0]const u16,
@@ -10946,6 +11267,7 @@ pub extern "RESUTILS" fn ResUtilSetValueEx(
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetBinaryProperty(
     ppbOutValue: **u8,
     pcbOutValueSize: *u32,
@@ -10956,6 +11278,7 @@ pub extern "RESUTILS" fn ResUtilGetBinaryProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetSzProperty(
     ppszOutValue: *PWSTR,
     pValueStruct: *const CLUSPROP_SZ,
@@ -10964,6 +11287,7 @@ pub extern "RESUTILS" fn ResUtilGetSzProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetMultiSzProperty(
     ppszOutValue: *PWSTR,
     pcbOutValueSize: *u32,
@@ -10974,6 +11298,7 @@ pub extern "RESUTILS" fn ResUtilGetMultiSzProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetDwordProperty(
     pdwOutValue: *u32,
     pValueStruct: *const CLUSPROP_DWORD,
@@ -10984,6 +11309,7 @@ pub extern "RESUTILS" fn ResUtilGetDwordProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetLongProperty(
     plOutValue: *i32,
     pValueStruct: *const CLUSPROP_LONG,
@@ -10994,6 +11320,7 @@ pub extern "RESUTILS" fn ResUtilGetLongProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetFileTimeProperty(
     pftOutValue: *FILETIME,
     pValueStruct: *const CLUSPROP_FILETIME,
@@ -11004,18 +11331,22 @@ pub extern "RESUTILS" fn ResUtilGetFileTimeProperty(
     pcbPropertyListSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetEnvironmentWithNetName(
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFreeEnvironment(
     lpEnvironment: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilExpandEnvironmentStrings(
     pszSrc: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetResourceServiceEnvironment(
     pszServiceName: [*:0]const u16,
     hResource: *_HRESOURCE,
@@ -11023,12 +11354,14 @@ pub extern "RESUTILS" fn ResUtilSetResourceServiceEnvironment(
     hResourceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilRemoveResourceServiceEnvironment(
     pszServiceName: [*:0]const u16,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
     hResourceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParameters(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
@@ -11037,6 +11370,7 @@ pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParameters(
     hResourceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindSzProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11044,6 +11378,7 @@ pub extern "RESUTILS" fn ResUtilFindSzProperty(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindExpandSzProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11051,6 +11386,7 @@ pub extern "RESUTILS" fn ResUtilFindExpandSzProperty(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindExpandedSzProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11058,6 +11394,7 @@ pub extern "RESUTILS" fn ResUtilFindExpandedSzProperty(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindDwordProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11065,6 +11402,7 @@ pub extern "RESUTILS" fn ResUtilFindDwordProperty(
     pdwPropertyValue: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindBinaryProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11073,6 +11411,7 @@ pub extern "RESUTILS" fn ResUtilFindBinaryProperty(
     pcbPropertyValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindMultiSzProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11081,6 +11420,7 @@ pub extern "RESUTILS" fn ResUtilFindMultiSzProperty(
     pcbPropertyValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindLongProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11088,6 +11428,7 @@ pub extern "RESUTILS" fn ResUtilFindLongProperty(
     plPropertyValue: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ResUtilFindULargeIntegerProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11095,6 +11436,7 @@ pub extern "RESUTILS" fn ResUtilFindULargeIntegerProperty(
     plPropertyValue: *u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindFileTimeProperty(
     pPropertyList: [*]const u8,
     cbPropertyListSize: u32,
@@ -11102,12 +11444,14 @@ pub extern "RESUTILS" fn ResUtilFindFileTimeProperty(
     pftPropertyValue: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusWorkerCreate(
     lpWorker: *CLUS_WORKER,
     lpStartAddress: PWORKER_START_ROUTINE,
     lpParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusWorkerCheckTerminate(
     lpWorker: *CLUS_WORKER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -11116,12 +11460,14 @@ pub extern "RESUTILS" fn ClusWorkerTerminate(
     lpWorker: *CLUS_WORKER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusWorkerTerminateEx(
     ClusWorker: *CLUS_WORKER,
     TimeoutInMilliseconds: u32,
     WaitOnly: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusWorkersTerminate(
     ClusWorkers: [*]*CLUS_WORKER,
     ClusWorkersCount: ?*c_void,
@@ -11129,21 +11475,25 @@ pub extern "RESUTILS" fn ClusWorkersTerminate(
     WaitOnly: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilResourcesEqual(
     hSelf: *_HRESOURCE,
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilResourceTypesEqual(
     lpszResourceTypeName: [*:0]const u16,
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilIsResourceClassEqual(
     prci: *CLUS_RESOURCE_CLASS_INFO,
     hResource: *_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilEnumResources(
     hSelf: *_HRESOURCE,
     lpszResTypeName: [*:0]const u16,
@@ -11151,6 +11501,7 @@ pub extern "RESUTILS" fn ResUtilEnumResources(
     pParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilEnumResourcesEx(
     hCluster: *_HCLUSTER,
     hSelf: *_HRESOURCE,
@@ -11159,11 +11510,13 @@ pub extern "RESUTILS" fn ResUtilEnumResourcesEx(
     pParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceDependency(
     hSelf: HANDLE,
     lpszResourceType: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceDependencyByName(
     hCluster: *_HCLUSTER,
     hSelf: HANDLE,
@@ -11171,6 +11524,7 @@ pub extern "RESUTILS" fn ResUtilGetResourceDependencyByName(
     bRecurse: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceDependencyByClass(
     hCluster: *_HCLUSTER,
     hSelf: HANDLE,
@@ -11178,11 +11532,13 @@ pub extern "RESUTILS" fn ResUtilGetResourceDependencyByClass(
     bRecurse: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceNameDependency(
     lpszResourceName: [*:0]const u16,
     lpszResourceType: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceDependentIPAddressProps(
     hResource: *_HRESOURCE,
     pszAddress: [*:0]u16,
@@ -11193,6 +11549,7 @@ pub extern "RESUTILS" fn ResUtilGetResourceDependentIPAddressProps(
     pcchNetwork: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilFindDependentDiskResourceDriveLetter(
     hCluster: *_HCLUSTER,
     hResource: *_HRESOURCE,
@@ -11200,6 +11557,7 @@ pub extern "RESUTILS" fn ResUtilFindDependentDiskResourceDriveLetter(
     pcchDriveLetter: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilTerminateServiceProcessFromResDll(
     dwServicePid: u32,
     bOffline: BOOL,
@@ -11208,6 +11566,7 @@ pub extern "RESUTILS" fn ResUtilTerminateServiceProcessFromResDll(
     hResourceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetPropertyFormats(
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
     pOutPropertyFormatList: [*]u8,
@@ -11216,6 +11575,7 @@ pub extern "RESUTILS" fn ResUtilGetPropertyFormats(
     pcbRequired: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetCoreClusterResources(
     hCluster: *_HCLUSTER,
     phClusterNameResource: **_HRESOURCE,
@@ -11223,33 +11583,39 @@ pub extern "RESUTILS" fn ResUtilGetCoreClusterResources(
     phClusterQuorumResource: **_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetResourceName(
     hResource: *_HRESOURCE,
     pszResourceName: [*:0]u16,
     pcchResourceNameInOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilGetClusterRoleState(
     hCluster: *_HCLUSTER,
     eClusterRole: CLUSTER_ROLE,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_ROLE_STATE;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusterIsPathOnSharedVolume(
     lpszPathName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusterGetVolumePathName(
     lpszFileName: [*:0]const u16,
     lpszVolumePathName: PWSTR,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusterGetVolumeNameForVolumeMountPoint(
     lpszVolumeMountPoint: [*:0]const u16,
     lpszVolumeName: PWSTR,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusterPrepareSharedVolumeForBackup(
     lpszFileName: [*:0]const u16,
     lpszVolumePathName: PWSTR,
@@ -11258,10 +11624,12 @@ pub extern "RESUTILS" fn ClusterPrepareSharedVolumeForBackup(
     lpcchVolumeName: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ClusterClearBackupStateForSharedVolume(
     lpszVolumePathName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParametersEx(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
@@ -11271,6 +11639,7 @@ pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParametersEx(
     hResourceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilEnumResourcesEx2(
     hCluster: *_HCLUSTER,
     hSelf: *_HRESOURCE,
@@ -11280,12 +11649,14 @@ pub extern "RESUTILS" fn ResUtilEnumResourcesEx2(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetResourceDependencyEx(
     hSelf: HANDLE,
     lpszResourceType: [*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetResourceDependencyByNameEx(
     hCluster: *_HCLUSTER,
     hSelf: HANDLE,
@@ -11294,6 +11665,7 @@ pub extern "RESUTILS" fn ResUtilGetResourceDependencyByNameEx(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetResourceDependencyByClassEx(
     hCluster: *_HCLUSTER,
     hSelf: HANDLE,
@@ -11302,12 +11674,14 @@ pub extern "RESUTILS" fn ResUtilGetResourceDependencyByClassEx(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetResourceNameDependencyEx(
     lpszResourceName: [*:0]const u16,
     lpszResourceType: [*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HRESOURCE;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetCoreClusterResourcesEx(
     hClusterIn: *_HCLUSTER,
     phClusterNameResourceOut: ?*?*_HRESOURCE,
@@ -11315,6 +11689,7 @@ pub extern "RESUTILS" fn ResUtilGetCoreClusterResourcesEx(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn OpenClusterCryptProvider(
     lpszResource: [*:0]const u16,
     lpszProvider: *i8,
@@ -11330,10 +11705,12 @@ pub extern "RESUTILS" fn OpenClusterCryptProviderEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *_HCLUSCRYPTPROVIDER;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn CloseClusterCryptProvider(
     hClusCryptProvider: *_HCLUSCRYPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ClusterEncrypt(
     hClusCryptProvider: *_HCLUSCRYPTPROVIDER,
     pData: [*:0]u8,
@@ -11342,6 +11719,7 @@ pub extern "RESUTILS" fn ClusterEncrypt(
     pcbData: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ClusterDecrypt(
     hClusCryptProvider: *_HCLUSCRYPTPROVIDER,
     pCryptInput: *u8,
@@ -11350,15 +11728,18 @@ pub extern "RESUTILS" fn ClusterDecrypt(
     pcbCryptOutput: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn FreeClusterCrypt(
     pCryptInfo: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ResUtilPaxosComparer(
     left: *const PaxosTagCStruct,
     right: *const PaxosTagCStruct,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ResUtilLeftPaxosIsLessThanRight(
     left: *const PaxosTagCStruct,
     right: *const PaxosTagCStruct,
@@ -11428,6 +11809,7 @@ pub extern "RESUTILS" fn ResUtilNodeEnum(
     pParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2012'
 pub extern "NTLANMAN" fn RegisterAppInstance(
     ProcessHandle: HANDLE,
     AppInstanceId: *Guid,
@@ -11450,6 +11832,7 @@ pub extern "NTLANMAN" fn QueryAppInstanceVersion(
 pub extern "NTLANMAN" fn ResetAllAppInstanceVersions(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "NTLANMAN" fn SetAppInstanceCsvFlags(
     ProcessHandle: HANDLE,
     Mask: u32,
@@ -11470,15 +11853,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("windows_programming.zig").HKEY;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const IDispatch = @import("automation.zig").IDispatch;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const IUnknown = @import("com.zig").IUnknown;
+const IDispatch = @import("automation.zig").IDispatch;
 const HRESULT = @import("com.zig").HRESULT;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
 const SC_HANDLE = @import("security.zig").SC_HANDLE;
@@ -11848,7 +12232,7 @@ test {
     const com_class_id_export_count = 40;
     const func_export_count = 349;
     const unicode_alias_count = 0;
-    const import_count = 19;
+    const import_count = 20;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

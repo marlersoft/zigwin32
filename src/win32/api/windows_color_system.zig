@@ -89,6 +89,9 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+pub const HCOLORSPACE = ?*c_void;
+
 pub const UpdateICMRegKey_command = extern enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
@@ -114,9 +117,6 @@ pub const ColorMatchToTarget_actionFlags = extern enum(i32) {
 pub const CS_ENABLE = ColorMatchToTarget_actionFlags.ENABLE;
 pub const CS_DISABLE = ColorMatchToTarget_actionFlags.DISABLE;
 pub const CS_DELETE_TRANSFORM = ColorMatchToTarget_actionFlags.DELETE_TRANSFORM;
-
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*c_void;
 
 pub const XYZColorF = extern struct {
     X: f32,
@@ -1528,11 +1528,13 @@ pub extern "mscms" fn ColorProfileGetDisplayUserScope(
     scope: *WCS_PROFILE_MANAGEMENT_SCOPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMMode(
     hdc: HDC,
     mode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CheckColorsInGamut(
     hdc: HDC,
     lpRGBTriple: [*]RGBTRIPLE,
@@ -1540,89 +1542,106 @@ pub extern "GDI32" fn CheckColorsInGamut(
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetColorSpace(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetLogColorSpaceA(
     hColorSpace: HCOLORSPACE,
     lpBuffer: [*]LOGCOLORSPACEA,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetLogColorSpaceW(
     hColorSpace: HCOLORSPACE,
     lpBuffer: [*]LOGCOLORSPACEW,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateColorSpaceA(
     lplcs: *LOGCOLORSPACEA,
 ) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateColorSpaceW(
     lplcs: *LOGCOLORSPACEW,
 ) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetColorSpace(
     hdc: HDC,
     hcs: HCOLORSPACE,
 ) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteColorSpace(
     hcs: HCOLORSPACE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetICMProfileA(
     hdc: HDC,
     pBufSize: *u32,
     pszFilename: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetICMProfileW(
     hdc: HDC,
     pBufSize: *u32,
     pszFilename: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMProfileA(
     hdc: HDC,
     lpFileName: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetICMProfileW(
     hdc: HDC,
     lpFileName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDeviceGammaRamp(
     hdc: HDC,
     lpRamp: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDeviceGammaRamp(
     hdc: HDC,
     lpRamp: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ColorMatchToTarget(
     hdc: HDC,
     hdcTarget: HDC,
     action: ColorMatchToTarget_actionFlags,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumICMProfilesA(
     hdc: HDC,
     proc: ICMENUMPROCA,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumICMProfilesW(
     hdc: HDC,
     proc: ICMENUMPROCW,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UpdateICMRegKeyA(
     reserved: u32,
     lpszCMID: PSTR,
@@ -1630,6 +1649,7 @@ pub extern "GDI32" fn UpdateICMRegKeyA(
     command: UpdateICMRegKey_command,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UpdateICMRegKeyW(
     reserved: u32,
     lpszCMID: PWSTR,
@@ -1637,6 +1657,7 @@ pub extern "GDI32" fn UpdateICMRegKeyW(
     command: UpdateICMRegKey_command,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ColorCorrectPalette(
     hdc: HDC,
     hPal: HPALETTE,

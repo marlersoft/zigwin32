@@ -108,7 +108,7 @@ pub const AsnObjectIdentifier = extern struct {
 };
 
 pub const AsnAny = extern struct {
-    asnType: AS_ANY_TYPE,
+    asnType: u8,
     asnValue: AsnAny._asnValue_e__Union,
     const _asnValue_e__Union = u32; // TODO: generate this nested type!
 };
@@ -252,7 +252,6 @@ pub const AS_ANY_TYPE = extern enum(u32) {
     ASN_BITS = 3,
     ASN_OBJECTIDENTIFIER = 6,
     ASN_SEQUENCE = 48,
-    __no_name__ = 49,
     ASN_IPADDRESS = 64,
     ASN_COUNTER32 = 65,
     ASN_GAUGE32 = 66,
@@ -262,7 +261,22 @@ pub const AS_ANY_TYPE = extern enum(u32) {
     SNMP_EXCEPTION_NOSUCHINSTANCE = 129,
     SNMP_EXCEPTION_ENDOFMIBVIEW = 130,
 };
-// TODO: enum 'AS_ANY_TYPE' has known issues with its value aliases
+pub const ASN_INTEGER = AS_ANY_TYPE.ASN_INTEGER;
+pub const ASN_INTEGER32 = AS_ANY_TYPE.ASN_INTEGER32;
+pub const ASN_UNSIGNED32 = AS_ANY_TYPE.ASN_UNSIGNED32;
+pub const ASN_COUNTER64 = AS_ANY_TYPE.ASN_COUNTER64;
+pub const ASN_OCTETSTRING = AS_ANY_TYPE.ASN_OCTETSTRING;
+pub const ASN_BITS = AS_ANY_TYPE.ASN_BITS;
+pub const ASN_OBJECTIDENTIFIER = AS_ANY_TYPE.ASN_OBJECTIDENTIFIER;
+pub const ASN_SEQUENCE = AS_ANY_TYPE.ASN_SEQUENCE;
+pub const ASN_IPADDRESS = AS_ANY_TYPE.ASN_IPADDRESS;
+pub const ASN_COUNTER32 = AS_ANY_TYPE.ASN_COUNTER32;
+pub const ASN_GAUGE32 = AS_ANY_TYPE.ASN_GAUGE32;
+pub const ASN_TIMETICKS = AS_ANY_TYPE.ASN_TIMETICKS;
+pub const ASN_OPAQUE = AS_ANY_TYPE.ASN_OPAQUE;
+pub const SNMP_EXCEPTION_NOSUCHOBJECT = AS_ANY_TYPE.SNMP_EXCEPTION_NOSUCHOBJECT;
+pub const SNMP_EXCEPTION_NOSUCHINSTANCE = AS_ANY_TYPE.SNMP_EXCEPTION_NOSUCHINSTANCE;
+pub const SNMP_EXCEPTION_ENDOFMIBVIEW = AS_ANY_TYPE.SNMP_EXCEPTION_ENDOFMIBVIEW;
 
 pub const Snmp_nTranslateMode = extern enum(u32) {
     TRANSLATED = 0,
@@ -407,124 +421,151 @@ pub const SNMP_ERROR_INCONSISTENTNAME = SnmpGetPduData_error_statusFlags.INCONSI
 //--------------------------------------------------------------------------------
 // Section: Functions (84)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidCpy(
     pOidDst: *AsnObjectIdentifier,
     pOidSrc: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidAppend(
     pOidDst: *AsnObjectIdentifier,
     pOidSrc: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidNCmp(
     pOid1: *AsnObjectIdentifier,
     pOid2: *AsnObjectIdentifier,
     nSubIds: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidCmp(
     pOid1: *AsnObjectIdentifier,
     pOid2: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidFree(
     pOid: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOctetsCmp(
     pOctets1: *AsnOctetString,
     pOctets2: *AsnOctetString,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOctetsNCmp(
     pOctets1: *AsnOctetString,
     pOctets2: *AsnOctetString,
     nChars: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOctetsCpy(
     pOctetsDst: *AsnOctetString,
     pOctetsSrc: *AsnOctetString,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOctetsFree(
     pOctets: *AsnOctetString,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilAsnAnyCpy(
     pAnyDst: *AsnAny,
     pAnySrc: *AsnAny,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilAsnAnyFree(
     pAny: *AsnAny,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilVarBindCpy(
     pVbDst: *SnmpVarBind,
     pVbSrc: *SnmpVarBind,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilVarBindFree(
     pVb: *SnmpVarBind,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilVarBindListCpy(
     pVblDst: *SnmpVarBindList,
     pVblSrc: *SnmpVarBindList,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilVarBindListFree(
     pVbl: *SnmpVarBindList,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilMemFree(
     pMem: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilMemAlloc(
     nBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilMemReAlloc(
     pMem: *c_void,
     nBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidToA(
     Oid: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilIdsToA(
     Ids: *u32,
     IdLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilPrintOid(
     Oid: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilPrintAsnAny(
     pAny: *AsnAny,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpSvcGetUptime(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpSvcSetLogLevel(
     nLogLevel: SNMP_LOG,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpSvcSetLogType(
     nLogType: SnmpSvcSetLogType_nLogTypeFlags,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilDbgPrint(
     nLogLevel: SNMP_LOG,
     szFormat: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrOpen(
     lpAgentAddress: ?PSTR,
     lpAgentCommunity: ?PSTR,
@@ -532,6 +573,7 @@ pub extern "mgmtapi" fn SnmpMgrOpen(
     nRetries: i32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrCtl(
     session: *c_void,
     dwCtlCode: u32,
@@ -542,32 +584,38 @@ pub extern "mgmtapi" fn SnmpMgrCtl(
     lpcbBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrClose(
     session: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrRequest(
     session: *c_void,
-    requestType: SNMP_PDU_TYPE,
+    requestType: u8,
     variableBindings: *SnmpVarBindList,
     errorStatus: *SnmpExtensionQueryEx_pErrorStatusFlags,
     errorIndex: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrStrToOid(
     string: ?PSTR,
     oid: *AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrOidToStr(
     oid: *AsnObjectIdentifier,
     string: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrTrapListen(
     phTrapAvailable: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrGetTrap(
     enterprise: *AsnObjectIdentifier,
     IPAddress: *AsnOctetString,
@@ -577,6 +625,7 @@ pub extern "mgmtapi" fn SnmpMgrGetTrap(
     variableBindings: *SnmpVarBindList,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrGetTrapEx(
     enterprise: *AsnObjectIdentifier,
     agentAddress: *AsnOctetString,
@@ -588,48 +637,58 @@ pub extern "mgmtapi" fn SnmpMgrGetTrapEx(
     variableBindings: *SnmpVarBindList,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetTranslateMode(
     nTranslateMode: *Snmp_nTranslateMode,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetTranslateMode(
     nTranslateMode: Snmp_nTranslateMode,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetRetransmitMode(
     nRetransmitMode: *Snmp_lStatus,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetRetransmitMode(
     nRetransmitMode: Snmp_lStatus,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetTimeout(
     hEntity: ?*c_void,
     nPolicyTimeout: *u32,
     nActualTimeout: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetTimeout(
     hEntity: ?*c_void,
     nPolicyTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetRetry(
     hEntity: ?*c_void,
     nPolicyRetry: *u32,
     nActualRetry: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetRetry(
     hEntity: ?*c_void,
     nPolicyRetry: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetVendorInfo(
     vendorInfo: *smiVENDORINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStartup(
     nMajorVersion: *u32,
     nMinorVersion: *u32,
@@ -638,18 +697,22 @@ pub extern "wsnmp32" fn SnmpStartup(
     nRetransmitMode: *Snmp_lStatus,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCleanup(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpOpen(
     hWnd: HWND,
     wMsg: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpClose(
     session: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSendMsg(
     session: ?*c_void,
     srcEntity: ?*c_void,
@@ -658,6 +721,7 @@ pub extern "wsnmp32" fn SnmpSendMsg(
     PDU: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpRecvMsg(
     session: ?*c_void,
     srcEntity: *?*c_void,
@@ -666,6 +730,7 @@ pub extern "wsnmp32" fn SnmpRecvMsg(
     PDU: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpRegister(
     session: ?*c_void,
     srcEntity: ?*c_void,
@@ -675,6 +740,7 @@ pub extern "wsnmp32" fn SnmpRegister(
     state: Snmp_lStatus,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCreateSession(
     hWnd: HWND,
     wMsg: u32,
@@ -682,6 +748,7 @@ pub extern "wsnmp32" fn SnmpCreateSession(
     lpClientData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpListen(
     hEntity: ?*c_void,
     lStatus: Snmp_lStatus,
@@ -693,11 +760,13 @@ pub extern "wsnmp32" fn SnmpListenEx(
     nUseEntityAddr: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCancelMsg(
     session: ?*c_void,
     reqId: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStartupEx(
     nMajorVersion: *u32,
     nMinorVersion: *u32,
@@ -706,43 +775,52 @@ pub extern "wsnmp32" fn SnmpStartupEx(
     nRetransmitMode: *Snmp_lStatus,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCleanupEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStrToEntity(
     session: ?*c_void,
     string: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpEntityToStr(
     entity: ?*c_void,
     size: u32,
     string: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpFreeEntity(
     entity: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStrToContext(
     session: ?*c_void,
     string: *smiOCTETS,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpContextToStr(
     context: ?*c_void,
     string: *smiOCTETS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpFreeContext(
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetPort(
     hEntity: ?*c_void,
     nPort: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCreatePdu(
     session: ?*c_void,
     PDU_type: SNMP_PDU_TYPE,
@@ -752,6 +830,7 @@ pub extern "wsnmp32" fn SnmpCreatePdu(
     varbindlist: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetPduData(
     PDU: ?*c_void,
     PDU_type: *i32,
@@ -761,6 +840,7 @@ pub extern "wsnmp32" fn SnmpGetPduData(
     varbindlist: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetPduData(
     PDU: ?*c_void,
     PDU_type: *const i32,
@@ -770,34 +850,41 @@ pub extern "wsnmp32" fn SnmpSetPduData(
     varbindlist: *const ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpDuplicatePdu(
     session: ?*c_void,
     PDU: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpFreePdu(
     PDU: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCreateVbl(
     session: ?*c_void,
     name: *smiOID,
     value: *smiVALUE,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpDuplicateVbl(
     session: ?*c_void,
     vbl: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpFreeVbl(
     vbl: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpCountVbl(
     vbl: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetVb(
     vbl: ?*c_void,
     index: u32,
@@ -805,6 +892,7 @@ pub extern "wsnmp32" fn SnmpGetVb(
     value: *smiVALUE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetVb(
     vbl: ?*c_void,
     index: u32,
@@ -812,31 +900,37 @@ pub extern "wsnmp32" fn SnmpSetVb(
     value: *smiVALUE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpDeleteVb(
     vbl: ?*c_void,
     index: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetLastError(
     session: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStrToOid(
     string: [*:0]const u8,
     dstOID: *smiOID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpOidToStr(
     srcOID: *smiOID,
     size: u32,
     string: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpOidCopy(
     srcOID: *smiOID,
     dstOID: *smiOID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpOidCompare(
     xOID: *smiOID,
     yOID: *smiOID,
@@ -844,6 +938,7 @@ pub extern "wsnmp32" fn SnmpOidCompare(
     result: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpEncodeMsg(
     session: ?*c_void,
     srcEntity: ?*c_void,
@@ -853,6 +948,7 @@ pub extern "wsnmp32" fn SnmpEncodeMsg(
     msgBufDesc: *smiOCTETS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpDecodeMsg(
     session: ?*c_void,
     srcEntity: *?*c_void,
@@ -862,6 +958,7 @@ pub extern "wsnmp32" fn SnmpDecodeMsg(
     msgBufDesc: *smiOCTETS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpFreeDescriptor(
     syntax: u32,
     descriptor: *smiOCTETS,
@@ -905,7 +1002,7 @@ test {
 
     const constant_export_count = 90;
     const type_export_count = 30;
-    const enum_value_export_count = 71;
+    const enum_value_export_count = 87;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 84;

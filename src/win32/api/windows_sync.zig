@@ -164,6 +164,7 @@ pub const KCCR_COOKIE_KNOWLEDGE_CONTAINED = KNOWLEDGE_COOKIE_COMPARISON_RESULT.C
 pub const KCCR_COOKIE_KNOWLEDGE_CONTAINS = KNOWLEDGE_COOKIE_COMPARISON_RESULT.CONTAINS;
 pub const KCCR_COOKIE_KNOWLEDGE_NOT_COMPARABLE = KNOWLEDGE_COOKIE_COMPARISON_RESULT.NOT_COMPARABLE;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IClockVectorElement_Value = @import("../zig.zig").Guid.initString("e71c4250-adf8-4a07-8fae-5669596909c1");
 pub const IID_IClockVectorElement = &IID_IClockVectorElement_Value;
 pub const IClockVectorElement = extern struct {
@@ -193,6 +194,7 @@ pub const IClockVectorElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFeedClockVectorElement_Value = @import("../zig.zig").Guid.initString("a40b46d2-e97b-4156-b6da-991f501b0f05");
 pub const IID_IFeedClockVectorElement = &IID_IFeedClockVectorElement_Value;
 pub const IFeedClockVectorElement = extern struct {
@@ -222,6 +224,7 @@ pub const IFeedClockVectorElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IClockVector_Value = @import("../zig.zig").Guid.initString("14b2274a-8698-4cc6-9333-f89bd1d47bc4");
 pub const IID_IClockVector = &IID_IClockVector_Value;
 pub const IClockVector = extern struct {
@@ -252,6 +255,7 @@ pub const IClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFeedClockVector_Value = @import("../zig.zig").Guid.initString("8d1d98d1-9fb8-4ec9-a553-54dd924e0f67");
 pub const IID_IFeedClockVector = &IID_IFeedClockVector_Value;
 pub const IFeedClockVector = extern struct {
@@ -281,6 +285,7 @@ pub const IFeedClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumClockVector_Value = @import("../zig.zig").Guid.initString("525844db-2837-4799-9e80-81a66e02220c");
 pub const IID_IEnumClockVector = &IID_IEnumClockVector_Value;
 pub const IEnumClockVector = extern struct {
@@ -327,6 +332,7 @@ pub const IEnumClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumFeedClockVector_Value = @import("../zig.zig").Guid.initString("550f763d-146a-48f6-abeb-6c88c7f70514");
 pub const IID_IEnumFeedClockVector = &IID_IEnumFeedClockVector_Value;
 pub const IEnumFeedClockVector = extern struct {
@@ -373,6 +379,7 @@ pub const IEnumFeedClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ICoreFragment_Value = @import("../zig.zig").Guid.initString("613b2ab5-b304-47d9-9c31-ce6c54401a15");
 pub const IID_ICoreFragment = &IID_ICoreFragment_Value;
 pub const ICoreFragment = extern struct {
@@ -428,6 +435,7 @@ pub const ICoreFragment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ICoreFragmentInspector_Value = @import("../zig.zig").Guid.initString("f7fcc5fd-ae26-4679-ba16-96aac583c134");
 pub const IID_ICoreFragmentInspector = &IID_ICoreFragmentInspector_Value;
 pub const ICoreFragmentInspector = extern struct {
@@ -458,6 +466,7 @@ pub const ICoreFragmentInspector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRangeException_Value = @import("../zig.zig").Guid.initString("75ae8777-6848-49f7-956c-a3a92f5096e8");
 pub const IID_IRangeException = &IID_IRangeException_Value;
 pub const IRangeException = extern struct {
@@ -498,6 +507,7 @@ pub const IRangeException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumRangeExceptions_Value = @import("../zig.zig").Guid.initString("0944439f-ddb1-4176-b703-046ff22a2386");
 pub const IID_IEnumRangeExceptions = &IID_IEnumRangeExceptions_Value;
 pub const IEnumRangeExceptions = extern struct {
@@ -544,6 +554,7 @@ pub const IEnumRangeExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISingleItemException_Value = @import("../zig.zig").Guid.initString("892fb9b0-7c55-4a18-9316-fdf449569b64");
 pub const IID_ISingleItemException = &IID_ISingleItemException_Value;
 pub const ISingleItemException = extern struct {
@@ -575,6 +586,7 @@ pub const ISingleItemException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSingleItemExceptions_Value = @import("../zig.zig").Guid.initString("e563381c-1b4d-4c66-9796-c86faccdcd40");
 pub const IID_IEnumSingleItemExceptions = &IID_IEnumSingleItemExceptions_Value;
 pub const IEnumSingleItemExceptions = extern struct {
@@ -621,6 +633,7 @@ pub const IEnumSingleItemExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeUnitException_Value = @import("../zig.zig").Guid.initString("0cd7ee7c-fec0-4021-99ee-f0e5348f2a5f");
 pub const IID_IChangeUnitException = &IID_IChangeUnitException_Value;
 pub const IChangeUnitException = extern struct {
@@ -661,6 +674,7 @@ pub const IChangeUnitException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumChangeUnitExceptions_Value = @import("../zig.zig").Guid.initString("3074e802-9319-4420-be21-1022e2e21da8");
 pub const IID_IEnumChangeUnitExceptions = &IID_IEnumChangeUnitExceptions_Value;
 pub const IEnumChangeUnitExceptions = extern struct {
@@ -707,6 +721,7 @@ pub const IEnumChangeUnitExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("2209f4fc-fd10-4ff0-84a8-f0a1982e440e");
 pub const IID_IReplicaKeyMap = &IID_IReplicaKeyMap_Value;
 pub const IReplicaKeyMap = extern struct {
@@ -748,6 +763,7 @@ pub const IReplicaKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IConstructReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("ded10970-ec85-4115-b52c-4405845642a5");
 pub const IID_IConstructReplicaKeyMap = &IID_IConstructReplicaKeyMap_Value;
 pub const IConstructReplicaKeyMap = extern struct {
@@ -770,6 +786,7 @@ pub const IConstructReplicaKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncKnowledge_Value = @import("../zig.zig").Guid.initString("615bbb53-c945-4203-bf4b-2cb65919a0aa");
 pub const IID_ISyncKnowledge = &IID_ISyncKnowledge_Value;
 pub const ISyncKnowledge = extern struct {
@@ -1004,6 +1021,7 @@ pub const ISyncKnowledge = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IForgottenKnowledge_Value = @import("../zig.zig").Guid.initString("456e0f96-6036-452b-9f9d-bcc4b4a85db2");
 pub const IID_IForgottenKnowledge = &IID_IForgottenKnowledge_Value;
 pub const IForgottenKnowledge = extern struct {
@@ -1026,6 +1044,7 @@ pub const IForgottenKnowledge = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncKnowledge2_Value = @import("../zig.zig").Guid.initString("ed0addc0-3b4b-46a1-9a45-45661d2114c8");
 pub const IID_ISyncKnowledge2 = &IID_ISyncKnowledge2_Value;
 pub const ISyncKnowledge2 = extern struct {
@@ -1167,6 +1186,7 @@ pub const ISyncKnowledge2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRecoverableErrorData_Value = @import("../zig.zig").Guid.initString("b37c4a0a-4b7d-4c2d-9711-3b00d119b1c8");
 pub const IID_IRecoverableErrorData = &IID_IRecoverableErrorData_Value;
 pub const IRecoverableErrorData = extern struct {
@@ -1207,6 +1227,7 @@ pub const IRecoverableErrorData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRecoverableError_Value = @import("../zig.zig").Guid.initString("0f5625e8-0a7b-45ee-9637-1ce13645909e");
 pub const IID_IRecoverableError = &IID_IRecoverableError_Value;
 pub const IRecoverableError = extern struct {
@@ -1263,6 +1284,7 @@ pub const IRecoverableError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeConflict_Value = @import("../zig.zig").Guid.initString("014ebf97-9f20-4f7a-bdd4-25979c77c002");
 pub const IID_IChangeConflict = &IID_IChangeConflict_Value;
 pub const IChangeConflict = extern struct {
@@ -1452,6 +1474,7 @@ pub const IConstraintConflict = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncCallback_Value = @import("../zig.zig").Guid.initString("0599797f-5ed9-485c-ae36-0c5d1bf2e7a5");
 pub const IID_ISyncCallback = &IID_ISyncCallback_Value;
 pub const ISyncCallback = extern struct {
@@ -1508,6 +1531,7 @@ pub const ISyncCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncCallback2_Value = @import("../zig.zig").Guid.initString("47ce84af-7442-4ead-8630-12015e030ad7");
 pub const IID_ISyncCallback2 = &IID_ISyncCallback2_Value;
 pub const ISyncCallback2 = extern struct {
@@ -1560,6 +1584,7 @@ pub const ISyncConstraintCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProvider_Value = @import("../zig.zig").Guid.initString("8f657056-2bce-4a17-8c68-c7bb7898b56f");
 pub const IID_ISyncProvider = &IID_ISyncProvider_Value;
 pub const ISyncProvider = extern struct {
@@ -1581,6 +1606,7 @@ pub const ISyncProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionState_Value = @import("../zig.zig").Guid.initString("b8a940fe-9f01-483b-9434-c37d361225d9");
 pub const IID_ISyncSessionState = &IID_ISyncSessionState_Value;
 pub const ISyncSessionState = extern struct {
@@ -1657,6 +1683,7 @@ pub const ISyncSessionState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionExtendedErrorInfo_Value = @import("../zig.zig").Guid.initString("326c6810-790a-409b-b741-6999388761eb");
 pub const IID_ISyncSessionExtendedErrorInfo = &IID_ISyncSessionExtendedErrorInfo_Value;
 pub const ISyncSessionExtendedErrorInfo = extern struct {
@@ -1678,6 +1705,7 @@ pub const ISyncSessionExtendedErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionState2_Value = @import("../zig.zig").Guid.initString("9e37cfa3-9e38-4c61-9ca3-ffe810b45ca2");
 pub const IID_ISyncSessionState2 = &IID_ISyncSessionState2_Value;
 pub const ISyncSessionState2 = extern struct {
@@ -1707,6 +1735,7 @@ pub const ISyncSessionState2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFilterInfo_Value = @import("../zig.zig").Guid.initString("794eaaf8-3f2e-47e6-9728-17e6fcf94cb7");
 pub const IID_ISyncFilterInfo = &IID_ISyncFilterInfo_Value;
 pub const ISyncFilterInfo = extern struct {
@@ -1729,6 +1758,7 @@ pub const ISyncFilterInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFilterInfo2_Value = @import("../zig.zig").Guid.initString("19b394ba-e3d0-468c-934d-321968b2ab34");
 pub const IID_ISyncFilterInfo2 = &IID_ISyncFilterInfo2_Value;
 pub const ISyncFilterInfo2 = extern struct {
@@ -1750,6 +1780,7 @@ pub const ISyncFilterInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeUnitListFilterInfo_Value = @import("../zig.zig").Guid.initString("f2837671-0bdf-43fa-b502-232375fb50c2");
 pub const IID_IChangeUnitListFilterInfo = &IID_IChangeUnitListFilterInfo_Value;
 pub const IChangeUnitListFilterInfo = extern struct {
@@ -1907,6 +1938,7 @@ pub const ICombinedFilterInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncChanges_Value = @import("../zig.zig").Guid.initString("5f86be4a-5e78-4e32-ac1c-c24fd223ef85");
 pub const IID_IEnumSyncChanges = &IID_IEnumSyncChanges_Value;
 pub const IEnumSyncChanges = extern struct {
@@ -1953,6 +1985,7 @@ pub const IEnumSyncChanges = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBuilder_Value = @import("../zig.zig").Guid.initString("56f14771-8677-484f-a170-e386e418a676");
 pub const IID_ISyncChangeBuilder = &IID_ISyncChangeBuilder_Value;
 pub const ISyncChangeBuilder = extern struct {
@@ -2004,6 +2037,7 @@ pub const IFilterTrackingSyncChangeBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchBase_Value = @import("../zig.zig").Guid.initString("52f6e694-6a71-4494-a184-a8311bf5d227");
 pub const IID_ISyncChangeBatchBase = &IID_ISyncChangeBatchBase_Value;
 pub const ISyncChangeBatchBase = extern struct {
@@ -2136,6 +2170,7 @@ pub const ISyncChangeBatchBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatch_Value = @import("../zig.zig").Guid.initString("70c64dee-380f-4c2e-8f70-31c55bd5f9b3");
 pub const IID_ISyncChangeBatch = &IID_ISyncChangeBatch_Value;
 pub const ISyncChangeBatch = extern struct {
@@ -2180,6 +2215,7 @@ pub const ISyncChangeBatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFullEnumerationChangeBatch_Value = @import("../zig.zig").Guid.initString("ef64197d-4f44-4ea2-b355-4524713e3bed");
 pub const IID_ISyncFullEnumerationChangeBatch = &IID_ISyncFullEnumerationChangeBatch_Value;
 pub const ISyncFullEnumerationChangeBatch = extern struct {
@@ -2219,6 +2255,7 @@ pub const ISyncFullEnumerationChangeBatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchWithPrerequisite_Value = @import("../zig.zig").Guid.initString("097f13be-5b92-4048-b3f2-7b42a2515e07");
 pub const IID_ISyncChangeBatchWithPrerequisite = &IID_ISyncChangeBatchWithPrerequisite_Value;
 pub const ISyncChangeBatchWithPrerequisite = extern struct {
@@ -2257,6 +2294,7 @@ pub const ISyncChangeBatchWithPrerequisite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchBase2_Value = @import("../zig.zig").Guid.initString("6fdb596a-d755-4584-bd0c-c0c23a548fbf");
 pub const IID_ISyncChangeBatchBase2 = &IID_ISyncChangeBatchBase2_Value;
 pub const ISyncChangeBatchBase2 = extern struct {
@@ -2281,6 +2319,7 @@ pub const ISyncChangeBatchBase2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchAdvanced_Value = @import("../zig.zig").Guid.initString("0f1a4995-cbc8-421d-b550-5d0bebf3e9a5");
 pub const IID_ISyncChangeBatchAdvanced = &IID_ISyncChangeBatchAdvanced_Value;
 pub const ISyncChangeBatchAdvanced = extern struct {
@@ -2396,6 +2435,7 @@ pub const ISyncFullEnumerationChangeBatch2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IKnowledgeSyncProvider_Value = @import("../zig.zig").Guid.initString("43434a49-8da4-47f2-8172-ad7b8b024978");
 pub const IID_IKnowledgeSyncProvider = &IID_IKnowledgeSyncProvider_Value;
 pub const IKnowledgeSyncProvider = extern struct {
@@ -2482,6 +2522,7 @@ pub const IKnowledgeSyncProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeUnit_Value = @import("../zig.zig").Guid.initString("60edd8ca-7341-4bb7-95ce-fab6394b51cb");
 pub const IID_ISyncChangeUnit = &IID_ISyncChangeUnit_Value;
 pub const ISyncChangeUnit = extern struct {
@@ -2521,6 +2562,7 @@ pub const ISyncChangeUnit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncChangeUnits_Value = @import("../zig.zig").Guid.initString("346b35f1-8703-4c6d-ab1a-4dbca2cff97f");
 pub const IID_IEnumSyncChangeUnits = &IID_IEnumSyncChangeUnits_Value;
 pub const IEnumSyncChangeUnits = extern struct {
@@ -2567,6 +2609,7 @@ pub const IEnumSyncChangeUnits = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChange_Value = @import("../zig.zig").Guid.initString("a1952beb-0f6b-4711-b136-01da85b968a6");
 pub const IID_ISyncChange = &IID_ISyncChange_Value;
 pub const ISyncChange = extern struct {
@@ -2664,6 +2707,7 @@ pub const ISyncChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeWithPrerequisite_Value = @import("../zig.zig").Guid.initString("9e38382f-1589-48c3-92e4-05ecdcb4f3f7");
 pub const IID_ISyncChangeWithPrerequisite = &IID_ISyncChangeWithPrerequisite_Value;
 pub const ISyncChangeWithPrerequisite = extern struct {
@@ -2694,6 +2738,7 @@ pub const ISyncChangeWithPrerequisite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFullEnumerationChange_Value = @import("../zig.zig").Guid.initString("9785e0bd-bdff-40c4-98c5-b34b2f1991b3");
 pub const IID_ISyncFullEnumerationChange = &IID_ISyncFullEnumerationChange_Value;
 pub const ISyncFullEnumerationChange = extern struct {
@@ -3004,6 +3049,7 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDataRetrieverCallback_Value = @import("../zig.zig").Guid.initString("71b4863b-f969-4676-bbc3-3d9fdc3fb2c7");
 pub const IID_IDataRetrieverCallback = &IID_IDataRetrieverCallback_Value;
 pub const IDataRetrieverCallback = extern struct {
@@ -3033,6 +3079,7 @@ pub const IDataRetrieverCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ILoadChangeContext_Value = @import("../zig.zig").Guid.initString("44a4aaca-ec39-46d5-b5c9-d633c0ee67e2");
 pub const IID_ILoadChangeContext = &IID_ILoadChangeContext_Value;
 pub const ILoadChangeContext = extern struct {
@@ -3073,6 +3120,7 @@ pub const ILoadChangeContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9b22f2a9-a4cd-4648-9d8e-3a510d4da04b");
 pub const IID_ISynchronousDataRetriever = &IID_ISynchronousDataRetriever_Value;
 pub const ISynchronousDataRetriever = extern struct {
@@ -3103,6 +3151,7 @@ pub const ISynchronousDataRetriever = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAsynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9fc7e470-61ea-4a88-9be4-df56a27cfef2");
 pub const IID_IAsynchronousDataRetriever = &IID_IAsynchronousDataRetriever_Value;
 pub const IAsynchronousDataRetriever = extern struct {
@@ -3148,6 +3197,7 @@ pub const IAsynchronousDataRetriever = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IFilterRequestCallback_Value = @import("../zig.zig").Guid.initString("82df8873-6360-463a-a8a1-ede5e1a1594d");
 pub const IID_IFilterRequestCallback = &IID_IFilterRequestCallback_Value;
 pub const IFilterRequestCallback = extern struct {
@@ -3170,6 +3220,7 @@ pub const IFilterRequestCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRequestFilteredSync_Value = @import("../zig.zig").Guid.initString("2e020184-6d18-46a7-a32a-da4aeb06696c");
 pub const IID_IRequestFilteredSync = &IID_IRequestFilteredSync_Value;
 pub const IRequestFilteredSync = extern struct {
@@ -3191,6 +3242,7 @@ pub const IRequestFilteredSync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISupportFilteredSync_Value = @import("../zig.zig").Guid.initString("3d128ded-d555-4e0d-bf4b-fb213a8a9302");
 pub const IID_ISupportFilteredSync = &IID_ISupportFilteredSync_Value;
 pub const ISupportFilteredSync = extern struct {
@@ -3263,6 +3315,7 @@ pub const IFilterTrackingProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISupportLastWriteTime_Value = @import("../zig.zig").Guid.initString("eadf816f-d0bd-43ca-8f40-5acdc6c06f7a");
 pub const IID_ISupportLastWriteTime = &IID_ISupportLastWriteTime_Value;
 pub const ISupportLastWriteTime = extern struct {
@@ -3295,6 +3348,7 @@ pub const ISupportLastWriteTime = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IProviderConverter_Value = @import("../zig.zig").Guid.initString("809b7276-98cf-4957-93a5-0ebdd3dddffd");
 pub const IID_IProviderConverter = &IID_IProviderConverter_Value;
 pub const IProviderConverter = extern struct {
@@ -3392,6 +3446,7 @@ pub const SyncProviderConfigUIConfiguration = extern struct {
     fIsGlobal: BOOL,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderRegistration_Value = @import("../zig.zig").Guid.initString("cb45953b-7624-47bc-a472-eb8cac6b222e");
 pub const IID_ISyncProviderRegistration = &IID_ISyncProviderRegistration_Value;
 pub const ISyncProviderRegistration = extern struct {
@@ -3553,6 +3608,7 @@ pub const ISyncProviderRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncProviderConfigUIInfos_Value = @import("../zig.zig").Guid.initString("f6be2602-17c6-4658-a2d7-68ed3330f641");
 pub const IID_IEnumSyncProviderConfigUIInfos = &IID_IEnumSyncProviderConfigUIInfos_Value;
 pub const IEnumSyncProviderConfigUIInfos = extern struct {
@@ -3599,6 +3655,7 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncProviderInfos_Value = @import("../zig.zig").Guid.initString("a04ba850-5eb1-460d-a973-393fcb608a11");
 pub const IID_IEnumSyncProviderInfos = &IID_IEnumSyncProviderInfos_Value;
 pub const IEnumSyncProviderInfos = extern struct {
@@ -3645,6 +3702,7 @@ pub const IEnumSyncProviderInfos = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderInfo_Value = @import("../zig.zig").Guid.initString("1ee135de-88a4-4504-b0d0-f7920d7e5ba6");
 pub const IID_ISyncProviderInfo = &IID_ISyncProviderInfo_Value;
 pub const ISyncProviderInfo = extern struct {
@@ -3667,6 +3725,7 @@ pub const ISyncProviderInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderConfigUIInfo_Value = @import("../zig.zig").Guid.initString("214141ae-33d7-4d8d-8e37-f227e880ce50");
 pub const IID_ISyncProviderConfigUIInfo = &IID_ISyncProviderConfigUIInfo_Value;
 pub const ISyncProviderConfigUIInfo = extern struct {
@@ -3689,6 +3748,7 @@ pub const ISyncProviderConfigUIInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderConfigUI_Value = @import("../zig.zig").Guid.initString("7b0705f6-cbcd-4071-ab05-3bdc364d4a0c");
 pub const IID_ISyncProviderConfigUI = &IID_ISyncProviderConfigUI_Value;
 pub const ISyncProviderConfigUI = extern struct {
@@ -3740,6 +3800,7 @@ pub const ISyncProviderConfigUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRegisteredSyncProvider_Value = @import("../zig.zig").Guid.initString("913bcf76-47c1-40b5-a896-5e8a9c414c14");
 pub const IID_IRegisteredSyncProvider = &IID_IRegisteredSyncProvider_Value;
 pub const IRegisteredSyncProvider = extern struct {
@@ -3795,6 +3856,7 @@ pub const SRE_CONFIGUI_ADDED = SYNC_REGISTRATION_EVENT.CONFIGUI_ADDED;
 pub const SRE_CONFIGUI_REMOVED = SYNC_REGISTRATION_EVENT.CONFIGUI_REMOVED;
 pub const SRE_CONFIGUI_UPDATED = SYNC_REGISTRATION_EVENT.CONFIGUI_UPDATED;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncRegistrationChange_Value = @import("../zig.zig").Guid.initString("eea0d9ae-6b29-43b4-9e70-e3ae33bb2c3b");
 pub const IID_ISyncRegistrationChange = &IID_ISyncRegistrationChange_Value;
 pub const ISyncRegistrationChange = extern struct {

@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (857)
 //--------------------------------------------------------------------------------
+pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 pub const AUDCLNT_STREAMFLAGS_CROSSPROCESS = @as(u32, 65536);
 pub const AUDCLNT_STREAMFLAGS_LOOPBACK = @as(u32, 131072);
 pub const AUDCLNT_STREAMFLAGS_EVENTCALLBACK = @as(u32, 262144);
@@ -858,7 +859,6 @@ pub const ENDPOINT_HARDWARE_SUPPORT_VOLUME = @as(u32, 1);
 pub const ENDPOINT_HARDWARE_SUPPORT_MUTE = @as(u32, 2);
 pub const ENDPOINT_HARDWARE_SUPPORT_METER = @as(u32, 4);
 pub const SPATIAL_AUDIO_STANDARD_COMMANDS_START = @as(u32, 200);
-pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1171)
@@ -7207,6 +7207,7 @@ pub const AudioClientProperties = extern struct {
     Options: AUDCLNT_STREAMOPTIONS,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioClient_Value = @import("../zig.zig").Guid.initString("1cb9ad4c-dbfa-4c32-b178-c2f568a703b2");
 pub const IID_IAudioClient = &IID_IAudioClient_Value;
 pub const IAudioClient = extern struct {
@@ -7322,6 +7323,7 @@ pub const IAudioClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioClient2_Value = @import("../zig.zig").Guid.initString("726778cd-f60a-4eda-82de-e47610cd78aa");
 pub const IID_IAudioClient2 = &IID_IAudioClient2_Value;
 pub const IAudioClient2 = extern struct {
@@ -7367,6 +7369,7 @@ pub const AudioClient3ActivationParams = extern struct {
     tracingContextId: Guid,
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAudioClient3_Value = @import("../zig.zig").Guid.initString("7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42");
 pub const IID_IAudioClient3 = &IID_IAudioClient3_Value;
 pub const IAudioClient3 = extern struct {
@@ -7412,6 +7415,7 @@ pub const IAudioClient3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioRenderClient_Value = @import("../zig.zig").Guid.initString("f294acfc-3146-4483-a7bf-addca7c260e2");
 pub const IID_IAudioRenderClient = &IID_IAudioRenderClient_Value;
 pub const IAudioRenderClient = extern struct {
@@ -7443,6 +7447,7 @@ pub const IAudioRenderClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioCaptureClient_Value = @import("../zig.zig").Guid.initString("c8adbd64-e71e-48a0-a4de-185c395cd317");
 pub const IID_IAudioCaptureClient = &IID_IAudioCaptureClient_Value;
 pub const IAudioCaptureClient = extern struct {
@@ -7484,6 +7489,7 @@ pub const IAudioCaptureClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioClock_Value = @import("../zig.zig").Guid.initString("cd63314f-3fba-4a1b-812c-ef96358728e7");
 pub const IID_IAudioClock = &IID_IAudioClock_Value;
 pub const IAudioClock = extern struct {
@@ -7522,6 +7528,7 @@ pub const IAudioClock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioClock2_Value = @import("../zig.zig").Guid.initString("6f49ff73-6727-49ac-a008-d98cf5e70048");
 pub const IID_IAudioClock2 = &IID_IAudioClock2_Value;
 pub const IAudioClock2 = extern struct {
@@ -7544,6 +7551,7 @@ pub const IAudioClock2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioClockAdjustment_Value = @import("../zig.zig").Guid.initString("f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c");
 pub const IID_IAudioClockAdjustment = &IID_IAudioClockAdjustment_Value;
 pub const IAudioClockAdjustment = extern struct {
@@ -7565,6 +7573,7 @@ pub const IAudioClockAdjustment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimpleAudioVolume_Value = @import("../zig.zig").Guid.initString("87ce5498-68d6-44e5-9215-6da47ef883d8");
 pub const IID_ISimpleAudioVolume = &IID_ISimpleAudioVolume_Value;
 pub const ISimpleAudioVolume = extern struct {
@@ -7612,6 +7621,7 @@ pub const ISimpleAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioStreamVolume_Value = @import("../zig.zig").Guid.initString("93014887-242d-4068-8a15-cf5e93b90fe3");
 pub const IID_IAudioStreamVolume = &IID_IAudioStreamVolume_Value;
 pub const IAudioStreamVolume = extern struct {
@@ -7746,6 +7756,7 @@ pub const IAudioAmbisonicsControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IChannelAudioVolume_Value = @import("../zig.zig").Guid.initString("1c158861-b533-4b30-b1cf-e853e51c59b8");
 pub const IID_IChannelAudioVolume = &IID_IChannelAudioVolume_Value;
 pub const IChannelAudioVolume = extern struct {
@@ -7886,6 +7897,7 @@ pub const IAudioFormatEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectBase_Value = @import("../zig.zig").Guid.initString("cce0b8f2-8d4d-4efb-a8cf-3d6ecf1c30e0");
 pub const IID_ISpatialAudioObjectBase = &IID_ISpatialAudioObjectBase_Value;
 pub const ISpatialAudioObjectBase = extern struct {
@@ -7932,6 +7944,7 @@ pub const ISpatialAudioObjectBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObject_Value = @import("../zig.zig").Guid.initString("dde28967-521b-46e5-8f00-bd6f2bc8ab1d");
 pub const IID_ISpatialAudioObject = &IID_ISpatialAudioObject_Value;
 pub const ISpatialAudioObject = extern struct {
@@ -7963,6 +7976,7 @@ pub const ISpatialAudioObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStreamBase_Value = @import("../zig.zig").Guid.initString("feaaf403-c1d8-450d-aa05-e0ccee7502a8");
 pub const IID_ISpatialAudioObjectRenderStreamBase = &IID_ISpatialAudioObjectRenderStreamBase_Value;
 pub const ISpatialAudioObjectRenderStreamBase = extern struct {
@@ -8030,6 +8044,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStream_Value = @import("../zig.zig").Guid.initString("bab5f473-b423-477b-85f5-b5a332a04153");
 pub const IID_ISpatialAudioObjectRenderStream = &IID_ISpatialAudioObjectRenderStream_Value;
 pub const ISpatialAudioObjectRenderStream = extern struct {
@@ -8052,6 +8067,7 @@ pub const ISpatialAudioObjectRenderStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStreamNotify_Value = @import("../zig.zig").Guid.initString("dddf83e6-68d7-4c70-883f-a1836afb4a50");
 pub const IID_ISpatialAudioObjectRenderStreamNotify = &IID_ISpatialAudioObjectRenderStreamNotify_Value;
 pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
@@ -8075,6 +8091,7 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioClient_Value = @import("../zig.zig").Guid.initString("bbf8e066-aaaa-49be-9a4d-fd2a858ea27f");
 pub const IID_ISpatialAudioClient = &IID_ISpatialAudioClient_Value;
 pub const ISpatialAudioClient = extern struct {
@@ -8237,6 +8254,7 @@ pub const SpatialAudioHrtfActivationParams = extern struct {
     Orientation: *f32,
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectForHrtf_Value = @import("../zig.zig").Guid.initString("d7436ade-1978-4e14-aba0-555bd8eb83b4");
 pub const IID_ISpatialAudioObjectForHrtf = &IID_ISpatialAudioObjectForHrtf_Value;
 pub const ISpatialAudioObjectForHrtf = extern struct {
@@ -8300,6 +8318,7 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStreamForHrtf_Value = @import("../zig.zig").Guid.initString("e08deef9-5363-406e-9fdc-080ee247bbe0");
 pub const IID_ISpatialAudioObjectRenderStreamForHrtf = &IID_ISpatialAudioObjectRenderStreamForHrtf_Value;
 pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
@@ -8322,6 +8341,7 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointFormatControl_Value = @import("../zig.zig").Guid.initString("784cfd40-9f89-456e-a1a6-873b006a664e");
 pub const IID_IAudioEndpointFormatControl = &IID_IAudioEndpointFormatControl_Value;
 pub const IAudioEndpointFormatControl = extern struct {
@@ -8401,6 +8421,7 @@ pub const DigitalAudioDisplayDevice = EndpointFormFactor.DigitalAudioDisplayDevi
 pub const UnknownFormFactor = EndpointFormFactor.UnknownFormFactor;
 pub const EndpointFormFactor_enum_count = EndpointFormFactor.EndpointFormFactor_enum_count;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMMNotificationClient_Value = @import("../zig.zig").Guid.initString("7991eec9-7e89-4d85-8390-6c703cec60c0");
 pub const IID_IMMNotificationClient = &IID_IMMNotificationClient_Value;
 pub const IMMNotificationClient = extern struct {
@@ -8458,6 +8479,7 @@ pub const IMMNotificationClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMMDevice_Value = @import("../zig.zig").Guid.initString("d666063f-1587-4e43-81f1-b948e807363f");
 pub const IID_IMMDevice = &IID_IMMDevice_Value;
 pub const IMMDevice = extern struct {
@@ -8507,6 +8529,7 @@ pub const IMMDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMMDeviceCollection_Value = @import("../zig.zig").Guid.initString("0bd7a1be-7a1a-44db-8397-cc5392387b5e");
 pub const IID_IMMDeviceCollection = &IID_IMMDeviceCollection_Value;
 pub const IMMDeviceCollection = extern struct {
@@ -8537,6 +8560,7 @@ pub const IMMDeviceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMMEndpoint_Value = @import("../zig.zig").Guid.initString("1be09788-6894-4089-8586-9a2a6c265ac5");
 pub const IID_IMMEndpoint = &IID_IMMEndpoint_Value;
 pub const IMMEndpoint = extern struct {
@@ -8558,6 +8582,7 @@ pub const IMMEndpoint = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMMDeviceEnumerator_Value = @import("../zig.zig").Guid.initString("a95664d2-9614-4f35-a746-de8db63617e6");
 pub const IID_IMMDeviceEnumerator = &IID_IMMDeviceEnumerator_Value;
 pub const IMMDeviceEnumerator = extern struct {
@@ -8640,6 +8665,7 @@ pub const IMMDeviceActivator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IActivateAudioInterfaceCompletionHandler_Value = @import("../zig.zig").Guid.initString("41d949ab-9862-444a-80f6-c261334da5eb");
 pub const IID_IActivateAudioInterfaceCompletionHandler = &IID_IActivateAudioInterfaceCompletionHandler_Value;
 pub const IActivateAudioInterfaceCompletionHandler = extern struct {
@@ -8661,6 +8687,7 @@ pub const IActivateAudioInterfaceCompletionHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IActivateAudioInterfaceAsyncOperation_Value = @import("../zig.zig").Guid.initString("72a22d78-cde4-431d-b8cc-843a71199b6d");
 pub const IID_IActivateAudioInterfaceAsyncOperation = &IID_IActivateAudioInterfaceAsyncOperation_Value;
 pub const IActivateAudioInterfaceAsyncOperation = extern struct {
@@ -8751,6 +8778,7 @@ pub const IAudioEndpointOffloadStreamVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioEndpointOffloadStreamMute_Value = @import("../zig.zig").Guid.initString("dfe21355-5ec2-40e0-8d6b-710ac3c00249");
 pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStreamMute_Value;
 pub const IAudioEndpointOffloadStreamMute = extern struct {
@@ -8810,6 +8838,7 @@ pub const IAudioEndpointOffloadStreamMeter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioEndpointLastBufferControl_Value = @import("../zig.zig").Guid.initString("f8520dd3-8f9d-4437-9861-62f584c33dd6");
 pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferControl_Value;
 pub const IAudioEndpointLastBufferControl = extern struct {
@@ -8838,6 +8867,7 @@ pub const IAudioEndpointLastBufferControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioLfxControl_Value = @import("../zig.zig").Guid.initString("076a6922-d802-4f83-baf6-409d9ca11bfe");
 pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
 pub const IAudioLfxControl = extern struct {
@@ -8867,6 +8897,7 @@ pub const IAudioLfxControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IHardwareAudioEngineBase_Value = @import("../zig.zig").Guid.initString("eddce3e4-f3c1-453a-b461-223563cbd886");
 pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
 pub const IHardwareAudioEngineBase = extern struct {
@@ -8962,6 +8993,7 @@ pub const Software_IO = ConnectorType.Software_IO;
 pub const Software_Fixed = ConnectorType.Software_Fixed;
 pub const Network = ConnectorType.Network;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPerChannelDbLevel_Value = @import("../zig.zig").Guid.initString("c2f8e001-f205-4bc9-99bc-c13b1e048ccb");
 pub const IID_IPerChannelDbLevel = &IID_IPerChannelDbLevel_Value;
 pub const IPerChannelDbLevel = extern struct {
@@ -9032,6 +9064,7 @@ pub const IPerChannelDbLevel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioVolumeLevel_Value = @import("../zig.zig").Guid.initString("7fb7b48f-531d-44a2-bcb3-5ad5a134b3dc");
 pub const IID_IAudioVolumeLevel = &IID_IAudioVolumeLevel_Value;
 pub const IAudioVolumeLevel = extern struct {
@@ -9045,6 +9078,7 @@ pub const IAudioVolumeLevel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioChannelConfig_Value = @import("../zig.zig").Guid.initString("bb11c46f-ec28-493c-b88a-5db88062ce98");
 pub const IID_IAudioChannelConfig = &IID_IAudioChannelConfig_Value;
 pub const IAudioChannelConfig = extern struct {
@@ -9075,6 +9109,7 @@ pub const IAudioChannelConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioLoudness_Value = @import("../zig.zig").Guid.initString("7d8b1437-dd53-4350-9c1b-1ee2890bd938");
 pub const IID_IAudioLoudness = &IID_IAudioLoudness_Value;
 pub const IAudioLoudness = extern struct {
@@ -9105,6 +9140,7 @@ pub const IAudioLoudness = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioInputSelector_Value = @import("../zig.zig").Guid.initString("4f03dc02-5e6e-4653-8f72-a030c123d598");
 pub const IID_IAudioInputSelector = &IID_IAudioInputSelector_Value;
 pub const IAudioInputSelector = extern struct {
@@ -9135,6 +9171,7 @@ pub const IAudioInputSelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioOutputSelector_Value = @import("../zig.zig").Guid.initString("bb515f69-94a7-429e-8b9c-271b3f11a3ab");
 pub const IID_IAudioOutputSelector = &IID_IAudioOutputSelector_Value;
 pub const IAudioOutputSelector = extern struct {
@@ -9165,6 +9202,7 @@ pub const IAudioOutputSelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioMute_Value = @import("../zig.zig").Guid.initString("df45aeea-b74a-4b6b-afad-2366b6aa012e");
 pub const IID_IAudioMute = &IID_IAudioMute_Value;
 pub const IAudioMute = extern struct {
@@ -9195,6 +9233,7 @@ pub const IAudioMute = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioBass_Value = @import("../zig.zig").Guid.initString("a2b1a1d9-4db3-425d-a2b2-bd335cb3e2e5");
 pub const IID_IAudioBass = &IID_IAudioBass_Value;
 pub const IAudioBass = extern struct {
@@ -9208,6 +9247,7 @@ pub const IAudioBass = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioMidrange_Value = @import("../zig.zig").Guid.initString("5e54b6d7-b44b-40d9-9a9e-e691d9ce6edf");
 pub const IID_IAudioMidrange = &IID_IAudioMidrange_Value;
 pub const IAudioMidrange = extern struct {
@@ -9221,6 +9261,7 @@ pub const IAudioMidrange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioTreble_Value = @import("../zig.zig").Guid.initString("0a717812-694e-4907-b74b-bafa5cfdca7b");
 pub const IID_IAudioTreble = &IID_IAudioTreble_Value;
 pub const IAudioTreble = extern struct {
@@ -9234,6 +9275,7 @@ pub const IAudioTreble = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioAutoGainControl_Value = @import("../zig.zig").Guid.initString("85401fd4-6de4-4b9d-9869-2d6753a82f3c");
 pub const IID_IAudioAutoGainControl = &IID_IAudioAutoGainControl_Value;
 pub const IAudioAutoGainControl = extern struct {
@@ -9264,6 +9306,7 @@ pub const IAudioAutoGainControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioPeakMeter_Value = @import("../zig.zig").Guid.initString("dd79923c-0599-45e0-b8b6-c8df7db6e796");
 pub const IID_IAudioPeakMeter = &IID_IAudioPeakMeter_Value;
 pub const IAudioPeakMeter = extern struct {
@@ -9294,6 +9337,7 @@ pub const IAudioPeakMeter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDeviceSpecificProperty_Value = @import("../zig.zig").Guid.initString("3b22bcbf-2586-4af0-8583-205d391b807c");
 pub const IID_IDeviceSpecificProperty = &IID_IDeviceSpecificProperty_Value;
 pub const IDeviceSpecificProperty = extern struct {
@@ -9344,6 +9388,7 @@ pub const IDeviceSpecificProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKsFormatSupport_Value = @import("../zig.zig").Guid.initString("3cb4a69d-bb6f-4d2b-95b7-452d2c155db5");
 pub const IID_IKsFormatSupport = &IID_IKsFormatSupport_Value;
 pub const IKsFormatSupport = extern struct {
@@ -9375,6 +9420,7 @@ pub const IKsFormatSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IKsJackDescription_Value = @import("../zig.zig").Guid.initString("4509f757-2d46-4637-8e62-ce7db944f57b");
 pub const IID_IKsJackDescription = &IID_IKsJackDescription_Value;
 pub const IKsJackDescription = extern struct {
@@ -9405,6 +9451,7 @@ pub const IKsJackDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IKsJackDescription2_Value = @import("../zig.zig").Guid.initString("478f3a9b-e0c9-4827-9228-6f5505ffe76a");
 pub const IID_IKsJackDescription2 = &IID_IKsJackDescription2_Value;
 pub const IKsJackDescription2 = extern struct {
@@ -9435,6 +9482,7 @@ pub const IKsJackDescription2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IKsJackSinkInformation_Value = @import("../zig.zig").Guid.initString("d9bd72ed-290f-4581-9ff3-61027a8fe532");
 pub const IID_IKsJackSinkInformation = &IID_IKsJackSinkInformation_Value;
 pub const IKsJackSinkInformation = extern struct {
@@ -9477,6 +9525,7 @@ pub const IKsJackContainerId = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPartsList_Value = @import("../zig.zig").Guid.initString("6daa848c-5eb0-45cc-aea5-998a2cda1ffb");
 pub const IID_IPartsList = &IID_IPartsList_Value;
 pub const IPartsList = extern struct {
@@ -9507,6 +9556,7 @@ pub const IPartsList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPart_Value = @import("../zig.zig").Guid.initString("ae2de0e4-5bca-4f2d-aa46-5d13f8fdb3a9");
 pub const IID_IPart = &IID_IPart_Value;
 pub const IPart = extern struct {
@@ -9628,6 +9678,7 @@ pub const IPart = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IConnector_Value = @import("../zig.zig").Guid.initString("9c2c4058-23f5-41de-877a-df3af236a09e");
 pub const IID_IConnector = &IID_IConnector_Value;
 pub const IConnector = extern struct {
@@ -9704,6 +9755,7 @@ pub const IConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISubunit_Value = @import("../zig.zig").Guid.initString("82149a85-dba6-4487-86bb-ea8f7fefcc71");
 pub const IID_ISubunit = &IID_ISubunit_Value;
 pub const ISubunit = extern struct {
@@ -9717,6 +9769,7 @@ pub const ISubunit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IControlInterface_Value = @import("../zig.zig").Guid.initString("45d37c3f-5140-444a-ae24-400789f3cbf3");
 pub const IID_IControlInterface = &IID_IControlInterface_Value;
 pub const IControlInterface = extern struct {
@@ -9746,6 +9799,7 @@ pub const IControlInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IControlChangeNotify_Value = @import("../zig.zig").Guid.initString("a09513ed-c709-4d21-bd7b-5f34c47f3947");
 pub const IID_IControlChangeNotify = &IID_IControlChangeNotify_Value;
 pub const IControlChangeNotify = extern struct {
@@ -9768,6 +9822,7 @@ pub const IControlChangeNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDeviceTopology_Value = @import("../zig.zig").Guid.initString("2a07407e-6497-4a18-9787-32f79bd0d98f");
 pub const IID_IDeviceTopology = &IID_IDeviceTopology_Value;
 pub const IDeviceTopology = extern struct {
@@ -9851,6 +9906,7 @@ pub const AUDIO_VOLUME_NOTIFICATION_DATA = extern struct {
     afChannelVolumes: [1]f32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioEndpointVolumeCallback_Value = @import("../zig.zig").Guid.initString("657804fa-d6ad-4496-8a60-352752af4f89");
 pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_Value;
 pub const IAudioEndpointVolumeCallback = extern struct {
@@ -9872,6 +9928,7 @@ pub const IAudioEndpointVolumeCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioEndpointVolume_Value = @import("../zig.zig").Guid.initString("5cdf2c82-841e-4546-9722-0cf74078229a");
 pub const IID_IAudioEndpointVolume = &IID_IAudioEndpointVolume_Value;
 pub const IAudioEndpointVolume = extern struct {
@@ -10041,6 +10098,7 @@ pub const IAudioEndpointVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointVolumeEx_Value = @import("../zig.zig").Guid.initString("66e11784-f695-4f28-a505-a7080081a78f");
 pub const IID_IAudioEndpointVolumeEx = &IID_IAudioEndpointVolumeEx_Value;
 pub const IAudioEndpointVolumeEx = extern struct {
@@ -10065,6 +10123,7 @@ pub const IAudioEndpointVolumeEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioMeterInformation_Value = @import("../zig.zig").Guid.initString("c02216f6-8c67-4b5b-9d00-d008e73e0064");
 pub const IID_IAudioMeterInformation = &IID_IAudioMeterInformation_Value;
 pub const IAudioMeterInformation = extern struct {
@@ -10126,6 +10185,7 @@ pub const DisconnectReasonSessionLogoff = AudioSessionDisconnectReason.SessionLo
 pub const DisconnectReasonSessionDisconnected = AudioSessionDisconnectReason.SessionDisconnected;
 pub const DisconnectReasonExclusiveModeOverride = AudioSessionDisconnectReason.ExclusiveModeOverride;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioSessionEvents_Value = @import("../zig.zig").Guid.initString("24918acc-64b3-37c1-8ca9-74a66e9957a8");
 pub const IID_IAudioSessionEvents = &IID_IAudioSessionEvents_Value;
 pub const IAudioSessionEvents = extern struct {
@@ -10203,6 +10263,7 @@ pub const IAudioSessionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioSessionControl_Value = @import("../zig.zig").Guid.initString("f4b1a599-7266-4319-a8ca-e70acb11e8cd");
 pub const IID_IAudioSessionControl = &IID_IAudioSessionControl_Value;
 pub const IAudioSessionControl = extern struct {
@@ -10291,6 +10352,7 @@ pub const IAudioSessionControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioSessionControl2_Value = @import("../zig.zig").Guid.initString("bfb7ff88-7239-4fc9-8fa2-07c950be9c6d");
 pub const IID_IAudioSessionControl2 = &IID_IAudioSessionControl2_Value;
 pub const IAudioSessionControl2 = extern struct {
@@ -10343,6 +10405,7 @@ pub const IAudioSessionControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioSessionManager_Value = @import("../zig.zig").Guid.initString("bfa971f1-4d5e-40bb-935e-967039bfbee4");
 pub const IID_IAudioSessionManager = &IID_IAudioSessionManager_Value;
 pub const IAudioSessionManager = extern struct {
@@ -10376,6 +10439,7 @@ pub const IAudioSessionManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioVolumeDuckNotification_Value = @import("../zig.zig").Guid.initString("c3b284d4-6d39-4359-b3cf-b56ddb3bb39c");
 pub const IID_IAudioVolumeDuckNotification = &IID_IAudioVolumeDuckNotification_Value;
 pub const IAudioVolumeDuckNotification = extern struct {
@@ -10406,6 +10470,7 @@ pub const IAudioVolumeDuckNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioSessionNotification_Value = @import("../zig.zig").Guid.initString("641dd20b-4d41-49cc-aba3-174b9477bb08");
 pub const IID_IAudioSessionNotification = &IID_IAudioSessionNotification_Value;
 pub const IAudioSessionNotification = extern struct {
@@ -10427,6 +10492,7 @@ pub const IAudioSessionNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioSessionEnumerator_Value = @import("../zig.zig").Guid.initString("e2f5bb11-0570-40ca-acdd-3aa01277dee8");
 pub const IID_IAudioSessionEnumerator = &IID_IAudioSessionEnumerator_Value;
 pub const IAudioSessionEnumerator = extern struct {
@@ -10457,6 +10523,7 @@ pub const IAudioSessionEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioSessionManager2_Value = @import("../zig.zig").Guid.initString("77aa99a0-1bd6-484f-8bc7-2c654c9a9b6f");
 pub const IID_IAudioSessionManager2 = &IID_IAudioSessionManager2_Value;
 pub const IAudioSessionManager2 = extern struct {
@@ -10551,6 +10618,7 @@ pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern str
     NotifyObject: *ISpatialAudioObjectRenderStreamNotify,
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataItems_Value = @import("../zig.zig").Guid.initString("bcd7c78f-3098-4f22-b547-a2f25a381269");
 pub const IID_ISpatialAudioMetadataItems = &IID_ISpatialAudioMetadataItems_Value;
 pub const ISpatialAudioMetadataItems = extern struct {
@@ -10604,6 +10672,7 @@ pub const ISpatialAudioMetadataItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataWriter_Value = @import("../zig.zig").Guid.initString("1b17ca01-2955-444d-a430-537dc589a844");
 pub const IID_ISpatialAudioMetadataWriter = &IID_ISpatialAudioMetadataWriter_Value;
 pub const ISpatialAudioMetadataWriter = extern struct {
@@ -10650,6 +10719,7 @@ pub const ISpatialAudioMetadataWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataReader_Value = @import("../zig.zig").Guid.initString("b78e86a2-31d9-4c32-94d2-7df40fc7ebec");
 pub const IID_ISpatialAudioMetadataReader = &IID_ISpatialAudioMetadataReader_Value;
 pub const ISpatialAudioMetadataReader = extern struct {
@@ -10698,6 +10768,7 @@ pub const ISpatialAudioMetadataReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataCopier_Value = @import("../zig.zig").Guid.initString("d224b233-e251-4fd0-9ca2-d5ecf9a68404");
 pub const IID_ISpatialAudioMetadataCopier = &IID_ISpatialAudioMetadataCopier_Value;
 pub const ISpatialAudioMetadataCopier = extern struct {
@@ -10737,6 +10808,7 @@ pub const ISpatialAudioMetadataCopier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataItemsBuffer_Value = @import("../zig.zig").Guid.initString("42640a16-e1bd-42d9-9ff6-031ab71a2dba");
 pub const IID_ISpatialAudioMetadataItemsBuffer = &IID_ISpatialAudioMetadataItemsBuffer_Value;
 pub const ISpatialAudioMetadataItemsBuffer = extern struct {
@@ -10775,6 +10847,7 @@ pub const ISpatialAudioMetadataItemsBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioMetadataClient_Value = @import("../zig.zig").Guid.initString("777d4a3b-f6ff-4a26-85dc-68d7cdeda1d4");
 pub const IID_ISpatialAudioMetadataClient = &IID_ISpatialAudioMetadataClient_Value;
 pub const ISpatialAudioMetadataClient = extern struct {
@@ -10833,6 +10906,7 @@ pub const ISpatialAudioMetadataClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectForMetadataCommands_Value = @import("../zig.zig").Guid.initString("0df2c94b-f5f9-472d-af6b-c46e0ac9cd05");
 pub const IID_ISpatialAudioObjectForMetadataCommands = &IID_ISpatialAudioObjectForMetadataCommands_Value;
 pub const ISpatialAudioObjectForMetadataCommands = extern struct {
@@ -10856,6 +10930,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectForMetadataItems_Value = @import("../zig.zig").Guid.initString("ddea49ff-3bc0-4377-8aad-9fbcfd808566");
 pub const IID_ISpatialAudioObjectForMetadataItems = &IID_ISpatialAudioObjectForMetadataItems_Value;
 pub const ISpatialAudioObjectForMetadataItems = extern struct {
@@ -10877,6 +10952,7 @@ pub const ISpatialAudioObjectForMetadataItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStreamForMetadata_Value = @import("../zig.zig").Guid.initString("bbc9c907-48d5-4a2e-a0c7-f7f0d67c1fb1");
 pub const IID_ISpatialAudioObjectRenderStreamForMetadata = &IID_ISpatialAudioObjectRenderStreamForMetadata_Value;
 pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
@@ -11066,6 +11142,7 @@ pub extern "ksuser" fn KsCreateTopologyNode2(
     NodeHandle: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MMDevAPI" fn ActivateAudioInterfaceAsync(
     deviceInterfacePath: [*:0]const u16,
     riid: *const Guid,

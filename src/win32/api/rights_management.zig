@@ -2,6 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (62)
 //--------------------------------------------------------------------------------
+pub const DRMIDVERSION = @as(u32, 0);
+pub const DRMBOUNDLICENSEPARAMSVERSION = @as(u32, 1);
+pub const DRMBINDINGFLAGS_IGNORE_VALIDITY_INTERVALS = @as(u32, 1);
+pub const DRMLICENSEACQDATAVERSION = @as(u32, 0);
+pub const DRMACTSERVINFOVERSION = @as(u32, 0);
+pub const DRMCLIENTSTRUCTVERSION = @as(u32, 1);
+pub const DRMCALLBACKVERSION = @as(u32, 1);
 pub const DRMHANDLE_INVALID = @as(u32, 0);
 pub const DRMENVHANDLE_INVALID = @as(u32, 0);
 pub const DRMQUERYHANDLE_INVALID = @as(u32, 0);
@@ -57,13 +64,6 @@ pub const DRM_LOCKBOXTYPE_BLACKBOX = @as(u32, 2);
 pub const DRM_AILT_NONSILENT = @as(u32, 1);
 pub const DRM_AILT_OBTAIN_ALL = @as(u32, 2);
 pub const DRM_AILT_CANCEL = @as(u32, 4);
-pub const DRMIDVERSION = @as(u32, 0);
-pub const DRMBOUNDLICENSEPARAMSVERSION = @as(u32, 1);
-pub const DRMBINDINGFLAGS_IGNORE_VALIDITY_INTERVALS = @as(u32, 1);
-pub const DRMLICENSEACQDATAVERSION = @as(u32, 0);
-pub const DRMACTSERVINFOVERSION = @as(u32, 0);
-pub const DRMCLIENTSTRUCTVERSION = @as(u32, 1);
-pub const DRMCALLBACKVERSION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (15)
@@ -670,6 +670,7 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicense(
     pvContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
     hEnv: u32,
     hIssuanceLicense: u32,
@@ -829,16 +830,19 @@ pub extern "msdrm" fn DRMGetIntervalTime(
 pub extern "msdrm" fn DRMRepair(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMRegisterProtectedWindow(
     hEnv: u32,
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMIsWindowProtected(
     hwnd: HWND,
     pfProtected: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     hClient: u32,
     uFlags: u32,

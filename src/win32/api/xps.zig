@@ -316,6 +316,7 @@ pub const XPS_COLOR = extern struct {
     const XPS_COLOR_VALUE = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMShareable_Value = @import("../zig.zig").Guid.initString("7137398f-2fc1-454d-8c6a-2c3115a16ece");
 pub const IID_IXpsOMShareable = &IID_IXpsOMShareable_Value;
 pub const IXpsOMShareable = extern struct {
@@ -345,6 +346,7 @@ pub const IXpsOMShareable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisual_Value = @import("../zig.zig").Guid.initString("bc3e7333-fb0b-4af3-a819-0b4eaad0d2fd");
 pub const IID_IXpsOMVisual = &IID_IXpsOMVisual_Value;
 pub const IXpsOMVisual = extern struct {
@@ -558,6 +560,7 @@ pub const IXpsOMVisual = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPart_Value = @import("../zig.zig").Guid.initString("74eb2f0b-a91e-4486-afac-0fabeca3dfc6");
 pub const IID_IXpsOMPart = &IID_IXpsOMPart_Value;
 pub const IXpsOMPart = extern struct {
@@ -587,6 +590,7 @@ pub const IXpsOMPart = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGlyphsEditor_Value = @import("../zig.zig").Guid.initString("a5ab8616-5b16-4b9f-9629-89b323ed7909");
 pub const IID_IXpsOMGlyphsEditor = &IID_IXpsOMGlyphsEditor_Value;
 pub const IXpsOMGlyphsEditor = extern struct {
@@ -749,6 +753,7 @@ pub const IXpsOMGlyphsEditor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGlyphs_Value = @import("../zig.zig").Guid.initString("819b3199-0a5a-4b64-bec7-a9e17e780de2");
 pub const IID_IXpsOMGlyphs = &IID_IXpsOMGlyphs_Value;
 pub const IXpsOMGlyphs = extern struct {
@@ -981,6 +986,7 @@ pub const IXpsOMGlyphs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDashCollection_Value = @import("../zig.zig").Guid.initString("081613f4-74eb-48f2-83b3-37a9ce2d7dc6");
 pub const IID_IXpsOMDashCollection = &IID_IXpsOMDashCollection_Value;
 pub const IXpsOMDashCollection = extern struct {
@@ -1045,6 +1051,7 @@ pub const IXpsOMDashCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMMatrixTransform_Value = @import("../zig.zig").Guid.initString("b77330ff-bb37-4501-a93e-f1b1e50bfc46");
 pub const IID_IXpsOMMatrixTransform = &IID_IXpsOMMatrixTransform_Value;
 pub const IXpsOMMatrixTransform = extern struct {
@@ -1082,6 +1089,7 @@ pub const IXpsOMMatrixTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometry_Value = @import("../zig.zig").Guid.initString("64fcf3d7-4d58-44ba-ad73-a13af6492072");
 pub const IID_IXpsOMGeometry = &IID_IXpsOMGeometry_Value;
 pub const IXpsOMGeometry = extern struct {
@@ -1167,6 +1175,7 @@ pub const IXpsOMGeometry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometryFigure_Value = @import("../zig.zig").Guid.initString("d410dc83-908c-443e-8947-b1795d3c165a");
 pub const IID_IXpsOMGeometryFigure = &IID_IXpsOMGeometryFigure_Value;
 pub const IXpsOMGeometryFigure = extern struct {
@@ -1307,6 +1316,7 @@ pub const IXpsOMGeometryFigure = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometryFigureCollection_Value = @import("../zig.zig").Guid.initString("fd48c3f3-a58e-4b5a-8826-1de54abe72b2");
 pub const IID_IXpsOMGeometryFigureCollection = &IID_IXpsOMGeometryFigureCollection_Value;
 pub const IXpsOMGeometryFigureCollection = extern struct {
@@ -1371,6 +1381,7 @@ pub const IXpsOMGeometryFigureCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPath_Value = @import("../zig.zig").Guid.initString("37d38bb6-3ee9-4110-9312-14b194163337");
 pub const IID_IXpsOMPath = &IID_IXpsOMPath_Value;
 pub const IXpsOMPath = extern struct {
@@ -1680,6 +1691,7 @@ pub const IXpsOMPath = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMBrush_Value = @import("../zig.zig").Guid.initString("56a3f80c-ea4c-4187-a57b-a2a473b2b42b");
 pub const IID_IXpsOMBrush = &IID_IXpsOMBrush_Value;
 pub const IXpsOMBrush = extern struct {
@@ -1709,6 +1721,7 @@ pub const IXpsOMBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientStopCollection_Value = @import("../zig.zig").Guid.initString("c9174c3a-3cd3-4319-bda4-11a39392ceef");
 pub const IID_IXpsOMGradientStopCollection = &IID_IXpsOMGradientStopCollection_Value;
 pub const IXpsOMGradientStopCollection = extern struct {
@@ -1773,6 +1786,7 @@ pub const IXpsOMGradientStopCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSolidColorBrush_Value = @import("../zig.zig").Guid.initString("a06f9f05-3be9-4763-98a8-094fc672e488");
 pub const IID_IXpsOMSolidColorBrush = &IID_IXpsOMSolidColorBrush_Value;
 pub const IXpsOMSolidColorBrush = extern struct {
@@ -1812,6 +1826,7 @@ pub const IXpsOMSolidColorBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMTileBrush_Value = @import("../zig.zig").Guid.initString("0fc2328d-d722-4a54-b2ec-be90218a789e");
 pub const IID_IXpsOMTileBrush = &IID_IXpsOMTileBrush_Value;
 pub const IXpsOMTileBrush = extern struct {
@@ -1913,6 +1928,7 @@ pub const IXpsOMTileBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisualBrush_Value = @import("../zig.zig").Guid.initString("97e294af-5b37-46b4-8057-874d2f64119b");
 pub const IID_IXpsOMVisualBrush = &IID_IXpsOMVisualBrush_Value;
 pub const IXpsOMVisualBrush = extern struct {
@@ -1974,6 +1990,7 @@ pub const IXpsOMVisualBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageBrush_Value = @import("../zig.zig").Guid.initString("3df0b466-d382-49ef-8550-dd94c80242e4");
 pub const IID_IXpsOMImageBrush = &IID_IXpsOMImageBrush_Value;
 pub const IXpsOMImageBrush = extern struct {
@@ -2027,6 +2044,7 @@ pub const IXpsOMImageBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientStop_Value = @import("../zig.zig").Guid.initString("5cf4f5cc-3969-49b5-a70a-5550b618fe49");
 pub const IID_IXpsOMGradientStop = &IID_IXpsOMGradientStop_Value;
 pub const IXpsOMGradientStop = extern struct {
@@ -2090,6 +2108,7 @@ pub const IXpsOMGradientStop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientBrush_Value = @import("../zig.zig").Guid.initString("edb59622-61a2-42c3-bace-acf2286c06bf");
 pub const IID_IXpsOMGradientBrush = &IID_IXpsOMGradientBrush_Value;
 pub const IXpsOMGradientBrush = extern struct {
@@ -2183,6 +2202,7 @@ pub const IXpsOMGradientBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMLinearGradientBrush_Value = @import("../zig.zig").Guid.initString("005e279f-c30d-40ff-93ec-1950d3c528db");
 pub const IID_IXpsOMLinearGradientBrush = &IID_IXpsOMLinearGradientBrush_Value;
 pub const IXpsOMLinearGradientBrush = extern struct {
@@ -2236,6 +2256,7 @@ pub const IXpsOMLinearGradientBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRadialGradientBrush_Value = @import("../zig.zig").Guid.initString("75f207e5-08bf-413c-96b1-b82b4064176b");
 pub const IID_IXpsOMRadialGradientBrush = &IID_IXpsOMRadialGradientBrush_Value;
 pub const IXpsOMRadialGradientBrush = extern struct {
@@ -2305,6 +2326,7 @@ pub const IXpsOMRadialGradientBrush = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMResource_Value = @import("../zig.zig").Guid.initString("da2ac0a2-73a2-4975-ad14-74097c3ff3a5");
 pub const IID_IXpsOMResource = &IID_IXpsOMResource_Value;
 pub const IXpsOMResource = extern struct {
@@ -2318,6 +2340,7 @@ pub const IXpsOMResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPartResources_Value = @import("../zig.zig").Guid.initString("f4cf7729-4864-4275-99b3-a8717163ecaf");
 pub const IID_IXpsOMPartResources = &IID_IXpsOMPartResources_Value;
 pub const IXpsOMPartResources = extern struct {
@@ -2363,6 +2386,7 @@ pub const IXpsOMPartResources = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDictionary_Value = @import("../zig.zig").Guid.initString("897c86b8-8eaf-4ae3-bdde-56419fcf4236");
 pub const IID_IXpsOMDictionary = &IID_IXpsOMDictionary_Value;
 pub const IXpsOMDictionary = extern struct {
@@ -2466,6 +2490,7 @@ pub const IXpsOMDictionary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMFontResource_Value = @import("../zig.zig").Guid.initString("a8c45708-47d9-4af4-8d20-33b48c9b8485");
 pub const IID_IXpsOMFontResource = &IID_IXpsOMFontResource_Value;
 pub const IXpsOMFontResource = extern struct {
@@ -2505,6 +2530,7 @@ pub const IXpsOMFontResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMFontResourceCollection_Value = @import("../zig.zig").Guid.initString("70b4a6bb-88d4-4fa8-aaf9-6d9c596fdbad");
 pub const IID_IXpsOMFontResourceCollection = &IID_IXpsOMFontResourceCollection_Value;
 pub const IXpsOMFontResourceCollection = extern struct {
@@ -2578,6 +2604,7 @@ pub const IXpsOMFontResourceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageResource_Value = @import("../zig.zig").Guid.initString("3db8417d-ae50-485e-9a44-d7758f78a23f");
 pub const IID_IXpsOMImageResource = &IID_IXpsOMImageResource_Value;
 pub const IXpsOMImageResource = extern struct {
@@ -2617,6 +2644,7 @@ pub const IXpsOMImageResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageResourceCollection_Value = @import("../zig.zig").Guid.initString("7a4a1a71-9cde-4b71-b33f-62de843eabfe");
 pub const IID_IXpsOMImageResourceCollection = &IID_IXpsOMImageResourceCollection_Value;
 pub const IXpsOMImageResourceCollection = extern struct {
@@ -2690,6 +2718,7 @@ pub const IXpsOMImageResourceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMColorProfileResource_Value = @import("../zig.zig").Guid.initString("67bd7d69-1eef-4bb1-b5e7-6f4f87be8abe");
 pub const IID_IXpsOMColorProfileResource = &IID_IXpsOMColorProfileResource_Value;
 pub const IXpsOMColorProfileResource = extern struct {
@@ -2720,6 +2749,7 @@ pub const IXpsOMColorProfileResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMColorProfileResourceCollection_Value = @import("../zig.zig").Guid.initString("12759630-5fba-4283-8f7d-cca849809edb");
 pub const IID_IXpsOMColorProfileResourceCollection = &IID_IXpsOMColorProfileResourceCollection_Value;
 pub const IXpsOMColorProfileResourceCollection = extern struct {
@@ -2793,6 +2823,7 @@ pub const IXpsOMColorProfileResourceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPrintTicketResource_Value = @import("../zig.zig").Guid.initString("e7ff32d2-34aa-499b-bbe9-9cd4ee6c59f7");
 pub const IID_IXpsOMPrintTicketResource = &IID_IXpsOMPrintTicketResource_Value;
 pub const IXpsOMPrintTicketResource = extern struct {
@@ -2823,6 +2854,7 @@ pub const IXpsOMPrintTicketResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRemoteDictionaryResource_Value = @import("../zig.zig").Guid.initString("c9bd7cd4-e16a-4bf8-8c84-c950af7a3061");
 pub const IID_IXpsOMRemoteDictionaryResource = &IID_IXpsOMRemoteDictionaryResource_Value;
 pub const IXpsOMRemoteDictionaryResource = extern struct {
@@ -2852,6 +2884,7 @@ pub const IXpsOMRemoteDictionaryResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRemoteDictionaryResourceCollection_Value = @import("../zig.zig").Guid.initString("5c38db61-7fec-464a-87bd-41e3bef018be");
 pub const IID_IXpsOMRemoteDictionaryResourceCollection = &IID_IXpsOMRemoteDictionaryResourceCollection_Value;
 pub const IXpsOMRemoteDictionaryResourceCollection = extern struct {
@@ -2925,6 +2958,7 @@ pub const IXpsOMRemoteDictionaryResourceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSignatureBlockResourceCollection_Value = @import("../zig.zig").Guid.initString("ab8f5d8e-351b-4d33-aaed-fa56f0022931");
 pub const IID_IXpsOMSignatureBlockResourceCollection = &IID_IXpsOMSignatureBlockResourceCollection_Value;
 pub const IXpsOMSignatureBlockResourceCollection = extern struct {
@@ -2998,6 +3032,7 @@ pub const IXpsOMSignatureBlockResourceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentStructureResource_Value = @import("../zig.zig").Guid.initString("85febc8a-6b63-48a9-af07-7064e4ecff30");
 pub const IID_IXpsOMDocumentStructureResource = &IID_IXpsOMDocumentStructureResource_Value;
 pub const IXpsOMDocumentStructureResource = extern struct {
@@ -3036,6 +3071,7 @@ pub const IXpsOMDocumentStructureResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMStoryFragmentsResource_Value = @import("../zig.zig").Guid.initString("c2b3ca09-0473-4282-87ae-1780863223f0");
 pub const IID_IXpsOMStoryFragmentsResource = &IID_IXpsOMStoryFragmentsResource_Value;
 pub const IXpsOMStoryFragmentsResource = extern struct {
@@ -3074,6 +3110,7 @@ pub const IXpsOMStoryFragmentsResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSignatureBlockResource_Value = @import("../zig.zig").Guid.initString("4776ad35-2e04-4357-8743-ebf6c171a905");
 pub const IID_IXpsOMSignatureBlockResource = &IID_IXpsOMSignatureBlockResource_Value;
 pub const IXpsOMSignatureBlockResource = extern struct {
@@ -3112,6 +3149,7 @@ pub const IXpsOMSignatureBlockResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisualCollection_Value = @import("../zig.zig").Guid.initString("94d8abde-ab91-46a8-82b7-f5b05ef01a96");
 pub const IID_IXpsOMVisualCollection = &IID_IXpsOMVisualCollection_Value;
 pub const IXpsOMVisualCollection = extern struct {
@@ -3176,6 +3214,7 @@ pub const IXpsOMVisualCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMCanvas_Value = @import("../zig.zig").Guid.initString("221d1452-331e-47c6-87e9-6ccefb9b5ba3");
 pub const IID_IXpsOMCanvas = &IID_IXpsOMCanvas_Value;
 pub const IXpsOMCanvas = extern struct {
@@ -3293,6 +3332,7 @@ pub const IXpsOMCanvas = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPage_Value = @import("../zig.zig").Guid.initString("d3e18888-f120-4fee-8c68-35296eae91d4");
 pub const IID_IXpsOMPage = &IID_IXpsOMPage_Value;
 pub const IXpsOMPage = extern struct {
@@ -3484,6 +3524,7 @@ pub const IXpsOMPage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPageReference_Value = @import("../zig.zig").Guid.initString("ed360180-6f92-4998-890d-2f208531a0a0");
 pub const IID_IXpsOMPageReference = &IID_IXpsOMPageReference_Value;
 pub const IXpsOMPageReference = extern struct {
@@ -3632,6 +3673,7 @@ pub const IXpsOMPageReference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPageReferenceCollection_Value = @import("../zig.zig").Guid.initString("ca16ba4d-e7b9-45c5-958b-f98022473745");
 pub const IID_IXpsOMPageReferenceCollection = &IID_IXpsOMPageReferenceCollection_Value;
 pub const IXpsOMPageReferenceCollection = extern struct {
@@ -3696,6 +3738,7 @@ pub const IXpsOMPageReferenceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocument_Value = @import("../zig.zig").Guid.initString("2c2c94cb-ac5f-4254-8ee9-23948309d9f0");
 pub const IID_IXpsOMDocument = &IID_IXpsOMDocument_Value;
 pub const IXpsOMDocument = extern struct {
@@ -3773,6 +3816,7 @@ pub const IXpsOMDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentCollection_Value = @import("../zig.zig").Guid.initString("d1c87f0d-e947-4754-8a25-971478f7e83e");
 pub const IID_IXpsOMDocumentCollection = &IID_IXpsOMDocumentCollection_Value;
 pub const IXpsOMDocumentCollection = extern struct {
@@ -3837,6 +3881,7 @@ pub const IXpsOMDocumentCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentSequence_Value = @import("../zig.zig").Guid.initString("56492eb4-d8d5-425e-8256-4c2b64ad0264");
 pub const IID_IXpsOMDocumentSequence = &IID_IXpsOMDocumentSequence_Value;
 pub const IXpsOMDocumentSequence = extern struct {
@@ -3882,6 +3927,7 @@ pub const IXpsOMDocumentSequence = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMCoreProperties_Value = @import("../zig.zig").Guid.initString("3340fe8f-4027-4aa1-8f5f-d35ae45fe597");
 pub const IID_IXpsOMCoreProperties = &IID_IXpsOMCoreProperties_Value;
 pub const IXpsOMCoreProperties = extern struct {
@@ -4167,6 +4213,7 @@ pub const IXpsOMCoreProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackage_Value = @import("../zig.zig").Guid.initString("18c3df65-81e1-4674-91dc-fc452f5a416f");
 pub const IID_IXpsOMPackage = &IID_IXpsOMPackage_Value;
 pub const IXpsOMPackage = extern struct {
@@ -4264,6 +4311,7 @@ pub const IXpsOMPackage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMObjectFactory_Value = @import("../zig.zig").Guid.initString("f9b2a685-a50d-4fc2-b764-b56e093ea0ca");
 pub const IID_IXpsOMObjectFactory = &IID_IXpsOMObjectFactory_Value;
 pub const IXpsOMObjectFactory = extern struct {
@@ -4652,6 +4700,7 @@ pub const IXpsOMObjectFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMNameCollection_Value = @import("../zig.zig").Guid.initString("4bddf8ec-c915-421b-a166-d173d25653d2");
 pub const IID_IXpsOMNameCollection = &IID_IXpsOMNameCollection_Value;
 pub const IXpsOMNameCollection = extern struct {
@@ -4682,6 +4731,7 @@ pub const IXpsOMNameCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPartUriCollection_Value = @import("../zig.zig").Guid.initString("57c650d4-067c-4893-8c33-f62a0633730f");
 pub const IID_IXpsOMPartUriCollection = &IID_IXpsOMPartUriCollection_Value;
 pub const IXpsOMPartUriCollection = extern struct {
@@ -4746,6 +4796,7 @@ pub const IXpsOMPartUriCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackageWriter_Value = @import("../zig.zig").Guid.initString("4e2aa182-a443-42c6-b41b-4f8e9de73ff9");
 pub const IID_IXpsOMPackageWriter = &IID_IXpsOMPackageWriter_Value;
 pub const IXpsOMPackageWriter = extern struct {
@@ -4807,6 +4858,7 @@ pub const IXpsOMPackageWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackageTarget_Value = @import("../zig.zig").Guid.initString("219a9db0-4959-47d0-8034-b1ce84f41a4d");
 pub const IID_IXpsOMPackageTarget = &IID_IXpsOMPackageTarget_Value;
 pub const IXpsOMPackageTarget = extern struct {
@@ -4831,6 +4883,7 @@ pub const IXpsOMPackageTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMThumbnailGenerator_Value = @import("../zig.zig").Guid.initString("15b873d5-1971-41e8-83a3-6578403064c7");
 pub const IID_IXpsOMThumbnailGenerator = &IID_IXpsOMThumbnailGenerator_Value;
 pub const IXpsOMThumbnailGenerator = extern struct {
@@ -4865,6 +4918,7 @@ pub const XPS_DOCUMENT_TYPE_UNSPECIFIED = XPS_DOCUMENT_TYPE.UNSPECIFIED;
 pub const XPS_DOCUMENT_TYPE_XPS = XPS_DOCUMENT_TYPE.XPS;
 pub const XPS_DOCUMENT_TYPE_OPENXPS = XPS_DOCUMENT_TYPE.OPENXPS;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMObjectFactory1_Value = @import("../zig.zig").Guid.initString("0a91b617-d612-4181-bf7c-be5824e9cc8f");
 pub const IID_IXpsOMObjectFactory1 = &IID_IXpsOMObjectFactory1_Value;
 pub const IXpsOMObjectFactory1 = extern struct {
@@ -5010,6 +5064,7 @@ pub const IXpsOMObjectFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMPackage1_Value = @import("../zig.zig").Guid.initString("95a9435e-12bb-461b-8e7f-c6adb04cd96a");
 pub const IID_IXpsOMPackage1 = &IID_IXpsOMPackage1_Value;
 pub const IXpsOMPackage1 = extern struct {
@@ -5053,6 +5108,7 @@ pub const IXpsOMPackage1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMPage1_Value = @import("../zig.zig").Guid.initString("305b60ef-6892-4dda-9cbb-3aa65974508a");
 pub const IID_IXpsOMPage1 = &IID_IXpsOMPage1_Value;
 pub const IXpsOMPage1 = extern struct {
@@ -5084,6 +5140,7 @@ pub const IXpsOMPage1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsDocumentPackageTarget_Value = @import("../zig.zig").Guid.initString("3b0b6d38-53ad-41da-b212-d37637a6714e");
 pub const IID_IXpsDocumentPackageTarget = &IID_IXpsDocumentPackageTarget_Value;
 pub const IXpsDocumentPackageTarget = extern struct {
@@ -5123,6 +5180,7 @@ pub const IXpsDocumentPackageTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMRemoteDictionaryResource1_Value = @import("../zig.zig").Guid.initString("bf8fc1d4-9d46-4141-ba5f-94bb9250d041");
 pub const IID_IXpsOMRemoteDictionaryResource1 = &IID_IXpsOMRemoteDictionaryResource1_Value;
 pub const IXpsOMRemoteDictionaryResource1 = extern struct {
@@ -5153,6 +5211,7 @@ pub const IXpsOMRemoteDictionaryResource1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMPackageWriter3D_Value = @import("../zig.zig").Guid.initString("e8a45033-640e-43fa-9bdf-fddeaa31c6a0");
 pub const IID_IXpsOMPackageWriter3D = &IID_IXpsOMPackageWriter3D_Value;
 pub const IXpsOMPackageWriter3D = extern struct {
@@ -5184,6 +5243,7 @@ pub const IXpsOMPackageWriter3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsDocumentPackageTarget3D_Value = @import("../zig.zig").Guid.initString("60ba71b8-3101-4984-9199-f4ea775ff01d");
 pub const IID_IXpsDocumentPackageTarget3D = &IID_IXpsDocumentPackageTarget3D_Value;
 pub const IXpsDocumentPackageTarget3D = extern struct {
@@ -5255,6 +5315,7 @@ pub const XPS_SIGN_FLAGS = extern enum(i32) {
 pub const XPS_SIGN_FLAGS_NONE = XPS_SIGN_FLAGS.NONE;
 pub const XPS_SIGN_FLAGS_IGNORE_MARKUP_COMPATIBILITY = XPS_SIGN_FLAGS.IGNORE_MARKUP_COMPATIBILITY;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSigningOptions_Value = @import("../zig.zig").Guid.initString("7718eae4-3215-49be-af5b-594fef7fcfa6");
 pub const IID_IXpsSigningOptions = &IID_IXpsSigningOptions_Value;
 pub const IXpsSigningOptions = extern struct {
@@ -5404,6 +5465,7 @@ pub const IXpsSigningOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureCollection_Value = @import("../zig.zig").Guid.initString("a2d1d95d-add2-4dff-ab27-6b9c645ff322");
 pub const IID_IXpsSignatureCollection = &IID_IXpsSignatureCollection_Value;
 pub const IXpsSignatureCollection = extern struct {
@@ -5442,6 +5504,7 @@ pub const IXpsSignatureCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignature_Value = @import("../zig.zig").Guid.initString("6ae4c93e-1ade-42fb-898b-3a5658284857");
 pub const IID_IXpsSignature = &IID_IXpsSignature_Value;
 pub const IXpsSignature = extern struct {
@@ -5555,6 +5618,7 @@ pub const IXpsSignature = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureBlockCollection_Value = @import("../zig.zig").Guid.initString("23397050-fe99-467a-8dce-9237f074ffe4");
 pub const IID_IXpsSignatureBlockCollection = &IID_IXpsSignatureBlockCollection_Value;
 pub const IXpsSignatureBlockCollection = extern struct {
@@ -5593,6 +5657,7 @@ pub const IXpsSignatureBlockCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureBlock_Value = @import("../zig.zig").Guid.initString("151fac09-0b97-4ac6-a323-5e4297d4322b");
 pub const IID_IXpsSignatureBlock = &IID_IXpsSignatureBlock_Value;
 pub const IXpsSignatureBlock = extern struct {
@@ -5647,6 +5712,7 @@ pub const IXpsSignatureBlock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureRequestCollection_Value = @import("../zig.zig").Guid.initString("f0253e68-9f19-412e-9b4f-54d3b0ac6cd9");
 pub const IID_IXpsSignatureRequestCollection = &IID_IXpsSignatureRequestCollection_Value;
 pub const IXpsSignatureRequestCollection = extern struct {
@@ -5685,6 +5751,7 @@ pub const IXpsSignatureRequestCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureRequest_Value = @import("../zig.zig").Guid.initString("ac58950b-7208-4b2d-b2c4-951083d3b8eb");
 pub const IID_IXpsSignatureRequest = &IID_IXpsSignatureRequest_Value;
 pub const IXpsSignatureRequest = extern struct {
@@ -5799,6 +5866,7 @@ pub const IXpsSignatureRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureManager_Value = @import("../zig.zig").Guid.initString("d3e8d338-fdc4-4afc-80b5-d532a1782ee1");
 pub const IID_IXpsSignatureManager = &IID_IXpsSignatureManager_Value;
 pub const IXpsSignatureManager = extern struct {
@@ -5912,6 +5980,7 @@ pub const CLSID_PrintDocumentPackageTarget = &CLSID_PrintDocumentPackageTarget_V
 const CLSID_PrintDocumentPackageTargetFactory_Value = @import("../zig.zig").Guid.initString("348ef17d-6c81-4982-92b4-ee188a43867a");
 pub const CLSID_PrintDocumentPackageTargetFactory = &CLSID_PrintDocumentPackageTargetFactory_Value;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTarget_Value = @import("../zig.zig").Guid.initString("1b8efec4-3019-4c27-964e-367202156906");
 pub const IID_IPrintDocumentPackageTarget = &IID_IPrintDocumentPackageTarget_Value;
 pub const IPrintDocumentPackageTarget = extern struct {
@@ -5971,6 +6040,7 @@ pub const PrintDocumentPackageStatus = extern struct {
     PackageStatus: HRESULT,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageStatusEvent_Value = @import("../zig.zig").Guid.initString("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af");
 pub const IID_IPrintDocumentPackageStatusEvent = &IID_IPrintDocumentPackageStatusEvent_Value;
 pub const IPrintDocumentPackageStatusEvent = extern struct {
@@ -5992,6 +6062,7 @@ pub const IPrintDocumentPackageStatusEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTargetFactory_Value = @import("../zig.zig").Guid.initString("d2959bf7-b31b-4a3d-9600-712eb1335ba4");
 pub const IID_IPrintDocumentPackageTargetFactory = &IID_IPrintDocumentPackageTargetFactory_Value;
 pub const IPrintDocumentPackageTargetFactory = extern struct {
@@ -6184,17 +6255,20 @@ pub const DOCINFOW = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (23)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
     pszPrinterName: [*:0]const u16,
     pMaxVersion: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTOpenProvider(
     pszPrinterName: [*:0]const u16,
     dwVersion: u32,
     phProvider: *HPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTOpenProviderEx(
     pszPrinterName: [*:0]const u16,
     dwMaxVersion: u32,
@@ -6203,14 +6277,17 @@ pub extern "prntvpt" fn PTOpenProviderEx(
     pUsedVersion: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTCloseProvider(
     hProvider: HPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTReleaseMemory(
     pBuffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTGetPrintCapabilities(
     hProvider: HPTPROVIDER,
     pPrintTicket: ?*IStream,
@@ -6218,6 +6295,7 @@ pub extern "prntvpt" fn PTGetPrintCapabilities(
     pbstrErrorMessage: ?*BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "prntvpt" fn PTGetPrintDeviceCapabilities(
     hProvider: HPTPROVIDER,
     pPrintTicket: ?*IStream,
@@ -6225,6 +6303,7 @@ pub extern "prntvpt" fn PTGetPrintDeviceCapabilities(
     pbstrErrorMessage: ?*BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "prntvpt" fn PTGetPrintDeviceResources(
     hProvider: HPTPROVIDER,
     pszLocaleName: [*:0]const u16,
@@ -6233,6 +6312,7 @@ pub extern "prntvpt" fn PTGetPrintDeviceResources(
     pbstrErrorMessage: ?*BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTMergeAndValidatePrintTicket(
     hProvider: HPTPROVIDER,
     pBaseTicket: *IStream,
@@ -6242,6 +6322,7 @@ pub extern "prntvpt" fn PTMergeAndValidatePrintTicket(
     pbstrErrorMessage: ?*BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTConvertPrintTicketToDevMode(
     hProvider: HPTPROVIDER,
     pPrintTicket: *IStream,
@@ -6252,6 +6333,7 @@ pub extern "prntvpt" fn PTConvertPrintTicketToDevMode(
     pbstrErrorMessage: ?*BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
     hProvider: HPTPROVIDER,
     cbDevmode: u32,
@@ -6260,6 +6342,7 @@ pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
     pPrintTicket: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINSPOOL" fn DeviceCapabilitiesA(
     pDevice: [*:0]const u8,
     pPort: ?[*:0]const u8,
@@ -6268,6 +6351,7 @@ pub extern "WINSPOOL" fn DeviceCapabilitiesA(
     pDevMode: ?*const DEVMODEA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "WINSPOOL" fn DeviceCapabilitiesW(
     pDevice: [*:0]const u16,
     pPort: ?[*:0]const u16,
@@ -6276,6 +6360,7 @@ pub extern "WINSPOOL" fn DeviceCapabilitiesW(
     pDevMode: ?*const DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Escape(
     hdc: HDC,
     iEscape: i32,
@@ -6284,6 +6369,7 @@ pub extern "GDI32" fn Escape(
     pvOut: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtEscape(
     hdc: HDC,
     iEscape: i32,
@@ -6293,37 +6379,45 @@ pub extern "GDI32" fn ExtEscape(
     lpOutData: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StartDocA(
     hdc: HDC,
     lpdi: *const DOCINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StartDocW(
     hdc: HDC,
     lpdi: *const DOCINFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EndDoc(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StartPage(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EndPage(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AbortDoc(
     hdc: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetAbortProc(
     hdc: HDC,
     proc: ABORTPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn PrintWindow(
     hwnd: HWND,
     hdcBlt: HDC,

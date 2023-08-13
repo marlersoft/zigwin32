@@ -121,21 +121,25 @@ pub const RM_WRITE_STATUS_CALLBACK = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmStartSession(
     pSessionHandle: *u32,
     dwSessionFlags: u32,
     strSessionKey: *u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmJoinSession(
     pSessionHandle: *u32,
     strSessionKey: *const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmEndSession(
     dwSessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmRegisterResources(
     dwSessionHandle: u32,
     nFiles: u32,
@@ -146,6 +150,7 @@ pub extern "rstrtmgr" fn RmRegisterResources(
     rgsServiceNames: ?[*]?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmGetList(
     dwSessionHandle: u32,
     pnProcInfoNeeded: *u32,
@@ -154,22 +159,26 @@ pub extern "rstrtmgr" fn RmGetList(
     lpdwRebootReasons: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmShutdown(
     dwSessionHandle: u32,
     lActionFlags: u32,
     fnStatus: ?RM_WRITE_STATUS_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmRestart(
     dwSessionHandle: u32,
     dwRestartFlags: u32,
     fnStatus: ?RM_WRITE_STATUS_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmCancelCurrentTask(
     dwSessionHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmAddFilter(
     dwSessionHandle: u32,
     strModuleName: ?[*:0]const u16,
@@ -178,6 +187,7 @@ pub extern "RstrtMgr" fn RmAddFilter(
     FilterAction: RM_FILTER_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmRemoveFilter(
     dwSessionHandle: u32,
     strModuleName: ?[*:0]const u16,
@@ -185,6 +195,7 @@ pub extern "RstrtMgr" fn RmRemoveFilter(
     strServiceShortName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmGetFilterList(
     dwSessionHandle: u32,
     pbFilterBuf: ?[*:0]u8,

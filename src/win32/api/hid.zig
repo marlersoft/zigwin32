@@ -4589,7 +4589,9 @@ pub const HIDP_LINK_COLLECTION_NODE = extern struct {
     UserContext: *c_void,
 };
 
-pub const _HIDP_PREPARSED_DATA = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+pub const _HIDP_PREPARSED_DATA = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
 
 pub const HIDP_CAPS = extern struct {
     Usage: u16,

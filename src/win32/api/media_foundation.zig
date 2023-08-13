@@ -2,6 +2,584 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1281)
 //--------------------------------------------------------------------------------
+pub const g_wszSpeechFormatCaps = "SpeechFormatCap";
+pub const g_wszWMCPCodecName = "_CODECNAME";
+pub const g_wszWMCPSupportedVBRModes = "_SUPPORTEDVBRMODES";
+pub const g_wszWMCPAudioVBRSupported = "_VBRENABLED";
+pub const g_wszWMCPAudioVBRQuality = "_VBRQUALITY";
+pub const g_wszWMCPMaxPasses = "_PASSESRECOMMENDED";
+pub const g_wszWMCPDefaultCrisp = "_DEFAULTCRISP";
+pub const COPP_ProtectionType_Unknown = @as(i32, -2147483648);
+pub const COPP_ProtectionType_None = @as(i32, 0);
+pub const COPP_ProtectionType_HDCP = @as(i32, 1);
+pub const COPP_ProtectionType_ACP = @as(i32, 2);
+pub const COPP_ProtectionType_CGMSA = @as(i32, 4);
+pub const COPP_ProtectionType_Mask = @as(i32, -2147483641);
+pub const COPP_ProtectionType_Reserved = @as(i32, 2147483640);
+pub const MF_BYTESTREAM_ORIGIN_NAME = Guid.initString("fc358288-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_CONTENT_TYPE = Guid.initString("fc358289-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_DURATION = Guid.initString("fc35828a-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_LAST_MODIFIED_TIME = Guid.initString("fc35828b-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_IFO_FILE_URI = Guid.initString("fc35828c-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_DLNA_PROFILE_ID = Guid.initString("fc35828d-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_EFFECTIVE_URL = Guid.initString("9afa0209-89d1-42af-8456-1de6b562d691");
+pub const MF_BYTESTREAM_TRANSCODED = Guid.initString("b6c5c282-4dc9-4db9-ab48-cf3b6d8bc5e0");
+pub const CLSID_MFByteStreamProxyClassFactory = Guid.initString("770e8e77-4916-441c-a9a7-b342d0eebc71");
+pub const MEDeviceStreamCreated = Guid.initString("0252a1cf-3540-43b4-9164-d72eb405fa40");
+pub const MF_SA_D3D_AWARE = Guid.initString("eaa35c29-775e-488e-9b61-b3283e49583b");
+pub const MF_SA_REQUIRED_SAMPLE_COUNT = Guid.initString("18802c61-324b-4952-abd0-176ff5c696ff");
+pub const MFT_END_STREAMING_AWARE = Guid.initString("70fbc845-b07e-4089-b064-399dc6110f29");
+pub const MF_SA_AUDIO_ENDPOINT_AWARE = Guid.initString("c0381701-805c-42b2-ac8d-e2b4bf21f4f8");
+pub const MFT_AUDIO_DECODER_AUDIO_ENDPOINT_ID = Guid.initString("c7ccdd6e-5398-4695-8be7-51b3e95111bd");
+pub const MFT_AUDIO_DECODER_SPATIAL_METADATA_CLIENT = Guid.initString("05987df4-1270-4999-925f-8e939a7c0af7");
+pub const MF_DMFT_FRAME_BUFFER_INFO = Guid.initString("396ce1c9-67a9-454c-8797-95a45799d804");
+pub const MF_SA_REQUIRED_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("b172d58e-fa77-4e48-8d2a-1df2d850eac2");
+pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT = Guid.initString("851745d5-c3d6-476d-9527-498ef2d10d18");
+pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("0f5523a5-1cb2-47c5-a550-2eeb84b4d14a");
+pub const MFT_SUPPORT_3DVIDEO = Guid.initString("093f81b1-4f2e-4631-8168-7934032a01d3");
+pub const MF_ENABLE_3DVIDEO_OUTPUT = Guid.initString("bdad7bca-0e5f-4b10-ab16-26de381b6293");
+pub const MF_SA_D3D11_BINDFLAGS = Guid.initString("eacf97ad-065c-4408-bee3-fdcbfd128be2");
+pub const MF_SA_D3D11_USAGE = Guid.initString("e85fe442-2ca3-486e-a9c7-109dda609880");
+pub const MF_SA_D3D11_AWARE = Guid.initString("206b4fc8-fcf9-4c51-afe3-9764369e33a0");
+pub const MF_SA_D3D11_SHARED = Guid.initString("7b8f32c3-6d96-4b89-9203-dd38b61414f3");
+pub const MF_SA_D3D11_SHARED_WITHOUT_MUTEX = Guid.initString("39dbd44d-2e44-4931-a4c8-352d3dc42115");
+pub const MF_SA_D3D11_ALLOW_DYNAMIC_YUV_TEXTURE = Guid.initString("ce06d49f-0613-4b9d-86a6-d8c4f9c10075");
+pub const MF_SA_D3D11_HW_PROTECTED = Guid.initString("3a8ba9d9-92ca-4307-a391-6999dbf3b6ce");
+pub const MF_SA_BUFFERS_PER_SAMPLE = Guid.initString("873c5171-1e3d-4e25-988d-b433ce041983");
+pub const MFT_DECODER_EXPOSE_OUTPUT_TYPES_IN_NATIVE_ORDER = Guid.initString("ef80833f-f8fa-44d9-80d8-41ed6232670c");
+pub const MFT_DECODER_QUALITY_MANAGEMENT_CUSTOM_CONTROL = Guid.initString("a24e30d7-de25-4558-bbfb-71070a2d332e");
+pub const MFT_DECODER_QUALITY_MANAGEMENT_RECOVERY_WITHOUT_ARTIFACTS = Guid.initString("d8980deb-0a48-425f-8623-611db41d3810");
+pub const MFT_REMUX_MARK_I_PICTURE_AS_CLEAN_POINT = Guid.initString("364e8f85-3f2e-436c-b2a2-4440a012a9e8");
+pub const MFT_DECODER_FINAL_VIDEO_RESOLUTION_HINT = Guid.initString("dc2f8496-15c4-407a-b6f0-1b66ab5fbf53");
+pub const MFT_ENCODER_SUPPORTS_CONFIG_EVENT = Guid.initString("86a355ae-3a77-4ec4-9f31-01149a4e92de");
+pub const MFT_ENUM_HARDWARE_VENDOR_ID_Attribute = Guid.initString("3aecb0cc-035b-4bcc-8185-2b8d551ef3af");
+pub const MF_TRANSFORM_ASYNC = Guid.initString("f81a699a-649a-497d-8c73-29f8fed6ad7a");
+pub const MF_TRANSFORM_ASYNC_UNLOCK = Guid.initString("e5666d6b-3422-4eb6-a421-da7db1f8e207");
+pub const MF_TRANSFORM_FLAGS_Attribute = Guid.initString("9359bb7e-6275-46c4-a025-1c01e45f1a86");
+pub const MF_TRANSFORM_CATEGORY_Attribute = Guid.initString("ceabba49-506d-4757-a6ff-66c184987e4e");
+pub const MFT_TRANSFORM_CLSID_Attribute = Guid.initString("6821c42b-65a4-4e82-99bc-9a88205ecd0c");
+pub const MFT_INPUT_TYPES_Attributes = Guid.initString("4276c9b1-759d-4bf3-9cd0-0d723d138f96");
+pub const MFT_OUTPUT_TYPES_Attributes = Guid.initString("8eae8cf3-a44f-4306-ba5c-bf5dda242818");
+pub const MFT_ENUM_HARDWARE_URL_Attribute = Guid.initString("2fb866ac-b078-4942-ab6c-003d05cda674");
+pub const MFT_FRIENDLY_NAME_Attribute = Guid.initString("314ffbae-5b41-4c95-9c19-4e7d586face3");
+pub const MFT_CONNECTED_STREAM_ATTRIBUTE = Guid.initString("71eeb820-a59f-4de2-bcec-38db1dd611a4");
+pub const MFT_CONNECTED_TO_HW_STREAM = Guid.initString("34e6e728-06d6-4491-a553-4795650db912");
+pub const MFT_PREFERRED_OUTPUTTYPE_Attribute = Guid.initString("7e700499-396a-49ee-b1b4-f628021e8c9d");
+pub const MFT_PROCESS_LOCAL_Attribute = Guid.initString("543186e4-4649-4e65-b588-4aa352aff379");
+pub const MFT_PREFERRED_ENCODER_PROFILE = Guid.initString("53004909-1ef5-46d7-a18e-5a75f8b5905f");
+pub const MFT_HW_TIMESTAMP_WITH_QPC_Attribute = Guid.initString("8d030fb8-cc43-4258-a22e-9210bef89be4");
+pub const MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("8ec2e9fd-9148-410d-831e-702439461a8e");
+pub const MFT_CODEC_MERIT_Attribute = Guid.initString("88a7cb15-7b07-4a34-9128-e64c6703c4d3");
+pub const MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = Guid.initString("111ea8cd-b62a-4bdb-89f6-67ffcdc2458b");
+pub const MFT_AUDIO_DECODER_DEGRADATION_INFO_ATTRIBUTE = Guid.initString("6c3386ad-ec20-430d-b2a5-505c7178d9c4");
+pub const MFT_POLICY_SET_AWARE = Guid.initString("5a633b19-cc39-4fa8-8ca5-59981b7a0018");
+pub const MFT_USING_HARDWARE_DRM = Guid.initString("34faa77d-d79e-4957-b8ce-362b2684996c");
+pub const MF_WVC1_PROG_SINGLE_SLICE_CONTENT = Guid.initString("67ec2559-0f2f-4420-a4dd-2f8ee7a5738b");
+pub const MF_PROGRESSIVE_CODING_CONTENT = Guid.initString("8f020eea-1508-471f-9da6-507d7cfa40db");
+pub const MF_NALU_LENGTH_SET = Guid.initString("a7911d53-12a4-4965-ae70-6eadd6ff0551");
+pub const MF_NALU_LENGTH_INFORMATION = Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
+pub const MF_USER_DATA_PAYLOAD = Guid.initString("d1d4985d-dc92-457a-b3a0-651a33a31047");
+pub const MF_MPEG4SINK_SPSPPS_PASSTHROUGH = Guid.initString("5601a134-2005-4ad2-b37d-22a6c554deb2");
+pub const MF_MPEG4SINK_MOOV_BEFORE_MDAT = Guid.initString("f672e3ac-e1e6-4f10-b5ec-5f3b30828816");
+pub const MF_MPEG4SINK_MINIMUM_PROPERTIES_SIZE = Guid.initString("dca1ed52-450e-4a22-8c62-4ed452f7a187");
+pub const MF_MPEG4SINK_MIN_FRAGMENT_DURATION = Guid.initString("a30b570c-8efd-45e8-94fe-27c84b5bdff6");
+pub const MF_MPEG4SINK_MAX_CODED_SEQUENCES_PER_FRAGMENT = Guid.initString("fc1b3bd6-692d-4ce5-9299-738aa5463e9a");
+pub const MF_SESSION_TOPOLOADER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f71");
+pub const MF_SESSION_GLOBAL_TIME = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f72");
+pub const MF_SESSION_QUALITY_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f73");
+pub const MF_SESSION_CONTENT_PROTECTION_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f74");
+pub const MF_SESSION_SERVER_CONTEXT = Guid.initString("afe5b291-50fa-46e8-b9be-0c0c3ce4b3a5");
+pub const MF_SESSION_REMOTE_SOURCE_MODE = Guid.initString("f4033ef4-9bb3-4378-941f-85a0856bc244");
+pub const MF_SESSION_APPROX_EVENT_OCCURRENCE_TIME = Guid.initString("190e852f-6238-42d1-b5af-69ea338ef850");
+pub const MF_PMP_SERVER_CONTEXT = Guid.initString("2f00c910-d2cf-4278-8b6a-d077fac3a25f");
+pub const MF_TIME_FORMAT_ENTRY_RELATIVE = Guid.initString("4399f178-46d3-4504-afda-20d32e9ba360");
+pub const MF_SOURCE_STREAM_SUPPORTS_HW_CONNECTION = Guid.initString("a38253aa-6314-42fd-a3ce-bb27b6859946");
+pub const MF_STREAM_SINK_SUPPORTS_HW_CONNECTION = Guid.initString("9b465cbf-0597-4f9e-9f3c-b97eeef90359");
+pub const MF_STREAM_SINK_SUPPORTS_ROTATION = Guid.initString("b3e96280-bd05-41a5-97ad-8a7fee24b912");
+pub const MF_SINK_VIDEO_PTS = Guid.initString("2162bde7-421e-4b90-9b33-e58fbf1d58b6");
+pub const MF_SINK_VIDEO_NATIVE_WIDTH = Guid.initString("e6d6a707-1505-4747-9b10-72d2d158cb3a");
+pub const MF_SINK_VIDEO_NATIVE_HEIGHT = Guid.initString("f0ca6705-490c-43e8-941c-c0b3206b9a65");
+pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_NUMERATOR = Guid.initString("d0f33b22-b78a-4879-b455-f03ef3fa82cd");
+pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_DENOMINATOR = Guid.initString("6ea1eb97-1fe0-4f10-a6e4-1f4f661564e0");
+pub const MF_BD_MVC_PLANE_OFFSET_METADATA = Guid.initString("62a654e4-b76c-4901-9823-2cb615d47318");
+pub const MF_LUMA_KEY_ENABLE = Guid.initString("7369820f-76de-43ca-9284-47b8f37e0649");
+pub const MF_LUMA_KEY_LOWER = Guid.initString("93d7b8d5-0b81-4715-aea0-8725871621e9");
+pub const MF_LUMA_KEY_UPPER = Guid.initString("d09f39bb-4602-4c31-a706-a12171a5110a");
+pub const MF_USER_EXTENDED_ATTRIBUTES = Guid.initString("c02abac6-feb2-4541-922f-920b43702722");
+pub const MF_INDEPENDENT_STILL_IMAGE = Guid.initString("ea12af41-0710-42c9-a127-daa3e78483a5");
+pub const MF_XVP_SAMPLE_LOCK_TIMEOUT = Guid.initString("aa4ddb29-5134-4363-ac72-83ec4bc10426");
+pub const MF_TOPOLOGY_PROJECTSTART = Guid.initString("7ed3f802-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_PROJECTSTOP = Guid.initString("7ed3f803-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_NO_MARKIN_MARKOUT = Guid.initString("7ed3f804-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_DXVA_MODE = Guid.initString("1e8d34f6-f5ab-4e23-bb88-874aa3a1a74d");
+pub const MF_TOPOLOGY_ENABLE_XVP_FOR_PLAYBACK = Guid.initString("1967731f-cd78-42fc-b026-0992a56e5693");
+pub const MF_TOPOLOGY_STATIC_PLAYBACK_OPTIMIZATIONS = Guid.initString("b86cac42-41a6-4b79-897a-1ab0e52b4a1b");
+pub const MF_TOPOLOGY_PLAYBACK_MAX_DIMS = Guid.initString("5715cf19-5768-44aa-ad6e-8721f1b0f9bb");
+pub const MF_TOPOLOGY_HARDWARE_MODE = Guid.initString("d2d362fd-4e4f-4191-a579-c618b66706af");
+pub const MF_TOPOLOGY_PLAYBACK_FRAMERATE = Guid.initString("c164737a-c2b1-4553-83bb-5a526072448f");
+pub const MF_TOPOLOGY_DYNAMIC_CHANGE_NOT_ALLOWED = Guid.initString("d529950b-d484-4527-a9cd-b1909532b5b0");
+pub const MF_TOPOLOGY_ENUMERATE_SOURCE_TYPES = Guid.initString("6248c36d-5d0b-4f40-a0bb-b0b305f77698");
+pub const MF_TOPOLOGY_START_TIME_ON_PRESENTATION_SWITCH = Guid.initString("c8cc113f-7951-4548-aad6-9ed6202e62b3");
+pub const MF_DISABLE_LOCALLY_REGISTERED_PLUGINS = Guid.initString("66b16da9-add4-47e0-a16b-5af1fb483634");
+pub const MF_LOCAL_PLUGIN_CONTROL_POLICY = Guid.initString("d91b0085-c86d-4f81-8822-8c68e1d7fa04");
+pub const MF_TOPONODE_FLUSH = Guid.initString("494bbce8-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DRAIN = Guid.initString("494bbce9-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_D3DAWARE = Guid.initString("494bbced-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPOLOGY_RESOLUTION_STATUS = Guid.initString("494bbcde-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERRORCODE = Guid.initString("494bbcee-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_CONNECT_METHOD = Guid.initString("494bbcf1-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_LOCKED = Guid.initString("494bbcf7-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_ID = Guid.initString("494bbcf8-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_CLASS = Guid.initString("494bbcf9-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DECRYPTOR = Guid.initString("494bbcfa-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DISCARDABLE = Guid.initString("494bbcfb-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERROR_MAJORTYPE = Guid.initString("494bbcfd-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERROR_SUBTYPE = Guid.initString("494bbcfe-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_TASKID = Guid.initString("494bbcff-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_PRIORITY = Guid.initString("5001f840-2816-48f4-9364-ad1ef661a123");
+pub const MF_TOPONODE_WORKQUEUE_ITEM_PRIORITY = Guid.initString("a1ff99be-5e97-4a53-b494-568c642c0ff3");
+pub const MF_TOPONODE_MARKIN_HERE = Guid.initString("494bbd00-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_MARKOUT_HERE = Guid.initString("494bbd01-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DECODER = Guid.initString("494bbd02-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_MEDIASTART = Guid.initString("835c58ea-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_MEDIASTOP = Guid.initString("835c58eb-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_SOURCE = Guid.initString("835c58ec-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_PRESENTATION_DESCRIPTOR = Guid.initString("835c58ed-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_STREAM_DESCRIPTOR = Guid.initString("835c58ee-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_SEQUENCE_ELEMENTID = Guid.initString("835c58ef-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_TRANSFORM_OBJECTID = Guid.initString("88dcc0c9-293e-4e8b-9aeb-0ad64cc016b0");
+pub const MF_TOPONODE_STREAMID = Guid.initString("14932f9b-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_NOSHUTDOWN_ON_REMOVE = Guid.initString("14932f9c-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_RATELESS = Guid.initString("14932f9d-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_DISABLE_PREROLL = Guid.initString("14932f9e-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_PRIMARYOUTPUT = Guid.initString("6304ef99-16b2-4ebe-9d67-e4c539b3a259");
+pub const MF_PD_PMPHOST_CONTEXT = Guid.initString("6c990d31-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_APP_CONTEXT = Guid.initString("6c990d32-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_DURATION = Guid.initString("6c990d33-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_TOTAL_FILE_SIZE = Guid.initString("6c990d34-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_AUDIO_ENCODING_BITRATE = Guid.initString("6c990d35-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_VIDEO_ENCODING_BITRATE = Guid.initString("6c990d36-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_MIME_TYPE = Guid.initString("6c990d37-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_LAST_MODIFIED_TIME = Guid.initString("6c990d38-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PLAYBACK_ELEMENT_ID = Guid.initString("6c990d39-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PREFERRED_LANGUAGE = Guid.initString("6c990d3a-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PLAYBACK_BOUNDARY_TIME = Guid.initString("6c990d3b-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_AUDIO_ISVARIABLEBITRATE = Guid.initString("33026ee0-e387-4582-ae0a-34a2ad3baa18");
+pub const MF_SD_LANGUAGE = Guid.initString("00af2180-bdc2-423c-abca-f503593bc121");
+pub const MF_SD_PROTECTED = Guid.initString("00af2181-bdc2-423c-abca-f503593bc121");
+pub const MF_SD_STREAM_NAME = Guid.initString("4f1b099d-d314-41e5-a781-7fefaa4c501f");
+pub const MF_SD_MUTUALLY_EXCLUSIVE = Guid.initString("023ef79c-388d-487f-ac17-696cd6e3c6f5");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_CLSID = Guid.initString("ba491360-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_ACTIVATE = Guid.initString("ba491361-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_FLAGS = Guid.initString("ba491362-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_CLSID = Guid.initString("ba491364-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_ACTIVATE = Guid.initString("ba491365-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_FLAGS = Guid.initString("ba491366-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_MFT_LOCKED = Guid.initString("c1f6093c-7f65-4fbd-9e39-5faec3c4fbd7");
+pub const MF_ACTIVATE_VIDEO_WINDOW = Guid.initString("9a2dbbdd-f57e-4162-82b9-6831377682d3");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS = Guid.initString("ede4b5e0-f805-4d6c-99b3-db01bf95dfab");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_SESSION_ID = Guid.initString("ede4b5e3-f805-4d6c-99b3-db01bf95dfab");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID = Guid.initString("b10aaec3-ef71-4cc3-b873-05a9a08b9f8e");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ROLE = Guid.initString("6ba644ff-27c5-4d02-9887-c28619fdb91b");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_STREAM_CATEGORY = Guid.initString("a9770471-92ec-4df4-94fe-81c36f0c3a7a");
+pub const MFENABLETYPE_WMDRMV1_LicenseAcquisition = Guid.initString("4ff6eeaf-0b43-4797-9b85-abf31815e7b0");
+pub const MFENABLETYPE_WMDRMV7_LicenseAcquisition = Guid.initString("003306df-4a06-4884-a097-ef6d22ec84a3");
+pub const MFENABLETYPE_WMDRMV7_Individualization = Guid.initString("acd2c84a-b303-4f65-bc2c-2c848d01a989");
+pub const MFENABLETYPE_MF_UpdateRevocationInformation = Guid.initString("e558b0b5-b3c4-44a0-924c-50d178932385");
+pub const MFENABLETYPE_MF_UpdateUntrustedComponent = Guid.initString("9879f3d6-cee2-48e6-b573-9767ab172f16");
+pub const MFENABLETYPE_MF_RebootRequired = Guid.initString("6d4d3d4b-0ece-4652-8b3a-f2d24260d887");
+pub const MF_METADATA_PROVIDER_SERVICE = Guid.initString("db214084-58a4-4d2e-b84f-6f755b2f7a0d");
+pub const MF_PROPERTY_HANDLER_SERVICE = Guid.initString("a3face02-32b8-41dd-90e7-5fef7c8991b5");
+pub const MF_RATE_CONTROL_SERVICE = Guid.initString("866fa297-b802-4bf8-9dc9-5e3b6a9f53c9");
+pub const MF_TIMECODE_SERVICE = Guid.initString("a0d502a7-0eb3-4885-b1b9-9feb0d083454");
+pub const MR_POLICY_VOLUME_SERVICE = Guid.initString("1abaa2ac-9d3b-47c6-ab48-c59506de784d");
+pub const MR_CAPTURE_POLICY_VOLUME_SERVICE = Guid.initString("24030acd-107a-4265-975c-414e33e65f2a");
+pub const MR_STREAM_VOLUME_SERVICE = Guid.initString("f8b5fa2f-32ef-46f5-b172-1321212fb2c4");
+pub const MR_AUDIO_POLICY_SERVICE = Guid.initString("911fd737-6775-4ab0-a614-297862fdac88");
+pub const MF_SAMPLEGRABBERSINK_SAMPLE_TIME_OFFSET = Guid.initString("62e3d776-8100-4e03-a6e8-bd3857ac9c47");
+pub const MF_SAMPLEGRABBERSINK_IGNORE_CLOCK = Guid.initString("0efda2c0-2b69-4e2e-ab8d-46dcbff7d25d");
+pub const MF_QUALITY_SERVICES = Guid.initString("b7e2be11-2f96-4640-b52c-282365bdf16c");
+pub const MF_WORKQUEUE_SERVICES = Guid.initString("8e37d489-41e0-413a-9068-287c886d8dda");
+pub const MF_QUALITY_NOTIFY_PROCESSING_LATENCY = Guid.initString("f6b44af8-604d-46fe-a95d-45479b10c9bc");
+pub const MF_QUALITY_NOTIFY_SAMPLE_LAG = Guid.initString("30d15206-ed2a-4760-be17-eb4a9f12295c");
+pub const MF_TIME_FORMAT_SEGMENT_OFFSET = Guid.initString("c8b8be77-869c-431d-812e-169693f65a39");
+pub const MF_SOURCE_PRESENTATION_PROVIDER_SERVICE = Guid.initString("e002aadc-f4af-4ee5-9847-053edf840426");
+pub const MF_TOPONODE_ATTRIBUTE_EDITOR_SERVICE = Guid.initString("65656e1a-077f-4472-83ef-316f11d5087a");
+pub const MFNETSOURCE_SSLCERTIFICATE_MANAGER = Guid.initString("55e6cb27-e69b-4267-940c-2d7ec5bb8a0f");
+pub const MFNETSOURCE_RESOURCE_FILTER = Guid.initString("815d0ff6-265a-4477-9e46-7b80ad80b5fb");
+pub const MFNET_SAVEJOB_SERVICE = Guid.initString("b85a587f-3d02-4e52-9565-55d3ec1e7ff7");
+pub const MFNETSOURCE_STATISTICS_SERVICE = Guid.initString("3cb1f275-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_STATISTICS = Guid.initString("3cb1f274-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BUFFERINGTIME = Guid.initString("3cb1f276-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ACCELERATEDSTREAMINGDURATION = Guid.initString("3cb1f277-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_MAXUDPACCELERATEDSTREAMINGDURATION = Guid.initString("4aab2879-bbe1-4994-9ff0-5495bd250129");
+pub const MFNETSOURCE_MAXBUFFERTIMEMS = Guid.initString("408b24e6-4038-4401-b5b2-fe701a9ebf10");
+pub const MFNETSOURCE_CONNECTIONBANDWIDTH = Guid.initString("3cb1f278-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CACHEENABLED = Guid.initString("3cb1f279-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_AUTORECONNECTLIMIT = Guid.initString("3cb1f27a-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_RESENDSENABLED = Guid.initString("3cb1f27b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_THINNINGENABLED = Guid.initString("3cb1f27c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROTOCOL = Guid.initString("3cb1f27d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_TRANSPORT = Guid.initString("3cb1f27e-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PREVIEWMODEENABLED = Guid.initString("3cb1f27f-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CREDENTIAL_MANAGER = Guid.initString("3cb1f280-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PPBANDWIDTH = Guid.initString("3cb1f281-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_AUTORECONNECTPROGRESS = Guid.initString("3cb1f282-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYLOCATORFACTORY = Guid.initString("3cb1f283-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BROWSERUSERAGENT = Guid.initString("3cb1f28b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BROWSERWEBPAGE = Guid.initString("3cb1f28c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERVERSION = Guid.initString("3cb1f28d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERID = Guid.initString("3cb1f28e-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_HOSTEXE = Guid.initString("3cb1f28f-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_HOSTVERSION = Guid.initString("3cb1f291-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERUSERAGENT = Guid.initString("3cb1f292-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CLIENTGUID = Guid.initString("60a2c4a6-f197-4c14-a5bf-88830d2458af");
+pub const MFNETSOURCE_LOGURL = Guid.initString("3cb1f293-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_UDP = Guid.initString("3cb1f294-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_TCP = Guid.initString("3cb1f295-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_MSB = Guid.initString("3cb1f296-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_RTSP = Guid.initString("3cb1f298-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_HTTP = Guid.initString("3cb1f299-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_STREAMING = Guid.initString("3cb1f29c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_DOWNLOAD = Guid.initString("3cb1f29d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_PRIVATEMODE = Guid.initString("824779d8-f18b-4405-8cf1-464fb5aa8f71");
+pub const MFNETSOURCE_UDP_PORT_RANGE = Guid.initString("3cb1f29a-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYINFO = Guid.initString("3cb1f29b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_DRMNET_LICENSE_REPRESENTATION = Guid.initString("47eae1bd-bdfe-42e2-82f3-54a48c17962d");
+pub const MFNETSOURCE_PROXYSETTINGS = Guid.initString("3cb1f287-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYHOSTNAME = Guid.initString("3cb1f284-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYPORT = Guid.initString("3cb1f288-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYEXCEPTIONLIST = Guid.initString("3cb1f285-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYBYPASSFORLOCAL = Guid.initString("3cb1f286-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYRERUNAUTODETECTION = Guid.initString("3cb1f289-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_STREAM_LANGUAGE = Guid.initString("9ab44318-f7cd-4f2d-8d6d-fa35b492cecb");
+pub const MFNETSOURCE_LOGPARAMS = Guid.initString("64936ae8-9418-453a-8cda-3e0a668b353b");
+pub const MFNETSOURCE_PEERMANAGER = Guid.initString("48b29adb-febf-45ee-a9bf-efb81c492efc");
+pub const MFNETSOURCE_FRIENDLYNAME = Guid.initString("5b2a7757-bc6b-447e-aa06-0dda1c646e2f");
+pub const MF_BYTESTREAMHANDLER_ACCEPTS_SHARE_WRITE = Guid.initString("a6e1f733-3001-4915-8150-1558a2180ec8");
+pub const MF_BYTESTREAM_SERVICE = Guid.initString("ab025e2b-16d9-4180-a127-ba6c70156161");
+pub const MF_MEDIA_PROTECTION_MANAGER_PROPERTIES = Guid.initString("38bd81a9-acea-4c73-89b2-5532c0aeca79");
+pub const MFCONNECTOR_SPDIF = Guid.initString("0b94a712-ad3e-4cee-83ce-ce32e3db6522");
+pub const MFCONNECTOR_UNKNOWN = Guid.initString("ac3aef5c-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCI = Guid.initString("ac3aef5d-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCIX = Guid.initString("ac3aef5e-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCI_Express = Guid.initString("ac3aef5f-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_AGP = Guid.initString("ac3aef60-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_VGA = Guid.initString("57cd5968-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_SVIDEO = Guid.initString("57cd5969-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_COMPOSITE = Guid.initString("57cd596a-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_COMPONENT = Guid.initString("57cd596b-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DVI = Guid.initString("57cd596c-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_HDMI = Guid.initString("57cd596d-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_LVDS = Guid.initString("57cd596e-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_D_JPN = Guid.initString("57cd5970-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_SDI = Guid.initString("57cd5971-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DISPLAYPORT_EXTERNAL = Guid.initString("57cd5972-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DISPLAYPORT_EMBEDDED = Guid.initString("57cd5973-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_UDI_EXTERNAL = Guid.initString("57cd5974-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_UDI_EMBEDDED = Guid.initString("57cd5975-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_MIRACAST = Guid.initString("57cd5977-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = Guid.initString("57cd5978-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = Guid.initString("57cd5979-ce47-11d9-92db-000bdb28ff98");
+pub const MF_POLICY_ID = Guid.initString("b160c24d-c059-48f1-a901-9ee298a9a8c3");
+pub const MFPROTECTION_DISABLE = Guid.initString("8cc6d81b-fec6-4d8f-964b-cfba0b0dad0d");
+pub const MFPROTECTION_CONSTRICTVIDEO = Guid.initString("193370ce-c5e4-4c3a-8a66-6959b4da4442");
+pub const MFPROTECTION_CONSTRICTVIDEO_NOOPM = Guid.initString("a580e8cd-c247-4957-b983-3c2eebd1ff59");
+pub const MFPROTECTION_CONSTRICTAUDIO = Guid.initString("ffc99b44-df48-4e16-8e66-096892c1578a");
+pub const MFPROTECTION_TRUSTEDAUDIODRIVERS = Guid.initString("65bdf3d2-0168-4816-a533-55d47b027101");
+pub const MFPROTECTION_HDCP = Guid.initString("ae7cc03d-c828-4021-acb7-d578d27aaf13");
+pub const MFPROTECTION_CGMSA = Guid.initString("e57e69e9-226b-4d31-b4e3-d3db008736dd");
+pub const MFPROTECTION_ACP = Guid.initString("c3fd11c6-f8b7-4d20-b008-1db17d61f2da");
+pub const MFPROTECTION_WMDRMOTA = Guid.initString("a267a6a1-362e-47d0-8805-4628598a23e4");
+pub const MFPROTECTION_FFT = Guid.initString("462a56b2-2866-4bb6-980d-6d8d9edb1a8c");
+pub const MFPROTECTION_PROTECTED_SURFACE = Guid.initString("4f5d9566-e742-4a25-8d1f-d287b5fa0ade");
+pub const MFPROTECTION_DISABLE_SCREEN_SCRAPE = Guid.initString("a21179a4-b7cd-40d8-9614-8ef2371ba78d");
+pub const MFPROTECTION_VIDEO_FRAMES = Guid.initString("36a59cbc-7401-4a8c-bc20-46a7c9e597f0");
+pub const MFPROTECTION_HARDWARE = Guid.initString("4ee7f0c1-9ed7-424f-b6be-996b33528856");
+pub const MFPROTECTION_HDCP_WITH_TYPE_ENFORCEMENT = Guid.initString("a4a585e8-ed60-442d-814d-db4d4220a06d");
+pub const MFPROTECTIONATTRIBUTE_BEST_EFFORT = Guid.initString("c8e06331-75f0-4ec1-8e77-17578f773b46");
+pub const MFPROTECTIONATTRIBUTE_FAIL_OVER = Guid.initString("8536abc5-38f1-4151-9cce-f55d941229ac");
+pub const MFPROTECTION_GRAPHICS_TRANSFER_AES_ENCRYPTION = Guid.initString("c873de64-d8a5-49e6-88bb-fb963fd3d4ce");
+pub const MFPROTECTIONATTRIBUTE_CONSTRICTVIDEO_IMAGESIZE = Guid.initString("008476fc-4b58-4d80-a790-e7297673161d");
+pub const MFPROTECTIONATTRIBUTE_HDCP_SRM = Guid.initString("6f302107-3477-4468-8a08-eef9db10e20f");
+pub const MF_SampleProtectionSalt = Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
+pub const MF_REMOTE_PROXY = Guid.initString("2f00c90e-d2cf-4278-8b6a-d077fac3a25f");
+pub const CLSID_CreateMediaExtensionObject = Guid.initString("ef65a54d-0788-45b8-8b14-bc0f6a6b5137");
+pub const MF_SAMI_SERVICE = Guid.initString("49a89ae7-b4d9-4ef2-aa5c-f65a3e05ae4e");
+pub const MF_PD_SAMI_STYLELIST = Guid.initString("e0b73c7f-486d-484e-9872-4de5192a7bf8");
+pub const MF_SD_SAMI_LANGUAGE = Guid.initString("36fcb98a-6cd0-44cb-acb9-a8f5600dd0bb");
+pub const MF_TRANSCODE_CONTAINERTYPE = Guid.initString("150ff23f-4abc-478b-ac4f-e1916fba1cca");
+pub const MFTranscodeContainerType_ASF = Guid.initString("430f6f6e-b6bf-4fc1-a0bd-9ee46eee2afb");
+pub const MFTranscodeContainerType_MPEG4 = Guid.initString("dc6cd05d-b9d0-40ef-bd35-fa622c1ab28a");
+pub const MFTranscodeContainerType_MP3 = Guid.initString("e438b912-83f1-4de6-9e3a-9ffbc6dd24d1");
+pub const MFTranscodeContainerType_FLAC = Guid.initString("31344aa3-05a9-42b5-901b-8e9d4257f75e");
+pub const MFTranscodeContainerType_3GP = Guid.initString("34c50167-4472-4f34-9ea0-c49fbacf037d");
+pub const MFTranscodeContainerType_AC3 = Guid.initString("6d8d91c3-8c91-4ed1-8742-8c347d5b44d0");
+pub const MFTranscodeContainerType_ADTS = Guid.initString("132fd27d-0f02-43de-a301-38fbbbb3834e");
+pub const MFTranscodeContainerType_MPEG2 = Guid.initString("bfc2dbf9-7bb4-4f8f-afde-e112c44ba882");
+pub const MFTranscodeContainerType_WAVE = Guid.initString("64c3453c-0f26-4741-be63-87bdf8bb935b");
+pub const MFTranscodeContainerType_AVI = Guid.initString("7edfe8af-402f-4d76-a33c-619fd157d0f1");
+pub const MFTranscodeContainerType_FMPEG4 = Guid.initString("9ba876f1-419f-4b77-a1e0-35959d9d4004");
+pub const MFTranscodeContainerType_AMR = Guid.initString("025d5ad3-621a-475b-964d-66b1c824f079");
+pub const MF_TRANSCODE_SKIP_METADATA_TRANSFER = Guid.initString("4e4469ef-b571-4959-8f83-3dcfba33a393");
+pub const MF_TRANSCODE_TOPOLOGYMODE = Guid.initString("3e3df610-394a-40b2-9dea-3bab650bebf2");
+pub const MF_TRANSCODE_ADJUST_PROFILE = Guid.initString("9c37c21b-060f-487c-a690-80d7f50d1c72");
+pub const MF_TRANSCODE_ENCODINGPROFILE = Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
+pub const MF_TRANSCODE_QUALITYVSSPEED = Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
+pub const MF_TRANSCODE_DONOT_INSERT_ENCODER = Guid.initString("f45aa7ce-ab24-4012-a11b-dc8220201410");
+pub const MF_VIDEO_PROCESSOR_ALGORITHM = Guid.initString("4a0a1e1f-272c-4fb6-9eb1-db330cbc97ca");
+pub const MF_XVP_DISABLE_FRC = Guid.initString("2c0afa19-7a97-4d5a-9ee8-16d4fc518d8c");
+pub const MF_XVP_CALLER_ALLOCATES_OUTPUT = Guid.initString("04a2cabc-0cab-40b1-a1b9-75bc3658f000");
+pub const MF_LOCAL_MFT_REGISTRATION_SERVICE = Guid.initString("ddf5cf9c-4506-45aa-abf0-6d5d94dd1b4a");
+pub const MF_WRAPPED_SAMPLE_SERVICE = Guid.initString("31f52bf2-d03e-4048-80d0-9c1046d87c61");
+pub const MF_WRAPPED_OBJECT = Guid.initString("2b182c4c-d6ac-49f4-8915-f71887db70cd");
+pub const CLSID_HttpSchemePlugin = Guid.initString("44cb442b-9da9-49df-b3fd-023777b16e50");
+pub const CLSID_UrlmonSchemePlugin = Guid.initString("9ec4b4f9-3029-45ad-947b-344de2a249e2");
+pub const CLSID_NetSchemePlugin = Guid.initString("e9f4ebab-d97b-463e-a2b1-c54ee3f9414d");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE = Guid.initString("c60ac5fe-252a-478f-a0ef-bc8fa5f7cad3");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_HW_SOURCE = Guid.initString("de7046ba-54d6-4487-a2a4-ec7c0d1bd163");
+pub const MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME = Guid.initString("60d0e559-52f8-4fa2-bbce-acdb34a8ec01");
+pub const MF_DEVSOURCE_ATTRIBUTE_MEDIA_TYPE = Guid.initString("56a819ca-0c78-4de4-a0a7-3ddaba0f24d4");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_CATEGORY = Guid.initString("77f0ae69-c3bd-4509-941d-467e4d24899e");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK = Guid.initString("58f0aad8-22bf-4f8a-bb3d-d2c4978c6e2f");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_SYMBOLIC_LINK = Guid.initString("98d24b5e-5930-4614-b5a1-f600f9355a78");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_MAX_BUFFERS = Guid.initString("7dd9b730-4f2d-41d5-8f95-0cc9a912ba26");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ENDPOINT_ID = Guid.initString("30da9258-feb9-47a7-a453-763a7a8e1c5f");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ROLE = Guid.initString("bc9d118e-8c67-4a18-85d4-12d300400552");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_PROVIDER_DEVICE_ID = Guid.initString("36689d42-a06c-40ae-84cf-f5a034067cc4");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_XADDRESS = Guid.initString("bca0be52-c327-44c7-9b7d-7fa8d9b5bcda");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_STREAM_URL = Guid.initString("9d7b40d2-3617-4043-93e3-8d6da9bb3492");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_USERNAME = Guid.initString("05d01add-949f-46eb-bc8e-8b0d2b32d79d");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_PASSWORD = Guid.initString("a0fd7e16-42d9-49df-84c0-e82c5eab8874");
+pub const CLSID_FrameServerNetworkCameraSource = Guid.initString("7a213aa7-866f-414a-8c1a-275c7283a395");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_GUID = Guid.initString("14dd9a1c-7cff-41be-b1b9-ba1ac6ecb571");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID = Guid.initString("8ac3587a-4ae7-42d8-99e0-0a6013eef90f");
+pub const MF_DEVICESTREAM_IMAGE_STREAM = Guid.initString("a7ffb865-e7b2-43b0-9f6f-9af2a0e50fc0");
+pub const MF_DEVICESTREAM_INDEPENDENT_IMAGE_STREAM = Guid.initString("03eeec7e-d605-4576-8b29-6580b490d7d3");
+pub const MF_DEVICESTREAM_STREAM_ID = Guid.initString("11bd5120-d124-446b-88e6-17060257fff9");
+pub const MF_DEVICESTREAM_STREAM_CATEGORY = Guid.initString("2939e7b8-a62e-4579-b674-d4073dfabbba");
+pub const MF_DEVICESTREAM_FRAMESERVER_SHARED = Guid.initString("1cb378e9-b279-41d4-af97-34a243e68320");
+pub const MF_DEVICESTREAM_TRANSFORM_STREAM_ID = Guid.initString("e63937b7-daaf-4d49-815f-d826f8ad31e7");
+pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CLSID = Guid.initString("048e6558-60c4-4173-bd5b-6a3ca2896aee");
+pub const MF_DEVICEMFT_EXTENSION_PLUGIN_CLSID = Guid.initString("0844dbae-34fa-48a0-a783-8e696fb1c9a8");
+pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CONNECTION_POINT = Guid.initString("37f9375c-e664-4ea4-aae4-cb6d1daca1f4");
+pub const MF_DEVICESTREAM_TAKEPHOTO_TRIGGER = Guid.initString("1d180e34-538c-4fbb-a75a-859af7d261a6");
+pub const MF_DEVICESTREAM_MAX_FRAME_BUFFERS = Guid.initString("1684cebe-3175-4985-882c-0efd3e8ac11e");
+pub const MF_DEVICEMFT_CONNECTED_FILTER_KSCONTROL = Guid.initString("6a2c4fa6-d179-41cd-9523-822371ea40e5");
+pub const MF_DEVICEMFT_CONNECTED_PIN_KSCONTROL = Guid.initString("e63310f7-b244-4ef8-9a7d-24c74e32ebd0");
+pub const MF_DEVICE_THERMAL_STATE_CHANGED = Guid.initString("70ccd0af-fc9f-4deb-a875-9fecd16c5bd4");
+pub const MFSampleExtension_DeviceTimestamp = Guid.initString("8f3e35e7-2dcd-4887-8622-2a58baa652b0");
+pub const MFSampleExtension_Spatial_CameraViewTransform = Guid.initString("4e251fa4-830f-4770-859a-4b8d99aa809b");
+pub const MFSampleExtension_Spatial_CameraCoordinateSystem = Guid.initString("9d13c82f-2199-4e67-91cd-d1a4181f2534");
+pub const MFSampleExtension_Spatial_CameraProjectionTransform = Guid.initString("47f9fcb5-2a02-4f26-a477-792fdf95886a");
+pub const MF_MEDIASOURCE_SERVICE = Guid.initString("f09992f7-9fba-4c4a-a37f-8c47b4e1dfe7");
+pub const MF_ACCESS_CONTROLLED_MEDIASOURCE_SERVICE = Guid.initString("014a5031-2f05-4c6a-9f9c-7d0dc4eda5f4");
+pub const MF_CONTENT_DECRYPTOR_SERVICE = Guid.initString("68a72927-fc7b-44ee-85f4-7c51bd55a659");
+pub const MF_CONTENT_PROTECTION_DEVICE_SERVICE = Guid.initString("ff58436f-76a0-41fe-b566-10cc53962edd");
+pub const MF_SD_AUDIO_ENCODER_DELAY = Guid.initString("8e85422c-73de-403f-9a35-550ad6e8b951");
+pub const MF_SD_AUDIO_ENCODER_PADDING = Guid.initString("529c7f2c-ac4b-4e3f-bfc3-0902194982cb");
+pub const CLSID_MSH264DecoderMFT = Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
+pub const CLSID_MSH264EncoderMFT = Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
+pub const CLSID_MSDDPlusDecMFT = Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
+pub const CLSID_MP3DecMediaObject = Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
+pub const CLSID_MSAACDecMFT = Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
+pub const CLSID_MSH265DecoderMFT = Guid.initString("420a51a3-d605-430c-b4fc-45274fa6c562");
+pub const CLSID_WMVDecoderMFT = Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
+pub const CLSID_WMADecMediaObject = Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
+pub const CLSID_MSMPEGAudDecMFT = Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
+pub const CLSID_MSMPEGDecoderMFT = Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
+pub const CLSID_AudioResamplerMediaObject = Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
+pub const CLSID_MSVPxDecoder = Guid.initString("e3aaf548-c9a4-4c6e-234d-5ada374b0000");
+pub const CLSID_MSOpusDecoder = Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
+pub const CLSID_VideoProcessorMFT = Guid.initString("88753b26-5b24-49bd-b2e7-0c445c78c982");
+pub const MFNETSOURCE_CROSS_ORIGIN_SUPPORT = Guid.initString("9842207c-b02c-4271-a2fc-72e49308e5c2");
+pub const MFNETSOURCE_HTTP_DOWNLOAD_SESSION_PROVIDER = Guid.initString("7d55081e-307d-4d6d-a663-a93be97c4b5c");
+pub const MF_SD_MEDIASOURCE_STATUS = Guid.initString("1913678b-fc0f-44da-8f43-1ba3b526f4ae");
+pub const MF_SD_VIDEO_SPHERICAL = Guid.initString("a51da449-3fdc-478c-bcb5-30be76595f55");
+pub const MF_SD_VIDEO_SPHERICAL_FORMAT = Guid.initString("4a8fc407-6ea1-46c8-b567-6971d4a139c3");
+pub const MF_SD_VIDEO_SPHERICAL_INITIAL_VIEWDIRECTION = Guid.initString("11d25a49-bb62-467f-9db1-c17165716c49");
+pub const MF_MEDIASOURCE_EXPOSE_ALL_STREAMS = Guid.initString("e7f250b8-8fd9-4a09-b6c1-6a315c7c720e");
+pub const MF_ST_MEDIASOURCE_COLLECTION = Guid.initString("616de972-83ad-4950-8170-630d19cbe307");
+pub const MF_DEVICESTREAM_FILTER_KSCONTROL = Guid.initString("46783cca-3df5-4923-a9ef-36b7223edde0");
+pub const MF_DEVICESTREAM_PIN_KSCONTROL = Guid.initString("ef3ef9a7-87f2-48ca-be02-674878918e98");
+pub const MF_DEVICESTREAM_SOURCE_ATTRIBUTES = Guid.initString("2f8cb617-361b-434f-85ea-99a03e1ce4e0");
+pub const MF_DEVICESTREAM_FRAMESERVER_HIDDEN = Guid.initString("f402567b-4d91-4179-96d1-74c8480c2034");
+pub const MF_STF_VERSION_INFO = Guid.initString("6770bd39-ef82-44ee-a49b-934beb24aef7");
+pub const MF_STF_VERSION_DATE = Guid.initString("31a165d5-df67-4095-8e44-8868fc20dbfd");
+pub const MF_DEVICESTREAM_REQUIRED_CAPABILITIES = Guid.initString("6d8b957e-7cf6-43f4-af56-9c0e1e4fcbe1");
+pub const MF_DEVICESTREAM_REQUIRED_SDDL = Guid.initString("331ae85d-c0d3-49ba-83ba-82a12d63cdd6");
+pub const MF_DEVICEMFT_SENSORPROFILE_COLLECTION = Guid.initString("36ebdc44-b12c-441b-89f4-08b2f41a9cfc");
+pub const MF_DEVICESTREAM_SENSORSTREAM_ID = Guid.initString("e35b9fe4-0659-4cad-bb51-33160be7e413");
+pub const MF_PD_ASF_FILEPROPERTIES_FILE_ID = Guid.initString("3de649b4-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_CREATION_TIME = Guid.initString("3de649b6-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PACKETS = Guid.initString("3de649b7-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PLAY_DURATION = Guid.initString("3de649b8-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_SEND_DURATION = Guid.initString("3de649b9-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PREROLL = Guid.initString("3de649ba-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_FLAGS = Guid.initString("3de649bb-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MIN_PACKET_SIZE = Guid.initString("3de649bc-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MAX_PACKET_SIZE = Guid.initString("3de649bd-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MAX_BITRATE = Guid.initString("3de649be-d76d-4e66-9ec9-78120fb4c7e3");
+pub const CLSID_WMDRMSystemID = Guid.initString("8948bb22-11bd-4796-93e3-974d1b575678");
+pub const MF_PD_ASF_CONTENTENCRYPTION_TYPE = Guid.initString("8520fe3d-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_KEYID = Guid.initString("8520fe3e-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_SECRET_DATA = Guid.initString("8520fe3f-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_LICENSE_URL = Guid.initString("8520fe40-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTIONEX_ENCRYPTION_DATA = Guid.initString("62508be5-ecdf-4924-a359-72bab3397b9d");
+pub const MF_PD_ASF_LANGLIST = Guid.initString("f23de43c-9977-460d-a6ec-32937f160f7d");
+pub const MF_PD_ASF_LANGLIST_LEGACYORDER = Guid.initString("f23de43d-9977-460d-a6ec-32937f160f7d");
+pub const MF_PD_ASF_MARKER = Guid.initString("5134330e-83a6-475e-a9d5-4fb875fb2e31");
+pub const MF_PD_ASF_SCRIPT = Guid.initString("e29cd0d7-d602-4923-a7fe-73fd97ecc650");
+pub const MF_PD_ASF_CODECLIST = Guid.initString("e4bb3509-c18d-4df1-bb99-7a36b3cc4119");
+pub const MF_PD_ASF_METADATA_IS_VBR = Guid.initString("5fc6947a-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_V8_VBRPEAK = Guid.initString("5fc6947b-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_V8_BUFFERAVERAGE = Guid.initString("5fc6947c-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_LEAKY_BUCKET_PAIRS = Guid.initString("5fc6947d-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_DATA_START_OFFSET = Guid.initString("e7d5b3e7-1f29-45d3-8822-3e78fae272ed");
+pub const MF_PD_ASF_DATA_LENGTH = Guid.initString("e7d5b3e8-1f29-45d3-8822-3e78fae272ed");
+pub const MF_SD_ASF_EXTSTRMPROP_LANGUAGE_ID_INDEX = Guid.initString("48f8a522-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_AVG_DATA_BITRATE = Guid.initString("48f8a523-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_AVG_BUFFERSIZE = Guid.initString("48f8a524-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_MAX_DATA_BITRATE = Guid.initString("48f8a525-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_MAX_BUFFERSIZE = Guid.initString("48f8a526-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_STREAMBITRATES_BITRATE = Guid.initString("a8e182ed-afc8-43d0-b0d1-f65bad9da558");
+pub const MF_SD_ASF_METADATA_DEVICE_CONFORMANCE_TEMPLATE = Guid.initString("245e929d-c44e-4f7e-bb3c-77d4dfd27f8a");
+pub const MF_PD_ASF_INFO_HAS_AUDIO = Guid.initString("80e62295-2296-4a44-b31c-d103c6fed23c");
+pub const MF_PD_ASF_INFO_HAS_VIDEO = Guid.initString("80e62296-2296-4a44-b31c-d103c6fed23c");
+pub const MF_PD_ASF_INFO_HAS_NON_AUDIO_VIDEO = Guid.initString("80e62297-2296-4a44-b31c-d103c6fed23c");
+pub const MF_ASFPROFILE_MINPACKETSIZE = Guid.initString("22587626-47de-4168-87f5-b5aa9b12a8f0");
+pub const MF_ASFPROFILE_MAXPACKETSIZE = Guid.initString("22587627-47de-4168-87f5-b5aa9b12a8f0");
+pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET1 = Guid.initString("c69b5901-ea1a-4c9b-b692-e2a0d29a8add");
+pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET2 = Guid.initString("c69b5902-ea1a-4c9b-b692-e2a0d29a8add");
+pub const MFASFSampleExtension_SampleDuration = Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
+pub const MFASFSampleExtension_OutputCleanPoint = Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
+pub const MFASFSampleExtension_SMPTE = Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
+pub const MFASFSampleExtension_FileName = Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
+pub const MFASFSampleExtension_ContentType = Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
+pub const MFASFSampleExtension_PixelAspectRatio = Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
+pub const MFASFSampleExtension_Encryption_SampleID = Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
+pub const MFASFSampleExtension_Encryption_KeyID = Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
+pub const MFASFMutexType_Language = Guid.initString("72178c2b-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Bitrate = Guid.initString("72178c2c-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Presentation = Guid.initString("72178c2d-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Unknown = Guid.initString("72178c2e-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFSPLITTER_PACKET_BOUNDARY = Guid.initString("fe584a05-e8d6-42e3-b176-f1211705fb6f");
+pub const MFASFINDEXER_TYPE_TIMECODE = Guid.initString("49815231-6bad-44fd-810a-3f60984ec7fd");
+pub const MF_CAPTURE_ENGINE_INITIALIZED = Guid.initString("219992bc-cf92-4531-a1ae-96e1e886c8f1");
+pub const MF_CAPTURE_ENGINE_PREVIEW_STARTED = Guid.initString("a416df21-f9d3-4a74-991b-b817298952c4");
+pub const MF_CAPTURE_ENGINE_PREVIEW_STOPPED = Guid.initString("13d5143c-1edd-4e50-a2ef-350a47678060");
+pub const MF_CAPTURE_ENGINE_RECORD_STARTED = Guid.initString("ac2b027b-ddf9-48a0-89be-38ab35ef45c0");
+pub const MF_CAPTURE_ENGINE_RECORD_STOPPED = Guid.initString("55e5200a-f98f-4c0d-a9ec-9eb25ed3d773");
+pub const MF_CAPTURE_ENGINE_PHOTO_TAKEN = Guid.initString("3c50c445-7304-48eb-865d-bba19ba3af5c");
+pub const MF_CAPTURE_SOURCE_CURRENT_DEVICE_MEDIA_TYPE_SET = Guid.initString("e7e75e4c-039c-4410-815b-8741307b63aa");
+pub const MF_CAPTURE_ENGINE_ERROR = Guid.initString("46b89fc6-33cc-4399-9dad-784de77d587c");
+pub const MF_CAPTURE_ENGINE_EFFECT_ADDED = Guid.initString("aa8dc7b5-a048-4e13-8ebe-f23c46c830c1");
+pub const MF_CAPTURE_ENGINE_EFFECT_REMOVED = Guid.initString("c6e8db07-fb09-4a48-89c6-bf92a04222c9");
+pub const MF_CAPTURE_ENGINE_ALL_EFFECTS_REMOVED = Guid.initString("fded7521-8ed8-431a-a96b-f3e2565e981c");
+pub const MF_CAPTURE_SINK_PREPARED = Guid.initString("7bfce257-12b1-4409-8c34-d445daab7578");
+pub const MF_CAPTURE_ENGINE_OUTPUT_MEDIA_TYPE_SET = Guid.initString("caaad994-83ec-45e9-a30a-1f20aadb9831");
+pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_BLOCKED = Guid.initString("a4209417-8d39-46f3-b759-5912528f4207");
+pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_UNBLOCKED = Guid.initString("9be9eef0-cdaf-4717-8564-834aae66415c");
+pub const MF_CAPTURE_ENGINE_D3D_MANAGER = Guid.initString("76e25e7b-d595-4283-962c-c594afd78ddf");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_UNPROCESSED_SAMPLES = Guid.initString("b467f705-7913-4894-9d42-a215fea23da9");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_UNPROCESSED_SAMPLES = Guid.initString("1cddb141-a7f4-4d58-9896-4d15a53c4efe");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_PROCESSED_SAMPLES = Guid.initString("e7b4a49e-382c-4aef-a946-aed5490b7111");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_PROCESSED_SAMPLES = Guid.initString("9896e12a-f707-4500-b6bd-db8eb810b50f");
+pub const MF_CAPTURE_ENGINE_USE_AUDIO_DEVICE_ONLY = Guid.initString("1c8077da-8466-4dc4-8b8e-276b3f85923b");
+pub const MF_CAPTURE_ENGINE_USE_VIDEO_DEVICE_ONLY = Guid.initString("7e025171-cf32-4f2e-8f19-410577b73a66");
+pub const MF_CAPTURE_ENGINE_DISABLE_HARDWARE_TRANSFORMS = Guid.initString("b7c42a6b-3207-4495-b4e7-81f9c35d5991");
+pub const MF_CAPTURE_ENGINE_DISABLE_DXVA = Guid.initString("f9818862-179d-433f-a32f-74cbcf74466d");
+pub const MF_CAPTURE_ENGINE_MEDIASOURCE_CONFIG = Guid.initString("bc6989d2-0fc1-46e1-a74f-efd36bc788de");
+pub const MF_CAPTURE_ENGINE_DECODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("2b8ad2e8-7acb-4321-a606-325c4249f4fc");
+pub const MF_CAPTURE_ENGINE_ENCODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("54c63a00-78d5-422f-aa3e-5e99ac649269");
+pub const MF_CAPTURE_ENGINE_ENABLE_CAMERA_STREAMSTATE_NOTIFICATION = Guid.initString("4c808e9d-aaed-4713-90fb-cb24064ab8da");
+pub const MF_CAPTURE_ENGINE_MEDIA_CATEGORY = Guid.initString("8e3f5bd5-dbbf-42f0-8542-d07a3971762a");
+pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING = Guid.initString("10f1be5e-7e11-410b-973d-f4b6109000fe");
+pub const MF_CAPTURE_ENGINE_EVENT_GENERATOR_GUID = Guid.initString("abfa8ad5-fc6d-4911-87e0-961945f8f7ce");
+pub const MF_CAPTURE_ENGINE_EVENT_STREAM_INDEX = Guid.initString("82697f44-b1cf-42eb-9753-f86d649c8865");
+pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE = Guid.initString("03160b7e-1c6f-4db2-ad56-a7c430f82392");
+pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE_INDEX = Guid.initString("3ce88613-2214-46c3-b417-82f8a313c9c3");
+pub const CLSID_MFCaptureEngine = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
+pub const CLSID_MFCaptureEngineClassFactory = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
+pub const MFSampleExtension_DeviceReferenceSystemTime = Guid.initString("6523775a-ba2d-405f-b2c5-01ff88e2e8f6");
+pub const MF_MSE_CALLBACK = Guid.initString("9063a7c0-42c5-4ffd-a8a8-6fcf9ea3d00c");
+pub const MF_MSE_ACTIVELIST_CALLBACK = Guid.initString("949bda0f-4549-46d5-ad7f-b846e1ab1652");
+pub const MF_MSE_BUFFERLIST_CALLBACK = Guid.initString("42e669b0-d60e-4afb-a85b-d8e5fe6bdab5");
+pub const MF_MSE_VP9_SUPPORT = Guid.initString("92d78429-d88b-4ff0-8322-803efa6e9626");
+pub const MF_MSE_OPUS_SUPPORT = Guid.initString("4d224cc1-8cc4-48a3-a7a7-e4c16ce6388a");
+pub const MF_MEDIA_ENGINE_NEEDKEY_CALLBACK = Guid.initString("7ea80843-b6e4-432c-8ea4-7848ffe4220e");
+pub const MF_MEDIA_ENGINE_CALLBACK = Guid.initString("c60381b8-83a4-41f8-a3d0-de05076849a9");
+pub const MF_MEDIA_ENGINE_DXGI_MANAGER = Guid.initString("065702da-1094-486d-8617-ee7cc4ee4648");
+pub const MF_MEDIA_ENGINE_EXTENSION = Guid.initString("3109fd46-060d-4b62-8dcf-faff811318d2");
+pub const MF_MEDIA_ENGINE_PLAYBACK_HWND = Guid.initString("d988879b-67c9-4d92-baa7-6eadd446039d");
+pub const MF_MEDIA_ENGINE_OPM_HWND = Guid.initString("a0be8ee7-0572-4f2c-a801-2a151bd3e726");
+pub const MF_MEDIA_ENGINE_PLAYBACK_VISUAL = Guid.initString("6debd26f-6ab9-4d7e-b0ee-c61a73ffad15");
+pub const MF_MEDIA_ENGINE_COREWINDOW = Guid.initString("fccae4dc-0b7f-41c2-9f96-4659948acddc");
+pub const MF_MEDIA_ENGINE_VIDEO_OUTPUT_FORMAT = Guid.initString("5066893c-8cf9-42bc-8b8a-472212e52726");
+pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_FLAGS = Guid.initString("e0350223-5aaf-4d76-a7c3-06de70894db4");
+pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_MANAGER = Guid.initString("fdd6dfaa-bd85-4af3-9e0f-a01d539d876a");
+pub const MF_MEDIA_ENGINE_AUDIO_ENDPOINT_ROLE = Guid.initString("d2cb93d1-116a-44f2-9385-f7d0fda2fb46");
+pub const MF_MEDIA_ENGINE_AUDIO_CATEGORY = Guid.initString("c8d4c51d-350e-41f2-ba46-faebbb0857f6");
+pub const MF_MEDIA_ENGINE_STREAM_CONTAINS_ALPHA_CHANNEL = Guid.initString("5cbfaf44-d2b2-4cfb-80a7-d429c74c789d");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE = Guid.initString("4e0212e2-e18f-41e1-95e5-c0e7e9235bc3");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE9 = Guid.initString("052c2d39-40c0-4188-ab86-f828273b7522");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE10 = Guid.initString("11a47afd-6589-4124-b312-6158ec517fc3");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE11 = Guid.initString("1cf1315f-ce3f-4035-9391-16142f775189");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE_EDGE = Guid.initString("a6f3e465-3aca-442c-a3f0-ad6ddad839ae");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE = Guid.initString("3ef26ad4-dc54-45de-b9af-76c8c66bfa8e");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WWA_EDGE = Guid.initString("15b29098-9f01-4e4d-b65a-c06c6c89da2a");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WIN10 = Guid.initString("5b25e089-6ca7-4139-a2cb-fcaab39552a3");
+pub const MF_MEDIA_ENGINE_SOURCE_RESOLVER_CONFIG_STORE = Guid.initString("0ac0c497-b3c4-48c9-9cde-bb8ca2442ca3");
+pub const MF_MEDIA_ENGINE_TRACK_ID = Guid.initString("65bea312-4043-4815-8eab-44dce2ef8f2a");
+pub const MF_MEDIA_ENGINE_TELEMETRY_APPLICATION_ID = Guid.initString("1e7b273b-a7e4-402a-8f51-c48e88a2cabc");
+pub const MF_MEDIA_ENGINE_SYNCHRONOUS_CLOSE = Guid.initString("c3c2e12f-7e0e-4e43-b91c-dc992ccdfa5e");
+pub const MF_MEDIA_ENGINE_MEDIA_PLAYER_MODE = Guid.initString("3ddd8d45-5aa1-4112-82e5-36f6a2197e6e");
+pub const CLSID_MFMediaEngineClassFactory = Guid.initString("b44392da-499b-446b-a4cb-005fead0e6d5");
+pub const MF_MEDIA_ENGINE_TIMEDTEXT = Guid.initString("805ea411-92e0-4e59-9b6e-5c7d7915e64f");
+pub const MF_MEDIA_ENGINE_CONTINUE_ON_CODEC_ERROR = Guid.initString("dbcdb7f9-48e4-4295-b70d-d518234eeb38");
+pub const MF_MEDIA_ENGINE_EME_CALLBACK = Guid.initString("494553a7-a481-4cb7-bec5-380903513731");
+pub const CLSID_MPEG2DLNASink = Guid.initString("fa5fe7c5-6a1d-4b11-b41f-f959d6c76500");
+pub const MF_MP2DLNA_USE_MMCSS = Guid.initString("54f3e2ee-a2a2-497d-9834-973afde521eb");
+pub const MF_MP2DLNA_VIDEO_BIT_RATE = Guid.initString("e88548de-73b4-42d7-9c75-adfa0a2a6e4c");
+pub const MF_MP2DLNA_AUDIO_BIT_RATE = Guid.initString("2d1c070e-2b5f-4ab3-a7e6-8d943ba8d00a");
+pub const MF_MP2DLNA_ENCODE_QUALITY = Guid.initString("b52379d7-1d46-4fb6-a317-a4a5f60959f8");
+pub const MF_MP2DLNA_STATISTICS = Guid.initString("75e488a3-d5ad-4898-85e0-bcce24a722d7");
+pub const CLSID_MFReadWriteClassFactory = Guid.initString("48e2ed0f-98c2-4a37-bed5-166312ddd83f");
+pub const CLSID_MFSourceReader = Guid.initString("1777133c-0881-411b-a577-ad545f0714c4");
+pub const MF_SOURCE_READER_ASYNC_CALLBACK = Guid.initString("1e3dbeac-bb43-4c35-b507-cd644464c965");
+pub const MF_SOURCE_READER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
+pub const MF_SOURCE_READER_DISABLE_DXVA = Guid.initString("aa456cfd-3943-4a1e-a77d-1838c0ea2e35");
+pub const MF_SOURCE_READER_MEDIASOURCE_CONFIG = Guid.initString("9085abeb-0354-48f9-abb5-200df838c68e");
+pub const MF_SOURCE_READER_MEDIASOURCE_CHARACTERISTICS = Guid.initString("6d23f5c8-c5d7-4a9b-9971-5d11f8bca880");
+pub const MF_SOURCE_READER_ENABLE_VIDEO_PROCESSING = Guid.initString("fb394f3d-ccf1-42ee-bbb3-f9b845d5681d");
+pub const MF_SOURCE_READER_ENABLE_ADVANCED_VIDEO_PROCESSING = Guid.initString("0f81da2c-b537-4672-a8b2-a681b17307a3");
+pub const MF_SOURCE_READER_DISABLE_CAMERA_PLUGINS = Guid.initString("9d3365dd-058f-4cfb-9f97-b314cc99c8ad");
+pub const MF_SOURCE_READER_DISCONNECT_MEDIASOURCE_ON_SHUTDOWN = Guid.initString("56b67165-219e-456d-a22e-2d3004c7fe56");
+pub const MF_SOURCE_READER_ENABLE_TRANSCODE_ONLY_TRANSFORMS = Guid.initString("dfd4f008-b5fd-4e78-ae44-62a1e67bbe27");
+pub const MF_SOURCE_READER_D3D11_BIND_FLAGS = Guid.initString("33f3197b-f73a-4e14-8d85-0e4c4368788d");
+pub const CLSID_MFSinkWriter = Guid.initString("a3bbfb17-8273-4e52-9e0e-9739dc887990");
+pub const MF_SINK_WRITER_ASYNC_CALLBACK = Guid.initString("48cb183e-7b0b-46f4-822e-5e1d2dda4354");
+pub const MF_SINK_WRITER_DISABLE_THROTTLING = Guid.initString("08b845d8-2b74-4afe-9d53-be16d2d5ae4f");
+pub const MF_SINK_WRITER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
+pub const MF_SINK_WRITER_ENCODER_CONFIG = Guid.initString("ad91cd04-a7cc-4ac7-99b6-a57b9a4a7c70");
+pub const MF_READWRITE_DISABLE_CONVERTERS = Guid.initString("98d5b065-1374-4847-8d5d-31520fee7156");
+pub const MF_READWRITE_ENABLE_HARDWARE_TRANSFORMS = Guid.initString("a634a91c-822b-41b9-a494-4de4643612b0");
+pub const MF_READWRITE_MMCSS_CLASS = Guid.initString("39384300-d0eb-40b1-87a0-3318871b5a53");
+pub const MF_READWRITE_MMCSS_PRIORITY = Guid.initString("43ad19ce-f33f-4ba9-a580-e4cd12f2d144");
+pub const MF_READWRITE_MMCSS_CLASS_AUDIO = Guid.initString("430847da-0890-4b0e-938c-054332c547e1");
+pub const MF_READWRITE_MMCSS_PRIORITY_AUDIO = Guid.initString("273db885-2de2-4db2-a6a7-fdb66fb40b61");
+pub const MF_READWRITE_D3D_OPTIONAL = Guid.initString("216479d9-3071-42ca-bb6c-4c22102e1d18");
+pub const MF_MEDIASINK_AUTOFINALIZE_SUPPORTED = Guid.initString("48c131be-135a-41cb-8290-03652509c999");
+pub const MF_MEDIASINK_ENABLE_AUTOFINALIZE = Guid.initString("34014265-cb7e-4cde-ac7c-effd3b3c2530");
+pub const MF_READWRITE_ENABLE_AUTOFINALIZE = Guid.initString("dd7ca129-8cd1-4dc5-9dde-ce168675de61");
+pub const MF_MEDIA_SHARING_ENGINE_DEVICE_NAME = Guid.initString("771e05d1-862f-4299-95ac-ae81fd14f3e7");
+pub const MF_MEDIA_SHARING_ENGINE_DEVICE = Guid.initString("b461c58a-7a08-4b98-99a8-70fd5f3badfd");
+pub const CLSID_MFMediaSharingEngineClassFactory = Guid.initString("f8e307fb-6d45-4ad3-9993-66cd5a529659");
+pub const CLSID_MFImageSharingEngineClassFactory = Guid.initString("b22c3339-87f3-4059-a0c5-037aa9707eaf");
+pub const CLSID_PlayToSourceClassFactory = Guid.initString("da17539a-3dc3-42c1-a749-a183b51f085e");
+pub const GUID_PlayToService = Guid.initString("f6a8ff9d-9e14-41c9-bf0f-120a2b3ce120");
+pub const GUID_NativeDeviceService = Guid.initString("ef71e53c-52f4-43c5-b86a-ad6cb216a61e");
+pub const MF_CONTENTDECRYPTIONMODULE_SERVICE = Guid.initString("15320c45-ff80-484a-9dcb-0df894e69a01");
 pub const DXVAp_ModeMPEG2_A = Guid.initString("1b81be0a-a0c7-11d3-b984-00c04f2e73c5");
 pub const DXVAp_ModeMPEG2_C = Guid.initString("1b81be0c-a0c7-11d3-b984-00c04f2e73c5");
 pub const DXVAp_NoEncrypt = Guid.initString("1b81bed0-a0c7-11d3-b984-00c04f2e73c5");
@@ -705,3238 +1283,10 @@ pub const MF_SHUTDOWN_RENDERER_ON_ENGINE_SHUTDOWN = Guid.initString("c112d94d-6b
 pub const MF_PREFERRED_SOURCE_URI = Guid.initString("5fc85488-436a-4db8-90af-4db402ae5c57");
 pub const MF_SHARING_ENGINE_SHAREDRENDERER = Guid.initString("efa446a0-73e7-404e-8ae2-fef60af5a32b");
 pub const MF_SHARING_ENGINE_CALLBACK = Guid.initString("57dc1e95-d252-43fa-9bbc-180070eefe6d");
-pub const g_wszSpeechFormatCaps = "SpeechFormatCap";
-pub const g_wszWMCPCodecName = "_CODECNAME";
-pub const g_wszWMCPSupportedVBRModes = "_SUPPORTEDVBRMODES";
-pub const g_wszWMCPAudioVBRSupported = "_VBRENABLED";
-pub const g_wszWMCPAudioVBRQuality = "_VBRQUALITY";
-pub const g_wszWMCPMaxPasses = "_PASSESRECOMMENDED";
-pub const g_wszWMCPDefaultCrisp = "_DEFAULTCRISP";
-pub const COPP_ProtectionType_Unknown = @as(i32, -2147483648);
-pub const COPP_ProtectionType_None = @as(i32, 0);
-pub const COPP_ProtectionType_HDCP = @as(i32, 1);
-pub const COPP_ProtectionType_ACP = @as(i32, 2);
-pub const COPP_ProtectionType_CGMSA = @as(i32, 4);
-pub const COPP_ProtectionType_Mask = @as(i32, -2147483641);
-pub const COPP_ProtectionType_Reserved = @as(i32, 2147483640);
-pub const MF_BYTESTREAM_ORIGIN_NAME = Guid.initString("fc358288-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_CONTENT_TYPE = Guid.initString("fc358289-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_DURATION = Guid.initString("fc35828a-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_LAST_MODIFIED_TIME = Guid.initString("fc35828b-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_IFO_FILE_URI = Guid.initString("fc35828c-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_DLNA_PROFILE_ID = Guid.initString("fc35828d-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_EFFECTIVE_URL = Guid.initString("9afa0209-89d1-42af-8456-1de6b562d691");
-pub const MF_BYTESTREAM_TRANSCODED = Guid.initString("b6c5c282-4dc9-4db9-ab48-cf3b6d8bc5e0");
-pub const CLSID_MFByteStreamProxyClassFactory = Guid.initString("770e8e77-4916-441c-a9a7-b342d0eebc71");
-pub const MEDeviceStreamCreated = Guid.initString("0252a1cf-3540-43b4-9164-d72eb405fa40");
-pub const MF_SA_D3D_AWARE = Guid.initString("eaa35c29-775e-488e-9b61-b3283e49583b");
-pub const MF_SA_REQUIRED_SAMPLE_COUNT = Guid.initString("18802c61-324b-4952-abd0-176ff5c696ff");
-pub const MFT_END_STREAMING_AWARE = Guid.initString("70fbc845-b07e-4089-b064-399dc6110f29");
-pub const MF_SA_AUDIO_ENDPOINT_AWARE = Guid.initString("c0381701-805c-42b2-ac8d-e2b4bf21f4f8");
-pub const MFT_AUDIO_DECODER_AUDIO_ENDPOINT_ID = Guid.initString("c7ccdd6e-5398-4695-8be7-51b3e95111bd");
-pub const MFT_AUDIO_DECODER_SPATIAL_METADATA_CLIENT = Guid.initString("05987df4-1270-4999-925f-8e939a7c0af7");
-pub const MF_DMFT_FRAME_BUFFER_INFO = Guid.initString("396ce1c9-67a9-454c-8797-95a45799d804");
-pub const MF_SA_REQUIRED_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("b172d58e-fa77-4e48-8d2a-1df2d850eac2");
-pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT = Guid.initString("851745d5-c3d6-476d-9527-498ef2d10d18");
-pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("0f5523a5-1cb2-47c5-a550-2eeb84b4d14a");
-pub const MFT_SUPPORT_3DVIDEO = Guid.initString("093f81b1-4f2e-4631-8168-7934032a01d3");
-pub const MF_ENABLE_3DVIDEO_OUTPUT = Guid.initString("bdad7bca-0e5f-4b10-ab16-26de381b6293");
-pub const MF_SA_D3D11_BINDFLAGS = Guid.initString("eacf97ad-065c-4408-bee3-fdcbfd128be2");
-pub const MF_SA_D3D11_USAGE = Guid.initString("e85fe442-2ca3-486e-a9c7-109dda609880");
-pub const MF_SA_D3D11_AWARE = Guid.initString("206b4fc8-fcf9-4c51-afe3-9764369e33a0");
-pub const MF_SA_D3D11_SHARED = Guid.initString("7b8f32c3-6d96-4b89-9203-dd38b61414f3");
-pub const MF_SA_D3D11_SHARED_WITHOUT_MUTEX = Guid.initString("39dbd44d-2e44-4931-a4c8-352d3dc42115");
-pub const MF_SA_D3D11_ALLOW_DYNAMIC_YUV_TEXTURE = Guid.initString("ce06d49f-0613-4b9d-86a6-d8c4f9c10075");
-pub const MF_SA_D3D11_HW_PROTECTED = Guid.initString("3a8ba9d9-92ca-4307-a391-6999dbf3b6ce");
-pub const MF_SA_BUFFERS_PER_SAMPLE = Guid.initString("873c5171-1e3d-4e25-988d-b433ce041983");
-pub const MFT_DECODER_EXPOSE_OUTPUT_TYPES_IN_NATIVE_ORDER = Guid.initString("ef80833f-f8fa-44d9-80d8-41ed6232670c");
-pub const MFT_DECODER_QUALITY_MANAGEMENT_CUSTOM_CONTROL = Guid.initString("a24e30d7-de25-4558-bbfb-71070a2d332e");
-pub const MFT_DECODER_QUALITY_MANAGEMENT_RECOVERY_WITHOUT_ARTIFACTS = Guid.initString("d8980deb-0a48-425f-8623-611db41d3810");
-pub const MFT_REMUX_MARK_I_PICTURE_AS_CLEAN_POINT = Guid.initString("364e8f85-3f2e-436c-b2a2-4440a012a9e8");
-pub const MFT_DECODER_FINAL_VIDEO_RESOLUTION_HINT = Guid.initString("dc2f8496-15c4-407a-b6f0-1b66ab5fbf53");
-pub const MFT_ENCODER_SUPPORTS_CONFIG_EVENT = Guid.initString("86a355ae-3a77-4ec4-9f31-01149a4e92de");
-pub const MFT_ENUM_HARDWARE_VENDOR_ID_Attribute = Guid.initString("3aecb0cc-035b-4bcc-8185-2b8d551ef3af");
-pub const MF_TRANSFORM_ASYNC = Guid.initString("f81a699a-649a-497d-8c73-29f8fed6ad7a");
-pub const MF_TRANSFORM_ASYNC_UNLOCK = Guid.initString("e5666d6b-3422-4eb6-a421-da7db1f8e207");
-pub const MF_TRANSFORM_FLAGS_Attribute = Guid.initString("9359bb7e-6275-46c4-a025-1c01e45f1a86");
-pub const MF_TRANSFORM_CATEGORY_Attribute = Guid.initString("ceabba49-506d-4757-a6ff-66c184987e4e");
-pub const MFT_TRANSFORM_CLSID_Attribute = Guid.initString("6821c42b-65a4-4e82-99bc-9a88205ecd0c");
-pub const MFT_INPUT_TYPES_Attributes = Guid.initString("4276c9b1-759d-4bf3-9cd0-0d723d138f96");
-pub const MFT_OUTPUT_TYPES_Attributes = Guid.initString("8eae8cf3-a44f-4306-ba5c-bf5dda242818");
-pub const MFT_ENUM_HARDWARE_URL_Attribute = Guid.initString("2fb866ac-b078-4942-ab6c-003d05cda674");
-pub const MFT_FRIENDLY_NAME_Attribute = Guid.initString("314ffbae-5b41-4c95-9c19-4e7d586face3");
-pub const MFT_CONNECTED_STREAM_ATTRIBUTE = Guid.initString("71eeb820-a59f-4de2-bcec-38db1dd611a4");
-pub const MFT_CONNECTED_TO_HW_STREAM = Guid.initString("34e6e728-06d6-4491-a553-4795650db912");
-pub const MFT_PREFERRED_OUTPUTTYPE_Attribute = Guid.initString("7e700499-396a-49ee-b1b4-f628021e8c9d");
-pub const MFT_PROCESS_LOCAL_Attribute = Guid.initString("543186e4-4649-4e65-b588-4aa352aff379");
-pub const MFT_PREFERRED_ENCODER_PROFILE = Guid.initString("53004909-1ef5-46d7-a18e-5a75f8b5905f");
-pub const MFT_HW_TIMESTAMP_WITH_QPC_Attribute = Guid.initString("8d030fb8-cc43-4258-a22e-9210bef89be4");
-pub const MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("8ec2e9fd-9148-410d-831e-702439461a8e");
-pub const MFT_CODEC_MERIT_Attribute = Guid.initString("88a7cb15-7b07-4a34-9128-e64c6703c4d3");
-pub const MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = Guid.initString("111ea8cd-b62a-4bdb-89f6-67ffcdc2458b");
-pub const MFT_AUDIO_DECODER_DEGRADATION_INFO_ATTRIBUTE = Guid.initString("6c3386ad-ec20-430d-b2a5-505c7178d9c4");
-pub const MFT_POLICY_SET_AWARE = Guid.initString("5a633b19-cc39-4fa8-8ca5-59981b7a0018");
-pub const MFT_USING_HARDWARE_DRM = Guid.initString("34faa77d-d79e-4957-b8ce-362b2684996c");
-pub const MF_WVC1_PROG_SINGLE_SLICE_CONTENT = Guid.initString("67ec2559-0f2f-4420-a4dd-2f8ee7a5738b");
-pub const MF_PROGRESSIVE_CODING_CONTENT = Guid.initString("8f020eea-1508-471f-9da6-507d7cfa40db");
-pub const MF_NALU_LENGTH_SET = Guid.initString("a7911d53-12a4-4965-ae70-6eadd6ff0551");
-pub const MF_NALU_LENGTH_INFORMATION = Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
-pub const MF_USER_DATA_PAYLOAD = Guid.initString("d1d4985d-dc92-457a-b3a0-651a33a31047");
-pub const MF_MPEG4SINK_SPSPPS_PASSTHROUGH = Guid.initString("5601a134-2005-4ad2-b37d-22a6c554deb2");
-pub const MF_MPEG4SINK_MOOV_BEFORE_MDAT = Guid.initString("f672e3ac-e1e6-4f10-b5ec-5f3b30828816");
-pub const MF_MPEG4SINK_MINIMUM_PROPERTIES_SIZE = Guid.initString("dca1ed52-450e-4a22-8c62-4ed452f7a187");
-pub const MF_MPEG4SINK_MIN_FRAGMENT_DURATION = Guid.initString("a30b570c-8efd-45e8-94fe-27c84b5bdff6");
-pub const MF_MPEG4SINK_MAX_CODED_SEQUENCES_PER_FRAGMENT = Guid.initString("fc1b3bd6-692d-4ce5-9299-738aa5463e9a");
-pub const MF_SESSION_TOPOLOADER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f71");
-pub const MF_SESSION_GLOBAL_TIME = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f72");
-pub const MF_SESSION_QUALITY_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f73");
-pub const MF_SESSION_CONTENT_PROTECTION_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f74");
-pub const MF_SESSION_SERVER_CONTEXT = Guid.initString("afe5b291-50fa-46e8-b9be-0c0c3ce4b3a5");
-pub const MF_SESSION_REMOTE_SOURCE_MODE = Guid.initString("f4033ef4-9bb3-4378-941f-85a0856bc244");
-pub const MF_SESSION_APPROX_EVENT_OCCURRENCE_TIME = Guid.initString("190e852f-6238-42d1-b5af-69ea338ef850");
-pub const MF_PMP_SERVER_CONTEXT = Guid.initString("2f00c910-d2cf-4278-8b6a-d077fac3a25f");
-pub const MF_TIME_FORMAT_ENTRY_RELATIVE = Guid.initString("4399f178-46d3-4504-afda-20d32e9ba360");
-pub const MF_SOURCE_STREAM_SUPPORTS_HW_CONNECTION = Guid.initString("a38253aa-6314-42fd-a3ce-bb27b6859946");
-pub const MF_STREAM_SINK_SUPPORTS_HW_CONNECTION = Guid.initString("9b465cbf-0597-4f9e-9f3c-b97eeef90359");
-pub const MF_STREAM_SINK_SUPPORTS_ROTATION = Guid.initString("b3e96280-bd05-41a5-97ad-8a7fee24b912");
-pub const MF_SINK_VIDEO_PTS = Guid.initString("2162bde7-421e-4b90-9b33-e58fbf1d58b6");
-pub const MF_SINK_VIDEO_NATIVE_WIDTH = Guid.initString("e6d6a707-1505-4747-9b10-72d2d158cb3a");
-pub const MF_SINK_VIDEO_NATIVE_HEIGHT = Guid.initString("f0ca6705-490c-43e8-941c-c0b3206b9a65");
-pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_NUMERATOR = Guid.initString("d0f33b22-b78a-4879-b455-f03ef3fa82cd");
-pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_DENOMINATOR = Guid.initString("6ea1eb97-1fe0-4f10-a6e4-1f4f661564e0");
-pub const MF_BD_MVC_PLANE_OFFSET_METADATA = Guid.initString("62a654e4-b76c-4901-9823-2cb615d47318");
-pub const MF_LUMA_KEY_ENABLE = Guid.initString("7369820f-76de-43ca-9284-47b8f37e0649");
-pub const MF_LUMA_KEY_LOWER = Guid.initString("93d7b8d5-0b81-4715-aea0-8725871621e9");
-pub const MF_LUMA_KEY_UPPER = Guid.initString("d09f39bb-4602-4c31-a706-a12171a5110a");
-pub const MF_USER_EXTENDED_ATTRIBUTES = Guid.initString("c02abac6-feb2-4541-922f-920b43702722");
-pub const MF_INDEPENDENT_STILL_IMAGE = Guid.initString("ea12af41-0710-42c9-a127-daa3e78483a5");
-pub const MF_XVP_SAMPLE_LOCK_TIMEOUT = Guid.initString("aa4ddb29-5134-4363-ac72-83ec4bc10426");
-pub const MF_TOPOLOGY_PROJECTSTART = Guid.initString("7ed3f802-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_PROJECTSTOP = Guid.initString("7ed3f803-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_NO_MARKIN_MARKOUT = Guid.initString("7ed3f804-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_DXVA_MODE = Guid.initString("1e8d34f6-f5ab-4e23-bb88-874aa3a1a74d");
-pub const MF_TOPOLOGY_ENABLE_XVP_FOR_PLAYBACK = Guid.initString("1967731f-cd78-42fc-b026-0992a56e5693");
-pub const MF_TOPOLOGY_STATIC_PLAYBACK_OPTIMIZATIONS = Guid.initString("b86cac42-41a6-4b79-897a-1ab0e52b4a1b");
-pub const MF_TOPOLOGY_PLAYBACK_MAX_DIMS = Guid.initString("5715cf19-5768-44aa-ad6e-8721f1b0f9bb");
-pub const MF_TOPOLOGY_HARDWARE_MODE = Guid.initString("d2d362fd-4e4f-4191-a579-c618b66706af");
-pub const MF_TOPOLOGY_PLAYBACK_FRAMERATE = Guid.initString("c164737a-c2b1-4553-83bb-5a526072448f");
-pub const MF_TOPOLOGY_DYNAMIC_CHANGE_NOT_ALLOWED = Guid.initString("d529950b-d484-4527-a9cd-b1909532b5b0");
-pub const MF_TOPOLOGY_ENUMERATE_SOURCE_TYPES = Guid.initString("6248c36d-5d0b-4f40-a0bb-b0b305f77698");
-pub const MF_TOPOLOGY_START_TIME_ON_PRESENTATION_SWITCH = Guid.initString("c8cc113f-7951-4548-aad6-9ed6202e62b3");
-pub const MF_DISABLE_LOCALLY_REGISTERED_PLUGINS = Guid.initString("66b16da9-add4-47e0-a16b-5af1fb483634");
-pub const MF_LOCAL_PLUGIN_CONTROL_POLICY = Guid.initString("d91b0085-c86d-4f81-8822-8c68e1d7fa04");
-pub const MF_TOPONODE_FLUSH = Guid.initString("494bbce8-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DRAIN = Guid.initString("494bbce9-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_D3DAWARE = Guid.initString("494bbced-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPOLOGY_RESOLUTION_STATUS = Guid.initString("494bbcde-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERRORCODE = Guid.initString("494bbcee-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_CONNECT_METHOD = Guid.initString("494bbcf1-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_LOCKED = Guid.initString("494bbcf7-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_ID = Guid.initString("494bbcf8-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_CLASS = Guid.initString("494bbcf9-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DECRYPTOR = Guid.initString("494bbcfa-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DISCARDABLE = Guid.initString("494bbcfb-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERROR_MAJORTYPE = Guid.initString("494bbcfd-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERROR_SUBTYPE = Guid.initString("494bbcfe-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_TASKID = Guid.initString("494bbcff-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_PRIORITY = Guid.initString("5001f840-2816-48f4-9364-ad1ef661a123");
-pub const MF_TOPONODE_WORKQUEUE_ITEM_PRIORITY = Guid.initString("a1ff99be-5e97-4a53-b494-568c642c0ff3");
-pub const MF_TOPONODE_MARKIN_HERE = Guid.initString("494bbd00-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_MARKOUT_HERE = Guid.initString("494bbd01-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DECODER = Guid.initString("494bbd02-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_MEDIASTART = Guid.initString("835c58ea-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_MEDIASTOP = Guid.initString("835c58eb-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_SOURCE = Guid.initString("835c58ec-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_PRESENTATION_DESCRIPTOR = Guid.initString("835c58ed-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_STREAM_DESCRIPTOR = Guid.initString("835c58ee-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_SEQUENCE_ELEMENTID = Guid.initString("835c58ef-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_TRANSFORM_OBJECTID = Guid.initString("88dcc0c9-293e-4e8b-9aeb-0ad64cc016b0");
-pub const MF_TOPONODE_STREAMID = Guid.initString("14932f9b-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_NOSHUTDOWN_ON_REMOVE = Guid.initString("14932f9c-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_RATELESS = Guid.initString("14932f9d-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_DISABLE_PREROLL = Guid.initString("14932f9e-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_PRIMARYOUTPUT = Guid.initString("6304ef99-16b2-4ebe-9d67-e4c539b3a259");
-pub const MF_PD_PMPHOST_CONTEXT = Guid.initString("6c990d31-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_APP_CONTEXT = Guid.initString("6c990d32-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_DURATION = Guid.initString("6c990d33-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_TOTAL_FILE_SIZE = Guid.initString("6c990d34-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_AUDIO_ENCODING_BITRATE = Guid.initString("6c990d35-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_VIDEO_ENCODING_BITRATE = Guid.initString("6c990d36-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_MIME_TYPE = Guid.initString("6c990d37-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_LAST_MODIFIED_TIME = Guid.initString("6c990d38-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PLAYBACK_ELEMENT_ID = Guid.initString("6c990d39-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PREFERRED_LANGUAGE = Guid.initString("6c990d3a-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PLAYBACK_BOUNDARY_TIME = Guid.initString("6c990d3b-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_AUDIO_ISVARIABLEBITRATE = Guid.initString("33026ee0-e387-4582-ae0a-34a2ad3baa18");
-pub const MF_SD_LANGUAGE = Guid.initString("00af2180-bdc2-423c-abca-f503593bc121");
-pub const MF_SD_PROTECTED = Guid.initString("00af2181-bdc2-423c-abca-f503593bc121");
-pub const MF_SD_STREAM_NAME = Guid.initString("4f1b099d-d314-41e5-a781-7fefaa4c501f");
-pub const MF_SD_MUTUALLY_EXCLUSIVE = Guid.initString("023ef79c-388d-487f-ac17-696cd6e3c6f5");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_CLSID = Guid.initString("ba491360-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_ACTIVATE = Guid.initString("ba491361-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_FLAGS = Guid.initString("ba491362-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_CLSID = Guid.initString("ba491364-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_ACTIVATE = Guid.initString("ba491365-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_FLAGS = Guid.initString("ba491366-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_MFT_LOCKED = Guid.initString("c1f6093c-7f65-4fbd-9e39-5faec3c4fbd7");
-pub const MF_ACTIVATE_VIDEO_WINDOW = Guid.initString("9a2dbbdd-f57e-4162-82b9-6831377682d3");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS = Guid.initString("ede4b5e0-f805-4d6c-99b3-db01bf95dfab");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_SESSION_ID = Guid.initString("ede4b5e3-f805-4d6c-99b3-db01bf95dfab");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID = Guid.initString("b10aaec3-ef71-4cc3-b873-05a9a08b9f8e");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ROLE = Guid.initString("6ba644ff-27c5-4d02-9887-c28619fdb91b");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_STREAM_CATEGORY = Guid.initString("a9770471-92ec-4df4-94fe-81c36f0c3a7a");
-pub const MFENABLETYPE_WMDRMV1_LicenseAcquisition = Guid.initString("4ff6eeaf-0b43-4797-9b85-abf31815e7b0");
-pub const MFENABLETYPE_WMDRMV7_LicenseAcquisition = Guid.initString("003306df-4a06-4884-a097-ef6d22ec84a3");
-pub const MFENABLETYPE_WMDRMV7_Individualization = Guid.initString("acd2c84a-b303-4f65-bc2c-2c848d01a989");
-pub const MFENABLETYPE_MF_UpdateRevocationInformation = Guid.initString("e558b0b5-b3c4-44a0-924c-50d178932385");
-pub const MFENABLETYPE_MF_UpdateUntrustedComponent = Guid.initString("9879f3d6-cee2-48e6-b573-9767ab172f16");
-pub const MFENABLETYPE_MF_RebootRequired = Guid.initString("6d4d3d4b-0ece-4652-8b3a-f2d24260d887");
-pub const MF_METADATA_PROVIDER_SERVICE = Guid.initString("db214084-58a4-4d2e-b84f-6f755b2f7a0d");
-pub const MF_PROPERTY_HANDLER_SERVICE = Guid.initString("a3face02-32b8-41dd-90e7-5fef7c8991b5");
-pub const MF_RATE_CONTROL_SERVICE = Guid.initString("866fa297-b802-4bf8-9dc9-5e3b6a9f53c9");
-pub const MF_TIMECODE_SERVICE = Guid.initString("a0d502a7-0eb3-4885-b1b9-9feb0d083454");
-pub const MR_POLICY_VOLUME_SERVICE = Guid.initString("1abaa2ac-9d3b-47c6-ab48-c59506de784d");
-pub const MR_CAPTURE_POLICY_VOLUME_SERVICE = Guid.initString("24030acd-107a-4265-975c-414e33e65f2a");
-pub const MR_STREAM_VOLUME_SERVICE = Guid.initString("f8b5fa2f-32ef-46f5-b172-1321212fb2c4");
-pub const MR_AUDIO_POLICY_SERVICE = Guid.initString("911fd737-6775-4ab0-a614-297862fdac88");
-pub const MF_SAMPLEGRABBERSINK_SAMPLE_TIME_OFFSET = Guid.initString("62e3d776-8100-4e03-a6e8-bd3857ac9c47");
-pub const MF_SAMPLEGRABBERSINK_IGNORE_CLOCK = Guid.initString("0efda2c0-2b69-4e2e-ab8d-46dcbff7d25d");
-pub const MF_QUALITY_SERVICES = Guid.initString("b7e2be11-2f96-4640-b52c-282365bdf16c");
-pub const MF_WORKQUEUE_SERVICES = Guid.initString("8e37d489-41e0-413a-9068-287c886d8dda");
-pub const MF_QUALITY_NOTIFY_PROCESSING_LATENCY = Guid.initString("f6b44af8-604d-46fe-a95d-45479b10c9bc");
-pub const MF_QUALITY_NOTIFY_SAMPLE_LAG = Guid.initString("30d15206-ed2a-4760-be17-eb4a9f12295c");
-pub const MF_TIME_FORMAT_SEGMENT_OFFSET = Guid.initString("c8b8be77-869c-431d-812e-169693f65a39");
-pub const MF_SOURCE_PRESENTATION_PROVIDER_SERVICE = Guid.initString("e002aadc-f4af-4ee5-9847-053edf840426");
-pub const MF_TOPONODE_ATTRIBUTE_EDITOR_SERVICE = Guid.initString("65656e1a-077f-4472-83ef-316f11d5087a");
-pub const MFNETSOURCE_SSLCERTIFICATE_MANAGER = Guid.initString("55e6cb27-e69b-4267-940c-2d7ec5bb8a0f");
-pub const MFNETSOURCE_RESOURCE_FILTER = Guid.initString("815d0ff6-265a-4477-9e46-7b80ad80b5fb");
-pub const MFNET_SAVEJOB_SERVICE = Guid.initString("b85a587f-3d02-4e52-9565-55d3ec1e7ff7");
-pub const MFNETSOURCE_STATISTICS_SERVICE = Guid.initString("3cb1f275-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_STATISTICS = Guid.initString("3cb1f274-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BUFFERINGTIME = Guid.initString("3cb1f276-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ACCELERATEDSTREAMINGDURATION = Guid.initString("3cb1f277-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_MAXUDPACCELERATEDSTREAMINGDURATION = Guid.initString("4aab2879-bbe1-4994-9ff0-5495bd250129");
-pub const MFNETSOURCE_MAXBUFFERTIMEMS = Guid.initString("408b24e6-4038-4401-b5b2-fe701a9ebf10");
-pub const MFNETSOURCE_CONNECTIONBANDWIDTH = Guid.initString("3cb1f278-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CACHEENABLED = Guid.initString("3cb1f279-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_AUTORECONNECTLIMIT = Guid.initString("3cb1f27a-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_RESENDSENABLED = Guid.initString("3cb1f27b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_THINNINGENABLED = Guid.initString("3cb1f27c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROTOCOL = Guid.initString("3cb1f27d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_TRANSPORT = Guid.initString("3cb1f27e-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PREVIEWMODEENABLED = Guid.initString("3cb1f27f-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CREDENTIAL_MANAGER = Guid.initString("3cb1f280-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PPBANDWIDTH = Guid.initString("3cb1f281-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_AUTORECONNECTPROGRESS = Guid.initString("3cb1f282-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYLOCATORFACTORY = Guid.initString("3cb1f283-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BROWSERUSERAGENT = Guid.initString("3cb1f28b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BROWSERWEBPAGE = Guid.initString("3cb1f28c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERVERSION = Guid.initString("3cb1f28d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERID = Guid.initString("3cb1f28e-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_HOSTEXE = Guid.initString("3cb1f28f-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_HOSTVERSION = Guid.initString("3cb1f291-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERUSERAGENT = Guid.initString("3cb1f292-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CLIENTGUID = Guid.initString("60a2c4a6-f197-4c14-a5bf-88830d2458af");
-pub const MFNETSOURCE_LOGURL = Guid.initString("3cb1f293-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_UDP = Guid.initString("3cb1f294-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_TCP = Guid.initString("3cb1f295-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_MSB = Guid.initString("3cb1f296-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_RTSP = Guid.initString("3cb1f298-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_HTTP = Guid.initString("3cb1f299-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_STREAMING = Guid.initString("3cb1f29c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_DOWNLOAD = Guid.initString("3cb1f29d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_PRIVATEMODE = Guid.initString("824779d8-f18b-4405-8cf1-464fb5aa8f71");
-pub const MFNETSOURCE_UDP_PORT_RANGE = Guid.initString("3cb1f29a-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYINFO = Guid.initString("3cb1f29b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_DRMNET_LICENSE_REPRESENTATION = Guid.initString("47eae1bd-bdfe-42e2-82f3-54a48c17962d");
-pub const MFNETSOURCE_PROXYSETTINGS = Guid.initString("3cb1f287-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYHOSTNAME = Guid.initString("3cb1f284-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYPORT = Guid.initString("3cb1f288-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYEXCEPTIONLIST = Guid.initString("3cb1f285-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYBYPASSFORLOCAL = Guid.initString("3cb1f286-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYRERUNAUTODETECTION = Guid.initString("3cb1f289-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_STREAM_LANGUAGE = Guid.initString("9ab44318-f7cd-4f2d-8d6d-fa35b492cecb");
-pub const MFNETSOURCE_LOGPARAMS = Guid.initString("64936ae8-9418-453a-8cda-3e0a668b353b");
-pub const MFNETSOURCE_PEERMANAGER = Guid.initString("48b29adb-febf-45ee-a9bf-efb81c492efc");
-pub const MFNETSOURCE_FRIENDLYNAME = Guid.initString("5b2a7757-bc6b-447e-aa06-0dda1c646e2f");
-pub const MF_BYTESTREAMHANDLER_ACCEPTS_SHARE_WRITE = Guid.initString("a6e1f733-3001-4915-8150-1558a2180ec8");
-pub const MF_BYTESTREAM_SERVICE = Guid.initString("ab025e2b-16d9-4180-a127-ba6c70156161");
-pub const MF_MEDIA_PROTECTION_MANAGER_PROPERTIES = Guid.initString("38bd81a9-acea-4c73-89b2-5532c0aeca79");
-pub const MFCONNECTOR_SPDIF = Guid.initString("0b94a712-ad3e-4cee-83ce-ce32e3db6522");
-pub const MFCONNECTOR_UNKNOWN = Guid.initString("ac3aef5c-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCI = Guid.initString("ac3aef5d-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCIX = Guid.initString("ac3aef5e-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCI_Express = Guid.initString("ac3aef5f-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_AGP = Guid.initString("ac3aef60-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_VGA = Guid.initString("57cd5968-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_SVIDEO = Guid.initString("57cd5969-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_COMPOSITE = Guid.initString("57cd596a-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_COMPONENT = Guid.initString("57cd596b-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DVI = Guid.initString("57cd596c-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_HDMI = Guid.initString("57cd596d-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_LVDS = Guid.initString("57cd596e-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_D_JPN = Guid.initString("57cd5970-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_SDI = Guid.initString("57cd5971-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DISPLAYPORT_EXTERNAL = Guid.initString("57cd5972-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DISPLAYPORT_EMBEDDED = Guid.initString("57cd5973-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_UDI_EXTERNAL = Guid.initString("57cd5974-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_UDI_EMBEDDED = Guid.initString("57cd5975-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_MIRACAST = Guid.initString("57cd5977-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = Guid.initString("57cd5978-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = Guid.initString("57cd5979-ce47-11d9-92db-000bdb28ff98");
-pub const MF_POLICY_ID = Guid.initString("b160c24d-c059-48f1-a901-9ee298a9a8c3");
-pub const MFPROTECTION_DISABLE = Guid.initString("8cc6d81b-fec6-4d8f-964b-cfba0b0dad0d");
-pub const MFPROTECTION_CONSTRICTVIDEO = Guid.initString("193370ce-c5e4-4c3a-8a66-6959b4da4442");
-pub const MFPROTECTION_CONSTRICTVIDEO_NOOPM = Guid.initString("a580e8cd-c247-4957-b983-3c2eebd1ff59");
-pub const MFPROTECTION_CONSTRICTAUDIO = Guid.initString("ffc99b44-df48-4e16-8e66-096892c1578a");
-pub const MFPROTECTION_TRUSTEDAUDIODRIVERS = Guid.initString("65bdf3d2-0168-4816-a533-55d47b027101");
-pub const MFPROTECTION_HDCP = Guid.initString("ae7cc03d-c828-4021-acb7-d578d27aaf13");
-pub const MFPROTECTION_CGMSA = Guid.initString("e57e69e9-226b-4d31-b4e3-d3db008736dd");
-pub const MFPROTECTION_ACP = Guid.initString("c3fd11c6-f8b7-4d20-b008-1db17d61f2da");
-pub const MFPROTECTION_WMDRMOTA = Guid.initString("a267a6a1-362e-47d0-8805-4628598a23e4");
-pub const MFPROTECTION_FFT = Guid.initString("462a56b2-2866-4bb6-980d-6d8d9edb1a8c");
-pub const MFPROTECTION_PROTECTED_SURFACE = Guid.initString("4f5d9566-e742-4a25-8d1f-d287b5fa0ade");
-pub const MFPROTECTION_DISABLE_SCREEN_SCRAPE = Guid.initString("a21179a4-b7cd-40d8-9614-8ef2371ba78d");
-pub const MFPROTECTION_VIDEO_FRAMES = Guid.initString("36a59cbc-7401-4a8c-bc20-46a7c9e597f0");
-pub const MFPROTECTION_HARDWARE = Guid.initString("4ee7f0c1-9ed7-424f-b6be-996b33528856");
-pub const MFPROTECTION_HDCP_WITH_TYPE_ENFORCEMENT = Guid.initString("a4a585e8-ed60-442d-814d-db4d4220a06d");
-pub const MFPROTECTIONATTRIBUTE_BEST_EFFORT = Guid.initString("c8e06331-75f0-4ec1-8e77-17578f773b46");
-pub const MFPROTECTIONATTRIBUTE_FAIL_OVER = Guid.initString("8536abc5-38f1-4151-9cce-f55d941229ac");
-pub const MFPROTECTION_GRAPHICS_TRANSFER_AES_ENCRYPTION = Guid.initString("c873de64-d8a5-49e6-88bb-fb963fd3d4ce");
-pub const MFPROTECTIONATTRIBUTE_CONSTRICTVIDEO_IMAGESIZE = Guid.initString("008476fc-4b58-4d80-a790-e7297673161d");
-pub const MFPROTECTIONATTRIBUTE_HDCP_SRM = Guid.initString("6f302107-3477-4468-8a08-eef9db10e20f");
-pub const MF_SampleProtectionSalt = Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
-pub const MF_REMOTE_PROXY = Guid.initString("2f00c90e-d2cf-4278-8b6a-d077fac3a25f");
-pub const CLSID_CreateMediaExtensionObject = Guid.initString("ef65a54d-0788-45b8-8b14-bc0f6a6b5137");
-pub const MF_SAMI_SERVICE = Guid.initString("49a89ae7-b4d9-4ef2-aa5c-f65a3e05ae4e");
-pub const MF_PD_SAMI_STYLELIST = Guid.initString("e0b73c7f-486d-484e-9872-4de5192a7bf8");
-pub const MF_SD_SAMI_LANGUAGE = Guid.initString("36fcb98a-6cd0-44cb-acb9-a8f5600dd0bb");
-pub const MF_TRANSCODE_CONTAINERTYPE = Guid.initString("150ff23f-4abc-478b-ac4f-e1916fba1cca");
-pub const MFTranscodeContainerType_ASF = Guid.initString("430f6f6e-b6bf-4fc1-a0bd-9ee46eee2afb");
-pub const MFTranscodeContainerType_MPEG4 = Guid.initString("dc6cd05d-b9d0-40ef-bd35-fa622c1ab28a");
-pub const MFTranscodeContainerType_MP3 = Guid.initString("e438b912-83f1-4de6-9e3a-9ffbc6dd24d1");
-pub const MFTranscodeContainerType_FLAC = Guid.initString("31344aa3-05a9-42b5-901b-8e9d4257f75e");
-pub const MFTranscodeContainerType_3GP = Guid.initString("34c50167-4472-4f34-9ea0-c49fbacf037d");
-pub const MFTranscodeContainerType_AC3 = Guid.initString("6d8d91c3-8c91-4ed1-8742-8c347d5b44d0");
-pub const MFTranscodeContainerType_ADTS = Guid.initString("132fd27d-0f02-43de-a301-38fbbbb3834e");
-pub const MFTranscodeContainerType_MPEG2 = Guid.initString("bfc2dbf9-7bb4-4f8f-afde-e112c44ba882");
-pub const MFTranscodeContainerType_WAVE = Guid.initString("64c3453c-0f26-4741-be63-87bdf8bb935b");
-pub const MFTranscodeContainerType_AVI = Guid.initString("7edfe8af-402f-4d76-a33c-619fd157d0f1");
-pub const MFTranscodeContainerType_FMPEG4 = Guid.initString("9ba876f1-419f-4b77-a1e0-35959d9d4004");
-pub const MFTranscodeContainerType_AMR = Guid.initString("025d5ad3-621a-475b-964d-66b1c824f079");
-pub const MF_TRANSCODE_SKIP_METADATA_TRANSFER = Guid.initString("4e4469ef-b571-4959-8f83-3dcfba33a393");
-pub const MF_TRANSCODE_TOPOLOGYMODE = Guid.initString("3e3df610-394a-40b2-9dea-3bab650bebf2");
-pub const MF_TRANSCODE_ADJUST_PROFILE = Guid.initString("9c37c21b-060f-487c-a690-80d7f50d1c72");
-pub const MF_TRANSCODE_ENCODINGPROFILE = Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
-pub const MF_TRANSCODE_QUALITYVSSPEED = Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
-pub const MF_TRANSCODE_DONOT_INSERT_ENCODER = Guid.initString("f45aa7ce-ab24-4012-a11b-dc8220201410");
-pub const MF_VIDEO_PROCESSOR_ALGORITHM = Guid.initString("4a0a1e1f-272c-4fb6-9eb1-db330cbc97ca");
-pub const MF_XVP_DISABLE_FRC = Guid.initString("2c0afa19-7a97-4d5a-9ee8-16d4fc518d8c");
-pub const MF_XVP_CALLER_ALLOCATES_OUTPUT = Guid.initString("04a2cabc-0cab-40b1-a1b9-75bc3658f000");
-pub const MF_LOCAL_MFT_REGISTRATION_SERVICE = Guid.initString("ddf5cf9c-4506-45aa-abf0-6d5d94dd1b4a");
-pub const MF_WRAPPED_SAMPLE_SERVICE = Guid.initString("31f52bf2-d03e-4048-80d0-9c1046d87c61");
-pub const MF_WRAPPED_OBJECT = Guid.initString("2b182c4c-d6ac-49f4-8915-f71887db70cd");
-pub const CLSID_HttpSchemePlugin = Guid.initString("44cb442b-9da9-49df-b3fd-023777b16e50");
-pub const CLSID_UrlmonSchemePlugin = Guid.initString("9ec4b4f9-3029-45ad-947b-344de2a249e2");
-pub const CLSID_NetSchemePlugin = Guid.initString("e9f4ebab-d97b-463e-a2b1-c54ee3f9414d");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE = Guid.initString("c60ac5fe-252a-478f-a0ef-bc8fa5f7cad3");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_HW_SOURCE = Guid.initString("de7046ba-54d6-4487-a2a4-ec7c0d1bd163");
-pub const MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME = Guid.initString("60d0e559-52f8-4fa2-bbce-acdb34a8ec01");
-pub const MF_DEVSOURCE_ATTRIBUTE_MEDIA_TYPE = Guid.initString("56a819ca-0c78-4de4-a0a7-3ddaba0f24d4");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_CATEGORY = Guid.initString("77f0ae69-c3bd-4509-941d-467e4d24899e");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK = Guid.initString("58f0aad8-22bf-4f8a-bb3d-d2c4978c6e2f");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_SYMBOLIC_LINK = Guid.initString("98d24b5e-5930-4614-b5a1-f600f9355a78");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_MAX_BUFFERS = Guid.initString("7dd9b730-4f2d-41d5-8f95-0cc9a912ba26");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ENDPOINT_ID = Guid.initString("30da9258-feb9-47a7-a453-763a7a8e1c5f");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ROLE = Guid.initString("bc9d118e-8c67-4a18-85d4-12d300400552");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_PROVIDER_DEVICE_ID = Guid.initString("36689d42-a06c-40ae-84cf-f5a034067cc4");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_XADDRESS = Guid.initString("bca0be52-c327-44c7-9b7d-7fa8d9b5bcda");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_STREAM_URL = Guid.initString("9d7b40d2-3617-4043-93e3-8d6da9bb3492");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_USERNAME = Guid.initString("05d01add-949f-46eb-bc8e-8b0d2b32d79d");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_PASSWORD = Guid.initString("a0fd7e16-42d9-49df-84c0-e82c5eab8874");
-pub const CLSID_FrameServerNetworkCameraSource = Guid.initString("7a213aa7-866f-414a-8c1a-275c7283a395");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_GUID = Guid.initString("14dd9a1c-7cff-41be-b1b9-ba1ac6ecb571");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID = Guid.initString("8ac3587a-4ae7-42d8-99e0-0a6013eef90f");
-pub const MF_DEVICESTREAM_IMAGE_STREAM = Guid.initString("a7ffb865-e7b2-43b0-9f6f-9af2a0e50fc0");
-pub const MF_DEVICESTREAM_INDEPENDENT_IMAGE_STREAM = Guid.initString("03eeec7e-d605-4576-8b29-6580b490d7d3");
-pub const MF_DEVICESTREAM_STREAM_ID = Guid.initString("11bd5120-d124-446b-88e6-17060257fff9");
-pub const MF_DEVICESTREAM_STREAM_CATEGORY = Guid.initString("2939e7b8-a62e-4579-b674-d4073dfabbba");
-pub const MF_DEVICESTREAM_FRAMESERVER_SHARED = Guid.initString("1cb378e9-b279-41d4-af97-34a243e68320");
-pub const MF_DEVICESTREAM_TRANSFORM_STREAM_ID = Guid.initString("e63937b7-daaf-4d49-815f-d826f8ad31e7");
-pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CLSID = Guid.initString("048e6558-60c4-4173-bd5b-6a3ca2896aee");
-pub const MF_DEVICEMFT_EXTENSION_PLUGIN_CLSID = Guid.initString("0844dbae-34fa-48a0-a783-8e696fb1c9a8");
-pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CONNECTION_POINT = Guid.initString("37f9375c-e664-4ea4-aae4-cb6d1daca1f4");
-pub const MF_DEVICESTREAM_TAKEPHOTO_TRIGGER = Guid.initString("1d180e34-538c-4fbb-a75a-859af7d261a6");
-pub const MF_DEVICESTREAM_MAX_FRAME_BUFFERS = Guid.initString("1684cebe-3175-4985-882c-0efd3e8ac11e");
-pub const MF_DEVICEMFT_CONNECTED_FILTER_KSCONTROL = Guid.initString("6a2c4fa6-d179-41cd-9523-822371ea40e5");
-pub const MF_DEVICEMFT_CONNECTED_PIN_KSCONTROL = Guid.initString("e63310f7-b244-4ef8-9a7d-24c74e32ebd0");
-pub const MF_DEVICE_THERMAL_STATE_CHANGED = Guid.initString("70ccd0af-fc9f-4deb-a875-9fecd16c5bd4");
-pub const MFSampleExtension_DeviceTimestamp = Guid.initString("8f3e35e7-2dcd-4887-8622-2a58baa652b0");
-pub const MFSampleExtension_Spatial_CameraViewTransform = Guid.initString("4e251fa4-830f-4770-859a-4b8d99aa809b");
-pub const MFSampleExtension_Spatial_CameraCoordinateSystem = Guid.initString("9d13c82f-2199-4e67-91cd-d1a4181f2534");
-pub const MFSampleExtension_Spatial_CameraProjectionTransform = Guid.initString("47f9fcb5-2a02-4f26-a477-792fdf95886a");
-pub const MF_MEDIASOURCE_SERVICE = Guid.initString("f09992f7-9fba-4c4a-a37f-8c47b4e1dfe7");
-pub const MF_ACCESS_CONTROLLED_MEDIASOURCE_SERVICE = Guid.initString("014a5031-2f05-4c6a-9f9c-7d0dc4eda5f4");
-pub const MF_CONTENT_DECRYPTOR_SERVICE = Guid.initString("68a72927-fc7b-44ee-85f4-7c51bd55a659");
-pub const MF_CONTENT_PROTECTION_DEVICE_SERVICE = Guid.initString("ff58436f-76a0-41fe-b566-10cc53962edd");
-pub const MF_SD_AUDIO_ENCODER_DELAY = Guid.initString("8e85422c-73de-403f-9a35-550ad6e8b951");
-pub const MF_SD_AUDIO_ENCODER_PADDING = Guid.initString("529c7f2c-ac4b-4e3f-bfc3-0902194982cb");
-pub const CLSID_MSH264DecoderMFT = Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
-pub const CLSID_MSH264EncoderMFT = Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
-pub const CLSID_MSDDPlusDecMFT = Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
-pub const CLSID_MP3DecMediaObject = Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
-pub const CLSID_MSAACDecMFT = Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
-pub const CLSID_MSH265DecoderMFT = Guid.initString("420a51a3-d605-430c-b4fc-45274fa6c562");
-pub const CLSID_WMVDecoderMFT = Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
-pub const CLSID_WMADecMediaObject = Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
-pub const CLSID_MSMPEGAudDecMFT = Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
-pub const CLSID_MSMPEGDecoderMFT = Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
-pub const CLSID_AudioResamplerMediaObject = Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
-pub const CLSID_MSVPxDecoder = Guid.initString("e3aaf548-c9a4-4c6e-234d-5ada374b0000");
-pub const CLSID_MSOpusDecoder = Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
-pub const CLSID_VideoProcessorMFT = Guid.initString("88753b26-5b24-49bd-b2e7-0c445c78c982");
-pub const MFNETSOURCE_CROSS_ORIGIN_SUPPORT = Guid.initString("9842207c-b02c-4271-a2fc-72e49308e5c2");
-pub const MFNETSOURCE_HTTP_DOWNLOAD_SESSION_PROVIDER = Guid.initString("7d55081e-307d-4d6d-a663-a93be97c4b5c");
-pub const MF_SD_MEDIASOURCE_STATUS = Guid.initString("1913678b-fc0f-44da-8f43-1ba3b526f4ae");
-pub const MF_SD_VIDEO_SPHERICAL = Guid.initString("a51da449-3fdc-478c-bcb5-30be76595f55");
-pub const MF_SD_VIDEO_SPHERICAL_FORMAT = Guid.initString("4a8fc407-6ea1-46c8-b567-6971d4a139c3");
-pub const MF_SD_VIDEO_SPHERICAL_INITIAL_VIEWDIRECTION = Guid.initString("11d25a49-bb62-467f-9db1-c17165716c49");
-pub const MF_MEDIASOURCE_EXPOSE_ALL_STREAMS = Guid.initString("e7f250b8-8fd9-4a09-b6c1-6a315c7c720e");
-pub const MF_ST_MEDIASOURCE_COLLECTION = Guid.initString("616de972-83ad-4950-8170-630d19cbe307");
-pub const MF_DEVICESTREAM_FILTER_KSCONTROL = Guid.initString("46783cca-3df5-4923-a9ef-36b7223edde0");
-pub const MF_DEVICESTREAM_PIN_KSCONTROL = Guid.initString("ef3ef9a7-87f2-48ca-be02-674878918e98");
-pub const MF_DEVICESTREAM_SOURCE_ATTRIBUTES = Guid.initString("2f8cb617-361b-434f-85ea-99a03e1ce4e0");
-pub const MF_DEVICESTREAM_FRAMESERVER_HIDDEN = Guid.initString("f402567b-4d91-4179-96d1-74c8480c2034");
-pub const MF_STF_VERSION_INFO = Guid.initString("6770bd39-ef82-44ee-a49b-934beb24aef7");
-pub const MF_STF_VERSION_DATE = Guid.initString("31a165d5-df67-4095-8e44-8868fc20dbfd");
-pub const MF_DEVICESTREAM_REQUIRED_CAPABILITIES = Guid.initString("6d8b957e-7cf6-43f4-af56-9c0e1e4fcbe1");
-pub const MF_DEVICESTREAM_REQUIRED_SDDL = Guid.initString("331ae85d-c0d3-49ba-83ba-82a12d63cdd6");
-pub const MF_DEVICEMFT_SENSORPROFILE_COLLECTION = Guid.initString("36ebdc44-b12c-441b-89f4-08b2f41a9cfc");
-pub const MF_DEVICESTREAM_SENSORSTREAM_ID = Guid.initString("e35b9fe4-0659-4cad-bb51-33160be7e413");
-pub const MF_PD_ASF_FILEPROPERTIES_FILE_ID = Guid.initString("3de649b4-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_CREATION_TIME = Guid.initString("3de649b6-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PACKETS = Guid.initString("3de649b7-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PLAY_DURATION = Guid.initString("3de649b8-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_SEND_DURATION = Guid.initString("3de649b9-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PREROLL = Guid.initString("3de649ba-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_FLAGS = Guid.initString("3de649bb-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MIN_PACKET_SIZE = Guid.initString("3de649bc-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MAX_PACKET_SIZE = Guid.initString("3de649bd-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MAX_BITRATE = Guid.initString("3de649be-d76d-4e66-9ec9-78120fb4c7e3");
-pub const CLSID_WMDRMSystemID = Guid.initString("8948bb22-11bd-4796-93e3-974d1b575678");
-pub const MF_PD_ASF_CONTENTENCRYPTION_TYPE = Guid.initString("8520fe3d-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_KEYID = Guid.initString("8520fe3e-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_SECRET_DATA = Guid.initString("8520fe3f-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_LICENSE_URL = Guid.initString("8520fe40-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTIONEX_ENCRYPTION_DATA = Guid.initString("62508be5-ecdf-4924-a359-72bab3397b9d");
-pub const MF_PD_ASF_LANGLIST = Guid.initString("f23de43c-9977-460d-a6ec-32937f160f7d");
-pub const MF_PD_ASF_LANGLIST_LEGACYORDER = Guid.initString("f23de43d-9977-460d-a6ec-32937f160f7d");
-pub const MF_PD_ASF_MARKER = Guid.initString("5134330e-83a6-475e-a9d5-4fb875fb2e31");
-pub const MF_PD_ASF_SCRIPT = Guid.initString("e29cd0d7-d602-4923-a7fe-73fd97ecc650");
-pub const MF_PD_ASF_CODECLIST = Guid.initString("e4bb3509-c18d-4df1-bb99-7a36b3cc4119");
-pub const MF_PD_ASF_METADATA_IS_VBR = Guid.initString("5fc6947a-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_V8_VBRPEAK = Guid.initString("5fc6947b-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_V8_BUFFERAVERAGE = Guid.initString("5fc6947c-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_LEAKY_BUCKET_PAIRS = Guid.initString("5fc6947d-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_DATA_START_OFFSET = Guid.initString("e7d5b3e7-1f29-45d3-8822-3e78fae272ed");
-pub const MF_PD_ASF_DATA_LENGTH = Guid.initString("e7d5b3e8-1f29-45d3-8822-3e78fae272ed");
-pub const MF_SD_ASF_EXTSTRMPROP_LANGUAGE_ID_INDEX = Guid.initString("48f8a522-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_AVG_DATA_BITRATE = Guid.initString("48f8a523-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_AVG_BUFFERSIZE = Guid.initString("48f8a524-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_MAX_DATA_BITRATE = Guid.initString("48f8a525-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_MAX_BUFFERSIZE = Guid.initString("48f8a526-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_STREAMBITRATES_BITRATE = Guid.initString("a8e182ed-afc8-43d0-b0d1-f65bad9da558");
-pub const MF_SD_ASF_METADATA_DEVICE_CONFORMANCE_TEMPLATE = Guid.initString("245e929d-c44e-4f7e-bb3c-77d4dfd27f8a");
-pub const MF_PD_ASF_INFO_HAS_AUDIO = Guid.initString("80e62295-2296-4a44-b31c-d103c6fed23c");
-pub const MF_PD_ASF_INFO_HAS_VIDEO = Guid.initString("80e62296-2296-4a44-b31c-d103c6fed23c");
-pub const MF_PD_ASF_INFO_HAS_NON_AUDIO_VIDEO = Guid.initString("80e62297-2296-4a44-b31c-d103c6fed23c");
-pub const MF_ASFPROFILE_MINPACKETSIZE = Guid.initString("22587626-47de-4168-87f5-b5aa9b12a8f0");
-pub const MF_ASFPROFILE_MAXPACKETSIZE = Guid.initString("22587627-47de-4168-87f5-b5aa9b12a8f0");
-pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET1 = Guid.initString("c69b5901-ea1a-4c9b-b692-e2a0d29a8add");
-pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET2 = Guid.initString("c69b5902-ea1a-4c9b-b692-e2a0d29a8add");
-pub const MFASFSampleExtension_SampleDuration = Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
-pub const MFASFSampleExtension_OutputCleanPoint = Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
-pub const MFASFSampleExtension_SMPTE = Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
-pub const MFASFSampleExtension_FileName = Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
-pub const MFASFSampleExtension_ContentType = Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
-pub const MFASFSampleExtension_PixelAspectRatio = Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
-pub const MFASFSampleExtension_Encryption_SampleID = Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
-pub const MFASFSampleExtension_Encryption_KeyID = Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
-pub const MFASFMutexType_Language = Guid.initString("72178c2b-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Bitrate = Guid.initString("72178c2c-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Presentation = Guid.initString("72178c2d-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Unknown = Guid.initString("72178c2e-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFSPLITTER_PACKET_BOUNDARY = Guid.initString("fe584a05-e8d6-42e3-b176-f1211705fb6f");
-pub const MFASFINDEXER_TYPE_TIMECODE = Guid.initString("49815231-6bad-44fd-810a-3f60984ec7fd");
-pub const MF_CAPTURE_ENGINE_INITIALIZED = Guid.initString("219992bc-cf92-4531-a1ae-96e1e886c8f1");
-pub const MF_CAPTURE_ENGINE_PREVIEW_STARTED = Guid.initString("a416df21-f9d3-4a74-991b-b817298952c4");
-pub const MF_CAPTURE_ENGINE_PREVIEW_STOPPED = Guid.initString("13d5143c-1edd-4e50-a2ef-350a47678060");
-pub const MF_CAPTURE_ENGINE_RECORD_STARTED = Guid.initString("ac2b027b-ddf9-48a0-89be-38ab35ef45c0");
-pub const MF_CAPTURE_ENGINE_RECORD_STOPPED = Guid.initString("55e5200a-f98f-4c0d-a9ec-9eb25ed3d773");
-pub const MF_CAPTURE_ENGINE_PHOTO_TAKEN = Guid.initString("3c50c445-7304-48eb-865d-bba19ba3af5c");
-pub const MF_CAPTURE_SOURCE_CURRENT_DEVICE_MEDIA_TYPE_SET = Guid.initString("e7e75e4c-039c-4410-815b-8741307b63aa");
-pub const MF_CAPTURE_ENGINE_ERROR = Guid.initString("46b89fc6-33cc-4399-9dad-784de77d587c");
-pub const MF_CAPTURE_ENGINE_EFFECT_ADDED = Guid.initString("aa8dc7b5-a048-4e13-8ebe-f23c46c830c1");
-pub const MF_CAPTURE_ENGINE_EFFECT_REMOVED = Guid.initString("c6e8db07-fb09-4a48-89c6-bf92a04222c9");
-pub const MF_CAPTURE_ENGINE_ALL_EFFECTS_REMOVED = Guid.initString("fded7521-8ed8-431a-a96b-f3e2565e981c");
-pub const MF_CAPTURE_SINK_PREPARED = Guid.initString("7bfce257-12b1-4409-8c34-d445daab7578");
-pub const MF_CAPTURE_ENGINE_OUTPUT_MEDIA_TYPE_SET = Guid.initString("caaad994-83ec-45e9-a30a-1f20aadb9831");
-pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_BLOCKED = Guid.initString("a4209417-8d39-46f3-b759-5912528f4207");
-pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_UNBLOCKED = Guid.initString("9be9eef0-cdaf-4717-8564-834aae66415c");
-pub const MF_CAPTURE_ENGINE_D3D_MANAGER = Guid.initString("76e25e7b-d595-4283-962c-c594afd78ddf");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_UNPROCESSED_SAMPLES = Guid.initString("b467f705-7913-4894-9d42-a215fea23da9");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_UNPROCESSED_SAMPLES = Guid.initString("1cddb141-a7f4-4d58-9896-4d15a53c4efe");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_PROCESSED_SAMPLES = Guid.initString("e7b4a49e-382c-4aef-a946-aed5490b7111");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_PROCESSED_SAMPLES = Guid.initString("9896e12a-f707-4500-b6bd-db8eb810b50f");
-pub const MF_CAPTURE_ENGINE_USE_AUDIO_DEVICE_ONLY = Guid.initString("1c8077da-8466-4dc4-8b8e-276b3f85923b");
-pub const MF_CAPTURE_ENGINE_USE_VIDEO_DEVICE_ONLY = Guid.initString("7e025171-cf32-4f2e-8f19-410577b73a66");
-pub const MF_CAPTURE_ENGINE_DISABLE_HARDWARE_TRANSFORMS = Guid.initString("b7c42a6b-3207-4495-b4e7-81f9c35d5991");
-pub const MF_CAPTURE_ENGINE_DISABLE_DXVA = Guid.initString("f9818862-179d-433f-a32f-74cbcf74466d");
-pub const MF_CAPTURE_ENGINE_MEDIASOURCE_CONFIG = Guid.initString("bc6989d2-0fc1-46e1-a74f-efd36bc788de");
-pub const MF_CAPTURE_ENGINE_DECODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("2b8ad2e8-7acb-4321-a606-325c4249f4fc");
-pub const MF_CAPTURE_ENGINE_ENCODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("54c63a00-78d5-422f-aa3e-5e99ac649269");
-pub const MF_CAPTURE_ENGINE_ENABLE_CAMERA_STREAMSTATE_NOTIFICATION = Guid.initString("4c808e9d-aaed-4713-90fb-cb24064ab8da");
-pub const MF_CAPTURE_ENGINE_MEDIA_CATEGORY = Guid.initString("8e3f5bd5-dbbf-42f0-8542-d07a3971762a");
-pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING = Guid.initString("10f1be5e-7e11-410b-973d-f4b6109000fe");
-pub const MF_CAPTURE_ENGINE_EVENT_GENERATOR_GUID = Guid.initString("abfa8ad5-fc6d-4911-87e0-961945f8f7ce");
-pub const MF_CAPTURE_ENGINE_EVENT_STREAM_INDEX = Guid.initString("82697f44-b1cf-42eb-9753-f86d649c8865");
-pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE = Guid.initString("03160b7e-1c6f-4db2-ad56-a7c430f82392");
-pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE_INDEX = Guid.initString("3ce88613-2214-46c3-b417-82f8a313c9c3");
-pub const CLSID_MFCaptureEngine = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
-pub const CLSID_MFCaptureEngineClassFactory = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
-pub const MFSampleExtension_DeviceReferenceSystemTime = Guid.initString("6523775a-ba2d-405f-b2c5-01ff88e2e8f6");
-pub const MF_MSE_CALLBACK = Guid.initString("9063a7c0-42c5-4ffd-a8a8-6fcf9ea3d00c");
-pub const MF_MSE_ACTIVELIST_CALLBACK = Guid.initString("949bda0f-4549-46d5-ad7f-b846e1ab1652");
-pub const MF_MSE_BUFFERLIST_CALLBACK = Guid.initString("42e669b0-d60e-4afb-a85b-d8e5fe6bdab5");
-pub const MF_MSE_VP9_SUPPORT = Guid.initString("92d78429-d88b-4ff0-8322-803efa6e9626");
-pub const MF_MSE_OPUS_SUPPORT = Guid.initString("4d224cc1-8cc4-48a3-a7a7-e4c16ce6388a");
-pub const MF_MEDIA_ENGINE_NEEDKEY_CALLBACK = Guid.initString("7ea80843-b6e4-432c-8ea4-7848ffe4220e");
-pub const MF_MEDIA_ENGINE_CALLBACK = Guid.initString("c60381b8-83a4-41f8-a3d0-de05076849a9");
-pub const MF_MEDIA_ENGINE_DXGI_MANAGER = Guid.initString("065702da-1094-486d-8617-ee7cc4ee4648");
-pub const MF_MEDIA_ENGINE_EXTENSION = Guid.initString("3109fd46-060d-4b62-8dcf-faff811318d2");
-pub const MF_MEDIA_ENGINE_PLAYBACK_HWND = Guid.initString("d988879b-67c9-4d92-baa7-6eadd446039d");
-pub const MF_MEDIA_ENGINE_OPM_HWND = Guid.initString("a0be8ee7-0572-4f2c-a801-2a151bd3e726");
-pub const MF_MEDIA_ENGINE_PLAYBACK_VISUAL = Guid.initString("6debd26f-6ab9-4d7e-b0ee-c61a73ffad15");
-pub const MF_MEDIA_ENGINE_COREWINDOW = Guid.initString("fccae4dc-0b7f-41c2-9f96-4659948acddc");
-pub const MF_MEDIA_ENGINE_VIDEO_OUTPUT_FORMAT = Guid.initString("5066893c-8cf9-42bc-8b8a-472212e52726");
-pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_FLAGS = Guid.initString("e0350223-5aaf-4d76-a7c3-06de70894db4");
-pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_MANAGER = Guid.initString("fdd6dfaa-bd85-4af3-9e0f-a01d539d876a");
-pub const MF_MEDIA_ENGINE_AUDIO_ENDPOINT_ROLE = Guid.initString("d2cb93d1-116a-44f2-9385-f7d0fda2fb46");
-pub const MF_MEDIA_ENGINE_AUDIO_CATEGORY = Guid.initString("c8d4c51d-350e-41f2-ba46-faebbb0857f6");
-pub const MF_MEDIA_ENGINE_STREAM_CONTAINS_ALPHA_CHANNEL = Guid.initString("5cbfaf44-d2b2-4cfb-80a7-d429c74c789d");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE = Guid.initString("4e0212e2-e18f-41e1-95e5-c0e7e9235bc3");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE9 = Guid.initString("052c2d39-40c0-4188-ab86-f828273b7522");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE10 = Guid.initString("11a47afd-6589-4124-b312-6158ec517fc3");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE11 = Guid.initString("1cf1315f-ce3f-4035-9391-16142f775189");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE_EDGE = Guid.initString("a6f3e465-3aca-442c-a3f0-ad6ddad839ae");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE = Guid.initString("3ef26ad4-dc54-45de-b9af-76c8c66bfa8e");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WWA_EDGE = Guid.initString("15b29098-9f01-4e4d-b65a-c06c6c89da2a");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WIN10 = Guid.initString("5b25e089-6ca7-4139-a2cb-fcaab39552a3");
-pub const MF_MEDIA_ENGINE_SOURCE_RESOLVER_CONFIG_STORE = Guid.initString("0ac0c497-b3c4-48c9-9cde-bb8ca2442ca3");
-pub const MF_MEDIA_ENGINE_TRACK_ID = Guid.initString("65bea312-4043-4815-8eab-44dce2ef8f2a");
-pub const MF_MEDIA_ENGINE_TELEMETRY_APPLICATION_ID = Guid.initString("1e7b273b-a7e4-402a-8f51-c48e88a2cabc");
-pub const MF_MEDIA_ENGINE_SYNCHRONOUS_CLOSE = Guid.initString("c3c2e12f-7e0e-4e43-b91c-dc992ccdfa5e");
-pub const MF_MEDIA_ENGINE_MEDIA_PLAYER_MODE = Guid.initString("3ddd8d45-5aa1-4112-82e5-36f6a2197e6e");
-pub const CLSID_MFMediaEngineClassFactory = Guid.initString("b44392da-499b-446b-a4cb-005fead0e6d5");
-pub const MF_MEDIA_ENGINE_TIMEDTEXT = Guid.initString("805ea411-92e0-4e59-9b6e-5c7d7915e64f");
-pub const MF_MEDIA_ENGINE_CONTINUE_ON_CODEC_ERROR = Guid.initString("dbcdb7f9-48e4-4295-b70d-d518234eeb38");
-pub const MF_MEDIA_ENGINE_EME_CALLBACK = Guid.initString("494553a7-a481-4cb7-bec5-380903513731");
-pub const CLSID_MPEG2DLNASink = Guid.initString("fa5fe7c5-6a1d-4b11-b41f-f959d6c76500");
-pub const MF_MP2DLNA_USE_MMCSS = Guid.initString("54f3e2ee-a2a2-497d-9834-973afde521eb");
-pub const MF_MP2DLNA_VIDEO_BIT_RATE = Guid.initString("e88548de-73b4-42d7-9c75-adfa0a2a6e4c");
-pub const MF_MP2DLNA_AUDIO_BIT_RATE = Guid.initString("2d1c070e-2b5f-4ab3-a7e6-8d943ba8d00a");
-pub const MF_MP2DLNA_ENCODE_QUALITY = Guid.initString("b52379d7-1d46-4fb6-a317-a4a5f60959f8");
-pub const MF_MP2DLNA_STATISTICS = Guid.initString("75e488a3-d5ad-4898-85e0-bcce24a722d7");
-pub const CLSID_MFReadWriteClassFactory = Guid.initString("48e2ed0f-98c2-4a37-bed5-166312ddd83f");
-pub const CLSID_MFSourceReader = Guid.initString("1777133c-0881-411b-a577-ad545f0714c4");
-pub const MF_SOURCE_READER_ASYNC_CALLBACK = Guid.initString("1e3dbeac-bb43-4c35-b507-cd644464c965");
-pub const MF_SOURCE_READER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
-pub const MF_SOURCE_READER_DISABLE_DXVA = Guid.initString("aa456cfd-3943-4a1e-a77d-1838c0ea2e35");
-pub const MF_SOURCE_READER_MEDIASOURCE_CONFIG = Guid.initString("9085abeb-0354-48f9-abb5-200df838c68e");
-pub const MF_SOURCE_READER_MEDIASOURCE_CHARACTERISTICS = Guid.initString("6d23f5c8-c5d7-4a9b-9971-5d11f8bca880");
-pub const MF_SOURCE_READER_ENABLE_VIDEO_PROCESSING = Guid.initString("fb394f3d-ccf1-42ee-bbb3-f9b845d5681d");
-pub const MF_SOURCE_READER_ENABLE_ADVANCED_VIDEO_PROCESSING = Guid.initString("0f81da2c-b537-4672-a8b2-a681b17307a3");
-pub const MF_SOURCE_READER_DISABLE_CAMERA_PLUGINS = Guid.initString("9d3365dd-058f-4cfb-9f97-b314cc99c8ad");
-pub const MF_SOURCE_READER_DISCONNECT_MEDIASOURCE_ON_SHUTDOWN = Guid.initString("56b67165-219e-456d-a22e-2d3004c7fe56");
-pub const MF_SOURCE_READER_ENABLE_TRANSCODE_ONLY_TRANSFORMS = Guid.initString("dfd4f008-b5fd-4e78-ae44-62a1e67bbe27");
-pub const MF_SOURCE_READER_D3D11_BIND_FLAGS = Guid.initString("33f3197b-f73a-4e14-8d85-0e4c4368788d");
-pub const CLSID_MFSinkWriter = Guid.initString("a3bbfb17-8273-4e52-9e0e-9739dc887990");
-pub const MF_SINK_WRITER_ASYNC_CALLBACK = Guid.initString("48cb183e-7b0b-46f4-822e-5e1d2dda4354");
-pub const MF_SINK_WRITER_DISABLE_THROTTLING = Guid.initString("08b845d8-2b74-4afe-9d53-be16d2d5ae4f");
-pub const MF_SINK_WRITER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
-pub const MF_SINK_WRITER_ENCODER_CONFIG = Guid.initString("ad91cd04-a7cc-4ac7-99b6-a57b9a4a7c70");
-pub const MF_READWRITE_DISABLE_CONVERTERS = Guid.initString("98d5b065-1374-4847-8d5d-31520fee7156");
-pub const MF_READWRITE_ENABLE_HARDWARE_TRANSFORMS = Guid.initString("a634a91c-822b-41b9-a494-4de4643612b0");
-pub const MF_READWRITE_MMCSS_CLASS = Guid.initString("39384300-d0eb-40b1-87a0-3318871b5a53");
-pub const MF_READWRITE_MMCSS_PRIORITY = Guid.initString("43ad19ce-f33f-4ba9-a580-e4cd12f2d144");
-pub const MF_READWRITE_MMCSS_CLASS_AUDIO = Guid.initString("430847da-0890-4b0e-938c-054332c547e1");
-pub const MF_READWRITE_MMCSS_PRIORITY_AUDIO = Guid.initString("273db885-2de2-4db2-a6a7-fdb66fb40b61");
-pub const MF_READWRITE_D3D_OPTIONAL = Guid.initString("216479d9-3071-42ca-bb6c-4c22102e1d18");
-pub const MF_MEDIASINK_AUTOFINALIZE_SUPPORTED = Guid.initString("48c131be-135a-41cb-8290-03652509c999");
-pub const MF_MEDIASINK_ENABLE_AUTOFINALIZE = Guid.initString("34014265-cb7e-4cde-ac7c-effd3b3c2530");
-pub const MF_READWRITE_ENABLE_AUTOFINALIZE = Guid.initString("dd7ca129-8cd1-4dc5-9dde-ce168675de61");
-pub const MF_MEDIA_SHARING_ENGINE_DEVICE_NAME = Guid.initString("771e05d1-862f-4299-95ac-ae81fd14f3e7");
-pub const MF_MEDIA_SHARING_ENGINE_DEVICE = Guid.initString("b461c58a-7a08-4b98-99a8-70fd5f3badfd");
-pub const CLSID_MFMediaSharingEngineClassFactory = Guid.initString("f8e307fb-6d45-4ad3-9993-66cd5a529659");
-pub const CLSID_MFImageSharingEngineClassFactory = Guid.initString("b22c3339-87f3-4059-a0c5-037aa9707eaf");
-pub const CLSID_PlayToSourceClassFactory = Guid.initString("da17539a-3dc3-42c1-a749-a183b51f085e");
-pub const GUID_PlayToService = Guid.initString("f6a8ff9d-9e14-41c9-bf0f-120a2b3ce120");
-pub const GUID_NativeDeviceService = Guid.initString("ef71e53c-52f4-43c5-b86a-ad6cb216a61e");
-pub const MF_CONTENTDECRYPTIONMODULE_SERVICE = Guid.initString("15320c45-ff80-484a-9dcb-0df894e69a01");
 
 //--------------------------------------------------------------------------------
 // Section: Types (1100)
 //--------------------------------------------------------------------------------
-pub const D3D11_VIDEO_DECODER_DESC = extern struct {
-    Guid: Guid,
-    SampleWidth: u32,
-    SampleHeight: u32,
-    OutputFormat: DXGI_FORMAT,
-};
-
-pub const D3D11_VIDEO_DECODER_CONFIG = extern struct {
-    guidConfigBitstreamEncryption: Guid,
-    guidConfigMBcontrolEncryption: Guid,
-    guidConfigResidDiffEncryption: Guid,
-    ConfigBitstreamRaw: u32,
-    ConfigMBcontrolRasterOrder: u32,
-    ConfigResidDiffHost: u32,
-    ConfigSpatialResid8: u32,
-    ConfigResid8Subtraction: u32,
-    ConfigSpatialHost8or9Clipping: u32,
-    ConfigSpatialResidInterleaved: u32,
-    ConfigIntraResidUnsigned: u32,
-    ConfigResidDiffAccelerator: u32,
-    ConfigHostInverseScan: u32,
-    ConfigSpecificIDCT: u32,
-    Config4GroupedCoefs: u32,
-    ConfigMinRenderTargetBuffCount: u16,
-    ConfigDecoderSpecific: u16,
-};
-
-pub const D3D11_VIDEO_DECODER_BUFFER_TYPE = extern enum(i32) {
-    PICTURE_PARAMETERS = 0,
-    MACROBLOCK_CONTROL = 1,
-    RESIDUAL_DIFFERENCE = 2,
-    DEBLOCKING_CONTROL = 3,
-    INVERSE_QUANTIZATION_MATRIX = 4,
-    SLICE_CONTROL = 5,
-    BITSTREAM = 6,
-    MOTION_VECTOR = 7,
-    FILM_GRAIN = 8,
-};
-pub const D3D11_VIDEO_DECODER_BUFFER_PICTURE_PARAMETERS = D3D11_VIDEO_DECODER_BUFFER_TYPE.PICTURE_PARAMETERS;
-pub const D3D11_VIDEO_DECODER_BUFFER_MACROBLOCK_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.MACROBLOCK_CONTROL;
-pub const D3D11_VIDEO_DECODER_BUFFER_RESIDUAL_DIFFERENCE = D3D11_VIDEO_DECODER_BUFFER_TYPE.RESIDUAL_DIFFERENCE;
-pub const D3D11_VIDEO_DECODER_BUFFER_DEBLOCKING_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.DEBLOCKING_CONTROL;
-pub const D3D11_VIDEO_DECODER_BUFFER_INVERSE_QUANTIZATION_MATRIX = D3D11_VIDEO_DECODER_BUFFER_TYPE.INVERSE_QUANTIZATION_MATRIX;
-pub const D3D11_VIDEO_DECODER_BUFFER_SLICE_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.SLICE_CONTROL;
-pub const D3D11_VIDEO_DECODER_BUFFER_BITSTREAM = D3D11_VIDEO_DECODER_BUFFER_TYPE.BITSTREAM;
-pub const D3D11_VIDEO_DECODER_BUFFER_MOTION_VECTOR = D3D11_VIDEO_DECODER_BUFFER_TYPE.MOTION_VECTOR;
-pub const D3D11_VIDEO_DECODER_BUFFER_FILM_GRAIN = D3D11_VIDEO_DECODER_BUFFER_TYPE.FILM_GRAIN;
-
-pub const D3D11_AES_CTR_IV = extern struct {
-    IV: u64,
-    Count: u64,
-};
-
-pub const D3D11_ENCRYPTED_BLOCK_INFO = extern struct {
-    NumEncryptedBytesAtBeginning: u32,
-    NumBytesInSkipPattern: u32,
-    NumBytesInEncryptPattern: u32,
-};
-
-pub const D3D11_VIDEO_DECODER_BUFFER_DESC = extern struct {
-    BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
-    BufferIndex: u32,
-    DataOffset: u32,
-    DataSize: u32,
-    FirstMBaddress: u32,
-    NumMBsInBuffer: u32,
-    Width: u32,
-    Height: u32,
-    Stride: u32,
-    ReservedBits: u32,
-    pIV: *c_void,
-    IVSize: u32,
-    PartialEncryption: BOOL,
-    EncryptedBlockInfo: D3D11_ENCRYPTED_BLOCK_INFO,
-};
-
-pub const D3D11_VIDEO_DECODER_EXTENSION = extern struct {
-    Function: u32,
-    pPrivateInputData: *c_void,
-    PrivateInputDataSize: u32,
-    pPrivateOutputData: *c_void,
-    PrivateOutputDataSize: u32,
-    ResourceCount: u32,
-    ppResourceList: **ID3D11Resource,
-};
-
-const IID_ID3D11VideoDecoder_Value = @import("../zig.zig").Guid.initString("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
-pub const IID_ID3D11VideoDecoder = &IID_ID3D11VideoDecoder_Value;
-pub const ID3D11VideoDecoder = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetCreationParameters: fn(
-            self: *const ID3D11VideoDecoder,
-            pVideoDesc: *D3D11_VIDEO_DECODER_DESC,
-            pConfig: *D3D11_VIDEO_DECODER_CONFIG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDriverHandle: fn(
-            self: *const ID3D11VideoDecoder,
-            pDriverHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDecoder_GetCreationParameters(self: *const T, pVideoDesc: *D3D11_VIDEO_DECODER_DESC, pConfig: *D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDecoder.VTable, self.vtable).GetCreationParameters(@ptrCast(*const ID3D11VideoDecoder, self), pVideoDesc, pConfig);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDecoder_GetDriverHandle(self: *const T, pDriverHandle: *HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDecoder.VTable, self.vtable).GetDriverHandle(@ptrCast(*const ID3D11VideoDecoder, self), pDriverHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT = extern enum(i32) {
-    INPUT = 1,
-    OUTPUT = 2,
-};
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_INPUT = D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT.INPUT;
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_OUTPUT = D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT.OUTPUT;
-
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS = extern enum(i32) {
-    LINEAR_SPACE = 1,
-    xvYCC = 2,
-    RGB_RANGE_CONVERSION = 4,
-    YCbCr_MATRIX_CONVERSION = 8,
-    NOMINAL_RANGE = 16,
-};
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_LINEAR_SPACE = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.LINEAR_SPACE;
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_xvYCC = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.xvYCC;
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_RGB_RANGE_CONVERSION = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.RGB_RANGE_CONVERSION;
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_YCbCr_MATRIX_CONVERSION = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.YCbCr_MATRIX_CONVERSION;
-pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_NOMINAL_RANGE = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.NOMINAL_RANGE;
-
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS = extern enum(i32) {
-    ALPHA_FILL = 1,
-    CONSTRICTION = 2,
-    LUMA_KEY = 4,
-    ALPHA_PALETTE = 8,
-    LEGACY = 16,
-    STEREO = 32,
-    ROTATION = 64,
-    ALPHA_STREAM = 128,
-    PIXEL_ASPECT_RATIO = 256,
-    MIRROR = 512,
-    SHADER_USAGE = 1024,
-    METADATA_HDR10 = 2048,
-};
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_FILL = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_FILL;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_CONSTRICTION = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.CONSTRICTION;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LUMA_KEY = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.LUMA_KEY;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_PALETTE = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_PALETTE;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LEGACY = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.LEGACY;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_STEREO = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.STEREO;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ROTATION = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ROTATION;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_STREAM = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_STREAM;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_PIXEL_ASPECT_RATIO = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.PIXEL_ASPECT_RATIO;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_MIRROR = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.MIRROR;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_SHADER_USAGE = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.SHADER_USAGE;
-pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10 = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.METADATA_HDR10;
-
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS = extern enum(i32) {
-    BRIGHTNESS = 1,
-    CONTRAST = 2,
-    HUE = 4,
-    SATURATION = 8,
-    NOISE_REDUCTION = 16,
-    EDGE_ENHANCEMENT = 32,
-    ANAMORPHIC_SCALING = 64,
-    STEREO_ADJUSTMENT = 128,
-};
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_BRIGHTNESS = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.BRIGHTNESS;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_CONTRAST = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.CONTRAST;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_HUE = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.HUE;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_SATURATION = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.SATURATION;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_NOISE_REDUCTION = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.NOISE_REDUCTION;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.EDGE_ENHANCEMENT;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.ANAMORPHIC_SCALING;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_STEREO_ADJUSTMENT = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.STEREO_ADJUSTMENT;
-
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS = extern enum(i32) {
-    RGB_INTERLACED = 1,
-    RGB_PROCAMP = 2,
-    RGB_LUMA_KEY = 4,
-    PALETTE_INTERLACED = 8,
-};
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_INTERLACED = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_INTERLACED;
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_PROCAMP = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_PROCAMP;
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_LUMA_KEY = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_LUMA_KEY;
-pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_PALETTE_INTERLACED = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.PALETTE_INTERLACED;
-
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS = extern enum(i32) {
-    DENOISE = 1,
-    DERINGING = 2,
-    EDGE_ENHANCEMENT = 4,
-    COLOR_CORRECTION = 8,
-    FLESH_TONE_MAPPING = 16,
-    IMAGE_STABILIZATION = 32,
-    SUPER_RESOLUTION = 64,
-    ANAMORPHIC_SCALING = 128,
-};
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DENOISE = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.DENOISE;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DERINGING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.DERINGING;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.EDGE_ENHANCEMENT;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_COLOR_CORRECTION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.COLOR_CORRECTION;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_FLESH_TONE_MAPPING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.FLESH_TONE_MAPPING;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_IMAGE_STABILIZATION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.IMAGE_STABILIZATION;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_SUPER_RESOLUTION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.SUPER_RESOLUTION;
-pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.ANAMORPHIC_SCALING;
-
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS = extern enum(i32) {
-    MONO_OFFSET = 1,
-    ROW_INTERLEAVED = 2,
-    COLUMN_INTERLEAVED = 4,
-    CHECKERBOARD = 8,
-    FLIP_MODE = 16,
-};
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_MONO_OFFSET = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.MONO_OFFSET;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_ROW_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.ROW_INTERLEAVED;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_COLUMN_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.COLUMN_INTERLEAVED;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_CHECKERBOARD = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.CHECKERBOARD;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_FLIP_MODE = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.FLIP_MODE;
-
-pub const D3D11_VIDEO_PROCESSOR_CAPS = extern struct {
-    DeviceCaps: u32,
-    FeatureCaps: u32,
-    FilterCaps: u32,
-    InputFormatCaps: u32,
-    AutoStreamCaps: u32,
-    StereoCaps: u32,
-    RateConversionCapsCount: u32,
-    MaxInputStreams: u32,
-    MaxStreamStates: u32,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS = extern enum(i32) {
-    DEINTERLACE_BLEND = 1,
-    DEINTERLACE_BOB = 2,
-    DEINTERLACE_ADAPTIVE = 4,
-    DEINTERLACE_MOTION_COMPENSATION = 8,
-    INVERSE_TELECINE = 16,
-    FRAME_RATE_CONVERSION = 32,
-};
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BLEND = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_BLEND;
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BOB = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_BOB;
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_ADAPTIVE = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_ADAPTIVE;
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_MOTION_COMPENSATION = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_MOTION_COMPENSATION;
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_INVERSE_TELECINE = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.INVERSE_TELECINE;
-pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_FRAME_RATE_CONVERSION = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.FRAME_RATE_CONVERSION;
-
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS = extern enum(i32) {
-    @"32" = 1,
-    @"22" = 2,
-    @"2224" = 4,
-    @"2332" = 8,
-    @"32322" = 16,
-    @"55" = 32,
-    @"64" = 64,
-    @"87" = 128,
-    @"222222222223" = 256,
-    OTHER = -2147483648,
-};
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_32 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"32";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_22 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"22";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_2224 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"2224";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_2332 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"2332";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_32322 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"32322";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_55 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"55";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_64 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"64";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_87 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"87";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_222222222223 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"222222222223";
-pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_OTHER = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.OTHER;
-
-pub const D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS = extern struct {
-    PastFrames: u32,
-    FutureFrames: u32,
-    ProcessorCaps: u32,
-    ITelecineCaps: u32,
-    CustomRateCount: u32,
-};
-
-pub const D3D11_CONTENT_PROTECTION_CAPS = extern enum(i32) {
-    SOFTWARE = 1,
-    HARDWARE = 2,
-    PROTECTION_ALWAYS_ON = 4,
-    PARTIAL_DECRYPTION = 8,
-    CONTENT_KEY = 16,
-    FRESHEN_SESSION_KEY = 32,
-    ENCRYPTED_READ_BACK = 64,
-    ENCRYPTED_READ_BACK_KEY = 128,
-    SEQUENTIAL_CTR_IV = 256,
-    ENCRYPT_SLICEDATA_ONLY = 512,
-    DECRYPTION_BLT = 1024,
-    HARDWARE_PROTECT_UNCOMPRESSED = 2048,
-    HARDWARE_PROTECTED_MEMORY_PAGEABLE = 4096,
-    HARDWARE_TEARDOWN = 8192,
-    HARDWARE_DRM_COMMUNICATION = 16384,
-    HARDWARE_DRM_COMMUNICATION_MULTI_THREADED = 32768,
-};
-pub const D3D11_CONTENT_PROTECTION_CAPS_SOFTWARE = D3D11_CONTENT_PROTECTION_CAPS.SOFTWARE;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE;
-pub const D3D11_CONTENT_PROTECTION_CAPS_PROTECTION_ALWAYS_ON = D3D11_CONTENT_PROTECTION_CAPS.PROTECTION_ALWAYS_ON;
-pub const D3D11_CONTENT_PROTECTION_CAPS_PARTIAL_DECRYPTION = D3D11_CONTENT_PROTECTION_CAPS.PARTIAL_DECRYPTION;
-pub const D3D11_CONTENT_PROTECTION_CAPS_CONTENT_KEY = D3D11_CONTENT_PROTECTION_CAPS.CONTENT_KEY;
-pub const D3D11_CONTENT_PROTECTION_CAPS_FRESHEN_SESSION_KEY = D3D11_CONTENT_PROTECTION_CAPS.FRESHEN_SESSION_KEY;
-pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPTED_READ_BACK = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPTED_READ_BACK;
-pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPTED_READ_BACK_KEY = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPTED_READ_BACK_KEY;
-pub const D3D11_CONTENT_PROTECTION_CAPS_SEQUENTIAL_CTR_IV = D3D11_CONTENT_PROTECTION_CAPS.SEQUENTIAL_CTR_IV;
-pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPT_SLICEDATA_ONLY = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPT_SLICEDATA_ONLY;
-pub const D3D11_CONTENT_PROTECTION_CAPS_DECRYPTION_BLT = D3D11_CONTENT_PROTECTION_CAPS.DECRYPTION_BLT;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECT_UNCOMPRESSED = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_PROTECT_UNCOMPRESSED;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECTED_MEMORY_PAGEABLE = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_PROTECTED_MEMORY_PAGEABLE;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_TEARDOWN = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_TEARDOWN;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_DRM_COMMUNICATION;
-pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION_MULTI_THREADED = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_DRM_COMMUNICATION_MULTI_THREADED;
-
-pub const D3D11_VIDEO_CONTENT_PROTECTION_CAPS = extern struct {
-    Caps: u32,
-    KeyExchangeTypeCount: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_CUSTOM_RATE = extern struct {
-    CustomRate: DXGI_RATIONAL,
-    OutputFrames: u32,
-    InputInterlaced: BOOL,
-    InputFramesOrFields: u32,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_FILTER = extern enum(i32) {
-    BRIGHTNESS = 0,
-    CONTRAST = 1,
-    HUE = 2,
-    SATURATION = 3,
-    NOISE_REDUCTION = 4,
-    EDGE_ENHANCEMENT = 5,
-    ANAMORPHIC_SCALING = 6,
-    STEREO_ADJUSTMENT = 7,
-};
-pub const D3D11_VIDEO_PROCESSOR_FILTER_BRIGHTNESS = D3D11_VIDEO_PROCESSOR_FILTER.BRIGHTNESS;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_CONTRAST = D3D11_VIDEO_PROCESSOR_FILTER.CONTRAST;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_HUE = D3D11_VIDEO_PROCESSOR_FILTER.HUE;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_SATURATION = D3D11_VIDEO_PROCESSOR_FILTER.SATURATION;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_NOISE_REDUCTION = D3D11_VIDEO_PROCESSOR_FILTER.NOISE_REDUCTION;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_FILTER.EDGE_ENHANCEMENT;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_FILTER.ANAMORPHIC_SCALING;
-pub const D3D11_VIDEO_PROCESSOR_FILTER_STEREO_ADJUSTMENT = D3D11_VIDEO_PROCESSOR_FILTER.STEREO_ADJUSTMENT;
-
-pub const D3D11_VIDEO_PROCESSOR_FILTER_RANGE = extern struct {
-    Minimum: i32,
-    Maximum: i32,
-    Default: i32,
-    Multiplier: f32,
-};
-
-pub const D3D11_VIDEO_FRAME_FORMAT = extern enum(i32) {
-    PROGRESSIVE = 0,
-    INTERLACED_TOP_FIELD_FIRST = 1,
-    INTERLACED_BOTTOM_FIELD_FIRST = 2,
-};
-pub const D3D11_VIDEO_FRAME_FORMAT_PROGRESSIVE = D3D11_VIDEO_FRAME_FORMAT.PROGRESSIVE;
-pub const D3D11_VIDEO_FRAME_FORMAT_INTERLACED_TOP_FIELD_FIRST = D3D11_VIDEO_FRAME_FORMAT.INTERLACED_TOP_FIELD_FIRST;
-pub const D3D11_VIDEO_FRAME_FORMAT_INTERLACED_BOTTOM_FIELD_FIRST = D3D11_VIDEO_FRAME_FORMAT.INTERLACED_BOTTOM_FIELD_FIRST;
-
-pub const D3D11_VIDEO_USAGE = extern enum(i32) {
-    PLAYBACK_NORMAL = 0,
-    OPTIMAL_SPEED = 1,
-    OPTIMAL_QUALITY = 2,
-};
-pub const D3D11_VIDEO_USAGE_PLAYBACK_NORMAL = D3D11_VIDEO_USAGE.PLAYBACK_NORMAL;
-pub const D3D11_VIDEO_USAGE_OPTIMAL_SPEED = D3D11_VIDEO_USAGE.OPTIMAL_SPEED;
-pub const D3D11_VIDEO_USAGE_OPTIMAL_QUALITY = D3D11_VIDEO_USAGE.OPTIMAL_QUALITY;
-
-pub const D3D11_VIDEO_PROCESSOR_CONTENT_DESC = extern struct {
-    InputFrameFormat: D3D11_VIDEO_FRAME_FORMAT,
-    InputFrameRate: DXGI_RATIONAL,
-    InputWidth: u32,
-    InputHeight: u32,
-    OutputFrameRate: DXGI_RATIONAL,
-    OutputWidth: u32,
-    OutputHeight: u32,
-    Usage: D3D11_VIDEO_USAGE,
-};
-
-const IID_ID3D11VideoProcessorEnumerator_Value = @import("../zig.zig").Guid.initString("31627037-53ab-4200-9061-05faa9ab45f9");
-pub const IID_ID3D11VideoProcessorEnumerator = &IID_ID3D11VideoProcessorEnumerator_Value;
-pub const ID3D11VideoProcessorEnumerator = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetVideoProcessorContentDesc: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            pContentDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckVideoProcessorFormat: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            Format: DXGI_FORMAT,
-            pFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoProcessorCaps: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            pCaps: *D3D11_VIDEO_PROCESSOR_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoProcessorRateConversionCaps: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            TypeIndex: u32,
-            pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoProcessorCustomRate: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            TypeIndex: u32,
-            CustomRateIndex: u32,
-            pRate: *D3D11_VIDEO_PROCESSOR_CUSTOM_RATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoProcessorFilterRange: fn(
-            self: *const ID3D11VideoProcessorEnumerator,
-            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
-            pRange: *D3D11_VIDEO_PROCESSOR_FILTER_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorContentDesc(self: *const T, pContentDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorContentDesc(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), pContentDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_CheckVideoProcessorFormat(self: *const T, Format: DXGI_FORMAT, pFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).CheckVideoProcessorFormat(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), Format, pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorCaps(self: *const T, pCaps: *D3D11_VIDEO_PROCESSOR_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorRateConversionCaps(self: *const T, TypeIndex: u32, pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorRateConversionCaps(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), TypeIndex, pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorCustomRate(self: *const T, TypeIndex: u32, CustomRateIndex: u32, pRate: *D3D11_VIDEO_PROCESSOR_CUSTOM_RATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorCustomRate(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), TypeIndex, CustomRateIndex, pRate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorFilterRange(self: *const T, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pRange: *D3D11_VIDEO_PROCESSOR_FILTER_RANGE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorFilterRange(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), Filter, pRange);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VIDEO_COLOR_RGBA = extern struct {
-    R: f32,
-    G: f32,
-    B: f32,
-    A: f32,
-};
-
-pub const D3D11_VIDEO_COLOR_YCbCrA = extern struct {
-    Y: f32,
-    Cb: f32,
-    Cr: f32,
-    A: f32,
-};
-
-pub const D3D11_VIDEO_COLOR = extern struct {
-    Anonymous: D3D11_VIDEO_COLOR._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE = extern enum(i32) {
-    UNDEFINED = 0,
-    @"16_235" = 1,
-    @"0_255" = 2,
-};
-pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_UNDEFINED = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.UNDEFINED;
-pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_16_235 = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.@"16_235";
-pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_0_255 = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.@"0_255";
-
-pub const D3D11_VIDEO_PROCESSOR_COLOR_SPACE = extern struct {
-    _bitfield: u32,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE = extern enum(i32) {
-    OPAQUE = 0,
-    BACKGROUND = 1,
-    DESTINATION = 2,
-    SOURCE_STREAM = 3,
-};
-pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_OPAQUE = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.OPAQUE;
-pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_BACKGROUND = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.BACKGROUND;
-pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_DESTINATION = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.DESTINATION;
-pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_SOURCE_STREAM = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.SOURCE_STREAM;
-
-pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE = extern enum(i32) {
-    NORMAL = 0,
-    HALF = 1,
-    CUSTOM = 2,
-};
-pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_NORMAL = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.NORMAL;
-pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_HALF = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.HALF;
-pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_CUSTOM = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.CUSTOM;
-
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT = extern enum(i32) {
-    MONO = 0,
-    HORIZONTAL = 1,
-    VERTICAL = 2,
-    SEPARATE = 3,
-    MONO_OFFSET = 4,
-    ROW_INTERLEAVED = 5,
-    COLUMN_INTERLEAVED = 6,
-    CHECKERBOARD = 7,
-};
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.MONO;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_HORIZONTAL = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.HORIZONTAL;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_VERTICAL = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.VERTICAL;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_SEPARATE = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.SEPARATE;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO_OFFSET = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.MONO_OFFSET;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_ROW_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.ROW_INTERLEAVED;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_COLUMN_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.COLUMN_INTERLEAVED;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_CHECKERBOARD = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.CHECKERBOARD;
-
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE = extern enum(i32) {
-    NONE = 0,
-    FRAME0 = 1,
-    FRAME1 = 2,
-};
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_NONE = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.NONE;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME0 = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.FRAME0;
-pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME1 = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.FRAME1;
-
-pub const D3D11_VIDEO_PROCESSOR_ROTATION = extern enum(i32) {
-    IDENTITY = 0,
-    @"90" = 1,
-    @"180" = 2,
-    @"270" = 3,
-};
-pub const D3D11_VIDEO_PROCESSOR_ROTATION_IDENTITY = D3D11_VIDEO_PROCESSOR_ROTATION.IDENTITY;
-pub const D3D11_VIDEO_PROCESSOR_ROTATION_90 = D3D11_VIDEO_PROCESSOR_ROTATION.@"90";
-pub const D3D11_VIDEO_PROCESSOR_ROTATION_180 = D3D11_VIDEO_PROCESSOR_ROTATION.@"180";
-pub const D3D11_VIDEO_PROCESSOR_ROTATION_270 = D3D11_VIDEO_PROCESSOR_ROTATION.@"270";
-
-pub const D3D11_VIDEO_PROCESSOR_STREAM = extern struct {
-    Enable: BOOL,
-    OutputIndex: u32,
-    InputFrameOrField: u32,
-    PastFrames: u32,
-    FutureFrames: u32,
-    ppPastSurfaces: **ID3D11VideoProcessorInputView,
-    pInputSurface: *ID3D11VideoProcessorInputView,
-    ppFutureSurfaces: **ID3D11VideoProcessorInputView,
-    ppPastSurfacesRight: **ID3D11VideoProcessorInputView,
-    pInputSurfaceRight: *ID3D11VideoProcessorInputView,
-    ppFutureSurfacesRight: **ID3D11VideoProcessorInputView,
-};
-
-const IID_ID3D11VideoProcessor_Value = @import("../zig.zig").Guid.initString("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
-pub const IID_ID3D11VideoProcessor = &IID_ID3D11VideoProcessor_Value;
-pub const ID3D11VideoProcessor = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetContentDesc: fn(
-            self: *const ID3D11VideoProcessor,
-            pDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        GetRateConversionCaps: fn(
-            self: *const ID3D11VideoProcessor,
-            pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessor_GetContentDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoProcessor.VTable, self.vtable).GetContentDesc(@ptrCast(*const ID3D11VideoProcessor, self), pDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessor_GetRateConversionCaps(self: *const T, pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoProcessor.VTable, self.vtable).GetRateConversionCaps(@ptrCast(*const ID3D11VideoProcessor, self), pCaps);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_OMAC = extern struct {
-    Omac: [16]u8,
-};
-
-pub const D3D11_AUTHENTICATED_CHANNEL_TYPE = extern enum(i32) {
-    @"3D11" = 1,
-    RIVER_SOFTWARE = 2,
-    RIVER_HARDWARE = 3,
-};
-pub const D3D11_AUTHENTICATED_CHANNEL_D3D11 = D3D11_AUTHENTICATED_CHANNEL_TYPE.@"3D11";
-pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_SOFTWARE = D3D11_AUTHENTICATED_CHANNEL_TYPE.RIVER_SOFTWARE;
-pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_HARDWARE = D3D11_AUTHENTICATED_CHANNEL_TYPE.RIVER_HARDWARE;
-
-const IID_ID3D11AuthenticatedChannel_Value = @import("../zig.zig").Guid.initString("3015a308-dcbd-47aa-a747-192486d14d4a");
-pub const IID_ID3D11AuthenticatedChannel = &IID_ID3D11AuthenticatedChannel_Value;
-pub const ID3D11AuthenticatedChannel = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetCertificateSize: fn(
-            self: *const ID3D11AuthenticatedChannel,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const ID3D11AuthenticatedChannel,
-            CertificateSize: u32,
-            pCertificate: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetChannelHandle: fn(
-            self: *const ID3D11AuthenticatedChannel,
-            pChannelHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11AuthenticatedChannel_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetCertificateSize(@ptrCast(*const ID3D11AuthenticatedChannel, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11AuthenticatedChannel_GetCertificate(self: *const T, CertificateSize: u32, pCertificate: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetCertificate(@ptrCast(*const ID3D11AuthenticatedChannel, self), CertificateSize, pCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11AuthenticatedChannel_GetChannelHandle(self: *const T, pChannelHandle: *HANDLE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetChannelHandle(@ptrCast(*const ID3D11AuthenticatedChannel, self), pChannelHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_INPUT = extern struct {
-    QueryType: Guid,
-    hChannel: HANDLE,
-    SequenceNumber: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_OUTPUT = extern struct {
-    omac: D3D11_OMAC,
-    QueryType: Guid,
-    hChannel: HANDLE,
-    SequenceNumber: u32,
-    ReturnCode: HRESULT,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_PROTECTION_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    ProtectionFlags: D3D11_AUTHENTICATED_PROTECTION_FLAGS,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_CHANNEL_TYPE_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_DEVICE_HANDLE_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    DeviceHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_INPUT = extern struct {
-    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
-    DecoderHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    DecoderHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    DeviceHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_COUNT_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    RestrictedSharedResourceProcessCount: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_INPUT = extern struct {
-    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
-    ProcessIndex: u32,
-};
-
-pub const D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE = extern enum(i32) {
-    UNKNOWN = 0,
-    DWM = 1,
-    HANDLE = 2,
-};
-pub const D3D11_PROCESSIDTYPE_UNKNOWN = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.UNKNOWN;
-pub const D3D11_PROCESSIDTYPE_DWM = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.DWM;
-pub const D3D11_PROCESSIDTYPE_HANDLE = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.HANDLE;
-
-pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    ProcessIndex: u32,
-    ProcessIdentifier: D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE,
-    ProcessHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_UNRESTRICTED_PROTECTED_SHARED_RESOURCE_COUNT_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    UnrestrictedProtectedSharedResourceCount: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_INPUT = extern struct {
-    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
-    DeviceHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    DeviceHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    OutputIDCount: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_INPUT = extern struct {
-    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
-    DeviceHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    OutputIDIndex: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    DeviceHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    OutputIDIndex: u32,
-    OutputID: u64,
-};
-
-pub const D3D11_BUS_TYPE = extern enum(i32) {
-    TYPE_OTHER = 0,
-    TYPE_PCI = 1,
-    TYPE_PCIX = 2,
-    TYPE_PCIEXPRESS = 3,
-    TYPE_AGP = 4,
-    IMPL_MODIFIER_INSIDE_OF_CHIPSET = 65536,
-    IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP = 131072,
-    IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET = 196608,
-    IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR = 262144,
-    IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE = 327680,
-    IMPL_MODIFIER_NON_STANDARD = -2147483648,
-};
-pub const D3D11_BUS_TYPE_OTHER = D3D11_BUS_TYPE.TYPE_OTHER;
-pub const D3D11_BUS_TYPE_PCI = D3D11_BUS_TYPE.TYPE_PCI;
-pub const D3D11_BUS_TYPE_PCIX = D3D11_BUS_TYPE.TYPE_PCIX;
-pub const D3D11_BUS_TYPE_PCIEXPRESS = D3D11_BUS_TYPE.TYPE_PCIEXPRESS;
-pub const D3D11_BUS_TYPE_AGP = D3D11_BUS_TYPE.TYPE_AGP;
-pub const D3D11_BUS_IMPL_MODIFIER_INSIDE_OF_CHIPSET = D3D11_BUS_TYPE.IMPL_MODIFIER_INSIDE_OF_CHIPSET;
-pub const D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP = D3D11_BUS_TYPE.IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP;
-pub const D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET = D3D11_BUS_TYPE.IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET;
-pub const D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR = D3D11_BUS_TYPE.IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR;
-pub const D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE = D3D11_BUS_TYPE.IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE;
-pub const D3D11_BUS_IMPL_MODIFIER_NON_STANDARD = D3D11_BUS_TYPE.IMPL_MODIFIER_NON_STANDARD;
-
-pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    BusType: D3D11_BUS_TYPE,
-    AccessibleInContiguousBlocks: BOOL,
-    AccessibleInNonContiguousBlocks: BOOL,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_COUNT_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    EncryptionGuidCount: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_INPUT = extern struct {
-    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
-    EncryptionGuidIndex: u32,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    EncryptionGuidIndex: u32,
-    EncryptionGuid: Guid,
-};
-
-pub const D3D11_AUTHENTICATED_QUERY_CURRENT_ACCESSIBILITY_ENCRYPTION_OUTPUT = extern struct {
-    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
-    EncryptionGuid: Guid,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_INPUT = extern struct {
-    omac: D3D11_OMAC,
-    ConfigureType: Guid,
-    hChannel: HANDLE,
-    SequenceNumber: u32,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_OUTPUT = extern struct {
-    omac: D3D11_OMAC,
-    ConfigureType: Guid,
-    hChannel: HANDLE,
-    SequenceNumber: u32,
-    ReturnCode: HRESULT,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_INITIALIZE_INPUT = extern struct {
-    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
-    StartSequenceQuery: u32,
-    StartSequenceConfigure: u32,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_PROTECTION_INPUT = extern struct {
-    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
-    Protections: D3D11_AUTHENTICATED_PROTECTION_FLAGS,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_CRYPTO_SESSION_INPUT = extern struct {
-    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
-    DecoderHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    DeviceHandle: HANDLE,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_SHARED_RESOURCE_INPUT = extern struct {
-    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
-    ProcessType: D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE,
-    ProcessHandle: HANDLE,
-    AllowAccess: BOOL,
-};
-
-pub const D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT = extern struct {
-    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
-    EncryptionGuid: Guid,
-};
-
-const IID_ID3D11CryptoSession_Value = @import("../zig.zig").Guid.initString("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
-pub const IID_ID3D11CryptoSession = &IID_ID3D11CryptoSession_Value;
-pub const ID3D11CryptoSession = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetCryptoType: fn(
-            self: *const ID3D11CryptoSession,
-            pCryptoType: *Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        GetDecoderProfile: fn(
-            self: *const ID3D11CryptoSession,
-            pDecoderProfile: *Guid,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        GetCertificateSize: fn(
-            self: *const ID3D11CryptoSession,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const ID3D11CryptoSession,
-            CertificateSize: u32,
-            pCertificate: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCryptoSessionHandle: fn(
-            self: *const ID3D11CryptoSession,
-            pCryptoSessionHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11CryptoSession_GetCryptoType(self: *const T, pCryptoType: *Guid) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCryptoType(@ptrCast(*const ID3D11CryptoSession, self), pCryptoType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11CryptoSession_GetDecoderProfile(self: *const T, pDecoderProfile: *Guid) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetDecoderProfile(@ptrCast(*const ID3D11CryptoSession, self), pDecoderProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11CryptoSession_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCertificateSize(@ptrCast(*const ID3D11CryptoSession, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11CryptoSession_GetCertificate(self: *const T, CertificateSize: u32, pCertificate: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCertificate(@ptrCast(*const ID3D11CryptoSession, self), CertificateSize, pCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11CryptoSession_GetCryptoSessionHandle(self: *const T, pCryptoSessionHandle: *HANDLE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCryptoSessionHandle(@ptrCast(*const ID3D11CryptoSession, self), pCryptoSessionHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VDOV_DIMENSION = extern enum(i32) {
-    UNKNOWN = 0,
-    TEXTURE2D = 1,
-};
-pub const D3D11_VDOV_DIMENSION_UNKNOWN = D3D11_VDOV_DIMENSION.UNKNOWN;
-pub const D3D11_VDOV_DIMENSION_TEXTURE2D = D3D11_VDOV_DIMENSION.TEXTURE2D;
-
-pub const D3D11_TEX2D_VDOV = extern struct {
-    ArraySlice: u32,
-};
-
-pub const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC = extern struct {
-    DecodeProfile: Guid,
-    ViewDimension: D3D11_VDOV_DIMENSION,
-    Anonymous: D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-const IID_ID3D11VideoDecoderOutputView_Value = @import("../zig.zig").Guid.initString("c2931aea-2a85-4f20-860f-fba1fd256e18");
-pub const IID_ID3D11VideoDecoderOutputView = &IID_ID3D11VideoDecoderOutputView_Value;
-pub const ID3D11VideoDecoderOutputView = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11View.VTable,
-        GetDesc: fn(
-            self: *const ID3D11VideoDecoderOutputView,
-            pDesc: *D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDecoderOutputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoDecoderOutputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoDecoderOutputView, self), pDesc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VPIV_DIMENSION = extern enum(i32) {
-    UNKNOWN = 0,
-    TEXTURE2D = 1,
-};
-pub const D3D11_VPIV_DIMENSION_UNKNOWN = D3D11_VPIV_DIMENSION.UNKNOWN;
-pub const D3D11_VPIV_DIMENSION_TEXTURE2D = D3D11_VPIV_DIMENSION.TEXTURE2D;
-
-pub const D3D11_TEX2D_VPIV = extern struct {
-    MipSlice: u32,
-    ArraySlice: u32,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC = extern struct {
-    FourCC: u32,
-    ViewDimension: D3D11_VPIV_DIMENSION,
-    Anonymous: D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-const IID_ID3D11VideoProcessorInputView_Value = @import("../zig.zig").Guid.initString("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
-pub const IID_ID3D11VideoProcessorInputView = &IID_ID3D11VideoProcessorInputView_Value;
-pub const ID3D11VideoProcessorInputView = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11View.VTable,
-        GetDesc: fn(
-            self: *const ID3D11VideoProcessorInputView,
-            pDesc: *D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorInputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoProcessorInputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoProcessorInputView, self), pDesc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VPOV_DIMENSION = extern enum(i32) {
-    UNKNOWN = 0,
-    TEXTURE2D = 1,
-    TEXTURE2DARRAY = 2,
-};
-pub const D3D11_VPOV_DIMENSION_UNKNOWN = D3D11_VPOV_DIMENSION.UNKNOWN;
-pub const D3D11_VPOV_DIMENSION_TEXTURE2D = D3D11_VPOV_DIMENSION.TEXTURE2D;
-pub const D3D11_VPOV_DIMENSION_TEXTURE2DARRAY = D3D11_VPOV_DIMENSION.TEXTURE2DARRAY;
-
-pub const D3D11_TEX2D_VPOV = extern struct {
-    MipSlice: u32,
-};
-
-pub const D3D11_TEX2D_ARRAY_VPOV = extern struct {
-    MipSlice: u32,
-    FirstArraySlice: u32,
-    ArraySize: u32,
-};
-
-pub const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC = extern struct {
-    ViewDimension: D3D11_VPOV_DIMENSION,
-    Anonymous: D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-const IID_ID3D11VideoProcessorOutputView_Value = @import("../zig.zig").Guid.initString("a048285e-25a9-4527-bd93-d68b68c44254");
-pub const IID_ID3D11VideoProcessorOutputView = &IID_ID3D11VideoProcessorOutputView_Value;
-pub const ID3D11VideoProcessorOutputView = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11View.VTable,
-        GetDesc: fn(
-            self: *const ID3D11VideoProcessorOutputView,
-            pDesc: *D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11View.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorOutputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoProcessorOutputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoProcessorOutputView, self), pDesc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ID3D11VideoContext_Value = @import("../zig.zig").Guid.initString("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
-pub const IID_ID3D11VideoContext = &IID_ID3D11VideoContext_Value;
-pub const ID3D11VideoContext = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11DeviceChild.VTable,
-        GetDecoderBuffer: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-            Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
-            pBufferSize: *u32,
-            ppBuffer: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDecoderBuffer: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-            Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecoderBeginFrame: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-            pView: *ID3D11VideoDecoderOutputView,
-            ContentKeySize: u32,
-            pContentKey: ?[*]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecoderEndFrame: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SubmitDecoderBuffers: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-            NumBuffers: u32,
-            pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecoderExtension: fn(
-            self: *const ID3D11VideoContext,
-            pDecoder: *ID3D11VideoDecoder,
-            pExtensionData: *const D3D11_VIDEO_DECODER_EXTENSION,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        VideoProcessorSetOutputTargetRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            Enable: BOOL,
-            pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputBackgroundColor: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            YCbCr: BOOL,
-            pColor: *const D3D11_VIDEO_COLOR,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputColorSpace: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputAlphaFillMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
-            StreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputConstriction: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            Enable: BOOL,
-            Size: SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputStereoMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputExtension: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pExtensionGuid: *const Guid,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        VideoProcessorGetOutputTargetRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            Enabled: *BOOL,
-            pRect: *RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputBackgroundColor: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pYCbCr: *BOOL,
-            pColor: *D3D11_VIDEO_COLOR,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputColorSpace: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputAlphaFillMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pAlphaFillMode: *D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
-            pStreamIndex: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputConstriction: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pEnabled: *BOOL,
-            pSize: *SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputStereoMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pEnabled: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputExtension: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pExtensionGuid: *const Guid,
-            DataSize: u32,
-            pData: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        VideoProcessorSetStreamFrameFormat: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            FrameFormat: D3D11_VIDEO_FRAME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamColorSpace: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamOutputRate: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
-            RepeatFrame: BOOL,
-            pCustomRate: ?*const DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamSourceRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamDestRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            pRect: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamAlpha: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            Alpha: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamPalette: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Count: u32,
-            pEntries: ?[*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamPixelAspectRatio: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            pSourceAspectRatio: ?*const DXGI_RATIONAL,
-            pDestinationAspectRatio: ?*const DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamLumaKey: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            Lower: f32,
-            Upper: f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamStereoFormat: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            Format: D3D11_VIDEO_PROCESSOR_STEREO_FORMAT,
-            LeftViewFrame0: BOOL,
-            BaseViewFrame0: BOOL,
-            FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
-            MonoOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamAutoProcessingMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamFilter: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
-            Enable: BOOL,
-            Level: i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamExtension: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pExtensionGuid: *const Guid,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        VideoProcessorGetStreamFrameFormat: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pFrameFormat: *D3D11_VIDEO_FRAME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamColorSpace: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamOutputRate: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pOutputRate: *D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
-            pRepeatFrame: *BOOL,
-            pCustomRate: *DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamSourceRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-            pRect: *RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamDestRect: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-            pRect: *RECT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamAlpha: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-            pAlpha: *f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamPalette: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Count: u32,
-            pEntries: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamPixelAspectRatio: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-            pSourceAspectRatio: *DXGI_RATIONAL,
-            pDestinationAspectRatio: *DXGI_RATIONAL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamLumaKey: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-            pLower: *f32,
-            pUpper: *f32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamStereoFormat: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnable: *BOOL,
-            pFormat: *D3D11_VIDEO_PROCESSOR_STEREO_FORMAT,
-            pLeftViewFrame0: *BOOL,
-            pBaseViewFrame0: *BOOL,
-            pFlipMode: *D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
-            MonoOffset: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamAutoProcessingMode: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnabled: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamFilter: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
-            pEnabled: *BOOL,
-            pLevel: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamExtension: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pExtensionGuid: *const Guid,
-            DataSize: u32,
-            pData: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        VideoProcessorBlt: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pView: *ID3D11VideoProcessorOutputView,
-            OutputFrame: u32,
-            StreamCount: u32,
-            pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateCryptoSessionKeyExchange: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-            DataSize: u32,
-            pData: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EncryptionBlt: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-            pSrcSurface: *ID3D11Texture2D,
-            pDstSurface: *ID3D11Texture2D,
-            IVSize: u32,
-            pIV: ?[*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        DecryptionBlt: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-            pSrcSurface: *ID3D11Texture2D,
-            pDstSurface: *ID3D11Texture2D,
-            pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO,
-            ContentKeySize: u32,
-            pContentKey: ?[*]const u8,
-            IVSize: u32,
-            pIV: ?[*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        StartSessionKeyRefresh: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-            RandomNumberSize: u32,
-            pRandomNumber: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        FinishSessionKeyRefresh: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        GetEncryptionBltKey: fn(
-            self: *const ID3D11VideoContext,
-            pCryptoSession: *ID3D11CryptoSession,
-            KeySize: u32,
-            pReadbackKey: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateAuthenticatedChannelKeyExchange: fn(
-            self: *const ID3D11VideoContext,
-            pChannel: *ID3D11AuthenticatedChannel,
-            DataSize: u32,
-            pData: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryAuthenticatedChannel: fn(
-            self: *const ID3D11VideoContext,
-            pChannel: *ID3D11AuthenticatedChannel,
-            InputSize: u32,
-            pInput: [*]const u8,
-            OutputSize: u32,
-            pOutput: [*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConfigureAuthenticatedChannel: fn(
-            self: *const ID3D11VideoContext,
-            pChannel: *ID3D11AuthenticatedChannel,
-            InputSize: u32,
-            pInput: [*]const u8,
-            pOutput: *D3D11_AUTHENTICATED_CONFIGURE_OUTPUT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        VideoProcessorSetStreamRotation: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            Rotation: D3D11_VIDEO_PROCESSOR_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamRotation: fn(
-            self: *const ID3D11VideoContext,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnable: *BOOL,
-            pRotation: *D3D11_VIDEO_PROCESSOR_ROTATION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_GetDecoderBuffer(self: *const T, pDecoder: *ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE, pBufferSize: *u32, ppBuffer: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).GetDecoderBuffer(@ptrCast(*const ID3D11VideoContext, self), pDecoder, Type, pBufferSize, ppBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_ReleaseDecoderBuffer(self: *const T, pDecoder: *ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).ReleaseDecoderBuffer(@ptrCast(*const ID3D11VideoContext, self), pDecoder, Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_DecoderBeginFrame(self: *const T, pDecoder: *ID3D11VideoDecoder, pView: *ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?[*]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderBeginFrame(@ptrCast(*const ID3D11VideoContext, self), pDecoder, pView, ContentKeySize, pContentKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_DecoderEndFrame(self: *const T, pDecoder: *ID3D11VideoDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderEndFrame(@ptrCast(*const ID3D11VideoContext, self), pDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_SubmitDecoderBuffers(self: *const T, pDecoder: *ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).SubmitDecoderBuffers(@ptrCast(*const ID3D11VideoContext, self), pDecoder, NumBuffers, pBufferDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_DecoderExtension(self: *const T, pDecoder: *ID3D11VideoDecoder, pExtensionData: *const D3D11_VIDEO_DECODER_EXTENSION) callconv(.Inline) i32 {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderExtension(@ptrCast(*const ID3D11VideoContext, self), pDecoder, pExtensionData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputTargetRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputTargetRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputBackgroundColor(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, YCbCr: BOOL, pColor: *const D3D11_VIDEO_COLOR) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputBackgroundColor(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, YCbCr, pColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputAlphaFillMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, StreamIndex: u32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputAlphaFillMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, AlphaFillMode, StreamIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputConstriction(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL, Size: SIZE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputConstriction(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable, Size);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputStereoMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputStereoMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetOutputExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pExtensionGuid: *const Guid, DataSize: u32, pData: *c_void) callconv(.Inline) i32 {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pExtensionGuid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputTargetRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputTargetRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enabled, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputBackgroundColor(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pYCbCr: *BOOL, pColor: *D3D11_VIDEO_COLOR) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputBackgroundColor(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pYCbCr, pColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputAlphaFillMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pAlphaFillMode: *D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, pStreamIndex: *u32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputAlphaFillMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pAlphaFillMode, pStreamIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputConstriction(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pEnabled: *BOOL, pSize: *SIZE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputConstriction(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pEnabled, pSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputStereoMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pEnabled: *BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputStereoMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetOutputExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pExtensionGuid: *const Guid, DataSize: u32, pData: [*]u8) callconv(.Inline) i32 {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pExtensionGuid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamFrameFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, FrameFormat: D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamFrameFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, FrameFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamOutputRate(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, RepeatFrame: BOOL, pCustomRate: ?*const DXGI_RATIONAL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamOutputRate(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, OutputRate, RepeatFrame, pCustomRate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamSourceRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamSourceRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamDestRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamDestRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamAlpha(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Alpha: f32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamAlpha(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Alpha);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamPalette(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: ?[*]const u32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamPalette(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Count, pEntries);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamPixelAspectRatio(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pSourceAspectRatio: ?*const DXGI_RATIONAL, pDestinationAspectRatio: ?*const DXGI_RATIONAL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamPixelAspectRatio(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pSourceAspectRatio, pDestinationAspectRatio);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamLumaKey(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Lower: f32, Upper: f32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamLumaKey(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Lower, Upper);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamStereoFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Format: D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, LeftViewFrame0: BOOL, BaseViewFrame0: BOOL, FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: i32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamStereoFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamAutoProcessingMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamAutoProcessingMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamFilter(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, Enable: BOOL, Level: i32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamFilter(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Filter, Enable, Level);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: *const Guid, DataSize: u32, pData: *c_void) callconv(.Inline) i32 {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamFrameFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pFrameFormat: *D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamFrameFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pFrameFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamOutputRate(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pOutputRate: *D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, pRepeatFrame: *BOOL, pCustomRate: *DXGI_RATIONAL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamOutputRate(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pOutputRate, pRepeatFrame, pCustomRate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamSourceRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamSourceRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamDestRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamDestRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamAlpha(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pAlpha: *f32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamAlpha(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pAlpha);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamPalette(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: [*]u32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamPalette(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Count, pEntries);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamPixelAspectRatio(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pSourceAspectRatio: *DXGI_RATIONAL, pDestinationAspectRatio: *DXGI_RATIONAL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamPixelAspectRatio(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pSourceAspectRatio, pDestinationAspectRatio);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamLumaKey(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pLower: *f32, pUpper: *f32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamLumaKey(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pLower, pUpper);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamStereoFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pFormat: *D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, pLeftViewFrame0: *BOOL, pBaseViewFrame0: *BOOL, pFlipMode: *D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: *i32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamStereoFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnable, pFormat, pLeftViewFrame0, pBaseViewFrame0, pFlipMode, MonoOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamAutoProcessingMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamAutoProcessingMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamFilter(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pEnabled: *BOOL, pLevel: *i32) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamFilter(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Filter, pEnabled, pLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: *const Guid, DataSize: u32, pData: [*]u8) callconv(.Inline) i32 {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorBlt(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pView: *ID3D11VideoProcessorOutputView, OutputFrame: u32, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorBlt(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pView, OutputFrame, StreamCount, pStreams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_NegotiateCryptoSessionKeyExchange(self: *const T, pCryptoSession: *ID3D11CryptoSession, DataSize: u32, pData: [*]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).NegotiateCryptoSessionKeyExchange(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_EncryptionBlt(self: *const T, pCryptoSession: *ID3D11CryptoSession, pSrcSurface: *ID3D11Texture2D, pDstSurface: *ID3D11Texture2D, IVSize: u32, pIV: ?[*]u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).EncryptionBlt(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, pSrcSurface, pDstSurface, IVSize, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_DecryptionBlt(self: *const T, pCryptoSession: *ID3D11CryptoSession, pSrcSurface: *ID3D11Texture2D, pDstSurface: *ID3D11Texture2D, pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO, ContentKeySize: u32, pContentKey: ?[*]const u8, IVSize: u32, pIV: ?[*]u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecryptionBlt(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, pSrcSurface, pDstSurface, pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_StartSessionKeyRefresh(self: *const T, pCryptoSession: *ID3D11CryptoSession, RandomNumberSize: u32, pRandomNumber: [*]u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, RandomNumberSize, pRandomNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_FinishSessionKeyRefresh(self: *const T, pCryptoSession: *ID3D11CryptoSession) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_GetEncryptionBltKey(self: *const T, pCryptoSession: *ID3D11CryptoSession, KeySize: u32, pReadbackKey: [*]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, KeySize, pReadbackKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_NegotiateAuthenticatedChannelKeyExchange(self: *const T, pChannel: *ID3D11AuthenticatedChannel, DataSize: u32, pData: [*]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).NegotiateAuthenticatedChannelKeyExchange(@ptrCast(*const ID3D11VideoContext, self), pChannel, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_QueryAuthenticatedChannel(self: *const T, pChannel: *ID3D11AuthenticatedChannel, InputSize: u32, pInput: [*]const u8, OutputSize: u32, pOutput: [*]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).QueryAuthenticatedChannel(@ptrCast(*const ID3D11VideoContext, self), pChannel, InputSize, pInput, OutputSize, pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_ConfigureAuthenticatedChannel(self: *const T, pChannel: *ID3D11AuthenticatedChannel, InputSize: u32, pInput: [*]const u8, pOutput: *D3D11_AUTHENTICATED_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).ConfigureAuthenticatedChannel(@ptrCast(*const ID3D11VideoContext, self), pChannel, InputSize, pInput, pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorSetStreamRotation(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Rotation: D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamRotation(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Rotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext_VideoProcessorGetStreamRotation(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pRotation: *D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamRotation(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnable, pRotation);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ID3D11VideoDevice_Value = @import("../zig.zig").Guid.initString("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
-pub const IID_ID3D11VideoDevice = &IID_ID3D11VideoDevice_Value;
-pub const ID3D11VideoDevice = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateVideoDecoder: fn(
-            self: *const ID3D11VideoDevice,
-            pVideoDesc: *const D3D11_VIDEO_DECODER_DESC,
-            pConfig: *const D3D11_VIDEO_DECODER_CONFIG,
-            ppDecoder: **ID3D11VideoDecoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoProcessor: fn(
-            self: *const ID3D11VideoDevice,
-            pEnum: *ID3D11VideoProcessorEnumerator,
-            RateConversionIndex: u32,
-            ppVideoProcessor: **ID3D11VideoProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAuthenticatedChannel: fn(
-            self: *const ID3D11VideoDevice,
-            ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
-            ppAuthenticatedChannel: **ID3D11AuthenticatedChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateCryptoSession: fn(
-            self: *const ID3D11VideoDevice,
-            pCryptoType: *const Guid,
-            pDecoderProfile: ?*const Guid,
-            pKeyExchangeType: *const Guid,
-            ppCryptoSession: **ID3D11CryptoSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoDecoderOutputView: fn(
-            self: *const ID3D11VideoDevice,
-            pResource: *ID3D11Resource,
-            pDesc: *const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
-            ppVDOVView: ?*?*ID3D11VideoDecoderOutputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoProcessorInputView: fn(
-            self: *const ID3D11VideoDevice,
-            pResource: *ID3D11Resource,
-            pEnum: *ID3D11VideoProcessorEnumerator,
-            pDesc: *const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
-            ppVPIView: ?*?*ID3D11VideoProcessorInputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoProcessorOutputView: fn(
-            self: *const ID3D11VideoDevice,
-            pResource: *ID3D11Resource,
-            pEnum: *ID3D11VideoProcessorEnumerator,
-            pDesc: *const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
-            ppVPOView: ?*?*ID3D11VideoProcessorOutputView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoProcessorEnumerator: fn(
-            self: *const ID3D11VideoDevice,
-            pDesc: *const D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
-            ppEnum: **ID3D11VideoProcessorEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoDecoderProfileCount: fn(
-            self: *const ID3D11VideoDevice,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
-        GetVideoDecoderProfile: fn(
-            self: *const ID3D11VideoDevice,
-            Index: u32,
-            pDecoderProfile: *Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckVideoDecoderFormat: fn(
-            self: *const ID3D11VideoDevice,
-            pDecoderProfile: *const Guid,
-            Format: DXGI_FORMAT,
-            pSupported: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoDecoderConfigCount: fn(
-            self: *const ID3D11VideoDevice,
-            pDesc: *const D3D11_VIDEO_DECODER_DESC,
-            pCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoDecoderConfig: fn(
-            self: *const ID3D11VideoDevice,
-            pDesc: *const D3D11_VIDEO_DECODER_DESC,
-            Index: u32,
-            pConfig: *D3D11_VIDEO_DECODER_CONFIG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContentProtectionCaps: fn(
-            self: *const ID3D11VideoDevice,
-            pCryptoType: ?*const Guid,
-            pDecoderProfile: ?*const Guid,
-            pCaps: *D3D11_VIDEO_CONTENT_PROTECTION_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckCryptoKeyExchange: fn(
-            self: *const ID3D11VideoDevice,
-            pCryptoType: *const Guid,
-            pDecoderProfile: ?*const Guid,
-            Index: u32,
-            pKeyExchangeType: *Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPrivateData: fn(
-            self: *const ID3D11VideoDevice,
-            guid: *const Guid,
-            DataSize: u32,
-            pData: ?[*]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPrivateDataInterface: fn(
-            self: *const ID3D11VideoDevice,
-            guid: *const Guid,
-            pData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoDecoder(self: *const T, pVideoDesc: *const D3D11_VIDEO_DECODER_DESC, pConfig: *const D3D11_VIDEO_DECODER_CONFIG, ppDecoder: **ID3D11VideoDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const ID3D11VideoDevice, self), pVideoDesc, pConfig, ppDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoProcessor(self: *const T, pEnum: *ID3D11VideoProcessorEnumerator, RateConversionIndex: u32, ppVideoProcessor: **ID3D11VideoProcessor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessor(@ptrCast(*const ID3D11VideoDevice, self), pEnum, RateConversionIndex, ppVideoProcessor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateAuthenticatedChannel(self: *const T, ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE, ppAuthenticatedChannel: **ID3D11AuthenticatedChannel) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const ID3D11VideoDevice, self), ChannelType, ppAuthenticatedChannel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: *const Guid, ppCryptoSession: **ID3D11CryptoSession) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, pKeyExchangeType, ppCryptoSession);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoDecoderOutputView(self: *const T, pResource: *ID3D11Resource, pDesc: *const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC, ppVDOVView: ?*?*ID3D11VideoDecoderOutputView) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoDecoderOutputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pDesc, ppVDOVView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoProcessorInputView(self: *const T, pResource: *ID3D11Resource, pEnum: *ID3D11VideoProcessorEnumerator, pDesc: *const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC, ppVPIView: ?*?*ID3D11VideoProcessorInputView) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorInputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pEnum, pDesc, ppVPIView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoProcessorOutputView(self: *const T, pResource: *ID3D11Resource, pEnum: *ID3D11VideoProcessorEnumerator, pDesc: *const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC, ppVPOView: ?*?*ID3D11VideoProcessorOutputView) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorOutputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pEnum, pDesc, ppVPOView);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CreateVideoProcessorEnumerator(self: *const T, pDesc: *const D3D11_VIDEO_PROCESSOR_CONTENT_DESC, ppEnum: **ID3D11VideoProcessorEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorEnumerator(@ptrCast(*const ID3D11VideoDevice, self), pDesc, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_GetVideoDecoderProfileCount(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderProfileCount(@ptrCast(*const ID3D11VideoDevice, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_GetVideoDecoderProfile(self: *const T, Index: u32, pDecoderProfile: *Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderProfile(@ptrCast(*const ID3D11VideoDevice, self), Index, pDecoderProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CheckVideoDecoderFormat(self: *const T, pDecoderProfile: *const Guid, Format: DXGI_FORMAT, pSupported: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CheckVideoDecoderFormat(@ptrCast(*const ID3D11VideoDevice, self), pDecoderProfile, Format, pSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_GetVideoDecoderConfigCount(self: *const T, pDesc: *const D3D11_VIDEO_DECODER_DESC, pCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderConfigCount(@ptrCast(*const ID3D11VideoDevice, self), pDesc, pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_GetVideoDecoderConfig(self: *const T, pDesc: *const D3D11_VIDEO_DECODER_DESC, Index: u32, pConfig: *D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderConfig(@ptrCast(*const ID3D11VideoDevice, self), pDesc, Index, pConfig);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_GetContentProtectionCaps(self: *const T, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pCaps: *D3D11_VIDEO_CONTENT_PROTECTION_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_CheckCryptoKeyExchange(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, Index: u32, pKeyExchangeType: *Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CheckCryptoKeyExchange(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, Index, pKeyExchangeType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D11VideoDevice, self), guid, DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice_SetPrivateDataInterface(self: *const T, guid: *const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).SetPrivateDataInterface(@ptrCast(*const ID3D11VideoDevice, self), guid, pData);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK = extern struct {
-    ClearSize: u32,
-    EncryptedSize: u32,
-};
-
-pub const D3D11_VIDEO_DECODER_BUFFER_DESC1 = extern struct {
-    BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
-    DataOffset: u32,
-    DataSize: u32,
-    pIV: *c_void,
-    IVSize: u32,
-    pSubSampleMappingBlock: *D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK,
-    SubSampleMappingCount: u32,
-};
-
-pub const D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION = extern struct {
-    pCryptoSession: *ID3D11CryptoSession,
-    BlobSize: u32,
-    pBlob: *c_void,
-    pKeyInfoId: *Guid,
-    PrivateDataSize: u32,
-    pPrivateData: *c_void,
-};
-
-pub const D3D11_VIDEO_DECODER_CAPS = extern enum(i32) {
-    DOWNSAMPLE = 1,
-    NON_REAL_TIME = 2,
-    DOWNSAMPLE_DYNAMIC = 4,
-    DOWNSAMPLE_REQUIRED = 8,
-    UNSUPPORTED = 16,
-};
-pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE;
-pub const D3D11_VIDEO_DECODER_CAPS_NON_REAL_TIME = D3D11_VIDEO_DECODER_CAPS.NON_REAL_TIME;
-pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_DYNAMIC = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE_DYNAMIC;
-pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_REQUIRED = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE_REQUIRED;
-pub const D3D11_VIDEO_DECODER_CAPS_UNSUPPORTED = D3D11_VIDEO_DECODER_CAPS.UNSUPPORTED;
-
-pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS = extern enum(i32) {
-    MULTIPLANE_OVERLAY_ROTATION = 1,
-    MULTIPLANE_OVERLAY_RESIZE = 2,
-    MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION = 4,
-    TRIPLE_BUFFER_OUTPUT = 8,
-};
-pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_ROTATION = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_ROTATION;
-pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_RESIZE = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_RESIZE;
-pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION;
-pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_TRIPLE_BUFFER_OUTPUT = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.TRIPLE_BUFFER_OUTPUT;
-
-pub const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT = extern struct {
-    Enable: BOOL,
-    Width: u32,
-    Height: u32,
-    Format: DXGI_FORMAT,
-};
-
-pub const D3D11_CRYPTO_SESSION_STATUS = extern enum(i32) {
-    OK = 0,
-    KEY_LOST = 1,
-    KEY_AND_CONTENT_LOST = 2,
-};
-pub const D3D11_CRYPTO_SESSION_STATUS_OK = D3D11_CRYPTO_SESSION_STATUS.OK;
-pub const D3D11_CRYPTO_SESSION_STATUS_KEY_LOST = D3D11_CRYPTO_SESSION_STATUS.KEY_LOST;
-pub const D3D11_CRYPTO_SESSION_STATUS_KEY_AND_CONTENT_LOST = D3D11_CRYPTO_SESSION_STATUS.KEY_AND_CONTENT_LOST;
-
-pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA = extern struct {
-    PrivateDataSize: u32,
-    HWProtectionDataSize: u32,
-    pbInput: [4]u8,
-};
-
-pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA = extern struct {
-    PrivateDataSize: u32,
-    MaxHWProtectionDataSize: u32,
-    HWProtectionDataSize: u32,
-    TransportTime: u64,
-    ExecutionTime: u64,
-    pbOutput: [4]u8,
-};
-
-pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_DATA = extern struct {
-    HWProtectionFunctionID: u32,
-    pInputData: *D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA,
-    pOutputData: *D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA,
-    Status: HRESULT,
-};
-
-pub const D3D11_VIDEO_SAMPLE_DESC = extern struct {
-    Width: u32,
-    Height: u32,
-    Format: DXGI_FORMAT,
-    ColorSpace: DXGI_COLOR_SPACE_TYPE,
-};
-
-const IID_ID3D11VideoContext1_Value = @import("../zig.zig").Guid.initString("a7f026da-a5f8-4487-a564-15e34357651e");
-pub const IID_ID3D11VideoContext1 = &IID_ID3D11VideoContext1_Value;
-pub const ID3D11VideoContext1 = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11VideoContext.VTable,
-        SubmitDecoderBuffers1: fn(
-            self: *const ID3D11VideoContext1,
-            pDecoder: *ID3D11VideoDecoder,
-            NumBuffers: u32,
-            pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDataForNewHardwareKey: fn(
-            self: *const ID3D11VideoContext1,
-            pCryptoSession: *ID3D11CryptoSession,
-            PrivateInputSize: u32,
-            pPrivatInputData: [*]const u8,
-            pPrivateOutputData: *u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckCryptoSessionStatus: fn(
-            self: *const ID3D11VideoContext1,
-            pCryptoSession: *ID3D11CryptoSession,
-            pStatus: *D3D11_CRYPTO_SESSION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecoderEnableDownsampling: fn(
-            self: *const ID3D11VideoContext1,
-            pDecoder: *ID3D11VideoDecoder,
-            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
-            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
-            ReferenceFrameCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecoderUpdateDownsampling: fn(
-            self: *const ID3D11VideoContext1,
-            pDecoder: *ID3D11VideoDecoder,
-            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        VideoProcessorSetOutputColorSpace1: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            ColorSpace: DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetOutputShaderUsage: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            ShaderUsage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputColorSpace1: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pColorSpace: *DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputShaderUsage: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pShaderUsage: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamColorSpace1: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            ColorSpace: DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamMirror: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Enable: BOOL,
-            FlipHorizontal: BOOL,
-            FlipVertical: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamColorSpace1: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pColorSpace: *DXGI_COLOR_SPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamMirror: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pEnable: *BOOL,
-            pFlipHorizontal: *BOOL,
-            pFlipVertical: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetBehaviorHints: fn(
-            self: *const ID3D11VideoContext1,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            OutputWidth: u32,
-            OutputHeight: u32,
-            OutputFormat: DXGI_FORMAT,
-            StreamCount: u32,
-            pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT,
-            pBehaviorHints: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11VideoContext.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_SubmitDecoderBuffers1(self: *const T, pDecoder: *ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).SubmitDecoderBuffers1(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, NumBuffers, pBufferDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_GetDataForNewHardwareKey(self: *const T, pCryptoSession: *ID3D11CryptoSession, PrivateInputSize: u32, pPrivatInputData: [*]const u8, pPrivateOutputData: *u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).GetDataForNewHardwareKey(@ptrCast(*const ID3D11VideoContext1, self), pCryptoSession, PrivateInputSize, pPrivatInputData, pPrivateOutputData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_CheckCryptoSessionStatus(self: *const T, pCryptoSession: *ID3D11CryptoSession, pStatus: *D3D11_CRYPTO_SESSION_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).CheckCryptoSessionStatus(@ptrCast(*const ID3D11VideoContext1, self), pCryptoSession, pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_DecoderEnableDownsampling(self: *const T, pDecoder: *ID3D11VideoDecoder, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC, ReferenceFrameCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).DecoderEnableDownsampling(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, InputColorSpace, pOutputDesc, ReferenceFrameCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_DecoderUpdateDownsampling(self: *const T, pDecoder: *ID3D11VideoDecoder, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).DecoderUpdateDownsampling(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, pOutputDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorSetOutputColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetOutputColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, ColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorSetOutputShaderUsage(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, ShaderUsage: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetOutputShaderUsage(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, ShaderUsage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorGetOutputColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetOutputColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorGetOutputShaderUsage(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pShaderUsage: *BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetOutputShaderUsage(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, pShaderUsage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorSetStreamColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetStreamColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, ColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorSetStreamMirror(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, FlipHorizontal: BOOL, FlipVertical: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetStreamMirror(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, Enable, FlipHorizontal, FlipVertical);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorGetStreamColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetStreamColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, pColorSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorGetStreamMirror(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pFlipHorizontal: *BOOL, pFlipVertical: *BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetStreamMirror(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, pEnable, pFlipHorizontal, pFlipVertical);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext1_VideoProcessorGetBehaviorHints(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, OutputWidth: u32, OutputHeight: u32, OutputFormat: DXGI_FORMAT, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT, pBehaviorHints: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetBehaviorHints(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, OutputWidth, OutputHeight, OutputFormat, StreamCount, pStreams, pBehaviorHints);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ID3D11VideoDevice1_Value = @import("../zig.zig").Guid.initString("29da1d51-1321-4454-804b-f5fc9f861f0f");
-pub const IID_ID3D11VideoDevice1 = &IID_ID3D11VideoDevice1_Value;
-pub const ID3D11VideoDevice1 = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11VideoDevice.VTable,
-        GetCryptoSessionPrivateDataSize: fn(
-            self: *const ID3D11VideoDevice1,
-            pCryptoType: *const Guid,
-            pDecoderProfile: ?*const Guid,
-            pKeyExchangeType: *const Guid,
-            pPrivateInputSize: *u32,
-            pPrivateOutputSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoDecoderCaps: fn(
-            self: *const ID3D11VideoDevice1,
-            pDecoderProfile: *const Guid,
-            SampleWidth: u32,
-            SampleHeight: u32,
-            pFrameRate: *const DXGI_RATIONAL,
-            BitRate: u32,
-            pCryptoType: ?*const Guid,
-            pDecoderCaps: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckVideoDecoderDownsampling: fn(
-            self: *const ID3D11VideoDevice1,
-            pInputDesc: *const D3D11_VIDEO_DECODER_DESC,
-            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
-            pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG,
-            pFrameRate: *const DXGI_RATIONAL,
-            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
-            pSupported: *BOOL,
-            pRealTimeHint: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RecommendVideoDecoderDownsampleParameters: fn(
-            self: *const ID3D11VideoDevice1,
-            pInputDesc: *const D3D11_VIDEO_DECODER_DESC,
-            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
-            pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG,
-            pFrameRate: *const DXGI_RATIONAL,
-            pRecommendedOutputDesc: *D3D11_VIDEO_SAMPLE_DESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11VideoDevice.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice1_GetCryptoSessionPrivateDataSize(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: *const Guid, pPrivateInputSize: *u32, pPrivateOutputSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).GetCryptoSessionPrivateDataSize(@ptrCast(*const ID3D11VideoDevice1, self), pCryptoType, pDecoderProfile, pKeyExchangeType, pPrivateInputSize, pPrivateOutputSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice1_GetVideoDecoderCaps(self: *const T, pDecoderProfile: *const Guid, SampleWidth: u32, SampleHeight: u32, pFrameRate: *const DXGI_RATIONAL, BitRate: u32, pCryptoType: ?*const Guid, pDecoderCaps: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).GetVideoDecoderCaps(@ptrCast(*const ID3D11VideoDevice1, self), pDecoderProfile, SampleWidth, SampleHeight, pFrameRate, BitRate, pCryptoType, pDecoderCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice1_CheckVideoDecoderDownsampling(self: *const T, pInputDesc: *const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: *const DXGI_RATIONAL, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC, pSupported: *BOOL, pRealTimeHint: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).CheckVideoDecoderDownsampling(@ptrCast(*const ID3D11VideoDevice1, self), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pOutputDesc, pSupported, pRealTimeHint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice1_RecommendVideoDecoderDownsampleParameters(self: *const T, pInputDesc: *const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: *const DXGI_RATIONAL, pRecommendedOutputDesc: *D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).RecommendVideoDecoderDownsampleParameters(@ptrCast(*const ID3D11VideoDevice1, self), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pRecommendedOutputDesc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ID3D11VideoProcessorEnumerator1_Value = @import("../zig.zig").Guid.initString("465217f2-5568-43cf-b5b9-f61d54531ca1");
-pub const IID_ID3D11VideoProcessorEnumerator1 = &IID_ID3D11VideoProcessorEnumerator1_Value;
-pub const ID3D11VideoProcessorEnumerator1 = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11VideoProcessorEnumerator.VTable,
-        CheckVideoProcessorFormatConversion: fn(
-            self: *const ID3D11VideoProcessorEnumerator1,
-            InputFormat: DXGI_FORMAT,
-            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
-            OutputFormat: DXGI_FORMAT,
-            OutputColorSpace: DXGI_COLOR_SPACE_TYPE,
-            pSupported: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11VideoProcessorEnumerator.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoProcessorEnumerator1_CheckVideoProcessorFormatConversion(self: *const T, InputFormat: DXGI_FORMAT, InputColorSpace: DXGI_COLOR_SPACE_TYPE, OutputFormat: DXGI_FORMAT, OutputColorSpace: DXGI_COLOR_SPACE_TYPE, pSupported: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11VideoProcessorEnumerator1.VTable, self.vtable).CheckVideoProcessorFormatConversion(@ptrCast(*const ID3D11VideoProcessorEnumerator1, self), InputFormat, InputColorSpace, OutputFormat, OutputColorSpace, pSupported);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ID3D11VideoContext2_Value = @import("../zig.zig").Guid.initString("c4e7374c-6243-4d1b-ae87-52b4f740e261");
-pub const IID_ID3D11VideoContext2 = &IID_ID3D11VideoContext2_Value;
-pub const ID3D11VideoContext2 = extern struct {
-    pub const VTable = extern struct {
-        base: ID3D11VideoContext1.VTable,
-        VideoProcessorSetOutputHDRMetaData: fn(
-            self: *const ID3D11VideoContext2,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            Type: DXGI_HDR_METADATA_TYPE,
-            Size: u32,
-            pHDRMetaData: ?[*]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetOutputHDRMetaData: fn(
-            self: *const ID3D11VideoContext2,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            pType: *DXGI_HDR_METADATA_TYPE,
-            Size: u32,
-            pMetaData: ?[*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorSetStreamHDRMetaData: fn(
-            self: *const ID3D11VideoContext2,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            Type: DXGI_HDR_METADATA_TYPE,
-            Size: u32,
-            pHDRMetaData: ?[*]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        VideoProcessorGetStreamHDRMetaData: fn(
-            self: *const ID3D11VideoContext2,
-            pVideoProcessor: *ID3D11VideoProcessor,
-            StreamIndex: u32,
-            pType: *DXGI_HDR_METADATA_TYPE,
-            Size: u32,
-            pMetaData: ?[*]u8,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ID3D11VideoContext1.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext2_VideoProcessorSetOutputHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?[*]const u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorSetOutputHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, Type, Size, pHDRMetaData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext2_VideoProcessorGetOutputHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pType: *DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorGetOutputHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, pType, Size, pMetaData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext2_VideoProcessorSetStreamHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?[*]const u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorSetStreamHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, StreamIndex, Type, Size, pHDRMetaData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext2_VideoProcessorGetStreamHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pType: *DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) callconv(.Inline) void {
-            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorGetStreamHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, StreamIndex, pType, Size, pMetaData);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D11_FEATURE_VIDEO = extern enum(i32) {
-    M = 0,
-};
-pub const D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM = D3D11_FEATURE_VIDEO.M;
-
-pub const CodecAPIEventData = extern struct {
-    guid: Guid,
-    dataLength: u32,
-    reserved: [3]u32,
-};
-
-const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
-pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
-pub const ICodecAPI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSupported: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsModifiable: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterRange: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            ValueMin: *VARIANT,
-            ValueMax: *VARIANT,
-            SteppingDelta: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterValues: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Values: [*]*VARIANT,
-            ValuesCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            userData: ?*c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaults: fn(
-            self: *const ICodecAPI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueWithNotify: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaultsWithNotify: fn(
-            self: *const ICodecAPI,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0000: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0001: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettingsWithNotify: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0002: *IStream,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3DOVERLAYCAPS = extern struct {
-    Caps: u32,
-    MaxOverlayDisplayWidth: u32,
-    MaxOverlayDisplayHeight: u32,
-};
-
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
-};
-
-const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
-pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
-pub const IDirect3D9ExOverlayExtension = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CheckDeviceOverlayType: fn(
-            self: *const IDirect3D9ExOverlayExtension,
-            Adapter: u32,
-            DevType: D3DDEVTYPE,
-            OverlayWidth: u32,
-            OverlayHeight: u32,
-            OverlayFormat: D3DFORMAT,
-            pDisplayMode: *D3DDISPLAYMODEEX,
-            DisplayRotation: D3DDISPLAYROTATION,
-            pOverlayCaps: *D3DOVERLAYCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3D9ExOverlayExtension_CheckDeviceOverlayType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: *D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: *D3DOVERLAYCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3D9ExOverlayExtension.VTable, self.vtable).CheckDeviceOverlayType(@ptrCast(*const IDirect3D9ExOverlayExtension, self), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDirect3DDevice9Video_Value = @import("../zig.zig").Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
-pub const IID_IDirect3DDevice9Video = &IID_IDirect3DDevice9Video_Value;
-pub const IDirect3DDevice9Video = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetContentProtectionCaps: fn(
-            self: *const IDirect3DDevice9Video,
-            pCryptoType: *const Guid,
-            pDecodeProfile: *const Guid,
-            pCaps: *D3DCONTENTPROTECTIONCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAuthenticatedChannel: fn(
-            self: *const IDirect3DDevice9Video,
-            ChannelType: D3DAUTHENTICATEDCHANNELTYPE,
-            ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9,
-            pChannelHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateCryptoSession: fn(
-            self: *const IDirect3DDevice9Video,
-            pCryptoType: *const Guid,
-            pDecodeProfile: *const Guid,
-            ppCryptoSession: **IDirect3DCryptoSession9,
-            pCryptoHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_GetContentProtectionCaps(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, pCaps: *D3DCONTENTPROTECTIONCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_CreateAuthenticatedChannel(self: *const T, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9, pChannelHandle: *HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const IDirect3DDevice9Video, self), ChannelType, ppAuthenticatedChannel, pChannelHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, ppCryptoSession: **IDirect3DCryptoSession9, pCryptoHandle: *HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDirect3DAuthenticatedChannel9_Value = @import("../zig.zig").Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
-pub const IID_IDirect3DAuthenticatedChannel9 = &IID_IDirect3DAuthenticatedChannel9_Value;
-pub const IDirect3DAuthenticatedChannel9 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCertificateSize: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            CertifacteSize: u32,
-            ppCertificate: *u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateKeyExchange: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Query: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            InputSize: u32,
-            pInput: *const c_void,
-            OutputSize: u32,
-            pOutput: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            InputSize: u32,
-            pInput: *const c_void,
-            pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), CertifacteSize, ppCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_Query(self: *const T, InputSize: u32, pInput: *const c_void, OutputSize: u32, pOutput: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Query(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, OutputSize, pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_Configure(self: *const T, InputSize: u32, pInput: *const c_void, pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Configure(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, pOutput);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDirect3DCryptoSession9_Value = @import("../zig.zig").Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
-pub const IID_IDirect3DCryptoSession9 = &IID_IDirect3DCryptoSession9_Value;
-pub const IDirect3DCryptoSession9 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCertificateSize: fn(
-            self: *const IDirect3DCryptoSession9,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const IDirect3DCryptoSession9,
-            CertifacteSize: u32,
-            ppCertificate: *u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateKeyExchange: fn(
-            self: *const IDirect3DCryptoSession9,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EncryptionBlt: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pDstSurface: *IDirect3DSurface9,
-            DstSurfaceSize: u32,
-            pIV: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecryptionBlt: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pDstSurface: *IDirect3DSurface9,
-            SrcSurfaceSize: u32,
-            pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO,
-            pContentKey: *c_void,
-            pIV: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfacePitch: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pSurfacePitch: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartSessionKeyRefresh: fn(
-            self: *const IDirect3DCryptoSession9,
-            pRandomNumber: *c_void,
-            RandomNumberSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FinishSessionKeyRefresh: fn(
-            self: *const IDirect3DCryptoSession9,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEncryptionBltKey: fn(
-            self: *const IDirect3DCryptoSession9,
-            pReadbackKey: *c_void,
-            KeySize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DCryptoSession9, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DCryptoSession9, self), CertifacteSize, ppCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DCryptoSession9, self), DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_EncryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, DstSurfaceSize: u32, pIV: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).EncryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_DecryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO, pContentKey: *c_void, pIV: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).DecryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetSurfacePitch(self: *const T, pSrcSurface: *IDirect3DSurface9, pSurfacePitch: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetSurfacePitch(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pSurfacePitch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_StartSessionKeyRefresh(self: *const T, pRandomNumber: *c_void, RandomNumberSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self), pRandomNumber, RandomNumberSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_FinishSessionKeyRefresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetEncryptionBltKey(self: *const T, pReadbackKey: *c_void, KeySize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const IDirect3DCryptoSession9, self), pReadbackKey, KeySize);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const MF_Plugin_Type = extern enum(i32) {
-    MFT = 0,
-    MediaSource = 1,
-    MFT_MatchOutputType = 2,
-    Other = -1,
-};
-pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
-pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
-pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
-pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
-
-pub const IMFMediaEventGenerator_GetEventFlags = extern enum(u32) {
-    None = 0,
-    T = 1,
-};
-pub const MF_EVENT_FLAG_NO_WAIT = IMFMediaEventGenerator_GetEventFlags.T;
-
 pub const D3D12_VIDEO_FIELD_TYPE = extern enum(i32) {
     NONE = 0,
     INTERLACED_TOP_FIELD_FIRST = 1,
@@ -5140,6 +2490,7 @@ pub const D3D12_VIDEO_MOTION_ESTIMATOR_DESC = extern struct {
     SizeRange: D3D12_VIDEO_SIZE_RANGE,
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D12VideoMotionEstimator_Value = @import("../zig.zig").Guid.initString("33fdae0e-098b-428f-87bb-34b695de08f8");
 pub const IID_ID3D12VideoMotionEstimator = &IID_ID3D12VideoMotionEstimator_Value;
 pub const ID3D12VideoMotionEstimator = extern struct {
@@ -5177,6 +2528,7 @@ pub const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC = extern struct {
     SizeRange: D3D12_VIDEO_SIZE_RANGE,
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D12VideoMotionVectorHeap_Value = @import("../zig.zig").Guid.initString("5be17987-743a-4061-834b-23d22daea505");
 pub const IID_ID3D12VideoMotionVectorHeap = &IID_ID3D12VideoMotionVectorHeap_Value;
 pub const ID3D12VideoMotionVectorHeap = extern struct {
@@ -5271,6 +2623,7 @@ pub const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT = extern struct {
     PixelHeight: u32,
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D12VideoEncodeCommandList_Value = @import("../zig.zig").Guid.initString("8455293a-0cbd-4831-9b39-fbdbab724723");
 pub const IID_ID3D12VideoEncodeCommandList = &IID_ID3D12VideoEncodeCommandList_Value;
 pub const ID3D12VideoEncodeCommandList = extern struct {
@@ -5582,6 +2935,7 @@ pub const D3D12_VIDEO_EXTENSION_COMMAND_DESC = extern struct {
     CommandId: Guid,
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D12VideoDecoder1_Value = @import("../zig.zig").Guid.initString("79a2e5fb-ccd2-469a-9fde-195d10951f7e");
 pub const IID_ID3D12VideoDecoder1 = &IID_ID3D12VideoDecoder1_Value;
 pub const ID3D12VideoDecoder1 = extern struct {
@@ -5648,6 +3002,7 @@ pub const ID3D12VideoProcessor1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_ID3D12VideoExtensionCommand_Value = @import("../zig.zig").Guid.initString("554e41e8-ae8e-4a8c-b7d2-5b4f274a30e4");
 pub const IID_ID3D12VideoExtensionCommand = &IID_ID3D12VideoExtensionCommand_Value;
 pub const ID3D12VideoExtensionCommand = extern struct {
@@ -6293,6 +3648,7 @@ pub const IValidateBinding = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMVideoDecoderHurryup_Value = @import("../zig.zig").Guid.initString("352bb3bd-2d4d-4323-9e71-dcdcfbd53ca6");
 pub const IID_IWMVideoDecoderHurryup = &IID_IWMVideoDecoderHurryup_Value;
 pub const IWMVideoDecoderHurryup = extern struct {
@@ -6322,6 +3678,7 @@ pub const IWMVideoDecoderHurryup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMVideoForceKeyFrame_Value = @import("../zig.zig").Guid.initString("9f8496be-5b9a-41b9-a9e8-f21cd80596c2");
 pub const IID_IWMVideoForceKeyFrame = &IID_IWMVideoForceKeyFrame_Value;
 pub const IWMVideoForceKeyFrame = extern struct {
@@ -6342,6 +3699,7 @@ pub const IWMVideoForceKeyFrame = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMCodecStrings_Value = @import("../zig.zig").Guid.initString("a7b2504b-e58a-47fb-958b-cac7165a057d");
 pub const IID_IWMCodecStrings = &IID_IWMCodecStrings_Value;
 pub const IWMCodecStrings = extern struct {
@@ -6377,6 +3735,7 @@ pub const IWMCodecStrings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMCodecProps_Value = @import("../zig.zig").Guid.initString("2573e11a-f01a-4fdd-a98d-63b8e0ba9589");
 pub const IID_IWMCodecProps = &IID_IWMCodecProps_Value;
 pub const IWMCodecProps = extern struct {
@@ -6414,6 +3773,7 @@ pub const IWMCodecProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMCodecLeakyBucket_Value = @import("../zig.zig").Guid.initString("a81ba647-6227-43b7-b231-c7b15135dd7d");
 pub const IID_IWMCodecLeakyBucket = &IID_IWMCodecLeakyBucket_Value;
 pub const IWMCodecLeakyBucket = extern struct {
@@ -6459,6 +3819,7 @@ pub const IWMCodecLeakyBucket = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMCodecOutputTimestamp_Value = @import("../zig.zig").Guid.initString("b72adf95-7adc-4a72-bc05-577d8ea6bf68");
 pub const IID_IWMCodecOutputTimestamp = &IID_IWMCodecOutputTimestamp_Value;
 pub const IWMCodecOutputTimestamp = extern struct {
@@ -6480,6 +3841,7 @@ pub const IWMCodecOutputTimestamp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMVideoDecoderReconBuffer_Value = @import("../zig.zig").Guid.initString("45bda2ac-88e2-4923-98ba-3949080711a3");
 pub const IID_IWMVideoDecoderReconBuffer = &IID_IWMVideoDecoderReconBuffer_Value;
 pub const IWMVideoDecoderReconBuffer = extern struct {
@@ -6517,6 +3879,7 @@ pub const IWMVideoDecoderReconBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMCodecPrivateData_Value = @import("../zig.zig").Guid.initString("73f0be8e-57f7-4f01-aa66-9f57340cfe0e");
 pub const IID_IWMCodecPrivateData = &IID_IWMCodecPrivateData_Value;
 pub const IWMCodecPrivateData = extern struct {
@@ -6547,6 +3910,7 @@ pub const IWMCodecPrivateData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMSampleExtensionSupport_Value = @import("../zig.zig").Guid.initString("9bca9884-0604-4c2a-87da-793ff4d586c3");
 pub const IID_IWMSampleExtensionSupport = &IID_IWMSampleExtensionSupport_Value;
 pub const IWMSampleExtensionSupport = extern struct {
@@ -6568,6 +3932,7 @@ pub const IWMSampleExtensionSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMResamplerProps_Value = @import("../zig.zig").Guid.initString("e7e9984f-f09f-4da4-903f-6e2e0efe56b5");
 pub const IID_IWMResamplerProps = &IID_IWMResamplerProps_Value;
 pub const IWMResamplerProps = extern struct {
@@ -6597,6 +3962,7 @@ pub const IWMResamplerProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMResizerProps_Value = @import("../zig.zig").Guid.initString("57665d4c-0414-4faa-905b-10e546f81c33");
 pub const IID_IWMResizerProps = &IID_IWMResizerProps_Value;
 pub const IWMResizerProps = extern struct {
@@ -6771,6 +4137,7 @@ pub const IWMFrameInterpProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMColorConvProps_Value = @import("../zig.zig").Guid.initString("e6a49e22-c099-421d-aad3-c061fb4ae85b");
 pub const IID_IWMColorConvProps = &IID_IWMColorConvProps_Value;
 pub const IWMColorConvProps = extern struct {
@@ -6924,6 +4291,7 @@ pub const TOC_POS_TYPE = extern enum(i32) {
 pub const TOC_POS_INHEADER = TOC_POS_TYPE.INHEADER;
 pub const TOC_POS_TOPLEVELOBJECT = TOC_POS_TYPE.TOPLEVELOBJECT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITocEntry_Value = @import("../zig.zig").Guid.initString("f22f5e06-585c-4def-8523-6555cfbc0cb3");
 pub const IID_ITocEntry = &IID_ITocEntry_Value;
 pub const ITocEntry = extern struct {
@@ -7008,6 +4376,7 @@ pub const ITocEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITocEntryList_Value = @import("../zig.zig").Guid.initString("3a8cccbd-0efd-43a3-b838-f38a552ba237");
 pub const IID_ITocEntryList = &IID_ITocEntryList_Value;
 pub const ITocEntryList = extern struct {
@@ -7064,6 +4433,7 @@ pub const ITocEntryList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IToc_Value = @import("../zig.zig").Guid.initString("d6f05441-a919-423b-91a0-89d5b4a8ab77");
 pub const IID_IToc = &IID_IToc_Value;
 pub const IToc = extern struct {
@@ -7171,6 +4541,7 @@ pub const IToc = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITocCollection_Value = @import("../zig.zig").Guid.initString("23fee831-ae96-42df-b170-25a04847a3ca");
 pub const IID_ITocCollection = &IID_ITocCollection_Value;
 pub const ITocCollection = extern struct {
@@ -7227,6 +4598,7 @@ pub const ITocCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITocParser_Value = @import("../zig.zig").Guid.initString("ecfb9a55-9298-4f49-887f-0b36206599d2");
 pub const IID_ITocParser = &IID_ITocParser_Value;
 pub const ITocParser = extern struct {
@@ -8383,6 +5755,7 @@ pub const DXVAHD_STREAM_STATE_PRIVATE_IVTC_DATA = extern struct {
     InputField: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXVAHD_Device_Value = @import("../zig.zig").Guid.initString("95f12dfd-d77e-49be-815f-57d579634d6d");
 pub const IID_IDXVAHD_Device = &IID_IDXVAHD_Device_Value;
 pub const IDXVAHD_Device = extern struct {
@@ -8475,6 +5848,7 @@ pub const IDXVAHD_Device = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXVAHD_VideoProcessor_Value = @import("../zig.zig").Guid.initString("95f4edf4-6e03-4cd7-be1b-3075d665aa52");
 pub const IID_IDXVAHD_VideoProcessor = &IID_IDXVAHD_VideoProcessor_Value;
 pub const IDXVAHD_VideoProcessor = extern struct {
@@ -9212,6 +6586,7 @@ pub const DXVA2_DecodeExecuteParams = extern struct {
     pExtensionData: *DXVA2_DecodeExtensionData,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirect3DDeviceManager9_Value = @import("../zig.zig").Guid.initString("a0cade0f-06d5-4cf4-a1c7-f3cdd725aa75");
 pub const IID_IDirect3DDeviceManager9 = &IID_IDirect3DDeviceManager9_Value;
 pub const IDirect3DDeviceManager9 = extern struct {
@@ -9287,6 +6662,7 @@ pub const IDirect3DDeviceManager9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoAccelerationService_Value = @import("../zig.zig").Guid.initString("fc51a550-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoAccelerationService = &IID_IDirectXVideoAccelerationService_Value;
 pub const IDirectXVideoAccelerationService = extern struct {
@@ -9316,6 +6692,7 @@ pub const IDirectXVideoAccelerationService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoDecoderService_Value = @import("../zig.zig").Guid.initString("fc51a551-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoDecoderService = &IID_IDirectXVideoDecoderService_Value;
 pub const IDirectXVideoDecoderService = extern struct {
@@ -9373,6 +6750,7 @@ pub const IDirectXVideoDecoderService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoProcessorService_Value = @import("../zig.zig").Guid.initString("fc51a552-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoProcessorService = &IID_IDirectXVideoProcessorService_Value;
 pub const IDirectXVideoProcessorService = extern struct {
@@ -9474,6 +6852,7 @@ pub const IDirectXVideoProcessorService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoDecoder_Value = @import("../zig.zig").Guid.initString("f2b0810a-fd00-43c9-918c-df94e2d8ef7d");
 pub const IID_IDirectXVideoDecoder = &IID_IDirectXVideoDecoder_Value;
 pub const IDirectXVideoDecoder = extern struct {
@@ -9550,6 +6929,7 @@ pub const IDirectXVideoDecoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoProcessor_Value = @import("../zig.zig").Guid.initString("8c3a39f0-916e-4690-804f-4c8001355d25");
 pub const IID_IDirectXVideoProcessor = &IID_IDirectXVideoProcessor_Value;
 pub const IDirectXVideoProcessor = extern struct {
@@ -9629,6 +7009,7 @@ pub const DXVA2_SurfaceType_DecoderRenderTarget = DXVA2_SurfaceType.DecoderRende
 pub const DXVA2_SurfaceType_ProcessorRenderTarget = DXVA2_SurfaceType.ProcessorRenderTarget;
 pub const DXVA2_SurfaceType_D3DRenderTargetTexture = DXVA2_SurfaceType.D3DRenderTargetTexture;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDirectXVideoMemoryConfiguration_Value = @import("../zig.zig").Guid.initString("b7f916dd-db3b-49c1-84d7-e45ef99ec726");
 pub const IID_IDirectXVideoMemoryConfiguration = &IID_IDirectXVideoMemoryConfiguration_Value;
 pub const IDirectXVideoMemoryConfiguration = extern struct {
@@ -10061,6 +7442,7 @@ pub const OPM_GET_CODEC_INFO_INFORMATION = extern struct {
     Merit: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOPMVideoOutput_Value = @import("../zig.zig").Guid.initString("0a15159d-41c7-4456-93e1-284cd61d4e8d");
 pub const IID_IOPMVideoOutput = &IID_IOPMVideoOutput_Value;
 pub const IOPMVideoOutput = extern struct {
@@ -10162,6 +7544,7 @@ pub const MF_ATTRIBUTES_MATCH_ALL_ITEMS = MF_ATTRIBUTES_MATCH_TYPE.ALL_ITEMS;
 pub const MF_ATTRIBUTES_MATCH_INTERSECTION = MF_ATTRIBUTES_MATCH_TYPE.INTERSECTION;
 pub const MF_ATTRIBUTES_MATCH_SMALLER = MF_ATTRIBUTES_MATCH_TYPE.SMALLER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAttributes_Value = @import("../zig.zig").Guid.initString("2cd2d921-c447-44a7-a13c-4adabfc247e3");
 pub const IID_IMFAttributes = &IID_IMFAttributes_Value;
 pub const IMFAttributes = extern struct {
@@ -10452,6 +7835,7 @@ pub const MF_ATTRIBUTE_SERIALIZE_OPTIONS = extern enum(i32) {
 };
 pub const MF_ATTRIBUTE_SERIALIZE_UNKNOWN_BYREF = MF_ATTRIBUTE_SERIALIZE_OPTIONS.F;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaBuffer_Value = @import("../zig.zig").Guid.initString("045fa593-8799-42b8-bc8d-8968c6453507");
 pub const IID_IMFMediaBuffer = &IID_IMFMediaBuffer_Value;
 pub const IMFMediaBuffer = extern struct {
@@ -10506,6 +7890,7 @@ pub const IMFMediaBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSample_Value = @import("../zig.zig").Guid.initString("c40a00f2-b93a-4d80-ae8c-5a1c634f58e4");
 pub const IID_IMFSample = &IID_IMFSample_Value;
 pub const IMFSample = extern struct {
@@ -10631,6 +8016,7 @@ pub const IMFSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMF2DBuffer_Value = @import("../zig.zig").Guid.initString("7dc9d5f9-9ed9-44ec-9bbf-0600bb589fbb");
 pub const IID_IMF2DBuffer = &IID_IMF2DBuffer_Value;
 pub const IMF2DBuffer = extern struct {
@@ -10716,6 +8102,7 @@ pub const MF2DBuffer_LockFlags_Write = MF2DBuffer_LockFlags.Write;
 pub const MF2DBuffer_LockFlags_ReadWrite = MF2DBuffer_LockFlags.ReadWrite;
 pub const MF2DBuffer_LockFlags_ForceDWORD = MF2DBuffer_LockFlags.ForceDWORD;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMF2DBuffer2_Value = @import("../zig.zig").Guid.initString("33ae5ea6-4316-436f-8ddd-d73d22f829ec");
 pub const IID_IMF2DBuffer2 = &IID_IMF2DBuffer2_Value;
 pub const IMF2DBuffer2 = extern struct {
@@ -10749,6 +8136,7 @@ pub const IMF2DBuffer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFDXGIBuffer_Value = @import("../zig.zig").Guid.initString("e7174cfa-1c9e-48b1-8866-626226bfc258");
 pub const IID_IMFDXGIBuffer = &IID_IMFDXGIBuffer_Value;
 pub const IMFDXGIBuffer = extern struct {
@@ -10798,6 +8186,7 @@ pub const IMFDXGIBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaType_Value = @import("../zig.zig").Guid.initString("44ae0fa8-ea31-4109-8d2e-4cae4997c555");
 pub const IID_IMFMediaType = &IID_IMFMediaType_Value;
 pub const IMFMediaType = extern struct {
@@ -10854,6 +8243,7 @@ pub const IMFMediaType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAudioMediaType_Value = @import("../zig.zig").Guid.initString("26a0adc3-ce26-4672-9304-69552edd3faf");
 pub const IID_IMFAudioMediaType = &IID_IMFAudioMediaType_Value;
 pub const IMFAudioMediaType = extern struct {
@@ -11194,6 +8584,7 @@ pub const MFStdVideoFormat_ATSC_SD480i = MFStandardVideoFormat.ATSC_SD480i;
 pub const MFStdVideoFormat_ATSC_HD1080i = MFStandardVideoFormat.ATSC_HD1080i;
 pub const MFStdVideoFormat_ATSC_HD720p = MFStandardVideoFormat.ATSC_HD720p;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoMediaType_Value = @import("../zig.zig").Guid.initString("b99f381f-a8f9-47a2-a5af-ca3a225a3890");
 pub const IID_IMFVideoMediaType = &IID_IMFVideoMediaType_Value;
 pub const IMFVideoMediaType = extern struct {
@@ -11224,6 +8615,7 @@ pub const IMFVideoMediaType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAsyncResult_Value = @import("../zig.zig").Guid.initString("ac6b7889-0740-4d51-8619-905994a55cc6");
 pub const IID_IMFAsyncResult = &IID_IMFAsyncResult_Value;
 pub const IMFAsyncResult = extern struct {
@@ -11275,6 +8667,7 @@ pub const IMFAsyncResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAsyncCallback_Value = @import("../zig.zig").Guid.initString("a27003cf-2354-4f2a-8d6a-ab7cff15437e");
 pub const IID_IMFAsyncCallback = &IID_IMFAsyncCallback_Value;
 pub const IMFAsyncCallback = extern struct {
@@ -11305,6 +8698,7 @@ pub const IMFAsyncCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFAsyncCallbackLogging_Value = @import("../zig.zig").Guid.initString("c7a4dca1-f5f0-47b6-b92b-bf0106d25791");
 pub const IID_IMFAsyncCallbackLogging = &IID_IMFAsyncCallbackLogging_Value;
 pub const IMFAsyncCallbackLogging = extern struct {
@@ -11575,6 +8969,7 @@ pub const MEContentProtectionMetadata = MF_EVENT_TYPE.ContentProtectionMetadata;
 pub const MEDeviceThermalStateChanged = MF_EVENT_TYPE.DeviceThermalStateChanged;
 pub const MEReservedMax = MF_EVENT_TYPE.ReservedMax;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaEvent_Value = @import("../zig.zig").Guid.initString("df598932-f10c-4e39-bba2-c308f101daa3");
 pub const IID_IMFMediaEvent = &IID_IMFMediaEvent_Value;
 pub const IMFMediaEvent = extern struct {
@@ -11620,6 +9015,7 @@ pub const IMFMediaEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaEventGenerator_Value = @import("../zig.zig").Guid.initString("2cd0bd52-bcd5-4b89-b62c-eadc0c031e7d");
 pub const IID_IMFMediaEventGenerator = &IID_IMFMediaEventGenerator_Value;
 pub const IMFMediaEventGenerator = extern struct {
@@ -11671,6 +9067,7 @@ pub const IMFMediaEventGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRemoteAsyncCallback_Value = @import("../zig.zig").Guid.initString("a27003d0-2354-4f2a-8d6a-ab7cff15437e");
 pub const IID_IMFRemoteAsyncCallback = &IID_IMFRemoteAsyncCallback_Value;
 pub const IMFRemoteAsyncCallback = extern struct {
@@ -11700,6 +9097,7 @@ pub const MFBYTESTREAM_SEEK_ORIGIN = extern enum(i32) {
 pub const msoBegin = MFBYTESTREAM_SEEK_ORIGIN.Begin;
 pub const msoCurrent = MFBYTESTREAM_SEEK_ORIGIN.Current;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFByteStream_Value = @import("../zig.zig").Guid.initString("ad4c1b00-4bf7-422f-9175-756693d9130d");
 pub const IID_IMFByteStream = &IID_IMFByteStream_Value;
 pub const IMFByteStream = extern struct {
@@ -11846,6 +9244,7 @@ pub const IMFByteStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFByteStreamProxyClassFactory_Value = @import("../zig.zig").Guid.initString("a6b43f84-5c0a-42e8-a44d-b1857a76992f");
 pub const IID_IMFByteStreamProxyClassFactory = &IID_IMFByteStreamProxyClassFactory_Value;
 pub const IMFByteStreamProxyClassFactory = extern struct {
@@ -11901,6 +9300,7 @@ pub const MF_FILEFLAGS_NONE = MF_FILE_FLAGS.NONE;
 pub const MF_FILEFLAGS_NOBUFFERING = MF_FILE_FLAGS.NOBUFFERING;
 pub const MF_FILEFLAGS_ALLOW_WRITE_SHARING = MF_FILE_FLAGS.ALLOW_WRITE_SHARING;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSampleOutputStream_Value = @import("../zig.zig").Guid.initString("8feed468-6f7e-440d-869a-49bdd283ad0d");
 pub const IID_IMFSampleOutputStream = &IID_IMFSampleOutputStream_Value;
 pub const IMFSampleOutputStream = extern struct {
@@ -11939,6 +9339,7 @@ pub const IMFSampleOutputStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFCollection_Value = @import("../zig.zig").Guid.initString("5bc8a76b-869a-46a3-9b03-fa218a66aebe");
 pub const IID_IMFCollection = &IID_IMFCollection_Value;
 pub const IMFCollection = extern struct {
@@ -12002,6 +9403,7 @@ pub const IMFCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaEventQueue_Value = @import("../zig.zig").Guid.initString("36f846fc-2256-48b6-b58e-e2b638316581");
 pub const IID_IMFMediaEventQueue = &IID_IMFMediaEventQueue_Value;
 pub const IMFMediaEventQueue = extern struct {
@@ -12079,6 +9481,7 @@ pub const IMFMediaEventQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFActivate_Value = @import("../zig.zig").Guid.initString("7fee9e9a-4a89-47a6-899c-b6a53a70fb67");
 pub const IID_IMFActivate = &IID_IMFActivate_Value;
 pub const IMFActivate = extern struct {
@@ -12115,6 +9518,7 @@ pub const IMFActivate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFPluginControl_Value = @import("../zig.zig").Guid.initString("5c6c44bf-1db6-435b-9249-e8cd10fdec96");
 pub const IID_IMFPluginControl = &IID_IMFPluginControl_Value;
 pub const IMFPluginControl = extern struct {
@@ -12199,6 +9603,7 @@ pub const MF_PLUGIN_CONTROL_POLICY_USE_APPROVED_PLUGINS = MF_PLUGIN_CONTROL_POLI
 pub const MF_PLUGIN_CONTROL_POLICY_USE_WEB_PLUGINS = MF_PLUGIN_CONTROL_POLICY.WEB_PLUGINS;
 pub const MF_PLUGIN_CONTROL_POLICY_USE_WEB_PLUGINS_EDGEMODE = MF_PLUGIN_CONTROL_POLICY.WEB_PLUGINS_EDGEMODE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFPluginControl2_Value = @import("../zig.zig").Guid.initString("c6982083-3ddc-45cb-af5e-0f7a8ce4de77");
 pub const IID_IMFPluginControl2 = &IID_IMFPluginControl2_Value;
 pub const IMFPluginControl2 = extern struct {
@@ -12220,6 +9625,7 @@ pub const IMFPluginControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFDXGIDeviceManager_Value = @import("../zig.zig").Guid.initString("eb533d5d-2db6-40f8-97a9-494692014f07");
 pub const IID_IMFDXGIDeviceManager = &IID_IMFDXGIDeviceManager_Value;
 pub const IMFDXGIDeviceManager = extern struct {
@@ -12305,6 +9711,7 @@ pub const MF_STREAM_STATE_STOPPED = MF_STREAM_STATE.STOPPED;
 pub const MF_STREAM_STATE_PAUSED = MF_STREAM_STATE.PAUSED;
 pub const MF_STREAM_STATE_RUNNING = MF_STREAM_STATE.RUNNING;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFMuxStreamAttributesManager_Value = @import("../zig.zig").Guid.initString("ce8bd576-e440-43b3-be34-1e53f565f7e8");
 pub const IID_IMFMuxStreamAttributesManager = &IID_IMFMuxStreamAttributesManager_Value;
 pub const IMFMuxStreamAttributesManager = extern struct {
@@ -12335,6 +9742,7 @@ pub const IMFMuxStreamAttributesManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFMuxStreamMediaTypeManager_Value = @import("../zig.zig").Guid.initString("505a2c72-42f7-4690-aeab-8f513d0ffdb8");
 pub const IID_IMFMuxStreamMediaTypeManager = &IID_IMFMuxStreamMediaTypeManager_Value;
 pub const IMFMuxStreamMediaTypeManager = extern struct {
@@ -12398,6 +9806,7 @@ pub const IMFMuxStreamMediaTypeManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFMuxStreamSampleManager_Value = @import("../zig.zig").Guid.initString("74abbc19-b1cc-4e41-bb8b-9d9b86a8f6ca");
 pub const IID_IMFMuxStreamSampleManager = &IID_IMFMuxStreamSampleManager_Value;
 pub const IMFMuxStreamSampleManager = extern struct {
@@ -12600,6 +10009,7 @@ pub const MFT_OUTPUT_DATA_BUFFER = extern struct {
     pEvents: *IMFCollection,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTransform_Value = @import("../zig.zig").Guid.initString("bf94c121-5b05-4e6f-8000-ba598961414d");
 pub const IID_IMFTransform = &IID_IMFTransform_Value;
 pub const IMFTransform = extern struct {
@@ -12900,6 +10310,7 @@ pub const MFPMPSESSION_CREATION_FLAGS = extern enum(i32) {
 pub const MFPMPSESSION_UNPROTECTED_PROCESS = MFPMPSESSION_CREATION_FLAGS.UNPROTECTED_PROCESS;
 pub const MFPMPSESSION_IN_PROCESS = MFPMPSESSION_CREATION_FLAGS.IN_PROCESS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSession_Value = @import("../zig.zig").Guid.initString("90377834-21d0-4dee-8214-ba2e3e6c1127");
 pub const IID_IMFMediaSession = &IID_IMFMediaSession_Value;
 pub const IMFMediaSession = extern struct {
@@ -13052,6 +10463,7 @@ pub const MF_TOPOLOGY_RESOLUTION_SUCCEEDED = MF_TOPOLOGY_RESOLUTION_STATUS_FLAGS
 pub const MF_OPTIONAL_NODE_REJECTED_MEDIA_TYPE = MF_TOPOLOGY_RESOLUTION_STATUS_FLAGS.OPTIONAL_NODE_REJECTED_MEDIA_TYPE;
 pub const MF_OPTIONAL_NODE_REJECTED_PROTECTED_PROCESS = MF_TOPOLOGY_RESOLUTION_STATUS_FLAGS.OPTIONAL_NODE_REJECTED_PROTECTED_PROCESS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSourceResolver_Value = @import("../zig.zig").Guid.initString("fbe5a32d-a497-4b61-bb85-97b1a848a6e3");
 pub const IID_IMFSourceResolver = &IID_IMFSourceResolver_Value;
 pub const IMFSourceResolver = extern struct {
@@ -13164,6 +10576,7 @@ pub const MFMEDIASOURCE_CAN_SKIPFORWARD = MFMEDIASOURCE_CHARACTERISTICS.CAN_SKIP
 pub const MFMEDIASOURCE_CAN_SKIPBACKWARD = MFMEDIASOURCE_CHARACTERISTICS.CAN_SKIPBACKWARD;
 pub const MFMEDIASOURCE_DOES_NOT_USE_NETWORK = MFMEDIASOURCE_CHARACTERISTICS.DOES_NOT_USE_NETWORK;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSource_Value = @import("../zig.zig").Guid.initString("279a808d-aec7-40c8-9c6b-a6b492c78a66");
 pub const IID_IMFMediaSource = &IID_IMFMediaSource_Value;
 pub const IMFMediaSource = extern struct {
@@ -13224,6 +10637,7 @@ pub const IMFMediaSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaSourceEx_Value = @import("../zig.zig").Guid.initString("3c9b2eb9-86d5-4514-a394-f56664f9f0d8");
 pub const IID_IMFMediaSourceEx = &IID_IMFMediaSourceEx_Value;
 pub const IMFMediaSourceEx = extern struct {
@@ -13262,6 +10676,7 @@ pub const IMFMediaSourceEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFClockConsumer_Value = @import("../zig.zig").Guid.initString("6ef2a662-47c0-4666-b13d-cbb717f2fa2c");
 pub const IID_IMFClockConsumer = &IID_IMFClockConsumer_Value;
 pub const IMFClockConsumer = extern struct {
@@ -13291,6 +10706,7 @@ pub const IMFClockConsumer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaStream_Value = @import("../zig.zig").Guid.initString("d182108f-4ec6-443f-aa42-a71106ec825f");
 pub const IID_IMFMediaStream = &IID_IMFMediaStream_Value;
 pub const IMFMediaStream = extern struct {
@@ -13328,6 +10744,7 @@ pub const IMFMediaStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSink_Value = @import("../zig.zig").Guid.initString("6ef2a660-47c0-4666-b13d-cbb717f2fa2c");
 pub const IID_IMFMediaSink = &IID_IMFMediaSink_Value;
 pub const IMFMediaSink = extern struct {
@@ -13427,6 +10844,7 @@ pub const MFSTREAMSINK_MARKER_ENDOFSEGMENT = MFSTREAMSINK_MARKER_TYPE.ENDOFSEGME
 pub const MFSTREAMSINK_MARKER_TICK = MFSTREAMSINK_MARKER_TYPE.TICK;
 pub const MFSTREAMSINK_MARKER_EVENT = MFSTREAMSINK_MARKER_TYPE.EVENT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFStreamSink_Value = @import("../zig.zig").Guid.initString("0a97b3cf-8e7c-4a3d-8f8c-0c843dc247fb");
 pub const IID_IMFStreamSink = &IID_IMFStreamSink_Value;
 pub const IMFStreamSink = extern struct {
@@ -13489,6 +10907,7 @@ pub const IMFStreamSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoSampleAllocator_Value = @import("../zig.zig").Guid.initString("86cbc910-e533-4751-8e3b-f19b5b806a03");
 pub const IID_IMFVideoSampleAllocator = &IID_IMFVideoSampleAllocator_Value;
 pub const IMFVideoSampleAllocator = extern struct {
@@ -13534,6 +10953,7 @@ pub const IMFVideoSampleAllocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFVideoSampleAllocatorNotify_Value = @import("../zig.zig").Guid.initString("a792cdbe-c374-4e89-8335-278e7b9956a4");
 pub const IID_IMFVideoSampleAllocatorNotify = &IID_IMFVideoSampleAllocatorNotify_Value;
 pub const IMFVideoSampleAllocatorNotify = extern struct {
@@ -13554,6 +10974,7 @@ pub const IMFVideoSampleAllocatorNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFVideoSampleAllocatorNotifyEx_Value = @import("../zig.zig").Guid.initString("3978aa1a-6d5b-4b7f-a340-90899189ae34");
 pub const IID_IMFVideoSampleAllocatorNotifyEx = &IID_IMFVideoSampleAllocatorNotifyEx_Value;
 pub const IMFVideoSampleAllocatorNotifyEx = extern struct {
@@ -13575,6 +10996,7 @@ pub const IMFVideoSampleAllocatorNotifyEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFVideoSampleAllocatorCallback_Value = @import("../zig.zig").Guid.initString("992388b4-3372-4f67-8b6f-c84c071f4751");
 pub const IID_IMFVideoSampleAllocatorCallback = &IID_IMFVideoSampleAllocatorCallback_Value;
 pub const IMFVideoSampleAllocatorCallback = extern struct {
@@ -13604,6 +11026,7 @@ pub const IMFVideoSampleAllocatorCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFVideoSampleAllocatorEx_Value = @import("../zig.zig").Guid.initString("545b3a48-3283-4f62-866f-a62d8f598f9f");
 pub const IID_IMFVideoSampleAllocatorEx = &IID_IMFVideoSampleAllocatorEx_Value;
 pub const IMFVideoSampleAllocatorEx = extern struct {
@@ -13628,6 +11051,7 @@ pub const IMFVideoSampleAllocatorEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFDXGIDeviceManagerSource_Value = @import("../zig.zig").Guid.initString("20bc074b-7a8d-4609-8c3b-64a0a3b5d7ce");
 pub const IID_IMFDXGIDeviceManagerSource = &IID_IMFDXGIDeviceManagerSource_Value;
 pub const IMFDXGIDeviceManagerSource = extern struct {
@@ -13665,6 +11089,7 @@ pub const MIRROR_NONE = MF_VIDEO_PROCESSOR_MIRROR.NONE;
 pub const MIRROR_HORIZONTAL = MF_VIDEO_PROCESSOR_MIRROR.HORIZONTAL;
 pub const MIRROR_VERTICAL = MF_VIDEO_PROCESSOR_MIRROR.VERTICAL;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFVideoProcessorControl_Value = @import("../zig.zig").Guid.initString("a3f675d5-6119-4f7f-a100-1d8b280f0efb");
 pub const IID_IMFVideoProcessorControl = &IID_IMFVideoProcessorControl_Value;
 pub const IMFVideoProcessorControl = extern struct {
@@ -13726,6 +11151,7 @@ pub const IMFVideoProcessorControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFVideoProcessorControl2_Value = @import("../zig.zig").Guid.initString("bde633d3-e1dc-4a7f-a693-bbae399c4a20");
 pub const IID_IMFVideoProcessorControl2 = &IID_IMFVideoProcessorControl2_Value;
 pub const IMFVideoProcessorControl2 = extern struct {
@@ -13853,6 +11279,7 @@ pub const IMFVideoRendererEffectControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopology_Value = @import("../zig.zig").Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc433");
 pub const IID_IMFTopology = &IID_IMFTopology_Value;
 pub const IMFTopology = extern struct {
@@ -13978,6 +11405,7 @@ pub const MF_TOPOLOGY_TRANSFORM_NODE = MF_TOPOLOGY_TYPE.TRANSFORM_NODE;
 pub const MF_TOPOLOGY_TEE_NODE = MF_TOPOLOGY_TYPE.TEE_NODE;
 pub const MF_TOPOLOGY_MAX = MF_TOPOLOGY_TYPE.MAX;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopologyNode_Value = @import("../zig.zig").Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc430");
 pub const IID_IMFTopologyNode = &IID_IMFTopologyNode_Value;
 pub const IMFTopologyNode = extern struct {
@@ -14147,6 +11575,7 @@ pub const MF_TOPONODE_DRAIN_DEFAULT = MF_TOPONODE_DRAIN_MODE.DEFAULT;
 pub const MF_TOPONODE_DRAIN_ALWAYS = MF_TOPONODE_DRAIN_MODE.ALWAYS;
 pub const MF_TOPONODE_DRAIN_NEVER = MF_TOPONODE_DRAIN_MODE.NEVER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFGetService_Value = @import("../zig.zig").Guid.initString("fa993888-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFGetService = &IID_IMFGetService_Value;
 pub const IMFGetService = extern struct {
@@ -14204,6 +11633,7 @@ pub const MFCLOCK_PROPERTIES = extern struct {
     dwClockJitter: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFClock_Value = @import("../zig.zig").Guid.initString("2eb1e945-18b8-4139-9b1a-d5d584818530");
 pub const IID_IMFClock = &IID_IMFClock_Value;
 pub const IMFClock = extern struct {
@@ -14260,6 +11690,7 @@ pub const IMFClock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPresentationClock_Value = @import("../zig.zig").Guid.initString("868ce85c-8ea9-4f55-ab82-b009a910a805");
 pub const IID_IMFPresentationClock = &IID_IMFPresentationClock_Value;
 pub const IMFPresentationClock = extern struct {
@@ -14335,6 +11766,7 @@ pub const IMFPresentationClock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPresentationTimeSource_Value = @import("../zig.zig").Guid.initString("7ff12cce-f76f-41c2-863b-1666c8e5e139");
 pub const IID_IMFPresentationTimeSource = &IID_IMFPresentationTimeSource_Value;
 pub const IMFPresentationTimeSource = extern struct {
@@ -14356,6 +11788,7 @@ pub const IMFPresentationTimeSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFClockStateSink_Value = @import("../zig.zig").Guid.initString("f6696e82-74f7-4f3d-a178-8a5e09c3659f");
 pub const IID_IMFClockStateSink = &IID_IMFClockStateSink_Value;
 pub const IMFClockStateSink = extern struct {
@@ -14411,6 +11844,7 @@ pub const IMFClockStateSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPresentationDescriptor_Value = @import("../zig.zig").Guid.initString("03cb2711-24d7-4db6-a17f-f3a7a479a536");
 pub const IID_IMFPresentationDescriptor = &IID_IMFPresentationDescriptor_Value;
 pub const IMFPresentationDescriptor = extern struct {
@@ -14466,6 +11900,7 @@ pub const IMFPresentationDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFStreamDescriptor_Value = @import("../zig.zig").Guid.initString("56c03d9c-9dbb-45f5-ab4b-d80f47c05938");
 pub const IID_IMFStreamDescriptor = &IID_IMFStreamDescriptor_Value;
 pub const IMFStreamDescriptor = extern struct {
@@ -14495,6 +11930,7 @@ pub const IMFStreamDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaTypeHandler_Value = @import("../zig.zig").Guid.initString("e93dcf6c-4b07-4e1e-8123-aa16ed6eadf5");
 pub const IID_IMFMediaTypeHandler = &IID_IMFMediaTypeHandler_Value;
 pub const IMFMediaTypeHandler = extern struct {
@@ -14563,6 +11999,7 @@ pub const MFTIMER_FLAGS = extern enum(i32) {
 };
 pub const MFTIMER_RELATIVE = MFTIMER_FLAGS.E;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTimer_Value = @import("../zig.zig").Guid.initString("e56e4cbd-8f70-49d8-a0f8-edb3d6ab9bf2");
 pub const IID_IMFTimer = &IID_IMFTimer_Value;
 pub const IMFTimer = extern struct {
@@ -14613,6 +12050,7 @@ pub const MFSHUTDOWN_STATUS = extern enum(i32) {
 pub const MFSHUTDOWN_INITIATED = MFSHUTDOWN_STATUS.INITIATED;
 pub const MFSHUTDOWN_COMPLETED = MFSHUTDOWN_STATUS.COMPLETED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFShutdown_Value = @import("../zig.zig").Guid.initString("97ec2ea4-0e42-4937-97ac-9d6d328824e1");
 pub const IID_IMFShutdown = &IID_IMFShutdown_Value;
 pub const IMFShutdown = extern struct {
@@ -14641,6 +12079,7 @@ pub const IMFShutdown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopoLoader_Value = @import("../zig.zig").Guid.initString("de9a6157-f660-4643-b56a-df9f7998c7cd");
 pub const IID_IMFTopoLoader = &IID_IMFTopoLoader_Value;
 pub const IMFTopoLoader = extern struct {
@@ -14664,6 +12103,7 @@ pub const IMFTopoLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFContentProtectionManager_Value = @import("../zig.zig").Guid.initString("acf92459-6a61-42bd-b57c-b43e51203cb0");
 pub const IID_IMFContentProtectionManager = &IID_IMFContentProtectionManager_Value;
 pub const IMFContentProtectionManager = extern struct {
@@ -14705,6 +12145,7 @@ pub const MF_LICENSE_URL_UNTRUSTED = MF_URL_TRUST_STATUS.UNTRUSTED;
 pub const MF_LICENSE_URL_TRUSTED = MF_URL_TRUST_STATUS.TRUSTED;
 pub const MF_LICENSE_URL_TAMPERED = MF_URL_TRUST_STATUS.TAMPERED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFContentEnabler_Value = @import("../zig.zig").Guid.initString("d3c4ef59-49ce-4381-9071-d5bcd044c770");
 pub const IID_IMFContentEnabler = &IID_IMFContentEnabler_Value;
 pub const IMFContentEnabler = extern struct {
@@ -14798,6 +12239,7 @@ pub const ASF_FLAT_SYNCHRONISED_LYRICS = extern struct {
     dwLyricsLen: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMetadata_Value = @import("../zig.zig").Guid.initString("f88cfb8c-ef16-4991-b450-cb8c69e51704");
 pub const IID_IMFMetadata = &IID_IMFMetadata_Value;
 pub const IMFMetadata = extern struct {
@@ -14869,6 +12311,7 @@ pub const IMFMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMetadataProvider_Value = @import("../zig.zig").Guid.initString("56181d2d-e221-4adb-b1c8-3cee6a53f76f");
 pub const IID_IMFMetadataProvider = &IID_IMFMetadataProvider_Value;
 pub const IMFMetadataProvider = extern struct {
@@ -14900,6 +12343,7 @@ pub const MFRATE_DIRECTION = extern enum(i32) {
 pub const MFRATE_FORWARD = MFRATE_DIRECTION.FORWARD;
 pub const MFRATE_REVERSE = MFRATE_DIRECTION.REVERSE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRateSupport_Value = @import("../zig.zig").Guid.initString("0a9ccdbc-d797-4563-9667-94ec5d79292d");
 pub const IID_IMFRateSupport = &IID_IMFRateSupport_Value;
 pub const IMFRateSupport = extern struct {
@@ -14943,6 +12387,7 @@ pub const IMFRateSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRateControl_Value = @import("../zig.zig").Guid.initString("88ddcd21-03c3-4275-91ed-55ee3929328f");
 pub const IID_IMFRateControl = &IID_IMFRateControl_Value;
 pub const IMFRateControl = extern struct {
@@ -14974,6 +12419,7 @@ pub const IMFRateControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFTimecodeTranslate_Value = @import("../zig.zig").Guid.initString("ab9d8661-f7e8-4ef4-9861-89f334f94e74");
 pub const IID_IMFTimecodeTranslate = &IID_IMFTimecodeTranslate_Value;
 pub const IMFTimecodeTranslate = extern struct {
@@ -15025,6 +12471,7 @@ pub const IMFTimecodeTranslate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSeekInfo_Value = @import("../zig.zig").Guid.initString("26afea53-d9ed-42b5-ab80-e64f9ee34779");
 pub const IID_IMFSeekInfo = &IID_IMFSeekInfo_Value;
 pub const IMFSeekInfo = extern struct {
@@ -15049,6 +12496,7 @@ pub const IMFSeekInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSimpleAudioVolume_Value = @import("../zig.zig").Guid.initString("089edf13-cf71-4338-8d13-9e569dbdc319");
 pub const IID_IMFSimpleAudioVolume = &IID_IMFSimpleAudioVolume_Value;
 pub const IMFSimpleAudioVolume = extern struct {
@@ -15094,6 +12542,7 @@ pub const IMFSimpleAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAudioStreamVolume_Value = @import("../zig.zig").Guid.initString("76b1bbdb-4ec8-4f36-b106-70a9316df593");
 pub const IID_IMFAudioStreamVolume = &IID_IMFAudioStreamVolume_Value;
 pub const IMFAudioStreamVolume = extern struct {
@@ -15151,6 +12600,7 @@ pub const IMFAudioStreamVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFAudioPolicy_Value = @import("../zig.zig").Guid.initString("a0638c2b-6465-4395-9ae7-a321a9fd2856");
 pub const IID_IMFAudioPolicy = &IID_IMFAudioPolicy_Value;
 pub const IMFAudioPolicy = extern struct {
@@ -15212,6 +12662,7 @@ pub const IMFAudioPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSampleGrabberSinkCallback_Value = @import("../zig.zig").Guid.initString("8c7b80bf-ee42-4b59-b1df-55668e1bdca8");
 pub const IID_IMFSampleGrabberSinkCallback = &IID_IMFSampleGrabberSinkCallback_Value;
 pub const IMFSampleGrabberSinkCallback = extern struct {
@@ -15253,6 +12704,7 @@ pub const IMFSampleGrabberSinkCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSampleGrabberSinkCallback2_Value = @import("../zig.zig").Guid.initString("ca86aa50-c46e-429e-ab27-16d6ac6844cb");
 pub const IID_IMFSampleGrabberSinkCallback2 = &IID_IMFSampleGrabberSinkCallback2_Value;
 pub const IMFSampleGrabberSinkCallback2 = extern struct {
@@ -15280,6 +12732,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFWorkQueueServices_Value = @import("../zig.zig").Guid.initString("35fe1bb8-a3a9-40fe-bbec-eb569c9ccca3");
 pub const IID_IMFWorkQueueServices = &IID_IMFWorkQueueServices_Value;
 pub const IMFWorkQueueServices = extern struct {
@@ -15404,6 +12857,7 @@ pub const IMFWorkQueueServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFWorkQueueServicesEx_Value = @import("../zig.zig").Guid.initString("96bf961b-40fe-42f1-ba9d-320238b49700");
 pub const IID_IMFWorkQueueServicesEx = &IID_IMFWorkQueueServicesEx_Value;
 pub const IMFWorkQueueServicesEx = extern struct {
@@ -15487,6 +12941,7 @@ pub const MF_QUALITY_ADVISE_FLAGS = extern enum(i32) {
 };
 pub const MF_QUALITY_CANNOT_KEEP_UP = MF_QUALITY_ADVISE_FLAGS.P;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFQualityManager_Value = @import("../zig.zig").Guid.initString("8d009d86-5b9f-4115-b1fc-9f80d52ab8ab");
 pub const IID_IMFQualityManager = &IID_IMFQualityManager_Value;
 pub const IMFQualityManager = extern struct {
@@ -15552,6 +13007,7 @@ pub const IMFQualityManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFQualityAdvise_Value = @import("../zig.zig").Guid.initString("ec15e2e9-e36b-4f7c-8758-77d452ef4ce7");
 pub const IID_IMFQualityAdvise = &IID_IMFQualityAdvise_Value;
 pub const IMFQualityAdvise = extern struct {
@@ -15605,6 +13061,7 @@ pub const IMFQualityAdvise = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFQualityAdvise2_Value = @import("../zig.zig").Guid.initString("f3706f0d-8ea2-4886-8000-7155e9ec2eae");
 pub const IID_IMFQualityAdvise2 = &IID_IMFQualityAdvise2_Value;
 pub const IMFQualityAdvise2 = extern struct {
@@ -15627,6 +13084,7 @@ pub const IMFQualityAdvise2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFQualityAdviseLimits_Value = @import("../zig.zig").Guid.initString("dfcd8e4d-30b5-4567-acaa-8eb5b7853dc9");
 pub const IID_IMFQualityAdviseLimits = &IID_IMFQualityAdviseLimits_Value;
 pub const IMFQualityAdviseLimits = extern struct {
@@ -15656,6 +13114,7 @@ pub const IMFQualityAdviseLimits = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRealTimeClient_Value = @import("../zig.zig").Guid.initString("2347d60b-3fb5-480c-8803-8df3adcd3ef0");
 pub const IID_IMFRealTimeClient = &IID_IMFRealTimeClient_Value;
 pub const IMFRealTimeClient = extern struct {
@@ -15693,6 +13152,7 @@ pub const IMFRealTimeClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFRealTimeClientEx_Value = @import("../zig.zig").Guid.initString("03910848-ab16-4611-b100-17b88ae2f248");
 pub const IID_IMFRealTimeClientEx = &IID_IMFRealTimeClientEx_Value;
 pub const IMFRealTimeClientEx = extern struct {
@@ -15737,6 +13197,7 @@ pub const MFSequencerTopologyFlags = extern enum(i32) {
 };
 pub const SequencerTopologyFlags_Last = MFSequencerTopologyFlags.t;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSequencerSource_Value = @import("../zig.zig").Guid.initString("197cd219-19cb-4de1-a64c-acf2edcbe59e");
 pub const IID_IMFSequencerSource = &IID_IMFSequencerSource_Value;
 pub const IMFSequencerSource = extern struct {
@@ -15796,6 +13257,7 @@ pub const IMFSequencerSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSourceTopologyProvider_Value = @import("../zig.zig").Guid.initString("0e1d6009-c9f3-442d-8c51-a42d2d49452f");
 pub const IID_IMFMediaSourceTopologyProvider = &IID_IMFMediaSourceTopologyProvider_Value;
 pub const IMFMediaSourceTopologyProvider = extern struct {
@@ -15818,6 +13280,7 @@ pub const IMFMediaSourceTopologyProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSourcePresentationProvider_Value = @import("../zig.zig").Guid.initString("0e1d600a-c9f3-442d-8c51-a42d2d49452f");
 pub const IID_IMFMediaSourcePresentationProvider = &IID_IMFMediaSourcePresentationProvider_Value;
 pub const IMFMediaSourcePresentationProvider = extern struct {
@@ -15847,6 +13310,7 @@ pub const MFTOPONODE_ATTRIBUTE_UPDATE = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopologyNodeAttributeEditor_Value = @import("../zig.zig").Guid.initString("676aa6dd-238a-410d-bb99-65668d01605a");
 pub const IID_IMFTopologyNodeAttributeEditor = &IID_IMFTopologyNodeAttributeEditor_Value;
 pub const IMFTopologyNodeAttributeEditor = extern struct {
@@ -15886,6 +13350,7 @@ pub const MFBYTESTREAM_BUFFERING_PARAMS = extern struct {
     dRate: f32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFByteStreamBuffering_Value = @import("../zig.zig").Guid.initString("6d66d782-1d4f-4db7-8c63-cb8c77f1ef5e");
 pub const IID_IMFByteStreamBuffering = &IID_IMFByteStreamBuffering_Value;
 pub const IMFByteStreamBuffering = extern struct {
@@ -15922,6 +13387,7 @@ pub const IMFByteStreamBuffering = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFByteStreamCacheControl_Value = @import("../zig.zig").Guid.initString("f5042ea4-7a96-4a75-aa7b-2be1ef7f88d5");
 pub const IID_IMFByteStreamCacheControl = &IID_IMFByteStreamCacheControl_Value;
 pub const IMFByteStreamCacheControl = extern struct {
@@ -15942,6 +13408,7 @@ pub const IMFByteStreamCacheControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFByteStreamTimeSeek_Value = @import("../zig.zig").Guid.initString("64976bfa-fb61-4041-9069-8c9a5f659beb");
 pub const IID_IMFByteStreamTimeSeek = &IID_IMFByteStreamTimeSeek_Value;
 pub const IMFByteStreamTimeSeek = extern struct {
@@ -15986,6 +13453,7 @@ pub const MF_BYTE_STREAM_CACHE_RANGE = extern struct {
     qwEndOffset: u64,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFByteStreamCacheControl2_Value = @import("../zig.zig").Guid.initString("71ce469c-f34b-49ea-a56b-2d2a10e51149");
 pub const IID_IMFByteStreamCacheControl2 = &IID_IMFByteStreamCacheControl2_Value;
 pub const IMFByteStreamCacheControl2 = extern struct {
@@ -16024,6 +13492,7 @@ pub const IMFByteStreamCacheControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetCredential_Value = @import("../zig.zig").Guid.initString("5b87ef6a-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredential = &IID_IMFNetCredential_Value;
 pub const IMFNetCredential = extern struct {
@@ -16096,6 +13565,7 @@ pub const MFNetCredentialManagerGetParam = extern struct {
     nRetries: i32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetCredentialManager_Value = @import("../zig.zig").Guid.initString("5b87ef6b-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredentialManager = &IID_IMFNetCredentialManager_Value;
 pub const IMFNetCredentialManager = extern struct {
@@ -16162,6 +13632,7 @@ pub const MFNET_AUTHENTICATION_PROXY = MFNetAuthenticationFlags.PROXY;
 pub const MFNET_AUTHENTICATION_CLEAR_TEXT = MFNetAuthenticationFlags.CLEAR_TEXT;
 pub const MFNET_AUTHENTICATION_LOGGED_ON_USER = MFNetAuthenticationFlags.LOGGED_ON_USER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetCredentialCache_Value = @import("../zig.zig").Guid.initString("5b87ef6c-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredentialCache = &IID_IMFNetCredentialCache_Value;
 pub const IMFNetCredentialCache = extern struct {
@@ -16205,6 +13676,7 @@ pub const IMFNetCredentialCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSSLCertificateManager_Value = @import("../zig.zig").Guid.initString("61f7d887-1230-4a8b-aeba-8ad434d1a64d");
 pub const IID_IMFSSLCertificateManager = &IID_IMFSSLCertificateManager_Value;
 pub const IMFSSLCertificateManager = extern struct {
@@ -16269,6 +13741,7 @@ pub const IMFSSLCertificateManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFNetResourceFilter_Value = @import("../zig.zig").Guid.initString("091878a3-bf11-4a5c-bc9f-33995b06ef2d");
 pub const IID_IMFNetResourceFilter = &IID_IMFNetResourceFilter_Value;
 pub const IMFNetResourceFilter = extern struct {
@@ -16299,6 +13772,7 @@ pub const IMFNetResourceFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSourceOpenMonitor_Value = @import("../zig.zig").Guid.initString("059054b3-027c-494c-a27d-9113291cf87f");
 pub const IID_IMFSourceOpenMonitor = &IID_IMFSourceOpenMonitor_Value;
 pub const IMFSourceOpenMonitor = extern struct {
@@ -16320,6 +13794,7 @@ pub const IMFSourceOpenMonitor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetProxyLocator_Value = @import("../zig.zig").Guid.initString("e9cd0383-a268-4bb4-82de-658d53574d41");
 pub const IID_IMFNetProxyLocator = &IID_IMFNetProxyLocator_Value;
 pub const IMFNetProxyLocator = extern struct {
@@ -16375,6 +13850,7 @@ pub const IMFNetProxyLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetProxyLocatorFactory_Value = @import("../zig.zig").Guid.initString("e9cd0384-a268-4bb4-82de-658d53574d41");
 pub const IID_IMFNetProxyLocatorFactory = &IID_IMFNetProxyLocatorFactory_Value;
 pub const IMFNetProxyLocatorFactory = extern struct {
@@ -16397,6 +13873,7 @@ pub const IMFNetProxyLocatorFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSaveJob_Value = @import("../zig.zig").Guid.initString("e9931663-80bf-4c6e-98af-5dcf58747d1f");
 pub const IID_IMFSaveJob = &IID_IMFSaveJob_Value;
 pub const IMFSaveJob = extern struct {
@@ -16456,6 +13933,7 @@ pub const MFNETSOURCE_RTSP = MFNETSOURCE_PROTOCOL_TYPE.RTSP;
 pub const MFNETSOURCE_FILE = MFNETSOURCE_PROTOCOL_TYPE.FILE;
 pub const MFNETSOURCE_MULTICAST = MFNETSOURCE_PROTOCOL_TYPE.MULTICAST;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFNetSchemeHandlerConfig_Value = @import("../zig.zig").Guid.initString("7be19e73-c9bf-468a-ac5a-a5e8653bec87");
 pub const IID_IMFNetSchemeHandlerConfig = &IID_IMFNetSchemeHandlerConfig_Value;
 pub const IMFNetSchemeHandlerConfig = extern struct {
@@ -16583,6 +14061,7 @@ pub const MFNET_PROXYSETTING_MANUAL = MFNET_PROXYSETTINGS.MANUAL;
 pub const MFNET_PROXYSETTING_AUTO = MFNET_PROXYSETTINGS.AUTO;
 pub const MFNET_PROXYSETTING_BROWSER = MFNET_PROXYSETTINGS.BROWSER;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSchemeHandler_Value = @import("../zig.zig").Guid.initString("6d4c7b74-52a0-4bb7-b0db-55f29f47a668");
 pub const IID_IMFSchemeHandler = &IID_IMFSchemeHandler_Value;
 pub const IMFSchemeHandler = extern struct {
@@ -16627,6 +14106,7 @@ pub const IMFSchemeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFByteStreamHandler_Value = @import("../zig.zig").Guid.initString("bb420aa4-765b-4a1f-91fe-d6a8a143924c");
 pub const IID_IMFByteStreamHandler = &IID_IMFByteStreamHandler_Value;
 pub const IMFByteStreamHandler = extern struct {
@@ -16680,6 +14160,7 @@ pub const IMFByteStreamHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTrustedInput_Value = @import("../zig.zig").Guid.initString("542612c4-a1b8-4632-b521-de11ea64a0b0");
 pub const IID_IMFTrustedInput = &IID_IMFTrustedInput_Value;
 pub const IMFTrustedInput = extern struct {
@@ -16741,6 +14222,7 @@ pub const MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS = extern struct {
     rgOutputActions: [1]MFINPUTTRUSTAUTHORITY_ACCESS_ACTION,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFInputTrustAuthority_Value = @import("../zig.zig").Guid.initString("d19f8e98-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFInputTrustAuthority = &IID_IMFInputTrustAuthority_Value;
 pub const IMFInputTrustAuthority = extern struct {
@@ -16804,6 +14286,7 @@ pub const IMFInputTrustAuthority = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTrustedOutput_Value = @import("../zig.zig").Guid.initString("d19f8e95-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFTrustedOutput = &IID_IMFTrustedOutput_Value;
 pub const IMFTrustedOutput = extern struct {
@@ -16842,6 +14325,7 @@ pub const IMFTrustedOutput = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFOutputTrustAuthority_Value = @import("../zig.zig").Guid.initString("d19f8e94-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFOutputTrustAuthority = &IID_IMFOutputTrustAuthority_Value;
 pub const IMFOutputTrustAuthority = extern struct {
@@ -16874,6 +14358,7 @@ pub const IMFOutputTrustAuthority = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFOutputPolicy_Value = @import("../zig.zig").Guid.initString("7f00f10a-daed-41af-ab26-5fdfa4dfba3c");
 pub const IID_IMFOutputPolicy = &IID_IMFOutputPolicy_Value;
 pub const IMFOutputPolicy = extern struct {
@@ -16915,6 +14400,7 @@ pub const IMFOutputPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFOutputSchema_Value = @import("../zig.zig").Guid.initString("7be0fc5b-abd9-44fb-a5c8-f50136e71599");
 pub const IID_IMFOutputSchema = &IID_IMFOutputSchema_Value;
 pub const IMFOutputSchema = extern struct {
@@ -16993,6 +14479,7 @@ pub const MFaudioConstriction44_16 = MFAudioConstriction.@"44_16";
 pub const MFaudioConstriction14_14 = MFAudioConstriction.@"14_14";
 pub const MFaudioConstrictionMute = MFAudioConstriction.Mute;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSecureChannel_Value = @import("../zig.zig").Guid.initString("d0ae555d-3b12-4d97-b060-0990bc5aeb67");
 pub const IID_IMFSecureChannel = &IID_IMFSecureChannel_Value;
 pub const IMFSecureChannel = extern struct {
@@ -17037,6 +14524,7 @@ pub const SAMPLE_PROTECTION_VERSION_SCATTER = SAMPLE_PROTECTION_VERSION.SCATTER;
 pub const SAMPLE_PROTECTION_VERSION_RC4 = SAMPLE_PROTECTION_VERSION.RC4;
 pub const SAMPLE_PROTECTION_VERSION_AES128CTR = SAMPLE_PROTECTION_VERSION.AES128CTR;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSampleProtection_Value = @import("../zig.zig").Guid.initString("8e36395f-c7b9-43c4-a54d-512b4af63c95");
 pub const IID_IMFSampleProtection = &IID_IMFSampleProtection_Value;
 pub const IMFSampleProtection = extern struct {
@@ -17100,6 +14588,7 @@ pub const IMFSampleProtection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFMediaSinkPreroll_Value = @import("../zig.zig").Guid.initString("5dfd4b2a-7674-4110-a4e6-8a68fd5f3688");
 pub const IID_IMFMediaSinkPreroll = &IID_IMFMediaSinkPreroll_Value;
 pub const IMFMediaSinkPreroll = extern struct {
@@ -17121,6 +14610,7 @@ pub const IMFMediaSinkPreroll = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFFinalizableMediaSink_Value = @import("../zig.zig").Guid.initString("eaecb74a-9a50-42ce-9541-6a7f57aa4ad7");
 pub const IID_IMFFinalizableMediaSink = &IID_IMFFinalizableMediaSink_Value;
 pub const IMFFinalizableMediaSink = extern struct {
@@ -17151,6 +14641,7 @@ pub const IMFFinalizableMediaSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFStreamingSinkConfig_Value = @import("../zig.zig").Guid.initString("9db7aa41-3cc5-40d4-8509-555804ad34cc");
 pub const IID_IMFStreamingSinkConfig = &IID_IMFStreamingSinkConfig_Value;
 pub const IMFStreamingSinkConfig = extern struct {
@@ -17173,6 +14664,7 @@ pub const IMFStreamingSinkConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRemoteProxy_Value = @import("../zig.zig").Guid.initString("994e23ad-1cc2-493c-b9fa-46f1cb040fa4");
 pub const IID_IMFRemoteProxy = &IID_IMFRemoteProxy_Value;
 pub const IMFRemoteProxy = extern struct {
@@ -17204,6 +14696,7 @@ pub const IMFRemoteProxy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFObjectReferenceStream_Value = @import("../zig.zig").Guid.initString("09ef5be3-c8a7-469e-8b70-73bf25bb193f");
 pub const IID_IMFObjectReferenceStream = &IID_IMFObjectReferenceStream_Value;
 pub const IMFObjectReferenceStream = extern struct {
@@ -17235,6 +14728,7 @@ pub const IMFObjectReferenceStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPMPHost_Value = @import("../zig.zig").Guid.initString("f70ca1a9-fdc7-4782-b994-adffb1c98606");
 pub const IID_IMFPMPHost = &IID_IMFPMPHost_Value;
 pub const IMFPMPHost = extern struct {
@@ -17273,6 +14767,7 @@ pub const IMFPMPHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPMPClient_Value = @import("../zig.zig").Guid.initString("6c4e655d-ead8-4421-b6b9-54dcdbbdf820");
 pub const IID_IMFPMPClient = &IID_IMFPMPClient_Value;
 pub const IMFPMPClient = extern struct {
@@ -17294,6 +14789,7 @@ pub const IMFPMPClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFPMPServer_Value = @import("../zig.zig").Guid.initString("994e23af-1cc2-493c-b9fa-46f1cb040fa4");
 pub const IID_IMFPMPServer = &IID_IMFPMPServer_Value;
 pub const IMFPMPServer = extern struct {
@@ -17331,6 +14827,7 @@ pub const IMFPMPServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFRemoteDesktopPlugin_Value = @import("../zig.zig").Guid.initString("1cde6309-cae0-4940-907e-c1ec9c3d1d4a");
 pub const IID_IMFRemoteDesktopPlugin = &IID_IMFRemoteDesktopPlugin_Value;
 pub const IMFRemoteDesktopPlugin = extern struct {
@@ -17352,6 +14849,7 @@ pub const IMFRemoteDesktopPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFSAMIStyle_Value = @import("../zig.zig").Guid.initString("a7e025dd-5303-4a62-89d6-e747e1efac73");
 pub const IID_IMFSAMIStyle = &IID_IMFSAMIStyle_Value;
 pub const IMFSAMIStyle = extern struct {
@@ -17397,6 +14895,7 @@ pub const IMFSAMIStyle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFTranscodeProfile_Value = @import("../zig.zig").Guid.initString("4adfdba3-7ab0-4953-a62b-461e7ff3da1e");
 pub const IID_IMFTranscodeProfile = &IID_IMFTranscodeProfile_Value;
 pub const IMFTranscodeProfile = extern struct {
@@ -17486,6 +14985,7 @@ pub const MF_TRANSCODE_SINK_INFO = extern struct {
     pAudioMediaType: *IMFMediaType,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFTranscodeSinkInfoProvider_Value = @import("../zig.zig").Guid.initString("8cffcd2e-5a03-4a3a-aff7-edcd107c620e");
 pub const IID_IMFTranscodeSinkInfoProvider = &IID_IMFTranscodeSinkInfoProvider_Value;
 pub const IMFTranscodeSinkInfoProvider = extern struct {
@@ -17531,6 +15031,7 @@ pub const IMFTranscodeSinkInfoProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFFieldOfUseMFTUnlock_Value = @import("../zig.zig").Guid.initString("508e71d3-ec66-4fc3-8775-b4b9ed6ba847");
 pub const IID_IMFFieldOfUseMFTUnlock = &IID_IMFFieldOfUseMFTUnlock_Value;
 pub const IMFFieldOfUseMFTUnlock = extern struct {
@@ -17563,6 +15064,7 @@ pub const MFT_REGISTRATION_INFO = extern struct {
     pOutTypes: *MFT_REGISTER_TYPE_INFO,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFLocalMFTRegistration_Value = @import("../zig.zig").Guid.initString("149c4d73-b4be-4f8d-8b87-079e926b6add");
 pub const IID_IMFLocalMFTRegistration = &IID_IMFLocalMFTRegistration_Value;
 pub const IMFLocalMFTRegistration = extern struct {
@@ -17622,6 +15124,7 @@ pub const IMFCapturePhotoConfirmation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFPMPHostApp_Value = @import("../zig.zig").Guid.initString("84d2054a-3aa1-4728-a3b0-440a418cf49c");
 pub const IID_IMFPMPHostApp = &IID_IMFPMPHostApp_Value;
 pub const IMFPMPHostApp = extern struct {
@@ -17660,6 +15163,7 @@ pub const IMFPMPHostApp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFPMPClientApp_Value = @import("../zig.zig").Guid.initString("c004f646-be2c-48f3-93a2-a0983eba1108");
 pub const IID_IMFPMPClientApp = &IID_IMFPMPClientApp_Value;
 pub const IMFPMPClientApp = extern struct {
@@ -17681,6 +15185,7 @@ pub const IMFPMPClientApp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaStreamSourceSampleRequest_Value = @import("../zig.zig").Guid.initString("380b9af9-a85b-4e78-a2af-ea5ce645c6b4");
 pub const IID_IMFMediaStreamSourceSampleRequest = &IID_IMFMediaStreamSourceSampleRequest_Value;
 pub const IMFMediaStreamSourceSampleRequest = extern struct {
@@ -17702,6 +15207,7 @@ pub const IMFMediaStreamSourceSampleRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTrackedSample_Value = @import("../zig.zig").Guid.initString("245bf8e9-0755-40f7-88a5-ae0f18d55e17");
 pub const IID_IMFTrackedSample = &IID_IMFTrackedSample_Value;
 pub const IMFTrackedSample = extern struct {
@@ -17724,6 +15230,7 @@ pub const IMFTrackedSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFProtectedEnvironmentAccess_Value = @import("../zig.zig").Guid.initString("ef5dc845-f0d9-4ec9-b00c-cb5183d38434");
 pub const IID_IMFProtectedEnvironmentAccess = &IID_IMFProtectedEnvironmentAccess_Value;
 pub const IMFProtectedEnvironmentAccess = extern struct {
@@ -17757,6 +15264,7 @@ pub const IMFProtectedEnvironmentAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSignedLibrary_Value = @import("../zig.zig").Guid.initString("4a724bca-ff6a-4c07-8e0d-7a358421cf06");
 pub const IID_IMFSignedLibrary = &IID_IMFSignedLibrary_Value;
 pub const IMFSignedLibrary = extern struct {
@@ -17779,6 +15287,7 @@ pub const IMFSignedLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSystemId_Value = @import("../zig.zig").Guid.initString("fff4af3a-1fc1-4ef9-a29b-d26c49e2f31a");
 pub const IID_IMFSystemId = &IID_IMFSystemId_Value;
 pub const IMFSystemId = extern struct {
@@ -17837,6 +15346,7 @@ pub const MFCONTENTPROTECTIONDEVICE_REALTIMECLIENT_DATA = extern struct {
     BasePriority: i32,
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFContentProtectionDevice_Value = @import("../zig.zig").Guid.initString("e6257174-a060-4c9a-a088-3b1b471cad28");
 pub const IID_IMFContentProtectionDevice = &IID_IMFContentProtectionDevice_Value;
 pub const IMFContentProtectionDevice = extern struct {
@@ -17871,6 +15381,7 @@ pub const IMFContentProtectionDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFContentDecryptorContext_Value = @import("../zig.zig").Guid.initString("7ec4b1bd-43fb-4763-85d2-64fcb5c5f4cb");
 pub const IID_IMFContentDecryptorContext = &IID_IMFContentDecryptorContext_Value;
 pub const IMFContentDecryptorContext = extern struct {
@@ -17950,6 +15461,7 @@ pub const MF_CROSS_ORIGIN_POLICY_NONE = MF_CROSS_ORIGIN_POLICY.NONE;
 pub const MF_CROSS_ORIGIN_POLICY_ANONYMOUS = MF_CROSS_ORIGIN_POLICY.ANONYMOUS;
 pub const MF_CROSS_ORIGIN_POLICY_USE_CREDENTIALS = MF_CROSS_ORIGIN_POLICY.USE_CREDENTIALS;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFNetCrossOriginSupport_Value = @import("../zig.zig").Guid.initString("bc2b7d44-a72d-49d5-8376-1480dee58b22");
 pub const IID_IMFNetCrossOriginSupport = &IID_IMFNetCrossOriginSupport_Value;
 pub const IMFNetCrossOriginSupport = extern struct {
@@ -17988,6 +15500,7 @@ pub const IMFNetCrossOriginSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFHttpDownloadRequest_Value = @import("../zig.zig").Guid.initString("f779fddf-26e7-4270-8a8b-b983d1859de0");
 pub const IID_IMFHttpDownloadRequest = &IID_IMFHttpDownloadRequest_Value;
 pub const IMFHttpDownloadRequest = extern struct {
@@ -18141,6 +15654,7 @@ pub const IMFHttpDownloadRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFHttpDownloadSession_Value = @import("../zig.zig").Guid.initString("71fa9a2c-53ce-4662-a132-1a7e8cbf62db");
 pub const IID_IMFHttpDownloadSession = &IID_IMFHttpDownloadSession_Value;
 pub const IMFHttpDownloadSession = extern struct {
@@ -18183,6 +15697,7 @@ pub const IMFHttpDownloadSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFHttpDownloadSessionProvider_Value = @import("../zig.zig").Guid.initString("1b4cf4b9-3a16-4115-839d-03cc5c99df01");
 pub const IID_IMFHttpDownloadSessionProvider = &IID_IMFHttpDownloadSessionProvider_Value;
 pub const IMFHttpDownloadSessionProvider = extern struct {
@@ -18291,6 +15806,7 @@ pub const MFSensorDeviceMode = extern enum(i32) {
 pub const MFSensorDeviceMode_Controller = MFSensorDeviceMode.Controller;
 pub const MFSensorDeviceMode_Shared = MFSensorDeviceMode.Shared;
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IMFSensorDevice_Value = @import("../zig.zig").Guid.initString("fb9f48f2-2a18-4e28-9730-786f30f04dc4");
 pub const IID_IMFSensorDevice = &IID_IMFSensorDevice_Value;
 pub const IMFSensorDevice = extern struct {
@@ -18381,6 +15897,7 @@ pub const IMFSensorDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IMFSensorGroup_Value = @import("../zig.zig").Guid.initString("4110243a-9757-461f-89f1-f22345bcab4e");
 pub const IID_IMFSensorGroup = &IID_IMFSensorGroup_Value;
 pub const IMFSensorGroup = extern struct {
@@ -18461,6 +15978,7 @@ pub const IMFSensorGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorStream_Value = @import("../zig.zig").Guid.initString("e9a42171-c56e-498a-8b39-eda5a070b7fc");
 pub const IID_IMFSensorStream = &IID_IMFSensorStream_Value;
 pub const IMFSensorStream = extern struct {
@@ -18499,6 +16017,7 @@ pub const IMFSensorStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorTransformFactory_Value = @import("../zig.zig").Guid.initString("eed9c2ee-66b4-4f18-a697-ac7d3960215c");
 pub const IID_IMFSensorTransformFactory = &IID_IMFSensorTransformFactory_Value;
 pub const IMFSensorTransformFactory = extern struct {
@@ -18565,6 +16084,7 @@ pub const SENSORPROFILEID = extern struct {
     Unused: u32,
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IMFSensorProfile_Value = @import("../zig.zig").Guid.initString("22f765d1-8dab-4107-846d-56baf72215e7");
 pub const IID_IMFSensorProfile = &IID_IMFSensorProfile_Value;
 pub const IMFSensorProfile = extern struct {
@@ -18613,6 +16133,7 @@ pub const IMFSensorProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IMFSensorProfileCollection_Value = @import("../zig.zig").Guid.initString("c95ea55b-0187-48be-9353-8d2507662351");
 pub const IID_IMFSensorProfileCollection = &IID_IMFSensorProfileCollection_Value;
 pub const IMFSensorProfileCollection = extern struct {
@@ -18675,6 +16196,7 @@ pub const IMFSensorProfileCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorProcessActivity_Value = @import("../zig.zig").Guid.initString("39dc7f4a-b141-4719-813c-a7f46162a2b8");
 pub const IID_IMFSensorProcessActivity = &IID_IMFSensorProcessActivity_Value;
 pub const IMFSensorProcessActivity = extern struct {
@@ -18720,6 +16242,7 @@ pub const IMFSensorProcessActivity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorActivityReport_Value = @import("../zig.zig").Guid.initString("3e8c4be1-a8c2-4528-90de-2851bde5fead");
 pub const IID_IMFSensorActivityReport = &IID_IMFSensorActivityReport_Value;
 pub const IMFSensorActivityReport = extern struct {
@@ -18770,6 +16293,7 @@ pub const IMFSensorActivityReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorActivitiesReport_Value = @import("../zig.zig").Guid.initString("683f7a5e-4a19-43cd-b1a9-dbf4ab3f7777");
 pub const IID_IMFSensorActivitiesReport = &IID_IMFSensorActivitiesReport_Value;
 pub const IMFSensorActivitiesReport = extern struct {
@@ -18809,6 +16333,7 @@ pub const IMFSensorActivitiesReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorActivitiesReportCallback_Value = @import("../zig.zig").Guid.initString("de5072ee-dbe3-46dc-8a87-b6f631194751");
 pub const IID_IMFSensorActivitiesReportCallback = &IID_IMFSensorActivitiesReportCallback_Value;
 pub const IMFSensorActivitiesReportCallback = extern struct {
@@ -18830,6 +16355,7 @@ pub const IMFSensorActivitiesReportCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSensorActivityMonitor_Value = @import("../zig.zig").Guid.initString("d0cef145-b3f4-4340-a2e5-7a5080ca05cb");
 pub const IID_IMFSensorActivityMonitor = &IID_IMFSensorActivityMonitor_Value;
 pub const IMFSensorActivityMonitor = extern struct {
@@ -19137,6 +16663,7 @@ pub const IMFExtendedCameraController = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFRelativePanelReport_Value = @import("../zig.zig").Guid.initString("f25362ea-2c0e-447f-81e2-755914cdc0c3");
 pub const IID_IMFRelativePanelReport = &IID_IMFRelativePanelReport_Value;
 pub const IMFRelativePanelReport = extern struct {
@@ -19158,6 +16685,7 @@ pub const IMFRelativePanelReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFRelativePanelWatcher_Value = @import("../zig.zig").Guid.initString("421af7f6-573e-4ad0-8fda-2e57cedb18c6");
 pub const IID_IMFRelativePanelWatcher = &IID_IMFRelativePanelWatcher_Value;
 pub const IMFRelativePanelWatcher = extern struct {
@@ -19197,6 +16725,7 @@ pub const IMFRelativePanelWatcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFVideoCaptureSampleAllocator_Value = @import("../zig.zig").Guid.initString("725b77c7-ca9f-4fe5-9d72-9946bf9b3c70");
 pub const IID_IMFVideoCaptureSampleAllocator = &IID_IMFVideoCaptureSampleAllocator_Value;
 pub const IMFVideoCaptureSampleAllocator = extern struct {
@@ -19232,6 +16761,7 @@ pub const MFSampleAllocatorUsage_UsesProvidedAllocator = MFSampleAllocatorUsage.
 pub const MFSampleAllocatorUsage_UsesCustomAllocator = MFSampleAllocatorUsage.UsesCustomAllocator;
 pub const MFSampleAllocatorUsage_DoesNotAllocate = MFSampleAllocatorUsage.DoesNotAllocate;
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFSampleAllocatorControl_Value = @import("../zig.zig").Guid.initString("da62b958-3a38-4a97-bd27-149c640c0771");
 pub const IID_IMFSampleAllocatorControl = &IID_IMFSampleAllocatorControl_Value;
 pub const IMFSampleAllocatorControl = extern struct {
@@ -19264,6 +16794,7 @@ pub const IMFSampleAllocatorControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFContentInfo_Value = @import("../zig.zig").Guid.initString("b1dca5cd-d5da-4451-8e9e-db5c59914ead");
 pub const IID_IMFASFContentInfo = &IID_IMFASFContentInfo_Value;
 pub const IMFASFContentInfo = extern struct {
@@ -19337,6 +16868,7 @@ pub const IMFASFContentInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFProfile_Value = @import("../zig.zig").Guid.initString("d267bf6a-028b-4e0d-903d-43f0ef82d0d4");
 pub const IID_IMFASFProfile = &IID_IMFASFProfile_Value;
 pub const IMFASFProfile = extern struct {
@@ -19482,6 +17014,7 @@ pub const IMFASFProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFStreamConfig_Value = @import("../zig.zig").Guid.initString("9e8ae8d2-dbbd-4200-9aca-06e6df484913");
 pub const IID_IMFASFStreamConfig = &IID_IMFASFStreamConfig_Value;
 pub const IMFASFStreamConfig = extern struct {
@@ -19580,6 +17113,7 @@ pub const IMFASFStreamConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFMutualExclusion_Value = @import("../zig.zig").Guid.initString("12558291-e399-11d5-bc2a-00b0d0f3f4ab");
 pub const IID_IMFASFMutualExclusion = &IID_IMFASFMutualExclusion_Value;
 pub const IMFASFMutualExclusion = extern struct {
@@ -19669,6 +17203,7 @@ pub const IMFASFMutualExclusion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFStreamPrioritization_Value = @import("../zig.zig").Guid.initString("699bdc27-bbaf-49ff-8e38-9c39c9b5e088");
 pub const IID_IMFASFStreamPrioritization = &IID_IMFASFStreamPrioritization_Value;
 pub const IMFASFStreamPrioritization = extern struct {
@@ -19746,6 +17281,7 @@ pub const ASF_INDEX_DESCRIPTOR = extern struct {
     dwInterval: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFIndexer_Value = @import("../zig.zig").Guid.initString("53590f48-dc3b-4297-813f-787761ad7b3e");
 pub const IID_IMFASFIndexer = &IID_IMFASFIndexer_Value;
 pub const IMFASFIndexer = extern struct {
@@ -19875,6 +17411,7 @@ pub const IMFASFIndexer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFSplitter_Value = @import("../zig.zig").Guid.initString("12558295-e399-11d5-bc2a-00b0d0f3f4ab");
 pub const IID_IMFASFSplitter = &IID_IMFASFSplitter_Value;
 pub const IMFASFSplitter = extern struct {
@@ -19989,6 +17526,7 @@ pub const ASF_MUX_STATISTICS = extern struct {
     cFramesDropped: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFMultiplexer_Value = @import("../zig.zig").Guid.initString("57bdd80a-9b38-4838-b737-c58f670d7d4f");
 pub const IID_IMFASFMultiplexer = &IID_IMFASFMultiplexer_Value;
 pub const IMFASFMultiplexer = extern struct {
@@ -20093,6 +17631,7 @@ pub const ASF_STATUS_NOTSELECTED = ASF_SELECTION_STATUS.NOTSELECTED;
 pub const ASF_STATUS_CLEANPOINTSONLY = ASF_SELECTION_STATUS.CLEANPOINTSONLY;
 pub const ASF_STATUS_ALLDATAUNITS = ASF_SELECTION_STATUS.ALLDATAUNITS;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFASFStreamSelector_Value = @import("../zig.zig").Guid.initString("d01bad4a-4fa0-4a60-9349-c27e62da9d41");
 pub const IID_IMFASFStreamSelector = &IID_IMFASFStreamSelector_Value;
 pub const IMFASFStreamSelector = extern struct {
@@ -20245,6 +17784,7 @@ pub const MFSINK_WMDRMACTION_TRANSCODE = MFSINK_WMDRMACTION.TRANSCODE;
 pub const MFSINK_WMDRMACTION_TRANSCRYPT = MFSINK_WMDRMACTION.TRANSCRYPT;
 pub const MFSINK_WMDRMACTION_LAST = MFSINK_WMDRMACTION.LAST;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFDRMNetHelper_Value = @import("../zig.zig").Guid.initString("3d1ff0ea-679a-4190-8d46-7fa69e8c7e15");
 pub const IID_IMFDRMNetHelper = &IID_IMFDRMNetHelper_Value;
 pub const IMFDRMNetHelper = extern struct {
@@ -20350,6 +17890,7 @@ pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING_MODE = extern enum(i32) {
 pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING_DEFAULT = MF_CAPTURE_ENGINE_AUDIO_PROCESSING_MODE.DEFAULT;
 pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING_RAW = MF_CAPTURE_ENGINE_AUDIO_PROCESSING_MODE.RAW;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureEngineOnEventCallback_Value = @import("../zig.zig").Guid.initString("aeda51c0-9025-4983-9012-de597b88b089");
 pub const IID_IMFCaptureEngineOnEventCallback = &IID_IMFCaptureEngineOnEventCallback_Value;
 pub const IMFCaptureEngineOnEventCallback = extern struct {
@@ -20371,6 +17912,7 @@ pub const IMFCaptureEngineOnEventCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureEngineOnSampleCallback_Value = @import("../zig.zig").Guid.initString("52150b82-ab39-4467-980f-e48bf0822ecd");
 pub const IID_IMFCaptureEngineOnSampleCallback = &IID_IMFCaptureEngineOnSampleCallback_Value;
 pub const IMFCaptureEngineOnSampleCallback = extern struct {
@@ -20392,6 +17934,7 @@ pub const IMFCaptureEngineOnSampleCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureSink_Value = @import("../zig.zig").Guid.initString("72d6135b-35e9-412c-b926-fd5265f2a885");
 pub const IID_IMFCaptureSink = &IID_IMFCaptureSink_Value;
 pub const IMFCaptureSink = extern struct {
@@ -20450,6 +17993,7 @@ pub const IMFCaptureSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureRecordSink_Value = @import("../zig.zig").Guid.initString("3323b55a-f92a-4fe2-8edc-e9bfc0634d77");
 pub const IID_IMFCaptureRecordSink = &IID_IMFCaptureRecordSink_Value;
 pub const IMFCaptureRecordSink = extern struct {
@@ -20515,6 +18059,7 @@ pub const IMFCaptureRecordSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCapturePreviewSink_Value = @import("../zig.zig").Guid.initString("77346cfd-5b49-4d73-ace0-5b52a859f2e0");
 pub const IID_IMFCapturePreviewSink = &IID_IMFCapturePreviewSink_Value;
 pub const IMFCapturePreviewSink = extern struct {
@@ -20605,6 +18150,7 @@ pub const IMFCapturePreviewSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCapturePhotoSink_Value = @import("../zig.zig").Guid.initString("d2d43cc8-48bb-4aa7-95db-10c06977e777");
 pub const IID_IMFCapturePhotoSink = &IID_IMFCapturePhotoSink_Value;
 pub const IMFCapturePhotoSink = extern struct {
@@ -20642,6 +18188,7 @@ pub const IMFCapturePhotoSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureSource_Value = @import("../zig.zig").Guid.initString("439a42a8-0d2c-4505-be83-f79b2a05d5c4");
 pub const IID_IMFCaptureSource = &IID_IMFCaptureSource_Value;
 pub const IMFCaptureSource = extern struct {
@@ -20781,6 +18328,7 @@ pub const IMFCaptureSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureEngine_Value = @import("../zig.zig").Guid.initString("a6bba433-176b-48b2-b375-53aa03473207");
 pub const IID_IMFCaptureEngine = &IID_IMFCaptureEngine_Value;
 pub const IMFCaptureEngine = extern struct {
@@ -20859,6 +18407,7 @@ pub const IMFCaptureEngine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureEngineClassFactory_Value = @import("../zig.zig").Guid.initString("8f02d140-56fc-4302-a705-3a97c78be779");
 pub const IID_IMFCaptureEngineClassFactory = &IID_IMFCaptureEngineClassFactory_Value;
 pub const IMFCaptureEngineClassFactory = extern struct {
@@ -20882,6 +18431,7 @@ pub const IMFCaptureEngineClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureEngineOnSampleCallback2_Value = @import("../zig.zig").Guid.initString("e37ceed7-340f-4514-9f4d-9c2ae026100b");
 pub const IID_IMFCaptureEngineOnSampleCallback2 = &IID_IMFCaptureEngineOnSampleCallback2_Value;
 pub const IMFCaptureEngineOnSampleCallback2 = extern struct {
@@ -20903,6 +18453,7 @@ pub const IMFCaptureEngineOnSampleCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCaptureSink2_Value = @import("../zig.zig").Guid.initString("f9e4219e-6197-4b5e-b888-bee310ab2c59");
 pub const IID_IMFCaptureSink2 = &IID_IMFCaptureSink2_Value;
 pub const IMFCaptureSink2 = extern struct {
@@ -21228,6 +18779,7 @@ pub const MF_MEDIA_ENGINE_ERR_DECODE = MF_MEDIA_ENGINE_ERR.DECODE;
 pub const MF_MEDIA_ENGINE_ERR_SRC_NOT_SUPPORTED = MF_MEDIA_ENGINE_ERR.SRC_NOT_SUPPORTED;
 pub const MF_MEDIA_ENGINE_ERR_ENCRYPTED = MF_MEDIA_ENGINE_ERR.ENCRYPTED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaError_Value = @import("../zig.zig").Guid.initString("fc0e10d2-ab2a-4501-a951-06bb1075184c");
 pub const IID_IMFMediaError = &IID_IMFMediaError_Value;
 pub const IMFMediaError = extern struct {
@@ -21271,6 +18823,7 @@ pub const IMFMediaError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaTimeRange_Value = @import("../zig.zig").Guid.initString("db71a2fc-078a-414e-9df9-8c2531b0aa6c");
 pub const IID_IMFMediaTimeRange = &IID_IMFMediaTimeRange_Value;
 pub const IMFMediaTimeRange = extern struct {
@@ -21414,6 +18967,7 @@ pub const MF_MEDIA_ENGINE_EVENT_STREAMRENDERINGERROR = MF_MEDIA_ENGINE_EVENT.STR
 pub const MF_MEDIA_ENGINE_EVENT_SUPPORTEDRATES_CHANGED = MF_MEDIA_ENGINE_EVENT.SUPPORTEDRATES_CHANGED;
 pub const MF_MEDIA_ENGINE_EVENT_AUDIOENDPOINTCHANGE = MF_MEDIA_ENGINE_EVENT.AUDIOENDPOINTCHANGE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineNotify_Value = @import("../zig.zig").Guid.initString("fee7c112-e776-42b5-9bbf-0048524e2bd5");
 pub const IID_IMFMediaEngineNotify = &IID_IMFMediaEngineNotify_Value;
 pub const IMFMediaEngineNotify = extern struct {
@@ -21437,6 +18991,7 @@ pub const IMFMediaEngineNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineSrcElements_Value = @import("../zig.zig").Guid.initString("7a5e5354-b114-4c72-b991-3131d75032ea");
 pub const IID_IMFMediaEngineSrcElements = &IID_IMFMediaEngineSrcElements_Value;
 pub const IMFMediaEngineSrcElements = extern struct {
@@ -21547,6 +19102,7 @@ pub const MF_MEDIA_ENGINE_PRELOAD_NONE = MF_MEDIA_ENGINE_PRELOAD.NONE;
 pub const MF_MEDIA_ENGINE_PRELOAD_METADATA = MF_MEDIA_ENGINE_PRELOAD.METADATA;
 pub const MF_MEDIA_ENGINE_PRELOAD_AUTOMATIC = MF_MEDIA_ENGINE_PRELOAD.AUTOMATIC;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngine_Value = @import("../zig.zig").Guid.initString("98a1b0bb-03eb-4935-ae7c-93c1fa0e1c93");
 pub const IID_IMFMediaEngine = &IID_IMFMediaEngine_Value;
 pub const IMFMediaEngine = extern struct {
@@ -21916,6 +19472,7 @@ pub const MF_MEDIA_ENGINE_SEEK_MODE = extern enum(i32) {
 pub const MF_MEDIA_ENGINE_SEEK_MODE_NORMAL = MF_MEDIA_ENGINE_SEEK_MODE.NORMAL;
 pub const MF_MEDIA_ENGINE_SEEK_MODE_APPROXIMATE = MF_MEDIA_ENGINE_SEEK_MODE.APPROXIMATE;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineEx_Value = @import("../zig.zig").Guid.initString("83015ead-b1e6-40d0-a98a-37145ffe1ad1");
 pub const IID_IMFMediaEngineEx = &IID_IMFMediaEngineEx_Value;
 pub const IMFMediaEngineEx = extern struct {
@@ -22268,6 +19825,7 @@ pub const MF_MEDIA_ENGINE_EXTENSION_TYPE = extern enum(i32) {
 pub const MF_MEDIA_ENGINE_EXTENSION_TYPE_MEDIASOURCE = MF_MEDIA_ENGINE_EXTENSION_TYPE.MEDIASOURCE;
 pub const MF_MEDIA_ENGINE_EXTENSION_TYPE_BYTESTREAM = MF_MEDIA_ENGINE_EXTENSION_TYPE.BYTESTREAM;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineExtension_Value = @import("../zig.zig").Guid.initString("2f69d622-20b5-41e9-afdf-89ced1dda04e");
 pub const IID_IMFMediaEngineExtension = &IID_IMFMediaEngineExtension_Value;
 pub const IMFMediaEngineExtension = extern struct {
@@ -22330,6 +19888,7 @@ pub const MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAG_PROTECTED = MF_MEDIA_ENGINE_FRAM
 pub const MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAG_REQUIRES_SURFACE_PROTECTION = MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAGS.REQUIRES_SURFACE_PROTECTION;
 pub const MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAG_REQUIRES_ANTI_SCREEN_SCRAPE_PROTECTION = MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAGS.REQUIRES_ANTI_SCREEN_SCRAPE_PROTECTION;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineProtectedContent_Value = @import("../zig.zig").Guid.initString("9f8021e8-9c8c-487e-bb5c-79aa4779938c");
 pub const IID_IMFMediaEngineProtectedContent = &IID_IMFMediaEngineProtectedContent_Value;
 pub const IMFMediaEngineProtectedContent = extern struct {
@@ -22471,6 +20030,7 @@ pub const MF_MSE_OPUS_SUPPORT_TYPE = extern enum(i32) {
 pub const MF_MSE_OPUS_SUPPORT_ON = MF_MSE_OPUS_SUPPORT_TYPE.N;
 pub const MF_MSE_OPUS_SUPPORT_OFF = MF_MSE_OPUS_SUPPORT_TYPE.FF;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaSourceExtensionNotify_Value = @import("../zig.zig").Guid.initString("a7901327-05dd-4469-a7b7-0e01979e361d");
 pub const IID_IMFMediaSourceExtensionNotify = &IID_IMFMediaSourceExtensionNotify_Value;
 pub const IMFMediaSourceExtensionNotify = extern struct {
@@ -22505,6 +20065,7 @@ pub const IMFMediaSourceExtensionNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFBufferListNotify_Value = @import("../zig.zig").Guid.initString("24cd47f7-81d8-4785-adb2-af697a963cd2");
 pub const IID_IMFBufferListNotify = &IID_IMFBufferListNotify_Value;
 pub const IMFBufferListNotify = extern struct {
@@ -22532,6 +20093,7 @@ pub const IMFBufferListNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSourceBufferNotify_Value = @import("../zig.zig").Guid.initString("87e47623-2ceb-45d6-9b88-d8520c4dcbbc");
 pub const IID_IMFSourceBufferNotify = &IID_IMFSourceBufferNotify_Value;
 pub const IMFSourceBufferNotify = extern struct {
@@ -22581,6 +20143,7 @@ pub const IMFSourceBufferNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSourceBuffer_Value = @import("../zig.zig").Guid.initString("e2cd3a4b-af25-4d3d-9110-da0e6f8ee877");
 pub const IID_IMFSourceBuffer = &IID_IMFSourceBuffer_Value;
 pub const IMFSourceBuffer = extern struct {
@@ -22723,6 +20286,7 @@ pub const IMFSourceBufferAppendMode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSourceBufferList_Value = @import("../zig.zig").Guid.initString("249981f8-8325-41f3-b80c-3b9e3aad0cbe");
 pub const IID_IMFSourceBufferList = &IID_IMFSourceBufferList_Value;
 pub const IMFSourceBufferList = extern struct {
@@ -22771,6 +20335,7 @@ pub const MF_MSE_ERROR_NETWORK = MF_MSE_ERROR.NETWORK;
 pub const MF_MSE_ERROR_DECODE = MF_MSE_ERROR.DECODE;
 pub const MF_MSE_ERROR_UNKNOWN_ERROR = MF_MSE_ERROR.UNKNOWN_ERROR;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaSourceExtension_Value = @import("../zig.zig").Guid.initString("e467b94e-a713-4562-a802-816a42e9008a");
 pub const IID_IMFMediaSourceExtension = &IID_IMFMediaSourceExtension_Value;
 pub const IMFMediaSourceExtension = extern struct {
@@ -22891,6 +20456,7 @@ pub const IMFMediaSourceExtensionLiveSeekableRange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineEME_Value = @import("../zig.zig").Guid.initString("50dc93e4-ba4f-4275-ae66-83e836e57469");
 pub const IID_IMFMediaEngineEME = &IID_IMFMediaEngineEME_Value;
 pub const IMFMediaEngineEME = extern struct {
@@ -22920,6 +20486,7 @@ pub const IMFMediaEngineEME = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineSrcElementsEx_Value = @import("../zig.zig").Guid.initString("654a6bb3-e1a3-424a-9908-53a43a0dfda0");
 pub const IID_IMFMediaEngineSrcElementsEx = &IID_IMFMediaEngineSrcElementsEx_Value;
 pub const IMFMediaEngineSrcElementsEx = extern struct {
@@ -22953,6 +20520,7 @@ pub const IMFMediaEngineSrcElementsEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineNeedKeyNotify_Value = @import("../zig.zig").Guid.initString("46a30204-a696-4b18-8804-246b8f031bb1");
 pub const IID_IMFMediaEngineNeedKeyNotify = &IID_IMFMediaEngineNeedKeyNotify_Value;
 pub const IMFMediaEngineNeedKeyNotify = extern struct {
@@ -22975,6 +20543,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaKeys_Value = @import("../zig.zig").Guid.initString("5cb31c05-61ff-418f-afda-caaf41421a38");
 pub const IID_IMFMediaKeys = &IID_IMFMediaKeys_Value;
 pub const IMFMediaKeys = extern struct {
@@ -23040,6 +20609,7 @@ pub const MF_MEDIAENGINE_KEYERR_OUTPUT = MF_MEDIA_ENGINE_KEYERR.OUTPUT;
 pub const MF_MEDIAENGINE_KEYERR_HARDWARECHANGE = MF_MEDIA_ENGINE_KEYERR.HARDWARECHANGE;
 pub const MF_MEDIAENGINE_KEYERR_DOMAIN = MF_MEDIA_ENGINE_KEYERR.DOMAIN;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaKeySession_Value = @import("../zig.zig").Guid.initString("24fa67d5-d1d0-4dc5-995c-c0efdc191fb5");
 pub const IID_IMFMediaKeySession = &IID_IMFMediaKeySession_Value;
 pub const IMFMediaKeySession = extern struct {
@@ -23094,6 +20664,7 @@ pub const IMFMediaKeySession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaKeySessionNotify_Value = @import("../zig.zig").Guid.initString("6a0083f9-8947-4c1d-9ce0-cdee22b23135");
 pub const IID_IMFMediaKeySessionNotify = &IID_IMFMediaKeySessionNotify_Value;
 pub const IMFMediaKeySessionNotify = extern struct {
@@ -23133,6 +20704,7 @@ pub const IMFMediaKeySessionNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFCdmSuspendNotify_Value = @import("../zig.zig").Guid.initString("7a5645d2-43bd-47fd-87b7-dcd24cc7d692");
 pub const IID_IMFCdmSuspendNotify = &IID_IMFCdmSuspendNotify_Value;
 pub const IMFCdmSuspendNotify = extern struct {
@@ -23214,6 +20786,7 @@ pub const MF_MEDIA_ENGINE_OPM_FAILED_BDA = MF_MEDIA_ENGINE_OPM_STATUS.FAILED_BDA
 pub const MF_MEDIA_ENGINE_OPM_FAILED_UNSIGNED_DRIVER = MF_MEDIA_ENGINE_OPM_STATUS.FAILED_UNSIGNED_DRIVER;
 pub const MF_MEDIA_ENGINE_OPM_FAILED = MF_MEDIA_ENGINE_OPM_STATUS.FAILED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineOPMInfo_Value = @import("../zig.zig").Guid.initString("765763e6-6c01-4b01-bb0f-b829f60ed28c");
 pub const IID_IMFMediaEngineOPMInfo = &IID_IMFMediaEngineOPMInfo_Value;
 pub const IMFMediaEngineOPMInfo = extern struct {
@@ -23260,6 +20833,7 @@ pub const MF_MEDIA_ENGINE_ENABLE_PROTECTED_CONTENT = MF_MEDIA_ENGINE_PROTECTION_
 pub const MF_MEDIA_ENGINE_USE_PMP_FOR_ALL_CONTENT = MF_MEDIA_ENGINE_PROTECTION_FLAGS.USE_PMP_FOR_ALL_CONTENT;
 pub const MF_MEDIA_ENGINE_USE_UNPROTECTED_PMP = MF_MEDIA_ENGINE_PROTECTION_FLAGS.USE_UNPROTECTED_PMP;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineClassFactory_Value = @import("../zig.zig").Guid.initString("4d645ace-26aa-4688-9be1-df3516990b93");
 pub const IID_IMFMediaEngineClassFactory = &IID_IMFMediaEngineClassFactory_Value;
 pub const IMFMediaEngineClassFactory = extern struct {
@@ -23299,6 +20873,7 @@ pub const IMFMediaEngineClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineClassFactoryEx_Value = @import("../zig.zig").Guid.initString("c56156c6-ea5b-48a5-9df8-fbe035d0929e");
 pub const IID_IMFMediaEngineClassFactoryEx = &IID_IMFMediaEngineClassFactoryEx_Value;
 pub const IMFMediaEngineClassFactoryEx = extern struct {
@@ -23342,6 +20917,7 @@ pub const IMFMediaEngineClassFactoryEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineClassFactory2_Value = @import("../zig.zig").Guid.initString("09083cef-867f-4bf6-8776-dee3a7b42fca");
 pub const IID_IMFMediaEngineClassFactory2 = &IID_IMFMediaEngineClassFactory2_Value;
 pub const IMFMediaEngineClassFactory2 = extern struct {
@@ -23389,6 +20965,7 @@ pub const IMFExtendedDRMTypeSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaEngineSupportsSourceTransfer_Value = @import("../zig.zig").Guid.initString("a724b056-1b2e-4642-a6f3-db9420c52908");
 pub const IID_IMFMediaEngineSupportsSourceTransfer = &IID_IMFMediaEngineSupportsSourceTransfer_Value;
 pub const IMFMediaEngineSupportsSourceTransfer = extern struct {
@@ -23564,6 +21141,7 @@ pub const MF_TIMED_TEXT_TRACK_READY_STATE_LOADING = MF_TIMED_TEXT_TRACK_READY_ST
 pub const MF_TIMED_TEXT_TRACK_READY_STATE_LOADED = MF_TIMED_TEXT_TRACK_READY_STATE.LOADED;
 pub const MF_TIMED_TEXT_TRACK_READY_STATE_ERROR = MF_TIMED_TEXT_TRACK_READY_STATE.ERROR;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedText_Value = @import("../zig.zig").Guid.initString("1f2a94c9-a3df-430d-9d0f-acd85ddc29af");
 pub const IID_IMFTimedText = &IID_IMFTimedText_Value;
 pub const IMFTimedText = extern struct {
@@ -23702,6 +21280,7 @@ pub const IMFTimedText = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextNotify_Value = @import("../zig.zig").Guid.initString("df6b87b6-ce12-45db-aba7-432fe054e57d");
 pub const IID_IMFTimedTextNotify = &IID_IMFTimedTextNotify_Value;
 pub const IMFTimedTextNotify = extern struct {
@@ -23775,6 +21354,7 @@ pub const IMFTimedTextNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextTrack_Value = @import("../zig.zig").Guid.initString("8822c32d-654e-4233-bf21-d7f2e67d30d4");
 pub const IID_IMFTimedTextTrack = &IID_IMFTimedTextTrack_Value;
 pub const IMFTimedTextTrack = extern struct {
@@ -23885,6 +21465,7 @@ pub const IMFTimedTextTrack = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextTrackList_Value = @import("../zig.zig").Guid.initString("23ff334c-442c-445f-bccc-edc438aa11e2");
 pub const IID_IMFTimedTextTrackList = &IID_IMFTimedTextTrackList_Value;
 pub const IMFTimedTextTrackList = extern struct {
@@ -23923,6 +21504,7 @@ pub const IMFTimedTextTrackList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextCue_Value = @import("../zig.zig").Guid.initString("1e560447-9a2b-43e1-a94c-b0aaabfbfbc9");
 pub const IID_IMFTimedTextCue = &IID_IMFTimedTextCue_Value;
 pub const IMFTimedTextCue = extern struct {
@@ -24019,6 +21601,7 @@ pub const IMFTimedTextCue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextFormattedText_Value = @import("../zig.zig").Guid.initString("e13af3c1-4d47-4354-b1f5-e83ae0ecae60");
 pub const IID_IMFTimedTextFormattedText = &IID_IMFTimedTextFormattedText_Value;
 pub const IMFTimedTextFormattedText = extern struct {
@@ -24058,6 +21641,7 @@ pub const IMFTimedTextFormattedText = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextStyle_Value = @import("../zig.zig").Guid.initString("09b2455d-b834-4f01-a347-9052e21c450e");
 pub const IID_IMFTimedTextStyle = &IID_IMFTimedTextStyle_Value;
 pub const IMFTimedTextStyle = extern struct {
@@ -24178,6 +21762,7 @@ pub const IMFTimedTextStyle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextRegion_Value = @import("../zig.zig").Guid.initString("c8d22afc-bc47-4bdf-9b04-787e49ce3f58");
 pub const IID_IMFTimedTextRegion = &IID_IMFTimedTextRegion_Value;
 pub const IMFTimedTextRegion = extern struct {
@@ -24296,6 +21881,7 @@ pub const IMFTimedTextRegion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IMFTimedTextBinary_Value = @import("../zig.zig").Guid.initString("4ae3a412-0545-43c4-bf6f-6b97a5c6c432");
 pub const IID_IMFTimedTextBinary = &IID_IMFTimedTextBinary_Value;
 pub const IMFTimedTextBinary = extern struct {
@@ -24664,6 +22250,7 @@ pub const IMFMediaEngineClassFactory4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFDLNASinkInit_Value = @import("../zig.zig").Guid.initString("0c012799-1b61-4c10-bda9-04445be5f561");
 pub const IID_IMFDLNASinkInit = &IID_IMFDLNASinkInit_Value;
 pub const IMFDLNASinkInit = extern struct {
@@ -24703,6 +22290,7 @@ pub const MFMPEG2DLNASINKSTATS = extern struct {
     cAudioFramesEncoded: u64,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFReadWriteClassFactory_Value = @import("../zig.zig").Guid.initString("e7fe2e12-661c-40da-92f9-4f002ab67627");
 pub const IID_IMFReadWriteClassFactory = &IID_IMFReadWriteClassFactory_Value;
 pub const IMFReadWriteClassFactory = extern struct {
@@ -24782,6 +22370,7 @@ pub const MF_SOURCE_READER_CURRENT_TYPE_CONSTANTS = extern enum(i32) {
 };
 pub const MF_SOURCE_READER_CURRENT_TYPE_INDEX = MF_SOURCE_READER_CURRENT_TYPE_CONSTANTS.X;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSourceReader_Value = @import("../zig.zig").Guid.initString("70ae66f2-c809-4e4f-8915-bdcb406b7993");
 pub const IID_IMFSourceReader = &IID_IMFSourceReader_Value;
 pub const IMFSourceReader = extern struct {
@@ -24893,6 +22482,7 @@ pub const IMFSourceReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSourceReaderEx_Value = @import("../zig.zig").Guid.initString("7b981cf0-560e-4116-9875-b099895f23d7");
 pub const IID_IMFSourceReaderEx = &IID_IMFSourceReaderEx_Value;
 pub const IMFSourceReaderEx = extern struct {
@@ -24944,6 +22534,7 @@ pub const IMFSourceReaderEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSourceReaderCallback_Value = @import("../zig.zig").Guid.initString("deec8d99-fa1d-4d82-84c2-2c8969944867");
 pub const IID_IMFSourceReaderCallback = &IID_IMFSourceReaderCallback_Value;
 pub const IMFSourceReaderCallback = extern struct {
@@ -25043,6 +22634,7 @@ pub const MF_SINK_WRITER_STATISTICS = extern struct {
     dwAverageSampleRateProcessed: u32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSinkWriter_Value = @import("../zig.zig").Guid.initString("3137f1cd-fe5e-4805-a5d8-fb477448cb3d");
 pub const IID_IMFSinkWriter = &IID_IMFSinkWriter_Value;
 pub const IMFSinkWriter = extern struct {
@@ -25152,6 +22744,7 @@ pub const IMFSinkWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSinkWriterEx_Value = @import("../zig.zig").Guid.initString("588d72ab-5bc1-496a-8714-b70617141b25");
 pub const IID_IMFSinkWriterEx = &IID_IMFSinkWriterEx_Value;
 pub const IMFSinkWriterEx = extern struct {
@@ -25176,6 +22769,7 @@ pub const IMFSinkWriterEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSinkWriterEncoderConfig_Value = @import("../zig.zig").Guid.initString("17c3779e-3cde-4ede-8c60-3899f5f53ad6");
 pub const IID_IMFSinkWriterEncoderConfig = &IID_IMFSinkWriterEncoderConfig_Value;
 pub const IMFSinkWriterEncoderConfig = extern struct {
@@ -25208,6 +22802,7 @@ pub const IMFSinkWriterEncoderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFSinkWriterCallback_Value = @import("../zig.zig").Guid.initString("666f76de-33d2-41b9-a458-29ed0a972c58");
 pub const IID_IMFSinkWriterCallback = &IID_IMFSinkWriterCallback_Value;
 pub const IMFSinkWriterCallback = extern struct {
@@ -25267,6 +22862,7 @@ pub const IMFSinkWriterCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoPositionMapper_Value = @import("../zig.zig").Guid.initString("1f6a9f17-e70b-4e24-8ae4-0b2c3ba7a4ae");
 pub const IID_IMFVideoPositionMapper = &IID_IMFVideoPositionMapper_Value;
 pub const IMFVideoPositionMapper = extern struct {
@@ -25293,6 +22889,7 @@ pub const IMFVideoPositionMapper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoDeviceID_Value = @import("../zig.zig").Guid.initString("a38d9567-5a9c-4f3c-b293-8eb415b279ba");
 pub const IID_IMFVideoDeviceID = &IID_IMFVideoDeviceID_Value;
 pub const IMFVideoDeviceID = extern struct {
@@ -25350,6 +22947,7 @@ pub const MFVideoRenderPrefs_AllowScaling = MFVideoRenderPrefs.AllowScaling;
 pub const MFVideoRenderPrefs_DoNotRepaintOnStop = MFVideoRenderPrefs.DoNotRepaintOnStop;
 pub const MFVideoRenderPrefs_Mask = MFVideoRenderPrefs.Mask;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoDisplayControl_Value = @import("../zig.zig").Guid.initString("a490b1e4-ab84-4d31-a1b2-181e03b1077a");
 pub const IID_IMFVideoDisplayControl = &IID_IMFVideoDisplayControl_Value;
 pub const IMFVideoDisplayControl = extern struct {
@@ -25516,6 +23114,7 @@ pub const MFVP_MESSAGE_ENDOFSTREAM = MFVP_MESSAGE_TYPE.ENDOFSTREAM;
 pub const MFVP_MESSAGE_STEP = MFVP_MESSAGE_TYPE.STEP;
 pub const MFVP_MESSAGE_CANCELSTEP = MFVP_MESSAGE_TYPE.CANCELSTEP;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoPresenter_Value = @import("../zig.zig").Guid.initString("29aff080-182a-4a5d-af3b-448f3a6346cb");
 pub const IID_IMFVideoPresenter = &IID_IMFVideoPresenter_Value;
 pub const IMFVideoPresenter = extern struct {
@@ -25546,6 +23145,7 @@ pub const IMFVideoPresenter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFDesiredSample_Value = @import("../zig.zig").Guid.initString("56c294d0-753e-4260-8d61-a3d8820b1d54");
 pub const IID_IMFDesiredSample = &IID_IMFDesiredSample_Value;
 pub const IMFDesiredSample = extern struct {
@@ -25584,6 +23184,7 @@ pub const IMFDesiredSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoMixerControl_Value = @import("../zig.zig").Guid.initString("a5c6c53f-c202-4aa5-9695-175ba8c508a5");
 pub const IID_IMFVideoMixerControl = &IID_IMFVideoMixerControl_Value;
 pub const IMFVideoMixerControl = extern struct {
@@ -25648,6 +23249,7 @@ pub const MFVideoMixPrefs_ForceBob = MFVideoMixPrefs.ForceBob;
 pub const MFVideoMixPrefs_EnableRotation = MFVideoMixPrefs.EnableRotation;
 pub const MFVideoMixPrefs_Mask = MFVideoMixPrefs.Mask;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFVideoMixerControl2_Value = @import("../zig.zig").Guid.initString("8459616d-966e-4930-b658-54fa7e5a16d3");
 pub const IID_IMFVideoMixerControl2 = &IID_IMFVideoMixerControl2_Value;
 pub const IMFVideoMixerControl2 = extern struct {
@@ -25677,6 +23279,7 @@ pub const IMFVideoMixerControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoRenderer_Value = @import("../zig.zig").Guid.initString("dfdfd197-a9ca-43d8-b341-6af3503792cd");
 pub const IID_IMFVideoRenderer = &IID_IMFVideoRenderer_Value;
 pub const IMFVideoRenderer = extern struct {
@@ -25699,6 +23302,7 @@ pub const IMFVideoRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEVRFilterConfig_Value = @import("../zig.zig").Guid.initString("83e91e85-82c1-4ea7-801d-85dc50b75086");
 pub const IID_IEVRFilterConfig = &IID_IEVRFilterConfig_Value;
 pub const IEVRFilterConfig = extern struct {
@@ -25735,6 +23339,7 @@ pub const EVRFilterConfigPrefs = extern enum(i32) {
 pub const EVRFilterConfigPrefs_EnableQoS = EVRFilterConfigPrefs.EnableQoS;
 pub const EVRFilterConfigPrefs_Mask = EVRFilterConfigPrefs.Mask;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEVRFilterConfigEx_Value = @import("../zig.zig").Guid.initString("aea36028-796d-454f-beee-b48071e24304");
 pub const IID_IEVRFilterConfigEx = &IID_IEVRFilterConfigEx_Value;
 pub const IEVRFilterConfigEx = extern struct {
@@ -25779,6 +23384,7 @@ pub const MF_SERVICE_LOOKUP_DOWNSTREAM_DIRECT = MF_SERVICE_LOOKUP_TYPE.DOWNSTREA
 pub const MF_SERVICE_LOOKUP_ALL = MF_SERVICE_LOOKUP_TYPE.ALL;
 pub const MF_SERVICE_LOOKUP_GLOBAL = MF_SERVICE_LOOKUP_TYPE.GLOBAL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopologyServiceLookup_Value = @import("../zig.zig").Guid.initString("fa993889-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFTopologyServiceLookup = &IID_IMFTopologyServiceLookup_Value;
 pub const IMFTopologyServiceLookup = extern struct {
@@ -25805,6 +23411,7 @@ pub const IMFTopologyServiceLookup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFTopologyServiceLookupClient_Value = @import("../zig.zig").Guid.initString("fa99388a-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFTopologyServiceLookupClient = &IID_IMFTopologyServiceLookupClient_Value;
 pub const IMFTopologyServiceLookupClient = extern struct {
@@ -25833,6 +23440,7 @@ pub const IMFTopologyServiceLookupClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEVRTrustedVideoPlugin_Value = @import("../zig.zig").Guid.initString("83a4ce40-7710-494b-a893-a472049af630");
 pub const IID_IEVRTrustedVideoPlugin = &IID_IEVRTrustedVideoPlugin_Value;
 pub const IEVRTrustedVideoPlugin = extern struct {
@@ -25928,6 +23536,7 @@ pub const MFP_CREDENTIAL_CLEAR_TEXT = _MFP_CREDENTIAL_FLAGS.CLEAR_TEXT;
 pub const MFP_CREDENTIAL_PROXY = _MFP_CREDENTIAL_FLAGS.PROXY;
 pub const MFP_CREDENTIAL_LOGGED_ON_USER = _MFP_CREDENTIAL_FLAGS.LOGGED_ON_USER;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFPMediaPlayer_Value = @import("../zig.zig").Guid.initString("a714590a-58af-430a-85bf-44f5ec838d85");
 pub const IID_IMFPMediaPlayer = &IID_IMFPMediaPlayer_Value;
 pub const IMFPMediaPlayer = extern struct {
@@ -26235,6 +23844,7 @@ pub const IMFPMediaPlayer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFPMediaItem_Value = @import("../zig.zig").Guid.initString("90eb3e6b-ecbf-45cc-b1da-c6fe3ea70d57");
 pub const IID_IMFPMediaItem = &IID_IMFPMediaItem_Value;
 pub const IMFPMediaItem = extern struct {
@@ -26529,6 +24139,7 @@ pub const MFP_ACQUIRE_USER_CREDENTIAL_EVENT = extern struct {
     pCredential: *IMFNetCredential,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMFPMediaPlayerCallback_Value = @import("../zig.zig").Guid.initString("766c8ffb-5fdb-4fea-a28d-b912996f51bd");
 pub const IID_IMFPMediaPlayerCallback = &IID_IMFPMediaPlayerCallback_Value;
 pub const IMFPMediaPlayerCallback = extern struct {
@@ -26576,6 +24187,7 @@ pub const MF_MEDIA_SHARING_ENGINE_EVENT = extern enum(i32) {
 };
 pub const MF_MEDIA_SHARING_ENGINE_EVENT_DISCONNECT = MF_MEDIA_SHARING_ENGINE_EVENT.T;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("2ba61f92-8305-413b-9733-faf15f259384");
 pub const IID_IMFSharingEngineClassFactory = &IID_IMFSharingEngineClassFactory_Value;
 pub const IMFSharingEngineClassFactory = extern struct {
@@ -26599,6 +24211,7 @@ pub const IMFSharingEngineClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaSharingEngine_Value = @import("../zig.zig").Guid.initString("8d3ce1bf-2367-40e0-9eee-40d377cc1b46");
 pub const IID_IMFMediaSharingEngine = &IID_IMFMediaSharingEngine_Value;
 pub const IMFMediaSharingEngine = extern struct {
@@ -26620,6 +24233,7 @@ pub const IMFMediaSharingEngine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFMediaSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("524d2bc4-b2b1-4fe5-8fac-fa4e4512b4e0");
 pub const IID_IMFMediaSharingEngineClassFactory = &IID_IMFMediaSharingEngineClassFactory_Value;
 pub const IMFMediaSharingEngineClassFactory = extern struct {
@@ -26643,6 +24257,7 @@ pub const IMFMediaSharingEngineClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFImageSharingEngine_Value = @import("../zig.zig").Guid.initString("cfa0ae8e-7e1c-44d2-ae68-fc4c148a6354");
 pub const IID_IMFImageSharingEngine = &IID_IMFImageSharingEngine_Value;
 pub const IMFImageSharingEngine = extern struct {
@@ -26679,6 +24294,7 @@ pub const IMFImageSharingEngine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IMFImageSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("1fc55727-a7fb-4fc8-83ae-8af024990af1");
 pub const IID_IMFImageSharingEngineClassFactory = &IID_IMFImageSharingEngineClassFactory_Value;
 pub const IMFImageSharingEngineClassFactory = extern struct {
@@ -26714,6 +24330,7 @@ pub const PLAYTO_SOURCE_AUDIO = PLAYTO_SOURCE_CREATEFLAGS.AUDIO;
 pub const PLAYTO_SOURCE_VIDEO = PLAYTO_SOURCE_CREATEFLAGS.VIDEO;
 pub const PLAYTO_SOURCE_PROTECTED = PLAYTO_SOURCE_CREATEFLAGS.PROTECTED;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPlayToControl_Value = @import("../zig.zig").Guid.initString("607574eb-f4b6-45c1-b08c-cb715122901d");
 pub const IID_IPlayToControl = &IID_IPlayToControl_Value;
 pub const IPlayToControl = extern struct {
@@ -26742,6 +24359,7 @@ pub const IPlayToControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPlayToControlWithCapabilities_Value = @import("../zig.zig").Guid.initString("aa9dd80f-c50a-4220-91c1-332287f82a34");
 pub const IID_IPlayToControlWithCapabilities = &IID_IPlayToControlWithCapabilities_Value;
 pub const IPlayToControlWithCapabilities = extern struct {
@@ -26763,6 +24381,7 @@ pub const IPlayToControlWithCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IPlayToSourceClassFactory_Value = @import("../zig.zig").Guid.initString("842b32a3-9b9b-4d1c-b3f3-49193248a554");
 pub const IID_IPlayToSourceClassFactory = &IID_IPlayToSourceClassFactory_Value;
 pub const IPlayToSourceClassFactory = extern struct {
@@ -26786,6 +24405,7 @@ pub const IPlayToSourceClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEVRVideoStreamControl_Value = @import("../zig.zig").Guid.initString("d0cfe38b-93e7-4772-8957-0400c49a4485");
 pub const IID_IEVRVideoStreamControl = &IID_IEVRVideoStreamControl_Value;
 pub const IEVRVideoStreamControl = extern struct {
@@ -26815,6 +24435,7 @@ pub const IEVRVideoStreamControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoProcessor_Value = @import("../zig.zig").Guid.initString("6ab0000c-fece-4d1f-a2ac-a9573530656e");
 pub const IID_IMFVideoProcessor = &IID_IMFVideoProcessor_Value;
 pub const IMFVideoProcessor = extern struct {
@@ -26965,6 +24586,7 @@ pub const MFVideoAlphaBitmap_FilterMode = MFVideoAlphaBitmapFlags.FilterMode;
 pub const MFVideoAlphaBitmap_Alpha = MFVideoAlphaBitmapFlags.Alpha;
 pub const MFVideoAlphaBitmap_BitMask = MFVideoAlphaBitmapFlags.BitMask;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMFVideoMixerBitmap_Value = @import("../zig.zig").Guid.initString("814c7b20-0fdb-4eec-af8f-f957c8f69edc");
 pub const IID_IMFVideoMixerBitmap = &IID_IMFVideoMixerBitmap_Value;
 pub const IMFVideoMixerBitmap = extern struct {
@@ -27009,6 +24631,7 @@ pub const IMFVideoMixerBitmap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAdvancedMediaCaptureInitializationSettings_Value = @import("../zig.zig").Guid.initString("3de21209-8ba6-4f2a-a577-2819b56ff14d");
 pub const IID_IAdvancedMediaCaptureInitializationSettings = &IID_IAdvancedMediaCaptureInitializationSettings_Value;
 pub const IAdvancedMediaCaptureInitializationSettings = extern struct {
@@ -27030,6 +24653,7 @@ pub const IAdvancedMediaCaptureInitializationSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAdvancedMediaCaptureSettings_Value = @import("../zig.zig").Guid.initString("24e0485f-a33e-4aa1-b564-6019b1d14f65");
 pub const IID_IAdvancedMediaCaptureSettings = &IID_IAdvancedMediaCaptureSettings_Value;
 pub const IAdvancedMediaCaptureSettings = extern struct {
@@ -27051,6 +24675,7 @@ pub const IAdvancedMediaCaptureSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAdvancedMediaCapture_Value = @import("../zig.zig").Guid.initString("d0751585-d216-4344-b5bf-463b68f977bb");
 pub const IID_IAdvancedMediaCapture = &IID_IAdvancedMediaCapture_Value;
 pub const IAdvancedMediaCapture = extern struct {
@@ -27072,6 +24697,7 @@ pub const IAdvancedMediaCapture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSpatialAudioObjectBuffer_Value = @import("../zig.zig").Guid.initString("d396ec8c-605e-4249-978d-72ad1c312872");
 pub const IID_IMFSpatialAudioObjectBuffer = &IID_IMFSpatialAudioObjectBuffer_Value;
 pub const IMFSpatialAudioObjectBuffer = extern struct {
@@ -27125,6 +24751,7 @@ pub const IMFSpatialAudioObjectBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IMFSpatialAudioSample_Value = @import("../zig.zig").Guid.initString("abf28a9b-3393-4290-ba79-5ffc46d986b2");
 pub const IID_IMFSpatialAudioSample = &IID_IMFSpatialAudioSample_Value;
 pub const IMFSpatialAudioSample = extern struct {
@@ -27163,6 +24790,7 @@ pub const IMFSpatialAudioSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFContentDecryptionModuleSession_Value = @import("../zig.zig").Guid.initString("4e233efd-1dd2-49e8-b577-d63eee4c0d33");
 pub const IID_IMFContentDecryptionModuleSession = &IID_IMFContentDecryptionModuleSession_Value;
 pub const IMFContentDecryptionModuleSession = extern struct {
@@ -27243,6 +24871,7 @@ pub const IMFContentDecryptionModuleSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFContentDecryptionModuleSessionCallbacks_Value = @import("../zig.zig").Guid.initString("3f96ee40-ad81-4096-8470-59a4b770f89a");
 pub const IID_IMFContentDecryptionModuleSessionCallbacks = &IID_IMFContentDecryptionModuleSessionCallbacks_Value;
 pub const IMFContentDecryptionModuleSessionCallbacks = extern struct {
@@ -27274,6 +24903,7 @@ pub const IMFContentDecryptionModuleSessionCallbacks = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFContentDecryptionModule_Value = @import("../zig.zig").Guid.initString("87be986c-10be-4943-bf48-4b54ce1983a2");
 pub const IID_IMFContentDecryptionModule = &IID_IMFContentDecryptionModule_Value;
 pub const IMFContentDecryptionModule = extern struct {
@@ -27350,6 +24980,7 @@ pub const IMFContentDecryptionModule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFContentDecryptionModuleAccess_Value = @import("../zig.zig").Guid.initString("a853d1f4-e2a0-4303-9edc-f1a68ee43136");
 pub const IID_IMFContentDecryptionModuleAccess = &IID_IMFContentDecryptionModuleAccess_Value;
 pub const IMFContentDecryptionModuleAccess = extern struct {
@@ -27388,6 +25019,7 @@ pub const IMFContentDecryptionModuleAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 const IID_IMFContentDecryptionModuleFactory_Value = @import("../zig.zig").Guid.initString("7d5abf16-4cbb-4e08-b977-9ba59049943e");
 pub const IID_IMFContentDecryptionModuleFactory = &IID_IMFContentDecryptionModuleFactory_Value;
 pub const IMFContentDecryptionModuleFactory = extern struct {
@@ -27421,10 +25053,2680 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const D3DOVERLAYCAPS = extern struct {
+    Caps: u32,
+    MaxOverlayDisplayWidth: u32,
+    MaxOverlayDisplayHeight: u32,
+};
+
+pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    Caps: u32,
+    KeyExchangeType: Guid,
+    BufferAlignmentStart: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
+pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
+pub const IDirect3D9ExOverlayExtension = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CheckDeviceOverlayType: fn(
+            self: *const IDirect3D9ExOverlayExtension,
+            Adapter: u32,
+            DevType: D3DDEVTYPE,
+            OverlayWidth: u32,
+            OverlayHeight: u32,
+            OverlayFormat: D3DFORMAT,
+            pDisplayMode: *D3DDISPLAYMODEEX,
+            DisplayRotation: D3DDISPLAYROTATION,
+            pOverlayCaps: *D3DOVERLAYCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3D9ExOverlayExtension_CheckDeviceOverlayType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: *D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: *D3DOVERLAYCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3D9ExOverlayExtension.VTable, self.vtable).CheckDeviceOverlayType(@ptrCast(*const IDirect3D9ExOverlayExtension, self), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DDevice9Video_Value = @import("../zig.zig").Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
+pub const IID_IDirect3DDevice9Video = &IID_IDirect3DDevice9Video_Value;
+pub const IDirect3DDevice9Video = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetContentProtectionCaps: fn(
+            self: *const IDirect3DDevice9Video,
+            pCryptoType: *const Guid,
+            pDecodeProfile: *const Guid,
+            pCaps: *D3DCONTENTPROTECTIONCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAuthenticatedChannel: fn(
+            self: *const IDirect3DDevice9Video,
+            ChannelType: D3DAUTHENTICATEDCHANNELTYPE,
+            ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9,
+            pChannelHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCryptoSession: fn(
+            self: *const IDirect3DDevice9Video,
+            pCryptoType: *const Guid,
+            pDecodeProfile: *const Guid,
+            ppCryptoSession: **IDirect3DCryptoSession9,
+            pCryptoHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_GetContentProtectionCaps(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, pCaps: *D3DCONTENTPROTECTIONCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, pCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_CreateAuthenticatedChannel(self: *const T, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9, pChannelHandle: *HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const IDirect3DDevice9Video, self), ChannelType, ppAuthenticatedChannel, pChannelHandle);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, ppCryptoSession: **IDirect3DCryptoSession9, pCryptoHandle: *HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DAuthenticatedChannel9_Value = @import("../zig.zig").Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
+pub const IID_IDirect3DAuthenticatedChannel9 = &IID_IDirect3DAuthenticatedChannel9_Value;
+pub const IDirect3DAuthenticatedChannel9 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCertificateSize: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            CertifacteSize: u32,
+            ppCertificate: *u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateKeyExchange: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Query: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            InputSize: u32,
+            pInput: *const c_void,
+            OutputSize: u32,
+            pOutput: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            InputSize: u32,
+            pInput: *const c_void,
+            pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), CertifacteSize, ppCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_Query(self: *const T, InputSize: u32, pInput: *const c_void, OutputSize: u32, pOutput: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Query(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, OutputSize, pOutput);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_Configure(self: *const T, InputSize: u32, pInput: *const c_void, pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Configure(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, pOutput);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DCryptoSession9_Value = @import("../zig.zig").Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
+pub const IID_IDirect3DCryptoSession9 = &IID_IDirect3DCryptoSession9_Value;
+pub const IDirect3DCryptoSession9 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCertificateSize: fn(
+            self: *const IDirect3DCryptoSession9,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const IDirect3DCryptoSession9,
+            CertifacteSize: u32,
+            ppCertificate: *u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateKeyExchange: fn(
+            self: *const IDirect3DCryptoSession9,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EncryptionBlt: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pDstSurface: *IDirect3DSurface9,
+            DstSurfaceSize: u32,
+            pIV: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecryptionBlt: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pDstSurface: *IDirect3DSurface9,
+            SrcSurfaceSize: u32,
+            pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO,
+            pContentKey: *c_void,
+            pIV: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSurfacePitch: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pSurfacePitch: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartSessionKeyRefresh: fn(
+            self: *const IDirect3DCryptoSession9,
+            pRandomNumber: *c_void,
+            RandomNumberSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FinishSessionKeyRefresh: fn(
+            self: *const IDirect3DCryptoSession9,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEncryptionBltKey: fn(
+            self: *const IDirect3DCryptoSession9,
+            pReadbackKey: *c_void,
+            KeySize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DCryptoSession9, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DCryptoSession9, self), CertifacteSize, ppCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DCryptoSession9, self), DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_EncryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, DstSurfaceSize: u32, pIV: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).EncryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_DecryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO, pContentKey: *c_void, pIV: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).DecryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetSurfacePitch(self: *const T, pSrcSurface: *IDirect3DSurface9, pSurfacePitch: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetSurfacePitch(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pSurfacePitch);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_StartSessionKeyRefresh(self: *const T, pRandomNumber: *c_void, RandomNumberSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self), pRandomNumber, RandomNumberSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_FinishSessionKeyRefresh(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetEncryptionBltKey(self: *const T, pReadbackKey: *c_void, KeySize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const IDirect3DCryptoSession9, self), pReadbackKey, KeySize);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const MF_Plugin_Type = extern enum(i32) {
+    MFT = 0,
+    MediaSource = 1,
+    MFT_MatchOutputType = 2,
+    Other = -1,
+};
+pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
+pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
+pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
+pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
+
+pub const D3D11_VIDEO_DECODER_DESC = extern struct {
+    Guid: Guid,
+    SampleWidth: u32,
+    SampleHeight: u32,
+    OutputFormat: DXGI_FORMAT,
+};
+
+pub const D3D11_VIDEO_DECODER_CONFIG = extern struct {
+    guidConfigBitstreamEncryption: Guid,
+    guidConfigMBcontrolEncryption: Guid,
+    guidConfigResidDiffEncryption: Guid,
+    ConfigBitstreamRaw: u32,
+    ConfigMBcontrolRasterOrder: u32,
+    ConfigResidDiffHost: u32,
+    ConfigSpatialResid8: u32,
+    ConfigResid8Subtraction: u32,
+    ConfigSpatialHost8or9Clipping: u32,
+    ConfigSpatialResidInterleaved: u32,
+    ConfigIntraResidUnsigned: u32,
+    ConfigResidDiffAccelerator: u32,
+    ConfigHostInverseScan: u32,
+    ConfigSpecificIDCT: u32,
+    Config4GroupedCoefs: u32,
+    ConfigMinRenderTargetBuffCount: u16,
+    ConfigDecoderSpecific: u16,
+};
+
+pub const D3D11_VIDEO_DECODER_BUFFER_TYPE = extern enum(i32) {
+    PICTURE_PARAMETERS = 0,
+    MACROBLOCK_CONTROL = 1,
+    RESIDUAL_DIFFERENCE = 2,
+    DEBLOCKING_CONTROL = 3,
+    INVERSE_QUANTIZATION_MATRIX = 4,
+    SLICE_CONTROL = 5,
+    BITSTREAM = 6,
+    MOTION_VECTOR = 7,
+    FILM_GRAIN = 8,
+};
+pub const D3D11_VIDEO_DECODER_BUFFER_PICTURE_PARAMETERS = D3D11_VIDEO_DECODER_BUFFER_TYPE.PICTURE_PARAMETERS;
+pub const D3D11_VIDEO_DECODER_BUFFER_MACROBLOCK_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.MACROBLOCK_CONTROL;
+pub const D3D11_VIDEO_DECODER_BUFFER_RESIDUAL_DIFFERENCE = D3D11_VIDEO_DECODER_BUFFER_TYPE.RESIDUAL_DIFFERENCE;
+pub const D3D11_VIDEO_DECODER_BUFFER_DEBLOCKING_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.DEBLOCKING_CONTROL;
+pub const D3D11_VIDEO_DECODER_BUFFER_INVERSE_QUANTIZATION_MATRIX = D3D11_VIDEO_DECODER_BUFFER_TYPE.INVERSE_QUANTIZATION_MATRIX;
+pub const D3D11_VIDEO_DECODER_BUFFER_SLICE_CONTROL = D3D11_VIDEO_DECODER_BUFFER_TYPE.SLICE_CONTROL;
+pub const D3D11_VIDEO_DECODER_BUFFER_BITSTREAM = D3D11_VIDEO_DECODER_BUFFER_TYPE.BITSTREAM;
+pub const D3D11_VIDEO_DECODER_BUFFER_MOTION_VECTOR = D3D11_VIDEO_DECODER_BUFFER_TYPE.MOTION_VECTOR;
+pub const D3D11_VIDEO_DECODER_BUFFER_FILM_GRAIN = D3D11_VIDEO_DECODER_BUFFER_TYPE.FILM_GRAIN;
+
+pub const D3D11_AES_CTR_IV = extern struct {
+    IV: u64,
+    Count: u64,
+};
+
+pub const D3D11_ENCRYPTED_BLOCK_INFO = extern struct {
+    NumEncryptedBytesAtBeginning: u32,
+    NumBytesInSkipPattern: u32,
+    NumBytesInEncryptPattern: u32,
+};
+
+pub const D3D11_VIDEO_DECODER_BUFFER_DESC = extern struct {
+    BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
+    BufferIndex: u32,
+    DataOffset: u32,
+    DataSize: u32,
+    FirstMBaddress: u32,
+    NumMBsInBuffer: u32,
+    Width: u32,
+    Height: u32,
+    Stride: u32,
+    ReservedBits: u32,
+    pIV: *c_void,
+    IVSize: u32,
+    PartialEncryption: BOOL,
+    EncryptedBlockInfo: D3D11_ENCRYPTED_BLOCK_INFO,
+};
+
+pub const D3D11_VIDEO_DECODER_EXTENSION = extern struct {
+    Function: u32,
+    pPrivateInputData: *c_void,
+    PrivateInputDataSize: u32,
+    pPrivateOutputData: *c_void,
+    PrivateOutputDataSize: u32,
+    ResourceCount: u32,
+    ppResourceList: **ID3D11Resource,
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoDecoder_Value = @import("../zig.zig").Guid.initString("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
+pub const IID_ID3D11VideoDecoder = &IID_ID3D11VideoDecoder_Value;
+pub const ID3D11VideoDecoder = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetCreationParameters: fn(
+            self: *const ID3D11VideoDecoder,
+            pVideoDesc: *D3D11_VIDEO_DECODER_DESC,
+            pConfig: *D3D11_VIDEO_DECODER_CONFIG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDriverHandle: fn(
+            self: *const ID3D11VideoDecoder,
+            pDriverHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDecoder_GetCreationParameters(self: *const T, pVideoDesc: *D3D11_VIDEO_DECODER_DESC, pConfig: *D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDecoder.VTable, self.vtable).GetCreationParameters(@ptrCast(*const ID3D11VideoDecoder, self), pVideoDesc, pConfig);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDecoder_GetDriverHandle(self: *const T, pDriverHandle: *HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDecoder.VTable, self.vtable).GetDriverHandle(@ptrCast(*const ID3D11VideoDecoder, self), pDriverHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT = extern enum(i32) {
+    INPUT = 1,
+    OUTPUT = 2,
+};
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_INPUT = D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT.INPUT;
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_OUTPUT = D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT.OUTPUT;
+
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS = extern enum(i32) {
+    LINEAR_SPACE = 1,
+    xvYCC = 2,
+    RGB_RANGE_CONVERSION = 4,
+    YCbCr_MATRIX_CONVERSION = 8,
+    NOMINAL_RANGE = 16,
+};
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_LINEAR_SPACE = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.LINEAR_SPACE;
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_xvYCC = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.xvYCC;
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_RGB_RANGE_CONVERSION = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.RGB_RANGE_CONVERSION;
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_YCbCr_MATRIX_CONVERSION = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.YCbCr_MATRIX_CONVERSION;
+pub const D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_NOMINAL_RANGE = D3D11_VIDEO_PROCESSOR_DEVICE_CAPS.NOMINAL_RANGE;
+
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS = extern enum(i32) {
+    ALPHA_FILL = 1,
+    CONSTRICTION = 2,
+    LUMA_KEY = 4,
+    ALPHA_PALETTE = 8,
+    LEGACY = 16,
+    STEREO = 32,
+    ROTATION = 64,
+    ALPHA_STREAM = 128,
+    PIXEL_ASPECT_RATIO = 256,
+    MIRROR = 512,
+    SHADER_USAGE = 1024,
+    METADATA_HDR10 = 2048,
+};
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_FILL = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_FILL;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_CONSTRICTION = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.CONSTRICTION;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LUMA_KEY = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.LUMA_KEY;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_PALETTE = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_PALETTE;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LEGACY = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.LEGACY;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_STEREO = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.STEREO;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ROTATION = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ROTATION;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_STREAM = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.ALPHA_STREAM;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_PIXEL_ASPECT_RATIO = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.PIXEL_ASPECT_RATIO;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_MIRROR = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.MIRROR;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_SHADER_USAGE = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.SHADER_USAGE;
+pub const D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10 = D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.METADATA_HDR10;
+
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS = extern enum(i32) {
+    BRIGHTNESS = 1,
+    CONTRAST = 2,
+    HUE = 4,
+    SATURATION = 8,
+    NOISE_REDUCTION = 16,
+    EDGE_ENHANCEMENT = 32,
+    ANAMORPHIC_SCALING = 64,
+    STEREO_ADJUSTMENT = 128,
+};
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_BRIGHTNESS = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.BRIGHTNESS;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_CONTRAST = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.CONTRAST;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_HUE = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.HUE;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_SATURATION = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.SATURATION;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_NOISE_REDUCTION = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.NOISE_REDUCTION;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.EDGE_ENHANCEMENT;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.ANAMORPHIC_SCALING;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CAPS_STEREO_ADJUSTMENT = D3D11_VIDEO_PROCESSOR_FILTER_CAPS.STEREO_ADJUSTMENT;
+
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS = extern enum(i32) {
+    RGB_INTERLACED = 1,
+    RGB_PROCAMP = 2,
+    RGB_LUMA_KEY = 4,
+    PALETTE_INTERLACED = 8,
+};
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_INTERLACED = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_INTERLACED;
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_PROCAMP = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_PROCAMP;
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_LUMA_KEY = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.RGB_LUMA_KEY;
+pub const D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_PALETTE_INTERLACED = D3D11_VIDEO_PROCESSOR_FORMAT_CAPS.PALETTE_INTERLACED;
+
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS = extern enum(i32) {
+    DENOISE = 1,
+    DERINGING = 2,
+    EDGE_ENHANCEMENT = 4,
+    COLOR_CORRECTION = 8,
+    FLESH_TONE_MAPPING = 16,
+    IMAGE_STABILIZATION = 32,
+    SUPER_RESOLUTION = 64,
+    ANAMORPHIC_SCALING = 128,
+};
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DENOISE = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.DENOISE;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DERINGING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.DERINGING;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.EDGE_ENHANCEMENT;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_COLOR_CORRECTION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.COLOR_CORRECTION;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_FLESH_TONE_MAPPING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.FLESH_TONE_MAPPING;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_IMAGE_STABILIZATION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.IMAGE_STABILIZATION;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_SUPER_RESOLUTION = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.SUPER_RESOLUTION;
+pub const D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS.ANAMORPHIC_SCALING;
+
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS = extern enum(i32) {
+    MONO_OFFSET = 1,
+    ROW_INTERLEAVED = 2,
+    COLUMN_INTERLEAVED = 4,
+    CHECKERBOARD = 8,
+    FLIP_MODE = 16,
+};
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_MONO_OFFSET = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.MONO_OFFSET;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_ROW_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.ROW_INTERLEAVED;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_COLUMN_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.COLUMN_INTERLEAVED;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_CHECKERBOARD = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.CHECKERBOARD;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_CAPS_FLIP_MODE = D3D11_VIDEO_PROCESSOR_STEREO_CAPS.FLIP_MODE;
+
+pub const D3D11_VIDEO_PROCESSOR_CAPS = extern struct {
+    DeviceCaps: u32,
+    FeatureCaps: u32,
+    FilterCaps: u32,
+    InputFormatCaps: u32,
+    AutoStreamCaps: u32,
+    StereoCaps: u32,
+    RateConversionCapsCount: u32,
+    MaxInputStreams: u32,
+    MaxStreamStates: u32,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS = extern enum(i32) {
+    DEINTERLACE_BLEND = 1,
+    DEINTERLACE_BOB = 2,
+    DEINTERLACE_ADAPTIVE = 4,
+    DEINTERLACE_MOTION_COMPENSATION = 8,
+    INVERSE_TELECINE = 16,
+    FRAME_RATE_CONVERSION = 32,
+};
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BLEND = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_BLEND;
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BOB = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_BOB;
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_ADAPTIVE = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_ADAPTIVE;
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_MOTION_COMPENSATION = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.DEINTERLACE_MOTION_COMPENSATION;
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_INVERSE_TELECINE = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.INVERSE_TELECINE;
+pub const D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_FRAME_RATE_CONVERSION = D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS.FRAME_RATE_CONVERSION;
+
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS = extern enum(i32) {
+    @"32" = 1,
+    @"22" = 2,
+    @"2224" = 4,
+    @"2332" = 8,
+    @"32322" = 16,
+    @"55" = 32,
+    @"64" = 64,
+    @"87" = 128,
+    @"222222222223" = 256,
+    OTHER = -2147483648,
+};
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_32 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"32";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_22 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"22";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_2224 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"2224";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_2332 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"2332";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_32322 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"32322";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_55 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"55";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_64 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"64";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_87 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"87";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_222222222223 = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.@"222222222223";
+pub const D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_OTHER = D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS.OTHER;
+
+pub const D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS = extern struct {
+    PastFrames: u32,
+    FutureFrames: u32,
+    ProcessorCaps: u32,
+    ITelecineCaps: u32,
+    CustomRateCount: u32,
+};
+
+pub const D3D11_CONTENT_PROTECTION_CAPS = extern enum(i32) {
+    SOFTWARE = 1,
+    HARDWARE = 2,
+    PROTECTION_ALWAYS_ON = 4,
+    PARTIAL_DECRYPTION = 8,
+    CONTENT_KEY = 16,
+    FRESHEN_SESSION_KEY = 32,
+    ENCRYPTED_READ_BACK = 64,
+    ENCRYPTED_READ_BACK_KEY = 128,
+    SEQUENTIAL_CTR_IV = 256,
+    ENCRYPT_SLICEDATA_ONLY = 512,
+    DECRYPTION_BLT = 1024,
+    HARDWARE_PROTECT_UNCOMPRESSED = 2048,
+    HARDWARE_PROTECTED_MEMORY_PAGEABLE = 4096,
+    HARDWARE_TEARDOWN = 8192,
+    HARDWARE_DRM_COMMUNICATION = 16384,
+    HARDWARE_DRM_COMMUNICATION_MULTI_THREADED = 32768,
+};
+pub const D3D11_CONTENT_PROTECTION_CAPS_SOFTWARE = D3D11_CONTENT_PROTECTION_CAPS.SOFTWARE;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE;
+pub const D3D11_CONTENT_PROTECTION_CAPS_PROTECTION_ALWAYS_ON = D3D11_CONTENT_PROTECTION_CAPS.PROTECTION_ALWAYS_ON;
+pub const D3D11_CONTENT_PROTECTION_CAPS_PARTIAL_DECRYPTION = D3D11_CONTENT_PROTECTION_CAPS.PARTIAL_DECRYPTION;
+pub const D3D11_CONTENT_PROTECTION_CAPS_CONTENT_KEY = D3D11_CONTENT_PROTECTION_CAPS.CONTENT_KEY;
+pub const D3D11_CONTENT_PROTECTION_CAPS_FRESHEN_SESSION_KEY = D3D11_CONTENT_PROTECTION_CAPS.FRESHEN_SESSION_KEY;
+pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPTED_READ_BACK = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPTED_READ_BACK;
+pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPTED_READ_BACK_KEY = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPTED_READ_BACK_KEY;
+pub const D3D11_CONTENT_PROTECTION_CAPS_SEQUENTIAL_CTR_IV = D3D11_CONTENT_PROTECTION_CAPS.SEQUENTIAL_CTR_IV;
+pub const D3D11_CONTENT_PROTECTION_CAPS_ENCRYPT_SLICEDATA_ONLY = D3D11_CONTENT_PROTECTION_CAPS.ENCRYPT_SLICEDATA_ONLY;
+pub const D3D11_CONTENT_PROTECTION_CAPS_DECRYPTION_BLT = D3D11_CONTENT_PROTECTION_CAPS.DECRYPTION_BLT;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECT_UNCOMPRESSED = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_PROTECT_UNCOMPRESSED;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECTED_MEMORY_PAGEABLE = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_PROTECTED_MEMORY_PAGEABLE;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_TEARDOWN = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_TEARDOWN;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_DRM_COMMUNICATION;
+pub const D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION_MULTI_THREADED = D3D11_CONTENT_PROTECTION_CAPS.HARDWARE_DRM_COMMUNICATION_MULTI_THREADED;
+
+pub const D3D11_VIDEO_CONTENT_PROTECTION_CAPS = extern struct {
+    Caps: u32,
+    KeyExchangeTypeCount: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_CUSTOM_RATE = extern struct {
+    CustomRate: DXGI_RATIONAL,
+    OutputFrames: u32,
+    InputInterlaced: BOOL,
+    InputFramesOrFields: u32,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_FILTER = extern enum(i32) {
+    BRIGHTNESS = 0,
+    CONTRAST = 1,
+    HUE = 2,
+    SATURATION = 3,
+    NOISE_REDUCTION = 4,
+    EDGE_ENHANCEMENT = 5,
+    ANAMORPHIC_SCALING = 6,
+    STEREO_ADJUSTMENT = 7,
+};
+pub const D3D11_VIDEO_PROCESSOR_FILTER_BRIGHTNESS = D3D11_VIDEO_PROCESSOR_FILTER.BRIGHTNESS;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_CONTRAST = D3D11_VIDEO_PROCESSOR_FILTER.CONTRAST;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_HUE = D3D11_VIDEO_PROCESSOR_FILTER.HUE;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_SATURATION = D3D11_VIDEO_PROCESSOR_FILTER.SATURATION;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_NOISE_REDUCTION = D3D11_VIDEO_PROCESSOR_FILTER.NOISE_REDUCTION;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_EDGE_ENHANCEMENT = D3D11_VIDEO_PROCESSOR_FILTER.EDGE_ENHANCEMENT;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_ANAMORPHIC_SCALING = D3D11_VIDEO_PROCESSOR_FILTER.ANAMORPHIC_SCALING;
+pub const D3D11_VIDEO_PROCESSOR_FILTER_STEREO_ADJUSTMENT = D3D11_VIDEO_PROCESSOR_FILTER.STEREO_ADJUSTMENT;
+
+pub const D3D11_VIDEO_PROCESSOR_FILTER_RANGE = extern struct {
+    Minimum: i32,
+    Maximum: i32,
+    Default: i32,
+    Multiplier: f32,
+};
+
+pub const D3D11_VIDEO_FRAME_FORMAT = extern enum(i32) {
+    PROGRESSIVE = 0,
+    INTERLACED_TOP_FIELD_FIRST = 1,
+    INTERLACED_BOTTOM_FIELD_FIRST = 2,
+};
+pub const D3D11_VIDEO_FRAME_FORMAT_PROGRESSIVE = D3D11_VIDEO_FRAME_FORMAT.PROGRESSIVE;
+pub const D3D11_VIDEO_FRAME_FORMAT_INTERLACED_TOP_FIELD_FIRST = D3D11_VIDEO_FRAME_FORMAT.INTERLACED_TOP_FIELD_FIRST;
+pub const D3D11_VIDEO_FRAME_FORMAT_INTERLACED_BOTTOM_FIELD_FIRST = D3D11_VIDEO_FRAME_FORMAT.INTERLACED_BOTTOM_FIELD_FIRST;
+
+pub const D3D11_VIDEO_USAGE = extern enum(i32) {
+    PLAYBACK_NORMAL = 0,
+    OPTIMAL_SPEED = 1,
+    OPTIMAL_QUALITY = 2,
+};
+pub const D3D11_VIDEO_USAGE_PLAYBACK_NORMAL = D3D11_VIDEO_USAGE.PLAYBACK_NORMAL;
+pub const D3D11_VIDEO_USAGE_OPTIMAL_SPEED = D3D11_VIDEO_USAGE.OPTIMAL_SPEED;
+pub const D3D11_VIDEO_USAGE_OPTIMAL_QUALITY = D3D11_VIDEO_USAGE.OPTIMAL_QUALITY;
+
+pub const D3D11_VIDEO_PROCESSOR_CONTENT_DESC = extern struct {
+    InputFrameFormat: D3D11_VIDEO_FRAME_FORMAT,
+    InputFrameRate: DXGI_RATIONAL,
+    InputWidth: u32,
+    InputHeight: u32,
+    OutputFrameRate: DXGI_RATIONAL,
+    OutputWidth: u32,
+    OutputHeight: u32,
+    Usage: D3D11_VIDEO_USAGE,
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoProcessorEnumerator_Value = @import("../zig.zig").Guid.initString("31627037-53ab-4200-9061-05faa9ab45f9");
+pub const IID_ID3D11VideoProcessorEnumerator = &IID_ID3D11VideoProcessorEnumerator_Value;
+pub const ID3D11VideoProcessorEnumerator = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetVideoProcessorContentDesc: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            pContentDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckVideoProcessorFormat: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            Format: DXGI_FORMAT,
+            pFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoProcessorCaps: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            pCaps: *D3D11_VIDEO_PROCESSOR_CAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoProcessorRateConversionCaps: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            TypeIndex: u32,
+            pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoProcessorCustomRate: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            TypeIndex: u32,
+            CustomRateIndex: u32,
+            pRate: *D3D11_VIDEO_PROCESSOR_CUSTOM_RATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoProcessorFilterRange: fn(
+            self: *const ID3D11VideoProcessorEnumerator,
+            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
+            pRange: *D3D11_VIDEO_PROCESSOR_FILTER_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorContentDesc(self: *const T, pContentDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorContentDesc(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), pContentDesc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_CheckVideoProcessorFormat(self: *const T, Format: DXGI_FORMAT, pFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).CheckVideoProcessorFormat(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), Format, pFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorCaps(self: *const T, pCaps: *D3D11_VIDEO_PROCESSOR_CAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), pCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorRateConversionCaps(self: *const T, TypeIndex: u32, pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorRateConversionCaps(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), TypeIndex, pCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorCustomRate(self: *const T, TypeIndex: u32, CustomRateIndex: u32, pRate: *D3D11_VIDEO_PROCESSOR_CUSTOM_RATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorCustomRate(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), TypeIndex, CustomRateIndex, pRate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator_GetVideoProcessorFilterRange(self: *const T, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pRange: *D3D11_VIDEO_PROCESSOR_FILTER_RANGE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator.VTable, self.vtable).GetVideoProcessorFilterRange(@ptrCast(*const ID3D11VideoProcessorEnumerator, self), Filter, pRange);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VIDEO_COLOR_RGBA = extern struct {
+    R: f32,
+    G: f32,
+    B: f32,
+    A: f32,
+};
+
+pub const D3D11_VIDEO_COLOR_YCbCrA = extern struct {
+    Y: f32,
+    Cb: f32,
+    Cr: f32,
+    A: f32,
+};
+
+pub const D3D11_VIDEO_COLOR = extern struct {
+    Anonymous: D3D11_VIDEO_COLOR._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE = extern enum(i32) {
+    UNDEFINED = 0,
+    @"16_235" = 1,
+    @"0_255" = 2,
+};
+pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_UNDEFINED = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.UNDEFINED;
+pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_16_235 = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.@"16_235";
+pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_0_255 = D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE.@"0_255";
+
+pub const D3D11_VIDEO_PROCESSOR_COLOR_SPACE = extern struct {
+    _bitfield: u32,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE = extern enum(i32) {
+    OPAQUE = 0,
+    BACKGROUND = 1,
+    DESTINATION = 2,
+    SOURCE_STREAM = 3,
+};
+pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_OPAQUE = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.OPAQUE;
+pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_BACKGROUND = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.BACKGROUND;
+pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_DESTINATION = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.DESTINATION;
+pub const D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_SOURCE_STREAM = D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE.SOURCE_STREAM;
+
+pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE = extern enum(i32) {
+    NORMAL = 0,
+    HALF = 1,
+    CUSTOM = 2,
+};
+pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_NORMAL = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.NORMAL;
+pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_HALF = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.HALF;
+pub const D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_CUSTOM = D3D11_VIDEO_PROCESSOR_OUTPUT_RATE.CUSTOM;
+
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT = extern enum(i32) {
+    MONO = 0,
+    HORIZONTAL = 1,
+    VERTICAL = 2,
+    SEPARATE = 3,
+    MONO_OFFSET = 4,
+    ROW_INTERLEAVED = 5,
+    COLUMN_INTERLEAVED = 6,
+    CHECKERBOARD = 7,
+};
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.MONO;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_HORIZONTAL = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.HORIZONTAL;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_VERTICAL = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.VERTICAL;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_SEPARATE = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.SEPARATE;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO_OFFSET = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.MONO_OFFSET;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_ROW_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.ROW_INTERLEAVED;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_COLUMN_INTERLEAVED = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.COLUMN_INTERLEAVED;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_CHECKERBOARD = D3D11_VIDEO_PROCESSOR_STEREO_FORMAT.CHECKERBOARD;
+
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE = extern enum(i32) {
+    NONE = 0,
+    FRAME0 = 1,
+    FRAME1 = 2,
+};
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_NONE = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.NONE;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME0 = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.FRAME0;
+pub const D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME1 = D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE.FRAME1;
+
+pub const D3D11_VIDEO_PROCESSOR_ROTATION = extern enum(i32) {
+    IDENTITY = 0,
+    @"90" = 1,
+    @"180" = 2,
+    @"270" = 3,
+};
+pub const D3D11_VIDEO_PROCESSOR_ROTATION_IDENTITY = D3D11_VIDEO_PROCESSOR_ROTATION.IDENTITY;
+pub const D3D11_VIDEO_PROCESSOR_ROTATION_90 = D3D11_VIDEO_PROCESSOR_ROTATION.@"90";
+pub const D3D11_VIDEO_PROCESSOR_ROTATION_180 = D3D11_VIDEO_PROCESSOR_ROTATION.@"180";
+pub const D3D11_VIDEO_PROCESSOR_ROTATION_270 = D3D11_VIDEO_PROCESSOR_ROTATION.@"270";
+
+pub const D3D11_VIDEO_PROCESSOR_STREAM = extern struct {
+    Enable: BOOL,
+    OutputIndex: u32,
+    InputFrameOrField: u32,
+    PastFrames: u32,
+    FutureFrames: u32,
+    ppPastSurfaces: **ID3D11VideoProcessorInputView,
+    pInputSurface: *ID3D11VideoProcessorInputView,
+    ppFutureSurfaces: **ID3D11VideoProcessorInputView,
+    ppPastSurfacesRight: **ID3D11VideoProcessorInputView,
+    pInputSurfaceRight: *ID3D11VideoProcessorInputView,
+    ppFutureSurfacesRight: **ID3D11VideoProcessorInputView,
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoProcessor_Value = @import("../zig.zig").Guid.initString("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
+pub const IID_ID3D11VideoProcessor = &IID_ID3D11VideoProcessor_Value;
+pub const ID3D11VideoProcessor = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetContentDesc: fn(
+            self: *const ID3D11VideoProcessor,
+            pDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetRateConversionCaps: fn(
+            self: *const ID3D11VideoProcessor,
+            pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessor_GetContentDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_CONTENT_DESC) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoProcessor.VTable, self.vtable).GetContentDesc(@ptrCast(*const ID3D11VideoProcessor, self), pDesc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessor_GetRateConversionCaps(self: *const T, pCaps: *D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoProcessor.VTable, self.vtable).GetRateConversionCaps(@ptrCast(*const ID3D11VideoProcessor, self), pCaps);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_OMAC = extern struct {
+    Omac: [16]u8,
+};
+
+pub const D3D11_AUTHENTICATED_CHANNEL_TYPE = extern enum(i32) {
+    @"3D11" = 1,
+    RIVER_SOFTWARE = 2,
+    RIVER_HARDWARE = 3,
+};
+pub const D3D11_AUTHENTICATED_CHANNEL_D3D11 = D3D11_AUTHENTICATED_CHANNEL_TYPE.@"3D11";
+pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_SOFTWARE = D3D11_AUTHENTICATED_CHANNEL_TYPE.RIVER_SOFTWARE;
+pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_HARDWARE = D3D11_AUTHENTICATED_CHANNEL_TYPE.RIVER_HARDWARE;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11AuthenticatedChannel_Value = @import("../zig.zig").Guid.initString("3015a308-dcbd-47aa-a747-192486d14d4a");
+pub const IID_ID3D11AuthenticatedChannel = &IID_ID3D11AuthenticatedChannel_Value;
+pub const ID3D11AuthenticatedChannel = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetCertificateSize: fn(
+            self: *const ID3D11AuthenticatedChannel,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const ID3D11AuthenticatedChannel,
+            CertificateSize: u32,
+            pCertificate: [*:0]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelHandle: fn(
+            self: *const ID3D11AuthenticatedChannel,
+            pChannelHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11AuthenticatedChannel_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetCertificateSize(@ptrCast(*const ID3D11AuthenticatedChannel, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11AuthenticatedChannel_GetCertificate(self: *const T, CertificateSize: u32, pCertificate: [*:0]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetCertificate(@ptrCast(*const ID3D11AuthenticatedChannel, self), CertificateSize, pCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11AuthenticatedChannel_GetChannelHandle(self: *const T, pChannelHandle: *HANDLE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11AuthenticatedChannel.VTable, self.vtable).GetChannelHandle(@ptrCast(*const ID3D11AuthenticatedChannel, self), pChannelHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_INPUT = extern struct {
+    QueryType: Guid,
+    hChannel: HANDLE,
+    SequenceNumber: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_OUTPUT = extern struct {
+    omac: D3D11_OMAC,
+    QueryType: Guid,
+    hChannel: HANDLE,
+    SequenceNumber: u32,
+    ReturnCode: HRESULT,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_PROTECTION_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    ProtectionFlags: D3D11_AUTHENTICATED_PROTECTION_FLAGS,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_CHANNEL_TYPE_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_DEVICE_HANDLE_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    DeviceHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_INPUT = extern struct {
+    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
+    DecoderHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    DecoderHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    DeviceHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_COUNT_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    RestrictedSharedResourceProcessCount: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_INPUT = extern struct {
+    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
+    ProcessIndex: u32,
+};
+
+pub const D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE = extern enum(i32) {
+    UNKNOWN = 0,
+    DWM = 1,
+    HANDLE = 2,
+};
+pub const D3D11_PROCESSIDTYPE_UNKNOWN = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.UNKNOWN;
+pub const D3D11_PROCESSIDTYPE_DWM = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.DWM;
+pub const D3D11_PROCESSIDTYPE_HANDLE = D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE.HANDLE;
+
+pub const D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    ProcessIndex: u32,
+    ProcessIdentifier: D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE,
+    ProcessHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_UNRESTRICTED_PROTECTED_SHARED_RESOURCE_COUNT_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    UnrestrictedProtectedSharedResourceCount: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_INPUT = extern struct {
+    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    OutputIDCount: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_INPUT = extern struct {
+    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    OutputIDIndex: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    OutputIDIndex: u32,
+    OutputID: u64,
+};
+
+pub const D3D11_BUS_TYPE = extern enum(i32) {
+    TYPE_OTHER = 0,
+    TYPE_PCI = 1,
+    TYPE_PCIX = 2,
+    TYPE_PCIEXPRESS = 3,
+    TYPE_AGP = 4,
+    IMPL_MODIFIER_INSIDE_OF_CHIPSET = 65536,
+    IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP = 131072,
+    IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET = 196608,
+    IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR = 262144,
+    IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE = 327680,
+    IMPL_MODIFIER_NON_STANDARD = -2147483648,
+};
+pub const D3D11_BUS_TYPE_OTHER = D3D11_BUS_TYPE.TYPE_OTHER;
+pub const D3D11_BUS_TYPE_PCI = D3D11_BUS_TYPE.TYPE_PCI;
+pub const D3D11_BUS_TYPE_PCIX = D3D11_BUS_TYPE.TYPE_PCIX;
+pub const D3D11_BUS_TYPE_PCIEXPRESS = D3D11_BUS_TYPE.TYPE_PCIEXPRESS;
+pub const D3D11_BUS_TYPE_AGP = D3D11_BUS_TYPE.TYPE_AGP;
+pub const D3D11_BUS_IMPL_MODIFIER_INSIDE_OF_CHIPSET = D3D11_BUS_TYPE.IMPL_MODIFIER_INSIDE_OF_CHIPSET;
+pub const D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP = D3D11_BUS_TYPE.IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP;
+pub const D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET = D3D11_BUS_TYPE.IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET;
+pub const D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR = D3D11_BUS_TYPE.IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR;
+pub const D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE = D3D11_BUS_TYPE.IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE;
+pub const D3D11_BUS_IMPL_MODIFIER_NON_STANDARD = D3D11_BUS_TYPE.IMPL_MODIFIER_NON_STANDARD;
+
+pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    BusType: D3D11_BUS_TYPE,
+    AccessibleInContiguousBlocks: BOOL,
+    AccessibleInNonContiguousBlocks: BOOL,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_COUNT_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    EncryptionGuidCount: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_INPUT = extern struct {
+    Input: D3D11_AUTHENTICATED_QUERY_INPUT,
+    EncryptionGuidIndex: u32,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    EncryptionGuidIndex: u32,
+    EncryptionGuid: Guid,
+};
+
+pub const D3D11_AUTHENTICATED_QUERY_CURRENT_ACCESSIBILITY_ENCRYPTION_OUTPUT = extern struct {
+    Output: D3D11_AUTHENTICATED_QUERY_OUTPUT,
+    EncryptionGuid: Guid,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_INPUT = extern struct {
+    omac: D3D11_OMAC,
+    ConfigureType: Guid,
+    hChannel: HANDLE,
+    SequenceNumber: u32,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_OUTPUT = extern struct {
+    omac: D3D11_OMAC,
+    ConfigureType: Guid,
+    hChannel: HANDLE,
+    SequenceNumber: u32,
+    ReturnCode: HRESULT,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_INITIALIZE_INPUT = extern struct {
+    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
+    StartSequenceQuery: u32,
+    StartSequenceConfigure: u32,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_PROTECTION_INPUT = extern struct {
+    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
+    Protections: D3D11_AUTHENTICATED_PROTECTION_FLAGS,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_CRYPTO_SESSION_INPUT = extern struct {
+    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
+    DecoderHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    DeviceHandle: HANDLE,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_SHARED_RESOURCE_INPUT = extern struct {
+    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
+    ProcessType: D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE,
+    ProcessHandle: HANDLE,
+    AllowAccess: BOOL,
+};
+
+pub const D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT = extern struct {
+    Parameters: D3D11_AUTHENTICATED_CONFIGURE_INPUT,
+    EncryptionGuid: Guid,
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11CryptoSession_Value = @import("../zig.zig").Guid.initString("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
+pub const IID_ID3D11CryptoSession = &IID_ID3D11CryptoSession_Value;
+pub const ID3D11CryptoSession = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetCryptoType: fn(
+            self: *const ID3D11CryptoSession,
+            pCryptoType: *Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetDecoderProfile: fn(
+            self: *const ID3D11CryptoSession,
+            pDecoderProfile: *Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetCertificateSize: fn(
+            self: *const ID3D11CryptoSession,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const ID3D11CryptoSession,
+            CertificateSize: u32,
+            pCertificate: [*:0]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCryptoSessionHandle: fn(
+            self: *const ID3D11CryptoSession,
+            pCryptoSessionHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11CryptoSession_GetCryptoType(self: *const T, pCryptoType: *Guid) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCryptoType(@ptrCast(*const ID3D11CryptoSession, self), pCryptoType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11CryptoSession_GetDecoderProfile(self: *const T, pDecoderProfile: *Guid) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetDecoderProfile(@ptrCast(*const ID3D11CryptoSession, self), pDecoderProfile);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11CryptoSession_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCertificateSize(@ptrCast(*const ID3D11CryptoSession, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11CryptoSession_GetCertificate(self: *const T, CertificateSize: u32, pCertificate: [*:0]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCertificate(@ptrCast(*const ID3D11CryptoSession, self), CertificateSize, pCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11CryptoSession_GetCryptoSessionHandle(self: *const T, pCryptoSessionHandle: *HANDLE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11CryptoSession.VTable, self.vtable).GetCryptoSessionHandle(@ptrCast(*const ID3D11CryptoSession, self), pCryptoSessionHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VDOV_DIMENSION = extern enum(i32) {
+    UNKNOWN = 0,
+    TEXTURE2D = 1,
+};
+pub const D3D11_VDOV_DIMENSION_UNKNOWN = D3D11_VDOV_DIMENSION.UNKNOWN;
+pub const D3D11_VDOV_DIMENSION_TEXTURE2D = D3D11_VDOV_DIMENSION.TEXTURE2D;
+
+pub const D3D11_TEX2D_VDOV = extern struct {
+    ArraySlice: u32,
+};
+
+pub const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC = extern struct {
+    DecodeProfile: Guid,
+    ViewDimension: D3D11_VDOV_DIMENSION,
+    Anonymous: D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoDecoderOutputView_Value = @import("../zig.zig").Guid.initString("c2931aea-2a85-4f20-860f-fba1fd256e18");
+pub const IID_ID3D11VideoDecoderOutputView = &IID_ID3D11VideoDecoderOutputView_Value;
+pub const ID3D11VideoDecoderOutputView = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11View.VTable,
+        GetDesc: fn(
+            self: *const ID3D11VideoDecoderOutputView,
+            pDesc: *D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11View.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDecoderOutputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoDecoderOutputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoDecoderOutputView, self), pDesc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VPIV_DIMENSION = extern enum(i32) {
+    UNKNOWN = 0,
+    TEXTURE2D = 1,
+};
+pub const D3D11_VPIV_DIMENSION_UNKNOWN = D3D11_VPIV_DIMENSION.UNKNOWN;
+pub const D3D11_VPIV_DIMENSION_TEXTURE2D = D3D11_VPIV_DIMENSION.TEXTURE2D;
+
+pub const D3D11_TEX2D_VPIV = extern struct {
+    MipSlice: u32,
+    ArraySlice: u32,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC = extern struct {
+    FourCC: u32,
+    ViewDimension: D3D11_VPIV_DIMENSION,
+    Anonymous: D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoProcessorInputView_Value = @import("../zig.zig").Guid.initString("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
+pub const IID_ID3D11VideoProcessorInputView = &IID_ID3D11VideoProcessorInputView_Value;
+pub const ID3D11VideoProcessorInputView = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11View.VTable,
+        GetDesc: fn(
+            self: *const ID3D11VideoProcessorInputView,
+            pDesc: *D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11View.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorInputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoProcessorInputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoProcessorInputView, self), pDesc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VPOV_DIMENSION = extern enum(i32) {
+    UNKNOWN = 0,
+    TEXTURE2D = 1,
+    TEXTURE2DARRAY = 2,
+};
+pub const D3D11_VPOV_DIMENSION_UNKNOWN = D3D11_VPOV_DIMENSION.UNKNOWN;
+pub const D3D11_VPOV_DIMENSION_TEXTURE2D = D3D11_VPOV_DIMENSION.TEXTURE2D;
+pub const D3D11_VPOV_DIMENSION_TEXTURE2DARRAY = D3D11_VPOV_DIMENSION.TEXTURE2DARRAY;
+
+pub const D3D11_TEX2D_VPOV = extern struct {
+    MipSlice: u32,
+};
+
+pub const D3D11_TEX2D_ARRAY_VPOV = extern struct {
+    MipSlice: u32,
+    FirstArraySlice: u32,
+    ArraySize: u32,
+};
+
+pub const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC = extern struct {
+    ViewDimension: D3D11_VPOV_DIMENSION,
+    Anonymous: D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoProcessorOutputView_Value = @import("../zig.zig").Guid.initString("a048285e-25a9-4527-bd93-d68b68c44254");
+pub const IID_ID3D11VideoProcessorOutputView = &IID_ID3D11VideoProcessorOutputView_Value;
+pub const ID3D11VideoProcessorOutputView = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11View.VTable,
+        GetDesc: fn(
+            self: *const ID3D11VideoProcessorOutputView,
+            pDesc: *D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11View.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorOutputView_GetDesc(self: *const T, pDesc: *D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoProcessorOutputView.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D11VideoProcessorOutputView, self), pDesc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoContext_Value = @import("../zig.zig").Guid.initString("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
+pub const IID_ID3D11VideoContext = &IID_ID3D11VideoContext_Value;
+pub const ID3D11VideoContext = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11DeviceChild.VTable,
+        GetDecoderBuffer: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+            Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
+            pBufferSize: *u32,
+            ppBuffer: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseDecoderBuffer: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+            Type: D3D11_VIDEO_DECODER_BUFFER_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecoderBeginFrame: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+            pView: *ID3D11VideoDecoderOutputView,
+            ContentKeySize: u32,
+            pContentKey: ?[*]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecoderEndFrame: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SubmitDecoderBuffers: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+            NumBuffers: u32,
+            pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecoderExtension: fn(
+            self: *const ID3D11VideoContext,
+            pDecoder: *ID3D11VideoDecoder,
+            pExtensionData: *const D3D11_VIDEO_DECODER_EXTENSION,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        VideoProcessorSetOutputTargetRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            Enable: BOOL,
+            pRect: ?*const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputBackgroundColor: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            YCbCr: BOOL,
+            pColor: *const D3D11_VIDEO_COLOR,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputColorSpace: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputAlphaFillMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
+            StreamIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputConstriction: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            Enable: BOOL,
+            Size: SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputStereoMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputExtension: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pExtensionGuid: *const Guid,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        VideoProcessorGetOutputTargetRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            Enabled: *BOOL,
+            pRect: *RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputBackgroundColor: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pYCbCr: *BOOL,
+            pColor: *D3D11_VIDEO_COLOR,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputColorSpace: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputAlphaFillMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pAlphaFillMode: *D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE,
+            pStreamIndex: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputConstriction: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pEnabled: *BOOL,
+            pSize: *SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputStereoMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pEnabled: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputExtension: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pExtensionGuid: *const Guid,
+            DataSize: u32,
+            pData: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        VideoProcessorSetStreamFrameFormat: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            FrameFormat: D3D11_VIDEO_FRAME_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamColorSpace: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamOutputRate: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
+            RepeatFrame: BOOL,
+            pCustomRate: ?*const DXGI_RATIONAL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamSourceRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            pRect: ?*const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamDestRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            pRect: ?*const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamAlpha: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            Alpha: f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamPalette: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Count: u32,
+            pEntries: ?[*]const u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamPixelAspectRatio: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            pSourceAspectRatio: ?*const DXGI_RATIONAL,
+            pDestinationAspectRatio: ?*const DXGI_RATIONAL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamLumaKey: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            Lower: f32,
+            Upper: f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamStereoFormat: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            Format: D3D11_VIDEO_PROCESSOR_STEREO_FORMAT,
+            LeftViewFrame0: BOOL,
+            BaseViewFrame0: BOOL,
+            FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
+            MonoOffset: i32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamAutoProcessingMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamFilter: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
+            Enable: BOOL,
+            Level: i32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamExtension: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pExtensionGuid: *const Guid,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        VideoProcessorGetStreamFrameFormat: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pFrameFormat: *D3D11_VIDEO_FRAME_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamColorSpace: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamOutputRate: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pOutputRate: *D3D11_VIDEO_PROCESSOR_OUTPUT_RATE,
+            pRepeatFrame: *BOOL,
+            pCustomRate: *DXGI_RATIONAL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamSourceRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+            pRect: *RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamDestRect: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+            pRect: *RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamAlpha: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+            pAlpha: *f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamPalette: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Count: u32,
+            pEntries: [*]u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamPixelAspectRatio: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+            pSourceAspectRatio: *DXGI_RATIONAL,
+            pDestinationAspectRatio: *DXGI_RATIONAL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamLumaKey: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+            pLower: *f32,
+            pUpper: *f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamStereoFormat: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnable: *BOOL,
+            pFormat: *D3D11_VIDEO_PROCESSOR_STEREO_FORMAT,
+            pLeftViewFrame0: *BOOL,
+            pBaseViewFrame0: *BOOL,
+            pFlipMode: *D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE,
+            MonoOffset: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamAutoProcessingMode: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnabled: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamFilter: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Filter: D3D11_VIDEO_PROCESSOR_FILTER,
+            pEnabled: *BOOL,
+            pLevel: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamExtension: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pExtensionGuid: *const Guid,
+            DataSize: u32,
+            pData: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        VideoProcessorBlt: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pView: *ID3D11VideoProcessorOutputView,
+            OutputFrame: u32,
+            StreamCount: u32,
+            pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateCryptoSessionKeyExchange: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+            DataSize: u32,
+            pData: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EncryptionBlt: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+            pSrcSurface: *ID3D11Texture2D,
+            pDstSurface: *ID3D11Texture2D,
+            IVSize: u32,
+            pIV: ?[*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DecryptionBlt: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+            pSrcSurface: *ID3D11Texture2D,
+            pDstSurface: *ID3D11Texture2D,
+            pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO,
+            ContentKeySize: u32,
+            pContentKey: ?[*]const u8,
+            IVSize: u32,
+            pIV: ?[*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        StartSessionKeyRefresh: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+            RandomNumberSize: u32,
+            pRandomNumber: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        FinishSessionKeyRefresh: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetEncryptionBltKey: fn(
+            self: *const ID3D11VideoContext,
+            pCryptoSession: *ID3D11CryptoSession,
+            KeySize: u32,
+            pReadbackKey: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateAuthenticatedChannelKeyExchange: fn(
+            self: *const ID3D11VideoContext,
+            pChannel: *ID3D11AuthenticatedChannel,
+            DataSize: u32,
+            pData: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryAuthenticatedChannel: fn(
+            self: *const ID3D11VideoContext,
+            pChannel: *ID3D11AuthenticatedChannel,
+            InputSize: u32,
+            pInput: [*]const u8,
+            OutputSize: u32,
+            pOutput: [*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureAuthenticatedChannel: fn(
+            self: *const ID3D11VideoContext,
+            pChannel: *ID3D11AuthenticatedChannel,
+            InputSize: u32,
+            pInput: [*]const u8,
+            pOutput: *D3D11_AUTHENTICATED_CONFIGURE_OUTPUT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VideoProcessorSetStreamRotation: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            Rotation: D3D11_VIDEO_PROCESSOR_ROTATION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamRotation: fn(
+            self: *const ID3D11VideoContext,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnable: *BOOL,
+            pRotation: *D3D11_VIDEO_PROCESSOR_ROTATION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11DeviceChild.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_GetDecoderBuffer(self: *const T, pDecoder: *ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE, pBufferSize: *u32, ppBuffer: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).GetDecoderBuffer(@ptrCast(*const ID3D11VideoContext, self), pDecoder, Type, pBufferSize, ppBuffer);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_ReleaseDecoderBuffer(self: *const T, pDecoder: *ID3D11VideoDecoder, Type: D3D11_VIDEO_DECODER_BUFFER_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).ReleaseDecoderBuffer(@ptrCast(*const ID3D11VideoContext, self), pDecoder, Type);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_DecoderBeginFrame(self: *const T, pDecoder: *ID3D11VideoDecoder, pView: *ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?[*]const u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderBeginFrame(@ptrCast(*const ID3D11VideoContext, self), pDecoder, pView, ContentKeySize, pContentKey);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_DecoderEndFrame(self: *const T, pDecoder: *ID3D11VideoDecoder) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderEndFrame(@ptrCast(*const ID3D11VideoContext, self), pDecoder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_SubmitDecoderBuffers(self: *const T, pDecoder: *ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).SubmitDecoderBuffers(@ptrCast(*const ID3D11VideoContext, self), pDecoder, NumBuffers, pBufferDesc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_DecoderExtension(self: *const T, pDecoder: *ID3D11VideoDecoder, pExtensionData: *const D3D11_VIDEO_DECODER_EXTENSION) callconv(.Inline) i32 {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecoderExtension(@ptrCast(*const ID3D11VideoContext, self), pDecoder, pExtensionData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputTargetRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputTargetRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputBackgroundColor(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, YCbCr: BOOL, pColor: *const D3D11_VIDEO_COLOR) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputBackgroundColor(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, YCbCr, pColor);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputAlphaFillMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, AlphaFillMode: D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, StreamIndex: u32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputAlphaFillMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, AlphaFillMode, StreamIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputConstriction(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL, Size: SIZE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputConstriction(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable, Size);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputStereoMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enable: BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputStereoMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetOutputExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pExtensionGuid: *const Guid, DataSize: u32, pData: *c_void) callconv(.Inline) i32 {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetOutputExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pExtensionGuid, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputTargetRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Enabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputTargetRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, Enabled, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputBackgroundColor(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pYCbCr: *BOOL, pColor: *D3D11_VIDEO_COLOR) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputBackgroundColor(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pYCbCr, pColor);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputAlphaFillMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pAlphaFillMode: *D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE, pStreamIndex: *u32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputAlphaFillMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pAlphaFillMode, pStreamIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputConstriction(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pEnabled: *BOOL, pSize: *SIZE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputConstriction(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pEnabled, pSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputStereoMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pEnabled: *BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputStereoMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pEnabled);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetOutputExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pExtensionGuid: *const Guid, DataSize: u32, pData: [*]u8) callconv(.Inline) i32 {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetOutputExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pExtensionGuid, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamFrameFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, FrameFormat: D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamFrameFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, FrameFormat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *const D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamOutputRate(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, OutputRate: D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, RepeatFrame: BOOL, pCustomRate: ?*const DXGI_RATIONAL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamOutputRate(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, OutputRate, RepeatFrame, pCustomRate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamSourceRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamSourceRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamDestRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pRect: ?*const RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamDestRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamAlpha(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Alpha: f32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamAlpha(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Alpha);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamPalette(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: ?[*]const u32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamPalette(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Count, pEntries);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamPixelAspectRatio(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, pSourceAspectRatio: ?*const DXGI_RATIONAL, pDestinationAspectRatio: ?*const DXGI_RATIONAL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamPixelAspectRatio(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, pSourceAspectRatio, pDestinationAspectRatio);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamLumaKey(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Lower: f32, Upper: f32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamLumaKey(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Lower, Upper);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamStereoFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Format: D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, LeftViewFrame0: BOOL, BaseViewFrame0: BOOL, FlipMode: D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: i32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamStereoFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamAutoProcessingMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamAutoProcessingMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamFilter(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, Enable: BOOL, Level: i32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamFilter(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Filter, Enable, Level);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: *const Guid, DataSize: u32, pData: *c_void) callconv(.Inline) i32 {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamFrameFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pFrameFormat: *D3D11_VIDEO_FRAME_FORMAT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamFrameFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pFrameFormat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamColorSpace(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *D3D11_VIDEO_PROCESSOR_COLOR_SPACE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamColorSpace(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamOutputRate(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pOutputRate: *D3D11_VIDEO_PROCESSOR_OUTPUT_RATE, pRepeatFrame: *BOOL, pCustomRate: *DXGI_RATIONAL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamOutputRate(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pOutputRate, pRepeatFrame, pCustomRate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamSourceRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamSourceRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamDestRect(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pRect: *RECT) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamDestRect(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamAlpha(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pAlpha: *f32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamAlpha(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pAlpha);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamPalette(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Count: u32, pEntries: [*]u32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamPalette(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Count, pEntries);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamPixelAspectRatio(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pSourceAspectRatio: *DXGI_RATIONAL, pDestinationAspectRatio: *DXGI_RATIONAL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamPixelAspectRatio(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pSourceAspectRatio, pDestinationAspectRatio);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamLumaKey(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL, pLower: *f32, pUpper: *f32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamLumaKey(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled, pLower, pUpper);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamStereoFormat(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pFormat: *D3D11_VIDEO_PROCESSOR_STEREO_FORMAT, pLeftViewFrame0: *BOOL, pBaseViewFrame0: *BOOL, pFlipMode: *D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE, MonoOffset: *i32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamStereoFormat(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnable, pFormat, pLeftViewFrame0, pBaseViewFrame0, pFlipMode, MonoOffset);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamAutoProcessingMode(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnabled: *BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamAutoProcessingMode(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnabled);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamFilter(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pEnabled: *BOOL, pLevel: *i32) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamFilter(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Filter, pEnabled, pLevel);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamExtension(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pExtensionGuid: *const Guid, DataSize: u32, pData: [*]u8) callconv(.Inline) i32 {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamExtension(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pExtensionGuid, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorBlt(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pView: *ID3D11VideoProcessorOutputView, OutputFrame: u32, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorBlt(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, pView, OutputFrame, StreamCount, pStreams);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_NegotiateCryptoSessionKeyExchange(self: *const T, pCryptoSession: *ID3D11CryptoSession, DataSize: u32, pData: [*]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).NegotiateCryptoSessionKeyExchange(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_EncryptionBlt(self: *const T, pCryptoSession: *ID3D11CryptoSession, pSrcSurface: *ID3D11Texture2D, pDstSurface: *ID3D11Texture2D, IVSize: u32, pIV: ?[*]u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).EncryptionBlt(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, pSrcSurface, pDstSurface, IVSize, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_DecryptionBlt(self: *const T, pCryptoSession: *ID3D11CryptoSession, pSrcSurface: *ID3D11Texture2D, pDstSurface: *ID3D11Texture2D, pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO, ContentKeySize: u32, pContentKey: ?[*]const u8, IVSize: u32, pIV: ?[*]u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).DecryptionBlt(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, pSrcSurface, pDstSurface, pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_StartSessionKeyRefresh(self: *const T, pCryptoSession: *ID3D11CryptoSession, RandomNumberSize: u32, pRandomNumber: [*]u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, RandomNumberSize, pRandomNumber);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_FinishSessionKeyRefresh(self: *const T, pCryptoSession: *ID3D11CryptoSession) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_GetEncryptionBltKey(self: *const T, pCryptoSession: *ID3D11CryptoSession, KeySize: u32, pReadbackKey: [*]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const ID3D11VideoContext, self), pCryptoSession, KeySize, pReadbackKey);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_NegotiateAuthenticatedChannelKeyExchange(self: *const T, pChannel: *ID3D11AuthenticatedChannel, DataSize: u32, pData: [*]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).NegotiateAuthenticatedChannelKeyExchange(@ptrCast(*const ID3D11VideoContext, self), pChannel, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_QueryAuthenticatedChannel(self: *const T, pChannel: *ID3D11AuthenticatedChannel, InputSize: u32, pInput: [*]const u8, OutputSize: u32, pOutput: [*]u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).QueryAuthenticatedChannel(@ptrCast(*const ID3D11VideoContext, self), pChannel, InputSize, pInput, OutputSize, pOutput);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_ConfigureAuthenticatedChannel(self: *const T, pChannel: *ID3D11AuthenticatedChannel, InputSize: u32, pInput: [*]const u8, pOutput: *D3D11_AUTHENTICATED_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).ConfigureAuthenticatedChannel(@ptrCast(*const ID3D11VideoContext, self), pChannel, InputSize, pInput, pOutput);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorSetStreamRotation(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, Rotation: D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorSetStreamRotation(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, Enable, Rotation);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext_VideoProcessorGetStreamRotation(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pRotation: *D3D11_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext.VTable, self.vtable).VideoProcessorGetStreamRotation(@ptrCast(*const ID3D11VideoContext, self), pVideoProcessor, StreamIndex, pEnable, pRotation);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ID3D11VideoDevice_Value = @import("../zig.zig").Guid.initString("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
+pub const IID_ID3D11VideoDevice = &IID_ID3D11VideoDevice_Value;
+pub const ID3D11VideoDevice = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateVideoDecoder: fn(
+            self: *const ID3D11VideoDevice,
+            pVideoDesc: *const D3D11_VIDEO_DECODER_DESC,
+            pConfig: *const D3D11_VIDEO_DECODER_CONFIG,
+            ppDecoder: **ID3D11VideoDecoder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoProcessor: fn(
+            self: *const ID3D11VideoDevice,
+            pEnum: *ID3D11VideoProcessorEnumerator,
+            RateConversionIndex: u32,
+            ppVideoProcessor: **ID3D11VideoProcessor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAuthenticatedChannel: fn(
+            self: *const ID3D11VideoDevice,
+            ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE,
+            ppAuthenticatedChannel: **ID3D11AuthenticatedChannel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCryptoSession: fn(
+            self: *const ID3D11VideoDevice,
+            pCryptoType: *const Guid,
+            pDecoderProfile: ?*const Guid,
+            pKeyExchangeType: *const Guid,
+            ppCryptoSession: **ID3D11CryptoSession,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoDecoderOutputView: fn(
+            self: *const ID3D11VideoDevice,
+            pResource: *ID3D11Resource,
+            pDesc: *const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC,
+            ppVDOVView: ?*?*ID3D11VideoDecoderOutputView,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoProcessorInputView: fn(
+            self: *const ID3D11VideoDevice,
+            pResource: *ID3D11Resource,
+            pEnum: *ID3D11VideoProcessorEnumerator,
+            pDesc: *const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC,
+            ppVPIView: ?*?*ID3D11VideoProcessorInputView,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoProcessorOutputView: fn(
+            self: *const ID3D11VideoDevice,
+            pResource: *ID3D11Resource,
+            pEnum: *ID3D11VideoProcessorEnumerator,
+            pDesc: *const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC,
+            ppVPOView: ?*?*ID3D11VideoProcessorOutputView,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoProcessorEnumerator: fn(
+            self: *const ID3D11VideoDevice,
+            pDesc: *const D3D11_VIDEO_PROCESSOR_CONTENT_DESC,
+            ppEnum: **ID3D11VideoProcessorEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoDecoderProfileCount: fn(
+            self: *const ID3D11VideoDevice,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetVideoDecoderProfile: fn(
+            self: *const ID3D11VideoDevice,
+            Index: u32,
+            pDecoderProfile: *Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckVideoDecoderFormat: fn(
+            self: *const ID3D11VideoDevice,
+            pDecoderProfile: *const Guid,
+            Format: DXGI_FORMAT,
+            pSupported: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoDecoderConfigCount: fn(
+            self: *const ID3D11VideoDevice,
+            pDesc: *const D3D11_VIDEO_DECODER_DESC,
+            pCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoDecoderConfig: fn(
+            self: *const ID3D11VideoDevice,
+            pDesc: *const D3D11_VIDEO_DECODER_DESC,
+            Index: u32,
+            pConfig: *D3D11_VIDEO_DECODER_CONFIG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContentProtectionCaps: fn(
+            self: *const ID3D11VideoDevice,
+            pCryptoType: ?*const Guid,
+            pDecoderProfile: ?*const Guid,
+            pCaps: *D3D11_VIDEO_CONTENT_PROTECTION_CAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckCryptoKeyExchange: fn(
+            self: *const ID3D11VideoDevice,
+            pCryptoType: *const Guid,
+            pDecoderProfile: ?*const Guid,
+            Index: u32,
+            pKeyExchangeType: *Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrivateData: fn(
+            self: *const ID3D11VideoDevice,
+            guid: *const Guid,
+            DataSize: u32,
+            pData: ?[*]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrivateDataInterface: fn(
+            self: *const ID3D11VideoDevice,
+            guid: *const Guid,
+            pData: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoDecoder(self: *const T, pVideoDesc: *const D3D11_VIDEO_DECODER_DESC, pConfig: *const D3D11_VIDEO_DECODER_CONFIG, ppDecoder: **ID3D11VideoDecoder) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const ID3D11VideoDevice, self), pVideoDesc, pConfig, ppDecoder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoProcessor(self: *const T, pEnum: *ID3D11VideoProcessorEnumerator, RateConversionIndex: u32, ppVideoProcessor: **ID3D11VideoProcessor) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessor(@ptrCast(*const ID3D11VideoDevice, self), pEnum, RateConversionIndex, ppVideoProcessor);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateAuthenticatedChannel(self: *const T, ChannelType: D3D11_AUTHENTICATED_CHANNEL_TYPE, ppAuthenticatedChannel: **ID3D11AuthenticatedChannel) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const ID3D11VideoDevice, self), ChannelType, ppAuthenticatedChannel);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: *const Guid, ppCryptoSession: **ID3D11CryptoSession) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, pKeyExchangeType, ppCryptoSession);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoDecoderOutputView(self: *const T, pResource: *ID3D11Resource, pDesc: *const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC, ppVDOVView: ?*?*ID3D11VideoDecoderOutputView) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoDecoderOutputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pDesc, ppVDOVView);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoProcessorInputView(self: *const T, pResource: *ID3D11Resource, pEnum: *ID3D11VideoProcessorEnumerator, pDesc: *const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC, ppVPIView: ?*?*ID3D11VideoProcessorInputView) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorInputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pEnum, pDesc, ppVPIView);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoProcessorOutputView(self: *const T, pResource: *ID3D11Resource, pEnum: *ID3D11VideoProcessorEnumerator, pDesc: *const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC, ppVPOView: ?*?*ID3D11VideoProcessorOutputView) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorOutputView(@ptrCast(*const ID3D11VideoDevice, self), pResource, pEnum, pDesc, ppVPOView);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CreateVideoProcessorEnumerator(self: *const T, pDesc: *const D3D11_VIDEO_PROCESSOR_CONTENT_DESC, ppEnum: **ID3D11VideoProcessorEnumerator) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CreateVideoProcessorEnumerator(@ptrCast(*const ID3D11VideoDevice, self), pDesc, ppEnum);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_GetVideoDecoderProfileCount(self: *const T) callconv(.Inline) u32 {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderProfileCount(@ptrCast(*const ID3D11VideoDevice, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_GetVideoDecoderProfile(self: *const T, Index: u32, pDecoderProfile: *Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderProfile(@ptrCast(*const ID3D11VideoDevice, self), Index, pDecoderProfile);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CheckVideoDecoderFormat(self: *const T, pDecoderProfile: *const Guid, Format: DXGI_FORMAT, pSupported: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CheckVideoDecoderFormat(@ptrCast(*const ID3D11VideoDevice, self), pDecoderProfile, Format, pSupported);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_GetVideoDecoderConfigCount(self: *const T, pDesc: *const D3D11_VIDEO_DECODER_DESC, pCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderConfigCount(@ptrCast(*const ID3D11VideoDevice, self), pDesc, pCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_GetVideoDecoderConfig(self: *const T, pDesc: *const D3D11_VIDEO_DECODER_DESC, Index: u32, pConfig: *D3D11_VIDEO_DECODER_CONFIG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetVideoDecoderConfig(@ptrCast(*const ID3D11VideoDevice, self), pDesc, Index, pConfig);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_GetContentProtectionCaps(self: *const T, pCryptoType: ?*const Guid, pDecoderProfile: ?*const Guid, pCaps: *D3D11_VIDEO_CONTENT_PROTECTION_CAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, pCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_CheckCryptoKeyExchange(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, Index: u32, pKeyExchangeType: *Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).CheckCryptoKeyExchange(@ptrCast(*const ID3D11VideoDevice, self), pCryptoType, pDecoderProfile, Index, pKeyExchangeType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D11VideoDevice, self), guid, DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice_SetPrivateDataInterface(self: *const T, guid: *const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice.VTable, self.vtable).SetPrivateDataInterface(@ptrCast(*const ID3D11VideoDevice, self), guid, pData);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK = extern struct {
+    ClearSize: u32,
+    EncryptedSize: u32,
+};
+
+pub const D3D11_VIDEO_DECODER_BUFFER_DESC1 = extern struct {
+    BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
+    DataOffset: u32,
+    DataSize: u32,
+    pIV: *c_void,
+    IVSize: u32,
+    pSubSampleMappingBlock: *D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK,
+    SubSampleMappingCount: u32,
+};
+
+pub const D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION = extern struct {
+    pCryptoSession: *ID3D11CryptoSession,
+    BlobSize: u32,
+    pBlob: *c_void,
+    pKeyInfoId: *Guid,
+    PrivateDataSize: u32,
+    pPrivateData: *c_void,
+};
+
+pub const D3D11_VIDEO_DECODER_CAPS = extern enum(i32) {
+    DOWNSAMPLE = 1,
+    NON_REAL_TIME = 2,
+    DOWNSAMPLE_DYNAMIC = 4,
+    DOWNSAMPLE_REQUIRED = 8,
+    UNSUPPORTED = 16,
+};
+pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE;
+pub const D3D11_VIDEO_DECODER_CAPS_NON_REAL_TIME = D3D11_VIDEO_DECODER_CAPS.NON_REAL_TIME;
+pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_DYNAMIC = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE_DYNAMIC;
+pub const D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_REQUIRED = D3D11_VIDEO_DECODER_CAPS.DOWNSAMPLE_REQUIRED;
+pub const D3D11_VIDEO_DECODER_CAPS_UNSUPPORTED = D3D11_VIDEO_DECODER_CAPS.UNSUPPORTED;
+
+pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS = extern enum(i32) {
+    MULTIPLANE_OVERLAY_ROTATION = 1,
+    MULTIPLANE_OVERLAY_RESIZE = 2,
+    MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION = 4,
+    TRIPLE_BUFFER_OUTPUT = 8,
+};
+pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_ROTATION = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_ROTATION;
+pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_RESIZE = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_RESIZE;
+pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION;
+pub const D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_TRIPLE_BUFFER_OUTPUT = D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS.TRIPLE_BUFFER_OUTPUT;
+
+pub const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT = extern struct {
+    Enable: BOOL,
+    Width: u32,
+    Height: u32,
+    Format: DXGI_FORMAT,
+};
+
+pub const D3D11_CRYPTO_SESSION_STATUS = extern enum(i32) {
+    OK = 0,
+    KEY_LOST = 1,
+    KEY_AND_CONTENT_LOST = 2,
+};
+pub const D3D11_CRYPTO_SESSION_STATUS_OK = D3D11_CRYPTO_SESSION_STATUS.OK;
+pub const D3D11_CRYPTO_SESSION_STATUS_KEY_LOST = D3D11_CRYPTO_SESSION_STATUS.KEY_LOST;
+pub const D3D11_CRYPTO_SESSION_STATUS_KEY_AND_CONTENT_LOST = D3D11_CRYPTO_SESSION_STATUS.KEY_AND_CONTENT_LOST;
+
+pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA = extern struct {
+    PrivateDataSize: u32,
+    HWProtectionDataSize: u32,
+    pbInput: [4]u8,
+};
+
+pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA = extern struct {
+    PrivateDataSize: u32,
+    MaxHWProtectionDataSize: u32,
+    HWProtectionDataSize: u32,
+    TransportTime: u64,
+    ExecutionTime: u64,
+    pbOutput: [4]u8,
+};
+
+pub const D3D11_KEY_EXCHANGE_HW_PROTECTION_DATA = extern struct {
+    HWProtectionFunctionID: u32,
+    pInputData: *D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA,
+    pOutputData: *D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA,
+    Status: HRESULT,
+};
+
+pub const D3D11_VIDEO_SAMPLE_DESC = extern struct {
+    Width: u32,
+    Height: u32,
+    Format: DXGI_FORMAT,
+    ColorSpace: DXGI_COLOR_SPACE_TYPE,
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_ID3D11VideoContext1_Value = @import("../zig.zig").Guid.initString("a7f026da-a5f8-4487-a564-15e34357651e");
+pub const IID_ID3D11VideoContext1 = &IID_ID3D11VideoContext1_Value;
+pub const ID3D11VideoContext1 = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11VideoContext.VTable,
+        SubmitDecoderBuffers1: fn(
+            self: *const ID3D11VideoContext1,
+            pDecoder: *ID3D11VideoDecoder,
+            NumBuffers: u32,
+            pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDataForNewHardwareKey: fn(
+            self: *const ID3D11VideoContext1,
+            pCryptoSession: *ID3D11CryptoSession,
+            PrivateInputSize: u32,
+            pPrivatInputData: [*]const u8,
+            pPrivateOutputData: *u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckCryptoSessionStatus: fn(
+            self: *const ID3D11VideoContext1,
+            pCryptoSession: *ID3D11CryptoSession,
+            pStatus: *D3D11_CRYPTO_SESSION_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecoderEnableDownsampling: fn(
+            self: *const ID3D11VideoContext1,
+            pDecoder: *ID3D11VideoDecoder,
+            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
+            ReferenceFrameCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecoderUpdateDownsampling: fn(
+            self: *const ID3D11VideoContext1,
+            pDecoder: *ID3D11VideoDecoder,
+            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VideoProcessorSetOutputColorSpace1: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            ColorSpace: DXGI_COLOR_SPACE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetOutputShaderUsage: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            ShaderUsage: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputColorSpace1: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pColorSpace: *DXGI_COLOR_SPACE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputShaderUsage: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pShaderUsage: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamColorSpace1: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            ColorSpace: DXGI_COLOR_SPACE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamMirror: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Enable: BOOL,
+            FlipHorizontal: BOOL,
+            FlipVertical: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamColorSpace1: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pColorSpace: *DXGI_COLOR_SPACE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamMirror: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pEnable: *BOOL,
+            pFlipHorizontal: *BOOL,
+            pFlipVertical: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetBehaviorHints: fn(
+            self: *const ID3D11VideoContext1,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            OutputWidth: u32,
+            OutputHeight: u32,
+            OutputFormat: DXGI_FORMAT,
+            StreamCount: u32,
+            pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT,
+            pBehaviorHints: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11VideoContext.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_SubmitDecoderBuffers1(self: *const T, pDecoder: *ID3D11VideoDecoder, NumBuffers: u32, pBufferDesc: [*]const D3D11_VIDEO_DECODER_BUFFER_DESC1) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).SubmitDecoderBuffers1(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, NumBuffers, pBufferDesc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_GetDataForNewHardwareKey(self: *const T, pCryptoSession: *ID3D11CryptoSession, PrivateInputSize: u32, pPrivatInputData: [*]const u8, pPrivateOutputData: *u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).GetDataForNewHardwareKey(@ptrCast(*const ID3D11VideoContext1, self), pCryptoSession, PrivateInputSize, pPrivatInputData, pPrivateOutputData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_CheckCryptoSessionStatus(self: *const T, pCryptoSession: *ID3D11CryptoSession, pStatus: *D3D11_CRYPTO_SESSION_STATUS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).CheckCryptoSessionStatus(@ptrCast(*const ID3D11VideoContext1, self), pCryptoSession, pStatus);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_DecoderEnableDownsampling(self: *const T, pDecoder: *ID3D11VideoDecoder, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC, ReferenceFrameCount: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).DecoderEnableDownsampling(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, InputColorSpace, pOutputDesc, ReferenceFrameCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_DecoderUpdateDownsampling(self: *const T, pDecoder: *ID3D11VideoDecoder, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).DecoderUpdateDownsampling(@ptrCast(*const ID3D11VideoContext1, self), pDecoder, pOutputDesc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorSetOutputColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetOutputColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, ColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorSetOutputShaderUsage(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, ShaderUsage: BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetOutputShaderUsage(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, ShaderUsage);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorGetOutputColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pColorSpace: *DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetOutputColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorGetOutputShaderUsage(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pShaderUsage: *BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetOutputShaderUsage(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, pShaderUsage);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorSetStreamColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetStreamColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, ColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorSetStreamMirror(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Enable: BOOL, FlipHorizontal: BOOL, FlipVertical: BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorSetStreamMirror(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, Enable, FlipHorizontal, FlipVertical);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorGetStreamColorSpace1(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pColorSpace: *DXGI_COLOR_SPACE_TYPE) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetStreamColorSpace1(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, pColorSpace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorGetStreamMirror(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pEnable: *BOOL, pFlipHorizontal: *BOOL, pFlipVertical: *BOOL) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetStreamMirror(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, StreamIndex, pEnable, pFlipHorizontal, pFlipVertical);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext1_VideoProcessorGetBehaviorHints(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, OutputWidth: u32, OutputHeight: u32, OutputFormat: DXGI_FORMAT, StreamCount: u32, pStreams: [*]const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT, pBehaviorHints: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoContext1.VTable, self.vtable).VideoProcessorGetBehaviorHints(@ptrCast(*const ID3D11VideoContext1, self), pVideoProcessor, OutputWidth, OutputHeight, OutputFormat, StreamCount, pStreams, pBehaviorHints);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_ID3D11VideoDevice1_Value = @import("../zig.zig").Guid.initString("29da1d51-1321-4454-804b-f5fc9f861f0f");
+pub const IID_ID3D11VideoDevice1 = &IID_ID3D11VideoDevice1_Value;
+pub const ID3D11VideoDevice1 = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11VideoDevice.VTable,
+        GetCryptoSessionPrivateDataSize: fn(
+            self: *const ID3D11VideoDevice1,
+            pCryptoType: *const Guid,
+            pDecoderProfile: ?*const Guid,
+            pKeyExchangeType: *const Guid,
+            pPrivateInputSize: *u32,
+            pPrivateOutputSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVideoDecoderCaps: fn(
+            self: *const ID3D11VideoDevice1,
+            pDecoderProfile: *const Guid,
+            SampleWidth: u32,
+            SampleHeight: u32,
+            pFrameRate: *const DXGI_RATIONAL,
+            BitRate: u32,
+            pCryptoType: ?*const Guid,
+            pDecoderCaps: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckVideoDecoderDownsampling: fn(
+            self: *const ID3D11VideoDevice1,
+            pInputDesc: *const D3D11_VIDEO_DECODER_DESC,
+            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG,
+            pFrameRate: *const DXGI_RATIONAL,
+            pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC,
+            pSupported: *BOOL,
+            pRealTimeHint: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RecommendVideoDecoderDownsampleParameters: fn(
+            self: *const ID3D11VideoDevice1,
+            pInputDesc: *const D3D11_VIDEO_DECODER_DESC,
+            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG,
+            pFrameRate: *const DXGI_RATIONAL,
+            pRecommendedOutputDesc: *D3D11_VIDEO_SAMPLE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11VideoDevice.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice1_GetCryptoSessionPrivateDataSize(self: *const T, pCryptoType: *const Guid, pDecoderProfile: ?*const Guid, pKeyExchangeType: *const Guid, pPrivateInputSize: *u32, pPrivateOutputSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).GetCryptoSessionPrivateDataSize(@ptrCast(*const ID3D11VideoDevice1, self), pCryptoType, pDecoderProfile, pKeyExchangeType, pPrivateInputSize, pPrivateOutputSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice1_GetVideoDecoderCaps(self: *const T, pDecoderProfile: *const Guid, SampleWidth: u32, SampleHeight: u32, pFrameRate: *const DXGI_RATIONAL, BitRate: u32, pCryptoType: ?*const Guid, pDecoderCaps: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).GetVideoDecoderCaps(@ptrCast(*const ID3D11VideoDevice1, self), pDecoderProfile, SampleWidth, SampleHeight, pFrameRate, BitRate, pCryptoType, pDecoderCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice1_CheckVideoDecoderDownsampling(self: *const T, pInputDesc: *const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: *const DXGI_RATIONAL, pOutputDesc: *const D3D11_VIDEO_SAMPLE_DESC, pSupported: *BOOL, pRealTimeHint: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).CheckVideoDecoderDownsampling(@ptrCast(*const ID3D11VideoDevice1, self), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pOutputDesc, pSupported, pRealTimeHint);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoDevice1_RecommendVideoDecoderDownsampleParameters(self: *const T, pInputDesc: *const D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: *const D3D11_VIDEO_DECODER_CONFIG, pFrameRate: *const DXGI_RATIONAL, pRecommendedOutputDesc: *D3D11_VIDEO_SAMPLE_DESC) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoDevice1.VTable, self.vtable).RecommendVideoDecoderDownsampleParameters(@ptrCast(*const ID3D11VideoDevice1, self), pInputDesc, InputColorSpace, pInputConfig, pFrameRate, pRecommendedOutputDesc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_ID3D11VideoProcessorEnumerator1_Value = @import("../zig.zig").Guid.initString("465217f2-5568-43cf-b5b9-f61d54531ca1");
+pub const IID_ID3D11VideoProcessorEnumerator1 = &IID_ID3D11VideoProcessorEnumerator1_Value;
+pub const ID3D11VideoProcessorEnumerator1 = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11VideoProcessorEnumerator.VTable,
+        CheckVideoProcessorFormatConversion: fn(
+            self: *const ID3D11VideoProcessorEnumerator1,
+            InputFormat: DXGI_FORMAT,
+            InputColorSpace: DXGI_COLOR_SPACE_TYPE,
+            OutputFormat: DXGI_FORMAT,
+            OutputColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pSupported: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11VideoProcessorEnumerator.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoProcessorEnumerator1_CheckVideoProcessorFormatConversion(self: *const T, InputFormat: DXGI_FORMAT, InputColorSpace: DXGI_COLOR_SPACE_TYPE, OutputFormat: DXGI_FORMAT, OutputColorSpace: DXGI_COLOR_SPACE_TYPE, pSupported: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11VideoProcessorEnumerator1.VTable, self.vtable).CheckVideoProcessorFormatConversion(@ptrCast(*const ID3D11VideoProcessorEnumerator1, self), InputFormat, InputColorSpace, OutputFormat, OutputColorSpace, pSupported);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_ID3D11VideoContext2_Value = @import("../zig.zig").Guid.initString("c4e7374c-6243-4d1b-ae87-52b4f740e261");
+pub const IID_ID3D11VideoContext2 = &IID_ID3D11VideoContext2_Value;
+pub const ID3D11VideoContext2 = extern struct {
+    pub const VTable = extern struct {
+        base: ID3D11VideoContext1.VTable,
+        VideoProcessorSetOutputHDRMetaData: fn(
+            self: *const ID3D11VideoContext2,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            Type: DXGI_HDR_METADATA_TYPE,
+            Size: u32,
+            pHDRMetaData: ?[*]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetOutputHDRMetaData: fn(
+            self: *const ID3D11VideoContext2,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            pType: *DXGI_HDR_METADATA_TYPE,
+            Size: u32,
+            pMetaData: ?[*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorSetStreamHDRMetaData: fn(
+            self: *const ID3D11VideoContext2,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            Type: DXGI_HDR_METADATA_TYPE,
+            Size: u32,
+            pHDRMetaData: ?[*]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        VideoProcessorGetStreamHDRMetaData: fn(
+            self: *const ID3D11VideoContext2,
+            pVideoProcessor: *ID3D11VideoProcessor,
+            StreamIndex: u32,
+            pType: *DXGI_HDR_METADATA_TYPE,
+            Size: u32,
+            pMetaData: ?[*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace ID3D11VideoContext1.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext2_VideoProcessorSetOutputHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?[*]const u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorSetOutputHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, Type, Size, pHDRMetaData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext2_VideoProcessorGetOutputHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, pType: *DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorGetOutputHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, pType, Size, pMetaData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext2_VideoProcessorSetStreamHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pHDRMetaData: ?[*]const u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorSetStreamHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, StreamIndex, Type, Size, pHDRMetaData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ID3D11VideoContext2_VideoProcessorGetStreamHDRMetaData(self: *const T, pVideoProcessor: *ID3D11VideoProcessor, StreamIndex: u32, pType: *DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) callconv(.Inline) void {
+            return @ptrCast(*const ID3D11VideoContext2.VTable, self.vtable).VideoProcessorGetStreamHDRMetaData(@ptrCast(*const ID3D11VideoContext2, self), pVideoProcessor, StreamIndex, pType, Size, pMetaData);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const D3D11_FEATURE_VIDEO = extern enum(i32) {
+    M = 0,
+};
+pub const D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM = D3D11_FEATURE_VIDEO.M;
+
+pub const CodecAPIEventData = extern struct {
+    guid: Guid,
+    dataLength: u32,
+    reserved: [3]u32,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
+pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
+pub const ICodecAPI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSupported: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsModifiable: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterRange: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            ValueMin: *VARIANT,
+            ValueMax: *VARIANT,
+            SteppingDelta: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterValues: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Values: [*]*VARIANT,
+            ValuesCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            userData: ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaults: fn(
+            self: *const ICodecAPI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueWithNotify: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaultsWithNotify: fn(
+            self: *const ICodecAPI,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0000: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0001: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettingsWithNotify: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0002: *IStream,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const IMFMediaEventGenerator_GetEventFlags = extern enum(u32) {
+    None = 0,
+    T = 1,
+};
+pub const MF_EVENT_FLAG_NO_WAIT = IMFMediaEventGenerator_GetEventFlags.T;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (235)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "dxva2" fn DXVAHD_CreateDevice(
     pD3DDevice: *IDirect3DDevice9Ex,
     pContentDesc: *const DXVAHD_CONTENT_DESC,
@@ -27433,17 +27735,20 @@ pub extern "dxva2" fn DXVAHD_CreateDevice(
     ppDevice: **IDXVAHD_Device,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DXVA2CreateDirect3DDeviceManager9(
     pResetToken: *u32,
     ppDeviceManager: **IDirect3DDeviceManager9,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DXVA2CreateVideoService(
     pDD: *IDirect3DDevice9,
     riid: *const Guid,
     ppService: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputsFromHMONITOR(
     hMonitor: HMONITOR,
     vos: OPM_VIDEO_OUTPUT_SEMANTICS,
@@ -27451,6 +27756,7 @@ pub extern "dxva2" fn OPMGetVideoOutputsFromHMONITOR(
     pppOPMVideoOutputArray: ***IOPMVideoOutput,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputForTarget(
     pAdapterLuid: *LUID,
     VidPnTarget: u32,
@@ -27458,6 +27764,7 @@ pub extern "dxva2" fn OPMGetVideoOutputForTarget(
     ppOPMVideoOutput: **IOPMVideoOutput,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn OPMGetVideoOutputsFromIDirect3DDevice9Object(
     pDirect3DDevice9: *IDirect3DDevice9,
     vos: OPM_VIDEO_OUTPUT_SEMANTICS,
@@ -27465,27 +27772,32 @@ pub extern "dxva2" fn OPMGetVideoOutputsFromIDirect3DDevice9Object(
     pppOPMVideoOutputArray: ***IOPMVideoOutput,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFSerializeAttributesToStream(
     pAttr: *IMFAttributes,
     dwOptions: u32,
     pStm: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFDeserializeAttributesFromStream(
     pAttr: *IMFAttributes,
     dwOptions: u32,
     pStm: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFCreateTransformActivate(
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateMediaSession(
     pConfiguration: *IMFAttributes,
     ppMediaSession: **IMFMediaSession,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreatePMPMediaSession(
     dwCreationFlags: u32,
     pConfiguration: *IMFAttributes,
@@ -27493,31 +27805,38 @@ pub extern "MF" fn MFCreatePMPMediaSession(
     ppEnablerActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateSourceResolver(
     ppISourceResolver: **IMFSourceResolver,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn CreatePropertyStore(
     ppStore: **IPropertyStore,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetSupportedSchemes(
     pPropVarSchemeArray: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetSupportedMimeTypes(
     pPropVarMimeTypeArray: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateTopology(
     ppTopo: **IMFTopology,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateTopologyNode(
     NodeType: MF_TOPOLOGY_TYPE,
     ppNode: **IMFTopologyNode,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFGetTopoNodeCurrentType(
     pNode: *IMFTopologyNode,
     dwStreamIndex: u32,
@@ -27525,6 +27844,7 @@ pub extern "MF" fn MFGetTopoNodeCurrentType(
     ppType: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFGetService(
     punkObject: *IUnknown,
     guidService: *const Guid,
@@ -27532,39 +27852,47 @@ pub extern "MF" fn MFGetService(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetSystemTime(
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreatePresentationClock(
     ppPresentationClock: **IMFPresentationClock,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateSystemTimeSource(
     ppSystemTimeSource: **IMFPresentationTimeSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreatePresentationDescriptor(
     cStreamDescriptors: u32,
     apStreamDescriptors: ?[*]?*IMFStreamDescriptor,
     ppPresentationDescriptor: **IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFRequireProtectedEnvironment(
     pPresentationDescriptor: *IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFSerializePresentationDescriptor(
     pPD: *IMFPresentationDescriptor,
     pcbData: *u32,
     ppbData: [*]*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFDeserializePresentationDescriptor(
     cbData: u32,
     pbData: [*:0]u8,
     ppPD: **IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateStreamDescriptor(
     dwStreamIdentifier: u32,
     cMediaTypes: u32,
@@ -27572,28 +27900,34 @@ pub extern "MFPlat" fn MFCreateStreamDescriptor(
     ppDescriptor: **IMFStreamDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateSimpleTypeHandler(
     ppHandler: **IMFMediaTypeHandler,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFShutdownObject(
     pUnk: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateAudioRenderer(
     pAudioAttributes: *IMFAttributes,
     ppSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateAudioRendererActivate(
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateVideoRendererActivate(
     hwndVideo: HWND,
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateMPEG4MediaSink(
     pIByteStream: *IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
@@ -27601,6 +27935,7 @@ pub extern "MF" fn MFCreateMPEG4MediaSink(
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreate3GPMediaSink(
     pIByteStream: *IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
@@ -27608,23 +27943,27 @@ pub extern "MF" fn MFCreate3GPMediaSink(
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateMP3MediaSink(
     pTargetByteStream: *IMFByteStream,
     ppMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateAC3MediaSink(
     pTargetByteStream: *IMFByteStream,
     pAudioMediaType: *IMFMediaType,
     ppMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateADTSMediaSink(
     pTargetByteStream: *IMFByteStream,
     pAudioMediaType: *IMFMediaType,
     ppMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateMuxSink(
     guidOutputSubType: Guid,
     pOutputAttributes: ?*IMFAttributes,
@@ -27632,6 +27971,7 @@ pub extern "MF" fn MFCreateMuxSink(
     ppMuxSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateFMPEG4MediaSink(
     pIByteStream: *IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
@@ -27639,6 +27979,7 @@ pub extern "MF" fn MFCreateFMPEG4MediaSink(
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "mfsrcsnk" fn MFCreateAVIMediaSink(
     pIByteStream: *IMFByteStream,
     pVideoMediaType: *IMFMediaType,
@@ -27646,78 +27987,94 @@ pub extern "mfsrcsnk" fn MFCreateAVIMediaSink(
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "mfsrcsnk" fn MFCreateWAVEMediaSink(
     pTargetByteStream: *IMFByteStream,
     pAudioMediaType: *IMFMediaType,
     ppMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateTopoLoader(
     ppObj: **IMFTopoLoader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateSampleGrabberSinkActivate(
     pIMFMediaType: *IMFMediaType,
     pIMFSampleGrabberSinkCallback: *IMFSampleGrabberSinkCallback,
     ppIActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateStandardQualityManager(
     ppQualityManager: **IMFQualityManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateSequencerSource(
     pReserved: *IUnknown,
     ppSequencerSource: **IMFSequencerSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateSequencerSegmentOffset(
     dwId: u32,
     hnsOffset: i64,
     pvarSegmentOffset: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateAggregateSource(
     pSourceCollection: *IMFCollection,
     ppAggSource: **IMFMediaSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateCredentialCache(
     ppCache: **IMFNetCredentialCache,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateProxyLocator(
     pszProtocol: [*:0]const u16,
     pProxyConfig: *IPropertyStore,
     ppProxyLocator: **IMFNetProxyLocator,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateNetSchemePlugin(
     riid: *const Guid,
     ppvHandler: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreatePMPServer(
     dwCreationFlags: u32,
     ppPMPServer: **IMFPMPServer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateRemoteDesktopPlugin(
     ppPlugin: **IMFRemoteDesktopPlugin,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn CreateNamedPropertyStore(
     ppStore: **INamedPropertyStore,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateSampleCopierMFT(
     ppCopierMFT: **IMFTransform,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateTranscodeProfile(
     ppTranscodeProfile: **IMFTranscodeProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateTranscodeTopology(
     pSrc: *IMFMediaSource,
     pwszOutputFilePath: [*:0]const u16,
@@ -27725,6 +28082,7 @@ pub extern "MF" fn MFCreateTranscodeTopology(
     ppTranscodeTopo: **IMFTopology,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateTranscodeTopologyFromByteStream(
     pSrc: *IMFMediaSource,
     pOutputStream: *IMFByteStream,
@@ -27732,6 +28090,7 @@ pub extern "MF" fn MFCreateTranscodeTopologyFromByteStream(
     ppTranscodeTopo: **IMFTopology,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFTranscodeGetAudioOutputAvailableTypes(
     guidSubType: *const Guid,
     dwMFTFlags: u32,
@@ -27739,91 +28098,109 @@ pub extern "MF" fn MFTranscodeGetAudioOutputAvailableTypes(
     ppAvailableTypes: **IMFCollection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateTranscodeSinkActivate(
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateTrackedSample(
     ppMFSample: **IMFTrackedSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFCreateMFByteStreamOnStream(
     pStream: *IStream,
     ppByteStream: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateStreamOnMFByteStream(
     pByteStream: *IMFByteStream,
     ppStream: **IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateMFByteStreamOnStreamEx(
     punkStream: *IUnknown,
     ppByteStream: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateStreamOnMFByteStreamEx(
     pByteStream: *IMFByteStream,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateMediaTypeFromProperties(
     punkStream: *IUnknown,
     ppMediaType: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreatePropertiesFromMediaType(
     pMediaType: *IMFMediaType,
     riid: *const Guid,
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFEnumDeviceSources(
     pAttributes: *IMFAttributes,
     pppSourceActivate: ***IMFActivate,
     pcSourceActivate: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateDeviceSource(
     pAttributes: *IMFAttributes,
     ppSource: **IMFMediaSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateDeviceSourceActivate(
     pAttributes: *IMFAttributes,
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFCreateProtectedEnvironmentAccess(
     ppAccess: **IMFProtectedEnvironmentAccess,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFLoadSignedLibrary(
     pszName: [*:0]const u16,
     ppLib: **IMFSignedLibrary,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFGetSystemId(
     ppId: **IMFSystemId,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MF" fn MFGetLocalId(
     verifier: [*:0]const u8,
     size: u32,
     id: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MFPlat" fn MFCreateContentProtectionDevice(
     ProtectionSystemId: *const Guid,
     ContentProtectionDevice: **IMFContentProtectionDevice,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MFPlat" fn MFIsContentProtectionDeviceSupported(
     ProtectionSystemId: *const Guid,
     isSupported: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MFPlat" fn MFCreateContentDecryptorContext(
     guidMediaProtectionSystemId: *const Guid,
     pD3DManager: ?*IMFDXGIDeviceManager,
@@ -27831,11 +28208,13 @@ pub extern "MFPlat" fn MFCreateContentDecryptorContext(
     ppContentDecryptorContext: **IMFContentDecryptorContext,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "MFSENSORGROUP" fn MFCreateSensorGroup(
     SensorGroupSymbolicLink: [*:0]const u16,
     ppSensorGroup: **IMFSensorGroup,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "MFSENSORGROUP" fn MFCreateSensorStream(
     StreamId: u32,
     pAttributes: ?*IMFAttributes,
@@ -27843,6 +28222,7 @@ pub extern "MFSENSORGROUP" fn MFCreateSensorStream(
     ppStream: **IMFSensorStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "MFSENSORGROUP" fn MFCreateSensorProfile(
     ProfileType: *const Guid,
     ProfileIndex: u32,
@@ -27850,6 +28230,7 @@ pub extern "MFSENSORGROUP" fn MFCreateSensorProfile(
     ppProfile: **IMFSensorProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "MFSENSORGROUP" fn MFCreateSensorProfileCollection(
     ppSensorProfile: **IMFSensorProfileCollection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -27868,107 +28249,129 @@ pub extern "MFCORE" fn MFCreateExtendedCameraIntrinsicModel(
     ppExtendedCameraIntrinsicModel: **IMFExtendedCameraIntrinsicModel,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "MFSENSORGROUP" fn MFCreateRelativePanelWatcher(
     videoDeviceId: [*:0]const u16,
     displayMonitorDeviceId: [*:0]const u16,
     ppRelativePanelWatcher: **IMFRelativePanelWatcher,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFContentInfo(
     ppIContentInfo: **IMFASFContentInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFIndexer(
     ppIIndexer: **IMFASFIndexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFIndexerByteStream(
     pIContentByteStream: *IMFByteStream,
     cbIndexStartOffset: u64,
     pIIndexByteStream: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFSplitter(
     ppISplitter: **IMFASFSplitter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFProfile(
     ppIProfile: **IMFASFProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFProfileFromPresentationDescriptor(
     pIPD: *IMFPresentationDescriptor,
     ppIProfile: **IMFASFProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreatePresentationDescriptorFromASFProfile(
     pIProfile: *IMFASFProfile,
     ppIPD: **IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFMultiplexer(
     ppIMultiplexer: **IMFASFMultiplexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFStreamSelector(
     pIASFProfile: *IMFASFProfile,
     ppSelector: **IMFASFStreamSelector,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFMediaSink(
     pIByteStream: *IMFByteStream,
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateASFMediaSinkActivate(
     pwszFileName: [*:0]const u16,
     pContentInfo: *IMFASFContentInfo,
     ppIActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateWMVEncoderActivate(
     pMediaType: *IMFMediaType,
     pEncodingConfigurationProperties: *IPropertyStore,
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MF" fn MFCreateWMAEncoderActivate(
     pMediaType: *IMFMediaType,
     pEncodingConfigurationProperties: *IPropertyStore,
     ppActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateASFStreamingMediaSink(
     pIByteStream: *IMFByteStream,
     ppIMediaSink: **IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MF" fn MFCreateASFStreamingMediaSinkActivate(
     pByteStreamActivate: *IMFActivate,
     pContentInfo: *IMFASFContentInfo,
     ppIActivate: **IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFStartup(
     Version: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFShutdown(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFLockPlatform(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFUnlockPlatform(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFPutWorkItem(
     dwQueue: u32,
     pCallback: *IMFAsyncCallback,
     pState: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFPutWorkItem2(
     dwQueue: u32,
     Priority: i32,
@@ -27976,17 +28379,20 @@ pub extern "MFPlat" fn MFPutWorkItem2(
     pState: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFPutWorkItemEx(
     dwQueue: u32,
     pResult: *IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFPutWorkItemEx2(
     dwQueue: u32,
     Priority: i32,
     pResult: *IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFPutWaitingWorkItem(
     hEvent: HANDLE,
     Priority: i32,
@@ -27994,17 +28400,20 @@ pub extern "MFPlat" fn MFPutWaitingWorkItem(
     pKey: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFAllocateSerialWorkQueue(
     dwWorkQueue: u32,
     pdwWorkQueue: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFScheduleWorkItemEx(
     pResult: *IMFAsyncResult,
     Timeout: i64,
     pKey: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFScheduleWorkItem(
     pCallback: *IMFAsyncCallback,
     pState: *IUnknown,
@@ -28012,41 +28421,50 @@ pub extern "MFPlat" fn MFScheduleWorkItem(
     pKey: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCancelWorkItem(
     Key: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetTimerPeriodicity(
     Periodicity: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFAddPeriodicCallback(
     Callback: MFPERIODICCALLBACK,
     pContext: *IUnknown,
     pdwKey: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFRemovePeriodicCallback(
     dwKey: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFAllocateWorkQueueEx(
     WorkQueueType: MFASYNC_WORKQUEUE_TYPE,
     pdwWorkQueue: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFAllocateWorkQueue(
     pdwWorkQueue: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFLockWorkQueue(
     dwWorkQueue: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFUnlockWorkQueue(
     dwWorkQueue: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSS(
     dwWorkQueueId: u32,
     wszClass: [*:0]const u16,
@@ -28055,6 +28473,7 @@ pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSS(
     pDoneState: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
     dwWorkQueueId: u32,
     wszClass: [*:0]const u16,
@@ -28064,41 +28483,49 @@ pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
     pDoneState: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFEndRegisterWorkQueueWithMMCSS(
     pResult: *IMFAsyncResult,
     pdwTaskId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFBeginUnregisterWorkQueueWithMMCSS(
     dwWorkQueueId: u32,
     pDoneCallback: *IMFAsyncCallback,
     pDoneState: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFEndUnregisterWorkQueueWithMMCSS(
     pResult: *IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetWorkQueueMMCSSClass(
     dwWorkQueueId: u32,
     pwszClass: ?[*:0]u16,
     pcchClass: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetWorkQueueMMCSSTaskId(
     dwWorkQueueId: u32,
     pdwTaskId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFRegisterPlatformWithMMCSS(
     wszClass: [*:0]const u16,
     pdwTaskId: *u32,
     lPriority: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFUnregisterPlatformFromMMCSS(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFLockSharedWorkQueue(
     wszClass: [*:0]const u16,
     BasePriority: i32,
@@ -28106,11 +28533,13 @@ pub extern "MFPlat" fn MFLockSharedWorkQueue(
     pID: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFGetWorkQueueMMCSSPriority(
     dwWorkQueueId: u32,
     lPriority: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateAsyncResult(
     punkObject: *IUnknown,
     pCallback: *IMFAsyncCallback,
@@ -28118,10 +28547,12 @@ pub extern "MFPlat" fn MFCreateAsyncResult(
     ppAsyncResult: **IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInvokeCallback(
     pAsyncResult: *IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
@@ -28130,6 +28561,7 @@ pub extern "MFPlat" fn MFCreateFile(
     ppIByteStream: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateTempFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
@@ -28137,6 +28569,7 @@ pub extern "MFPlat" fn MFCreateTempFile(
     ppIByteStream: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFBeginCreateFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
@@ -28147,20 +28580,24 @@ pub extern "MFPlat" fn MFBeginCreateFile(
     ppCancelCookie: **IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFEndCreateFile(
     pResult: *IMFAsyncResult,
     ppFile: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCancelCreateFile(
     pCancelCookie: *IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMemoryBuffer(
     cbMaxLength: u32,
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMediaBufferWrapper(
     pBuffer: *IMFMediaBuffer,
     cbOffset: u32,
@@ -28168,6 +28605,7 @@ pub extern "MFPlat" fn MFCreateMediaBufferWrapper(
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
     pSample: ?*IMFSample,
     pMFMediaBuffer: *IMFMediaBuffer,
@@ -28175,22 +28613,27 @@ pub extern "MFPlat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
     ppMediaBuffer: **IMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFMapDX9FormatToDXGIFormat(
     dx9: u32,
 ) callconv(@import("std").os.windows.WINAPI) DXGI_FORMAT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFMapDXGIFormatToDX9Format(
     dx11: DXGI_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFLockDXGIDeviceManager(
     pResetToken: ?*u32,
     ppManager: **IMFDXGIDeviceManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFUnlockDXGIDeviceManager(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateDXSurfaceBuffer(
     riid: *const Guid,
     punkSurface: *IUnknown,
@@ -28198,12 +28641,14 @@ pub extern "MFPlat" fn MFCreateDXSurfaceBuffer(
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateWICBitmapBuffer(
     riid: *const Guid,
     punkSurface: *IUnknown,
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateDXGISurfaceBuffer(
     riid: *const Guid,
     punkSurface: *IUnknown,
@@ -28212,22 +28657,26 @@ pub extern "MFPlat" fn MFCreateDXGISurfaceBuffer(
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateVideoSampleAllocatorEx(
     riid: *const Guid,
     ppSampleAllocator: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateDXGIDeviceManager(
     resetToken: *u32,
     ppDeviceManager: **IMFDXGIDeviceManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateAlignedMemoryBuffer(
     cbMaxLength: u32,
     cbAligment: u32,
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMediaEvent(
     met: u32,
     guidExtendedType: *const Guid,
@@ -28236,36 +28685,43 @@ pub extern "MFPlat" fn MFCreateMediaEvent(
     ppEvent: **IMFMediaEvent,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateEventQueue(
     ppMediaEventQueue: **IMFMediaEventQueue,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateSample(
     ppIMFSample: **IMFSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateAttributes(
     ppMFAttributes: **IMFAttributes,
     cInitialSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitAttributesFromBlob(
     pAttributes: *IMFAttributes,
     pBuf: [*:0]const u8,
     cbBufSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetAttributesAsBlobSize(
     pAttributes: *IMFAttributes,
     pcbBufSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetAttributesAsBlob(
     pAttributes: *IMFAttributes,
     pBuf: [*:0]u8,
     cbBufSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFTRegister(
     clsidMFT: Guid,
     guidCategory: Guid,
@@ -28278,10 +28734,12 @@ pub extern "MFPlat" fn MFTRegister(
     pAttributes: ?*IMFAttributes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFTUnregister(
     clsidMFT: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFTRegisterLocal(
     pClassFactory: *IClassFactory,
     guidCategory: *const Guid,
@@ -28293,10 +28751,12 @@ pub extern "MFPlat" fn MFTRegisterLocal(
     pOutputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFTUnregisterLocal(
     pClassFactory: ?*IClassFactory,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFTRegisterLocalByCLSID(
     clisdMFT: *const Guid,
     guidCategory: *const Guid,
@@ -28308,10 +28768,12 @@ pub extern "MFPlat" fn MFTRegisterLocalByCLSID(
     pOutputTypes: ?[*]const MFT_REGISTER_TYPE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFTUnregisterLocalByCLSID(
     clsidMFT: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFTEnum(
     guidCategory: Guid,
     Flags: u32,
@@ -28322,6 +28784,7 @@ pub extern "MFPlat" fn MFTEnum(
     pcMFTs: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFTEnumEx(
     guidCategory: Guid,
     Flags: u32,
@@ -28331,6 +28794,7 @@ pub extern "MFPlat" fn MFTEnumEx(
     pnumMFTActivate: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MFPlat" fn MFTEnum2(
     guidCategory: Guid,
     Flags: u32,
@@ -28341,6 +28805,7 @@ pub extern "MFPlat" fn MFTEnum2(
     pnumMFTActivate: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFTGetInfo(
     clsidMFT: Guid,
     pszName: ?*?PWSTR,
@@ -28351,10 +28816,12 @@ pub extern "MFPlat" fn MFTGetInfo(
     ppAttributes: ?*?*IMFAttributes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFGetPluginControl(
     ppPluginControl: **IMFPluginControl,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFGetMFTMerit(
     pMFT: *IUnknown,
     cbVerifier: u32,
@@ -28362,22 +28829,26 @@ pub extern "MFPlat" fn MFGetMFTMerit(
     merit: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFRegisterLocalSchemeHandler(
     szScheme: [*:0]const u16,
     pActivate: *IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFRegisterLocalByteStreamHandler(
     szFileExtension: [*:0]const u16,
     szMimeType: [*:0]const u16,
     pActivate: *IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateMFByteStreamWrapper(
     pStream: *IMFByteStream,
     ppStreamWrapper: **IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateMediaExtensionActivate(
     szActivatableClassId: [*:0]const u16,
     pConfiguration: ?*IUnknown,
@@ -28385,37 +28856,44 @@ pub extern "MFPlat" fn MFCreateMediaExtensionActivate(
     ppvObject: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "MFPlat" fn MFCreateMuxStreamAttributes(
     pAttributesToMux: *IMFCollection,
     ppMuxAttribs: **IMFAttributes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "MFPlat" fn MFCreateMuxStreamMediaType(
     pMediaTypesToMux: *IMFCollection,
     ppMuxMediaType: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "MFPlat" fn MFCreateMuxStreamSample(
     pSamplesToMux: *IMFCollection,
     ppMuxSample: **IMFSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFValidateMediaTypeSize(
     FormatType: Guid,
     pBlock: ?[*:0]u8,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMediaType(
     ppMFType: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMFVideoFormatFromMFMediaType(
     pMFType: *IMFMediaType,
     ppMFVF: **MFVIDEOFORMAT,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateWaveFormatExFromMFMediaType(
     pMFType: *IMFMediaType,
     ppWF: **WAVEFORMATEX,
@@ -28423,6 +28901,7 @@ pub extern "MFPlat" fn MFCreateWaveFormatExFromMFMediaType(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader(
     pMFType: *IMFMediaType,
     pVIH: [*]const VIDEOINFOHEADER,
@@ -28430,6 +28909,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader(
     pSubtype: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader2(
     pMFType: *IMFMediaType,
     pVIH2: [*]const VIDEOINFOHEADER2,
@@ -28437,6 +28917,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader2(
     pSubtype: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromMPEG1VideoInfo(
     pMFType: *IMFMediaType,
     pMP1VI: [*]const MPEG1VIDEOINFO,
@@ -28444,6 +28925,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromMPEG1VideoInfo(
     pSubtype: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromMPEG2VideoInfo(
     pMFType: *IMFMediaType,
     pMP2VI: [*]const MPEG2VIDEOINFO,
@@ -28451,6 +28933,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromMPEG2VideoInfo(
     pSubtype: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCalculateBitmapImageSize(
     pBMIH: [*]const BITMAPINFOHEADER,
     cbBufSize: u32,
@@ -28458,6 +28941,7 @@ pub extern "MFPlat" fn MFCalculateBitmapImageSize(
     pbKnown: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCalculateImageSize(
     guidSubtype: *const Guid,
     unWidth: u32,
@@ -28465,52 +28949,61 @@ pub extern "MFPlat" fn MFCalculateImageSize(
     pcbImageSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFFrameRateToAverageTimePerFrame(
     unNumerator: u32,
     unDenominator: u32,
     punAverageTimePerFrame: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFAverageTimePerFrameToFrameRate(
     unAverageTimePerFrame: u64,
     punNumerator: *u32,
     punDenominator: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromMFVideoFormat(
     pMFType: *IMFMediaType,
     pMFVF: [*]const MFVIDEOFORMAT,
     cbBufSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromWaveFormatEx(
     pMFType: *IMFMediaType,
     pWaveFormat: [*]const WAVEFORMATEX,
     cbBufSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitMediaTypeFromAMMediaType(
     pMFType: *IMFMediaType,
     pAMType: *const AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitAMMediaTypeFromMFMediaType(
     pMFType: *IMFMediaType,
     guidFormatBlockType: Guid,
     pAMType: *AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateAMMediaTypeFromMFMediaType(
     pMFType: *IMFMediaType,
     guidFormatBlockType: Guid,
     ppAMType: **AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCompareFullToPartialMediaType(
     pMFTypeFull: *IMFMediaType,
     pMFTypePartial: *IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFWrapMediaType(
     pOrig: *IMFMediaType,
     MajorType: *const Guid,
@@ -28518,25 +29011,30 @@ pub extern "MFPlat" fn MFWrapMediaType(
     ppWrap: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFUnwrapMediaType(
     pWrap: *IMFMediaType,
     ppOrig: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateVideoMediaType(
     pVideoFormat: *const MFVIDEOFORMAT,
     ppIVideoMediaType: **IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateVideoMediaTypeFromSubtype(
     pAMSubtype: *const Guid,
     ppIVideoMediaType: **IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "EVR" fn MFIsFormatYUV(
     Format: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
     pbmihBitMapInfoHeader: *const BITMAPINFOHEADER,
     dwPixelAspectRatioX: u32,
@@ -28549,12 +29047,14 @@ pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
     ppIVideoMediaType: **IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetStrideForBitmapInfoHeader(
     format: u32,
     dwWidth: u32,
     pStride: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetPlaneSize(
     format: u32,
     dwWidth: u32,
@@ -28562,6 +29062,7 @@ pub extern "MFPlat" fn MFGetPlaneSize(
     pdwPlaneSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
     pbmihBitMapInfoHeader: [*]const BITMAPINFOHEADER,
     cbBitMapInfoHeader: u32,
@@ -28575,26 +29076,31 @@ pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
     ppIVideoMediaType: **IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateMediaTypeFromRepresentation(
     guidRepresentation: Guid,
     pvRepresentation: *c_void,
     ppIMediaType: **IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateAudioMediaType(
     pAudioFormat: *const WAVEFORMATEX,
     ppIAudioMediaType: **IMFAudioMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFGetUncompressedVideoFormat(
     pVideoFormat: *const MFVIDEOFORMAT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitVideoFormat(
     pVideoFormat: *MFVIDEOFORMAT,
     type: MFStandardVideoFormat,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFInitVideoFormat_RGB(
     pVideoFormat: *MFVIDEOFORMAT,
     dwWidth: u32,
@@ -28602,16 +29108,19 @@ pub extern "MFPlat" fn MFInitVideoFormat_RGB(
     D3Dfmt: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFConvertColorInfoToDXVA(
     pdwToDXVA: *u32,
     pFromFormat: *const MFVIDEOFORMAT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFConvertColorInfoFromDXVA(
     pToFormat: *MFVIDEOFORMAT,
     dwFromDXVA: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCopyImage(
     pDest: *u8,
     lDestStride: i32,
@@ -28621,18 +29130,21 @@ pub extern "MFPlat" fn MFCopyImage(
     dwLines: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFConvertFromFP16Array(
     pDest: [*]f32,
     pSrc: [*:0]const u16,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFConvertToFP16Array(
     pDest: [*:0]u16,
     pSrc: [*]const f32,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreate2DMediaBuffer(
     dwWidth: u32,
     dwHeight: u32,
@@ -28641,6 +29153,7 @@ pub extern "MFPlat" fn MFCreate2DMediaBuffer(
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFCreateMediaBufferFromMediaType(
     pMediaType: *IMFMediaType,
     llDuration: i64,
@@ -28649,10 +29162,12 @@ pub extern "MFPlat" fn MFCreateMediaBufferFromMediaType(
     ppBuffer: **IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreateCollection(
     ppIMFCollection: **IMFCollection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFHeapAlloc(
     nSize: ?*c_void,
     dwFlags: u32,
@@ -28661,10 +29176,12 @@ pub extern "MFPlat" fn MFHeapAlloc(
     eat: EAllocationType,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFHeapFree(
     pv: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlat" fn MFllMulDiv(
     a: i64,
     b: i64,
@@ -28672,11 +29189,13 @@ pub extern "MFPlat" fn MFllMulDiv(
     d: i64,
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "MFPlat" fn MFGetContentProtectionSystemCLSID(
     guidProtectionSystemID: *const Guid,
     pclsid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "MFPlat" fn MFCombineSamples(
     pSample: *IMFSample,
     pSampleToAdd: *IMFSample,
@@ -28684,6 +29203,7 @@ pub extern "MFPlat" fn MFCombineSamples(
     pMerged: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "MFPlat" fn MFSplitSample(
     pSample: *IMFSample,
     pOutputSamples: [*]*IMFSample,
@@ -28691,24 +29211,28 @@ pub extern "MFPlat" fn MFSplitSample(
     pdwOutputSampleCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFReadWrite" fn MFCreateSourceReaderFromURL(
     pwszURL: [*:0]const u16,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: **IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFReadWrite" fn MFCreateSourceReaderFromByteStream(
     pByteStream: *IMFByteStream,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: **IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFReadWrite" fn MFCreateSourceReaderFromMediaSource(
     pMediaSource: *IMFMediaSource,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: **IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFReadWrite" fn MFCreateSinkWriterFromURL(
     pwszOutputURL: ?[*:0]const u16,
     pByteStream: ?*IMFByteStream,
@@ -28716,6 +29240,7 @@ pub extern "MFReadWrite" fn MFCreateSinkWriterFromURL(
     ppSinkWriter: **IMFSinkWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFReadWrite" fn MFCreateSinkWriterFromMediaSink(
     pMediaSink: *IMFMediaSink,
     pAttributes: ?*IMFAttributes,
@@ -28760,6 +29285,7 @@ pub extern "EVR" fn MFCreateVideoSampleAllocator(
     ppSampleAllocator: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "MFPlay" fn MFPCreateMediaPlayer(
     pwszURL: ?[*:0]const u16,
     fStartPlayback: BOOL,
@@ -28769,6 +29295,7 @@ pub extern "MFPlay" fn MFPCreateMediaPlayer(
     ppMediaPlayer: ?*?*IMFPMediaPlayer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "MF" fn MFCreateEncryptedMediaExtensionsStoreActivate(
     pmpHost: *IMFPMPHostApp,
     objectStream: *IStream,
@@ -28793,27 +29320,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (67)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const ID3D11Texture2D = @import("direct3d11.zig").ID3D11Texture2D;
 const D3DDISPLAYROTATION = @import("direct3d9.zig").D3DDISPLAYROTATION;
 const ID3D12CommandList = @import("direct3d12.zig").ID3D12CommandList;
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const ID3D11Texture2D = @import("direct3d11.zig").ID3D11Texture2D;
 const DXGI_COLOR_SPACE_TYPE = @import("dxgi.zig").DXGI_COLOR_SPACE_TYPE;
 const D3DPOOL = @import("direct3d9.zig").D3DPOOL;
 const DXGI_HDR_METADATA_TYPE = @import("dxgi.zig").DXGI_HDR_METADATA_TYPE;
 const D3D12_PREDICATION_OP = @import("direct3d12.zig").D3D12_PREDICATION_OP;
 const ID3D12Resource = @import("direct3d12.zig").ID3D12Resource;
 const IInspectable = @import("win_rt.zig").IInspectable;
-const ID3D11View = @import("direct3d11.zig").ID3D11View;
 const D3DAUTHENTICATEDCHANNELTYPE = @import("direct3d9.zig").D3DAUTHENTICATEDCHANNELTYPE;
+const ID3D11View = @import("direct3d11.zig").ID3D11View;
 const AM_MEDIA_TYPE = @import("direct_show.zig").AM_MEDIA_TYPE;
 const IMFDeviceTransform = @import("streaming_media.zig").IMFDeviceTransform;
 const ISpatialAudioMetadataItems = @import("core_audio.zig").ISpatialAudioMetadataItems;
 const INamedPropertyStore = @import("shell.zig").INamedPropertyStore;
 const IPropertyStore = @import("audio.zig").IPropertyStore;
-const IDirect3DSurface9 = @import("direct3d9.zig").IDirect3DSurface9;
-const D3DENCRYPTED_BLOCK_INFO = @import("direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
-const IStream = @import("structured_storage.zig").IStream;
 const D3D12_QUERY_TYPE = @import("direct3d12.zig").D3D12_QUERY_TYPE;
+const IDirect3DSurface9 = @import("direct3d9.zig").IDirect3DSurface9;
+const IStream = @import("structured_storage.zig").IStream;
+const D3DENCRYPTED_BLOCK_INFO = @import("direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
 const PWSTR = @import("system_services.zig").PWSTR;
 const D3DDEVTYPE = @import("direct3d9.zig").D3DDEVTYPE;
 const HMONITOR = @import("gdi.zig").HMONITOR;
@@ -28826,15 +29353,15 @@ const ID3D12ProtectedResourceSession = @import("direct3d12.zig").ID3D12Protected
 const DXGI_FORMAT = @import("dxgi.zig").DXGI_FORMAT;
 const D3D12_COMMAND_LIST_SUPPORT_FLAGS = @import("direct3d12.zig").D3D12_COMMAND_LIST_SUPPORT_FLAGS;
 const AudioObjectType = @import("core_audio.zig").AudioObjectType;
-const ID3D11DeviceChild = @import("direct3d11.zig").ID3D11DeviceChild;
 const HANDLE = @import("system_services.zig").HANDLE;
+const ID3D11DeviceChild = @import("direct3d11.zig").ID3D11DeviceChild;
 const IDirect3DDevice9 = @import("direct3d9.zig").IDirect3DDevice9;
 const ID3D12Pageable = @import("direct3d12.zig").ID3D12Pageable;
-const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
-const HRESULT = @import("com.zig").HRESULT;
 const DMO_MEDIA_TYPE = @import("direct_show.zig").DMO_MEDIA_TYPE;
+const HRESULT = @import("com.zig").HRESULT;
+const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
 const VIDEOINFOHEADER2 = @import("direct_show.zig").VIDEOINFOHEADER2;
-const BITMAPINFOHEADER = @import("direct_show.zig").BITMAPINFOHEADER;
+const BITMAPINFOHEADER = @import("gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("system_services.zig").BOOL;
 const D3D11_AUTHENTICATED_PROTECTION_FLAGS = @import("direct3d11.zig").D3D11_AUTHENTICATED_PROTECTION_FLAGS;
 const LUID = @import("kernel.zig").LUID;
@@ -28853,8 +29380,8 @@ const IClassFactory = @import("com.zig").IClassFactory;
 const VARIANT = @import("automation.zig").VARIANT;
 const MPEG2VIDEOINFO = @import("direct_show.zig").MPEG2VIDEOINFO;
 const IMediaBuffer = @import("direct_show.zig").IMediaBuffer;
-const D3DFORMAT = @import("direct3d9.zig").D3DFORMAT;
 const D3D12_DISCARD_REGION = @import("direct3d12.zig").D3D12_DISCARD_REGION;
+const D3DFORMAT = @import("direct3d9.zig").D3DFORMAT;
 const SIZE = @import("display_devices.zig").SIZE;
 const WAVEFORMATEX = @import("multimedia.zig").WAVEFORMATEX;
 const POINT = @import("display_devices.zig").POINT;

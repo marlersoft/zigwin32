@@ -773,6 +773,7 @@ pub const IDXGISurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGISurface1_Value = @import("../zig.zig").Guid.initString("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
 pub const IID_IDXGISurface1 = &IID_IDXGISurface1_Value;
 pub const IDXGISurface1 = extern struct {
@@ -1201,6 +1202,7 @@ pub const DXGI_DISPLAY_COLOR_SPACE = extern struct {
     WhitePoints: [32]f32,
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIFactory1_Value = @import("../zig.zig").Guid.initString("770aae78-f26f-4dba-a829-253c83d1b387");
 pub const IID_IDXGIFactory1 = &IID_IDXGIFactory1_Value;
 pub const IDXGIFactory1 = extern struct {
@@ -1230,6 +1232,7 @@ pub const IDXGIFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIAdapter1_Value = @import("../zig.zig").Guid.initString("29038f61-3839-4626-91fd-086879011a05");
 pub const IID_IDXGIAdapter1 = &IID_IDXGIAdapter1_Value;
 pub const IDXGIAdapter1 = extern struct {
@@ -1251,6 +1254,7 @@ pub const IDXGIAdapter1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIDevice1_Value = @import("../zig.zig").Guid.initString("77db970f-6276-48ba-ba28-070143b4392c");
 pub const IID_IDXGIDevice1 = &IID_IDXGIDevice1_Value;
 pub const IDXGIDevice1 = extern struct {
@@ -1280,6 +1284,7 @@ pub const IDXGIDevice1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDisplayControl_Value = @import("../zig.zig").Guid.initString("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
 pub const IID_IDXGIDisplayControl = &IID_IDXGIDisplayControl_Value;
 pub const IDXGIDisplayControl = extern struct {
@@ -1352,6 +1357,7 @@ pub const DXGI_OUTDUPL_FRAME_INFO = extern struct {
     PointerShapeBufferSize: u32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutputDuplication_Value = @import("../zig.zig").Guid.initString("191cfac3-a341-470d-b26e-a864f428319c");
 pub const IID_IDXGIOutputDuplication = &IID_IDXGIOutputDuplication_Value;
 pub const IDXGIOutputDuplication = extern struct {
@@ -1449,6 +1455,7 @@ pub const DXGI_ALPHA_MODE_STRAIGHT = DXGI_ALPHA_MODE.STRAIGHT;
 pub const DXGI_ALPHA_MODE_IGNORE = DXGI_ALPHA_MODE.IGNORE;
 pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISurface2_Value = @import("../zig.zig").Guid.initString("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
 pub const IID_IDXGISurface2 = &IID_IDXGISurface2_Value;
 pub const IDXGISurface2 = extern struct {
@@ -1472,6 +1479,7 @@ pub const IDXGISurface2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIResource1_Value = @import("../zig.zig").Guid.initString("30961379-4609-4a41-998e-54fe567ee0c1");
 pub const IID_IDXGIResource1 = &IID_IDXGIResource1_Value;
 pub const IDXGIResource1 = extern struct {
@@ -1514,6 +1522,7 @@ pub const DXGI_OFFER_RESOURCE_PRIORITY_LOW = DXGI_OFFER_RESOURCE_PRIORITY.LOW;
 pub const DXGI_OFFER_RESOURCE_PRIORITY_NORMAL = DXGI_OFFER_RESOURCE_PRIORITY.NORMAL;
 pub const DXGI_OFFER_RESOURCE_PRIORITY_HIGH = DXGI_OFFER_RESOURCE_PRIORITY.HIGH;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDevice2_Value = @import("../zig.zig").Guid.initString("05008617-fbfd-4051-a790-144884b4f6a9");
 pub const IID_IDXGIDevice2 = &IID_IDXGIDevice2_Value;
 pub const IDXGIDevice2 = extern struct {
@@ -1602,6 +1611,7 @@ pub const DXGI_PRESENT_PARAMETERS = extern struct {
     pScrollOffset: *POINT,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISwapChain1_Value = @import("../zig.zig").Guid.initString("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
 pub const IID_IDXGISwapChain1 = &IID_IDXGISwapChain1_Value;
 pub const IDXGISwapChain1 = extern struct {
@@ -1705,6 +1715,7 @@ pub const IDXGISwapChain1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIFactory2_Value = @import("../zig.zig").Guid.initString("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
 pub const IID_IDXGIFactory2 = &IID_IDXGIFactory2_Value;
 pub const IDXGIFactory2 = extern struct {
@@ -1865,6 +1876,7 @@ pub const DXGI_ADAPTER_DESC2 = extern struct {
     ComputePreemptionGranularity: DXGI_COMPUTE_PREEMPTION_GRANULARITY,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIAdapter2_Value = @import("../zig.zig").Guid.initString("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
 pub const IID_IDXGIAdapter2 = &IID_IDXGIAdapter2_Value;
 pub const IDXGIAdapter2 = extern struct {
@@ -1886,6 +1898,7 @@ pub const IDXGIAdapter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutput1_Value = @import("../zig.zig").Guid.initString("00cddea8-939b-4b83-a340-a685226666cc");
 pub const IID_IDXGIOutput1 = &IID_IDXGIOutput1_Value;
 pub const IDXGIOutput1 = extern struct {
@@ -1937,6 +1950,7 @@ pub const IDXGIOutput1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDevice3_Value = @import("../zig.zig").Guid.initString("6007896c-3244-4afd-bf18-a6d3beda5023");
 pub const IID_IDXGIDevice3 = &IID_IDXGIDevice3_Value;
 pub const IDXGIDevice3 = extern struct {
@@ -1966,6 +1980,7 @@ pub const DXGI_MATRIX_3X2_F = extern struct {
     _32: f32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISwapChain2_Value = @import("../zig.zig").Guid.initString("a8be2ac4-199f-4946-b331-79599fb98de7");
 pub const IID_IDXGISwapChain2 = &IID_IDXGISwapChain2_Value;
 pub const IDXGISwapChain2 = extern struct {
@@ -2036,6 +2051,7 @@ pub const IDXGISwapChain2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutput2_Value = @import("../zig.zig").Guid.initString("595e39d1-2724-4663-99b1-da969de28364");
 pub const IID_IDXGIOutput2 = &IID_IDXGIOutput2_Value;
 pub const IDXGIOutput2 = extern struct {
@@ -2056,6 +2072,7 @@ pub const IDXGIOutput2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIFactory3_Value = @import("../zig.zig").Guid.initString("25483823-cd46-4c7d-86ca-47aa95b837bd");
 pub const IID_IDXGIFactory3 = &IID_IDXGIFactory3_Value;
 pub const IDXGIFactory3 = extern struct {
@@ -2089,6 +2106,7 @@ pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_NOMINAL_RANGE = DXGI_MULTIPLANE_OVE
 pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709 = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS.BT709;
 pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS.xvYCC;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDecodeSwapChain_Value = @import("../zig.zig").Guid.initString("2633066b-4514-4c7a-8fd8-12ea98059d18");
 pub const IID_IDXGIDecodeSwapChain = &IID_IDXGIDecodeSwapChain_Value;
 pub const IDXGIDecodeSwapChain = extern struct {
@@ -2177,6 +2195,7 @@ pub const IDXGIDecodeSwapChain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIFactoryMedia_Value = @import("../zig.zig").Guid.initString("41e7d1f2-a591-4f7b-a2e5-fa9c843e1c12");
 pub const IID_IDXGIFactoryMedia = &IID_IDXGIFactoryMedia_Value;
 pub const IDXGIFactoryMedia = extern struct {
@@ -2236,6 +2255,7 @@ pub const DXGI_FRAME_STATISTICS_MEDIA = extern struct {
     ApprovedPresentDuration: u32,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISwapChainMedia_Value = @import("../zig.zig").Guid.initString("dd95b90b-f05f-4f6a-bd65-25bfb264bd84");
 pub const IID_IDXGISwapChainMedia = &IID_IDXGISwapChainMedia_Value;
 pub const IDXGISwapChainMedia = extern struct {
@@ -2282,6 +2302,7 @@ pub const DXGI_OVERLAY_SUPPORT_FLAG = extern enum(i32) {
 pub const DXGI_OVERLAY_SUPPORT_FLAG_DIRECT = DXGI_OVERLAY_SUPPORT_FLAG.DIRECT;
 pub const DXGI_OVERLAY_SUPPORT_FLAG_SCALING = DXGI_OVERLAY_SUPPORT_FLAG.SCALING;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutput3_Value = @import("../zig.zig").Guid.initString("8a6bb301-7e7e-41f4-a8e0-5b32f7f99b18");
 pub const IID_IDXGIOutput3 = &IID_IDXGIOutput3_Value;
 pub const IDXGIOutput3 = extern struct {
@@ -2312,6 +2333,7 @@ pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
 pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG.PRESENT;
 pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG.OVERLAY_PRESENT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGISwapChain3_Value = @import("../zig.zig").Guid.initString("94d99bdb-f1f8-4ab0-b236-7da0170edab1");
 pub const IID_IDXGISwapChain3 = &IID_IDXGISwapChain3_Value;
 pub const IDXGISwapChain3 = extern struct {
@@ -2368,6 +2390,7 @@ pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
 };
 pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG.T;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput4_Value = @import("../zig.zig").Guid.initString("dc7dca35-2196-414d-9f53-617884032a60");
 pub const IID_IDXGIOutput4 = &IID_IDXGIOutput4_Value;
 pub const IDXGIOutput4 = extern struct {
@@ -2510,6 +2533,7 @@ pub const DXGI_OUTDUPL_FLAG = extern enum(i32) {
 };
 pub const DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY = DXGI_OUTDUPL_FLAG.Y;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput5_Value = @import("../zig.zig").Guid.initString("80a07424-ab52-42eb-833c-0c42fd282d98");
 pub const IID_IDXGIOutput5 = &IID_IDXGIOutput5_Value;
 pub const IDXGIOutput5 = extern struct {
@@ -2739,6 +2763,7 @@ pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMP
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED;
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput6_Value = @import("../zig.zig").Guid.initString("068346e8-aaec-4b84-add7-137f513f77a1");
 pub const IID_IDXGIOutput6 = &IID_IDXGIOutput6_Value;
 pub const IDXGIOutput6 = extern struct {
@@ -2777,6 +2802,7 @@ pub const DXGI_GPU_PREFERENCE_UNSPECIFIED = DXGI_GPU_PREFERENCE.UNSPECIFIED;
 pub const DXGI_GPU_PREFERENCE_MINIMUM_POWER = DXGI_GPU_PREFERENCE.MINIMUM_POWER;
 pub const DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE = DXGI_GPU_PREFERENCE.HIGH_PERFORMANCE;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IDXGIFactory6_Value = @import("../zig.zig").Guid.initString("c1b6694f-ff09-44a9-b03c-77900a0a1d17");
 pub const IID_IDXGIFactory6 = &IID_IDXGIFactory6_Value;
 pub const IDXGIFactory6 = extern struct {
@@ -2801,6 +2827,7 @@ pub const IDXGIFactory6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IDXGIFactory7_Value = @import("../zig.zig").Guid.initString("a4966eed-76db-44da-84c1-ee9a7afb20a8");
 pub const IID_IDXGIFactory7 = &IID_IDXGIFactory7_Value;
 pub const IDXGIFactory7 = extern struct {
@@ -2903,6 +2930,7 @@ pub const DXGI_INFO_QUEUE_FILTER = extern struct {
     DenyList: DXGI_INFO_QUEUE_FILTER_DESC,
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIInfoQueue_Value = @import("../zig.zig").Guid.initString("d67441c7-672a-476f-9e82-cd55b44949ce");
 pub const IID_IDXGIInfoQueue = &IID_IDXGIInfoQueue_Value;
 pub const IDXGIInfoQueue = extern struct {
@@ -3239,6 +3267,7 @@ pub const IDXGIInfoQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDebug_Value = @import("../zig.zig").Guid.initString("119e7452-de9e-40fe-8806-88f90c12b441");
 pub const IID_IDXGIDebug = &IID_IDXGIDebug_Value;
 pub const IDXGIDebug = extern struct {
@@ -3261,6 +3290,7 @@ pub const IDXGIDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDebug1_Value = @import("../zig.zig").Guid.initString("c5a05f0c-16f2-4adf-9f4d-a8c4d58ac550");
 pub const IID_IDXGIDebug1 = &IID_IDXGIDebug1_Value;
 pub const IDXGIDebug1 = extern struct {
@@ -3304,23 +3334,27 @@ pub extern "dxgi" fn CreateDXGIFactory(
     ppFactory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "dxgi" fn CreateDXGIFactory1(
     riid: *const Guid,
     ppFactory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dxgi" fn CreateDXGIFactory2(
     Flags: u32,
     riid: *const Guid,
     ppFactory: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "dxgi" fn DXGIGetDebugInterface1(
     Flags: u32,
     riid: *const Guid,
     pDebug: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

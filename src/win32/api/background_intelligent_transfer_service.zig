@@ -87,6 +87,7 @@ pub const BG_FILE_PROGRESS = extern struct {
     Completed: BOOL,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyFile_Value = @import("../zig.zig").Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
 pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
 pub const IBackgroundCopyFile = extern struct {
@@ -124,6 +125,7 @@ pub const IBackgroundCopyFile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyFiles_Value = @import("../zig.zig").Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
 pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
 pub const IEnumBackgroundCopyFiles = extern struct {
@@ -199,6 +201,7 @@ pub const BG_ERROR_CONTEXT_GENERAL_TRANSPORT = BG_ERROR_CONTEXT.GENERAL_TRANSPOR
 pub const BG_ERROR_CONTEXT_REMOTE_APPLICATION = BG_ERROR_CONTEXT.REMOTE_APPLICATION;
 pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER_CERTIFICATE_CALLBACK;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyError_Value = @import("../zig.zig").Guid.initString("19c613a0-fcb8-4f28-81ae-897c3d078f81");
 pub const IID_IBackgroundCopyError = &IID_IBackgroundCopyError_Value;
 pub const IBackgroundCopyError = extern struct {
@@ -325,6 +328,7 @@ pub const BG_JOB_PROXY_USAGE_NO_PROXY = BG_JOB_PROXY_USAGE.NO_PROXY;
 pub const BG_JOB_PROXY_USAGE_OVERRIDE = BG_JOB_PROXY_USAGE.OVERRIDE;
 pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob_Value = @import("../zig.zig").Guid.initString("37668d37-507e-4160-9316-26306d150b12");
 pub const IID_IBackgroundCopyJob = &IID_IBackgroundCopyJob_Value;
 pub const IBackgroundCopyJob = extern struct {
@@ -595,6 +599,7 @@ pub const IBackgroundCopyJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs_Value = @import("../zig.zig").Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
 pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
 pub const IEnumBackgroundCopyJobs = extern struct {
@@ -649,6 +654,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback_Value = @import("../zig.zig").Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
 pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
 pub const IBackgroundCopyCallback = extern struct {
@@ -748,6 +754,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
 pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
 pub const IBackgroundCopyManager = extern struct {
@@ -841,6 +848,7 @@ pub const BG_AUTH_CREDENTIALS = extern struct {
     Credentials: BG_AUTH_CREDENTIALS_UNION,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob2_Value = @import("../zig.zig").Guid.initString("54b50739-686f-45eb-9dff-d6a9a0faa9af");
 pub const IID_IBackgroundCopyJob2 = &IID_IBackgroundCopyJob2_Value;
 pub const IBackgroundCopyJob2 = extern struct {
@@ -930,6 +938,7 @@ pub const BG_FILE_RANGE = extern struct {
     Length: u64,
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob3_Value = @import("../zig.zig").Guid.initString("443c8934-90ff-48ed-bcde-26f5c7450042");
 pub const IID_IBackgroundCopyJob3 = &IID_IBackgroundCopyJob3_Value;
 pub const IBackgroundCopyJob3 = extern struct {
@@ -979,6 +988,7 @@ pub const IBackgroundCopyJob3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile2_Value = @import("../zig.zig").Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
 pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
 pub const IBackgroundCopyFile2 = extern struct {
@@ -1031,6 +1041,7 @@ pub const BG_CERT_STORE_LOCATION_CURRENT_USER_GROUP_POLICY = BG_CERT_STORE_LOCAT
 pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_GROUP_POLICY = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_GROUP_POLICY;
 pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_ENTERPRISE;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJobHttpOptions_Value = @import("../zig.zig").Guid.initString("f1bd1079-9f01-4bdc-8036-f09b70095066");
 pub const IID_IBackgroundCopyJobHttpOptions = &IID_IBackgroundCopyJobHttpOptions_Value;
 pub const IBackgroundCopyJobHttpOptions = extern struct {
@@ -1117,6 +1128,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
 const CLSID_BackgroundCopyManager3_0_Value = @import("../zig.zig").Guid.initString("659cdea7-489e-11d9-a9cd-000d56965251");
 pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheRecord_Value = @import("../zig.zig").Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
 pub const IBitsPeerCacheRecord = extern struct {
@@ -1186,6 +1198,7 @@ pub const IBitsPeerCacheRecord = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeerCacheRecords_Value = @import("../zig.zig").Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
 pub const IEnumBitsPeerCacheRecords = extern struct {
@@ -1240,6 +1253,7 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeer_Value = @import("../zig.zig").Guid.initString("659cdea2-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeer = &IID_IBitsPeer_Value;
 pub const IBitsPeer = extern struct {
@@ -1277,6 +1291,7 @@ pub const IBitsPeer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeers_Value = @import("../zig.zig").Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
 pub const IEnumBitsPeers = extern struct {
@@ -1331,6 +1346,7 @@ pub const IEnumBitsPeers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheAdministration_Value = @import("../zig.zig").Guid.initString("659cdead-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheAdministration = &IID_IBitsPeerCacheAdministration_Value;
 pub const IBitsPeerCacheAdministration = extern struct {
@@ -1454,6 +1470,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob4_Value = @import("../zig.zig").Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
 pub const IBackgroundCopyJob4 = extern struct {
@@ -1515,6 +1532,7 @@ pub const IBackgroundCopyJob4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile3_Value = @import("../zig.zig").Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
 pub const IBackgroundCopyFile3 = extern struct {
@@ -1560,6 +1578,7 @@ pub const IBackgroundCopyFile3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyCallback2_Value = @import("../zig.zig").Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
 pub const IBackgroundCopyCallback2 = extern struct {
@@ -1585,6 +1604,7 @@ pub const IBackgroundCopyCallback2 = extern struct {
 const CLSID_BackgroundCopyManager4_0_Value = @import("../zig.zig").Guid.initString("bb6df56b-cace-11dc-9992-0019b93a3a84");
 pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value;
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBitsTokenOptions_Value = @import("../zig.zig").Guid.initString("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2");
 pub const IID_IBitsTokenOptions = &IID_IBitsTokenOptions_Value;
 pub const IBitsTokenOptions = extern struct {
@@ -1636,6 +1656,7 @@ pub const IBitsTokenOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IBackgroundCopyFile4_Value = @import("../zig.zig").Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
 pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
 pub const IBackgroundCopyFile4 = extern struct {
@@ -1702,6 +1723,7 @@ pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
 
 pub const BITS_FILE_PROPERTY_VALUE = u32; // TODO: implement StructOrUnion types?
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyJob5_Value = @import("../zig.zig").Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
 pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
 pub const IBackgroundCopyJob5 = extern struct {
@@ -1733,6 +1755,7 @@ pub const IBackgroundCopyJob5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyFile5_Value = @import("../zig.zig").Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
 pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
 pub const IBackgroundCopyFile5 = extern struct {
@@ -1767,6 +1790,7 @@ pub const IBackgroundCopyFile5 = extern struct {
 const CLSID_BackgroundCopyManager10_1_Value = @import("../zig.zig").Guid.initString("4bd3e4e1-7bd4-4a2b-9964-496400de5193");
 pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Value;
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyCallback3_Value = @import("../zig.zig").Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
 pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
 pub const IBackgroundCopyCallback3 = extern struct {
@@ -1791,6 +1815,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyFile6_Value = @import("../zig.zig").Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
 pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
 pub const IBackgroundCopyFile6 = extern struct {
@@ -1833,6 +1858,7 @@ pub const IBackgroundCopyFile6 = extern struct {
 const CLSID_BackgroundCopyManager10_2_Value = @import("../zig.zig").Guid.initString("4575438f-a6c8-4976-b0fe-2f26b80d959e");
 pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Value;
 
+// TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IBackgroundCopyJobHttpOptions2_Value = @import("../zig.zig").Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
 pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
 pub const IBackgroundCopyJobHttpOptions2 = extern struct {
@@ -1923,6 +1949,7 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
 const CLSID_BITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("efbbab68-7286-4783-94bf-9461d8b7e7e9");
 pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Value;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetup_Value = @import("../zig.zig").Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
 pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
 pub const IBITSExtensionSetup = extern struct {
@@ -1967,6 +1994,7 @@ pub const IBITSExtensionSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
 pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
 pub const IBITSExtensionSetupFactory = extern struct {
@@ -1998,6 +2026,7 @@ pub const FILESETINFO = extern struct {
     dwSizeHint: u32,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob1_Value = @import("../zig.zig").Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
 pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
 pub const IBackgroundCopyJob1 = extern struct {
@@ -2079,6 +2108,7 @@ pub const IBackgroundCopyJob1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs1_Value = @import("../zig.zig").Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
 pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
 pub const IEnumBackgroundCopyJobs1 = extern struct {
@@ -2162,6 +2192,7 @@ pub const GROUPPROP_PROGRESSTIME = GROUPPROP.PROGRESSTIME;
 pub const GROUPPROP_DISPLAYNAME = GROUPPROP.DISPLAYNAME;
 pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyGroup_Value = @import("../zig.zig").Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
 pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
 pub const IBackgroundCopyGroup = extern struct {
@@ -2300,6 +2331,7 @@ pub const IBackgroundCopyGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyGroups_Value = @import("../zig.zig").Guid.initString("d993e603-4aa4-47c5-8665-c20d39c2ba4f");
 pub const IID_IEnumBackgroundCopyGroups = &IID_IEnumBackgroundCopyGroups_Value;
 pub const IEnumBackgroundCopyGroups = extern struct {
@@ -2354,6 +2386,7 @@ pub const IEnumBackgroundCopyGroups = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback1_Value = @import("../zig.zig").Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
 pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
 pub const IBackgroundCopyCallback1 = extern struct {
@@ -2407,6 +2440,7 @@ pub const IBackgroundCopyCallback1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
 pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
 pub const IBackgroundCopyQMgr = extern struct {

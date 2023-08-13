@@ -253,6 +253,7 @@ pub const ACT_AUTHORIZATION_STATE_VALUE = extern enum(i32) {
 pub const ACT_UNAUTHORIZED = ACT_AUTHORIZATION_STATE_VALUE.UNAUTHORIZED;
 pub const ACT_AUTHORIZED = ACT_AUTHORIZATION_STATE_VALUE.AUTHORIZED;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("09b224bd-1335-4631-a7ff-cfd3a92646d7");
 pub const IID_IEnumEnhancedStorageACT = &IID_IEnumEnhancedStorageACT_Value;
 pub const IEnumEnhancedStorageACT = extern struct {
@@ -284,6 +285,7 @@ pub const IEnumEnhancedStorageACT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("6e7781f4-e0f2-4239-b976-a01abab52930");
 pub const IID_IEnhancedStorageACT = &IID_IEnhancedStorageACT_Value;
 pub const IEnhancedStorageACT = extern struct {
@@ -346,6 +348,7 @@ pub const IEnhancedStorageACT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IEnhancedStorageACT2_Value = @import("../zig.zig").Guid.initString("4da57d2e-8eb3-41f6-a07e-98b52b88242b");
 pub const IID_IEnhancedStorageACT2 = &IID_IEnhancedStorageACT2_Value;
 pub const IEnhancedStorageACT2 = extern struct {
@@ -412,6 +415,7 @@ pub const IEnhancedStorageACT3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageSilo_Value = @import("../zig.zig").Guid.initString("5aef78c6-2242-4703-bf49-44b29357a359");
 pub const IID_IEnhancedStorageSilo = &IID_IEnhancedStorageSilo_Value;
 pub const IEnhancedStorageSilo = extern struct {
@@ -470,6 +474,7 @@ pub const IEnhancedStorageSilo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnhancedStorageSiloAction_Value = @import("../zig.zig").Guid.initString("b6f7f311-206f-4ff8-9c4b-27efee77a86f");
 pub const IID_IEnhancedStorageSiloAction = &IID_IEnhancedStorageSiloAction_Value;
 pub const IEnhancedStorageSiloAction = extern struct {

@@ -243,20 +243,24 @@ pub const FILE_UNPROTECT_OPTIONS = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpCreateThreadNetworkContext(
     enterpriseId: [*:0]const u16,
     threadNetworkContext: *HTHREAD_NETWORK_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpCloseThreadNetworkContext(
     threadNetworkContext: *HTHREAD_NETWORK_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpSetTokenEnterpriseId(
     tokenHandle: HANDLE,
     enterpriseId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpGetEnterpriseIds(
     tokenHandle: HANDLE,
     numberOfBytes: ?*u32,
@@ -264,28 +268,34 @@ pub extern "srpapi" fn SrpGetEnterpriseIds(
     enterpriseIdCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpEnablePermissiveModeFileEncryption(
     enterpriseId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpDisablePermissiveModeFileEncryption(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpGetEnterprisePolicy(
     tokenHandle: HANDLE,
     policyFlags: *ENTERPRISE_DATA_POLICIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpIsTokenService(
     TokenHandle: HANDLE,
     IsTokenService: *u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpDoesPolicyAllowAppExecution(
     packageId: *const PACKAGE_ID,
     isAllowed: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "efswrt" fn ProtectFileToEnterpriseIdentity(
     fileOrFolderPath: [*:0]const u16,
     identity: [*:0]const u16,

@@ -2,6 +2,37 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (88)
 //--------------------------------------------------------------------------------
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
+pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
+pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
+pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
+pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
+pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
+pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
+pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
+pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
+pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
+pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
+pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
+pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
+pub const GUID_PACKETPROPERTY_GUID_ALTITUDE_ORIENTATION = Guid.initString("82dec5c7-f6ba-4906-894f-66d68dfc456c");
+pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
+pub const GUID_PACKETPROPERTY_GUID_PITCH_ROTATION = Guid.initString("7f7e57b7-be37-4be1-a356-7a84160e1893");
+pub const GUID_PACKETPROPERTY_GUID_ROLL_ROTATION = Guid.initString("5d5d5e56-6ba9-4c5b-9fb0-851c91714e56");
+pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
+pub const GUID_PACKETPROPERTY_GUID_WIDTH = Guid.initString("baabe94d-2712-48f5-be9d-8f8b5ea0711a");
+pub const GUID_PACKETPROPERTY_GUID_HEIGHT = Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
+pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
+pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
+pub const InkMinTransparencyValue = @as(i32, 0);
+pub const InkMaxTransparencyValue = @as(i32, 255);
+pub const InkCollectorClipInkToMargin = @as(i32, 0);
+pub const InkCollectorDefaultMargin = @as(i32, -2147483648);
+pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
+pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
 pub const SAFE_PARTIAL = @as(u32, 1);
 pub const BEST_COMPLETE = @as(u32, 2);
 pub const MAX_VENDORNAME = @as(u32, 32);
@@ -59,41 +90,26 @@ pub const IP_CURSOR_DOWN = @as(u32, 1);
 pub const IP_INVERTED = @as(u32, 2);
 pub const IP_MARGIN = @as(u32, 4);
 pub const IECN__BASE = @as(u32, 2048);
-pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
-pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
-pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
-pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
-pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
-pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
-pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
-pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
-pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
-pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
-pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
-pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
-pub const GUID_PACKETPROPERTY_GUID_ALTITUDE_ORIENTATION = Guid.initString("82dec5c7-f6ba-4906-894f-66d68dfc456c");
-pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
-pub const GUID_PACKETPROPERTY_GUID_PITCH_ROTATION = Guid.initString("7f7e57b7-be37-4be1-a356-7a84160e1893");
-pub const GUID_PACKETPROPERTY_GUID_ROLL_ROTATION = Guid.initString("5d5d5e56-6ba9-4c5b-9fb0-851c91714e56");
-pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
-pub const GUID_PACKETPROPERTY_GUID_WIDTH = Guid.initString("baabe94d-2712-48f5-be9d-8f8b5ea0711a");
-pub const GUID_PACKETPROPERTY_GUID_HEIGHT = Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
-pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
-pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
-pub const InkMinTransparencyValue = @as(i32, 0);
-pub const InkMaxTransparencyValue = @as(i32, 255);
-pub const InkCollectorClipInkToMargin = @as(i32, 0);
-pub const InkCollectorDefaultMargin = @as(i32, -2147483648);
-pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
-pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
-pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
+pub const HRECOALT = ?*c_void;
+
+pub const HRECOCONTEXT = ?*c_void;
+
+pub const HRECOGNIZER = ?*c_void;
+
+pub const HRECOLATTICE = ?*c_void;
+
+pub const HRECOWORDLIST = ?*c_void;
+
+pub const PfnRecoCallback = fn(
+    param0: u32,
+    param1: *u8,
+    param2: HRECOCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
@@ -1688,6 +1704,7 @@ pub const IInkRectangle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkExtendedProperty_Value = @import("../zig.zig").Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
 pub const IID_IInkExtendedProperty = &IID_IInkExtendedProperty_Value;
 pub const IInkExtendedProperty = extern struct {
@@ -1725,6 +1742,7 @@ pub const IInkExtendedProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkExtendedProperties_Value = @import("../zig.zig").Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
 pub const IID_IInkExtendedProperties = &IID_IInkExtendedProperties_Value;
 pub const IInkExtendedProperties = extern struct {
@@ -2174,6 +2192,7 @@ pub const IInkTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkGesture_Value = @import("../zig.zig").Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
 pub const IID_IInkGesture = &IID_IInkGesture_Value;
 pub const IInkGesture = extern struct {
@@ -2212,6 +2231,7 @@ pub const IInkGesture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkCursor_Value = @import("../zig.zig").Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
 pub const IID_IInkCursor = &IID_IInkCursor_Value;
 pub const IInkCursor = extern struct {
@@ -2281,6 +2301,7 @@ pub const IInkCursor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkCursors_Value = @import("../zig.zig").Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
 pub const IID_IInkCursors = &IID_IInkCursors_Value;
 pub const IInkCursors = extern struct {
@@ -2319,6 +2340,7 @@ pub const IInkCursors = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkCursorButton_Value = @import("../zig.zig").Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
 pub const IID_IInkCursorButton = &IID_IInkCursorButton_Value;
 pub const IInkCursorButton = extern struct {
@@ -2356,6 +2378,7 @@ pub const IInkCursorButton = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkCursorButtons_Value = @import("../zig.zig").Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
 pub const IID_IInkCursorButtons = &IID_IInkCursorButtons_Value;
 pub const IInkCursorButtons = extern struct {
@@ -2394,6 +2417,7 @@ pub const IInkCursorButtons = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkTablet_Value = @import("../zig.zig").Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
 pub const IID_IInkTablet = &IID_IInkTablet_Value;
 pub const IInkTablet = extern struct {
@@ -2460,6 +2484,7 @@ pub const IInkTablet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkTablet2_Value = @import("../zig.zig").Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
 pub const IID_IInkTablet2 = &IID_IInkTablet2_Value;
 pub const IInkTablet2 = extern struct {
@@ -2481,6 +2506,7 @@ pub const IInkTablet2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IInkTablet3_Value = @import("../zig.zig").Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
 pub const IID_IInkTablet3 = &IID_IInkTablet3_Value;
 pub const IInkTablet3 = extern struct {
@@ -2565,6 +2591,7 @@ pub const IInkTablets = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkStrokeDisp_Value = @import("../zig.zig").Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
 pub const IID_IInkStrokeDisp = &IID_IInkStrokeDisp_Value;
 pub const IInkStrokeDisp = extern struct {
@@ -3057,6 +3084,7 @@ pub const IInkStrokes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkCustomStrokes_Value = @import("../zig.zig").Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
 pub const IID_IInkCustomStrokes = &IID_IInkCustomStrokes_Value;
 pub const IInkCustomStrokes = extern struct {
@@ -4859,6 +4887,7 @@ pub const _IInkPictureEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognizer_Value = @import("../zig.zig").Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
 pub const IID_IInkRecognizer = &IID_IInkRecognizer_Value;
 pub const IInkRecognizer = extern struct {
@@ -4928,6 +4957,7 @@ pub const IInkRecognizer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognizer2_Value = @import("../zig.zig").Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
 pub const IID_IInkRecognizer2 = &IID_IInkRecognizer2_Value;
 pub const IInkRecognizer2 = extern struct {
@@ -5222,6 +5252,7 @@ pub const IInkRecognizerContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognizerContext2_Value = @import("../zig.zig").Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
 pub const IID_IInkRecognizerContext2 = &IID_IInkRecognizerContext2_Value;
 pub const IInkRecognizerContext2 = extern struct {
@@ -5251,6 +5282,7 @@ pub const IInkRecognizerContext2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognitionResult_Value = @import("../zig.zig").Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
 pub const IID_IInkRecognitionResult = &IID_IInkRecognitionResult_Value;
 pub const IInkRecognitionResult = extern struct {
@@ -5322,6 +5354,7 @@ pub const IInkRecognitionResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognitionAlternate_Value = @import("../zig.zig").Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
 pub const IID_IInkRecognitionAlternate = &IID_IInkRecognitionAlternate_Value;
 pub const IInkRecognitionAlternate = extern struct {
@@ -5462,6 +5495,7 @@ pub const IInkRecognitionAlternate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkRecognitionAlternates_Value = @import("../zig.zig").Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
 pub const IID_IInkRecognitionAlternates = &IID_IInkRecognitionAlternates_Value;
 pub const IInkRecognitionAlternates = extern struct {
@@ -5654,6 +5688,7 @@ pub const IInkWordList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkWordList2_Value = @import("../zig.zig").Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
 pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
 pub const IInkWordList2 = extern struct {
@@ -5688,6 +5723,7 @@ pub const IInk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkLineInfo_Value = @import("../zig.zig").Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
 pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
 pub const IInkLineInfo = extern struct {
@@ -5887,6 +5923,7 @@ pub const IInkDivider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkDivisionResult_Value = @import("../zig.zig").Guid.initString("2dbec0a7-74c7-4b38-81eb-aa8ef0c24900");
 pub const IID_IInkDivisionResult = &IID_IInkDivisionResult_Value;
 pub const IInkDivisionResult = extern struct {
@@ -5917,6 +5954,7 @@ pub const IInkDivisionResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkDivisionUnit_Value = @import("../zig.zig").Guid.initString("85aee342-48b0-4244-9dd5-1ed435410fab");
 pub const IID_IInkDivisionUnit = &IID_IInkDivisionUnit_Value;
 pub const IInkDivisionUnit = extern struct {
@@ -5962,6 +6000,7 @@ pub const IInkDivisionUnit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInkDivisionUnits_Value = @import("../zig.zig").Guid.initString("1bb5ddc2-31cc-4135-ab82-2c66c9f00c41");
 pub const IID_IInkDivisionUnits = &IID_IInkDivisionUnits_Value;
 pub const IInkDivisionUnits = extern struct {
@@ -6398,6 +6437,7 @@ pub const _IPenInputPanelEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IHandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
 pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
 pub const IHandwrittenTextInsertion = extern struct {
@@ -6431,6 +6471,7 @@ pub const IHandwrittenTextInsertion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITextInputPanelEventSink_Value = @import("../zig.zig").Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
 pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
 pub const ITextInputPanelEventSink = extern struct {
@@ -6550,6 +6591,7 @@ pub const ITextInputPanelEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITextInputPanel_Value = @import("../zig.zig").Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
 pub const IID_ITextInputPanel = &IID_ITextInputPanel_Value;
 pub const ITextInputPanel = extern struct {
@@ -6811,6 +6853,7 @@ pub const IInputPanelWindowHandle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITextInputPanelRunInfo_Value = @import("../zig.zig").Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
 pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
 pub const ITextInputPanelRunInfo = extern struct {
@@ -8069,6 +8112,7 @@ pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
     dynamicRenderer: *IDynamicRenderer,
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRealTimeStylus_Value = @import("../zig.zig").Guid.initString("a8bb5d22-3144-4a7b-93cd-f34a16be513a");
 pub const IID_IRealTimeStylus = &IID_IRealTimeStylus_Value;
 pub const IRealTimeStylus = extern struct {
@@ -8346,6 +8390,7 @@ pub const IRealTimeStylus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRealTimeStylus2_Value = @import("../zig.zig").Guid.initString("b5f2a6cd-3179-4a3e-b9c4-bb5865962be2");
 pub const IID_IRealTimeStylus2 = &IID_IRealTimeStylus2_Value;
 pub const IRealTimeStylus2 = extern struct {
@@ -8375,6 +8420,7 @@ pub const IRealTimeStylus2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IRealTimeStylus3_Value = @import("../zig.zig").Guid.initString("d70230a3-6986-4051-b57a-1cf69f4d9db5");
 pub const IID_IRealTimeStylus3 = &IID_IRealTimeStylus3_Value;
 pub const IRealTimeStylus3 = extern struct {
@@ -8404,6 +8450,7 @@ pub const IRealTimeStylus3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRealTimeStylusSynchronization_Value = @import("../zig.zig").Guid.initString("aa87eab8-ab4a-4cea-b5cb-46d84c6a2509");
 pub const IID_IRealTimeStylusSynchronization = &IID_IRealTimeStylusSynchronization_Value;
 pub const IRealTimeStylusSynchronization = extern struct {
@@ -8433,6 +8480,7 @@ pub const IRealTimeStylusSynchronization = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStrokeBuilder_Value = @import("../zig.zig").Guid.initString("a5fd4e2d-c44b-4092-9177-260905eb672b");
 pub const IID_IStrokeBuilder = &IID_IStrokeBuilder_Value;
 pub const IStrokeBuilder = extern struct {
@@ -8513,6 +8561,7 @@ pub const IStrokeBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStylusPlugin_Value = @import("../zig.zig").Guid.initString("a81436d8-4757-4fd1-a185-133f97c6c545");
 pub const IID_IStylusPlugin = &IID_IStylusPlugin_Value;
 pub const IStylusPlugin = extern struct {
@@ -8709,6 +8758,7 @@ pub const IStylusPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStylusSyncPlugin_Value = @import("../zig.zig").Guid.initString("a157b174-482f-4d71-a3f6-3a41ddd11be9");
 pub const IID_IStylusSyncPlugin = &IID_IStylusSyncPlugin_Value;
 pub const IStylusSyncPlugin = extern struct {
@@ -8722,6 +8772,7 @@ pub const IStylusSyncPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStylusAsyncPlugin_Value = @import("../zig.zig").Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
 pub const IID_IStylusAsyncPlugin = &IID_IStylusAsyncPlugin_Value;
 pub const IStylusAsyncPlugin = extern struct {
@@ -8735,6 +8786,7 @@ pub const IStylusAsyncPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IDynamicRenderer_Value = @import("../zig.zig").Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
 pub const IID_IDynamicRenderer = &IID_IDynamicRenderer_Value;
 pub const IDynamicRenderer = extern struct {
@@ -8867,6 +8919,7 @@ pub const IDynamicRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IGestureRecognizer_Value = @import("../zig.zig").Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
 pub const IID_IGestureRecognizer = &IID_IGestureRecognizer_Value;
 pub const IGestureRecognizer = extern struct {
@@ -9132,61 +9185,53 @@ pub const ITipAutoCompleteClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HRECOALT = ?*c_void;
-
-pub const HRECOCONTEXT = ?*c_void;
-
-pub const HRECOGNIZER = ?*c_void;
-
-pub const HRECOLATTICE = ?*c_void;
-
-pub const HRECOWORDLIST = ?*c_void;
-
-pub const PfnRecoCallback = fn(
-    param0: u32,
-    param1: *u8,
-    param2: HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn CreateRecognizer(
     pCLSID: *Guid,
     phrec: *HRECOGNIZER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyRecognizer(
     hrec: HRECOGNIZER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetRecoAttributes(
     hrec: HRECOGNIZER,
     pRecoAttrs: *RECO_ATTRS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn CreateContext(
     hrec: HRECOGNIZER,
     phrc: *HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyContext(
     hrc: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetResultPropertyList(
     hrec: HRECOGNIZER,
     pPropertyCount: *u32,
     pPropertyGuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetUnicodeRanges(
     hrec: HRECOGNIZER,
     pcRanges: *u32,
     pcr: *CHARACTER_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddStroke(
     hrc: HRECOCONTEXT,
     pPacketDesc: *const PACKET_DESCRIPTION,
@@ -9195,48 +9240,57 @@ pub extern "inkobjcore" fn AddStroke(
     pXForm: *const XFORM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetBestResultString(
     hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcBestResult: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetGuide(
     hrc: HRECOCONTEXT,
     pGuide: *const RECO_GUIDE,
     iIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AdviseInkChange(
     hrc: HRECOCONTEXT,
     bNewStroke: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn EndInkInput(
     hrc: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn Process(
     hrc: HRECOCONTEXT,
     pbPartialProcessing: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetFactoid(
     hrc: HRECOCONTEXT,
     cwcFactoid: u32,
     pwcFactoid: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetFlags(
     hrc: HRECOCONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetLatticePtr(
     hrc: HRECOCONTEXT,
     ppLattice: **RECO_LATTICE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetTextContext(
     hrc: HRECOCONTEXT,
     cwcBefore: u32,
@@ -9245,55 +9299,65 @@ pub extern "inkobjcore" fn SetTextContext(
     pwcAfter: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetEnabledUnicodeRanges(
     hrc: HRECOCONTEXT,
     cRanges: u32,
     pcr: *CHARACTER_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn IsStringSupported(
     hrc: HRECOCONTEXT,
     wcString: u32,
     pwcString: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetWordList(
     hrc: HRECOCONTEXT,
     hwl: HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetRightSeparator(
     hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcRightSeparator: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetLeftSeparator(
     hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcLeftSeparator: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn DestroyWordList(
     hwl: HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddWordsToWordList(
     hwl: HRECOWORDLIST,
     pwcWords: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn MakeWordList(
     hrec: HRECOGNIZER,
     pBuffer: PWSTR,
     phwl: *HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn GetAllRecognizers(
     recognizerClsids: **Guid,
     count: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn LoadCachedAttributes(
     clsid: Guid,
     pRecoAttributes: *RECO_ATTRS,

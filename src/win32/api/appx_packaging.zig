@@ -189,6 +189,7 @@ pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_CHANGE = APPX_PACKAGING_CONTEXT_CHA
 pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_DETAILS = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.DETAILS;
 pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_END = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.END;
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxFactory_Value = @import("../zig.zig").Guid.initString("beb94909-e451-438b-b5a7-d79e767b75d8");
 pub const IID_IAppxFactory = &IID_IAppxFactory_Value;
 pub const IAppxFactory = extern struct {
@@ -249,6 +250,7 @@ pub const IAppxFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxFactory2_Value = @import("../zig.zig").Guid.initString("f1346df2-c282-4e22-b918-743a929a8d55");
 pub const IID_IAppxFactory2 = &IID_IAppxFactory2_Value;
 pub const IAppxFactory2 = extern struct {
@@ -289,6 +291,7 @@ pub const IAppxFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxPackageReader_Value = @import("../zig.zig").Guid.initString("b5c49650-99bc-481c-9a34-3d53a4106708");
 pub const IID_IAppxPackageReader = &IID_IAppxPackageReader_Value;
 pub const IAppxPackageReader = extern struct {
@@ -344,6 +347,7 @@ pub const IAppxPackageReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxPackageWriter_Value = @import("../zig.zig").Guid.initString("9099e33b-246f-41e4-881a-008eb613f858");
 pub const IID_IAppxPackageWriter = &IID_IAppxPackageWriter_Value;
 pub const IAppxPackageWriter = extern struct {
@@ -376,6 +380,7 @@ pub const IAppxPackageWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxPackageWriter2_Value = @import("../zig.zig").Guid.initString("2cf5c4fd-e54c-4ea5-ba4e-f8c4b105a8c8");
 pub const IID_IAppxPackageWriter2 = &IID_IAppxPackageWriter2_Value;
 pub const IAppxPackageWriter2 = extern struct {
@@ -398,6 +403,7 @@ pub const IAppxPackageWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxPackageWriter3_Value = @import("../zig.zig").Guid.initString("a83aacd3-41c0-4501-b8a3-74164f50b2fd");
 pub const IID_IAppxPackageWriter3 = &IID_IAppxPackageWriter3_Value;
 pub const IAppxPackageWriter3 = extern struct {
@@ -421,6 +427,7 @@ pub const IAppxPackageWriter3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxFile_Value = @import("../zig.zig").Guid.initString("91df827b-94fd-468f-827b-57f41b2f6f2e");
 pub const IID_IAppxFile = &IID_IAppxFile_Value;
 pub const IAppxFile = extern struct {
@@ -474,6 +481,7 @@ pub const IAppxFile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxFilesEnumerator_Value = @import("../zig.zig").Guid.initString("f007eeaf-9831-411c-9847-917cdc62d1fe");
 pub const IID_IAppxFilesEnumerator = &IID_IAppxFilesEnumerator_Value;
 pub const IAppxFilesEnumerator = extern struct {
@@ -511,6 +519,7 @@ pub const IAppxFilesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBlockMapReader_Value = @import("../zig.zig").Guid.initString("5efec991-bca3-42d1-9ec2-e92d609ec22a");
 pub const IID_IAppxBlockMapReader = &IID_IAppxBlockMapReader_Value;
 pub const IAppxBlockMapReader = extern struct {
@@ -557,6 +566,7 @@ pub const IAppxBlockMapReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBlockMapFile_Value = @import("../zig.zig").Guid.initString("277672ac-4f63-42c1-8abc-beae3600eb59");
 pub const IID_IAppxBlockMapFile = &IID_IAppxBlockMapFile_Value;
 pub const IAppxBlockMapFile = extern struct {
@@ -611,6 +621,7 @@ pub const IAppxBlockMapFile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBlockMapFilesEnumerator_Value = @import("../zig.zig").Guid.initString("02b856a2-4262-4070-bacb-1a8cbbc42305");
 pub const IID_IAppxBlockMapFilesEnumerator = &IID_IAppxBlockMapFilesEnumerator_Value;
 pub const IAppxBlockMapFilesEnumerator = extern struct {
@@ -648,6 +659,7 @@ pub const IAppxBlockMapFilesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBlockMapBlock_Value = @import("../zig.zig").Guid.initString("75cf3930-3244-4fe0-a8c8-e0bcb270b889");
 pub const IID_IAppxBlockMapBlock = &IID_IAppxBlockMapBlock_Value;
 pub const IAppxBlockMapBlock = extern struct {
@@ -678,6 +690,7 @@ pub const IAppxBlockMapBlock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBlockMapBlocksEnumerator_Value = @import("../zig.zig").Guid.initString("6b429b5b-36ef-479e-b9eb-0c1482b49e16");
 pub const IID_IAppxBlockMapBlocksEnumerator = &IID_IAppxBlockMapBlocksEnumerator_Value;
 pub const IAppxBlockMapBlocksEnumerator = extern struct {
@@ -715,6 +728,7 @@ pub const IAppxBlockMapBlocksEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestReader_Value = @import("../zig.zig").Guid.initString("4e1bd148-55a0-4480-a3d1-15544710637c");
 pub const IID_IAppxManifestReader = &IID_IAppxManifestReader_Value;
 pub const IAppxManifestReader = extern struct {
@@ -801,6 +815,7 @@ pub const IAppxManifestReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestReader2_Value = @import("../zig.zig").Guid.initString("d06f67bc-b31d-4eba-a8af-638e73e77b4d");
 pub const IID_IAppxManifestReader2 = &IID_IAppxManifestReader2_Value;
 pub const IAppxManifestReader2 = extern struct {
@@ -873,6 +888,7 @@ pub const IAppxManifestReader4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestReader5_Value = @import("../zig.zig").Guid.initString("8d7ae132-a690-4c00-b75a-6aae1feaac80");
 pub const IID_IAppxManifestReader5 = &IID_IAppxManifestReader5_Value;
 pub const IAppxManifestReader5 = extern struct {
@@ -894,6 +910,7 @@ pub const IAppxManifestReader5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestReader6_Value = @import("../zig.zig").Guid.initString("34deaca4-d3c0-4e3e-b312-e42625e3807e");
 pub const IID_IAppxManifestReader6 = &IID_IAppxManifestReader6_Value;
 pub const IAppxManifestReader6 = extern struct {
@@ -1224,6 +1241,7 @@ pub const IAppxManifestHostRuntimeDependency = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestOptionalPackageInfo_Value = @import("../zig.zig").Guid.initString("2634847d-5b5d-4fe5-a243-002ff95edc7e");
 pub const IID_IAppxManifestOptionalPackageInfo = &IID_IAppxManifestOptionalPackageInfo_Value;
 pub const IAppxManifestOptionalPackageInfo = extern struct {
@@ -1253,6 +1271,7 @@ pub const IAppxManifestOptionalPackageInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestMainPackageDependenciesEnumerator_Value = @import("../zig.zig").Guid.initString("a99c4f00-51d2-4f0f-ba46-7ed5255ebdff");
 pub const IID_IAppxManifestMainPackageDependenciesEnumerator = &IID_IAppxManifestMainPackageDependenciesEnumerator_Value;
 pub const IAppxManifestMainPackageDependenciesEnumerator = extern struct {
@@ -1290,6 +1309,7 @@ pub const IAppxManifestMainPackageDependenciesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestMainPackageDependency_Value = @import("../zig.zig").Guid.initString("05d0611c-bc29-46d5-97e2-84b9c79bd8ae");
 pub const IID_IAppxManifestMainPackageDependency = &IID_IAppxManifestMainPackageDependency_Value;
 pub const IAppxManifestMainPackageDependency = extern struct {
@@ -1327,6 +1347,7 @@ pub const IAppxManifestMainPackageDependency = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestPackageId_Value = @import("../zig.zig").Guid.initString("283ce2d7-7153-4a91-9649-7a0f7240945f");
 pub const IID_IAppxManifestPackageId = &IID_IAppxManifestPackageId_Value;
 pub const IAppxManifestPackageId = extern struct {
@@ -1405,6 +1426,7 @@ pub const IAppxManifestPackageId = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestPackageId2_Value = @import("../zig.zig").Guid.initString("2256999d-d617-42f1-880e-0ba4542319d5");
 pub const IID_IAppxManifestPackageId2 = &IID_IAppxManifestPackageId2_Value;
 pub const IAppxManifestPackageId2 = extern struct {
@@ -1426,6 +1448,7 @@ pub const IAppxManifestPackageId2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestProperties_Value = @import("../zig.zig").Guid.initString("03faf64d-f26f-4b2c-aaf7-8fe7789b8bca");
 pub const IID_IAppxManifestProperties = &IID_IAppxManifestProperties_Value;
 pub const IAppxManifestProperties = extern struct {
@@ -1494,6 +1517,7 @@ pub const IAppxManifestTargetDeviceFamiliesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxManifestTargetDeviceFamily_Value = @import("../zig.zig").Guid.initString("9091b09b-c8d5-4f31-8687-a338259faefb");
 pub const IID_IAppxManifestTargetDeviceFamily = &IID_IAppxManifestTargetDeviceFamily_Value;
 pub const IAppxManifestTargetDeviceFamily = extern struct {
@@ -1531,6 +1555,7 @@ pub const IAppxManifestTargetDeviceFamily = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestPackageDependenciesEnumerator_Value = @import("../zig.zig").Guid.initString("b43bbcf9-65a6-42dd-bac0-8c6741e7f5a4");
 pub const IID_IAppxManifestPackageDependenciesEnumerator = &IID_IAppxManifestPackageDependenciesEnumerator_Value;
 pub const IAppxManifestPackageDependenciesEnumerator = extern struct {
@@ -1568,6 +1593,7 @@ pub const IAppxManifestPackageDependenciesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestPackageDependency_Value = @import("../zig.zig").Guid.initString("e4946b59-733e-43f0-a724-3bde4c1285a0");
 pub const IID_IAppxManifestPackageDependency = &IID_IAppxManifestPackageDependency_Value;
 pub const IAppxManifestPackageDependency = extern struct {
@@ -1605,6 +1631,7 @@ pub const IAppxManifestPackageDependency = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestPackageDependency2_Value = @import("../zig.zig").Guid.initString("dda0b713-f3ff-49d3-898a-2786780c5d98");
 pub const IID_IAppxManifestPackageDependency2 = &IID_IAppxManifestPackageDependency2_Value;
 pub const IAppxManifestPackageDependency2 = extern struct {
@@ -1647,6 +1674,7 @@ pub const IAppxManifestPackageDependency3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestResourcesEnumerator_Value = @import("../zig.zig").Guid.initString("de4dfbbd-881a-48bb-858c-d6f2baeae6ed");
 pub const IID_IAppxManifestResourcesEnumerator = &IID_IAppxManifestResourcesEnumerator_Value;
 pub const IAppxManifestResourcesEnumerator = extern struct {
@@ -1684,6 +1712,7 @@ pub const IAppxManifestResourcesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestDeviceCapabilitiesEnumerator_Value = @import("../zig.zig").Guid.initString("30204541-427b-4a1c-bacf-655bf463a540");
 pub const IID_IAppxManifestDeviceCapabilitiesEnumerator = &IID_IAppxManifestDeviceCapabilitiesEnumerator_Value;
 pub const IAppxManifestDeviceCapabilitiesEnumerator = extern struct {
@@ -1758,6 +1787,7 @@ pub const IAppxManifestCapabilitiesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestApplicationsEnumerator_Value = @import("../zig.zig").Guid.initString("9eb8a55a-f04b-4d0d-808d-686185d4847a");
 pub const IID_IAppxManifestApplicationsEnumerator = &IID_IAppxManifestApplicationsEnumerator_Value;
 pub const IAppxManifestApplicationsEnumerator = extern struct {
@@ -1795,6 +1825,7 @@ pub const IAppxManifestApplicationsEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxManifestApplication_Value = @import("../zig.zig").Guid.initString("5da89bf4-3773-46be-b650-7e744863b7e8");
 pub const IID_IAppxManifestApplication = &IID_IAppxManifestApplication_Value;
 pub const IAppxManifestApplication = extern struct {
@@ -1899,6 +1930,7 @@ pub const IAppxManifestQualifiedResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleFactory_Value = @import("../zig.zig").Guid.initString("bba65864-965f-4a5f-855f-f074bdbf3a7b");
 pub const IID_IAppxBundleFactory = &IID_IAppxBundleFactory_Value;
 pub const IAppxBundleFactory = extern struct {
@@ -1940,6 +1972,7 @@ pub const IAppxBundleFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleWriter_Value = @import("../zig.zig").Guid.initString("ec446fe8-bfec-4c64-ab4f-49f038f0c6d2");
 pub const IID_IAppxBundleWriter = &IID_IAppxBundleWriter_Value;
 pub const IAppxBundleWriter = extern struct {
@@ -1969,6 +2002,7 @@ pub const IAppxBundleWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleWriter2_Value = @import("../zig.zig").Guid.initString("6d8fe971-01cc-49a0-b685-233851279962");
 pub const IID_IAppxBundleWriter2 = &IID_IAppxBundleWriter2_Value;
 pub const IAppxBundleWriter2 = extern struct {
@@ -1991,6 +2025,7 @@ pub const IAppxBundleWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleWriter3_Value = @import("../zig.zig").Guid.initString("ad711152-f969-4193-82d5-9ddf2786d21a");
 pub const IID_IAppxBundleWriter3 = &IID_IAppxBundleWriter3_Value;
 pub const IAppxBundleWriter3 = extern struct {
@@ -2021,6 +2056,7 @@ pub const IAppxBundleWriter3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleWriter4_Value = @import("../zig.zig").Guid.initString("9cd9d523-5009-4c01-9882-dc029fbd47a3");
 pub const IID_IAppxBundleWriter4 = &IID_IAppxBundleWriter4_Value;
 pub const IAppxBundleWriter4 = extern struct {
@@ -2064,6 +2100,7 @@ pub const IAppxBundleWriter4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleReader_Value = @import("../zig.zig").Guid.initString("dd75b8c0-ba76-43b0-ae0f-68656a1dc5c8");
 pub const IID_IAppxBundleReader = &IID_IAppxBundleReader_Value;
 pub const IAppxBundleReader = extern struct {
@@ -2119,6 +2156,7 @@ pub const IAppxBundleReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleManifestReader_Value = @import("../zig.zig").Guid.initString("cf0ebbc1-cc99-4106-91eb-e67462e04fb0");
 pub const IID_IAppxBundleManifestReader = &IID_IAppxBundleManifestReader_Value;
 pub const IAppxBundleManifestReader = extern struct {
@@ -2156,6 +2194,7 @@ pub const IAppxBundleManifestReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleManifestReader2_Value = @import("../zig.zig").Guid.initString("5517df70-033f-4af2-8213-87d766805c02");
 pub const IID_IAppxBundleManifestReader2 = &IID_IAppxBundleManifestReader2_Value;
 pub const IAppxBundleManifestReader2 = extern struct {
@@ -2177,6 +2216,7 @@ pub const IAppxBundleManifestReader2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleManifestPackageInfoEnumerator_Value = @import("../zig.zig").Guid.initString("f9b856ee-49a6-4e19-b2b0-6a2406d63a32");
 pub const IID_IAppxBundleManifestPackageInfoEnumerator = &IID_IAppxBundleManifestPackageInfoEnumerator_Value;
 pub const IAppxBundleManifestPackageInfoEnumerator = extern struct {
@@ -2214,6 +2254,7 @@ pub const IAppxBundleManifestPackageInfoEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxBundleManifestPackageInfo_Value = @import("../zig.zig").Guid.initString("54cd06c1-268f-40bb-8ed2-757a9ebaec8d");
 pub const IID_IAppxBundleManifestPackageInfo = &IID_IAppxBundleManifestPackageInfo_Value;
 pub const IAppxBundleManifestPackageInfo = extern struct {
@@ -2275,6 +2316,7 @@ pub const IAppxBundleManifestPackageInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleManifestPackageInfo2_Value = @import("../zig.zig").Guid.initString("44c2acbc-b2cf-4ccb-bbdb-9c6da8c3bc9e");
 pub const IID_IAppxBundleManifestPackageInfo2 = &IID_IAppxBundleManifestPackageInfo2_Value;
 pub const IAppxBundleManifestPackageInfo2 = extern struct {
@@ -2354,6 +2396,7 @@ pub const IAppxBundleManifestPackageInfo4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value = @import("../zig.zig").Guid.initString("9a178793-f97e-46ac-aaca-dd5ba4c177c8");
 pub const IID_IAppxBundleManifestOptionalBundleInfoEnumerator = &IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value;
 pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern struct {
@@ -2391,6 +2434,7 @@ pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxBundleManifestOptionalBundleInfo_Value = @import("../zig.zig").Guid.initString("515bf2e8-bcb0-4d69-8c48-e383147b6e12");
 pub const IID_IAppxBundleManifestOptionalBundleInfo = &IID_IAppxBundleManifestOptionalBundleInfo_Value;
 pub const IAppxBundleManifestOptionalBundleInfo = extern struct {
@@ -2428,6 +2472,7 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxContentGroupFilesEnumerator_Value = @import("../zig.zig").Guid.initString("1a09a2fd-7440-44eb-8c84-848205a6a1cc");
 pub const IID_IAppxContentGroupFilesEnumerator = &IID_IAppxContentGroupFilesEnumerator_Value;
 pub const IAppxContentGroupFilesEnumerator = extern struct {
@@ -2465,6 +2510,7 @@ pub const IAppxContentGroupFilesEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxContentGroup_Value = @import("../zig.zig").Guid.initString("328f6468-c04f-4e3c-b6fa-6b8d27f3003a");
 pub const IID_IAppxContentGroup = &IID_IAppxContentGroup_Value;
 pub const IAppxContentGroup = extern struct {
@@ -2494,6 +2540,7 @@ pub const IAppxContentGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxContentGroupsEnumerator_Value = @import("../zig.zig").Guid.initString("3264e477-16d1-4d63-823e-7d2984696634");
 pub const IID_IAppxContentGroupsEnumerator = &IID_IAppxContentGroupsEnumerator_Value;
 pub const IAppxContentGroupsEnumerator = extern struct {
@@ -2531,6 +2578,7 @@ pub const IAppxContentGroupsEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxContentGroupMapReader_Value = @import("../zig.zig").Guid.initString("418726d8-dd99-4f5d-9886-157add20de01");
 pub const IID_IAppxContentGroupMapReader = &IID_IAppxContentGroupMapReader_Value;
 pub const IAppxContentGroupMapReader = extern struct {
@@ -2560,6 +2608,7 @@ pub const IAppxContentGroupMapReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxSourceContentGroupMapReader_Value = @import("../zig.zig").Guid.initString("f329791d-540b-4a9f-bc75-3282b7d73193");
 pub const IID_IAppxSourceContentGroupMapReader = &IID_IAppxSourceContentGroupMapReader_Value;
 pub const IAppxSourceContentGroupMapReader = extern struct {
@@ -2589,6 +2638,7 @@ pub const IAppxSourceContentGroupMapReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxContentGroupMapWriter_Value = @import("../zig.zig").Guid.initString("d07ab776-a9de-4798-8c14-3db31e687c78");
 pub const IID_IAppxContentGroupMapWriter = &IID_IAppxContentGroupMapWriter_Value;
 pub const IAppxContentGroupMapWriter = extern struct {
@@ -2714,6 +2764,7 @@ pub const APPX_ENCRYPTED_EXEMPTIONS = extern struct {
     plainTextFiles: *PWSTR,
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IAppxEncryptionFactory_Value = @import("../zig.zig").Guid.initString("80e8e04d-8c88-44ae-a011-7cadf6fb2e72");
 pub const IID_IAppxEncryptionFactory = &IID_IAppxEncryptionFactory_Value;
 pub const IAppxEncryptionFactory = extern struct {
@@ -2817,6 +2868,7 @@ pub const IAppxEncryptionFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxEncryptionFactory2_Value = @import("../zig.zig").Guid.initString("c1b11eee-c4ba-4ab2-a55d-d015fe8ff64f");
 pub const IID_IAppxEncryptionFactory2 = &IID_IAppxEncryptionFactory2_Value;
 pub const IAppxEncryptionFactory2 = extern struct {
@@ -2844,6 +2896,7 @@ pub const IAppxEncryptionFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxEncryptionFactory3_Value = @import("../zig.zig").Guid.initString("09edca37-cd64-47d6-b7e8-1cb11d4f7e05");
 pub const IID_IAppxEncryptionFactory3 = &IID_IAppxEncryptionFactory3_Value;
 pub const IAppxEncryptionFactory3 = extern struct {
@@ -2908,6 +2961,7 @@ pub const IAppxEncryptionFactory3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxEncryptionFactory4_Value = @import("../zig.zig").Guid.initString("a879611f-12fd-41fe-85d5-06ae779bbaf5");
 pub const IID_IAppxEncryptionFactory4 = &IID_IAppxEncryptionFactory4_Value;
 pub const IAppxEncryptionFactory4 = extern struct {
@@ -2934,6 +2988,7 @@ pub const IAppxEncryptionFactory4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IAppxEncryptedPackageWriter_Value = @import("../zig.zig").Guid.initString("f43d0b0b-1379-40e2-9b29-682ea2bf42af");
 pub const IID_IAppxEncryptedPackageWriter = &IID_IAppxEncryptedPackageWriter_Value;
 pub const IAppxEncryptedPackageWriter = extern struct {
@@ -2964,6 +3019,7 @@ pub const IAppxEncryptedPackageWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IAppxEncryptedPackageWriter2_Value = @import("../zig.zig").Guid.initString("3e475447-3a25-40b5-8ad2-f953ae50c92d");
 pub const IID_IAppxEncryptedPackageWriter2 = &IID_IAppxEncryptedPackageWriter2_Value;
 pub const IAppxEncryptedPackageWriter2 = extern struct {
@@ -2987,6 +3043,7 @@ pub const IAppxEncryptedPackageWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IAppxEncryptedBundleWriter_Value = @import("../zig.zig").Guid.initString("80b0902f-7bf0-4117-b8c6-4279ef81ee77");
 pub const IID_IAppxEncryptedBundleWriter = &IID_IAppxEncryptedBundleWriter_Value;
 pub const IAppxEncryptedBundleWriter = extern struct {
@@ -3016,6 +3073,7 @@ pub const IAppxEncryptedBundleWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxEncryptedBundleWriter2_Value = @import("../zig.zig").Guid.initString("e644be82-f0fa-42b8-a956-8d1cb48ee379");
 pub const IID_IAppxEncryptedBundleWriter2 = &IID_IAppxEncryptedBundleWriter2_Value;
 pub const IAppxEncryptedBundleWriter2 = extern struct {
@@ -3052,6 +3110,7 @@ pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_NONE = APPX_PACKAGE
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_SKIP_VALIDATION = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS.SKIP_VALIDATION;
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_LOCALIZED = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS.LOCALIZED;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxEncryptedBundleWriter3_Value = @import("../zig.zig").Guid.initString("0d34deb3-5cae-4dd3-977c-504932a51d31");
 pub const IID_IAppxEncryptedBundleWriter3 = &IID_IAppxEncryptedBundleWriter3_Value;
 pub const IAppxEncryptedBundleWriter3 = extern struct {
@@ -3085,6 +3144,7 @@ pub const IAppxEncryptedBundleWriter3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAppxPackageEditor_Value = @import("../zig.zig").Guid.initString("e2adb6dc-5e71-4416-86b6-86e5f5291a6b");
 pub const IID_IAppxPackageEditor = &IID_IAppxPackageEditor_Value;
 pub const IAppxPackageEditor = extern struct {
@@ -3288,56 +3348,66 @@ pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
 //--------------------------------------------------------------------------------
 // Section: Functions (49)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageId(
     bufferLength: *u32,
     buffer: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageFullName(
     packageFullNameLength: *u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageFamilyName(
     packageFamilyNameLength: *u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackagePath(
     pathLength: *u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageId(
     hProcess: HANDLE,
     bufferLength: *u32,
     buffer: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageFullName(
     hProcess: HANDLE,
     packageFullNameLength: *u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
     token: HANDLE,
     packageFullNameLength: *u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageFamilyName(
     hProcess: HANDLE,
     packageFamilyNameLength: *u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken(
     token: HANDLE,
     packageFamilyNameLength: *u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackagePath(
     packageId: *const PACKAGE_ID,
     reserved: u32,
@@ -3345,18 +3415,21 @@ pub extern "KERNEL32" fn GetPackagePath(
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackagePathByFullName(
     packageFullName: [*:0]const u16,
     pathLength: *u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetStagedPackagePathByFullName(
     packageFullName: [*:0]const u16,
     pathLength: *u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
     packageFullName: [*:0]const u16,
     packagePathType: PackagePathType,
@@ -3364,6 +3437,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
     packageFullName: [*:0]const u16,
     packagePathType: PackagePathType,
@@ -3371,6 +3445,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullNam
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
@@ -3379,6 +3454,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
     packagePathType: PackagePathType,
     pathLength: *u32,
@@ -3422,6 +3498,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicat
     packageRelativeApplicationId: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageIdFromFullName(
     packageFullName: [*:0]const u16,
     flags: u32,
@@ -3429,24 +3506,28 @@ pub extern "KERNEL32" fn PackageIdFromFullName(
     buffer: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFullNameFromId(
     packageId: *const PACKAGE_ID,
     packageFullNameLength: *u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFamilyNameFromId(
     packageId: *const PACKAGE_ID,
     packageFamilyNameLength: *u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageFamilyNameFromFullName(
     packageFullName: [*:0]const u16,
     packageFamilyNameLength: *u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PackageNameAndPublisherIdFromFamilyName(
     packageFamilyName: [*:0]const u16,
     packageNameLength: *u32,
@@ -3455,6 +3536,7 @@ pub extern "KERNEL32" fn PackageNameAndPublisherIdFromFamilyName(
     packagePublisherId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn FormatApplicationUserModelId(
     packageFamilyName: [*:0]const u16,
     packageRelativeApplicationId: [*:0]const u16,
@@ -3462,6 +3544,7 @@ pub extern "KERNEL32" fn FormatApplicationUserModelId(
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn ParseApplicationUserModelId(
     applicationUserModelId: [*:0]const u16,
     packageFamilyNameLength: *u32,
@@ -3470,6 +3553,7 @@ pub extern "KERNEL32" fn ParseApplicationUserModelId(
     packageRelativeApplicationId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackagesByPackageFamily(
     packageFamilyName: [*:0]const u16,
     count: *u32,
@@ -3478,6 +3562,7 @@ pub extern "KERNEL32" fn GetPackagesByPackageFamily(
     buffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn FindPackagesByPackageFamily(
     packageFamilyName: [*:0]const u16,
     packageFilters: u32,
@@ -3488,11 +3573,13 @@ pub extern "KERNEL32" fn FindPackagesByPackageFamily(
     packageProperties: ?[*]u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
     packageFullName: [*:0]const u16,
     origin: *PackageOrigin,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageInfo(
     flags: u32,
     bufferLength: *u32,
@@ -3500,6 +3587,7 @@ pub extern "KERNEL32" fn GetCurrentPackageInfo(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn OpenPackageInfoByFullName(
     packageFullName: [*:0]const u16,
     reserved: u32,
@@ -3507,16 +3595,18 @@ pub extern "KERNEL32" fn OpenPackageInfoByFullName(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForUser(
-    userSid: ?*c_void,
+    userSid: PSID,
     packageFullName: [*:0]const u16,
     reserved: u32,
     packageInfoReference: **_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn ClosePackageInfo(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageInfo(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
     flags: u32,
@@ -3525,6 +3615,7 @@ pub extern "KERNEL32" fn GetPackageInfo(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetPackageApplicationIds(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
     bufferLength: *u32,
@@ -3572,6 +3663,7 @@ pub extern "KERNEL32" fn AppPolicyGetCreateFileAccess(
     policy: *AppPolicyCreateFileAccess,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
     flags: u32,
@@ -3595,7 +3687,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const IStream = @import("structured_storage.zig").IStream;
 const PWSTR = @import("system_services.zig").PWSTR;
@@ -3604,6 +3696,7 @@ const IUri = @import("com.zig").IUri;
 const HRESULT = @import("com.zig").HRESULT;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
+const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
@@ -3614,7 +3707,7 @@ test {
     const com_class_id_export_count = 5;
     const func_export_count = 49;
     const unicode_alias_count = 0;
-    const import_count = 8;
+    const import_count = 9;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

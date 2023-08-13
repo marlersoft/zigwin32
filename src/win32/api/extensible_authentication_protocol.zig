@@ -647,6 +647,7 @@ pub const IAccountingProviderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IEAPProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db19-d706-11d0-a37b-00c04fc9da04");
 pub const IID_IEAPProviderConfig = &IID_IEAPProviderConfig_Value;
 pub const IEAPProviderConfig = extern struct {
@@ -1496,11 +1497,13 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerGetMethods(
     pEapMethodInfoArray: *EAP_METHOD_INFO_ARRAY,
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "eappcfg" fn EapHostPeerGetMethodProperties(
     dwVersion: u32,
     dwFlags: u32,
@@ -1514,6 +1517,7 @@ pub extern "eappcfg" fn EapHostPeerGetMethodProperties(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerInvokeConfigUI(
     hwndParent: HWND,
     dwFlags: u32,
@@ -1525,6 +1529,7 @@ pub extern "eappcfg" fn EapHostPeerInvokeConfigUI(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryCredentialInputFields(
     hUserImpersonationToken: HANDLE,
     eapMethodType: EAP_METHOD_TYPE,
@@ -1535,6 +1540,7 @@ pub extern "eappcfg" fn EapHostPeerQueryCredentialInputFields(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryUserBlobFromCredentialInputFields(
     hUserImpersonationToken: HANDLE,
     eapMethodType: EAP_METHOD_TYPE,
@@ -1547,6 +1553,7 @@ pub extern "eappcfg" fn EapHostPeerQueryUserBlobFromCredentialInputFields(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerInvokeIdentityUI(
     dwVersion: u32,
     eapMethodType: EAP_METHOD_TYPE,
@@ -1563,6 +1570,7 @@ pub extern "eappcfg" fn EapHostPeerInvokeIdentityUI(
     ppvReserved: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerInvokeInteractiveUI(
     hwndParent: HWND,
     dwSizeofUIContextData: u32,
@@ -1572,6 +1580,7 @@ pub extern "eappcfg" fn EapHostPeerInvokeInteractiveUI(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryInteractiveUIInputFields(
     dwVersion: u32,
     dwFlags: u32,
@@ -1582,6 +1591,7 @@ pub extern "eappcfg" fn EapHostPeerQueryInteractiveUIInputFields(
     ppvReserved: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerQueryUIBlobFromInteractiveUIInputFields(
     dwVersion: u32,
     dwFlags: u32,
@@ -1594,6 +1604,7 @@ pub extern "eappcfg" fn EapHostPeerQueryUIBlobFromInteractiveUIInputFields(
     ppvReserved: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerConfigXml2Blob(
     dwFlags: u32,
     pConfigDoc: *IXMLDOMNode,
@@ -1603,6 +1614,7 @@ pub extern "eappcfg" fn EapHostPeerConfigXml2Blob(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerCredentialsXml2Blob(
     dwFlags: u32,
     pCredentialsDoc: *IXMLDOMNode,
@@ -1614,6 +1626,7 @@ pub extern "eappcfg" fn EapHostPeerCredentialsXml2Blob(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerConfigBlob2Xml(
     dwFlags: u32,
     eapMethodType: EAP_METHOD_TYPE,
@@ -1623,20 +1636,25 @@ pub extern "eappcfg" fn EapHostPeerConfigBlob2Xml(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerFreeMemory(
     pData: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerFreeErrorMemory(
     pEapError: *EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerInitialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerUninitialize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerBeginSession(
     dwFlags: u32,
     eapType: EAP_METHOD_TYPE,
@@ -1654,6 +1672,7 @@ pub extern "eappprxy" fn EapHostPeerBeginSession(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerProcessReceivedPacket(
     sessionHandle: u32,
     cbReceivePacket: u32,
@@ -1662,6 +1681,7 @@ pub extern "eappprxy" fn EapHostPeerProcessReceivedPacket(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetSendPacket(
     sessionHandle: u32,
     pcbSendPacket: *u32,
@@ -1669,6 +1689,7 @@ pub extern "eappprxy" fn EapHostPeerGetSendPacket(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetResult(
     sessionHandle: u32,
     reason: EapHostPeerMethodResultReason,
@@ -1676,6 +1697,7 @@ pub extern "eappprxy" fn EapHostPeerGetResult(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetUIContext(
     sessionHandle: u32,
     pdwSizeOfUIContextData: *u32,
@@ -1683,6 +1705,7 @@ pub extern "eappprxy" fn EapHostPeerGetUIContext(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerSetUIContext(
     sessionHandle: u32,
     dwSizeOfUIContextData: u32,
@@ -1691,12 +1714,14 @@ pub extern "eappprxy" fn EapHostPeerSetUIContext(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetResponseAttributes(
     sessionHandle: u32,
     pAttribs: *EAP_ATTRIBUTES,
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerSetResponseAttributes(
     sessionHandle: u32,
     pAttribs: *const EAP_ATTRIBUTES,
@@ -1704,6 +1729,7 @@ pub extern "eappprxy" fn EapHostPeerSetResponseAttributes(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetAuthStatus(
     sessionHandle: u32,
     authParam: EapHostPeerAuthParams,
@@ -1712,11 +1738,13 @@ pub extern "eappprxy" fn EapHostPeerGetAuthStatus(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerEndSession(
     sessionHandle: u32,
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
     pConnectionIdThatLastSavedCreds: *Guid,
     phCredentialImpersonationToken: *i32,
@@ -1725,15 +1753,18 @@ pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
     fSaveToCredMan: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerClearConnection(
     pConnectionId: *Guid,
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerFreeEapError(
     pEapError: *EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerGetIdentity(
     dwVersion: u32,
     dwFlags: u32,
@@ -1757,6 +1788,7 @@ pub extern "eappprxy" fn EapHostPeerGetEncryptedPassword(
     ppszEncPassword: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerFreeRuntimeMemory(
     pData: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;

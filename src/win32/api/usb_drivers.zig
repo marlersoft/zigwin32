@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (423)
 //--------------------------------------------------------------------------------
+pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 pub const SHORT_PACKET_TERMINATE = @as(u32, 1);
 pub const AUTO_CLEAR_STALL = @as(u32, 2);
 pub const PIPE_TRANSFER_TIMEOUT = @as(u32, 3);
@@ -17,7 +18,6 @@ pub const DEVICE_SPEED = @as(u32, 1);
 pub const LowSpeed = @as(u32, 1);
 pub const FullSpeed = @as(u32, 2);
 pub const HighSpeed = @as(u32, 3);
-pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 pub const USBUSER_VERSION = @as(u32, 4);
 pub const USBUSER_GET_CONTROLLER_INFO_0 = @as(u32, 1);
 pub const USBUSER_GET_CONTROLLER_DRIVER_KEY = @as(u32, 2);
@@ -1632,17 +1632,20 @@ pub extern "WINUSB" fn WinUsb_ParseDescriptors(
     DescriptorType: i32,
 ) callconv(@import("std").os.windows.WINAPI) *USB_COMMON_DESCRIPTOR;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumber(
     InterfaceHandle: *c_void,
     CurrentFrameNumber: *u32,
     TimeStamp: *LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_GetAdjustedFrameNumber(
     CurrentFrameNumber: *u32,
     TimeStamp: LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
     InterfaceHandle: *c_void,
     PipeID: u8,
@@ -1651,10 +1654,12 @@ pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
     IsochBufferHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_UnregisterIsochBuffer(
     IsochBufferHandle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
     BufferHandle: *c_void,
     Offset: u32,
@@ -1663,6 +1668,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
     BufferHandle: *c_void,
     Offset: u32,
@@ -1673,6 +1679,7 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
     BufferHandle: *c_void,
     Offset: u32,
@@ -1681,6 +1688,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
     BufferHandle: *c_void,
     Offset: u32,
@@ -1691,16 +1699,19 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_StartTrackingForTimeSync(
     InterfaceHandle: *c_void,
     StartTrackingInfo: *USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumberAndQpc(
     InterfaceHandle: *c_void,
     FrameQpcInfo: *USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_StopTrackingForTimeSync(
     InterfaceHandle: *c_void,
     StopTrackingInfo: *USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION,
