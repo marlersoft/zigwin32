@@ -358,7 +358,7 @@ pub extern "KERNEL32" fn WriteConsoleA(
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
     lpNumberOfCharsWritten: ?*u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn WriteConsoleW(
@@ -366,7 +366,7 @@ pub extern "KERNEL32" fn WriteConsoleW(
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
     lpNumberOfCharsWritten: ?*u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetConsoleCtrlHandler(
