@@ -556,7 +556,7 @@ pub const D3D_SHADER_MACRO = extern struct {
     Definition: ?[*:0]const u8,
 };
 
-const IID_ID3DBlob_Value = @import("../zig.zig").Guid.initString("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
+const IID_ID3DBlob_Value = Guid.initString("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
 pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
 pub const ID3DBlob = extern struct {
     pub const VTable = extern struct {
@@ -588,7 +588,7 @@ pub const PFN_DESTRUCTION_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ID3DDestructionNotifier_Value = @import("../zig.zig").Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
+const IID_ID3DDestructionNotifier_Value = Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
 pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
 pub const ID3DDestructionNotifier = extern struct {
     pub const VTable = extern struct {

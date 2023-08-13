@@ -8,7 +8,7 @@ pub const NLM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
-const CLSID_NetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
+const CLSID_NetworkListManager_Value = Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
 pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
 
 pub const NLM_CONNECTION_COST = enum(i32) {
@@ -115,7 +115,7 @@ pub const NLM_ENUM_NETWORK_DISCONNECTED = NLM_ENUM_NETWORK.DISCONNECTED;
 pub const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK.ALL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkListManager_Value = Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManager = &IID_INetworkListManager_Value;
 pub const INetworkListManager = extern struct {
     pub const VTable = extern struct {
@@ -205,7 +205,7 @@ pub const INetworkListManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkListManagerEvents_Value = @import("../zig.zig").Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkListManagerEvents_Value = Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManagerEvents = &IID_INetworkListManagerEvents_Value;
 pub const INetworkListManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -236,7 +236,7 @@ pub const NLM_NETWORK_CATEGORY_PRIVATE = NLM_NETWORK_CATEGORY.PRIVATE;
 pub const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = NLM_NETWORK_CATEGORY.DOMAIN_AUTHENTICATED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetwork_Value = @import("../zig.zig").Guid.initString("dcb00002-570f-4a9b-8d69-199fdba5723b");
+const IID_INetwork_Value = Guid.initString("dcb00002-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetwork = &IID_INetwork_Value;
 pub const INetwork = extern struct {
     pub const VTable = extern struct {
@@ -359,7 +359,7 @@ pub const INetwork = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumNetworks_Value = @import("../zig.zig").Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
+const IID_IEnumNetworks_Value = Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
 pub const IEnumNetworks = extern struct {
     pub const VTable = extern struct {
@@ -428,7 +428,7 @@ pub const NLM_NETWORK_PROPERTY_CHANGE_ICON = NLM_NETWORK_PROPERTY_CHANGE.ICON;
 pub const NLM_NETWORK_PROPERTY_CHANGE_CATEGORY_VALUE = NLM_NETWORK_PROPERTY_CHANGE.CATEGORY_VALUE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkEvents_Value = @import("../zig.zig").Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkEvents_Value = Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkEvents = &IID_INetworkEvents_Value;
 pub const INetworkEvents = extern struct {
     pub const VTable = extern struct {
@@ -476,7 +476,7 @@ pub const INetworkEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkConnection_Value = @import("../zig.zig").Guid.initString("dcb00005-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkConnection_Value = Guid.initString("dcb00005-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnection = &IID_INetworkConnection_Value;
 pub const INetworkConnection = extern struct {
     pub const VTable = extern struct {
@@ -548,7 +548,7 @@ pub const INetworkConnection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumNetworkConnections_Value = @import("../zig.zig").Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
+const IID_IEnumNetworkConnections_Value = Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
 pub const IEnumNetworkConnections = extern struct {
     pub const VTable = extern struct {
@@ -609,7 +609,7 @@ pub const NLM_CONNECTION_PROPERTY_CHANGE = enum(i32) {
 pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERTY_CHANGE.N;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkConnectionEvents_Value = @import("../zig.zig").Guid.initString("dcb00007-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkConnectionEvents_Value = Guid.initString("dcb00007-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionEvents = &IID_INetworkConnectionEvents_Value;
 pub const INetworkConnectionEvents = extern struct {
     pub const VTable = extern struct {
@@ -641,7 +641,7 @@ pub const INetworkConnectionEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkCostManager_Value = @import("../zig.zig").Guid.initString("dcb00008-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkCostManager_Value = Guid.initString("dcb00008-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManager = &IID_INetworkCostManager_Value;
 pub const INetworkCostManager = extern struct {
     pub const VTable = extern struct {
@@ -683,7 +683,7 @@ pub const INetworkCostManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkCostManagerEvents_Value = @import("../zig.zig").Guid.initString("dcb00009-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkCostManagerEvents_Value = Guid.initString("dcb00009-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManagerEvents = &IID_INetworkCostManagerEvents_Value;
 pub const INetworkCostManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -714,7 +714,7 @@ pub const INetworkCostManagerEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkConnectionCost_Value = @import("../zig.zig").Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkConnectionCost_Value = Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCost = &IID_INetworkConnectionCost_Value;
 pub const INetworkConnectionCost = extern struct {
     pub const VTable = extern struct {
@@ -744,7 +744,7 @@ pub const INetworkConnectionCost = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkConnectionCostEvents_Value = @import("../zig.zig").Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
+const IID_INetworkConnectionCostEvents_Value = Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCostEvents = &IID_INetworkConnectionCostEvents_Value;
 pub const INetworkConnectionCostEvents = extern struct {
     pub const VTable = extern struct {

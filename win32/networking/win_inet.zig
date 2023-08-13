@@ -1628,7 +1628,7 @@ pub const PFN_DIAL_HANDLER = fn(
     param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-const IID_IDialEventSink_Value = @import("../zig.zig").Guid.initString("2d86f4ff-6e2d-4488-b2e9-6934afd41bea");
+const IID_IDialEventSink_Value = Guid.initString("2d86f4ff-6e2d-4488-b2e9-6934afd41bea");
 pub const IID_IDialEventSink = &IID_IDialEventSink_Value;
 pub const IDialEventSink = extern struct {
     pub const VTable = extern struct {
@@ -1650,7 +1650,7 @@ pub const IDialEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDialEngine_Value = @import("../zig.zig").Guid.initString("39fd782b-7905-40d5-9148-3c9b190423d5");
+const IID_IDialEngine_Value = Guid.initString("39fd782b-7905-40d5-9148-3c9b190423d5");
 pub const IID_IDialEngine = &IID_IDialEngine_Value;
 pub const IDialEngine = extern struct {
     pub const VTable = extern struct {
@@ -1721,7 +1721,7 @@ pub const IDialEngine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDialBranding_Value = @import("../zig.zig").Guid.initString("8aecafa9-4306-43cc-8c5a-765f2979cc16");
+const IID_IDialBranding_Value = Guid.initString("8aecafa9-4306-43cc-8c5a-765f2979cc16");
 pub const IID_IDialBranding = &IID_IDialBranding_Value;
 pub const IDialBranding = extern struct {
     pub const VTable = extern struct {
@@ -2153,7 +2153,7 @@ pub const HTTP_POLICY_EXTENSION_SHUTDOWN = fn(
     Type: HTTP_POLICY_EXTENSION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-const CLSID_ProofOfPossessionCookieInfoManager_Value = @import("../zig.zig").Guid.initString("a9927f85-a304-4390-8b23-a75f1c668600");
+const CLSID_ProofOfPossessionCookieInfoManager_Value = Guid.initString("a9927f85-a304-4390-8b23-a75f1c668600");
 pub const CLSID_ProofOfPossessionCookieInfoManager = &CLSID_ProofOfPossessionCookieInfoManager_Value;
 
 pub const ProofOfPossessionCookieInfo = extern struct {
@@ -2163,7 +2163,7 @@ pub const ProofOfPossessionCookieInfo = extern struct {
     p3pHeader: ?PWSTR,
 };
 
-const IID_IProofOfPossessionCookieInfoManager_Value = @import("../zig.zig").Guid.initString("cdaece56-4edf-43df-b113-88e4556fa1bb");
+const IID_IProofOfPossessionCookieInfoManager_Value = Guid.initString("cdaece56-4edf-43df-b113-88e4556fa1bb");
 pub const IID_IProofOfPossessionCookieInfoManager = &IID_IProofOfPossessionCookieInfoManager_Value;
 pub const IProofOfPossessionCookieInfoManager = extern struct {
     pub const VTable = extern struct {
@@ -2186,7 +2186,7 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProofOfPossessionCookieInfoManager2_Value = @import("../zig.zig").Guid.initString("15e41407-b42f-4ae7-9966-34a087b2d713");
+const IID_IProofOfPossessionCookieInfoManager2_Value = Guid.initString("15e41407-b42f-4ae7-9966-34a087b2d713");
 pub const IID_IProofOfPossessionCookieInfoManager2 = &IID_IProofOfPossessionCookieInfoManager2_Value;
 pub const IProofOfPossessionCookieInfoManager2 = extern struct {
     pub const VTable = extern struct {

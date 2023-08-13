@@ -7,7 +7,7 @@ pub const CLSID_SoftwareBitmapNativeFactory = Guid.initString("84e65691-8602-4a8
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-const IID_ISoftwareBitmapNative_Value = @import("../../../zig.zig").Guid.initString("94bc8415-04ea-4b2e-af13-4de95aa898eb");
+const IID_ISoftwareBitmapNative_Value = Guid.initString("94bc8415-04ea-4b2e-af13-4de95aa898eb");
 pub const IID_ISoftwareBitmapNative = &IID_ISoftwareBitmapNative_Value;
 pub const ISoftwareBitmapNative = extern struct {
     pub const VTable = extern struct {
@@ -29,7 +29,7 @@ pub const ISoftwareBitmapNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISoftwareBitmapNativeFactory_Value = @import("../../../zig.zig").Guid.initString("c3c181ec-2914-4791-af02-02d224a10b43");
+const IID_ISoftwareBitmapNativeFactory_Value = Guid.initString("c3c181ec-2914-4791-af02-02d224a10b43");
 pub const IID_ISoftwareBitmapNativeFactory = &IID_ISoftwareBitmapNativeFactory_Value;
 pub const ISoftwareBitmapNativeFactory = extern struct {
     pub const VTable = extern struct {

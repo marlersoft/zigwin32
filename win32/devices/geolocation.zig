@@ -74,28 +74,28 @@ pub const GUID_DEVINTERFACE_GNSS = Guid.initString("3336e5e4-018a-4669-84c5-bd05
 //--------------------------------------------------------------------------------
 // Section: Types (87)
 //--------------------------------------------------------------------------------
-const CLSID_Location_Value = @import("../zig.zig").Guid.initString("e5b8e079-ee6d-4e33-a438-c87f2e959254");
+const CLSID_Location_Value = Guid.initString("e5b8e079-ee6d-4e33-a438-c87f2e959254");
 pub const CLSID_Location = &CLSID_Location_Value;
 
-const CLSID_DefaultLocation_Value = @import("../zig.zig").Guid.initString("8b7fbfe0-5cd7-494a-af8c-283a65707506");
+const CLSID_DefaultLocation_Value = Guid.initString("8b7fbfe0-5cd7-494a-af8c-283a65707506");
 pub const CLSID_DefaultLocation = &CLSID_DefaultLocation_Value;
 
-const CLSID_LatLongReport_Value = @import("../zig.zig").Guid.initString("ed81c073-1f84-4ca8-a161-183c776bc651");
+const CLSID_LatLongReport_Value = Guid.initString("ed81c073-1f84-4ca8-a161-183c776bc651");
 pub const CLSID_LatLongReport = &CLSID_LatLongReport_Value;
 
-const CLSID_CivicAddressReport_Value = @import("../zig.zig").Guid.initString("d39e7bdd-7d05-46b8-8721-80cf035f57d7");
+const CLSID_CivicAddressReport_Value = Guid.initString("d39e7bdd-7d05-46b8-8721-80cf035f57d7");
 pub const CLSID_CivicAddressReport = &CLSID_CivicAddressReport_Value;
 
-const CLSID_LatLongReportFactory_Value = @import("../zig.zig").Guid.initString("9dcc3cc8-8609-4863-bad4-03601f4c65e8");
+const CLSID_LatLongReportFactory_Value = Guid.initString("9dcc3cc8-8609-4863-bad4-03601f4c65e8");
 pub const CLSID_LatLongReportFactory = &CLSID_LatLongReportFactory_Value;
 
-const CLSID_CivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("2a11f42c-3e81-4ad4-9cbe-45579d89671a");
+const CLSID_CivicAddressReportFactory_Value = Guid.initString("2a11f42c-3e81-4ad4-9cbe-45579d89671a");
 pub const CLSID_CivicAddressReportFactory = &CLSID_CivicAddressReportFactory_Value;
 
-const CLSID_DispLatLongReport_Value = @import("../zig.zig").Guid.initString("7a7c3277-8f84-4636-95b2-ebb5507ff77e");
+const CLSID_DispLatLongReport_Value = Guid.initString("7a7c3277-8f84-4636-95b2-ebb5507ff77e");
 pub const CLSID_DispLatLongReport = &CLSID_DispLatLongReport_Value;
 
-const CLSID_DispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("4c596aec-8544-4082-ba9f-eb0a7d8e65c6");
+const CLSID_DispCivicAddressReport_Value = Guid.initString("4c596aec-8544-4082-ba9f-eb0a7d8e65c6");
 pub const CLSID_DispCivicAddressReport = &CLSID_DispCivicAddressReport_Value;
 
 pub const LOCATION_REPORT_STATUS = enum(i32) {
@@ -112,7 +112,7 @@ pub const REPORT_INITIALIZING = LOCATION_REPORT_STATUS.INITIALIZING;
 pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ILocationReport_Value = @import("../zig.zig").Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
+const IID_ILocationReport_Value = Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
 pub const IID_ILocationReport = &IID_ILocationReport_Value;
 pub const ILocationReport = extern struct {
     pub const VTable = extern struct {
@@ -151,7 +151,7 @@ pub const ILocationReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ILatLongReport_Value = @import("../zig.zig").Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
+const IID_ILatLongReport_Value = Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
 pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
 pub const ILatLongReport = extern struct {
     pub const VTable = extern struct {
@@ -205,7 +205,7 @@ pub const ILatLongReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICivicAddressReport_Value = @import("../zig.zig").Guid.initString("c0b19f70-4adf-445d-87f2-cad8fd711792");
+const IID_ICivicAddressReport_Value = Guid.initString("c0b19f70-4adf-445d-87f2-cad8fd711792");
 pub const IID_ICivicAddressReport = &IID_ICivicAddressReport_Value;
 pub const ICivicAddressReport = extern struct {
     pub const VTable = extern struct {
@@ -275,7 +275,7 @@ pub const ICivicAddressReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ILocation_Value = @import("../zig.zig").Guid.initString("ab2ece69-56d9-4f28-b525-de1b0ee44237");
+const IID_ILocation_Value = Guid.initString("ab2ece69-56d9-4f28-b525-de1b0ee44237");
 pub const IID_ILocation = &IID_ILocation_Value;
 pub const ILocation = extern struct {
     pub const VTable = extern struct {
@@ -372,7 +372,7 @@ pub const ILocation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ILocationPower_Value = @import("../zig.zig").Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
+const IID_ILocationPower_Value = Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
 pub const IID_ILocationPower = &IID_ILocationPower_Value;
 pub const ILocationPower = extern struct {
     pub const VTable = extern struct {
@@ -400,7 +400,7 @@ pub const ILocationPower = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDefaultLocation_Value = @import("../zig.zig").Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
+const IID_IDefaultLocation_Value = Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
 pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
 pub const IDefaultLocation = extern struct {
     pub const VTable = extern struct {
@@ -432,7 +432,7 @@ pub const IDefaultLocation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ILocationEvents_Value = @import("../zig.zig").Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
+const IID_ILocationEvents_Value = Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
 pub const IID_ILocationEvents = &IID_ILocationEvents_Value;
 pub const ILocationEvents = extern struct {
     pub const VTable = extern struct {
@@ -463,7 +463,7 @@ pub const ILocationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDispLatLongReport_Value = @import("../zig.zig").Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
+const IID_IDispLatLongReport_Value = Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
 pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
 pub const IDispLatLongReport = extern struct {
     pub const VTable = extern struct {
@@ -530,7 +530,7 @@ pub const IDispLatLongReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
+const IID_IDispCivicAddressReport_Value = Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
 pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
 pub const IDispCivicAddressReport = extern struct {
     pub const VTable = extern struct {
@@ -615,7 +615,7 @@ pub const IDispCivicAddressReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILocationReportFactory_Value = @import("../zig.zig").Guid.initString("2daec322-90b2-47e4-bb08-0da841935a6b");
+const IID_ILocationReportFactory_Value = Guid.initString("2daec322-90b2-47e4-bb08-0da841935a6b");
 pub const IID_ILocationReportFactory = &IID_ILocationReportFactory_Value;
 pub const ILocationReportFactory = extern struct {
     pub const VTable = extern struct {
@@ -696,7 +696,7 @@ pub const ILocationReportFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILatLongReportFactory_Value = @import("../zig.zig").Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
+const IID_ILatLongReportFactory_Value = Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
 pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
 pub const ILatLongReportFactory = extern struct {
     pub const VTable = extern struct {
@@ -718,7 +718,7 @@ pub const ILatLongReportFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
+const IID_ICivicAddressReportFactory_Value = Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
 pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value;
 pub const ICivicAddressReportFactory = extern struct {
     pub const VTable = extern struct {
@@ -740,7 +740,7 @@ pub const ICivicAddressReportFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ILatLongReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
+const IID__ILatLongReportFactoryEvents_Value = Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
 pub const IID__ILatLongReportFactoryEvents = &IID__ILatLongReportFactoryEvents_Value;
 pub const _ILatLongReportFactoryEvents = extern struct {
     pub const VTable = extern struct {
@@ -753,7 +753,7 @@ pub const _ILatLongReportFactoryEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ICivicAddressReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
+const IID__ICivicAddressReportFactoryEvents_Value = Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
 pub const IID__ICivicAddressReportFactoryEvents = &IID__ICivicAddressReportFactoryEvents_Value;
 pub const _ICivicAddressReportFactoryEvents = extern struct {
     pub const VTable = extern struct {

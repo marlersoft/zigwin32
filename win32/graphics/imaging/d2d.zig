@@ -7,7 +7,7 @@
 // Section: Types (2)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWICImageEncoder_Value = @import("../../zig.zig").Guid.initString("04c75bf8-3ce1-473b-acc5-3cc4f5e94999");
+const IID_IWICImageEncoder_Value = Guid.initString("04c75bf8-3ce1-473b-acc5-3cc4f5e94999");
 pub const IID_IWICImageEncoder = &IID_IWICImageEncoder_Value;
 pub const IWICImageEncoder = extern struct {
     pub const VTable = extern struct {
@@ -51,7 +51,7 @@ pub const IWICImageEncoder = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWICImagingFactory2_Value = @import("../../zig.zig").Guid.initString("7b816b45-1996-4476-b132-de9e247c8af0");
+const IID_IWICImagingFactory2_Value = Guid.initString("7b816b45-1996-4476-b132-de9e247c8af0");
 pub const IID_IWICImagingFactory2 = &IID_IWICImagingFactory2_Value;
 pub const IWICImagingFactory2 = extern struct {
     pub const VTable = extern struct {
@@ -92,8 +92,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID2D1Device = @import("../../graphics/direct2d.zig").ID2D1Device;
 const ID2D1Image = @import("../../graphics/direct2d.zig").ID2D1Image;

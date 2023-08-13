@@ -6504,23 +6504,23 @@ pub const RECIPIENTPOLICY2 = extern struct {
     privacyVersion: u32,
 };
 
-const CLSID_CCertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("38373906-5433-4633-b0fb-29b7e78262e1");
+const CLSID_CCertSrvSetupKeyInformation_Value = Guid.initString("38373906-5433-4633-b0fb-29b7e78262e1");
 pub const CLSID_CCertSrvSetupKeyInformation = &CLSID_CCertSrvSetupKeyInformation_Value;
 
-const CLSID_CCertSrvSetup_Value = @import("../zig.zig").Guid.initString("961f180f-f55c-413d-a9b3-7d2af4d8e42f");
+const CLSID_CCertSrvSetup_Value = Guid.initString("961f180f-f55c-413d-a9b3-7d2af4d8e42f");
 pub const CLSID_CCertSrvSetup = &CLSID_CCertSrvSetup_Value;
 
-const CLSID_CMSCEPSetup_Value = @import("../zig.zig").Guid.initString("aa4f5c02-8e7c-49c4-94fa-67a5cc5eadb4");
+const CLSID_CMSCEPSetup_Value = Guid.initString("aa4f5c02-8e7c-49c4-94fa-67a5cc5eadb4");
 pub const CLSID_CMSCEPSetup = &CLSID_CMSCEPSetup_Value;
 
-const CLSID_CCertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("9902f3bc-88af-4cf8-ae62-7140531552b6");
+const CLSID_CCertificateEnrollmentServerSetup_Value = Guid.initString("9902f3bc-88af-4cf8-ae62-7140531552b6");
 pub const CLSID_CCertificateEnrollmentServerSetup = &CLSID_CCertificateEnrollmentServerSetup_Value;
 
-const CLSID_CCertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("afe2fa32-41b1-459d-a5de-49add8a72182");
+const CLSID_CCertificateEnrollmentPolicyServerSetup_Value = Guid.initString("afe2fa32-41b1-459d-a5de-49add8a72182");
 pub const CLSID_CCertificateEnrollmentPolicyServerSetup = &CLSID_CCertificateEnrollmentPolicyServerSetup_Value;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ICertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("6ba73778-36da-4c39-8a85-bcfa7d000793");
+const IID_ICertSrvSetupKeyInformation_Value = Guid.initString("6ba73778-36da-4c39-8a85-bcfa7d000793");
 pub const IID_ICertSrvSetupKeyInformation = &IID_ICertSrvSetupKeyInformation_Value;
 pub const ICertSrvSetupKeyInformation = extern struct {
     pub const VTable = extern struct {
@@ -6642,7 +6642,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ICertSrvSetupKeyInformationCollection_Value = @import("../zig.zig").Guid.initString("e65c8b00-e58f-41f9-a9ec-a28d7427c844");
+const IID_ICertSrvSetupKeyInformationCollection_Value = Guid.initString("e65c8b00-e58f-41f9-a9ec-a28d7427c844");
 pub const IID_ICertSrvSetupKeyInformationCollection = &IID_ICertSrvSetupKeyInformationCollection_Value;
 pub const ICertSrvSetupKeyInformationCollection = extern struct {
     pub const VTable = extern struct {
@@ -6731,7 +6731,7 @@ pub const ENUM_SETUPPROP_WEBCAMACHINE = CASetupProperty.WEBCAMACHINE;
 pub const ENUM_SETUPPROP_WEBCANAME = CASetupProperty.WEBCANAME;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ICertSrvSetup_Value = @import("../zig.zig").Guid.initString("b760a1bb-4784-44c0-8f12-555f0780ff25");
+const IID_ICertSrvSetup_Value = Guid.initString("b760a1bb-4784-44c0-8f12-555f0780ff25");
 pub const IID_ICertSrvSetup = &IID_ICertSrvSetup_Value;
 pub const ICertSrvSetup = extern struct {
     pub const VTable = extern struct {
@@ -6952,7 +6952,7 @@ pub const ENUM_CEPSETUPPROP_MSCEPURL = MSCEPSetupProperty.MSCEPURL;
 pub const ENUM_CEPSETUPPROP_CHALLENGEURL = MSCEPSetupProperty.CHALLENGEURL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IMSCEPSetup_Value = @import("../zig.zig").Guid.initString("4f7761bb-9f3b-4592-9ee0-9a73259c313e");
+const IID_IMSCEPSetup_Value = Guid.initString("4f7761bb-9f3b-4592-9ee0-9a73259c313e");
 pub const IID_IMSCEPSetup = &IID_IMSCEPSetup_Value;
 pub const IMSCEPSetup = extern struct {
     pub const VTable = extern struct {
@@ -7083,7 +7083,7 @@ pub const ENUM_CESSETUPPROP_RENEWALONLY = CESSetupProperty.RENEWALONLY;
 pub const ENUM_CESSETUPPROP_ALLOW_KEYBASED_RENEWAL = CESSetupProperty.ALLOW_KEYBASED_RENEWAL;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("70027fdb-9dd9-4921-8944-b35cb31bd2ec");
+const IID_ICertificateEnrollmentServerSetup_Value = Guid.initString("70027fdb-9dd9-4921-8944-b35cb31bd2ec");
 pub const IID_ICertificateEnrollmentServerSetup = &IID_ICertificateEnrollmentServerSetup_Value;
 pub const ICertificateEnrollmentServerSetup = extern struct {
     pub const VTable = extern struct {
@@ -7167,7 +7167,7 @@ pub const ENUM_CEPSETUPPROP_URL = CEPSetupProperty.URL;
 pub const ENUM_CEPSETUPPROP_KEYBASED_RENEWAL = CEPSetupProperty.KEYBASED_RENEWAL;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("859252cc-238c-4a88-b8fd-a37e7d04e68b");
+const IID_ICertificateEnrollmentPolicyServerSetup_Value = Guid.initString("859252cc-238c-4a88-b8fd-a37e7d04e68b");
 pub const IID_ICertificateEnrollmentPolicyServerSetup = &IID_ICertificateEnrollmentPolicyServerSetup_Value;
 pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
     pub const VTable = extern struct {

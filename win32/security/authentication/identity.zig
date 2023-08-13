@@ -6679,7 +6679,7 @@ pub const SL_SYSTEM_POLICY_INFORMATION = extern struct {
     Reserved2: [3]u32,
 };
 
-const IID_ICcgDomainAuthCredentials_Value = @import("../../zig.zig").Guid.initString("6ecda518-2010-4437-8bc3-46e752b7b172");
+const IID_ICcgDomainAuthCredentials_Value = Guid.initString("6ecda518-2010-4437-8bc3-46e752b7b172");
 pub const IID_ICcgDomainAuthCredentials = &IID_ICcgDomainAuthCredentials_Value;
 pub const ICcgDomainAuthCredentials = extern struct {
     pub const VTable = extern struct {

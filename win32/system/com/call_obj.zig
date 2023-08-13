@@ -81,7 +81,7 @@ pub const CALLFRAME_MARSHALCONTEXT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFrame_Value = @import("../../zig.zig").Guid.initString("d573b4b0-894e-11d2-b8b6-00c04fb9618a");
+const IID_ICallFrame_Value = Guid.initString("d573b4b0-894e-11d2-b8b6-00c04fb9618a");
 pub const IID_ICallFrame = &IID_ICallFrame_Value;
 pub const ICallFrame = extern struct {
     pub const VTable = extern struct {
@@ -277,7 +277,7 @@ pub const ICallFrame = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallIndirect_Value = @import("../../zig.zig").Guid.initString("d573b4b1-894e-11d2-b8b6-00c04fb9618a");
+const IID_ICallIndirect_Value = Guid.initString("d573b4b1-894e-11d2-b8b6-00c04fb9618a");
 pub const IID_ICallIndirect = &IID_ICallIndirect_Value;
 pub const ICallIndirect = extern struct {
     pub const VTable = extern struct {
@@ -332,7 +332,7 @@ pub const ICallIndirect = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallInterceptor_Value = @import("../../zig.zig").Guid.initString("60c7ca75-896d-11d2-b8b6-00c04fb9618a");
+const IID_ICallInterceptor_Value = Guid.initString("60c7ca75-896d-11d2-b8b6-00c04fb9618a");
 pub const IID_ICallInterceptor = &IID_ICallInterceptor_Value;
 pub const ICallInterceptor = extern struct {
     pub const VTable = extern struct {
@@ -362,7 +362,7 @@ pub const ICallInterceptor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFrameEvents_Value = @import("../../zig.zig").Guid.initString("fd5e0843-fc91-11d0-97d7-00c04fb9618a");
+const IID_ICallFrameEvents_Value = Guid.initString("fd5e0843-fc91-11d0-97d7-00c04fb9618a");
 pub const IID_ICallFrameEvents = &IID_ICallFrameEvents_Value;
 pub const ICallFrameEvents = extern struct {
     pub const VTable = extern struct {
@@ -384,7 +384,7 @@ pub const ICallFrameEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallUnmarshal_Value = @import("../../zig.zig").Guid.initString("5333b003-2e42-11d2-b89d-00c04fb9618a");
+const IID_ICallUnmarshal_Value = Guid.initString("5333b003-2e42-11d2-b89d-00c04fb9618a");
 pub const IID_ICallUnmarshal = &IID_ICallUnmarshal_Value;
 pub const ICallUnmarshal = extern struct {
     pub const VTable = extern struct {
@@ -426,7 +426,7 @@ pub const ICallUnmarshal = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFrameWalker_Value = @import("../../zig.zig").Guid.initString("08b23919-392d-11d2-b8a4-00c04fb9618a");
+const IID_ICallFrameWalker_Value = Guid.initString("08b23919-392d-11d2-b8a4-00c04fb9618a");
 pub const IID_ICallFrameWalker = &IID_ICallFrameWalker_Value;
 pub const ICallFrameWalker = extern struct {
     pub const VTable = extern struct {
@@ -450,7 +450,7 @@ pub const ICallFrameWalker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInterfaceRelated_Value = @import("../../zig.zig").Guid.initString("d1fb5a79-7706-11d1-adba-00c04fc2adc0");
+const IID_IInterfaceRelated_Value = Guid.initString("d1fb5a79-7706-11d1-adba-00c04fc2adc0");
 pub const IID_IInterfaceRelated = &IID_IInterfaceRelated_Value;
 pub const IInterfaceRelated = extern struct {
     pub const VTable = extern struct {

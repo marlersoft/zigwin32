@@ -425,7 +425,7 @@ pub const CProperty = extern struct {
     fPersist: BOOL,
 };
 
-const IID_IITPropList_Value = @import("../zig.zig").Guid.initString("1f403bb1-9997-11d0-a850-00aa006c7d01");
+const IID_IITPropList_Value = Guid.initString("1f403bb1-9997-11d0-a850-00aa006c7d01");
 pub const IID_IITPropList = &IID_IITPropList_Value;
 pub const IITPropList = extern struct {
     pub const VTable = extern struct {
@@ -600,7 +600,7 @@ pub const IITPropList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IITDatabase_Value = @import("../zig.zig").Guid.initString("8fa0d5a2-dedf-11d0-9a61-00c04fb68bf7");
+const IID_IITDatabase_Value = Guid.initString("8fa0d5a2-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IITDatabase = &IID_IITDatabase_Value;
 pub const IITDatabase = extern struct {
     pub const VTable = extern struct {
@@ -668,7 +668,7 @@ pub const IITQuery = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-const IID_IITWordWheel_Value = @import("../zig.zig").Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
+const IID_IITWordWheel_Value = Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
 pub const IITWordWheel = extern struct {
     pub const VTable = extern struct {
@@ -795,7 +795,7 @@ pub const IITWordWheel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStemSink_Value = @import("../zig.zig").Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
+const IID_IStemSink_Value = Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
 pub const IID_IStemSink = &IID_IStemSink_Value;
 pub const IStemSink = extern struct {
     pub const VTable = extern struct {
@@ -826,7 +826,7 @@ pub const IStemSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStemmerConfig_Value = @import("../zig.zig").Guid.initString("8fa0d5a7-dedf-11d0-9a61-00c04fb68bf7");
+const IID_IStemmerConfig_Value = Guid.initString("8fa0d5a7-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IStemmerConfig = &IID_IStemmerConfig_Value;
 pub const IStemmerConfig = extern struct {
     pub const VTable = extern struct {
@@ -888,7 +888,7 @@ pub const IITStopWordList = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-const IID_IWordBreakerConfig_Value = @import("../zig.zig").Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
+const IID_IWordBreakerConfig_Value = Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IWordBreakerConfig = &IID_IWordBreakerConfig_Value;
 pub const IWordBreakerConfig = extern struct {
     pub const VTable = extern struct {
@@ -1004,7 +1004,7 @@ pub const PFNCOLHEAPFREE = fn(
     param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-const IID_IITResultSet_Value = @import("../zig.zig").Guid.initString("3bb91d41-998b-11d0-a850-00aa006c7d01");
+const IID_IITResultSet_Value = Guid.initString("3bb91d41-998b-11d0-a850-00aa006c7d01");
 pub const IID_IITResultSet = &IID_IITResultSet_Value;
 pub const IITResultSet = extern struct {
     pub const VTable = extern struct {

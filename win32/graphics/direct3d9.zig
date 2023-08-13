@@ -2335,7 +2335,7 @@ pub const D3DCAPS9 = extern struct {
     MaxPixelShader30InstructionSlots: u32,
 };
 
-const IID_IDirect3D9_Value = @import("../zig.zig").Guid.initString("81bdcbca-64d4-426d-ae8d-ad0147f4275c");
+const IID_IDirect3D9_Value = Guid.initString("81bdcbca-64d4-426d-ae8d-ad0147f4275c");
 pub const IID_IDirect3D9 = &IID_IDirect3D9_Value;
 pub const IDirect3D9 = extern struct {
     pub const VTable = extern struct {
@@ -2494,7 +2494,7 @@ pub const IDirect3D9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DDevice9_Value = @import("../zig.zig").Guid.initString("d0223b96-bf7a-43fd-92bd-a43b0d82b9eb");
+const IID_IDirect3DDevice9_Value = Guid.initString("d0223b96-bf7a-43fd-92bd-a43b0d82b9eb");
 pub const IID_IDirect3DDevice9 = &IID_IDirect3DDevice9_Value;
 pub const IDirect3DDevice9 = extern struct {
     pub const VTable = extern struct {
@@ -3598,7 +3598,7 @@ pub const IDirect3DDevice9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DStateBlock9_Value = @import("../zig.zig").Guid.initString("b07c4fe5-310d-4ba8-a23c-4f0f206f218b");
+const IID_IDirect3DStateBlock9_Value = Guid.initString("b07c4fe5-310d-4ba8-a23c-4f0f206f218b");
 pub const IID_IDirect3DStateBlock9 = &IID_IDirect3DStateBlock9_Value;
 pub const IDirect3DStateBlock9 = extern struct {
     pub const VTable = extern struct {
@@ -3633,7 +3633,7 @@ pub const IDirect3DStateBlock9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DSwapChain9_Value = @import("../zig.zig").Guid.initString("794950f2-adfc-458a-905e-10a10b0b503b");
+const IID_IDirect3DSwapChain9_Value = Guid.initString("794950f2-adfc-458a-905e-10a10b0b503b");
 pub const IID_IDirect3DSwapChain9 = &IID_IDirect3DSwapChain9_Value;
 pub const IDirect3DSwapChain9 = extern struct {
     pub const VTable = extern struct {
@@ -3708,7 +3708,7 @@ pub const IDirect3DSwapChain9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DResource9_Value = @import("../zig.zig").Guid.initString("05eec05d-8f7d-4362-b999-d1baf357c704");
+const IID_IDirect3DResource9_Value = Guid.initString("05eec05d-8f7d-4362-b999-d1baf357c704");
 pub const IID_IDirect3DResource9 = &IID_IDirect3DResource9_Value;
 pub const IDirect3DResource9 = extern struct {
     pub const VTable = extern struct {
@@ -3787,7 +3787,7 @@ pub const IDirect3DResource9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DVertexDeclaration9_Value = @import("../zig.zig").Guid.initString("dd13c59c-36fa-4098-a8fb-c7ed39dc8546");
+const IID_IDirect3DVertexDeclaration9_Value = Guid.initString("dd13c59c-36fa-4098-a8fb-c7ed39dc8546");
 pub const IID_IDirect3DVertexDeclaration9 = &IID_IDirect3DVertexDeclaration9_Value;
 pub const IDirect3DVertexDeclaration9 = extern struct {
     pub const VTable = extern struct {
@@ -3817,7 +3817,7 @@ pub const IDirect3DVertexDeclaration9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DVertexShader9_Value = @import("../zig.zig").Guid.initString("efc5557e-6265-4613-8a94-43857889eb36");
+const IID_IDirect3DVertexShader9_Value = Guid.initString("efc5557e-6265-4613-8a94-43857889eb36");
 pub const IID_IDirect3DVertexShader9 = &IID_IDirect3DVertexShader9_Value;
 pub const IDirect3DVertexShader9 = extern struct {
     pub const VTable = extern struct {
@@ -3847,7 +3847,7 @@ pub const IDirect3DVertexShader9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DPixelShader9_Value = @import("../zig.zig").Guid.initString("6d3bdbdc-5b02-4415-b852-ce5e8bccb289");
+const IID_IDirect3DPixelShader9_Value = Guid.initString("6d3bdbdc-5b02-4415-b852-ce5e8bccb289");
 pub const IID_IDirect3DPixelShader9 = &IID_IDirect3DPixelShader9_Value;
 pub const IDirect3DPixelShader9 = extern struct {
     pub const VTable = extern struct {
@@ -3877,7 +3877,7 @@ pub const IDirect3DPixelShader9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DBaseTexture9_Value = @import("../zig.zig").Guid.initString("580ca87e-1d3c-4d54-991d-b7d3e3c298ce");
+const IID_IDirect3DBaseTexture9_Value = Guid.initString("580ca87e-1d3c-4d54-991d-b7d3e3c298ce");
 pub const IID_IDirect3DBaseTexture9 = &IID_IDirect3DBaseTexture9_Value;
 pub const IDirect3DBaseTexture9 = extern struct {
     pub const VTable = extern struct {
@@ -3934,7 +3934,7 @@ pub const IDirect3DBaseTexture9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DTexture9_Value = @import("../zig.zig").Guid.initString("85c31227-3de5-4f00-9b3a-f11ac38c18b5");
+const IID_IDirect3DTexture9_Value = Guid.initString("85c31227-3de5-4f00-9b3a-f11ac38c18b5");
 pub const IID_IDirect3DTexture9 = &IID_IDirect3DTexture9_Value;
 pub const IDirect3DTexture9 = extern struct {
     pub const VTable = extern struct {
@@ -3992,7 +3992,7 @@ pub const IDirect3DTexture9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DVolumeTexture9_Value = @import("../zig.zig").Guid.initString("2518526c-e789-4111-a7b9-47ef328d13e6");
+const IID_IDirect3DVolumeTexture9_Value = Guid.initString("2518526c-e789-4111-a7b9-47ef328d13e6");
 pub const IID_IDirect3DVolumeTexture9 = &IID_IDirect3DVolumeTexture9_Value;
 pub const IDirect3DVolumeTexture9 = extern struct {
     pub const VTable = extern struct {
@@ -4050,7 +4050,7 @@ pub const IDirect3DVolumeTexture9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DCubeTexture9_Value = @import("../zig.zig").Guid.initString("fff32f81-d953-473a-9223-93d652aba93f");
+const IID_IDirect3DCubeTexture9_Value = Guid.initString("fff32f81-d953-473a-9223-93d652aba93f");
 pub const IID_IDirect3DCubeTexture9 = &IID_IDirect3DCubeTexture9_Value;
 pub const IDirect3DCubeTexture9 = extern struct {
     pub const VTable = extern struct {
@@ -4112,7 +4112,7 @@ pub const IDirect3DCubeTexture9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DVertexBuffer9_Value = @import("../zig.zig").Guid.initString("b64bb1b5-fd70-4df6-bf91-19d0a12455e3");
+const IID_IDirect3DVertexBuffer9_Value = Guid.initString("b64bb1b5-fd70-4df6-bf91-19d0a12455e3");
 pub const IID_IDirect3DVertexBuffer9 = &IID_IDirect3DVertexBuffer9_Value;
 pub const IDirect3DVertexBuffer9 = extern struct {
     pub const VTable = extern struct {
@@ -4151,7 +4151,7 @@ pub const IDirect3DVertexBuffer9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DIndexBuffer9_Value = @import("../zig.zig").Guid.initString("7c9dd65e-d3f7-4529-acee-785830acde35");
+const IID_IDirect3DIndexBuffer9_Value = Guid.initString("7c9dd65e-d3f7-4529-acee-785830acde35");
 pub const IID_IDirect3DIndexBuffer9 = &IID_IDirect3DIndexBuffer9_Value;
 pub const IDirect3DIndexBuffer9 = extern struct {
     pub const VTable = extern struct {
@@ -4190,7 +4190,7 @@ pub const IDirect3DIndexBuffer9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DSurface9_Value = @import("../zig.zig").Guid.initString("0cfbaf3a-9ff6-429a-99b3-a2796af8b89b");
+const IID_IDirect3DSurface9_Value = Guid.initString("0cfbaf3a-9ff6-429a-99b3-a2796af8b89b");
 pub const IID_IDirect3DSurface9 = &IID_IDirect3DSurface9_Value;
 pub const IDirect3DSurface9 = extern struct {
     pub const VTable = extern struct {
@@ -4253,7 +4253,7 @@ pub const IDirect3DSurface9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DVolume9_Value = @import("../zig.zig").Guid.initString("24f416e6-1f67-4aa7-b88e-d33f6f3128a1");
+const IID_IDirect3DVolume9_Value = Guid.initString("24f416e6-1f67-4aa7-b88e-d33f6f3128a1");
 pub const IID_IDirect3DVolume9 = &IID_IDirect3DVolume9_Value;
 pub const IDirect3DVolume9 = extern struct {
     pub const VTable = extern struct {
@@ -4337,7 +4337,7 @@ pub const IDirect3DVolume9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DQuery9_Value = @import("../zig.zig").Guid.initString("d9771460-a695-4f26-bbd3-27b840b541cc");
+const IID_IDirect3DQuery9_Value = Guid.initString("d9771460-a695-4f26-bbd3-27b840b541cc");
 pub const IID_IDirect3DQuery9 = &IID_IDirect3DQuery9_Value;
 pub const IDirect3DQuery9 = extern struct {
     pub const VTable = extern struct {
@@ -4390,7 +4390,7 @@ pub const IDirect3DQuery9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3D9Ex_Value = @import("../zig.zig").Guid.initString("02177241-69fc-400c-8ff1-93a44df6861d");
+const IID_IDirect3D9Ex_Value = Guid.initString("02177241-69fc-400c-8ff1-93a44df6861d");
 pub const IID_IDirect3D9Ex = &IID_IDirect3D9Ex_Value;
 pub const IDirect3D9Ex = extern struct {
     pub const VTable = extern struct {
@@ -4456,7 +4456,7 @@ pub const IDirect3D9Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DDevice9Ex_Value = @import("../zig.zig").Guid.initString("b18b10ce-2649-405a-870f-95f777d4313a");
+const IID_IDirect3DDevice9Ex_Value = Guid.initString("b18b10ce-2649-405a-870f-95f777d4313a");
 pub const IID_IDirect3DDevice9Ex = &IID_IDirect3DDevice9Ex_Value;
 pub const IDirect3DDevice9Ex = extern struct {
     pub const VTable = extern struct {
@@ -4629,7 +4629,7 @@ pub const IDirect3DDevice9Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirect3DSwapChain9Ex_Value = @import("../zig.zig").Guid.initString("91886caf-1c3d-4d2e-a0ab-3e4c7d8d3303");
+const IID_IDirect3DSwapChain9Ex_Value = Guid.initString("91886caf-1c3d-4d2e-a0ab-3e4c7d8d3303");
 pub const IID_IDirect3DSwapChain9Ex = &IID_IDirect3DSwapChain9Ex_Value;
 pub const IDirect3DSwapChain9Ex = extern struct {
     pub const VTable = extern struct {

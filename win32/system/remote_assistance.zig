@@ -10,7 +10,7 @@ pub const DISPID_EVENT_ON_SEND_ERROR = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_RendezvousApplication_Value = @import("../zig.zig").Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
+const CLSID_RendezvousApplication_Value = Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
 pub const CLSID_RendezvousApplication = &CLSID_RendezvousApplication_Value;
 
 pub const RENDEZVOUS_SESSION_STATE = enum(i32) {
@@ -48,7 +48,7 @@ pub const RSF_REMOTE_LEGACYSESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_LEGACYSESSI
 pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRendezvousSession_Value = @import("../zig.zig").Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
+const IID_IRendezvousSession_Value = Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
 pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
 pub const IRendezvousSession = extern struct {
     pub const VTable = extern struct {
@@ -106,7 +106,7 @@ pub const IRendezvousSession = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_DRendezvousSessionEvents_Value = @import("../zig.zig").Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
+const IID_DRendezvousSessionEvents_Value = Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
 pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
 pub const DRendezvousSessionEvents = extern struct {
     pub const VTable = extern struct {
@@ -120,7 +120,7 @@ pub const DRendezvousSessionEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRendezvousApplication_Value = @import("../zig.zig").Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
+const IID_IRendezvousApplication_Value = Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
 pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
 pub const IRendezvousApplication = extern struct {
     pub const VTable = extern struct {
@@ -160,8 +160,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

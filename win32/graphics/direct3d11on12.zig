@@ -26,7 +26,7 @@ pub const D3D11_RESOURCE_FLAGS = extern struct {
     StructureByteStride: u32,
 };
 
-const IID_ID3D11On12Device_Value = @import("../zig.zig").Guid.initString("85611e73-70a9-490e-9614-a9e302777904");
+const IID_ID3D11On12Device_Value = Guid.initString("85611e73-70a9-490e-9614-a9e302777904");
 pub const IID_ID3D11On12Device = &IID_ID3D11On12Device_Value;
 pub const ID3D11On12Device = extern struct {
     pub const VTable = extern struct {
@@ -71,7 +71,7 @@ pub const ID3D11On12Device = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.18362'
-const IID_ID3D11On12Device1_Value = @import("../zig.zig").Guid.initString("bdb64df4-ea2f-4c70-b861-aaab1258bb5d");
+const IID_ID3D11On12Device1_Value = Guid.initString("bdb64df4-ea2f-4c70-b861-aaab1258bb5d");
 pub const IID_ID3D11On12Device1 = &IID_ID3D11On12Device1_Value;
 pub const ID3D11On12Device1 = extern struct {
     pub const VTable = extern struct {
@@ -94,7 +94,7 @@ pub const ID3D11On12Device1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D11On12Device2_Value = @import("../zig.zig").Guid.initString("dc90f331-4740-43fa-866e-67f12cb58223");
+const IID_ID3D11On12Device2_Value = Guid.initString("dc90f331-4740-43fa-866e-67f12cb58223");
 pub const IID_ID3D11On12Device2 = &IID_ID3D11On12Device2_Value;
 pub const ID3D11On12Device2 = extern struct {
     pub const VTable = extern struct {

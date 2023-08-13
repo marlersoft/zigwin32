@@ -103,10 +103,10 @@ pub const OFFLINEFILES_SYNC_ITEM_CHANGE_ATTRIBUTES = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-const CLSID_OfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("fd3659e9-a920-4123-ad64-7fc76c7aacdf");
+const CLSID_OfflineFilesSetting_Value = Guid.initString("fd3659e9-a920-4123-ad64-7fc76c7aacdf");
 pub const CLSID_OfflineFilesSetting = &CLSID_OfflineFilesSetting_Value;
 
-const CLSID_OfflineFilesCache_Value = @import("../zig.zig").Guid.initString("48c6be7c-3871-43cc-b46f-1449a1bb2ff3");
+const CLSID_OfflineFilesCache_Value = Guid.initString("48c6be7c-3871-43cc-b46f-1449a1bb2ff3");
 pub const CLSID_OfflineFilesCache = &CLSID_OfflineFilesCache_Value;
 
 pub const OFFLINEFILES_ITEM_TYPE = enum(i32) {
@@ -468,7 +468,7 @@ pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirChangedOnSer
 pub const OFFLINEFILES_SYNC_STATE_NUMSTATES = OFFLINEFILES_SYNC_STATE.NUMSTATES;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesEvents_Value = @import("../zig.zig").Guid.initString("e25585c1-0caa-4eb1-873b-1cae5b77c314");
+const IID_IOfflineFilesEvents_Value = Guid.initString("e25585c1-0caa-4eb1-873b-1cae5b77c314");
 pub const IID_IOfflineFilesEvents = &IID_IOfflineFilesEvents_Value;
 pub const IOfflineFilesEvents = extern struct {
     pub const VTable = extern struct {
@@ -702,7 +702,7 @@ pub const IOfflineFilesEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesEvents2_Value = @import("../zig.zig").Guid.initString("1ead8f56-ff76-4faa-a795-6f6ef792498b");
+const IID_IOfflineFilesEvents2_Value = Guid.initString("1ead8f56-ff76-4faa-a795-6f6ef792498b");
 pub const IID_IOfflineFilesEvents2 = &IID_IOfflineFilesEvents2_Value;
 pub const IOfflineFilesEvents2 = extern struct {
     pub const VTable = extern struct {
@@ -781,7 +781,7 @@ pub const IOfflineFilesEvents2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOfflineFilesEvents3_Value = @import("../zig.zig").Guid.initString("9ba04a45-ee69-42f0-9ab1-7db5c8805808");
+const IID_IOfflineFilesEvents3_Value = Guid.initString("9ba04a45-ee69-42f0-9ab1-7db5c8805808");
 pub const IID_IOfflineFilesEvents3 = &IID_IOfflineFilesEvents3_Value;
 pub const IOfflineFilesEvents3 = extern struct {
     pub const VTable = extern struct {
@@ -824,7 +824,7 @@ pub const IOfflineFilesEvents3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesEvents4_Value = @import("../zig.zig").Guid.initString("dbd69b1e-c7d2-473e-b35f-9d8c24c0c484");
+const IID_IOfflineFilesEvents4_Value = Guid.initString("dbd69b1e-c7d2-473e-b35f-9d8c24c0c484");
 pub const IID_IOfflineFilesEvents4 = &IID_IOfflineFilesEvents4_Value;
 pub const IOfflineFilesEvents4 = extern struct {
     pub const VTable = extern struct {
@@ -855,7 +855,7 @@ pub const IOfflineFilesEvents4 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesEventsFilter_Value = @import("../zig.zig").Guid.initString("33fc4e1b-0716-40fa-ba65-6e62a84a846f");
+const IID_IOfflineFilesEventsFilter_Value = Guid.initString("33fc4e1b-0716-40fa-ba65-6e62a84a846f");
 pub const IID_IOfflineFilesEventsFilter = &IID_IOfflineFilesEventsFilter_Value;
 pub const IOfflineFilesEventsFilter = extern struct {
     pub const VTable = extern struct {
@@ -898,7 +898,7 @@ pub const IOfflineFilesEventsFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesErrorInfo_Value = @import("../zig.zig").Guid.initString("7112fa5f-7571-435a-8eb7-195c7c1429bc");
+const IID_IOfflineFilesErrorInfo_Value = Guid.initString("7112fa5f-7571-435a-8eb7-195c7c1429bc");
 pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
 pub const IOfflineFilesErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -928,7 +928,7 @@ pub const IOfflineFilesErrorInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncErrorItemInfo_Value = @import("../zig.zig").Guid.initString("ecdbaf0d-6a18-4d55-8017-108f7660ba44");
+const IID_IOfflineFilesSyncErrorItemInfo_Value = Guid.initString("ecdbaf0d-6a18-4d55-8017-108f7660ba44");
 pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemInfo_Value;
 pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub const VTable = extern struct {
@@ -967,7 +967,7 @@ pub const IOfflineFilesSyncErrorItemInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncErrorInfo_Value = @import("../zig.zig").Guid.initString("59f95e46-eb54-49d1-be76-de95458d01b0");
+const IID_IOfflineFilesSyncErrorInfo_Value = Guid.initString("59f95e46-eb54-49d1-be76-de95458d01b0");
 pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value;
 pub const IOfflineFilesSyncErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -1041,7 +1041,7 @@ pub const IOfflineFilesSyncErrorInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesProgress_Value = @import("../zig.zig").Guid.initString("fad63237-c55b-4911-9850-bcf96d4c979e");
+const IID_IOfflineFilesProgress_Value = Guid.initString("fad63237-c55b-4911-9850-bcf96d4c979e");
 pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
 pub const IOfflineFilesProgress = extern struct {
     pub const VTable = extern struct {
@@ -1079,7 +1079,7 @@ pub const IOfflineFilesProgress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSimpleProgress_Value = @import("../zig.zig").Guid.initString("c34f7f9b-c43d-4f9d-a776-c0eb6de5d401");
+const IID_IOfflineFilesSimpleProgress_Value = Guid.initString("c34f7f9b-c43d-4f9d-a776-c0eb6de5d401");
 pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Value;
 pub const IOfflineFilesSimpleProgress = extern struct {
     pub const VTable = extern struct {
@@ -1112,7 +1112,7 @@ pub const IOfflineFilesSimpleProgress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncProgress_Value = @import("../zig.zig").Guid.initString("6931f49a-6fc7-4c1b-b265-56793fc451b7");
+const IID_IOfflineFilesSyncProgress_Value = Guid.initString("6931f49a-6fc7-4c1b-b265-56793fc451b7");
 pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
 pub const IOfflineFilesSyncProgress = extern struct {
     pub const VTable = extern struct {
@@ -1146,7 +1146,7 @@ pub const IOfflineFilesSyncProgress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncConflictHandler_Value = @import("../zig.zig").Guid.initString("b6dd5092-c65c-46b6-97b8-fadd08e7e1be");
+const IID_IOfflineFilesSyncConflictHandler_Value = Guid.initString("b6dd5092-c65c-46b6-97b8-fadd08e7e1be");
 pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictHandler_Value;
 pub const IOfflineFilesSyncConflictHandler = extern struct {
     pub const VTable = extern struct {
@@ -1173,7 +1173,7 @@ pub const IOfflineFilesSyncConflictHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesItemFilter_Value = @import("../zig.zig").Guid.initString("f4b5a26c-dc05-4f20-ada4-551f1077be5c");
+const IID_IOfflineFilesItemFilter_Value = Guid.initString("f4b5a26c-dc05-4f20-ada4-551f1077be5c");
 pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
 pub const IOfflineFilesItemFilter = extern struct {
     pub const VTable = extern struct {
@@ -1216,7 +1216,7 @@ pub const IOfflineFilesItemFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesItem_Value = @import("../zig.zig").Guid.initString("4a753da6-e044-4f12-a718-5d14d079a906");
+const IID_IOfflineFilesItem_Value = Guid.initString("4a753da6-e044-4f12-a718-5d14d079a906");
 pub const IID_IOfflineFilesItem = &IID_IOfflineFilesItem_Value;
 pub const IOfflineFilesItem = extern struct {
     pub const VTable = extern struct {
@@ -1270,7 +1270,7 @@ pub const IOfflineFilesItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesServerItem_Value = @import("../zig.zig").Guid.initString("9b1c9576-a92b-4151-8e9e-7c7b3ec2e016");
+const IID_IOfflineFilesServerItem_Value = Guid.initString("9b1c9576-a92b-4151-8e9e-7c7b3ec2e016");
 pub const IID_IOfflineFilesServerItem = &IID_IOfflineFilesServerItem_Value;
 pub const IOfflineFilesServerItem = extern struct {
     pub const VTable = extern struct {
@@ -1284,7 +1284,7 @@ pub const IOfflineFilesServerItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesShareItem_Value = @import("../zig.zig").Guid.initString("bab7e48d-4804-41b5-a44d-0f199b06b145");
+const IID_IOfflineFilesShareItem_Value = Guid.initString("bab7e48d-4804-41b5-a44d-0f199b06b145");
 pub const IID_IOfflineFilesShareItem = &IID_IOfflineFilesShareItem_Value;
 pub const IOfflineFilesShareItem = extern struct {
     pub const VTable = extern struct {
@@ -1298,7 +1298,7 @@ pub const IOfflineFilesShareItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesDirectoryItem_Value = @import("../zig.zig").Guid.initString("2273597a-a08c-4a00-a37a-c1ae4e9a1cfd");
+const IID_IOfflineFilesDirectoryItem_Value = Guid.initString("2273597a-a08c-4a00-a37a-c1ae4e9a1cfd");
 pub const IID_IOfflineFilesDirectoryItem = &IID_IOfflineFilesDirectoryItem_Value;
 pub const IOfflineFilesDirectoryItem = extern struct {
     pub const VTable = extern struct {
@@ -1312,7 +1312,7 @@ pub const IOfflineFilesDirectoryItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesFileItem_Value = @import("../zig.zig").Guid.initString("8dfadead-26c2-4eff-8a72-6b50723d9a00");
+const IID_IOfflineFilesFileItem_Value = Guid.initString("8dfadead-26c2-4eff-8a72-6b50723d9a00");
 pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
 pub const IOfflineFilesFileItem = extern struct {
     pub const VTable = extern struct {
@@ -1342,7 +1342,7 @@ pub const IOfflineFilesFileItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumOfflineFilesItems_Value = @import("../zig.zig").Guid.initString("da70e815-c361-4407-bc0b-0d7046e5f2cd");
+const IID_IEnumOfflineFilesItems_Value = Guid.initString("da70e815-c361-4407-bc0b-0d7046e5f2cd");
 pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
 pub const IEnumOfflineFilesItems = extern struct {
     pub const VTable = extern struct {
@@ -1389,7 +1389,7 @@ pub const IEnumOfflineFilesItems = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesItemContainer_Value = @import("../zig.zig").Guid.initString("3836f049-9413-45dd-bf46-b5aaa82dc310");
+const IID_IOfflineFilesItemContainer_Value = Guid.initString("3836f049-9413-45dd-bf46-b5aaa82dc310");
 pub const IID_IOfflineFilesItemContainer = &IID_IOfflineFilesItemContainer_Value;
 pub const IOfflineFilesItemContainer = extern struct {
     pub const VTable = extern struct {
@@ -1426,7 +1426,7 @@ pub const IOfflineFilesItemContainer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesChangeInfo_Value = @import("../zig.zig").Guid.initString("a96e6fa4-e0d1-4c29-960b-ee508fe68c72");
+const IID_IOfflineFilesChangeInfo_Value = Guid.initString("a96e6fa4-e0d1-4c29-960b-ee508fe68c72");
 pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
 pub const IOfflineFilesChangeInfo = extern struct {
     pub const VTable = extern struct {
@@ -1488,7 +1488,7 @@ pub const IOfflineFilesChangeInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesDirtyInfo_Value = @import("../zig.zig").Guid.initString("0f50ce33-bac9-4eaa-a11d-da0e527d047d");
+const IID_IOfflineFilesDirtyInfo_Value = Guid.initString("0f50ce33-bac9-4eaa-a11d-da0e527d047d");
 pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
 pub const IOfflineFilesDirtyInfo = extern struct {
     pub const VTable = extern struct {
@@ -1518,7 +1518,7 @@ pub const IOfflineFilesDirtyInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesFileSysInfo_Value = @import("../zig.zig").Guid.initString("bc1a163f-7bfd-4d88-9c66-96ea9a6a3d6b");
+const IID_IOfflineFilesFileSysInfo_Value = Guid.initString("bc1a163f-7bfd-4d88-9c66-96ea9a6a3d6b");
 pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
 pub const IOfflineFilesFileSysInfo = extern struct {
     pub const VTable = extern struct {
@@ -1562,7 +1562,7 @@ pub const IOfflineFilesFileSysInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesPinInfo_Value = @import("../zig.zig").Guid.initString("5b2b0655-b3fd-497d-adeb-bd156bc8355b");
+const IID_IOfflineFilesPinInfo_Value = Guid.initString("5b2b0655-b3fd-497d-adeb-bd156bc8355b");
 pub const IID_IOfflineFilesPinInfo = &IID_IOfflineFilesPinInfo_Value;
 pub const IOfflineFilesPinInfo = extern struct {
     pub const VTable = extern struct {
@@ -1620,7 +1620,7 @@ pub const IOfflineFilesPinInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesPinInfo2_Value = @import("../zig.zig").Guid.initString("623c58a2-42ed-4ad7-b69a-0f1b30a72d0d");
+const IID_IOfflineFilesPinInfo2_Value = Guid.initString("623c58a2-42ed-4ad7-b69a-0f1b30a72d0d");
 pub const IID_IOfflineFilesPinInfo2 = &IID_IOfflineFilesPinInfo2_Value;
 pub const IOfflineFilesPinInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -1642,7 +1642,7 @@ pub const IOfflineFilesPinInfo2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOfflineFilesTransparentCacheInfo_Value = @import("../zig.zig").Guid.initString("bcaf4a01-5b68-4b56-a6a1-8d2786ede8e3");
+const IID_IOfflineFilesTransparentCacheInfo_Value = Guid.initString("bcaf4a01-5b68-4b56-a6a1-8d2786ede8e3");
 pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentCacheInfo_Value;
 pub const IOfflineFilesTransparentCacheInfo = extern struct {
     pub const VTable = extern struct {
@@ -1664,7 +1664,7 @@ pub const IOfflineFilesTransparentCacheInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesGhostInfo_Value = @import("../zig.zig").Guid.initString("2b09d48c-8ab5-464f-a755-a59d92f99429");
+const IID_IOfflineFilesGhostInfo_Value = Guid.initString("2b09d48c-8ab5-464f-a755-a59d92f99429");
 pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
 pub const IOfflineFilesGhostInfo = extern struct {
     pub const VTable = extern struct {
@@ -1686,7 +1686,7 @@ pub const IOfflineFilesGhostInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesConnectionInfo_Value = @import("../zig.zig").Guid.initString("efb23a09-a867-4be8-83a6-86969a7d0856");
+const IID_IOfflineFilesConnectionInfo_Value = Guid.initString("efb23a09-a867-4be8-83a6-86969a7d0856");
 pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Value;
 pub const IOfflineFilesConnectionInfo = extern struct {
     pub const VTable = extern struct {
@@ -1739,7 +1739,7 @@ pub const IOfflineFilesConnectionInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesShareInfo_Value = @import("../zig.zig").Guid.initString("7bcc43e7-31ce-4ca4-8ccd-1cff2dc494da");
+const IID_IOfflineFilesShareInfo_Value = Guid.initString("7bcc43e7-31ce-4ca4-8ccd-1cff2dc494da");
 pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
 pub const IOfflineFilesShareInfo = extern struct {
     pub const VTable = extern struct {
@@ -1777,7 +1777,7 @@ pub const IOfflineFilesShareInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSuspend_Value = @import("../zig.zig").Guid.initString("62c4560f-bc0b-48ca-ad9d-34cb528d99a9");
+const IID_IOfflineFilesSuspend_Value = Guid.initString("62c4560f-bc0b-48ca-ad9d-34cb528d99a9");
 pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
 pub const IOfflineFilesSuspend = extern struct {
     pub const VTable = extern struct {
@@ -1799,7 +1799,7 @@ pub const IOfflineFilesSuspend = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSuspendInfo_Value = @import("../zig.zig").Guid.initString("a457c25b-4e9c-4b04-85af-8932ccd97889");
+const IID_IOfflineFilesSuspendInfo_Value = Guid.initString("a457c25b-4e9c-4b04-85af-8932ccd97889");
 pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
 pub const IOfflineFilesSuspendInfo = extern struct {
     pub const VTable = extern struct {
@@ -1822,7 +1822,7 @@ pub const IOfflineFilesSuspendInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("d871d3f7-f613-48a1-827e-7a34e560fff6");
+const IID_IOfflineFilesSetting_Value = Guid.initString("d871d3f7-f613-48a1-827e-7a34e560fff6");
 pub const IID_IOfflineFilesSetting = &IID_IOfflineFilesSetting_Value;
 pub const IOfflineFilesSetting = extern struct {
     pub const VTable = extern struct {
@@ -1912,7 +1912,7 @@ pub const IOfflineFilesSetting = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumOfflineFilesSettings_Value = @import("../zig.zig").Guid.initString("729680c4-1a38-47bc-9e5c-02c51562ac30");
+const IID_IEnumOfflineFilesSettings_Value = Guid.initString("729680c4-1a38-47bc-9e5c-02c51562ac30");
 pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
 pub const IEnumOfflineFilesSettings = extern struct {
     pub const VTable = extern struct {
@@ -1959,7 +1959,7 @@ pub const IEnumOfflineFilesSettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesCache_Value = @import("../zig.zig").Guid.initString("855d6203-7914-48b9-8d40-4c56f5acffc5");
+const IID_IOfflineFilesCache_Value = Guid.initString("855d6203-7914-48b9-8d40-4c56f5acffc5");
 pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
 pub const IOfflineFilesCache = extern struct {
     pub const VTable = extern struct {
@@ -2161,7 +2161,7 @@ pub const IOfflineFilesCache = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOfflineFilesCache2_Value = @import("../zig.zig").Guid.initString("8c075039-1551-4ed9-8781-56705c04d3c0");
+const IID_IOfflineFilesCache2_Value = Guid.initString("8c075039-1551-4ed9-8781-56705c04d3c0");
 pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
 pub const IOfflineFilesCache2 = extern struct {
     pub const VTable = extern struct {

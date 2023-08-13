@@ -3101,7 +3101,7 @@ pub const DISKQUOTA_USER_INFORMATION = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDiskQuotaUser_Value = @import("../zig.zig").Guid.initString("7988b574-ec89-11cf-9c00-00aa00a14f56");
+const IID_IDiskQuotaUser_Value = Guid.initString("7988b574-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUser = &IID_IDiskQuotaUser_Value;
 pub const IDiskQuotaUser = extern struct {
     pub const VTable = extern struct {
@@ -3246,7 +3246,7 @@ pub const IDiskQuotaUser = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumDiskQuotaUsers_Value = @import("../zig.zig").Guid.initString("7988b577-ec89-11cf-9c00-00aa00a14f56");
+const IID_IEnumDiskQuotaUsers_Value = Guid.initString("7988b577-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IEnumDiskQuotaUsers = &IID_IEnumDiskQuotaUsers_Value;
 pub const IEnumDiskQuotaUsers = extern struct {
     pub const VTable = extern struct {
@@ -3293,7 +3293,7 @@ pub const IEnumDiskQuotaUsers = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDiskQuotaUserBatch_Value = @import("../zig.zig").Guid.initString("7988b576-ec89-11cf-9c00-00aa00a14f56");
+const IID_IDiskQuotaUserBatch_Value = Guid.initString("7988b576-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUserBatch = &IID_IDiskQuotaUserBatch_Value;
 pub const IDiskQuotaUserBatch = extern struct {
     pub const VTable = extern struct {
@@ -3337,7 +3337,7 @@ pub const IDiskQuotaUserBatch = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDiskQuotaControl_Value = @import("../zig.zig").Guid.initString("7988b572-ec89-11cf-9c00-00aa00a14f56");
+const IID_IDiskQuotaControl_Value = Guid.initString("7988b572-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaControl = &IID_IDiskQuotaControl_Value;
 pub const IDiskQuotaControl = extern struct {
     pub const VTable = extern struct {
@@ -3530,7 +3530,7 @@ pub const IDiskQuotaControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDiskQuotaEvents_Value = @import("../zig.zig").Guid.initString("7988b579-ec89-11cf-9c00-00aa00a14f56");
+const IID_IDiskQuotaEvents_Value = Guid.initString("7988b579-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaEvents = &IID_IDiskQuotaEvents_Value;
 pub const IDiskQuotaEvents = extern struct {
     pub const VTable = extern struct {

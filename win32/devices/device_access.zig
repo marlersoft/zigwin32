@@ -51,7 +51,7 @@ pub const CLSID_DeviceIoControl = Guid.initString("12d3e372-874b-457d-9fdf-73977
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-const IID_IDeviceRequestCompletionCallback_Value = @import("../zig.zig").Guid.initString("999bad24-9acd-45bb-8669-2a2fc0288b04");
+const IID_IDeviceRequestCompletionCallback_Value = Guid.initString("999bad24-9acd-45bb-8669-2a2fc0288b04");
 pub const IID_IDeviceRequestCompletionCallback = &IID_IDeviceRequestCompletionCallback_Value;
 pub const IDeviceRequestCompletionCallback = extern struct {
     pub const VTable = extern struct {
@@ -73,7 +73,7 @@ pub const IDeviceRequestCompletionCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDeviceIoControl_Value = @import("../zig.zig").Guid.initString("9eefe161-23ab-4f18-9b49-991b586ae970");
+const IID_IDeviceIoControl_Value = Guid.initString("9eefe161-23ab-4f18-9b49-991b586ae970");
 pub const IID_IDeviceIoControl = &IID_IDeviceIoControl_Value;
 pub const IDeviceIoControl = extern struct {
     pub const VTable = extern struct {
@@ -121,7 +121,7 @@ pub const IDeviceIoControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICreateDeviceAccessAsync_Value = @import("../zig.zig").Guid.initString("3474628f-683d-42d2-abcb-db018c6503bc");
+const IID_ICreateDeviceAccessAsync_Value = Guid.initString("3474628f-683d-42d2-abcb-db018c6503bc");
 pub const IID_ICreateDeviceAccessAsync = &IID_ICreateDeviceAccessAsync_Value;
 pub const ICreateDeviceAccessAsync = extern struct {
     pub const VTable = extern struct {

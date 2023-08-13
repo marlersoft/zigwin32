@@ -529,7 +529,7 @@ pub const WCN_VALUE_TYPE_PRIMARY_DEVICE_TYPE = packed struct {
     SubCategory: u16,
 };
 
-const CLSID_WCNDeviceObject_Value = @import("../zig.zig").Guid.initString("c100bea7-d33a-4a4b-bf23-bbef4663d017");
+const CLSID_WCNDeviceObject_Value = Guid.initString("c100bea7-d33a-4a4b-bf23-bbef4663d017");
 pub const CLSID_WCNDeviceObject = &CLSID_WCNDeviceObject_Value;
 
 pub const WCN_PASSWORD_TYPE = enum(i32) {
@@ -562,7 +562,7 @@ pub const WCN_VENDOR_EXTENSION_SPEC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWCNDevice_Value = @import("../zig.zig").Guid.initString("c100be9c-d33a-4a4b-bf23-bbef4663d017");
+const IID_IWCNDevice_Value = Guid.initString("c100be9c-d33a-4a4b-bf23-bbef4663d017");
 pub const IID_IWCNDevice = &IID_IWCNDevice_Value;
 pub const IWCNDevice = extern struct {
     pub const VTable = extern struct {
@@ -684,7 +684,7 @@ pub const IWCNDevice = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWCNConnectNotify_Value = @import("../zig.zig").Guid.initString("c100be9f-d33a-4a4b-bf23-bbef4663d017");
+const IID_IWCNConnectNotify_Value = Guid.initString("c100be9f-d33a-4a4b-bf23-bbef4663d017");
 pub const IID_IWCNConnectNotify = &IID_IWCNConnectNotify_Value;
 pub const IWCNConnectNotify = extern struct {
     pub const VTable = extern struct {

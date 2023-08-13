@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (293)
 //--------------------------------------------------------------------------------
-pub const DEVPKEY_MTPBTH_IsConnected = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
+pub const DEVPKEY_MTPBTH_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
 pub const GUID_DEVINTERFACE_WPD = Guid.initString("6ac27878-a6fa-4155-ba85-f98f491d4f33");
 pub const GUID_DEVINTERFACE_WPD_PRIVATE = Guid.initString("ba0c718f-4ded-49b7-bdd3-fabe28661211");
 pub const GUID_DEVINTERFACE_WPD_SERVICE = Guid.initString("9ef44f80-3d64-4246-a6aa-206f328d1edc");
@@ -670,19 +670,19 @@ pub const WPD_COMMAND_ACCESS_LOOKUP_ENTRY = extern struct {
     AccessProperty: PROPERTYKEY,
 };
 
-const CLSID_WpdSerializer_Value = @import("../zig.zig").Guid.initString("0b91a74b-ad7c-4a9d-b563-29eef9167172");
+const CLSID_WpdSerializer_Value = Guid.initString("0b91a74b-ad7c-4a9d-b563-29eef9167172");
 pub const CLSID_WpdSerializer = &CLSID_WpdSerializer_Value;
 
-const CLSID_PortableDeviceValues_Value = @import("../zig.zig").Guid.initString("0c15d503-d017-47ce-9016-7b3f978721cc");
+const CLSID_PortableDeviceValues_Value = Guid.initString("0c15d503-d017-47ce-9016-7b3f978721cc");
 pub const CLSID_PortableDeviceValues = &CLSID_PortableDeviceValues_Value;
 
-const CLSID_PortableDeviceKeyCollection_Value = @import("../zig.zig").Guid.initString("de2d022d-2480-43be-97f0-d1fa2cf98f4f");
+const CLSID_PortableDeviceKeyCollection_Value = Guid.initString("de2d022d-2480-43be-97f0-d1fa2cf98f4f");
 pub const CLSID_PortableDeviceKeyCollection = &CLSID_PortableDeviceKeyCollection_Value;
 
-const CLSID_PortableDevicePropVariantCollection_Value = @import("../zig.zig").Guid.initString("08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9");
+const CLSID_PortableDevicePropVariantCollection_Value = Guid.initString("08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9");
 pub const CLSID_PortableDevicePropVariantCollection = &CLSID_PortableDevicePropVariantCollection_Value;
 
-const CLSID_PortableDeviceValuesCollection_Value = @import("../zig.zig").Guid.initString("3882134d-14cf-4220-9cb4-435f86d83f60");
+const CLSID_PortableDeviceValuesCollection_Value = Guid.initString("3882134d-14cf-4220-9cb4-435f86d83f60");
 pub const CLSID_PortableDeviceValuesCollection = &CLSID_PortableDeviceValuesCollection_Value;
 
 pub const WPD_STREAM_UNITS = enum(i32) {
@@ -698,7 +698,7 @@ pub const WPD_STREAM_UNITS_ROWS = WPD_STREAM_UNITS.ROWS;
 pub const WPD_STREAM_UNITS_MILLISECONDS = WPD_STREAM_UNITS.MILLISECONDS;
 pub const WPD_STREAM_UNITS_MICROSECONDS = WPD_STREAM_UNITS.MICROSECONDS;
 
-const IID_IWpdSerializer_Value = @import("../zig.zig").Guid.initString("b32f4002-bb27-45ff-af4f-06631c1e8dad");
+const IID_IWpdSerializer_Value = Guid.initString("b32f4002-bb27-45ff-af4f-06631c1e8dad");
 pub const IID_IWpdSerializer = &IID_IWpdSerializer_Value;
 pub const IWpdSerializer = extern struct {
     pub const VTable = extern struct {
@@ -751,7 +751,7 @@ pub const IWpdSerializer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceValues_Value = @import("../zig.zig").Guid.initString("6848f6f2-3155-4f86-b6f5-263eeeab3143");
+const IID_IPortableDeviceValues_Value = Guid.initString("6848f6f2-3155-4f86-b6f5-263eeeab3143");
 pub const IID_IPortableDeviceValues = &IID_IPortableDeviceValues_Value;
 pub const IPortableDeviceValues = extern struct {
     pub const VTable = extern struct {
@@ -1121,7 +1121,7 @@ pub const IPortableDeviceValues = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceKeyCollection_Value = @import("../zig.zig").Guid.initString("dada2357-e0ad-492e-98db-dd61c53ba353");
+const IID_IPortableDeviceKeyCollection_Value = Guid.initString("dada2357-e0ad-492e-98db-dd61c53ba353");
 pub const IID_IPortableDeviceKeyCollection = &IID_IPortableDeviceKeyCollection_Value;
 pub const IPortableDeviceKeyCollection = extern struct {
     pub const VTable = extern struct {
@@ -1174,7 +1174,7 @@ pub const IPortableDeviceKeyCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDevicePropVariantCollection_Value = @import("../zig.zig").Guid.initString("89b2e422-4f1b-4316-bcef-a44afea83eb3");
+const IID_IPortableDevicePropVariantCollection_Value = Guid.initString("89b2e422-4f1b-4316-bcef-a44afea83eb3");
 pub const IID_IPortableDevicePropVariantCollection = &IID_IPortableDevicePropVariantCollection_Value;
 pub const IPortableDevicePropVariantCollection = extern struct {
     pub const VTable = extern struct {
@@ -1243,7 +1243,7 @@ pub const IPortableDevicePropVariantCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceValuesCollection_Value = @import("../zig.zig").Guid.initString("6e3f2d79-4e07-48c4-8208-d8c2e5af4a99");
+const IID_IPortableDeviceValuesCollection_Value = Guid.initString("6e3f2d79-4e07-48c4-8208-d8c2e5af4a99");
 pub const IID_IPortableDeviceValuesCollection = &IID_IPortableDeviceValuesCollection_Value;
 pub const IPortableDeviceValuesCollection = extern struct {
     pub const VTable = extern struct {
@@ -1296,28 +1296,28 @@ pub const IPortableDeviceValuesCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_PortableDevice_Value = @import("../zig.zig").Guid.initString("728a21c5-3d9e-48d7-9810-864848f0f404");
+const CLSID_PortableDevice_Value = Guid.initString("728a21c5-3d9e-48d7-9810-864848f0f404");
 pub const CLSID_PortableDevice = &CLSID_PortableDevice_Value;
 
-const CLSID_PortableDeviceManager_Value = @import("../zig.zig").Guid.initString("0af10cec-2ecd-4b92-9581-34f6ae0637f3");
+const CLSID_PortableDeviceManager_Value = Guid.initString("0af10cec-2ecd-4b92-9581-34f6ae0637f3");
 pub const CLSID_PortableDeviceManager = &CLSID_PortableDeviceManager_Value;
 
-const CLSID_PortableDeviceService_Value = @import("../zig.zig").Guid.initString("ef5db4c2-9312-422c-9152-411cd9c4dd84");
+const CLSID_PortableDeviceService_Value = Guid.initString("ef5db4c2-9312-422c-9152-411cd9c4dd84");
 pub const CLSID_PortableDeviceService = &CLSID_PortableDeviceService_Value;
 
-const CLSID_PortableDeviceDispatchFactory_Value = @import("../zig.zig").Guid.initString("43232233-8338-4658-ae01-0b4ae830b6b0");
+const CLSID_PortableDeviceDispatchFactory_Value = Guid.initString("43232233-8338-4658-ae01-0b4ae830b6b0");
 pub const CLSID_PortableDeviceDispatchFactory = &CLSID_PortableDeviceDispatchFactory_Value;
 
-const CLSID_PortableDeviceFTM_Value = @import("../zig.zig").Guid.initString("f7c0039a-4762-488a-b4b3-760ef9a1ba9b");
+const CLSID_PortableDeviceFTM_Value = Guid.initString("f7c0039a-4762-488a-b4b3-760ef9a1ba9b");
 pub const CLSID_PortableDeviceFTM = &CLSID_PortableDeviceFTM_Value;
 
-const CLSID_PortableDeviceServiceFTM_Value = @import("../zig.zig").Guid.initString("1649b154-c794-497a-9b03-f3f0121302f3");
+const CLSID_PortableDeviceServiceFTM_Value = Guid.initString("1649b154-c794-497a-9b03-f3f0121302f3");
 pub const CLSID_PortableDeviceServiceFTM = &CLSID_PortableDeviceServiceFTM_Value;
 
-const CLSID_PortableDeviceWebControl_Value = @import("../zig.zig").Guid.initString("186dd02c-2dec-41b5-a7d4-b59056fade51");
+const CLSID_PortableDeviceWebControl_Value = Guid.initString("186dd02c-2dec-41b5-a7d4-b59056fade51");
 pub const CLSID_PortableDeviceWebControl = &CLSID_PortableDeviceWebControl_Value;
 
-const IID_IPortableDeviceManager_Value = @import("../zig.zig").Guid.initString("a1567595-4c2f-4574-a6fa-ecef917b9a40");
+const IID_IPortableDeviceManager_Value = Guid.initString("a1567595-4c2f-4574-a6fa-ecef917b9a40");
 pub const IID_IPortableDeviceManager = &IID_IPortableDeviceManager_Value;
 pub const IPortableDeviceManager = extern struct {
     pub const VTable = extern struct {
@@ -1397,7 +1397,7 @@ pub const IPortableDeviceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDevice_Value = @import("../zig.zig").Guid.initString("625e2df8-6392-4cf0-9ad1-3cfa5f17775c");
+const IID_IPortableDevice_Value = Guid.initString("625e2df8-6392-4cf0-9ad1-3cfa5f17775c");
 pub const IID_IPortableDevice = &IID_IPortableDevice_Value;
 pub const IPortableDevice = extern struct {
     pub const VTable = extern struct {
@@ -1486,7 +1486,7 @@ pub const IPortableDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceContent_Value = @import("../zig.zig").Guid.initString("6a96ed84-7c73-4480-9938-bf5af477d426");
+const IID_IPortableDeviceContent_Value = Guid.initString("6a96ed84-7c73-4480-9938-bf5af477d426");
 pub const IID_IPortableDeviceContent = &IID_IPortableDeviceContent_Value;
 pub const IPortableDeviceContent = extern struct {
     pub const VTable = extern struct {
@@ -1593,7 +1593,7 @@ pub const IPortableDeviceContent = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceContent2_Value = @import("../zig.zig").Guid.initString("9b4add96-f6bf-4034-8708-eca72bf10554");
+const IID_IPortableDeviceContent2_Value = Guid.initString("9b4add96-f6bf-4034-8708-eca72bf10554");
 pub const IID_IPortableDeviceContent2 = &IID_IPortableDeviceContent2_Value;
 pub const IPortableDeviceContent2 = extern struct {
     pub const VTable = extern struct {
@@ -1617,7 +1617,7 @@ pub const IPortableDeviceContent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumPortableDeviceObjectIDs_Value = @import("../zig.zig").Guid.initString("10ece955-cf41-4728-bfa0-41eedf1bbf19");
+const IID_IEnumPortableDeviceObjectIDs_Value = Guid.initString("10ece955-cf41-4728-bfa0-41eedf1bbf19");
 pub const IID_IEnumPortableDeviceObjectIDs = &IID_IEnumPortableDeviceObjectIDs_Value;
 pub const IEnumPortableDeviceObjectIDs = extern struct {
     pub const VTable = extern struct {
@@ -1670,7 +1670,7 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceProperties_Value = @import("../zig.zig").Guid.initString("7f6d695c-03df-4439-a809-59266beee3a6");
+const IID_IPortableDeviceProperties_Value = Guid.initString("7f6d695c-03df-4439-a809-59266beee3a6");
 pub const IID_IPortableDeviceProperties = &IID_IPortableDeviceProperties_Value;
 pub const IPortableDeviceProperties = extern struct {
     pub const VTable = extern struct {
@@ -1738,7 +1738,7 @@ pub const IPortableDeviceProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceResources_Value = @import("../zig.zig").Guid.initString("fd8878ac-d841-4d17-891c-e6829cdb6934");
+const IID_IPortableDeviceResources_Value = Guid.initString("fd8878ac-d841-4d17-891c-e6829cdb6934");
 pub const IID_IPortableDeviceResources = &IID_IPortableDeviceResources_Value;
 pub const IPortableDeviceResources = extern struct {
     pub const VTable = extern struct {
@@ -1809,7 +1809,7 @@ pub const IPortableDeviceResources = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceCapabilities_Value = @import("../zig.zig").Guid.initString("2c8c6dbf-e3dc-4061-becc-8542e810d126");
+const IID_IPortableDeviceCapabilities_Value = Guid.initString("2c8c6dbf-e3dc-4061-becc-8542e810d126");
 pub const IID_IPortableDeviceCapabilities = &IID_IPortableDeviceCapabilities_Value;
 pub const IPortableDeviceCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -1917,7 +1917,7 @@ pub const IPortableDeviceCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceEventCallback_Value = @import("../zig.zig").Guid.initString("a8792a31-f385-493c-a893-40f64eb45f6e");
+const IID_IPortableDeviceEventCallback_Value = Guid.initString("a8792a31-f385-493c-a893-40f64eb45f6e");
 pub const IID_IPortableDeviceEventCallback = &IID_IPortableDeviceEventCallback_Value;
 pub const IPortableDeviceEventCallback = extern struct {
     pub const VTable = extern struct {
@@ -1938,7 +1938,7 @@ pub const IPortableDeviceEventCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceDataStream_Value = @import("../zig.zig").Guid.initString("88e04db3-1012-4d64-9996-f703a950d3f4");
+const IID_IPortableDeviceDataStream_Value = Guid.initString("88e04db3-1012-4d64-9996-f703a950d3f4");
 pub const IID_IPortableDeviceDataStream = &IID_IPortableDeviceDataStream_Value;
 pub const IPortableDeviceDataStream = extern struct {
     pub const VTable = extern struct {
@@ -1967,7 +1967,7 @@ pub const IPortableDeviceDataStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IPortableDeviceUnitsStream_Value = @import("../zig.zig").Guid.initString("5e98025f-bfc4-47a2-9a5f-bc900a507c67");
+const IID_IPortableDeviceUnitsStream_Value = Guid.initString("5e98025f-bfc4-47a2-9a5f-bc900a507c67");
 pub const IID_IPortableDeviceUnitsStream = &IID_IPortableDeviceUnitsStream_Value;
 pub const IPortableDeviceUnitsStream = extern struct {
     pub const VTable = extern struct {
@@ -1998,7 +1998,7 @@ pub const IPortableDeviceUnitsStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDevicePropertiesBulk_Value = @import("../zig.zig").Guid.initString("482b05c0-4056-44ed-9e0f-5e23b009da93");
+const IID_IPortableDevicePropertiesBulk_Value = Guid.initString("482b05c0-4056-44ed-9e0f-5e23b009da93");
 pub const IID_IPortableDevicePropertiesBulk = &IID_IPortableDevicePropertiesBulk_Value;
 pub const IPortableDevicePropertiesBulk = extern struct {
     pub const VTable = extern struct {
@@ -2061,7 +2061,7 @@ pub const IPortableDevicePropertiesBulk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDevicePropertiesBulkCallback_Value = @import("../zig.zig").Guid.initString("9deacb80-11e8-40e3-a9f3-f557986a7845");
+const IID_IPortableDevicePropertiesBulkCallback_Value = Guid.initString("9deacb80-11e8-40e3-a9f3-f557986a7845");
 pub const IID_IPortableDevicePropertiesBulkCallback = &IID_IPortableDevicePropertiesBulkCallback_Value;
 pub const IPortableDevicePropertiesBulkCallback = extern struct {
     pub const VTable = extern struct {
@@ -2101,7 +2101,7 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceServiceManager_Value = @import("../zig.zig").Guid.initString("a8abc4e9-a84a-47a9-80b3-c5d9b172a961");
+const IID_IPortableDeviceServiceManager_Value = Guid.initString("a8abc4e9-a84a-47a9-80b3-c5d9b172a961");
 pub const IID_IPortableDeviceServiceManager = &IID_IPortableDeviceServiceManager_Value;
 pub const IPortableDeviceServiceManager = extern struct {
     pub const VTable = extern struct {
@@ -2135,7 +2135,7 @@ pub const IPortableDeviceServiceManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceService_Value = @import("../zig.zig").Guid.initString("d3bd3a44-d7b5-40a9-98b7-2fa4d01dec08");
+const IID_IPortableDeviceService_Value = Guid.initString("d3bd3a44-d7b5-40a9-98b7-2fa4d01dec08");
 pub const IID_IPortableDeviceService = &IID_IPortableDeviceService_Value;
 pub const IPortableDeviceService = extern struct {
     pub const VTable = extern struct {
@@ -2241,7 +2241,7 @@ pub const IPortableDeviceService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceServiceCapabilities_Value = @import("../zig.zig").Guid.initString("24dbd89d-413e-43e0-bd5b-197f3c56c886");
+const IID_IPortableDeviceServiceCapabilities_Value = Guid.initString("24dbd89d-413e-43e0-bd5b-197f3c56c886");
 pub const IID_IPortableDeviceServiceCapabilities = &IID_IPortableDeviceServiceCapabilities_Value;
 pub const IPortableDeviceServiceCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -2396,7 +2396,7 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceServiceMethods_Value = @import("../zig.zig").Guid.initString("e20333c9-fd34-412d-a381-cc6f2d820df7");
+const IID_IPortableDeviceServiceMethods_Value = Guid.initString("e20333c9-fd34-412d-a381-cc6f2d820df7");
 pub const IID_IPortableDeviceServiceMethods = &IID_IPortableDeviceServiceMethods_Value;
 pub const IPortableDeviceServiceMethods = extern struct {
     pub const VTable = extern struct {
@@ -2438,7 +2438,7 @@ pub const IPortableDeviceServiceMethods = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceServiceMethodCallback_Value = @import("../zig.zig").Guid.initString("c424233c-afce-4828-a756-7ed7a2350083");
+const IID_IPortableDeviceServiceMethodCallback_Value = Guid.initString("c424233c-afce-4828-a756-7ed7a2350083");
 pub const IID_IPortableDeviceServiceMethodCallback = &IID_IPortableDeviceServiceMethodCallback_Value;
 pub const IPortableDeviceServiceMethodCallback = extern struct {
     pub const VTable = extern struct {
@@ -2460,7 +2460,7 @@ pub const IPortableDeviceServiceMethodCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceServiceActivation_Value = @import("../zig.zig").Guid.initString("e56b0534-d9b9-425c-9b99-75f97cb3d7c8");
+const IID_IPortableDeviceServiceActivation_Value = Guid.initString("e56b0534-d9b9-425c-9b99-75f97cb3d7c8");
 pub const IID_IPortableDeviceServiceActivation = &IID_IPortableDeviceServiceActivation_Value;
 pub const IPortableDeviceServiceActivation = extern struct {
     pub const VTable = extern struct {
@@ -2490,7 +2490,7 @@ pub const IPortableDeviceServiceActivation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPortableDeviceServiceOpenCallback_Value = @import("../zig.zig").Guid.initString("bced49c8-8efe-41ed-960b-61313abd47a9");
+const IID_IPortableDeviceServiceOpenCallback_Value = Guid.initString("bced49c8-8efe-41ed-960b-61313abd47a9");
 pub const IID_IPortableDeviceServiceOpenCallback = &IID_IPortableDeviceServiceOpenCallback_Value;
 pub const IPortableDeviceServiceOpenCallback = extern struct {
     pub const VTable = extern struct {
@@ -2512,7 +2512,7 @@ pub const IPortableDeviceServiceOpenCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceDispatchFactory_Value = @import("../zig.zig").Guid.initString("5e1eafc3-e3d7-4132-96fa-759c0f9d1e0f");
+const IID_IPortableDeviceDispatchFactory_Value = Guid.initString("5e1eafc3-e3d7-4132-96fa-759c0f9d1e0f");
 pub const IID_IPortableDeviceDispatchFactory = &IID_IPortableDeviceDispatchFactory_Value;
 pub const IPortableDeviceDispatchFactory = extern struct {
     pub const VTable = extern struct {
@@ -2535,7 +2535,7 @@ pub const IPortableDeviceDispatchFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IPortableDeviceWebControl_Value = @import("../zig.zig").Guid.initString("94fc7953-5ca1-483a-8aee-df52e7747d00");
+const IID_IPortableDeviceWebControl_Value = Guid.initString("94fc7953-5ca1-483a-8aee-df52e7747d00");
 pub const IID_IPortableDeviceWebControl = &IID_IPortableDeviceWebControl_Value;
 pub const IPortableDeviceWebControl = extern struct {
     pub const VTable = extern struct {
@@ -2567,10 +2567,10 @@ pub const IPortableDeviceWebControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_EnumBthMtpConnectors_Value = @import("../zig.zig").Guid.initString("a1570149-e645-4f43-8b0d-409b061db2fc");
+const CLSID_EnumBthMtpConnectors_Value = Guid.initString("a1570149-e645-4f43-8b0d-409b061db2fc");
 pub const CLSID_EnumBthMtpConnectors = &CLSID_EnumBthMtpConnectors_Value;
 
-const IID_IEnumPortableDeviceConnectors_Value = @import("../zig.zig").Guid.initString("bfdef549-9247-454f-bd82-06fe80853faa");
+const IID_IEnumPortableDeviceConnectors_Value = Guid.initString("bfdef549-9247-454f-bd82-06fe80853faa");
 pub const IID_IEnumPortableDeviceConnectors = &IID_IEnumPortableDeviceConnectors_Value;
 pub const IEnumPortableDeviceConnectors = extern struct {
     pub const VTable = extern struct {
@@ -2617,7 +2617,7 @@ pub const IEnumPortableDeviceConnectors = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPortableDeviceConnector_Value = @import("../zig.zig").Guid.initString("625e2df8-6392-4cf0-9ad1-3cfa5f17775c");
+const IID_IPortableDeviceConnector_Value = Guid.initString("625e2df8-6392-4cf0-9ad1-3cfa5f17775c");
 pub const IID_IPortableDeviceConnector = &IID_IPortableDeviceConnector_Value;
 pub const IPortableDeviceConnector = extern struct {
     pub const VTable = extern struct {
@@ -2684,7 +2684,7 @@ pub const IPortableDeviceConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IConnectionRequestCallback_Value = @import("../zig.zig").Guid.initString("272c9ae0-7161-4ae0-91bd-9f448ee9c427");
+const IID_IConnectionRequestCallback_Value = Guid.initString("272c9ae0-7161-4ae0-91bd-9f448ee9c427");
 pub const IID_IConnectionRequestCallback = &IID_IConnectionRequestCallback_Value;
 pub const IConnectionRequestCallback = extern struct {
     pub const VTable = extern struct {
@@ -2731,7 +2731,7 @@ pub const SYSTEM_RADIO_STATE = enum(i32) {
 pub const SRS_RADIO_ENABLED = SYSTEM_RADIO_STATE.ENABLED;
 pub const SRS_RADIO_DISABLED = SYSTEM_RADIO_STATE.DISABLED;
 
-const IID_IMediaRadioManager_Value = @import("../zig.zig").Guid.initString("6cfdcab5-fc47-42a5-9241-074b58830e73");
+const IID_IMediaRadioManager_Value = Guid.initString("6cfdcab5-fc47-42a5-9241-074b58830e73");
 pub const IID_IMediaRadioManager = &IID_IMediaRadioManager_Value;
 pub const IMediaRadioManager = extern struct {
     pub const VTable = extern struct {
@@ -2761,7 +2761,7 @@ pub const IMediaRadioManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRadioInstanceCollection_Value = @import("../zig.zig").Guid.initString("e5791fae-5665-4e0c-95be-5fde31644185");
+const IID_IRadioInstanceCollection_Value = Guid.initString("e5791fae-5665-4e0c-95be-5fde31644185");
 pub const IID_IRadioInstanceCollection = &IID_IRadioInstanceCollection_Value;
 pub const IRadioInstanceCollection = extern struct {
     pub const VTable = extern struct {
@@ -2791,7 +2791,7 @@ pub const IRadioInstanceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRadioInstance_Value = @import("../zig.zig").Guid.initString("70aa1c9e-f2b4-4c61-86d3-6b9fb75fd1a2");
+const IID_IRadioInstance_Value = Guid.initString("70aa1c9e-f2b4-4c61-86d3-6b9fb75fd1a2");
 pub const IID_IRadioInstance = &IID_IRadioInstance_Value;
 pub const IRadioInstance = extern struct {
     pub const VTable = extern struct {
@@ -2860,7 +2860,7 @@ pub const IRadioInstance = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMediaRadioManagerNotifySink_Value = @import("../zig.zig").Guid.initString("89d81f5f-c147-49ed-a11c-77b20c31e7c9");
+const IID_IMediaRadioManagerNotifySink_Value = Guid.initString("89d81f5f-c147-49ed-a11c-77b20c31e7c9");
 pub const IID_IMediaRadioManagerNotifySink = &IID_IMediaRadioManagerNotifySink_Value;
 pub const IMediaRadioManagerNotifySink = extern struct {
     pub const VTable = extern struct {

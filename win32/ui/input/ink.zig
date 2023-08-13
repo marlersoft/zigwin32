@@ -6,11 +6,11 @@
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-const CLSID_InkDesktopHost_Value = @import("../../zig.zig").Guid.initString("062584a6-f830-4bdc-a4d2-0a10ab062b1d");
+const CLSID_InkDesktopHost_Value = Guid.initString("062584a6-f830-4bdc-a4d2-0a10ab062b1d");
 pub const CLSID_InkDesktopHost = &CLSID_InkDesktopHost_Value;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkCommitRequestHandler_Value = @import("../../zig.zig").Guid.initString("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf");
+const IID_IInkCommitRequestHandler_Value = Guid.initString("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf");
 pub const IID_IInkCommitRequestHandler = &IID_IInkCommitRequestHandler_Value;
 pub const IInkCommitRequestHandler = extern struct {
     pub const VTable = extern struct {
@@ -31,7 +31,7 @@ pub const IInkCommitRequestHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkPresenterDesktop_Value = @import("../../zig.zig").Guid.initString("73f3c0d9-2e8b-48f3-895e-20cbd27b723b");
+const IID_IInkPresenterDesktop_Value = Guid.initString("73f3c0d9-2e8b-48f3-895e-20cbd27b723b");
 pub const IID_IInkPresenterDesktop = &IID_IInkPresenterDesktop_Value;
 pub const IInkPresenterDesktop = extern struct {
     pub const VTable = extern struct {
@@ -87,7 +87,7 @@ pub const IInkPresenterDesktop = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkHostWorkItem_Value = @import("../../zig.zig").Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
+const IID_IInkHostWorkItem_Value = Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
 pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
 pub const IInkHostWorkItem = extern struct {
     pub const VTable = extern struct {
@@ -108,7 +108,7 @@ pub const IInkHostWorkItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkDesktopHost_Value = @import("../../zig.zig").Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
+const IID_IInkDesktopHost_Value = Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
 pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
 pub const IInkDesktopHost = extern struct {
     pub const VTable = extern struct {
@@ -150,7 +150,7 @@ pub const IInkDesktopHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_InkD2DRenderer_Value = @import("../../zig.zig").Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
+const CLSID_InkD2DRenderer_Value = Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
 pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
 
 pub const INK_HIGH_CONTRAST_ADJUSTMENT = enum(i32) {
@@ -163,7 +163,7 @@ pub const USE_SYSTEM_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.SYSTEM_COLORS;
 pub const USE_ORIGINAL_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.ORIGINAL_COLORS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkD2DRenderer_Value = @import("../../zig.zig").Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
+const IID_IInkD2DRenderer_Value = Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
 pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
 pub const IInkD2DRenderer = extern struct {
     pub const VTable = extern struct {
@@ -186,7 +186,7 @@ pub const IInkD2DRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkD2DRenderer2_Value = @import("../../zig.zig").Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
+const IID_IInkD2DRenderer2_Value = Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
 pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
 pub const IInkD2DRenderer2 = extern struct {
     pub const VTable = extern struct {

@@ -2288,7 +2288,7 @@ pub const REOBJECT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRichEditOle_Value = @import("../../zig.zig").Guid.initString("00020d00-0000-0000-c000-000000000046");
+const IID_IRichEditOle_Value = Guid.initString("00020d00-0000-0000-c000-000000000046");
 pub const IID_IRichEditOle = &IID_IRichEditOle_Value;
 pub const IRichEditOle = extern struct {
     pub const VTable = extern struct {
@@ -2440,7 +2440,7 @@ pub const IRichEditOle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRichEditOleCallback_Value = @import("../../zig.zig").Guid.initString("00020d03-0000-0000-c000-000000000046");
+const IID_IRichEditOleCallback_Value = Guid.initString("00020d03-0000-0000-c000-000000000046");
 pub const IID_IRichEditOleCallback = &IID_IRichEditOleCallback_Value;
 pub const IRichEditOleCallback = extern struct {
     pub const VTable = extern struct {
@@ -3820,7 +3820,7 @@ pub const MLOOP = MANCODE.LOOP;
 pub const MOPENA = MANCODE.OPENA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextDocument_Value = @import("../../zig.zig").Guid.initString("8cc497c0-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextDocument_Value = Guid.initString("8cc497c0-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextDocument = &IID_ITextDocument_Value;
 pub const ITextDocument = extern struct {
     pub const VTable = extern struct {
@@ -3993,7 +3993,7 @@ pub const ITextDocument = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextRange_Value = @import("../../zig.zig").Guid.initString("8cc497c2-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextRange_Value = Guid.initString("8cc497c2-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextRange = &IID_ITextRange_Value;
 pub const ITextRange = extern struct {
     pub const VTable = extern struct {
@@ -4463,7 +4463,7 @@ pub const ITextRange = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextSelection_Value = @import("../../zig.zig").Guid.initString("8cc497c1-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextSelection_Value = Guid.initString("8cc497c1-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextSelection = &IID_ITextSelection_Value;
 pub const ITextSelection = extern struct {
     pub const VTable = extern struct {
@@ -4573,7 +4573,7 @@ pub const ITextSelection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextFont_Value = @import("../../zig.zig").Guid.initString("8cc497c3-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextFont_Value = Guid.initString("8cc497c3-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextFont = &IID_ITextFont_Value;
 pub const ITextFont = extern struct {
     pub const VTable = extern struct {
@@ -5028,7 +5028,7 @@ pub const ITextFont = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextPara_Value = @import("../../zig.zig").Guid.initString("8cc497c4-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextPara_Value = Guid.initString("8cc497c4-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextPara = &IID_ITextPara_Value;
 pub const ITextPara = extern struct {
     pub const VTable = extern struct {
@@ -5434,7 +5434,7 @@ pub const ITextPara = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITextStoryRanges_Value = @import("../../zig.zig").Guid.initString("8cc497c5-a1df-11ce-8098-00aa0047be5d");
+const IID_ITextStoryRanges_Value = Guid.initString("8cc497c5-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextStoryRanges = &IID_ITextStoryRanges_Value;
 pub const ITextStoryRanges = extern struct {
     pub const VTable = extern struct {
@@ -5473,7 +5473,7 @@ pub const ITextStoryRanges = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextDocument2_Value = @import("../../zig.zig").Guid.initString("c241f5e0-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextDocument2_Value = Guid.initString("c241f5e0-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextDocument2 = &IID_ITextDocument2_Value;
 pub const ITextDocument2 = extern struct {
     pub const VTable = extern struct {
@@ -5861,7 +5861,7 @@ pub const ITextDocument2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextRange2_Value = @import("../../zig.zig").Guid.initString("c241f5e2-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextRange2_Value = Guid.initString("c241f5e2-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextRange2 = &IID_ITextRange2_Value;
 pub const ITextRange2 = extern struct {
     pub const VTable = extern struct {
@@ -6237,7 +6237,7 @@ pub const ITextRange2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextSelection2_Value = @import("../../zig.zig").Guid.initString("c241f5e1-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextSelection2_Value = Guid.initString("c241f5e1-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextSelection2 = &IID_ITextSelection2_Value;
 pub const ITextSelection2 = extern struct {
     pub const VTable = extern struct {
@@ -6251,7 +6251,7 @@ pub const ITextSelection2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextFont2_Value = @import("../../zig.zig").Guid.initString("c241f5e3-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextFont2_Value = Guid.initString("c241f5e3-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextFont2 = &IID_ITextFont2_Value;
 pub const ITextFont2 = extern struct {
     pub const VTable = extern struct {
@@ -6642,7 +6642,7 @@ pub const ITextFont2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextPara2_Value = @import("../../zig.zig").Guid.initString("c241f5e4-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextPara2_Value = Guid.initString("c241f5e4-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextPara2 = &IID_ITextPara2_Value;
 pub const ITextPara2 = extern struct {
     pub const VTable = extern struct {
@@ -6789,7 +6789,7 @@ pub const ITextPara2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextStoryRanges2_Value = @import("../../zig.zig").Guid.initString("c241f5e5-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextStoryRanges2_Value = Guid.initString("c241f5e5-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStoryRanges2 = &IID_ITextStoryRanges2_Value;
 pub const ITextStoryRanges2 = extern struct {
     pub const VTable = extern struct {
@@ -6812,7 +6812,7 @@ pub const ITextStoryRanges2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextStory_Value = @import("../../zig.zig").Guid.initString("c241f5f3-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextStory_Value = Guid.initString("c241f5f3-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStory = &IID_ITextStory_Value;
 pub const ITextStory = extern struct {
     pub const VTable = extern struct {
@@ -6928,7 +6928,7 @@ pub const ITextStory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextStrings_Value = @import("../../zig.zig").Guid.initString("c241f5e7-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextStrings_Value = Guid.initString("c241f5e7-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStrings = &IID_ITextStrings_Value;
 pub const ITextStrings = extern struct {
     pub const VTable = extern struct {
@@ -7093,7 +7093,7 @@ pub const ITextStrings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextRow_Value = @import("../../zig.zig").Guid.initString("c241f5ef-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextRow_Value = Guid.initString("c241f5ef-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextRow = &IID_ITextRow_Value;
 pub const ITextRow = extern struct {
     pub const VTable = extern struct {
@@ -7491,7 +7491,7 @@ pub const ITextRow = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITextDisplays_Value = @import("../../zig.zig").Guid.initString("c241f5f2-7206-11d8-a2c7-00a0d1d6c6b3");
+const IID_ITextDisplays_Value = Guid.initString("c241f5f2-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextDisplays = &IID_ITextDisplays_Value;
 pub const ITextDisplays = extern struct {
     pub const VTable = extern struct {
@@ -7504,7 +7504,7 @@ pub const ITextDisplays = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITextDocument2Old_Value = @import("../../zig.zig").Guid.initString("01c25500-4268-11d1-883a-3c8b00c10000");
+const IID_ITextDocument2Old_Value = Guid.initString("01c25500-4268-11d1-883a-3c8b00c10000");
 pub const IID_ITextDocument2Old = &IID_ITextDocument2Old_Value;
 pub const ITextDocument2Old = extern struct {
     pub const VTable = extern struct {

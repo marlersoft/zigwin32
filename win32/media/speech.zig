@@ -23,88 +23,88 @@ pub const SpeechAllElements = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (294)
 //--------------------------------------------------------------------------------
-const CLSID_SpNotifyTranslator_Value = @import("../zig.zig").Guid.initString("e2ae5372-5d40-11d2-960e-00c04f8ee628");
+const CLSID_SpNotifyTranslator_Value = Guid.initString("e2ae5372-5d40-11d2-960e-00c04f8ee628");
 pub const CLSID_SpNotifyTranslator = &CLSID_SpNotifyTranslator_Value;
 
-const CLSID_SpObjectTokenCategory_Value = @import("../zig.zig").Guid.initString("a910187f-0c7a-45ac-92cc-59edafb77b53");
+const CLSID_SpObjectTokenCategory_Value = Guid.initString("a910187f-0c7a-45ac-92cc-59edafb77b53");
 pub const CLSID_SpObjectTokenCategory = &CLSID_SpObjectTokenCategory_Value;
 
-const CLSID_SpObjectToken_Value = @import("../zig.zig").Guid.initString("ef411752-3736-4cb4-9c8c-8ef4ccb58efe");
+const CLSID_SpObjectToken_Value = Guid.initString("ef411752-3736-4cb4-9c8c-8ef4ccb58efe");
 pub const CLSID_SpObjectToken = &CLSID_SpObjectToken_Value;
 
-const CLSID_SpResourceManager_Value = @import("../zig.zig").Guid.initString("96749373-3391-11d2-9ee3-00c04f797396");
+const CLSID_SpResourceManager_Value = Guid.initString("96749373-3391-11d2-9ee3-00c04f797396");
 pub const CLSID_SpResourceManager = &CLSID_SpResourceManager_Value;
 
-const CLSID_SpStreamFormatConverter_Value = @import("../zig.zig").Guid.initString("7013943a-e2ec-11d2-a086-00c04f8ef9b5");
+const CLSID_SpStreamFormatConverter_Value = Guid.initString("7013943a-e2ec-11d2-a086-00c04f8ef9b5");
 pub const CLSID_SpStreamFormatConverter = &CLSID_SpStreamFormatConverter_Value;
 
-const CLSID_SpMMAudioEnum_Value = @import("../zig.zig").Guid.initString("ab1890a0-e91f-11d2-bb91-00c04f8ee6c0");
+const CLSID_SpMMAudioEnum_Value = Guid.initString("ab1890a0-e91f-11d2-bb91-00c04f8ee6c0");
 pub const CLSID_SpMMAudioEnum = &CLSID_SpMMAudioEnum_Value;
 
-const CLSID_SpMMAudioIn_Value = @import("../zig.zig").Guid.initString("cf3d2e50-53f2-11d2-960c-00c04f8ee628");
+const CLSID_SpMMAudioIn_Value = Guid.initString("cf3d2e50-53f2-11d2-960c-00c04f8ee628");
 pub const CLSID_SpMMAudioIn = &CLSID_SpMMAudioIn_Value;
 
-const CLSID_SpMMAudioOut_Value = @import("../zig.zig").Guid.initString("a8c680eb-3d32-11d2-9ee7-00c04f797396");
+const CLSID_SpMMAudioOut_Value = Guid.initString("a8c680eb-3d32-11d2-9ee7-00c04f797396");
 pub const CLSID_SpMMAudioOut = &CLSID_SpMMAudioOut_Value;
 
-const CLSID_SpStream_Value = @import("../zig.zig").Guid.initString("715d9c59-4442-11d2-9605-00c04f8ee628");
+const CLSID_SpStream_Value = Guid.initString("715d9c59-4442-11d2-9605-00c04f8ee628");
 pub const CLSID_SpStream = &CLSID_SpStream_Value;
 
-const CLSID_SpVoice_Value = @import("../zig.zig").Guid.initString("96749377-3391-11d2-9ee3-00c04f797396");
+const CLSID_SpVoice_Value = Guid.initString("96749377-3391-11d2-9ee3-00c04f797396");
 pub const CLSID_SpVoice = &CLSID_SpVoice_Value;
 
-const CLSID_SpSharedRecoContext_Value = @import("../zig.zig").Guid.initString("47206204-5eca-11d2-960f-00c04f8ee628");
+const CLSID_SpSharedRecoContext_Value = Guid.initString("47206204-5eca-11d2-960f-00c04f8ee628");
 pub const CLSID_SpSharedRecoContext = &CLSID_SpSharedRecoContext_Value;
 
-const CLSID_SpInprocRecognizer_Value = @import("../zig.zig").Guid.initString("41b89b6b-9399-11d2-9623-00c04f8ee628");
+const CLSID_SpInprocRecognizer_Value = Guid.initString("41b89b6b-9399-11d2-9623-00c04f8ee628");
 pub const CLSID_SpInprocRecognizer = &CLSID_SpInprocRecognizer_Value;
 
-const CLSID_SpSharedRecognizer_Value = @import("../zig.zig").Guid.initString("3bee4890-4fe9-4a37-8c1e-5e7e12791c1f");
+const CLSID_SpSharedRecognizer_Value = Guid.initString("3bee4890-4fe9-4a37-8c1e-5e7e12791c1f");
 pub const CLSID_SpSharedRecognizer = &CLSID_SpSharedRecognizer_Value;
 
-const CLSID_SpLexicon_Value = @import("../zig.zig").Guid.initString("0655e396-25d0-11d3-9c26-00c04f8ef87c");
+const CLSID_SpLexicon_Value = Guid.initString("0655e396-25d0-11d3-9c26-00c04f8ef87c");
 pub const CLSID_SpLexicon = &CLSID_SpLexicon_Value;
 
-const CLSID_SpUnCompressedLexicon_Value = @import("../zig.zig").Guid.initString("c9e37c15-df92-4727-85d6-72e5eeb6995a");
+const CLSID_SpUnCompressedLexicon_Value = Guid.initString("c9e37c15-df92-4727-85d6-72e5eeb6995a");
 pub const CLSID_SpUnCompressedLexicon = &CLSID_SpUnCompressedLexicon_Value;
 
-const CLSID_SpCompressedLexicon_Value = @import("../zig.zig").Guid.initString("90903716-2f42-11d3-9c26-00c04f8ef87c");
+const CLSID_SpCompressedLexicon_Value = Guid.initString("90903716-2f42-11d3-9c26-00c04f8ef87c");
 pub const CLSID_SpCompressedLexicon = &CLSID_SpCompressedLexicon_Value;
 
-const CLSID_SpShortcut_Value = @import("../zig.zig").Guid.initString("0d722f1a-9fcf-4e62-96d8-6df8f01a26aa");
+const CLSID_SpShortcut_Value = Guid.initString("0d722f1a-9fcf-4e62-96d8-6df8f01a26aa");
 pub const CLSID_SpShortcut = &CLSID_SpShortcut_Value;
 
-const CLSID_SpPhoneConverter_Value = @import("../zig.zig").Guid.initString("9185f743-1143-4c28-86b5-bff14f20e5c8");
+const CLSID_SpPhoneConverter_Value = Guid.initString("9185f743-1143-4c28-86b5-bff14f20e5c8");
 pub const CLSID_SpPhoneConverter = &CLSID_SpPhoneConverter_Value;
 
-const CLSID_SpPhoneticAlphabetConverter_Value = @import("../zig.zig").Guid.initString("4f414126-dfe3-4629-99ee-797978317ead");
+const CLSID_SpPhoneticAlphabetConverter_Value = Guid.initString("4f414126-dfe3-4629-99ee-797978317ead");
 pub const CLSID_SpPhoneticAlphabetConverter = &CLSID_SpPhoneticAlphabetConverter_Value;
 
-const CLSID_SpNullPhoneConverter_Value = @import("../zig.zig").Guid.initString("455f24e9-7396-4a16-9715-7c0fdbe3efe3");
+const CLSID_SpNullPhoneConverter_Value = Guid.initString("455f24e9-7396-4a16-9715-7c0fdbe3efe3");
 pub const CLSID_SpNullPhoneConverter = &CLSID_SpNullPhoneConverter_Value;
 
-const CLSID_SpTextSelectionInformation_Value = @import("../zig.zig").Guid.initString("0f92030a-cbfd-4ab8-a164-ff5985547ff6");
+const CLSID_SpTextSelectionInformation_Value = Guid.initString("0f92030a-cbfd-4ab8-a164-ff5985547ff6");
 pub const CLSID_SpTextSelectionInformation = &CLSID_SpTextSelectionInformation_Value;
 
-const CLSID_SpPhraseInfoBuilder_Value = @import("../zig.zig").Guid.initString("c23fc28d-c55f-4720-8b32-91f73c2bd5d1");
+const CLSID_SpPhraseInfoBuilder_Value = Guid.initString("c23fc28d-c55f-4720-8b32-91f73c2bd5d1");
 pub const CLSID_SpPhraseInfoBuilder = &CLSID_SpPhraseInfoBuilder_Value;
 
-const CLSID_SpAudioFormat_Value = @import("../zig.zig").Guid.initString("9ef96870-e160-4792-820d-48cf0649e4ec");
+const CLSID_SpAudioFormat_Value = Guid.initString("9ef96870-e160-4792-820d-48cf0649e4ec");
 pub const CLSID_SpAudioFormat = &CLSID_SpAudioFormat_Value;
 
-const CLSID_SpWaveFormatEx_Value = @import("../zig.zig").Guid.initString("c79a574c-63be-44b9-801f-283f87f898be");
+const CLSID_SpWaveFormatEx_Value = Guid.initString("c79a574c-63be-44b9-801f-283f87f898be");
 pub const CLSID_SpWaveFormatEx = &CLSID_SpWaveFormatEx_Value;
 
-const CLSID_SpInProcRecoContext_Value = @import("../zig.zig").Guid.initString("73ad6842-ace0-45e8-a4dd-8795881a2c2a");
+const CLSID_SpInProcRecoContext_Value = Guid.initString("73ad6842-ace0-45e8-a4dd-8795881a2c2a");
 pub const CLSID_SpInProcRecoContext = &CLSID_SpInProcRecoContext_Value;
 
-const CLSID_SpCustomStream_Value = @import("../zig.zig").Guid.initString("8dbef13f-1948-4aa8-8cf0-048eebed95d8");
+const CLSID_SpCustomStream_Value = Guid.initString("8dbef13f-1948-4aa8-8cf0-048eebed95d8");
 pub const CLSID_SpCustomStream = &CLSID_SpCustomStream_Value;
 
-const CLSID_SpFileStream_Value = @import("../zig.zig").Guid.initString("947812b3-2ae1-4644-ba86-9e90ded7ec91");
+const CLSID_SpFileStream_Value = Guid.initString("947812b3-2ae1-4644-ba86-9e90ded7ec91");
 pub const CLSID_SpFileStream = &CLSID_SpFileStream_Value;
 
-const CLSID_SpMemoryStream_Value = @import("../zig.zig").Guid.initString("5fb7ef7d-dff4-468a-b6b7-2fcbd188f994");
+const CLSID_SpMemoryStream_Value = Guid.initString("5fb7ef7d-dff4-468a-b6b7-2fcbd188f994");
 pub const CLSID_SpMemoryStream = &CLSID_SpMemoryStream_Value;
 
 pub const SPDATAKEYLOCATION = enum(i32) {
@@ -286,7 +286,7 @@ pub const SPNOTIFYCALLBACK = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const IID_ISpNotifySource_Value = @import("../zig.zig").Guid.initString("5eff4aef-8487-11d2-961c-00c04f8ee628");
+const IID_ISpNotifySource_Value = Guid.initString("5eff4aef-8487-11d2-961c-00c04f8ee628");
 pub const IID_ISpNotifySource = &IID_ISpNotifySource_Value;
 pub const ISpNotifySource = extern struct {
     pub const VTable = extern struct {
@@ -360,7 +360,7 @@ pub const ISpNotifySource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpNotifySink_Value = @import("../zig.zig").Guid.initString("259684dc-37c3-11d2-9603-00c04f8ee628");
+const IID_ISpNotifySink_Value = Guid.initString("259684dc-37c3-11d2-9603-00c04f8ee628");
 pub const IID_ISpNotifySink = &IID_ISpNotifySink_Value;
 pub const ISpNotifySink = extern struct {
     pub const VTable = extern struct {
@@ -380,7 +380,7 @@ pub const ISpNotifySink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpNotifyTranslator_Value = @import("../zig.zig").Guid.initString("aca16614-5d3d-11d2-960e-00c04f8ee628");
+const IID_ISpNotifyTranslator_Value = Guid.initString("aca16614-5d3d-11d2-960e-00c04f8ee628");
 pub const IID_ISpNotifyTranslator = &IID_ISpNotifyTranslator_Value;
 pub const ISpNotifyTranslator = extern struct {
     pub const VTable = extern struct {
@@ -448,7 +448,7 @@ pub const ISpNotifyTranslator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpDataKey_Value = @import("../zig.zig").Guid.initString("14056581-e16c-11d2-bb90-00c04f8ee6c0");
+const IID_ISpDataKey_Value = Guid.initString("14056581-e16c-11d2-bb90-00c04f8ee6c0");
 pub const IID_ISpDataKey = &IID_ISpDataKey_Value;
 pub const ISpDataKey = extern struct {
     pub const VTable = extern struct {
@@ -569,7 +569,7 @@ pub const ISpDataKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpRegDataKey_Value = @import("../zig.zig").Guid.initString("92a66e2b-c830-4149-83df-6fc2ba1e7a5b");
+const IID_ISpRegDataKey_Value = Guid.initString("92a66e2b-c830-4149-83df-6fc2ba1e7a5b");
 pub const IID_ISpRegDataKey = &IID_ISpRegDataKey_Value;
 pub const ISpRegDataKey = extern struct {
     pub const VTable = extern struct {
@@ -591,7 +591,7 @@ pub const ISpRegDataKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpObjectTokenCategory_Value = @import("../zig.zig").Guid.initString("2d3d3845-39af-4850-bbf9-40b49780011d");
+const IID_ISpObjectTokenCategory_Value = Guid.initString("2d3d3845-39af-4850-bbf9-40b49780011d");
 pub const IID_ISpObjectTokenCategory = &IID_ISpObjectTokenCategory_Value;
 pub const ISpObjectTokenCategory = extern struct {
     pub const VTable = extern struct {
@@ -656,7 +656,7 @@ pub const ISpObjectTokenCategory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpObjectToken_Value = @import("../zig.zig").Guid.initString("14056589-e16c-11d2-bb90-00c04f8ee6c0");
+const IID_ISpObjectToken_Value = Guid.initString("14056589-e16c-11d2-bb90-00c04f8ee6c0");
 pub const IID_ISpObjectToken = &IID_ISpObjectToken_Value;
 pub const ISpObjectToken = extern struct {
     pub const VTable = extern struct {
@@ -770,7 +770,7 @@ pub const ISpObjectToken = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpObjectTokenInit_Value = @import("../zig.zig").Guid.initString("b8aab0cf-346f-49d8-9499-c8b03f161d51");
+const IID_ISpObjectTokenInit_Value = Guid.initString("b8aab0cf-346f-49d8-9499-c8b03f161d51");
 pub const IID_ISpObjectTokenInit = &IID_ISpObjectTokenInit_Value;
 pub const ISpObjectTokenInit = extern struct {
     pub const VTable = extern struct {
@@ -793,7 +793,7 @@ pub const ISpObjectTokenInit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSpObjectTokens_Value = @import("../zig.zig").Guid.initString("06b64f9e-7fda-11d2-b4f2-00c04f797396");
+const IID_IEnumSpObjectTokens_Value = Guid.initString("06b64f9e-7fda-11d2-b4f2-00c04f797396");
 pub const IID_IEnumSpObjectTokens = &IID_IEnumSpObjectTokens_Value;
 pub const IEnumSpObjectTokens = extern struct {
     pub const VTable = extern struct {
@@ -856,7 +856,7 @@ pub const IEnumSpObjectTokens = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpObjectWithToken_Value = @import("../zig.zig").Guid.initString("5b559f40-e952-11d2-bb91-00c04f8ee6c0");
+const IID_ISpObjectWithToken_Value = Guid.initString("5b559f40-e952-11d2-bb91-00c04f8ee6c0");
 pub const IID_ISpObjectWithToken = &IID_ISpObjectWithToken_Value;
 pub const ISpObjectWithToken = extern struct {
     pub const VTable = extern struct {
@@ -885,7 +885,7 @@ pub const ISpObjectWithToken = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpResourceManager_Value = @import("../zig.zig").Guid.initString("93384e18-5014-43d5-adbb-a78e055926bd");
+const IID_ISpResourceManager_Value = Guid.initString("93384e18-5014-43d5-adbb-a78e055926bd");
 pub const IID_ISpResourceManager = &IID_ISpResourceManager_Value;
 pub const ISpResourceManager = extern struct {
     pub const VTable = extern struct {
@@ -1140,7 +1140,7 @@ pub const SPEVENTSOURCEINFO = extern struct {
     ulCount: u32,
 };
 
-const IID_ISpEventSource_Value = @import("../zig.zig").Guid.initString("be7a9cce-5f9e-11d2-960f-00c04f8ee628");
+const IID_ISpEventSource_Value = Guid.initString("be7a9cce-5f9e-11d2-960f-00c04f8ee628");
 pub const IID_ISpEventSource = &IID_ISpEventSource_Value;
 pub const ISpEventSource = extern struct {
     pub const VTable = extern struct {
@@ -1180,7 +1180,7 @@ pub const ISpEventSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpEventSource2_Value = @import("../zig.zig").Guid.initString("2373a435-6a4b-429e-a6ac-d4231a61975b");
+const IID_ISpEventSource2_Value = Guid.initString("2373a435-6a4b-429e-a6ac-d4231a61975b");
 pub const IID_ISpEventSource2 = &IID_ISpEventSource2_Value;
 pub const ISpEventSource2 = extern struct {
     pub const VTable = extern struct {
@@ -1203,7 +1203,7 @@ pub const ISpEventSource2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpEventSink_Value = @import("../zig.zig").Guid.initString("be7a9cc9-5f9e-11d2-960f-00c04f8ee628");
+const IID_ISpEventSink_Value = Guid.initString("be7a9cc9-5f9e-11d2-960f-00c04f8ee628");
 pub const IID_ISpEventSink = &IID_ISpEventSink_Value;
 pub const ISpEventSink = extern struct {
     pub const VTable = extern struct {
@@ -1233,7 +1233,7 @@ pub const ISpEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpStreamFormat_Value = @import("../zig.zig").Guid.initString("bed530be-2606-4f4d-a1c0-54c5cda5566f");
+const IID_ISpStreamFormat_Value = Guid.initString("bed530be-2606-4f4d-a1c0-54c5cda5566f");
 pub const IID_ISpStreamFormat = &IID_ISpStreamFormat_Value;
 pub const ISpStreamFormat = extern struct {
     pub const VTable = extern struct {
@@ -1268,7 +1268,7 @@ pub const SPFM_CREATE = SPFILEMODE.CREATE;
 pub const SPFM_CREATE_ALWAYS = SPFILEMODE.CREATE_ALWAYS;
 pub const SPFM_NUM_MODES = SPFILEMODE.NUM_MODES;
 
-const IID_ISpStream_Value = @import("../zig.zig").Guid.initString("12e3cca9-7518-44c5-a5e7-ba5a79cb929e");
+const IID_ISpStream_Value = Guid.initString("12e3cca9-7518-44c5-a5e7-ba5a79cb929e");
 pub const IID_ISpStream = &IID_ISpStream_Value;
 pub const ISpStream = extern struct {
     pub const VTable = extern struct {
@@ -1318,7 +1318,7 @@ pub const ISpStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpStreamFormatConverter_Value = @import("../zig.zig").Guid.initString("678a932c-ea71-4446-9b41-78fda6280a29");
+const IID_ISpStreamFormatConverter_Value = Guid.initString("678a932c-ea71-4446-9b41-78fda6280a29");
 pub const IID_ISpStreamFormatConverter = &IID_ISpStreamFormatConverter_Value;
 pub const ISpStreamFormatConverter = extern struct {
     pub const VTable = extern struct {
@@ -1410,7 +1410,7 @@ pub const SPAUDIOBUFFERINFO = extern struct {
     ulMsEventBias: u32,
 };
 
-const IID_ISpAudio_Value = @import("../zig.zig").Guid.initString("c05c768f-fae8-4ec2-8e07-338321c12452");
+const IID_ISpAudio_Value = Guid.initString("c05c768f-fae8-4ec2-8e07-338321c12452");
 pub const IID_ISpAudio = &IID_ISpAudio_Value;
 pub const ISpAudio = extern struct {
     pub const VTable = extern struct {
@@ -1513,7 +1513,7 @@ pub const ISpAudio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpMMSysAudio_Value = @import("../zig.zig").Guid.initString("15806f6e-1d70-4b48-98e6-3b1a007509ab");
+const IID_ISpMMSysAudio_Value = Guid.initString("15806f6e-1d70-4b48-98e6-3b1a007509ab");
 pub const IID_ISpMMSysAudio = &IID_ISpMMSysAudio_Value;
 pub const ISpMMSysAudio = extern struct {
     pub const VTable = extern struct {
@@ -1566,7 +1566,7 @@ pub const ISpMMSysAudio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpTranscript_Value = @import("../zig.zig").Guid.initString("10f63bce-201a-11d3-ac70-00c04f8ee6c0");
+const IID_ISpTranscript_Value = Guid.initString("10f63bce-201a-11d3-ac70-00c04f8ee6c0");
 pub const IID_ISpTranscript = &IID_ISpTranscript_Value;
 pub const ISpTranscript = extern struct {
     pub const VTable = extern struct {
@@ -1912,7 +1912,7 @@ pub const SPWORDLIST = extern struct {
     pFirstWord: ?*SPWORD,
 };
 
-const IID_ISpLexicon_Value = @import("../zig.zig").Guid.initString("da41a7c2-5383-4db2-916b-6c1719e3db58");
+const IID_ISpLexicon_Value = Guid.initString("da41a7c2-5383-4db2-916b-6c1719e3db58");
 pub const IID_ISpLexicon = &IID_ISpLexicon_Value;
 pub const ISpLexicon = extern struct {
     pub const VTable = extern struct {
@@ -1987,7 +1987,7 @@ pub const ISpLexicon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpContainerLexicon_Value = @import("../zig.zig").Guid.initString("8565572f-c094-41cc-b56e-10bd9c3ff044");
+const IID_ISpContainerLexicon_Value = Guid.initString("8565572f-c094-41cc-b56e-10bd9c3ff044");
 pub const IID_ISpContainerLexicon = &IID_ISpContainerLexicon_Value;
 pub const ISpContainerLexicon = extern struct {
     pub const VTable = extern struct {
@@ -2042,7 +2042,7 @@ pub const SPSHORTCUTPAIRLIST = extern struct {
     pFirstShortcutPair: ?*SPSHORTCUTPAIR,
 };
 
-const IID_ISpShortcut_Value = @import("../zig.zig").Guid.initString("3df681e2-ea56-11d9-8bde-f66bad1e3f3a");
+const IID_ISpShortcut_Value = Guid.initString("3df681e2-ea56-11d9-8bde-f66bad1e3f3a");
 pub const IID_ISpShortcut = &IID_ISpShortcut_Value;
 pub const ISpShortcut = extern struct {
     pub const VTable = extern struct {
@@ -2132,7 +2132,7 @@ pub const ISpShortcut = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpPhoneConverter_Value = @import("../zig.zig").Guid.initString("8445c581-0cac-4a38-abfe-9b2ce2826455");
+const IID_ISpPhoneConverter_Value = Guid.initString("8445c581-0cac-4a38-abfe-9b2ce2826455");
 pub const IID_ISpPhoneConverter = &IID_ISpPhoneConverter_Value;
 pub const ISpPhoneConverter = extern struct {
     pub const VTable = extern struct {
@@ -2163,7 +2163,7 @@ pub const ISpPhoneConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpPhoneticAlphabetConverter_Value = @import("../zig.zig").Guid.initString("133adcd4-19b4-4020-9fdc-842e78253b17");
+const IID_ISpPhoneticAlphabetConverter_Value = Guid.initString("133adcd4-19b4-4020-9fdc-842e78253b17");
 pub const IID_ISpPhoneticAlphabetConverter = &IID_ISpPhoneticAlphabetConverter_Value;
 pub const ISpPhoneticAlphabetConverter = extern struct {
     pub const VTable = extern struct {
@@ -2222,7 +2222,7 @@ pub const ISpPhoneticAlphabetConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpPhoneticAlphabetSelection_Value = @import("../zig.zig").Guid.initString("b2745efd-42ce-48ca-81f1-a96e02538a90");
+const IID_ISpPhoneticAlphabetSelection_Value = Guid.initString("b2745efd-42ce-48ca-81f1-a96e02538a90");
 pub const IID_ISpPhoneticAlphabetSelection = &IID_ISpPhoneticAlphabetSelection_Value;
 pub const ISpPhoneticAlphabetSelection = extern struct {
     pub const VTable = extern struct {
@@ -2369,7 +2369,7 @@ pub const SPF_PARSE_MASK = SPEAKFLAGS.PARSE_MASK;
 pub const SPF_VOICE_MASK = SPEAKFLAGS.VOICE_MASK;
 pub const SPF_UNUSED_FLAGS = SPEAKFLAGS.UNUSED_FLAGS;
 
-const IID_ISpVoice_Value = @import("../zig.zig").Guid.initString("6c44df74-72b9-4992-a1ec-ef996e0422d4");
+const IID_ISpVoice_Value = Guid.initString("6c44df74-72b9-4992-a1ec-ef996e0422d4");
 pub const IID_ISpVoice = &IID_ISpVoice_Value;
 pub const ISpVoice = extern struct {
     pub const VTable = extern struct {
@@ -2594,7 +2594,7 @@ pub const ISpVoice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpPhrase_Value = @import("../zig.zig").Guid.initString("1a5c0354-b621-4b5a-8791-d306ed379e53");
+const IID_ISpPhrase_Value = Guid.initString("1a5c0354-b621-4b5a-8791-d306ed379e53");
 pub const IID_ISpPhrase = &IID_ISpPhrase_Value;
 pub const ISpPhrase = extern struct {
     pub const VTable = extern struct {
@@ -2643,7 +2643,7 @@ pub const ISpPhrase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpPhraseAlt_Value = @import("../zig.zig").Guid.initString("8fcebc98-4e49-4067-9c6c-d86a0e092e3d");
+const IID_ISpPhraseAlt_Value = Guid.initString("8fcebc98-4e49-4067-9c6c-d86a0e092e3d");
 pub const IID_ISpPhraseAlt = &IID_ISpPhraseAlt_Value;
 pub const ISpPhraseAlt = extern struct {
     pub const VTable = extern struct {
@@ -2681,7 +2681,7 @@ pub const SPXMLRESULTOPTIONS = enum(i32) {
 pub const SPXRO_SML = SPXMLRESULTOPTIONS.SML;
 pub const SPXRO_Alternates_SML = SPXMLRESULTOPTIONS.Alternates_SML;
 
-const IID_ISpPhrase2_Value = @import("../zig.zig").Guid.initString("f264da52-e457-4696-b856-a737b717af79");
+const IID_ISpPhrase2_Value = Guid.initString("f264da52-e457-4696-b856-a737b717af79");
 pub const IID_ISpPhrase2 = &IID_ISpPhrase2_Value;
 pub const ISpPhrase2 = extern struct {
     pub const VTable = extern struct {
@@ -2732,7 +2732,7 @@ pub const SPSERIALIZEDRESULT = extern struct {
     ulSerializedSize: u32,
 };
 
-const IID_ISpRecoResult_Value = @import("../zig.zig").Guid.initString("20b053be-e235-43cd-9a2a-8d17a48b7842");
+const IID_ISpRecoResult_Value = Guid.initString("20b053be-e235-43cd-9a2a-8d17a48b7842");
 pub const IID_ISpRecoResult = &IID_ISpRecoResult_Value;
 pub const ISpRecoResult = extern struct {
     pub const VTable = extern struct {
@@ -2820,7 +2820,7 @@ pub const SPCF_NONE = SPCOMMITFLAGS.NONE;
 pub const SPCF_ADD_TO_USER_LEXICON = SPCOMMITFLAGS.ADD_TO_USER_LEXICON;
 pub const SPCF_DEFINITE_CORRECTION = SPCOMMITFLAGS.DEFINITE_CORRECTION;
 
-const IID_ISpRecoResult2_Value = @import("../zig.zig").Guid.initString("27cac6c4-88f2-41f2-8817-0c95e59f1e6e");
+const IID_ISpRecoResult2_Value = Guid.initString("27cac6c4-88f2-41f2-8817-0c95e59f1e6e");
 pub const IID_ISpRecoResult2 = &IID_ISpRecoResult2_Value;
 pub const ISpRecoResult2 = extern struct {
     pub const VTable = extern struct {
@@ -2862,7 +2862,7 @@ pub const ISpRecoResult2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpXMLRecoResult_Value = @import("../zig.zig").Guid.initString("ae39362b-45a8-4074-9b9e-ccf49aa2d0b6");
+const IID_ISpXMLRecoResult_Value = Guid.initString("ae39362b-45a8-4074-9b9e-ccf49aa2d0b6");
 pub const IID_ISpXMLRecoResult = &IID_ISpXMLRecoResult_Value;
 pub const ISpXMLRecoResult = extern struct {
     pub const VTable = extern struct {
@@ -2974,7 +2974,7 @@ pub const SPRAF_Root = SPCFGRULEATTRIBUTES.Root;
 pub const SPRAF_AutoPause = SPCFGRULEATTRIBUTES.AutoPause;
 pub const SPRAF_UserDelimited = SPCFGRULEATTRIBUTES.UserDelimited;
 
-const IID_ISpGrammarBuilder_Value = @import("../zig.zig").Guid.initString("8137828f-591a-4a42-be58-49ea7ebaac68");
+const IID_ISpGrammarBuilder_Value = Guid.initString("8137828f-591a-4a42-be58-49ea7ebaac68");
 pub const IID_ISpGrammarBuilder = &IID_ISpGrammarBuilder_Value;
 pub const ISpGrammarBuilder = extern struct {
     pub const VTable = extern struct {
@@ -3075,7 +3075,7 @@ pub const SPLOADOPTIONS = enum(i32) {
 pub const SPLO_STATIC = SPLOADOPTIONS.STATIC;
 pub const SPLO_DYNAMIC = SPLOADOPTIONS.DYNAMIC;
 
-const IID_ISpRecoGrammar_Value = @import("../zig.zig").Guid.initString("2177db29-7f45-47d0-8554-067e91c80502");
+const IID_ISpRecoGrammar_Value = Guid.initString("2177db29-7f45-47d0-8554-067e91c80502");
 pub const IID_ISpRecoGrammar = &IID_ISpRecoGrammar_Value;
 pub const ISpRecoGrammar = extern struct {
     pub const VTable = extern struct {
@@ -3273,7 +3273,7 @@ pub const PA_Ipa = PHONETICALPHABET.Ipa;
 pub const PA_Ups = PHONETICALPHABET.Ups;
 pub const PA_Sapi = PHONETICALPHABET.Sapi;
 
-const IID_ISpGrammarBuilder2_Value = @import("../zig.zig").Guid.initString("8ab10026-20cc-4b20-8c22-a49c9ba78f60");
+const IID_ISpGrammarBuilder2_Value = Guid.initString("8ab10026-20cc-4b20-8c22-a49c9ba78f60");
 pub const IID_ISpGrammarBuilder2 = &IID_ISpGrammarBuilder2_Value;
 pub const ISpGrammarBuilder2 = extern struct {
     pub const VTable = extern struct {
@@ -3305,7 +3305,7 @@ pub const ISpGrammarBuilder2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpRecoGrammar2_Value = @import("../zig.zig").Guid.initString("4b37bc9e-9ed6-44a3-93d3-18f022b79ec3");
+const IID_ISpRecoGrammar2_Value = Guid.initString("4b37bc9e-9ed6-44a3-93d3-18f022b79ec3");
 pub const IID_ISpRecoGrammar2 = &IID_ISpRecoGrammar2_Value;
 pub const ISpRecoGrammar2 = extern struct {
     pub const VTable = extern struct {
@@ -3393,7 +3393,7 @@ pub const ISpRecoGrammar2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechResourceLoader_Value = @import("../zig.zig").Guid.initString("b9ac5783-fcd0-4b21-b119-b4f8da8fd2c3");
+const IID_ISpeechResourceLoader_Value = Guid.initString("b9ac5783-fcd0-4b21-b119-b4f8da8fd2c3");
 pub const IID_ISpeechResourceLoader = &IID_ISpeechResourceLoader_Value;
 pub const ISpeechResourceLoader = extern struct {
     pub const VTable = extern struct {
@@ -3463,7 +3463,7 @@ pub const SPAUDIOOPTIONS = enum(i32) {
 pub const SPAO_NONE = SPAUDIOOPTIONS.NONE;
 pub const SPAO_RETAIN_AUDIO = SPAUDIOOPTIONS.RETAIN_AUDIO;
 
-const IID_ISpRecoContext_Value = @import("../zig.zig").Guid.initString("f740a62f-7c15-489e-8234-940a33d9272d");
+const IID_ISpRecoContext_Value = Guid.initString("f740a62f-7c15-489e-8234-940a33d9272d");
 pub const IID_ISpRecoContext = &IID_ISpRecoContext_Value;
 pub const ISpRecoContext = extern struct {
     pub const VTable = extern struct {
@@ -3685,7 +3685,7 @@ pub const SPAR_Low = SPADAPTATIONRELEVANCE.Low;
 pub const SPAR_Medium = SPADAPTATIONRELEVANCE.Medium;
 pub const SPAR_High = SPADAPTATIONRELEVANCE.High;
 
-const IID_ISpRecoContext2_Value = @import("../zig.zig").Guid.initString("bead311c-52ff-437f-9464-6b21054ca73d");
+const IID_ISpRecoContext2_Value = Guid.initString("bead311c-52ff-437f-9464-6b21054ca73d");
 pub const IID_ISpRecoContext2 = &IID_ISpRecoContext2_Value;
 pub const ISpRecoContext2 = extern struct {
     pub const VTable = extern struct {
@@ -3726,7 +3726,7 @@ pub const ISpRecoContext2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpProperties_Value = @import("../zig.zig").Guid.initString("5b4fb971-b115-4de1-ad97-e482e3bf6ee4");
+const IID_ISpProperties_Value = Guid.initString("5b4fb971-b115-4de1-ad97-e482e3bf6ee4");
 pub const IID_ISpProperties = &IID_ISpProperties_Value;
 pub const ISpProperties = extern struct {
     pub const VTable = extern struct {
@@ -3806,7 +3806,7 @@ pub const SPRST_ACTIVE_ALWAYS = SPRECOSTATE.ACTIVE_ALWAYS;
 pub const SPRST_INACTIVE_WITH_PURGE = SPRECOSTATE.INACTIVE_WITH_PURGE;
 pub const SPRST_NUM_STATES = SPRECOSTATE.NUM_STATES;
 
-const IID_ISpRecognizer_Value = @import("../zig.zig").Guid.initString("c2b5f241-daa0-4507-9e16-5a1eaa2b7a5c");
+const IID_ISpRecognizer_Value = Guid.initString("c2b5f241-daa0-4507-9e16-5a1eaa2b7a5c");
 pub const IID_ISpRecognizer = &IID_ISpRecognizer_Value;
 pub const ISpRecognizer = extern struct {
     pub const VTable = extern struct {
@@ -3956,7 +3956,7 @@ pub const ISpRecognizer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpSerializeState_Value = @import("../zig.zig").Guid.initString("21b501a0-0ec7-46c9-92c3-a2bc784c54b9");
+const IID_ISpSerializeState_Value = Guid.initString("21b501a0-0ec7-46c9-92c3-a2bc784c54b9");
 pub const IID_ISpSerializeState = &IID_ISpSerializeState_Value;
 pub const ISpSerializeState = extern struct {
     pub const VTable = extern struct {
@@ -3989,7 +3989,7 @@ pub const ISpSerializeState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpRecognizer2_Value = @import("../zig.zig").Guid.initString("8fc6d974-c81e-4098-93c5-0147f61ed4d3");
+const IID_ISpRecognizer2_Value = Guid.initString("8fc6d974-c81e-4098-93c5-0147f61ed4d3");
 pub const IID_ISpRecognizer2 = &IID_ISpRecognizer2_Value;
 pub const ISpRecognizer2 = extern struct {
     pub const VTable = extern struct {
@@ -4032,7 +4032,7 @@ pub const SPNORMALIZATIONLIST = extern struct {
     ppszzNormalizedList: ?*?*u16,
 };
 
-const IID_ISpEnginePronunciation_Value = @import("../zig.zig").Guid.initString("c360ce4b-76d1-4214-ad68-52657d5083da");
+const IID_ISpEnginePronunciation_Value = Guid.initString("c360ce4b-76d1-4214-ad68-52657d5083da");
 pub const IID_ISpEnginePronunciation = &IID_ISpEnginePronunciation_Value;
 pub const ISpEnginePronunciation = extern struct {
     pub const VTable = extern struct {
@@ -4080,7 +4080,7 @@ pub const SPDISPLAYPHRASE = extern struct {
     pTokens: ?*SPDISPLAYTOKEN,
 };
 
-const IID_ISpDisplayAlternates_Value = @import("../zig.zig").Guid.initString("c8d7c7e2-0dde-44b7-afe3-b0c991fbeb5e");
+const IID_ISpDisplayAlternates_Value = Guid.initString("c8d7c7e2-0dde-44b7-afe3-b0c991fbeb5e");
 pub const IID_ISpDisplayAlternates = &IID_ISpDisplayAlternates_Value;
 pub const ISpDisplayAlternates = extern struct {
     pub const VTable = extern struct {
@@ -5578,7 +5578,7 @@ pub const DISPID_SPCLangId = DISPID_SpeechPhoneConverter.LangId;
 pub const DISPID_SPCPhoneToId = DISPID_SpeechPhoneConverter.PhoneToId;
 pub const DISPID_SPCIdToPhone = DISPID_SpeechPhoneConverter.IdToPhone;
 
-const IID_ISpeechDataKey_Value = @import("../zig.zig").Guid.initString("ce17c09b-4efa-44d5-a4c9-59d9585ab0cd");
+const IID_ISpeechDataKey_Value = Guid.initString("ce17c09b-4efa-44d5-a4c9-59d9585ab0cd");
 pub const IID_ISpeechDataKey = &IID_ISpeechDataKey_Value;
 pub const ISpeechDataKey = extern struct {
     pub const VTable = extern struct {
@@ -5697,7 +5697,7 @@ pub const ISpeechDataKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechObjectToken_Value = @import("../zig.zig").Guid.initString("c74a3adc-b727-4500-a84a-b526721c8b8c");
+const IID_ISpeechObjectToken_Value = Guid.initString("c74a3adc-b727-4500-a84a-b526721c8b8c");
 pub const IID_ISpeechObjectToken = &IID_ISpeechObjectToken_Value;
 pub const ISpeechObjectToken = extern struct {
     pub const VTable = extern struct {
@@ -5837,7 +5837,7 @@ pub const ISpeechObjectToken = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechObjectTokens_Value = @import("../zig.zig").Guid.initString("9285b776-2e7b-4bc0-b53e-580eb6fa967f");
+const IID_ISpeechObjectTokens_Value = Guid.initString("9285b776-2e7b-4bc0-b53e-580eb6fa967f");
 pub const IID_ISpeechObjectTokens = &IID_ISpeechObjectTokens_Value;
 pub const ISpeechObjectTokens = extern struct {
     pub const VTable = extern struct {
@@ -5877,7 +5877,7 @@ pub const ISpeechObjectTokens = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechObjectTokenCategory_Value = @import("../zig.zig").Guid.initString("ca7eac50-2d01-4145-86d4-5ae7d70f4469");
+const IID_ISpeechObjectTokenCategory_Value = Guid.initString("ca7eac50-2d01-4145-86d4-5ae7d70f4469");
 pub const IID_ISpeechObjectTokenCategory = &IID_ISpeechObjectTokenCategory_Value;
 pub const ISpeechObjectTokenCategory = extern struct {
     pub const VTable = extern struct {
@@ -5945,7 +5945,7 @@ pub const ISpeechObjectTokenCategory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechAudioBufferInfo_Value = @import("../zig.zig").Guid.initString("11b103d8-1142-4edf-a093-82fb3915f8cc");
+const IID_ISpeechAudioBufferInfo_Value = Guid.initString("11b103d8-1142-4edf-a093-82fb3915f8cc");
 pub const IID_ISpeechAudioBufferInfo = &IID_ISpeechAudioBufferInfo_Value;
 pub const ISpeechAudioBufferInfo = extern struct {
     pub const VTable = extern struct {
@@ -6012,7 +6012,7 @@ pub const ISpeechAudioBufferInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechAudioStatus_Value = @import("../zig.zig").Guid.initString("c62d9c91-7458-47f6-862d-1ef86fb0b278");
+const IID_ISpeechAudioStatus_Value = Guid.initString("c62d9c91-7458-47f6-862d-1ef86fb0b278");
 pub const IID_ISpeechAudioStatus = &IID_ISpeechAudioStatus_Value;
 pub const ISpeechAudioStatus = extern struct {
     pub const VTable = extern struct {
@@ -6070,7 +6070,7 @@ pub const ISpeechAudioStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechAudioFormat_Value = @import("../zig.zig").Guid.initString("e6e9c590-3e18-40e3-8299-061f98bde7c7");
+const IID_ISpeechAudioFormat_Value = Guid.initString("e6e9c590-3e18-40e3-8299-061f98bde7c7");
 pub const IID_ISpeechAudioFormat = &IID_ISpeechAudioFormat_Value;
 pub const ISpeechAudioFormat = extern struct {
     pub const VTable = extern struct {
@@ -6135,7 +6135,7 @@ pub const ISpeechAudioFormat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechWaveFormatEx_Value = @import("../zig.zig").Guid.initString("7a1ef0d5-1581-4741-88e4-209a49f11a10");
+const IID_ISpeechWaveFormatEx_Value = Guid.initString("7a1ef0d5-1581-4741-88e4-209a49f11a10");
 pub const IID_ISpeechWaveFormatEx = &IID_ISpeechWaveFormatEx_Value;
 pub const ISpeechWaveFormatEx = extern struct {
     pub const VTable = extern struct {
@@ -6274,7 +6274,7 @@ pub const ISpeechWaveFormatEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechBaseStream_Value = @import("../zig.zig").Guid.initString("6450336f-7d49-4ced-8097-49d6dee37294");
+const IID_ISpeechBaseStream_Value = Guid.initString("6450336f-7d49-4ced-8097-49d6dee37294");
 pub const IID_ISpeechBaseStream = &IID_ISpeechBaseStream_Value;
 pub const ISpeechBaseStream = extern struct {
     pub const VTable = extern struct {
@@ -6333,7 +6333,7 @@ pub const ISpeechBaseStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechFileStream_Value = @import("../zig.zig").Guid.initString("af67f125-ab39-4e93-b4a2-cc2e66e182a7");
+const IID_ISpeechFileStream_Value = Guid.initString("af67f125-ab39-4e93-b4a2-cc2e66e182a7");
 pub const IID_ISpeechFileStream = &IID_ISpeechFileStream_Value;
 pub const ISpeechFileStream = extern struct {
     pub const VTable = extern struct {
@@ -6363,7 +6363,7 @@ pub const ISpeechFileStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechMemoryStream_Value = @import("../zig.zig").Guid.initString("eeb14b68-808b-4abe-a5ea-b51da7588008");
+const IID_ISpeechMemoryStream_Value = Guid.initString("eeb14b68-808b-4abe-a5ea-b51da7588008");
 pub const IID_ISpeechMemoryStream = &IID_ISpeechMemoryStream_Value;
 pub const ISpeechMemoryStream = extern struct {
     pub const VTable = extern struct {
@@ -6392,7 +6392,7 @@ pub const ISpeechMemoryStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechCustomStream_Value = @import("../zig.zig").Guid.initString("1a9e9f4f-104f-4db8-a115-efd7fd0c97ae");
+const IID_ISpeechCustomStream_Value = Guid.initString("1a9e9f4f-104f-4db8-a115-efd7fd0c97ae");
 pub const IID_ISpeechCustomStream = &IID_ISpeechCustomStream_Value;
 pub const ISpeechCustomStream = extern struct {
     pub const VTable = extern struct {
@@ -6422,7 +6422,7 @@ pub const ISpeechCustomStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechAudio_Value = @import("../zig.zig").Guid.initString("cff8e175-019e-11d3-a08e-00c04f8ef9b5");
+const IID_ISpeechAudio_Value = Guid.initString("cff8e175-019e-11d3-a08e-00c04f8ef9b5");
 pub const IID_ISpeechAudio = &IID_ISpeechAudio_Value;
 pub const ISpeechAudio = extern struct {
     pub const VTable = extern struct {
@@ -6515,7 +6515,7 @@ pub const ISpeechAudio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechMMSysAudio_Value = @import("../zig.zig").Guid.initString("3c76af6d-1fd7-4831-81d1-3b71d5a13c44");
+const IID_ISpeechMMSysAudio_Value = Guid.initString("3c76af6d-1fd7-4831-81d1-3b71d5a13c44");
 pub const IID_ISpeechMMSysAudio = &IID_ISpeechMMSysAudio_Value;
 pub const ISpeechMMSysAudio = extern struct {
     pub const VTable = extern struct {
@@ -6573,7 +6573,7 @@ pub const ISpeechMMSysAudio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechVoice_Value = @import("../zig.zig").Guid.initString("269316d8-57bd-11d2-9eee-00c04f797396");
+const IID_ISpeechVoice_Value = Guid.initString("269316d8-57bd-11d2-9eee-00c04f797396");
 pub const IID_ISpeechVoice = &IID_ISpeechVoice_Value;
 pub const ISpeechVoice = extern struct {
     pub const VTable = extern struct {
@@ -6874,7 +6874,7 @@ pub const ISpeechVoice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechVoiceStatus_Value = @import("../zig.zig").Guid.initString("8be47b07-57f6-11d2-9eee-00c04f797396");
+const IID_ISpeechVoiceStatus_Value = Guid.initString("8be47b07-57f6-11d2-9eee-00c04f797396");
 pub const IID_ISpeechVoiceStatus = &IID_ISpeechVoiceStatus_Value;
 pub const ISpeechVoiceStatus = extern struct {
     pub const VTable = extern struct {
@@ -6995,7 +6995,7 @@ pub const ISpeechVoiceStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ISpeechVoiceEvents_Value = @import("../zig.zig").Guid.initString("a372acd1-3bef-4bbd-8ffb-cb3e2b416af8");
+const IID__ISpeechVoiceEvents_Value = Guid.initString("a372acd1-3bef-4bbd-8ffb-cb3e2b416af8");
 pub const IID__ISpeechVoiceEvents = &IID__ISpeechVoiceEvents_Value;
 pub const _ISpeechVoiceEvents = extern struct {
     pub const VTable = extern struct {
@@ -7008,7 +7008,7 @@ pub const _ISpeechVoiceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecognizer_Value = @import("../zig.zig").Guid.initString("2d5f1c0c-bd75-4b08-9478-3b11fea2586c");
+const IID_ISpeechRecognizer_Value = Guid.initString("2d5f1c0c-bd75-4b08-9478-3b11fea2586c");
 pub const IID_ISpeechRecognizer = &IID_ISpeechRecognizer_Value;
 pub const ISpeechRecognizer = extern struct {
     pub const VTable = extern struct {
@@ -7261,7 +7261,7 @@ pub const ISpeechRecognizer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecognizerStatus_Value = @import("../zig.zig").Guid.initString("bff9e781-53ec-484e-bb8a-0e1b5551e35c");
+const IID_ISpeechRecognizerStatus_Value = Guid.initString("bff9e781-53ec-484e-bb8a-0e1b5551e35c");
 pub const IID_ISpeechRecognizerStatus = &IID_ISpeechRecognizerStatus_Value;
 pub const ISpeechRecognizerStatus = extern struct {
     pub const VTable = extern struct {
@@ -7328,7 +7328,7 @@ pub const ISpeechRecognizerStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoContext_Value = @import("../zig.zig").Guid.initString("580aa49d-7e1e-4809-b8e2-57da806104b8");
+const IID_ISpeechRecoContext_Value = Guid.initString("580aa49d-7e1e-4809-b8e2-57da806104b8");
 pub const IID_ISpeechRecoContext = &IID_ISpeechRecoContext_Value;
 pub const ISpeechRecoContext = extern struct {
     pub const VTable = extern struct {
@@ -7560,7 +7560,7 @@ pub const ISpeechRecoContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoGrammar_Value = @import("../zig.zig").Guid.initString("b6d6f79f-2158-4e50-b5bc-9a9ccd852a09");
+const IID_ISpeechRecoGrammar_Value = Guid.initString("b6d6f79f-2158-4e50-b5bc-9a9ccd852a09");
 pub const IID_ISpeechRecoGrammar = &IID_ISpeechRecoGrammar_Value;
 pub const ISpeechRecoGrammar = extern struct {
     pub const VTable = extern struct {
@@ -7746,7 +7746,7 @@ pub const ISpeechRecoGrammar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ISpeechRecoContextEvents_Value = @import("../zig.zig").Guid.initString("7b8fcb42-0e9d-4f00-a048-7b04d6179d3d");
+const IID__ISpeechRecoContextEvents_Value = Guid.initString("7b8fcb42-0e9d-4f00-a048-7b04d6179d3d");
 pub const IID__ISpeechRecoContextEvents = &IID__ISpeechRecoContextEvents_Value;
 pub const _ISpeechRecoContextEvents = extern struct {
     pub const VTable = extern struct {
@@ -7759,7 +7759,7 @@ pub const _ISpeechRecoContextEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechGrammarRule_Value = @import("../zig.zig").Guid.initString("afe719cf-5dd1-44f2-999c-7a399f1cfccc");
+const IID_ISpeechGrammarRule_Value = Guid.initString("afe719cf-5dd1-44f2-999c-7a399f1cfccc");
 pub const IID_ISpeechGrammarRule = &IID_ISpeechGrammarRule_Value;
 pub const ISpeechGrammarRule = extern struct {
     pub const VTable = extern struct {
@@ -7832,7 +7832,7 @@ pub const ISpeechGrammarRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechGrammarRules_Value = @import("../zig.zig").Guid.initString("6ffa3b44-fc2d-40d1-8afc-32911c7f1ad1");
+const IID_ISpeechGrammarRules_Value = Guid.initString("6ffa3b44-fc2d-40d1-8afc-32911c7f1ad1");
 pub const IID_ISpeechGrammarRules = &IID_ISpeechGrammarRules_Value;
 pub const ISpeechGrammarRules = extern struct {
     pub const VTable = extern struct {
@@ -7917,7 +7917,7 @@ pub const ISpeechGrammarRules = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechGrammarRuleState_Value = @import("../zig.zig").Guid.initString("d4286f2c-ee67-45ae-b928-28d695362eda");
+const IID_ISpeechGrammarRuleState_Value = Guid.initString("d4286f2c-ee67-45ae-b928-28d695362eda");
 pub const IID_ISpeechGrammarRuleState = &IID_ISpeechGrammarRuleState_Value;
 pub const ISpeechGrammarRuleState = extern struct {
     pub const VTable = extern struct {
@@ -7989,7 +7989,7 @@ pub const ISpeechGrammarRuleState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechGrammarRuleStateTransition_Value = @import("../zig.zig").Guid.initString("cafd1db1-41d1-4a06-9863-e2e81da17a9a");
+const IID_ISpeechGrammarRuleStateTransition_Value = Guid.initString("cafd1db1-41d1-4a06-9863-e2e81da17a9a");
 pub const IID_ISpeechGrammarRuleStateTransition = &IID_ISpeechGrammarRuleStateTransition_Value;
 pub const ISpeechGrammarRuleStateTransition = extern struct {
     pub const VTable = extern struct {
@@ -8074,7 +8074,7 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechGrammarRuleStateTransitions_Value = @import("../zig.zig").Guid.initString("eabce657-75bc-44a2-aa7f-c56476742963");
+const IID_ISpeechGrammarRuleStateTransitions_Value = Guid.initString("eabce657-75bc-44a2-aa7f-c56476742963");
 pub const IID_ISpeechGrammarRuleStateTransitions = &IID_ISpeechGrammarRuleStateTransitions_Value;
 pub const ISpeechGrammarRuleStateTransitions = extern struct {
     pub const VTable = extern struct {
@@ -8114,7 +8114,7 @@ pub const ISpeechGrammarRuleStateTransitions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechTextSelectionInformation_Value = @import("../zig.zig").Guid.initString("3b9c7e7a-6eee-4ded-9092-11657279adbe");
+const IID_ISpeechTextSelectionInformation_Value = Guid.initString("3b9c7e7a-6eee-4ded-9092-11657279adbe");
 pub const IID_ISpeechTextSelectionInformation = &IID_ISpeechTextSelectionInformation_Value;
 pub const ISpeechTextSelectionInformation = extern struct {
     pub const VTable = extern struct {
@@ -8199,7 +8199,7 @@ pub const ISpeechTextSelectionInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoResult_Value = @import("../zig.zig").Guid.initString("ed2879cf-ced9-4ee6-a534-de0191d5468d");
+const IID_ISpeechRecoResult_Value = Guid.initString("ed2879cf-ced9-4ee6-a534-de0191d5468d");
 pub const IID_ISpeechRecoResult = &IID_ISpeechRecoResult_Value;
 pub const ISpeechRecoResult = extern struct {
     pub const VTable = extern struct {
@@ -8304,7 +8304,7 @@ pub const ISpeechRecoResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoResult2_Value = @import("../zig.zig").Guid.initString("8e0a246d-d3c8-45de-8657-04290c458c3c");
+const IID_ISpeechRecoResult2_Value = Guid.initString("8e0a246d-d3c8-45de-8657-04290c458c3c");
 pub const IID_ISpeechRecoResult2 = &IID_ISpeechRecoResult2_Value;
 pub const ISpeechRecoResult2 = extern struct {
     pub const VTable = extern struct {
@@ -8326,7 +8326,7 @@ pub const ISpeechRecoResult2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoResultTimes_Value = @import("../zig.zig").Guid.initString("62b3b8fb-f6e7-41be-bdcb-056b1c29efc0");
+const IID_ISpeechRecoResultTimes_Value = Guid.initString("62b3b8fb-f6e7-41be-bdcb-056b1c29efc0");
 pub const IID_ISpeechRecoResultTimes = &IID_ISpeechRecoResultTimes_Value;
 pub const ISpeechRecoResultTimes = extern struct {
     pub const VTable = extern struct {
@@ -8375,7 +8375,7 @@ pub const ISpeechRecoResultTimes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseAlternate_Value = @import("../zig.zig").Guid.initString("27864a2a-2b9f-4cb8-92d3-0d2722fd1e73");
+const IID_ISpeechPhraseAlternate_Value = Guid.initString("27864a2a-2b9f-4cb8-92d3-0d2722fd1e73");
 pub const IID_ISpeechPhraseAlternate = &IID_ISpeechPhraseAlternate_Value;
 pub const ISpeechPhraseAlternate = extern struct {
     pub const VTable = extern struct {
@@ -8431,7 +8431,7 @@ pub const ISpeechPhraseAlternate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseAlternates_Value = @import("../zig.zig").Guid.initString("b238b6d5-f276-4c3d-a6c1-2974801c3cc2");
+const IID_ISpeechPhraseAlternates_Value = Guid.initString("b238b6d5-f276-4c3d-a6c1-2974801c3cc2");
 pub const IID_ISpeechPhraseAlternates = &IID_ISpeechPhraseAlternates_Value;
 pub const ISpeechPhraseAlternates = extern struct {
     pub const VTable = extern struct {
@@ -8471,7 +8471,7 @@ pub const ISpeechPhraseAlternates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseInfo_Value = @import("../zig.zig").Guid.initString("961559cf-4e67-4662-8bf0-d93f1fcd61b3");
+const IID_ISpeechPhraseInfo_Value = Guid.initString("961559cf-4e67-4662-8bf0-d93f1fcd61b3");
 pub const IID_ISpeechPhraseInfo = &IID_ISpeechPhraseInfo_Value;
 pub const ISpeechPhraseInfo = extern struct {
     pub const VTable = extern struct {
@@ -8631,7 +8631,7 @@ pub const ISpeechPhraseInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseElement_Value = @import("../zig.zig").Guid.initString("e6176f96-e373-4801-b223-3b62c068c0b4");
+const IID_ISpeechPhraseElement_Value = Guid.initString("e6176f96-e373-4801-b223-3b62c068c0b4");
 pub const IID_ISpeechPhraseElement = &IID_ISpeechPhraseElement_Value;
 pub const ISpeechPhraseElement = extern struct {
     pub const VTable = extern struct {
@@ -8761,7 +8761,7 @@ pub const ISpeechPhraseElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseElements_Value = @import("../zig.zig").Guid.initString("0626b328-3478-467d-a0b3-d0853b93dda3");
+const IID_ISpeechPhraseElements_Value = Guid.initString("0626b328-3478-467d-a0b3-d0853b93dda3");
 pub const IID_ISpeechPhraseElements = &IID_ISpeechPhraseElements_Value;
 pub const ISpeechPhraseElements = extern struct {
     pub const VTable = extern struct {
@@ -8801,7 +8801,7 @@ pub const ISpeechPhraseElements = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseReplacement_Value = @import("../zig.zig").Guid.initString("2890a410-53a7-4fb5-94ec-06d4998e3d02");
+const IID_ISpeechPhraseReplacement_Value = Guid.initString("2890a410-53a7-4fb5-94ec-06d4998e3d02");
 pub const IID_ISpeechPhraseReplacement = &IID_ISpeechPhraseReplacement_Value;
 pub const ISpeechPhraseReplacement = extern struct {
     pub const VTable = extern struct {
@@ -8850,7 +8850,7 @@ pub const ISpeechPhraseReplacement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseReplacements_Value = @import("../zig.zig").Guid.initString("38bc662f-2257-4525-959e-2069d2596c05");
+const IID_ISpeechPhraseReplacements_Value = Guid.initString("38bc662f-2257-4525-959e-2069d2596c05");
 pub const IID_ISpeechPhraseReplacements = &IID_ISpeechPhraseReplacements_Value;
 pub const ISpeechPhraseReplacements = extern struct {
     pub const VTable = extern struct {
@@ -8890,7 +8890,7 @@ pub const ISpeechPhraseReplacements = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseProperty_Value = @import("../zig.zig").Guid.initString("ce563d48-961e-4732-a2e1-378a42b430be");
+const IID_ISpeechPhraseProperty_Value = Guid.initString("ce563d48-961e-4732-a2e1-378a42b430be");
 pub const IID_ISpeechPhraseProperty = &IID_ISpeechPhraseProperty_Value;
 pub const ISpeechPhraseProperty = extern struct {
     pub const VTable = extern struct {
@@ -8984,7 +8984,7 @@ pub const ISpeechPhraseProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseProperties_Value = @import("../zig.zig").Guid.initString("08166b47-102e-4b23-a599-bdb98dbfd1f4");
+const IID_ISpeechPhraseProperties_Value = Guid.initString("08166b47-102e-4b23-a599-bdb98dbfd1f4");
 pub const IID_ISpeechPhraseProperties = &IID_ISpeechPhraseProperties_Value;
 pub const ISpeechPhraseProperties = extern struct {
     pub const VTable = extern struct {
@@ -9024,7 +9024,7 @@ pub const ISpeechPhraseProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseRule_Value = @import("../zig.zig").Guid.initString("a7bfe112-a4a0-48d9-b602-c313843f6964");
+const IID_ISpeechPhraseRule_Value = Guid.initString("a7bfe112-a4a0-48d9-b602-c313843f6964");
 pub const IID_ISpeechPhraseRule = &IID_ISpeechPhraseRule_Value;
 pub const ISpeechPhraseRule = extern struct {
     pub const VTable = extern struct {
@@ -9109,7 +9109,7 @@ pub const ISpeechPhraseRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseRules_Value = @import("../zig.zig").Guid.initString("9047d593-01dd-4b72-81a3-e4a0ca69f407");
+const IID_ISpeechPhraseRules_Value = Guid.initString("9047d593-01dd-4b72-81a3-e4a0ca69f407");
 pub const IID_ISpeechPhraseRules = &IID_ISpeechPhraseRules_Value;
 pub const ISpeechPhraseRules = extern struct {
     pub const VTable = extern struct {
@@ -9149,7 +9149,7 @@ pub const ISpeechPhraseRules = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechLexicon_Value = @import("../zig.zig").Guid.initString("3da7627a-c7ae-4b23-8708-638c50362c25");
+const IID_ISpeechLexicon_Value = Guid.initString("3da7627a-c7ae-4b23-8708-638c50362c25");
 pub const IID_ISpeechLexicon = &IID_ISpeechLexicon_Value;
 pub const ISpeechLexicon = extern struct {
     pub const VTable = extern struct {
@@ -9245,7 +9245,7 @@ pub const ISpeechLexicon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechLexiconWords_Value = @import("../zig.zig").Guid.initString("8d199862-415e-47d5-ac4f-faa608b424e6");
+const IID_ISpeechLexiconWords_Value = Guid.initString("8d199862-415e-47d5-ac4f-faa608b424e6");
 pub const IID_ISpeechLexiconWords = &IID_ISpeechLexiconWords_Value;
 pub const ISpeechLexiconWords = extern struct {
     pub const VTable = extern struct {
@@ -9285,7 +9285,7 @@ pub const ISpeechLexiconWords = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechLexiconWord_Value = @import("../zig.zig").Guid.initString("4e5b933c-c9be-48ed-8842-1ee51bb1d4ff");
+const IID_ISpeechLexiconWord_Value = Guid.initString("4e5b933c-c9be-48ed-8842-1ee51bb1d4ff");
 pub const IID_ISpeechLexiconWord = &IID_ISpeechLexiconWord_Value;
 pub const ISpeechLexiconWord = extern struct {
     pub const VTable = extern struct {
@@ -9334,7 +9334,7 @@ pub const ISpeechLexiconWord = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechLexiconPronunciations_Value = @import("../zig.zig").Guid.initString("72829128-5682-4704-a0d4-3e2bb6f2ead3");
+const IID_ISpeechLexiconPronunciations_Value = Guid.initString("72829128-5682-4704-a0d4-3e2bb6f2ead3");
 pub const IID_ISpeechLexiconPronunciations = &IID_ISpeechLexiconPronunciations_Value;
 pub const ISpeechLexiconPronunciations = extern struct {
     pub const VTable = extern struct {
@@ -9374,7 +9374,7 @@ pub const ISpeechLexiconPronunciations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechLexiconPronunciation_Value = @import("../zig.zig").Guid.initString("95252c5d-9e43-4f4a-9899-48ee73352f9f");
+const IID_ISpeechLexiconPronunciation_Value = Guid.initString("95252c5d-9e43-4f4a-9899-48ee73352f9f");
 pub const IID_ISpeechLexiconPronunciation = &IID_ISpeechLexiconPronunciation_Value;
 pub const ISpeechLexiconPronunciation = extern struct {
     pub const VTable = extern struct {
@@ -9432,7 +9432,7 @@ pub const ISpeechLexiconPronunciation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechXMLRecoResult_Value = @import("../zig.zig").Guid.initString("aaec54af-8f85-4924-944d-b79d39d72e19");
+const IID_ISpeechXMLRecoResult_Value = Guid.initString("aaec54af-8f85-4924-944d-b79d39d72e19");
 pub const IID_ISpeechXMLRecoResult = &IID_ISpeechXMLRecoResult_Value;
 pub const ISpeechXMLRecoResult = extern struct {
     pub const VTable = extern struct {
@@ -9467,7 +9467,7 @@ pub const ISpeechXMLRecoResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechRecoResultDispatch_Value = @import("../zig.zig").Guid.initString("6d60eb64-aced-40a6-bbf3-4e557f71dee2");
+const IID_ISpeechRecoResultDispatch_Value = Guid.initString("6d60eb64-aced-40a6-bbf3-4e557f71dee2");
 pub const IID_ISpeechRecoResultDispatch = &IID_ISpeechRecoResultDispatch_Value;
 pub const ISpeechRecoResultDispatch = extern struct {
     pub const VTable = extern struct {
@@ -9603,7 +9603,7 @@ pub const ISpeechRecoResultDispatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhraseInfoBuilder_Value = @import("../zig.zig").Guid.initString("3b151836-df3a-4e0a-846c-d2adc9334333");
+const IID_ISpeechPhraseInfoBuilder_Value = Guid.initString("3b151836-df3a-4e0a-846c-d2adc9334333");
 pub const IID_ISpeechPhraseInfoBuilder = &IID_ISpeechPhraseInfoBuilder_Value;
 pub const ISpeechPhraseInfoBuilder = extern struct {
     pub const VTable = extern struct {
@@ -9625,7 +9625,7 @@ pub const ISpeechPhraseInfoBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechPhoneConverter_Value = @import("../zig.zig").Guid.initString("c3e4f353-433f-43d6-89a1-6a62a7054c3d");
+const IID_ISpeechPhoneConverter_Value = Guid.initString("c3e4f353-433f-43d6-89a1-6a62a7054c3d");
 pub const IID_ISpeechPhoneConverter = &IID_ISpeechPhoneConverter_Value;
 pub const ISpeechPhoneConverter = extern struct {
     pub const VTable = extern struct {

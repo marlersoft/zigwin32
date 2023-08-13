@@ -118,10 +118,10 @@ pub const HGESTUREINFO = *opaque{};
 
 pub const HTOUCHINPUT = *opaque{};
 
-const CLSID_InertiaProcessor_Value = @import("../../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
+const CLSID_InertiaProcessor_Value = Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
-const CLSID_ManipulationProcessor_Value = @import("../../zig.zig").Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
+const CLSID_ManipulationProcessor_Value = Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
 pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
 
 pub const MANIPULATION_PROCESSOR_MANIPULATIONS = enum(i32) {
@@ -140,7 +140,7 @@ pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.ROTATE;
 pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID__IManipulationEvents_Value = @import("../../zig.zig").Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
+const IID__IManipulationEvents_Value = Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
 pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
 pub const _IManipulationEvents = extern struct {
     pub const VTable = extern struct {
@@ -196,7 +196,7 @@ pub const _IManipulationEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IInertiaProcessor_Value = @import("../../zig.zig").Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
+const IID_IInertiaProcessor_Value = Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
 pub const IID_IInertiaProcessor = &IID_IInertiaProcessor_Value;
 pub const IInertiaProcessor = extern struct {
     pub const VTable = extern struct {
@@ -645,7 +645,7 @@ pub const IInertiaProcessor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IManipulationProcessor_Value = @import("../../zig.zig").Guid.initString("a22ac519-8300-48a0-bef4-f1be8737dba4");
+const IID_IManipulationProcessor_Value = Guid.initString("a22ac519-8300-48a0-bef4-f1be8737dba4");
 pub const IID_IManipulationProcessor = &IID_IManipulationProcessor_Value;
 pub const IManipulationProcessor = extern struct {
     pub const VTable = extern struct {
@@ -976,8 +976,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;

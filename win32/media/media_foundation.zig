@@ -1106,7 +1106,7 @@ pub const MF_INVALID_ACCESS_ERR = @as(u32, 2154823695);
 pub const MF_QUOTA_EXCEEDED_ERR = @as(u32, 2154823702);
 pub const MF_PARSE_ERR = @as(u32, 2154823761);
 pub const MF_TYPE_ERR = @as(u32, 2154840069);
-pub const DEVPKEY_DeviceInterface_IsVirtualCamera = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("6edc630d-c2e3-43b7-b2d1-20525a1af120"), .pid = 3 };
+pub const DEVPKEY_DeviceInterface_IsVirtualCamera = PROPERTYKEY { .fmtid = Guid.initString("6edc630d-c2e3-43b7-b2d1-20525a1af120"), .pid = 3 };
 pub const g_wszSpeechFormatCaps = "SpeechFormatCap";
 pub const g_wszWMCPCodecName = "_CODECNAME";
 pub const g_wszWMCPSupportedVBRModes = "_SUPPORTEDVBRMODES";
@@ -1736,7 +1736,7 @@ pub const CodecAPIEventData = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
+const IID_ICodecAPI_Value = Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
 pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
 pub const ICodecAPI = extern struct {
     pub const VTable = extern struct {
@@ -1891,7 +1891,7 @@ pub const D3DOVERLAYCAPS = extern struct {
 
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
+const IID_IDirect3D9ExOverlayExtension_Value = Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
 pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
 pub const IDirect3D9ExOverlayExtension = extern struct {
     pub const VTable = extern struct {
@@ -1920,7 +1920,7 @@ pub const IDirect3D9ExOverlayExtension = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DDevice9Video_Value = @import("../zig.zig").Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
+const IID_IDirect3DDevice9Video_Value = Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
 pub const IID_IDirect3DDevice9Video = &IID_IDirect3DDevice9Video_Value;
 pub const IDirect3DDevice9Video = extern struct {
     pub const VTable = extern struct {
@@ -1965,7 +1965,7 @@ pub const IDirect3DDevice9Video = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DAuthenticatedChannel9_Value = @import("../zig.zig").Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
+const IID_IDirect3DAuthenticatedChannel9_Value = Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
 pub const IID_IDirect3DAuthenticatedChannel9 = &IID_IDirect3DAuthenticatedChannel9_Value;
 pub const IDirect3DAuthenticatedChannel9 = extern struct {
     pub const VTable = extern struct {
@@ -2026,7 +2026,7 @@ pub const IDirect3DAuthenticatedChannel9 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DCryptoSession9_Value = @import("../zig.zig").Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
+const IID_IDirect3DCryptoSession9_Value = Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
 pub const IID_IDirect3DCryptoSession9 = &IID_IDirect3DCryptoSession9_Value;
 pub const IDirect3DCryptoSession9 = extern struct {
     pub const VTable = extern struct {
@@ -2391,7 +2391,7 @@ pub const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC = extern struct {
     EnableStereo: BOOL,
 };
 
-const IID_ID3D12VideoDecoderHeap_Value = @import("../zig.zig").Guid.initString("0946b7c9-ebf6-4047-bb73-8683e27dbb1f");
+const IID_ID3D12VideoDecoderHeap_Value = Guid.initString("0946b7c9-ebf6-4047-bb73-8683e27dbb1f");
 pub const IID_ID3D12VideoDecoderHeap = &IID_ID3D12VideoDecoderHeap_Value;
 pub const ID3D12VideoDecoderHeap = extern struct {
     pub const VTable = extern struct {
@@ -2411,7 +2411,7 @@ pub const ID3D12VideoDecoderHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDevice_Value = @import("../zig.zig").Guid.initString("1f052807-0b46-4acc-8a89-364f793718a4");
+const IID_ID3D12VideoDevice_Value = Guid.initString("1f052807-0b46-4acc-8a89-364f793718a4");
 pub const IID_ID3D12VideoDevice = &IID_ID3D12VideoDevice_Value;
 pub const ID3D12VideoDevice = extern struct {
     pub const VTable = extern struct {
@@ -2468,7 +2468,7 @@ pub const ID3D12VideoDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDecoder_Value = @import("../zig.zig").Guid.initString("c59b6bdc-7720-4074-a136-17a156037470");
+const IID_ID3D12VideoDecoder_Value = Guid.initString("c59b6bdc-7720-4074-a136-17a156037470");
 pub const IID_ID3D12VideoDecoder = &IID_ID3D12VideoDecoder_Value;
 pub const ID3D12VideoDecoder = extern struct {
     pub const VTable = extern struct {
@@ -2790,7 +2790,7 @@ pub const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS = extern struct {
     ConversionArguments: D3D12_VIDEO_DECODE_CONVERSION_ARGUMENTS,
 };
 
-const IID_ID3D12VideoProcessor_Value = @import("../zig.zig").Guid.initString("304fdb32-bede-410a-8545-943ac6a46138");
+const IID_ID3D12VideoProcessor_Value = Guid.initString("304fdb32-bede-410a-8545-943ac6a46138");
 pub const IID_ID3D12VideoProcessor = &IID_ID3D12VideoProcessor_Value;
 pub const ID3D12VideoProcessor = extern struct {
     pub const VTable = extern struct {
@@ -3067,7 +3067,7 @@ pub const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS = extern struct {
     TargetRectangle: RECT,
 };
 
-const IID_ID3D12VideoDecodeCommandList_Value = @import("../zig.zig").Guid.initString("3b60536e-ad29-4e64-a269-f853837e5e53");
+const IID_ID3D12VideoDecodeCommandList_Value = Guid.initString("3b60536e-ad29-4e64-a269-f853837e5e53");
 pub const IID_ID3D12VideoDecodeCommandList = &IID_ID3D12VideoDecodeCommandList_Value;
 pub const ID3D12VideoDecodeCommandList = extern struct {
     pub const VTable = extern struct {
@@ -3212,7 +3212,7 @@ pub const ID3D12VideoDecodeCommandList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoProcessCommandList_Value = @import("../zig.zig").Guid.initString("aeb2543a-167f-4682-acc8-d159ed4a6209");
+const IID_ID3D12VideoProcessCommandList_Value = Guid.initString("aeb2543a-167f-4682-acc8-d159ed4a6209");
 pub const IID_ID3D12VideoProcessCommandList = &IID_ID3D12VideoProcessCommandList_Value;
 pub const ID3D12VideoProcessCommandList = extern struct {
     pub const VTable = extern struct {
@@ -3380,7 +3380,7 @@ pub const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS1 = extern struct {
     Histograms: [4]D3D12_VIDEO_DECODE_OUTPUT_HISTOGRAM,
 };
 
-const IID_ID3D12VideoDecodeCommandList1_Value = @import("../zig.zig").Guid.initString("d52f011b-b56e-453c-a05a-a7f311c8f472");
+const IID_ID3D12VideoDecodeCommandList1_Value = Guid.initString("d52f011b-b56e-453c-a05a-a7f311c8f472");
 pub const IID_ID3D12VideoDecodeCommandList1 = &IID_ID3D12VideoDecodeCommandList1_Value;
 pub const ID3D12VideoDecodeCommandList1 = extern struct {
     pub const VTable = extern struct {
@@ -3413,7 +3413,7 @@ pub const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS1 = extern struct {
     FieldType: D3D12_VIDEO_FIELD_TYPE,
 };
 
-const IID_ID3D12VideoProcessCommandList1_Value = @import("../zig.zig").Guid.initString("542c5c4d-7596-434f-8c93-4efa6766f267");
+const IID_ID3D12VideoProcessCommandList1_Value = Guid.initString("542c5c4d-7596-434f-8c93-4efa6766f267");
 pub const IID_ID3D12VideoProcessCommandList1 = &IID_ID3D12VideoProcessCommandList1_Value;
 pub const ID3D12VideoProcessCommandList1 = extern struct {
     pub const VTable = extern struct {
@@ -3524,7 +3524,7 @@ pub const D3D12_VIDEO_MOTION_ESTIMATOR_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D12VideoMotionEstimator_Value = @import("../zig.zig").Guid.initString("33fdae0e-098b-428f-87bb-34b695de08f8");
+const IID_ID3D12VideoMotionEstimator_Value = Guid.initString("33fdae0e-098b-428f-87bb-34b695de08f8");
 pub const IID_ID3D12VideoMotionEstimator = &IID_ID3D12VideoMotionEstimator_Value;
 pub const ID3D12VideoMotionEstimator = extern struct {
     pub const VTable = extern struct {
@@ -3562,7 +3562,7 @@ pub const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D12VideoMotionVectorHeap_Value = @import("../zig.zig").Guid.initString("5be17987-743a-4061-834b-23d22daea505");
+const IID_ID3D12VideoMotionVectorHeap_Value = Guid.initString("5be17987-743a-4061-834b-23d22daea505");
 pub const IID_ID3D12VideoMotionVectorHeap = &IID_ID3D12VideoMotionVectorHeap_Value;
 pub const ID3D12VideoMotionVectorHeap = extern struct {
     pub const VTable = extern struct {
@@ -3591,7 +3591,7 @@ pub const ID3D12VideoMotionVectorHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDevice1_Value = @import("../zig.zig").Guid.initString("981611ad-a144-4c83-9890-f30e26d658ab");
+const IID_ID3D12VideoDevice1_Value = Guid.initString("981611ad-a144-4c83-9890-f30e26d658ab");
 pub const IID_ID3D12VideoDevice1 = &IID_ID3D12VideoDevice1_Value;
 pub const ID3D12VideoDevice1 = extern struct {
     pub const VTable = extern struct {
@@ -3657,7 +3657,7 @@ pub const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D12VideoEncodeCommandList_Value = @import("../zig.zig").Guid.initString("8455293a-0cbd-4831-9b39-fbdbab724723");
+const IID_ID3D12VideoEncodeCommandList_Value = Guid.initString("8455293a-0cbd-4831-9b39-fbdbab724723");
 pub const IID_ID3D12VideoEncodeCommandList = &IID_ID3D12VideoEncodeCommandList_Value;
 pub const ID3D12VideoEncodeCommandList = extern struct {
     pub const VTable = extern struct {
@@ -3993,7 +3993,7 @@ pub const D3D12_VIDEO_EXTENSION_COMMAND_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D12VideoDecoder1_Value = @import("../zig.zig").Guid.initString("79a2e5fb-ccd2-469a-9fde-195d10951f7e");
+const IID_ID3D12VideoDecoder1_Value = Guid.initString("79a2e5fb-ccd2-469a-9fde-195d10951f7e");
 pub const IID_ID3D12VideoDecoder1 = &IID_ID3D12VideoDecoder1_Value;
 pub const ID3D12VideoDecoder1 = extern struct {
     pub const VTable = extern struct {
@@ -4015,7 +4015,7 @@ pub const ID3D12VideoDecoder1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDecoderHeap1_Value = @import("../zig.zig").Guid.initString("da1d98c5-539f-41b2-bf6b-1198a03b6d26");
+const IID_ID3D12VideoDecoderHeap1_Value = Guid.initString("da1d98c5-539f-41b2-bf6b-1198a03b6d26");
 pub const IID_ID3D12VideoDecoderHeap1 = &IID_ID3D12VideoDecoderHeap1_Value;
 pub const ID3D12VideoDecoderHeap1 = extern struct {
     pub const VTable = extern struct {
@@ -4037,7 +4037,7 @@ pub const ID3D12VideoDecoderHeap1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoProcessor1_Value = @import("../zig.zig").Guid.initString("f3cfe615-553f-425c-86d8-ee8c1b1fb01c");
+const IID_ID3D12VideoProcessor1_Value = Guid.initString("f3cfe615-553f-425c-86d8-ee8c1b1fb01c");
 pub const IID_ID3D12VideoProcessor1 = &IID_ID3D12VideoProcessor1_Value;
 pub const ID3D12VideoProcessor1 = extern struct {
     pub const VTable = extern struct {
@@ -4060,7 +4060,7 @@ pub const ID3D12VideoProcessor1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_ID3D12VideoExtensionCommand_Value = @import("../zig.zig").Guid.initString("554e41e8-ae8e-4a8c-b7d2-5b4f274a30e4");
+const IID_ID3D12VideoExtensionCommand_Value = Guid.initString("554e41e8-ae8e-4a8c-b7d2-5b4f274a30e4");
 pub const IID_ID3D12VideoExtensionCommand = &IID_ID3D12VideoExtensionCommand_Value;
 pub const ID3D12VideoExtensionCommand = extern struct {
     pub const VTable = extern struct {
@@ -4089,7 +4089,7 @@ pub const ID3D12VideoExtensionCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDevice2_Value = @import("../zig.zig").Guid.initString("f019ac49-f838-4a95-9b17-579437c8f513");
+const IID_ID3D12VideoDevice2_Value = Guid.initString("f019ac49-f838-4a95-9b17-579437c8f513");
 pub const IID_ID3D12VideoDevice2 = &IID_ID3D12VideoDevice2_Value;
 pub const ID3D12VideoDevice2 = extern struct {
     pub const VTable = extern struct {
@@ -4166,7 +4166,7 @@ pub const ID3D12VideoDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDecodeCommandList2_Value = @import("../zig.zig").Guid.initString("6e120880-c114-4153-8036-d247051e1729");
+const IID_ID3D12VideoDecodeCommandList2_Value = Guid.initString("6e120880-c114-4153-8036-d247051e1729");
 pub const IID_ID3D12VideoDecodeCommandList2 = &IID_ID3D12VideoDecodeCommandList2_Value;
 pub const ID3D12VideoDecodeCommandList2 = extern struct {
     pub const VTable = extern struct {
@@ -4209,7 +4209,7 @@ pub const ID3D12VideoDecodeCommandList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoProcessCommandList2_Value = @import("../zig.zig").Guid.initString("db525ae4-6ad6-473c-baa7-59b2e37082e4");
+const IID_ID3D12VideoProcessCommandList2_Value = Guid.initString("db525ae4-6ad6-473c-baa7-59b2e37082e4");
 pub const IID_ID3D12VideoProcessCommandList2 = &IID_ID3D12VideoProcessCommandList2_Value;
 pub const ID3D12VideoProcessCommandList2 = extern struct {
     pub const VTable = extern struct {
@@ -4252,7 +4252,7 @@ pub const ID3D12VideoProcessCommandList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoEncodeCommandList1_Value = @import("../zig.zig").Guid.initString("94971eca-2bdb-4769-88cf-3675ea757ebc");
+const IID_ID3D12VideoEncodeCommandList1_Value = Guid.initString("94971eca-2bdb-4769-88cf-3675ea757ebc");
 pub const IID_ID3D12VideoEncodeCommandList1 = &IID_ID3D12VideoEncodeCommandList1_Value;
 pub const ID3D12VideoEncodeCommandList1 = extern struct {
     pub const VTable = extern struct {
@@ -5189,7 +5189,7 @@ pub const D3D12_VIDEO_ENCODER_DESC = extern struct {
     MaxMotionEstimationPrecision: D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE,
 };
 
-const IID_ID3D12VideoEncoder_Value = @import("../zig.zig").Guid.initString("2e0d212d-8df9-44a6-a770-bb289b182737");
+const IID_ID3D12VideoEncoder_Value = Guid.initString("2e0d212d-8df9-44a6-a770-bb289b182737");
 pub const IID_ID3D12VideoEncoder = &IID_ID3D12VideoEncoder_Value;
 pub const ID3D12VideoEncoder = extern struct {
     pub const VTable = extern struct {
@@ -5253,7 +5253,7 @@ pub const ID3D12VideoEncoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoEncoderHeap_Value = @import("../zig.zig").Guid.initString("22b35d96-876a-44c0-b25e-fb8c9c7f1c4a");
+const IID_ID3D12VideoEncoderHeap_Value = Guid.initString("22b35d96-876a-44c0-b25e-fb8c9c7f1c4a");
 pub const IID_ID3D12VideoEncoderHeap = &IID_ID3D12VideoEncoderHeap_Value;
 pub const ID3D12VideoEncoderHeap = extern struct {
     pub const VTable = extern struct {
@@ -5319,7 +5319,7 @@ pub const ID3D12VideoEncoderHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D12VideoDevice3_Value = @import("../zig.zig").Guid.initString("4243adb4-3a32-4666-973c-0ccc5625dc44");
+const IID_ID3D12VideoDevice3_Value = Guid.initString("4243adb4-3a32-4666-973c-0ccc5625dc44");
 pub const IID_ID3D12VideoDevice3 = &IID_ID3D12VideoDevice3_Value;
 pub const ID3D12VideoDevice3 = extern struct {
     pub const VTable = extern struct {
@@ -5678,7 +5678,7 @@ pub const D3D12_VIDEO_ENCODER_ENCODEFRAME_OUTPUT_ARGUMENTS = extern struct {
     EncoderOutputMetadata: D3D12_VIDEO_ENCODER_ENCODE_OPERATION_METADATA_BUFFER,
 };
 
-const IID_ID3D12VideoEncodeCommandList2_Value = @import("../zig.zig").Guid.initString("895491e2-e701-46a9-9a1f-8d3480ed867a");
+const IID_ID3D12VideoEncodeCommandList2_Value = Guid.initString("895491e2-e701-46a9-9a1f-8d3480ed867a");
 pub const IID_ID3D12VideoEncodeCommandList2 = &IID_ID3D12VideoEncodeCommandList2_Value;
 pub const ID3D12VideoEncodeCommandList2 = extern struct {
     pub const VTable = extern struct {
@@ -5711,292 +5711,292 @@ pub const ID3D12VideoEncodeCommandList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_CMpeg4DecMediaObject_Value = @import("../zig.zig").Guid.initString("f371728a-6052-4d47-827c-d039335dfe0a");
+const CLSID_CMpeg4DecMediaObject_Value = Guid.initString("f371728a-6052-4d47-827c-d039335dfe0a");
 pub const CLSID_CMpeg4DecMediaObject = &CLSID_CMpeg4DecMediaObject_Value;
 
-const CLSID_CMpeg43DecMediaObject_Value = @import("../zig.zig").Guid.initString("cba9e78b-49a3-49ea-93d4-6bcba8c4de07");
+const CLSID_CMpeg43DecMediaObject_Value = Guid.initString("cba9e78b-49a3-49ea-93d4-6bcba8c4de07");
 pub const CLSID_CMpeg43DecMediaObject = &CLSID_CMpeg43DecMediaObject_Value;
 
-const CLSID_CMpeg4sDecMediaObject_Value = @import("../zig.zig").Guid.initString("2a11bae2-fe6e-4249-864b-9e9ed6e8dbc2");
+const CLSID_CMpeg4sDecMediaObject_Value = Guid.initString("2a11bae2-fe6e-4249-864b-9e9ed6e8dbc2");
 pub const CLSID_CMpeg4sDecMediaObject = &CLSID_CMpeg4sDecMediaObject_Value;
 
-const CLSID_CMpeg4sDecMFT_Value = @import("../zig.zig").Guid.initString("5686a0d9-fe39-409f-9dff-3fdbc849f9f5");
+const CLSID_CMpeg4sDecMFT_Value = Guid.initString("5686a0d9-fe39-409f-9dff-3fdbc849f9f5");
 pub const CLSID_CMpeg4sDecMFT = &CLSID_CMpeg4sDecMFT_Value;
 
-const CLSID_CZuneM4S2DecMediaObject_Value = @import("../zig.zig").Guid.initString("c56fc25c-0fc6-404a-9503-b10bf51a8ab9");
+const CLSID_CZuneM4S2DecMediaObject_Value = Guid.initString("c56fc25c-0fc6-404a-9503-b10bf51a8ab9");
 pub const CLSID_CZuneM4S2DecMediaObject = &CLSID_CZuneM4S2DecMediaObject_Value;
 
-const CLSID_CMpeg4EncMediaObject_Value = @import("../zig.zig").Guid.initString("24f258d8-c651-4042-93e4-ca654abb682c");
+const CLSID_CMpeg4EncMediaObject_Value = Guid.initString("24f258d8-c651-4042-93e4-ca654abb682c");
 pub const CLSID_CMpeg4EncMediaObject = &CLSID_CMpeg4EncMediaObject_Value;
 
-const CLSID_CMpeg4sEncMediaObject_Value = @import("../zig.zig").Guid.initString("6ec5a7be-d81e-4f9e-ada3-cd1bf262b6d8");
+const CLSID_CMpeg4sEncMediaObject_Value = Guid.initString("6ec5a7be-d81e-4f9e-ada3-cd1bf262b6d8");
 pub const CLSID_CMpeg4sEncMediaObject = &CLSID_CMpeg4sEncMediaObject_Value;
 
-const CLSID_CMSSCDecMediaObject_Value = @import("../zig.zig").Guid.initString("7bafb3b1-d8f4-4279-9253-27da423108de");
+const CLSID_CMSSCDecMediaObject_Value = Guid.initString("7bafb3b1-d8f4-4279-9253-27da423108de");
 pub const CLSID_CMSSCDecMediaObject = &CLSID_CMSSCDecMediaObject_Value;
 
-const CLSID_CMSSCEncMediaObject_Value = @import("../zig.zig").Guid.initString("8cb9cc06-d139-4ae6-8bb4-41e612e141d5");
+const CLSID_CMSSCEncMediaObject_Value = Guid.initString("8cb9cc06-d139-4ae6-8bb4-41e612e141d5");
 pub const CLSID_CMSSCEncMediaObject = &CLSID_CMSSCEncMediaObject_Value;
 
-const CLSID_CMSSCEncMediaObject2_Value = @import("../zig.zig").Guid.initString("f7ffe0a0-a4f5-44b5-949e-15ed2bc66f9d");
+const CLSID_CMSSCEncMediaObject2_Value = Guid.initString("f7ffe0a0-a4f5-44b5-949e-15ed2bc66f9d");
 pub const CLSID_CMSSCEncMediaObject2 = &CLSID_CMSSCEncMediaObject2_Value;
 
-const CLSID_CWMADecMediaObject_Value = @import("../zig.zig").Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
+const CLSID_CWMADecMediaObject_Value = Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
 pub const CLSID_CWMADecMediaObject = &CLSID_CWMADecMediaObject_Value;
 
-const CLSID_CWMAEncMediaObject_Value = @import("../zig.zig").Guid.initString("70f598e9-f4ab-495a-99e2-a7c4d3d89abf");
+const CLSID_CWMAEncMediaObject_Value = Guid.initString("70f598e9-f4ab-495a-99e2-a7c4d3d89abf");
 pub const CLSID_CWMAEncMediaObject = &CLSID_CWMAEncMediaObject_Value;
 
-const CLSID_CWMATransMediaObject_Value = @import("../zig.zig").Guid.initString("edcad9cb-3127-40df-b527-0152ccb3f6f5");
+const CLSID_CWMATransMediaObject_Value = Guid.initString("edcad9cb-3127-40df-b527-0152ccb3f6f5");
 pub const CLSID_CWMATransMediaObject = &CLSID_CWMATransMediaObject_Value;
 
-const CLSID_CWMSPDecMediaObject_Value = @import("../zig.zig").Guid.initString("874131cb-4ecc-443b-8948-746b89595d20");
+const CLSID_CWMSPDecMediaObject_Value = Guid.initString("874131cb-4ecc-443b-8948-746b89595d20");
 pub const CLSID_CWMSPDecMediaObject = &CLSID_CWMSPDecMediaObject_Value;
 
-const CLSID_CWMSPEncMediaObject_Value = @import("../zig.zig").Guid.initString("67841b03-c689-4188-ad3f-4c9ebeec710b");
+const CLSID_CWMSPEncMediaObject_Value = Guid.initString("67841b03-c689-4188-ad3f-4c9ebeec710b");
 pub const CLSID_CWMSPEncMediaObject = &CLSID_CWMSPEncMediaObject_Value;
 
-const CLSID_CWMSPEncMediaObject2_Value = @import("../zig.zig").Guid.initString("1f1f4e1a-2252-4063-84bb-eee75f8856d5");
+const CLSID_CWMSPEncMediaObject2_Value = Guid.initString("1f1f4e1a-2252-4063-84bb-eee75f8856d5");
 pub const CLSID_CWMSPEncMediaObject2 = &CLSID_CWMSPEncMediaObject2_Value;
 
-const CLSID_CWMTDecMediaObject_Value = @import("../zig.zig").Guid.initString("f9dbc64e-2dd0-45dd-9b52-66642ef94431");
+const CLSID_CWMTDecMediaObject_Value = Guid.initString("f9dbc64e-2dd0-45dd-9b52-66642ef94431");
 pub const CLSID_CWMTDecMediaObject = &CLSID_CWMTDecMediaObject_Value;
 
-const CLSID_CWMTEncMediaObject_Value = @import("../zig.zig").Guid.initString("60b67652-e46b-4e44-8609-f74bffdc083c");
+const CLSID_CWMTEncMediaObject_Value = Guid.initString("60b67652-e46b-4e44-8609-f74bffdc083c");
 pub const CLSID_CWMTEncMediaObject = &CLSID_CWMTEncMediaObject_Value;
 
-const CLSID_CWMVDecMediaObject_Value = @import("../zig.zig").Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
+const CLSID_CWMVDecMediaObject_Value = Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
 pub const CLSID_CWMVDecMediaObject = &CLSID_CWMVDecMediaObject_Value;
 
-const CLSID_CWMVEncMediaObject2_Value = @import("../zig.zig").Guid.initString("96b57cdd-8966-410c-bb1f-c97eea765c04");
+const CLSID_CWMVEncMediaObject2_Value = Guid.initString("96b57cdd-8966-410c-bb1f-c97eea765c04");
 pub const CLSID_CWMVEncMediaObject2 = &CLSID_CWMVEncMediaObject2_Value;
 
-const CLSID_CWMVXEncMediaObject_Value = @import("../zig.zig").Guid.initString("7e320092-596a-41b2-bbeb-175d10504eb6");
+const CLSID_CWMVXEncMediaObject_Value = Guid.initString("7e320092-596a-41b2-bbeb-175d10504eb6");
 pub const CLSID_CWMVXEncMediaObject = &CLSID_CWMVXEncMediaObject_Value;
 
-const CLSID_CWMV9EncMediaObject_Value = @import("../zig.zig").Guid.initString("d23b90d0-144f-46bd-841d-59e4eb19dc59");
+const CLSID_CWMV9EncMediaObject_Value = Guid.initString("d23b90d0-144f-46bd-841d-59e4eb19dc59");
 pub const CLSID_CWMV9EncMediaObject = &CLSID_CWMV9EncMediaObject_Value;
 
-const CLSID_CWVC1DecMediaObject_Value = @import("../zig.zig").Guid.initString("c9bfbccf-e60e-4588-a3df-5a03b1fd9585");
+const CLSID_CWVC1DecMediaObject_Value = Guid.initString("c9bfbccf-e60e-4588-a3df-5a03b1fd9585");
 pub const CLSID_CWVC1DecMediaObject = &CLSID_CWVC1DecMediaObject_Value;
 
-const CLSID_CWVC1EncMediaObject_Value = @import("../zig.zig").Guid.initString("44653d0d-8cca-41e7-baca-884337b747ac");
+const CLSID_CWVC1EncMediaObject_Value = Guid.initString("44653d0d-8cca-41e7-baca-884337b747ac");
 pub const CLSID_CWVC1EncMediaObject = &CLSID_CWVC1EncMediaObject_Value;
 
-const CLSID_CDeColorConvMediaObject_Value = @import("../zig.zig").Guid.initString("49034c05-f43c-400f-84c1-90a683195a3a");
+const CLSID_CDeColorConvMediaObject_Value = Guid.initString("49034c05-f43c-400f-84c1-90a683195a3a");
 pub const CLSID_CDeColorConvMediaObject = &CLSID_CDeColorConvMediaObject_Value;
 
-const CLSID_CDVDecoderMediaObject_Value = @import("../zig.zig").Guid.initString("e54709c5-1e17-4c8d-94e7-478940433584");
+const CLSID_CDVDecoderMediaObject_Value = Guid.initString("e54709c5-1e17-4c8d-94e7-478940433584");
 pub const CLSID_CDVDecoderMediaObject = &CLSID_CDVDecoderMediaObject_Value;
 
-const CLSID_CDVEncoderMediaObject_Value = @import("../zig.zig").Guid.initString("c82ae729-c327-4cce-914d-8171fefebefb");
+const CLSID_CDVEncoderMediaObject_Value = Guid.initString("c82ae729-c327-4cce-914d-8171fefebefb");
 pub const CLSID_CDVEncoderMediaObject = &CLSID_CDVEncoderMediaObject_Value;
 
-const CLSID_CMpeg2DecMediaObject_Value = @import("../zig.zig").Guid.initString("863d66cd-cdce-4617-b47f-c8929cfc28a6");
+const CLSID_CMpeg2DecMediaObject_Value = Guid.initString("863d66cd-cdce-4617-b47f-c8929cfc28a6");
 pub const CLSID_CMpeg2DecMediaObject = &CLSID_CMpeg2DecMediaObject_Value;
 
-const CLSID_CPK_DS_MPEG2Decoder_Value = @import("../zig.zig").Guid.initString("9910c5cd-95c9-4e06-865a-efa1c8016bf4");
+const CLSID_CPK_DS_MPEG2Decoder_Value = Guid.initString("9910c5cd-95c9-4e06-865a-efa1c8016bf4");
 pub const CLSID_CPK_DS_MPEG2Decoder = &CLSID_CPK_DS_MPEG2Decoder_Value;
 
-const CLSID_CAC3DecMediaObject_Value = @import("../zig.zig").Guid.initString("03d7c802-ecfa-47d9-b268-5fb3e310dee4");
+const CLSID_CAC3DecMediaObject_Value = Guid.initString("03d7c802-ecfa-47d9-b268-5fb3e310dee4");
 pub const CLSID_CAC3DecMediaObject = &CLSID_CAC3DecMediaObject_Value;
 
-const CLSID_CPK_DS_AC3Decoder_Value = @import("../zig.zig").Guid.initString("6c9c69d6-0ffc-4481-afdb-cdf1c79c6f3e");
+const CLSID_CPK_DS_AC3Decoder_Value = Guid.initString("6c9c69d6-0ffc-4481-afdb-cdf1c79c6f3e");
 pub const CLSID_CPK_DS_AC3Decoder = &CLSID_CPK_DS_AC3Decoder_Value;
 
-const CLSID_CMP3DecMediaObject_Value = @import("../zig.zig").Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
+const CLSID_CMP3DecMediaObject_Value = Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
 pub const CLSID_CMP3DecMediaObject = &CLSID_CMP3DecMediaObject_Value;
 
-const CLSID_CResamplerMediaObject_Value = @import("../zig.zig").Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
+const CLSID_CResamplerMediaObject_Value = Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
 pub const CLSID_CResamplerMediaObject = &CLSID_CResamplerMediaObject_Value;
 
-const CLSID_CResizerMediaObject_Value = @import("../zig.zig").Guid.initString("d3ec8b8b-7728-4fd8-9fe0-7b67d19f73a3");
+const CLSID_CResizerMediaObject_Value = Guid.initString("d3ec8b8b-7728-4fd8-9fe0-7b67d19f73a3");
 pub const CLSID_CResizerMediaObject = &CLSID_CResizerMediaObject_Value;
 
-const CLSID_CInterlaceMediaObject_Value = @import("../zig.zig").Guid.initString("b5a89c80-4901-407b-9abc-90d9a644bb46");
+const CLSID_CInterlaceMediaObject_Value = Guid.initString("b5a89c80-4901-407b-9abc-90d9a644bb46");
 pub const CLSID_CInterlaceMediaObject = &CLSID_CInterlaceMediaObject_Value;
 
-const CLSID_CWMAudioLFXAPO_Value = @import("../zig.zig").Guid.initString("62dc1a93-ae24-464c-a43e-452f824c4250");
+const CLSID_CWMAudioLFXAPO_Value = Guid.initString("62dc1a93-ae24-464c-a43e-452f824c4250");
 pub const CLSID_CWMAudioLFXAPO = &CLSID_CWMAudioLFXAPO_Value;
 
-const CLSID_CWMAudioGFXAPO_Value = @import("../zig.zig").Guid.initString("637c490d-eee3-4c0a-973f-371958802da2");
+const CLSID_CWMAudioGFXAPO_Value = Guid.initString("637c490d-eee3-4c0a-973f-371958802da2");
 pub const CLSID_CWMAudioGFXAPO = &CLSID_CWMAudioGFXAPO_Value;
 
-const CLSID_CWMAudioCAPXLFXAPO_Value = @import("../zig.zig").Guid.initString("c9453e73-8c5c-4463-9984-af8bab2f5447");
+const CLSID_CWMAudioCAPXLFXAPO_Value = Guid.initString("c9453e73-8c5c-4463-9984-af8bab2f5447");
 pub const CLSID_CWMAudioCAPXLFXAPO = &CLSID_CWMAudioCAPXLFXAPO_Value;
 
-const CLSID_CWMAudioCAPXGFXAPO_Value = @import("../zig.zig").Guid.initString("13ab3ebd-137e-4903-9d89-60be8277fd17");
+const CLSID_CWMAudioCAPXGFXAPO_Value = Guid.initString("13ab3ebd-137e-4903-9d89-60be8277fd17");
 pub const CLSID_CWMAudioCAPXGFXAPO = &CLSID_CWMAudioCAPXGFXAPO_Value;
 
-const CLSID_CWMAudioSpdTxDMO_Value = @import("../zig.zig").Guid.initString("5210f8e4-b0bb-47c3-a8d9-7b2282cc79ed");
+const CLSID_CWMAudioSpdTxDMO_Value = Guid.initString("5210f8e4-b0bb-47c3-a8d9-7b2282cc79ed");
 pub const CLSID_CWMAudioSpdTxDMO = &CLSID_CWMAudioSpdTxDMO_Value;
 
-const CLSID_CWMAudioAEC_Value = @import("../zig.zig").Guid.initString("745057c7-f353-4f2d-a7ee-58434477730e");
+const CLSID_CWMAudioAEC_Value = Guid.initString("745057c7-f353-4f2d-a7ee-58434477730e");
 pub const CLSID_CWMAudioAEC = &CLSID_CWMAudioAEC_Value;
 
-const CLSID_CClusterDetectorDmo_Value = @import("../zig.zig").Guid.initString("36e820c4-165a-4521-863c-619e1160d4d4");
+const CLSID_CClusterDetectorDmo_Value = Guid.initString("36e820c4-165a-4521-863c-619e1160d4d4");
 pub const CLSID_CClusterDetectorDmo = &CLSID_CClusterDetectorDmo_Value;
 
-const CLSID_CColorControlDmo_Value = @import("../zig.zig").Guid.initString("798059f0-89ca-4160-b325-aeb48efe4f9a");
+const CLSID_CColorControlDmo_Value = Guid.initString("798059f0-89ca-4160-b325-aeb48efe4f9a");
 pub const CLSID_CColorControlDmo = &CLSID_CColorControlDmo_Value;
 
-const CLSID_CColorConvertDMO_Value = @import("../zig.zig").Guid.initString("98230571-0087-4204-b020-3282538e57d3");
+const CLSID_CColorConvertDMO_Value = Guid.initString("98230571-0087-4204-b020-3282538e57d3");
 pub const CLSID_CColorConvertDMO = &CLSID_CColorConvertDMO_Value;
 
-const CLSID_CColorLegalizerDmo_Value = @import("../zig.zig").Guid.initString("fdfaa753-e48e-4e33-9c74-98a27fc6726a");
+const CLSID_CColorLegalizerDmo_Value = Guid.initString("fdfaa753-e48e-4e33-9c74-98a27fc6726a");
 pub const CLSID_CColorLegalizerDmo = &CLSID_CColorLegalizerDmo_Value;
 
-const CLSID_CFrameInterpDMO_Value = @import("../zig.zig").Guid.initString("0a7cfe1b-6ab5-4334-9ed8-3f97cb37daa1");
+const CLSID_CFrameInterpDMO_Value = Guid.initString("0a7cfe1b-6ab5-4334-9ed8-3f97cb37daa1");
 pub const CLSID_CFrameInterpDMO = &CLSID_CFrameInterpDMO_Value;
 
-const CLSID_CFrameRateConvertDmo_Value = @import("../zig.zig").Guid.initString("01f36ce2-0907-4d8b-979d-f151be91c883");
+const CLSID_CFrameRateConvertDmo_Value = Guid.initString("01f36ce2-0907-4d8b-979d-f151be91c883");
 pub const CLSID_CFrameRateConvertDmo = &CLSID_CFrameRateConvertDmo_Value;
 
-const CLSID_CResizerDMO_Value = @import("../zig.zig").Guid.initString("1ea1ea14-48f4-4054-ad1a-e8aee10ac805");
+const CLSID_CResizerDMO_Value = Guid.initString("1ea1ea14-48f4-4054-ad1a-e8aee10ac805");
 pub const CLSID_CResizerDMO = &CLSID_CResizerDMO_Value;
 
-const CLSID_CShotDetectorDmo_Value = @import("../zig.zig").Guid.initString("56aefacd-110c-4397-9292-b0a0c61b6750");
+const CLSID_CShotDetectorDmo_Value = Guid.initString("56aefacd-110c-4397-9292-b0a0c61b6750");
 pub const CLSID_CShotDetectorDmo = &CLSID_CShotDetectorDmo_Value;
 
-const CLSID_CSmpteTransformsDmo_Value = @import("../zig.zig").Guid.initString("bde6388b-da25-485d-ba7f-fabc28b20318");
+const CLSID_CSmpteTransformsDmo_Value = Guid.initString("bde6388b-da25-485d-ba7f-fabc28b20318");
 pub const CLSID_CSmpteTransformsDmo = &CLSID_CSmpteTransformsDmo_Value;
 
-const CLSID_CThumbnailGeneratorDmo_Value = @import("../zig.zig").Guid.initString("559c6bad-1ea8-4963-a087-8a6810f9218b");
+const CLSID_CThumbnailGeneratorDmo_Value = Guid.initString("559c6bad-1ea8-4963-a087-8a6810f9218b");
 pub const CLSID_CThumbnailGeneratorDmo = &CLSID_CThumbnailGeneratorDmo_Value;
 
-const CLSID_CTocGeneratorDmo_Value = @import("../zig.zig").Guid.initString("4dda1941-77a0-4fb1-a518-e2185041d70c");
+const CLSID_CTocGeneratorDmo_Value = Guid.initString("4dda1941-77a0-4fb1-a518-e2185041d70c");
 pub const CLSID_CTocGeneratorDmo = &CLSID_CTocGeneratorDmo_Value;
 
-const CLSID_CMPEGAACDecMediaObject_Value = @import("../zig.zig").Guid.initString("8dde1772-edad-41c3-b4be-1f30fb4ee0d6");
+const CLSID_CMPEGAACDecMediaObject_Value = Guid.initString("8dde1772-edad-41c3-b4be-1f30fb4ee0d6");
 pub const CLSID_CMPEGAACDecMediaObject = &CLSID_CMPEGAACDecMediaObject_Value;
 
-const CLSID_CNokiaAACDecMediaObject_Value = @import("../zig.zig").Guid.initString("3cb2bde4-4e29-4c44-a73e-2d7c2c46d6ec");
+const CLSID_CNokiaAACDecMediaObject_Value = Guid.initString("3cb2bde4-4e29-4c44-a73e-2d7c2c46d6ec");
 pub const CLSID_CNokiaAACDecMediaObject = &CLSID_CNokiaAACDecMediaObject_Value;
 
-const CLSID_CVodafoneAACDecMediaObject_Value = @import("../zig.zig").Guid.initString("7f36f942-dcf3-4d82-9289-5b1820278f7c");
+const CLSID_CVodafoneAACDecMediaObject_Value = Guid.initString("7f36f942-dcf3-4d82-9289-5b1820278f7c");
 pub const CLSID_CVodafoneAACDecMediaObject = &CLSID_CVodafoneAACDecMediaObject_Value;
 
-const CLSID_CZuneAACCCDecMediaObject_Value = @import("../zig.zig").Guid.initString("a74e98f2-52d6-4b4e-885b-e0a6ca4f187a");
+const CLSID_CZuneAACCCDecMediaObject_Value = Guid.initString("a74e98f2-52d6-4b4e-885b-e0a6ca4f187a");
 pub const CLSID_CZuneAACCCDecMediaObject = &CLSID_CZuneAACCCDecMediaObject_Value;
 
-const CLSID_CNokiaAACCCDecMediaObject_Value = @import("../zig.zig").Guid.initString("eabf7a6f-ccba-4d60-8620-b152cc977263");
+const CLSID_CNokiaAACCCDecMediaObject_Value = Guid.initString("eabf7a6f-ccba-4d60-8620-b152cc977263");
 pub const CLSID_CNokiaAACCCDecMediaObject = &CLSID_CNokiaAACCCDecMediaObject_Value;
 
-const CLSID_CVodafoneAACCCDecMediaObject_Value = @import("../zig.zig").Guid.initString("7e76bf7f-c993-4e26-8fab-470a70c0d59c");
+const CLSID_CVodafoneAACCCDecMediaObject_Value = Guid.initString("7e76bf7f-c993-4e26-8fab-470a70c0d59c");
 pub const CLSID_CVodafoneAACCCDecMediaObject = &CLSID_CVodafoneAACCCDecMediaObject_Value;
 
-const CLSID_CMPEG2EncoderDS_Value = @import("../zig.zig").Guid.initString("5f5aff4a-2f7f-4279-88c2-cd88eb39d144");
+const CLSID_CMPEG2EncoderDS_Value = Guid.initString("5f5aff4a-2f7f-4279-88c2-cd88eb39d144");
 pub const CLSID_CMPEG2EncoderDS = &CLSID_CMPEG2EncoderDS_Value;
 
-const CLSID_CMPEG2EncoderVideoDS_Value = @import("../zig.zig").Guid.initString("42150cd9-ca9a-4ea5-9939-30ee037f6e74");
+const CLSID_CMPEG2EncoderVideoDS_Value = Guid.initString("42150cd9-ca9a-4ea5-9939-30ee037f6e74");
 pub const CLSID_CMPEG2EncoderVideoDS = &CLSID_CMPEG2EncoderVideoDS_Value;
 
-const CLSID_CMPEG2EncoderAudioDS_Value = @import("../zig.zig").Guid.initString("acd453bc-c58a-44d1-bbf5-bfb325be2d78");
+const CLSID_CMPEG2EncoderAudioDS_Value = Guid.initString("acd453bc-c58a-44d1-bbf5-bfb325be2d78");
 pub const CLSID_CMPEG2EncoderAudioDS = &CLSID_CMPEG2EncoderAudioDS_Value;
 
-const CLSID_CMPEG2AudDecoderDS_Value = @import("../zig.zig").Guid.initString("e1f1a0b8-beee-490d-ba7c-066c40b5e2b9");
+const CLSID_CMPEG2AudDecoderDS_Value = Guid.initString("e1f1a0b8-beee-490d-ba7c-066c40b5e2b9");
 pub const CLSID_CMPEG2AudDecoderDS = &CLSID_CMPEG2AudDecoderDS_Value;
 
-const CLSID_CMPEG2VidDecoderDS_Value = @import("../zig.zig").Guid.initString("212690fb-83e5-4526-8fd7-74478b7939cd");
+const CLSID_CMPEG2VidDecoderDS_Value = Guid.initString("212690fb-83e5-4526-8fd7-74478b7939cd");
 pub const CLSID_CMPEG2VidDecoderDS = &CLSID_CMPEG2VidDecoderDS_Value;
 
-const CLSID_CDTVAudDecoderDS_Value = @import("../zig.zig").Guid.initString("8e269032-fe03-4753-9b17-18253c21722e");
+const CLSID_CDTVAudDecoderDS_Value = Guid.initString("8e269032-fe03-4753-9b17-18253c21722e");
 pub const CLSID_CDTVAudDecoderDS = &CLSID_CDTVAudDecoderDS_Value;
 
-const CLSID_CDTVVidDecoderDS_Value = @import("../zig.zig").Guid.initString("64777dc8-4e24-4beb-9d19-60a35be1daaf");
+const CLSID_CDTVVidDecoderDS_Value = Guid.initString("64777dc8-4e24-4beb-9d19-60a35be1daaf");
 pub const CLSID_CDTVVidDecoderDS = &CLSID_CDTVVidDecoderDS_Value;
 
-const CLSID_CMSAC3Enc_Value = @import("../zig.zig").Guid.initString("c6b400e2-20a7-4e58-a2fe-24619682ce6c");
+const CLSID_CMSAC3Enc_Value = Guid.initString("c6b400e2-20a7-4e58-a2fe-24619682ce6c");
 pub const CLSID_CMSAC3Enc = &CLSID_CMSAC3Enc_Value;
 
-const CLSID_CMSH264DecoderMFT_Value = @import("../zig.zig").Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
+const CLSID_CMSH264DecoderMFT_Value = Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
 pub const CLSID_CMSH264DecoderMFT = &CLSID_CMSH264DecoderMFT_Value;
 
-const CLSID_CMSH263EncoderMFT_Value = @import("../zig.zig").Guid.initString("bc47fcfe-98a0-4f27-bb07-698af24f2b38");
+const CLSID_CMSH263EncoderMFT_Value = Guid.initString("bc47fcfe-98a0-4f27-bb07-698af24f2b38");
 pub const CLSID_CMSH263EncoderMFT = &CLSID_CMSH263EncoderMFT_Value;
 
-const CLSID_CMSH264EncoderMFT_Value = @import("../zig.zig").Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
+const CLSID_CMSH264EncoderMFT_Value = Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
 pub const CLSID_CMSH264EncoderMFT = &CLSID_CMSH264EncoderMFT_Value;
 
-const CLSID_CMSH265EncoderMFT_Value = @import("../zig.zig").Guid.initString("f2f84074-8bca-40bd-9159-e880f673dd3b");
+const CLSID_CMSH265EncoderMFT_Value = Guid.initString("f2f84074-8bca-40bd-9159-e880f673dd3b");
 pub const CLSID_CMSH265EncoderMFT = &CLSID_CMSH265EncoderMFT_Value;
 
-const CLSID_CMSVPXEncoderMFT_Value = @import("../zig.zig").Guid.initString("aeb6c755-2546-4881-82cc-e15ae5ebff3d");
+const CLSID_CMSVPXEncoderMFT_Value = Guid.initString("aeb6c755-2546-4881-82cc-e15ae5ebff3d");
 pub const CLSID_CMSVPXEncoderMFT = &CLSID_CMSVPXEncoderMFT_Value;
 
-const CLSID_CMSH264RemuxMFT_Value = @import("../zig.zig").Guid.initString("05a47ebb-8bf0-4cbf-ad2f-3b71d75866f5");
+const CLSID_CMSH264RemuxMFT_Value = Guid.initString("05a47ebb-8bf0-4cbf-ad2f-3b71d75866f5");
 pub const CLSID_CMSH264RemuxMFT = &CLSID_CMSH264RemuxMFT_Value;
 
-const CLSID_CMSAACDecMFT_Value = @import("../zig.zig").Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
+const CLSID_CMSAACDecMFT_Value = Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
 pub const CLSID_CMSAACDecMFT = &CLSID_CMSAACDecMFT_Value;
 
-const CLSID_AACMFTEncoder_Value = @import("../zig.zig").Guid.initString("93af0c51-2275-45d2-a35b-f2ba21caed00");
+const CLSID_AACMFTEncoder_Value = Guid.initString("93af0c51-2275-45d2-a35b-f2ba21caed00");
 pub const CLSID_AACMFTEncoder = &CLSID_AACMFTEncoder_Value;
 
-const CLSID_CMSDDPlusDecMFT_Value = @import("../zig.zig").Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
+const CLSID_CMSDDPlusDecMFT_Value = Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
 pub const CLSID_CMSDDPlusDecMFT = &CLSID_CMSDDPlusDecMFT_Value;
 
-const CLSID_CMPEG2VideoEncoderMFT_Value = @import("../zig.zig").Guid.initString("e6335f02-80b7-4dc4-adfa-dfe7210d20d5");
+const CLSID_CMPEG2VideoEncoderMFT_Value = Guid.initString("e6335f02-80b7-4dc4-adfa-dfe7210d20d5");
 pub const CLSID_CMPEG2VideoEncoderMFT = &CLSID_CMPEG2VideoEncoderMFT_Value;
 
-const CLSID_CMPEG2AudioEncoderMFT_Value = @import("../zig.zig").Guid.initString("46a4dd5c-73f8-4304-94df-308f760974f4");
+const CLSID_CMPEG2AudioEncoderMFT_Value = Guid.initString("46a4dd5c-73f8-4304-94df-308f760974f4");
 pub const CLSID_CMPEG2AudioEncoderMFT = &CLSID_CMPEG2AudioEncoderMFT_Value;
 
-const CLSID_CMSMPEGDecoderMFT_Value = @import("../zig.zig").Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
+const CLSID_CMSMPEGDecoderMFT_Value = Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
 pub const CLSID_CMSMPEGDecoderMFT = &CLSID_CMSMPEGDecoderMFT_Value;
 
-const CLSID_CMSMPEGAudDecMFT_Value = @import("../zig.zig").Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
+const CLSID_CMSMPEGAudDecMFT_Value = Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
 pub const CLSID_CMSMPEGAudDecMFT = &CLSID_CMSMPEGAudDecMFT_Value;
 
-const CLSID_CMSDolbyDigitalEncMFT_Value = @import("../zig.zig").Guid.initString("ac3315c9-f481-45d7-826c-0b406c1f64b8");
+const CLSID_CMSDolbyDigitalEncMFT_Value = Guid.initString("ac3315c9-f481-45d7-826c-0b406c1f64b8");
 pub const CLSID_CMSDolbyDigitalEncMFT = &CLSID_CMSDolbyDigitalEncMFT_Value;
 
-const CLSID_MP3ACMCodecWrapper_Value = @import("../zig.zig").Guid.initString("11103421-354c-4cca-a7a3-1aff9a5b6701");
+const CLSID_MP3ACMCodecWrapper_Value = Guid.initString("11103421-354c-4cca-a7a3-1aff9a5b6701");
 pub const CLSID_MP3ACMCodecWrapper = &CLSID_MP3ACMCodecWrapper_Value;
 
-const CLSID_ALawCodecWrapper_Value = @import("../zig.zig").Guid.initString("36cb6e0c-78c1-42b2-9943-846262f31786");
+const CLSID_ALawCodecWrapper_Value = Guid.initString("36cb6e0c-78c1-42b2-9943-846262f31786");
 pub const CLSID_ALawCodecWrapper = &CLSID_ALawCodecWrapper_Value;
 
-const CLSID_MULawCodecWrapper_Value = @import("../zig.zig").Guid.initString("92b66080-5e2d-449e-90c4-c41f268e5514");
+const CLSID_MULawCodecWrapper_Value = Guid.initString("92b66080-5e2d-449e-90c4-c41f268e5514");
 pub const CLSID_MULawCodecWrapper = &CLSID_MULawCodecWrapper_Value;
 
-const CLSID_CMSVideoDSPMFT_Value = @import("../zig.zig").Guid.initString("51571744-7fe4-4ff2-a498-2dc34ff74f1b");
+const CLSID_CMSVideoDSPMFT_Value = Guid.initString("51571744-7fe4-4ff2-a498-2dc34ff74f1b");
 pub const CLSID_CMSVideoDSPMFT = &CLSID_CMSVideoDSPMFT_Value;
 
-const CLSID_VorbisDecoderMFT_Value = @import("../zig.zig").Guid.initString("1a198ef2-60e5-4ea8-90d8-da1f2832c288");
+const CLSID_VorbisDecoderMFT_Value = Guid.initString("1a198ef2-60e5-4ea8-90d8-da1f2832c288");
 pub const CLSID_VorbisDecoderMFT = &CLSID_VorbisDecoderMFT_Value;
 
-const CLSID_CMSFLACDecMFT_Value = @import("../zig.zig").Guid.initString("6b0b3e6b-a2c5-4514-8055-afe8a95242d9");
+const CLSID_CMSFLACDecMFT_Value = Guid.initString("6b0b3e6b-a2c5-4514-8055-afe8a95242d9");
 pub const CLSID_CMSFLACDecMFT = &CLSID_CMSFLACDecMFT_Value;
 
-const CLSID_CMSFLACEncMFT_Value = @import("../zig.zig").Guid.initString("128509e9-c44e-45dc-95e9-c255b8f466a6");
+const CLSID_CMSFLACEncMFT_Value = Guid.initString("128509e9-c44e-45dc-95e9-c255b8f466a6");
 pub const CLSID_CMSFLACEncMFT = &CLSID_CMSFLACEncMFT_Value;
 
-const CLSID_MFFLACBytestreamHandler_Value = @import("../zig.zig").Guid.initString("0e41cfb8-0506-40f4-a516-77cc23642d91");
+const CLSID_MFFLACBytestreamHandler_Value = Guid.initString("0e41cfb8-0506-40f4-a516-77cc23642d91");
 pub const CLSID_MFFLACBytestreamHandler = &CLSID_MFFLACBytestreamHandler_Value;
 
-const CLSID_MFFLACSinkClassFactory_Value = @import("../zig.zig").Guid.initString("7d39c56f-6075-47c9-9bae-8cf9e531b5f5");
+const CLSID_MFFLACSinkClassFactory_Value = Guid.initString("7d39c56f-6075-47c9-9bae-8cf9e531b5f5");
 pub const CLSID_MFFLACSinkClassFactory = &CLSID_MFFLACSinkClassFactory_Value;
 
-const CLSID_CMSALACDecMFT_Value = @import("../zig.zig").Guid.initString("c0cd7d12-31fc-4bbc-b363-7322ee3e1879");
+const CLSID_CMSALACDecMFT_Value = Guid.initString("c0cd7d12-31fc-4bbc-b363-7322ee3e1879");
 pub const CLSID_CMSALACDecMFT = &CLSID_CMSALACDecMFT_Value;
 
-const CLSID_CMSALACEncMFT_Value = @import("../zig.zig").Guid.initString("9ab6a28c-748e-4b6a-bfff-cc443b8e8fb4");
+const CLSID_CMSALACEncMFT_Value = Guid.initString("9ab6a28c-748e-4b6a-bfff-cc443b8e8fb4");
 pub const CLSID_CMSALACEncMFT = &CLSID_CMSALACEncMFT_Value;
 
-const CLSID_CMSOpusDecMFT_Value = @import("../zig.zig").Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
+const CLSID_CMSOpusDecMFT_Value = Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
 pub const CLSID_CMSOpusDecMFT = &CLSID_CMSOpusDecMFT_Value;
 
-const CLSID_MSAMRNBDecoder_Value = @import("../zig.zig").Guid.initString("265011ae-5481-4f77-a295-abb6ffe8d63e");
+const CLSID_MSAMRNBDecoder_Value = Guid.initString("265011ae-5481-4f77-a295-abb6ffe8d63e");
 pub const CLSID_MSAMRNBDecoder = &CLSID_MSAMRNBDecoder_Value;
 
-const CLSID_MSAMRNBEncoder_Value = @import("../zig.zig").Guid.initString("2fae8afe-04a3-423a-a814-85db454712b0");
+const CLSID_MSAMRNBEncoder_Value = Guid.initString("2fae8afe-04a3-423a-a814-85db454712b0");
 pub const CLSID_MSAMRNBEncoder = &CLSID_MSAMRNBEncoder_Value;
 
-const CLSID_MFAMRNBByteStreamHandler_Value = @import("../zig.zig").Guid.initString("efe6208a-0a2c-49fa-8a01-3768b559b6da");
+const CLSID_MFAMRNBByteStreamHandler_Value = Guid.initString("efe6208a-0a2c-49fa-8a01-3768b559b6da");
 pub const CLSID_MFAMRNBByteStreamHandler = &CLSID_MFAMRNBByteStreamHandler_Value;
 
-const CLSID_MFAMRNBSinkClassFactory_Value = @import("../zig.zig").Guid.initString("b0271158-70d2-4c5b-9f94-76f549d90fdf");
+const CLSID_MFAMRNBSinkClassFactory_Value = Guid.initString("b0271158-70d2-4c5b-9f94-76f549d90fdf");
 pub const CLSID_MFAMRNBSinkClassFactory = &CLSID_MFAMRNBSinkClassFactory_Value;
 
 pub const WMT_PROP_DATATYPE = enum(i32) {
@@ -6016,7 +6016,7 @@ pub const WMT_PROP_TYPE_QWORD = WMT_PROP_DATATYPE.QWORD;
 pub const WMT_PROP_TYPE_WORD = WMT_PROP_DATATYPE.WORD;
 pub const WMT_PROP_TYPE_GUID = WMT_PROP_DATATYPE.GUID;
 
-const IID_IWMValidate_Value = @import("../zig.zig").Guid.initString("cee3def2-3808-414d-be66-fafd472210bc");
+const IID_IWMValidate_Value = Guid.initString("cee3def2-3808-414d-be66-fafd472210bc");
 pub const IID_IWMValidate = &IID_IWMValidate_Value;
 pub const IWMValidate = extern struct {
     pub const VTable = extern struct {
@@ -6037,7 +6037,7 @@ pub const IWMValidate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IValidateBinding_Value = @import("../zig.zig").Guid.initString("04a578b2-e778-422a-a805-b3ee54d90bd9");
+const IID_IValidateBinding_Value = Guid.initString("04a578b2-e778-422a-a805-b3ee54d90bd9");
 pub const IID_IValidateBinding = &IID_IValidateBinding_Value;
 pub const IValidateBinding = extern struct {
     pub const VTable = extern struct {
@@ -6063,7 +6063,7 @@ pub const IValidateBinding = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMVideoDecoderHurryup_Value = @import("../zig.zig").Guid.initString("352bb3bd-2d4d-4323-9e71-dcdcfbd53ca6");
+const IID_IWMVideoDecoderHurryup_Value = Guid.initString("352bb3bd-2d4d-4323-9e71-dcdcfbd53ca6");
 pub const IID_IWMVideoDecoderHurryup = &IID_IWMVideoDecoderHurryup_Value;
 pub const IWMVideoDecoderHurryup = extern struct {
     pub const VTable = extern struct {
@@ -6093,7 +6093,7 @@ pub const IWMVideoDecoderHurryup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMVideoForceKeyFrame_Value = @import("../zig.zig").Guid.initString("9f8496be-5b9a-41b9-a9e8-f21cd80596c2");
+const IID_IWMVideoForceKeyFrame_Value = Guid.initString("9f8496be-5b9a-41b9-a9e8-f21cd80596c2");
 pub const IID_IWMVideoForceKeyFrame = &IID_IWMVideoForceKeyFrame_Value;
 pub const IWMVideoForceKeyFrame = extern struct {
     pub const VTable = extern struct {
@@ -6114,7 +6114,7 @@ pub const IWMVideoForceKeyFrame = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMCodecStrings_Value = @import("../zig.zig").Guid.initString("a7b2504b-e58a-47fb-958b-cac7165a057d");
+const IID_IWMCodecStrings_Value = Guid.initString("a7b2504b-e58a-47fb-958b-cac7165a057d");
 pub const IID_IWMCodecStrings = &IID_IWMCodecStrings_Value;
 pub const IWMCodecStrings = extern struct {
     pub const VTable = extern struct {
@@ -6150,7 +6150,7 @@ pub const IWMCodecStrings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMCodecProps_Value = @import("../zig.zig").Guid.initString("2573e11a-f01a-4fdd-a98d-63b8e0ba9589");
+const IID_IWMCodecProps_Value = Guid.initString("2573e11a-f01a-4fdd-a98d-63b8e0ba9589");
 pub const IID_IWMCodecProps = &IID_IWMCodecProps_Value;
 pub const IWMCodecProps = extern struct {
     pub const VTable = extern struct {
@@ -6188,7 +6188,7 @@ pub const IWMCodecProps = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMCodecLeakyBucket_Value = @import("../zig.zig").Guid.initString("a81ba647-6227-43b7-b231-c7b15135dd7d");
+const IID_IWMCodecLeakyBucket_Value = Guid.initString("a81ba647-6227-43b7-b231-c7b15135dd7d");
 pub const IID_IWMCodecLeakyBucket = &IID_IWMCodecLeakyBucket_Value;
 pub const IWMCodecLeakyBucket = extern struct {
     pub const VTable = extern struct {
@@ -6234,7 +6234,7 @@ pub const IWMCodecLeakyBucket = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMCodecOutputTimestamp_Value = @import("../zig.zig").Guid.initString("b72adf95-7adc-4a72-bc05-577d8ea6bf68");
+const IID_IWMCodecOutputTimestamp_Value = Guid.initString("b72adf95-7adc-4a72-bc05-577d8ea6bf68");
 pub const IID_IWMCodecOutputTimestamp = &IID_IWMCodecOutputTimestamp_Value;
 pub const IWMCodecOutputTimestamp = extern struct {
     pub const VTable = extern struct {
@@ -6256,7 +6256,7 @@ pub const IWMCodecOutputTimestamp = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMVideoDecoderReconBuffer_Value = @import("../zig.zig").Guid.initString("45bda2ac-88e2-4923-98ba-3949080711a3");
+const IID_IWMVideoDecoderReconBuffer_Value = Guid.initString("45bda2ac-88e2-4923-98ba-3949080711a3");
 pub const IID_IWMVideoDecoderReconBuffer = &IID_IWMVideoDecoderReconBuffer_Value;
 pub const IWMVideoDecoderReconBuffer = extern struct {
     pub const VTable = extern struct {
@@ -6294,7 +6294,7 @@ pub const IWMVideoDecoderReconBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMCodecPrivateData_Value = @import("../zig.zig").Guid.initString("73f0be8e-57f7-4f01-aa66-9f57340cfe0e");
+const IID_IWMCodecPrivateData_Value = Guid.initString("73f0be8e-57f7-4f01-aa66-9f57340cfe0e");
 pub const IID_IWMCodecPrivateData = &IID_IWMCodecPrivateData_Value;
 pub const IWMCodecPrivateData = extern struct {
     pub const VTable = extern struct {
@@ -6325,7 +6325,7 @@ pub const IWMCodecPrivateData = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMSampleExtensionSupport_Value = @import("../zig.zig").Guid.initString("9bca9884-0604-4c2a-87da-793ff4d586c3");
+const IID_IWMSampleExtensionSupport_Value = Guid.initString("9bca9884-0604-4c2a-87da-793ff4d586c3");
 pub const IID_IWMSampleExtensionSupport = &IID_IWMSampleExtensionSupport_Value;
 pub const IWMSampleExtensionSupport = extern struct {
     pub const VTable = extern struct {
@@ -6347,7 +6347,7 @@ pub const IWMSampleExtensionSupport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMResamplerProps_Value = @import("../zig.zig").Guid.initString("e7e9984f-f09f-4da4-903f-6e2e0efe56b5");
+const IID_IWMResamplerProps_Value = Guid.initString("e7e9984f-f09f-4da4-903f-6e2e0efe56b5");
 pub const IID_IWMResamplerProps = &IID_IWMResamplerProps_Value;
 pub const IWMResamplerProps = extern struct {
     pub const VTable = extern struct {
@@ -6377,7 +6377,7 @@ pub const IWMResamplerProps = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMResizerProps_Value = @import("../zig.zig").Guid.initString("57665d4c-0414-4faa-905b-10e546f81c33");
+const IID_IWMResizerProps_Value = Guid.initString("57665d4c-0414-4faa-905b-10e546f81c33");
 pub const IID_IWMResizerProps = &IID_IWMResizerProps_Value;
 pub const IWMResizerProps = extern struct {
     pub const VTable = extern struct {
@@ -6447,7 +6447,7 @@ pub const IWMResizerProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMColorLegalizerProps_Value = @import("../zig.zig").Guid.initString("776c93b3-b72d-4508-b6d0-208785f553e7");
+const IID_IWMColorLegalizerProps_Value = Guid.initString("776c93b3-b72d-4508-b6d0-208785f553e7");
 pub const IID_IWMColorLegalizerProps = &IID_IWMColorLegalizerProps_Value;
 pub const IWMColorLegalizerProps = extern struct {
     pub const VTable = extern struct {
@@ -6468,7 +6468,7 @@ pub const IWMColorLegalizerProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMInterlaceProps_Value = @import("../zig.zig").Guid.initString("7b12e5d1-bd22-48ea-bc06-98e893221c89");
+const IID_IWMInterlaceProps_Value = Guid.initString("7b12e5d1-bd22-48ea-bc06-98e893221c89");
 pub const IID_IWMInterlaceProps = &IID_IWMInterlaceProps_Value;
 pub const IWMInterlaceProps = extern struct {
     pub const VTable = extern struct {
@@ -6504,7 +6504,7 @@ pub const IWMInterlaceProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMFrameInterpProps_Value = @import("../zig.zig").Guid.initString("4c06bb9b-626c-4614-8329-cc6a21b93fa0");
+const IID_IWMFrameInterpProps_Value = Guid.initString("4c06bb9b-626c-4614-8329-cc6a21b93fa0");
 pub const IID_IWMFrameInterpProps = &IID_IWMFrameInterpProps_Value;
 pub const IWMFrameInterpProps = extern struct {
     pub const VTable = extern struct {
@@ -6552,7 +6552,7 @@ pub const IWMFrameInterpProps = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMColorConvProps_Value = @import("../zig.zig").Guid.initString("e6a49e22-c099-421d-aad3-c061fb4ae85b");
+const IID_IWMColorConvProps_Value = Guid.initString("e6a49e22-c099-421d-aad3-c061fb4ae85b");
 pub const IID_IWMColorConvProps = &IID_IWMColorConvProps_Value;
 pub const IWMColorConvProps = extern struct {
     pub const VTable = extern struct {
@@ -6706,7 +6706,7 @@ pub const TOC_POS_INHEADER = TOC_POS_TYPE.INHEADER;
 pub const TOC_POS_TOPLEVELOBJECT = TOC_POS_TYPE.TOPLEVELOBJECT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITocEntry_Value = @import("../zig.zig").Guid.initString("f22f5e06-585c-4def-8523-6555cfbc0cb3");
+const IID_ITocEntry_Value = Guid.initString("f22f5e06-585c-4def-8523-6555cfbc0cb3");
 pub const IID_ITocEntry = &IID_ITocEntry_Value;
 pub const ITocEntry = extern struct {
     pub const VTable = extern struct {
@@ -6791,7 +6791,7 @@ pub const ITocEntry = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITocEntryList_Value = @import("../zig.zig").Guid.initString("3a8cccbd-0efd-43a3-b838-f38a552ba237");
+const IID_ITocEntryList_Value = Guid.initString("3a8cccbd-0efd-43a3-b838-f38a552ba237");
 pub const IID_ITocEntryList = &IID_ITocEntryList_Value;
 pub const ITocEntryList = extern struct {
     pub const VTable = extern struct {
@@ -6848,7 +6848,7 @@ pub const ITocEntryList = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IToc_Value = @import("../zig.zig").Guid.initString("d6f05441-a919-423b-91a0-89d5b4a8ab77");
+const IID_IToc_Value = Guid.initString("d6f05441-a919-423b-91a0-89d5b4a8ab77");
 pub const IID_IToc = &IID_IToc_Value;
 pub const IToc = extern struct {
     pub const VTable = extern struct {
@@ -6956,7 +6956,7 @@ pub const IToc = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITocCollection_Value = @import("../zig.zig").Guid.initString("23fee831-ae96-42df-b170-25a04847a3ca");
+const IID_ITocCollection_Value = Guid.initString("23fee831-ae96-42df-b170-25a04847a3ca");
 pub const IID_ITocCollection = &IID_ITocCollection_Value;
 pub const ITocCollection = extern struct {
     pub const VTable = extern struct {
@@ -7013,7 +7013,7 @@ pub const ITocCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITocParser_Value = @import("../zig.zig").Guid.initString("ecfb9a55-9298-4f49-887f-0b36206599d2");
+const IID_ITocParser_Value = Guid.initString("ecfb9a55-9298-4f49-887f-0b36206599d2");
 pub const IID_ITocParser = &IID_ITocParser_Value;
 pub const ITocParser = extern struct {
     pub const VTable = extern struct {
@@ -7129,7 +7129,7 @@ pub const ACCESSMODE_WRITE = FILE_ACCESSMODE.WRITE;
 pub const ACCESSMODE_READWRITE = FILE_ACCESSMODE.READWRITE;
 pub const ACCESSMODE_WRITE_EXCLUSIVE = FILE_ACCESSMODE.WRITE_EXCLUSIVE;
 
-const IID_IFileIo_Value = @import("../zig.zig").Guid.initString("11993196-1244-4840-ab44-480975c4ffe4");
+const IID_IFileIo_Value = Guid.initString("11993196-1244-4840-ab44-480975c4ffe4");
 pub const IID_IFileIo = &IID_IFileIo_Value;
 pub const IFileIo = extern struct {
     pub const VTable = extern struct {
@@ -7230,7 +7230,7 @@ pub const IFileIo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileClient_Value = @import("../zig.zig").Guid.initString("bfccd196-1244-4840-ab44-480975c4ffe4");
+const IID_IFileClient_Value = Guid.initString("bfccd196-1244-4840-ab44-480975c4ffe4");
 pub const IID_IFileClient = &IID_IFileClient_Value;
 pub const IFileClient = extern struct {
     pub const VTable = extern struct {
@@ -7267,7 +7267,7 @@ pub const IFileClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IClusterDetector_Value = @import("../zig.zig").Guid.initString("3f07f7b7-c680-41d9-9423-915107ec9ff9");
+const IID_IClusterDetector_Value = Guid.initString("3f07f7b7-c680-41d9-9423-915107ec9ff9");
 pub const IID_IClusterDetector = &IID_IClusterDetector_Value;
 pub const IClusterDetector = extern struct {
     pub const VTable = extern struct {
@@ -7765,103 +7765,103 @@ pub const DXVA_COPPStatusOutput = extern struct {
     COPPStatus: [4076]u8,
 };
 
-const CLSID_CODECAPI_AVEncCommonFormatConstraint_Value = @import("../zig.zig").Guid.initString("57cbb9b8-116f-4951-b40c-c2a035ed8f17");
+const CLSID_CODECAPI_AVEncCommonFormatConstraint_Value = Guid.initString("57cbb9b8-116f-4951-b40c-c2a035ed8f17");
 pub const CLSID_CODECAPI_AVEncCommonFormatConstraint = &CLSID_CODECAPI_AVEncCommonFormatConstraint_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatUnSpecified_Value = @import("../zig.zig").Guid.initString("af46a35a-6024-4525-a48a-094b97f5b3c2");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatUnSpecified_Value = Guid.initString("af46a35a-6024-4525-a48a-094b97f5b3c2");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatUnSpecified = &CLSID_CODECAPI_GUID_AVEncCommonFormatUnSpecified_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_V_Value = @import("../zig.zig").Guid.initString("cc9598c4-e7fe-451d-b1ca-761bc840b7f3");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_V_Value = Guid.initString("cc9598c4-e7fe-451d-b1ca-761bc840b7f3");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_V = &CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_V_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_DashVR_Value = @import("../zig.zig").Guid.initString("e55199d6-044c-4dae-a488-531ed306235b");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_DashVR_Value = Guid.initString("e55199d6-044c-4dae-a488-531ed306235b");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_DashVR = &CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_DashVR_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_PlusVR_Value = @import("../zig.zig").Guid.initString("e74c6f2e-ec37-478d-9af4-a5e135b6271c");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_PlusVR_Value = Guid.initString("e74c6f2e-ec37-478d-9af4-a5e135b6271c");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_PlusVR = &CLSID_CODECAPI_GUID_AVEncCommonFormatDVD_PlusVR_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatVCD_Value = @import("../zig.zig").Guid.initString("95035bf7-9d90-40ff-ad5c-5cf8cf71ca1d");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatVCD_Value = Guid.initString("95035bf7-9d90-40ff-ad5c-5cf8cf71ca1d");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatVCD = &CLSID_CODECAPI_GUID_AVEncCommonFormatVCD_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatSVCD_Value = @import("../zig.zig").Guid.initString("51d85818-8220-448c-8066-d69bed16c9ad");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatSVCD_Value = Guid.initString("51d85818-8220-448c-8066-d69bed16c9ad");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatSVCD = &CLSID_CODECAPI_GUID_AVEncCommonFormatSVCD_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatATSC_Value = @import("../zig.zig").Guid.initString("8d7b897c-a019-4670-aa76-2edcac7ac296");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatATSC_Value = Guid.initString("8d7b897c-a019-4670-aa76-2edcac7ac296");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatATSC = &CLSID_CODECAPI_GUID_AVEncCommonFormatATSC_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatDVB_Value = @import("../zig.zig").Guid.initString("71830d8f-6c33-430d-844b-c2705baae6db");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatDVB_Value = Guid.initString("71830d8f-6c33-430d-844b-c2705baae6db");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatDVB = &CLSID_CODECAPI_GUID_AVEncCommonFormatDVB_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatMP3_Value = @import("../zig.zig").Guid.initString("349733cd-eb08-4dc2-8197-e49835ef828b");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatMP3_Value = Guid.initString("349733cd-eb08-4dc2-8197-e49835ef828b");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatMP3 = &CLSID_CODECAPI_GUID_AVEncCommonFormatMP3_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMAT_Value = @import("../zig.zig").Guid.initString("1eabe760-fb2b-4928-90d1-78db88eee889");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMAT_Value = Guid.initString("1eabe760-fb2b-4928-90d1-78db88eee889");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMAT = &CLSID_CODECAPI_GUID_AVEncCommonFormatHighMAT_Value;
 
-const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMPV_Value = @import("../zig.zig").Guid.initString("a2d25db8-b8f9-42c2-8bc7-0b93cf604788");
+const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMPV_Value = Guid.initString("a2d25db8-b8f9-42c2-8bc7-0b93cf604788");
 pub const CLSID_CODECAPI_GUID_AVEncCommonFormatHighMPV = &CLSID_CODECAPI_GUID_AVEncCommonFormatHighMPV_Value;
 
-const CLSID_CODECAPI_AVEncCodecType_Value = @import("../zig.zig").Guid.initString("08af4ac1-f3f2-4c74-9dcf-37f2ec79f826");
+const CLSID_CODECAPI_AVEncCodecType_Value = Guid.initString("08af4ac1-f3f2-4c74-9dcf-37f2ec79f826");
 pub const CLSID_CODECAPI_AVEncCodecType = &CLSID_CODECAPI_AVEncCodecType_Value;
 
-const CLSID_CODECAPI_GUID_AVEncMPEG1Video_Value = @import("../zig.zig").Guid.initString("c8dafefe-da1e-4774-b27d-11830c16b1fe");
+const CLSID_CODECAPI_GUID_AVEncMPEG1Video_Value = Guid.initString("c8dafefe-da1e-4774-b27d-11830c16b1fe");
 pub const CLSID_CODECAPI_GUID_AVEncMPEG1Video = &CLSID_CODECAPI_GUID_AVEncMPEG1Video_Value;
 
-const CLSID_CODECAPI_GUID_AVEncMPEG2Video_Value = @import("../zig.zig").Guid.initString("046dc19a-6677-4aaa-a31d-c1ab716f4560");
+const CLSID_CODECAPI_GUID_AVEncMPEG2Video_Value = Guid.initString("046dc19a-6677-4aaa-a31d-c1ab716f4560");
 pub const CLSID_CODECAPI_GUID_AVEncMPEG2Video = &CLSID_CODECAPI_GUID_AVEncMPEG2Video_Value;
 
-const CLSID_CODECAPI_GUID_AVEncMPEG1Audio_Value = @import("../zig.zig").Guid.initString("d4dd1362-cd4a-4cd6-8138-b94db4542b04");
+const CLSID_CODECAPI_GUID_AVEncMPEG1Audio_Value = Guid.initString("d4dd1362-cd4a-4cd6-8138-b94db4542b04");
 pub const CLSID_CODECAPI_GUID_AVEncMPEG1Audio = &CLSID_CODECAPI_GUID_AVEncMPEG1Audio_Value;
 
-const CLSID_CODECAPI_GUID_AVEncMPEG2Audio_Value = @import("../zig.zig").Guid.initString("ee4cbb1f-9c3f-4770-92b5-fcb7c2a8d381");
+const CLSID_CODECAPI_GUID_AVEncMPEG2Audio_Value = Guid.initString("ee4cbb1f-9c3f-4770-92b5-fcb7c2a8d381");
 pub const CLSID_CODECAPI_GUID_AVEncMPEG2Audio = &CLSID_CODECAPI_GUID_AVEncMPEG2Audio_Value;
 
-const CLSID_CODECAPI_GUID_AVEncWMV_Value = @import("../zig.zig").Guid.initString("4e0fef9b-1d43-41bd-b8bd-4d7bf7457a2a");
+const CLSID_CODECAPI_GUID_AVEncWMV_Value = Guid.initString("4e0fef9b-1d43-41bd-b8bd-4d7bf7457a2a");
 pub const CLSID_CODECAPI_GUID_AVEncWMV = &CLSID_CODECAPI_GUID_AVEncWMV_Value;
 
-const CLSID_CODECAPI_GUID_AVEndMPEG4Video_Value = @import("../zig.zig").Guid.initString("dd37b12a-9503-4f8b-b8d0-324a00c0a1cf");
+const CLSID_CODECAPI_GUID_AVEndMPEG4Video_Value = Guid.initString("dd37b12a-9503-4f8b-b8d0-324a00c0a1cf");
 pub const CLSID_CODECAPI_GUID_AVEndMPEG4Video = &CLSID_CODECAPI_GUID_AVEndMPEG4Video_Value;
 
-const CLSID_CODECAPI_GUID_AVEncH264Video_Value = @import("../zig.zig").Guid.initString("95044eab-31b3-47de-8e75-38a42bb03e28");
+const CLSID_CODECAPI_GUID_AVEncH264Video_Value = Guid.initString("95044eab-31b3-47de-8e75-38a42bb03e28");
 pub const CLSID_CODECAPI_GUID_AVEncH264Video = &CLSID_CODECAPI_GUID_AVEncH264Video_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDV_Value = @import("../zig.zig").Guid.initString("09b769c7-3329-44fb-8954-fa30937d3d5a");
+const CLSID_CODECAPI_GUID_AVEncDV_Value = Guid.initString("09b769c7-3329-44fb-8954-fa30937d3d5a");
 pub const CLSID_CODECAPI_GUID_AVEncDV = &CLSID_CODECAPI_GUID_AVEncDV_Value;
 
-const CLSID_CODECAPI_GUID_AVEncWMAPro_Value = @import("../zig.zig").Guid.initString("1955f90c-33f7-4a68-ab81-53f5657125c4");
+const CLSID_CODECAPI_GUID_AVEncWMAPro_Value = Guid.initString("1955f90c-33f7-4a68-ab81-53f5657125c4");
 pub const CLSID_CODECAPI_GUID_AVEncWMAPro = &CLSID_CODECAPI_GUID_AVEncWMAPro_Value;
 
-const CLSID_CODECAPI_GUID_AVEncWMALossless_Value = @import("../zig.zig").Guid.initString("55ca7265-23d8-4761-9031-b74fbe12f4c1");
+const CLSID_CODECAPI_GUID_AVEncWMALossless_Value = Guid.initString("55ca7265-23d8-4761-9031-b74fbe12f4c1");
 pub const CLSID_CODECAPI_GUID_AVEncWMALossless = &CLSID_CODECAPI_GUID_AVEncWMALossless_Value;
 
-const CLSID_CODECAPI_GUID_AVEncWMAVoice_Value = @import("../zig.zig").Guid.initString("13ed18cb-50e8-4276-a288-a6aa228382d9");
+const CLSID_CODECAPI_GUID_AVEncWMAVoice_Value = Guid.initString("13ed18cb-50e8-4276-a288-a6aa228382d9");
 pub const CLSID_CODECAPI_GUID_AVEncWMAVoice = &CLSID_CODECAPI_GUID_AVEncWMAVoice_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPro_Value = @import("../zig.zig").Guid.initString("f5be76cc-0ff8-40eb-9cb1-bba94004d44f");
+const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPro_Value = Guid.initString("f5be76cc-0ff8-40eb-9cb1-bba94004d44f");
 pub const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPro = &CLSID_CODECAPI_GUID_AVEncDolbyDigitalPro_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDolbyDigitalConsumer_Value = @import("../zig.zig").Guid.initString("c1a7bf6c-0059-4bfa-94ef-ef747a768d52");
+const CLSID_CODECAPI_GUID_AVEncDolbyDigitalConsumer_Value = Guid.initString("c1a7bf6c-0059-4bfa-94ef-ef747a768d52");
 pub const CLSID_CODECAPI_GUID_AVEncDolbyDigitalConsumer = &CLSID_CODECAPI_GUID_AVEncDolbyDigitalConsumer_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPlus_Value = @import("../zig.zig").Guid.initString("698d1b80-f7dd-415c-971c-42492a2056c6");
+const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPlus_Value = Guid.initString("698d1b80-f7dd-415c-971c-42492a2056c6");
 pub const CLSID_CODECAPI_GUID_AVEncDolbyDigitalPlus = &CLSID_CODECAPI_GUID_AVEncDolbyDigitalPlus_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDTSHD_Value = @import("../zig.zig").Guid.initString("2052e630-469d-4bfb-80ca-1d656e7e918f");
+const CLSID_CODECAPI_GUID_AVEncDTSHD_Value = Guid.initString("2052e630-469d-4bfb-80ca-1d656e7e918f");
 pub const CLSID_CODECAPI_GUID_AVEncDTSHD = &CLSID_CODECAPI_GUID_AVEncDTSHD_Value;
 
-const CLSID_CODECAPI_GUID_AVEncDTS_Value = @import("../zig.zig").Guid.initString("45fbcaa2-5e6e-4ab0-8893-5903bee93acf");
+const CLSID_CODECAPI_GUID_AVEncDTS_Value = Guid.initString("45fbcaa2-5e6e-4ab0-8893-5903bee93acf");
 pub const CLSID_CODECAPI_GUID_AVEncDTS = &CLSID_CODECAPI_GUID_AVEncDTS_Value;
 
-const CLSID_CODECAPI_GUID_AVEncMLP_Value = @import("../zig.zig").Guid.initString("05f73e29-f0d1-431e-a41c-a47432ec5a66");
+const CLSID_CODECAPI_GUID_AVEncMLP_Value = Guid.initString("05f73e29-f0d1-431e-a41c-a47432ec5a66");
 pub const CLSID_CODECAPI_GUID_AVEncMLP = &CLSID_CODECAPI_GUID_AVEncMLP_Value;
 
-const CLSID_CODECAPI_GUID_AVEncPCM_Value = @import("../zig.zig").Guid.initString("844be7f4-26cf-4779-b386-cc05d187990c");
+const CLSID_CODECAPI_GUID_AVEncPCM_Value = Guid.initString("844be7f4-26cf-4779-b386-cc05d187990c");
 pub const CLSID_CODECAPI_GUID_AVEncPCM = &CLSID_CODECAPI_GUID_AVEncPCM_Value;
 
-const CLSID_CODECAPI_GUID_AVEncSDDS_Value = @import("../zig.zig").Guid.initString("1dc1b82f-11c8-4c71-b7b6-ee3eb9bc2b94");
+const CLSID_CODECAPI_GUID_AVEncSDDS_Value = Guid.initString("1dc1b82f-11c8-4c71-b7b6-ee3eb9bc2b94");
 pub const CLSID_CODECAPI_GUID_AVEncSDDS = &CLSID_CODECAPI_GUID_AVEncSDDS_Value;
 
-const CLSID_CODECAPI_AVEncCommonRateControlMode_Value = @import("../zig.zig").Guid.initString("1c0608e9-370c-4710-8a58-cb6181c42423");
+const CLSID_CODECAPI_AVEncCommonRateControlMode_Value = Guid.initString("1c0608e9-370c-4710-8a58-cb6181c42423");
 pub const CLSID_CODECAPI_AVEncCommonRateControlMode = &CLSID_CODECAPI_AVEncCommonRateControlMode_Value;
 
 pub const eAVEncCommonRateControlMode = enum(i32) {
@@ -7881,52 +7881,52 @@ pub const eAVEncCommonRateControlMode_LowDelayVBR = eAVEncCommonRateControlMode.
 pub const eAVEncCommonRateControlMode_GlobalVBR = eAVEncCommonRateControlMode.GlobalVBR;
 pub const eAVEncCommonRateControlMode_GlobalLowDelayVBR = eAVEncCommonRateControlMode.GlobalLowDelayVBR;
 
-const CLSID_CODECAPI_AVEncCommonLowLatency_Value = @import("../zig.zig").Guid.initString("9d3ecd55-89e8-490a-970a-0c9548d5a56e");
+const CLSID_CODECAPI_AVEncCommonLowLatency_Value = Guid.initString("9d3ecd55-89e8-490a-970a-0c9548d5a56e");
 pub const CLSID_CODECAPI_AVEncCommonLowLatency = &CLSID_CODECAPI_AVEncCommonLowLatency_Value;
 
-const CLSID_CODECAPI_AVEncCommonMultipassMode_Value = @import("../zig.zig").Guid.initString("22533d4c-47e1-41b5-9352-a2b7780e7ac4");
+const CLSID_CODECAPI_AVEncCommonMultipassMode_Value = Guid.initString("22533d4c-47e1-41b5-9352-a2b7780e7ac4");
 pub const CLSID_CODECAPI_AVEncCommonMultipassMode = &CLSID_CODECAPI_AVEncCommonMultipassMode_Value;
 
-const CLSID_CODECAPI_AVEncCommonPassStart_Value = @import("../zig.zig").Guid.initString("6a67739f-4eb5-4385-9928-f276a939ef95");
+const CLSID_CODECAPI_AVEncCommonPassStart_Value = Guid.initString("6a67739f-4eb5-4385-9928-f276a939ef95");
 pub const CLSID_CODECAPI_AVEncCommonPassStart = &CLSID_CODECAPI_AVEncCommonPassStart_Value;
 
-const CLSID_CODECAPI_AVEncCommonPassEnd_Value = @import("../zig.zig").Guid.initString("0e3d01bc-c85c-467d-8b60-c41012ee3bf6");
+const CLSID_CODECAPI_AVEncCommonPassEnd_Value = Guid.initString("0e3d01bc-c85c-467d-8b60-c41012ee3bf6");
 pub const CLSID_CODECAPI_AVEncCommonPassEnd = &CLSID_CODECAPI_AVEncCommonPassEnd_Value;
 
-const CLSID_CODECAPI_AVEncCommonRealTime_Value = @import("../zig.zig").Guid.initString("143a0ff6-a131-43da-b81e-98fbb8ec378e");
+const CLSID_CODECAPI_AVEncCommonRealTime_Value = Guid.initString("143a0ff6-a131-43da-b81e-98fbb8ec378e");
 pub const CLSID_CODECAPI_AVEncCommonRealTime = &CLSID_CODECAPI_AVEncCommonRealTime_Value;
 
-const CLSID_CODECAPI_AVEncCommonQuality_Value = @import("../zig.zig").Guid.initString("fcbf57a3-7ea5-4b0c-9644-69b40c39c391");
+const CLSID_CODECAPI_AVEncCommonQuality_Value = Guid.initString("fcbf57a3-7ea5-4b0c-9644-69b40c39c391");
 pub const CLSID_CODECAPI_AVEncCommonQuality = &CLSID_CODECAPI_AVEncCommonQuality_Value;
 
-const CLSID_CODECAPI_AVEncCommonQualityVsSpeed_Value = @import("../zig.zig").Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
+const CLSID_CODECAPI_AVEncCommonQualityVsSpeed_Value = Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
 pub const CLSID_CODECAPI_AVEncCommonQualityVsSpeed = &CLSID_CODECAPI_AVEncCommonQualityVsSpeed_Value;
 
-const CLSID_CODECAPI_AVEncCommonTranscodeEncodingProfile_Value = @import("../zig.zig").Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
+const CLSID_CODECAPI_AVEncCommonTranscodeEncodingProfile_Value = Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
 pub const CLSID_CODECAPI_AVEncCommonTranscodeEncodingProfile = &CLSID_CODECAPI_AVEncCommonTranscodeEncodingProfile_Value;
 
-const CLSID_CODECAPI_AVEncCommonMeanBitRate_Value = @import("../zig.zig").Guid.initString("f7222374-2144-4815-b550-a37f8e12ee52");
+const CLSID_CODECAPI_AVEncCommonMeanBitRate_Value = Guid.initString("f7222374-2144-4815-b550-a37f8e12ee52");
 pub const CLSID_CODECAPI_AVEncCommonMeanBitRate = &CLSID_CODECAPI_AVEncCommonMeanBitRate_Value;
 
-const CLSID_CODECAPI_AVEncCommonMeanBitRateInterval_Value = @import("../zig.zig").Guid.initString("bfaa2f0c-cb82-4bc0-8474-f06a8a0d0258");
+const CLSID_CODECAPI_AVEncCommonMeanBitRateInterval_Value = Guid.initString("bfaa2f0c-cb82-4bc0-8474-f06a8a0d0258");
 pub const CLSID_CODECAPI_AVEncCommonMeanBitRateInterval = &CLSID_CODECAPI_AVEncCommonMeanBitRateInterval_Value;
 
-const CLSID_CODECAPI_AVEncCommonMaxBitRate_Value = @import("../zig.zig").Guid.initString("9651eae4-39b9-4ebf-85ef-d7f444ec7465");
+const CLSID_CODECAPI_AVEncCommonMaxBitRate_Value = Guid.initString("9651eae4-39b9-4ebf-85ef-d7f444ec7465");
 pub const CLSID_CODECAPI_AVEncCommonMaxBitRate = &CLSID_CODECAPI_AVEncCommonMaxBitRate_Value;
 
-const CLSID_CODECAPI_AVEncCommonMinBitRate_Value = @import("../zig.zig").Guid.initString("101405b2-2083-4034-a806-efbeddd7c9ff");
+const CLSID_CODECAPI_AVEncCommonMinBitRate_Value = Guid.initString("101405b2-2083-4034-a806-efbeddd7c9ff");
 pub const CLSID_CODECAPI_AVEncCommonMinBitRate = &CLSID_CODECAPI_AVEncCommonMinBitRate_Value;
 
-const CLSID_CODECAPI_AVEncCommonBufferSize_Value = @import("../zig.zig").Guid.initString("0db96574-b6a4-4c8b-8106-3773de0310cd");
+const CLSID_CODECAPI_AVEncCommonBufferSize_Value = Guid.initString("0db96574-b6a4-4c8b-8106-3773de0310cd");
 pub const CLSID_CODECAPI_AVEncCommonBufferSize = &CLSID_CODECAPI_AVEncCommonBufferSize_Value;
 
-const CLSID_CODECAPI_AVEncCommonBufferInLevel_Value = @import("../zig.zig").Guid.initString("d9c5c8db-fc74-4064-94e9-cd19f947ed45");
+const CLSID_CODECAPI_AVEncCommonBufferInLevel_Value = Guid.initString("d9c5c8db-fc74-4064-94e9-cd19f947ed45");
 pub const CLSID_CODECAPI_AVEncCommonBufferInLevel = &CLSID_CODECAPI_AVEncCommonBufferInLevel_Value;
 
-const CLSID_CODECAPI_AVEncCommonBufferOutLevel_Value = @import("../zig.zig").Guid.initString("ccae7f49-d0bc-4e3d-a57e-fb5740140069");
+const CLSID_CODECAPI_AVEncCommonBufferOutLevel_Value = Guid.initString("ccae7f49-d0bc-4e3d-a57e-fb5740140069");
 pub const CLSID_CODECAPI_AVEncCommonBufferOutLevel = &CLSID_CODECAPI_AVEncCommonBufferOutLevel_Value;
 
-const CLSID_CODECAPI_AVEncCommonStreamEndHandling_Value = @import("../zig.zig").Guid.initString("6aad30af-6ba8-4ccc-8fca-18d19beaeb1c");
+const CLSID_CODECAPI_AVEncCommonStreamEndHandling_Value = Guid.initString("6aad30af-6ba8-4ccc-8fca-18d19beaeb1c");
 pub const CLSID_CODECAPI_AVEncCommonStreamEndHandling = &CLSID_CODECAPI_AVEncCommonStreamEndHandling_Value;
 
 pub const eAVEncCommonStreamEndHandling = enum(i32) {
@@ -7936,13 +7936,13 @@ pub const eAVEncCommonStreamEndHandling = enum(i32) {
 pub const eAVEncCommonStreamEndHandling_DiscardPartial = eAVEncCommonStreamEndHandling.DiscardPartial;
 pub const eAVEncCommonStreamEndHandling_EnsureComplete = eAVEncCommonStreamEndHandling.EnsureComplete;
 
-const CLSID_CODECAPI_AVEncStatCommonCompletedPasses_Value = @import("../zig.zig").Guid.initString("3e5de533-9df7-438c-854f-9f7dd3683d34");
+const CLSID_CODECAPI_AVEncStatCommonCompletedPasses_Value = Guid.initString("3e5de533-9df7-438c-854f-9f7dd3683d34");
 pub const CLSID_CODECAPI_AVEncStatCommonCompletedPasses = &CLSID_CODECAPI_AVEncStatCommonCompletedPasses_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputFrameRate_Value = @import("../zig.zig").Guid.initString("ea85e7c3-9567-4d99-87c4-02c1c278ca7c");
+const CLSID_CODECAPI_AVEncVideoOutputFrameRate_Value = Guid.initString("ea85e7c3-9567-4d99-87c4-02c1c278ca7c");
 pub const CLSID_CODECAPI_AVEncVideoOutputFrameRate = &CLSID_CODECAPI_AVEncVideoOutputFrameRate_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputFrameRateConversion_Value = @import("../zig.zig").Guid.initString("8c068bf4-369a-4ba3-82fd-b2518fb3396e");
+const CLSID_CODECAPI_AVEncVideoOutputFrameRateConversion_Value = Guid.initString("8c068bf4-369a-4ba3-82fd-b2518fb3396e");
 pub const CLSID_CODECAPI_AVEncVideoOutputFrameRateConversion = &CLSID_CODECAPI_AVEncVideoOutputFrameRateConversion_Value;
 
 pub const eAVEncVideoOutputFrameRateConversion = enum(i32) {
@@ -7954,43 +7954,43 @@ pub const eAVEncVideoOutputFrameRateConversion_Disable = eAVEncVideoOutputFrameR
 pub const eAVEncVideoOutputFrameRateConversion_Enable = eAVEncVideoOutputFrameRateConversion.Enable;
 pub const eAVEncVideoOutputFrameRateConversion_Alias = eAVEncVideoOutputFrameRateConversion.Alias;
 
-const CLSID_CODECAPI_AVEncVideoPixelAspectRatio_Value = @import("../zig.zig").Guid.initString("3cdc718f-b3e9-4eb6-a57f-cf1f1b321b87");
+const CLSID_CODECAPI_AVEncVideoPixelAspectRatio_Value = Guid.initString("3cdc718f-b3e9-4eb6-a57f-cf1f1b321b87");
 pub const CLSID_CODECAPI_AVEncVideoPixelAspectRatio = &CLSID_CODECAPI_AVEncVideoPixelAspectRatio_Value;
 
-const CLSID_CODECAPI_AVDecVideoAcceleration_MPEG2_Value = @import("../zig.zig").Guid.initString("f7db8a2e-4f48-4ee8-ae31-8b6ebe558ae2");
+const CLSID_CODECAPI_AVDecVideoAcceleration_MPEG2_Value = Guid.initString("f7db8a2e-4f48-4ee8-ae31-8b6ebe558ae2");
 pub const CLSID_CODECAPI_AVDecVideoAcceleration_MPEG2 = &CLSID_CODECAPI_AVDecVideoAcceleration_MPEG2_Value;
 
-const CLSID_CODECAPI_AVDecVideoAcceleration_H264_Value = @import("../zig.zig").Guid.initString("f7db8a2f-4f48-4ee8-ae31-8b6ebe558ae2");
+const CLSID_CODECAPI_AVDecVideoAcceleration_H264_Value = Guid.initString("f7db8a2f-4f48-4ee8-ae31-8b6ebe558ae2");
 pub const CLSID_CODECAPI_AVDecVideoAcceleration_H264 = &CLSID_CODECAPI_AVDecVideoAcceleration_H264_Value;
 
-const CLSID_CODECAPI_AVDecVideoAcceleration_VC1_Value = @import("../zig.zig").Guid.initString("f7db8a30-4f48-4ee8-ae31-8b6ebe558ae2");
+const CLSID_CODECAPI_AVDecVideoAcceleration_VC1_Value = Guid.initString("f7db8a30-4f48-4ee8-ae31-8b6ebe558ae2");
 pub const CLSID_CODECAPI_AVDecVideoAcceleration_VC1 = &CLSID_CODECAPI_AVDecVideoAcceleration_VC1_Value;
 
-const CLSID_CODECAPI_AVDecVideoProcDeinterlaceCSC_Value = @import("../zig.zig").Guid.initString("f7db8a31-4f48-4ee8-ae31-8b6ebe558ae2");
+const CLSID_CODECAPI_AVDecVideoProcDeinterlaceCSC_Value = Guid.initString("f7db8a31-4f48-4ee8-ae31-8b6ebe558ae2");
 pub const CLSID_CODECAPI_AVDecVideoProcDeinterlaceCSC = &CLSID_CODECAPI_AVDecVideoProcDeinterlaceCSC_Value;
 
-const CLSID_CODECAPI_AVDecVideoThumbnailGenerationMode_Value = @import("../zig.zig").Guid.initString("2efd8eee-1150-4328-9cf5-66dce933fcf4");
+const CLSID_CODECAPI_AVDecVideoThumbnailGenerationMode_Value = Guid.initString("2efd8eee-1150-4328-9cf5-66dce933fcf4");
 pub const CLSID_CODECAPI_AVDecVideoThumbnailGenerationMode = &CLSID_CODECAPI_AVDecVideoThumbnailGenerationMode_Value;
 
-const CLSID_CODECAPI_AVDecVideoMaxCodedWidth_Value = @import("../zig.zig").Guid.initString("5ae557b8-77af-41f5-9fa6-4db2fe1d4bca");
+const CLSID_CODECAPI_AVDecVideoMaxCodedWidth_Value = Guid.initString("5ae557b8-77af-41f5-9fa6-4db2fe1d4bca");
 pub const CLSID_CODECAPI_AVDecVideoMaxCodedWidth = &CLSID_CODECAPI_AVDecVideoMaxCodedWidth_Value;
 
-const CLSID_CODECAPI_AVDecVideoMaxCodedHeight_Value = @import("../zig.zig").Guid.initString("7262a16a-d2dc-4e75-9ba8-65c0c6d32b13");
+const CLSID_CODECAPI_AVDecVideoMaxCodedHeight_Value = Guid.initString("7262a16a-d2dc-4e75-9ba8-65c0c6d32b13");
 pub const CLSID_CODECAPI_AVDecVideoMaxCodedHeight = &CLSID_CODECAPI_AVDecVideoMaxCodedHeight_Value;
 
-const CLSID_CODECAPI_AVDecNumWorkerThreads_Value = @import("../zig.zig").Guid.initString("9561c3e8-ea9e-4435-9b1e-a93e691894d8");
+const CLSID_CODECAPI_AVDecNumWorkerThreads_Value = Guid.initString("9561c3e8-ea9e-4435-9b1e-a93e691894d8");
 pub const CLSID_CODECAPI_AVDecNumWorkerThreads = &CLSID_CODECAPI_AVDecNumWorkerThreads_Value;
 
-const CLSID_CODECAPI_AVDecSoftwareDynamicFormatChange_Value = @import("../zig.zig").Guid.initString("862e2f0a-507b-47ff-af47-01e2624298b7");
+const CLSID_CODECAPI_AVDecSoftwareDynamicFormatChange_Value = Guid.initString("862e2f0a-507b-47ff-af47-01e2624298b7");
 pub const CLSID_CODECAPI_AVDecSoftwareDynamicFormatChange = &CLSID_CODECAPI_AVDecSoftwareDynamicFormatChange_Value;
 
-const CLSID_CODECAPI_AVDecDisableVideoPostProcessing_Value = @import("../zig.zig").Guid.initString("f8749193-667a-4f2c-a9e8-5d4af924f08f");
+const CLSID_CODECAPI_AVDecDisableVideoPostProcessing_Value = Guid.initString("f8749193-667a-4f2c-a9e8-5d4af924f08f");
 pub const CLSID_CODECAPI_AVDecDisableVideoPostProcessing = &CLSID_CODECAPI_AVDecDisableVideoPostProcessing_Value;
 
-const CLSID_CODECAPI_AVDecVideoDropPicWithMissingRef_Value = @import("../zig.zig").Guid.initString("f8226383-14c2-4567-9734-5004e96ff887");
+const CLSID_CODECAPI_AVDecVideoDropPicWithMissingRef_Value = Guid.initString("f8226383-14c2-4567-9734-5004e96ff887");
 pub const CLSID_CODECAPI_AVDecVideoDropPicWithMissingRef = &CLSID_CODECAPI_AVDecVideoDropPicWithMissingRef_Value;
 
-const CLSID_CODECAPI_AVDecVideoSoftwareDeinterlaceMode_Value = @import("../zig.zig").Guid.initString("0c08d1ce-9ced-4540-bae3-ceb380141109");
+const CLSID_CODECAPI_AVDecVideoSoftwareDeinterlaceMode_Value = Guid.initString("0c08d1ce-9ced-4540-bae3-ceb380141109");
 pub const CLSID_CODECAPI_AVDecVideoSoftwareDeinterlaceMode = &CLSID_CODECAPI_AVDecVideoSoftwareDeinterlaceMode_Value;
 
 pub const eAVDecVideoSoftwareDeinterlaceMode = enum(i32) {
@@ -8004,7 +8004,7 @@ pub const eAVDecVideoSoftwareDeinterlaceMode_ProgressiveDeinterlacing = eAVDecVi
 pub const eAVDecVideoSoftwareDeinterlaceMode_BOBDeinterlacing = eAVDecVideoSoftwareDeinterlaceMode.BOBDeinterlacing;
 pub const eAVDecVideoSoftwareDeinterlaceMode_SmartBOBDeinterlacing = eAVDecVideoSoftwareDeinterlaceMode.SmartBOBDeinterlacing;
 
-const CLSID_CODECAPI_AVDecVideoFastDecodeMode_Value = @import("../zig.zig").Guid.initString("6b529f7d-d3b1-49c6-a999-9ec6911bedbf");
+const CLSID_CODECAPI_AVDecVideoFastDecodeMode_Value = Guid.initString("6b529f7d-d3b1-49c6-a999-9ec6911bedbf");
 pub const CLSID_CODECAPI_AVDecVideoFastDecodeMode = &CLSID_CODECAPI_AVDecVideoFastDecodeMode_Value;
 
 pub const eAVFastDecodeMode = enum(i32) {
@@ -8018,10 +8018,10 @@ pub const eVideoDecodeOptimalLF = eAVFastDecodeMode.OptimalLF;
 pub const eVideoDecodeDisableLF = eAVFastDecodeMode.DisableLF;
 pub const eVideoDecodeFastest = eAVFastDecodeMode.Fastest;
 
-const CLSID_CODECAPI_AVLowLatencyMode_Value = @import("../zig.zig").Guid.initString("9c27891a-ed7a-40e1-88e8-b22727a024ee");
+const CLSID_CODECAPI_AVLowLatencyMode_Value = Guid.initString("9c27891a-ed7a-40e1-88e8-b22727a024ee");
 pub const CLSID_CODECAPI_AVLowLatencyMode = &CLSID_CODECAPI_AVLowLatencyMode_Value;
 
-const CLSID_CODECAPI_AVDecVideoH264ErrorConcealment_Value = @import("../zig.zig").Guid.initString("ececace8-3436-462c-9294-cd7bacd758a9");
+const CLSID_CODECAPI_AVDecVideoH264ErrorConcealment_Value = Guid.initString("ececace8-3436-462c-9294-cd7bacd758a9");
 pub const CLSID_CODECAPI_AVDecVideoH264ErrorConcealment = &CLSID_CODECAPI_AVDecVideoH264ErrorConcealment_Value;
 
 pub const eAVDecVideoH264ErrorConcealment = enum(i32) {
@@ -8035,7 +8035,7 @@ pub const eErrorConcealmentTypeBasic = eAVDecVideoH264ErrorConcealment.Basic;
 pub const eErrorConcealmentTypeAdvanced = eAVDecVideoH264ErrorConcealment.Advanced;
 pub const eErrorConcealmentTypeDXVASetBlack = eAVDecVideoH264ErrorConcealment.DXVASetBlack;
 
-const CLSID_CODECAPI_AVDecVideoMPEG2ErrorConcealment_Value = @import("../zig.zig").Guid.initString("9d2bfe18-728d-48d2-b358-bc7e436c6674");
+const CLSID_CODECAPI_AVDecVideoMPEG2ErrorConcealment_Value = Guid.initString("9d2bfe18-728d-48d2-b358-bc7e436c6674");
 pub const CLSID_CODECAPI_AVDecVideoMPEG2ErrorConcealment = &CLSID_CODECAPI_AVDecVideoMPEG2ErrorConcealment_Value;
 
 pub const eAVDecVideoMPEG2ErrorConcealment = enum(i32) {
@@ -8045,7 +8045,7 @@ pub const eAVDecVideoMPEG2ErrorConcealment = enum(i32) {
 pub const eErrorConcealmentOff = eAVDecVideoMPEG2ErrorConcealment.ff;
 pub const eErrorConcealmentOn = eAVDecVideoMPEG2ErrorConcealment.n;
 
-const CLSID_CODECAPI_AVDecVideoCodecType_Value = @import("../zig.zig").Guid.initString("434528e5-21f0-46b6-b62c-9b1b6b658cd1");
+const CLSID_CODECAPI_AVDecVideoCodecType_Value = Guid.initString("434528e5-21f0-46b6-b62c-9b1b6b658cd1");
 pub const CLSID_CODECAPI_AVDecVideoCodecType = &CLSID_CODECAPI_AVDecVideoCodecType_Value;
 
 pub const eAVDecVideoCodecType = enum(i32) {
@@ -8057,7 +8057,7 @@ pub const eAVDecVideoCodecType_NOTPLAYING = eAVDecVideoCodecType.NOTPLAYING;
 pub const eAVDecVideoCodecType_MPEG2 = eAVDecVideoCodecType.MPEG2;
 pub const eAVDecVideoCodecType_H264 = eAVDecVideoCodecType.H264;
 
-const CLSID_CODECAPI_AVDecVideoDXVAMode_Value = @import("../zig.zig").Guid.initString("f758f09e-7337-4ae7-8387-73dc2d54e67d");
+const CLSID_CODECAPI_AVDecVideoDXVAMode_Value = Guid.initString("f758f09e-7337-4ae7-8387-73dc2d54e67d");
 pub const CLSID_CODECAPI_AVDecVideoDXVAMode = &CLSID_CODECAPI_AVDecVideoDXVAMode_Value;
 
 pub const eAVDecVideoDXVAMode = enum(i32) {
@@ -8073,7 +8073,7 @@ pub const eAVDecVideoDXVAMode_MC = eAVDecVideoDXVAMode.MC;
 pub const eAVDecVideoDXVAMode_IDCT = eAVDecVideoDXVAMode.IDCT;
 pub const eAVDecVideoDXVAMode_VLD = eAVDecVideoDXVAMode.VLD;
 
-const CLSID_CODECAPI_AVDecVideoDXVABusEncryption_Value = @import("../zig.zig").Guid.initString("42153c8b-fd0b-4765-a462-ddd9e8bcc388");
+const CLSID_CODECAPI_AVDecVideoDXVABusEncryption_Value = Guid.initString("42153c8b-fd0b-4765-a462-ddd9e8bcc388");
 pub const CLSID_CODECAPI_AVDecVideoDXVABusEncryption = &CLSID_CODECAPI_AVDecVideoDXVABusEncryption_Value;
 
 pub const eAVDecVideoDXVABusEncryption = enum(i32) {
@@ -8085,7 +8085,7 @@ pub const eAVDecVideoDXVABusEncryption_NONE = eAVDecVideoDXVABusEncryption.NONE;
 pub const eAVDecVideoDXVABusEncryption_PRIVATE = eAVDecVideoDXVABusEncryption.PRIVATE;
 pub const eAVDecVideoDXVABusEncryption_AES = eAVDecVideoDXVABusEncryption.AES;
 
-const CLSID_CODECAPI_AVEncVideoForceSourceScanType_Value = @import("../zig.zig").Guid.initString("1ef2065f-058a-4765-a4fc-8a864c103012");
+const CLSID_CODECAPI_AVEncVideoForceSourceScanType_Value = Guid.initString("1ef2065f-058a-4765-a4fc-8a864c103012");
 pub const CLSID_CODECAPI_AVEncVideoForceSourceScanType = &CLSID_CODECAPI_AVEncVideoForceSourceScanType_Value;
 
 pub const eAVEncVideoSourceScanType = enum(i32) {
@@ -8097,22 +8097,22 @@ pub const eAVEncVideoSourceScan_Automatic = eAVEncVideoSourceScanType.Automatic;
 pub const eAVEncVideoSourceScan_Interlaced = eAVEncVideoSourceScanType.Interlaced;
 pub const eAVEncVideoSourceScan_Progressive = eAVEncVideoSourceScanType.Progressive;
 
-const CLSID_CODECAPI_AVEncVideoNoOfFieldsToEncode_Value = @import("../zig.zig").Guid.initString("61e4bbe2-4ee0-40e7-80ab-51ddeebe6291");
+const CLSID_CODECAPI_AVEncVideoNoOfFieldsToEncode_Value = Guid.initString("61e4bbe2-4ee0-40e7-80ab-51ddeebe6291");
 pub const CLSID_CODECAPI_AVEncVideoNoOfFieldsToEncode = &CLSID_CODECAPI_AVEncVideoNoOfFieldsToEncode_Value;
 
-const CLSID_CODECAPI_AVEncVideoNoOfFieldsToSkip_Value = @import("../zig.zig").Guid.initString("a97e1240-1427-4c16-a7f7-3dcfd8ba4cc5");
+const CLSID_CODECAPI_AVEncVideoNoOfFieldsToSkip_Value = Guid.initString("a97e1240-1427-4c16-a7f7-3dcfd8ba4cc5");
 pub const CLSID_CODECAPI_AVEncVideoNoOfFieldsToSkip = &CLSID_CODECAPI_AVEncVideoNoOfFieldsToSkip_Value;
 
-const CLSID_CODECAPI_AVEncVideoEncodeDimension_Value = @import("../zig.zig").Guid.initString("1074df28-7e0f-47a4-a453-cdd73870f5ce");
+const CLSID_CODECAPI_AVEncVideoEncodeDimension_Value = Guid.initString("1074df28-7e0f-47a4-a453-cdd73870f5ce");
 pub const CLSID_CODECAPI_AVEncVideoEncodeDimension = &CLSID_CODECAPI_AVEncVideoEncodeDimension_Value;
 
-const CLSID_CODECAPI_AVEncVideoEncodeOffsetOrigin_Value = @import("../zig.zig").Guid.initString("6bc098fe-a71a-4454-852e-4d2ddeb2cd24");
+const CLSID_CODECAPI_AVEncVideoEncodeOffsetOrigin_Value = Guid.initString("6bc098fe-a71a-4454-852e-4d2ddeb2cd24");
 pub const CLSID_CODECAPI_AVEncVideoEncodeOffsetOrigin = &CLSID_CODECAPI_AVEncVideoEncodeOffsetOrigin_Value;
 
-const CLSID_CODECAPI_AVEncVideoDisplayDimension_Value = @import("../zig.zig").Guid.initString("de053668-f4ec-47a9-86d0-836770f0c1d5");
+const CLSID_CODECAPI_AVEncVideoDisplayDimension_Value = Guid.initString("de053668-f4ec-47a9-86d0-836770f0c1d5");
 pub const CLSID_CODECAPI_AVEncVideoDisplayDimension = &CLSID_CODECAPI_AVEncVideoDisplayDimension_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputScanType_Value = @import("../zig.zig").Guid.initString("460b5576-842e-49ab-a62d-b36f7312c9db");
+const CLSID_CODECAPI_AVEncVideoOutputScanType_Value = Guid.initString("460b5576-842e-49ab-a62d-b36f7312c9db");
 pub const CLSID_CODECAPI_AVEncVideoOutputScanType = &CLSID_CODECAPI_AVEncVideoOutputScanType_Value;
 
 pub const eAVEncVideoOutputScanType = enum(i32) {
@@ -8126,13 +8126,13 @@ pub const eAVEncVideoOutputScan_Interlaced = eAVEncVideoOutputScanType.Interlace
 pub const eAVEncVideoOutputScan_SameAsInput = eAVEncVideoOutputScanType.SameAsInput;
 pub const eAVEncVideoOutputScan_Automatic = eAVEncVideoOutputScanType.Automatic;
 
-const CLSID_CODECAPI_AVEncVideoInverseTelecineEnable_Value = @import("../zig.zig").Guid.initString("2ea9098b-e76d-4ccd-a030-d3b889c1b64c");
+const CLSID_CODECAPI_AVEncVideoInverseTelecineEnable_Value = Guid.initString("2ea9098b-e76d-4ccd-a030-d3b889c1b64c");
 pub const CLSID_CODECAPI_AVEncVideoInverseTelecineEnable = &CLSID_CODECAPI_AVEncVideoInverseTelecineEnable_Value;
 
-const CLSID_CODECAPI_AVEncVideoInverseTelecineThreshold_Value = @import("../zig.zig").Guid.initString("40247d84-e895-497f-b44c-b74560acfe27");
+const CLSID_CODECAPI_AVEncVideoInverseTelecineThreshold_Value = Guid.initString("40247d84-e895-497f-b44c-b74560acfe27");
 pub const CLSID_CODECAPI_AVEncVideoInverseTelecineThreshold = &CLSID_CODECAPI_AVEncVideoInverseTelecineThreshold_Value;
 
-const CLSID_CODECAPI_AVEncVideoSourceFilmContent_Value = @import("../zig.zig").Guid.initString("1791c64b-ccfc-4827-a0ed-2557793b2b1c");
+const CLSID_CODECAPI_AVEncVideoSourceFilmContent_Value = Guid.initString("1791c64b-ccfc-4827-a0ed-2557793b2b1c");
 pub const CLSID_CODECAPI_AVEncVideoSourceFilmContent = &CLSID_CODECAPI_AVEncVideoSourceFilmContent_Value;
 
 pub const eAVEncVideoFilmContent = enum(i32) {
@@ -8144,16 +8144,16 @@ pub const eAVEncVideoFilmContent_VideoOnly = eAVEncVideoFilmContent.VideoOnly;
 pub const eAVEncVideoFilmContent_FilmOnly = eAVEncVideoFilmContent.FilmOnly;
 pub const eAVEncVideoFilmContent_Mixed = eAVEncVideoFilmContent.Mixed;
 
-const CLSID_CODECAPI_AVEncVideoSourceIsBW_Value = @import("../zig.zig").Guid.initString("42ffc49b-1812-4fdc-8d24-7054c521e6eb");
+const CLSID_CODECAPI_AVEncVideoSourceIsBW_Value = Guid.initString("42ffc49b-1812-4fdc-8d24-7054c521e6eb");
 pub const CLSID_CODECAPI_AVEncVideoSourceIsBW = &CLSID_CODECAPI_AVEncVideoSourceIsBW_Value;
 
-const CLSID_CODECAPI_AVEncVideoFieldSwap_Value = @import("../zig.zig").Guid.initString("fefd7569-4e0a-49f2-9f2b-360ea48c19a2");
+const CLSID_CODECAPI_AVEncVideoFieldSwap_Value = Guid.initString("fefd7569-4e0a-49f2-9f2b-360ea48c19a2");
 pub const CLSID_CODECAPI_AVEncVideoFieldSwap = &CLSID_CODECAPI_AVEncVideoFieldSwap_Value;
 
-const CLSID_CODECAPI_AVEncVideoInputChromaResolution_Value = @import("../zig.zig").Guid.initString("bb0cec33-16f1-47b0-8a88-37815bee1739");
+const CLSID_CODECAPI_AVEncVideoInputChromaResolution_Value = Guid.initString("bb0cec33-16f1-47b0-8a88-37815bee1739");
 pub const CLSID_CODECAPI_AVEncVideoInputChromaResolution = &CLSID_CODECAPI_AVEncVideoInputChromaResolution_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputChromaResolution_Value = @import("../zig.zig").Guid.initString("6097b4c9-7c1d-4e64-bfcc-9e9765318ae7");
+const CLSID_CODECAPI_AVEncVideoOutputChromaResolution_Value = Guid.initString("6097b4c9-7c1d-4e64-bfcc-9e9765318ae7");
 pub const CLSID_CODECAPI_AVEncVideoOutputChromaResolution = &CLSID_CODECAPI_AVEncVideoOutputChromaResolution_Value;
 
 pub const eAVEncVideoChromaResolution = enum(i32) {
@@ -8169,10 +8169,10 @@ pub const eAVEncVideoChromaResolution_422 = eAVEncVideoChromaResolution.@"422";
 pub const eAVEncVideoChromaResolution_420 = eAVEncVideoChromaResolution.@"420";
 pub const eAVEncVideoChromaResolution_411 = eAVEncVideoChromaResolution.@"411";
 
-const CLSID_CODECAPI_AVEncVideoInputChromaSubsampling_Value = @import("../zig.zig").Guid.initString("a8e73a39-4435-4ec3-a6ea-98300f4b36f7");
+const CLSID_CODECAPI_AVEncVideoInputChromaSubsampling_Value = Guid.initString("a8e73a39-4435-4ec3-a6ea-98300f4b36f7");
 pub const CLSID_CODECAPI_AVEncVideoInputChromaSubsampling = &CLSID_CODECAPI_AVEncVideoInputChromaSubsampling_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputChromaSubsampling_Value = @import("../zig.zig").Guid.initString("fa561c6c-7d17-44f0-83c9-32ed12e96343");
+const CLSID_CODECAPI_AVEncVideoOutputChromaSubsampling_Value = Guid.initString("fa561c6c-7d17-44f0-83c9-32ed12e96343");
 pub const CLSID_CODECAPI_AVEncVideoOutputChromaSubsampling = &CLSID_CODECAPI_AVEncVideoOutputChromaSubsampling_Value;
 
 pub const eAVEncVideoChromaSubsampling = enum(i32) {
@@ -8188,10 +8188,10 @@ pub const eAVEncVideoChromaSubsamplingFormat_Horizontally_Cosited = eAVEncVideoC
 pub const eAVEncVideoChromaSubsamplingFormat_Vertically_Cosited = eAVEncVideoChromaSubsampling.Vertically_Cosited;
 pub const eAVEncVideoChromaSubsamplingFormat_Vertically_AlignedChromaPlanes = eAVEncVideoChromaSubsampling.Vertically_AlignedChromaPlanes;
 
-const CLSID_CODECAPI_AVEncVideoInputColorPrimaries_Value = @import("../zig.zig").Guid.initString("c24d783f-7ce6-4278-90ab-28a4f1e5f86c");
+const CLSID_CODECAPI_AVEncVideoInputColorPrimaries_Value = Guid.initString("c24d783f-7ce6-4278-90ab-28a4f1e5f86c");
 pub const CLSID_CODECAPI_AVEncVideoInputColorPrimaries = &CLSID_CODECAPI_AVEncVideoInputColorPrimaries_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputColorPrimaries_Value = @import("../zig.zig").Guid.initString("be95907c-9d04-4921-8985-a6d6d87d1a6c");
+const CLSID_CODECAPI_AVEncVideoOutputColorPrimaries_Value = Guid.initString("be95907c-9d04-4921-8985-a6d6d87d1a6c");
 pub const CLSID_CODECAPI_AVEncVideoOutputColorPrimaries = &CLSID_CODECAPI_AVEncVideoOutputColorPrimaries_Value;
 
 pub const eAVEncVideoColorPrimaries = enum(i32) {
@@ -8215,10 +8215,10 @@ pub const eAVEncVideoColorPrimaries_SMPTE240M = eAVEncVideoColorPrimaries.SMPTE2
 pub const eAVEncVideoColorPrimaries_EBU3231 = eAVEncVideoColorPrimaries.EBU3231;
 pub const eAVEncVideoColorPrimaries_SMPTE_C = eAVEncVideoColorPrimaries.SMPTE_C;
 
-const CLSID_CODECAPI_AVEncVideoInputColorTransferFunction_Value = @import("../zig.zig").Guid.initString("8c056111-a9c3-4b08-a0a0-ce13f8a27c75");
+const CLSID_CODECAPI_AVEncVideoInputColorTransferFunction_Value = Guid.initString("8c056111-a9c3-4b08-a0a0-ce13f8a27c75");
 pub const CLSID_CODECAPI_AVEncVideoInputColorTransferFunction = &CLSID_CODECAPI_AVEncVideoInputColorTransferFunction_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputColorTransferFunction_Value = @import("../zig.zig").Guid.initString("4a7f884a-ea11-460d-bf57-b88bc75900de");
+const CLSID_CODECAPI_AVEncVideoOutputColorTransferFunction_Value = Guid.initString("4a7f884a-ea11-460d-bf57-b88bc75900de");
 pub const CLSID_CODECAPI_AVEncVideoOutputColorTransferFunction = &CLSID_CODECAPI_AVEncVideoOutputColorTransferFunction_Value;
 
 pub const eAVEncVideoColorTransferFunction = enum(i32) {
@@ -8242,10 +8242,10 @@ pub const eAVEncVideoColorTransferFunction_22_240M = eAVEncVideoColorTransferFun
 pub const eAVEncVideoColorTransferFunction_22_8bit_sRGB = eAVEncVideoColorTransferFunction.@"22_8bit_sRGB";
 pub const eAVEncVideoColorTransferFunction_28 = eAVEncVideoColorTransferFunction.@"28";
 
-const CLSID_CODECAPI_AVEncVideoInputColorTransferMatrix_Value = @import("../zig.zig").Guid.initString("52ed68b9-72d5-4089-958d-f5405d55081c");
+const CLSID_CODECAPI_AVEncVideoInputColorTransferMatrix_Value = Guid.initString("52ed68b9-72d5-4089-958d-f5405d55081c");
 pub const CLSID_CODECAPI_AVEncVideoInputColorTransferMatrix = &CLSID_CODECAPI_AVEncVideoInputColorTransferMatrix_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputColorTransferMatrix_Value = @import("../zig.zig").Guid.initString("a9b90444-af40-4310-8fbe-ed6d933f892b");
+const CLSID_CODECAPI_AVEncVideoOutputColorTransferMatrix_Value = Guid.initString("a9b90444-af40-4310-8fbe-ed6d933f892b");
 pub const CLSID_CODECAPI_AVEncVideoOutputColorTransferMatrix = &CLSID_CODECAPI_AVEncVideoOutputColorTransferMatrix_Value;
 
 pub const eAVEncVideoColorTransferMatrix = enum(i32) {
@@ -8259,10 +8259,10 @@ pub const eAVEncVideoColorTransferMatrix_BT709 = eAVEncVideoColorTransferMatrix.
 pub const eAVEncVideoColorTransferMatrix_BT601 = eAVEncVideoColorTransferMatrix.BT601;
 pub const eAVEncVideoColorTransferMatrix_SMPTE240M = eAVEncVideoColorTransferMatrix.SMPTE240M;
 
-const CLSID_CODECAPI_AVEncVideoInputColorLighting_Value = @import("../zig.zig").Guid.initString("46a99549-0015-4a45-9c30-1d5cfa258316");
+const CLSID_CODECAPI_AVEncVideoInputColorLighting_Value = Guid.initString("46a99549-0015-4a45-9c30-1d5cfa258316");
 pub const CLSID_CODECAPI_AVEncVideoInputColorLighting = &CLSID_CODECAPI_AVEncVideoInputColorLighting_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputColorLighting_Value = @import("../zig.zig").Guid.initString("0e5aaac6-ace6-4c5c-998e-1a8c9c6c0f89");
+const CLSID_CODECAPI_AVEncVideoOutputColorLighting_Value = Guid.initString("0e5aaac6-ace6-4c5c-998e-1a8c9c6c0f89");
 pub const CLSID_CODECAPI_AVEncVideoOutputColorLighting = &CLSID_CODECAPI_AVEncVideoOutputColorLighting_Value;
 
 pub const eAVEncVideoColorLighting = enum(i32) {
@@ -8280,10 +8280,10 @@ pub const eAVEncVideoColorLighting_Office = eAVEncVideoColorLighting.Office;
 pub const eAVEncVideoColorLighting_Dim = eAVEncVideoColorLighting.Dim;
 pub const eAVEncVideoColorLighting_Dark = eAVEncVideoColorLighting.Dark;
 
-const CLSID_CODECAPI_AVEncVideoInputColorNominalRange_Value = @import("../zig.zig").Guid.initString("16cf25c6-a2a6-48e9-ae80-21aec41d427e");
+const CLSID_CODECAPI_AVEncVideoInputColorNominalRange_Value = Guid.initString("16cf25c6-a2a6-48e9-ae80-21aec41d427e");
 pub const CLSID_CODECAPI_AVEncVideoInputColorNominalRange = &CLSID_CODECAPI_AVEncVideoInputColorNominalRange_Value;
 
-const CLSID_CODECAPI_AVEncVideoOutputColorNominalRange_Value = @import("../zig.zig").Guid.initString("972835ed-87b5-4e95-9500-c73958566e54");
+const CLSID_CODECAPI_AVEncVideoOutputColorNominalRange_Value = Guid.initString("972835ed-87b5-4e95-9500-c73958566e54");
 pub const CLSID_CODECAPI_AVEncVideoOutputColorNominalRange = &CLSID_CODECAPI_AVEncVideoOutputColorNominalRange_Value;
 
 pub const eAVEncVideoColorNominalRange = enum(i32) {
@@ -8297,7 +8297,7 @@ pub const eAVEncVideoColorNominalRange_0_255 = eAVEncVideoColorNominalRange.@"0_
 pub const eAVEncVideoColorNominalRange_16_235 = eAVEncVideoColorNominalRange.@"16_235";
 pub const eAVEncVideoColorNominalRange_48_208 = eAVEncVideoColorNominalRange.@"48_208";
 
-const CLSID_CODECAPI_AVEncInputVideoSystem_Value = @import("../zig.zig").Guid.initString("bede146d-b616-4dc7-92b2-f5d9fa9298f7");
+const CLSID_CODECAPI_AVEncInputVideoSystem_Value = Guid.initString("bede146d-b616-4dc7-92b2-f5d9fa9298f7");
 pub const CLSID_CODECAPI_AVEncInputVideoSystem = &CLSID_CODECAPI_AVEncInputVideoSystem_Value;
 
 pub const eAVEncInputVideoSystem = enum(i32) {
@@ -8317,37 +8317,37 @@ pub const eAVEncInputVideoSystem_MAC = eAVEncInputVideoSystem.MAC;
 pub const eAVEncInputVideoSystem_HDV = eAVEncInputVideoSystem.HDV;
 pub const eAVEncInputVideoSystem_Component = eAVEncInputVideoSystem.Component;
 
-const CLSID_CODECAPI_AVEncVideoHeaderDropFrame_Value = @import("../zig.zig").Guid.initString("6ed9e124-7925-43fe-971b-e019f62222b4");
+const CLSID_CODECAPI_AVEncVideoHeaderDropFrame_Value = Guid.initString("6ed9e124-7925-43fe-971b-e019f62222b4");
 pub const CLSID_CODECAPI_AVEncVideoHeaderDropFrame = &CLSID_CODECAPI_AVEncVideoHeaderDropFrame_Value;
 
-const CLSID_CODECAPI_AVEncVideoHeaderHours_Value = @import("../zig.zig").Guid.initString("2acc7702-e2da-4158-bf9b-88880129d740");
+const CLSID_CODECAPI_AVEncVideoHeaderHours_Value = Guid.initString("2acc7702-e2da-4158-bf9b-88880129d740");
 pub const CLSID_CODECAPI_AVEncVideoHeaderHours = &CLSID_CODECAPI_AVEncVideoHeaderHours_Value;
 
-const CLSID_CODECAPI_AVEncVideoHeaderMinutes_Value = @import("../zig.zig").Guid.initString("dc1a99ce-0307-408b-880b-b8348ee8ca7f");
+const CLSID_CODECAPI_AVEncVideoHeaderMinutes_Value = Guid.initString("dc1a99ce-0307-408b-880b-b8348ee8ca7f");
 pub const CLSID_CODECAPI_AVEncVideoHeaderMinutes = &CLSID_CODECAPI_AVEncVideoHeaderMinutes_Value;
 
-const CLSID_CODECAPI_AVEncVideoHeaderSeconds_Value = @import("../zig.zig").Guid.initString("4a2e1a05-a780-4f58-8120-9a449d69656b");
+const CLSID_CODECAPI_AVEncVideoHeaderSeconds_Value = Guid.initString("4a2e1a05-a780-4f58-8120-9a449d69656b");
 pub const CLSID_CODECAPI_AVEncVideoHeaderSeconds = &CLSID_CODECAPI_AVEncVideoHeaderSeconds_Value;
 
-const CLSID_CODECAPI_AVEncVideoHeaderFrames_Value = @import("../zig.zig").Guid.initString("afd5f567-5c1b-4adc-bdaf-735610381436");
+const CLSID_CODECAPI_AVEncVideoHeaderFrames_Value = Guid.initString("afd5f567-5c1b-4adc-bdaf-735610381436");
 pub const CLSID_CODECAPI_AVEncVideoHeaderFrames = &CLSID_CODECAPI_AVEncVideoHeaderFrames_Value;
 
-const CLSID_CODECAPI_AVEncVideoDefaultUpperFieldDominant_Value = @import("../zig.zig").Guid.initString("810167c4-0bc1-47ca-8fc2-57055a1474a5");
+const CLSID_CODECAPI_AVEncVideoDefaultUpperFieldDominant_Value = Guid.initString("810167c4-0bc1-47ca-8fc2-57055a1474a5");
 pub const CLSID_CODECAPI_AVEncVideoDefaultUpperFieldDominant = &CLSID_CODECAPI_AVEncVideoDefaultUpperFieldDominant_Value;
 
-const CLSID_CODECAPI_AVEncVideoCBRMotionTradeoff_Value = @import("../zig.zig").Guid.initString("0d49451e-18d5-4367-a4ef-3240df1693c4");
+const CLSID_CODECAPI_AVEncVideoCBRMotionTradeoff_Value = Guid.initString("0d49451e-18d5-4367-a4ef-3240df1693c4");
 pub const CLSID_CODECAPI_AVEncVideoCBRMotionTradeoff = &CLSID_CODECAPI_AVEncVideoCBRMotionTradeoff_Value;
 
-const CLSID_CODECAPI_AVEncVideoCodedVideoAccessUnitSize_Value = @import("../zig.zig").Guid.initString("b4b10c15-14a7-4ce8-b173-dc90a0b4fcdb");
+const CLSID_CODECAPI_AVEncVideoCodedVideoAccessUnitSize_Value = Guid.initString("b4b10c15-14a7-4ce8-b173-dc90a0b4fcdb");
 pub const CLSID_CODECAPI_AVEncVideoCodedVideoAccessUnitSize = &CLSID_CODECAPI_AVEncVideoCodedVideoAccessUnitSize_Value;
 
-const CLSID_CODECAPI_AVEncVideoMaxKeyframeDistance_Value = @import("../zig.zig").Guid.initString("2987123a-ba93-4704-b489-ec1e5f25292c");
+const CLSID_CODECAPI_AVEncVideoMaxKeyframeDistance_Value = Guid.initString("2987123a-ba93-4704-b489-ec1e5f25292c");
 pub const CLSID_CODECAPI_AVEncVideoMaxKeyframeDistance = &CLSID_CODECAPI_AVEncVideoMaxKeyframeDistance_Value;
 
-const CLSID_CODECAPI_AVEncH264CABACEnable_Value = @import("../zig.zig").Guid.initString("ee6cad62-d305-4248-a50e-e1b255f7caf8");
+const CLSID_CODECAPI_AVEncH264CABACEnable_Value = Guid.initString("ee6cad62-d305-4248-a50e-e1b255f7caf8");
 pub const CLSID_CODECAPI_AVEncH264CABACEnable = &CLSID_CODECAPI_AVEncH264CABACEnable_Value;
 
-const CLSID_CODECAPI_AVEncVideoContentType_Value = @import("../zig.zig").Guid.initString("66117aca-eb77-459d-930c-a48d9d0683fc");
+const CLSID_CODECAPI_AVEncVideoContentType_Value = Guid.initString("66117aca-eb77-459d-930c-a48d9d0683fc");
 pub const CLSID_CODECAPI_AVEncVideoContentType = &CLSID_CODECAPI_AVEncVideoContentType_Value;
 
 pub const eAVEncVideoContentType = enum(i32) {
@@ -8357,76 +8357,76 @@ pub const eAVEncVideoContentType = enum(i32) {
 pub const eAVEncVideoContentType_Unknown = eAVEncVideoContentType.Unknown;
 pub const eAVEncVideoContentType_FixedCameraAngle = eAVEncVideoContentType.FixedCameraAngle;
 
-const CLSID_CODECAPI_AVEncNumWorkerThreads_Value = @import("../zig.zig").Guid.initString("b0c8bf60-16f7-4951-a30b-1db1609293d6");
+const CLSID_CODECAPI_AVEncNumWorkerThreads_Value = Guid.initString("b0c8bf60-16f7-4951-a30b-1db1609293d6");
 pub const CLSID_CODECAPI_AVEncNumWorkerThreads = &CLSID_CODECAPI_AVEncNumWorkerThreads_Value;
 
-const CLSID_CODECAPI_AVEncVideoEncodeQP_Value = @import("../zig.zig").Guid.initString("2cb5696b-23fb-4ce1-a0f9-ef5b90fd55ca");
+const CLSID_CODECAPI_AVEncVideoEncodeQP_Value = Guid.initString("2cb5696b-23fb-4ce1-a0f9-ef5b90fd55ca");
 pub const CLSID_CODECAPI_AVEncVideoEncodeQP = &CLSID_CODECAPI_AVEncVideoEncodeQP_Value;
 
-const CLSID_CODECAPI_AVEncVideoMinQP_Value = @import("../zig.zig").Guid.initString("0ee22c6a-a37c-4568-b5f1-9d4c2b3ab886");
+const CLSID_CODECAPI_AVEncVideoMinQP_Value = Guid.initString("0ee22c6a-a37c-4568-b5f1-9d4c2b3ab886");
 pub const CLSID_CODECAPI_AVEncVideoMinQP = &CLSID_CODECAPI_AVEncVideoMinQP_Value;
 
-const CLSID_CODECAPI_AVEncVideoForceKeyFrame_Value = @import("../zig.zig").Guid.initString("398c1b98-8353-475a-9ef2-8f265d260345");
+const CLSID_CODECAPI_AVEncVideoForceKeyFrame_Value = Guid.initString("398c1b98-8353-475a-9ef2-8f265d260345");
 pub const CLSID_CODECAPI_AVEncVideoForceKeyFrame = &CLSID_CODECAPI_AVEncVideoForceKeyFrame_Value;
 
-const CLSID_CODECAPI_AVEncH264SPSID_Value = @import("../zig.zig").Guid.initString("50f38f51-2b79-40e3-b39c-7e9fa0770501");
+const CLSID_CODECAPI_AVEncH264SPSID_Value = Guid.initString("50f38f51-2b79-40e3-b39c-7e9fa0770501");
 pub const CLSID_CODECAPI_AVEncH264SPSID = &CLSID_CODECAPI_AVEncH264SPSID_Value;
 
-const CLSID_CODECAPI_AVEncH264PPSID_Value = @import("../zig.zig").Guid.initString("bfe29ec2-056c-4d68-a38d-ae5944c8582e");
+const CLSID_CODECAPI_AVEncH264PPSID_Value = Guid.initString("bfe29ec2-056c-4d68-a38d-ae5944c8582e");
 pub const CLSID_CODECAPI_AVEncH264PPSID = &CLSID_CODECAPI_AVEncH264PPSID_Value;
 
-const CLSID_CODECAPI_AVEncAdaptiveMode_Value = @import("../zig.zig").Guid.initString("4419b185-da1f-4f53-bc76-097d0c1efb1e");
+const CLSID_CODECAPI_AVEncAdaptiveMode_Value = Guid.initString("4419b185-da1f-4f53-bc76-097d0c1efb1e");
 pub const CLSID_CODECAPI_AVEncAdaptiveMode = &CLSID_CODECAPI_AVEncAdaptiveMode_Value;
 
-const CLSID_CODECAPI_AVScenarioInfo_Value = @import("../zig.zig").Guid.initString("b28a6e64-3ff9-446a-8a4b-0d7a53413236");
+const CLSID_CODECAPI_AVScenarioInfo_Value = Guid.initString("b28a6e64-3ff9-446a-8a4b-0d7a53413236");
 pub const CLSID_CODECAPI_AVScenarioInfo = &CLSID_CODECAPI_AVScenarioInfo_Value;
 
-const CLSID_CODECAPI_AVEncMPVGOPSizeMin_Value = @import("../zig.zig").Guid.initString("7155cf20-d440-4852-ad0f-9c4abfe37a6a");
+const CLSID_CODECAPI_AVEncMPVGOPSizeMin_Value = Guid.initString("7155cf20-d440-4852-ad0f-9c4abfe37a6a");
 pub const CLSID_CODECAPI_AVEncMPVGOPSizeMin = &CLSID_CODECAPI_AVEncMPVGOPSizeMin_Value;
 
-const CLSID_CODECAPI_AVEncMPVGOPSizeMax_Value = @import("../zig.zig").Guid.initString("fe7de4c4-1936-4fe2-bdf7-1f18ca1d001f");
+const CLSID_CODECAPI_AVEncMPVGOPSizeMax_Value = Guid.initString("fe7de4c4-1936-4fe2-bdf7-1f18ca1d001f");
 pub const CLSID_CODECAPI_AVEncMPVGOPSizeMax = &CLSID_CODECAPI_AVEncMPVGOPSizeMax_Value;
 
-const CLSID_CODECAPI_AVEncVideoMaxCTBSize_Value = @import("../zig.zig").Guid.initString("822363ff-cec8-43e5-92fd-e097488485e9");
+const CLSID_CODECAPI_AVEncVideoMaxCTBSize_Value = Guid.initString("822363ff-cec8-43e5-92fd-e097488485e9");
 pub const CLSID_CODECAPI_AVEncVideoMaxCTBSize = &CLSID_CODECAPI_AVEncVideoMaxCTBSize_Value;
 
-const CLSID_CODECAPI_AVEncVideoCTBSize_Value = @import("../zig.zig").Guid.initString("d47db8b2-e73b-4cb9-8c3e-bd877d06d77b");
+const CLSID_CODECAPI_AVEncVideoCTBSize_Value = Guid.initString("d47db8b2-e73b-4cb9-8c3e-bd877d06d77b");
 pub const CLSID_CODECAPI_AVEncVideoCTBSize = &CLSID_CODECAPI_AVEncVideoCTBSize_Value;
 
-const CLSID_CODECAPI_VideoEncoderDisplayContentType_Value = @import("../zig.zig").Guid.initString("79b90b27-f4b1-42dc-9dd7-cdaf8135c400");
+const CLSID_CODECAPI_VideoEncoderDisplayContentType_Value = Guid.initString("79b90b27-f4b1-42dc-9dd7-cdaf8135c400");
 pub const CLSID_CODECAPI_VideoEncoderDisplayContentType = &CLSID_CODECAPI_VideoEncoderDisplayContentType_Value;
 
-const CLSID_CODECAPI_AVEncEnableVideoProcessing_Value = @import("../zig.zig").Guid.initString("006f4bf6-0ea3-4d42-8702-b5d8be0f7a92");
+const CLSID_CODECAPI_AVEncEnableVideoProcessing_Value = Guid.initString("006f4bf6-0ea3-4d42-8702-b5d8be0f7a92");
 pub const CLSID_CODECAPI_AVEncEnableVideoProcessing = &CLSID_CODECAPI_AVEncEnableVideoProcessing_Value;
 
-const CLSID_CODECAPI_AVEncVideoGradualIntraRefresh_Value = @import("../zig.zig").Guid.initString("8f347dee-cb0d-49ba-b462-db6927ee2101");
+const CLSID_CODECAPI_AVEncVideoGradualIntraRefresh_Value = Guid.initString("8f347dee-cb0d-49ba-b462-db6927ee2101");
 pub const CLSID_CODECAPI_AVEncVideoGradualIntraRefresh = &CLSID_CODECAPI_AVEncVideoGradualIntraRefresh_Value;
 
-const CLSID_CODECAPI_GetOPMContext_Value = @import("../zig.zig").Guid.initString("2f036c05-4c14-4689-8839-294c6d73e053");
+const CLSID_CODECAPI_GetOPMContext_Value = Guid.initString("2f036c05-4c14-4689-8839-294c6d73e053");
 pub const CLSID_CODECAPI_GetOPMContext = &CLSID_CODECAPI_GetOPMContext_Value;
 
-const CLSID_CODECAPI_SetHDCPManagerContext_Value = @import("../zig.zig").Guid.initString("6d2d1fc8-3dc9-47eb-a1a2-471c80cd60d0");
+const CLSID_CODECAPI_SetHDCPManagerContext_Value = Guid.initString("6d2d1fc8-3dc9-47eb-a1a2-471c80cd60d0");
 pub const CLSID_CODECAPI_SetHDCPManagerContext = &CLSID_CODECAPI_SetHDCPManagerContext_Value;
 
-const CLSID_CODECAPI_AVEncVideoMaxTemporalLayers_Value = @import("../zig.zig").Guid.initString("9c668cfe-08e1-424a-934e-b764b064802a");
+const CLSID_CODECAPI_AVEncVideoMaxTemporalLayers_Value = Guid.initString("9c668cfe-08e1-424a-934e-b764b064802a");
 pub const CLSID_CODECAPI_AVEncVideoMaxTemporalLayers = &CLSID_CODECAPI_AVEncVideoMaxTemporalLayers_Value;
 
-const CLSID_CODECAPI_AVEncVideoNumGOPsPerIDR_Value = @import("../zig.zig").Guid.initString("83bc5bdb-5b89-4521-8f66-33151c373176");
+const CLSID_CODECAPI_AVEncVideoNumGOPsPerIDR_Value = Guid.initString("83bc5bdb-5b89-4521-8f66-33151c373176");
 pub const CLSID_CODECAPI_AVEncVideoNumGOPsPerIDR = &CLSID_CODECAPI_AVEncVideoNumGOPsPerIDR_Value;
 
-const CLSID_CODECAPI_AVEncCommonAllowFrameDrops_Value = @import("../zig.zig").Guid.initString("d8477dcb-9598-48e3-8d0c-752bf206093e");
+const CLSID_CODECAPI_AVEncCommonAllowFrameDrops_Value = Guid.initString("d8477dcb-9598-48e3-8d0c-752bf206093e");
 pub const CLSID_CODECAPI_AVEncCommonAllowFrameDrops = &CLSID_CODECAPI_AVEncCommonAllowFrameDrops_Value;
 
-const CLSID_CODECAPI_AVEncVideoIntraLayerPrediction_Value = @import("../zig.zig").Guid.initString("d3af46b8-bf47-44bb-a283-69f0b0228ff9");
+const CLSID_CODECAPI_AVEncVideoIntraLayerPrediction_Value = Guid.initString("d3af46b8-bf47-44bb-a283-69f0b0228ff9");
 pub const CLSID_CODECAPI_AVEncVideoIntraLayerPrediction = &CLSID_CODECAPI_AVEncVideoIntraLayerPrediction_Value;
 
-const CLSID_CODECAPI_AVEncVideoInstantTemporalUpSwitching_Value = @import("../zig.zig").Guid.initString("a3308307-0d96-4ba4-b1f0-b91a5e49df10");
+const CLSID_CODECAPI_AVEncVideoInstantTemporalUpSwitching_Value = Guid.initString("a3308307-0d96-4ba4-b1f0-b91a5e49df10");
 pub const CLSID_CODECAPI_AVEncVideoInstantTemporalUpSwitching = &CLSID_CODECAPI_AVEncVideoInstantTemporalUpSwitching_Value;
 
-const CLSID_CODECAPI_AVEncLowPowerEncoder_Value = @import("../zig.zig").Guid.initString("b668d582-8bad-4f6a-9141-375a95358b6d");
+const CLSID_CODECAPI_AVEncLowPowerEncoder_Value = Guid.initString("b668d582-8bad-4f6a-9141-375a95358b6d");
 pub const CLSID_CODECAPI_AVEncLowPowerEncoder = &CLSID_CODECAPI_AVEncLowPowerEncoder_Value;
 
-const CLSID_CODECAPI_AVEnableInLoopDeblockFilter_Value = @import("../zig.zig").Guid.initString("d2e8e399-0623-4bf3-92a8-4d1818529ded");
+const CLSID_CODECAPI_AVEnableInLoopDeblockFilter_Value = Guid.initString("d2e8e399-0623-4bf3-92a8-4d1818529ded");
 pub const CLSID_CODECAPI_AVEnableInLoopDeblockFilter = &CLSID_CODECAPI_AVEnableInLoopDeblockFilter_Value;
 
 pub const eAVEncAdaptiveMode = enum(i32) {
@@ -8462,61 +8462,61 @@ pub const eVideoEncoderDisplayContentType = enum(i32) {
 pub const eVideoEncoderDisplayContent_Unknown = eVideoEncoderDisplayContentType.Unknown;
 pub const eVideoEncoderDisplayContent_FullScreenVideo = eVideoEncoderDisplayContentType.FullScreenVideo;
 
-const CLSID_CODECAPI_AVEncVideoSelectLayer_Value = @import("../zig.zig").Guid.initString("eb1084f5-6aaa-4914-bb2f-6147227f12e7");
+const CLSID_CODECAPI_AVEncVideoSelectLayer_Value = Guid.initString("eb1084f5-6aaa-4914-bb2f-6147227f12e7");
 pub const CLSID_CODECAPI_AVEncVideoSelectLayer = &CLSID_CODECAPI_AVEncVideoSelectLayer_Value;
 
-const CLSID_CODECAPI_AVEncVideoTemporalLayerCount_Value = @import("../zig.zig").Guid.initString("19caebff-b74d-4cfd-8c27-c2f9d97d5f52");
+const CLSID_CODECAPI_AVEncVideoTemporalLayerCount_Value = Guid.initString("19caebff-b74d-4cfd-8c27-c2f9d97d5f52");
 pub const CLSID_CODECAPI_AVEncVideoTemporalLayerCount = &CLSID_CODECAPI_AVEncVideoTemporalLayerCount_Value;
 
-const CLSID_CODECAPI_AVEncVideoUsage_Value = @import("../zig.zig").Guid.initString("1f636849-5dc1-49f1-b1d8-ce3cf62ea385");
+const CLSID_CODECAPI_AVEncVideoUsage_Value = Guid.initString("1f636849-5dc1-49f1-b1d8-ce3cf62ea385");
 pub const CLSID_CODECAPI_AVEncVideoUsage = &CLSID_CODECAPI_AVEncVideoUsage_Value;
 
-const CLSID_CODECAPI_AVEncVideoRateControlParams_Value = @import("../zig.zig").Guid.initString("87d43767-7645-44ec-b438-d3322fbca29f");
+const CLSID_CODECAPI_AVEncVideoRateControlParams_Value = Guid.initString("87d43767-7645-44ec-b438-d3322fbca29f");
 pub const CLSID_CODECAPI_AVEncVideoRateControlParams = &CLSID_CODECAPI_AVEncVideoRateControlParams_Value;
 
-const CLSID_CODECAPI_AVEncVideoSupportedControls_Value = @import("../zig.zig").Guid.initString("d3f40fdd-77b9-473d-8196-061259e69cff");
+const CLSID_CODECAPI_AVEncVideoSupportedControls_Value = Guid.initString("d3f40fdd-77b9-473d-8196-061259e69cff");
 pub const CLSID_CODECAPI_AVEncVideoSupportedControls = &CLSID_CODECAPI_AVEncVideoSupportedControls_Value;
 
-const CLSID_CODECAPI_AVEncVideoEncodeFrameTypeQP_Value = @import("../zig.zig").Guid.initString("aa70b610-e03f-450c-ad07-07314e639ce7");
+const CLSID_CODECAPI_AVEncVideoEncodeFrameTypeQP_Value = Guid.initString("aa70b610-e03f-450c-ad07-07314e639ce7");
 pub const CLSID_CODECAPI_AVEncVideoEncodeFrameTypeQP = &CLSID_CODECAPI_AVEncVideoEncodeFrameTypeQP_Value;
 
-const CLSID_CODECAPI_AVEncSliceControlMode_Value = @import("../zig.zig").Guid.initString("e9e782ef-5f18-44c9-a90b-e9c3c2c17b0b");
+const CLSID_CODECAPI_AVEncSliceControlMode_Value = Guid.initString("e9e782ef-5f18-44c9-a90b-e9c3c2c17b0b");
 pub const CLSID_CODECAPI_AVEncSliceControlMode = &CLSID_CODECAPI_AVEncSliceControlMode_Value;
 
-const CLSID_CODECAPI_AVEncSliceControlSize_Value = @import("../zig.zig").Guid.initString("92f51df3-07a5-4172-aefe-c69ca3b60e35");
+const CLSID_CODECAPI_AVEncSliceControlSize_Value = Guid.initString("92f51df3-07a5-4172-aefe-c69ca3b60e35");
 pub const CLSID_CODECAPI_AVEncSliceControlSize = &CLSID_CODECAPI_AVEncSliceControlSize_Value;
 
-const CLSID_CODECAPI_AVEncSliceGenerationMode_Value = @import("../zig.zig").Guid.initString("8a6bc67f-9497-4286-b46b-02db8d60edbc");
+const CLSID_CODECAPI_AVEncSliceGenerationMode_Value = Guid.initString("8a6bc67f-9497-4286-b46b-02db8d60edbc");
 pub const CLSID_CODECAPI_AVEncSliceGenerationMode = &CLSID_CODECAPI_AVEncSliceGenerationMode_Value;
 
-const CLSID_CODECAPI_AVEncVideoMaxNumRefFrame_Value = @import("../zig.zig").Guid.initString("964829ed-94f9-43b4-b74d-ef40944b69a0");
+const CLSID_CODECAPI_AVEncVideoMaxNumRefFrame_Value = Guid.initString("964829ed-94f9-43b4-b74d-ef40944b69a0");
 pub const CLSID_CODECAPI_AVEncVideoMaxNumRefFrame = &CLSID_CODECAPI_AVEncVideoMaxNumRefFrame_Value;
 
-const CLSID_CODECAPI_AVEncVideoMeanAbsoluteDifference_Value = @import("../zig.zig").Guid.initString("e5c0c10f-81a4-422d-8c3f-b474a4581336");
+const CLSID_CODECAPI_AVEncVideoMeanAbsoluteDifference_Value = Guid.initString("e5c0c10f-81a4-422d-8c3f-b474a4581336");
 pub const CLSID_CODECAPI_AVEncVideoMeanAbsoluteDifference = &CLSID_CODECAPI_AVEncVideoMeanAbsoluteDifference_Value;
 
-const CLSID_CODECAPI_AVEncVideoMaxQP_Value = @import("../zig.zig").Guid.initString("3daf6f66-a6a7-45e0-a8e5-f2743f46a3a2");
+const CLSID_CODECAPI_AVEncVideoMaxQP_Value = Guid.initString("3daf6f66-a6a7-45e0-a8e5-f2743f46a3a2");
 pub const CLSID_CODECAPI_AVEncVideoMaxQP = &CLSID_CODECAPI_AVEncVideoMaxQP_Value;
 
-const CLSID_CODECAPI_AVEncVideoLTRBufferControl_Value = @import("../zig.zig").Guid.initString("a4a0e93d-4cbc-444c-89f4-826d310e92a7");
+const CLSID_CODECAPI_AVEncVideoLTRBufferControl_Value = Guid.initString("a4a0e93d-4cbc-444c-89f4-826d310e92a7");
 pub const CLSID_CODECAPI_AVEncVideoLTRBufferControl = &CLSID_CODECAPI_AVEncVideoLTRBufferControl_Value;
 
-const CLSID_CODECAPI_AVEncVideoMarkLTRFrame_Value = @import("../zig.zig").Guid.initString("e42f4748-a06d-4ef9-8cea-3d05fde3bd3b");
+const CLSID_CODECAPI_AVEncVideoMarkLTRFrame_Value = Guid.initString("e42f4748-a06d-4ef9-8cea-3d05fde3bd3b");
 pub const CLSID_CODECAPI_AVEncVideoMarkLTRFrame = &CLSID_CODECAPI_AVEncVideoMarkLTRFrame_Value;
 
-const CLSID_CODECAPI_AVEncVideoUseLTRFrame_Value = @import("../zig.zig").Guid.initString("00752db8-55f7-4f80-895b-27639195f2ad");
+const CLSID_CODECAPI_AVEncVideoUseLTRFrame_Value = Guid.initString("00752db8-55f7-4f80-895b-27639195f2ad");
 pub const CLSID_CODECAPI_AVEncVideoUseLTRFrame = &CLSID_CODECAPI_AVEncVideoUseLTRFrame_Value;
 
-const CLSID_CODECAPI_AVEncVideoROIEnabled_Value = @import("../zig.zig").Guid.initString("d74f7f18-44dd-4b85-aba3-05d9f42a8280");
+const CLSID_CODECAPI_AVEncVideoROIEnabled_Value = Guid.initString("d74f7f18-44dd-4b85-aba3-05d9f42a8280");
 pub const CLSID_CODECAPI_AVEncVideoROIEnabled = &CLSID_CODECAPI_AVEncVideoROIEnabled_Value;
 
-const CLSID_CODECAPI_AVEncVideoDirtyRectEnabled_Value = @import("../zig.zig").Guid.initString("8acb8fdd-5e0c-4c66-8729-b8f629ab04fb");
+const CLSID_CODECAPI_AVEncVideoDirtyRectEnabled_Value = Guid.initString("8acb8fdd-5e0c-4c66-8729-b8f629ab04fb");
 pub const CLSID_CODECAPI_AVEncVideoDirtyRectEnabled = &CLSID_CODECAPI_AVEncVideoDirtyRectEnabled_Value;
 
-const CLSID_CODECAPI_AVEncMaxFrameRate_Value = @import("../zig.zig").Guid.initString("b98e1b31-19fa-4d4f-9931-d6a5b8aab93c");
+const CLSID_CODECAPI_AVEncMaxFrameRate_Value = Guid.initString("b98e1b31-19fa-4d4f-9931-d6a5b8aab93c");
 pub const CLSID_CODECAPI_AVEncMaxFrameRate = &CLSID_CODECAPI_AVEncMaxFrameRate_Value;
 
-const CLSID_CODECAPI_AVEncMuxOutputStreamType_Value = @import("../zig.zig").Guid.initString("cedd9e8f-34d3-44db-a1d8-f81520254f3e");
+const CLSID_CODECAPI_AVEncMuxOutputStreamType_Value = Guid.initString("cedd9e8f-34d3-44db-a1d8-f81520254f3e");
 pub const CLSID_CODECAPI_AVEncMuxOutputStreamType = &CLSID_CODECAPI_AVEncMuxOutputStreamType_Value;
 
 pub const eAVEncMuxOutput = enum(i32) {
@@ -8528,22 +8528,22 @@ pub const eAVEncMuxOutputAuto = eAVEncMuxOutput.Auto;
 pub const eAVEncMuxOutputPS = eAVEncMuxOutput.PS;
 pub const eAVEncMuxOutputTS = eAVEncMuxOutput.TS;
 
-const CLSID_CODECAPI_AVEncStatVideoOutputFrameRate_Value = @import("../zig.zig").Guid.initString("be747849-9ab4-4a63-98fe-f143f04f8ee9");
+const CLSID_CODECAPI_AVEncStatVideoOutputFrameRate_Value = Guid.initString("be747849-9ab4-4a63-98fe-f143f04f8ee9");
 pub const CLSID_CODECAPI_AVEncStatVideoOutputFrameRate = &CLSID_CODECAPI_AVEncStatVideoOutputFrameRate_Value;
 
-const CLSID_CODECAPI_AVEncStatVideoCodedFrames_Value = @import("../zig.zig").Guid.initString("d47f8d61-6f5a-4a26-bb9f-cd9518462bcd");
+const CLSID_CODECAPI_AVEncStatVideoCodedFrames_Value = Guid.initString("d47f8d61-6f5a-4a26-bb9f-cd9518462bcd");
 pub const CLSID_CODECAPI_AVEncStatVideoCodedFrames = &CLSID_CODECAPI_AVEncStatVideoCodedFrames_Value;
 
-const CLSID_CODECAPI_AVEncStatVideoTotalFrames_Value = @import("../zig.zig").Guid.initString("fdaa9916-119a-4222-9ad6-3f7cab99cc8b");
+const CLSID_CODECAPI_AVEncStatVideoTotalFrames_Value = Guid.initString("fdaa9916-119a-4222-9ad6-3f7cab99cc8b");
 pub const CLSID_CODECAPI_AVEncStatVideoTotalFrames = &CLSID_CODECAPI_AVEncStatVideoTotalFrames_Value;
 
-const CLSID_CODECAPI_AVEncAudioIntervalToEncode_Value = @import("../zig.zig").Guid.initString("866e4b4d-725a-467c-bb01-b496b23b25f9");
+const CLSID_CODECAPI_AVEncAudioIntervalToEncode_Value = Guid.initString("866e4b4d-725a-467c-bb01-b496b23b25f9");
 pub const CLSID_CODECAPI_AVEncAudioIntervalToEncode = &CLSID_CODECAPI_AVEncAudioIntervalToEncode_Value;
 
-const CLSID_CODECAPI_AVEncAudioIntervalToSkip_Value = @import("../zig.zig").Guid.initString("88c15f94-c38c-4796-a9e8-96e967983f26");
+const CLSID_CODECAPI_AVEncAudioIntervalToSkip_Value = Guid.initString("88c15f94-c38c-4796-a9e8-96e967983f26");
 pub const CLSID_CODECAPI_AVEncAudioIntervalToSkip = &CLSID_CODECAPI_AVEncAudioIntervalToSkip_Value;
 
-const CLSID_CODECAPI_AVEncAudioDualMono_Value = @import("../zig.zig").Guid.initString("3648126b-a3e8-4329-9b3a-5ce566a43bd3");
+const CLSID_CODECAPI_AVEncAudioDualMono_Value = Guid.initString("3648126b-a3e8-4329-9b3a-5ce566a43bd3");
 pub const CLSID_CODECAPI_AVEncAudioDualMono = &CLSID_CODECAPI_AVEncAudioDualMono_Value;
 
 pub const eAVEncAudioDualMono = enum(i32) {
@@ -8555,58 +8555,58 @@ pub const eAVEncAudioDualMono_SameAsInput = eAVEncAudioDualMono.SameAsInput;
 pub const eAVEncAudioDualMono_Off = eAVEncAudioDualMono.Off;
 pub const eAVEncAudioDualMono_On = eAVEncAudioDualMono.On;
 
-const CLSID_CODECAPI_AVEncAudioMeanBitRate_Value = @import("../zig.zig").Guid.initString("921295bb-4fca-4679-aab8-9e2a1d753384");
+const CLSID_CODECAPI_AVEncAudioMeanBitRate_Value = Guid.initString("921295bb-4fca-4679-aab8-9e2a1d753384");
 pub const CLSID_CODECAPI_AVEncAudioMeanBitRate = &CLSID_CODECAPI_AVEncAudioMeanBitRate_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel0_Value = @import("../zig.zig").Guid.initString("bc5d0b60-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel0_Value = Guid.initString("bc5d0b60-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel0 = &CLSID_CODECAPI_AVEncAudioMapDestChannel0_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel1_Value = @import("../zig.zig").Guid.initString("bc5d0b61-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel1_Value = Guid.initString("bc5d0b61-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel1 = &CLSID_CODECAPI_AVEncAudioMapDestChannel1_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel2_Value = @import("../zig.zig").Guid.initString("bc5d0b62-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel2_Value = Guid.initString("bc5d0b62-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel2 = &CLSID_CODECAPI_AVEncAudioMapDestChannel2_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel3_Value = @import("../zig.zig").Guid.initString("bc5d0b63-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel3_Value = Guid.initString("bc5d0b63-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel3 = &CLSID_CODECAPI_AVEncAudioMapDestChannel3_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel4_Value = @import("../zig.zig").Guid.initString("bc5d0b64-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel4_Value = Guid.initString("bc5d0b64-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel4 = &CLSID_CODECAPI_AVEncAudioMapDestChannel4_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel5_Value = @import("../zig.zig").Guid.initString("bc5d0b65-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel5_Value = Guid.initString("bc5d0b65-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel5 = &CLSID_CODECAPI_AVEncAudioMapDestChannel5_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel6_Value = @import("../zig.zig").Guid.initString("bc5d0b66-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel6_Value = Guid.initString("bc5d0b66-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel6 = &CLSID_CODECAPI_AVEncAudioMapDestChannel6_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel7_Value = @import("../zig.zig").Guid.initString("bc5d0b67-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel7_Value = Guid.initString("bc5d0b67-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel7 = &CLSID_CODECAPI_AVEncAudioMapDestChannel7_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel8_Value = @import("../zig.zig").Guid.initString("bc5d0b68-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel8_Value = Guid.initString("bc5d0b68-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel8 = &CLSID_CODECAPI_AVEncAudioMapDestChannel8_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel9_Value = @import("../zig.zig").Guid.initString("bc5d0b69-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel9_Value = Guid.initString("bc5d0b69-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel9 = &CLSID_CODECAPI_AVEncAudioMapDestChannel9_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel10_Value = @import("../zig.zig").Guid.initString("bc5d0b6a-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel10_Value = Guid.initString("bc5d0b6a-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel10 = &CLSID_CODECAPI_AVEncAudioMapDestChannel10_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel11_Value = @import("../zig.zig").Guid.initString("bc5d0b6b-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel11_Value = Guid.initString("bc5d0b6b-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel11 = &CLSID_CODECAPI_AVEncAudioMapDestChannel11_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel12_Value = @import("../zig.zig").Guid.initString("bc5d0b6c-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel12_Value = Guid.initString("bc5d0b6c-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel12 = &CLSID_CODECAPI_AVEncAudioMapDestChannel12_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel13_Value = @import("../zig.zig").Guid.initString("bc5d0b6d-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel13_Value = Guid.initString("bc5d0b6d-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel13 = &CLSID_CODECAPI_AVEncAudioMapDestChannel13_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel14_Value = @import("../zig.zig").Guid.initString("bc5d0b6e-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel14_Value = Guid.initString("bc5d0b6e-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel14 = &CLSID_CODECAPI_AVEncAudioMapDestChannel14_Value;
 
-const CLSID_CODECAPI_AVEncAudioMapDestChannel15_Value = @import("../zig.zig").Guid.initString("bc5d0b6f-df6a-4e16-9803-b82007a30c8d");
+const CLSID_CODECAPI_AVEncAudioMapDestChannel15_Value = Guid.initString("bc5d0b6f-df6a-4e16-9803-b82007a30c8d");
 pub const CLSID_CODECAPI_AVEncAudioMapDestChannel15 = &CLSID_CODECAPI_AVEncAudioMapDestChannel15_Value;
 
-const CLSID_CODECAPI_AVEncAudioInputContent_Value = @import("../zig.zig").Guid.initString("3e226c2b-60b9-4a39-b00b-a7b40f70d566");
+const CLSID_CODECAPI_AVEncAudioInputContent_Value = Guid.initString("3e226c2b-60b9-4a39-b00b-a7b40f70d566");
 pub const CLSID_CODECAPI_AVEncAudioInputContent = &CLSID_CODECAPI_AVEncAudioInputContent_Value;
 
 pub const eAVEncAudioInputContent = enum(i32) {
@@ -8618,34 +8618,34 @@ pub const AVEncAudioInputContent_Unknown = eAVEncAudioInputContent.Unknown;
 pub const AVEncAudioInputContent_Voice = eAVEncAudioInputContent.Voice;
 pub const AVEncAudioInputContent_Music = eAVEncAudioInputContent.Music;
 
-const CLSID_CODECAPI_AVEncStatAudioPeakPCMValue_Value = @import("../zig.zig").Guid.initString("dce7fd34-dc00-4c16-821b-35d9eb00fb1a");
+const CLSID_CODECAPI_AVEncStatAudioPeakPCMValue_Value = Guid.initString("dce7fd34-dc00-4c16-821b-35d9eb00fb1a");
 pub const CLSID_CODECAPI_AVEncStatAudioPeakPCMValue = &CLSID_CODECAPI_AVEncStatAudioPeakPCMValue_Value;
 
-const CLSID_CODECAPI_AVEncStatAudioAveragePCMValue_Value = @import("../zig.zig").Guid.initString("979272f8-d17f-4e32-bb73-4e731c68ba2d");
+const CLSID_CODECAPI_AVEncStatAudioAveragePCMValue_Value = Guid.initString("979272f8-d17f-4e32-bb73-4e731c68ba2d");
 pub const CLSID_CODECAPI_AVEncStatAudioAveragePCMValue = &CLSID_CODECAPI_AVEncStatAudioAveragePCMValue_Value;
 
-const CLSID_CODECAPI_AVEncStatAudioAverageBPS_Value = @import("../zig.zig").Guid.initString("ca6724db-7059-4351-8b43-f82198826a14");
+const CLSID_CODECAPI_AVEncStatAudioAverageBPS_Value = Guid.initString("ca6724db-7059-4351-8b43-f82198826a14");
 pub const CLSID_CODECAPI_AVEncStatAudioAverageBPS = &CLSID_CODECAPI_AVEncStatAudioAverageBPS_Value;
 
-const CLSID_CODECAPI_AVEncStatAverageBPS_Value = @import("../zig.zig").Guid.initString("ca6724db-7059-4351-8b43-f82198826a14");
+const CLSID_CODECAPI_AVEncStatAverageBPS_Value = Guid.initString("ca6724db-7059-4351-8b43-f82198826a14");
 pub const CLSID_CODECAPI_AVEncStatAverageBPS = &CLSID_CODECAPI_AVEncStatAverageBPS_Value;
 
-const CLSID_CODECAPI_AVEncStatHardwareProcessorUtilitization_Value = @import("../zig.zig").Guid.initString("995dc027-cb95-49e6-b91b-5967753cdcb8");
+const CLSID_CODECAPI_AVEncStatHardwareProcessorUtilitization_Value = Guid.initString("995dc027-cb95-49e6-b91b-5967753cdcb8");
 pub const CLSID_CODECAPI_AVEncStatHardwareProcessorUtilitization = &CLSID_CODECAPI_AVEncStatHardwareProcessorUtilitization_Value;
 
-const CLSID_CODECAPI_AVEncStatHardwareBandwidthUtilitization_Value = @import("../zig.zig").Guid.initString("0124ba9b-dc41-4826-b45f-18ac01b3d5a8");
+const CLSID_CODECAPI_AVEncStatHardwareBandwidthUtilitization_Value = Guid.initString("0124ba9b-dc41-4826-b45f-18ac01b3d5a8");
 pub const CLSID_CODECAPI_AVEncStatHardwareBandwidthUtilitization = &CLSID_CODECAPI_AVEncStatHardwareBandwidthUtilitization_Value;
 
-const CLSID_CODECAPI_AVEncMPVGOPSize_Value = @import("../zig.zig").Guid.initString("95f31b26-95a4-41aa-9303-246a7fc6eef1");
+const CLSID_CODECAPI_AVEncMPVGOPSize_Value = Guid.initString("95f31b26-95a4-41aa-9303-246a7fc6eef1");
 pub const CLSID_CODECAPI_AVEncMPVGOPSize = &CLSID_CODECAPI_AVEncMPVGOPSize_Value;
 
-const CLSID_CODECAPI_AVEncMPVGOPOpen_Value = @import("../zig.zig").Guid.initString("b1d5d4a6-3300-49b1-ae61-a09937ab0e49");
+const CLSID_CODECAPI_AVEncMPVGOPOpen_Value = Guid.initString("b1d5d4a6-3300-49b1-ae61-a09937ab0e49");
 pub const CLSID_CODECAPI_AVEncMPVGOPOpen = &CLSID_CODECAPI_AVEncMPVGOPOpen_Value;
 
-const CLSID_CODECAPI_AVEncMPVDefaultBPictureCount_Value = @import("../zig.zig").Guid.initString("8d390aac-dc5c-4200-b57f-814d04babab2");
+const CLSID_CODECAPI_AVEncMPVDefaultBPictureCount_Value = Guid.initString("8d390aac-dc5c-4200-b57f-814d04babab2");
 pub const CLSID_CODECAPI_AVEncMPVDefaultBPictureCount = &CLSID_CODECAPI_AVEncMPVDefaultBPictureCount_Value;
 
-const CLSID_CODECAPI_AVEncMPVProfile_Value = @import("../zig.zig").Guid.initString("dabb534a-1d99-4284-975a-d90e2239baa1");
+const CLSID_CODECAPI_AVEncMPVProfile_Value = Guid.initString("dabb534a-1d99-4284-975a-d90e2239baa1");
 pub const CLSID_CODECAPI_AVEncMPVProfile = &CLSID_CODECAPI_AVEncMPVProfile_Value;
 
 pub const eAVEncMPVProfile = enum(i32) {
@@ -8661,7 +8661,7 @@ pub const eAVEncMPVProfile_Main = eAVEncMPVProfile.Main;
 pub const eAVEncMPVProfile_High = eAVEncMPVProfile.High;
 pub const eAVEncMPVProfile_422 = eAVEncMPVProfile.@"422";
 
-const CLSID_CODECAPI_AVEncMPVLevel_Value = @import("../zig.zig").Guid.initString("6ee40c40-a60c-41ef-8f50-37c2249e2cb3");
+const CLSID_CODECAPI_AVEncMPVLevel_Value = Guid.initString("6ee40c40-a60c-41ef-8f50-37c2249e2cb3");
 pub const CLSID_CODECAPI_AVEncMPVLevel = &CLSID_CODECAPI_AVEncMPVLevel_Value;
 
 pub const eAVEncMPVLevel = enum(i32) {
@@ -8896,7 +8896,7 @@ pub const eAVEncH265VLevel6 = eAVEncH265VLevel.@"6";
 pub const eAVEncH265VLevel6_1 = eAVEncH265VLevel.@"6_1";
 pub const eAVEncH265VLevel6_2 = eAVEncH265VLevel.@"6_2";
 
-const CLSID_CODECAPI_AVEncMPVFrameFieldMode_Value = @import("../zig.zig").Guid.initString("acb5de96-7b93-4c2f-8825-b0295fa93bf4");
+const CLSID_CODECAPI_AVEncMPVFrameFieldMode_Value = Guid.initString("acb5de96-7b93-4c2f-8825-b0295fa93bf4");
 pub const CLSID_CODECAPI_AVEncMPVFrameFieldMode = &CLSID_CODECAPI_AVEncMPVFrameFieldMode_Value;
 
 pub const eAVEncMPVFrameFieldMode = enum(i32) {
@@ -8906,16 +8906,16 @@ pub const eAVEncMPVFrameFieldMode = enum(i32) {
 pub const eAVEncMPVFrameFieldMode_FieldMode = eAVEncMPVFrameFieldMode.ieldMode;
 pub const eAVEncMPVFrameFieldMode_FrameMode = eAVEncMPVFrameFieldMode.rameMode;
 
-const CLSID_CODECAPI_AVEncMPVAddSeqEndCode_Value = @import("../zig.zig").Guid.initString("a823178f-57df-4c7a-b8fd-e5ec8887708d");
+const CLSID_CODECAPI_AVEncMPVAddSeqEndCode_Value = Guid.initString("a823178f-57df-4c7a-b8fd-e5ec8887708d");
 pub const CLSID_CODECAPI_AVEncMPVAddSeqEndCode = &CLSID_CODECAPI_AVEncMPVAddSeqEndCode_Value;
 
-const CLSID_CODECAPI_AVEncMPVGOPSInSeq_Value = @import("../zig.zig").Guid.initString("993410d4-2691-4192-9978-98dc2603669f");
+const CLSID_CODECAPI_AVEncMPVGOPSInSeq_Value = Guid.initString("993410d4-2691-4192-9978-98dc2603669f");
 pub const CLSID_CODECAPI_AVEncMPVGOPSInSeq = &CLSID_CODECAPI_AVEncMPVGOPSInSeq_Value;
 
-const CLSID_CODECAPI_AVEncMPVUseConcealmentMotionVectors_Value = @import("../zig.zig").Guid.initString("ec770cf3-6908-4b4b-aa30-7fb986214fea");
+const CLSID_CODECAPI_AVEncMPVUseConcealmentMotionVectors_Value = Guid.initString("ec770cf3-6908-4b4b-aa30-7fb986214fea");
 pub const CLSID_CODECAPI_AVEncMPVUseConcealmentMotionVectors = &CLSID_CODECAPI_AVEncMPVUseConcealmentMotionVectors_Value;
 
-const CLSID_CODECAPI_AVEncMPVSceneDetection_Value = @import("../zig.zig").Guid.initString("552799f1-db4c-405b-8a3a-c93f2d0674dc");
+const CLSID_CODECAPI_AVEncMPVSceneDetection_Value = Guid.initString("552799f1-db4c-405b-8a3a-c93f2d0674dc");
 pub const CLSID_CODECAPI_AVEncMPVSceneDetection = &CLSID_CODECAPI_AVEncMPVSceneDetection_Value;
 
 pub const eAVEncMPVSceneDetection = enum(i32) {
@@ -8929,22 +8929,22 @@ pub const eAVEncMPVSceneDetection_InsertIPicture = eAVEncMPVSceneDetection.Inser
 pub const eAVEncMPVSceneDetection_StartNewGOP = eAVEncMPVSceneDetection.StartNewGOP;
 pub const eAVEncMPVSceneDetection_StartNewLocatableGOP = eAVEncMPVSceneDetection.StartNewLocatableGOP;
 
-const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqExt_Value = @import("../zig.zig").Guid.initString("d5e78611-082d-4e6b-98af-0f51ab139222");
+const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqExt_Value = Guid.initString("d5e78611-082d-4e6b-98af-0f51ab139222");
 pub const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqExt = &CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqExt_Value;
 
-const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqDispExt_Value = @import("../zig.zig").Guid.initString("6437aa6f-5a3c-4de9-8a16-53d9c4ad326f");
+const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqDispExt_Value = Guid.initString("6437aa6f-5a3c-4de9-8a16-53d9c4ad326f");
 pub const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqDispExt = &CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqDispExt_Value;
 
-const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicExt_Value = @import("../zig.zig").Guid.initString("1b8464ab-944f-45f0-b74e-3a58dad11f37");
+const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicExt_Value = Guid.initString("1b8464ab-944f-45f0-b74e-3a58dad11f37");
 pub const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicExt = &CLSID_CODECAPI_AVEncMPVGenerateHeaderPicExt_Value;
 
-const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicDispExt_Value = @import("../zig.zig").Guid.initString("c6412f84-c03f-4f40-a00c-4293df8395bb");
+const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicDispExt_Value = Guid.initString("c6412f84-c03f-4f40-a00c-4293df8395bb");
 pub const CLSID_CODECAPI_AVEncMPVGenerateHeaderPicDispExt = &CLSID_CODECAPI_AVEncMPVGenerateHeaderPicDispExt_Value;
 
-const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqScaleExt_Value = @import("../zig.zig").Guid.initString("0722d62f-dd59-4a86-9cd5-644f8e2653d8");
+const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqScaleExt_Value = Guid.initString("0722d62f-dd59-4a86-9cd5-644f8e2653d8");
 pub const CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqScaleExt = &CLSID_CODECAPI_AVEncMPVGenerateHeaderSeqScaleExt_Value;
 
-const CLSID_CODECAPI_AVEncMPVScanPattern_Value = @import("../zig.zig").Guid.initString("7f8a478e-7bbb-4ae2-b2fc-96d17fc4a2d6");
+const CLSID_CODECAPI_AVEncMPVScanPattern_Value = Guid.initString("7f8a478e-7bbb-4ae2-b2fc-96d17fc4a2d6");
 pub const CLSID_CODECAPI_AVEncMPVScanPattern = &CLSID_CODECAPI_AVEncMPVScanPattern_Value;
 
 pub const eAVEncMPVScanPattern = enum(i32) {
@@ -8956,10 +8956,10 @@ pub const eAVEncMPVScanPattern_Auto = eAVEncMPVScanPattern.Auto;
 pub const eAVEncMPVScanPattern_ZigZagScan = eAVEncMPVScanPattern.ZigZagScan;
 pub const eAVEncMPVScanPattern_AlternateScan = eAVEncMPVScanPattern.AlternateScan;
 
-const CLSID_CODECAPI_AVEncMPVIntraDCPrecision_Value = @import("../zig.zig").Guid.initString("a0116151-cbc8-4af3-97dc-d00cceb82d79");
+const CLSID_CODECAPI_AVEncMPVIntraDCPrecision_Value = Guid.initString("a0116151-cbc8-4af3-97dc-d00cceb82d79");
 pub const CLSID_CODECAPI_AVEncMPVIntraDCPrecision = &CLSID_CODECAPI_AVEncMPVIntraDCPrecision_Value;
 
-const CLSID_CODECAPI_AVEncMPVQScaleType_Value = @import("../zig.zig").Guid.initString("2b79ebb7-f484-4af7-bb58-a2a188c5cbbe");
+const CLSID_CODECAPI_AVEncMPVQScaleType_Value = Guid.initString("2b79ebb7-f484-4af7-bb58-a2a188c5cbbe");
 pub const CLSID_CODECAPI_AVEncMPVQScaleType = &CLSID_CODECAPI_AVEncMPVQScaleType_Value;
 
 pub const eAVEncMPVQScaleType = enum(i32) {
@@ -8971,7 +8971,7 @@ pub const eAVEncMPVQScaleType_Auto = eAVEncMPVQScaleType.Auto;
 pub const eAVEncMPVQScaleType_Linear = eAVEncMPVQScaleType.Linear;
 pub const eAVEncMPVQScaleType_NonLinear = eAVEncMPVQScaleType.NonLinear;
 
-const CLSID_CODECAPI_AVEncMPVIntraVLCTable_Value = @import("../zig.zig").Guid.initString("a2b83ff5-1a99-405a-af95-c5997d558d3a");
+const CLSID_CODECAPI_AVEncMPVIntraVLCTable_Value = Guid.initString("a2b83ff5-1a99-405a-af95-c5997d558d3a");
 pub const CLSID_CODECAPI_AVEncMPVIntraVLCTable = &CLSID_CODECAPI_AVEncMPVIntraVLCTable_Value;
 
 pub const eAVEncMPVIntraVLCTable = enum(i32) {
@@ -8983,19 +8983,19 @@ pub const eAVEncMPVIntraVLCTable_Auto = eAVEncMPVIntraVLCTable.Auto;
 pub const eAVEncMPVIntraVLCTable_MPEG1 = eAVEncMPVIntraVLCTable.MPEG1;
 pub const eAVEncMPVIntraVLCTable_Alternate = eAVEncMPVIntraVLCTable.Alternate;
 
-const CLSID_CODECAPI_AVEncMPVQuantMatrixIntra_Value = @import("../zig.zig").Guid.initString("9bea04f3-6621-442c-8ba1-3ac378979698");
+const CLSID_CODECAPI_AVEncMPVQuantMatrixIntra_Value = Guid.initString("9bea04f3-6621-442c-8ba1-3ac378979698");
 pub const CLSID_CODECAPI_AVEncMPVQuantMatrixIntra = &CLSID_CODECAPI_AVEncMPVQuantMatrixIntra_Value;
 
-const CLSID_CODECAPI_AVEncMPVQuantMatrixNonIntra_Value = @import("../zig.zig").Guid.initString("87f441d8-0997-4beb-a08e-8573d409cf75");
+const CLSID_CODECAPI_AVEncMPVQuantMatrixNonIntra_Value = Guid.initString("87f441d8-0997-4beb-a08e-8573d409cf75");
 pub const CLSID_CODECAPI_AVEncMPVQuantMatrixNonIntra = &CLSID_CODECAPI_AVEncMPVQuantMatrixNonIntra_Value;
 
-const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaIntra_Value = @import("../zig.zig").Guid.initString("9eb9ecd4-018d-4ffd-8f2d-39e49f07b17a");
+const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaIntra_Value = Guid.initString("9eb9ecd4-018d-4ffd-8f2d-39e49f07b17a");
 pub const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaIntra = &CLSID_CODECAPI_AVEncMPVQuantMatrixChromaIntra_Value;
 
-const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaNonIntra_Value = @import("../zig.zig").Guid.initString("1415b6b1-362a-4338-ba9a-1ef58703c05b");
+const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaNonIntra_Value = Guid.initString("1415b6b1-362a-4338-ba9a-1ef58703c05b");
 pub const CLSID_CODECAPI_AVEncMPVQuantMatrixChromaNonIntra = &CLSID_CODECAPI_AVEncMPVQuantMatrixChromaNonIntra_Value;
 
-const CLSID_CODECAPI_AVEncMPALayer_Value = @import("../zig.zig").Guid.initString("9d377230-f91b-453d-9ce0-78445414c22d");
+const CLSID_CODECAPI_AVEncMPALayer_Value = Guid.initString("9d377230-f91b-453d-9ce0-78445414c22d");
 pub const CLSID_CODECAPI_AVEncMPALayer = &CLSID_CODECAPI_AVEncMPALayer_Value;
 
 pub const eAVEncMPALayer = enum(i32) {
@@ -9007,7 +9007,7 @@ pub const eAVEncMPALayer_1 = eAVEncMPALayer.@"1";
 pub const eAVEncMPALayer_2 = eAVEncMPALayer.@"2";
 pub const eAVEncMPALayer_3 = eAVEncMPALayer.@"3";
 
-const CLSID_CODECAPI_AVEncMPACodingMode_Value = @import("../zig.zig").Guid.initString("b16ade03-4b93-43d7-a550-90b4fe224537");
+const CLSID_CODECAPI_AVEncMPACodingMode_Value = Guid.initString("b16ade03-4b93-43d7-a550-90b4fe224537");
 pub const CLSID_CODECAPI_AVEncMPACodingMode = &CLSID_CODECAPI_AVEncMPACodingMode_Value;
 
 pub const eAVEncMPACodingMode = enum(i32) {
@@ -9023,19 +9023,19 @@ pub const eAVEncMPACodingMode_DualChannel = eAVEncMPACodingMode.DualChannel;
 pub const eAVEncMPACodingMode_JointStereo = eAVEncMPACodingMode.JointStereo;
 pub const eAVEncMPACodingMode_Surround = eAVEncMPACodingMode.Surround;
 
-const CLSID_CODECAPI_AVEncMPACopyright_Value = @import("../zig.zig").Guid.initString("a6ae762a-d0a9-4454-b8ef-f2dbeefdd3bd");
+const CLSID_CODECAPI_AVEncMPACopyright_Value = Guid.initString("a6ae762a-d0a9-4454-b8ef-f2dbeefdd3bd");
 pub const CLSID_CODECAPI_AVEncMPACopyright = &CLSID_CODECAPI_AVEncMPACopyright_Value;
 
-const CLSID_CODECAPI_AVEncMPAOriginalBitstream_Value = @import("../zig.zig").Guid.initString("3cfb7855-9cc9-47ff-b829-b36786c92346");
+const CLSID_CODECAPI_AVEncMPAOriginalBitstream_Value = Guid.initString("3cfb7855-9cc9-47ff-b829-b36786c92346");
 pub const CLSID_CODECAPI_AVEncMPAOriginalBitstream = &CLSID_CODECAPI_AVEncMPAOriginalBitstream_Value;
 
-const CLSID_CODECAPI_AVEncMPAEnableRedundancyProtection_Value = @import("../zig.zig").Guid.initString("5e54b09e-b2e7-4973-a89b-0b3650a3beda");
+const CLSID_CODECAPI_AVEncMPAEnableRedundancyProtection_Value = Guid.initString("5e54b09e-b2e7-4973-a89b-0b3650a3beda");
 pub const CLSID_CODECAPI_AVEncMPAEnableRedundancyProtection = &CLSID_CODECAPI_AVEncMPAEnableRedundancyProtection_Value;
 
-const CLSID_CODECAPI_AVEncMPAPrivateUserBit_Value = @import("../zig.zig").Guid.initString("afa505ce-c1e3-4e3d-851b-61b700e5e6cc");
+const CLSID_CODECAPI_AVEncMPAPrivateUserBit_Value = Guid.initString("afa505ce-c1e3-4e3d-851b-61b700e5e6cc");
 pub const CLSID_CODECAPI_AVEncMPAPrivateUserBit = &CLSID_CODECAPI_AVEncMPAPrivateUserBit_Value;
 
-const CLSID_CODECAPI_AVEncMPAEmphasisType_Value = @import("../zig.zig").Guid.initString("2d59fcda-bf4e-4ed6-b5df-5b03b36b0a1f");
+const CLSID_CODECAPI_AVEncMPAEmphasisType_Value = Guid.initString("2d59fcda-bf4e-4ed6-b5df-5b03b36b0a1f");
 pub const CLSID_CODECAPI_AVEncMPAEmphasisType = &CLSID_CODECAPI_AVEncMPAEmphasisType_Value;
 
 pub const eAVEncMPAEmphasisType = enum(i32) {
@@ -9049,7 +9049,7 @@ pub const eAVEncMPAEmphasisType_50_15 = eAVEncMPAEmphasisType.@"50_15";
 pub const eAVEncMPAEmphasisType_Reserved = eAVEncMPAEmphasisType.Reserved;
 pub const eAVEncMPAEmphasisType_CCITT_J17 = eAVEncMPAEmphasisType.CCITT_J17;
 
-const CLSID_CODECAPI_AVEncDDService_Value = @import("../zig.zig").Guid.initString("d2e1bec7-5172-4d2a-a50e-2f3b82b1ddf8");
+const CLSID_CODECAPI_AVEncDDService_Value = Guid.initString("d2e1bec7-5172-4d2a-a50e-2f3b82b1ddf8");
 pub const CLSID_CODECAPI_AVEncDDService = &CLSID_CODECAPI_AVEncDDService_Value;
 
 pub const eAVEncDDService = enum(i32) {
@@ -9071,19 +9071,19 @@ pub const eAVEncDDService_C = eAVEncDDService.C;
 pub const eAVEncDDService_E = eAVEncDDService.E;
 pub const eAVEncDDService_VO = eAVEncDDService.VO;
 
-const CLSID_CODECAPI_AVEncDDDialogNormalization_Value = @import("../zig.zig").Guid.initString("d7055acf-f125-437d-a704-79c79f0404a8");
+const CLSID_CODECAPI_AVEncDDDialogNormalization_Value = Guid.initString("d7055acf-f125-437d-a704-79c79f0404a8");
 pub const CLSID_CODECAPI_AVEncDDDialogNormalization = &CLSID_CODECAPI_AVEncDDDialogNormalization_Value;
 
-const CLSID_CODECAPI_AVEncDDCentreDownMixLevel_Value = @import("../zig.zig").Guid.initString("e285072c-c958-4a81-afd2-e5e0daf1b148");
+const CLSID_CODECAPI_AVEncDDCentreDownMixLevel_Value = Guid.initString("e285072c-c958-4a81-afd2-e5e0daf1b148");
 pub const CLSID_CODECAPI_AVEncDDCentreDownMixLevel = &CLSID_CODECAPI_AVEncDDCentreDownMixLevel_Value;
 
-const CLSID_CODECAPI_AVEncDDSurroundDownMixLevel_Value = @import("../zig.zig").Guid.initString("7b20d6e5-0bcf-4273-a487-506b047997e9");
+const CLSID_CODECAPI_AVEncDDSurroundDownMixLevel_Value = Guid.initString("7b20d6e5-0bcf-4273-a487-506b047997e9");
 pub const CLSID_CODECAPI_AVEncDDSurroundDownMixLevel = &CLSID_CODECAPI_AVEncDDSurroundDownMixLevel_Value;
 
-const CLSID_CODECAPI_AVEncDDProductionInfoExists_Value = @import("../zig.zig").Guid.initString("b0b7fe5f-b6ab-4f40-964d-8d91f17c19e8");
+const CLSID_CODECAPI_AVEncDDProductionInfoExists_Value = Guid.initString("b0b7fe5f-b6ab-4f40-964d-8d91f17c19e8");
 pub const CLSID_CODECAPI_AVEncDDProductionInfoExists = &CLSID_CODECAPI_AVEncDDProductionInfoExists_Value;
 
-const CLSID_CODECAPI_AVEncDDProductionRoomType_Value = @import("../zig.zig").Guid.initString("dad7ad60-23d8-4ab7-a284-556986d8a6fe");
+const CLSID_CODECAPI_AVEncDDProductionRoomType_Value = Guid.initString("dad7ad60-23d8-4ab7-a284-556986d8a6fe");
 pub const CLSID_CODECAPI_AVEncDDProductionRoomType = &CLSID_CODECAPI_AVEncDDProductionRoomType_Value;
 
 pub const eAVEncDDProductionRoomType = enum(i32) {
@@ -9095,34 +9095,34 @@ pub const eAVEncDDProductionRoomType_NotIndicated = eAVEncDDProductionRoomType.N
 pub const eAVEncDDProductionRoomType_Large = eAVEncDDProductionRoomType.Large;
 pub const eAVEncDDProductionRoomType_Small = eAVEncDDProductionRoomType.Small;
 
-const CLSID_CODECAPI_AVEncDDProductionMixLevel_Value = @import("../zig.zig").Guid.initString("301d103a-cbf9-4776-8899-7c15b461ab26");
+const CLSID_CODECAPI_AVEncDDProductionMixLevel_Value = Guid.initString("301d103a-cbf9-4776-8899-7c15b461ab26");
 pub const CLSID_CODECAPI_AVEncDDProductionMixLevel = &CLSID_CODECAPI_AVEncDDProductionMixLevel_Value;
 
-const CLSID_CODECAPI_AVEncDDCopyright_Value = @import("../zig.zig").Guid.initString("8694f076-cd75-481d-a5c6-a904dcc828f0");
+const CLSID_CODECAPI_AVEncDDCopyright_Value = Guid.initString("8694f076-cd75-481d-a5c6-a904dcc828f0");
 pub const CLSID_CODECAPI_AVEncDDCopyright = &CLSID_CODECAPI_AVEncDDCopyright_Value;
 
-const CLSID_CODECAPI_AVEncDDOriginalBitstream_Value = @import("../zig.zig").Guid.initString("966ae800-5bd3-4ff9-95b9-d30566273856");
+const CLSID_CODECAPI_AVEncDDOriginalBitstream_Value = Guid.initString("966ae800-5bd3-4ff9-95b9-d30566273856");
 pub const CLSID_CODECAPI_AVEncDDOriginalBitstream = &CLSID_CODECAPI_AVEncDDOriginalBitstream_Value;
 
-const CLSID_CODECAPI_AVEncDDDigitalDeemphasis_Value = @import("../zig.zig").Guid.initString("e024a2c2-947c-45ac-87d8-f1030c5c0082");
+const CLSID_CODECAPI_AVEncDDDigitalDeemphasis_Value = Guid.initString("e024a2c2-947c-45ac-87d8-f1030c5c0082");
 pub const CLSID_CODECAPI_AVEncDDDigitalDeemphasis = &CLSID_CODECAPI_AVEncDDDigitalDeemphasis_Value;
 
-const CLSID_CODECAPI_AVEncDDDCHighPassFilter_Value = @import("../zig.zig").Guid.initString("9565239f-861c-4ac8-bfda-e00cb4db8548");
+const CLSID_CODECAPI_AVEncDDDCHighPassFilter_Value = Guid.initString("9565239f-861c-4ac8-bfda-e00cb4db8548");
 pub const CLSID_CODECAPI_AVEncDDDCHighPassFilter = &CLSID_CODECAPI_AVEncDDDCHighPassFilter_Value;
 
-const CLSID_CODECAPI_AVEncDDChannelBWLowPassFilter_Value = @import("../zig.zig").Guid.initString("e197821d-d2e7-43e2-ad2c-00582f518545");
+const CLSID_CODECAPI_AVEncDDChannelBWLowPassFilter_Value = Guid.initString("e197821d-d2e7-43e2-ad2c-00582f518545");
 pub const CLSID_CODECAPI_AVEncDDChannelBWLowPassFilter = &CLSID_CODECAPI_AVEncDDChannelBWLowPassFilter_Value;
 
-const CLSID_CODECAPI_AVEncDDLFELowPassFilter_Value = @import("../zig.zig").Guid.initString("d3b80f6f-9d15-45e5-91be-019c3fab1f01");
+const CLSID_CODECAPI_AVEncDDLFELowPassFilter_Value = Guid.initString("d3b80f6f-9d15-45e5-91be-019c3fab1f01");
 pub const CLSID_CODECAPI_AVEncDDLFELowPassFilter = &CLSID_CODECAPI_AVEncDDLFELowPassFilter_Value;
 
-const CLSID_CODECAPI_AVEncDDSurround90DegreeePhaseShift_Value = @import("../zig.zig").Guid.initString("25ecec9d-3553-42c0-bb56-d25792104f80");
+const CLSID_CODECAPI_AVEncDDSurround90DegreeePhaseShift_Value = Guid.initString("25ecec9d-3553-42c0-bb56-d25792104f80");
 pub const CLSID_CODECAPI_AVEncDDSurround90DegreeePhaseShift = &CLSID_CODECAPI_AVEncDDSurround90DegreeePhaseShift_Value;
 
-const CLSID_CODECAPI_AVEncDDSurround3dBAttenuation_Value = @import("../zig.zig").Guid.initString("4d43b99d-31e2-48b9-bf2e-5cbf1a572784");
+const CLSID_CODECAPI_AVEncDDSurround3dBAttenuation_Value = Guid.initString("4d43b99d-31e2-48b9-bf2e-5cbf1a572784");
 pub const CLSID_CODECAPI_AVEncDDSurround3dBAttenuation = &CLSID_CODECAPI_AVEncDDSurround3dBAttenuation_Value;
 
-const CLSID_CODECAPI_AVEncDDDynamicRangeCompressionControl_Value = @import("../zig.zig").Guid.initString("cfc2ff6d-79b8-4b8d-a8aa-a0c9bd1c2940");
+const CLSID_CODECAPI_AVEncDDDynamicRangeCompressionControl_Value = Guid.initString("cfc2ff6d-79b8-4b8d-a8aa-a0c9bd1c2940");
 pub const CLSID_CODECAPI_AVEncDDDynamicRangeCompressionControl = &CLSID_CODECAPI_AVEncDDDynamicRangeCompressionControl_Value;
 
 pub const eAVEncDDDynamicRangeCompressionControl = enum(i32) {
@@ -9140,10 +9140,10 @@ pub const eAVEncDDDynamicRangeCompressionControl_MusicStandard = eAVEncDDDynamic
 pub const eAVEncDDDynamicRangeCompressionControl_MusicLight = eAVEncDDDynamicRangeCompressionControl.MusicLight;
 pub const eAVEncDDDynamicRangeCompressionControl_Speech = eAVEncDDDynamicRangeCompressionControl.Speech;
 
-const CLSID_CODECAPI_AVEncDDRFPreEmphasisFilter_Value = @import("../zig.zig").Guid.initString("21af44c0-244e-4f3d-a2cc-3d3068b2e73f");
+const CLSID_CODECAPI_AVEncDDRFPreEmphasisFilter_Value = Guid.initString("21af44c0-244e-4f3d-a2cc-3d3068b2e73f");
 pub const CLSID_CODECAPI_AVEncDDRFPreEmphasisFilter = &CLSID_CODECAPI_AVEncDDRFPreEmphasisFilter_Value;
 
-const CLSID_CODECAPI_AVEncDDSurroundExMode_Value = @import("../zig.zig").Guid.initString("91607cee-dbdd-4eb6-bca2-aadfafa3dd68");
+const CLSID_CODECAPI_AVEncDDSurroundExMode_Value = Guid.initString("91607cee-dbdd-4eb6-bca2-aadfafa3dd68");
 pub const CLSID_CODECAPI_AVEncDDSurroundExMode = &CLSID_CODECAPI_AVEncDDSurroundExMode_Value;
 
 pub const eAVEncDDSurroundExMode = enum(i32) {
@@ -9155,7 +9155,7 @@ pub const eAVEncDDSurroundExMode_NotIndicated = eAVEncDDSurroundExMode.NotIndica
 pub const eAVEncDDSurroundExMode_No = eAVEncDDSurroundExMode.No;
 pub const eAVEncDDSurroundExMode_Yes = eAVEncDDSurroundExMode.Yes;
 
-const CLSID_CODECAPI_AVEncDDPreferredStereoDownMixMode_Value = @import("../zig.zig").Guid.initString("7f4e6b31-9185-403d-b0a2-763743e6f063");
+const CLSID_CODECAPI_AVEncDDPreferredStereoDownMixMode_Value = Guid.initString("7f4e6b31-9185-403d-b0a2-763743e6f063");
 pub const CLSID_CODECAPI_AVEncDDPreferredStereoDownMixMode = &CLSID_CODECAPI_AVEncDDPreferredStereoDownMixMode_Value;
 
 pub const eAVEncDDPreferredStereoDownMixMode = enum(i32) {
@@ -9165,19 +9165,19 @@ pub const eAVEncDDPreferredStereoDownMixMode = enum(i32) {
 pub const eAVEncDDPreferredStereoDownMixMode_LtRt = eAVEncDDPreferredStereoDownMixMode.tRt;
 pub const eAVEncDDPreferredStereoDownMixMode_LoRo = eAVEncDDPreferredStereoDownMixMode.oRo;
 
-const CLSID_CODECAPI_AVEncDDLtRtCenterMixLvl_x10_Value = @import("../zig.zig").Guid.initString("dca128a2-491f-4600-b2da-76e3344b4197");
+const CLSID_CODECAPI_AVEncDDLtRtCenterMixLvl_x10_Value = Guid.initString("dca128a2-491f-4600-b2da-76e3344b4197");
 pub const CLSID_CODECAPI_AVEncDDLtRtCenterMixLvl_x10 = &CLSID_CODECAPI_AVEncDDLtRtCenterMixLvl_x10_Value;
 
-const CLSID_CODECAPI_AVEncDDLtRtSurroundMixLvl_x10_Value = @import("../zig.zig").Guid.initString("212246c7-3d2c-4dfa-bc21-652a9098690d");
+const CLSID_CODECAPI_AVEncDDLtRtSurroundMixLvl_x10_Value = Guid.initString("212246c7-3d2c-4dfa-bc21-652a9098690d");
 pub const CLSID_CODECAPI_AVEncDDLtRtSurroundMixLvl_x10 = &CLSID_CODECAPI_AVEncDDLtRtSurroundMixLvl_x10_Value;
 
-const CLSID_CODECAPI_AVEncDDLoRoCenterMixLvl_x10_Value = @import("../zig.zig").Guid.initString("1cfba222-25b3-4bf4-9bfd-e7111267858c");
+const CLSID_CODECAPI_AVEncDDLoRoCenterMixLvl_x10_Value = Guid.initString("1cfba222-25b3-4bf4-9bfd-e7111267858c");
 pub const CLSID_CODECAPI_AVEncDDLoRoCenterMixLvl_x10 = &CLSID_CODECAPI_AVEncDDLoRoCenterMixLvl_x10_Value;
 
-const CLSID_CODECAPI_AVEncDDLoRoSurroundMixLvl_x10_Value = @import("../zig.zig").Guid.initString("e725cff6-eb56-40c7-8450-2b9367e91555");
+const CLSID_CODECAPI_AVEncDDLoRoSurroundMixLvl_x10_Value = Guid.initString("e725cff6-eb56-40c7-8450-2b9367e91555");
 pub const CLSID_CODECAPI_AVEncDDLoRoSurroundMixLvl_x10 = &CLSID_CODECAPI_AVEncDDLoRoSurroundMixLvl_x10_Value;
 
-const CLSID_CODECAPI_AVEncDDAtoDConverterType_Value = @import("../zig.zig").Guid.initString("719f9612-81a1-47e0-9a05-d94ad5fca948");
+const CLSID_CODECAPI_AVEncDDAtoDConverterType_Value = Guid.initString("719f9612-81a1-47e0-9a05-d94ad5fca948");
 pub const CLSID_CODECAPI_AVEncDDAtoDConverterType = &CLSID_CODECAPI_AVEncDDAtoDConverterType_Value;
 
 pub const eAVEncDDAtoDConverterType = enum(i32) {
@@ -9187,7 +9187,7 @@ pub const eAVEncDDAtoDConverterType = enum(i32) {
 pub const eAVEncDDAtoDConverterType_Standard = eAVEncDDAtoDConverterType.Standard;
 pub const eAVEncDDAtoDConverterType_HDCD = eAVEncDDAtoDConverterType.HDCD;
 
-const CLSID_CODECAPI_AVEncDDHeadphoneMode_Value = @import("../zig.zig").Guid.initString("4052dbec-52f5-42f5-9b00-d134b1341b9d");
+const CLSID_CODECAPI_AVEncDDHeadphoneMode_Value = Guid.initString("4052dbec-52f5-42f5-9b00-d134b1341b9d");
 pub const CLSID_CODECAPI_AVEncDDHeadphoneMode = &CLSID_CODECAPI_AVEncDDHeadphoneMode_Value;
 
 pub const eAVEncDDHeadphoneMode = enum(i32) {
@@ -9199,133 +9199,133 @@ pub const eAVEncDDHeadphoneMode_NotIndicated = eAVEncDDHeadphoneMode.NotIndicate
 pub const eAVEncDDHeadphoneMode_NotEncoded = eAVEncDDHeadphoneMode.NotEncoded;
 pub const eAVEncDDHeadphoneMode_Encoded = eAVEncDDHeadphoneMode.Encoded;
 
-const CLSID_CODECAPI_AVEncWMVKeyFrameDistance_Value = @import("../zig.zig").Guid.initString("5569055e-e268-4771-b83e-9555ea28aed3");
+const CLSID_CODECAPI_AVEncWMVKeyFrameDistance_Value = Guid.initString("5569055e-e268-4771-b83e-9555ea28aed3");
 pub const CLSID_CODECAPI_AVEncWMVKeyFrameDistance = &CLSID_CODECAPI_AVEncWMVKeyFrameDistance_Value;
 
-const CLSID_CODECAPI_AVEncWMVInterlacedEncoding_Value = @import("../zig.zig").Guid.initString("e3d00f8a-c6f5-4e14-a588-0ec87a726f9b");
+const CLSID_CODECAPI_AVEncWMVInterlacedEncoding_Value = Guid.initString("e3d00f8a-c6f5-4e14-a588-0ec87a726f9b");
 pub const CLSID_CODECAPI_AVEncWMVInterlacedEncoding = &CLSID_CODECAPI_AVEncWMVInterlacedEncoding_Value;
 
-const CLSID_CODECAPI_AVEncWMVDecoderComplexity_Value = @import("../zig.zig").Guid.initString("f32c0dab-f3cb-4217-b79f-8762768b5f67");
+const CLSID_CODECAPI_AVEncWMVDecoderComplexity_Value = Guid.initString("f32c0dab-f3cb-4217-b79f-8762768b5f67");
 pub const CLSID_CODECAPI_AVEncWMVDecoderComplexity = &CLSID_CODECAPI_AVEncWMVDecoderComplexity_Value;
 
-const CLSID_CODECAPI_AVEncWMVKeyFrameBufferLevelMarker_Value = @import("../zig.zig").Guid.initString("51ff1115-33ac-426c-a1b1-09321bdf96b4");
+const CLSID_CODECAPI_AVEncWMVKeyFrameBufferLevelMarker_Value = Guid.initString("51ff1115-33ac-426c-a1b1-09321bdf96b4");
 pub const CLSID_CODECAPI_AVEncWMVKeyFrameBufferLevelMarker = &CLSID_CODECAPI_AVEncWMVKeyFrameBufferLevelMarker_Value;
 
-const CLSID_CODECAPI_AVEncWMVProduceDummyFrames_Value = @import("../zig.zig").Guid.initString("d669d001-183c-42e3-a3ca-2f4586d2396c");
+const CLSID_CODECAPI_AVEncWMVProduceDummyFrames_Value = Guid.initString("d669d001-183c-42e3-a3ca-2f4586d2396c");
 pub const CLSID_CODECAPI_AVEncWMVProduceDummyFrames = &CLSID_CODECAPI_AVEncWMVProduceDummyFrames_Value;
 
-const CLSID_CODECAPI_AVEncStatWMVCBAvg_Value = @import("../zig.zig").Guid.initString("6aa6229f-d602-4b9d-b68c-c1ad78884bef");
+const CLSID_CODECAPI_AVEncStatWMVCBAvg_Value = Guid.initString("6aa6229f-d602-4b9d-b68c-c1ad78884bef");
 pub const CLSID_CODECAPI_AVEncStatWMVCBAvg = &CLSID_CODECAPI_AVEncStatWMVCBAvg_Value;
 
-const CLSID_CODECAPI_AVEncStatWMVCBMax_Value = @import("../zig.zig").Guid.initString("e976bef8-00fe-44b4-b625-8f238bc03499");
+const CLSID_CODECAPI_AVEncStatWMVCBMax_Value = Guid.initString("e976bef8-00fe-44b4-b625-8f238bc03499");
 pub const CLSID_CODECAPI_AVEncStatWMVCBMax = &CLSID_CODECAPI_AVEncStatWMVCBMax_Value;
 
-const CLSID_CODECAPI_AVEncStatWMVDecoderComplexityProfile_Value = @import("../zig.zig").Guid.initString("89e69fc3-0f9b-436c-974a-df821227c90d");
+const CLSID_CODECAPI_AVEncStatWMVDecoderComplexityProfile_Value = Guid.initString("89e69fc3-0f9b-436c-974a-df821227c90d");
 pub const CLSID_CODECAPI_AVEncStatWMVDecoderComplexityProfile = &CLSID_CODECAPI_AVEncStatWMVDecoderComplexityProfile_Value;
 
-const CLSID_CODECAPI_AVEncStatMPVSkippedEmptyFrames_Value = @import("../zig.zig").Guid.initString("32195fd3-590d-4812-a7ed-6d639a1f9711");
+const CLSID_CODECAPI_AVEncStatMPVSkippedEmptyFrames_Value = Guid.initString("32195fd3-590d-4812-a7ed-6d639a1f9711");
 pub const CLSID_CODECAPI_AVEncStatMPVSkippedEmptyFrames = &CLSID_CODECAPI_AVEncStatMPVSkippedEmptyFrames_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzSTDBuffer_Value = @import("../zig.zig").Guid.initString("0b751bd0-819e-478c-9435-75208926b377");
+const CLSID_CODECAPI_AVEncMP12PktzSTDBuffer_Value = Guid.initString("0b751bd0-819e-478c-9435-75208926b377");
 pub const CLSID_CODECAPI_AVEncMP12PktzSTDBuffer = &CLSID_CODECAPI_AVEncMP12PktzSTDBuffer_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzStreamID_Value = @import("../zig.zig").Guid.initString("c834d038-f5e8-4408-9b60-88f36493fedf");
+const CLSID_CODECAPI_AVEncMP12PktzStreamID_Value = Guid.initString("c834d038-f5e8-4408-9b60-88f36493fedf");
 pub const CLSID_CODECAPI_AVEncMP12PktzStreamID = &CLSID_CODECAPI_AVEncMP12PktzStreamID_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzInitialPTS_Value = @import("../zig.zig").Guid.initString("2a4f2065-9a63-4d20-ae22-0a1bc896a315");
+const CLSID_CODECAPI_AVEncMP12PktzInitialPTS_Value = Guid.initString("2a4f2065-9a63-4d20-ae22-0a1bc896a315");
 pub const CLSID_CODECAPI_AVEncMP12PktzInitialPTS = &CLSID_CODECAPI_AVEncMP12PktzInitialPTS_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzPacketSize_Value = @import("../zig.zig").Guid.initString("ab71347a-1332-4dde-a0e5-ccf7da8a0f22");
+const CLSID_CODECAPI_AVEncMP12PktzPacketSize_Value = Guid.initString("ab71347a-1332-4dde-a0e5-ccf7da8a0f22");
 pub const CLSID_CODECAPI_AVEncMP12PktzPacketSize = &CLSID_CODECAPI_AVEncMP12PktzPacketSize_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzCopyright_Value = @import("../zig.zig").Guid.initString("c8f4b0c1-094c-43c7-8e68-a595405a6ef8");
+const CLSID_CODECAPI_AVEncMP12PktzCopyright_Value = Guid.initString("c8f4b0c1-094c-43c7-8e68-a595405a6ef8");
 pub const CLSID_CODECAPI_AVEncMP12PktzCopyright = &CLSID_CODECAPI_AVEncMP12PktzCopyright_Value;
 
-const CLSID_CODECAPI_AVEncMP12PktzOriginal_Value = @import("../zig.zig").Guid.initString("6b178416-31b9-4964-94cb-6bff866cdf83");
+const CLSID_CODECAPI_AVEncMP12PktzOriginal_Value = Guid.initString("6b178416-31b9-4964-94cb-6bff866cdf83");
 pub const CLSID_CODECAPI_AVEncMP12PktzOriginal = &CLSID_CODECAPI_AVEncMP12PktzOriginal_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxPacketOverhead_Value = @import("../zig.zig").Guid.initString("e40bd720-3955-4453-acf9-b79132a38fa0");
+const CLSID_CODECAPI_AVEncMP12MuxPacketOverhead_Value = Guid.initString("e40bd720-3955-4453-acf9-b79132a38fa0");
 pub const CLSID_CODECAPI_AVEncMP12MuxPacketOverhead = &CLSID_CODECAPI_AVEncMP12MuxPacketOverhead_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxNumStreams_Value = @import("../zig.zig").Guid.initString("f7164a41-dced-4659-a8f2-fb693f2a4cd0");
+const CLSID_CODECAPI_AVEncMP12MuxNumStreams_Value = Guid.initString("f7164a41-dced-4659-a8f2-fb693f2a4cd0");
 pub const CLSID_CODECAPI_AVEncMP12MuxNumStreams = &CLSID_CODECAPI_AVEncMP12MuxNumStreams_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxEarliestPTS_Value = @import("../zig.zig").Guid.initString("157232b6-f809-474e-9464-a7f93014a817");
+const CLSID_CODECAPI_AVEncMP12MuxEarliestPTS_Value = Guid.initString("157232b6-f809-474e-9464-a7f93014a817");
 pub const CLSID_CODECAPI_AVEncMP12MuxEarliestPTS = &CLSID_CODECAPI_AVEncMP12MuxEarliestPTS_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxLargestPacketSize_Value = @import("../zig.zig").Guid.initString("35ceb711-f461-4b92-a4ef-17b6841ed254");
+const CLSID_CODECAPI_AVEncMP12MuxLargestPacketSize_Value = Guid.initString("35ceb711-f461-4b92-a4ef-17b6841ed254");
 pub const CLSID_CODECAPI_AVEncMP12MuxLargestPacketSize = &CLSID_CODECAPI_AVEncMP12MuxLargestPacketSize_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxInitialSCR_Value = @import("../zig.zig").Guid.initString("3433ad21-1b91-4a0b-b190-2b77063b63a4");
+const CLSID_CODECAPI_AVEncMP12MuxInitialSCR_Value = Guid.initString("3433ad21-1b91-4a0b-b190-2b77063b63a4");
 pub const CLSID_CODECAPI_AVEncMP12MuxInitialSCR = &CLSID_CODECAPI_AVEncMP12MuxInitialSCR_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxMuxRate_Value = @import("../zig.zig").Guid.initString("ee047c72-4bdb-4a9d-8e21-41926c823da7");
+const CLSID_CODECAPI_AVEncMP12MuxMuxRate_Value = Guid.initString("ee047c72-4bdb-4a9d-8e21-41926c823da7");
 pub const CLSID_CODECAPI_AVEncMP12MuxMuxRate = &CLSID_CODECAPI_AVEncMP12MuxMuxRate_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxPackSize_Value = @import("../zig.zig").Guid.initString("f916053a-1ce8-4faf-aa0b-ba31c80034b8");
+const CLSID_CODECAPI_AVEncMP12MuxPackSize_Value = Guid.initString("f916053a-1ce8-4faf-aa0b-ba31c80034b8");
 pub const CLSID_CODECAPI_AVEncMP12MuxPackSize = &CLSID_CODECAPI_AVEncMP12MuxPackSize_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysSTDBufferBound_Value = @import("../zig.zig").Guid.initString("35746903-b545-43e7-bb35-c5e0a7d5093c");
+const CLSID_CODECAPI_AVEncMP12MuxSysSTDBufferBound_Value = Guid.initString("35746903-b545-43e7-bb35-c5e0a7d5093c");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysSTDBufferBound = &CLSID_CODECAPI_AVEncMP12MuxSysSTDBufferBound_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysRateBound_Value = @import("../zig.zig").Guid.initString("05f0428a-ee30-489d-ae28-205c72446710");
+const CLSID_CODECAPI_AVEncMP12MuxSysRateBound_Value = Guid.initString("05f0428a-ee30-489d-ae28-205c72446710");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysRateBound = &CLSID_CODECAPI_AVEncMP12MuxSysRateBound_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxTargetPacketizer_Value = @import("../zig.zig").Guid.initString("d862212a-2015-45dd-9a32-1b3aa88205a0");
+const CLSID_CODECAPI_AVEncMP12MuxTargetPacketizer_Value = Guid.initString("d862212a-2015-45dd-9a32-1b3aa88205a0");
 pub const CLSID_CODECAPI_AVEncMP12MuxTargetPacketizer = &CLSID_CODECAPI_AVEncMP12MuxTargetPacketizer_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysFixed_Value = @import("../zig.zig").Guid.initString("cefb987e-894f-452e-8f89-a4ef8cec063a");
+const CLSID_CODECAPI_AVEncMP12MuxSysFixed_Value = Guid.initString("cefb987e-894f-452e-8f89-a4ef8cec063a");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysFixed = &CLSID_CODECAPI_AVEncMP12MuxSysFixed_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysCSPS_Value = @import("../zig.zig").Guid.initString("7952ff45-9c0d-4822-bc82-8ad772e02993");
+const CLSID_CODECAPI_AVEncMP12MuxSysCSPS_Value = Guid.initString("7952ff45-9c0d-4822-bc82-8ad772e02993");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysCSPS = &CLSID_CODECAPI_AVEncMP12MuxSysCSPS_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysVideoLock_Value = @import("../zig.zig").Guid.initString("b8296408-2430-4d37-a2a1-95b3e435a91d");
+const CLSID_CODECAPI_AVEncMP12MuxSysVideoLock_Value = Guid.initString("b8296408-2430-4d37-a2a1-95b3e435a91d");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysVideoLock = &CLSID_CODECAPI_AVEncMP12MuxSysVideoLock_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxSysAudioLock_Value = @import("../zig.zig").Guid.initString("0fbb5752-1d43-47bf-bd79-f2293d8ce337");
+const CLSID_CODECAPI_AVEncMP12MuxSysAudioLock_Value = Guid.initString("0fbb5752-1d43-47bf-bd79-f2293d8ce337");
 pub const CLSID_CODECAPI_AVEncMP12MuxSysAudioLock = &CLSID_CODECAPI_AVEncMP12MuxSysAudioLock_Value;
 
-const CLSID_CODECAPI_AVEncMP12MuxDVDNavPacks_Value = @import("../zig.zig").Guid.initString("c7607ced-8cf1-4a99-83a1-ee5461be3574");
+const CLSID_CODECAPI_AVEncMP12MuxDVDNavPacks_Value = Guid.initString("c7607ced-8cf1-4a99-83a1-ee5461be3574");
 pub const CLSID_CODECAPI_AVEncMP12MuxDVDNavPacks = &CLSID_CODECAPI_AVEncMP12MuxDVDNavPacks_Value;
 
-const CLSID_CODECAPI_AVDecCommonInputFormat_Value = @import("../zig.zig").Guid.initString("e5005239-bd89-4be3-9c0f-5dde317988cc");
+const CLSID_CODECAPI_AVDecCommonInputFormat_Value = Guid.initString("e5005239-bd89-4be3-9c0f-5dde317988cc");
 pub const CLSID_CODECAPI_AVDecCommonInputFormat = &CLSID_CODECAPI_AVDecCommonInputFormat_Value;
 
-const CLSID_CODECAPI_AVDecCommonOutputFormat_Value = @import("../zig.zig").Guid.initString("3c790028-c0ce-4256-b1a2-1b0fc8b1dcdc");
+const CLSID_CODECAPI_AVDecCommonOutputFormat_Value = Guid.initString("3c790028-c0ce-4256-b1a2-1b0fc8b1dcdc");
 pub const CLSID_CODECAPI_AVDecCommonOutputFormat = &CLSID_CODECAPI_AVDecCommonOutputFormat_Value;
 
-const CLSID_CODECAPI_AVDecCommonMeanBitRate_Value = @import("../zig.zig").Guid.initString("59488217-007a-4f7a-8e41-5c48b1eac5c6");
+const CLSID_CODECAPI_AVDecCommonMeanBitRate_Value = Guid.initString("59488217-007a-4f7a-8e41-5c48b1eac5c6");
 pub const CLSID_CODECAPI_AVDecCommonMeanBitRate = &CLSID_CODECAPI_AVDecCommonMeanBitRate_Value;
 
-const CLSID_CODECAPI_AVDecCommonMeanBitRateInterval_Value = @import("../zig.zig").Guid.initString("0ee437c6-38a7-4c5c-944c-68ab42116b85");
+const CLSID_CODECAPI_AVDecCommonMeanBitRateInterval_Value = Guid.initString("0ee437c6-38a7-4c5c-944c-68ab42116b85");
 pub const CLSID_CODECAPI_AVDecCommonMeanBitRateInterval = &CLSID_CODECAPI_AVDecCommonMeanBitRateInterval_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_MatrixEncoded_Value = @import("../zig.zig").Guid.initString("696e1d30-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_MatrixEncoded_Value = Guid.initString("696e1d30-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_MatrixEncoded = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_MatrixEncoded_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Value = @import("../zig.zig").Guid.initString("696e1d31-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Value = Guid.initString("696e1d31-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_PCM_Value = @import("../zig.zig").Guid.initString("696e1d32-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_PCM_Value = Guid.initString("696e1d32-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_PCM = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_PCM_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_Bitstream_Value = @import("../zig.zig").Guid.initString("696e1d33-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_Bitstream_Value = Guid.initString("696e1d33-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_Bitstream = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_SPDIF_Bitstream_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Headphones_Value = @import("../zig.zig").Guid.initString("696e1d34-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Headphones_Value = Guid.initString("696e1d34-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Headphones = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Headphones_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_Auto_Value = @import("../zig.zig").Guid.initString("696e1d35-548f-4036-825f-7026c60011bd");
+const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_Auto_Value = Guid.initString("696e1d35-548f-4036-825f-7026c60011bd");
 pub const CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_Auto = &CLSID_CODECAPI_GUID_AVDecAudioOutputFormat_PCM_Stereo_Auto_Value;
 
-const CLSID_CODECAPI_AVDecVideoImageSize_Value = @import("../zig.zig").Guid.initString("5ee5747c-6801-4cab-aaf1-6248fa841ba4");
+const CLSID_CODECAPI_AVDecVideoImageSize_Value = Guid.initString("5ee5747c-6801-4cab-aaf1-6248fa841ba4");
 pub const CLSID_CODECAPI_AVDecVideoImageSize = &CLSID_CODECAPI_AVDecVideoImageSize_Value;
 
-const CLSID_CODECAPI_AVDecVideoPixelAspectRatio_Value = @import("../zig.zig").Guid.initString("b0cf8245-f32d-41df-b02c-87bd304d12ab");
+const CLSID_CODECAPI_AVDecVideoPixelAspectRatio_Value = Guid.initString("b0cf8245-f32d-41df-b02c-87bd304d12ab");
 pub const CLSID_CODECAPI_AVDecVideoPixelAspectRatio = &CLSID_CODECAPI_AVDecVideoPixelAspectRatio_Value;
 
-const CLSID_CODECAPI_AVDecVideoInputScanType_Value = @import("../zig.zig").Guid.initString("38477e1f-0ea7-42cd-8cd1-130ced57c580");
+const CLSID_CODECAPI_AVDecVideoInputScanType_Value = Guid.initString("38477e1f-0ea7-42cd-8cd1-130ced57c580");
 pub const CLSID_CODECAPI_AVDecVideoInputScanType = &CLSID_CODECAPI_AVDecVideoInputScanType_Value;
 
 pub const eAVDecVideoInputScanType = enum(i32) {
@@ -9339,7 +9339,7 @@ pub const eAVDecVideoInputScan_Progressive = eAVDecVideoInputScanType.Progressiv
 pub const eAVDecVideoInputScan_Interlaced_UpperFieldFirst = eAVDecVideoInputScanType.Interlaced_UpperFieldFirst;
 pub const eAVDecVideoInputScan_Interlaced_LowerFieldFirst = eAVDecVideoInputScanType.Interlaced_LowerFieldFirst;
 
-const CLSID_CODECAPI_AVDecVideoSWPowerLevel_Value = @import("../zig.zig").Guid.initString("fb5d2347-4dd8-4509-aed0-db5fa9aa93f4");
+const CLSID_CODECAPI_AVDecVideoSWPowerLevel_Value = Guid.initString("fb5d2347-4dd8-4509-aed0-db5fa9aa93f4");
 pub const CLSID_CODECAPI_AVDecVideoSWPowerLevel = &CLSID_CODECAPI_AVDecVideoSWPowerLevel_Value;
 
 pub const eAVDecVideoSWPowerLevel = enum(i32) {
@@ -9351,34 +9351,34 @@ pub const eAVDecVideoSWPowerLevel_BatteryLife = eAVDecVideoSWPowerLevel.BatteryL
 pub const eAVDecVideoSWPowerLevel_Balanced = eAVDecVideoSWPowerLevel.Balanced;
 pub const eAVDecVideoSWPowerLevel_VideoQuality = eAVDecVideoSWPowerLevel.VideoQuality;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputWMA_Value = @import("../zig.zig").Guid.initString("c95e8dcf-4058-4204-8c42-cb24d91e4b9b");
+const CLSID_CODECAPI_GUID_AVDecAudioInputWMA_Value = Guid.initString("c95e8dcf-4058-4204-8c42-cb24d91e4b9b");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputWMA = &CLSID_CODECAPI_GUID_AVDecAudioInputWMA_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputWMAPro_Value = @import("../zig.zig").Guid.initString("0128b7c7-da72-4fe3-bef8-5c52e3557704");
+const CLSID_CODECAPI_GUID_AVDecAudioInputWMAPro_Value = Guid.initString("0128b7c7-da72-4fe3-bef8-5c52e3557704");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputWMAPro = &CLSID_CODECAPI_GUID_AVDecAudioInputWMAPro_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputDolby_Value = @import("../zig.zig").Guid.initString("8e4228a0-f000-4e0b-8f54-ab8d24ad61a2");
+const CLSID_CODECAPI_GUID_AVDecAudioInputDolby_Value = Guid.initString("8e4228a0-f000-4e0b-8f54-ab8d24ad61a2");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputDolby = &CLSID_CODECAPI_GUID_AVDecAudioInputDolby_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputDTS_Value = @import("../zig.zig").Guid.initString("600bc0ca-6a1f-4e91-b241-1bbeb1cb19e0");
+const CLSID_CODECAPI_GUID_AVDecAudioInputDTS_Value = Guid.initString("600bc0ca-6a1f-4e91-b241-1bbeb1cb19e0");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputDTS = &CLSID_CODECAPI_GUID_AVDecAudioInputDTS_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputPCM_Value = @import("../zig.zig").Guid.initString("f2421da5-bbb4-4cd5-a996-933c6b5d1347");
+const CLSID_CODECAPI_GUID_AVDecAudioInputPCM_Value = Guid.initString("f2421da5-bbb4-4cd5-a996-933c6b5d1347");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputPCM = &CLSID_CODECAPI_GUID_AVDecAudioInputPCM_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputMPEG_Value = @import("../zig.zig").Guid.initString("91106f36-02c5-4f75-9719-3b7abf75e1f6");
+const CLSID_CODECAPI_GUID_AVDecAudioInputMPEG_Value = Guid.initString("91106f36-02c5-4f75-9719-3b7abf75e1f6");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputMPEG = &CLSID_CODECAPI_GUID_AVDecAudioInputMPEG_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputAAC_Value = @import("../zig.zig").Guid.initString("97df7828-b94a-47e2-a4bc-51194db22a4d");
+const CLSID_CODECAPI_GUID_AVDecAudioInputAAC_Value = Guid.initString("97df7828-b94a-47e2-a4bc-51194db22a4d");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputAAC = &CLSID_CODECAPI_GUID_AVDecAudioInputAAC_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputHEAAC_Value = @import("../zig.zig").Guid.initString("16efb4aa-330e-4f5c-98a8-cf6ac55cbe60");
+const CLSID_CODECAPI_GUID_AVDecAudioInputHEAAC_Value = Guid.initString("16efb4aa-330e-4f5c-98a8-cf6ac55cbe60");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputHEAAC = &CLSID_CODECAPI_GUID_AVDecAudioInputHEAAC_Value;
 
-const CLSID_CODECAPI_GUID_AVDecAudioInputDolbyDigitalPlus_Value = @import("../zig.zig").Guid.initString("0803e185-8f5d-47f5-9908-19a5bbc9fe34");
+const CLSID_CODECAPI_GUID_AVDecAudioInputDolbyDigitalPlus_Value = Guid.initString("0803e185-8f5d-47f5-9908-19a5bbc9fe34");
 pub const CLSID_CODECAPI_GUID_AVDecAudioInputDolbyDigitalPlus = &CLSID_CODECAPI_GUID_AVDecAudioInputDolbyDigitalPlus_Value;
 
-const CLSID_CODECAPI_AVDecAACDownmixMode_Value = @import("../zig.zig").Guid.initString("01274475-f6bb-4017-b084-81a763c942d4");
+const CLSID_CODECAPI_AVDecAACDownmixMode_Value = Guid.initString("01274475-f6bb-4017-b084-81a763c942d4");
 pub const CLSID_CODECAPI_AVDecAACDownmixMode = &CLSID_CODECAPI_AVDecAACDownmixMode_Value;
 
 pub const eAVDecAACDownmixMode = enum(i32) {
@@ -9388,7 +9388,7 @@ pub const eAVDecAACDownmixMode = enum(i32) {
 pub const eAVDecAACUseISODownmix = eAVDecAACDownmixMode.ISODownmix;
 pub const eAVDecAACUseARIBDownmix = eAVDecAACDownmixMode.ARIBDownmix;
 
-const CLSID_CODECAPI_AVDecHEAACDynamicRangeControl_Value = @import("../zig.zig").Guid.initString("287c8abe-69a4-4d39-8080-d3d9712178a0");
+const CLSID_CODECAPI_AVDecHEAACDynamicRangeControl_Value = Guid.initString("287c8abe-69a4-4d39-8080-d3d9712178a0");
 pub const CLSID_CODECAPI_AVDecHEAACDynamicRangeControl = &CLSID_CODECAPI_AVDecHEAACDynamicRangeControl_Value;
 
 pub const eAVDecHEAACDynamicRangeControl = enum(i32) {
@@ -9398,7 +9398,7 @@ pub const eAVDecHEAACDynamicRangeControl = enum(i32) {
 pub const eAVDecHEAACDynamicRangeControl_OFF = eAVDecHEAACDynamicRangeControl.FF;
 pub const eAVDecHEAACDynamicRangeControl_ON = eAVDecHEAACDynamicRangeControl.N;
 
-const CLSID_CODECAPI_AVDecAudioDualMono_Value = @import("../zig.zig").Guid.initString("4a52cda8-30f8-4216-be0f-ba0b2025921d");
+const CLSID_CODECAPI_AVDecAudioDualMono_Value = Guid.initString("4a52cda8-30f8-4216-be0f-ba0b2025921d");
 pub const CLSID_CODECAPI_AVDecAudioDualMono = &CLSID_CODECAPI_AVDecAudioDualMono_Value;
 
 pub const eAVDecAudioDualMono = enum(i32) {
@@ -9410,7 +9410,7 @@ pub const eAVDecAudioDualMono_IsNotDualMono = eAVDecAudioDualMono.IsNotDualMono;
 pub const eAVDecAudioDualMono_IsDualMono = eAVDecAudioDualMono.IsDualMono;
 pub const eAVDecAudioDualMono_UnSpecified = eAVDecAudioDualMono.UnSpecified;
 
-const CLSID_CODECAPI_AVDecAudioDualMonoReproMode_Value = @import("../zig.zig").Guid.initString("a5106186-cc94-4bc9-8cd9-aa2f61f6807e");
+const CLSID_CODECAPI_AVDecAudioDualMonoReproMode_Value = Guid.initString("a5106186-cc94-4bc9-8cd9-aa2f61f6807e");
 pub const CLSID_CODECAPI_AVDecAudioDualMonoReproMode = &CLSID_CODECAPI_AVDecAudioDualMonoReproMode_Value;
 
 pub const eAVDecAudioDualMonoReproMode = enum(i32) {
@@ -9424,10 +9424,10 @@ pub const eAVDecAudioDualMonoReproMode_LEFT_MONO = eAVDecAudioDualMonoReproMode.
 pub const eAVDecAudioDualMonoReproMode_RIGHT_MONO = eAVDecAudioDualMonoReproMode.RIGHT_MONO;
 pub const eAVDecAudioDualMonoReproMode_MIX_MONO = eAVDecAudioDualMonoReproMode.MIX_MONO;
 
-const CLSID_CODECAPI_AVAudioChannelCount_Value = @import("../zig.zig").Guid.initString("1d3583c4-1583-474e-b71a-5ee463c198e4");
+const CLSID_CODECAPI_AVAudioChannelCount_Value = Guid.initString("1d3583c4-1583-474e-b71a-5ee463c198e4");
 pub const CLSID_CODECAPI_AVAudioChannelCount = &CLSID_CODECAPI_AVAudioChannelCount_Value;
 
-const CLSID_CODECAPI_AVAudioChannelConfig_Value = @import("../zig.zig").Guid.initString("17f89cb3-c38d-4368-9ede-63b94d177f9f");
+const CLSID_CODECAPI_AVAudioChannelConfig_Value = Guid.initString("17f89cb3-c38d-4368-9ede-63b94d177f9f");
 pub const CLSID_CODECAPI_AVAudioChannelConfig = &CLSID_CODECAPI_AVAudioChannelConfig_Value;
 
 pub const eAVAudioChannelConfig = enum(i32) {
@@ -9469,10 +9469,10 @@ pub const eAVAudioChannelConfig_TOP_BACK_LEFT = eAVAudioChannelConfig.TOP_BACK_L
 pub const eAVAudioChannelConfig_TOP_BACK_CENTER = eAVAudioChannelConfig.TOP_BACK_CENTER;
 pub const eAVAudioChannelConfig_TOP_BACK_RIGHT = eAVAudioChannelConfig.TOP_BACK_RIGHT;
 
-const CLSID_CODECAPI_AVAudioSampleRate_Value = @import("../zig.zig").Guid.initString("971d2723-1acb-42e7-855c-520a4b70a5f2");
+const CLSID_CODECAPI_AVAudioSampleRate_Value = Guid.initString("971d2723-1acb-42e7-855c-520a4b70a5f2");
 pub const CLSID_CODECAPI_AVAudioSampleRate = &CLSID_CODECAPI_AVAudioSampleRate_Value;
 
-const CLSID_CODECAPI_AVDDSurroundMode_Value = @import("../zig.zig").Guid.initString("99f2f386-98d1-4452-a163-abc78a6eb770");
+const CLSID_CODECAPI_AVDDSurroundMode_Value = Guid.initString("99f2f386-98d1-4452-a163-abc78a6eb770");
 pub const CLSID_CODECAPI_AVDDSurroundMode = &CLSID_CODECAPI_AVDDSurroundMode_Value;
 
 pub const eAVDDSurroundMode = enum(i32) {
@@ -9484,7 +9484,7 @@ pub const eAVDDSurroundMode_NotIndicated = eAVDDSurroundMode.NotIndicated;
 pub const eAVDDSurroundMode_No = eAVDDSurroundMode.No;
 pub const eAVDDSurroundMode_Yes = eAVDDSurroundMode.Yes;
 
-const CLSID_CODECAPI_AVDecDDOperationalMode_Value = @import("../zig.zig").Guid.initString("d6d6c6d1-064e-4fdd-a40e-3ecbfcb7ebd0");
+const CLSID_CODECAPI_AVDecDDOperationalMode_Value = Guid.initString("d6d6c6d1-064e-4fdd-a40e-3ecbfcb7ebd0");
 pub const CLSID_CODECAPI_AVDecDDOperationalMode = &CLSID_CODECAPI_AVDecDDOperationalMode_Value;
 
 pub const eAVDecDDOperationalMode = enum(i32) {
@@ -9506,7 +9506,7 @@ pub const eAVDecDDOperationalMode_PORTABLE8 = eAVDecDDOperationalMode.PORTABLE8;
 pub const eAVDecDDOperationalMode_PORTABLE11 = eAVDecDDOperationalMode.PORTABLE11;
 pub const eAVDecDDOperationalMode_PORTABLE14 = eAVDecDDOperationalMode.PORTABLE14;
 
-const CLSID_CODECAPI_AVDecDDMatrixDecodingMode_Value = @import("../zig.zig").Guid.initString("ddc811a5-04ed-4bf3-a0ca-d00449f9355f");
+const CLSID_CODECAPI_AVDecDDMatrixDecodingMode_Value = Guid.initString("ddc811a5-04ed-4bf3-a0ca-d00449f9355f");
 pub const CLSID_CODECAPI_AVDecDDMatrixDecodingMode = &CLSID_CODECAPI_AVDecDDMatrixDecodingMode_Value;
 
 pub const eAVDecDDMatrixDecodingMode = enum(i32) {
@@ -9518,13 +9518,13 @@ pub const eAVDecDDMatrixDecodingMode_OFF = eAVDecDDMatrixDecodingMode.OFF;
 pub const eAVDecDDMatrixDecodingMode_ON = eAVDecDDMatrixDecodingMode.ON;
 pub const eAVDecDDMatrixDecodingMode_AUTO = eAVDecDDMatrixDecodingMode.AUTO;
 
-const CLSID_CODECAPI_AVDecDDDynamicRangeScaleHigh_Value = @import("../zig.zig").Guid.initString("50196c21-1f33-4af5-b296-11426d6c8789");
+const CLSID_CODECAPI_AVDecDDDynamicRangeScaleHigh_Value = Guid.initString("50196c21-1f33-4af5-b296-11426d6c8789");
 pub const CLSID_CODECAPI_AVDecDDDynamicRangeScaleHigh = &CLSID_CODECAPI_AVDecDDDynamicRangeScaleHigh_Value;
 
-const CLSID_CODECAPI_AVDecDDDynamicRangeScaleLow_Value = @import("../zig.zig").Guid.initString("044e62e4-11a5-42d5-a3b2-3bb2c7c2d7cf");
+const CLSID_CODECAPI_AVDecDDDynamicRangeScaleLow_Value = Guid.initString("044e62e4-11a5-42d5-a3b2-3bb2c7c2d7cf");
 pub const CLSID_CODECAPI_AVDecDDDynamicRangeScaleLow = &CLSID_CODECAPI_AVDecDDDynamicRangeScaleLow_Value;
 
-const CLSID_CODECAPI_AVDecDDStereoDownMixMode_Value = @import("../zig.zig").Guid.initString("6ce4122c-3ee9-4182-b4ae-c10fc088649d");
+const CLSID_CODECAPI_AVDecDDStereoDownMixMode_Value = Guid.initString("6ce4122c-3ee9-4182-b4ae-c10fc088649d");
 pub const CLSID_CODECAPI_AVDecDDStereoDownMixMode = &CLSID_CODECAPI_AVDecDDStereoDownMixMode_Value;
 
 pub const eAVDecDDStereoDownMixMode = enum(i32) {
@@ -9536,7 +9536,7 @@ pub const eAVDecDDStereoDownMixMode_Auto = eAVDecDDStereoDownMixMode.Auto;
 pub const eAVDecDDStereoDownMixMode_LtRt = eAVDecDDStereoDownMixMode.LtRt;
 pub const eAVDecDDStereoDownMixMode_LoRo = eAVDecDDStereoDownMixMode.LoRo;
 
-const CLSID_CODECAPI_AVDSPLoudnessEqualization_Value = @import("../zig.zig").Guid.initString("8afd1a15-1812-4cbf-9319-433a5b2a3b27");
+const CLSID_CODECAPI_AVDSPLoudnessEqualization_Value = Guid.initString("8afd1a15-1812-4cbf-9319-433a5b2a3b27");
 pub const CLSID_CODECAPI_AVDSPLoudnessEqualization = &CLSID_CODECAPI_AVDSPLoudnessEqualization_Value;
 
 pub const eAVDSPLoudnessEqualization = enum(i32) {
@@ -9548,7 +9548,7 @@ pub const eAVDSPLoudnessEqualization_OFF = eAVDSPLoudnessEqualization.OFF;
 pub const eAVDSPLoudnessEqualization_ON = eAVDSPLoudnessEqualization.ON;
 pub const eAVDSPLoudnessEqualization_AUTO = eAVDSPLoudnessEqualization.AUTO;
 
-const CLSID_CODECAPI_AVDSPSpeakerFill_Value = @import("../zig.zig").Guid.initString("5612bca1-56da-4582-8da1-ca8090f92768");
+const CLSID_CODECAPI_AVDSPSpeakerFill_Value = Guid.initString("5612bca1-56da-4582-8da1-ca8090f92768");
 pub const CLSID_CODECAPI_AVDSPSpeakerFill = &CLSID_CODECAPI_AVDSPSpeakerFill_Value;
 
 pub const eAVDSPSpeakerFill = enum(i32) {
@@ -9560,13 +9560,13 @@ pub const eAVDSPSpeakerFill_OFF = eAVDSPSpeakerFill.OFF;
 pub const eAVDSPSpeakerFill_ON = eAVDSPSpeakerFill.ON;
 pub const eAVDSPSpeakerFill_AUTO = eAVDSPSpeakerFill.AUTO;
 
-const CLSID_CODECAPI_AVPriorityControl_Value = @import("../zig.zig").Guid.initString("54ba3dc8-bdde-4329-b187-2018bc5c2ba1");
+const CLSID_CODECAPI_AVPriorityControl_Value = Guid.initString("54ba3dc8-bdde-4329-b187-2018bc5c2ba1");
 pub const CLSID_CODECAPI_AVPriorityControl = &CLSID_CODECAPI_AVPriorityControl_Value;
 
-const CLSID_CODECAPI_AVRealtimeControl_Value = @import("../zig.zig").Guid.initString("6f440632-c4ad-4bf7-9e52-456942b454b0");
+const CLSID_CODECAPI_AVRealtimeControl_Value = Guid.initString("6f440632-c4ad-4bf7-9e52-456942b454b0");
 pub const CLSID_CODECAPI_AVRealtimeControl = &CLSID_CODECAPI_AVRealtimeControl_Value;
 
-const CLSID_CODECAPI_AVEncNoInputCopy_Value = @import("../zig.zig").Guid.initString("d2b46a2a-e8ee-4ec5-869e-449b6c62c81a");
+const CLSID_CODECAPI_AVEncNoInputCopy_Value = Guid.initString("d2b46a2a-e8ee-4ec5-869e-449b6c62c81a");
 pub const CLSID_CODECAPI_AVEncNoInputCopy = &CLSID_CODECAPI_AVEncNoInputCopy_Value;
 
 pub const eAVEncChromaEncodeMode = enum(i32) {
@@ -9578,13 +9578,13 @@ pub const eAVEncChromaEncodeMode_420 = eAVEncChromaEncodeMode.@"20";
 pub const eAVEncChromaEncodeMode_444 = eAVEncChromaEncodeMode.@"44";
 pub const eAVEncChromaEncodeMode_444_v2 = eAVEncChromaEncodeMode.@"44_v2";
 
-const CLSID_CODECAPI_AVEncChromaEncodeMode_Value = @import("../zig.zig").Guid.initString("8a47ab5a-4798-4c93-b5a5-554f9a3b9f50");
+const CLSID_CODECAPI_AVEncChromaEncodeMode_Value = Guid.initString("8a47ab5a-4798-4c93-b5a5-554f9a3b9f50");
 pub const CLSID_CODECAPI_AVEncChromaEncodeMode = &CLSID_CODECAPI_AVEncChromaEncodeMode_Value;
 
-const CLSID_CODECAPI_AVEncProgressiveUpdateTime_Value = @import("../zig.zig").Guid.initString("649faf66-afc6-4828-8fdc-0771cd9ab17d");
+const CLSID_CODECAPI_AVEncProgressiveUpdateTime_Value = Guid.initString("649faf66-afc6-4828-8fdc-0771cd9ab17d");
 pub const CLSID_CODECAPI_AVEncProgressiveUpdateTime = &CLSID_CODECAPI_AVEncProgressiveUpdateTime_Value;
 
-const CLSID_CODECAPI_AVEncChromaUpdateTime_Value = @import("../zig.zig").Guid.initString("4b4fd998-4274-40bb-8ee4-07553e7e2d3a");
+const CLSID_CODECAPI_AVEncChromaUpdateTime_Value = Guid.initString("4b4fd998-4274-40bb-8ee4-07553e7e2d3a");
 pub const CLSID_CODECAPI_AVEncChromaUpdateTime = &CLSID_CODECAPI_AVEncChromaUpdateTime_Value;
 
 pub const DXVAHD_FRAME_FORMAT = enum(i32) {
@@ -9995,7 +9995,7 @@ pub const DXVAHD_STREAM_STATE_PRIVATE_IVTC_DATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDXVAHD_Device_Value = @import("../zig.zig").Guid.initString("95f12dfd-d77e-49be-815f-57d579634d6d");
+const IID_IDXVAHD_Device_Value = Guid.initString("95f12dfd-d77e-49be-815f-57d579634d6d");
 pub const IID_IDXVAHD_Device = &IID_IDXVAHD_Device_Value;
 pub const IDXVAHD_Device = extern struct {
     pub const VTable = extern struct {
@@ -10088,7 +10088,7 @@ pub const IDXVAHD_Device = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IDXVAHD_VideoProcessor_Value = @import("../zig.zig").Guid.initString("95f4edf4-6e03-4cd7-be1b-3075d665aa52");
+const IID_IDXVAHD_VideoProcessor_Value = Guid.initString("95f4edf4-6e03-4cd7-be1b-3075d665aa52");
 pub const IID_IDXVAHD_VideoProcessor = &IID_IDXVAHD_VideoProcessor_Value;
 pub const IDXVAHD_VideoProcessor = extern struct {
     pub const VTable = extern struct {
@@ -10842,7 +10842,7 @@ pub const DXVA2_DecodeExecuteParams = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirect3DDeviceManager9_Value = @import("../zig.zig").Guid.initString("a0cade0f-06d5-4cf4-a1c7-f3cdd725aa75");
+const IID_IDirect3DDeviceManager9_Value = Guid.initString("a0cade0f-06d5-4cf4-a1c7-f3cdd725aa75");
 pub const IID_IDirect3DDeviceManager9 = &IID_IDirect3DDeviceManager9_Value;
 pub const IDirect3DDeviceManager9 = extern struct {
     pub const VTable = extern struct {
@@ -10918,7 +10918,7 @@ pub const IDirect3DDeviceManager9 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoAccelerationService_Value = @import("../zig.zig").Guid.initString("fc51a550-d5e7-11d9-af55-00054e43ff02");
+const IID_IDirectXVideoAccelerationService_Value = Guid.initString("fc51a550-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoAccelerationService = &IID_IDirectXVideoAccelerationService_Value;
 pub const IDirectXVideoAccelerationService = extern struct {
     pub const VTable = extern struct {
@@ -10948,7 +10948,7 @@ pub const IDirectXVideoAccelerationService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoDecoderService_Value = @import("../zig.zig").Guid.initString("fc51a551-d5e7-11d9-af55-00054e43ff02");
+const IID_IDirectXVideoDecoderService_Value = Guid.initString("fc51a551-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoDecoderService = &IID_IDirectXVideoDecoderService_Value;
 pub const IDirectXVideoDecoderService = extern struct {
     pub const VTable = extern struct {
@@ -11006,7 +11006,7 @@ pub const IDirectXVideoDecoderService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoProcessorService_Value = @import("../zig.zig").Guid.initString("fc51a552-d5e7-11d9-af55-00054e43ff02");
+const IID_IDirectXVideoProcessorService_Value = Guid.initString("fc51a552-d5e7-11d9-af55-00054e43ff02");
 pub const IID_IDirectXVideoProcessorService = &IID_IDirectXVideoProcessorService_Value;
 pub const IDirectXVideoProcessorService = extern struct {
     pub const VTable = extern struct {
@@ -11108,7 +11108,7 @@ pub const IDirectXVideoProcessorService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoDecoder_Value = @import("../zig.zig").Guid.initString("f2b0810a-fd00-43c9-918c-df94e2d8ef7d");
+const IID_IDirectXVideoDecoder_Value = Guid.initString("f2b0810a-fd00-43c9-918c-df94e2d8ef7d");
 pub const IID_IDirectXVideoDecoder = &IID_IDirectXVideoDecoder_Value;
 pub const IDirectXVideoDecoder = extern struct {
     pub const VTable = extern struct {
@@ -11185,7 +11185,7 @@ pub const IDirectXVideoDecoder = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoProcessor_Value = @import("../zig.zig").Guid.initString("8c3a39f0-916e-4690-804f-4c8001355d25");
+const IID_IDirectXVideoProcessor_Value = Guid.initString("8c3a39f0-916e-4690-804f-4c8001355d25");
 pub const IID_IDirectXVideoProcessor = &IID_IDirectXVideoProcessor_Value;
 pub const IDirectXVideoProcessor = extern struct {
     pub const VTable = extern struct {
@@ -11265,7 +11265,7 @@ pub const DXVA2_SurfaceType_ProcessorRenderTarget = DXVA2_SurfaceType.ProcessorR
 pub const DXVA2_SurfaceType_D3DRenderTargetTexture = DXVA2_SurfaceType.D3DRenderTargetTexture;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDirectXVideoMemoryConfiguration_Value = @import("../zig.zig").Guid.initString("b7f916dd-db3b-49c1-84d7-e45ef99ec726");
+const IID_IDirectXVideoMemoryConfiguration_Value = Guid.initString("b7f916dd-db3b-49c1-84d7-e45ef99ec726");
 pub const IID_IDirectXVideoMemoryConfiguration = &IID_IDirectXVideoMemoryConfiguration_Value;
 pub const IDirectXVideoMemoryConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -11706,7 +11706,7 @@ pub const OPM_GET_CODEC_INFO_INFORMATION = packed struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOPMVideoOutput_Value = @import("../zig.zig").Guid.initString("0a15159d-41c7-4456-93e1-284cd61d4e8d");
+const IID_IOPMVideoOutput_Value = Guid.initString("0a15159d-41c7-4456-93e1-284cd61d4e8d");
 pub const IID_IOPMVideoOutput = &IID_IOPMVideoOutput_Value;
 pub const IOPMVideoOutput = extern struct {
     pub const VTable = extern struct {
@@ -11766,7 +11766,7 @@ pub const IOPMVideoOutput = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_KSPROPSETID_OPMVideoOutput_Value = @import("../zig.zig").Guid.initString("06f414bb-f43a-4fe2-a566-774b4c81f0db");
+const CLSID_KSPROPSETID_OPMVideoOutput_Value = Guid.initString("06f414bb-f43a-4fe2-a566-774b4c81f0db");
 pub const CLSID_KSPROPSETID_OPMVideoOutput = &CLSID_KSPROPSETID_OPMVideoOutput_Value;
 
 pub const KSMETHOD_OPMVIDEOOUTPUT = enum(i32) {
@@ -11809,7 +11809,7 @@ pub const MF_ATTRIBUTES_MATCH_INTERSECTION = MF_ATTRIBUTES_MATCH_TYPE.INTERSECTI
 pub const MF_ATTRIBUTES_MATCH_SMALLER = MF_ATTRIBUTES_MATCH_TYPE.SMALLER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAttributes_Value = @import("../zig.zig").Guid.initString("2cd2d921-c447-44a7-a13c-4adabfc247e3");
+const IID_IMFAttributes_Value = Guid.initString("2cd2d921-c447-44a7-a13c-4adabfc247e3");
 pub const IID_IMFAttributes = &IID_IMFAttributes_Value;
 pub const IMFAttributes = extern struct {
     pub const VTable = extern struct {
@@ -12100,7 +12100,7 @@ pub const MF_ATTRIBUTE_SERIALIZE_OPTIONS = enum(i32) {
 pub const MF_ATTRIBUTE_SERIALIZE_UNKNOWN_BYREF = MF_ATTRIBUTE_SERIALIZE_OPTIONS.F;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaBuffer_Value = @import("../zig.zig").Guid.initString("045fa593-8799-42b8-bc8d-8968c6453507");
+const IID_IMFMediaBuffer_Value = Guid.initString("045fa593-8799-42b8-bc8d-8968c6453507");
 pub const IID_IMFMediaBuffer = &IID_IMFMediaBuffer_Value;
 pub const IMFMediaBuffer = extern struct {
     pub const VTable = extern struct {
@@ -12156,7 +12156,7 @@ pub const IMFMediaBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSample_Value = @import("../zig.zig").Guid.initString("c40a00f2-b93a-4d80-ae8c-5a1c634f58e4");
+const IID_IMFSample_Value = Guid.initString("c40a00f2-b93a-4d80-ae8c-5a1c634f58e4");
 pub const IID_IMFSample = &IID_IMFSample_Value;
 pub const IMFSample = extern struct {
     pub const VTable = extern struct {
@@ -12282,7 +12282,7 @@ pub const IMFSample = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMF2DBuffer_Value = @import("../zig.zig").Guid.initString("7dc9d5f9-9ed9-44ec-9bbf-0600bb589fbb");
+const IID_IMF2DBuffer_Value = Guid.initString("7dc9d5f9-9ed9-44ec-9bbf-0600bb589fbb");
 pub const IID_IMF2DBuffer = &IID_IMF2DBuffer_Value;
 pub const IMF2DBuffer = extern struct {
     pub const VTable = extern struct {
@@ -12370,7 +12370,7 @@ pub const MF2DBuffer_LockFlags_ReadWrite = MF2DBuffer_LockFlags.LockTypeMask;
 pub const MF2DBuffer_LockFlags_ForceDWORD = MF2DBuffer_LockFlags.ForceDWORD;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMF2DBuffer2_Value = @import("../zig.zig").Guid.initString("33ae5ea6-4316-436f-8ddd-d73d22f829ec");
+const IID_IMF2DBuffer2_Value = Guid.initString("33ae5ea6-4316-436f-8ddd-d73d22f829ec");
 pub const IID_IMF2DBuffer2 = &IID_IMF2DBuffer2_Value;
 pub const IMF2DBuffer2 = extern struct {
     pub const VTable = extern struct {
@@ -12404,7 +12404,7 @@ pub const IMF2DBuffer2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFDXGIBuffer_Value = @import("../zig.zig").Guid.initString("e7174cfa-1c9e-48b1-8866-626226bfc258");
+const IID_IMFDXGIBuffer_Value = Guid.initString("e7174cfa-1c9e-48b1-8866-626226bfc258");
 pub const IID_IMFDXGIBuffer = &IID_IMFDXGIBuffer_Value;
 pub const IMFDXGIBuffer = extern struct {
     pub const VTable = extern struct {
@@ -12454,7 +12454,7 @@ pub const IMFDXGIBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaType_Value = @import("../zig.zig").Guid.initString("44ae0fa8-ea31-4109-8d2e-4cae4997c555");
+const IID_IMFMediaType_Value = Guid.initString("44ae0fa8-ea31-4109-8d2e-4cae4997c555");
 pub const IID_IMFMediaType = &IID_IMFMediaType_Value;
 pub const IMFMediaType = extern struct {
     pub const VTable = extern struct {
@@ -12511,7 +12511,7 @@ pub const IMFMediaType = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAudioMediaType_Value = @import("../zig.zig").Guid.initString("26a0adc3-ce26-4672-9304-69552edd3faf");
+const IID_IMFAudioMediaType_Value = Guid.initString("26a0adc3-ce26-4672-9304-69552edd3faf");
 pub const IID_IMFAudioMediaType = &IID_IMFAudioMediaType_Value;
 pub const IMFAudioMediaType = extern struct {
     pub const VTable = extern struct {
@@ -12855,7 +12855,7 @@ pub const MFStdVideoFormat_ATSC_HD1080i = MFStandardVideoFormat.ATSC_HD1080i;
 pub const MFStdVideoFormat_ATSC_HD720p = MFStandardVideoFormat.ATSC_HD720p;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoMediaType_Value = @import("../zig.zig").Guid.initString("b99f381f-a8f9-47a2-a5af-ca3a225a3890");
+const IID_IMFVideoMediaType_Value = Guid.initString("b99f381f-a8f9-47a2-a5af-ca3a225a3890");
 pub const IID_IMFVideoMediaType = &IID_IMFVideoMediaType_Value;
 pub const IMFVideoMediaType = extern struct {
     pub const VTable = extern struct {
@@ -12886,7 +12886,7 @@ pub const IMFVideoMediaType = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAsyncResult_Value = @import("../zig.zig").Guid.initString("ac6b7889-0740-4d51-8619-905994a55cc6");
+const IID_IMFAsyncResult_Value = Guid.initString("ac6b7889-0740-4d51-8619-905994a55cc6");
 pub const IID_IMFAsyncResult = &IID_IMFAsyncResult_Value;
 pub const IMFAsyncResult = extern struct {
     pub const VTable = extern struct {
@@ -12938,7 +12938,7 @@ pub const IMFAsyncResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAsyncCallback_Value = @import("../zig.zig").Guid.initString("a27003cf-2354-4f2a-8d6a-ab7cff15437e");
+const IID_IMFAsyncCallback_Value = Guid.initString("a27003cf-2354-4f2a-8d6a-ab7cff15437e");
 pub const IID_IMFAsyncCallback = &IID_IMFAsyncCallback_Value;
 pub const IMFAsyncCallback = extern struct {
     pub const VTable = extern struct {
@@ -12969,7 +12969,7 @@ pub const IMFAsyncCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFAsyncCallbackLogging_Value = @import("../zig.zig").Guid.initString("c7a4dca1-f5f0-47b6-b92b-bf0106d25791");
+const IID_IMFAsyncCallbackLogging_Value = Guid.initString("c7a4dca1-f5f0-47b6-b92b-bf0106d25791");
 pub const IID_IMFAsyncCallbackLogging = &IID_IMFAsyncCallbackLogging_Value;
 pub const IMFAsyncCallbackLogging = extern struct {
     pub const VTable = extern struct {
@@ -13240,7 +13240,7 @@ pub const MEDeviceThermalStateChanged = MF_EVENT_TYPE.DeviceThermalStateChanged;
 pub const MEReservedMax = MF_EVENT_TYPE.ReservedMax;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaEvent_Value = @import("../zig.zig").Guid.initString("df598932-f10c-4e39-bba2-c308f101daa3");
+const IID_IMFMediaEvent_Value = Guid.initString("df598932-f10c-4e39-bba2-c308f101daa3");
 pub const IID_IMFMediaEvent = &IID_IMFMediaEvent_Value;
 pub const IMFMediaEvent = extern struct {
     pub const VTable = extern struct {
@@ -13286,7 +13286,7 @@ pub const IMFMediaEvent = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaEventGenerator_Value = @import("../zig.zig").Guid.initString("2cd0bd52-bcd5-4b89-b62c-eadc0c031e7d");
+const IID_IMFMediaEventGenerator_Value = Guid.initString("2cd0bd52-bcd5-4b89-b62c-eadc0c031e7d");
 pub const IID_IMFMediaEventGenerator = &IID_IMFMediaEventGenerator_Value;
 pub const IMFMediaEventGenerator = extern struct {
     pub const VTable = extern struct {
@@ -13338,7 +13338,7 @@ pub const IMFMediaEventGenerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRemoteAsyncCallback_Value = @import("../zig.zig").Guid.initString("a27003d0-2354-4f2a-8d6a-ab7cff15437e");
+const IID_IMFRemoteAsyncCallback_Value = Guid.initString("a27003d0-2354-4f2a-8d6a-ab7cff15437e");
 pub const IID_IMFRemoteAsyncCallback = &IID_IMFRemoteAsyncCallback_Value;
 pub const IMFRemoteAsyncCallback = extern struct {
     pub const VTable = extern struct {
@@ -13368,7 +13368,7 @@ pub const msoBegin = MFBYTESTREAM_SEEK_ORIGIN.Begin;
 pub const msoCurrent = MFBYTESTREAM_SEEK_ORIGIN.Current;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFByteStream_Value = @import("../zig.zig").Guid.initString("ad4c1b00-4bf7-422f-9175-756693d9130d");
+const IID_IMFByteStream_Value = Guid.initString("ad4c1b00-4bf7-422f-9175-756693d9130d");
 pub const IID_IMFByteStream = &IID_IMFByteStream_Value;
 pub const IMFByteStream = extern struct {
     pub const VTable = extern struct {
@@ -13517,7 +13517,7 @@ pub const IMFByteStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFByteStreamProxyClassFactory_Value = @import("../zig.zig").Guid.initString("a6b43f84-5c0a-42e8-a44d-b1857a76992f");
+const IID_IMFByteStreamProxyClassFactory_Value = Guid.initString("a6b43f84-5c0a-42e8-a44d-b1857a76992f");
 pub const IID_IMFByteStreamProxyClassFactory = &IID_IMFByteStreamProxyClassFactory_Value;
 pub const IMFByteStreamProxyClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -13573,7 +13573,7 @@ pub const MF_FILEFLAGS_NOBUFFERING = MF_FILE_FLAGS.NOBUFFERING;
 pub const MF_FILEFLAGS_ALLOW_WRITE_SHARING = MF_FILE_FLAGS.ALLOW_WRITE_SHARING;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSampleOutputStream_Value = @import("../zig.zig").Guid.initString("8feed468-6f7e-440d-869a-49bdd283ad0d");
+const IID_IMFSampleOutputStream_Value = Guid.initString("8feed468-6f7e-440d-869a-49bdd283ad0d");
 pub const IID_IMFSampleOutputStream = &IID_IMFSampleOutputStream_Value;
 pub const IMFSampleOutputStream = extern struct {
     pub const VTable = extern struct {
@@ -13612,7 +13612,7 @@ pub const IMFSampleOutputStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFCollection_Value = @import("../zig.zig").Guid.initString("5bc8a76b-869a-46a3-9b03-fa218a66aebe");
+const IID_IMFCollection_Value = Guid.initString("5bc8a76b-869a-46a3-9b03-fa218a66aebe");
 pub const IID_IMFCollection = &IID_IMFCollection_Value;
 pub const IMFCollection = extern struct {
     pub const VTable = extern struct {
@@ -13676,7 +13676,7 @@ pub const IMFCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaEventQueue_Value = @import("../zig.zig").Guid.initString("36f846fc-2256-48b6-b58e-e2b638316581");
+const IID_IMFMediaEventQueue_Value = Guid.initString("36f846fc-2256-48b6-b58e-e2b638316581");
 pub const IID_IMFMediaEventQueue = &IID_IMFMediaEventQueue_Value;
 pub const IMFMediaEventQueue = extern struct {
     pub const VTable = extern struct {
@@ -13754,7 +13754,7 @@ pub const IMFMediaEventQueue = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFActivate_Value = @import("../zig.zig").Guid.initString("7fee9e9a-4a89-47a6-899c-b6a53a70fb67");
+const IID_IMFActivate_Value = Guid.initString("7fee9e9a-4a89-47a6-899c-b6a53a70fb67");
 pub const IID_IMFActivate = &IID_IMFActivate_Value;
 pub const IMFActivate = extern struct {
     pub const VTable = extern struct {
@@ -13791,7 +13791,7 @@ pub const IMFActivate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFPluginControl_Value = @import("../zig.zig").Guid.initString("5c6c44bf-1db6-435b-9249-e8cd10fdec96");
+const IID_IMFPluginControl_Value = Guid.initString("5c6c44bf-1db6-435b-9249-e8cd10fdec96");
 pub const IID_IMFPluginControl = &IID_IMFPluginControl_Value;
 pub const IMFPluginControl = extern struct {
     pub const VTable = extern struct {
@@ -13876,7 +13876,7 @@ pub const MF_PLUGIN_CONTROL_POLICY_USE_WEB_PLUGINS = MF_PLUGIN_CONTROL_POLICY.WE
 pub const MF_PLUGIN_CONTROL_POLICY_USE_WEB_PLUGINS_EDGEMODE = MF_PLUGIN_CONTROL_POLICY.WEB_PLUGINS_EDGEMODE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFPluginControl2_Value = @import("../zig.zig").Guid.initString("c6982083-3ddc-45cb-af5e-0f7a8ce4de77");
+const IID_IMFPluginControl2_Value = Guid.initString("c6982083-3ddc-45cb-af5e-0f7a8ce4de77");
 pub const IID_IMFPluginControl2 = &IID_IMFPluginControl2_Value;
 pub const IMFPluginControl2 = extern struct {
     pub const VTable = extern struct {
@@ -13898,7 +13898,7 @@ pub const IMFPluginControl2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFDXGIDeviceManager_Value = @import("../zig.zig").Guid.initString("eb533d5d-2db6-40f8-97a9-494692014f07");
+const IID_IMFDXGIDeviceManager_Value = Guid.initString("eb533d5d-2db6-40f8-97a9-494692014f07");
 pub const IID_IMFDXGIDeviceManager = &IID_IMFDXGIDeviceManager_Value;
 pub const IMFDXGIDeviceManager = extern struct {
     pub const VTable = extern struct {
@@ -13984,7 +13984,7 @@ pub const MF_STREAM_STATE_PAUSED = MF_STREAM_STATE.PAUSED;
 pub const MF_STREAM_STATE_RUNNING = MF_STREAM_STATE.RUNNING;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFMuxStreamAttributesManager_Value = @import("../zig.zig").Guid.initString("ce8bd576-e440-43b3-be34-1e53f565f7e8");
+const IID_IMFMuxStreamAttributesManager_Value = Guid.initString("ce8bd576-e440-43b3-be34-1e53f565f7e8");
 pub const IID_IMFMuxStreamAttributesManager = &IID_IMFMuxStreamAttributesManager_Value;
 pub const IMFMuxStreamAttributesManager = extern struct {
     pub const VTable = extern struct {
@@ -14015,7 +14015,7 @@ pub const IMFMuxStreamAttributesManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFMuxStreamMediaTypeManager_Value = @import("../zig.zig").Guid.initString("505a2c72-42f7-4690-aeab-8f513d0ffdb8");
+const IID_IMFMuxStreamMediaTypeManager_Value = Guid.initString("505a2c72-42f7-4690-aeab-8f513d0ffdb8");
 pub const IID_IMFMuxStreamMediaTypeManager = &IID_IMFMuxStreamMediaTypeManager_Value;
 pub const IMFMuxStreamMediaTypeManager = extern struct {
     pub const VTable = extern struct {
@@ -14079,7 +14079,7 @@ pub const IMFMuxStreamMediaTypeManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFMuxStreamSampleManager_Value = @import("../zig.zig").Guid.initString("74abbc19-b1cc-4e41-bb8b-9d9b86a8f6ca");
+const IID_IMFMuxStreamSampleManager_Value = Guid.initString("74abbc19-b1cc-4e41-bb8b-9d9b86a8f6ca");
 pub const IID_IMFMuxStreamSampleManager = &IID_IMFMuxStreamSampleManager_Value;
 pub const IMFMuxStreamSampleManager = extern struct {
     pub const VTable = extern struct {
@@ -14116,7 +14116,7 @@ pub const IMFMuxStreamSampleManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFSecureBuffer_Value = @import("../zig.zig").Guid.initString("c1209904-e584-4752-a2d6-7f21693f8b21");
+const IID_IMFSecureBuffer_Value = Guid.initString("c1209904-e584-4752-a2d6-7f21693f8b21");
 pub const IID_IMFSecureBuffer = &IID_IMFSecureBuffer_Value;
 pub const IMFSecureBuffer = extern struct {
     pub const VTable = extern struct {
@@ -14282,7 +14282,7 @@ pub const MFT_OUTPUT_DATA_BUFFER = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTransform_Value = @import("../zig.zig").Guid.initString("bf94c121-5b05-4e6f-8000-ba598961414d");
+const IID_IMFTransform_Value = Guid.initString("bf94c121-5b05-4e6f-8000-ba598961414d");
 pub const IID_IMFTransform = &IID_IMFTransform_Value;
 pub const IMFTransform = extern struct {
     pub const VTable = extern struct {
@@ -14583,7 +14583,7 @@ pub const MFPMPSESSION_UNPROTECTED_PROCESS = MFPMPSESSION_CREATION_FLAGS.UNPROTE
 pub const MFPMPSESSION_IN_PROCESS = MFPMPSESSION_CREATION_FLAGS.IN_PROCESS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSession_Value = @import("../zig.zig").Guid.initString("90377834-21d0-4dee-8214-ba2e3e6c1127");
+const IID_IMFMediaSession_Value = Guid.initString("90377834-21d0-4dee-8214-ba2e3e6c1127");
 pub const IID_IMFMediaSession = &IID_IMFMediaSession_Value;
 pub const IMFMediaSession = extern struct {
     pub const VTable = extern struct {
@@ -14762,7 +14762,7 @@ pub const MF_OPTIONAL_NODE_REJECTED_MEDIA_TYPE = MF_TOPOLOGY_RESOLUTION_STATUS_F
 pub const MF_OPTIONAL_NODE_REJECTED_PROTECTED_PROCESS = MF_TOPOLOGY_RESOLUTION_STATUS_FLAGS.OPTIONAL_NODE_REJECTED_PROTECTED_PROCESS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSourceResolver_Value = @import("../zig.zig").Guid.initString("fbe5a32d-a497-4b61-bb85-97b1a848a6e3");
+const IID_IMFSourceResolver_Value = Guid.initString("fbe5a32d-a497-4b61-bb85-97b1a848a6e3");
 pub const IID_IMFSourceResolver = &IID_IMFSourceResolver_Value;
 pub const IMFSourceResolver = extern struct {
     pub const VTable = extern struct {
@@ -14875,7 +14875,7 @@ pub const MFMEDIASOURCE_CAN_SKIPBACKWARD = MFMEDIASOURCE_CHARACTERISTICS.CAN_SKI
 pub const MFMEDIASOURCE_DOES_NOT_USE_NETWORK = MFMEDIASOURCE_CHARACTERISTICS.DOES_NOT_USE_NETWORK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSource_Value = @import("../zig.zig").Guid.initString("279a808d-aec7-40c8-9c6b-a6b492c78a66");
+const IID_IMFMediaSource_Value = Guid.initString("279a808d-aec7-40c8-9c6b-a6b492c78a66");
 pub const IID_IMFMediaSource = &IID_IMFMediaSource_Value;
 pub const IMFMediaSource = extern struct {
     pub const VTable = extern struct {
@@ -14936,7 +14936,7 @@ pub const IMFMediaSource = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaSourceEx_Value = @import("../zig.zig").Guid.initString("3c9b2eb9-86d5-4514-a394-f56664f9f0d8");
+const IID_IMFMediaSourceEx_Value = Guid.initString("3c9b2eb9-86d5-4514-a394-f56664f9f0d8");
 pub const IID_IMFMediaSourceEx = &IID_IMFMediaSourceEx_Value;
 pub const IMFMediaSourceEx = extern struct {
     pub const VTable = extern struct {
@@ -14975,7 +14975,7 @@ pub const IMFMediaSourceEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFClockConsumer_Value = @import("../zig.zig").Guid.initString("6ef2a662-47c0-4666-b13d-cbb717f2fa2c");
+const IID_IMFClockConsumer_Value = Guid.initString("6ef2a662-47c0-4666-b13d-cbb717f2fa2c");
 pub const IID_IMFClockConsumer = &IID_IMFClockConsumer_Value;
 pub const IMFClockConsumer = extern struct {
     pub const VTable = extern struct {
@@ -15005,7 +15005,7 @@ pub const IMFClockConsumer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaStream_Value = @import("../zig.zig").Guid.initString("d182108f-4ec6-443f-aa42-a71106ec825f");
+const IID_IMFMediaStream_Value = Guid.initString("d182108f-4ec6-443f-aa42-a71106ec825f");
 pub const IID_IMFMediaStream = &IID_IMFMediaStream_Value;
 pub const IMFMediaStream = extern struct {
     pub const VTable = extern struct {
@@ -15043,7 +15043,7 @@ pub const IMFMediaStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSink_Value = @import("../zig.zig").Guid.initString("6ef2a660-47c0-4666-b13d-cbb717f2fa2c");
+const IID_IMFMediaSink_Value = Guid.initString("6ef2a660-47c0-4666-b13d-cbb717f2fa2c");
 pub const IID_IMFMediaSink = &IID_IMFMediaSink_Value;
 pub const IMFMediaSink = extern struct {
     pub const VTable = extern struct {
@@ -15143,7 +15143,7 @@ pub const MFSTREAMSINK_MARKER_TICK = MFSTREAMSINK_MARKER_TYPE.TICK;
 pub const MFSTREAMSINK_MARKER_EVENT = MFSTREAMSINK_MARKER_TYPE.EVENT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFStreamSink_Value = @import("../zig.zig").Guid.initString("0a97b3cf-8e7c-4a3d-8f8c-0c843dc247fb");
+const IID_IMFStreamSink_Value = Guid.initString("0a97b3cf-8e7c-4a3d-8f8c-0c843dc247fb");
 pub const IID_IMFStreamSink = &IID_IMFStreamSink_Value;
 pub const IMFStreamSink = extern struct {
     pub const VTable = extern struct {
@@ -15206,7 +15206,7 @@ pub const IMFStreamSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoSampleAllocator_Value = @import("../zig.zig").Guid.initString("86cbc910-e533-4751-8e3b-f19b5b806a03");
+const IID_IMFVideoSampleAllocator_Value = Guid.initString("86cbc910-e533-4751-8e3b-f19b5b806a03");
 pub const IID_IMFVideoSampleAllocator = &IID_IMFVideoSampleAllocator_Value;
 pub const IMFVideoSampleAllocator = extern struct {
     pub const VTable = extern struct {
@@ -15252,7 +15252,7 @@ pub const IMFVideoSampleAllocator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFVideoSampleAllocatorNotify_Value = @import("../zig.zig").Guid.initString("a792cdbe-c374-4e89-8335-278e7b9956a4");
+const IID_IMFVideoSampleAllocatorNotify_Value = Guid.initString("a792cdbe-c374-4e89-8335-278e7b9956a4");
 pub const IID_IMFVideoSampleAllocatorNotify = &IID_IMFVideoSampleAllocatorNotify_Value;
 pub const IMFVideoSampleAllocatorNotify = extern struct {
     pub const VTable = extern struct {
@@ -15273,7 +15273,7 @@ pub const IMFVideoSampleAllocatorNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFVideoSampleAllocatorNotifyEx_Value = @import("../zig.zig").Guid.initString("3978aa1a-6d5b-4b7f-a340-90899189ae34");
+const IID_IMFVideoSampleAllocatorNotifyEx_Value = Guid.initString("3978aa1a-6d5b-4b7f-a340-90899189ae34");
 pub const IID_IMFVideoSampleAllocatorNotifyEx = &IID_IMFVideoSampleAllocatorNotifyEx_Value;
 pub const IMFVideoSampleAllocatorNotifyEx = extern struct {
     pub const VTable = extern struct {
@@ -15295,7 +15295,7 @@ pub const IMFVideoSampleAllocatorNotifyEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFVideoSampleAllocatorCallback_Value = @import("../zig.zig").Guid.initString("992388b4-3372-4f67-8b6f-c84c071f4751");
+const IID_IMFVideoSampleAllocatorCallback_Value = Guid.initString("992388b4-3372-4f67-8b6f-c84c071f4751");
 pub const IID_IMFVideoSampleAllocatorCallback = &IID_IMFVideoSampleAllocatorCallback_Value;
 pub const IMFVideoSampleAllocatorCallback = extern struct {
     pub const VTable = extern struct {
@@ -15325,7 +15325,7 @@ pub const IMFVideoSampleAllocatorCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFVideoSampleAllocatorEx_Value = @import("../zig.zig").Guid.initString("545b3a48-3283-4f62-866f-a62d8f598f9f");
+const IID_IMFVideoSampleAllocatorEx_Value = Guid.initString("545b3a48-3283-4f62-866f-a62d8f598f9f");
 pub const IID_IMFVideoSampleAllocatorEx = &IID_IMFVideoSampleAllocatorEx_Value;
 pub const IMFVideoSampleAllocatorEx = extern struct {
     pub const VTable = extern struct {
@@ -15350,7 +15350,7 @@ pub const IMFVideoSampleAllocatorEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFDXGIDeviceManagerSource_Value = @import("../zig.zig").Guid.initString("20bc074b-7a8d-4609-8c3b-64a0a3b5d7ce");
+const IID_IMFDXGIDeviceManagerSource_Value = Guid.initString("20bc074b-7a8d-4609-8c3b-64a0a3b5d7ce");
 pub const IID_IMFDXGIDeviceManagerSource = &IID_IMFDXGIDeviceManagerSource_Value;
 pub const IMFDXGIDeviceManagerSource = extern struct {
     pub const VTable = extern struct {
@@ -15388,7 +15388,7 @@ pub const MIRROR_HORIZONTAL = MF_VIDEO_PROCESSOR_MIRROR.HORIZONTAL;
 pub const MIRROR_VERTICAL = MF_VIDEO_PROCESSOR_MIRROR.VERTICAL;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFVideoProcessorControl_Value = @import("../zig.zig").Guid.initString("a3f675d5-6119-4f7f-a100-1d8b280f0efb");
+const IID_IMFVideoProcessorControl_Value = Guid.initString("a3f675d5-6119-4f7f-a100-1d8b280f0efb");
 pub const IID_IMFVideoProcessorControl = &IID_IMFVideoProcessorControl_Value;
 pub const IMFVideoProcessorControl = extern struct {
     pub const VTable = extern struct {
@@ -15450,7 +15450,7 @@ pub const IMFVideoProcessorControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFVideoProcessorControl2_Value = @import("../zig.zig").Guid.initString("bde633d3-e1dc-4a7f-a693-bbae399c4a20");
+const IID_IMFVideoProcessorControl2_Value = Guid.initString("bde633d3-e1dc-4a7f-a693-bbae399c4a20");
 pub const IID_IMFVideoProcessorControl2 = &IID_IMFVideoProcessorControl2_Value;
 pub const IMFVideoProcessorControl2 = extern struct {
     pub const VTable = extern struct {
@@ -15505,7 +15505,7 @@ pub const MFVideoSphericalProjectionMode = enum(i32) {
 pub const MFVideoSphericalProjectionMode_Spherical = MFVideoSphericalProjectionMode.Spherical;
 pub const MFVideoSphericalProjectionMode_Flat = MFVideoSphericalProjectionMode.Flat;
 
-const IID_IMFVideoProcessorControl3_Value = @import("../zig.zig").Guid.initString("2424b3f2-eb23-40f1-91aa-74bddeea0883");
+const IID_IMFVideoProcessorControl3_Value = Guid.initString("2424b3f2-eb23-40f1-91aa-74bddeea0883");
 pub const IID_IMFVideoProcessorControl3 = &IID_IMFVideoProcessorControl3_Value;
 pub const IMFVideoProcessorControl3 = extern struct {
     pub const VTable = extern struct {
@@ -15556,7 +15556,7 @@ pub const IMFVideoProcessorControl3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFVideoRendererEffectControl_Value = @import("../zig.zig").Guid.initString("604d33d7-cf23-41d5-8224-5bbbb1a87475");
+const IID_IMFVideoRendererEffectControl_Value = Guid.initString("604d33d7-cf23-41d5-8224-5bbbb1a87475");
 pub const IID_IMFVideoRendererEffectControl = &IID_IMFVideoRendererEffectControl_Value;
 pub const IMFVideoRendererEffectControl = extern struct {
     pub const VTable = extern struct {
@@ -15578,7 +15578,7 @@ pub const IMFVideoRendererEffectControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopology_Value = @import("../zig.zig").Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc433");
+const IID_IMFTopology_Value = Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc433");
 pub const IID_IMFTopology = &IID_IMFTopology_Value;
 pub const IMFTopology = extern struct {
     pub const VTable = extern struct {
@@ -15704,7 +15704,7 @@ pub const MF_TOPOLOGY_TEE_NODE = MF_TOPOLOGY_TYPE.TEE_NODE;
 pub const MF_TOPOLOGY_MAX = MF_TOPOLOGY_TYPE.MAX;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopologyNode_Value = @import("../zig.zig").Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc430");
+const IID_IMFTopologyNode_Value = Guid.initString("83cf873a-f6da-4bc8-823f-bacfd55dc430");
 pub const IID_IMFTopologyNode = &IID_IMFTopologyNode_Value;
 pub const IMFTopologyNode = extern struct {
     pub const VTable = extern struct {
@@ -15874,7 +15874,7 @@ pub const MF_TOPONODE_DRAIN_ALWAYS = MF_TOPONODE_DRAIN_MODE.ALWAYS;
 pub const MF_TOPONODE_DRAIN_NEVER = MF_TOPONODE_DRAIN_MODE.NEVER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFGetService_Value = @import("../zig.zig").Guid.initString("fa993888-4383-415a-a930-dd472a8cf6f7");
+const IID_IMFGetService_Value = Guid.initString("fa993888-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFGetService = &IID_IMFGetService_Value;
 pub const IMFGetService = extern struct {
     pub const VTable = extern struct {
@@ -15932,7 +15932,7 @@ pub const MFCLOCK_PROPERTIES = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFClock_Value = @import("../zig.zig").Guid.initString("2eb1e945-18b8-4139-9b1a-d5d584818530");
+const IID_IMFClock_Value = Guid.initString("2eb1e945-18b8-4139-9b1a-d5d584818530");
 pub const IID_IMFClock = &IID_IMFClock_Value;
 pub const IMFClock = extern struct {
     pub const VTable = extern struct {
@@ -15989,7 +15989,7 @@ pub const IMFClock = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPresentationClock_Value = @import("../zig.zig").Guid.initString("868ce85c-8ea9-4f55-ab82-b009a910a805");
+const IID_IMFPresentationClock_Value = Guid.initString("868ce85c-8ea9-4f55-ab82-b009a910a805");
 pub const IID_IMFPresentationClock = &IID_IMFPresentationClock_Value;
 pub const IMFPresentationClock = extern struct {
     pub const VTable = extern struct {
@@ -16065,7 +16065,7 @@ pub const IMFPresentationClock = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPresentationTimeSource_Value = @import("../zig.zig").Guid.initString("7ff12cce-f76f-41c2-863b-1666c8e5e139");
+const IID_IMFPresentationTimeSource_Value = Guid.initString("7ff12cce-f76f-41c2-863b-1666c8e5e139");
 pub const IID_IMFPresentationTimeSource = &IID_IMFPresentationTimeSource_Value;
 pub const IMFPresentationTimeSource = extern struct {
     pub const VTable = extern struct {
@@ -16087,7 +16087,7 @@ pub const IMFPresentationTimeSource = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFClockStateSink_Value = @import("../zig.zig").Guid.initString("f6696e82-74f7-4f3d-a178-8a5e09c3659f");
+const IID_IMFClockStateSink_Value = Guid.initString("f6696e82-74f7-4f3d-a178-8a5e09c3659f");
 pub const IID_IMFClockStateSink = &IID_IMFClockStateSink_Value;
 pub const IMFClockStateSink = extern struct {
     pub const VTable = extern struct {
@@ -16143,7 +16143,7 @@ pub const IMFClockStateSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPresentationDescriptor_Value = @import("../zig.zig").Guid.initString("03cb2711-24d7-4db6-a17f-f3a7a479a536");
+const IID_IMFPresentationDescriptor_Value = Guid.initString("03cb2711-24d7-4db6-a17f-f3a7a479a536");
 pub const IID_IMFPresentationDescriptor = &IID_IMFPresentationDescriptor_Value;
 pub const IMFPresentationDescriptor = extern struct {
     pub const VTable = extern struct {
@@ -16199,7 +16199,7 @@ pub const IMFPresentationDescriptor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFStreamDescriptor_Value = @import("../zig.zig").Guid.initString("56c03d9c-9dbb-45f5-ab4b-d80f47c05938");
+const IID_IMFStreamDescriptor_Value = Guid.initString("56c03d9c-9dbb-45f5-ab4b-d80f47c05938");
 pub const IID_IMFStreamDescriptor = &IID_IMFStreamDescriptor_Value;
 pub const IMFStreamDescriptor = extern struct {
     pub const VTable = extern struct {
@@ -16229,7 +16229,7 @@ pub const IMFStreamDescriptor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaTypeHandler_Value = @import("../zig.zig").Guid.initString("e93dcf6c-4b07-4e1e-8123-aa16ed6eadf5");
+const IID_IMFMediaTypeHandler_Value = Guid.initString("e93dcf6c-4b07-4e1e-8123-aa16ed6eadf5");
 pub const IID_IMFMediaTypeHandler = &IID_IMFMediaTypeHandler_Value;
 pub const IMFMediaTypeHandler = extern struct {
     pub const VTable = extern struct {
@@ -16298,7 +16298,7 @@ pub const MFTIMER_FLAGS = enum(i32) {
 pub const MFTIMER_RELATIVE = MFTIMER_FLAGS.E;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTimer_Value = @import("../zig.zig").Guid.initString("e56e4cbd-8f70-49d8-a0f8-edb3d6ab9bf2");
+const IID_IMFTimer_Value = Guid.initString("e56e4cbd-8f70-49d8-a0f8-edb3d6ab9bf2");
 pub const IID_IMFTimer = &IID_IMFTimer_Value;
 pub const IMFTimer = extern struct {
     pub const VTable = extern struct {
@@ -16349,7 +16349,7 @@ pub const MFSHUTDOWN_INITIATED = MFSHUTDOWN_STATUS.INITIATED;
 pub const MFSHUTDOWN_COMPLETED = MFSHUTDOWN_STATUS.COMPLETED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFShutdown_Value = @import("../zig.zig").Guid.initString("97ec2ea4-0e42-4937-97ac-9d6d328824e1");
+const IID_IMFShutdown_Value = Guid.initString("97ec2ea4-0e42-4937-97ac-9d6d328824e1");
 pub const IID_IMFShutdown = &IID_IMFShutdown_Value;
 pub const IMFShutdown = extern struct {
     pub const VTable = extern struct {
@@ -16378,7 +16378,7 @@ pub const IMFShutdown = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopoLoader_Value = @import("../zig.zig").Guid.initString("de9a6157-f660-4643-b56a-df9f7998c7cd");
+const IID_IMFTopoLoader_Value = Guid.initString("de9a6157-f660-4643-b56a-df9f7998c7cd");
 pub const IID_IMFTopoLoader = &IID_IMFTopoLoader_Value;
 pub const IMFTopoLoader = extern struct {
     pub const VTable = extern struct {
@@ -16402,7 +16402,7 @@ pub const IMFTopoLoader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFContentProtectionManager_Value = @import("../zig.zig").Guid.initString("acf92459-6a61-42bd-b57c-b43e51203cb0");
+const IID_IMFContentProtectionManager_Value = Guid.initString("acf92459-6a61-42bd-b57c-b43e51203cb0");
 pub const IID_IMFContentProtectionManager = &IID_IMFContentProtectionManager_Value;
 pub const IMFContentProtectionManager = extern struct {
     pub const VTable = extern struct {
@@ -16444,7 +16444,7 @@ pub const MF_LICENSE_URL_TRUSTED = MF_URL_TRUST_STATUS.TRUSTED;
 pub const MF_LICENSE_URL_TAMPERED = MF_URL_TRUST_STATUS.TAMPERED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFContentEnabler_Value = @import("../zig.zig").Guid.initString("d3c4ef59-49ce-4381-9071-d5bcd044c770");
+const IID_IMFContentEnabler_Value = Guid.initString("d3c4ef59-49ce-4381-9071-d5bcd044c770");
 pub const IID_IMFContentEnabler = &IID_IMFContentEnabler_Value;
 pub const IMFContentEnabler = extern struct {
     pub const VTable = extern struct {
@@ -16538,7 +16538,7 @@ pub const ASF_FLAT_SYNCHRONISED_LYRICS = packed struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMetadata_Value = @import("../zig.zig").Guid.initString("f88cfb8c-ef16-4991-b450-cb8c69e51704");
+const IID_IMFMetadata_Value = Guid.initString("f88cfb8c-ef16-4991-b450-cb8c69e51704");
 pub const IID_IMFMetadata = &IID_IMFMetadata_Value;
 pub const IMFMetadata = extern struct {
     pub const VTable = extern struct {
@@ -16610,7 +16610,7 @@ pub const IMFMetadata = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMetadataProvider_Value = @import("../zig.zig").Guid.initString("56181d2d-e221-4adb-b1c8-3cee6a53f76f");
+const IID_IMFMetadataProvider_Value = Guid.initString("56181d2d-e221-4adb-b1c8-3cee6a53f76f");
 pub const IID_IMFMetadataProvider = &IID_IMFMetadataProvider_Value;
 pub const IMFMetadataProvider = extern struct {
     pub const VTable = extern struct {
@@ -16642,7 +16642,7 @@ pub const MFRATE_FORWARD = MFRATE_DIRECTION.FORWARD;
 pub const MFRATE_REVERSE = MFRATE_DIRECTION.REVERSE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRateSupport_Value = @import("../zig.zig").Guid.initString("0a9ccdbc-d797-4563-9667-94ec5d79292d");
+const IID_IMFRateSupport_Value = Guid.initString("0a9ccdbc-d797-4563-9667-94ec5d79292d");
 pub const IID_IMFRateSupport = &IID_IMFRateSupport_Value;
 pub const IMFRateSupport = extern struct {
     pub const VTable = extern struct {
@@ -16686,7 +16686,7 @@ pub const IMFRateSupport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRateControl_Value = @import("../zig.zig").Guid.initString("88ddcd21-03c3-4275-91ed-55ee3929328f");
+const IID_IMFRateControl_Value = Guid.initString("88ddcd21-03c3-4275-91ed-55ee3929328f");
 pub const IID_IMFRateControl = &IID_IMFRateControl_Value;
 pub const IMFRateControl = extern struct {
     pub const VTable = extern struct {
@@ -16718,7 +16718,7 @@ pub const IMFRateControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFTimecodeTranslate_Value = @import("../zig.zig").Guid.initString("ab9d8661-f7e8-4ef4-9861-89f334f94e74");
+const IID_IMFTimecodeTranslate_Value = Guid.initString("ab9d8661-f7e8-4ef4-9861-89f334f94e74");
 pub const IID_IMFTimecodeTranslate = &IID_IMFTimecodeTranslate_Value;
 pub const IMFTimecodeTranslate = extern struct {
     pub const VTable = extern struct {
@@ -16770,7 +16770,7 @@ pub const IMFTimecodeTranslate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSeekInfo_Value = @import("../zig.zig").Guid.initString("26afea53-d9ed-42b5-ab80-e64f9ee34779");
+const IID_IMFSeekInfo_Value = Guid.initString("26afea53-d9ed-42b5-ab80-e64f9ee34779");
 pub const IID_IMFSeekInfo = &IID_IMFSeekInfo_Value;
 pub const IMFSeekInfo = extern struct {
     pub const VTable = extern struct {
@@ -16795,7 +16795,7 @@ pub const IMFSeekInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSimpleAudioVolume_Value = @import("../zig.zig").Guid.initString("089edf13-cf71-4338-8d13-9e569dbdc319");
+const IID_IMFSimpleAudioVolume_Value = Guid.initString("089edf13-cf71-4338-8d13-9e569dbdc319");
 pub const IID_IMFSimpleAudioVolume = &IID_IMFSimpleAudioVolume_Value;
 pub const IMFSimpleAudioVolume = extern struct {
     pub const VTable = extern struct {
@@ -16841,7 +16841,7 @@ pub const IMFSimpleAudioVolume = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAudioStreamVolume_Value = @import("../zig.zig").Guid.initString("76b1bbdb-4ec8-4f36-b106-70a9316df593");
+const IID_IMFAudioStreamVolume_Value = Guid.initString("76b1bbdb-4ec8-4f36-b106-70a9316df593");
 pub const IID_IMFAudioStreamVolume = &IID_IMFAudioStreamVolume_Value;
 pub const IMFAudioStreamVolume = extern struct {
     pub const VTable = extern struct {
@@ -16899,7 +16899,7 @@ pub const IMFAudioStreamVolume = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFAudioPolicy_Value = @import("../zig.zig").Guid.initString("a0638c2b-6465-4395-9ae7-a321a9fd2856");
+const IID_IMFAudioPolicy_Value = Guid.initString("a0638c2b-6465-4395-9ae7-a321a9fd2856");
 pub const IID_IMFAudioPolicy = &IID_IMFAudioPolicy_Value;
 pub const IMFAudioPolicy = extern struct {
     pub const VTable = extern struct {
@@ -16961,7 +16961,7 @@ pub const IMFAudioPolicy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSampleGrabberSinkCallback_Value = @import("../zig.zig").Guid.initString("8c7b80bf-ee42-4b59-b1df-55668e1bdca8");
+const IID_IMFSampleGrabberSinkCallback_Value = Guid.initString("8c7b80bf-ee42-4b59-b1df-55668e1bdca8");
 pub const IID_IMFSampleGrabberSinkCallback = &IID_IMFSampleGrabberSinkCallback_Value;
 pub const IMFSampleGrabberSinkCallback = extern struct {
     pub const VTable = extern struct {
@@ -17004,7 +17004,7 @@ pub const IMFSampleGrabberSinkCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSampleGrabberSinkCallback2_Value = @import("../zig.zig").Guid.initString("ca86aa50-c46e-429e-ab27-16d6ac6844cb");
+const IID_IMFSampleGrabberSinkCallback2_Value = Guid.initString("ca86aa50-c46e-429e-ab27-16d6ac6844cb");
 pub const IID_IMFSampleGrabberSinkCallback2 = &IID_IMFSampleGrabberSinkCallback2_Value;
 pub const IMFSampleGrabberSinkCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -17033,7 +17033,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFWorkQueueServices_Value = @import("../zig.zig").Guid.initString("35fe1bb8-a3a9-40fe-bbec-eb569c9ccca3");
+const IID_IMFWorkQueueServices_Value = Guid.initString("35fe1bb8-a3a9-40fe-bbec-eb569c9ccca3");
 pub const IID_IMFWorkQueueServices = &IID_IMFWorkQueueServices_Value;
 pub const IMFWorkQueueServices = extern struct {
     pub const VTable = extern struct {
@@ -17158,7 +17158,7 @@ pub const IMFWorkQueueServices = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFWorkQueueServicesEx_Value = @import("../zig.zig").Guid.initString("96bf961b-40fe-42f1-ba9d-320238b49700");
+const IID_IMFWorkQueueServicesEx_Value = Guid.initString("96bf961b-40fe-42f1-ba9d-320238b49700");
 pub const IID_IMFWorkQueueServicesEx = &IID_IMFWorkQueueServicesEx_Value;
 pub const IMFWorkQueueServicesEx = extern struct {
     pub const VTable = extern struct {
@@ -17242,7 +17242,7 @@ pub const MF_QUALITY_ADVISE_FLAGS = enum(i32) {
 pub const MF_QUALITY_CANNOT_KEEP_UP = MF_QUALITY_ADVISE_FLAGS.P;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFQualityManager_Value = @import("../zig.zig").Guid.initString("8d009d86-5b9f-4115-b1fc-9f80d52ab8ab");
+const IID_IMFQualityManager_Value = Guid.initString("8d009d86-5b9f-4115-b1fc-9f80d52ab8ab");
 pub const IID_IMFQualityManager = &IID_IMFQualityManager_Value;
 pub const IMFQualityManager = extern struct {
     pub const VTable = extern struct {
@@ -17308,7 +17308,7 @@ pub const IMFQualityManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFQualityAdvise_Value = @import("../zig.zig").Guid.initString("ec15e2e9-e36b-4f7c-8758-77d452ef4ce7");
+const IID_IMFQualityAdvise_Value = Guid.initString("ec15e2e9-e36b-4f7c-8758-77d452ef4ce7");
 pub const IID_IMFQualityAdvise = &IID_IMFQualityAdvise_Value;
 pub const IMFQualityAdvise = extern struct {
     pub const VTable = extern struct {
@@ -17362,7 +17362,7 @@ pub const IMFQualityAdvise = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFQualityAdvise2_Value = @import("../zig.zig").Guid.initString("f3706f0d-8ea2-4886-8000-7155e9ec2eae");
+const IID_IMFQualityAdvise2_Value = Guid.initString("f3706f0d-8ea2-4886-8000-7155e9ec2eae");
 pub const IID_IMFQualityAdvise2 = &IID_IMFQualityAdvise2_Value;
 pub const IMFQualityAdvise2 = extern struct {
     pub const VTable = extern struct {
@@ -17385,7 +17385,7 @@ pub const IMFQualityAdvise2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFQualityAdviseLimits_Value = @import("../zig.zig").Guid.initString("dfcd8e4d-30b5-4567-acaa-8eb5b7853dc9");
+const IID_IMFQualityAdviseLimits_Value = Guid.initString("dfcd8e4d-30b5-4567-acaa-8eb5b7853dc9");
 pub const IID_IMFQualityAdviseLimits = &IID_IMFQualityAdviseLimits_Value;
 pub const IMFQualityAdviseLimits = extern struct {
     pub const VTable = extern struct {
@@ -17415,7 +17415,7 @@ pub const IMFQualityAdviseLimits = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRealTimeClient_Value = @import("../zig.zig").Guid.initString("2347d60b-3fb5-480c-8803-8df3adcd3ef0");
+const IID_IMFRealTimeClient_Value = Guid.initString("2347d60b-3fb5-480c-8803-8df3adcd3ef0");
 pub const IID_IMFRealTimeClient = &IID_IMFRealTimeClient_Value;
 pub const IMFRealTimeClient = extern struct {
     pub const VTable = extern struct {
@@ -17453,7 +17453,7 @@ pub const IMFRealTimeClient = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFRealTimeClientEx_Value = @import("../zig.zig").Guid.initString("03910848-ab16-4611-b100-17b88ae2f248");
+const IID_IMFRealTimeClientEx_Value = Guid.initString("03910848-ab16-4611-b100-17b88ae2f248");
 pub const IID_IMFRealTimeClientEx = &IID_IMFRealTimeClientEx_Value;
 pub const IMFRealTimeClientEx = extern struct {
     pub const VTable = extern struct {
@@ -17498,7 +17498,7 @@ pub const MFSequencerTopologyFlags = enum(i32) {
 pub const SequencerTopologyFlags_Last = MFSequencerTopologyFlags.t;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSequencerSource_Value = @import("../zig.zig").Guid.initString("197cd219-19cb-4de1-a64c-acf2edcbe59e");
+const IID_IMFSequencerSource_Value = Guid.initString("197cd219-19cb-4de1-a64c-acf2edcbe59e");
 pub const IID_IMFSequencerSource = &IID_IMFSequencerSource_Value;
 pub const IMFSequencerSource = extern struct {
     pub const VTable = extern struct {
@@ -17558,7 +17558,7 @@ pub const IMFSequencerSource = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSourceTopologyProvider_Value = @import("../zig.zig").Guid.initString("0e1d6009-c9f3-442d-8c51-a42d2d49452f");
+const IID_IMFMediaSourceTopologyProvider_Value = Guid.initString("0e1d6009-c9f3-442d-8c51-a42d2d49452f");
 pub const IID_IMFMediaSourceTopologyProvider = &IID_IMFMediaSourceTopologyProvider_Value;
 pub const IMFMediaSourceTopologyProvider = extern struct {
     pub const VTable = extern struct {
@@ -17581,7 +17581,7 @@ pub const IMFMediaSourceTopologyProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSourcePresentationProvider_Value = @import("../zig.zig").Guid.initString("0e1d600a-c9f3-442d-8c51-a42d2d49452f");
+const IID_IMFMediaSourcePresentationProvider_Value = Guid.initString("0e1d600a-c9f3-442d-8c51-a42d2d49452f");
 pub const IID_IMFMediaSourcePresentationProvider = &IID_IMFMediaSourcePresentationProvider_Value;
 pub const IMFMediaSourcePresentationProvider = extern struct {
     pub const VTable = extern struct {
@@ -17614,7 +17614,7 @@ pub const MFTOPONODE_ATTRIBUTE_UPDATE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopologyNodeAttributeEditor_Value = @import("../zig.zig").Guid.initString("676aa6dd-238a-410d-bb99-65668d01605a");
+const IID_IMFTopologyNodeAttributeEditor_Value = Guid.initString("676aa6dd-238a-410d-bb99-65668d01605a");
 pub const IID_IMFTopologyNodeAttributeEditor = &IID_IMFTopologyNodeAttributeEditor_Value;
 pub const IMFTopologyNodeAttributeEditor = extern struct {
     pub const VTable = extern struct {
@@ -17654,7 +17654,7 @@ pub const MFBYTESTREAM_BUFFERING_PARAMS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFByteStreamBuffering_Value = @import("../zig.zig").Guid.initString("6d66d782-1d4f-4db7-8c63-cb8c77f1ef5e");
+const IID_IMFByteStreamBuffering_Value = Guid.initString("6d66d782-1d4f-4db7-8c63-cb8c77f1ef5e");
 pub const IID_IMFByteStreamBuffering = &IID_IMFByteStreamBuffering_Value;
 pub const IMFByteStreamBuffering = extern struct {
     pub const VTable = extern struct {
@@ -17691,7 +17691,7 @@ pub const IMFByteStreamBuffering = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFByteStreamCacheControl_Value = @import("../zig.zig").Guid.initString("f5042ea4-7a96-4a75-aa7b-2be1ef7f88d5");
+const IID_IMFByteStreamCacheControl_Value = Guid.initString("f5042ea4-7a96-4a75-aa7b-2be1ef7f88d5");
 pub const IID_IMFByteStreamCacheControl = &IID_IMFByteStreamCacheControl_Value;
 pub const IMFByteStreamCacheControl = extern struct {
     pub const VTable = extern struct {
@@ -17712,7 +17712,7 @@ pub const IMFByteStreamCacheControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFByteStreamTimeSeek_Value = @import("../zig.zig").Guid.initString("64976bfa-fb61-4041-9069-8c9a5f659beb");
+const IID_IMFByteStreamTimeSeek_Value = Guid.initString("64976bfa-fb61-4041-9069-8c9a5f659beb");
 pub const IID_IMFByteStreamTimeSeek = &IID_IMFByteStreamTimeSeek_Value;
 pub const IMFByteStreamTimeSeek = extern struct {
     pub const VTable = extern struct {
@@ -17757,7 +17757,7 @@ pub const MF_BYTE_STREAM_CACHE_RANGE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFByteStreamCacheControl2_Value = @import("../zig.zig").Guid.initString("71ce469c-f34b-49ea-a56b-2d2a10e51149");
+const IID_IMFByteStreamCacheControl2_Value = Guid.initString("71ce469c-f34b-49ea-a56b-2d2a10e51149");
 pub const IID_IMFByteStreamCacheControl2 = &IID_IMFByteStreamCacheControl2_Value;
 pub const IMFByteStreamCacheControl2 = extern struct {
     pub const VTable = extern struct {
@@ -17796,7 +17796,7 @@ pub const IMFByteStreamCacheControl2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetCredential_Value = @import("../zig.zig").Guid.initString("5b87ef6a-7ed8-434f-ba0e-184fac1628d1");
+const IID_IMFNetCredential_Value = Guid.initString("5b87ef6a-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredential = &IID_IMFNetCredential_Value;
 pub const IMFNetCredential = extern struct {
     pub const VTable = extern struct {
@@ -17871,7 +17871,7 @@ pub const MFNetCredentialManagerGetParam = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetCredentialManager_Value = @import("../zig.zig").Guid.initString("5b87ef6b-7ed8-434f-ba0e-184fac1628d1");
+const IID_IMFNetCredentialManager_Value = Guid.initString("5b87ef6b-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredentialManager = &IID_IMFNetCredentialManager_Value;
 pub const IMFNetCredentialManager = extern struct {
     pub const VTable = extern struct {
@@ -17938,7 +17938,7 @@ pub const MFNET_AUTHENTICATION_CLEAR_TEXT = MFNetAuthenticationFlags.CLEAR_TEXT;
 pub const MFNET_AUTHENTICATION_LOGGED_ON_USER = MFNetAuthenticationFlags.LOGGED_ON_USER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetCredentialCache_Value = @import("../zig.zig").Guid.initString("5b87ef6c-7ed8-434f-ba0e-184fac1628d1");
+const IID_IMFNetCredentialCache_Value = Guid.initString("5b87ef6c-7ed8-434f-ba0e-184fac1628d1");
 pub const IID_IMFNetCredentialCache = &IID_IMFNetCredentialCache_Value;
 pub const IMFNetCredentialCache = extern struct {
     pub const VTable = extern struct {
@@ -17982,7 +17982,7 @@ pub const IMFNetCredentialCache = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSSLCertificateManager_Value = @import("../zig.zig").Guid.initString("61f7d887-1230-4a8b-aeba-8ad434d1a64d");
+const IID_IMFSSLCertificateManager_Value = Guid.initString("61f7d887-1230-4a8b-aeba-8ad434d1a64d");
 pub const IID_IMFSSLCertificateManager = &IID_IMFSSLCertificateManager_Value;
 pub const IMFSSLCertificateManager = extern struct {
     pub const VTable = extern struct {
@@ -18048,7 +18048,7 @@ pub const IMFSSLCertificateManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFNetResourceFilter_Value = @import("../zig.zig").Guid.initString("091878a3-bf11-4a5c-bc9f-33995b06ef2d");
+const IID_IMFNetResourceFilter_Value = Guid.initString("091878a3-bf11-4a5c-bc9f-33995b06ef2d");
 pub const IID_IMFNetResourceFilter = &IID_IMFNetResourceFilter_Value;
 pub const IMFNetResourceFilter = extern struct {
     pub const VTable = extern struct {
@@ -18079,7 +18079,7 @@ pub const IMFNetResourceFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSourceOpenMonitor_Value = @import("../zig.zig").Guid.initString("059054b3-027c-494c-a27d-9113291cf87f");
+const IID_IMFSourceOpenMonitor_Value = Guid.initString("059054b3-027c-494c-a27d-9113291cf87f");
 pub const IID_IMFSourceOpenMonitor = &IID_IMFSourceOpenMonitor_Value;
 pub const IMFSourceOpenMonitor = extern struct {
     pub const VTable = extern struct {
@@ -18101,7 +18101,7 @@ pub const IMFSourceOpenMonitor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetProxyLocator_Value = @import("../zig.zig").Guid.initString("e9cd0383-a268-4bb4-82de-658d53574d41");
+const IID_IMFNetProxyLocator_Value = Guid.initString("e9cd0383-a268-4bb4-82de-658d53574d41");
 pub const IID_IMFNetProxyLocator = &IID_IMFNetProxyLocator_Value;
 pub const IMFNetProxyLocator = extern struct {
     pub const VTable = extern struct {
@@ -18157,7 +18157,7 @@ pub const IMFNetProxyLocator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetProxyLocatorFactory_Value = @import("../zig.zig").Guid.initString("e9cd0384-a268-4bb4-82de-658d53574d41");
+const IID_IMFNetProxyLocatorFactory_Value = Guid.initString("e9cd0384-a268-4bb4-82de-658d53574d41");
 pub const IID_IMFNetProxyLocatorFactory = &IID_IMFNetProxyLocatorFactory_Value;
 pub const IMFNetProxyLocatorFactory = extern struct {
     pub const VTable = extern struct {
@@ -18180,7 +18180,7 @@ pub const IMFNetProxyLocatorFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSaveJob_Value = @import("../zig.zig").Guid.initString("e9931663-80bf-4c6e-98af-5dcf58747d1f");
+const IID_IMFSaveJob_Value = Guid.initString("e9931663-80bf-4c6e-98af-5dcf58747d1f");
 pub const IID_IMFSaveJob = &IID_IMFSaveJob_Value;
 pub const IMFSaveJob = extern struct {
     pub const VTable = extern struct {
@@ -18240,7 +18240,7 @@ pub const MFNETSOURCE_FILE = MFNETSOURCE_PROTOCOL_TYPE.FILE;
 pub const MFNETSOURCE_MULTICAST = MFNETSOURCE_PROTOCOL_TYPE.MULTICAST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFNetSchemeHandlerConfig_Value = @import("../zig.zig").Guid.initString("7be19e73-c9bf-468a-ac5a-a5e8653bec87");
+const IID_IMFNetSchemeHandlerConfig_Value = Guid.initString("7be19e73-c9bf-468a-ac5a-a5e8653bec87");
 pub const IID_IMFNetSchemeHandlerConfig = &IID_IMFNetSchemeHandlerConfig_Value;
 pub const IMFNetSchemeHandlerConfig = extern struct {
     pub const VTable = extern struct {
@@ -18368,7 +18368,7 @@ pub const MFNET_PROXYSETTING_AUTO = MFNET_PROXYSETTINGS.AUTO;
 pub const MFNET_PROXYSETTING_BROWSER = MFNET_PROXYSETTINGS.BROWSER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSchemeHandler_Value = @import("../zig.zig").Guid.initString("6d4c7b74-52a0-4bb7-b0db-55f29f47a668");
+const IID_IMFSchemeHandler_Value = Guid.initString("6d4c7b74-52a0-4bb7-b0db-55f29f47a668");
 pub const IID_IMFSchemeHandler = &IID_IMFSchemeHandler_Value;
 pub const IMFSchemeHandler = extern struct {
     pub const VTable = extern struct {
@@ -18413,7 +18413,7 @@ pub const IMFSchemeHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFByteStreamHandler_Value = @import("../zig.zig").Guid.initString("bb420aa4-765b-4a1f-91fe-d6a8a143924c");
+const IID_IMFByteStreamHandler_Value = Guid.initString("bb420aa4-765b-4a1f-91fe-d6a8a143924c");
 pub const IID_IMFByteStreamHandler = &IID_IMFByteStreamHandler_Value;
 pub const IMFByteStreamHandler = extern struct {
     pub const VTable = extern struct {
@@ -18467,7 +18467,7 @@ pub const IMFByteStreamHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTrustedInput_Value = @import("../zig.zig").Guid.initString("542612c4-a1b8-4632-b521-de11ea64a0b0");
+const IID_IMFTrustedInput_Value = Guid.initString("542612c4-a1b8-4632-b521-de11ea64a0b0");
 pub const IID_IMFTrustedInput = &IID_IMFTrustedInput_Value;
 pub const IMFTrustedInput = extern struct {
     pub const VTable = extern struct {
@@ -18529,7 +18529,7 @@ pub const MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFInputTrustAuthority_Value = @import("../zig.zig").Guid.initString("d19f8e98-b126-4446-890c-5dcb7ad71453");
+const IID_IMFInputTrustAuthority_Value = Guid.initString("d19f8e98-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFInputTrustAuthority = &IID_IMFInputTrustAuthority_Value;
 pub const IMFInputTrustAuthority = extern struct {
     pub const VTable = extern struct {
@@ -18593,7 +18593,7 @@ pub const IMFInputTrustAuthority = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTrustedOutput_Value = @import("../zig.zig").Guid.initString("d19f8e95-b126-4446-890c-5dcb7ad71453");
+const IID_IMFTrustedOutput_Value = Guid.initString("d19f8e95-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFTrustedOutput = &IID_IMFTrustedOutput_Value;
 pub const IMFTrustedOutput = extern struct {
     pub const VTable = extern struct {
@@ -18632,7 +18632,7 @@ pub const IMFTrustedOutput = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFOutputTrustAuthority_Value = @import("../zig.zig").Guid.initString("d19f8e94-b126-4446-890c-5dcb7ad71453");
+const IID_IMFOutputTrustAuthority_Value = Guid.initString("d19f8e94-b126-4446-890c-5dcb7ad71453");
 pub const IID_IMFOutputTrustAuthority = &IID_IMFOutputTrustAuthority_Value;
 pub const IMFOutputTrustAuthority = extern struct {
     pub const VTable = extern struct {
@@ -18665,7 +18665,7 @@ pub const IMFOutputTrustAuthority = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFOutputPolicy_Value = @import("../zig.zig").Guid.initString("7f00f10a-daed-41af-ab26-5fdfa4dfba3c");
+const IID_IMFOutputPolicy_Value = Guid.initString("7f00f10a-daed-41af-ab26-5fdfa4dfba3c");
 pub const IID_IMFOutputPolicy = &IID_IMFOutputPolicy_Value;
 pub const IMFOutputPolicy = extern struct {
     pub const VTable = extern struct {
@@ -18707,7 +18707,7 @@ pub const IMFOutputPolicy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFOutputSchema_Value = @import("../zig.zig").Guid.initString("7be0fc5b-abd9-44fb-a5c8-f50136e71599");
+const IID_IMFOutputSchema_Value = Guid.initString("7be0fc5b-abd9-44fb-a5c8-f50136e71599");
 pub const IID_IMFOutputSchema = &IID_IMFOutputSchema_Value;
 pub const IMFOutputSchema = extern struct {
     pub const VTable = extern struct {
@@ -18786,7 +18786,7 @@ pub const MFaudioConstriction14_14 = MFAudioConstriction.@"14_14";
 pub const MFaudioConstrictionMute = MFAudioConstriction.Mute;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSecureChannel_Value = @import("../zig.zig").Guid.initString("d0ae555d-3b12-4d97-b060-0990bc5aeb67");
+const IID_IMFSecureChannel_Value = Guid.initString("d0ae555d-3b12-4d97-b060-0990bc5aeb67");
 pub const IID_IMFSecureChannel = &IID_IMFSecureChannel_Value;
 pub const IMFSecureChannel = extern struct {
     pub const VTable = extern struct {
@@ -18832,7 +18832,7 @@ pub const SAMPLE_PROTECTION_VERSION_RC4 = SAMPLE_PROTECTION_VERSION.RC4;
 pub const SAMPLE_PROTECTION_VERSION_AES128CTR = SAMPLE_PROTECTION_VERSION.AES128CTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSampleProtection_Value = @import("../zig.zig").Guid.initString("8e36395f-c7b9-43c4-a54d-512b4af63c95");
+const IID_IMFSampleProtection_Value = Guid.initString("8e36395f-c7b9-43c4-a54d-512b4af63c95");
 pub const IID_IMFSampleProtection = &IID_IMFSampleProtection_Value;
 pub const IMFSampleProtection = extern struct {
     pub const VTable = extern struct {
@@ -18896,7 +18896,7 @@ pub const IMFSampleProtection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFMediaSinkPreroll_Value = @import("../zig.zig").Guid.initString("5dfd4b2a-7674-4110-a4e6-8a68fd5f3688");
+const IID_IMFMediaSinkPreroll_Value = Guid.initString("5dfd4b2a-7674-4110-a4e6-8a68fd5f3688");
 pub const IID_IMFMediaSinkPreroll = &IID_IMFMediaSinkPreroll_Value;
 pub const IMFMediaSinkPreroll = extern struct {
     pub const VTable = extern struct {
@@ -18918,7 +18918,7 @@ pub const IMFMediaSinkPreroll = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFFinalizableMediaSink_Value = @import("../zig.zig").Guid.initString("eaecb74a-9a50-42ce-9541-6a7f57aa4ad7");
+const IID_IMFFinalizableMediaSink_Value = Guid.initString("eaecb74a-9a50-42ce-9541-6a7f57aa4ad7");
 pub const IID_IMFFinalizableMediaSink = &IID_IMFFinalizableMediaSink_Value;
 pub const IMFFinalizableMediaSink = extern struct {
     pub const VTable = extern struct {
@@ -18949,7 +18949,7 @@ pub const IMFFinalizableMediaSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFStreamingSinkConfig_Value = @import("../zig.zig").Guid.initString("9db7aa41-3cc5-40d4-8509-555804ad34cc");
+const IID_IMFStreamingSinkConfig_Value = Guid.initString("9db7aa41-3cc5-40d4-8509-555804ad34cc");
 pub const IID_IMFStreamingSinkConfig = &IID_IMFStreamingSinkConfig_Value;
 pub const IMFStreamingSinkConfig = extern struct {
     pub const VTable = extern struct {
@@ -18972,7 +18972,7 @@ pub const IMFStreamingSinkConfig = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRemoteProxy_Value = @import("../zig.zig").Guid.initString("994e23ad-1cc2-493c-b9fa-46f1cb040fa4");
+const IID_IMFRemoteProxy_Value = Guid.initString("994e23ad-1cc2-493c-b9fa-46f1cb040fa4");
 pub const IID_IMFRemoteProxy = &IID_IMFRemoteProxy_Value;
 pub const IMFRemoteProxy = extern struct {
     pub const VTable = extern struct {
@@ -19004,7 +19004,7 @@ pub const IMFRemoteProxy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFObjectReferenceStream_Value = @import("../zig.zig").Guid.initString("09ef5be3-c8a7-469e-8b70-73bf25bb193f");
+const IID_IMFObjectReferenceStream_Value = Guid.initString("09ef5be3-c8a7-469e-8b70-73bf25bb193f");
 pub const IID_IMFObjectReferenceStream = &IID_IMFObjectReferenceStream_Value;
 pub const IMFObjectReferenceStream = extern struct {
     pub const VTable = extern struct {
@@ -19036,7 +19036,7 @@ pub const IMFObjectReferenceStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPMPHost_Value = @import("../zig.zig").Guid.initString("f70ca1a9-fdc7-4782-b994-adffb1c98606");
+const IID_IMFPMPHost_Value = Guid.initString("f70ca1a9-fdc7-4782-b994-adffb1c98606");
 pub const IID_IMFPMPHost = &IID_IMFPMPHost_Value;
 pub const IMFPMPHost = extern struct {
     pub const VTable = extern struct {
@@ -19075,7 +19075,7 @@ pub const IMFPMPHost = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPMPClient_Value = @import("../zig.zig").Guid.initString("6c4e655d-ead8-4421-b6b9-54dcdbbdf820");
+const IID_IMFPMPClient_Value = Guid.initString("6c4e655d-ead8-4421-b6b9-54dcdbbdf820");
 pub const IID_IMFPMPClient = &IID_IMFPMPClient_Value;
 pub const IMFPMPClient = extern struct {
     pub const VTable = extern struct {
@@ -19097,7 +19097,7 @@ pub const IMFPMPClient = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFPMPServer_Value = @import("../zig.zig").Guid.initString("994e23af-1cc2-493c-b9fa-46f1cb040fa4");
+const IID_IMFPMPServer_Value = Guid.initString("994e23af-1cc2-493c-b9fa-46f1cb040fa4");
 pub const IID_IMFPMPServer = &IID_IMFPMPServer_Value;
 pub const IMFPMPServer = extern struct {
     pub const VTable = extern struct {
@@ -19135,7 +19135,7 @@ pub const IMFPMPServer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFRemoteDesktopPlugin_Value = @import("../zig.zig").Guid.initString("1cde6309-cae0-4940-907e-c1ec9c3d1d4a");
+const IID_IMFRemoteDesktopPlugin_Value = Guid.initString("1cde6309-cae0-4940-907e-c1ec9c3d1d4a");
 pub const IID_IMFRemoteDesktopPlugin = &IID_IMFRemoteDesktopPlugin_Value;
 pub const IMFRemoteDesktopPlugin = extern struct {
     pub const VTable = extern struct {
@@ -19157,7 +19157,7 @@ pub const IMFRemoteDesktopPlugin = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFSAMIStyle_Value = @import("../zig.zig").Guid.initString("a7e025dd-5303-4a62-89d6-e747e1efac73");
+const IID_IMFSAMIStyle_Value = Guid.initString("a7e025dd-5303-4a62-89d6-e747e1efac73");
 pub const IID_IMFSAMIStyle = &IID_IMFSAMIStyle_Value;
 pub const IMFSAMIStyle = extern struct {
     pub const VTable = extern struct {
@@ -19203,7 +19203,7 @@ pub const IMFSAMIStyle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFTranscodeProfile_Value = @import("../zig.zig").Guid.initString("4adfdba3-7ab0-4953-a62b-461e7ff3da1e");
+const IID_IMFTranscodeProfile_Value = Guid.initString("4adfdba3-7ab0-4953-a62b-461e7ff3da1e");
 pub const IID_IMFTranscodeProfile = &IID_IMFTranscodeProfile_Value;
 pub const IMFTranscodeProfile = extern struct {
     pub const VTable = extern struct {
@@ -19293,7 +19293,7 @@ pub const MF_TRANSCODE_SINK_INFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFTranscodeSinkInfoProvider_Value = @import("../zig.zig").Guid.initString("8cffcd2e-5a03-4a3a-aff7-edcd107c620e");
+const IID_IMFTranscodeSinkInfoProvider_Value = Guid.initString("8cffcd2e-5a03-4a3a-aff7-edcd107c620e");
 pub const IID_IMFTranscodeSinkInfoProvider = &IID_IMFTranscodeSinkInfoProvider_Value;
 pub const IMFTranscodeSinkInfoProvider = extern struct {
     pub const VTable = extern struct {
@@ -19339,7 +19339,7 @@ pub const IMFTranscodeSinkInfoProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFFieldOfUseMFTUnlock_Value = @import("../zig.zig").Guid.initString("508e71d3-ec66-4fc3-8775-b4b9ed6ba847");
+const IID_IMFFieldOfUseMFTUnlock_Value = Guid.initString("508e71d3-ec66-4fc3-8775-b4b9ed6ba847");
 pub const IID_IMFFieldOfUseMFTUnlock = &IID_IMFFieldOfUseMFTUnlock_Value;
 pub const IMFFieldOfUseMFTUnlock = extern struct {
     pub const VTable = extern struct {
@@ -19372,7 +19372,7 @@ pub const MFT_REGISTRATION_INFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFLocalMFTRegistration_Value = @import("../zig.zig").Guid.initString("149c4d73-b4be-4f8d-8b87-079e926b6add");
+const IID_IMFLocalMFTRegistration_Value = Guid.initString("149c4d73-b4be-4f8d-8b87-079e926b6add");
 pub const IID_IMFLocalMFTRegistration = &IID_IMFLocalMFTRegistration_Value;
 pub const IMFLocalMFTRegistration = extern struct {
     pub const VTable = extern struct {
@@ -19394,7 +19394,7 @@ pub const IMFLocalMFTRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFCapturePhotoConfirmation_Value = @import("../zig.zig").Guid.initString("19f68549-ca8a-4706-a4ef-481dbc95e12c");
+const IID_IMFCapturePhotoConfirmation_Value = Guid.initString("19f68549-ca8a-4706-a4ef-481dbc95e12c");
 pub const IID_IMFCapturePhotoConfirmation = &IID_IMFCapturePhotoConfirmation_Value;
 pub const IMFCapturePhotoConfirmation = extern struct {
     pub const VTable = extern struct {
@@ -19432,7 +19432,7 @@ pub const IMFCapturePhotoConfirmation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFPMPHostApp_Value = @import("../zig.zig").Guid.initString("84d2054a-3aa1-4728-a3b0-440a418cf49c");
+const IID_IMFPMPHostApp_Value = Guid.initString("84d2054a-3aa1-4728-a3b0-440a418cf49c");
 pub const IID_IMFPMPHostApp = &IID_IMFPMPHostApp_Value;
 pub const IMFPMPHostApp = extern struct {
     pub const VTable = extern struct {
@@ -19471,7 +19471,7 @@ pub const IMFPMPHostApp = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFPMPClientApp_Value = @import("../zig.zig").Guid.initString("c004f646-be2c-48f3-93a2-a0983eba1108");
+const IID_IMFPMPClientApp_Value = Guid.initString("c004f646-be2c-48f3-93a2-a0983eba1108");
 pub const IID_IMFPMPClientApp = &IID_IMFPMPClientApp_Value;
 pub const IMFPMPClientApp = extern struct {
     pub const VTable = extern struct {
@@ -19493,7 +19493,7 @@ pub const IMFPMPClientApp = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaStreamSourceSampleRequest_Value = @import("../zig.zig").Guid.initString("380b9af9-a85b-4e78-a2af-ea5ce645c6b4");
+const IID_IMFMediaStreamSourceSampleRequest_Value = Guid.initString("380b9af9-a85b-4e78-a2af-ea5ce645c6b4");
 pub const IID_IMFMediaStreamSourceSampleRequest = &IID_IMFMediaStreamSourceSampleRequest_Value;
 pub const IMFMediaStreamSourceSampleRequest = extern struct {
     pub const VTable = extern struct {
@@ -19515,7 +19515,7 @@ pub const IMFMediaStreamSourceSampleRequest = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTrackedSample_Value = @import("../zig.zig").Guid.initString("245bf8e9-0755-40f7-88a5-ae0f18d55e17");
+const IID_IMFTrackedSample_Value = Guid.initString("245bf8e9-0755-40f7-88a5-ae0f18d55e17");
 pub const IID_IMFTrackedSample = &IID_IMFTrackedSample_Value;
 pub const IMFTrackedSample = extern struct {
     pub const VTable = extern struct {
@@ -19538,7 +19538,7 @@ pub const IMFTrackedSample = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFProtectedEnvironmentAccess_Value = @import("../zig.zig").Guid.initString("ef5dc845-f0d9-4ec9-b00c-cb5183d38434");
+const IID_IMFProtectedEnvironmentAccess_Value = Guid.initString("ef5dc845-f0d9-4ec9-b00c-cb5183d38434");
 pub const IID_IMFProtectedEnvironmentAccess = &IID_IMFProtectedEnvironmentAccess_Value;
 pub const IMFProtectedEnvironmentAccess = extern struct {
     pub const VTable = extern struct {
@@ -19574,7 +19574,7 @@ pub const IMFProtectedEnvironmentAccess = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSignedLibrary_Value = @import("../zig.zig").Guid.initString("4a724bca-ff6a-4c07-8e0d-7a358421cf06");
+const IID_IMFSignedLibrary_Value = Guid.initString("4a724bca-ff6a-4c07-8e0d-7a358421cf06");
 pub const IID_IMFSignedLibrary = &IID_IMFSignedLibrary_Value;
 pub const IMFSignedLibrary = extern struct {
     pub const VTable = extern struct {
@@ -19597,7 +19597,7 @@ pub const IMFSignedLibrary = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSystemId_Value = @import("../zig.zig").Guid.initString("fff4af3a-1fc1-4ef9-a29b-d26c49e2f31a");
+const IID_IMFSystemId_Value = Guid.initString("fff4af3a-1fc1-4ef9-a29b-d26c49e2f31a");
 pub const IID_IMFSystemId = &IID_IMFSystemId_Value;
 pub const IMFSystemId = extern struct {
     pub const VTable = extern struct {
@@ -19657,7 +19657,7 @@ pub const MFCONTENTPROTECTIONDEVICE_REALTIMECLIENT_DATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFContentProtectionDevice_Value = @import("../zig.zig").Guid.initString("e6257174-a060-4c9a-a088-3b1b471cad28");
+const IID_IMFContentProtectionDevice_Value = Guid.initString("e6257174-a060-4c9a-a088-3b1b471cad28");
 pub const IID_IMFContentProtectionDevice = &IID_IMFContentProtectionDevice_Value;
 pub const IMFContentProtectionDevice = extern struct {
     pub const VTable = extern struct {
@@ -19694,7 +19694,7 @@ pub const IMFContentProtectionDevice = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFContentDecryptorContext_Value = @import("../zig.zig").Guid.initString("7ec4b1bd-43fb-4763-85d2-64fcb5c5f4cb");
+const IID_IMFContentDecryptorContext_Value = Guid.initString("7ec4b1bd-43fb-4763-85d2-64fcb5c5f4cb");
 pub const IID_IMFContentDecryptorContext = &IID_IMFContentDecryptorContext_Value;
 pub const IMFContentDecryptorContext = extern struct {
     pub const VTable = extern struct {
@@ -19774,7 +19774,7 @@ pub const MF_CROSS_ORIGIN_POLICY_ANONYMOUS = MF_CROSS_ORIGIN_POLICY.ANONYMOUS;
 pub const MF_CROSS_ORIGIN_POLICY_USE_CREDENTIALS = MF_CROSS_ORIGIN_POLICY.USE_CREDENTIALS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFNetCrossOriginSupport_Value = @import("../zig.zig").Guid.initString("bc2b7d44-a72d-49d5-8376-1480dee58b22");
+const IID_IMFNetCrossOriginSupport_Value = Guid.initString("bc2b7d44-a72d-49d5-8376-1480dee58b22");
 pub const IID_IMFNetCrossOriginSupport = &IID_IMFNetCrossOriginSupport_Value;
 pub const IMFNetCrossOriginSupport = extern struct {
     pub const VTable = extern struct {
@@ -19813,7 +19813,7 @@ pub const IMFNetCrossOriginSupport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFHttpDownloadRequest_Value = @import("../zig.zig").Guid.initString("f779fddf-26e7-4270-8a8b-b983d1859de0");
+const IID_IMFHttpDownloadRequest_Value = Guid.initString("f779fddf-26e7-4270-8a8b-b983d1859de0");
 pub const IID_IMFHttpDownloadRequest = &IID_IMFHttpDownloadRequest_Value;
 pub const IMFHttpDownloadRequest = extern struct {
     pub const VTable = extern struct {
@@ -19967,7 +19967,7 @@ pub const IMFHttpDownloadRequest = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFHttpDownloadSession_Value = @import("../zig.zig").Guid.initString("71fa9a2c-53ce-4662-a132-1a7e8cbf62db");
+const IID_IMFHttpDownloadSession_Value = Guid.initString("71fa9a2c-53ce-4662-a132-1a7e8cbf62db");
 pub const IID_IMFHttpDownloadSession = &IID_IMFHttpDownloadSession_Value;
 pub const IMFHttpDownloadSession = extern struct {
     pub const VTable = extern struct {
@@ -20010,7 +20010,7 @@ pub const IMFHttpDownloadSession = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFHttpDownloadSessionProvider_Value = @import("../zig.zig").Guid.initString("1b4cf4b9-3a16-4115-839d-03cc5c99df01");
+const IID_IMFHttpDownloadSessionProvider_Value = Guid.initString("1b4cf4b9-3a16-4115-839d-03cc5c99df01");
 pub const IID_IMFHttpDownloadSessionProvider = &IID_IMFHttpDownloadSessionProvider_Value;
 pub const IMFHttpDownloadSessionProvider = extern struct {
     pub const VTable = extern struct {
@@ -20038,7 +20038,7 @@ pub const MF_VIDEO_SPHERICAL_VIEWDIRECTION = extern struct {
     iRoll: i32,
 };
 
-const IID_IMFMediaSource2_Value = @import("../zig.zig").Guid.initString("fbb03414-d13b-4786-8319-5ac51fc0a136");
+const IID_IMFMediaSource2_Value = Guid.initString("fbb03414-d13b-4786-8319-5ac51fc0a136");
 pub const IID_IMFMediaSource2 = &IID_IMFMediaSource2_Value;
 pub const IMFMediaSource2 = extern struct {
     pub const VTable = extern struct {
@@ -20060,7 +20060,7 @@ pub const IMFMediaSource2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaStream2_Value = @import("../zig.zig").Guid.initString("c5bc37d6-75c7-46a1-a132-81b5f723c20f");
+const IID_IMFMediaStream2_Value = Guid.initString("c5bc37d6-75c7-46a1-a132-81b5f723c20f");
 pub const IID_IMFMediaStream2 = &IID_IMFMediaStream2_Value;
 pub const IMFMediaStream2 = extern struct {
     pub const VTable = extern struct {
@@ -20119,7 +20119,7 @@ pub const MFSensorDeviceMode_Controller = MFSensorDeviceMode.Controller;
 pub const MFSensorDeviceMode_Shared = MFSensorDeviceMode.Shared;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IMFSensorDevice_Value = @import("../zig.zig").Guid.initString("fb9f48f2-2a18-4e28-9730-786f30f04dc4");
+const IID_IMFSensorDevice_Value = Guid.initString("fb9f48f2-2a18-4e28-9730-786f30f04dc4");
 pub const IID_IMFSensorDevice = &IID_IMFSensorDevice_Value;
 pub const IMFSensorDevice = extern struct {
     pub const VTable = extern struct {
@@ -20210,7 +20210,7 @@ pub const IMFSensorDevice = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IMFSensorGroup_Value = @import("../zig.zig").Guid.initString("4110243a-9757-461f-89f1-f22345bcab4e");
+const IID_IMFSensorGroup_Value = Guid.initString("4110243a-9757-461f-89f1-f22345bcab4e");
 pub const IID_IMFSensorGroup = &IID_IMFSensorGroup_Value;
 pub const IMFSensorGroup = extern struct {
     pub const VTable = extern struct {
@@ -20291,7 +20291,7 @@ pub const IMFSensorGroup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorStream_Value = @import("../zig.zig").Guid.initString("e9a42171-c56e-498a-8b39-eda5a070b7fc");
+const IID_IMFSensorStream_Value = Guid.initString("e9a42171-c56e-498a-8b39-eda5a070b7fc");
 pub const IID_IMFSensorStream = &IID_IMFSensorStream_Value;
 pub const IMFSensorStream = extern struct {
     pub const VTable = extern struct {
@@ -20330,7 +20330,7 @@ pub const IMFSensorStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorTransformFactory_Value = @import("../zig.zig").Guid.initString("eed9c2ee-66b4-4f18-a697-ac7d3960215c");
+const IID_IMFSensorTransformFactory_Value = Guid.initString("eed9c2ee-66b4-4f18-a697-ac7d3960215c");
 pub const IID_IMFSensorTransformFactory = &IID_IMFSensorTransformFactory_Value;
 pub const IMFSensorTransformFactory = extern struct {
     pub const VTable = extern struct {
@@ -20397,7 +20397,7 @@ pub const SENSORPROFILEID = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IMFSensorProfile_Value = @import("../zig.zig").Guid.initString("22f765d1-8dab-4107-846d-56baf72215e7");
+const IID_IMFSensorProfile_Value = Guid.initString("22f765d1-8dab-4107-846d-56baf72215e7");
 pub const IID_IMFSensorProfile = &IID_IMFSensorProfile_Value;
 pub const IMFSensorProfile = extern struct {
     pub const VTable = extern struct {
@@ -20446,7 +20446,7 @@ pub const IMFSensorProfile = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IMFSensorProfileCollection_Value = @import("../zig.zig").Guid.initString("c95ea55b-0187-48be-9353-8d2507662351");
+const IID_IMFSensorProfileCollection_Value = Guid.initString("c95ea55b-0187-48be-9353-8d2507662351");
 pub const IID_IMFSensorProfileCollection = &IID_IMFSensorProfileCollection_Value;
 pub const IMFSensorProfileCollection = extern struct {
     pub const VTable = extern struct {
@@ -20509,7 +20509,7 @@ pub const IMFSensorProfileCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorProcessActivity_Value = @import("../zig.zig").Guid.initString("39dc7f4a-b141-4719-813c-a7f46162a2b8");
+const IID_IMFSensorProcessActivity_Value = Guid.initString("39dc7f4a-b141-4719-813c-a7f46162a2b8");
 pub const IID_IMFSensorProcessActivity = &IID_IMFSensorProcessActivity_Value;
 pub const IMFSensorProcessActivity = extern struct {
     pub const VTable = extern struct {
@@ -20555,7 +20555,7 @@ pub const IMFSensorProcessActivity = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorActivityReport_Value = @import("../zig.zig").Guid.initString("3e8c4be1-a8c2-4528-90de-2851bde5fead");
+const IID_IMFSensorActivityReport_Value = Guid.initString("3e8c4be1-a8c2-4528-90de-2851bde5fead");
 pub const IID_IMFSensorActivityReport = &IID_IMFSensorActivityReport_Value;
 pub const IMFSensorActivityReport = extern struct {
     pub const VTable = extern struct {
@@ -20606,7 +20606,7 @@ pub const IMFSensorActivityReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorActivitiesReport_Value = @import("../zig.zig").Guid.initString("683f7a5e-4a19-43cd-b1a9-dbf4ab3f7777");
+const IID_IMFSensorActivitiesReport_Value = Guid.initString("683f7a5e-4a19-43cd-b1a9-dbf4ab3f7777");
 pub const IID_IMFSensorActivitiesReport = &IID_IMFSensorActivitiesReport_Value;
 pub const IMFSensorActivitiesReport = extern struct {
     pub const VTable = extern struct {
@@ -20646,7 +20646,7 @@ pub const IMFSensorActivitiesReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorActivitiesReportCallback_Value = @import("../zig.zig").Guid.initString("de5072ee-dbe3-46dc-8a87-b6f631194751");
+const IID_IMFSensorActivitiesReportCallback_Value = Guid.initString("de5072ee-dbe3-46dc-8a87-b6f631194751");
 pub const IID_IMFSensorActivitiesReportCallback = &IID_IMFSensorActivitiesReportCallback_Value;
 pub const IMFSensorActivitiesReportCallback = extern struct {
     pub const VTable = extern struct {
@@ -20668,7 +20668,7 @@ pub const IMFSensorActivitiesReportCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSensorActivityMonitor_Value = @import("../zig.zig").Guid.initString("d0cef145-b3f4-4340-a2e5-7a5080ca05cb");
+const IID_IMFSensorActivityMonitor_Value = Guid.initString("d0cef145-b3f4-4340-a2e5-7a5080ca05cb");
 pub const IID_IMFSensorActivityMonitor = &IID_IMFSensorActivityMonitor_Value;
 pub const IMFSensorActivityMonitor = extern struct {
     pub const VTable = extern struct {
@@ -20735,7 +20735,7 @@ pub const MFExtendedCameraIntrinsic_IntrinsicModel = extern struct {
     CameraModel: MFCameraIntrinsic_CameraModel,
 };
 
-const IID_IMFExtendedCameraIntrinsicModel_Value = @import("../zig.zig").Guid.initString("5c595e64-4630-4231-855a-12842f733245");
+const IID_IMFExtendedCameraIntrinsicModel_Value = Guid.initString("5c595e64-4630-4231-855a-12842f733245");
 pub const IID_IMFExtendedCameraIntrinsicModel = &IID_IMFExtendedCameraIntrinsicModel_Value;
 pub const IMFExtendedCameraIntrinsicModel = extern struct {
     pub const VTable = extern struct {
@@ -20772,7 +20772,7 @@ pub const IMFExtendedCameraIntrinsicModel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedCameraIntrinsicsDistortionModel6KT_Value = @import("../zig.zig").Guid.initString("74c2653b-5f55-4eb1-9f0f-18b8f68b7d3d");
+const IID_IMFExtendedCameraIntrinsicsDistortionModel6KT_Value = Guid.initString("74c2653b-5f55-4eb1-9f0f-18b8f68b7d3d");
 pub const IID_IMFExtendedCameraIntrinsicsDistortionModel6KT = &IID_IMFExtendedCameraIntrinsicsDistortionModel6KT_Value;
 pub const IMFExtendedCameraIntrinsicsDistortionModel6KT = extern struct {
     pub const VTable = extern struct {
@@ -20801,7 +20801,7 @@ pub const IMFExtendedCameraIntrinsicsDistortionModel6KT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedCameraIntrinsicsDistortionModelArcTan_Value = @import("../zig.zig").Guid.initString("812d5f95-b572-45dc-bafc-ae24199ddda8");
+const IID_IMFExtendedCameraIntrinsicsDistortionModelArcTan_Value = Guid.initString("812d5f95-b572-45dc-bafc-ae24199ddda8");
 pub const IID_IMFExtendedCameraIntrinsicsDistortionModelArcTan = &IID_IMFExtendedCameraIntrinsicsDistortionModelArcTan_Value;
 pub const IMFExtendedCameraIntrinsicsDistortionModelArcTan = extern struct {
     pub const VTable = extern struct {
@@ -20830,7 +20830,7 @@ pub const IMFExtendedCameraIntrinsicsDistortionModelArcTan = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedCameraIntrinsics_Value = @import("../zig.zig").Guid.initString("687f6dac-6987-4750-a16a-734d1e7a10fe");
+const IID_IMFExtendedCameraIntrinsics_Value = Guid.initString("687f6dac-6987-4750-a16a-734d1e7a10fe");
 pub const IID_IMFExtendedCameraIntrinsics = &IID_IMFExtendedCameraIntrinsics_Value;
 pub const IMFExtendedCameraIntrinsics = extern struct {
     pub const VTable = extern struct {
@@ -20896,7 +20896,7 @@ pub const IMFExtendedCameraIntrinsics = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedCameraControl_Value = @import("../zig.zig").Guid.initString("38e33520-fca1-4845-a27a-68b7c6ab3789");
+const IID_IMFExtendedCameraControl_Value = Guid.initString("38e33520-fca1-4845-a27a-68b7c6ab3789");
 pub const IID_IMFExtendedCameraControl = &IID_IMFExtendedCameraControl_Value;
 pub const IMFExtendedCameraControl = extern struct {
     pub const VTable = extern struct {
@@ -20954,7 +20954,7 @@ pub const IMFExtendedCameraControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedCameraController_Value = @import("../zig.zig").Guid.initString("b91ebfee-ca03-4af4-8a82-a31752f4a0fc");
+const IID_IMFExtendedCameraController_Value = Guid.initString("b91ebfee-ca03-4af4-8a82-a31752f4a0fc");
 pub const IID_IMFExtendedCameraController = &IID_IMFExtendedCameraController_Value;
 pub const IMFExtendedCameraController = extern struct {
     pub const VTable = extern struct {
@@ -20978,7 +20978,7 @@ pub const IMFExtendedCameraController = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFRelativePanelReport_Value = @import("../zig.zig").Guid.initString("f25362ea-2c0e-447f-81e2-755914cdc0c3");
+const IID_IMFRelativePanelReport_Value = Guid.initString("f25362ea-2c0e-447f-81e2-755914cdc0c3");
 pub const IID_IMFRelativePanelReport = &IID_IMFRelativePanelReport_Value;
 pub const IMFRelativePanelReport = extern struct {
     pub const VTable = extern struct {
@@ -21000,7 +21000,7 @@ pub const IMFRelativePanelReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFRelativePanelWatcher_Value = @import("../zig.zig").Guid.initString("421af7f6-573e-4ad0-8fda-2e57cedb18c6");
+const IID_IMFRelativePanelWatcher_Value = Guid.initString("421af7f6-573e-4ad0-8fda-2e57cedb18c6");
 pub const IID_IMFRelativePanelWatcher = &IID_IMFRelativePanelWatcher_Value;
 pub const IMFRelativePanelWatcher = extern struct {
     pub const VTable = extern struct {
@@ -21048,7 +21048,7 @@ pub const MFCameraOcclusionState_Open = MFCameraOcclusionState.pen;
 pub const MFCameraOcclusionState_OccludedByLid = MFCameraOcclusionState.ccludedByLid;
 pub const MFCameraOcclusionState_OccludedByCameraHardware = MFCameraOcclusionState.ccludedByCameraHardware;
 
-const IID_IMFCameraOcclusionStateReport_Value = @import("../zig.zig").Guid.initString("1640b2cf-74da-4462-a43b-b76d3bdc1434");
+const IID_IMFCameraOcclusionStateReport_Value = Guid.initString("1640b2cf-74da-4462-a43b-b76d3bdc1434");
 pub const IID_IMFCameraOcclusionStateReport = &IID_IMFCameraOcclusionStateReport_Value;
 pub const IMFCameraOcclusionStateReport = extern struct {
     pub const VTable = extern struct {
@@ -21069,7 +21069,7 @@ pub const IMFCameraOcclusionStateReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFCameraOcclusionStateReportCallback_Value = @import("../zig.zig").Guid.initString("6e5841c7-3889-4019-9035-783fb19b5948");
+const IID_IMFCameraOcclusionStateReportCallback_Value = Guid.initString("6e5841c7-3889-4019-9035-783fb19b5948");
 pub const IID_IMFCameraOcclusionStateReportCallback = &IID_IMFCameraOcclusionStateReportCallback_Value;
 pub const IMFCameraOcclusionStateReportCallback = extern struct {
     pub const VTable = extern struct {
@@ -21090,7 +21090,7 @@ pub const IMFCameraOcclusionStateReportCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFCameraOcclusionStateMonitor_Value = @import("../zig.zig").Guid.initString("cc692f46-c697-47e2-a72d-7b064617749b");
+const IID_IMFCameraOcclusionStateMonitor_Value = Guid.initString("cc692f46-c697-47e2-a72d-7b064617749b");
 pub const IID_IMFCameraOcclusionStateMonitor = &IID_IMFCameraOcclusionStateMonitor_Value;
 pub const IMFCameraOcclusionStateMonitor = extern struct {
     pub const VTable = extern struct {
@@ -21125,7 +21125,7 @@ pub const IMFCameraOcclusionStateMonitor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFVideoCaptureSampleAllocator_Value = @import("../zig.zig").Guid.initString("725b77c7-ca9f-4fe5-9d72-9946bf9b3c70");
+const IID_IMFVideoCaptureSampleAllocator_Value = Guid.initString("725b77c7-ca9f-4fe5-9d72-9946bf9b3c70");
 pub const IID_IMFVideoCaptureSampleAllocator = &IID_IMFVideoCaptureSampleAllocator_Value;
 pub const IMFVideoCaptureSampleAllocator = extern struct {
     pub const VTable = extern struct {
@@ -21161,7 +21161,7 @@ pub const MFSampleAllocatorUsage_UsesCustomAllocator = MFSampleAllocatorUsage.Us
 pub const MFSampleAllocatorUsage_DoesNotAllocate = MFSampleAllocatorUsage.DoesNotAllocate;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFSampleAllocatorControl_Value = @import("../zig.zig").Guid.initString("da62b958-3a38-4a97-bd27-149c640c0771");
+const IID_IMFSampleAllocatorControl_Value = Guid.initString("da62b958-3a38-4a97-bd27-149c640c0771");
 pub const IID_IMFSampleAllocatorControl = &IID_IMFSampleAllocatorControl_Value;
 pub const IMFSampleAllocatorControl = extern struct {
     pub const VTable = extern struct {
@@ -21194,7 +21194,7 @@ pub const IMFSampleAllocatorControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFContentInfo_Value = @import("../zig.zig").Guid.initString("b1dca5cd-d5da-4451-8e9e-db5c59914ead");
+const IID_IMFASFContentInfo_Value = Guid.initString("b1dca5cd-d5da-4451-8e9e-db5c59914ead");
 pub const IID_IMFASFContentInfo = &IID_IMFASFContentInfo_Value;
 pub const IMFASFContentInfo = extern struct {
     pub const VTable = extern struct {
@@ -21268,7 +21268,7 @@ pub const IMFASFContentInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFProfile_Value = @import("../zig.zig").Guid.initString("d267bf6a-028b-4e0d-903d-43f0ef82d0d4");
+const IID_IMFASFProfile_Value = Guid.initString("d267bf6a-028b-4e0d-903d-43f0ef82d0d4");
 pub const IID_IMFASFProfile = &IID_IMFASFProfile_Value;
 pub const IMFASFProfile = extern struct {
     pub const VTable = extern struct {
@@ -21414,7 +21414,7 @@ pub const IMFASFProfile = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFStreamConfig_Value = @import("../zig.zig").Guid.initString("9e8ae8d2-dbbd-4200-9aca-06e6df484913");
+const IID_IMFASFStreamConfig_Value = Guid.initString("9e8ae8d2-dbbd-4200-9aca-06e6df484913");
 pub const IID_IMFASFStreamConfig = &IID_IMFASFStreamConfig_Value;
 pub const IMFASFStreamConfig = extern struct {
     pub const VTable = extern struct {
@@ -21513,7 +21513,7 @@ pub const IMFASFStreamConfig = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFMutualExclusion_Value = @import("../zig.zig").Guid.initString("12558291-e399-11d5-bc2a-00b0d0f3f4ab");
+const IID_IMFASFMutualExclusion_Value = Guid.initString("12558291-e399-11d5-bc2a-00b0d0f3f4ab");
 pub const IID_IMFASFMutualExclusion = &IID_IMFASFMutualExclusion_Value;
 pub const IMFASFMutualExclusion = extern struct {
     pub const VTable = extern struct {
@@ -21603,7 +21603,7 @@ pub const IMFASFMutualExclusion = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFStreamPrioritization_Value = @import("../zig.zig").Guid.initString("699bdc27-bbaf-49ff-8e38-9c39c9b5e088");
+const IID_IMFASFStreamPrioritization_Value = Guid.initString("699bdc27-bbaf-49ff-8e38-9c39c9b5e088");
 pub const IID_IMFASFStreamPrioritization = &IID_IMFASFStreamPrioritization_Value;
 pub const IMFASFStreamPrioritization = extern struct {
     pub const VTable = extern struct {
@@ -21681,7 +21681,7 @@ pub const ASF_INDEX_DESCRIPTOR = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFIndexer_Value = @import("../zig.zig").Guid.initString("53590f48-dc3b-4297-813f-787761ad7b3e");
+const IID_IMFASFIndexer_Value = Guid.initString("53590f48-dc3b-4297-813f-787761ad7b3e");
 pub const IID_IMFASFIndexer = &IID_IMFASFIndexer_Value;
 pub const IMFASFIndexer = extern struct {
     pub const VTable = extern struct {
@@ -21811,7 +21811,7 @@ pub const IMFASFIndexer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFSplitter_Value = @import("../zig.zig").Guid.initString("12558295-e399-11d5-bc2a-00b0d0f3f4ab");
+const IID_IMFASFSplitter_Value = Guid.initString("12558295-e399-11d5-bc2a-00b0d0f3f4ab");
 pub const IID_IMFASFSplitter = &IID_IMFASFSplitter_Value;
 pub const IMFASFSplitter = extern struct {
     pub const VTable = extern struct {
@@ -21926,7 +21926,7 @@ pub const ASF_MUX_STATISTICS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFMultiplexer_Value = @import("../zig.zig").Guid.initString("57bdd80a-9b38-4838-b737-c58f670d7d4f");
+const IID_IMFASFMultiplexer_Value = Guid.initString("57bdd80a-9b38-4838-b737-c58f670d7d4f");
 pub const IID_IMFASFMultiplexer = &IID_IMFASFMultiplexer_Value;
 pub const IMFASFMultiplexer = extern struct {
     pub const VTable = extern struct {
@@ -22031,7 +22031,7 @@ pub const ASF_STATUS_CLEANPOINTSONLY = ASF_SELECTION_STATUS.CLEANPOINTSONLY;
 pub const ASF_STATUS_ALLDATAUNITS = ASF_SELECTION_STATUS.ALLDATAUNITS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFASFStreamSelector_Value = @import("../zig.zig").Guid.initString("d01bad4a-4fa0-4a60-9349-c27e62da9d41");
+const IID_IMFASFStreamSelector_Value = Guid.initString("d01bad4a-4fa0-4a60-9349-c27e62da9d41");
 pub const IID_IMFASFStreamSelector = &IID_IMFASFStreamSelector_Value;
 pub const IMFASFStreamSelector = extern struct {
     pub const VTable = extern struct {
@@ -22184,7 +22184,7 @@ pub const MFSINK_WMDRMACTION_TRANSCRYPT = MFSINK_WMDRMACTION.TRANSCRYPT;
 pub const MFSINK_WMDRMACTION_LAST = MFSINK_WMDRMACTION.TRANSCRYPT;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFDRMNetHelper_Value = @import("../zig.zig").Guid.initString("3d1ff0ea-679a-4190-8d46-7fa69e8c7e15");
+const IID_IMFDRMNetHelper_Value = Guid.initString("3d1ff0ea-679a-4190-8d46-7fa69e8c7e15");
 pub const IID_IMFDRMNetHelper = &IID_IMFDRMNetHelper_Value;
 pub const IMFDRMNetHelper = extern struct {
     pub const VTable = extern struct {
@@ -22300,7 +22300,7 @@ pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING_DEFAULT = MF_CAPTURE_ENGINE_AUDIO_P
 pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING_RAW = MF_CAPTURE_ENGINE_AUDIO_PROCESSING_MODE.RAW;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureEngineOnEventCallback_Value = @import("../zig.zig").Guid.initString("aeda51c0-9025-4983-9012-de597b88b089");
+const IID_IMFCaptureEngineOnEventCallback_Value = Guid.initString("aeda51c0-9025-4983-9012-de597b88b089");
 pub const IID_IMFCaptureEngineOnEventCallback = &IID_IMFCaptureEngineOnEventCallback_Value;
 pub const IMFCaptureEngineOnEventCallback = extern struct {
     pub const VTable = extern struct {
@@ -22322,7 +22322,7 @@ pub const IMFCaptureEngineOnEventCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureEngineOnSampleCallback_Value = @import("../zig.zig").Guid.initString("52150b82-ab39-4467-980f-e48bf0822ecd");
+const IID_IMFCaptureEngineOnSampleCallback_Value = Guid.initString("52150b82-ab39-4467-980f-e48bf0822ecd");
 pub const IID_IMFCaptureEngineOnSampleCallback = &IID_IMFCaptureEngineOnSampleCallback_Value;
 pub const IMFCaptureEngineOnSampleCallback = extern struct {
     pub const VTable = extern struct {
@@ -22344,7 +22344,7 @@ pub const IMFCaptureEngineOnSampleCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureSink_Value = @import("../zig.zig").Guid.initString("72d6135b-35e9-412c-b926-fd5265f2a885");
+const IID_IMFCaptureSink_Value = Guid.initString("72d6135b-35e9-412c-b926-fd5265f2a885");
 pub const IID_IMFCaptureSink = &IID_IMFCaptureSink_Value;
 pub const IMFCaptureSink = extern struct {
     pub const VTable = extern struct {
@@ -22403,7 +22403,7 @@ pub const IMFCaptureSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureRecordSink_Value = @import("../zig.zig").Guid.initString("3323b55a-f92a-4fe2-8edc-e9bfc0634d77");
+const IID_IMFCaptureRecordSink_Value = Guid.initString("3323b55a-f92a-4fe2-8edc-e9bfc0634d77");
 pub const IID_IMFCaptureRecordSink = &IID_IMFCaptureRecordSink_Value;
 pub const IMFCaptureRecordSink = extern struct {
     pub const VTable = extern struct {
@@ -22469,7 +22469,7 @@ pub const IMFCaptureRecordSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCapturePreviewSink_Value = @import("../zig.zig").Guid.initString("77346cfd-5b49-4d73-ace0-5b52a859f2e0");
+const IID_IMFCapturePreviewSink_Value = Guid.initString("77346cfd-5b49-4d73-ace0-5b52a859f2e0");
 pub const IID_IMFCapturePreviewSink = &IID_IMFCapturePreviewSink_Value;
 pub const IMFCapturePreviewSink = extern struct {
     pub const VTable = extern struct {
@@ -22560,7 +22560,7 @@ pub const IMFCapturePreviewSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCapturePhotoSink_Value = @import("../zig.zig").Guid.initString("d2d43cc8-48bb-4aa7-95db-10c06977e777");
+const IID_IMFCapturePhotoSink_Value = Guid.initString("d2d43cc8-48bb-4aa7-95db-10c06977e777");
 pub const IID_IMFCapturePhotoSink = &IID_IMFCapturePhotoSink_Value;
 pub const IMFCapturePhotoSink = extern struct {
     pub const VTable = extern struct {
@@ -22598,7 +22598,7 @@ pub const IMFCapturePhotoSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureSource_Value = @import("../zig.zig").Guid.initString("439a42a8-0d2c-4505-be83-f79b2a05d5c4");
+const IID_IMFCaptureSource_Value = Guid.initString("439a42a8-0d2c-4505-be83-f79b2a05d5c4");
 pub const IID_IMFCaptureSource = &IID_IMFCaptureSource_Value;
 pub const IMFCaptureSource = extern struct {
     pub const VTable = extern struct {
@@ -22738,7 +22738,7 @@ pub const IMFCaptureSource = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureEngine_Value = @import("../zig.zig").Guid.initString("a6bba433-176b-48b2-b375-53aa03473207");
+const IID_IMFCaptureEngine_Value = Guid.initString("a6bba433-176b-48b2-b375-53aa03473207");
 pub const IID_IMFCaptureEngine = &IID_IMFCaptureEngine_Value;
 pub const IMFCaptureEngine = extern struct {
     pub const VTable = extern struct {
@@ -22817,7 +22817,7 @@ pub const IMFCaptureEngine = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFCaptureEngineClassFactory_Value = @import("../zig.zig").Guid.initString("8f02d140-56fc-4302-a705-3a97c78be779");
+const IID_IMFCaptureEngineClassFactory_Value = Guid.initString("8f02d140-56fc-4302-a705-3a97c78be779");
 pub const IID_IMFCaptureEngineClassFactory = &IID_IMFCaptureEngineClassFactory_Value;
 pub const IMFCaptureEngineClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -22841,7 +22841,7 @@ pub const IMFCaptureEngineClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFCaptureEngineOnSampleCallback2_Value = @import("../zig.zig").Guid.initString("e37ceed7-340f-4514-9f4d-9c2ae026100b");
+const IID_IMFCaptureEngineOnSampleCallback2_Value = Guid.initString("e37ceed7-340f-4514-9f4d-9c2ae026100b");
 pub const IID_IMFCaptureEngineOnSampleCallback2 = &IID_IMFCaptureEngineOnSampleCallback2_Value;
 pub const IMFCaptureEngineOnSampleCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -22863,7 +22863,7 @@ pub const IMFCaptureEngineOnSampleCallback2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFCaptureSink2_Value = @import("../zig.zig").Guid.initString("f9e4219e-6197-4b5e-b888-bee310ab2c59");
+const IID_IMFCaptureSink2_Value = Guid.initString("f9e4219e-6197-4b5e-b888-bee310ab2c59");
 pub const IID_IMFCaptureSink2 = &IID_IMFCaptureSink2_Value;
 pub const IMFCaptureSink2 = extern struct {
     pub const VTable = extern struct {
@@ -22886,7 +22886,7 @@ pub const IMFCaptureSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFD3D12SynchronizationObjectCommands_Value = @import("../zig.zig").Guid.initString("09d0f835-92ff-4e53-8efa-40faa551f233");
+const IID_IMFD3D12SynchronizationObjectCommands_Value = Guid.initString("09d0f835-92ff-4e53-8efa-40faa551f233");
 pub const IID_IMFD3D12SynchronizationObjectCommands = &IID_IMFD3D12SynchronizationObjectCommands_Value;
 pub const IMFD3D12SynchronizationObjectCommands = extern struct {
     pub const VTable = extern struct {
@@ -22931,7 +22931,7 @@ pub const IMFD3D12SynchronizationObjectCommands = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFD3D12SynchronizationObject_Value = @import("../zig.zig").Guid.initString("802302b0-82de-45e1-b421-f19ee5bdaf23");
+const IID_IMFD3D12SynchronizationObject_Value = Guid.initString("802302b0-82de-45e1-b421-f19ee5bdaf23");
 pub const IID_IMFD3D12SynchronizationObject = &IID_IMFD3D12SynchronizationObject_Value;
 pub const IMFD3D12SynchronizationObject = extern struct {
     pub const VTable = extern struct {
@@ -23275,7 +23275,7 @@ pub const MF_MEDIA_ENGINE_ERR_SRC_NOT_SUPPORTED = MF_MEDIA_ENGINE_ERR.SRC_NOT_SU
 pub const MF_MEDIA_ENGINE_ERR_ENCRYPTED = MF_MEDIA_ENGINE_ERR.ENCRYPTED;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaError_Value = @import("../zig.zig").Guid.initString("fc0e10d2-ab2a-4501-a951-06bb1075184c");
+const IID_IMFMediaError_Value = Guid.initString("fc0e10d2-ab2a-4501-a951-06bb1075184c");
 pub const IID_IMFMediaError = &IID_IMFMediaError_Value;
 pub const IMFMediaError = extern struct {
     pub const VTable = extern struct {
@@ -23319,7 +23319,7 @@ pub const IMFMediaError = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaTimeRange_Value = @import("../zig.zig").Guid.initString("db71a2fc-078a-414e-9df9-8c2531b0aa6c");
+const IID_IMFMediaTimeRange_Value = Guid.initString("db71a2fc-078a-414e-9df9-8c2531b0aa6c");
 pub const IID_IMFMediaTimeRange = &IID_IMFMediaTimeRange_Value;
 pub const IMFMediaTimeRange = extern struct {
     pub const VTable = extern struct {
@@ -23463,7 +23463,7 @@ pub const MF_MEDIA_ENGINE_EVENT_SUPPORTEDRATES_CHANGED = MF_MEDIA_ENGINE_EVENT.S
 pub const MF_MEDIA_ENGINE_EVENT_AUDIOENDPOINTCHANGE = MF_MEDIA_ENGINE_EVENT.AUDIOENDPOINTCHANGE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineNotify_Value = @import("../zig.zig").Guid.initString("fee7c112-e776-42b5-9bbf-0048524e2bd5");
+const IID_IMFMediaEngineNotify_Value = Guid.initString("fee7c112-e776-42b5-9bbf-0048524e2bd5");
 pub const IID_IMFMediaEngineNotify = &IID_IMFMediaEngineNotify_Value;
 pub const IMFMediaEngineNotify = extern struct {
     pub const VTable = extern struct {
@@ -23487,7 +23487,7 @@ pub const IMFMediaEngineNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineSrcElements_Value = @import("../zig.zig").Guid.initString("7a5e5354-b114-4c72-b991-3131d75032ea");
+const IID_IMFMediaEngineSrcElements_Value = Guid.initString("7a5e5354-b114-4c72-b991-3131d75032ea");
 pub const IID_IMFMediaEngineSrcElements = &IID_IMFMediaEngineSrcElements_Value;
 pub const IMFMediaEngineSrcElements = extern struct {
     pub const VTable = extern struct {
@@ -23598,7 +23598,7 @@ pub const MF_MEDIA_ENGINE_PRELOAD_METADATA = MF_MEDIA_ENGINE_PRELOAD.METADATA;
 pub const MF_MEDIA_ENGINE_PRELOAD_AUTOMATIC = MF_MEDIA_ENGINE_PRELOAD.AUTOMATIC;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngine_Value = @import("../zig.zig").Guid.initString("98a1b0bb-03eb-4935-ae7c-93c1fa0e1c93");
+const IID_IMFMediaEngine_Value = Guid.initString("98a1b0bb-03eb-4935-ae7c-93c1fa0e1c93");
 pub const IID_IMFMediaEngine = &IID_IMFMediaEngine_Value;
 pub const IMFMediaEngine = extern struct {
     pub const VTable = extern struct {
@@ -23968,7 +23968,7 @@ pub const MF_MEDIA_ENGINE_SEEK_MODE_NORMAL = MF_MEDIA_ENGINE_SEEK_MODE.NORMAL;
 pub const MF_MEDIA_ENGINE_SEEK_MODE_APPROXIMATE = MF_MEDIA_ENGINE_SEEK_MODE.APPROXIMATE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineEx_Value = @import("../zig.zig").Guid.initString("83015ead-b1e6-40d0-a98a-37145ffe1ad1");
+const IID_IMFMediaEngineEx_Value = Guid.initString("83015ead-b1e6-40d0-a98a-37145ffe1ad1");
 pub const IID_IMFMediaEngineEx = &IID_IMFMediaEngineEx_Value;
 pub const IMFMediaEngineEx = extern struct {
     pub const VTable = extern struct {
@@ -24284,7 +24284,7 @@ pub const IMFMediaEngineEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaEngineAudioEndpointId_Value = @import("../zig.zig").Guid.initString("7a3bac98-0e76-49fb-8c20-8a86fd98eaf2");
+const IID_IMFMediaEngineAudioEndpointId_Value = Guid.initString("7a3bac98-0e76-49fb-8c20-8a86fd98eaf2");
 pub const IID_IMFMediaEngineAudioEndpointId = &IID_IMFMediaEngineAudioEndpointId_Value;
 pub const IMFMediaEngineAudioEndpointId = extern struct {
     pub const VTable = extern struct {
@@ -24321,7 +24321,7 @@ pub const MF_MEDIA_ENGINE_EXTENSION_TYPE_MEDIASOURCE = MF_MEDIA_ENGINE_EXTENSION
 pub const MF_MEDIA_ENGINE_EXTENSION_TYPE_BYTESTREAM = MF_MEDIA_ENGINE_EXTENSION_TYPE.BYTESTREAM;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineExtension_Value = @import("../zig.zig").Guid.initString("2f69d622-20b5-41e9-afdf-89ced1dda04e");
+const IID_IMFMediaEngineExtension_Value = Guid.initString("2f69d622-20b5-41e9-afdf-89ced1dda04e");
 pub const IID_IMFMediaEngineExtension = &IID_IMFMediaEngineExtension_Value;
 pub const IMFMediaEngineExtension = extern struct {
     pub const VTable = extern struct {
@@ -24384,7 +24384,7 @@ pub const MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAG_REQUIRES_SURFACE_PROTECTION = MF
 pub const MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAG_REQUIRES_ANTI_SCREEN_SCRAPE_PROTECTION = MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAGS.REQUIRES_ANTI_SCREEN_SCRAPE_PROTECTION;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineProtectedContent_Value = @import("../zig.zig").Guid.initString("9f8021e8-9c8c-487e-bb5c-79aa4779938c");
+const IID_IMFMediaEngineProtectedContent_Value = Guid.initString("9f8021e8-9c8c-487e-bb5c-79aa4779938c");
 pub const IID_IMFMediaEngineProtectedContent = &IID_IMFMediaEngineProtectedContent_Value;
 pub const IMFMediaEngineProtectedContent = extern struct {
     pub const VTable = extern struct {
@@ -24451,7 +24451,7 @@ pub const IMFMediaEngineProtectedContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSourceProvider_Value = @import("../zig.zig").Guid.initString("ebbaf249-afc2-4582-91c6-b60df2e84954");
+const IID_IAudioSourceProvider_Value = Guid.initString("ebbaf249-afc2-4582-91c6-b60df2e84954");
 pub const IID_IAudioSourceProvider = &IID_IAudioSourceProvider_Value;
 pub const IAudioSourceProvider = extern struct {
     pub const VTable = extern struct {
@@ -24474,7 +24474,7 @@ pub const IAudioSourceProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaEngineWebSupport_Value = @import("../zig.zig").Guid.initString("ba2743a1-07e0-48ef-84b6-9a2ed023ca6c");
+const IID_IMFMediaEngineWebSupport_Value = Guid.initString("ba2743a1-07e0-48ef-84b6-9a2ed023ca6c");
 pub const IID_IMFMediaEngineWebSupport = &IID_IMFMediaEngineWebSupport_Value;
 pub const IMFMediaEngineWebSupport = extern struct {
     pub const VTable = extern struct {
@@ -24527,7 +24527,7 @@ pub const MF_MSE_OPUS_SUPPORT_ON = MF_MSE_OPUS_SUPPORT_TYPE.N;
 pub const MF_MSE_OPUS_SUPPORT_OFF = MF_MSE_OPUS_SUPPORT_TYPE.FF;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaSourceExtensionNotify_Value = @import("../zig.zig").Guid.initString("a7901327-05dd-4469-a7b7-0e01979e361d");
+const IID_IMFMediaSourceExtensionNotify_Value = Guid.initString("a7901327-05dd-4469-a7b7-0e01979e361d");
 pub const IID_IMFMediaSourceExtensionNotify = &IID_IMFMediaSourceExtensionNotify_Value;
 pub const IMFMediaSourceExtensionNotify = extern struct {
     pub const VTable = extern struct {
@@ -24562,7 +24562,7 @@ pub const IMFMediaSourceExtensionNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFBufferListNotify_Value = @import("../zig.zig").Guid.initString("24cd47f7-81d8-4785-adb2-af697a963cd2");
+const IID_IMFBufferListNotify_Value = Guid.initString("24cd47f7-81d8-4785-adb2-af697a963cd2");
 pub const IID_IMFBufferListNotify = &IID_IMFBufferListNotify_Value;
 pub const IMFBufferListNotify = extern struct {
     pub const VTable = extern struct {
@@ -24590,7 +24590,7 @@ pub const IMFBufferListNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFSourceBufferNotify_Value = @import("../zig.zig").Guid.initString("87e47623-2ceb-45d6-9b88-d8520c4dcbbc");
+const IID_IMFSourceBufferNotify_Value = Guid.initString("87e47623-2ceb-45d6-9b88-d8520c4dcbbc");
 pub const IID_IMFSourceBufferNotify = &IID_IMFSourceBufferNotify_Value;
 pub const IMFSourceBufferNotify = extern struct {
     pub const VTable = extern struct {
@@ -24640,7 +24640,7 @@ pub const IMFSourceBufferNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFSourceBuffer_Value = @import("../zig.zig").Guid.initString("e2cd3a4b-af25-4d3d-9110-da0e6f8ee877");
+const IID_IMFSourceBuffer_Value = Guid.initString("e2cd3a4b-af25-4d3d-9110-da0e6f8ee877");
 pub const IID_IMFSourceBuffer = &IID_IMFSourceBuffer_Value;
 pub const IMFSourceBuffer = extern struct {
     pub const VTable = extern struct {
@@ -24755,7 +24755,7 @@ pub const MF_MSE_APPEND_MODE = enum(i32) {
 pub const MF_MSE_APPEND_MODE_SEGMENTS = MF_MSE_APPEND_MODE.GMENTS;
 pub const MF_MSE_APPEND_MODE_SEQUENCE = MF_MSE_APPEND_MODE.QUENCE;
 
-const IID_IMFSourceBufferAppendMode_Value = @import("../zig.zig").Guid.initString("19666fb4-babe-4c55-bc03-0a074da37e2a");
+const IID_IMFSourceBufferAppendMode_Value = Guid.initString("19666fb4-babe-4c55-bc03-0a074da37e2a");
 pub const IID_IMFSourceBufferAppendMode = &IID_IMFSourceBufferAppendMode_Value;
 pub const IMFSourceBufferAppendMode = extern struct {
     pub const VTable = extern struct {
@@ -24784,7 +24784,7 @@ pub const IMFSourceBufferAppendMode = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFSourceBufferList_Value = @import("../zig.zig").Guid.initString("249981f8-8325-41f3-b80c-3b9e3aad0cbe");
+const IID_IMFSourceBufferList_Value = Guid.initString("249981f8-8325-41f3-b80c-3b9e3aad0cbe");
 pub const IID_IMFSourceBufferList = &IID_IMFSourceBufferList_Value;
 pub const IMFSourceBufferList = extern struct {
     pub const VTable = extern struct {
@@ -24833,7 +24833,7 @@ pub const MF_MSE_ERROR_DECODE = MF_MSE_ERROR.DECODE;
 pub const MF_MSE_ERROR_UNKNOWN_ERROR = MF_MSE_ERROR.UNKNOWN_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaSourceExtension_Value = @import("../zig.zig").Guid.initString("e467b94e-a713-4562-a802-816a42e9008a");
+const IID_IMFMediaSourceExtension_Value = Guid.initString("e467b94e-a713-4562-a802-816a42e9008a");
 pub const IID_IMFMediaSourceExtension = &IID_IMFMediaSourceExtension_Value;
 pub const IMFMediaSourceExtension = extern struct {
     pub const VTable = extern struct {
@@ -24924,7 +24924,7 @@ pub const IMFMediaSourceExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaSourceExtensionLiveSeekableRange_Value = @import("../zig.zig").Guid.initString("5d1abfd6-450a-4d92-9efc-d6b6cbc1f4da");
+const IID_IMFMediaSourceExtensionLiveSeekableRange_Value = Guid.initString("5d1abfd6-450a-4d92-9efc-d6b6cbc1f4da");
 pub const IID_IMFMediaSourceExtensionLiveSeekableRange = &IID_IMFMediaSourceExtensionLiveSeekableRange_Value;
 pub const IMFMediaSourceExtensionLiveSeekableRange = extern struct {
     pub const VTable = extern struct {
@@ -24954,7 +24954,7 @@ pub const IMFMediaSourceExtensionLiveSeekableRange = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineEME_Value = @import("../zig.zig").Guid.initString("50dc93e4-ba4f-4275-ae66-83e836e57469");
+const IID_IMFMediaEngineEME_Value = Guid.initString("50dc93e4-ba4f-4275-ae66-83e836e57469");
 pub const IID_IMFMediaEngineEME = &IID_IMFMediaEngineEME_Value;
 pub const IMFMediaEngineEME = extern struct {
     pub const VTable = extern struct {
@@ -24985,7 +24985,7 @@ pub const IMFMediaEngineEME = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineSrcElementsEx_Value = @import("../zig.zig").Guid.initString("654a6bb3-e1a3-424a-9908-53a43a0dfda0");
+const IID_IMFMediaEngineSrcElementsEx_Value = Guid.initString("654a6bb3-e1a3-424a-9908-53a43a0dfda0");
 pub const IID_IMFMediaEngineSrcElementsEx = &IID_IMFMediaEngineSrcElementsEx_Value;
 pub const IMFMediaEngineSrcElementsEx = extern struct {
     pub const VTable = extern struct {
@@ -25019,7 +25019,7 @@ pub const IMFMediaEngineSrcElementsEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineNeedKeyNotify_Value = @import("../zig.zig").Guid.initString("46a30204-a696-4b18-8804-246b8f031bb1");
+const IID_IMFMediaEngineNeedKeyNotify_Value = Guid.initString("46a30204-a696-4b18-8804-246b8f031bb1");
 pub const IID_IMFMediaEngineNeedKeyNotify = &IID_IMFMediaEngineNeedKeyNotify_Value;
 pub const IMFMediaEngineNeedKeyNotify = extern struct {
     pub const VTable = extern struct {
@@ -25043,7 +25043,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaKeys_Value = @import("../zig.zig").Guid.initString("5cb31c05-61ff-418f-afda-caaf41421a38");
+const IID_IMFMediaKeys_Value = Guid.initString("5cb31c05-61ff-418f-afda-caaf41421a38");
 pub const IID_IMFMediaKeys = &IID_IMFMediaKeys_Value;
 pub const IMFMediaKeys = extern struct {
     pub const VTable = extern struct {
@@ -25112,7 +25112,7 @@ pub const MF_MEDIAENGINE_KEYERR_HARDWARECHANGE = MF_MEDIA_ENGINE_KEYERR.HARDWARE
 pub const MF_MEDIAENGINE_KEYERR_DOMAIN = MF_MEDIA_ENGINE_KEYERR.DOMAIN;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaKeySession_Value = @import("../zig.zig").Guid.initString("24fa67d5-d1d0-4dc5-995c-c0efdc191fb5");
+const IID_IMFMediaKeySession_Value = Guid.initString("24fa67d5-d1d0-4dc5-995c-c0efdc191fb5");
 pub const IID_IMFMediaKeySession = &IID_IMFMediaKeySession_Value;
 pub const IMFMediaKeySession = extern struct {
     pub const VTable = extern struct {
@@ -25170,7 +25170,7 @@ pub const IMFMediaKeySession = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaKeySessionNotify_Value = @import("../zig.zig").Guid.initString("6a0083f9-8947-4c1d-9ce0-cdee22b23135");
+const IID_IMFMediaKeySessionNotify_Value = Guid.initString("6a0083f9-8947-4c1d-9ce0-cdee22b23135");
 pub const IID_IMFMediaKeySessionNotify = &IID_IMFMediaKeySessionNotify_Value;
 pub const IMFMediaKeySessionNotify = extern struct {
     pub const VTable = extern struct {
@@ -25211,7 +25211,7 @@ pub const IMFMediaKeySessionNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFCdmSuspendNotify_Value = @import("../zig.zig").Guid.initString("7a5645d2-43bd-47fd-87b7-dcd24cc7d692");
+const IID_IMFCdmSuspendNotify_Value = Guid.initString("7a5645d2-43bd-47fd-87b7-dcd24cc7d692");
 pub const IID_IMFCdmSuspendNotify = &IID_IMFCdmSuspendNotify_Value;
 pub const IMFCdmSuspendNotify = extern struct {
     pub const VTable = extern struct {
@@ -25247,7 +25247,7 @@ pub const MF_HDCP_STATUS_ON = MF_HDCP_STATUS.N;
 pub const MF_HDCP_STATUS_OFF = MF_HDCP_STATUS.FF;
 pub const MF_HDCP_STATUS_ON_WITH_TYPE_ENFORCEMENT = MF_HDCP_STATUS.N_WITH_TYPE_ENFORCEMENT;
 
-const IID_IMFHDCPStatus_Value = @import("../zig.zig").Guid.initString("de400f54-5bf1-40cf-8964-0bea136b1e3d");
+const IID_IMFHDCPStatus_Value = Guid.initString("de400f54-5bf1-40cf-8964-0bea136b1e3d");
 pub const IID_IMFHDCPStatus = &IID_IMFHDCPStatus_Value;
 pub const IMFHDCPStatus = extern struct {
     pub const VTable = extern struct {
@@ -25293,7 +25293,7 @@ pub const MF_MEDIA_ENGINE_OPM_FAILED_UNSIGNED_DRIVER = MF_MEDIA_ENGINE_OPM_STATU
 pub const MF_MEDIA_ENGINE_OPM_FAILED = MF_MEDIA_ENGINE_OPM_STATUS.FAILED;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineOPMInfo_Value = @import("../zig.zig").Guid.initString("765763e6-6c01-4b01-bb0f-b829f60ed28c");
+const IID_IMFMediaEngineOPMInfo_Value = Guid.initString("765763e6-6c01-4b01-bb0f-b829f60ed28c");
 pub const IID_IMFMediaEngineOPMInfo = &IID_IMFMediaEngineOPMInfo_Value;
 pub const IMFMediaEngineOPMInfo = extern struct {
     pub const VTable = extern struct {
@@ -25340,7 +25340,7 @@ pub const MF_MEDIA_ENGINE_USE_PMP_FOR_ALL_CONTENT = MF_MEDIA_ENGINE_PROTECTION_F
 pub const MF_MEDIA_ENGINE_USE_UNPROTECTED_PMP = MF_MEDIA_ENGINE_PROTECTION_FLAGS.USE_UNPROTECTED_PMP;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaEngineClassFactory_Value = @import("../zig.zig").Guid.initString("4d645ace-26aa-4688-9be1-df3516990b93");
+const IID_IMFMediaEngineClassFactory_Value = Guid.initString("4d645ace-26aa-4688-9be1-df3516990b93");
 pub const IID_IMFMediaEngineClassFactory = &IID_IMFMediaEngineClassFactory_Value;
 pub const IMFMediaEngineClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -25380,7 +25380,7 @@ pub const IMFMediaEngineClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineClassFactoryEx_Value = @import("../zig.zig").Guid.initString("c56156c6-ea5b-48a5-9df8-fbe035d0929e");
+const IID_IMFMediaEngineClassFactoryEx_Value = Guid.initString("c56156c6-ea5b-48a5-9df8-fbe035d0929e");
 pub const IID_IMFMediaEngineClassFactoryEx = &IID_IMFMediaEngineClassFactoryEx_Value;
 pub const IMFMediaEngineClassFactoryEx = extern struct {
     pub const VTable = extern struct {
@@ -25424,7 +25424,7 @@ pub const IMFMediaEngineClassFactoryEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineClassFactory2_Value = @import("../zig.zig").Guid.initString("09083cef-867f-4bf6-8776-dee3a7b42fca");
+const IID_IMFMediaEngineClassFactory2_Value = Guid.initString("09083cef-867f-4bf6-8776-dee3a7b42fca");
 pub const IID_IMFMediaEngineClassFactory2 = &IID_IMFMediaEngineClassFactory2_Value;
 pub const IMFMediaEngineClassFactory2 = extern struct {
     pub const VTable = extern struct {
@@ -25448,7 +25448,7 @@ pub const IMFMediaEngineClassFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFExtendedDRMTypeSupport_Value = @import("../zig.zig").Guid.initString("332ec562-3758-468d-a784-e38f23552128");
+const IID_IMFExtendedDRMTypeSupport_Value = Guid.initString("332ec562-3758-468d-a784-e38f23552128");
 pub const IID_IMFExtendedDRMTypeSupport = &IID_IMFExtendedDRMTypeSupport_Value;
 pub const IMFExtendedDRMTypeSupport = extern struct {
     pub const VTable = extern struct {
@@ -25472,7 +25472,7 @@ pub const IMFExtendedDRMTypeSupport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFMediaEngineSupportsSourceTransfer_Value = @import("../zig.zig").Guid.initString("a724b056-1b2e-4642-a6f3-db9420c52908");
+const IID_IMFMediaEngineSupportsSourceTransfer_Value = Guid.initString("a724b056-1b2e-4642-a6f3-db9420c52908");
 pub const IID_IMFMediaEngineSupportsSourceTransfer = &IID_IMFMediaEngineSupportsSourceTransfer_Value;
 pub const IMFMediaEngineSupportsSourceTransfer = extern struct {
     pub const VTable = extern struct {
@@ -25513,7 +25513,7 @@ pub const IMFMediaEngineSupportsSourceTransfer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaEngineTransferSource_Value = @import("../zig.zig").Guid.initString("24230452-fe54-40cc-94f3-fcc394c340d6");
+const IID_IMFMediaEngineTransferSource_Value = Guid.initString("24230452-fe54-40cc-94f3-fcc394c340d6");
 pub const IID_IMFMediaEngineTransferSource = &IID_IMFMediaEngineTransferSource_Value;
 pub const IMFMediaEngineTransferSource = extern struct {
     pub const VTable = extern struct {
@@ -25713,7 +25713,7 @@ pub const MF_TIMED_TEXT_BOUTEN_POSITION_AFTER = MF_TIMED_TEXT_BOUTEN_POSITION.AF
 pub const MF_TIMED_TEXT_BOUTEN_POSITION_OUTSIDE = MF_TIMED_TEXT_BOUTEN_POSITION.OUTSIDE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedText_Value = @import("../zig.zig").Guid.initString("1f2a94c9-a3df-430d-9d0f-acd85ddc29af");
+const IID_IMFTimedText_Value = Guid.initString("1f2a94c9-a3df-430d-9d0f-acd85ddc29af");
 pub const IID_IMFTimedText = &IID_IMFTimedText_Value;
 pub const IMFTimedText = extern struct {
     pub const VTable = extern struct {
@@ -25852,7 +25852,7 @@ pub const IMFTimedText = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextNotify_Value = @import("../zig.zig").Guid.initString("df6b87b6-ce12-45db-aba7-432fe054e57d");
+const IID_IMFTimedTextNotify_Value = Guid.initString("df6b87b6-ce12-45db-aba7-432fe054e57d");
 pub const IID_IMFTimedTextNotify = &IID_IMFTimedTextNotify_Value;
 pub const IMFTimedTextNotify = extern struct {
     pub const VTable = extern struct {
@@ -25926,7 +25926,7 @@ pub const IMFTimedTextNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextTrack_Value = @import("../zig.zig").Guid.initString("8822c32d-654e-4233-bf21-d7f2e67d30d4");
+const IID_IMFTimedTextTrack_Value = Guid.initString("8822c32d-654e-4233-bf21-d7f2e67d30d4");
 pub const IID_IMFTimedTextTrack = &IID_IMFTimedTextTrack_Value;
 pub const IMFTimedTextTrack = extern struct {
     pub const VTable = extern struct {
@@ -26037,7 +26037,7 @@ pub const IMFTimedTextTrack = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextTrackList_Value = @import("../zig.zig").Guid.initString("23ff334c-442c-445f-bccc-edc438aa11e2");
+const IID_IMFTimedTextTrackList_Value = Guid.initString("23ff334c-442c-445f-bccc-edc438aa11e2");
 pub const IID_IMFTimedTextTrackList = &IID_IMFTimedTextTrackList_Value;
 pub const IMFTimedTextTrackList = extern struct {
     pub const VTable = extern struct {
@@ -26076,7 +26076,7 @@ pub const IMFTimedTextTrackList = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextCue_Value = @import("../zig.zig").Guid.initString("1e560447-9a2b-43e1-a94c-b0aaabfbfbc9");
+const IID_IMFTimedTextCue_Value = Guid.initString("1e560447-9a2b-43e1-a94c-b0aaabfbfbc9");
 pub const IID_IMFTimedTextCue = &IID_IMFTimedTextCue_Value;
 pub const IMFTimedTextCue = extern struct {
     pub const VTable = extern struct {
@@ -26173,7 +26173,7 @@ pub const IMFTimedTextCue = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextFormattedText_Value = @import("../zig.zig").Guid.initString("e13af3c1-4d47-4354-b1f5-e83ae0ecae60");
+const IID_IMFTimedTextFormattedText_Value = Guid.initString("e13af3c1-4d47-4354-b1f5-e83ae0ecae60");
 pub const IID_IMFTimedTextFormattedText = &IID_IMFTimedTextFormattedText_Value;
 pub const IMFTimedTextFormattedText = extern struct {
     pub const VTable = extern struct {
@@ -26213,7 +26213,7 @@ pub const IMFTimedTextFormattedText = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextStyle_Value = @import("../zig.zig").Guid.initString("09b2455d-b834-4f01-a347-9052e21c450e");
+const IID_IMFTimedTextStyle_Value = Guid.initString("09b2455d-b834-4f01-a347-9052e21c450e");
 pub const IID_IMFTimedTextStyle = &IID_IMFTimedTextStyle_Value;
 pub const IMFTimedTextStyle = extern struct {
     pub const VTable = extern struct {
@@ -26334,7 +26334,7 @@ pub const IMFTimedTextStyle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextRegion_Value = @import("../zig.zig").Guid.initString("c8d22afc-bc47-4bdf-9b04-787e49ce3f58");
+const IID_IMFTimedTextRegion_Value = Guid.initString("c8d22afc-bc47-4bdf-9b04-787e49ce3f58");
 pub const IID_IMFTimedTextRegion = &IID_IMFTimedTextRegion_Value;
 pub const IMFTimedTextRegion = extern struct {
     pub const VTable = extern struct {
@@ -26453,7 +26453,7 @@ pub const IMFTimedTextRegion = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IMFTimedTextBinary_Value = @import("../zig.zig").Guid.initString("4ae3a412-0545-43c4-bf6f-6b97a5c6c432");
+const IID_IMFTimedTextBinary_Value = Guid.initString("4ae3a412-0545-43c4-bf6f-6b97a5c6c432");
 pub const IID_IMFTimedTextBinary = &IID_IMFTimedTextBinary_Value;
 pub const IMFTimedTextBinary = extern struct {
     pub const VTable = extern struct {
@@ -26475,7 +26475,7 @@ pub const IMFTimedTextBinary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFTimedTextCueList_Value = @import("../zig.zig").Guid.initString("ad128745-211b-40a0-9981-fe65f166d0fd");
+const IID_IMFTimedTextCueList_Value = Guid.initString("ad128745-211b-40a0-9981-fe65f166d0fd");
 pub const IID_IMFTimedTextCueList = &IID_IMFTimedTextCueList_Value;
 pub const IMFTimedTextCueList = extern struct {
     pub const VTable = extern struct {
@@ -26554,7 +26554,7 @@ pub const IMFTimedTextCueList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFTimedTextRuby_Value = @import("../zig.zig").Guid.initString("76c6a6f5-4955-4de5-b27b-14b734cc14b4");
+const IID_IMFTimedTextRuby_Value = Guid.initString("76c6a6f5-4955-4de5-b27b-14b734cc14b4");
 pub const IID_IMFTimedTextRuby = &IID_IMFTimedTextRuby_Value;
 pub const IMFTimedTextRuby = extern struct {
     pub const VTable = extern struct {
@@ -26599,7 +26599,7 @@ pub const IMFTimedTextRuby = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFTimedTextBouten_Value = @import("../zig.zig").Guid.initString("3c5f3e8a-90c0-464e-8136-898d2975f847");
+const IID_IMFTimedTextBouten_Value = Guid.initString("3c5f3e8a-90c0-464e-8136-898d2975f847");
 pub const IID_IMFTimedTextBouten = &IID_IMFTimedTextBouten_Value;
 pub const IMFTimedTextBouten = extern struct {
     pub const VTable = extern struct {
@@ -26636,7 +26636,7 @@ pub const IMFTimedTextBouten = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFTimedTextStyle2_Value = @import("../zig.zig").Guid.initString("db639199-c809-4c89-bfca-d0bbb9729d6e");
+const IID_IMFTimedTextStyle2_Value = Guid.initString("db639199-c809-4c89-bfca-d0bbb9729d6e");
 pub const IID_IMFTimedTextStyle2 = &IID_IMFTimedTextStyle2_Value;
 pub const IMFTimedTextStyle2 = extern struct {
     pub const VTable = extern struct {
@@ -26690,7 +26690,7 @@ pub const MF_MEDIA_ENGINE_STREAMTYPE_FAILED_UNKNOWN = MF_MEDIA_ENGINE_STREAMTYPE
 pub const MF_MEDIA_ENGINE_STREAMTYPE_FAILED_AUDIO = MF_MEDIA_ENGINE_STREAMTYPE_FAILED.AUDIO;
 pub const MF_MEDIA_ENGINE_STREAMTYPE_FAILED_VIDEO = MF_MEDIA_ENGINE_STREAMTYPE_FAILED.VIDEO;
 
-const IID_IMFMediaEngineEMENotify_Value = @import("../zig.zig").Guid.initString("9e184d15-cdb7-4f86-b49e-566689f4a601");
+const IID_IMFMediaEngineEMENotify_Value = Guid.initString("9e184d15-cdb7-4f86-b49e-566689f4a601");
 pub const IID_IMFMediaEngineEMENotify = &IID_IMFMediaEngineEMENotify_Value;
 pub const IMFMediaEngineEMENotify = extern struct {
     pub const VTable = extern struct {
@@ -26730,7 +26730,7 @@ pub const MF_MEDIAKEYS_REQUIREMENT_REQUIRED = MF_MEDIAKEYS_REQUIREMENT.REQUIRED;
 pub const MF_MEDIAKEYS_REQUIREMENT_OPTIONAL = MF_MEDIAKEYS_REQUIREMENT.OPTIONAL;
 pub const MF_MEDIAKEYS_REQUIREMENT_NOT_ALLOWED = MF_MEDIAKEYS_REQUIREMENT.NOT_ALLOWED;
 
-const IID_IMFMediaKeySessionNotify2_Value = @import("../zig.zig").Guid.initString("c3a9e92a-da88-46b0-a110-6cf953026cb9");
+const IID_IMFMediaKeySessionNotify2_Value = Guid.initString("c3a9e92a-da88-46b0-a110-6cf953026cb9");
 pub const IID_IMFMediaKeySessionNotify2 = &IID_IMFMediaKeySessionNotify2_Value;
 pub const IMFMediaKeySessionNotify2 = extern struct {
     pub const VTable = extern struct {
@@ -26762,7 +26762,7 @@ pub const IMFMediaKeySessionNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaKeySystemAccess_Value = @import("../zig.zig").Guid.initString("aec63fda-7a97-4944-b35c-6c6df8085cc3");
+const IID_IMFMediaKeySystemAccess_Value = Guid.initString("aec63fda-7a97-4944-b35c-6c6df8085cc3");
 pub const IID_IMFMediaKeySystemAccess = &IID_IMFMediaKeySystemAccess_Value;
 pub const IMFMediaKeySystemAccess = extern struct {
     pub const VTable = extern struct {
@@ -26802,7 +26802,7 @@ pub const IMFMediaKeySystemAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaEngineClassFactory3_Value = @import("../zig.zig").Guid.initString("3787614f-65f7-4003-b673-ead8293a0e60");
+const IID_IMFMediaEngineClassFactory3_Value = Guid.initString("3787614f-65f7-4003-b673-ead8293a0e60");
 pub const IID_IMFMediaEngineClassFactory3 = &IID_IMFMediaEngineClassFactory3_Value;
 pub const IMFMediaEngineClassFactory3 = extern struct {
     pub const VTable = extern struct {
@@ -26826,7 +26826,7 @@ pub const IMFMediaEngineClassFactory3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaKeys2_Value = @import("../zig.zig").Guid.initString("45892507-ad66-4de2-83a2-acbb13cd8d43");
+const IID_IMFMediaKeys2_Value = Guid.initString("45892507-ad66-4de2-83a2-acbb13cd8d43");
 pub const IID_IMFMediaKeys2 = &IID_IMFMediaKeys2_Value;
 pub const IMFMediaKeys2 = extern struct {
     pub const VTable = extern struct {
@@ -26868,7 +26868,7 @@ pub const IMFMediaKeys2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaKeySession2_Value = @import("../zig.zig").Guid.initString("e9707e05-6d55-4636-b185-3de21210bd75");
+const IID_IMFMediaKeySession2_Value = Guid.initString("e9707e05-6d55-4636-b185-3de21210bd75");
 pub const IID_IMFMediaKeySession2 = &IID_IMFMediaKeySession2_Value;
 pub const IMFMediaKeySession2 = extern struct {
     pub const VTable = extern struct {
@@ -26934,7 +26934,7 @@ pub const IMFMediaKeySession2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFMediaEngineClassFactory4_Value = @import("../zig.zig").Guid.initString("fbe256c1-43cf-4a9b-8cb8-ce8632a34186");
+const IID_IMFMediaEngineClassFactory4_Value = Guid.initString("fbe256c1-43cf-4a9b-8cb8-ce8632a34186");
 pub const IID_IMFMediaEngineClassFactory4 = &IID_IMFMediaEngineClassFactory4_Value;
 pub const IMFMediaEngineClassFactory4 = extern struct {
     pub const VTable = extern struct {
@@ -26958,7 +26958,7 @@ pub const IMFMediaEngineClassFactory4 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFDLNASinkInit_Value = @import("../zig.zig").Guid.initString("0c012799-1b61-4c10-bda9-04445be5f561");
+const IID_IMFDLNASinkInit_Value = Guid.initString("0c012799-1b61-4c10-bda9-04445be5f561");
 pub const IID_IMFDLNASinkInit = &IID_IMFDLNASinkInit_Value;
 pub const IMFDLNASinkInit = extern struct {
     pub const VTable = extern struct {
@@ -26998,7 +26998,7 @@ pub const MFMPEG2DLNASINKSTATS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFReadWriteClassFactory_Value = @import("../zig.zig").Guid.initString("e7fe2e12-661c-40da-92f9-4f002ab67627");
+const IID_IMFReadWriteClassFactory_Value = Guid.initString("e7fe2e12-661c-40da-92f9-4f002ab67627");
 pub const IID_IMFReadWriteClassFactory = &IID_IMFReadWriteClassFactory_Value;
 pub const IMFReadWriteClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -27078,7 +27078,7 @@ pub const MF_SOURCE_READER_CURRENT_TYPE_CONSTANTS = enum(i32) {
 pub const MF_SOURCE_READER_CURRENT_TYPE_INDEX = MF_SOURCE_READER_CURRENT_TYPE_CONSTANTS.X;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSourceReader_Value = @import("../zig.zig").Guid.initString("70ae66f2-c809-4e4f-8915-bdcb406b7993");
+const IID_IMFSourceReader_Value = Guid.initString("70ae66f2-c809-4e4f-8915-bdcb406b7993");
 pub const IID_IMFSourceReader = &IID_IMFSourceReader_Value;
 pub const IMFSourceReader = extern struct {
     pub const VTable = extern struct {
@@ -27190,7 +27190,7 @@ pub const IMFSourceReader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSourceReaderEx_Value = @import("../zig.zig").Guid.initString("7b981cf0-560e-4116-9875-b099895f23d7");
+const IID_IMFSourceReaderEx_Value = Guid.initString("7b981cf0-560e-4116-9875-b099895f23d7");
 pub const IID_IMFSourceReaderEx = &IID_IMFSourceReaderEx_Value;
 pub const IMFSourceReaderEx = extern struct {
     pub const VTable = extern struct {
@@ -27242,7 +27242,7 @@ pub const IMFSourceReaderEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSourceReaderCallback_Value = @import("../zig.zig").Guid.initString("deec8d99-fa1d-4d82-84c2-2c8969944867");
+const IID_IMFSourceReaderCallback_Value = Guid.initString("deec8d99-fa1d-4d82-84c2-2c8969944867");
 pub const IID_IMFSourceReaderCallback = &IID_IMFSourceReaderCallback_Value;
 pub const IMFSourceReaderCallback = extern struct {
     pub const VTable = extern struct {
@@ -27284,7 +27284,7 @@ pub const IMFSourceReaderCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFSourceReaderCallback2_Value = @import("../zig.zig").Guid.initString("cf839fe6-8c2a-4dd2-b6ea-c22d6961af05");
+const IID_IMFSourceReaderCallback2_Value = Guid.initString("cf839fe6-8c2a-4dd2-b6ea-c22d6961af05");
 pub const IID_IMFSourceReaderCallback2 = &IID_IMFSourceReaderCallback2_Value;
 pub const IMFSourceReaderCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -27342,7 +27342,7 @@ pub const MF_SINK_WRITER_STATISTICS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSinkWriter_Value = @import("../zig.zig").Guid.initString("3137f1cd-fe5e-4805-a5d8-fb477448cb3d");
+const IID_IMFSinkWriter_Value = Guid.initString("3137f1cd-fe5e-4805-a5d8-fb477448cb3d");
 pub const IID_IMFSinkWriter = &IID_IMFSinkWriter_Value;
 pub const IMFSinkWriter = extern struct {
     pub const VTable = extern struct {
@@ -27452,7 +27452,7 @@ pub const IMFSinkWriter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSinkWriterEx_Value = @import("../zig.zig").Guid.initString("588d72ab-5bc1-496a-8714-b70617141b25");
+const IID_IMFSinkWriterEx_Value = Guid.initString("588d72ab-5bc1-496a-8714-b70617141b25");
 pub const IID_IMFSinkWriterEx = &IID_IMFSinkWriterEx_Value;
 pub const IMFSinkWriterEx = extern struct {
     pub const VTable = extern struct {
@@ -27477,7 +27477,7 @@ pub const IMFSinkWriterEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IMFSinkWriterEncoderConfig_Value = @import("../zig.zig").Guid.initString("17c3779e-3cde-4ede-8c60-3899f5f53ad6");
+const IID_IMFSinkWriterEncoderConfig_Value = Guid.initString("17c3779e-3cde-4ede-8c60-3899f5f53ad6");
 pub const IID_IMFSinkWriterEncoderConfig = &IID_IMFSinkWriterEncoderConfig_Value;
 pub const IMFSinkWriterEncoderConfig = extern struct {
     pub const VTable = extern struct {
@@ -27510,7 +27510,7 @@ pub const IMFSinkWriterEncoderConfig = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFSinkWriterCallback_Value = @import("../zig.zig").Guid.initString("666f76de-33d2-41b9-a458-29ed0a972c58");
+const IID_IMFSinkWriterCallback_Value = Guid.initString("666f76de-33d2-41b9-a458-29ed0a972c58");
 pub const IID_IMFSinkWriterCallback = &IID_IMFSinkWriterCallback_Value;
 pub const IMFSinkWriterCallback = extern struct {
     pub const VTable = extern struct {
@@ -27540,7 +27540,7 @@ pub const IMFSinkWriterCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFSinkWriterCallback2_Value = @import("../zig.zig").Guid.initString("2456bd58-c067-4513-84fe-8d0c88ffdc61");
+const IID_IMFSinkWriterCallback2_Value = Guid.initString("2456bd58-c067-4513-84fe-8d0c88ffdc61");
 pub const IID_IMFSinkWriterCallback2 = &IID_IMFSinkWriterCallback2_Value;
 pub const IMFSinkWriterCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -27570,7 +27570,7 @@ pub const IMFSinkWriterCallback2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoPositionMapper_Value = @import("../zig.zig").Guid.initString("1f6a9f17-e70b-4e24-8ae4-0b2c3ba7a4ae");
+const IID_IMFVideoPositionMapper_Value = Guid.initString("1f6a9f17-e70b-4e24-8ae4-0b2c3ba7a4ae");
 pub const IID_IMFVideoPositionMapper = &IID_IMFVideoPositionMapper_Value;
 pub const IMFVideoPositionMapper = extern struct {
     pub const VTable = extern struct {
@@ -27597,7 +27597,7 @@ pub const IMFVideoPositionMapper = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoDeviceID_Value = @import("../zig.zig").Guid.initString("a38d9567-5a9c-4f3c-b293-8eb415b279ba");
+const IID_IMFVideoDeviceID_Value = Guid.initString("a38d9567-5a9c-4f3c-b293-8eb415b279ba");
 pub const IID_IMFVideoDeviceID = &IID_IMFVideoDeviceID_Value;
 pub const IMFVideoDeviceID = extern struct {
     pub const VTable = extern struct {
@@ -27655,7 +27655,7 @@ pub const MFVideoRenderPrefs_DoNotRepaintOnStop = MFVideoRenderPrefs.DoNotRepain
 pub const MFVideoRenderPrefs_Mask = MFVideoRenderPrefs.Mask;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoDisplayControl_Value = @import("../zig.zig").Guid.initString("a490b1e4-ab84-4d31-a1b2-181e03b1077a");
+const IID_IMFVideoDisplayControl_Value = Guid.initString("a490b1e4-ab84-4d31-a1b2-181e03b1077a");
 pub const IID_IMFVideoDisplayControl = &IID_IMFVideoDisplayControl_Value;
 pub const IMFVideoDisplayControl = extern struct {
     pub const VTable = extern struct {
@@ -27822,7 +27822,7 @@ pub const MFVP_MESSAGE_STEP = MFVP_MESSAGE_TYPE.STEP;
 pub const MFVP_MESSAGE_CANCELSTEP = MFVP_MESSAGE_TYPE.CANCELSTEP;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoPresenter_Value = @import("../zig.zig").Guid.initString("29aff080-182a-4a5d-af3b-448f3a6346cb");
+const IID_IMFVideoPresenter_Value = Guid.initString("29aff080-182a-4a5d-af3b-448f3a6346cb");
 pub const IID_IMFVideoPresenter = &IID_IMFVideoPresenter_Value;
 pub const IMFVideoPresenter = extern struct {
     pub const VTable = extern struct {
@@ -27853,7 +27853,7 @@ pub const IMFVideoPresenter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFDesiredSample_Value = @import("../zig.zig").Guid.initString("56c294d0-753e-4260-8d61-a3d8820b1d54");
+const IID_IMFDesiredSample_Value = Guid.initString("56c294d0-753e-4260-8d61-a3d8820b1d54");
 pub const IID_IMFDesiredSample = &IID_IMFDesiredSample_Value;
 pub const IMFDesiredSample = extern struct {
     pub const VTable = extern struct {
@@ -27892,7 +27892,7 @@ pub const IMFDesiredSample = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoMixerControl_Value = @import("../zig.zig").Guid.initString("a5c6c53f-c202-4aa5-9695-175ba8c508a5");
+const IID_IMFVideoMixerControl_Value = Guid.initString("a5c6c53f-c202-4aa5-9695-175ba8c508a5");
 pub const IID_IMFVideoMixerControl = &IID_IMFVideoMixerControl_Value;
 pub const IMFVideoMixerControl = extern struct {
     pub const VTable = extern struct {
@@ -27957,7 +27957,7 @@ pub const MFVideoMixPrefs_EnableRotation = MFVideoMixPrefs.EnableRotation;
 pub const MFVideoMixPrefs_Mask = MFVideoMixPrefs.Mask;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFVideoMixerControl2_Value = @import("../zig.zig").Guid.initString("8459616d-966e-4930-b658-54fa7e5a16d3");
+const IID_IMFVideoMixerControl2_Value = Guid.initString("8459616d-966e-4930-b658-54fa7e5a16d3");
 pub const IID_IMFVideoMixerControl2 = &IID_IMFVideoMixerControl2_Value;
 pub const IMFVideoMixerControl2 = extern struct {
     pub const VTable = extern struct {
@@ -27987,7 +27987,7 @@ pub const IMFVideoMixerControl2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoRenderer_Value = @import("../zig.zig").Guid.initString("dfdfd197-a9ca-43d8-b341-6af3503792cd");
+const IID_IMFVideoRenderer_Value = Guid.initString("dfdfd197-a9ca-43d8-b341-6af3503792cd");
 pub const IID_IMFVideoRenderer = &IID_IMFVideoRenderer_Value;
 pub const IMFVideoRenderer = extern struct {
     pub const VTable = extern struct {
@@ -28010,7 +28010,7 @@ pub const IMFVideoRenderer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEVRFilterConfig_Value = @import("../zig.zig").Guid.initString("83e91e85-82c1-4ea7-801d-85dc50b75086");
+const IID_IEVRFilterConfig_Value = Guid.initString("83e91e85-82c1-4ea7-801d-85dc50b75086");
 pub const IID_IEVRFilterConfig = &IID_IEVRFilterConfig_Value;
 pub const IEVRFilterConfig = extern struct {
     pub const VTable = extern struct {
@@ -28047,7 +28047,7 @@ pub const EVRFilterConfigPrefs_EnableQoS = EVRFilterConfigPrefs.EnableQoS;
 pub const EVRFilterConfigPrefs_Mask = EVRFilterConfigPrefs.EnableQoS;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IEVRFilterConfigEx_Value = @import("../zig.zig").Guid.initString("aea36028-796d-454f-beee-b48071e24304");
+const IID_IEVRFilterConfigEx_Value = Guid.initString("aea36028-796d-454f-beee-b48071e24304");
 pub const IID_IEVRFilterConfigEx = &IID_IEVRFilterConfigEx_Value;
 pub const IEVRFilterConfigEx = extern struct {
     pub const VTable = extern struct {
@@ -28092,7 +28092,7 @@ pub const MF_SERVICE_LOOKUP_ALL = MF_SERVICE_LOOKUP_TYPE.ALL;
 pub const MF_SERVICE_LOOKUP_GLOBAL = MF_SERVICE_LOOKUP_TYPE.GLOBAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopologyServiceLookup_Value = @import("../zig.zig").Guid.initString("fa993889-4383-415a-a930-dd472a8cf6f7");
+const IID_IMFTopologyServiceLookup_Value = Guid.initString("fa993889-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFTopologyServiceLookup = &IID_IMFTopologyServiceLookup_Value;
 pub const IMFTopologyServiceLookup = extern struct {
     pub const VTable = extern struct {
@@ -28119,7 +28119,7 @@ pub const IMFTopologyServiceLookup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFTopologyServiceLookupClient_Value = @import("../zig.zig").Guid.initString("fa99388a-4383-415a-a930-dd472a8cf6f7");
+const IID_IMFTopologyServiceLookupClient_Value = Guid.initString("fa99388a-4383-415a-a930-dd472a8cf6f7");
 pub const IID_IMFTopologyServiceLookupClient = &IID_IMFTopologyServiceLookupClient_Value;
 pub const IMFTopologyServiceLookupClient = extern struct {
     pub const VTable = extern struct {
@@ -28148,7 +28148,7 @@ pub const IMFTopologyServiceLookupClient = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEVRTrustedVideoPlugin_Value = @import("../zig.zig").Guid.initString("83a4ce40-7710-494b-a893-a472049af630");
+const IID_IEVRTrustedVideoPlugin_Value = Guid.initString("83a4ce40-7710-494b-a893-a472049af630");
 pub const IID_IEVRTrustedVideoPlugin = &IID_IEVRTrustedVideoPlugin_Value;
 pub const IEVRTrustedVideoPlugin = extern struct {
     pub const VTable = extern struct {
@@ -28244,7 +28244,7 @@ pub const MFP_CREDENTIAL_PROXY = _MFP_CREDENTIAL_FLAGS.PROXY;
 pub const MFP_CREDENTIAL_LOGGED_ON_USER = _MFP_CREDENTIAL_FLAGS.LOGGED_ON_USER;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFPMediaPlayer_Value = @import("../zig.zig").Guid.initString("a714590a-58af-430a-85bf-44f5ec838d85");
+const IID_IMFPMediaPlayer_Value = Guid.initString("a714590a-58af-430a-85bf-44f5ec838d85");
 pub const IID_IMFPMediaPlayer = &IID_IMFPMediaPlayer_Value;
 pub const IMFPMediaPlayer = extern struct {
     pub const VTable = extern struct {
@@ -28552,7 +28552,7 @@ pub const IMFPMediaPlayer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFPMediaItem_Value = @import("../zig.zig").Guid.initString("90eb3e6b-ecbf-45cc-b1da-c6fe3ea70d57");
+const IID_IMFPMediaItem_Value = Guid.initString("90eb3e6b-ecbf-45cc-b1da-c6fe3ea70d57");
 pub const IID_IMFPMediaItem = &IID_IMFPMediaItem_Value;
 pub const IMFPMediaItem = extern struct {
     pub const VTable = extern struct {
@@ -28847,7 +28847,7 @@ pub const MFP_ACQUIRE_USER_CREDENTIAL_EVENT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMFPMediaPlayerCallback_Value = @import("../zig.zig").Guid.initString("766c8ffb-5fdb-4fea-a28d-b912996f51bd");
+const IID_IMFPMediaPlayerCallback_Value = Guid.initString("766c8ffb-5fdb-4fea-a28d-b912996f51bd");
 pub const IID_IMFPMediaPlayerCallback = &IID_IMFPMediaPlayerCallback_Value;
 pub const IMFPMediaPlayerCallback = extern struct {
     pub const VTable = extern struct {
@@ -28895,7 +28895,7 @@ pub const MF_MEDIA_SHARING_ENGINE_EVENT = enum(i32) {
 pub const MF_MEDIA_SHARING_ENGINE_EVENT_DISCONNECT = MF_MEDIA_SHARING_ENGINE_EVENT.T;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("2ba61f92-8305-413b-9733-faf15f259384");
+const IID_IMFSharingEngineClassFactory_Value = Guid.initString("2ba61f92-8305-413b-9733-faf15f259384");
 pub const IID_IMFSharingEngineClassFactory = &IID_IMFSharingEngineClassFactory_Value;
 pub const IMFSharingEngineClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -28919,7 +28919,7 @@ pub const IMFSharingEngineClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaSharingEngine_Value = @import("../zig.zig").Guid.initString("8d3ce1bf-2367-40e0-9eee-40d377cc1b46");
+const IID_IMFMediaSharingEngine_Value = Guid.initString("8d3ce1bf-2367-40e0-9eee-40d377cc1b46");
 pub const IID_IMFMediaSharingEngine = &IID_IMFMediaSharingEngine_Value;
 pub const IMFMediaSharingEngine = extern struct {
     pub const VTable = extern struct {
@@ -28941,7 +28941,7 @@ pub const IMFMediaSharingEngine = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFMediaSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("524d2bc4-b2b1-4fe5-8fac-fa4e4512b4e0");
+const IID_IMFMediaSharingEngineClassFactory_Value = Guid.initString("524d2bc4-b2b1-4fe5-8fac-fa4e4512b4e0");
 pub const IID_IMFMediaSharingEngineClassFactory = &IID_IMFMediaSharingEngineClassFactory_Value;
 pub const IMFMediaSharingEngineClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -28965,7 +28965,7 @@ pub const IMFMediaSharingEngineClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFImageSharingEngine_Value = @import("../zig.zig").Guid.initString("cfa0ae8e-7e1c-44d2-ae68-fc4c148a6354");
+const IID_IMFImageSharingEngine_Value = Guid.initString("cfa0ae8e-7e1c-44d2-ae68-fc4c148a6354");
 pub const IID_IMFImageSharingEngine = &IID_IMFImageSharingEngine_Value;
 pub const IMFImageSharingEngine = extern struct {
     pub const VTable = extern struct {
@@ -29002,7 +29002,7 @@ pub const IMFImageSharingEngine = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMFImageSharingEngineClassFactory_Value = @import("../zig.zig").Guid.initString("1fc55727-a7fb-4fc8-83ae-8af024990af1");
+const IID_IMFImageSharingEngineClassFactory_Value = Guid.initString("1fc55727-a7fb-4fc8-83ae-8af024990af1");
 pub const IID_IMFImageSharingEngineClassFactory = &IID_IMFImageSharingEngineClassFactory_Value;
 pub const IMFImageSharingEngineClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -29038,7 +29038,7 @@ pub const PLAYTO_SOURCE_VIDEO = PLAYTO_SOURCE_CREATEFLAGS.VIDEO;
 pub const PLAYTO_SOURCE_PROTECTED = PLAYTO_SOURCE_CREATEFLAGS.PROTECTED;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IPlayToControl_Value = @import("../zig.zig").Guid.initString("607574eb-f4b6-45c1-b08c-cb715122901d");
+const IID_IPlayToControl_Value = Guid.initString("607574eb-f4b6-45c1-b08c-cb715122901d");
 pub const IID_IPlayToControl = &IID_IPlayToControl_Value;
 pub const IPlayToControl = extern struct {
     pub const VTable = extern struct {
@@ -29067,7 +29067,7 @@ pub const IPlayToControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IPlayToControlWithCapabilities_Value = @import("../zig.zig").Guid.initString("aa9dd80f-c50a-4220-91c1-332287f82a34");
+const IID_IPlayToControlWithCapabilities_Value = Guid.initString("aa9dd80f-c50a-4220-91c1-332287f82a34");
 pub const IID_IPlayToControlWithCapabilities = &IID_IPlayToControlWithCapabilities_Value;
 pub const IPlayToControlWithCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -29089,7 +29089,7 @@ pub const IPlayToControlWithCapabilities = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IPlayToSourceClassFactory_Value = @import("../zig.zig").Guid.initString("842b32a3-9b9b-4d1c-b3f3-49193248a554");
+const IID_IPlayToSourceClassFactory_Value = Guid.initString("842b32a3-9b9b-4d1c-b3f3-49193248a554");
 pub const IID_IPlayToSourceClassFactory = &IID_IPlayToSourceClassFactory_Value;
 pub const IPlayToSourceClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -29113,7 +29113,7 @@ pub const IPlayToSourceClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEVRVideoStreamControl_Value = @import("../zig.zig").Guid.initString("d0cfe38b-93e7-4772-8957-0400c49a4485");
+const IID_IEVRVideoStreamControl_Value = Guid.initString("d0cfe38b-93e7-4772-8957-0400c49a4485");
 pub const IID_IEVRVideoStreamControl = &IID_IEVRVideoStreamControl_Value;
 pub const IEVRVideoStreamControl = extern struct {
     pub const VTable = extern struct {
@@ -29143,7 +29143,7 @@ pub const IEVRVideoStreamControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoProcessor_Value = @import("../zig.zig").Guid.initString("6ab0000c-fece-4d1f-a2ac-a9573530656e");
+const IID_IMFVideoProcessor_Value = Guid.initString("6ab0000c-fece-4d1f-a2ac-a9573530656e");
 pub const IID_IMFVideoProcessor = &IID_IMFVideoProcessor_Value;
 pub const IMFVideoProcessor = extern struct {
     pub const VTable = extern struct {
@@ -29296,7 +29296,7 @@ pub const MFVideoAlphaBitmap_Alpha = MFVideoAlphaBitmapFlags.Alpha;
 pub const MFVideoAlphaBitmap_BitMask = MFVideoAlphaBitmapFlags.BitMask;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMFVideoMixerBitmap_Value = @import("../zig.zig").Guid.initString("814c7b20-0fdb-4eec-af8f-f957c8f69edc");
+const IID_IMFVideoMixerBitmap_Value = Guid.initString("814c7b20-0fdb-4eec-af8f-f957c8f69edc");
 pub const IID_IMFVideoMixerBitmap = &IID_IMFVideoMixerBitmap_Value;
 pub const IMFVideoMixerBitmap = extern struct {
     pub const VTable = extern struct {
@@ -29341,7 +29341,7 @@ pub const IMFVideoMixerBitmap = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAdvancedMediaCaptureInitializationSettings_Value = @import("../zig.zig").Guid.initString("3de21209-8ba6-4f2a-a577-2819b56ff14d");
+const IID_IAdvancedMediaCaptureInitializationSettings_Value = Guid.initString("3de21209-8ba6-4f2a-a577-2819b56ff14d");
 pub const IID_IAdvancedMediaCaptureInitializationSettings = &IID_IAdvancedMediaCaptureInitializationSettings_Value;
 pub const IAdvancedMediaCaptureInitializationSettings = extern struct {
     pub const VTable = extern struct {
@@ -29363,7 +29363,7 @@ pub const IAdvancedMediaCaptureInitializationSettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAdvancedMediaCaptureSettings_Value = @import("../zig.zig").Guid.initString("24e0485f-a33e-4aa1-b564-6019b1d14f65");
+const IID_IAdvancedMediaCaptureSettings_Value = Guid.initString("24e0485f-a33e-4aa1-b564-6019b1d14f65");
 pub const IID_IAdvancedMediaCaptureSettings = &IID_IAdvancedMediaCaptureSettings_Value;
 pub const IAdvancedMediaCaptureSettings = extern struct {
     pub const VTable = extern struct {
@@ -29385,7 +29385,7 @@ pub const IAdvancedMediaCaptureSettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAdvancedMediaCapture_Value = @import("../zig.zig").Guid.initString("d0751585-d216-4344-b5bf-463b68f977bb");
+const IID_IAdvancedMediaCapture_Value = Guid.initString("d0751585-d216-4344-b5bf-463b68f977bb");
 pub const IID_IAdvancedMediaCapture = &IID_IAdvancedMediaCapture_Value;
 pub const IAdvancedMediaCapture = extern struct {
     pub const VTable = extern struct {
@@ -29407,7 +29407,7 @@ pub const IAdvancedMediaCapture = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSpatialAudioObjectBuffer_Value = @import("../zig.zig").Guid.initString("d396ec8c-605e-4249-978d-72ad1c312872");
+const IID_IMFSpatialAudioObjectBuffer_Value = Guid.initString("d396ec8c-605e-4249-978d-72ad1c312872");
 pub const IID_IMFSpatialAudioObjectBuffer = &IID_IMFSpatialAudioObjectBuffer_Value;
 pub const IMFSpatialAudioObjectBuffer = extern struct {
     pub const VTable = extern struct {
@@ -29461,7 +29461,7 @@ pub const IMFSpatialAudioObjectBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IMFSpatialAudioSample_Value = @import("../zig.zig").Guid.initString("abf28a9b-3393-4290-ba79-5ffc46d986b2");
+const IID_IMFSpatialAudioSample_Value = Guid.initString("abf28a9b-3393-4290-ba79-5ffc46d986b2");
 pub const IID_IMFSpatialAudioSample = &IID_IMFSpatialAudioSample_Value;
 pub const IMFSpatialAudioSample = extern struct {
     pub const VTable = extern struct {
@@ -29500,7 +29500,7 @@ pub const IMFSpatialAudioSample = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFContentDecryptionModuleSession_Value = @import("../zig.zig").Guid.initString("4e233efd-1dd2-49e8-b577-d63eee4c0d33");
+const IID_IMFContentDecryptionModuleSession_Value = Guid.initString("4e233efd-1dd2-49e8-b577-d63eee4c0d33");
 pub const IID_IMFContentDecryptionModuleSession = &IID_IMFContentDecryptionModuleSession_Value;
 pub const IMFContentDecryptionModuleSession = extern struct {
     pub const VTable = extern struct {
@@ -29581,7 +29581,7 @@ pub const IMFContentDecryptionModuleSession = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFContentDecryptionModuleSessionCallbacks_Value = @import("../zig.zig").Guid.initString("3f96ee40-ad81-4096-8470-59a4b770f89a");
+const IID_IMFContentDecryptionModuleSessionCallbacks_Value = Guid.initString("3f96ee40-ad81-4096-8470-59a4b770f89a");
 pub const IID_IMFContentDecryptionModuleSessionCallbacks = &IID_IMFContentDecryptionModuleSessionCallbacks_Value;
 pub const IMFContentDecryptionModuleSessionCallbacks = extern struct {
     pub const VTable = extern struct {
@@ -29613,7 +29613,7 @@ pub const IMFContentDecryptionModuleSessionCallbacks = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFContentDecryptionModule_Value = @import("../zig.zig").Guid.initString("87be986c-10be-4943-bf48-4b54ce1983a2");
+const IID_IMFContentDecryptionModule_Value = Guid.initString("87be986c-10be-4943-bf48-4b54ce1983a2");
 pub const IID_IMFContentDecryptionModule = &IID_IMFContentDecryptionModule_Value;
 pub const IMFContentDecryptionModule = extern struct {
     pub const VTable = extern struct {
@@ -29690,7 +29690,7 @@ pub const IMFContentDecryptionModule = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFContentDecryptionModuleAccess_Value = @import("../zig.zig").Guid.initString("a853d1f4-e2a0-4303-9edc-f1a68ee43136");
+const IID_IMFContentDecryptionModuleAccess_Value = Guid.initString("a853d1f4-e2a0-4303-9edc-f1a68ee43136");
 pub const IID_IMFContentDecryptionModuleAccess = &IID_IMFContentDecryptionModuleAccess_Value;
 pub const IMFContentDecryptionModuleAccess = extern struct {
     pub const VTable = extern struct {
@@ -29729,7 +29729,7 @@ pub const IMFContentDecryptionModuleAccess = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-const IID_IMFContentDecryptionModuleFactory_Value = @import("../zig.zig").Guid.initString("7d5abf16-4cbb-4e08-b977-9ba59049943e");
+const IID_IMFContentDecryptionModuleFactory_Value = Guid.initString("7d5abf16-4cbb-4e08-b977-9ba59049943e");
 pub const IID_IMFContentDecryptionModuleFactory = &IID_IMFContentDecryptionModuleFactory_Value;
 pub const IMFContentDecryptionModuleFactory = extern struct {
     pub const VTable = extern struct {
@@ -29781,7 +29781,7 @@ pub const __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003 = enum(i32) {
 pub const MFVirtualCameraAccess_CurrentUser = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003.CurrentUser;
 pub const MFVirtualCameraAccess_AllUsers = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003.AllUsers;
 
-const IID_IMFCameraSyncObject_Value = @import("../zig.zig").Guid.initString("6338b23a-3042-49d2-a3ea-ec0fed815407");
+const IID_IMFCameraSyncObject_Value = Guid.initString("6338b23a-3042-49d2-a3ea-ec0fed815407");
 pub const IID_IMFCameraSyncObject = &IID_IMFCameraSyncObject_Value;
 pub const IMFCameraSyncObject = extern struct {
     pub const VTable = extern struct {
@@ -29809,7 +29809,7 @@ pub const IMFCameraSyncObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMFVirtualCamera_Value = @import("../zig.zig").Guid.initString("1c08a864-ef6c-4c75-af59-5f2d68da9563");
+const IID_IMFVirtualCamera_Value = Guid.initString("1c08a864-ef6c-4c75-af59-5f2d68da9563");
 pub const IID_IMFVirtualCamera = &IID_IMFVirtualCamera_Value;
 pub const IMFVirtualCamera = extern struct {
     pub const VTable = extern struct {

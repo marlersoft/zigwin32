@@ -726,20 +726,20 @@ pub const CVR_SEEK_LT = CERT_VIEW_SEEK_OPERATOR_FLAGS.LT;
 pub const CVR_SEEK_GE = CERT_VIEW_SEEK_OPERATOR_FLAGS.GE;
 pub const CVR_SEEK_GT = CERT_VIEW_SEEK_OPERATOR_FLAGS.GT;
 
-const CLSID_CCertAdmin_Value = @import("../../zig.zig").Guid.initString("37eabaf0-7fb6-11d0-8817-00a0c903b83c");
+const CLSID_CCertAdmin_Value = Guid.initString("37eabaf0-7fb6-11d0-8817-00a0c903b83c");
 pub const CLSID_CCertAdmin = &CLSID_CCertAdmin_Value;
 
-const CLSID_CCertView_Value = @import("../../zig.zig").Guid.initString("a12d0f7a-1e84-11d1-9bd6-00c04fb683fa");
+const CLSID_CCertView_Value = Guid.initString("a12d0f7a-1e84-11d1-9bd6-00c04fb683fa");
 pub const CLSID_CCertView = &CLSID_CCertView_Value;
 
-const CLSID_OCSPPropertyCollection_Value = @import("../../zig.zig").Guid.initString("f935a528-ba8a-4dd9-ba79-f283275cb2de");
+const CLSID_OCSPPropertyCollection_Value = Guid.initString("f935a528-ba8a-4dd9-ba79-f283275cb2de");
 pub const CLSID_OCSPPropertyCollection = &CLSID_OCSPPropertyCollection_Value;
 
-const CLSID_OCSPAdmin_Value = @import("../../zig.zig").Guid.initString("d3f73511-92c9-47cb-8ff2-8d891a7c4de4");
+const CLSID_OCSPAdmin_Value = Guid.initString("d3f73511-92c9-47cb-8ff2-8d891a7c4de4");
 pub const CLSID_OCSPAdmin = &CLSID_OCSPAdmin_Value;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_IEnumCERTVIEWCOLUMN_Value = @import("../../zig.zig").Guid.initString("9c735be2-57a5-11d1-9bdb-00c04fb683fa");
+const IID_IEnumCERTVIEWCOLUMN_Value = Guid.initString("9c735be2-57a5-11d1-9bdb-00c04fb683fa");
 pub const IID_IEnumCERTVIEWCOLUMN = &IID_IEnumCERTVIEWCOLUMN_Value;
 pub const IEnumCERTVIEWCOLUMN = extern struct {
     pub const VTable = extern struct {
@@ -833,7 +833,7 @@ pub const IEnumCERTVIEWCOLUMN = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_IEnumCERTVIEWATTRIBUTE_Value = @import("../../zig.zig").Guid.initString("e77db656-7653-11d1-9bde-00c04fb683fa");
+const IID_IEnumCERTVIEWATTRIBUTE_Value = Guid.initString("e77db656-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWATTRIBUTE = &IID_IEnumCERTVIEWATTRIBUTE_Value;
 pub const IEnumCERTVIEWATTRIBUTE = extern struct {
     pub const VTable = extern struct {
@@ -894,7 +894,7 @@ pub const IEnumCERTVIEWATTRIBUTE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_IEnumCERTVIEWEXTENSION_Value = @import("../../zig.zig").Guid.initString("e7dd1466-7653-11d1-9bde-00c04fb683fa");
+const IID_IEnumCERTVIEWEXTENSION_Value = Guid.initString("e7dd1466-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWEXTENSION = &IID_IEnumCERTVIEWEXTENSION_Value;
 pub const IEnumCERTVIEWEXTENSION = extern struct {
     pub const VTable = extern struct {
@@ -965,7 +965,7 @@ pub const IEnumCERTVIEWEXTENSION = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_IEnumCERTVIEWROW_Value = @import("../../zig.zig").Guid.initString("d1157f4c-5af2-11d1-9bdc-00c04fb683fa");
+const IID_IEnumCERTVIEWROW_Value = Guid.initString("d1157f4c-5af2-11d1-9bdc-00c04fb683fa");
 pub const IID_IEnumCERTVIEWROW = &IID_IEnumCERTVIEWROW_Value;
 pub const IEnumCERTVIEWROW = extern struct {
     pub const VTable = extern struct {
@@ -1044,7 +1044,7 @@ pub const IEnumCERTVIEWROW = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertView_Value = @import("../../zig.zig").Guid.initString("c3fac344-1e84-11d1-9bd6-00c04fb683fa");
+const IID_ICertView_Value = Guid.initString("c3fac344-1e84-11d1-9bd6-00c04fb683fa");
 pub const IID_ICertView = &IID_ICertView_Value;
 pub const ICertView = extern struct {
     pub const VTable = extern struct {
@@ -1129,7 +1129,7 @@ pub const ICertView = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertView2_Value = @import("../../zig.zig").Guid.initString("d594b282-8851-4b61-9c66-3edadf848863");
+const IID_ICertView2_Value = Guid.initString("d594b282-8851-4b61-9c66-3edadf848863");
 pub const IID_ICertView2 = &IID_ICertView2_Value;
 pub const ICertView2 = extern struct {
     pub const VTable = extern struct {
@@ -1151,7 +1151,7 @@ pub const ICertView2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertAdmin_Value = @import("../../zig.zig").Guid.initString("34df6950-7fb6-11d0-8817-00a0c903b83c");
+const IID_ICertAdmin_Value = Guid.initString("34df6950-7fb6-11d0-8817-00a0c903b83c");
 pub const IID_ICertAdmin = &IID_ICertAdmin_Value;
 pub const ICertAdmin = extern struct {
     pub const VTable = extern struct {
@@ -1266,7 +1266,7 @@ pub const ICertAdmin = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertAdmin2_Value = @import("../../zig.zig").Guid.initString("f7c3ac41-b8ce-4fb4-aa58-3d1dc0e36b39");
+const IID_ICertAdmin2_Value = Guid.initString("f7c3ac41-b8ce-4fb4-aa58-3d1dc0e36b39");
 pub const IID_ICertAdmin2 = &IID_ICertAdmin2_Value;
 pub const ICertAdmin2 = extern struct {
     pub const VTable = extern struct {
@@ -1402,7 +1402,7 @@ pub const ICertAdmin2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IOCSPProperty_Value = @import("../../zig.zig").Guid.initString("66fb7839-5f04-4c25-ad18-9ff1a8376ee0");
+const IID_IOCSPProperty_Value = Guid.initString("66fb7839-5f04-4c25-ad18-9ff1a8376ee0");
 pub const IID_IOCSPProperty = &IID_IOCSPProperty_Value;
 pub const IOCSPProperty = extern struct {
     pub const VTable = extern struct {
@@ -1452,7 +1452,7 @@ pub const IOCSPProperty = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IOCSPPropertyCollection_Value = @import("../../zig.zig").Guid.initString("2597c18d-54e6-4b74-9fa9-a6bfda99cbbe");
+const IID_IOCSPPropertyCollection_Value = Guid.initString("2597c18d-54e6-4b74-9fa9-a6bfda99cbbe");
 pub const IID_IOCSPPropertyCollection = &IID_IOCSPPropertyCollection_Value;
 pub const IOCSPPropertyCollection = extern struct {
     pub const VTable = extern struct {
@@ -1538,7 +1538,7 @@ pub const IOCSPPropertyCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IOCSPCAConfiguration_Value = @import("../../zig.zig").Guid.initString("aec92b40-3d46-433f-87d1-b84d5c1e790d");
+const IID_IOCSPCAConfiguration_Value = Guid.initString("aec92b40-3d46-433f-87d1-b84d5c1e790d");
 pub const IID_IOCSPCAConfiguration = &IID_IOCSPCAConfiguration_Value;
 pub const IOCSPCAConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -1768,7 +1768,7 @@ pub const IOCSPCAConfiguration = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IOCSPCAConfigurationCollection_Value = @import("../../zig.zig").Guid.initString("2bebea0b-5ece-4f28-a91c-86b4bb20f0d3");
+const IID_IOCSPCAConfigurationCollection_Value = Guid.initString("2bebea0b-5ece-4f28-a91c-86b4bb20f0d3");
 pub const IID_IOCSPCAConfigurationCollection = &IID_IOCSPCAConfigurationCollection_Value;
 pub const IOCSPCAConfigurationCollection = extern struct {
     pub const VTable = extern struct {
@@ -1838,7 +1838,7 @@ pub const IOCSPCAConfigurationCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IOCSPAdmin_Value = @import("../../zig.zig").Guid.initString("322e830d-67db-4fe9-9577-4596d9f09294");
+const IID_IOCSPAdmin_Value = Guid.initString("322e830d-67db-4fe9-9577-4596d9f09294");
 pub const IID_IOCSPAdmin = &IID_IOCSPAdmin_Value;
 pub const IOCSPAdmin = extern struct {
     pub const VTable = extern struct {
@@ -2074,23 +2074,23 @@ pub const FNCERTSRVSERVERCONTROLW = fn(
     ppbOut: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_CCertGetConfig_Value = @import("../../zig.zig").Guid.initString("c6cc49b0-ce17-11d0-8833-00a0c903b83c");
+const CLSID_CCertGetConfig_Value = Guid.initString("c6cc49b0-ce17-11d0-8833-00a0c903b83c");
 pub const CLSID_CCertGetConfig = &CLSID_CCertGetConfig_Value;
 
-const CLSID_CCertConfig_Value = @import("../../zig.zig").Guid.initString("372fce38-4324-11d0-8810-00a0c903b83c");
+const CLSID_CCertConfig_Value = Guid.initString("372fce38-4324-11d0-8810-00a0c903b83c");
 pub const CLSID_CCertConfig = &CLSID_CCertConfig_Value;
 
-const CLSID_CCertRequest_Value = @import("../../zig.zig").Guid.initString("98aff3f0-5524-11d0-8812-00a0c903b83c");
+const CLSID_CCertRequest_Value = Guid.initString("98aff3f0-5524-11d0-8812-00a0c903b83c");
 pub const CLSID_CCertRequest = &CLSID_CCertRequest_Value;
 
-const CLSID_CCertServerPolicy_Value = @import("../../zig.zig").Guid.initString("aa000926-ffbe-11cf-8800-00a0c903b83c");
+const CLSID_CCertServerPolicy_Value = Guid.initString("aa000926-ffbe-11cf-8800-00a0c903b83c");
 pub const CLSID_CCertServerPolicy = &CLSID_CCertServerPolicy_Value;
 
-const CLSID_CCertServerExit_Value = @import("../../zig.zig").Guid.initString("4c4a5e40-732c-11d0-8816-00a0c903b83c");
+const CLSID_CCertServerExit_Value = Guid.initString("4c4a5e40-732c-11d0-8816-00a0c903b83c");
 pub const CLSID_CCertServerExit = &CLSID_CCertServerExit_Value;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertServerPolicy_Value = @import("../../zig.zig").Guid.initString("aa000922-ffbe-11cf-8800-00a0c903b83c");
+const IID_ICertServerPolicy_Value = Guid.initString("aa000922-ffbe-11cf-8800-00a0c903b83c");
 pub const IID_ICertServerPolicy = &IID_ICertServerPolicy_Value;
 pub const ICertServerPolicy = extern struct {
     pub const VTable = extern struct {
@@ -2226,7 +2226,7 @@ pub const ICertServerPolicy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertServerExit_Value = @import("../../zig.zig").Guid.initString("4ba9eb90-732c-11d0-8816-00a0c903b83c");
+const IID_ICertServerExit_Value = Guid.initString("4ba9eb90-732c-11d0-8816-00a0c903b83c");
 pub const IID_ICertServerExit = &IID_ICertServerExit_Value;
 pub const ICertServerExit = extern struct {
     pub const VTable = extern struct {
@@ -2341,7 +2341,7 @@ pub const ICertServerExit = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertGetConfig_Value = @import("../../zig.zig").Guid.initString("c7ea09c0-ce17-11d0-8833-00a0c903b83c");
+const IID_ICertGetConfig_Value = Guid.initString("c7ea09c0-ce17-11d0-8833-00a0c903b83c");
 pub const IID_ICertGetConfig = &IID_ICertGetConfig_Value;
 pub const ICertGetConfig = extern struct {
     pub const VTable = extern struct {
@@ -2364,7 +2364,7 @@ pub const ICertGetConfig = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertConfig_Value = @import("../../zig.zig").Guid.initString("372fce34-4324-11d0-8810-00a0c903b83c");
+const IID_ICertConfig_Value = Guid.initString("372fce34-4324-11d0-8810-00a0c903b83c");
 pub const IID_ICertConfig = &IID_ICertConfig_Value;
 pub const ICertConfig = extern struct {
     pub const VTable = extern struct {
@@ -2413,7 +2413,7 @@ pub const ICertConfig = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertConfig2_Value = @import("../../zig.zig").Guid.initString("7a18edde-7e78-4163-8ded-78e2c9cee924");
+const IID_ICertConfig2_Value = Guid.initString("7a18edde-7e78-4163-8ded-78e2c9cee924");
 pub const IID_ICertConfig2 = &IID_ICertConfig2_Value;
 pub const ICertConfig2 = extern struct {
     pub const VTable = extern struct {
@@ -2435,7 +2435,7 @@ pub const ICertConfig2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICertRequest_Value = @import("../../zig.zig").Guid.initString("014e4840-5523-11d0-8812-00a0c903b83c");
+const IID_ICertRequest_Value = Guid.initString("014e4840-5523-11d0-8812-00a0c903b83c");
 pub const IID_ICertRequest = &IID_ICertRequest_Value;
 pub const ICertRequest = extern struct {
     pub const VTable = extern struct {
@@ -2515,7 +2515,7 @@ pub const ICertRequest = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICertRequest2_Value = @import("../../zig.zig").Guid.initString("a4772988-4a85-4fa9-824e-b5cf5c16405a");
+const IID_ICertRequest2_Value = Guid.initString("a4772988-4a85-4fa9-824e-b5cf5c16405a");
 pub const IID_ICertRequest2 = &IID_ICertRequest2_Value;
 pub const ICertRequest2 = extern struct {
     pub const VTable = extern struct {
@@ -2608,7 +2608,7 @@ pub const X509AuthUsername = X509EnrollmentAuthFlags.Username;
 pub const X509AuthCertificate = X509EnrollmentAuthFlags.Certificate;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertRequest3_Value = @import("../../zig.zig").Guid.initString("afc8f92b-33a2-4861-bf36-2933b7cd67b3");
+const IID_ICertRequest3_Value = Guid.initString("afc8f92b-33a2-4861-bf36-2933b7cd67b3");
 pub const IID_ICertRequest3 = &IID_ICertRequest3_Value;
 pub const ICertRequest3 = extern struct {
     pub const VTable = extern struct {
@@ -2659,257 +2659,257 @@ pub const ICertRequest3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_CCertEncodeStringArray_Value = @import("../../zig.zig").Guid.initString("19a76fe0-7494-11d0-8816-00a0c903b83c");
+const CLSID_CCertEncodeStringArray_Value = Guid.initString("19a76fe0-7494-11d0-8816-00a0c903b83c");
 pub const CLSID_CCertEncodeStringArray = &CLSID_CCertEncodeStringArray_Value;
 
-const CLSID_CCertEncodeLongArray_Value = @import("../../zig.zig").Guid.initString("4e0680a0-a0a2-11d0-8821-00a0c903b83c");
+const CLSID_CCertEncodeLongArray_Value = Guid.initString("4e0680a0-a0a2-11d0-8821-00a0c903b83c");
 pub const CLSID_CCertEncodeLongArray = &CLSID_CCertEncodeLongArray_Value;
 
-const CLSID_CCertEncodeDateArray_Value = @import("../../zig.zig").Guid.initString("301f77b0-a470-11d0-8821-00a0c903b83c");
+const CLSID_CCertEncodeDateArray_Value = Guid.initString("301f77b0-a470-11d0-8821-00a0c903b83c");
 pub const CLSID_CCertEncodeDateArray = &CLSID_CCertEncodeDateArray_Value;
 
-const CLSID_CCertEncodeCRLDistInfo_Value = @import("../../zig.zig").Guid.initString("01fa60a0-bbff-11d0-8825-00a0c903b83c");
+const CLSID_CCertEncodeCRLDistInfo_Value = Guid.initString("01fa60a0-bbff-11d0-8825-00a0c903b83c");
 pub const CLSID_CCertEncodeCRLDistInfo = &CLSID_CCertEncodeCRLDistInfo_Value;
 
-const CLSID_CCertEncodeAltName_Value = @import("../../zig.zig").Guid.initString("1cfc4cda-1271-11d1-9bd4-00c04fb683fa");
+const CLSID_CCertEncodeAltName_Value = Guid.initString("1cfc4cda-1271-11d1-9bd4-00c04fb683fa");
 pub const CLSID_CCertEncodeAltName = &CLSID_CCertEncodeAltName_Value;
 
-const CLSID_CCertEncodeBitString_Value = @import("../../zig.zig").Guid.initString("6d6b3cd8-1278-11d1-9bd4-00c04fb683fa");
+const CLSID_CCertEncodeBitString_Value = Guid.initString("6d6b3cd8-1278-11d1-9bd4-00c04fb683fa");
 pub const CLSID_CCertEncodeBitString = &CLSID_CCertEncodeBitString_Value;
 
-const CLSID_CObjectId_Value = @import("../../zig.zig").Guid.initString("884e2000-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CObjectId_Value = Guid.initString("884e2000-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CObjectId = &CLSID_CObjectId_Value;
 
-const CLSID_CObjectIds_Value = @import("../../zig.zig").Guid.initString("884e2001-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CObjectIds_Value = Guid.initString("884e2001-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CObjectIds = &CLSID_CObjectIds_Value;
 
-const CLSID_CBinaryConverter_Value = @import("../../zig.zig").Guid.initString("884e2002-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CBinaryConverter_Value = Guid.initString("884e2002-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CBinaryConverter = &CLSID_CBinaryConverter_Value;
 
-const CLSID_CX500DistinguishedName_Value = @import("../../zig.zig").Guid.initString("884e2003-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX500DistinguishedName_Value = Guid.initString("884e2003-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX500DistinguishedName = &CLSID_CX500DistinguishedName_Value;
 
-const CLSID_CCspInformation_Value = @import("../../zig.zig").Guid.initString("884e2007-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCspInformation_Value = Guid.initString("884e2007-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspInformation = &CLSID_CCspInformation_Value;
 
-const CLSID_CCspInformations_Value = @import("../../zig.zig").Guid.initString("884e2008-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCspInformations_Value = Guid.initString("884e2008-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspInformations = &CLSID_CCspInformations_Value;
 
-const CLSID_CCspStatus_Value = @import("../../zig.zig").Guid.initString("884e2009-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCspStatus_Value = Guid.initString("884e2009-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspStatus = &CLSID_CCspStatus_Value;
 
-const CLSID_CX509PublicKey_Value = @import("../../zig.zig").Guid.initString("884e200b-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509PublicKey_Value = Guid.initString("884e200b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PublicKey = &CLSID_CX509PublicKey_Value;
 
-const CLSID_CX509PrivateKey_Value = @import("../../zig.zig").Guid.initString("884e200c-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509PrivateKey_Value = Guid.initString("884e200c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PrivateKey = &CLSID_CX509PrivateKey_Value;
 
-const CLSID_CX509EndorsementKey_Value = @import("../../zig.zig").Guid.initString("11a25a1d-b9a3-4edd-af83-3b59adbed361");
+const CLSID_CX509EndorsementKey_Value = Guid.initString("11a25a1d-b9a3-4edd-af83-3b59adbed361");
 pub const CLSID_CX509EndorsementKey = &CLSID_CX509EndorsementKey_Value;
 
-const CLSID_CX509Extension_Value = @import("../../zig.zig").Guid.initString("884e200d-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509Extension_Value = Guid.initString("884e200d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Extension = &CLSID_CX509Extension_Value;
 
-const CLSID_CX509Extensions_Value = @import("../../zig.zig").Guid.initString("884e200e-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509Extensions_Value = Guid.initString("884e200e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Extensions = &CLSID_CX509Extensions_Value;
 
-const CLSID_CX509ExtensionKeyUsage_Value = @import("../../zig.zig").Guid.initString("884e200f-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionKeyUsage_Value = Guid.initString("884e200f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionKeyUsage = &CLSID_CX509ExtensionKeyUsage_Value;
 
-const CLSID_CX509ExtensionEnhancedKeyUsage_Value = @import("../../zig.zig").Guid.initString("884e2010-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionEnhancedKeyUsage_Value = Guid.initString("884e2010-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionEnhancedKeyUsage = &CLSID_CX509ExtensionEnhancedKeyUsage_Value;
 
-const CLSID_CX509ExtensionTemplateName_Value = @import("../../zig.zig").Guid.initString("884e2011-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionTemplateName_Value = Guid.initString("884e2011-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionTemplateName = &CLSID_CX509ExtensionTemplateName_Value;
 
-const CLSID_CX509ExtensionTemplate_Value = @import("../../zig.zig").Guid.initString("884e2012-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionTemplate_Value = Guid.initString("884e2012-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionTemplate = &CLSID_CX509ExtensionTemplate_Value;
 
-const CLSID_CAlternativeName_Value = @import("../../zig.zig").Guid.initString("884e2013-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CAlternativeName_Value = Guid.initString("884e2013-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CAlternativeName = &CLSID_CAlternativeName_Value;
 
-const CLSID_CAlternativeNames_Value = @import("../../zig.zig").Guid.initString("884e2014-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CAlternativeNames_Value = Guid.initString("884e2014-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CAlternativeNames = &CLSID_CAlternativeNames_Value;
 
-const CLSID_CX509ExtensionAlternativeNames_Value = @import("../../zig.zig").Guid.initString("884e2015-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionAlternativeNames_Value = Guid.initString("884e2015-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionAlternativeNames = &CLSID_CX509ExtensionAlternativeNames_Value;
 
-const CLSID_CX509ExtensionBasicConstraints_Value = @import("../../zig.zig").Guid.initString("884e2016-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionBasicConstraints_Value = Guid.initString("884e2016-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionBasicConstraints = &CLSID_CX509ExtensionBasicConstraints_Value;
 
-const CLSID_CX509ExtensionSubjectKeyIdentifier_Value = @import("../../zig.zig").Guid.initString("884e2017-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionSubjectKeyIdentifier_Value = Guid.initString("884e2017-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionSubjectKeyIdentifier = &CLSID_CX509ExtensionSubjectKeyIdentifier_Value;
 
-const CLSID_CX509ExtensionAuthorityKeyIdentifier_Value = @import("../../zig.zig").Guid.initString("884e2018-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionAuthorityKeyIdentifier_Value = Guid.initString("884e2018-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionAuthorityKeyIdentifier = &CLSID_CX509ExtensionAuthorityKeyIdentifier_Value;
 
-const CLSID_CSmimeCapability_Value = @import("../../zig.zig").Guid.initString("884e2019-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CSmimeCapability_Value = Guid.initString("884e2019-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSmimeCapability = &CLSID_CSmimeCapability_Value;
 
-const CLSID_CSmimeCapabilities_Value = @import("../../zig.zig").Guid.initString("884e201a-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CSmimeCapabilities_Value = Guid.initString("884e201a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSmimeCapabilities = &CLSID_CSmimeCapabilities_Value;
 
-const CLSID_CX509ExtensionSmimeCapabilities_Value = @import("../../zig.zig").Guid.initString("884e201b-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionSmimeCapabilities_Value = Guid.initString("884e201b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionSmimeCapabilities = &CLSID_CX509ExtensionSmimeCapabilities_Value;
 
-const CLSID_CPolicyQualifier_Value = @import("../../zig.zig").Guid.initString("884e201c-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CPolicyQualifier_Value = Guid.initString("884e201c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CPolicyQualifier = &CLSID_CPolicyQualifier_Value;
 
-const CLSID_CPolicyQualifiers_Value = @import("../../zig.zig").Guid.initString("884e201d-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CPolicyQualifiers_Value = Guid.initString("884e201d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CPolicyQualifiers = &CLSID_CPolicyQualifiers_Value;
 
-const CLSID_CCertificatePolicy_Value = @import("../../zig.zig").Guid.initString("884e201e-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertificatePolicy_Value = Guid.initString("884e201e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertificatePolicy = &CLSID_CCertificatePolicy_Value;
 
-const CLSID_CCertificatePolicies_Value = @import("../../zig.zig").Guid.initString("884e201f-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertificatePolicies_Value = Guid.initString("884e201f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertificatePolicies = &CLSID_CCertificatePolicies_Value;
 
-const CLSID_CX509ExtensionCertificatePolicies_Value = @import("../../zig.zig").Guid.initString("884e2020-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionCertificatePolicies_Value = Guid.initString("884e2020-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionCertificatePolicies = &CLSID_CX509ExtensionCertificatePolicies_Value;
 
-const CLSID_CX509ExtensionMSApplicationPolicies_Value = @import("../../zig.zig").Guid.initString("884e2021-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509ExtensionMSApplicationPolicies_Value = Guid.initString("884e2021-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionMSApplicationPolicies = &CLSID_CX509ExtensionMSApplicationPolicies_Value;
 
-const CLSID_CX509Attribute_Value = @import("../../zig.zig").Guid.initString("884e2022-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509Attribute_Value = Guid.initString("884e2022-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Attribute = &CLSID_CX509Attribute_Value;
 
-const CLSID_CX509Attributes_Value = @import("../../zig.zig").Guid.initString("884e2023-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509Attributes_Value = Guid.initString("884e2023-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Attributes = &CLSID_CX509Attributes_Value;
 
-const CLSID_CX509AttributeExtensions_Value = @import("../../zig.zig").Guid.initString("884e2024-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeExtensions_Value = Guid.initString("884e2024-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeExtensions = &CLSID_CX509AttributeExtensions_Value;
 
-const CLSID_CX509AttributeClientId_Value = @import("../../zig.zig").Guid.initString("884e2025-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeClientId_Value = Guid.initString("884e2025-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeClientId = &CLSID_CX509AttributeClientId_Value;
 
-const CLSID_CX509AttributeRenewalCertificate_Value = @import("../../zig.zig").Guid.initString("884e2026-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeRenewalCertificate_Value = Guid.initString("884e2026-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeRenewalCertificate = &CLSID_CX509AttributeRenewalCertificate_Value;
 
-const CLSID_CX509AttributeArchiveKey_Value = @import("../../zig.zig").Guid.initString("884e2027-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeArchiveKey_Value = Guid.initString("884e2027-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeArchiveKey = &CLSID_CX509AttributeArchiveKey_Value;
 
-const CLSID_CX509AttributeArchiveKeyHash_Value = @import("../../zig.zig").Guid.initString("884e2028-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeArchiveKeyHash_Value = Guid.initString("884e2028-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeArchiveKeyHash = &CLSID_CX509AttributeArchiveKeyHash_Value;
 
-const CLSID_CX509AttributeOSVersion_Value = @import("../../zig.zig").Guid.initString("884e202a-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeOSVersion_Value = Guid.initString("884e202a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeOSVersion = &CLSID_CX509AttributeOSVersion_Value;
 
-const CLSID_CX509AttributeCspProvider_Value = @import("../../zig.zig").Guid.initString("884e202b-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509AttributeCspProvider_Value = Guid.initString("884e202b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeCspProvider = &CLSID_CX509AttributeCspProvider_Value;
 
-const CLSID_CCryptAttribute_Value = @import("../../zig.zig").Guid.initString("884e202c-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCryptAttribute_Value = Guid.initString("884e202c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCryptAttribute = &CLSID_CCryptAttribute_Value;
 
-const CLSID_CCryptAttributes_Value = @import("../../zig.zig").Guid.initString("884e202d-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCryptAttributes_Value = Guid.initString("884e202d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCryptAttributes = &CLSID_CCryptAttributes_Value;
 
-const CLSID_CCertProperty_Value = @import("../../zig.zig").Guid.initString("884e202e-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertProperty_Value = Guid.initString("884e202e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertProperty = &CLSID_CCertProperty_Value;
 
-const CLSID_CCertProperties_Value = @import("../../zig.zig").Guid.initString("884e202f-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertProperties_Value = Guid.initString("884e202f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertProperties = &CLSID_CCertProperties_Value;
 
-const CLSID_CCertPropertyFriendlyName_Value = @import("../../zig.zig").Guid.initString("884e2030-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyFriendlyName_Value = Guid.initString("884e2030-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyFriendlyName = &CLSID_CCertPropertyFriendlyName_Value;
 
-const CLSID_CCertPropertyDescription_Value = @import("../../zig.zig").Guid.initString("884e2031-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyDescription_Value = Guid.initString("884e2031-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyDescription = &CLSID_CCertPropertyDescription_Value;
 
-const CLSID_CCertPropertyAutoEnroll_Value = @import("../../zig.zig").Guid.initString("884e2032-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyAutoEnroll_Value = Guid.initString("884e2032-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyAutoEnroll = &CLSID_CCertPropertyAutoEnroll_Value;
 
-const CLSID_CCertPropertyRequestOriginator_Value = @import("../../zig.zig").Guid.initString("884e2033-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyRequestOriginator_Value = Guid.initString("884e2033-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyRequestOriginator = &CLSID_CCertPropertyRequestOriginator_Value;
 
-const CLSID_CCertPropertySHA1Hash_Value = @import("../../zig.zig").Guid.initString("884e2034-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertySHA1Hash_Value = Guid.initString("884e2034-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertySHA1Hash = &CLSID_CCertPropertySHA1Hash_Value;
 
-const CLSID_CCertPropertyKeyProvInfo_Value = @import("../../zig.zig").Guid.initString("884e2036-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyKeyProvInfo_Value = Guid.initString("884e2036-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyKeyProvInfo = &CLSID_CCertPropertyKeyProvInfo_Value;
 
-const CLSID_CCertPropertyArchived_Value = @import("../../zig.zig").Guid.initString("884e2037-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyArchived_Value = Guid.initString("884e2037-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyArchived = &CLSID_CCertPropertyArchived_Value;
 
-const CLSID_CCertPropertyBackedUp_Value = @import("../../zig.zig").Guid.initString("884e2038-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyBackedUp_Value = Guid.initString("884e2038-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyBackedUp = &CLSID_CCertPropertyBackedUp_Value;
 
-const CLSID_CCertPropertyEnrollment_Value = @import("../../zig.zig").Guid.initString("884e2039-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyEnrollment_Value = Guid.initString("884e2039-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyEnrollment = &CLSID_CCertPropertyEnrollment_Value;
 
-const CLSID_CCertPropertyRenewal_Value = @import("../../zig.zig").Guid.initString("884e203a-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyRenewal_Value = Guid.initString("884e203a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyRenewal = &CLSID_CCertPropertyRenewal_Value;
 
-const CLSID_CCertPropertyArchivedKeyHash_Value = @import("../../zig.zig").Guid.initString("884e203b-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyArchivedKeyHash_Value = Guid.initString("884e203b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyArchivedKeyHash = &CLSID_CCertPropertyArchivedKeyHash_Value;
 
-const CLSID_CCertPropertyEnrollmentPolicyServer_Value = @import("../../zig.zig").Guid.initString("884e204c-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CCertPropertyEnrollmentPolicyServer_Value = Guid.initString("884e204c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyEnrollmentPolicyServer = &CLSID_CCertPropertyEnrollmentPolicyServer_Value;
 
-const CLSID_CSignerCertificate_Value = @import("../../zig.zig").Guid.initString("884e203d-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CSignerCertificate_Value = Guid.initString("884e203d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSignerCertificate = &CLSID_CSignerCertificate_Value;
 
-const CLSID_CX509NameValuePair_Value = @import("../../zig.zig").Guid.initString("884e203f-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509NameValuePair_Value = Guid.initString("884e203f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509NameValuePair = &CLSID_CX509NameValuePair_Value;
 
-const CLSID_CCertificateAttestationChallenge_Value = @import("../../zig.zig").Guid.initString("1362ada1-eb60-456a-b6e1-118050db741b");
+const CLSID_CCertificateAttestationChallenge_Value = Guid.initString("1362ada1-eb60-456a-b6e1-118050db741b");
 pub const CLSID_CCertificateAttestationChallenge = &CLSID_CCertificateAttestationChallenge_Value;
 
-const CLSID_CX509CertificateRequestPkcs10_Value = @import("../../zig.zig").Guid.initString("884e2042-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRequestPkcs10_Value = Guid.initString("884e2042-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestPkcs10 = &CLSID_CX509CertificateRequestPkcs10_Value;
 
-const CLSID_CX509CertificateRequestCertificate_Value = @import("../../zig.zig").Guid.initString("884e2043-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRequestCertificate_Value = Guid.initString("884e2043-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestCertificate = &CLSID_CX509CertificateRequestCertificate_Value;
 
-const CLSID_CX509CertificateRequestPkcs7_Value = @import("../../zig.zig").Guid.initString("884e2044-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRequestPkcs7_Value = Guid.initString("884e2044-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestPkcs7 = &CLSID_CX509CertificateRequestPkcs7_Value;
 
-const CLSID_CX509CertificateRequestCmc_Value = @import("../../zig.zig").Guid.initString("884e2045-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRequestCmc_Value = Guid.initString("884e2045-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestCmc = &CLSID_CX509CertificateRequestCmc_Value;
 
-const CLSID_CX509Enrollment_Value = @import("../../zig.zig").Guid.initString("884e2046-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509Enrollment_Value = Guid.initString("884e2046-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Enrollment = &CLSID_CX509Enrollment_Value;
 
-const CLSID_CX509EnrollmentWebClassFactory_Value = @import("../../zig.zig").Guid.initString("884e2049-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509EnrollmentWebClassFactory_Value = Guid.initString("884e2049-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentWebClassFactory = &CLSID_CX509EnrollmentWebClassFactory_Value;
 
-const CLSID_CX509EnrollmentHelper_Value = @import("../../zig.zig").Guid.initString("884e2050-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509EnrollmentHelper_Value = Guid.initString("884e2050-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentHelper = &CLSID_CX509EnrollmentHelper_Value;
 
-const CLSID_CX509MachineEnrollmentFactory_Value = @import("../../zig.zig").Guid.initString("884e2051-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509MachineEnrollmentFactory_Value = Guid.initString("884e2051-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509MachineEnrollmentFactory = &CLSID_CX509MachineEnrollmentFactory_Value;
 
-const CLSID_CX509EnrollmentPolicyActiveDirectory_Value = @import("../../zig.zig").Guid.initString("91f39027-217f-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509EnrollmentPolicyActiveDirectory_Value = Guid.initString("91f39027-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentPolicyActiveDirectory = &CLSID_CX509EnrollmentPolicyActiveDirectory_Value;
 
-const CLSID_CX509EnrollmentPolicyWebService_Value = @import("../../zig.zig").Guid.initString("91f39028-217f-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509EnrollmentPolicyWebService_Value = Guid.initString("91f39028-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentPolicyWebService = &CLSID_CX509EnrollmentPolicyWebService_Value;
 
-const CLSID_CX509PolicyServerListManager_Value = @import("../../zig.zig").Guid.initString("91f39029-217f-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509PolicyServerListManager_Value = Guid.initString("91f39029-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PolicyServerListManager = &CLSID_CX509PolicyServerListManager_Value;
 
-const CLSID_CX509PolicyServerUrl_Value = @import("../../zig.zig").Guid.initString("91f3902a-217f-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509PolicyServerUrl_Value = Guid.initString("91f3902a-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PolicyServerUrl = &CLSID_CX509PolicyServerUrl_Value;
 
-const CLSID_CX509CertificateTemplateADWritable_Value = @import("../../zig.zig").Guid.initString("8336e323-2e6a-4a04-937c-548f681839b3");
+const CLSID_CX509CertificateTemplateADWritable_Value = Guid.initString("8336e323-2e6a-4a04-937c-548f681839b3");
 pub const CLSID_CX509CertificateTemplateADWritable = &CLSID_CX509CertificateTemplateADWritable_Value;
 
-const CLSID_CX509CertificateRevocationListEntry_Value = @import("../../zig.zig").Guid.initString("884e205e-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRevocationListEntry_Value = Guid.initString("884e205e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationListEntry = &CLSID_CX509CertificateRevocationListEntry_Value;
 
-const CLSID_CX509CertificateRevocationListEntries_Value = @import("../../zig.zig").Guid.initString("884e205f-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRevocationListEntries_Value = Guid.initString("884e205f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationListEntries = &CLSID_CX509CertificateRevocationListEntries_Value;
 
-const CLSID_CX509CertificateRevocationList_Value = @import("../../zig.zig").Guid.initString("884e2060-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509CertificateRevocationList_Value = Guid.initString("884e2060-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationList = &CLSID_CX509CertificateRevocationList_Value;
 
-const CLSID_CX509SCEPEnrollment_Value = @import("../../zig.zig").Guid.initString("884e2061-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509SCEPEnrollment_Value = Guid.initString("884e2061-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509SCEPEnrollment = &CLSID_CX509SCEPEnrollment_Value;
 
-const CLSID_CX509SCEPEnrollmentHelper_Value = @import("../../zig.zig").Guid.initString("884e2062-217d-11da-b2a4-000e7bbb2b09");
+const CLSID_CX509SCEPEnrollmentHelper_Value = Guid.initString("884e2062-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509SCEPEnrollmentHelper = &CLSID_CX509SCEPEnrollmentHelper_Value;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertManageModule_Value = @import("../../zig.zig").Guid.initString("e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb");
+const IID_ICertManageModule_Value = Guid.initString("e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb");
 pub const IID_ICertManageModule = &IID_ICertManageModule_Value;
 pub const ICertManageModule = extern struct {
     pub const VTable = extern struct {
@@ -2970,7 +2970,7 @@ pub const CERTVIEWRESTRICTION = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertPolicy_Value = @import("../../zig.zig").Guid.initString("38bb5a00-7636-11d0-b413-00a0c91bbf8c");
+const IID_ICertPolicy_Value = Guid.initString("38bb5a00-7636-11d0-b413-00a0c91bbf8c");
 pub const IID_ICertPolicy = &IID_ICertPolicy_Value;
 pub const ICertPolicy = extern struct {
     pub const VTable = extern struct {
@@ -3019,7 +3019,7 @@ pub const ICertPolicy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertPolicy2_Value = @import("../../zig.zig").Guid.initString("3db4910e-8001-4bf1-aa1b-f43a808317a0");
+const IID_ICertPolicy2_Value = Guid.initString("3db4910e-8001-4bf1-aa1b-f43a808317a0");
 pub const IID_ICertPolicy2 = &IID_ICertPolicy2_Value;
 pub const ICertPolicy2 = extern struct {
     pub const VTable = extern struct {
@@ -3085,7 +3085,7 @@ pub const SCEPFailBadRequest = X509SCEPFailInfo.BadRequest;
 pub const SCEPFailBadTime = X509SCEPFailInfo.BadTime;
 pub const SCEPFailBadCertId = X509SCEPFailInfo.BadCertId;
 
-const IID_INDESPolicy_Value = @import("../../zig.zig").Guid.initString("13ca515d-431d-46cc-8c2e-1da269bbd625");
+const IID_INDESPolicy_Value = Guid.initString("13ca515d-431d-46cc-8c2e-1da269bbd625");
 pub const IID_INDESPolicy = &IID_INDESPolicy_Value;
 pub const INDESPolicy = extern struct {
     pub const VTable = extern struct {
@@ -4148,7 +4148,7 @@ pub const AlgorithmFlagsNone = AlgorithmFlags.None;
 pub const AlgorithmFlagsWrap = AlgorithmFlags.Wrap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IObjectId_Value = @import("../../zig.zig").Guid.initString("728ab300-217d-11da-b2a4-000e7bbb2b09");
+const IID_IObjectId_Value = Guid.initString("728ab300-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IObjectId = &IID_IObjectId_Value;
 pub const IObjectId = extern struct {
     pub const VTable = extern struct {
@@ -4235,7 +4235,7 @@ pub const IObjectId = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IObjectIds_Value = @import("../../zig.zig").Guid.initString("728ab301-217d-11da-b2a4-000e7bbb2b09");
+const IID_IObjectIds_Value = Guid.initString("728ab301-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IObjectIds = &IID_IObjectIds_Value;
 pub const IObjectIds = extern struct {
     pub const VTable = extern struct {
@@ -4308,7 +4308,7 @@ pub const IObjectIds = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBinaryConverter_Value = @import("../../zig.zig").Guid.initString("728ab302-217d-11da-b2a4-000e7bbb2b09");
+const IID_IBinaryConverter_Value = Guid.initString("728ab302-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IBinaryConverter = &IID_IBinaryConverter_Value;
 pub const IBinaryConverter = extern struct {
     pub const VTable = extern struct {
@@ -4352,7 +4352,7 @@ pub const IBinaryConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBinaryConverter2_Value = @import("../../zig.zig").Guid.initString("8d7928b4-4e17-428d-9a17-728df00d1b2b");
+const IID_IBinaryConverter2_Value = Guid.initString("8d7928b4-4e17-428d-9a17-728df00d1b2b");
 pub const IID_IBinaryConverter2 = &IID_IBinaryConverter2_Value;
 pub const IBinaryConverter2 = extern struct {
     pub const VTable = extern struct {
@@ -4427,7 +4427,7 @@ pub const XCN_CERT_NAME_STR_ENABLE_PUNYCODE_FLAG = X500NameFlags.NAME_STR_ENABLE
 pub const XCN_CERT_NAME_STR_DS_ESCAPED = X500NameFlags.NAME_STR_DS_ESCAPED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX500DistinguishedName_Value = @import("../../zig.zig").Guid.initString("728ab303-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX500DistinguishedName_Value = Guid.initString("728ab303-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX500DistinguishedName = &IID_IX500DistinguishedName_Value;
 pub const IX500DistinguishedName = extern struct {
     pub const VTable = extern struct {
@@ -4521,7 +4521,7 @@ pub const DisplayNo = EnrollmentDisplayStatus.No;
 pub const DisplayYes = EnrollmentDisplayStatus.Yes;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509EnrollmentStatus_Value = @import("../../zig.zig").Guid.initString("728ab304-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509EnrollmentStatus_Value = Guid.initString("728ab304-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentStatus = &IID_IX509EnrollmentStatus_Value;
 pub const IX509EnrollmentStatus = extern struct {
     pub const VTable = extern struct {
@@ -4731,7 +4731,7 @@ pub const XCN_NCRYPT_EXACT_MATCH_OPERATION = AlgorithmOperationFlags.EXACT_MATCH
 pub const XCN_NCRYPT_PREFERENCE_MASK_OPERATION = AlgorithmOperationFlags.PREFERENCE_MASK_OPERATION;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspAlgorithm_Value = @import("../../zig.zig").Guid.initString("728ab305-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspAlgorithm_Value = Guid.initString("728ab305-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspAlgorithm = &IID_ICspAlgorithm_Value;
 pub const ICspAlgorithm = extern struct {
     pub const VTable = extern struct {
@@ -4836,7 +4836,7 @@ pub const ICspAlgorithm = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspAlgorithms_Value = @import("../../zig.zig").Guid.initString("728ab306-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspAlgorithms_Value = Guid.initString("728ab306-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspAlgorithms = &IID_ICspAlgorithms_Value;
 pub const ICspAlgorithms = extern struct {
     pub const VTable = extern struct {
@@ -4930,7 +4930,7 @@ pub const XCN_AT_KEYEXCHANGE = X509KeySpec.KEYEXCHANGE;
 pub const XCN_AT_SIGNATURE = X509KeySpec.SIGNATURE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspInformation_Value = @import("../../zig.zig").Guid.initString("728ab307-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspInformation_Value = Guid.initString("728ab307-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspInformation = &IID_ICspInformation_Value;
 pub const ICspInformation = extern struct {
     pub const VTable = extern struct {
@@ -5098,7 +5098,7 @@ pub const ICspInformation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspInformations_Value = @import("../../zig.zig").Guid.initString("728ab308-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspInformations_Value = Guid.initString("728ab308-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspInformations = &IID_ICspInformations_Value;
 pub const ICspInformations = extern struct {
     pub const VTable = extern struct {
@@ -5218,7 +5218,7 @@ pub const ICspInformations = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspStatus_Value = @import("../../zig.zig").Guid.initString("728ab309-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspStatus_Value = Guid.initString("728ab309-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspStatus = &IID_ICspStatus_Value;
 pub const ICspStatus = extern struct {
     pub const VTable = extern struct {
@@ -5295,7 +5295,7 @@ pub const ICspStatus = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICspStatuses_Value = @import("../../zig.zig").Guid.initString("728ab30a-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICspStatuses_Value = Guid.initString("728ab30a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspStatuses = &IID_ICspStatuses_Value;
 pub const ICspStatuses = extern struct {
     pub const VTable = extern struct {
@@ -5416,7 +5416,7 @@ pub const SKIHashSha256 = KeyIdentifierHashAlgorithm.Sha256;
 pub const SKIHashHPKP = KeyIdentifierHashAlgorithm.HPKP;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509PublicKey_Value = @import("../../zig.zig").Guid.initString("728ab30b-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509PublicKey_Value = Guid.initString("728ab30b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PublicKey = &IID_IX509PublicKey_Value;
 pub const IX509PublicKey = extern struct {
     pub const VTable = extern struct {
@@ -5552,7 +5552,7 @@ pub const VerifySmartCardSilent = X509PrivateKeyVerify.SmartCardSilent;
 pub const VerifyAllowUI = X509PrivateKeyVerify.AllowUI;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509PrivateKey_Value = @import("../../zig.zig").Guid.initString("728ab30c-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509PrivateKey_Value = Guid.initString("728ab30c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PrivateKey = &IID_IX509PrivateKey_Value;
 pub const IX509PrivateKey = extern struct {
     pub const VTable = extern struct {
@@ -6107,7 +6107,7 @@ pub const XCN_CRYPT_OID_USE_CURVE_NONE = X509KeyParametersExportType.NONE;
 pub const XCN_CRYPT_OID_USE_CURVE_NAME_FOR_ENCODE_FLAG = X509KeyParametersExportType.NAME_FOR_ENCODE_FLAG;
 pub const XCN_CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG = X509KeyParametersExportType.PARAMETERS_FOR_ENCODE_FLAG;
 
-const IID_IX509PrivateKey2_Value = @import("../../zig.zig").Guid.initString("728ab362-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509PrivateKey2_Value = Guid.initString("728ab362-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PrivateKey2 = &IID_IX509PrivateKey2_Value;
 pub const IX509PrivateKey2 = extern struct {
     pub const VTable = extern struct {
@@ -6212,7 +6212,7 @@ pub const IX509PrivateKey2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509EndorsementKey_Value = @import("../../zig.zig").Guid.initString("b11cd855-f4c4-4fc6-b710-4422237f09e9");
+const IID_IX509EndorsementKey_Value = Guid.initString("b11cd855-f4c4-4fc6-b710-4422237f09e9");
 pub const IID_IX509EndorsementKey = &IID_IX509EndorsementKey_Value;
 pub const IX509EndorsementKey = extern struct {
     pub const VTable = extern struct {
@@ -6322,7 +6322,7 @@ pub const IX509EndorsementKey = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509Extension_Value = @import("../../zig.zig").Guid.initString("728ab30d-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Extension_Value = Guid.initString("728ab30d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Extension = &IID_IX509Extension_Value;
 pub const IX509Extension = extern struct {
     pub const VTable = extern struct {
@@ -6383,7 +6383,7 @@ pub const IX509Extension = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509Extensions_Value = @import("../../zig.zig").Guid.initString("728ab30e-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Extensions_Value = Guid.initString("728ab30e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Extensions = &IID_IX509Extensions_Value;
 pub const IX509Extensions = extern struct {
     pub const VTable = extern struct {
@@ -6491,7 +6491,7 @@ pub const XCN_CERT_ENCIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.ENCIPHER_ONLY_KEY
 pub const XCN_CERT_DECIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.DECIPHER_ONLY_KEY_USAGE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionKeyUsage_Value = @import("../../zig.zig").Guid.initString("728ab30f-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionKeyUsage_Value = Guid.initString("728ab30f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionKeyUsage = &IID_IX509ExtensionKeyUsage_Value;
 pub const IX509ExtensionKeyUsage = extern struct {
     pub const VTable = extern struct {
@@ -6531,7 +6531,7 @@ pub const IX509ExtensionKeyUsage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionEnhancedKeyUsage_Value = @import("../../zig.zig").Guid.initString("728ab310-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionEnhancedKeyUsage_Value = Guid.initString("728ab310-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionEnhancedKeyUsage = &IID_IX509ExtensionEnhancedKeyUsage_Value;
 pub const IX509ExtensionEnhancedKeyUsage = extern struct {
     pub const VTable = extern struct {
@@ -6571,7 +6571,7 @@ pub const IX509ExtensionEnhancedKeyUsage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionTemplateName_Value = @import("../../zig.zig").Guid.initString("728ab311-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionTemplateName_Value = Guid.initString("728ab311-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionTemplateName = &IID_IX509ExtensionTemplateName_Value;
 pub const IX509ExtensionTemplateName = extern struct {
     pub const VTable = extern struct {
@@ -6611,7 +6611,7 @@ pub const IX509ExtensionTemplateName = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionTemplate_Value = @import("../../zig.zig").Guid.initString("728ab312-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionTemplate_Value = Guid.initString("728ab312-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionTemplate = &IID_IX509ExtensionTemplate_Value;
 pub const IX509ExtensionTemplate = extern struct {
     pub const VTable = extern struct {
@@ -6698,7 +6698,7 @@ pub const XCN_CERT_ALT_NAME_GUID = AlternativeNameType.GUID;
 pub const XCN_CERT_ALT_NAME_USER_PRINCIPLE_NAME = AlternativeNameType.USER_PRINCIPLE_NAME;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAlternativeName_Value = @import("../../zig.zig").Guid.initString("728ab313-217d-11da-b2a4-000e7bbb2b09");
+const IID_IAlternativeName_Value = Guid.initString("728ab313-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IAlternativeName = &IID_IAlternativeName_Value;
 pub const IAlternativeName = extern struct {
     pub const VTable = extern struct {
@@ -6779,7 +6779,7 @@ pub const IAlternativeName = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAlternativeNames_Value = @import("../../zig.zig").Guid.initString("728ab314-217d-11da-b2a4-000e7bbb2b09");
+const IID_IAlternativeNames_Value = Guid.initString("728ab314-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IAlternativeNames = &IID_IAlternativeNames_Value;
 pub const IAlternativeNames = extern struct {
     pub const VTable = extern struct {
@@ -6844,7 +6844,7 @@ pub const IAlternativeNames = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionAlternativeNames_Value = @import("../../zig.zig").Guid.initString("728ab315-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionAlternativeNames_Value = Guid.initString("728ab315-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionAlternativeNames = &IID_IX509ExtensionAlternativeNames_Value;
 pub const IX509ExtensionAlternativeNames = extern struct {
     pub const VTable = extern struct {
@@ -6884,7 +6884,7 @@ pub const IX509ExtensionAlternativeNames = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionBasicConstraints_Value = @import("../../zig.zig").Guid.initString("728ab316-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionBasicConstraints_Value = Guid.initString("728ab316-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionBasicConstraints = &IID_IX509ExtensionBasicConstraints_Value;
 pub const IX509ExtensionBasicConstraints = extern struct {
     pub const VTable = extern struct {
@@ -6934,7 +6934,7 @@ pub const IX509ExtensionBasicConstraints = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionSubjectKeyIdentifier_Value = @import("../../zig.zig").Guid.initString("728ab317-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionSubjectKeyIdentifier_Value = Guid.initString("728ab317-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionSubjectKeyIdentifier = &IID_IX509ExtensionSubjectKeyIdentifier_Value;
 pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
     pub const VTable = extern struct {
@@ -6976,7 +6976,7 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionAuthorityKeyIdentifier_Value = @import("../../zig.zig").Guid.initString("728ab318-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionAuthorityKeyIdentifier_Value = Guid.initString("728ab318-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionAuthorityKeyIdentifier = &IID_IX509ExtensionAuthorityKeyIdentifier_Value;
 pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
     pub const VTable = extern struct {
@@ -7018,7 +7018,7 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISmimeCapability_Value = @import("../../zig.zig").Guid.initString("728ab319-217d-11da-b2a4-000e7bbb2b09");
+const IID_ISmimeCapability_Value = Guid.initString("728ab319-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISmimeCapability = &IID_ISmimeCapability_Value;
 pub const ISmimeCapability = extern struct {
     pub const VTable = extern struct {
@@ -7059,7 +7059,7 @@ pub const ISmimeCapability = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISmimeCapabilities_Value = @import("../../zig.zig").Guid.initString("728ab31a-217d-11da-b2a4-000e7bbb2b09");
+const IID_ISmimeCapabilities_Value = Guid.initString("728ab31a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISmimeCapabilities = &IID_ISmimeCapabilities_Value;
 pub const ISmimeCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -7140,7 +7140,7 @@ pub const ISmimeCapabilities = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionSmimeCapabilities_Value = @import("../../zig.zig").Guid.initString("728ab31b-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionSmimeCapabilities_Value = Guid.initString("728ab31b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionSmimeCapabilities = &IID_IX509ExtensionSmimeCapabilities_Value;
 pub const IX509ExtensionSmimeCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -7191,7 +7191,7 @@ pub const PolicyQualifierTypeUserNotice = PolicyQualifierType.UserNotice;
 pub const PolicyQualifierTypeFlags = PolicyQualifierType.Flags;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPolicyQualifier_Value = @import("../../zig.zig").Guid.initString("728ab31c-217d-11da-b2a4-000e7bbb2b09");
+const IID_IPolicyQualifier_Value = Guid.initString("728ab31c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IPolicyQualifier = &IID_IPolicyQualifier_Value;
 pub const IPolicyQualifier = extern struct {
     pub const VTable = extern struct {
@@ -7251,7 +7251,7 @@ pub const IPolicyQualifier = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPolicyQualifiers_Value = @import("../../zig.zig").Guid.initString("728ab31d-217d-11da-b2a4-000e7bbb2b09");
+const IID_IPolicyQualifiers_Value = Guid.initString("728ab31d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IPolicyQualifiers = &IID_IPolicyQualifiers_Value;
 pub const IPolicyQualifiers = extern struct {
     pub const VTable = extern struct {
@@ -7316,7 +7316,7 @@ pub const IPolicyQualifiers = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertificatePolicy_Value = @import("../../zig.zig").Guid.initString("728ab31e-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertificatePolicy_Value = Guid.initString("728ab31e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificatePolicy = &IID_ICertificatePolicy_Value;
 pub const ICertificatePolicy = extern struct {
     pub const VTable = extern struct {
@@ -7356,7 +7356,7 @@ pub const ICertificatePolicy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertificatePolicies_Value = @import("../../zig.zig").Guid.initString("728ab31f-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertificatePolicies_Value = Guid.initString("728ab31f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificatePolicies = &IID_ICertificatePolicies_Value;
 pub const ICertificatePolicies = extern struct {
     pub const VTable = extern struct {
@@ -7421,7 +7421,7 @@ pub const ICertificatePolicies = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionCertificatePolicies_Value = @import("../../zig.zig").Guid.initString("728ab320-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionCertificatePolicies_Value = Guid.initString("728ab320-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionCertificatePolicies = &IID_IX509ExtensionCertificatePolicies_Value;
 pub const IX509ExtensionCertificatePolicies = extern struct {
     pub const VTable = extern struct {
@@ -7461,7 +7461,7 @@ pub const IX509ExtensionCertificatePolicies = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509ExtensionMSApplicationPolicies_Value = @import("../../zig.zig").Guid.initString("728ab321-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509ExtensionMSApplicationPolicies_Value = Guid.initString("728ab321-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionMSApplicationPolicies = &IID_IX509ExtensionMSApplicationPolicies_Value;
 pub const IX509ExtensionMSApplicationPolicies = extern struct {
     pub const VTable = extern struct {
@@ -7501,7 +7501,7 @@ pub const IX509ExtensionMSApplicationPolicies = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509Attribute_Value = @import("../../zig.zig").Guid.initString("728ab322-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Attribute_Value = Guid.initString("728ab322-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Attribute = &IID_IX509Attribute_Value;
 pub const IX509Attribute = extern struct {
     pub const VTable = extern struct {
@@ -7544,7 +7544,7 @@ pub const IX509Attribute = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509Attributes_Value = @import("../../zig.zig").Guid.initString("728ab323-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Attributes_Value = Guid.initString("728ab323-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Attributes = &IID_IX509Attributes_Value;
 pub const IX509Attributes = extern struct {
     pub const VTable = extern struct {
@@ -7609,7 +7609,7 @@ pub const IX509Attributes = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeExtensions_Value = @import("../../zig.zig").Guid.initString("728ab324-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeExtensions_Value = Guid.initString("728ab324-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeExtensions = &IID_IX509AttributeExtensions_Value;
 pub const IX509AttributeExtensions = extern struct {
     pub const VTable = extern struct {
@@ -7678,7 +7678,7 @@ pub const ClientIdWinRT = RequestClientInfoClientId.WinRT;
 pub const ClientIdUserStart = RequestClientInfoClientId.UserStart;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeClientId_Value = @import("../../zig.zig").Guid.initString("728ab325-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeClientId_Value = Guid.initString("728ab325-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeClientId = &IID_IX509AttributeClientId_Value;
 pub const IX509AttributeClientId = extern struct {
     pub const VTable = extern struct {
@@ -7748,7 +7748,7 @@ pub const IX509AttributeClientId = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeRenewalCertificate_Value = @import("../../zig.zig").Guid.initString("728ab326-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeRenewalCertificate_Value = Guid.initString("728ab326-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeRenewalCertificate = &IID_IX509AttributeRenewalCertificate_Value;
 pub const IX509AttributeRenewalCertificate = extern struct {
     pub const VTable = extern struct {
@@ -7790,7 +7790,7 @@ pub const IX509AttributeRenewalCertificate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeArchiveKey_Value = @import("../../zig.zig").Guid.initString("728ab327-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeArchiveKey_Value = Guid.initString("728ab327-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeArchiveKey = &IID_IX509AttributeArchiveKey_Value;
 pub const IX509AttributeArchiveKey = extern struct {
     pub const VTable = extern struct {
@@ -7853,7 +7853,7 @@ pub const IX509AttributeArchiveKey = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeArchiveKeyHash_Value = @import("../../zig.zig").Guid.initString("728ab328-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeArchiveKeyHash_Value = Guid.initString("728ab328-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeArchiveKeyHash = &IID_IX509AttributeArchiveKeyHash_Value;
 pub const IX509AttributeArchiveKeyHash = extern struct {
     pub const VTable = extern struct {
@@ -7895,7 +7895,7 @@ pub const IX509AttributeArchiveKeyHash = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeOSVersion_Value = @import("../../zig.zig").Guid.initString("728ab32a-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeOSVersion_Value = Guid.initString("728ab32a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeOSVersion = &IID_IX509AttributeOSVersion_Value;
 pub const IX509AttributeOSVersion = extern struct {
     pub const VTable = extern struct {
@@ -7935,7 +7935,7 @@ pub const IX509AttributeOSVersion = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509AttributeCspProvider_Value = @import("../../zig.zig").Guid.initString("728ab32b-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509AttributeCspProvider_Value = Guid.initString("728ab32b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeCspProvider = &IID_IX509AttributeCspProvider_Value;
 pub const IX509AttributeCspProvider = extern struct {
     pub const VTable = extern struct {
@@ -7997,7 +7997,7 @@ pub const IX509AttributeCspProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICryptAttribute_Value = @import("../../zig.zig").Guid.initString("728ab32c-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICryptAttribute_Value = Guid.initString("728ab32c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICryptAttribute = &IID_ICryptAttribute_Value;
 pub const ICryptAttribute = extern struct {
     pub const VTable = extern struct {
@@ -8045,7 +8045,7 @@ pub const ICryptAttribute = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICryptAttributes_Value = @import("../../zig.zig").Guid.initString("728ab32d-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICryptAttributes_Value = Guid.initString("728ab32d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICryptAttributes = &IID_ICryptAttributes_Value;
 pub const ICryptAttributes = extern struct {
     pub const VTable = extern struct {
@@ -8331,7 +8331,7 @@ pub const XCN_CERT_LAST_USER_PROP_ID = CERTENROLL_PROPERTYID.CERT_LAST_USER_PROP
 pub const XCN_CERT_STORE_LOCALIZED_NAME_PROP_ID = CERTENROLL_PROPERTYID.CERT_STORE_LOCALIZED_NAME_PROP_ID;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertProperty_Value = @import("../../zig.zig").Guid.initString("728ab32e-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertProperty_Value = Guid.initString("728ab32e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertProperty = &IID_ICertProperty_Value;
 pub const ICertProperty = extern struct {
     pub const VTable = extern struct {
@@ -8412,7 +8412,7 @@ pub const ICertProperty = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertProperties_Value = @import("../../zig.zig").Guid.initString("728ab32f-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertProperties_Value = Guid.initString("728ab32f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertProperties = &IID_ICertProperties_Value;
 pub const ICertProperties = extern struct {
     pub const VTable = extern struct {
@@ -8487,7 +8487,7 @@ pub const ICertProperties = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyFriendlyName_Value = @import("../../zig.zig").Guid.initString("728ab330-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyFriendlyName_Value = Guid.initString("728ab330-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyFriendlyName = &IID_ICertPropertyFriendlyName_Value;
 pub const ICertPropertyFriendlyName = extern struct {
     pub const VTable = extern struct {
@@ -8518,7 +8518,7 @@ pub const ICertPropertyFriendlyName = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyDescription_Value = @import("../../zig.zig").Guid.initString("728ab331-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyDescription_Value = Guid.initString("728ab331-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyDescription = &IID_ICertPropertyDescription_Value;
 pub const ICertPropertyDescription = extern struct {
     pub const VTable = extern struct {
@@ -8549,7 +8549,7 @@ pub const ICertPropertyDescription = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyAutoEnroll_Value = @import("../../zig.zig").Guid.initString("728ab332-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyAutoEnroll_Value = Guid.initString("728ab332-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyAutoEnroll = &IID_ICertPropertyAutoEnroll_Value;
 pub const ICertPropertyAutoEnroll = extern struct {
     pub const VTable = extern struct {
@@ -8580,7 +8580,7 @@ pub const ICertPropertyAutoEnroll = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyRequestOriginator_Value = @import("../../zig.zig").Guid.initString("728ab333-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyRequestOriginator_Value = Guid.initString("728ab333-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyRequestOriginator = &IID_ICertPropertyRequestOriginator_Value;
 pub const ICertPropertyRequestOriginator = extern struct {
     pub const VTable = extern struct {
@@ -8618,7 +8618,7 @@ pub const ICertPropertyRequestOriginator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertySHA1Hash_Value = @import("../../zig.zig").Guid.initString("728ab334-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertySHA1Hash_Value = Guid.initString("728ab334-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertySHA1Hash = &IID_ICertPropertySHA1Hash_Value;
 pub const ICertPropertySHA1Hash = extern struct {
     pub const VTable = extern struct {
@@ -8651,7 +8651,7 @@ pub const ICertPropertySHA1Hash = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyKeyProvInfo_Value = @import("../../zig.zig").Guid.initString("728ab336-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyKeyProvInfo_Value = Guid.initString("728ab336-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyKeyProvInfo = &IID_ICertPropertyKeyProvInfo_Value;
 pub const ICertPropertyKeyProvInfo = extern struct {
     pub const VTable = extern struct {
@@ -8682,7 +8682,7 @@ pub const ICertPropertyKeyProvInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyArchived_Value = @import("../../zig.zig").Guid.initString("728ab337-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyArchived_Value = Guid.initString("728ab337-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyArchived = &IID_ICertPropertyArchived_Value;
 pub const ICertPropertyArchived = extern struct {
     pub const VTable = extern struct {
@@ -8713,7 +8713,7 @@ pub const ICertPropertyArchived = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyBackedUp_Value = @import("../../zig.zig").Guid.initString("728ab338-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyBackedUp_Value = Guid.initString("728ab338-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyBackedUp = &IID_ICertPropertyBackedUp_Value;
 pub const ICertPropertyBackedUp = extern struct {
     pub const VTable = extern struct {
@@ -8762,7 +8762,7 @@ pub const ICertPropertyBackedUp = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyEnrollment_Value = @import("../../zig.zig").Guid.initString("728ab339-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyEnrollment_Value = Guid.initString("728ab339-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyEnrollment = &IID_ICertPropertyEnrollment_Value;
 pub const ICertPropertyEnrollment = extern struct {
     pub const VTable = extern struct {
@@ -8823,7 +8823,7 @@ pub const ICertPropertyEnrollment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyRenewal_Value = @import("../../zig.zig").Guid.initString("728ab33a-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyRenewal_Value = Guid.initString("728ab33a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyRenewal = &IID_ICertPropertyRenewal_Value;
 pub const ICertPropertyRenewal = extern struct {
     pub const VTable = extern struct {
@@ -8866,7 +8866,7 @@ pub const ICertPropertyRenewal = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICertPropertyArchivedKeyHash_Value = @import("../../zig.zig").Guid.initString("728ab33b-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyArchivedKeyHash_Value = Guid.initString("728ab33b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyArchivedKeyHash = &IID_ICertPropertyArchivedKeyHash_Value;
 pub const ICertPropertyArchivedKeyHash = extern struct {
     pub const VTable = extern struct {
@@ -8921,7 +8921,7 @@ pub const PsfAutoEnrollmentEnabled = PolicyServerUrlFlags.AutoEnrollmentEnabled;
 pub const PsfAllowUnTrustedCA = PolicyServerUrlFlags.AllowUnTrustedCA;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertPropertyEnrollmentPolicyServer_Value = @import("../../zig.zig").Guid.initString("728ab34a-217d-11da-b2a4-000e7bbb2b09");
+const IID_ICertPropertyEnrollmentPolicyServer_Value = Guid.initString("728ab34a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyEnrollmentPolicyServer = &IID_ICertPropertyEnrollmentPolicyServer_Value;
 pub const ICertPropertyEnrollmentPolicyServer = extern struct {
     pub const VTable = extern struct {
@@ -9014,7 +9014,7 @@ pub const ICertPropertyEnrollmentPolicyServer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509SignatureInformation_Value = @import("../../zig.zig").Guid.initString("728ab33c-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509SignatureInformation_Value = Guid.initString("728ab33c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SignatureInformation = &IID_IX509SignatureInformation_Value;
 pub const IX509SignatureInformation = extern struct {
     pub const VTable = extern struct {
@@ -9146,7 +9146,7 @@ pub const IX509SignatureInformation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISignerCertificate_Value = @import("../../zig.zig").Guid.initString("728ab33d-217d-11da-b2a4-000e7bbb2b09");
+const IID_ISignerCertificate_Value = Guid.initString("728ab33d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISignerCertificate = &IID_ISignerCertificate_Value;
 pub const ISignerCertificate = extern struct {
     pub const VTable = extern struct {
@@ -9262,7 +9262,7 @@ pub const ISignerCertificate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISignerCertificates_Value = @import("../../zig.zig").Guid.initString("728ab33e-217d-11da-b2a4-000e7bbb2b09");
+const IID_ISignerCertificates_Value = Guid.initString("728ab33e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISignerCertificates = &IID_ISignerCertificates_Value;
 pub const ISignerCertificates = extern struct {
     pub const VTable = extern struct {
@@ -9336,7 +9336,7 @@ pub const ISignerCertificates = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509NameValuePair_Value = @import("../../zig.zig").Guid.initString("728ab33f-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509NameValuePair_Value = Guid.initString("728ab33f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509NameValuePair = &IID_IX509NameValuePair_Value;
 pub const IX509NameValuePair = extern struct {
     pub const VTable = extern struct {
@@ -9377,7 +9377,7 @@ pub const IX509NameValuePair = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509NameValuePairs_Value = @import("../../zig.zig").Guid.initString("728ab340-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509NameValuePairs_Value = Guid.initString("728ab340-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509NameValuePairs = &IID_IX509NameValuePairs_Value;
 pub const IX509NameValuePairs = extern struct {
     pub const VTable = extern struct {
@@ -9507,7 +9507,7 @@ pub const TemplatePropValidityPeriod = EnrollmentTemplateProperty.ValidityPeriod
 pub const TemplatePropRenewalPeriod = EnrollmentTemplateProperty.RenewalPeriod;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateTemplate_Value = @import("../../zig.zig").Guid.initString("54244a13-555a-4e22-896d-1b0e52f76406");
+const IID_IX509CertificateTemplate_Value = Guid.initString("54244a13-555a-4e22-896d-1b0e52f76406");
 pub const IID_IX509CertificateTemplate = &IID_IX509CertificateTemplate_Value;
 pub const IX509CertificateTemplate = extern struct {
     pub const VTable = extern struct {
@@ -9531,7 +9531,7 @@ pub const IX509CertificateTemplate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateTemplates_Value = @import("../../zig.zig").Guid.initString("13b79003-2181-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateTemplates_Value = Guid.initString("13b79003-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateTemplates = &IID_IX509CertificateTemplates_Value;
 pub const IX509CertificateTemplates = extern struct {
     pub const VTable = extern struct {
@@ -9627,7 +9627,7 @@ pub const CommitFlagSaveTemplateOverwrite = CommitTemplateFlags.SaveTemplateOver
 pub const CommitFlagDeleteTemplate = CommitTemplateFlags.DeleteTemplate;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateTemplateWritable_Value = @import("../../zig.zig").Guid.initString("f49466a7-395a-4e9e-b6e7-32b331600dc0");
+const IID_IX509CertificateTemplateWritable_Value = Guid.initString("f49466a7-395a-4e9e-b6e7-32b331600dc0");
 pub const IID_IX509CertificateTemplateWritable = &IID_IX509CertificateTemplateWritable_Value;
 pub const IX509CertificateTemplateWritable = extern struct {
     pub const VTable = extern struct {
@@ -9714,7 +9714,7 @@ pub const CAPropSecurity = EnrollmentCAProperty.Security;
 pub const CAPropRenewalOnly = EnrollmentCAProperty.RenewalOnly;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertificationAuthority_Value = @import("../../zig.zig").Guid.initString("835d1f61-1e95-4bc8-b4d3-976c42b968f7");
+const IID_ICertificationAuthority_Value = Guid.initString("835d1f61-1e95-4bc8-b4d3-976c42b968f7");
 pub const IID_ICertificationAuthority = &IID_ICertificationAuthority_Value;
 pub const ICertificationAuthority = extern struct {
     pub const VTable = extern struct {
@@ -9738,7 +9738,7 @@ pub const ICertificationAuthority = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ICertificationAuthorities_Value = @import("../../zig.zig").Guid.initString("13b79005-2181-11da-b2a4-000e7bbb2b09");
+const IID_ICertificationAuthorities_Value = Guid.initString("13b79005-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificationAuthorities = &IID_ICertificationAuthorities_Value;
 pub const ICertificationAuthorities = extern struct {
     pub const VTable = extern struct {
@@ -9854,7 +9854,7 @@ pub const ExportOIDs = X509EnrollmentPolicyExportFlags.OIDs;
 pub const ExportCAs = X509EnrollmentPolicyExportFlags.CAs;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509EnrollmentPolicyServer_Value = @import("../../zig.zig").Guid.initString("13b79026-2181-11da-b2a4-000e7bbb2b09");
+const IID_IX509EnrollmentPolicyServer_Value = Guid.initString("13b79026-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentPolicyServer = &IID_IX509EnrollmentPolicyServer_Value;
 pub const IX509EnrollmentPolicyServer = extern struct {
     pub const VTable = extern struct {
@@ -10070,7 +10070,7 @@ pub const IX509EnrollmentPolicyServer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509PolicyServerUrl_Value = @import("../../zig.zig").Guid.initString("884e204a-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509PolicyServerUrl_Value = Guid.initString("884e204a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PolicyServerUrl = &IID_IX509PolicyServerUrl_Value;
 pub const IX509PolicyServerUrl = extern struct {
     pub const VTable = extern struct {
@@ -10216,7 +10216,7 @@ pub const IX509PolicyServerUrl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509PolicyServerListManager_Value = @import("../../zig.zig").Guid.initString("884e204b-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509PolicyServerListManager_Value = Guid.initString("884e204b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PolicyServerListManager = &IID_IX509PolicyServerListManager_Value;
 pub const IX509PolicyServerListManager = extern struct {
     pub const VTable = extern struct {
@@ -10341,7 +10341,7 @@ pub const LevelInnermost = InnerRequestLevel.Innermost;
 pub const LevelNext = InnerRequestLevel.Next;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509CertificateRequest_Value = @import("../../zig.zig").Guid.initString("728ab341-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequest_Value = Guid.initString("728ab341-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequest = &IID_IX509CertificateRequest_Value;
 pub const IX509CertificateRequest = extern struct {
     pub const VTable = extern struct {
@@ -10585,7 +10585,7 @@ pub const AllowedKeySignature = Pkcs10AllowedSignatureTypes.KeySignature;
 pub const AllowedNullSignature = Pkcs10AllowedSignatureTypes.NullSignature;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509CertificateRequestPkcs10_Value = @import("../../zig.zig").Guid.initString("728ab342-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestPkcs10_Value = Guid.initString("728ab342-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10 = &IID_IX509CertificateRequestPkcs10_Value;
 pub const IX509CertificateRequestPkcs10 = extern struct {
     pub const VTable = extern struct {
@@ -10856,7 +10856,7 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateRequestPkcs10V2_Value = @import("../../zig.zig").Guid.initString("728ab35b-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestPkcs10V2_Value = Guid.initString("728ab35b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10V2 = &IID_IX509CertificateRequestPkcs10V2_Value;
 pub const IX509CertificateRequestPkcs10V2 = extern struct {
     pub const VTable = extern struct {
@@ -10919,7 +10919,7 @@ pub const IX509CertificateRequestPkcs10V2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestPkcs10V3_Value = @import("../../zig.zig").Guid.initString("54ea9942-3d66-4530-b76e-7c9170d3ec52");
+const IID_IX509CertificateRequestPkcs10V3_Value = Guid.initString("54ea9942-3d66-4530-b76e-7c9170d3ec52");
 pub const IID_IX509CertificateRequestPkcs10V3 = &IID_IX509CertificateRequestPkcs10V3_Value;
 pub const IX509CertificateRequestPkcs10V3 = extern struct {
     pub const VTable = extern struct {
@@ -11046,7 +11046,7 @@ pub const XCN_NCRYPT_CLAIM_AUTHORITY_ONLY = KeyAttestationClaimType.AUTHORITY_ON
 pub const XCN_NCRYPT_CLAIM_SUBJECT_ONLY = KeyAttestationClaimType.SUBJECT_ONLY;
 pub const XCN_NCRYPT_CLAIM_UNKNOWN = KeyAttestationClaimType.UNKNOWN;
 
-const IID_IX509CertificateRequestPkcs10V4_Value = @import("../../zig.zig").Guid.initString("728ab363-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestPkcs10V4_Value = Guid.initString("728ab363-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10V4 = &IID_IX509CertificateRequestPkcs10V4_Value;
 pub const IX509CertificateRequestPkcs10V4 = extern struct {
     pub const VTable = extern struct {
@@ -11096,7 +11096,7 @@ pub const IX509CertificateRequestPkcs10V4 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509CertificateRequestCertificate_Value = @import("../../zig.zig").Guid.initString("728ab343-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestCertificate_Value = Guid.initString("728ab343-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCertificate = &IID_IX509CertificateRequestCertificate_Value;
 pub const IX509CertificateRequestCertificate = extern struct {
     pub const VTable = extern struct {
@@ -11210,7 +11210,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateRequestCertificate2_Value = @import("../../zig.zig").Guid.initString("728ab35a-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestCertificate2_Value = Guid.initString("728ab35a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCertificate2 = &IID_IX509CertificateRequestCertificate2_Value;
 pub const IX509CertificateRequestCertificate2 = extern struct {
     pub const VTable = extern struct {
@@ -11263,7 +11263,7 @@ pub const IX509CertificateRequestCertificate2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509CertificateRequestPkcs7_Value = @import("../../zig.zig").Guid.initString("728ab344-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestPkcs7_Value = Guid.initString("728ab344-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs7 = &IID_IX509CertificateRequestPkcs7_Value;
 pub const IX509CertificateRequestPkcs7 = extern struct {
     pub const VTable = extern struct {
@@ -11351,7 +11351,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateRequestPkcs7V2_Value = @import("../../zig.zig").Guid.initString("728ab35c-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestPkcs7V2_Value = Guid.initString("728ab35c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs7V2 = &IID_IX509CertificateRequestPkcs7V2_Value;
 pub const IX509CertificateRequestPkcs7V2 = extern struct {
     pub const VTable = extern struct {
@@ -11401,7 +11401,7 @@ pub const IX509CertificateRequestPkcs7V2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509CertificateRequestCmc_Value = @import("../../zig.zig").Guid.initString("728ab345-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestCmc_Value = Guid.initString("728ab345-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCmc = &IID_IX509CertificateRequestCmc_Value;
 pub const IX509CertificateRequestCmc = extern struct {
     pub const VTable = extern struct {
@@ -11627,7 +11627,7 @@ pub const IX509CertificateRequestCmc = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509CertificateRequestCmc2_Value = @import("../../zig.zig").Guid.initString("728ab35d-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRequestCmc2_Value = Guid.initString("728ab35d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCmc2 = &IID_IX509CertificateRequestCmc2_Value;
 pub const IX509CertificateRequestCmc2 = extern struct {
     pub const VTable = extern struct {
@@ -11707,7 +11707,7 @@ pub const AllowUntrustedCertificate = InstallResponseRestrictionFlags.UntrustedC
 pub const AllowUntrustedRoot = InstallResponseRestrictionFlags.UntrustedRoot;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509Enrollment_Value = @import("../../zig.zig").Guid.initString("728ab346-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Enrollment_Value = Guid.initString("728ab346-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Enrollment = &IID_IX509Enrollment_Value;
 pub const IX509Enrollment = extern struct {
     pub const VTable = extern struct {
@@ -11930,7 +11930,7 @@ pub const IX509Enrollment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509Enrollment2_Value = @import("../../zig.zig").Guid.initString("728ab350-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509Enrollment2_Value = Guid.initString("728ab350-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Enrollment2 = &IID_IX509Enrollment2_Value;
 pub const IX509Enrollment2 = extern struct {
     pub const VTable = extern struct {
@@ -12001,7 +12001,7 @@ pub const WebEnrollmentFlags = enum(i32) {
 pub const EnrollPrompt = WebEnrollmentFlags.t;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509EnrollmentHelper_Value = @import("../../zig.zig").Guid.initString("728ab351-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509EnrollmentHelper_Value = Guid.initString("728ab351-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentHelper = &IID_IX509EnrollmentHelper_Value;
 pub const IX509EnrollmentHelper = extern struct {
     pub const VTable = extern struct {
@@ -12059,7 +12059,7 @@ pub const IX509EnrollmentHelper = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IX509EnrollmentWebClassFactory_Value = @import("../../zig.zig").Guid.initString("728ab349-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509EnrollmentWebClassFactory_Value = Guid.initString("728ab349-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentWebClassFactory = &IID_IX509EnrollmentWebClassFactory_Value;
 pub const IX509EnrollmentWebClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -12082,7 +12082,7 @@ pub const IX509EnrollmentWebClassFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IX509MachineEnrollmentFactory_Value = @import("../../zig.zig").Guid.initString("728ab352-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509MachineEnrollmentFactory_Value = Guid.initString("728ab352-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509MachineEnrollmentFactory = &IID_IX509MachineEnrollmentFactory_Value;
 pub const IX509MachineEnrollmentFactory = extern struct {
     pub const VTable = extern struct {
@@ -12127,7 +12127,7 @@ pub const XCN_CRL_REASON_REMOVE_FROM_CRL = CRLRevocationReason.REMOVE_FROM_CRL;
 pub const XCN_CRL_REASON_PRIVILEGE_WITHDRAWN = CRLRevocationReason.PRIVILEGE_WITHDRAWN;
 pub const XCN_CRL_REASON_AA_COMPROMISE = CRLRevocationReason.AA_COMPROMISE;
 
-const IID_IX509CertificateRevocationListEntry_Value = @import("../../zig.zig").Guid.initString("728ab35e-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRevocationListEntry_Value = Guid.initString("728ab35e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationListEntry = &IID_IX509CertificateRevocationListEntry_Value;
 pub const IX509CertificateRevocationListEntry = extern struct {
     pub const VTable = extern struct {
@@ -12205,7 +12205,7 @@ pub const IX509CertificateRevocationListEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRevocationListEntries_Value = @import("../../zig.zig").Guid.initString("728ab35f-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRevocationListEntries_Value = Guid.initString("728ab35f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationListEntries = &IID_IX509CertificateRevocationListEntries_Value;
 pub const IX509CertificateRevocationListEntries = extern struct {
     pub const VTable = extern struct {
@@ -12288,7 +12288,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRevocationList_Value = @import("../../zig.zig").Guid.initString("728ab360-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509CertificateRevocationList_Value = Guid.initString("728ab360-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationList = &IID_IX509CertificateRevocationList_Value;
 pub const IX509CertificateRevocationList = extern struct {
     pub const VTable = extern struct {
@@ -12576,7 +12576,7 @@ pub const IX509CertificateRevocationList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificateAttestationChallenge_Value = @import("../../zig.zig").Guid.initString("6f175a7c-4a3a-40ae-9dba-592fd6bbf9b8");
+const IID_ICertificateAttestationChallenge_Value = Guid.initString("6f175a7c-4a3a-40ae-9dba-592fd6bbf9b8");
 pub const IID_ICertificateAttestationChallenge = &IID_ICertificateAttestationChallenge_Value;
 pub const ICertificateAttestationChallenge = extern struct {
     pub const VTable = extern struct {
@@ -12616,7 +12616,7 @@ pub const ICertificateAttestationChallenge = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificateAttestationChallenge2_Value = @import("../../zig.zig").Guid.initString("4631334d-e266-47d6-bd79-be53cb2e2753");
+const IID_ICertificateAttestationChallenge2_Value = Guid.initString("4631334d-e266-47d6-bd79-be53cb2e2753");
 pub const IID_ICertificateAttestationChallenge2 = &IID_ICertificateAttestationChallenge2_Value;
 pub const ICertificateAttestationChallenge2 = extern struct {
     pub const VTable = extern struct {
@@ -12648,7 +12648,7 @@ pub const ICertificateAttestationChallenge2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509SCEPEnrollment_Value = @import("../../zig.zig").Guid.initString("728ab361-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509SCEPEnrollment_Value = Guid.initString("728ab361-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollment = &IID_IX509SCEPEnrollment_Value;
 pub const IX509SCEPEnrollment = extern struct {
     pub const VTable = extern struct {
@@ -12890,7 +12890,7 @@ pub const DelayRetryLong = DelayRetryAction.Long;
 pub const DelayRetrySuccess = DelayRetryAction.Success;
 pub const DelayRetryPastSuccess = DelayRetryAction.PastSuccess;
 
-const IID_IX509SCEPEnrollment2_Value = @import("../../zig.zig").Guid.initString("728ab364-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509SCEPEnrollment2_Value = Guid.initString("728ab364-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollment2 = &IID_IX509SCEPEnrollment2_Value;
 pub const IX509SCEPEnrollment2 = extern struct {
     pub const VTable = extern struct {
@@ -12959,7 +12959,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509SCEPEnrollmentHelper_Value = @import("../../zig.zig").Guid.initString("728ab365-217d-11da-b2a4-000e7bbb2b09");
+const IID_IX509SCEPEnrollmentHelper_Value = Guid.initString("728ab365-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollmentHelper = &IID_IX509SCEPEnrollmentHelper_Value;
 pub const IX509SCEPEnrollmentHelper = extern struct {
     pub const VTable = extern struct {
@@ -13209,7 +13209,7 @@ pub const FNIMPORTPFXTOPROVIDERFREEDATA = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeStringArray_Value = @import("../../zig.zig").Guid.initString("12a88820-7494-11d0-8816-00a0c903b83c");
+const IID_ICertEncodeStringArray_Value = Guid.initString("12a88820-7494-11d0-8816-00a0c903b83c");
 pub const IID_ICertEncodeStringArray = &IID_ICertEncodeStringArray_Value;
 pub const ICertEncodeStringArray = extern struct {
     pub const VTable = extern struct {
@@ -13281,7 +13281,7 @@ pub const ICertEncodeStringArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeStringArray2_Value = @import("../../zig.zig").Guid.initString("9c680d93-9b7d-4e95-9018-4ffe10ba5ada");
+const IID_ICertEncodeStringArray2_Value = Guid.initString("9c680d93-9b7d-4e95-9018-4ffe10ba5ada");
 pub const IID_ICertEncodeStringArray2 = &IID_ICertEncodeStringArray2_Value;
 pub const ICertEncodeStringArray2 = extern struct {
     pub const VTable = extern struct {
@@ -13313,7 +13313,7 @@ pub const ICertEncodeStringArray2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeLongArray_Value = @import("../../zig.zig").Guid.initString("15e2f230-a0a2-11d0-8821-00a0c903b83c");
+const IID_ICertEncodeLongArray_Value = Guid.initString("15e2f230-a0a2-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeLongArray = &IID_ICertEncodeLongArray_Value;
 pub const ICertEncodeLongArray = extern struct {
     pub const VTable = extern struct {
@@ -13376,7 +13376,7 @@ pub const ICertEncodeLongArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeLongArray2_Value = @import("../../zig.zig").Guid.initString("4efde84a-bd9b-4fc2-a108-c347d478840f");
+const IID_ICertEncodeLongArray2_Value = Guid.initString("4efde84a-bd9b-4fc2-a108-c347d478840f");
 pub const IID_ICertEncodeLongArray2 = &IID_ICertEncodeLongArray2_Value;
 pub const ICertEncodeLongArray2 = extern struct {
     pub const VTable = extern struct {
@@ -13408,7 +13408,7 @@ pub const ICertEncodeLongArray2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeDateArray_Value = @import("../../zig.zig").Guid.initString("2f9469a0-a470-11d0-8821-00a0c903b83c");
+const IID_ICertEncodeDateArray_Value = Guid.initString("2f9469a0-a470-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeDateArray = &IID_ICertEncodeDateArray_Value;
 pub const ICertEncodeDateArray = extern struct {
     pub const VTable = extern struct {
@@ -13471,7 +13471,7 @@ pub const ICertEncodeDateArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeDateArray2_Value = @import("../../zig.zig").Guid.initString("99a4edb5-2b8e-448d-bf95-bba8d7789dc8");
+const IID_ICertEncodeDateArray2_Value = Guid.initString("99a4edb5-2b8e-448d-bf95-bba8d7789dc8");
 pub const IID_ICertEncodeDateArray2 = &IID_ICertEncodeDateArray2_Value;
 pub const ICertEncodeDateArray2 = extern struct {
     pub const VTable = extern struct {
@@ -13503,7 +13503,7 @@ pub const ICertEncodeDateArray2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeCRLDistInfo_Value = @import("../../zig.zig").Guid.initString("01958640-bbff-11d0-8825-00a0c903b83c");
+const IID_ICertEncodeCRLDistInfo_Value = Guid.initString("01958640-bbff-11d0-8825-00a0c903b83c");
 pub const IID_ICertEncodeCRLDistInfo = &IID_ICertEncodeCRLDistInfo_Value;
 pub const ICertEncodeCRLDistInfo = extern struct {
     pub const VTable = extern struct {
@@ -13597,7 +13597,7 @@ pub const ICertEncodeCRLDistInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeCRLDistInfo2_Value = @import("../../zig.zig").Guid.initString("b4275d4b-3e30-446f-ad36-09d03120b078");
+const IID_ICertEncodeCRLDistInfo2_Value = Guid.initString("b4275d4b-3e30-446f-ad36-09d03120b078");
 pub const IID_ICertEncodeCRLDistInfo2 = &IID_ICertEncodeCRLDistInfo2_Value;
 pub const ICertEncodeCRLDistInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -13629,7 +13629,7 @@ pub const ICertEncodeCRLDistInfo2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeAltName_Value = @import("../../zig.zig").Guid.initString("1c9a8c70-1271-11d1-9bd4-00c04fb683fa");
+const IID_ICertEncodeAltName_Value = Guid.initString("1c9a8c70-1271-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeAltName = &IID_ICertEncodeAltName_Value;
 pub const ICertEncodeAltName = extern struct {
     pub const VTable = extern struct {
@@ -13702,7 +13702,7 @@ pub const ICertEncodeAltName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeAltName2_Value = @import("../../zig.zig").Guid.initString("f67fe177-5ef1-4535-b4ce-29df15e2e0c3");
+const IID_ICertEncodeAltName2_Value = Guid.initString("f67fe177-5ef1-4535-b4ce-29df15e2e0c3");
 pub const IID_ICertEncodeAltName2 = &IID_ICertEncodeAltName2_Value;
 pub const ICertEncodeAltName2 = extern struct {
     pub const VTable = extern struct {
@@ -13755,7 +13755,7 @@ pub const ICertEncodeAltName2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertEncodeBitString_Value = @import("../../zig.zig").Guid.initString("6db525be-1278-11d1-9bd4-00c04fb683fa");
+const IID_ICertEncodeBitString_Value = Guid.initString("6db525be-1278-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeBitString = &IID_ICertEncodeBitString_Value;
 pub const ICertEncodeBitString = extern struct {
     pub const VTable = extern struct {
@@ -13802,7 +13802,7 @@ pub const ICertEncodeBitString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeBitString2_Value = @import("../../zig.zig").Guid.initString("e070d6e7-23ef-4dd2-8242-ebd9c928cb30");
+const IID_ICertEncodeBitString2_Value = Guid.initString("e070d6e7-23ef-4dd2-8242-ebd9c928cb30");
 pub const IID_ICertEncodeBitString2 = &IID_ICertEncodeBitString2_Value;
 pub const ICertEncodeBitString2 = extern struct {
     pub const VTable = extern struct {
@@ -13846,7 +13846,7 @@ pub const ICertEncodeBitString2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertExit_Value = @import("../../zig.zig").Guid.initString("e19ae1a0-7364-11d0-8816-00a0c903b83c");
+const IID_ICertExit_Value = Guid.initString("e19ae1a0-7364-11d0-8816-00a0c903b83c");
 pub const IID_ICertExit = &IID_ICertExit_Value;
 pub const ICertExit = extern struct {
     pub const VTable = extern struct {
@@ -13886,7 +13886,7 @@ pub const ICertExit = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_ICertExit2_Value = @import("../../zig.zig").Guid.initString("0abf484b-d049-464d-a7ed-552e7529b0ff");
+const IID_ICertExit2_Value = Guid.initString("0abf484b-d049-464d-a7ed-552e7529b0ff");
 pub const IID_ICertExit2 = &IID_ICertExit2_Value;
 pub const ICertExit2 = extern struct {
     pub const VTable = extern struct {
@@ -13933,14 +13933,14 @@ pub const CAINFO = extern struct {
     fAdvancedServer: u32,
 };
 
-const CLSID_CEnroll2_Value = @import("../../zig.zig").Guid.initString("127698e4-e730-4e5c-a2b1-21490a70c8a1");
+const CLSID_CEnroll2_Value = Guid.initString("127698e4-e730-4e5c-a2b1-21490a70c8a1");
 pub const CLSID_CEnroll2 = &CLSID_CEnroll2_Value;
 
-const CLSID_CEnroll_Value = @import("../../zig.zig").Guid.initString("43f8f289-7a20-11d0-8f06-00c04fc295e1");
+const CLSID_CEnroll_Value = Guid.initString("43f8f289-7a20-11d0-8f06-00c04fc295e1");
 pub const CLSID_CEnroll = &CLSID_CEnroll_Value;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICEnroll_Value = @import("../../zig.zig").Guid.initString("43f8f288-7a20-11d0-8f06-00c04fc295e1");
+const IID_ICEnroll_Value = Guid.initString("43f8f288-7a20-11d0-8f06-00c04fc295e1");
 pub const IID_ICEnroll = &IID_ICEnroll_Value;
 pub const ICEnroll = extern struct {
     pub const VTable = extern struct {
@@ -14458,7 +14458,7 @@ pub const ICEnroll = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICEnroll2_Value = @import("../../zig.zig").Guid.initString("704ca730-c90b-11d1-9bec-00c04fc295e1");
+const IID_ICEnroll2_Value = Guid.initString("704ca730-c90b-11d1-9bec-00c04fc295e1");
 pub const IID_ICEnroll2 = &IID_ICEnroll2_Value;
 pub const ICEnroll2 = extern struct {
     pub const VTable = extern struct {
@@ -14525,7 +14525,7 @@ pub const ICEnroll2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICEnroll3_Value = @import("../../zig.zig").Guid.initString("c28c2d95-b7de-11d2-a421-00c04f79fe8e");
+const IID_ICEnroll3_Value = Guid.initString("c28c2d95-b7de-11d2-a421-00c04f79fe8e");
 pub const IID_ICEnroll3 = &IID_ICEnroll3_Value;
 pub const ICEnroll3 = extern struct {
     pub const VTable = extern struct {
@@ -14663,7 +14663,7 @@ pub const ICEnroll3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICEnroll4_Value = @import("../../zig.zig").Guid.initString("c1f1188a-2eb5-4a80-841b-7e729a356d90");
+const IID_ICEnroll4_Value = Guid.initString("c1f1188a-2eb5-4a80-841b-7e729a356d90");
 pub const IID_ICEnroll4 = &IID_ICEnroll4_Value;
 pub const ICEnroll4 = extern struct {
     pub const VTable = extern struct {
@@ -14982,7 +14982,7 @@ pub const ICEnroll4 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnroll_Value = @import("../../zig.zig").Guid.initString("acaa7838-4585-11d1-ab57-00c04fc295e1");
+const IID_IEnroll_Value = Guid.initString("acaa7838-4585-11d1-ab57-00c04fc295e1");
 pub const IID_IEnroll = &IID_IEnroll_Value;
 pub const IEnroll = extern struct {
     pub const VTable = extern struct {
@@ -15617,7 +15617,7 @@ pub const IEnroll = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnroll2_Value = @import("../../zig.zig").Guid.initString("c080e199-b7df-11d2-a421-00c04f79fe8e");
+const IID_IEnroll2_Value = Guid.initString("c080e199-b7df-11d2-a421-00c04f79fe8e");
 pub const IID_IEnroll2 = &IID_IEnroll2_Value;
 pub const IEnroll2 = extern struct {
     pub const VTable = extern struct {
@@ -15787,7 +15787,7 @@ pub const IEnroll2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnroll4_Value = @import("../../zig.zig").Guid.initString("f8053fe5-78f4-448f-a0db-41d61b73446b");
+const IID_IEnroll4_Value = Guid.initString("f8053fe5-78f4-448f-a0db-41d61b73446b");
 pub const IID_IEnroll4 = &IID_IEnroll4_Value;
 pub const IEnroll4 = extern struct {
     pub const VTable = extern struct {
@@ -16096,7 +16096,7 @@ pub const IEnroll4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertRequestD_Value = @import("../../zig.zig").Guid.initString("d99e6e70-fc88-11d0-b498-00a0c90312f3");
+const IID_ICertRequestD_Value = Guid.initString("d99e6e70-fc88-11d0-b498-00a0c90312f3");
 pub const IID_ICertRequestD = &IID_ICertRequestD_Value;
 pub const ICertRequestD = extern struct {
     pub const VTable = extern struct {
@@ -16143,7 +16143,7 @@ pub const ICertRequestD = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertRequestD2_Value = @import("../../zig.zig").Guid.initString("5422fd3a-d4b8-4cef-a12e-e87d4ca22e90");
+const IID_ICertRequestD2_Value = Guid.initString("5422fd3a-d4b8-4cef-a12e-e87d4ca22e90");
 pub const IID_ICertRequestD2 = &IID_ICertRequestD2_Value;
 pub const ICertRequestD2 = extern struct {
     pub const VTable = extern struct {

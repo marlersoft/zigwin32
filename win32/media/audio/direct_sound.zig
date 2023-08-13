@@ -475,7 +475,7 @@ pub const LPDSENUMCALLBACKW = fn(
     param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-const IID_IDirectSound_Value = @import("../../zig.zig").Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
+const IID_IDirectSound_Value = Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound = &IID_IDirectSound_Value;
 pub const IDirectSound = extern struct {
     pub const VTable = extern struct {
@@ -555,7 +555,7 @@ pub const IDirectSound = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSound8_Value = @import("../../zig.zig").Guid.initString("c50a7e93-f395-4834-9ef6-7fa99de50966");
+const IID_IDirectSound8_Value = Guid.initString("c50a7e93-f395-4834-9ef6-7fa99de50966");
 pub const IID_IDirectSound8 = &IID_IDirectSound8_Value;
 pub const IDirectSound8 = extern struct {
     pub const VTable = extern struct {
@@ -576,7 +576,7 @@ pub const IDirectSound8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundBuffer_Value = @import("../../zig.zig").Guid.initString("279afa85-4981-11ce-a521-0020af0be560");
+const IID_IDirectSoundBuffer_Value = Guid.initString("279afa85-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSoundBuffer = &IID_IDirectSoundBuffer_Value;
 pub const IDirectSoundBuffer = extern struct {
     pub const VTable = extern struct {
@@ -749,7 +749,7 @@ pub const IDirectSoundBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundBuffer8_Value = @import("../../zig.zig").Guid.initString("6825a449-7524-4d82-920f-50e36ab3ab1e");
+const IID_IDirectSoundBuffer8_Value = Guid.initString("6825a449-7524-4d82-920f-50e36ab3ab1e");
 pub const IID_IDirectSoundBuffer8 = &IID_IDirectSoundBuffer8_Value;
 pub const IDirectSoundBuffer8 = extern struct {
     pub const VTable = extern struct {
@@ -793,7 +793,7 @@ pub const IDirectSoundBuffer8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSound3DListener_Value = @import("../../zig.zig").Guid.initString("279afa84-4981-11ce-a521-0020af0be560");
+const IID_IDirectSound3DListener_Value = Guid.initString("279afa84-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound3DListener = &IID_IDirectSound3DListener_Value;
 pub const IDirectSound3DListener = extern struct {
     pub const VTable = extern struct {
@@ -942,7 +942,7 @@ pub const IDirectSound3DListener = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSound3DBuffer_Value = @import("../../zig.zig").Guid.initString("279afa86-4981-11ce-a521-0020af0be560");
+const IID_IDirectSound3DBuffer_Value = Guid.initString("279afa86-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound3DBuffer = &IID_IDirectSound3DBuffer_Value;
 pub const IDirectSound3DBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1116,7 +1116,7 @@ pub const IDirectSound3DBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundCapture_Value = @import("../../zig.zig").Guid.initString("b0210781-89cd-11d0-af08-00a0c925cd16");
+const IID_IDirectSoundCapture_Value = Guid.initString("b0210781-89cd-11d0-af08-00a0c925cd16");
 pub const IID_IDirectSoundCapture = &IID_IDirectSoundCapture_Value;
 pub const IDirectSoundCapture = extern struct {
     pub const VTable = extern struct {
@@ -1155,7 +1155,7 @@ pub const IDirectSoundCapture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundCaptureBuffer_Value = @import("../../zig.zig").Guid.initString("b0210782-89cd-11d0-af08-00a0c925cd16");
+const IID_IDirectSoundCaptureBuffer_Value = Guid.initString("b0210782-89cd-11d0-af08-00a0c925cd16");
 pub const IID_IDirectSoundCaptureBuffer = &IID_IDirectSoundCaptureBuffer_Value;
 pub const IDirectSoundCaptureBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1255,7 +1255,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundCaptureBuffer8_Value = @import("../../zig.zig").Guid.initString("00990df4-0dbb-4872-833e-6d303e80aeb6");
+const IID_IDirectSoundCaptureBuffer8_Value = Guid.initString("00990df4-0dbb-4872-833e-6d303e80aeb6");
 pub const IID_IDirectSoundCaptureBuffer8 = &IID_IDirectSoundCaptureBuffer8_Value;
 pub const IDirectSoundCaptureBuffer8 = extern struct {
     pub const VTable = extern struct {
@@ -1288,7 +1288,7 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundNotify_Value = @import("../../zig.zig").Guid.initString("b0210783-89cd-11d0-af08-00a0c925cd16");
+const IID_IDirectSoundNotify_Value = Guid.initString("b0210783-89cd-11d0-af08-00a0c925cd16");
 pub const IID_IDirectSoundNotify = &IID_IDirectSoundNotify_Value;
 pub const IDirectSoundNotify = extern struct {
     pub const VTable = extern struct {
@@ -1315,7 +1315,7 @@ pub const DSFXGargle = extern struct {
     dwWaveShape: u32,
 };
 
-const IID_IDirectSoundFXGargle_Value = @import("../../zig.zig").Guid.initString("d616f352-d622-11ce-aac5-0020af0b99a3");
+const IID_IDirectSoundFXGargle_Value = Guid.initString("d616f352-d622-11ce-aac5-0020af0b99a3");
 pub const IID_IDirectSoundFXGargle = &IID_IDirectSoundFXGargle_Value;
 pub const IDirectSoundFXGargle = extern struct {
     pub const VTable = extern struct {
@@ -1354,7 +1354,7 @@ pub const DSFXChorus = extern struct {
     lPhase: i32,
 };
 
-const IID_IDirectSoundFXChorus_Value = @import("../../zig.zig").Guid.initString("880842e3-145f-43e6-a934-a71806e50547");
+const IID_IDirectSoundFXChorus_Value = Guid.initString("880842e3-145f-43e6-a934-a71806e50547");
 pub const IID_IDirectSoundFXChorus = &IID_IDirectSoundFXChorus_Value;
 pub const IDirectSoundFXChorus = extern struct {
     pub const VTable = extern struct {
@@ -1393,7 +1393,7 @@ pub const DSFXFlanger = extern struct {
     lPhase: i32,
 };
 
-const IID_IDirectSoundFXFlanger_Value = @import("../../zig.zig").Guid.initString("903e9878-2c92-4072-9b2c-ea68f5396783");
+const IID_IDirectSoundFXFlanger_Value = Guid.initString("903e9878-2c92-4072-9b2c-ea68f5396783");
 pub const IID_IDirectSoundFXFlanger = &IID_IDirectSoundFXFlanger_Value;
 pub const IDirectSoundFXFlanger = extern struct {
     pub const VTable = extern struct {
@@ -1430,7 +1430,7 @@ pub const DSFXEcho = extern struct {
     lPanDelay: i32,
 };
 
-const IID_IDirectSoundFXEcho_Value = @import("../../zig.zig").Guid.initString("8bd28edf-50db-4e92-a2bd-445488d1ed42");
+const IID_IDirectSoundFXEcho_Value = Guid.initString("8bd28edf-50db-4e92-a2bd-445488d1ed42");
 pub const IID_IDirectSoundFXEcho = &IID_IDirectSoundFXEcho_Value;
 pub const IDirectSoundFXEcho = extern struct {
     pub const VTable = extern struct {
@@ -1467,7 +1467,7 @@ pub const DSFXDistortion = extern struct {
     fPreLowpassCutoff: f32,
 };
 
-const IID_IDirectSoundFXDistortion_Value = @import("../../zig.zig").Guid.initString("8ecf4326-455f-4d8b-bda9-8d5d3e9e3e0b");
+const IID_IDirectSoundFXDistortion_Value = Guid.initString("8ecf4326-455f-4d8b-bda9-8d5d3e9e3e0b");
 pub const IID_IDirectSoundFXDistortion = &IID_IDirectSoundFXDistortion_Value;
 pub const IDirectSoundFXDistortion = extern struct {
     pub const VTable = extern struct {
@@ -1505,7 +1505,7 @@ pub const DSFXCompressor = extern struct {
     fPredelay: f32,
 };
 
-const IID_IDirectSoundFXCompressor_Value = @import("../../zig.zig").Guid.initString("4bbd1154-62f6-4e2c-a15c-d3b6c417f7a0");
+const IID_IDirectSoundFXCompressor_Value = Guid.initString("4bbd1154-62f6-4e2c-a15c-d3b6c417f7a0");
 pub const IID_IDirectSoundFXCompressor = &IID_IDirectSoundFXCompressor_Value;
 pub const IDirectSoundFXCompressor = extern struct {
     pub const VTable = extern struct {
@@ -1540,7 +1540,7 @@ pub const DSFXParamEq = extern struct {
     fGain: f32,
 };
 
-const IID_IDirectSoundFXParamEq_Value = @import("../../zig.zig").Guid.initString("c03ca9fe-fe90-4204-8078-82334cd177da");
+const IID_IDirectSoundFXParamEq_Value = Guid.initString("c03ca9fe-fe90-4204-8078-82334cd177da");
 pub const IID_IDirectSoundFXParamEq = &IID_IDirectSoundFXParamEq_Value;
 pub const IDirectSoundFXParamEq = extern struct {
     pub const VTable = extern struct {
@@ -1584,7 +1584,7 @@ pub const DSFXI3DL2Reverb = extern struct {
     flHFReference: f32,
 };
 
-const IID_IDirectSoundFXI3DL2Reverb_Value = @import("../../zig.zig").Guid.initString("4b166a6a-0d66-43f3-80e3-ee6280dee1a4");
+const IID_IDirectSoundFXI3DL2Reverb_Value = Guid.initString("4b166a6a-0d66-43f3-80e3-ee6280dee1a4");
 pub const IID_IDirectSoundFXI3DL2Reverb = &IID_IDirectSoundFXI3DL2Reverb_Value;
 pub const IDirectSoundFXI3DL2Reverb = extern struct {
     pub const VTable = extern struct {
@@ -1652,7 +1652,7 @@ pub const DSFXWavesReverb = extern struct {
     fHighFreqRTRatio: f32,
 };
 
-const IID_IDirectSoundFXWavesReverb_Value = @import("../../zig.zig").Guid.initString("46858c3a-0dc6-45e3-b760-d4eef16cb325");
+const IID_IDirectSoundFXWavesReverb_Value = Guid.initString("46858c3a-0dc6-45e3-b760-d4eef16cb325");
 pub const IID_IDirectSoundFXWavesReverb = &IID_IDirectSoundFXWavesReverb_Value;
 pub const IDirectSoundFXWavesReverb = extern struct {
     pub const VTable = extern struct {
@@ -1687,7 +1687,7 @@ pub const DSCFXAec = extern struct {
     dwMode: u32,
 };
 
-const IID_IDirectSoundCaptureFXAec_Value = @import("../../zig.zig").Guid.initString("ad74143d-903d-4ab7-8066-28d363036d65");
+const IID_IDirectSoundCaptureFXAec_Value = Guid.initString("ad74143d-903d-4ab7-8066-28d363036d65");
 pub const IID_IDirectSoundCaptureFXAec = &IID_IDirectSoundCaptureFXAec_Value;
 pub const IDirectSoundCaptureFXAec = extern struct {
     pub const VTable = extern struct {
@@ -1735,7 +1735,7 @@ pub const DSCFXNoiseSuppress = extern struct {
     fEnable: BOOL,
 };
 
-const IID_IDirectSoundCaptureFXNoiseSuppress_Value = @import("../../zig.zig").Guid.initString("ed311e41-fbae-4175-9625-cd0854f693ca");
+const IID_IDirectSoundCaptureFXNoiseSuppress_Value = Guid.initString("ed311e41-fbae-4175-9625-cd0854f693ca");
 pub const IID_IDirectSoundCaptureFXNoiseSuppress = &IID_IDirectSoundCaptureFXNoiseSuppress_Value;
 pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
     pub const VTable = extern struct {
@@ -1771,7 +1771,7 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectSoundFullDuplex_Value = @import("../../zig.zig").Guid.initString("edcb4c7a-daab-4216-a42e-6c50596ddc1d");
+const IID_IDirectSoundFullDuplex_Value = Guid.initString("edcb4c7a-daab-4216-a42e-6c50596ddc1d");
 pub const IID_IDirectSoundFullDuplex = &IID_IDirectSoundFullDuplex_Value;
 pub const IDirectSoundFullDuplex = extern struct {
     pub const VTable = extern struct {

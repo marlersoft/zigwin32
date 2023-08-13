@@ -7,7 +7,7 @@
 // Section: Types (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationScriptEvents_Value = @import("../../../zig.zig").Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
+const IID_IWebApplicationScriptEvents_Value = Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
 pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
 pub const IWebApplicationScriptEvents = extern struct {
     pub const VTable = extern struct {
@@ -40,7 +40,7 @@ pub const IWebApplicationScriptEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationNavigationEvents_Value = @import("../../../zig.zig").Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
+const IID_IWebApplicationNavigationEvents_Value = Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
 pub const IID_IWebApplicationNavigationEvents = &IID_IWebApplicationNavigationEvents_Value;
 pub const IWebApplicationNavigationEvents = extern struct {
     pub const VTable = extern struct {
@@ -108,7 +108,7 @@ pub const IWebApplicationNavigationEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationUIEvents_Value = @import("../../../zig.zig").Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
+const IID_IWebApplicationUIEvents_Value = Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
 pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
 pub const IWebApplicationUIEvents = extern struct {
     pub const VTable = extern struct {
@@ -131,7 +131,7 @@ pub const IWebApplicationUIEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationUpdateEvents_Value = @import("../../../zig.zig").Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
+const IID_IWebApplicationUpdateEvents_Value = Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
 pub const IID_IWebApplicationUpdateEvents = &IID_IWebApplicationUpdateEvents_Value;
 pub const IWebApplicationUpdateEvents = extern struct {
     pub const VTable = extern struct {
@@ -159,7 +159,7 @@ pub const IWebApplicationUpdateEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationHost_Value = @import("../../../zig.zig").Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
+const IID_IWebApplicationHost_Value = Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
 pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
 pub const IWebApplicationHost = extern struct {
     pub const VTable = extern struct {
@@ -216,7 +216,7 @@ pub const IWebApplicationHost = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationActivation_Value = @import("../../../zig.zig").Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
+const IID_IWebApplicationActivation_Value = Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
 pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
 pub const IWebApplicationActivation = extern struct {
     pub const VTable = extern struct {
@@ -237,7 +237,7 @@ pub const IWebApplicationActivation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationAuthoringMode_Value = @import("../../../zig.zig").Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
+const IID_IWebApplicationAuthoringMode_Value = Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
 pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
 pub const IWebApplicationAuthoringMode = extern struct {
     pub const VTable = extern struct {

@@ -19,7 +19,7 @@ pub const PDF_RENDER_PARAMS = extern struct {
     IgnoreHighContrast: BOOLEAN,
 };
 
-const IID_IPdfRendererNative_Value = @import("../../zig.zig").Guid.initString("7d9dcd91-d277-4947-8527-07a0daeda94a");
+const IID_IPdfRendererNative_Value = Guid.initString("7d9dcd91-d277-4947-8527-07a0daeda94a");
 pub const IID_IPdfRendererNative = &IID_IPdfRendererNative_Value;
 pub const IPdfRendererNative = extern struct {
     pub const VTable = extern struct {
@@ -77,8 +77,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const D2D_COLOR_F = @import("../../graphics/direct2d/common.zig").D2D_COLOR_F;
 const D2D_RECT_F = @import("../../graphics/direct2d/common.zig").D2D_RECT_F;

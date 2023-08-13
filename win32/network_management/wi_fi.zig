@@ -759,45 +759,45 @@ pub const WLAN_UI_API_INITIAL_VERSION = @as(u32, 1);
 pub const GUID_DEVINTERFACE_WIFIDIRECT_DEVICE = Guid.initString("439b20af-8955-405b-99f0-a62af0c68d43");
 pub const GUID_AEPSERVICE_WIFIDIRECT_DEVICE = Guid.initString("cc29827c-9caf-4928-99a9-18f7c2381389");
 pub const GUID_DEVINTERFACE_ASP_INFRA_DEVICE = Guid.initString("ff823995-7a72-4c80-8757-c67ee13d1a49");
-pub const DEVPKEY_WiFiDirect_DeviceAddress = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 1 };
-pub const DEVPKEY_WiFiDirect_InterfaceAddress = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 2 };
-pub const DEVPKEY_WiFiDirect_InterfaceGuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 3 };
-pub const DEVPKEY_WiFiDirect_GroupId = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 4 };
-pub const DEVPKEY_WiFiDirect_IsConnected = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 5 };
-pub const DEVPKEY_WiFiDirect_IsVisible = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 6 };
-pub const DEVPKEY_WiFiDirect_IsLegacyDevice = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 7 };
-pub const DEVPKEY_WiFiDirect_MiracastVersion = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 8 };
-pub const DEVPKEY_WiFiDirect_IsMiracastLCPSupported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 9 };
-pub const DEVPKEY_WiFiDirect_Services = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 10 };
-pub const DEVPKEY_WiFiDirect_SupportedChannelList = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 11 };
-pub const DEVPKEY_WiFiDirect_InformationElements = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 12 };
-pub const DEVPKEY_WiFiDirect_DeviceAddressCopy = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 13 };
-pub const DEVPKEY_WiFiDirect_IsRecentlyAssociated = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 14 };
-pub const DEVPKEY_WiFiDirect_Service_Aeps = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 15 };
-pub const DEVPKEY_WiFiDirect_NoMiracastAutoProject = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 16 };
-pub const DEVPKEY_InfraCast_Supported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 17 };
-pub const DEVPKEY_InfraCast_StreamSecuritySupported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 18 };
-pub const DEVPKEY_InfraCast_AccessPointBssid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 19 };
-pub const DEVPKEY_InfraCast_SinkHostName = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 20 };
-pub const DEVPKEY_InfraCast_ChallengeAep = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 21 };
-pub const DEVPKEY_WiFiDirect_IsDMGCapable = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 22 };
-pub const DEVPKEY_InfraCast_DevnodeAep = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 23 };
-pub const DEVPKEY_WiFiDirect_FoundWsbService = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 24 };
-pub const DEVPKEY_InfraCast_HostName_ResolutionMode = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 25 };
-pub const DEVPKEY_InfraCast_SinkIpAddress = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 26 };
-pub const DEVPKEY_WiFiDirect_TransientAssociation = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 27 };
-pub const DEVPKEY_WiFiDirect_LinkQuality = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 28 };
-pub const DEVPKEY_InfraCast_PinSupported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 29 };
-pub const DEVPKEY_InfraCast_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 30 };
-pub const DEVPKEY_WiFiDirect_Miracast_SessionMgmtControlPort = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 31 };
-pub const DEVPKEY_WiFiDirect_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 32 };
-pub const DEVPKEY_WiFiDirectServices_ServiceAddress = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 2 };
-pub const DEVPKEY_WiFiDirectServices_ServiceName = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 3 };
-pub const DEVPKEY_WiFiDirectServices_ServiceInformation = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 4 };
-pub const DEVPKEY_WiFiDirectServices_AdvertisementId = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 5 };
-pub const DEVPKEY_WiFiDirectServices_ServiceConfigMethods = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 6 };
-pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 7 };
-pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
+pub const DEVPKEY_WiFiDirect_DeviceAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 1 };
+pub const DEVPKEY_WiFiDirect_InterfaceAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 2 };
+pub const DEVPKEY_WiFiDirect_InterfaceGuid = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 3 };
+pub const DEVPKEY_WiFiDirect_GroupId = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 4 };
+pub const DEVPKEY_WiFiDirect_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 5 };
+pub const DEVPKEY_WiFiDirect_IsVisible = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 6 };
+pub const DEVPKEY_WiFiDirect_IsLegacyDevice = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 7 };
+pub const DEVPKEY_WiFiDirect_MiracastVersion = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 8 };
+pub const DEVPKEY_WiFiDirect_IsMiracastLCPSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 9 };
+pub const DEVPKEY_WiFiDirect_Services = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 10 };
+pub const DEVPKEY_WiFiDirect_SupportedChannelList = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 11 };
+pub const DEVPKEY_WiFiDirect_InformationElements = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 12 };
+pub const DEVPKEY_WiFiDirect_DeviceAddressCopy = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 13 };
+pub const DEVPKEY_WiFiDirect_IsRecentlyAssociated = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 14 };
+pub const DEVPKEY_WiFiDirect_Service_Aeps = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 15 };
+pub const DEVPKEY_WiFiDirect_NoMiracastAutoProject = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 16 };
+pub const DEVPKEY_InfraCast_Supported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 17 };
+pub const DEVPKEY_InfraCast_StreamSecuritySupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 18 };
+pub const DEVPKEY_InfraCast_AccessPointBssid = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 19 };
+pub const DEVPKEY_InfraCast_SinkHostName = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 20 };
+pub const DEVPKEY_InfraCast_ChallengeAep = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 21 };
+pub const DEVPKEY_WiFiDirect_IsDMGCapable = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 22 };
+pub const DEVPKEY_InfraCast_DevnodeAep = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 23 };
+pub const DEVPKEY_WiFiDirect_FoundWsbService = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 24 };
+pub const DEVPKEY_InfraCast_HostName_ResolutionMode = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 25 };
+pub const DEVPKEY_InfraCast_SinkIpAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 26 };
+pub const DEVPKEY_WiFiDirect_TransientAssociation = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 27 };
+pub const DEVPKEY_WiFiDirect_LinkQuality = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 28 };
+pub const DEVPKEY_InfraCast_PinSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 29 };
+pub const DEVPKEY_InfraCast_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 30 };
+pub const DEVPKEY_WiFiDirect_Miracast_SessionMgmtControlPort = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 31 };
+pub const DEVPKEY_WiFiDirect_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 32 };
+pub const DEVPKEY_WiFiDirectServices_ServiceAddress = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 2 };
+pub const DEVPKEY_WiFiDirectServices_ServiceName = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 3 };
+pub const DEVPKEY_WiFiDirectServices_ServiceInformation = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 4 };
+pub const DEVPKEY_WiFiDirectServices_AdvertisementId = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 5 };
+pub const DEVPKEY_WiFiDirectServices_ServiceConfigMethods = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 6 };
+pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 7 };
+pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
 
 //--------------------------------------------------------------------------------
 // Section: Types (330)
@@ -3940,7 +3940,7 @@ pub const ONEX_USER_INFO = extern struct {
     DomainName: ONEX_VARIABLE_BLOB,
 };
 
-const CLSID_Dot11AdHocManager_Value = @import("../zig.zig").Guid.initString("dd06a84f-83bd-4d01-8ab9-2389fea0869e");
+const CLSID_Dot11AdHocManager_Value = Guid.initString("dd06a84f-83bd-4d01-8ab9-2389fea0869e");
 pub const CLSID_Dot11AdHocManager = &CLSID_Dot11AdHocManager_Value;
 
 pub const DOT11_ADHOC_CIPHER_ALGORITHM = enum(i32) {
@@ -3986,7 +3986,7 @@ pub const DOT11_ADHOC_CONNECT_FAIL_PASSPHRASE_MISMATCH = DOT11_ADHOC_CONNECT_FAI
 pub const DOT11_ADHOC_CONNECT_FAIL_OTHER = DOT11_ADHOC_CONNECT_FAIL_REASON.OTHER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocManager_Value = @import("../zig.zig").Guid.initString("8f10cc26-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocManager_Value = Guid.initString("8f10cc26-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManager = &IID_IDot11AdHocManager_Value;
 pub const IDot11AdHocManager = extern struct {
     pub const VTable = extern struct {
@@ -4050,7 +4050,7 @@ pub const IDot11AdHocManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocManagerNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc27-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocManagerNotificationSink_Value = Guid.initString("8f10cc27-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManagerNotificationSink = &IID_IDot11AdHocManagerNotificationSink_Value;
 pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub const VTable = extern struct {
@@ -4096,7 +4096,7 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumDot11AdHocNetworks_Value = @import("../zig.zig").Guid.initString("8f10cc28-cf0d-42a0-acbe-e2de7007384d");
+const IID_IEnumDot11AdHocNetworks_Value = Guid.initString("8f10cc28-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocNetworks = &IID_IEnumDot11AdHocNetworks_Value;
 pub const IEnumDot11AdHocNetworks = extern struct {
     pub const VTable = extern struct {
@@ -4143,7 +4143,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocNetwork_Value = @import("../zig.zig").Guid.initString("8f10cc29-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocNetwork_Value = Guid.initString("8f10cc29-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetwork = &IID_IDot11AdHocNetwork_Value;
 pub const IDot11AdHocNetwork = extern struct {
     pub const VTable = extern struct {
@@ -4255,7 +4255,7 @@ pub const IDot11AdHocNetwork = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocNetworkNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2a-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocNetworkNotificationSink_Value = Guid.initString("8f10cc2a-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetworkNotificationSink = &IID_IDot11AdHocNetworkNotificationSink_Value;
 pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub const VTable = extern struct {
@@ -4285,7 +4285,7 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocInterface_Value = @import("../zig.zig").Guid.initString("8f10cc2b-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocInterface_Value = Guid.initString("8f10cc2b-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterface = &IID_IDot11AdHocInterface_Value;
 pub const IDot11AdHocInterface = extern struct {
     pub const VTable = extern struct {
@@ -4372,7 +4372,7 @@ pub const IDot11AdHocInterface = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumDot11AdHocInterfaces_Value = @import("../zig.zig").Guid.initString("8f10cc2c-cf0d-42a0-acbe-e2de7007384d");
+const IID_IEnumDot11AdHocInterfaces_Value = Guid.initString("8f10cc2c-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocInterfaces = &IID_IEnumDot11AdHocInterfaces_Value;
 pub const IEnumDot11AdHocInterfaces = extern struct {
     pub const VTable = extern struct {
@@ -4419,7 +4419,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2d-cf0d-42a0-acbe-e2de7007384d");
+const IID_IEnumDot11AdHocSecuritySettings_Value = Guid.initString("8f10cc2d-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocSecuritySettings = &IID_IEnumDot11AdHocSecuritySettings_Value;
 pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
@@ -4466,7 +4466,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2e-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocSecuritySettings_Value = Guid.initString("8f10cc2e-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocSecuritySettings = &IID_IDot11AdHocSecuritySettings_Value;
 pub const IDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
@@ -4496,7 +4496,7 @@ pub const IDot11AdHocSecuritySettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDot11AdHocInterfaceNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2f-cf0d-42a0-acbe-e2de7007384d");
+const IID_IDot11AdHocInterfaceNotificationSink_Value = Guid.initString("8f10cc2f-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterfaceNotificationSink = &IID_IDot11AdHocInterfaceNotificationSink_Value;
 pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub const VTable = extern struct {

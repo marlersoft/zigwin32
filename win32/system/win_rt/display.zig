@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-const IID_IDisplayDeviceInterop_Value = @import("../../zig.zig").Guid.initString("64338358-366a-471b-bd56-dd8ef48e439b");
+const IID_IDisplayDeviceInterop_Value = Guid.initString("64338358-366a-471b-bd56-dd8ef48e439b");
 pub const IID_IDisplayDeviceInterop = &IID_IDisplayDeviceInterop_Value;
 pub const IDisplayDeviceInterop = extern struct {
     pub const VTable = extern struct {
@@ -41,7 +41,7 @@ pub const IDisplayDeviceInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDisplayPathInterop_Value = @import("../../zig.zig").Guid.initString("a6ba4205-e59e-4e71-b25b-4e436d21ee3d");
+const IID_IDisplayPathInterop_Value = Guid.initString("a6ba4205-e59e-4e71-b25b-4e436d21ee3d");
 pub const IID_IDisplayPathInterop = &IID_IDisplayPathInterop_Value;
 pub const IDisplayPathInterop = extern struct {
     pub const VTable = extern struct {

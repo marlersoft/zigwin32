@@ -12,17 +12,17 @@ pub const PROPERTYKEY = extern struct {
     pid: u32,
 };
 
-const CLSID_InMemoryPropertyStore_Value = @import("../../zig.zig").Guid.initString("9a02e012-6303-4e1e-b9a1-630f802592c5");
+const CLSID_InMemoryPropertyStore_Value = Guid.initString("9a02e012-6303-4e1e-b9a1-630f802592c5");
 pub const CLSID_InMemoryPropertyStore = &CLSID_InMemoryPropertyStore_Value;
 
-const CLSID_InMemoryPropertyStoreMarshalByValue_Value = @import("../../zig.zig").Guid.initString("d4ca0e2d-6da7-4b75-a97c-5f306f0eaedc");
+const CLSID_InMemoryPropertyStoreMarshalByValue_Value = Guid.initString("d4ca0e2d-6da7-4b75-a97c-5f306f0eaedc");
 pub const CLSID_InMemoryPropertyStoreMarshalByValue = &CLSID_InMemoryPropertyStoreMarshalByValue_Value;
 
-const CLSID_PropertySystem_Value = @import("../../zig.zig").Guid.initString("b8967f85-58ae-4f46-9fb2-5d7904798f4b");
+const CLSID_PropertySystem_Value = Guid.initString("b8967f85-58ae-4f46-9fb2-5d7904798f4b");
 pub const CLSID_PropertySystem = &CLSID_PropertySystem_Value;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithFile_Value = @import("../../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
+const IID_IInitializeWithFile_Value = Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
 pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
 pub const IInitializeWithFile = extern struct {
     pub const VTable = extern struct {
@@ -45,7 +45,7 @@ pub const IInitializeWithFile = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithStream_Value = @import("../../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
+const IID_IInitializeWithStream_Value = Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
 pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
 pub const IInitializeWithStream = extern struct {
     pub const VTable = extern struct {
@@ -67,7 +67,7 @@ pub const IInitializeWithStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyStore_Value = @import("../../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
+const IID_IPropertyStore_Value = Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
     pub const VTable = extern struct {
@@ -123,7 +123,7 @@ pub const IPropertyStore = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INamedPropertyStore_Value = @import("../../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
+const IID_INamedPropertyStore_Value = Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
 pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
 pub const INamedPropertyStore = extern struct {
     pub const VTable = extern struct {
@@ -205,7 +205,7 @@ pub const GPS_VOLATILEPROPERTIESONLY = GETPROPERTYSTOREFLAGS.VOLATILEPROPERTIESO
 pub const GPS_MASK_VALID = GETPROPERTYSTOREFLAGS.MASK_VALID;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IObjectWithPropertyKey_Value = @import("../../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
+const IID_IObjectWithPropertyKey_Value = Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
 pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
 pub const IObjectWithPropertyKey = extern struct {
     pub const VTable = extern struct {
@@ -244,7 +244,7 @@ pub const PKA_APPEND = PKA_FLAGS.APPEND;
 pub const PKA_DELETE = PKA_FLAGS.DELETE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyChange_Value = @import("../../zig.zig").Guid.initString("f917bc8a-1bba-4478-a245-1bde03eb9431");
+const IID_IPropertyChange_Value = Guid.initString("f917bc8a-1bba-4478-a245-1bde03eb9431");
 pub const IID_IPropertyChange = &IID_IPropertyChange_Value;
 pub const IPropertyChange = extern struct {
     pub const VTable = extern struct {
@@ -267,7 +267,7 @@ pub const IPropertyChange = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyChangeArray_Value = @import("../../zig.zig").Guid.initString("380f5cad-1b5e-42f2-805d-637fd392d31e");
+const IID_IPropertyChangeArray_Value = Guid.initString("380f5cad-1b5e-42f2-805d-637fd392d31e");
 pub const IID_IPropertyChangeArray = &IID_IPropertyChangeArray_Value;
 pub const IPropertyChangeArray = extern struct {
     pub const VTable = extern struct {
@@ -340,7 +340,7 @@ pub const IPropertyChangeArray = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyStoreCapabilities_Value = @import("../../zig.zig").Guid.initString("c8e2d566-186e-4d49-bf41-6909ead56acc");
+const IID_IPropertyStoreCapabilities_Value = Guid.initString("c8e2d566-186e-4d49-bf41-6909ead56acc");
 pub const IID_IPropertyStoreCapabilities = &IID_IPropertyStoreCapabilities_Value;
 pub const IPropertyStoreCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -373,7 +373,7 @@ pub const PSC_DIRTY = PSC_STATE.DIRTY;
 pub const PSC_READONLY = PSC_STATE.READONLY;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyStoreCache_Value = @import("../../zig.zig").Guid.initString("3017056d-9a91-4e90-937d-746c72abbf4f");
+const IID_IPropertyStoreCache_Value = Guid.initString("3017056d-9a91-4e90-937d-746c72abbf4f");
 pub const IID_IPropertyStoreCache = &IID_IPropertyStoreCache_Value;
 pub const IPropertyStoreCache = extern struct {
     pub const VTable = extern struct {
@@ -436,7 +436,7 @@ pub const PET_DEFAULTVALUE = PROPENUMTYPE.DEFAULTVALUE;
 pub const PET_ENDRANGE = PROPENUMTYPE.ENDRANGE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyEnumType_Value = @import("../../zig.zig").Guid.initString("11e1fbf9-2d56-4a6b-8db3-7cd193a471f2");
+const IID_IPropertyEnumType_Value = Guid.initString("11e1fbf9-2d56-4a6b-8db3-7cd193a471f2");
 pub const IID_IPropertyEnumType = &IID_IPropertyEnumType_Value;
 pub const IPropertyEnumType = extern struct {
     pub const VTable = extern struct {
@@ -490,7 +490,7 @@ pub const IPropertyEnumType = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPropertyEnumType2_Value = @import("../../zig.zig").Guid.initString("9b6e051c-5ddd-4321-9070-fe2acb55e794");
+const IID_IPropertyEnumType2_Value = Guid.initString("9b6e051c-5ddd-4321-9070-fe2acb55e794");
 pub const IID_IPropertyEnumType2 = &IID_IPropertyEnumType2_Value;
 pub const IPropertyEnumType2 = extern struct {
     pub const VTable = extern struct {
@@ -512,7 +512,7 @@ pub const IPropertyEnumType2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyEnumTypeList_Value = @import("../../zig.zig").Guid.initString("a99400f4-3d84-4557-94ba-1242fb2cc9a6");
+const IID_IPropertyEnumTypeList_Value = Guid.initString("a99400f4-3d84-4557-94ba-1242fb2cc9a6");
 pub const IID_IPropertyEnumTypeList = &IID_IPropertyEnumTypeList_Value;
 pub const IPropertyEnumTypeList = extern struct {
     pub const VTable = extern struct {
@@ -764,7 +764,7 @@ pub const PDCOT_BOOLEAN = PROPDESC_CONDITION_TYPE.BOOLEAN;
 pub const PDCOT_NUMBER = PROPDESC_CONDITION_TYPE.NUMBER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyDescription_Value = @import("../../zig.zig").Guid.initString("6f79d558-3e96-4549-a1d1-7d75d2288814");
+const IID_IPropertyDescription_Value = Guid.initString("6f79d558-3e96-4549-a1d1-7d75d2288814");
 pub const IID_IPropertyDescription = &IID_IPropertyDescription_Value;
 pub const IPropertyDescription = extern struct {
     pub const VTable = extern struct {
@@ -955,7 +955,7 @@ pub const IPropertyDescription = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPropertyDescription2_Value = @import("../../zig.zig").Guid.initString("57d2eded-5062-400e-b107-5dae79fe57a6");
+const IID_IPropertyDescription2_Value = Guid.initString("57d2eded-5062-400e-b107-5dae79fe57a6");
 pub const IID_IPropertyDescription2 = &IID_IPropertyDescription2_Value;
 pub const IPropertyDescription2 = extern struct {
     pub const VTable = extern struct {
@@ -978,7 +978,7 @@ pub const IPropertyDescription2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyDescriptionAliasInfo_Value = @import("../../zig.zig").Guid.initString("f67104fc-2af9-46fd-b32d-243c1404f3d1");
+const IID_IPropertyDescriptionAliasInfo_Value = Guid.initString("f67104fc-2af9-46fd-b32d-243c1404f3d1");
 pub const IID_IPropertyDescriptionAliasInfo = &IID_IPropertyDescriptionAliasInfo_Value;
 pub const IPropertyDescriptionAliasInfo = extern struct {
     pub const VTable = extern struct {
@@ -1040,7 +1040,7 @@ pub const PDCIT_ONDISKALL = PROPDESC_COLUMNINDEX_TYPE.ONDISKALL;
 pub const PDCIT_ONDISKVECTOR = PROPDESC_COLUMNINDEX_TYPE.ONDISKVECTOR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyDescriptionSearchInfo_Value = @import("../../zig.zig").Guid.initString("078f91bd-29a2-440f-924e-46a291524520");
+const IID_IPropertyDescriptionSearchInfo_Value = Guid.initString("078f91bd-29a2-440f-924e-46a291524520");
 pub const IID_IPropertyDescriptionSearchInfo = &IID_IPropertyDescriptionSearchInfo_Value;
 pub const IPropertyDescriptionSearchInfo = extern struct {
     pub const VTable = extern struct {
@@ -1086,7 +1086,7 @@ pub const IPropertyDescriptionSearchInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPropertyDescriptionRelatedPropertyInfo_Value = @import("../../zig.zig").Guid.initString("507393f4-2a3d-4a60-b59e-d9c75716c2dd");
+const IID_IPropertyDescriptionRelatedPropertyInfo_Value = Guid.initString("507393f4-2a3d-4a60-b59e-d9c75716c2dd");
 pub const IID_IPropertyDescriptionRelatedPropertyInfo = &IID_IPropertyDescriptionRelatedPropertyInfo_Value;
 pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
     pub const VTable = extern struct {
@@ -1127,7 +1127,7 @@ pub const PDEF_INFULLTEXTQUERY = PROPDESC_ENUMFILTER.INFULLTEXTQUERY;
 pub const PDEF_COLUMN = PROPDESC_ENUMFILTER.COLUMN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IPropertySystem_Value = @import("../../zig.zig").Guid.initString("ca724e8a-c3e6-442b-88a4-6fb0db8035a3");
+const IID_IPropertySystem_Value = Guid.initString("ca724e8a-c3e6-442b-88a4-6fb0db8035a3");
 pub const IID_IPropertySystem = &IID_IPropertySystem_Value;
 pub const IPropertySystem = extern struct {
     pub const VTable = extern struct {
@@ -1227,7 +1227,7 @@ pub const IPropertySystem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyDescriptionList_Value = @import("../../zig.zig").Guid.initString("1f9fc1d0-c39b-4b26-817f-011967d3440e");
+const IID_IPropertyDescriptionList_Value = Guid.initString("1f9fc1d0-c39b-4b26-817f-011967d3440e");
 pub const IID_IPropertyDescriptionList = &IID_IPropertyDescriptionList_Value;
 pub const IPropertyDescriptionList = extern struct {
     pub const VTable = extern struct {
@@ -1259,7 +1259,7 @@ pub const IPropertyDescriptionList = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertyStoreFactory_Value = @import("../../zig.zig").Guid.initString("bc110b6d-57e8-4148-a9c6-91015ab2f3a5");
+const IID_IPropertyStoreFactory_Value = Guid.initString("bc110b6d-57e8-4148-a9c6-91015ab2f3a5");
 pub const IID_IPropertyStoreFactory = &IID_IPropertyStoreFactory_Value;
 pub const IPropertyStoreFactory = extern struct {
     pub const VTable = extern struct {
@@ -1296,7 +1296,7 @@ pub const IPropertyStoreFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDelayedPropertyStoreFactory_Value = @import("../../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
+const IID_IDelayedPropertyStoreFactory_Value = Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
 pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
 pub const IDelayedPropertyStoreFactory = extern struct {
     pub const VTable = extern struct {
@@ -1334,7 +1334,7 @@ pub const SERIALIZEDPROPSTORAGE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPersistSerializedPropStorage_Value = @import("../../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
+const IID_IPersistSerializedPropStorage_Value = Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
 pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
 pub const IPersistSerializedPropStorage = extern struct {
     pub const VTable = extern struct {
@@ -1375,7 +1375,7 @@ pub const IPersistSerializedPropStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IPersistSerializedPropStorage2_Value = @import("../../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
+const IID_IPersistSerializedPropStorage2_Value = Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
 pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
 pub const IPersistSerializedPropStorage2 = extern struct {
     pub const VTable = extern struct {
@@ -1407,7 +1407,7 @@ pub const IPersistSerializedPropStorage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertySystemChangeNotify_Value = @import("../../zig.zig").Guid.initString("fa955fd9-38be-4879-a6ce-824cf52d609f");
+const IID_IPropertySystemChangeNotify_Value = Guid.initString("fa955fd9-38be-4879-a6ce-824cf52d609f");
 pub const IID_IPropertySystemChangeNotify = &IID_IPropertySystemChangeNotify_Value;
 pub const IPropertySystemChangeNotify = extern struct {
     pub const VTable = extern struct {
@@ -1428,7 +1428,7 @@ pub const IPropertySystemChangeNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICreateObject_Value = @import("../../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
+const IID_ICreateObject_Value = Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
 pub const IID_ICreateObject = &IID_ICreateObject_Value;
 pub const ICreateObject = extern struct {
     pub const VTable = extern struct {
@@ -1597,7 +1597,7 @@ pub const PUIFFDF_NOTIME = PROPERTYUI_FORMAT_FLAGS.NOTIME;
 pub const PUIFFDF_FRIENDLYDATE = PROPERTYUI_FORMAT_FLAGS.FRIENDLYDATE;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertyUI_Value = @import("../../zig.zig").Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
+const IID_IPropertyUI_Value = Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
 pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
 pub const IPropertyUI = extern struct {
     pub const VTable = extern struct {

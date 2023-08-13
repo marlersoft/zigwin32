@@ -100,106 +100,106 @@ pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
 // TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
 pub const CriticalPolicySectionHandle = isize;
 
-const CLSID_GPM_Value = @import("../zig.zig").Guid.initString("f5694708-88fe-4b35-babf-e56162d5fbc8");
+const CLSID_GPM_Value = Guid.initString("f5694708-88fe-4b35-babf-e56162d5fbc8");
 pub const CLSID_GPM = &CLSID_GPM_Value;
 
-const CLSID_GPMDomain_Value = @import("../zig.zig").Guid.initString("710901be-1050-4cb1-838a-c5cff259e183");
+const CLSID_GPMDomain_Value = Guid.initString("710901be-1050-4cb1-838a-c5cff259e183");
 pub const CLSID_GPMDomain = &CLSID_GPMDomain_Value;
 
-const CLSID_GPMSitesContainer_Value = @import("../zig.zig").Guid.initString("229f5c42-852c-4b30-945f-c522be9bd386");
+const CLSID_GPMSitesContainer_Value = Guid.initString("229f5c42-852c-4b30-945f-c522be9bd386");
 pub const CLSID_GPMSitesContainer = &CLSID_GPMSitesContainer_Value;
 
-const CLSID_GPMBackupDir_Value = @import("../zig.zig").Guid.initString("fce4a59d-0f21-4afa-b859-e6d0c62cd10c");
+const CLSID_GPMBackupDir_Value = Guid.initString("fce4a59d-0f21-4afa-b859-e6d0c62cd10c");
 pub const CLSID_GPMBackupDir = &CLSID_GPMBackupDir_Value;
 
-const CLSID_GPMSOM_Value = @import("../zig.zig").Guid.initString("32d93fac-450e-44cf-829c-8b22ff6bdae1");
+const CLSID_GPMSOM_Value = Guid.initString("32d93fac-450e-44cf-829c-8b22ff6bdae1");
 pub const CLSID_GPMSOM = &CLSID_GPMSOM_Value;
 
-const CLSID_GPMSearchCriteria_Value = @import("../zig.zig").Guid.initString("17aaca26-5ce0-44fa-8cc0-5259e6483566");
+const CLSID_GPMSearchCriteria_Value = Guid.initString("17aaca26-5ce0-44fa-8cc0-5259e6483566");
 pub const CLSID_GPMSearchCriteria = &CLSID_GPMSearchCriteria_Value;
 
-const CLSID_GPMPermission_Value = @import("../zig.zig").Guid.initString("5871a40a-e9c0-46ec-913e-944ef9225a94");
+const CLSID_GPMPermission_Value = Guid.initString("5871a40a-e9c0-46ec-913e-944ef9225a94");
 pub const CLSID_GPMPermission = &CLSID_GPMPermission_Value;
 
-const CLSID_GPMSecurityInfo_Value = @import("../zig.zig").Guid.initString("547a5e8f-9162-4516-a4df-9ddb9686d846");
+const CLSID_GPMSecurityInfo_Value = Guid.initString("547a5e8f-9162-4516-a4df-9ddb9686d846");
 pub const CLSID_GPMSecurityInfo = &CLSID_GPMSecurityInfo_Value;
 
-const CLSID_GPMBackup_Value = @import("../zig.zig").Guid.initString("ed1a54b8-5efa-482a-93c0-8ad86f0d68c3");
+const CLSID_GPMBackup_Value = Guid.initString("ed1a54b8-5efa-482a-93c0-8ad86f0d68c3");
 pub const CLSID_GPMBackup = &CLSID_GPMBackup_Value;
 
-const CLSID_GPMBackupCollection_Value = @import("../zig.zig").Guid.initString("eb8f035b-70db-4a9f-9676-37c25994e9dc");
+const CLSID_GPMBackupCollection_Value = Guid.initString("eb8f035b-70db-4a9f-9676-37c25994e9dc");
 pub const CLSID_GPMBackupCollection = &CLSID_GPMBackupCollection_Value;
 
-const CLSID_GPMSOMCollection_Value = @import("../zig.zig").Guid.initString("24c1f147-3720-4f5b-a9c3-06b4e4f931d2");
+const CLSID_GPMSOMCollection_Value = Guid.initString("24c1f147-3720-4f5b-a9c3-06b4e4f931d2");
 pub const CLSID_GPMSOMCollection = &CLSID_GPMSOMCollection_Value;
 
-const CLSID_GPMWMIFilter_Value = @import("../zig.zig").Guid.initString("626745d8-0dea-4062-bf60-cfc5b1ca1286");
+const CLSID_GPMWMIFilter_Value = Guid.initString("626745d8-0dea-4062-bf60-cfc5b1ca1286");
 pub const CLSID_GPMWMIFilter = &CLSID_GPMWMIFilter_Value;
 
-const CLSID_GPMWMIFilterCollection_Value = @import("../zig.zig").Guid.initString("74dc6d28-e820-47d6-a0b8-f08d93d7fa33");
+const CLSID_GPMWMIFilterCollection_Value = Guid.initString("74dc6d28-e820-47d6-a0b8-f08d93d7fa33");
 pub const CLSID_GPMWMIFilterCollection = &CLSID_GPMWMIFilterCollection_Value;
 
-const CLSID_GPMRSOP_Value = @import("../zig.zig").Guid.initString("489b0caf-9ec2-4eb7-91f5-b6f71d43da8c");
+const CLSID_GPMRSOP_Value = Guid.initString("489b0caf-9ec2-4eb7-91f5-b6f71d43da8c");
 pub const CLSID_GPMRSOP = &CLSID_GPMRSOP_Value;
 
-const CLSID_GPMGPO_Value = @import("../zig.zig").Guid.initString("d2ce2994-59b5-4064-b581-4d68486a16c4");
+const CLSID_GPMGPO_Value = Guid.initString("d2ce2994-59b5-4064-b581-4d68486a16c4");
 pub const CLSID_GPMGPO = &CLSID_GPMGPO_Value;
 
-const CLSID_GPMGPOCollection_Value = @import("../zig.zig").Guid.initString("7a057325-832d-4de3-a41f-c780436a4e09");
+const CLSID_GPMGPOCollection_Value = Guid.initString("7a057325-832d-4de3-a41f-c780436a4e09");
 pub const CLSID_GPMGPOCollection = &CLSID_GPMGPOCollection_Value;
 
-const CLSID_GPMGPOLink_Value = @import("../zig.zig").Guid.initString("c1df9880-5303-42c6-8a3c-0488e1bf7364");
+const CLSID_GPMGPOLink_Value = Guid.initString("c1df9880-5303-42c6-8a3c-0488e1bf7364");
 pub const CLSID_GPMGPOLink = &CLSID_GPMGPOLink_Value;
 
-const CLSID_GPMGPOLinksCollection_Value = @import("../zig.zig").Guid.initString("f6ed581a-49a5-47e2-b771-fd8dc02b6259");
+const CLSID_GPMGPOLinksCollection_Value = Guid.initString("f6ed581a-49a5-47e2-b771-fd8dc02b6259");
 pub const CLSID_GPMGPOLinksCollection = &CLSID_GPMGPOLinksCollection_Value;
 
-const CLSID_GPMAsyncCancel_Value = @import("../zig.zig").Guid.initString("372796a9-76ec-479d-ad6c-556318ed5f9d");
+const CLSID_GPMAsyncCancel_Value = Guid.initString("372796a9-76ec-479d-ad6c-556318ed5f9d");
 pub const CLSID_GPMAsyncCancel = &CLSID_GPMAsyncCancel_Value;
 
-const CLSID_GPMStatusMsgCollection_Value = @import("../zig.zig").Guid.initString("2824e4be-4bcc-4cac-9e60-0e3ed7f12496");
+const CLSID_GPMStatusMsgCollection_Value = Guid.initString("2824e4be-4bcc-4cac-9e60-0e3ed7f12496");
 pub const CLSID_GPMStatusMsgCollection = &CLSID_GPMStatusMsgCollection_Value;
 
-const CLSID_GPMStatusMessage_Value = @import("../zig.zig").Guid.initString("4b77cc94-d255-409b-bc62-370881715a19");
+const CLSID_GPMStatusMessage_Value = Guid.initString("4b77cc94-d255-409b-bc62-370881715a19");
 pub const CLSID_GPMStatusMessage = &CLSID_GPMStatusMessage_Value;
 
-const CLSID_GPMTrustee_Value = @import("../zig.zig").Guid.initString("c54a700d-19b6-4211-bcb0-e8e2475e471e");
+const CLSID_GPMTrustee_Value = Guid.initString("c54a700d-19b6-4211-bcb0-e8e2475e471e");
 pub const CLSID_GPMTrustee = &CLSID_GPMTrustee_Value;
 
-const CLSID_GPMClientSideExtension_Value = @import("../zig.zig").Guid.initString("c1a2e70e-659c-4b1a-940b-f88b0af9c8a4");
+const CLSID_GPMClientSideExtension_Value = Guid.initString("c1a2e70e-659c-4b1a-940b-f88b0af9c8a4");
 pub const CLSID_GPMClientSideExtension = &CLSID_GPMClientSideExtension_Value;
 
-const CLSID_GPMCSECollection_Value = @import("../zig.zig").Guid.initString("cf92b828-2d44-4b61-b10a-b327afd42da8");
+const CLSID_GPMCSECollection_Value = Guid.initString("cf92b828-2d44-4b61-b10a-b327afd42da8");
 pub const CLSID_GPMCSECollection = &CLSID_GPMCSECollection_Value;
 
-const CLSID_GPMConstants_Value = @import("../zig.zig").Guid.initString("3855e880-cd9e-4d0c-9eaf-1579283a1888");
+const CLSID_GPMConstants_Value = Guid.initString("3855e880-cd9e-4d0c-9eaf-1579283a1888");
 pub const CLSID_GPMConstants = &CLSID_GPMConstants_Value;
 
-const CLSID_GPMResult_Value = @import("../zig.zig").Guid.initString("92101ac0-9287-4206-a3b2-4bdb73d225f6");
+const CLSID_GPMResult_Value = Guid.initString("92101ac0-9287-4206-a3b2-4bdb73d225f6");
 pub const CLSID_GPMResult = &CLSID_GPMResult_Value;
 
-const CLSID_GPMMapEntryCollection_Value = @import("../zig.zig").Guid.initString("0cf75d5b-a3a1-4c55-b4fe-9e149c41f66d");
+const CLSID_GPMMapEntryCollection_Value = Guid.initString("0cf75d5b-a3a1-4c55-b4fe-9e149c41f66d");
 pub const CLSID_GPMMapEntryCollection = &CLSID_GPMMapEntryCollection_Value;
 
-const CLSID_GPMMapEntry_Value = @import("../zig.zig").Guid.initString("8c975253-5431-4471-b35d-0626c928258a");
+const CLSID_GPMMapEntry_Value = Guid.initString("8c975253-5431-4471-b35d-0626c928258a");
 pub const CLSID_GPMMapEntry = &CLSID_GPMMapEntry_Value;
 
-const CLSID_GPMMigrationTable_Value = @import("../zig.zig").Guid.initString("55af4043-2a06-4f72-abef-631b44079c76");
+const CLSID_GPMMigrationTable_Value = Guid.initString("55af4043-2a06-4f72-abef-631b44079c76");
 pub const CLSID_GPMMigrationTable = &CLSID_GPMMigrationTable_Value;
 
-const CLSID_GPMBackupDirEx_Value = @import("../zig.zig").Guid.initString("e8c0988a-cf03-4c5b-8be2-2aa9ad32aada");
+const CLSID_GPMBackupDirEx_Value = Guid.initString("e8c0988a-cf03-4c5b-8be2-2aa9ad32aada");
 pub const CLSID_GPMBackupDirEx = &CLSID_GPMBackupDirEx_Value;
 
-const CLSID_GPMStarterGPOBackupCollection_Value = @import("../zig.zig").Guid.initString("e75ea59d-1aeb-4cb5-a78a-281daa582406");
+const CLSID_GPMStarterGPOBackupCollection_Value = Guid.initString("e75ea59d-1aeb-4cb5-a78a-281daa582406");
 pub const CLSID_GPMStarterGPOBackupCollection = &CLSID_GPMStarterGPOBackupCollection_Value;
 
-const CLSID_GPMStarterGPOBackup_Value = @import("../zig.zig").Guid.initString("389e400a-d8ef-455b-a861-5f9ca34a6a02");
+const CLSID_GPMStarterGPOBackup_Value = Guid.initString("389e400a-d8ef-455b-a861-5f9ca34a6a02");
 pub const CLSID_GPMStarterGPOBackup = &CLSID_GPMStarterGPOBackup_Value;
 
-const CLSID_GPMTemplate_Value = @import("../zig.zig").Guid.initString("ecf1d454-71da-4e2f-a8c0-8185465911d9");
+const CLSID_GPMTemplate_Value = Guid.initString("ecf1d454-71da-4e2f-a8c0-8185465911d9");
 pub const CLSID_GPMTemplate = &CLSID_GPMTemplate_Value;
 
-const CLSID_GPMStarterGPOCollection_Value = @import("../zig.zig").Guid.initString("82f8aa8b-49ba-43b2-956e-3397f9b94c3a");
+const CLSID_GPMStarterGPOCollection_Value = Guid.initString("82f8aa8b-49ba-43b2-956e-3397f9b94c3a");
 pub const CLSID_GPMStarterGPOCollection = &CLSID_GPMStarterGPOCollection_Value;
 
 pub const GPMRSOPMode = enum(i32) {
@@ -347,7 +347,7 @@ pub const opReportLegacy = GPMReportingOptions.Legacy;
 pub const opReportComments = GPMReportingOptions.Comments;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPM_Value = @import("../zig.zig").Guid.initString("f5fae809-3bd6-4da9-a65e-17665b41d763");
+const IID_IGPM_Value = Guid.initString("f5fae809-3bd6-4da9-a65e-17665b41d763");
 pub const IID_IGPM = &IID_IGPM_Value;
 pub const IGPM = extern struct {
     pub const VTable = extern struct {
@@ -473,7 +473,7 @@ pub const IGPM = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMDomain_Value = @import("../zig.zig").Guid.initString("6b21cc14-5a00-4f44-a738-feec8a94c7e3");
+const IID_IGPMDomain_Value = Guid.initString("6b21cc14-5a00-4f44-a738-feec8a94c7e3");
 pub const IID_IGPMDomain = &IID_IGPMDomain_Value;
 pub const IGPMDomain = extern struct {
     pub const VTable = extern struct {
@@ -579,7 +579,7 @@ pub const IGPMDomain = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackupDir_Value = @import("../zig.zig").Guid.initString("b1568bed-0a93-4acc-810f-afe7081019b9");
+const IID_IGPMBackupDir_Value = Guid.initString("b1568bed-0a93-4acc-810f-afe7081019b9");
 pub const IID_IGPMBackupDir = &IID_IGPMBackupDir_Value;
 pub const IGPMBackupDir = extern struct {
     pub const VTable = extern struct {
@@ -620,7 +620,7 @@ pub const IGPMBackupDir = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSitesContainer_Value = @import("../zig.zig").Guid.initString("4725a899-2782-4d27-a6bb-d499246ffd72");
+const IID_IGPMSitesContainer_Value = Guid.initString("4725a899-2782-4d27-a6bb-d499246ffd72");
 pub const IID_IGPMSitesContainer = &IID_IGPMSitesContainer_Value;
 pub const IGPMSitesContainer = extern struct {
     pub const VTable = extern struct {
@@ -679,7 +679,7 @@ pub const IGPMSitesContainer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSearchCriteria_Value = @import("../zig.zig").Guid.initString("d6f11c42-829b-48d4-83f5-3615b67dfc22");
+const IID_IGPMSearchCriteria_Value = Guid.initString("d6f11c42-829b-48d4-83f5-3615b67dfc22");
 pub const IID_IGPMSearchCriteria = &IID_IGPMSearchCriteria_Value;
 pub const IGPMSearchCriteria = extern struct {
     pub const VTable = extern struct {
@@ -703,7 +703,7 @@ pub const IGPMSearchCriteria = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMTrustee_Value = @import("../zig.zig").Guid.initString("3b466da8-c1a4-4b2a-999a-befcdd56cefb");
+const IID_IGPMTrustee_Value = Guid.initString("3b466da8-c1a4-4b2a-999a-befcdd56cefb");
 pub const IID_IGPMTrustee = &IID_IGPMTrustee_Value;
 pub const IGPMTrustee = extern struct {
     pub const VTable = extern struct {
@@ -762,7 +762,7 @@ pub const IGPMTrustee = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMPermission_Value = @import("../zig.zig").Guid.initString("35ebca40-e1a1-4a02-8905-d79416fb464a");
+const IID_IGPMPermission_Value = Guid.initString("35ebca40-e1a1-4a02-8905-d79416fb464a");
 pub const IID_IGPMPermission = &IID_IGPMPermission_Value;
 pub const IGPMPermission = extern struct {
     pub const VTable = extern struct {
@@ -821,7 +821,7 @@ pub const IGPMPermission = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSecurityInfo_Value = @import("../zig.zig").Guid.initString("b6c31ed4-1c93-4d3e-ae84-eb6d61161b60");
+const IID_IGPMSecurityInfo_Value = Guid.initString("b6c31ed4-1c93-4d3e-ae84-eb6d61161b60");
 pub const IID_IGPMSecurityInfo = &IID_IGPMSecurityInfo_Value;
 pub const IGPMSecurityInfo = extern struct {
     pub const VTable = extern struct {
@@ -887,7 +887,7 @@ pub const IGPMSecurityInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackup_Value = @import("../zig.zig").Guid.initString("d8a16a35-3b0d-416b-8d02-4df6f95a7119");
+const IID_IGPMBackup_Value = Guid.initString("d8a16a35-3b0d-416b-8d02-4df6f95a7119");
 pub const IID_IGPMBackup = &IID_IGPMBackup_Value;
 pub const IGPMBackup = extern struct {
     pub const VTable = extern struct {
@@ -992,7 +992,7 @@ pub const IGPMBackup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackupCollection_Value = @import("../zig.zig").Guid.initString("c786fc0f-26d8-4bab-a745-39ca7e800cac");
+const IID_IGPMBackupCollection_Value = Guid.initString("c786fc0f-26d8-4bab-a745-39ca7e800cac");
 pub const IID_IGPMBackupCollection = &IID_IGPMBackupCollection_Value;
 pub const IGPMBackupCollection = extern struct {
     pub const VTable = extern struct {
@@ -1043,7 +1043,7 @@ pub const somDomain = GPMSOMType.Domain;
 pub const somOU = GPMSOMType.OU;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSOM_Value = @import("../zig.zig").Guid.initString("c0a7f09e-05a1-4f0c-8158-9e5c33684f6b");
+const IID_IGPMSOM_Value = Guid.initString("c0a7f09e-05a1-4f0c-8158-9e5c33684f6b");
 pub const IID_IGPMSOM = &IID_IGPMSOM_Value;
 pub const IGPMSOM = extern struct {
     pub const VTable = extern struct {
@@ -1144,7 +1144,7 @@ pub const IGPMSOM = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSOMCollection_Value = @import("../zig.zig").Guid.initString("adc1688e-00e4-4495-abba-bed200df0cab");
+const IID_IGPMSOMCollection_Value = Guid.initString("adc1688e-00e4-4495-abba-bed200df0cab");
 pub const IID_IGPMSOMCollection = &IID_IGPMSOMCollection_Value;
 pub const IGPMSOMCollection = extern struct {
     pub const VTable = extern struct {
@@ -1186,7 +1186,7 @@ pub const IGPMSOMCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMWMIFilter_Value = @import("../zig.zig").Guid.initString("ef2ff9b4-3c27-459a-b979-038305cec75d");
+const IID_IGPMWMIFilter_Value = Guid.initString("ef2ff9b4-3c27-459a-b979-038305cec75d");
 pub const IID_IGPMWMIFilter = &IID_IGPMWMIFilter_Value;
 pub const IGPMWMIFilter = extern struct {
     pub const VTable = extern struct {
@@ -1269,7 +1269,7 @@ pub const IGPMWMIFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMWMIFilterCollection_Value = @import("../zig.zig").Guid.initString("5782d582-1a36-4661-8a94-c3c32551945b");
+const IID_IGPMWMIFilterCollection_Value = Guid.initString("5782d582-1a36-4661-8a94-c3c32551945b");
 pub const IID_IGPMWMIFilterCollection = &IID_IGPMWMIFilterCollection_Value;
 pub const IGPMWMIFilterCollection = extern struct {
     pub const VTable = extern struct {
@@ -1311,7 +1311,7 @@ pub const IGPMWMIFilterCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMRSOP_Value = @import("../zig.zig").Guid.initString("49ed785a-3237-4ff2-b1f0-fdf5a8d5a1ee");
+const IID_IGPMRSOP_Value = Guid.initString("49ed785a-3237-4ff2-b1f0-fdf5a8d5a1ee");
 pub const IID_IGPMRSOP = &IID_IGPMRSOP_Value;
 pub const IGPMRSOP = extern struct {
     pub const VTable = extern struct {
@@ -1638,7 +1638,7 @@ pub const IGPMRSOP = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPO_Value = @import("../zig.zig").Guid.initString("58cc4352-1ca3-48e5-9864-1da4d6e0d60f");
+const IID_IGPMGPO_Value = Guid.initString("58cc4352-1ca3-48e5-9864-1da4d6e0d60f");
 pub const IID_IGPMGPO = &IID_IGPMGPO_Value;
 pub const IGPMGPO = extern struct {
     pub const VTable = extern struct {
@@ -1915,7 +1915,7 @@ pub const IGPMGPO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOCollection_Value = @import("../zig.zig").Guid.initString("f0f0d5cf-70ca-4c39-9e29-b642f8726c01");
+const IID_IGPMGPOCollection_Value = Guid.initString("f0f0d5cf-70ca-4c39-9e29-b642f8726c01");
 pub const IID_IGPMGPOCollection = &IID_IGPMGPOCollection_Value;
 pub const IGPMGPOCollection = extern struct {
     pub const VTable = extern struct {
@@ -1957,7 +1957,7 @@ pub const IGPMGPOCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOLink_Value = @import("../zig.zig").Guid.initString("434b99bd-5de7-478a-809c-c251721df70c");
+const IID_IGPMGPOLink_Value = Guid.initString("434b99bd-5de7-478a-809c-c251721df70c");
 pub const IID_IGPMGPOLink = &IID_IGPMGPOLink_Value;
 pub const IGPMGPOLink = extern struct {
     pub const VTable = extern struct {
@@ -2050,7 +2050,7 @@ pub const IGPMGPOLink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOLinksCollection_Value = @import("../zig.zig").Guid.initString("189d7b68-16bd-4d0d-a2ec-2e6aa2288c7f");
+const IID_IGPMGPOLinksCollection_Value = Guid.initString("189d7b68-16bd-4d0d-a2ec-2e6aa2288c7f");
 pub const IID_IGPMGPOLinksCollection = &IID_IGPMGPOLinksCollection_Value;
 pub const IGPMGPOLinksCollection = extern struct {
     pub const VTable = extern struct {
@@ -2092,7 +2092,7 @@ pub const IGPMGPOLinksCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMCSECollection_Value = @import("../zig.zig").Guid.initString("2e52a97d-0a4a-4a6f-85db-201622455da0");
+const IID_IGPMCSECollection_Value = Guid.initString("2e52a97d-0a4a-4a6f-85db-201622455da0");
 pub const IID_IGPMCSECollection = &IID_IGPMCSECollection_Value;
 pub const IGPMCSECollection = extern struct {
     pub const VTable = extern struct {
@@ -2134,7 +2134,7 @@ pub const IGPMCSECollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMClientSideExtension_Value = @import("../zig.zig").Guid.initString("69da7488-b8db-415e-9266-901be4d49928");
+const IID_IGPMClientSideExtension_Value = Guid.initString("69da7488-b8db-415e-9266-901be4d49928");
 pub const IID_IGPMClientSideExtension = &IID_IGPMClientSideExtension_Value;
 pub const IGPMClientSideExtension = extern struct {
     pub const VTable = extern struct {
@@ -2182,7 +2182,7 @@ pub const IGPMClientSideExtension = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMAsyncCancel_Value = @import("../zig.zig").Guid.initString("ddc67754-be67-4541-8166-f48166868c9c");
+const IID_IGPMAsyncCancel_Value = Guid.initString("ddc67754-be67-4541-8166-f48166868c9c");
 pub const IID_IGPMAsyncCancel = &IID_IGPMAsyncCancel_Value;
 pub const IGPMAsyncCancel = extern struct {
     pub const VTable = extern struct {
@@ -2203,7 +2203,7 @@ pub const IGPMAsyncCancel = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMAsyncProgress_Value = @import("../zig.zig").Guid.initString("6aac29f8-5948-4324-bf70-423818942dbc");
+const IID_IGPMAsyncProgress_Value = Guid.initString("6aac29f8-5948-4324-bf70-423818942dbc");
 pub const IID_IGPMAsyncProgress = &IID_IGPMAsyncProgress_Value;
 pub const IGPMAsyncProgress = extern struct {
     pub const VTable = extern struct {
@@ -2229,7 +2229,7 @@ pub const IGPMAsyncProgress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStatusMsgCollection_Value = @import("../zig.zig").Guid.initString("9b6e1af0-1a92-40f3-a59d-f36ac1f728b7");
+const IID_IGPMStatusMsgCollection_Value = Guid.initString("9b6e1af0-1a92-40f3-a59d-f36ac1f728b7");
 pub const IID_IGPMStatusMsgCollection = &IID_IGPMStatusMsgCollection_Value;
 pub const IGPMStatusMsgCollection = extern struct {
     pub const VTable = extern struct {
@@ -2271,7 +2271,7 @@ pub const IGPMStatusMsgCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStatusMessage_Value = @import("../zig.zig").Guid.initString("8496c22f-f3de-4a1f-8f58-603caaa93d7b");
+const IID_IGPMStatusMessage_Value = Guid.initString("8496c22f-f3de-4a1f-8f58-603caaa93d7b");
 pub const IID_IGPMStatusMessage = &IID_IGPMStatusMessage_Value;
 pub const IGPMStatusMessage = extern struct {
     pub const VTable = extern struct {
@@ -2335,7 +2335,7 @@ pub const IGPMStatusMessage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMConstants_Value = @import("../zig.zig").Guid.initString("50ef73e6-d35c-4c8d-be63-7ea5d2aac5c4");
+const IID_IGPMConstants_Value = Guid.initString("50ef73e6-d35c-4c8d-be63-7ea5d2aac5c4");
 pub const IID_IGPMConstants = &IID_IGPMConstants_Value;
 pub const IGPMConstants = extern struct {
     pub const VTable = extern struct {
@@ -2894,7 +2894,7 @@ pub const IGPMConstants = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMResult_Value = @import("../zig.zig").Guid.initString("86dff7e9-f76f-42ab-9570-cebc6be8a52d");
+const IID_IGPMResult_Value = Guid.initString("86dff7e9-f76f-42ab-9570-cebc6be8a52d");
 pub const IID_IGPMResult = &IID_IGPMResult_Value;
 pub const IGPMResult = extern struct {
     pub const VTable = extern struct {
@@ -2933,7 +2933,7 @@ pub const IGPMResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMMapEntryCollection_Value = @import("../zig.zig").Guid.initString("bb0bf49b-e53f-443f-b807-8be22bfb6d42");
+const IID_IGPMMapEntryCollection_Value = Guid.initString("bb0bf49b-e53f-443f-b807-8be22bfb6d42");
 pub const IID_IGPMMapEntryCollection = &IID_IGPMMapEntryCollection_Value;
 pub const IGPMMapEntryCollection = extern struct {
     pub const VTable = extern struct {
@@ -2975,7 +2975,7 @@ pub const IGPMMapEntryCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMMapEntry_Value = @import("../zig.zig").Guid.initString("8e79ad06-2381-4444-be4c-ff693e6e6f2b");
+const IID_IGPMMapEntry_Value = Guid.initString("8e79ad06-2381-4444-be4c-ff693e6e6f2b");
 pub const IID_IGPMMapEntry = &IID_IGPMMapEntry_Value;
 pub const IGPMMapEntry = extern struct {
     pub const VTable = extern struct {
@@ -3025,7 +3025,7 @@ pub const IGPMMapEntry = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMMigrationTable_Value = @import("../zig.zig").Guid.initString("48f823b1-efaf-470b-b6ed-40d14ee1a4ec");
+const IID_IGPMMigrationTable_Value = Guid.initString("48f823b1-efaf-470b-b6ed-40d14ee1a4ec");
 pub const IID_IGPMMigrationTable = &IID_IGPMMigrationTable_Value;
 pub const IGPMMigrationTable = extern struct {
     pub const VTable = extern struct {
@@ -3124,7 +3124,7 @@ pub const typeSystem = GPMStarterGPOType.System;
 pub const typeCustom = GPMStarterGPOType.Custom;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackupDirEx_Value = @import("../zig.zig").Guid.initString("f8dc55ed-3ba0-4864-aad4-d365189ee1d5");
+const IID_IGPMBackupDirEx_Value = Guid.initString("f8dc55ed-3ba0-4864-aad4-d365189ee1d5");
 pub const IID_IGPMBackupDirEx = &IID_IGPMBackupDirEx_Value;
 pub const IGPMBackupDirEx = extern struct {
     pub const VTable = extern struct {
@@ -3174,7 +3174,7 @@ pub const IGPMBackupDirEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPOBackupCollection_Value = @import("../zig.zig").Guid.initString("c998031d-add0-4bb5-8dea-298505d8423b");
+const IID_IGPMStarterGPOBackupCollection_Value = Guid.initString("c998031d-add0-4bb5-8dea-298505d8423b");
 pub const IID_IGPMStarterGPOBackupCollection = &IID_IGPMStarterGPOBackupCollection_Value;
 pub const IGPMStarterGPOBackupCollection = extern struct {
     pub const VTable = extern struct {
@@ -3216,7 +3216,7 @@ pub const IGPMStarterGPOBackupCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPOBackup_Value = @import("../zig.zig").Guid.initString("51d98eda-a87e-43dd-b80a-0b66ef1938d6");
+const IID_IGPMStarterGPOBackup_Value = Guid.initString("51d98eda-a87e-43dd-b80a-0b66ef1938d6");
 pub const IID_IGPMStarterGPOBackup = &IID_IGPMStarterGPOBackup_Value;
 pub const IGPMStarterGPOBackup = extern struct {
     pub const VTable = extern struct {
@@ -3330,7 +3330,7 @@ pub const IGPMStarterGPOBackup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPM2_Value = @import("../zig.zig").Guid.initString("00238f8a-3d86-41ac-8f5e-06a6638a634a");
+const IID_IGPM2_Value = Guid.initString("00238f8a-3d86-41ac-8f5e-06a6638a634a");
 pub const IID_IGPM2 = &IID_IGPM2_Value;
 pub const IGPM2 = extern struct {
     pub const VTable = extern struct {
@@ -3363,7 +3363,7 @@ pub const IGPM2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPO_Value = @import("../zig.zig").Guid.initString("dfc3f61b-8880-4490-9337-d29c7ba8c2f0");
+const IID_IGPMStarterGPO_Value = Guid.initString("dfc3f61b-8880-4490-9337-d29c7ba8c2f0");
 pub const IID_IGPMStarterGPO = &IID_IGPMStarterGPO_Value;
 pub const IGPMStarterGPO = extern struct {
     pub const VTable = extern struct {
@@ -3579,7 +3579,7 @@ pub const IGPMStarterGPO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPOCollection_Value = @import("../zig.zig").Guid.initString("2e522729-2219-44ad-933a-64dfd650c423");
+const IID_IGPMStarterGPOCollection_Value = Guid.initString("2e522729-2219-44ad-933a-64dfd650c423");
 pub const IID_IGPMStarterGPOCollection = &IID_IGPMStarterGPOCollection_Value;
 pub const IGPMStarterGPOCollection = extern struct {
     pub const VTable = extern struct {
@@ -3621,7 +3621,7 @@ pub const IGPMStarterGPOCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMDomain2_Value = @import("../zig.zig").Guid.initString("7ca6bb8b-f1eb-490a-938d-3c4e51c768e6");
+const IID_IGPMDomain2_Value = Guid.initString("7ca6bb8b-f1eb-490a-938d-3c4e51c768e6");
 pub const IID_IGPMDomain2 = &IID_IGPMDomain2_Value;
 pub const IGPMDomain2 = extern struct {
     pub const VTable = extern struct {
@@ -3693,7 +3693,7 @@ pub const IGPMDomain2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMConstants2_Value = @import("../zig.zig").Guid.initString("05ae21b0-ac09-4032-a26f-9e7da786dc19");
+const IID_IGPMConstants2_Value = Guid.initString("05ae21b0-ac09-4032-a26f-9e7da786dc19");
 pub const IID_IGPMConstants2 = &IID_IGPMConstants2_Value;
 pub const IGPMConstants2 = extern struct {
     pub const VTable = extern struct {
@@ -3842,7 +3842,7 @@ pub const IGPMConstants2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPO2_Value = @import("../zig.zig").Guid.initString("8a66a210-b78b-4d99-88e2-c306a817c925");
+const IID_IGPMGPO2_Value = Guid.initString("8a66a210-b78b-4d99-88e2-c306a817c925");
 pub const IID_IGPMGPO2 = &IID_IGPMGPO2_Value;
 pub const IGPMGPO2 = extern struct {
     pub const VTable = extern struct {
@@ -3873,7 +3873,7 @@ pub const IGPMGPO2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGPMDomain3_Value = @import("../zig.zig").Guid.initString("0077fdfe-88c7-4acf-a11d-d10a7c310a03");
+const IID_IGPMDomain3_Value = Guid.initString("0077fdfe-88c7-4acf-a11d-d10a7c310a03");
 pub const IID_IGPMDomain3 = &IID_IGPMDomain3_Value;
 pub const IGPMDomain3 = extern struct {
     pub const VTable = extern struct {
@@ -3924,7 +3924,7 @@ pub const IGPMDomain3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGPMGPO3_Value = @import("../zig.zig").Guid.initString("7cf123a1-f94a-4112-bfae-6aa1db9cb248");
+const IID_IGPMGPO3_Value = Guid.initString("7cf123a1-f94a-4112-bfae-6aa1db9cb248");
 pub const IID_IGPMGPO3 = &IID_IGPMGPO3_Value;
 pub const IGPMGPO3 = extern struct {
     pub const VTable = extern struct {
@@ -4169,7 +4169,7 @@ pub const GPHintDomain = GROUP_POLICY_HINT_TYPE.Domain;
 pub const GPHintOrganizationalUnit = GROUP_POLICY_HINT_TYPE.OrganizationalUnit;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPEInformation_Value = @import("../zig.zig").Guid.initString("8fc0b735-a0e1-11d1-a7d3-0000f87571e3");
+const IID_IGPEInformation_Value = Guid.initString("8fc0b735-a0e1-11d1-a7d3-0000f87571e3");
 pub const IID_IGPEInformation = &IID_IGPEInformation_Value;
 pub const IGPEInformation = extern struct {
     pub const VTable = extern struct {
@@ -4265,7 +4265,7 @@ pub const IGPEInformation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGroupPolicyObject_Value = @import("../zig.zig").Guid.initString("ea502723-a23d-11d1-a7d3-0000f87571e3");
+const IID_IGroupPolicyObject_Value = Guid.initString("ea502723-a23d-11d1-a7d3-0000f87571e3");
 pub const IID_IGroupPolicyObject = &IID_IGroupPolicyObject_Value;
 pub const IGroupPolicyObject = extern struct {
     pub const VTable = extern struct {
@@ -4440,7 +4440,7 @@ pub const IGroupPolicyObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRSOPInformation_Value = @import("../zig.zig").Guid.initString("9a5a81b5-d9c7-49ef-9d11-ddf50968c48d");
+const IID_IRSOPInformation_Value = Guid.initString("9a5a81b5-d9c7-49ef-9d11-ddf50968c48d");
 pub const IID_IRSOPInformation = &IID_IRSOPInformation_Value;
 pub const IRSOPInformation = extern struct {
     pub const VTable = extern struct {

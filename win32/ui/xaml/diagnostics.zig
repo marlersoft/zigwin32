@@ -146,7 +146,7 @@ pub const ErrorResourceNotFound = VisualElementState.ResourceNotFound;
 pub const ErrorInvalidResource = VisualElementState.InvalidResource;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IVisualTreeServiceCallback_Value = @import("../../zig.zig").Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
+const IID_IVisualTreeServiceCallback_Value = Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
 pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
 pub const IVisualTreeServiceCallback = extern struct {
     pub const VTable = extern struct {
@@ -170,7 +170,7 @@ pub const IVisualTreeServiceCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IVisualTreeServiceCallback2_Value = @import("../../zig.zig").Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
+const IID_IVisualTreeServiceCallback2_Value = Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
 pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
 pub const IVisualTreeServiceCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -193,7 +193,7 @@ pub const IVisualTreeServiceCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVisualTreeService_Value = @import("../../zig.zig").Guid.initString("a593b11a-d17f-48bb-8f66-83910731c8a5");
+const IID_IVisualTreeService_Value = Guid.initString("a593b11a-d17f-48bb-8f66-83910731c8a5");
 pub const IID_IVisualTreeService = &IID_IVisualTreeService_Value;
 pub const IVisualTreeService = extern struct {
     pub const VTable = extern struct {
@@ -320,7 +320,7 @@ pub const IVisualTreeService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IXamlDiagnostics_Value = @import("../../zig.zig").Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
+const IID_IXamlDiagnostics_Value = Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
 pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
 pub const IXamlDiagnostics = extern struct {
     pub const VTable = extern struct {
@@ -403,7 +403,7 @@ pub const IXamlDiagnostics = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IBitmapData_Value = @import("../../zig.zig").Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
+const IID_IBitmapData_Value = Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
 pub const IID_IBitmapData = &IID_IBitmapData_Value;
 pub const IBitmapData = extern struct {
     pub const VTable = extern struct {
@@ -452,7 +452,7 @@ pub const IBitmapData = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IVisualTreeService2_Value = @import("../../zig.zig").Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
+const IID_IVisualTreeService2_Value = Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
 pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
 pub const IVisualTreeService2 = extern struct {
     pub const VTable = extern struct {
@@ -508,7 +508,7 @@ pub const IVisualTreeService2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IVisualTreeService3_Value = @import("../../zig.zig").Guid.initString("0e79c6e0-85a0-4be8-b41a-655cf1fd19bd");
+const IID_IVisualTreeService3_Value = Guid.initString("0e79c6e0-85a0-4be8-b41a-655cf1fd19bd");
 pub const IID_IVisualTreeService3 = &IID_IVisualTreeService3_Value;
 pub const IVisualTreeService3 = extern struct {
     pub const VTable = extern struct {

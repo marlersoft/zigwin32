@@ -6,28 +6,28 @@
 //--------------------------------------------------------------------------------
 // Section: Types (15)
 //--------------------------------------------------------------------------------
-const CLSID_Catalog_Value = @import("../zig.zig").Guid.initString("6eb22881-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_Catalog_Value = Guid.initString("6eb22881-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_Catalog = &CLSID_Catalog_Value;
 
-const CLSID_CatalogObject_Value = @import("../zig.zig").Guid.initString("6eb22882-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_CatalogObject_Value = Guid.initString("6eb22882-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_CatalogObject = &CLSID_CatalogObject_Value;
 
-const CLSID_CatalogCollection_Value = @import("../zig.zig").Guid.initString("6eb22883-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_CatalogCollection_Value = Guid.initString("6eb22883-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_CatalogCollection = &CLSID_CatalogCollection_Value;
 
-const CLSID_ComponentUtil_Value = @import("../zig.zig").Guid.initString("6eb22884-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_ComponentUtil_Value = Guid.initString("6eb22884-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_ComponentUtil = &CLSID_ComponentUtil_Value;
 
-const CLSID_PackageUtil_Value = @import("../zig.zig").Guid.initString("6eb22885-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_PackageUtil_Value = Guid.initString("6eb22885-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_PackageUtil = &CLSID_PackageUtil_Value;
 
-const CLSID_RemoteComponentUtil_Value = @import("../zig.zig").Guid.initString("6eb22886-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_RemoteComponentUtil_Value = Guid.initString("6eb22886-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_RemoteComponentUtil = &CLSID_RemoteComponentUtil_Value;
 
-const CLSID_RoleAssociationUtil_Value = @import("../zig.zig").Guid.initString("6eb22887-8a19-11d0-81b6-00a0c9231c29");
+const CLSID_RoleAssociationUtil_Value = Guid.initString("6eb22887-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_RoleAssociationUtil = &CLSID_RoleAssociationUtil_Value;
 
-const IID_ICatalog_Value = @import("../zig.zig").Guid.initString("6eb22870-8a19-11d0-81b6-00a0c9231c29");
+const IID_ICatalog_Value = Guid.initString("6eb22870-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_ICatalog = &IID_ICatalog_Value;
 pub const ICatalog = extern struct {
     pub const VTable = extern struct {
@@ -76,7 +76,7 @@ pub const ICatalog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IComponentUtil_Value = @import("../zig.zig").Guid.initString("6eb22873-8a19-11d0-81b6-00a0c9231c29");
+const IID_IComponentUtil_Value = Guid.initString("6eb22873-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IComponentUtil = &IID_IComponentUtil_Value;
 pub const IComponentUtil = extern struct {
     pub const VTable = extern struct {
@@ -125,7 +125,7 @@ pub const IComponentUtil = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPackageUtil_Value = @import("../zig.zig").Guid.initString("6eb22874-8a19-11d0-81b6-00a0c9231c29");
+const IID_IPackageUtil_Value = Guid.initString("6eb22874-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IPackageUtil = &IID_IPackageUtil_Value;
 pub const IPackageUtil = extern struct {
     pub const VTable = extern struct {
@@ -166,7 +166,7 @@ pub const IPackageUtil = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRemoteComponentUtil_Value = @import("../zig.zig").Guid.initString("6eb22875-8a19-11d0-81b6-00a0c9231c29");
+const IID_IRemoteComponentUtil_Value = Guid.initString("6eb22875-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IRemoteComponentUtil = &IID_IRemoteComponentUtil_Value;
 pub const IRemoteComponentUtil = extern struct {
     pub const VTable = extern struct {
@@ -199,7 +199,7 @@ pub const IRemoteComponentUtil = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRoleAssociationUtil_Value = @import("../zig.zig").Guid.initString("6eb22876-8a19-11d0-81b6-00a0c9231c29");
+const IID_IRoleAssociationUtil_Value = Guid.initString("6eb22876-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_IRoleAssociationUtil = &IID_IRoleAssociationUtil_Value;
 pub const IRoleAssociationUtil = extern struct {
     pub const VTable = extern struct {
@@ -350,8 +350,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

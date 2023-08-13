@@ -780,7 +780,7 @@ pub const LPSETUPHOOKPROC = fn(
 
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogCallback_Value = @import("../../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
+const IID_IPrintDialogCallback_Value = Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
 pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
 pub const IPrintDialogCallback = extern struct {
     pub const VTable = extern struct {
@@ -820,7 +820,7 @@ pub const IPrintDialogCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogServices_Value = @import("../../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
+const IID_IPrintDialogServices_Value = Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
 pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
 pub const IPrintDialogServices = extern struct {
     pub const VTable = extern struct {
@@ -1803,8 +1803,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const DEVMODEA = @import("../../graphics/gdi.zig").DEVMODEA;
 const HDC = @import("../../graphics/gdi.zig").HDC;

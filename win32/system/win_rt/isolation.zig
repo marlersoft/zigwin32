@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-const IID_IIsolatedEnvironmentInterop_Value = @import("../../zig.zig").Guid.initString("85713c2e-8e62-46c5-8de2-c647e1d54636");
+const IID_IIsolatedEnvironmentInterop_Value = Guid.initString("85713c2e-8e62-46c5-8de2-c647e1d54636");
 pub const IID_IIsolatedEnvironmentInterop = &IID_IIsolatedEnvironmentInterop_Value;
 pub const IIsolatedEnvironmentInterop = extern struct {
     pub const VTable = extern struct {
@@ -47,8 +47,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IUnknown = @import("../../system/com.zig").IUnknown;

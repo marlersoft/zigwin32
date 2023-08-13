@@ -110,7 +110,7 @@ pub const PFN_DXCORE_NOTIFICATION_CALLBACK = fn(
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const IID_IDXCoreAdapter_Value = @import("../zig.zig").Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
+const IID_IDXCoreAdapter_Value = Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
 pub const IID_IDXCoreAdapter = &IID_IDXCoreAdapter_Value;
 pub const IDXCoreAdapter = extern struct {
     pub const VTable = extern struct {
@@ -219,7 +219,7 @@ pub const IDXCoreAdapter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXCoreAdapterList_Value = @import("../zig.zig").Guid.initString("526c7776-40e9-459b-b711-f32ad76dfc28");
+const IID_IDXCoreAdapterList_Value = Guid.initString("526c7776-40e9-459b-b711-f32ad76dfc28");
 pub const IID_IDXCoreAdapterList = &IID_IDXCoreAdapterList_Value;
 pub const IDXCoreAdapterList = extern struct {
     pub const VTable = extern struct {
@@ -282,7 +282,7 @@ pub const IDXCoreAdapterList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXCoreAdapterFactory_Value = @import("../zig.zig").Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
+const IID_IDXCoreAdapterFactory_Value = Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
 pub const IID_IDXCoreAdapterFactory = &IID_IDXCoreAdapterFactory_Value;
 pub const IDXCoreAdapterFactory = extern struct {
     pub const VTable = extern struct {

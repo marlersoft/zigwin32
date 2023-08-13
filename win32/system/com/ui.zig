@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-const IID_IThumbnailExtractor_Value = @import("../../zig.zig").Guid.initString("969dc708-5c76-11d1-8d86-0000f804b057");
+const IID_IThumbnailExtractor_Value = Guid.initString("969dc708-5c76-11d1-8d86-0000f804b057");
 pub const IID_IThumbnailExtractor = &IID_IThumbnailExtractor_Value;
 pub const IThumbnailExtractor = extern struct {
     pub const VTable = extern struct {
@@ -40,7 +40,7 @@ pub const IThumbnailExtractor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDummyHICONIncluder_Value = @import("../../zig.zig").Guid.initString("947990de-cc28-11d2-a0f7-00805f858fb1");
+const IID_IDummyHICONIncluder_Value = Guid.initString("947990de-cc28-11d2-a0f7-00805f858fb1");
 pub const IID_IDummyHICONIncluder = &IID_IDummyHICONIncluder_Value;
 pub const IDummyHICONIncluder = extern struct {
     pub const VTable = extern struct {
@@ -81,8 +81,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
 const HDC = @import("../../graphics/gdi.zig").HDC;
 const HICON = @import("../../ui/windows_and_messaging.zig").HICON;

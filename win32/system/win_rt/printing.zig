@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
-const IID_IPrinting3DManagerInterop_Value = @import("../../zig.zig").Guid.initString("9ca31010-1484-4587-b26b-dddf9f9caecd");
+const IID_IPrinting3DManagerInterop_Value = Guid.initString("9ca31010-1484-4587-b26b-dddf9f9caecd");
 pub const IID_IPrinting3DManagerInterop = &IID_IPrinting3DManagerInterop_Value;
 pub const IPrinting3DManagerInterop = extern struct {
     pub const VTable = extern struct {
@@ -40,7 +40,7 @@ pub const IPrinting3DManagerInterop = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IPrintManagerInterop_Value = @import("../../zig.zig").Guid.initString("c5435a42-8d43-4e7b-a68a-ef311e392087");
+const IID_IPrintManagerInterop_Value = Guid.initString("c5435a42-8d43-4e7b-a68a-ef311e392087");
 pub const IID_IPrintManagerInterop = &IID_IPrintManagerInterop_Value;
 pub const IPrintManagerInterop = extern struct {
     pub const VTable = extern struct {
@@ -73,7 +73,7 @@ pub const IPrintManagerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintWorkflowXpsReceiver_Value = @import("../../zig.zig").Guid.initString("04097374-77b8-47f6-8167-aae29d4cf84b");
+const IID_IPrintWorkflowXpsReceiver_Value = Guid.initString("04097374-77b8-47f6-8167-aae29d4cf84b");
 pub const IID_IPrintWorkflowXpsReceiver = &IID_IPrintWorkflowXpsReceiver_Value;
 pub const IPrintWorkflowXpsReceiver = extern struct {
     pub const VTable = extern struct {
@@ -130,7 +130,7 @@ pub const IPrintWorkflowXpsReceiver = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintWorkflowXpsReceiver2_Value = @import("../../zig.zig").Guid.initString("023bcc0c-dfab-4a61-b074-490c6995580d");
+const IID_IPrintWorkflowXpsReceiver2_Value = Guid.initString("023bcc0c-dfab-4a61-b074-490c6995580d");
 pub const IID_IPrintWorkflowXpsReceiver2 = &IID_IPrintWorkflowXpsReceiver2_Value;
 pub const IPrintWorkflowXpsReceiver2 = extern struct {
     pub const VTable = extern struct {
@@ -151,7 +151,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintWorkflowObjectModelSourceFileContentNative_Value = @import("../../zig.zig").Guid.initString("68c9e477-993e-4052-8ac6-454eff58db9d");
+const IID_IPrintWorkflowObjectModelSourceFileContentNative_Value = Guid.initString("68c9e477-993e-4052-8ac6-454eff58db9d");
 pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWorkflowObjectModelSourceFileContentNative_Value;
 pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
     pub const VTable = extern struct {
@@ -181,7 +181,7 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value = @import("../../zig.zig").Guid.initString("7d96bc74-9b54-4ca1-ad3a-979c3d44ddac");
+const IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value = Guid.initString("7d96bc74-9b54-4ca1-ad3a-979c3d44ddac");
 pub const IID_IPrintWorkflowXpsObjectModelTargetPackageNative = &IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value;
 pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
     pub const VTable = extern struct {
@@ -203,7 +203,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintWorkflowConfigurationNative_Value = @import("../../zig.zig").Guid.initString("c056be0a-9ee2-450a-9823-964f0006f2bb");
+const IID_IPrintWorkflowConfigurationNative_Value = Guid.initString("c056be0a-9ee2-450a-9823-964f0006f2bb");
 pub const IID_IPrintWorkflowConfigurationNative = &IID_IPrintWorkflowConfigurationNative_Value;
 pub const IPrintWorkflowConfigurationNative = extern struct {
     pub const VTable = extern struct {

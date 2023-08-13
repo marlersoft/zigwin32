@@ -7,7 +7,7 @@ pub const RADIUS_EXTENSION_VERSION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (66)
 //--------------------------------------------------------------------------------
-const CLSID_SdoMachine_Value = @import("../zig.zig").Guid.initString("e9218ae7-9e91-11d1-bf60-0080c7846bc0");
+const CLSID_SdoMachine_Value = Guid.initString("e9218ae7-9e91-11d1-bf60-0080c7846bc0");
 pub const CLSID_SdoMachine = &CLSID_SdoMachine_Value;
 
 pub const ATTRIBUTEID = enum(u32) {
@@ -1058,7 +1058,7 @@ pub const DATA_STORE_LOCAL = IASDATASTORE.LOCAL;
 pub const DATA_STORE_DIRECTORY = IASDATASTORE.DIRECTORY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISdoMachine_Value = @import("../zig.zig").Guid.initString("479f6e75-49a2-11d2-8eca-00c04fc2f519");
+const IID_ISdoMachine_Value = Guid.initString("479f6e75-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoMachine = &IID_ISdoMachine_Value;
 pub const ISdoMachine = extern struct {
     pub const VTable = extern struct {
@@ -1147,7 +1147,7 @@ pub const ISdoMachine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdoMachine2_Value = @import("../zig.zig").Guid.initString("518e5ffe-d8ce-4f7e-a5db-b40a35419d3b");
+const IID_ISdoMachine2_Value = Guid.initString("518e5ffe-d8ce-4f7e-a5db-b40a35419d3b");
 pub const IID_ISdoMachine2 = &IID_ISdoMachine2_Value;
 pub const ISdoMachine2 = extern struct {
     pub const VTable = extern struct {
@@ -1204,7 +1204,7 @@ pub const ISdoMachine2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISdoServiceControl_Value = @import("../zig.zig").Guid.initString("479f6e74-49a2-11d2-8eca-00c04fc2f519");
+const IID_ISdoServiceControl_Value = Guid.initString("479f6e74-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoServiceControl = &IID_ISdoServiceControl_Value;
 pub const ISdoServiceControl = extern struct {
     pub const VTable = extern struct {
@@ -1247,7 +1247,7 @@ pub const ISdoServiceControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISdo_Value = @import("../zig.zig").Guid.initString("56bc53de-96db-11d1-bf3f-000000000000");
+const IID_ISdo_Value = Guid.initString("56bc53de-96db-11d1-bf3f-000000000000");
 pub const IID_ISdo = &IID_ISdo_Value;
 pub const ISdo = extern struct {
     pub const VTable = extern struct {
@@ -1319,7 +1319,7 @@ pub const ISdo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISdoCollection_Value = @import("../zig.zig").Guid.initString("56bc53e2-96db-11d1-bf3f-000000000000");
+const IID_ISdoCollection_Value = Guid.initString("56bc53e2-96db-11d1-bf3f-000000000000");
 pub const IID_ISdoCollection = &IID_ISdoCollection_Value;
 pub const ISdoCollection = extern struct {
     pub const VTable = extern struct {
@@ -1399,7 +1399,7 @@ pub const ISdoCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITemplateSdo_Value = @import("../zig.zig").Guid.initString("8aa85302-d2e2-4e20-8b1f-a571e437d6c9");
+const IID_ITemplateSdo_Value = Guid.initString("8aa85302-d2e2-4e20-8b1f-a571e437d6c9");
 pub const IID_ITemplateSdo = &IID_ITemplateSdo_Value;
 pub const ITemplateSdo = extern struct {
     pub const VTable = extern struct {
@@ -1442,7 +1442,7 @@ pub const ITemplateSdo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISdoDictionaryOld_Value = @import("../zig.zig").Guid.initString("d432e5f4-53d8-11d2-9a3a-00c04fb998ac");
+const IID_ISdoDictionaryOld_Value = Guid.initString("d432e5f4-53d8-11d2-9a3a-00c04fb998ac");
 pub const IID_ISdoDictionaryOld = &IID_ISdoDictionaryOld_Value;
 pub const ISdoDictionaryOld = extern struct {
     pub const VTable = extern struct {
@@ -1825,8 +1825,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

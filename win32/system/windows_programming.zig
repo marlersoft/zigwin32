@@ -984,7 +984,7 @@ pub const PWINSTATIONQUERYINFORMATIONW = fn(
     param5: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
+const CLSID_CameraUIControl_Value = Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
 pub const CLSID_CameraUIControl = &CLSID_CameraUIControl_Value;
 
 pub const CameraUIControlMode = enum(i32) {
@@ -1026,7 +1026,7 @@ pub const CameraUIControlViewType = enum(i32) {
 // NOTE: not creating aliases because this enum is 'Scoped'
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ICameraUIControlEventCallback_Value = @import("../zig.zig").Guid.initString("1bfa0c2c-fbcd-4776-bda4-88bf974e74f4");
+const IID_ICameraUIControlEventCallback_Value = Guid.initString("1bfa0c2c-fbcd-4776-bda4-88bf974e74f4");
 pub const IID_ICameraUIControlEventCallback = &IID_ICameraUIControlEventCallback_Value;
 pub const ICameraUIControlEventCallback = extern struct {
     pub const VTable = extern struct {
@@ -1077,7 +1077,7 @@ pub const ICameraUIControlEventCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ICameraUIControl_Value = @import("../zig.zig").Guid.initString("b8733adf-3d68-4b8f-bb08-e28a0bed0376");
+const IID_ICameraUIControl_Value = Guid.initString("b8733adf-3d68-4b8f-bb08-e28a0bed0376");
 pub const IID_ICameraUIControl = &IID_ICameraUIControl_Value;
 pub const ICameraUIControl = extern struct {
     pub const VTable = extern struct {
@@ -1159,14 +1159,14 @@ pub const ICameraUIControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_EditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("01776df3-b9af-4e50-9b1c-56e93116d704");
+const CLSID_EditionUpgradeHelper_Value = Guid.initString("01776df3-b9af-4e50-9b1c-56e93116d704");
 pub const CLSID_EditionUpgradeHelper = &CLSID_EditionUpgradeHelper_Value;
 
-const CLSID_EditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("c4270827-4f39-45df-9288-12ff6b85a921");
+const CLSID_EditionUpgradeBroker_Value = Guid.initString("c4270827-4f39-45df-9288-12ff6b85a921");
 pub const CLSID_EditionUpgradeBroker = &CLSID_EditionUpgradeBroker_Value;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IEditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("d3e9e342-5deb-43b6-849e-6913b85d503a");
+const IID_IEditionUpgradeHelper_Value = Guid.initString("d3e9e342-5deb-43b6-849e-6913b85d503a");
 pub const IID_IEditionUpgradeHelper = &IID_IEditionUpgradeHelper_Value;
 pub const IEditionUpgradeHelper = extern struct {
     pub const VTable = extern struct {
@@ -1218,7 +1218,7 @@ pub const IEditionUpgradeHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsLockModeHelper_Value = @import("../zig.zig").Guid.initString("f342d19e-cc22-4648-bb5d-03ccf75b47c5");
+const IID_IWindowsLockModeHelper_Value = Guid.initString("f342d19e-cc22-4648-bb5d-03ccf75b47c5");
 pub const IID_IWindowsLockModeHelper = &IID_IWindowsLockModeHelper_Value;
 pub const IWindowsLockModeHelper = extern struct {
     pub const VTable = extern struct {
@@ -1239,7 +1239,7 @@ pub const IWindowsLockModeHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("ff19cbcf-9455-4937-b872-6b7929a460af");
+const IID_IEditionUpgradeBroker_Value = Guid.initString("ff19cbcf-9455-4937-b872-6b7929a460af");
 pub const IID_IEditionUpgradeBroker = &IID_IEditionUpgradeBroker_Value;
 pub const IEditionUpgradeBroker = extern struct {
     pub const VTable = extern struct {
@@ -1282,7 +1282,7 @@ pub const IEditionUpgradeBroker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContainerActivationHelper_Value = @import("../zig.zig").Guid.initString("b524f93f-80d5-4ec7-ae9e-d66e93ade1fa");
+const IID_IContainerActivationHelper_Value = Guid.initString("b524f93f-80d5-4ec7-ae9e-d66e93ade1fa");
 pub const IID_IContainerActivationHelper = &IID_IContainerActivationHelper_Value;
 pub const IContainerActivationHelper = extern struct {
     pub const VTable = extern struct {
@@ -1303,7 +1303,7 @@ pub const IContainerActivationHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IClipServiceNotificationHelper_Value = @import("../zig.zig").Guid.initString("c39948f0-6142-44fd-98ca-e1681a8d68b5");
+const IID_IClipServiceNotificationHelper_Value = Guid.initString("c39948f0-6142-44fd-98ca-e1681a8d68b5");
 pub const IID_IClipServiceNotificationHelper = &IID_IClipServiceNotificationHelper_Value;
 pub const IClipServiceNotificationHelper = extern struct {
     pub const VTable = extern struct {
@@ -1810,10 +1810,10 @@ pub const PWLDP_ISPRODUCTIONCONFIGURATION_API = fn(
 pub const PWLDP_RESETPRODUCTIONCONFIGURATION_API = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_DefaultBrowserSyncSettings_Value = @import("../zig.zig").Guid.initString("3ac83423-3112-4aa6-9b5b-1feb23d0c5f9");
+const CLSID_DefaultBrowserSyncSettings_Value = Guid.initString("3ac83423-3112-4aa6-9b5b-1feb23d0c5f9");
 pub const CLSID_DefaultBrowserSyncSettings = &CLSID_DefaultBrowserSyncSettings_Value;
 
-const IID_IDefaultBrowserSyncSettings_Value = @import("../zig.zig").Guid.initString("7a27faad-5ae6-4255-9030-c530936292e3");
+const IID_IDefaultBrowserSyncSettings_Value = Guid.initString("7a27faad-5ae6-4255-9030-c530936292e3");
 pub const IID_IDefaultBrowserSyncSettings = &IID_IDefaultBrowserSyncSettings_Value;
 pub const IDefaultBrowserSyncSettings = extern struct {
     pub const VTable = extern struct {
@@ -1847,7 +1847,7 @@ pub const PDELAYLOAD_FAILURE_DLL_CALLBACK = fn(
     DelayloadInfo: ?*DELAYLOAD_INFO,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-const IID_IDeleteBrowsingHistory_Value = @import("../zig.zig").Guid.initString("cf38ed4b-2be7-4461-8b5e-9a466dc82ae3");
+const IID_IDeleteBrowsingHistory_Value = Guid.initString("cf38ed4b-2be7-4461-8b5e-9a466dc82ae3");
 pub const IID_IDeleteBrowsingHistory = &IID_IDeleteBrowsingHistory_Value;
 pub const IDeleteBrowsingHistory = extern struct {
     pub const VTable = extern struct {
