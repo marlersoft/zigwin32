@@ -59,7 +59,7 @@ test {
     }
 }
 //--------------------------------------------------------------------------------
-// Section: SubModules (20)
+// Section: SubModules (21)
 //--------------------------------------------------------------------------------
 pub const composition_swapchain = @import("graphics/composition_swapchain.zig");
 pub const direct2d = @import("graphics/direct2d.zig");
@@ -69,6 +69,7 @@ pub const direct3d11 = @import("graphics/direct3d11.zig");
 pub const direct3d11on12 = @import("graphics/direct3d11on12.zig");
 pub const direct3d12 = @import("graphics/direct3d12.zig");
 pub const direct3d9 = @import("graphics/direct3d9.zig");
+pub const direct3d9on12 = @import("graphics/direct3d9on12.zig");
 pub const direct_composition = @import("graphics/direct_composition.zig");
 pub const direct_draw = @import("graphics/direct_draw.zig");
 pub const direct_manipulation = @import("graphics/direct_manipulation.zig");
