@@ -628,7 +628,7 @@ pub extern "KERNEL32" fn CreateFileMappingA(
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn CreateFileMappingNumaA(
@@ -876,7 +876,7 @@ pub extern "KERNEL32" fn CreateFileMappingW(
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn OpenFileMappingW(
@@ -892,7 +892,7 @@ pub extern "KERNEL32" fn MapViewOfFile(
     dwFileOffsetHigh: u32,
     dwFileOffsetLow: u32,
     dwNumberOfBytesToMap: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn MapViewOfFileEx(
@@ -902,7 +902,7 @@ pub extern "KERNEL32" fn MapViewOfFileEx(
     dwFileOffsetLow: u32,
     dwNumberOfBytesToMap: usize,
     lpBaseAddress: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualFreeEx(
