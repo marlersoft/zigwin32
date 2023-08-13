@@ -29,7 +29,7 @@ pub usingnamespace switch (unicode_mode) {
 
 pub const Arch = enum { X86, X64, Arm64 };
 pub const arch: Arch = switch (builtin.target.cpu.arch) {
-    .i386 => .X86,
+    .x86 => .X86,
     .x86_64 => .X64,
     .arm, .armeb => .Arm64,
     else => @compileError("unable to determine win32 arch"),
