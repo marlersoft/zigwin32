@@ -4571,8 +4571,6 @@ test {
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
