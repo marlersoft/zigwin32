@@ -22870,7 +22870,7 @@ pub const AVIOLDINDEX = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
-    aIndex: _avioldindex_entry,
+    aIndex: [1]_avioldindex_entry,
 };
 
 pub const TIMECODEDATA = extern struct {
@@ -22890,7 +22890,7 @@ pub const AVIMETAINDEX = extern struct {
     nEntriesInUse: u32,
     dwChunkId: u32,
     dwReserved: [3]u32,
-    adwIndex: u32,
+    adwIndex: [1]u32,
 };
 
 pub const AVISUPERINDEX = extern struct {
@@ -23007,7 +23007,7 @@ pub const AVIFIELDINDEX = extern struct {
     dwChunkId: u32,
     qwBaseOffset: u64,
     dwReserved3: u32,
-    aIndex: _avifieldindex_entry,
+    aIndex: [1]_avifieldindex_entry,
 };
 
 pub const MainAVIHeader = extern struct {
@@ -23052,7 +23052,7 @@ pub const AVIPALCHANGE = extern struct {
     bFirstEntry: u8,
     bNumEntries: u8,
     wFlags: u16,
-    peNew: PALETTEENTRY,
+    peNew: [1]PALETTEENTRY,
 };
 
 pub const AM_PROPERTY_AC3 = enum(i32) {

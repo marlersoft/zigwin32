@@ -5490,7 +5490,7 @@ pub const IShellItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SIIGBF = enum(i32) {
+pub const SIIGBF = enum(i32) {
     RESIZETOFIT = 0,
     BIGGERSIZEOK = 1,
     MEMORYONLY = 2,
@@ -5501,17 +5501,43 @@ pub const _SIIGBF = enum(i32) {
     WIDETHUMBNAILS = 64,
     ICONBACKGROUND = 128,
     SCALEUP = 256,
+    _,
+    pub fn initFlags(o: struct {
+        RESIZETOFIT: u1 = 0,
+        BIGGERSIZEOK: u1 = 0,
+        MEMORYONLY: u1 = 0,
+        ICONONLY: u1 = 0,
+        THUMBNAILONLY: u1 = 0,
+        INCACHEONLY: u1 = 0,
+        CROPTOSQUARE: u1 = 0,
+        WIDETHUMBNAILS: u1 = 0,
+        ICONBACKGROUND: u1 = 0,
+        SCALEUP: u1 = 0,
+    }) SIIGBF {
+        return @intToEnum(SIIGBF,
+              (if (o.RESIZETOFIT == 1) @enumToInt(SIIGBF.RESIZETOFIT) else 0)
+            | (if (o.BIGGERSIZEOK == 1) @enumToInt(SIIGBF.BIGGERSIZEOK) else 0)
+            | (if (o.MEMORYONLY == 1) @enumToInt(SIIGBF.MEMORYONLY) else 0)
+            | (if (o.ICONONLY == 1) @enumToInt(SIIGBF.ICONONLY) else 0)
+            | (if (o.THUMBNAILONLY == 1) @enumToInt(SIIGBF.THUMBNAILONLY) else 0)
+            | (if (o.INCACHEONLY == 1) @enumToInt(SIIGBF.INCACHEONLY) else 0)
+            | (if (o.CROPTOSQUARE == 1) @enumToInt(SIIGBF.CROPTOSQUARE) else 0)
+            | (if (o.WIDETHUMBNAILS == 1) @enumToInt(SIIGBF.WIDETHUMBNAILS) else 0)
+            | (if (o.ICONBACKGROUND == 1) @enumToInt(SIIGBF.ICONBACKGROUND) else 0)
+            | (if (o.SCALEUP == 1) @enumToInt(SIIGBF.SCALEUP) else 0)
+        );
+    }
 };
-pub const SIIGBF_RESIZETOFIT = _SIIGBF.RESIZETOFIT;
-pub const SIIGBF_BIGGERSIZEOK = _SIIGBF.BIGGERSIZEOK;
-pub const SIIGBF_MEMORYONLY = _SIIGBF.MEMORYONLY;
-pub const SIIGBF_ICONONLY = _SIIGBF.ICONONLY;
-pub const SIIGBF_THUMBNAILONLY = _SIIGBF.THUMBNAILONLY;
-pub const SIIGBF_INCACHEONLY = _SIIGBF.INCACHEONLY;
-pub const SIIGBF_CROPTOSQUARE = _SIIGBF.CROPTOSQUARE;
-pub const SIIGBF_WIDETHUMBNAILS = _SIIGBF.WIDETHUMBNAILS;
-pub const SIIGBF_ICONBACKGROUND = _SIIGBF.ICONBACKGROUND;
-pub const SIIGBF_SCALEUP = _SIIGBF.SCALEUP;
+pub const SIIGBF_RESIZETOFIT = SIIGBF.RESIZETOFIT;
+pub const SIIGBF_BIGGERSIZEOK = SIIGBF.BIGGERSIZEOK;
+pub const SIIGBF_MEMORYONLY = SIIGBF.MEMORYONLY;
+pub const SIIGBF_ICONONLY = SIIGBF.ICONONLY;
+pub const SIIGBF_THUMBNAILONLY = SIIGBF.THUMBNAILONLY;
+pub const SIIGBF_INCACHEONLY = SIIGBF.INCACHEONLY;
+pub const SIIGBF_CROPTOSQUARE = SIIGBF.CROPTOSQUARE;
+pub const SIIGBF_WIDETHUMBNAILS = SIIGBF.WIDETHUMBNAILS;
+pub const SIIGBF_ICONBACKGROUND = SIIGBF.ICONBACKGROUND;
+pub const SIIGBF_SCALEUP = SIIGBF.SCALEUP;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IShellItemImageFactory_Value = @import("../zig.zig").Guid.initString("bcc18b79-ba16-442f-80c4-8a59c30c463b");
@@ -5522,7 +5548,7 @@ pub const IShellItemImageFactory = extern struct {
         GetImage: fn(
             self: *const IShellItemImageFactory,
             size: SIZE,
-            flags: i32,
+            flags: SIIGBF,
             phbm: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5530,7 +5556,7 @@ pub const IShellItemImageFactory = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemImageFactory_GetImage(self: *const T, size: SIZE, flags: i32, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
+        pub fn IShellItemImageFactory_GetImage(self: *const T, size: SIZE, flags: SIIGBF, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemImageFactory.VTable, self.vtable).GetImage(@ptrCast(*const IShellItemImageFactory, self), size, flags, phbm);
         }
     };}

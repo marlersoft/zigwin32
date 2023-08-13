@@ -351,7 +351,7 @@ pub const SYSTEM_INFO = extern struct {
     Anonymous: extern union {
         dwOemId: u32,
         Anonymous: extern struct {
-            wProcessorArchitecture: u16,
+            wProcessorArchitecture: PROCESSOR_ARCHITECTURE,
             wReserved: u16,
         },
     },
@@ -824,13 +824,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CACHE_DESCRIPTOR = @import("../system/system_services.zig").CACHE_DESCRIPTOR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const PROCESSOR_ARCHITECTURE = @import("../system/diagnostics/debug.zig").PROCESSOR_ARCHITECTURE;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = @import("../system/system_services.zig").SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;

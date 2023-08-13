@@ -386,7 +386,7 @@ pub const WNODE_ALL_DATA = extern struct {
     OffsetInstanceNameOffsets: u32,
     Anonymous: extern union {
         FixedInstanceSize: u32,
-        OffsetInstanceDataAndLength: OFFSETINSTANCEDATAANDLENGTH,
+        OffsetInstanceDataAndLength: [1]OFFSETINSTANCEDATAANDLENGTH,
     },
 };
 
@@ -396,7 +396,7 @@ pub const WNODE_SINGLE_INSTANCE = extern struct {
     InstanceIndex: u32,
     DataBlockOffset: u32,
     SizeDataBlock: u32,
-    VariableData: u8,
+    VariableData: [1]u8,
 };
 
 pub const WNODE_SINGLE_ITEM = extern struct {
@@ -406,7 +406,7 @@ pub const WNODE_SINGLE_ITEM = extern struct {
     ItemId: u32,
     DataBlockOffset: u32,
     SizeDataItem: u32,
-    VariableData: u8,
+    VariableData: [1]u8,
 };
 
 pub const WNODE_METHOD_ITEM = extern struct {
@@ -416,7 +416,7 @@ pub const WNODE_METHOD_ITEM = extern struct {
     MethodId: u32,
     DataBlockOffset: u32,
     SizeDataBlock: u32,
-    VariableData: u8,
+    VariableData: [1]u8,
 };
 
 pub const WNODE_EVENT_ITEM = extern struct {
@@ -429,7 +429,7 @@ pub const WNODE_EVENT_REFERENCE = extern struct {
     TargetDataBlockSize: u32,
     Anonymous: extern union {
         TargetInstanceIndex: u32,
-        TargetInstanceName: u16,
+        TargetInstanceName: [1]u16,
     },
 };
 
@@ -456,7 +456,7 @@ pub const WMIREGINFOW = extern struct {
     RegistryPath: u32,
     MofResourceName: u32,
     GuidCount: u32,
-    WmiRegGuid: WMIREGGUIDW,
+    WmiRegGuid: [1]WMIREGGUIDW,
 };
 
 pub const WMIDPREQUESTCODE = enum(i32) {

@@ -165,7 +165,7 @@ pub const COMPATIBILITY_CONTEXT_ELEMENT = extern struct {
 
 pub const ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = extern struct {
     ElementCount: u32,
-    Elements: COMPATIBILITY_CONTEXT_ELEMENT,
+    Elements: [1]COMPATIBILITY_CONTEXT_ELEMENT,
 };
 
 pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {

@@ -18,7 +18,7 @@ pub const EventLogHandle = isize;
 // TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
 pub const EventSourceHandle = isize;
 
-pub const REPORT_EVENT_TYPE = enum(u32) {
+pub const REPORT_EVENT_TYPE = enum(u16) {
     SUCCESS = 0,
     AUDIT_FAILURE = 16,
     AUDIT_SUCCESS = 8,

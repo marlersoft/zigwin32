@@ -581,19 +581,19 @@ pub const CLUSTER_QUORUM_MAINTAINED = CLUSTER_QUORUM_VALUE.MAINTAINED;
 pub const CLUSTER_QUORUM_LOST = CLUSTER_QUORUM_VALUE.LOST;
 
 pub const CLUSTER_VALIDATE_PATH = extern struct {
-    szPath: u16,
+    szPath: [1]u16,
 };
 
 pub const CLUSTER_VALIDATE_DIRECTORY = extern struct {
-    szPath: u16,
+    szPath: [1]u16,
 };
 
 pub const CLUSTER_VALIDATE_NETNAME = extern struct {
-    szNetworkName: u16,
+    szNetworkName: [1]u16,
 };
 
 pub const CLUSTER_VALIDATE_CSV_FILENAME = extern struct {
-    szFileName: u16,
+    szFileName: [1]u16,
 };
 
 pub const CLUSTER_SET_PASSWORD_STATUS = extern struct {
@@ -3319,7 +3319,7 @@ pub const CLUSPROP_VALUE = extern struct {
 
 pub const CLUSPROP_BINARY = extern struct {
     __AnonymousBase_clusapi_L5092_C41: CLUSPROP_VALUE,
-    rgb: u8,
+    rgb: [1]u8,
 };
 
 pub const CLUSPROP_WORD = extern struct {
@@ -3339,7 +3339,7 @@ pub const CLUSPROP_LONG = extern struct {
 
 pub const CLUSPROP_SZ = extern struct {
     __AnonymousBase_clusapi_L5132_C37: CLUSPROP_VALUE,
-    sz: u16,
+    sz: [1]u16,
 };
 
 pub const CLUSPROP_ULARGE_INTEGER = extern struct {
@@ -3356,7 +3356,7 @@ pub const CLUSPROP_SECURITY_DESCRIPTOR = extern struct {
     __AnonymousBase_clusapi_L5174_C54: CLUSPROP_VALUE,
     Anonymous: extern union {
         sd: SECURITY_DESCRIPTOR_RELATIVE,
-        rgbSecurityDescriptor: u8,
+        rgbSecurityDescriptor: [1]u8,
     },
 };
 

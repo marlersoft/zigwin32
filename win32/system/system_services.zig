@@ -7603,7 +7603,7 @@ pub const IMAGE_POLICY_METADATA = extern struct {
     Version: u8,
     Reserved0: [7]u8,
     ApplicationId: u64,
-    Policies: IMAGE_POLICY_ENTRY,
+    Policies: [1]IMAGE_POLICY_ENTRY,
 };
 
 pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
@@ -7727,13 +7727,13 @@ pub const EVENTSFORLOGFILE = extern struct {
     ulSize: u32,
     szLogicalLogFile: [256]u16,
     ulNumRecords: u32,
-    pEventLogRecords: EVENTLOGRECORD,
+    pEventLogRecords: [1]EVENTLOGRECORD,
 };
 
 pub const PACKEDEVENTINFO = extern struct {
     ulSize: u32,
     ulNumEventsForLogFile: u32,
-    ulOffsets: u32,
+    ulOffsets: [1]u32,
 };
 
 pub const CM_SERVICE_NODE_TYPE = enum(i32) {
@@ -12868,8 +12868,8 @@ pub const STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE = extern struct {
     ResponseLevel: u32,
     NumberEntries: u32,
     Anonymous: extern union {
-        Lev1Depends: STORAGE_QUERY_DEPENDENT_VOLUME_LEV1_ENTRY,
-        Lev2Depends: STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY,
+        Lev1Depends: [1]STORAGE_QUERY_DEPENDENT_VOLUME_LEV1_ENTRY,
+        Lev2Depends: [1]STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY,
     },
 };
 
@@ -14543,7 +14543,7 @@ pub const CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR = GET_CHANGER_PARAMETERS_FEATURES1.
 pub const CHANGER_SLOTS_USE_TRAYS = GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS;
 pub const CHANGER_TRUE_EXCHANGE_CAPABLE = GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE;
 
-pub const DEV_BROADCAST_VOLUME_FLAGS = enum(u32) {
+pub const DEV_BROADCAST_VOLUME_FLAGS = enum(u16) {
     MEDIA = 1,
     NET = 2,
 };

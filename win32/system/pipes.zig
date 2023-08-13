@@ -6,12 +6,28 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const NAMED_PIPE_HANDLE_STATE = enum(u32) {
+pub const NAMED_PIPE_MODE = enum(u32) {
+    WAIT = 0,
     NOWAIT = 1,
+    // READMODE_BYTE = 0, this enum value conflicts with WAIT
     READMODE_MESSAGE = 2,
+    _,
+    pub fn initFlags(o: struct {
+        WAIT: u1 = 0,
+        NOWAIT: u1 = 0,
+        READMODE_MESSAGE: u1 = 0,
+    }) NAMED_PIPE_MODE {
+        return @intToEnum(NAMED_PIPE_MODE,
+              (if (o.WAIT == 1) @enumToInt(NAMED_PIPE_MODE.WAIT) else 0)
+            | (if (o.NOWAIT == 1) @enumToInt(NAMED_PIPE_MODE.NOWAIT) else 0)
+            | (if (o.READMODE_MESSAGE == 1) @enumToInt(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0)
+        );
+    }
 };
-pub const PIPE_NOWAIT = NAMED_PIPE_HANDLE_STATE.NOWAIT;
-pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_HANDLE_STATE.READMODE_MESSAGE;
+pub const PIPE_WAIT = NAMED_PIPE_MODE.WAIT;
+pub const PIPE_NOWAIT = NAMED_PIPE_MODE.NOWAIT;
+pub const PIPE_READMODE_BYTE = NAMED_PIPE_MODE.WAIT;
+pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_MODE.READMODE_MESSAGE;
 
 pub const WAIT_NAMED_PIPE_TIME_OUT_FLAGS = enum(u32) {
     USE_DEFAULT_WAIT = 0,
@@ -69,7 +85,7 @@ pub extern "KERNEL32" fn DisconnectNamedPipe(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn SetNamedPipeHandleState(
     hNamedPipe: ?HANDLE,
-    lpMode: ?*u32,
+    lpMode: ?*NAMED_PIPE_MODE,
     lpMaxCollectionCount: ?*u32,
     lpCollectDataTimeout: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -137,7 +153,7 @@ pub extern "KERNEL32" fn GetNamedPipeInfo(
 
 pub extern "KERNEL32" fn GetNamedPipeHandleStateW(
     hNamedPipe: ?HANDLE,
-    lpState: ?*NAMED_PIPE_HANDLE_STATE,
+    lpState: ?*NAMED_PIPE_MODE,
     lpCurInstances: ?*u32,
     lpMaxCollectionCount: ?*u32,
     lpCollectDataTimeout: ?*u32,
@@ -172,7 +188,7 @@ pub extern "KERNEL32" fn CreateNamedPipeA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
     hNamedPipe: ?HANDLE,
-    lpState: ?*NAMED_PIPE_HANDLE_STATE,
+    lpState: ?*NAMED_PIPE_MODE,
     lpCurInstances: ?*u32,
     lpMaxCollectionCount: ?*u32,
     lpCollectDataTimeout: ?*u32,

@@ -348,7 +348,7 @@ pub extern "dwmapi" fn DwmGetCompositionTimingInfo(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetWindowAttribute(
     hwnd: ?HWND,
-    dwAttribute: u32,
+    dwAttribute: DWMWINDOWATTRIBUTE,
     // TODO: what to do with BytesParamIndex 3?
     pvAttribute: ?*c_void,
     cbAttribute: u32,
@@ -394,7 +394,7 @@ pub extern "dwmapi" fn DwmSetPresentParameters(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmSetWindowAttribute(
     hwnd: ?HWND,
-    dwAttribute: u32,
+    dwAttribute: DWMWINDOWATTRIBUTE,
     // TODO: what to do with BytesParamIndex 3?
     pvAttribute: ?*const c_void,
     cbAttribute: u32,

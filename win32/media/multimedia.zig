@@ -3634,7 +3634,7 @@ pub const ADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
     wNumCoef: u16,
-    aCoef: ADPCMCOEFSET,
+    aCoef: [1]ADPCMCOEFSET,
 };
 
 pub const DRMWAVEFORMAT = packed struct {

@@ -3017,7 +3017,7 @@ pub const MORRSLT = packed struct {
     pWDD: ?*WDD,
     cWDD: i32,
     pPrivate: ?*c_void,
-    BLKBuff: u16,
+    BLKBuff: [1]u16,
 };
 
 const IID_IFELanguage_Value = @import("zig.zig").Guid.initString("019f7152-e6db-11d0-83c3-00c04fddb82e");

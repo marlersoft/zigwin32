@@ -455,8 +455,8 @@ pub const STORAGE_DEPENDENCY_INFO = extern struct {
     Version: STORAGE_DEPENDENCY_INFO_VERSION,
     NumberEntries: u32,
     Anonymous: extern union {
-        Version1Entries: STORAGE_DEPENDENCY_INFO_TYPE_1,
-        Version2Entries: STORAGE_DEPENDENCY_INFO_TYPE_2,
+        Version1Entries: [1]STORAGE_DEPENDENCY_INFO_TYPE_1,
+        Version2Entries: [1]STORAGE_DEPENDENCY_INFO_TYPE_2,
     },
 };
 

@@ -110,18 +110,14 @@ pub const WDSBP_OPTVAL_NBP_VER_8 = @as(u32, 2048);
 //--------------------------------------------------------------------------------
 // Section: Types (89)
 //--------------------------------------------------------------------------------
-pub const PROCESSOR_ARCHITECTURE = enum(u32) {
+pub const CPU_ARCHITECTURE = enum(u32) {
     AMD64 = 9,
     IA64 = 6,
     INTEL = 0,
-    ARM = 5,
-    UNKNOWN = 65535,
 };
-pub const PROCESSOR_ARCHITECTURE_AMD64 = PROCESSOR_ARCHITECTURE.AMD64;
-pub const PROCESSOR_ARCHITECTURE_IA64 = PROCESSOR_ARCHITECTURE.IA64;
-pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
-pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
-pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
+pub const CPU_ARCHITECTURE_AMD64 = CPU_ARCHITECTURE.AMD64;
+pub const CPU_ARCHITECTURE_IA64 = CPU_ARCHITECTURE.IA64;
+pub const CPU_ARCHITECTURE_INTEL = CPU_ARCHITECTURE.INTEL;
 
 pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
     START = 0,
@@ -2104,7 +2100,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliAuthorizeSession(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSCLIENTAPI" fn WdsCliInitializeLog(
     hSession: ?HANDLE,
-    ulClientArchitecture: PROCESSOR_ARCHITECTURE,
+    ulClientArchitecture: CPU_ARCHITECTURE,
     pwszClientId: ?PWSTR,
     pwszClientAddress: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2173,7 +2169,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliGetImageIndex(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSCLIENTAPI" fn WdsCliGetImageArchitecture(
     hIfh: ?HANDLE,
-    pdwValue: ?*PROCESSOR_ARCHITECTURE,
+    pdwValue: ?*CPU_ARCHITECTURE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

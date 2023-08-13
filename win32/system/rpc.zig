@@ -1461,7 +1461,7 @@ pub const MIDL_STUB_DESC = extern struct {
 
 pub const MIDL_FORMAT_STRING = extern struct {
     Pad: i16,
-    Format: u8,
+    Format: [1]u8,
 };
 
 pub const STUB_THUNK = fn(

@@ -6158,7 +6158,7 @@ pub const HWND = *opaque{};
 
 pub const LPARAM = isize;
 
-pub const LRESULT = i32;
+pub const LRESULT = isize;
 
 pub const LSTATUS = i32;
 
