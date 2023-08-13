@@ -8499,8 +8499,8 @@ pub const ISpatialAudioObjectRenderStream = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStream_ActivateSpatialAudioObject(self: *const T, type: AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStream.VTable, self.vtable).ActivateSpatialAudioObject(@ptrCast(*const ISpatialAudioObjectRenderStream, self), type, audioObject);
+        pub fn ISpatialAudioObjectRenderStream_ActivateSpatialAudioObject(self: *const T, type_: AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpatialAudioObjectRenderStream.VTable, self.vtable).ActivateSpatialAudioObject(@ptrCast(*const ISpatialAudioObjectRenderStream, self), type_, audioObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8580,8 +8580,8 @@ pub const ISpatialAudioClient = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetStaticObjectPosition(self: *const T, type: AudioObjectType, x: *f32, y: *f32, z: *f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetStaticObjectPosition(@ptrCast(*const ISpatialAudioClient, self), type, x, y, z);
+        pub fn ISpatialAudioClient_GetStaticObjectPosition(self: *const T, type_: AudioObjectType, x: *f32, y: *f32, z: *f32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetStaticObjectPosition(@ptrCast(*const ISpatialAudioClient, self), type_, x, y, z);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISpatialAudioClient_GetNativeStaticObjectTypeMask(self: *const T, mask: *AudioObjectType) callconv(.Inline) HRESULT {
@@ -8777,8 +8777,8 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForHrtf_ActivateSpatialAudioObjectForHrtf(self: *const T, type: AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, self.vtable).ActivateSpatialAudioObjectForHrtf(@ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf, self), type, audioObject);
+        pub fn ISpatialAudioObjectRenderStreamForHrtf_ActivateSpatialAudioObjectForHrtf(self: *const T, type_: AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, self.vtable).ActivateSpatialAudioObjectForHrtf(@ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf, self), type_, audioObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -11416,12 +11416,12 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataCommands(self: *const T, type: AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataCommands(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type, audioObject);
+        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataCommands(self: *const T, type_: AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataCommands(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataItems(self: *const T, type: AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataItems(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type, audioObject);
+        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataItems(self: *const T, type_: AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataItems(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());

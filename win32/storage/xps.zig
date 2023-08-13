@@ -548,8 +548,8 @@ pub const IXpsOMShareable = extern struct {
             return @ptrCast(*const IXpsOMShareable.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMShareable, self), owner);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsOMShareable_GetType(self: *const T, type: *XPS_OBJECT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsOMShareable.VTable, self.vtable).GetType(@ptrCast(*const IXpsOMShareable, self), type);
+        pub fn IXpsOMShareable_GetType(self: *const T, type_: *XPS_OBJECT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IXpsOMShareable.VTable, self.vtable).GetType(@ptrCast(*const IXpsOMShareable, self), type_);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3722,8 +3722,8 @@ pub const IXpsOMPage = extern struct {
             return @ptrCast(*const IXpsOMPage.VTable, self.vtable).Write(@ptrCast(*const IXpsOMPage, self), stream, optimizeMarkupSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsOMPage_GenerateUnusedLookupKey(self: *const T, type: XPS_OBJECT_TYPE, key: *PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GenerateUnusedLookupKey(@ptrCast(*const IXpsOMPage, self), type, key);
+        pub fn IXpsOMPage_GenerateUnusedLookupKey(self: *const T, type_: XPS_OBJECT_TYPE, key: *PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GenerateUnusedLookupKey(@ptrCast(*const IXpsOMPage, self), type_, key);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsOMPage_Clone(self: *const T, page: **IXpsOMPage) callconv(.Inline) HRESULT {

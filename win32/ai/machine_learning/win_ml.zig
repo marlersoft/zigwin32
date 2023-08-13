@@ -412,12 +412,12 @@ pub const IMLOperatorAttributes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetAttributeElementCount(self: *const T, name: [*:0]const u8, type: MLOperatorAttributeType, elementCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttributeElementCount(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount);
+        pub fn IMLOperatorAttributes_GetAttributeElementCount(self: *const T, name: [*:0]const u8, type_: MLOperatorAttributeType, elementCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttributeElementCount(@ptrCast(*const IMLOperatorAttributes, self), name, type_, elementCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: [*:0]const u8, type: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttribute(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount, elementByteSize, value);
+        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: [*:0]const u8, type_: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttribute(@ptrCast(*const IMLOperatorAttributes, self), name, type_, elementCount, elementByteSize, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMLOperatorAttributes_GetStringAttributeElementLength(self: *const T, name: [*:0]const u8, elementIndex: u32, attributeElementByteSize: *u32) callconv(.Inline) HRESULT {

@@ -2252,8 +2252,8 @@ pub const IComponentData = extern struct {
             return @ptrCast(*const IComponentData.VTable, self.vtable).Destroy(@ptrCast(*const IComponentData, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentData_QueryDataObject(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentData.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponentData, self), cookie, type, ppDataObject);
+        pub fn IComponentData_QueryDataObject(self: *const T, cookie: isize, type_: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IComponentData.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponentData, self), cookie, type_, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponentData_GetDisplayInfo(self: *const T, pScopeDataItem: *SCOPEDATAITEM) callconv(.Inline) HRESULT {
@@ -2326,8 +2326,8 @@ pub const IComponent = extern struct {
             return @ptrCast(*const IComponent.VTable, self.vtable).Destroy(@ptrCast(*const IComponent, self), cookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent_QueryDataObject(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponent.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponent, self), cookie, type, ppDataObject);
+        pub fn IComponent_QueryDataObject(self: *const T, cookie: isize, type_: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IComponent.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponent, self), cookie, type_, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponent_GetResultViewType(self: *const T, cookie: isize, ppViewType: *PWSTR, pViewOptions: *i32) callconv(.Inline) HRESULT {
@@ -3109,8 +3109,8 @@ pub const IPropertySheetProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySheetProvider_CreatePropertySheet(self: *const T, title: [*:0]const u16, type: u8, cookie: isize, pIDataObjectm: *IDataObject, dwOptions: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).CreatePropertySheet(@ptrCast(*const IPropertySheetProvider, self), title, type, cookie, pIDataObjectm, dwOptions);
+        pub fn IPropertySheetProvider_CreatePropertySheet(self: *const T, title: [*:0]const u16, type_: u8, cookie: isize, pIDataObjectm: *IDataObject, dwOptions: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).CreatePropertySheet(@ptrCast(*const IPropertySheetProvider, self), title, type_, cookie, pIDataObjectm, dwOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPropertySheetProvider_FindPropertySheet(self: *const T, hItem: isize, lpComponent: *IComponent, lpDataObject: *IDataObject) callconv(.Inline) HRESULT {
@@ -4158,8 +4158,8 @@ pub const IComponentData2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IComponentData.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentData2_QueryDispatch(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentData2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponentData2, self), cookie, type, ppDispatch);
+        pub fn IComponentData2_QueryDispatch(self: *const T, cookie: isize, type_: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IComponentData2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponentData2, self), cookie, type_, ppDispatch);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4192,8 +4192,8 @@ pub const IComponent2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IComponent.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent2_QueryDispatch(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponent2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponent2, self), cookie, type, ppDispatch);
+        pub fn IComponent2_QueryDispatch(self: *const T, cookie: isize, type_: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IComponent2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponent2, self), cookie, type_, ppDispatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponent2_GetResultViewType2(self: *const T, cookie: isize, pResultViewType: *RESULT_VIEW_TYPE_INFO) callconv(.Inline) HRESULT {

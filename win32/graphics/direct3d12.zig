@@ -4696,8 +4696,8 @@ pub const ID3D12Device = extern struct {
             return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandQueue(@ptrCast(*const ID3D12Device, self), pDesc, riid, ppCommandQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandAllocator(self: *const T, type: D3D12_COMMAND_LIST_TYPE, riid: *const Guid, ppCommandAllocator: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandAllocator(@ptrCast(*const ID3D12Device, self), type, riid, ppCommandAllocator);
+        pub fn ID3D12Device_CreateCommandAllocator(self: *const T, type_: D3D12_COMMAND_LIST_TYPE, riid: *const Guid, ppCommandAllocator: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandAllocator(@ptrCast(*const ID3D12Device, self), type_, riid, ppCommandAllocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device_CreateGraphicsPipelineState(self: *const T, pDesc: *const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: *const Guid, ppPipelineState: **c_void) callconv(.Inline) HRESULT {
@@ -4708,8 +4708,8 @@ pub const ID3D12Device = extern struct {
             return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateComputePipelineState(@ptrCast(*const ID3D12Device, self), pDesc, riid, ppPipelineState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, type: D3D12_COMMAND_LIST_TYPE, pCommandAllocator: *ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: *const Guid, ppCommandList: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandList(@ptrCast(*const ID3D12Device, self), nodeMask, type, pCommandAllocator, pInitialState, riid, ppCommandList);
+        pub fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, pCommandAllocator: *ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: *const Guid, ppCommandList: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandList(@ptrCast(*const ID3D12Device, self), nodeMask, type_, pCommandAllocator, pInitialState, riid, ppCommandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: *c_void, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
@@ -5279,8 +5279,8 @@ pub const ID3D12Device4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12Device3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, type: D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: *const Guid, ppCommandList: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D12Device4.VTable, self.vtable).CreateCommandList1(@ptrCast(*const ID3D12Device4, self), nodeMask, type, flags, riid, ppCommandList);
+        pub fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: *const Guid, ppCommandList: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D12Device4.VTable, self.vtable).CreateCommandList1(@ptrCast(*const ID3D12Device4, self), nodeMask, type_, flags, riid, ppCommandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device4_CreateProtectedResourceSession(self: *const T, pDesc: *const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: *const Guid, ppSession: **c_void) callconv(.Inline) HRESULT {

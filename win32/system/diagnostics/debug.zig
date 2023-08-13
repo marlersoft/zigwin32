@@ -28294,12 +28294,12 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetLocation(@ptrCast(*const IModelObject, self), location);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetTypeInfo(self: *const T, type: **IDebugHostType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IModelObject.VTable, self.vtable).GetTypeInfo(@ptrCast(*const IModelObject, self), type);
+        pub fn IModelObject_GetTypeInfo(self: *const T, type_: **IDebugHostType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IModelObject.VTable, self.vtable).GetTypeInfo(@ptrCast(*const IModelObject, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetTargetInfo(self: *const T, location: *Location, type: **IDebugHostType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IModelObject.VTable, self.vtable).GetTargetInfo(@ptrCast(*const IModelObject, self), location, type);
+        pub fn IModelObject_GetTargetInfo(self: *const T, location: *Location, type_: **IDebugHostType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IModelObject.VTable, self.vtable).GetTargetInfo(@ptrCast(*const IModelObject, self), location, type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IModelObject_GetNumberOfParentModels(self: *const T, numModels: *u64) callconv(.Inline) HRESULT {
@@ -28523,16 +28523,16 @@ pub const IDataModelManager = extern struct {
             return @ptrCast(*const IDataModelManager.VTable, self.vtable).CreateIntrinsicObject(@ptrCast(*const IDataModelManager, self), objectKind, intrinsicData, object);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelManager_CreateTypedIntrinsicObject(self: *const T, intrinsicData: *VARIANT, type: *IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDataModelManager.VTable, self.vtable).CreateTypedIntrinsicObject(@ptrCast(*const IDataModelManager, self), intrinsicData, type, object);
+        pub fn IDataModelManager_CreateTypedIntrinsicObject(self: *const T, intrinsicData: *VARIANT, type_: *IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDataModelManager.VTable, self.vtable).CreateTypedIntrinsicObject(@ptrCast(*const IDataModelManager, self), intrinsicData, type_, object);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDataModelManager_GetModelForTypeSignature(self: *const T, typeSignature: *IDebugHostTypeSignature, dataModel: **IModelObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataModelManager.VTable, self.vtable).GetModelForTypeSignature(@ptrCast(*const IDataModelManager, self), typeSignature, dataModel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelManager_GetModelForType(self: *const T, type: *IDebugHostType, dataModel: **IModelObject, typeSignature: ?**IDebugHostTypeSignature, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDataModelManager.VTable, self.vtable).GetModelForType(@ptrCast(*const IDataModelManager, self), type, dataModel, typeSignature, wildcardMatches);
+        pub fn IDataModelManager_GetModelForType(self: *const T, type_: *IDebugHostType, dataModel: **IModelObject, typeSignature: ?**IDebugHostTypeSignature, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDataModelManager.VTable, self.vtable).GetModelForType(@ptrCast(*const IDataModelManager, self), type_, dataModel, typeSignature, wildcardMatches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDataModelManager_RegisterModelForTypeSignature(self: *const T, typeSignature: *IDebugHostTypeSignature, dataModel: *IModelObject) callconv(.Inline) HRESULT {
@@ -29094,8 +29094,8 @@ pub const IDebugHostSymbol = extern struct {
             return @ptrCast(*const IDebugHostSymbol.VTable, self.vtable).GetName(@ptrCast(*const IDebugHostSymbol, self), symbolName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostSymbol_GetType(self: *const T, type: **IDebugHostType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHostSymbol.VTable, self.vtable).GetType(@ptrCast(*const IDebugHostSymbol, self), type);
+        pub fn IDebugHostSymbol_GetType(self: *const T, type_: **IDebugHostType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHostSymbol.VTable, self.vtable).GetType(@ptrCast(*const IDebugHostSymbol, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugHostSymbol_GetContainingModule(self: *const T, containingModule: **IDebugHostModule) callconv(.Inline) HRESULT {
@@ -29188,8 +29188,8 @@ pub const IDebugHostModule = extern struct {
             return @ptrCast(*const IDebugHostModule.VTable, self.vtable).GetVersion(@ptrCast(*const IDebugHostModule, self), fileVersion, productVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostModule_FindTypeByName(self: *const T, typeName: [*:0]const u16, type: **IDebugHostType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHostModule.VTable, self.vtable).FindTypeByName(@ptrCast(*const IDebugHostModule, self), typeName, type);
+        pub fn IDebugHostModule_FindTypeByName(self: *const T, typeName: [*:0]const u16, type_: **IDebugHostType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHostModule.VTable, self.vtable).FindTypeByName(@ptrCast(*const IDebugHostModule, self), typeName, type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugHostModule_FindSymbolByRVA(self: *const T, rva: u64, symbol: **IDebugHostSymbol) callconv(.Inline) HRESULT {
@@ -29795,8 +29795,8 @@ pub const IDebugHostTypeSignature = extern struct {
             return @ptrCast(*const IDebugHostTypeSignature.VTable, self.vtable).GetHashCode(@ptrCast(*const IDebugHostTypeSignature, self), hashCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostTypeSignature_IsMatch(self: *const T, type: *IDebugHostType, isMatch: *bool, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHostTypeSignature.VTable, self.vtable).IsMatch(@ptrCast(*const IDebugHostTypeSignature, self), type, isMatch, wildcardMatches);
+        pub fn IDebugHostTypeSignature_IsMatch(self: *const T, type_: *IDebugHostType, isMatch: *bool, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHostTypeSignature.VTable, self.vtable).IsMatch(@ptrCast(*const IDebugHostTypeSignature, self), type_, isMatch, wildcardMatches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugHostTypeSignature_CompareAgainst(self: *const T, typeSignature: *IDebugHostTypeSignature, result: *SignatureComparison) callconv(.Inline) HRESULT {
@@ -30516,8 +30516,8 @@ pub const IDataModelManager2 = extern struct {
             return @ptrCast(*const IDataModelManager2.VTable, self.vtable).AcquireSubNamespace(@ptrCast(*const IDataModelManager2, self), modelName, subNamespaceModelName, accessName, metadata, namespaceModelObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelManager2_CreateTypedIntrinsicObjectEx(self: *const T, context: ?*IDebugHostContext, intrinsicData: *VARIANT, type: *IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDataModelManager2.VTable, self.vtable).CreateTypedIntrinsicObjectEx(@ptrCast(*const IDataModelManager2, self), context, intrinsicData, type, object);
+        pub fn IDataModelManager2_CreateTypedIntrinsicObjectEx(self: *const T, context: ?*IDebugHostContext, intrinsicData: *VARIANT, type_: *IDebugHostType, object: **IModelObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDataModelManager2.VTable, self.vtable).CreateTypedIntrinsicObjectEx(@ptrCast(*const IDataModelManager2, self), context, intrinsicData, type_, object);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -38570,8 +38570,8 @@ pub const IActiveScriptProfilerCallback = extern struct {
             return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).Shutdown(@ptrCast(*const IActiveScriptProfilerCallback, self), hrReason);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_ScriptCompiled(self: *const T, scriptId: i32, type: PROFILER_SCRIPT_TYPE, pIDebugDocumentContext: *IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).ScriptCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, type, pIDebugDocumentContext);
+        pub fn IActiveScriptProfilerCallback_ScriptCompiled(self: *const T, scriptId: i32, type_: PROFILER_SCRIPT_TYPE, pIDebugDocumentContext: *IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).ScriptCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, type_, pIDebugDocumentContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IActiveScriptProfilerCallback_FunctionCompiled(self: *const T, functionId: i32, scriptId: i32, pwszFunctionName: [*:0]const u16, pwszFunctionNameHint: [*:0]const u16, pIDebugDocumentContext: *IUnknown) callconv(.Inline) HRESULT {
@@ -38609,12 +38609,12 @@ pub const IActiveScriptProfilerCallback2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IActiveScriptProfilerCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback2_OnFunctionEnterByName(self: *const T, pwszFunctionName: [*:0]const u16, type: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionEnterByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type);
+        pub fn IActiveScriptProfilerCallback2_OnFunctionEnterByName(self: *const T, pwszFunctionName: [*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionEnterByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback2_OnFunctionExitByName(self: *const T, pwszFunctionName: [*:0]const u16, type: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionExitByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type);
+        pub fn IActiveScriptProfilerCallback2_OnFunctionExitByName(self: *const T, pwszFunctionName: [*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionExitByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
         }
     };}
     pub usingnamespace MethodMixin(@This());

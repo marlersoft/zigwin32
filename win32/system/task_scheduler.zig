@@ -1785,8 +1785,8 @@ pub const ISessionStateChangeTrigger = extern struct {
             return @ptrCast(*const ISessionStateChangeTrigger.VTable, self.vtable).get_StateChange(@ptrCast(*const ISessionStateChangeTrigger, self), pType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISessionStateChangeTrigger_put_StateChange(self: *const T, type: TASK_SESSION_STATE_CHANGE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISessionStateChangeTrigger.VTable, self.vtable).put_StateChange(@ptrCast(*const ISessionStateChangeTrigger, self), type);
+        pub fn ISessionStateChangeTrigger_put_StateChange(self: *const T, type_: TASK_SESSION_STATE_CHANGE_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISessionStateChangeTrigger.VTable, self.vtable).put_StateChange(@ptrCast(*const ISessionStateChangeTrigger, self), type_);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2749,8 +2749,8 @@ pub const ITriggerCollection = extern struct {
             return @ptrCast(*const ITriggerCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ITriggerCollection, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITriggerCollection_Create(self: *const T, type: TASK_TRIGGER_TYPE2, ppTrigger: **ITrigger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITriggerCollection.VTable, self.vtable).Create(@ptrCast(*const ITriggerCollection, self), type, ppTrigger);
+        pub fn ITriggerCollection_Create(self: *const T, type_: TASK_TRIGGER_TYPE2, ppTrigger: **ITrigger) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITriggerCollection.VTable, self.vtable).Create(@ptrCast(*const ITriggerCollection, self), type_, ppTrigger);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITriggerCollection_Remove(self: *const T, index: VARIANT) callconv(.Inline) HRESULT {
@@ -2843,8 +2843,8 @@ pub const IActionCollection = extern struct {
             return @ptrCast(*const IActionCollection.VTable, self.vtable).put_XmlText(@ptrCast(*const IActionCollection, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActionCollection_Create(self: *const T, type: TASK_ACTION_TYPE, ppAction: **IAction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActionCollection.VTable, self.vtable).Create(@ptrCast(*const IActionCollection, self), type, ppAction);
+        pub fn IActionCollection_Create(self: *const T, type_: TASK_ACTION_TYPE, ppAction: **IAction) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActionCollection.VTable, self.vtable).Create(@ptrCast(*const IActionCollection, self), type_, ppAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IActionCollection_Remove(self: *const T, index: VARIANT) callconv(.Inline) HRESULT {

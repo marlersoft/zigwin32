@@ -53031,12 +53031,12 @@ pub const IEventTarget = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventTarget_addEventListener(self: *const T, type: BSTR, listener: *IDispatch, useCapture: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventTarget.VTable, self.vtable).addEventListener(@ptrCast(*const IEventTarget, self), type, listener, useCapture);
+        pub fn IEventTarget_addEventListener(self: *const T, type_: BSTR, listener: *IDispatch, useCapture: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventTarget.VTable, self.vtable).addEventListener(@ptrCast(*const IEventTarget, self), type_, listener, useCapture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventTarget_removeEventListener(self: *const T, type: BSTR, listener: *IDispatch, useCapture: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventTarget.VTable, self.vtable).removeEventListener(@ptrCast(*const IEventTarget, self), type, listener, useCapture);
+        pub fn IEventTarget_removeEventListener(self: *const T, type_: BSTR, listener: *IDispatch, useCapture: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventTarget.VTable, self.vtable).removeEventListener(@ptrCast(*const IEventTarget, self), type_, listener, useCapture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEventTarget_dispatchEvent(self: *const T, evt: *IDOMEvent, pfResult: *i16) callconv(.Inline) HRESULT {
@@ -54255,8 +54255,8 @@ pub const IHTMLCanvasElement = extern struct {
             return @ptrCast(*const IHTMLCanvasElement.VTable, self.vtable).getContext(@ptrCast(*const IHTMLCanvasElement, self), contextId, ppContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLCanvasElement_toDataURL(self: *const T, type: BSTR, jpegquality: VARIANT, pUrl: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IHTMLCanvasElement.VTable, self.vtable).toDataURL(@ptrCast(*const IHTMLCanvasElement, self), type, jpegquality, pUrl);
+        pub fn IHTMLCanvasElement_toDataURL(self: *const T, type_: BSTR, jpegquality: VARIANT, pUrl: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IHTMLCanvasElement.VTable, self.vtable).toDataURL(@ptrCast(*const IHTMLCanvasElement, self), type_, jpegquality, pUrl);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -62202,8 +62202,8 @@ pub const IHTMLMediaElement = extern struct {
             return @ptrCast(*const IHTMLMediaElement.VTable, self.vtable).load(@ptrCast(*const IHTMLMediaElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLMediaElement_canPlayType(self: *const T, type: BSTR, canPlay: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IHTMLMediaElement.VTable, self.vtable).canPlayType(@ptrCast(*const IHTMLMediaElement, self), type, canPlay);
+        pub fn IHTMLMediaElement_canPlayType(self: *const T, type_: BSTR, canPlay: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IHTMLMediaElement.VTable, self.vtable).canPlayType(@ptrCast(*const IHTMLMediaElement, self), type_, canPlay);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IHTMLMediaElement_get_seeking(self: *const T, p: *i16) callconv(.Inline) HRESULT {
