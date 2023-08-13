@@ -2470,7 +2470,7 @@ pub const CLSID_VirtualDesktopManager = &CLSID_VirtualDesktopManager_Value;
 const CLSID_StorageProviderBanners_Value = @import("../zig.zig").Guid.initString("7ccdf9f4-e576-455a-8bc7-f6ec68d6f063");
 pub const CLSID_StorageProviderBanners = &CLSID_StorageProviderBanners_Value;
 
-pub const SHITEMID = extern struct {
+pub const SHITEMID = packed struct {
     cb: u16,
     abID: [1]u8,
 };
@@ -2494,7 +2494,7 @@ pub const STRRET = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const SHELLDETAILS = extern struct {
+pub const SHELLDETAILS = packed struct {
     fmt: i32,
     cxChar: i32,
     str: STRRET,
@@ -10086,7 +10086,7 @@ pub const IApplicationAssociationRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DELEGATEITEMID = extern struct {
+pub const DELEGATEITEMID = packed struct {
     cbSize: u16,
     wOuter: u16,
     cbInner: u16,
@@ -18812,12 +18812,12 @@ pub const SLDF_PERSIST_VOLUME_ID_RELATIVE = SHELL_LINK_DATA_FLAGS.PERSIST_VOLUME
 pub const SLDF_VALID = SHELL_LINK_DATA_FLAGS.VALID;
 pub const SLDF_RESERVED = SHELL_LINK_DATA_FLAGS.RESERVED;
 
-pub const DATABLOCK_HEADER = extern struct {
+pub const DATABLOCK_HEADER = packed struct {
     cbSize: u32,
     dwSignature: u32,
 };
 
-pub const NT_CONSOLE_PROPS = extern struct {
+pub const NT_CONSOLE_PROPS = packed struct {
     dbh: DATABLOCK_HEADER,
     wFillAttribute: u16,
     wPopupFillAttribute: u16,
@@ -18841,32 +18841,32 @@ pub const NT_CONSOLE_PROPS = extern struct {
     ColorTable: [16]u32,
 };
 
-pub const NT_FE_CONSOLE_PROPS = extern struct {
+pub const NT_FE_CONSOLE_PROPS = packed struct {
     dbh: DATABLOCK_HEADER,
     uCodePage: u32,
 };
 
-pub const EXP_DARWIN_LINK = extern struct {
+pub const EXP_DARWIN_LINK = packed struct {
     dbh: DATABLOCK_HEADER,
     szDarwinID: [260]CHAR,
     szwDarwinID: [260]u16,
 };
 
-pub const EXP_SPECIAL_FOLDER = extern struct {
+pub const EXP_SPECIAL_FOLDER = packed struct {
     cbSize: u32,
     dwSignature: u32,
     idSpecialFolder: u32,
     cbOffset: u32,
 };
 
-pub const EXP_SZ_LINK = extern struct {
+pub const EXP_SZ_LINK = packed struct {
     cbSize: u32,
     dwSignature: u32,
     szTarget: [260]CHAR,
     swzTarget: [260]u16,
 };
 
-pub const EXP_PROPERTYSTORAGE = extern struct {
+pub const EXP_PROPERTYSTORAGE = packed struct {
     cbSize: u32,
     dwSignature: u32,
     abPropertyStorage: [1]u8,
@@ -19328,7 +19328,7 @@ pub const NRESARRAY = extern struct {
     nr: [1]NETRESOURCEA,
 };
 
-pub const CIDA = extern struct {
+pub const CIDA = packed struct {
     cidl: u32,
     aoffset: [1]u32,
 };
@@ -19356,7 +19356,7 @@ pub const FD_PROGRESSUI = FD_FLAGS.PROGRESSUI;
 pub const FD_LINKUI = FD_FLAGS.LINKUI;
 pub const FD_UNICODE = FD_FLAGS.UNICODE;
 
-pub const FILEDESCRIPTORA = extern struct {
+pub const FILEDESCRIPTORA = packed struct {
     dwFlags: u32,
     clsid: Guid,
     sizel: SIZE,
@@ -19370,7 +19370,7 @@ pub const FILEDESCRIPTORA = extern struct {
     cFileName: [260]CHAR,
 };
 
-pub const FILEDESCRIPTORW = extern struct {
+pub const FILEDESCRIPTORW = packed struct {
     dwFlags: u32,
     clsid: Guid,
     sizel: SIZE,
@@ -19384,24 +19384,22 @@ pub const FILEDESCRIPTORW = extern struct {
     cFileName: [260]u16,
 };
 
-pub const FILEGROUPDESCRIPTORA = extern struct {
-    cItems: u32,
-    fgd: [1]FILEDESCRIPTORA,
-};
+// TODO: not generating this type because it is causing some sort of error
+pub const FILEGROUPDESCRIPTORA = usize;
 
-pub const FILEGROUPDESCRIPTORW = extern struct {
+pub const FILEGROUPDESCRIPTORW = packed struct {
     cItems: u32,
     fgd: [1]FILEDESCRIPTORW,
 };
 
-pub const DROPFILES = extern struct {
+pub const DROPFILES = packed struct {
     pFiles: u32,
     pt: POINT,
     fNC: BOOL,
     fWide: BOOL,
 };
 
-pub const FILE_ATTRIBUTES_ARRAY = extern struct {
+pub const FILE_ATTRIBUTES_ARRAY = packed struct {
     cItems: u32,
     dwSumFileAttributes: u32,
     dwProductFileAttributes: u32,
@@ -19427,13 +19425,13 @@ pub const DROPIMAGE_LABEL = DROPIMAGETYPE.LABEL;
 pub const DROPIMAGE_WARNING = DROPIMAGETYPE.WARNING;
 pub const DROPIMAGE_NOIMAGE = DROPIMAGETYPE.NOIMAGE;
 
-pub const DROPDESCRIPTION = extern struct {
+pub const DROPDESCRIPTION = packed struct {
     type: DROPIMAGETYPE,
     szMessage: [260]u16,
     szInsert: [260]u16,
 };
 
-pub const SHChangeNotifyEntry = extern struct {
+pub const SHChangeNotifyEntry = packed struct {
     pidl: *ITEMIDLIST,
     fRecursive: BOOL,
 };
@@ -19512,29 +19510,29 @@ pub const SHARD_LINK = SHARD.LINK;
 pub const SHARD_APPIDINFOLINK = SHARD.APPIDINFOLINK;
 pub const SHARD_SHELLITEM = SHARD.SHELLITEM;
 
-pub const SHARDAPPIDINFO = extern struct {
+pub const SHARDAPPIDINFO = packed struct {
     psi: *IShellItem,
     pszAppID: [*:0]const u16,
 };
 
-pub const SHARDAPPIDINFOIDLIST = extern struct {
+pub const SHARDAPPIDINFOIDLIST = packed struct {
     pidl: *ITEMIDLIST,
     pszAppID: [*:0]const u16,
 };
 
-pub const SHARDAPPIDINFOLINK = extern struct {
+pub const SHARDAPPIDINFOLINK = packed struct {
     psl: *IShellLinkA,
     pszAppID: [*:0]const u16,
 };
 
-pub const SHChangeDWORDAsIDList = extern struct {
+pub const SHChangeDWORDAsIDList = packed struct {
     cb: u16,
     dwItem1: u32,
     dwItem2: u32,
     cbZero: u16,
 };
 
-pub const SHChangeUpdateImageIDList = extern struct {
+pub const SHChangeUpdateImageIDList = packed struct {
     cb: u16,
     iIconIndex: i32,
     iCurIndex: i32,
@@ -19556,7 +19554,7 @@ pub const SHDESCRIPTIONID = extern struct {
     clsid: Guid,
 };
 
-pub const AUTO_SCROLL_DATA = extern struct {
+pub const AUTO_SCROLL_DATA = packed struct {
     iNextSample: i32,
     dwLastScroll: u32,
     bFull: BOOL,
@@ -19564,7 +19562,7 @@ pub const AUTO_SCROLL_DATA = extern struct {
     dwTimes: [3]u32,
 };
 
-pub const CABINETSTATE = extern struct {
+pub const CABINETSTATE = packed struct {
     cLength: u16,
     nVersion: u16,
     _bitfield: i32,
@@ -20297,7 +20295,7 @@ pub const CSFV = extern struct {
     fvm: FOLDERVIEWMODE,
 };
 
-pub const SHELLSTATEA = extern struct {
+pub const SHELLSTATEA = packed struct {
     _bitfield1: i32,
     dwWin95Unused: u32,
     uWin95Unused: u32,
@@ -20308,7 +20306,7 @@ pub const SHELLSTATEA = extern struct {
     _bitfield2: i32,
 };
 
-pub const SHELLSTATEW = extern struct {
+pub const SHELLSTATEW = packed struct {
     _bitfield1: i32,
     dwWin95Unused: u32,
     uWin95Unused: u32,
@@ -20319,7 +20317,7 @@ pub const SHELLSTATEW = extern struct {
     _bitfield2: i32,
 };
 
-pub const SHELLFLAGSTATE = extern struct {
+pub const SHELLFLAGSTATE = packed struct {
     _bitfield: i32,
 };
 
@@ -20761,7 +20759,7 @@ pub const IDeskBarClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHCOLUMNINFO = extern struct {
+pub const SHCOLUMNINFO = packed struct {
     scid: PROPERTYKEY,
     vt: u16,
     fmt: u32,
@@ -20826,7 +20824,7 @@ pub const IColumnProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHChangeProductKeyAsIDList = extern struct {
+pub const SHChangeProductKeyAsIDList = packed struct {
     cb: u16,
     wszProductKey: [39]u16,
     cbZero: u16,
@@ -28076,14 +28074,14 @@ pub const APPLET_PROC = fn(
     lParam2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const CPLINFO = extern struct {
+pub const CPLINFO = packed struct {
     idIcon: i32,
     idName: i32,
     idInfo: i32,
     lData: isize,
 };
 
-pub const NEWCPLINFOA = extern struct {
+pub const NEWCPLINFOA = packed struct {
     dwSize: u32,
     dwFlags: u32,
     dwHelpContext: u32,
@@ -28094,7 +28092,7 @@ pub const NEWCPLINFOA = extern struct {
     szHelpFile: [128]CHAR,
 };
 
-pub const NEWCPLINFOW = extern struct {
+pub const NEWCPLINFOW = packed struct {
     dwSize: u32,
     dwFlags: u32,
     dwHelpContext: u32,
@@ -28738,7 +28736,7 @@ pub const ICreateObject = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const DRAGINFOA = extern struct {
+pub const DRAGINFOA = packed struct {
     uSize: u32,
     pt: POINT,
     fNC: BOOL,
@@ -28751,7 +28749,7 @@ pub const DRAGINFOA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const DRAGINFOW = extern struct {
+pub const DRAGINFOW = packed struct {
     uSize: u32,
     pt: POINT,
     fNC: BOOL,
@@ -28764,7 +28762,7 @@ pub const DRAGINFOW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const APPBARDATA = extern struct {
+pub const APPBARDATA = packed struct {
     cbSize: u32,
     hWnd: HWND,
     uCallbackMessage: u32,
@@ -28778,7 +28776,7 @@ pub const APPBARDATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHFILEOPSTRUCTA = extern struct {
+pub const SHFILEOPSTRUCTA = packed struct {
     hwnd: HWND,
     wFunc: u32,
     pFrom: *i8,
@@ -28794,7 +28792,7 @@ pub const SHFILEOPSTRUCTA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHFILEOPSTRUCTW = extern struct {
+pub const SHFILEOPSTRUCTW = packed struct {
     hwnd: HWND,
     wFunc: u32,
     pFrom: [*]const u16,
@@ -28810,7 +28808,7 @@ pub const SHFILEOPSTRUCTW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHNAMEMAPPINGA = extern struct {
+pub const SHNAMEMAPPINGA = packed struct {
     pszOldPath: PSTR,
     pszNewPath: PSTR,
     cchOldPath: i32,
@@ -28822,7 +28820,7 @@ pub const SHNAMEMAPPINGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHNAMEMAPPINGW = extern struct {
+pub const SHNAMEMAPPINGW = packed struct {
     pszOldPath: PWSTR,
     pszNewPath: PWSTR,
     cchOldPath: i32,
@@ -28834,7 +28832,7 @@ pub const SHNAMEMAPPINGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHELLEXECUTEINFOA = extern struct {
+pub const SHELLEXECUTEINFOA = packed struct {
     cbSize: u32,
     fMask: u32,
     hwnd: HWND,
@@ -28858,7 +28856,7 @@ pub const SHELLEXECUTEINFOA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHELLEXECUTEINFOW = extern struct {
+pub const SHELLEXECUTEINFOW = packed struct {
     cbSize: u32,
     fMask: u32,
     hwnd: HWND,
@@ -28882,7 +28880,7 @@ pub const SHELLEXECUTEINFOW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHCREATEPROCESSINFOW = extern struct {
+pub const SHCREATEPROCESSINFOW = packed struct {
     cbSize: u32,
     fMask: u32,
     hwnd: HWND,
@@ -28903,7 +28901,7 @@ pub const SHCREATEPROCESSINFOW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const ASSOCIATIONELEMENT = extern struct {
+pub const ASSOCIATIONELEMENT = packed struct {
     ac: ASSOCCLASS,
     hkClass: HKEY,
     pszClass: [*:0]const u16,
@@ -28914,7 +28912,7 @@ pub const ASSOCIATIONELEMENT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHQUERYRBINFO = extern struct {
+pub const SHQUERYRBINFO = packed struct {
     cbSize: u32,
     i64Size: i64,
     i64NumItems: i64,
@@ -28925,7 +28923,7 @@ pub const SHQUERYRBINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const NOTIFYICONDATAA = extern struct {
+pub const NOTIFYICONDATAA = packed struct {
     cbSize: u32,
     hWnd: HWND,
     uID: u32,
@@ -28949,7 +28947,7 @@ pub const NOTIFYICONDATAA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const NOTIFYICONDATAW = extern struct {
+pub const NOTIFYICONDATAW = packed struct {
     cbSize: u32,
     hWnd: HWND,
     uID: u32,
@@ -28973,7 +28971,7 @@ pub const NOTIFYICONDATAW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const NOTIFYICONIDENTIFIER = extern struct {
+pub const NOTIFYICONIDENTIFIER = packed struct {
     cbSize: u32,
     hWnd: HWND,
     uID: u32,
@@ -28985,7 +28983,7 @@ pub const NOTIFYICONIDENTIFIER = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHFILEINFOA = extern struct {
+pub const SHFILEINFOA = packed struct {
     hIcon: HICON,
     iIcon: i32,
     dwAttributes: u32,
@@ -28998,7 +28996,7 @@ pub const SHFILEINFOA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHFILEINFOW = extern struct {
+pub const SHFILEINFOW = packed struct {
     hIcon: HICON,
     iIcon: i32,
     dwAttributes: u32,
@@ -29011,7 +29009,7 @@ pub const SHFILEINFOW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SHSTOCKICONINFO = extern struct {
+pub const SHSTOCKICONINFO = packed struct {
     cbSize: u32,
     hIcon: HICON,
     iSysImageIndex: i32,
@@ -29024,7 +29022,7 @@ pub const SHSTOCKICONINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
+pub const OPEN_PRINTER_PROPS_INFOA = packed struct {
     dwSize: u32,
     pszSheetName: PSTR,
     uSheetIndex: u32,
@@ -29037,7 +29035,7 @@ pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
+pub const OPEN_PRINTER_PROPS_INFOW = packed struct {
     dwSize: u32,
     pszSheetName: PWSTR,
     uSheetIndex: u32,

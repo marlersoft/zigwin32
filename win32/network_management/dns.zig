@@ -335,7 +335,7 @@ pub const DNS_ADDR = extern struct {
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const DNS_ADDR_ARRAY = extern struct {
+pub const DNS_ADDR_ARRAY = packed struct {
     MaxCount: u32,
     AddrCount: u32,
     Tag: u32,
@@ -348,7 +348,7 @@ pub const DNS_ADDR_ARRAY = extern struct {
     AddrArray: [1]DNS_ADDR,
 };
 
-pub const DNS_HEADER = extern struct {
+pub const DNS_HEADER = packed struct {
     Xid: u16,
     _bitfield1: u8,
     _bitfield2: u8,
@@ -358,18 +358,18 @@ pub const DNS_HEADER = extern struct {
     AdditionalCount: u16,
 };
 
-pub const DNS_HEADER_EXT = extern struct {
+pub const DNS_HEADER_EXT = packed struct {
     _bitfield: u16,
     chRcode: u8,
     chVersion: u8,
 };
 
-pub const DNS_WIRE_QUESTION = extern struct {
+pub const DNS_WIRE_QUESTION = packed struct {
     QuestionType: u16,
     QuestionClass: u16,
 };
 
-pub const DNS_WIRE_RECORD = extern struct {
+pub const DNS_WIRE_RECORD = packed struct {
     RecordType: u16,
     RecordClass: u16,
     TimeToLive: u32,

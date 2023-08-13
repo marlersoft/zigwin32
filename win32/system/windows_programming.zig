@@ -1126,6 +1126,7 @@ pub const VDMLDT_ENTRY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MODULEENTRY = extern struct {
     dwSize: u32,
     szModule: [10]CHAR,
@@ -1140,6 +1141,7 @@ pub const MODULEENTRY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GLOBALENTRY = extern struct {
     dwSize: u32,
     dwAddress: u32,
@@ -11558,7 +11560,7 @@ pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FDISPILLFILE = extern struct {
+pub const FDISPILLFILE = packed struct {
     ach: [2]CHAR,
     cbFile: i32,
 };

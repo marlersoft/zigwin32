@@ -2080,6 +2080,7 @@ pub const _DPA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
     xWidth: i32,
     yHeight: i32,
@@ -2094,6 +2095,7 @@ pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENDCOMPOSITIONNOTIFY = extern struct {
     nmhdr: NMHDR,
     dwCode: ENDCOMPOSITIONNOTIFY_CODE,
@@ -2104,6 +2106,7 @@ pub const ENDCOMPOSITIONNOTIFY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TEXTRANGEA = extern struct {
     chrg: CHARRANGE,
     lpstrText: PSTR,
@@ -2114,6 +2117,7 @@ pub const TEXTRANGEA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TEXTRANGEW = extern struct {
     chrg: CHARRANGE,
     lpstrText: PWSTR,
@@ -2124,6 +2128,7 @@ pub const TEXTRANGEW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const EDITSTREAM = extern struct {
     dwCookie: usize,
     dwError: u32,
@@ -2135,6 +2140,7 @@ pub const EDITSTREAM = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTA = extern struct {
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
@@ -2145,6 +2151,7 @@ pub const FINDTEXTA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTW = extern struct {
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
@@ -2155,6 +2162,7 @@ pub const FINDTEXTW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTEXA = extern struct {
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
@@ -2166,6 +2174,7 @@ pub const FINDTEXTEXA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTEXW = extern struct {
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
@@ -2177,6 +2186,7 @@ pub const FINDTEXTEXW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FORMATRANGE = extern struct {
     hdc: HDC,
     hdcTarget: HDC,
@@ -2190,6 +2200,7 @@ pub const FORMATRANGE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MSGFILTER = extern struct {
     nmhdr: NMHDR,
     msg: u32,
@@ -2202,6 +2213,7 @@ pub const MSGFILTER = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const REQRESIZE = extern struct {
     nmhdr: NMHDR,
     rc: RECT,
@@ -2212,6 +2224,7 @@ pub const REQRESIZE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const SELCHANGE = extern struct {
     nmhdr: NMHDR,
     chrg: CHARRANGE,
@@ -2223,6 +2236,7 @@ pub const SELCHANGE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const _grouptypingchange = extern struct {
     nmhdr: NMHDR,
     fGroupTyping: BOOL,
@@ -2233,6 +2247,7 @@ pub const _grouptypingchange = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const CLIPBOARDFORMAT = extern struct {
     nmhdr: NMHDR,
     cf: u16,
@@ -2243,6 +2258,7 @@ pub const CLIPBOARDFORMAT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GETCONTEXTMENUEX = extern struct {
     chrg: CHARRANGE,
     dwFlags: u32,
@@ -2255,6 +2271,7 @@ pub const GETCONTEXTMENUEX = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENDROPFILES = extern struct {
     nmhdr: NMHDR,
     hDrop: HANDLE,
@@ -2267,6 +2284,7 @@ pub const ENDROPFILES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENPROTECTED = extern struct {
     nmhdr: NMHDR,
     msg: u32,
@@ -2280,6 +2298,7 @@ pub const ENPROTECTED = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENSAVECLIPBOARD = extern struct {
     nmhdr: NMHDR,
     cObjectCount: i32,
@@ -2291,6 +2310,7 @@ pub const ENSAVECLIPBOARD = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENOLEOPFAILED = extern struct {
     nmhdr: NMHDR,
     iob: i32,
@@ -2303,6 +2323,7 @@ pub const ENOLEOPFAILED = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const OBJECTPOSITIONS = extern struct {
     nmhdr: NMHDR,
     cObjectCount: i32,
@@ -2314,6 +2335,7 @@ pub const OBJECTPOSITIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENLINK = extern struct {
     nmhdr: NMHDR,
     msg: u32,
@@ -2327,6 +2349,7 @@ pub const ENLINK = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENLOWFIRTF = extern struct {
     nmhdr: NMHDR,
     szControl: PSTR,
@@ -2337,6 +2360,7 @@ pub const ENLOWFIRTF = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENCORRECTTEXT = extern struct {
     nmhdr: NMHDR,
     chrg: CHARRANGE,
@@ -2348,6 +2372,7 @@ pub const ENCORRECTTEXT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PUNCTUATION = extern struct {
     iSize: u32,
     szPunctuation: PSTR,
@@ -2358,6 +2383,7 @@ pub const PUNCTUATION = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const REPASTESPECIAL = extern struct {
     dwAspect: DVASPECT,
     dwParam: usize,
@@ -2368,6 +2394,7 @@ pub const REPASTESPECIAL = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GETTEXTEX = extern struct {
     cb: u32,
     flags: GETTEXTEX_FLAGS,
@@ -2381,6 +2408,7 @@ pub const GETTEXTEX = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HYPHENATEINFO = extern struct {
     cbSize: i16,
     dxHyphenateZone: i16,
@@ -3516,7 +3544,7 @@ pub const NMLVDISPINFOW = extern struct {
     item: LVITEMW,
 };
 
-pub const NMLVKEYDOWN = extern struct {
+pub const NMLVKEYDOWN = packed struct {
     hdr: NMHDR,
     wVKey: u16,
     flags: u32,
@@ -3709,7 +3737,7 @@ pub const NMTVDISPINFOEXW = extern struct {
     item: TVITEMEXW,
 };
 
-pub const NMTVKEYDOWN = extern struct {
+pub const NMTVKEYDOWN = packed struct {
     hdr: NMHDR,
     wVKey: u16,
     flags: u32,
@@ -3862,7 +3890,7 @@ pub const TCHITTESTINFO = extern struct {
     flags: TCHITTESTINFO_FLAGS,
 };
 
-pub const NMTCKEYDOWN = extern struct {
+pub const NMTCKEYDOWN = packed struct {
     hdr: NMHDR,
     wVKey: u16,
     flags: u32,
@@ -3992,7 +4020,7 @@ pub const NMIPADDRESS = extern struct {
     iValue: i32,
 };
 
-pub const NMPGSCROLL = extern struct {
+pub const NMPGSCROLL = packed struct {
     hdr: NMHDR,
     fwKeys: NMPGSCROLL_KEYS,
     rcParent: RECT,
@@ -4176,7 +4204,7 @@ pub const TDN_VERIFICATION_CLICKED = TASKDIALOG_NOTIFICATIONS.VERIFICATION_CLICK
 pub const TDN_HELP = TASKDIALOG_NOTIFICATIONS.HELP;
 pub const TDN_EXPANDO_BUTTON_CLICKED = TASKDIALOG_NOTIFICATIONS.EXPANDO_BUTTON_CLICKED;
 
-pub const TASKDIALOG_BUTTON = extern struct {
+pub const TASKDIALOG_BUTTON = packed struct {
     nButtonID: i32,
     pszButtonText: [*:0]const u16,
 };
@@ -4214,7 +4242,7 @@ pub const TDCBF_CANCEL_BUTTON = _TASKDIALOG_COMMON_BUTTON_FLAGS.CANCEL_BUTTON;
 pub const TDCBF_RETRY_BUTTON = _TASKDIALOG_COMMON_BUTTON_FLAGS.RETRY_BUTTON;
 pub const TDCBF_CLOSE_BUTTON = _TASKDIALOG_COMMON_BUTTON_FLAGS.CLOSE_BUTTON;
 
-pub const TASKDIALOGCONFIG = extern struct {
+pub const TASKDIALOGCONFIG = packed struct {
     cbSize: u32,
     hwndParent: HWND,
     hInstance: HINSTANCE,

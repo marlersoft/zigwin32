@@ -3684,7 +3684,7 @@ pub const IWMDMLogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MTP_COMMAND_DATA_IN = extern struct {
+pub const MTP_COMMAND_DATA_IN = packed struct {
     OpCode: u16,
     NumParams: u32,
     Params: [5]u32,
@@ -3693,7 +3693,7 @@ pub const MTP_COMMAND_DATA_IN = extern struct {
     CommandWriteData: [1]u8,
 };
 
-pub const MTP_COMMAND_DATA_OUT = extern struct {
+pub const MTP_COMMAND_DATA_OUT = packed struct {
     ResponseCode: u16,
     NumParams: u32,
     Params: [5]u32,

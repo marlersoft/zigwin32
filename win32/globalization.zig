@@ -2812,7 +2812,7 @@ pub const IFEClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMEDLG = extern struct {
+pub const IMEDLG = packed struct {
     cbIMEDLG: i32,
     hwnd: HWND,
     lpwstrWord: PWSTR,
@@ -2864,7 +2864,7 @@ pub const IFECommon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WDD = extern struct {
+pub const WDD = packed struct {
     wDispPos: u16,
     Anonymous1: _Anonymous1_e__Union,
     cchDisp: u16,
@@ -2877,7 +2877,7 @@ pub const WDD = extern struct {
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MORRSLT = extern struct {
+pub const MORRSLT = packed struct {
     dwSize: u32,
     pwchOutput: PWSTR,
     cchOutput: u16,
@@ -3045,7 +3045,7 @@ pub const IFED_UCT_STRING_UNICODE = IMEUCT.STRING_UNICODE;
 pub const IFED_UCT_USER_DEFINED = IMEUCT.USER_DEFINED;
 pub const IFED_UCT_MAX = IMEUCT.MAX;
 
-pub const IMEWRD = extern struct {
+pub const IMEWRD = packed struct {
     pwchReading: PWSTR,
     pwchDisplay: PWSTR,
     Anonymous: _Anonymous_e__Union,
@@ -3056,7 +3056,7 @@ pub const IMEWRD = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const IMESHF = extern struct {
+pub const IMESHF = packed struct {
     cbShf: u16,
     verDic: u16,
     szTitle: [48]CHAR,
@@ -3064,7 +3064,7 @@ pub const IMESHF = extern struct {
     szCopyright: [128]CHAR,
 };
 
-pub const POSTBL = extern struct {
+pub const POSTBL = packed struct {
     nPos: u16,
     szName: *u8,
 };
@@ -3122,7 +3122,7 @@ pub const IFED_REL_UNKNOWN1 = IMEREL.UNKNOWN1;
 pub const IFED_REL_UNKNOWN2 = IMEREL.UNKNOWN2;
 pub const IFED_REL_ALL = IMEREL.ALL;
 
-pub const IMEDP = extern struct {
+pub const IMEDP = packed struct {
     wrdModifier: IMEWRD,
     wrdModifiee: IMEWRD,
     relID: IMEREL,
@@ -3312,12 +3312,12 @@ pub const IFEDictionary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMEKMSINIT = extern struct {
+pub const IMEKMSINIT = packed struct {
     cbSize: i32,
     hWnd: HWND,
 };
 
-pub const IMEKMSKEY = extern struct {
+pub const IMEKMSKEY = packed struct {
     dwStatus: u32,
     dwCompStatus: u32,
     dwVKEY: u32,
@@ -3327,20 +3327,20 @@ pub const IMEKMSKEY = extern struct {
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const IMEKMS = extern struct {
+pub const IMEKMS = packed struct {
     cbSize: i32,
     hIMC: HIMC,
     cKeyList: u32,
     pKeyList: *IMEKMSKEY,
 };
 
-pub const IMEKMSNTFY = extern struct {
+pub const IMEKMSNTFY = packed struct {
     cbSize: i32,
     hIMC: HIMC,
     fSelect: BOOL,
 };
 
-pub const IMEKMSKMP = extern struct {
+pub const IMEKMSKMP = packed struct {
     cbSize: i32,
     hIMC: HIMC,
     idLang: u16,
@@ -3350,13 +3350,13 @@ pub const IMEKMSKMP = extern struct {
     pKeyList: *IMEKMSKEY,
 };
 
-pub const IMEKMSINVK = extern struct {
+pub const IMEKMSINVK = packed struct {
     cbSize: i32,
     hIMC: HIMC,
     dwControl: u32,
 };
 
-pub const IMEKMSFUNCDESC = extern struct {
+pub const IMEKMSFUNCDESC = packed struct {
     cbSize: i32,
     idLang: u16,
     dwControl: u32,

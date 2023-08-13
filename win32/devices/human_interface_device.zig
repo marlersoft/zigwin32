@@ -1707,6 +1707,7 @@ pub const DIDIFT_DELETE = @as(u32, 16777216);
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDP_LINK_COLLECTION_NODE = extern struct {
     LinkUsage: u16,
     LinkUsagePage: u16,
@@ -1727,6 +1728,7 @@ pub const _HIDP_PREPARSED_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
     NumGlobalUnknowns: u8,
     Reserved: [3]u8,
@@ -1739,6 +1741,7 @@ pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDD_CONFIGURATION = extern struct {
     cookie: *c_void,
     size: u32,
@@ -4672,7 +4675,7 @@ pub const HIDD_ATTRIBUTES = extern struct {
     VersionNumber: u16,
 };
 
-pub const JOYREGHWVALUES = extern struct {
+pub const JOYREGHWVALUES = packed struct {
     jrvHardware: joyrange_tag,
     dwPOVValues: [4]u32,
     dwCalFlags: u32,

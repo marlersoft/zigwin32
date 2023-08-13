@@ -3441,7 +3441,7 @@ pub const LPMIDICALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub const ACMSTREAMHEADER = extern struct {
+pub const ACMSTREAMHEADER = packed struct {
     cbStruct: u32,
     fdwStatus: u32,
     dwUser: usize,
@@ -3568,7 +3568,7 @@ pub const MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = MIXERLINE_COMPONENTTYPE.SRC_TE
 pub const MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = MIXERLINE_COMPONENTTYPE.SRC_UNDEFINED;
 pub const MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT;
 
-pub const WAVEFORMAT = extern struct {
+pub const WAVEFORMAT = packed struct {
     wFormatTag: u16,
     nChannels: u16,
     nSamplesPerSec: u32,
@@ -3576,12 +3576,12 @@ pub const WAVEFORMAT = extern struct {
     nBlockAlign: u16,
 };
 
-pub const PCMWAVEFORMAT = extern struct {
+pub const PCMWAVEFORMAT = packed struct {
     wf: WAVEFORMAT,
     wBitsPerSample: u16,
 };
 
-pub const WAVEFORMATEX = extern struct {
+pub const WAVEFORMATEX = packed struct {
     wFormatTag: u16,
     nChannels: u16,
     nSamplesPerSec: u32,
@@ -3600,7 +3600,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IE
 const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX_Value = @import("../zig.zig").Guid.initString("00000000-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX_Value;
 
-pub const WAVEFORMATEXTENSIBLE = extern struct {
+pub const WAVEFORMATEXTENSIBLE = packed struct {
     Format: WAVEFORMATEX,
     Samples: _Samples_e__Union,
     dwChannelMask: u32,
@@ -3608,46 +3608,46 @@ pub const WAVEFORMATEXTENSIBLE = extern struct {
     const _Samples_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const ADPCMCOEFSET = extern struct {
+pub const ADPCMCOEFSET = packed struct {
     iCoef1: i16,
     iCoef2: i16,
 };
 
-pub const ADPCMWAVEFORMAT = extern struct {
+pub const ADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
     wNumCoef: u16,
     aCoef: ADPCMCOEFSET,
 };
 
-pub const DRMWAVEFORMAT = extern struct {
+pub const DRMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wReserved: u16,
     ulContentId: u32,
     wfxSecure: WAVEFORMATEX,
 };
 
-pub const DVIADPCMWAVEFORMAT = extern struct {
+pub const DVIADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const IMAADPCMWAVEFORMAT = extern struct {
+pub const IMAADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const MEDIASPACEADPCMWAVEFORMAT = extern struct {
+pub const MEDIASPACEADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
 
-pub const SIERRAADPCMWAVEFORMAT = extern struct {
+pub const SIERRAADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
 
-pub const G723_ADPCMWAVEFORMAT = extern struct {
+pub const G723_ADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     cbExtraSize: u16,
     nAuxBlockSize: u16,
@@ -3669,12 +3669,12 @@ pub const YAMAHA_ADPCMWAVEFORMAT = extern struct {
     wfx: WAVEFORMATEX,
 };
 
-pub const SONARCWAVEFORMAT = extern struct {
+pub const SONARCWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wCompType: u16,
 };
 
-pub const TRUESPEECHWAVEFORMAT = extern struct {
+pub const TRUESPEECHWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
     nSamplesPerBlock: u16,
@@ -3697,65 +3697,65 @@ pub const AUDIOFILE_AF10WAVEFORMAT = extern struct {
     wfx: WAVEFORMATEX,
 };
 
-pub const DOLBYAC2WAVEFORMAT = extern struct {
+pub const DOLBYAC2WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     nAuxBitsCode: u16,
 };
 
-pub const GSM610WAVEFORMAT = extern struct {
+pub const GSM610WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const ADPCMEWAVEFORMAT = extern struct {
+pub const ADPCMEWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const CONTRESVQLPCWAVEFORMAT = extern struct {
+pub const CONTRESVQLPCWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const DIGIREALWAVEFORMAT = extern struct {
+pub const DIGIREALWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const DIGIADPCMWAVEFORMAT = extern struct {
+pub const DIGIADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const CONTRESCR10WAVEFORMAT = extern struct {
+pub const CONTRESCR10WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const NMS_VBXADPCMWAVEFORMAT = extern struct {
+pub const NMS_VBXADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
 };
 
-pub const G721_ADPCMWAVEFORMAT = extern struct {
+pub const G721_ADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     nAuxBlockSize: u16,
 };
 
-pub const MSAUDIO1WAVEFORMAT = extern struct {
+pub const MSAUDIO1WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wSamplesPerBlock: u16,
     wEncodeOptions: u16,
 };
 
-pub const WMAUDIO2WAVEFORMAT = extern struct {
+pub const WMAUDIO2WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     dwSamplesPerBlock: u32,
     wEncodeOptions: u16,
     dwSuperBlockAlign: u32,
 };
 
-pub const WMAUDIO3WAVEFORMAT = extern struct {
+pub const WMAUDIO3WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wValidBitsPerSample: u16,
     dwChannelMask: u32,
@@ -3765,22 +3765,22 @@ pub const WMAUDIO3WAVEFORMAT = extern struct {
     wReserved3: u16,
 };
 
-pub const CREATIVEADPCMWAVEFORMAT = extern struct {
+pub const CREATIVEADPCMWAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
 
-pub const CREATIVEFASTSPEECH8WAVEFORMAT = extern struct {
+pub const CREATIVEFASTSPEECH8WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
 
-pub const CREATIVEFASTSPEECH10WAVEFORMAT = extern struct {
+pub const CREATIVEFASTSPEECH10WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
 
-pub const FMTOWNS_SND_WAVEFORMAT = extern struct {
+pub const FMTOWNS_SND_WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wRevision: u16,
 };
@@ -3809,19 +3809,19 @@ pub const CSIMAADPCMWAVEFORMAT = extern struct {
     wfx: WAVEFORMATEX,
 };
 
-pub const WAVEFILTER = extern struct {
+pub const WAVEFILTER = packed struct {
     cbStruct: u32,
     dwFilterTag: u32,
     fdwFilter: u32,
     dwReserved: [5]u32,
 };
 
-pub const VOLUMEWAVEFILTER = extern struct {
+pub const VOLUMEWAVEFILTER = packed struct {
     wfltr: WAVEFILTER,
     dwVolume: u32,
 };
 
-pub const ECHOWAVEFILTER = extern struct {
+pub const ECHOWAVEFILTER = packed struct {
     wfltr: WAVEFILTER,
     dwVolume: u32,
     dwDelay: u32,
@@ -3837,12 +3837,12 @@ pub const s_RIFFWAVE_inst = extern struct {
     bHighVelocity: u8,
 };
 
-pub const EXBMINFOHEADER = extern struct {
+pub const EXBMINFOHEADER = packed struct {
     bmi: BITMAPINFOHEADER,
     biExtDataOffset: u32,
 };
 
-pub const JPEGINFOHEADER = extern struct {
+pub const JPEGINFOHEADER = packed struct {
     JPEGSize: u32,
     JPEGProcess: u32,
     JPEGColorSpaceID: u32,
@@ -3851,7 +3851,7 @@ pub const JPEGINFOHEADER = extern struct {
     JPEGVSubSampling: u32,
 };
 
-pub const MMTIME = extern struct {
+pub const MMTIME = packed struct {
     wType: u32,
     u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
@@ -3865,14 +3865,14 @@ pub const LPDRVCALLBACK = fn(
     dw2: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const DRVCONFIGINFOEX = extern struct {
+pub const DRVCONFIGINFOEX = packed struct {
     dwDCISize: u32,
     lpszDCISectionName: [*:0]const u16,
     lpszDCIAliasName: [*:0]const u16,
     dnDevNode: u32,
 };
 
-pub const DRVCONFIGINFO = extern struct {
+pub const DRVCONFIGINFO = packed struct {
     dwDCISize: u32,
     lpszDCISectionName: [*:0]const u16,
     lpszDCIAliasName: [*:0]const u16,
@@ -3901,7 +3901,7 @@ pub const LPMMIOPROC = fn(
     lParam2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const MMIOINFO = extern struct {
+pub const MMIOINFO = packed struct {
     dwFlags: u32,
     fccIOProc: u32,
     pIOProc: LPMMIOPROC,
@@ -3920,7 +3920,7 @@ pub const MMIOINFO = extern struct {
     hmmio: HMMIO,
 };
 
-pub const MMCKINFO = extern struct {
+pub const MMCKINFO = packed struct {
     ckid: u32,
     cksize: u32,
     fccType: u32,
@@ -3928,7 +3928,7 @@ pub const MMCKINFO = extern struct {
     dwFlags: u32,
 };
 
-pub const WAVEHDR = extern struct {
+pub const WAVEHDR = packed struct {
     lpData: PSTR,
     dwBufferLength: u32,
     dwBytesRecorded: u32,
@@ -3939,7 +3939,7 @@ pub const WAVEHDR = extern struct {
     reserved: usize,
 };
 
-pub const WAVEOUTCAPSA = extern struct {
+pub const WAVEOUTCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -3950,7 +3950,7 @@ pub const WAVEOUTCAPSA = extern struct {
     dwSupport: u32,
 };
 
-pub const WAVEOUTCAPSW = extern struct {
+pub const WAVEOUTCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -3961,7 +3961,7 @@ pub const WAVEOUTCAPSW = extern struct {
     dwSupport: u32,
 };
 
-pub const WAVEOUTCAPS2A = extern struct {
+pub const WAVEOUTCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -3975,7 +3975,7 @@ pub const WAVEOUTCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const WAVEOUTCAPS2W = extern struct {
+pub const WAVEOUTCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -3989,7 +3989,7 @@ pub const WAVEOUTCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const WAVEINCAPSA = extern struct {
+pub const WAVEINCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -3999,7 +3999,7 @@ pub const WAVEINCAPSA = extern struct {
     wReserved1: u16,
 };
 
-pub const WAVEINCAPSW = extern struct {
+pub const WAVEINCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4009,7 +4009,7 @@ pub const WAVEINCAPSW = extern struct {
     wReserved1: u16,
 };
 
-pub const WAVEINCAPS2A = extern struct {
+pub const WAVEINCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4022,7 +4022,7 @@ pub const WAVEINCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const WAVEINCAPS2W = extern struct {
+pub const WAVEINCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4035,7 +4035,7 @@ pub const WAVEINCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIDIOUTCAPSA = extern struct {
+pub const MIDIOUTCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4047,7 +4047,7 @@ pub const MIDIOUTCAPSA = extern struct {
     dwSupport: u32,
 };
 
-pub const MIDIOUTCAPSW = extern struct {
+pub const MIDIOUTCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4059,26 +4059,11 @@ pub const MIDIOUTCAPSW = extern struct {
     dwSupport: u32,
 };
 
-pub const MIDIOUTCAPS2A = extern struct {
+pub const MIDIOUTCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
     szPname: [32]CHAR,
-    wTechnology: u16,
-    wVoices: u16,
-    wNotes: u16,
-    wChannelMask: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
-};
-
-pub const MIDIOUTCAPS2W = extern struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
     wTechnology: u16,
     wVoices: u16,
     wNotes: u16,
@@ -4089,7 +4074,22 @@ pub const MIDIOUTCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIDIINCAPSA = extern struct {
+pub const MIDIOUTCAPS2W = packed struct {
+    wMid: u16,
+    wPid: u16,
+    vDriverVersion: u32,
+    szPname: [32]u16,
+    wTechnology: u16,
+    wVoices: u16,
+    wNotes: u16,
+    wChannelMask: u16,
+    dwSupport: u32,
+    ManufacturerGuid: Guid,
+    ProductGuid: Guid,
+    NameGuid: Guid,
+};
+
+pub const MIDIINCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4097,7 +4097,7 @@ pub const MIDIINCAPSA = extern struct {
     dwSupport: u32,
 };
 
-pub const MIDIINCAPSW = extern struct {
+pub const MIDIINCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4105,7 +4105,7 @@ pub const MIDIINCAPSW = extern struct {
     dwSupport: u32,
 };
 
-pub const MIDIINCAPS2A = extern struct {
+pub const MIDIINCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4116,7 +4116,7 @@ pub const MIDIINCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIDIINCAPS2W = extern struct {
+pub const MIDIINCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4127,7 +4127,7 @@ pub const MIDIINCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIDIHDR = extern struct {
+pub const MIDIHDR = packed struct {
     lpData: PSTR,
     dwBufferLength: u32,
     dwBytesRecorded: u32,
@@ -4139,30 +4139,30 @@ pub const MIDIHDR = extern struct {
     dwReserved: [8]usize,
 };
 
-pub const MIDIEVENT = extern struct {
+pub const MIDIEVENT = packed struct {
     dwDeltaTime: u32,
     dwStreamID: u32,
     dwEvent: u32,
     dwParms: [1]u32,
 };
 
-pub const MIDISTRMBUFFVER = extern struct {
+pub const MIDISTRMBUFFVER = packed struct {
     dwVersion: u32,
     dwMid: u32,
     dwOEMVersion: u32,
 };
 
-pub const MIDIPROPTIMEDIV = extern struct {
+pub const MIDIPROPTIMEDIV = packed struct {
     cbStruct: u32,
     dwTimeDiv: u32,
 };
 
-pub const MIDIPROPTEMPO = extern struct {
+pub const MIDIPROPTEMPO = packed struct {
     cbStruct: u32,
     dwTempo: u32,
 };
 
-pub const AUXCAPSA = extern struct {
+pub const AUXCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4172,7 +4172,7 @@ pub const AUXCAPSA = extern struct {
     dwSupport: u32,
 };
 
-pub const AUXCAPSW = extern struct {
+pub const AUXCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4182,7 +4182,7 @@ pub const AUXCAPSW = extern struct {
     dwSupport: u32,
 };
 
-pub const AUXCAPS2A = extern struct {
+pub const AUXCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4195,7 +4195,7 @@ pub const AUXCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const AUXCAPS2W = extern struct {
+pub const AUXCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4208,7 +4208,7 @@ pub const AUXCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIXERCAPSA = extern struct {
+pub const MIXERCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4217,7 +4217,7 @@ pub const MIXERCAPSA = extern struct {
     cDestinations: u32,
 };
 
-pub const MIXERCAPSW = extern struct {
+pub const MIXERCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4226,7 +4226,7 @@ pub const MIXERCAPSW = extern struct {
     cDestinations: u32,
 };
 
-pub const MIXERCAPS2A = extern struct {
+pub const MIXERCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4238,7 +4238,7 @@ pub const MIXERCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIXERCAPS2W = extern struct {
+pub const MIXERCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
@@ -4250,7 +4250,7 @@ pub const MIXERCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const MIXERLINEA = extern struct {
+pub const MIXERLINEA = packed struct {
     cbStruct: u32,
     dwDestination: u32,
     dwSource: u32,
@@ -4267,7 +4267,7 @@ pub const MIXERLINEA = extern struct {
     const _Target_e__Struct = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERLINEW = extern struct {
+pub const MIXERLINEW = packed struct {
     cbStruct: u32,
     dwDestination: u32,
     dwSource: u32,
@@ -4284,7 +4284,7 @@ pub const MIXERLINEW = extern struct {
     const _Target_e__Struct = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERCONTROLA = extern struct {
+pub const MIXERCONTROLA = packed struct {
     cbStruct: u32,
     dwControlID: u32,
     dwControlType: u32,
@@ -4298,7 +4298,7 @@ pub const MIXERCONTROLA = extern struct {
     const _Metrics_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERCONTROLW = extern struct {
+pub const MIXERCONTROLW = packed struct {
     cbStruct: u32,
     dwControlID: u32,
     dwControlType: u32,
@@ -4312,7 +4312,7 @@ pub const MIXERCONTROLW = extern struct {
     const _Bounds_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERLINECONTROLSA = extern struct {
+pub const MIXERLINECONTROLSA = packed struct {
     cbStruct: u32,
     dwLineID: u32,
     Anonymous: _Anonymous_e__Union,
@@ -4322,7 +4322,7 @@ pub const MIXERLINECONTROLSA = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERLINECONTROLSW = extern struct {
+pub const MIXERLINECONTROLSW = packed struct {
     cbStruct: u32,
     dwLineID: u32,
     Anonymous: _Anonymous_e__Union,
@@ -4332,7 +4332,7 @@ pub const MIXERLINECONTROLSW = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERCONTROLDETAILS = extern struct {
+pub const MIXERCONTROLDETAILS = packed struct {
     cbStruct: u32,
     dwControlID: u32,
     cChannels: u32,
@@ -4342,36 +4342,36 @@ pub const MIXERCONTROLDETAILS = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
+pub const MIXERCONTROLDETAILS_LISTTEXTA = packed struct {
     dwParam1: u32,
     dwParam2: u32,
     szName: [64]CHAR,
 };
 
-pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
+pub const MIXERCONTROLDETAILS_LISTTEXTW = packed struct {
     dwParam1: u32,
     dwParam2: u32,
     szName: [64]u16,
 };
 
-pub const MIXERCONTROLDETAILS_BOOLEAN = extern struct {
+pub const MIXERCONTROLDETAILS_BOOLEAN = packed struct {
     fValue: i32,
 };
 
-pub const MIXERCONTROLDETAILS_SIGNED = extern struct {
+pub const MIXERCONTROLDETAILS_SIGNED = packed struct {
     lValue: i32,
 };
 
-pub const MIXERCONTROLDETAILS_UNSIGNED = extern struct {
+pub const MIXERCONTROLDETAILS_UNSIGNED = packed struct {
     dwValue: u32,
 };
 
-pub const TIMECAPS = extern struct {
+pub const TIMECAPS = packed struct {
     wPeriodMin: u32,
     wPeriodMax: u32,
 };
 
-pub const JOYCAPSA = extern struct {
+pub const JOYCAPSA = packed struct {
     wMid: u16,
     wPid: u16,
     szPname: [32]CHAR,
@@ -4398,7 +4398,7 @@ pub const JOYCAPSA = extern struct {
     szOEMVxD: [260]CHAR,
 };
 
-pub const JOYCAPSW = extern struct {
+pub const JOYCAPSW = packed struct {
     wMid: u16,
     wPid: u16,
     szPname: [32]u16,
@@ -4425,7 +4425,7 @@ pub const JOYCAPSW = extern struct {
     szOEMVxD: [260]u16,
 };
 
-pub const JOYCAPS2A = extern struct {
+pub const JOYCAPS2A = packed struct {
     wMid: u16,
     wPid: u16,
     szPname: [32]CHAR,
@@ -4455,7 +4455,7 @@ pub const JOYCAPS2A = extern struct {
     NameGuid: Guid,
 };
 
-pub const JOYCAPS2W = extern struct {
+pub const JOYCAPS2W = packed struct {
     wMid: u16,
     wPid: u16,
     szPname: [32]u16,
@@ -4485,14 +4485,14 @@ pub const JOYCAPS2W = extern struct {
     NameGuid: Guid,
 };
 
-pub const JOYINFO = extern struct {
+pub const JOYINFO = packed struct {
     wXpos: u32,
     wYpos: u32,
     wZpos: u32,
     wButtons: u32,
 };
 
-pub const JOYINFOEX = extern struct {
+pub const JOYINFOEX = packed struct {
     dwSize: u32,
     dwFlags: u32,
     dwXpos: u32,
@@ -4508,24 +4508,24 @@ pub const JOYINFOEX = extern struct {
     dwReserved2: u32,
 };
 
-pub const MCI_DGV_RECT_PARMS = extern struct {
+pub const MCI_DGV_RECT_PARMS = packed struct {
     dwCallback: usize,
     rc: RECT,
 };
 
-pub const MCI_DGV_CAPTURE_PARMSA = extern struct {
+pub const MCI_DGV_CAPTURE_PARMSA = packed struct {
     dwCallback: usize,
     lpstrFileName: PSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_CAPTURE_PARMSW = extern struct {
+pub const MCI_DGV_CAPTURE_PARMSW = packed struct {
     dwCallback: usize,
     lpstrFileName: PWSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_COPY_PARMS = extern struct {
+pub const MCI_DGV_COPY_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
@@ -4534,21 +4534,12 @@ pub const MCI_DGV_COPY_PARMS = extern struct {
     dwVideoStream: u32,
 };
 
-pub const MCI_DGV_CUE_PARMS = extern struct {
+pub const MCI_DGV_CUE_PARMS = packed struct {
     dwCallback: usize,
     dwTo: u32,
 };
 
-pub const MCI_DGV_CUT_PARMS = extern struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
-};
-
-pub const MCI_DGV_DELETE_PARMS = extern struct {
+pub const MCI_DGV_CUT_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
@@ -4557,21 +4548,30 @@ pub const MCI_DGV_DELETE_PARMS = extern struct {
     dwVideoStream: u32,
 };
 
-pub const MCI_DGV_INFO_PARMSA = extern struct {
+pub const MCI_DGV_DELETE_PARMS = packed struct {
+    dwCallback: usize,
+    dwFrom: u32,
+    dwTo: u32,
+    rc: RECT,
+    dwAudioStream: u32,
+    dwVideoStream: u32,
+};
+
+pub const MCI_DGV_INFO_PARMSA = packed struct {
     dwCallback: usize,
     lpstrReturn: PSTR,
     dwRetSize: u32,
     dwItem: u32,
 };
 
-pub const MCI_DGV_INFO_PARMSW = extern struct {
+pub const MCI_DGV_INFO_PARMSW = packed struct {
     dwCallback: usize,
     lpstrReturn: PWSTR,
     dwRetSize: u32,
     dwItem: u32,
 };
 
-pub const MCI_DGV_LIST_PARMSA = extern struct {
+pub const MCI_DGV_LIST_PARMSA = packed struct {
     dwCallback: usize,
     lpstrReturn: PSTR,
     dwLength: u32,
@@ -4580,7 +4580,7 @@ pub const MCI_DGV_LIST_PARMSA = extern struct {
     lpstrAlgorithm: PSTR,
 };
 
-pub const MCI_DGV_LIST_PARMSW = extern struct {
+pub const MCI_DGV_LIST_PARMSW = packed struct {
     dwCallback: usize,
     lpstrReturn: PWSTR,
     dwLength: u32,
@@ -4589,13 +4589,13 @@ pub const MCI_DGV_LIST_PARMSW = extern struct {
     lpstrAlgorithm: PWSTR,
 };
 
-pub const MCI_DGV_MONITOR_PARMS = extern struct {
+pub const MCI_DGV_MONITOR_PARMS = packed struct {
     dwCallback: usize,
     dwSource: u32,
     dwMethod: u32,
 };
 
-pub const MCI_DGV_OPEN_PARMSA = extern struct {
+pub const MCI_DGV_OPEN_PARMSA = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: PSTR,
@@ -4605,7 +4605,7 @@ pub const MCI_DGV_OPEN_PARMSA = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_DGV_OPEN_PARMSW = extern struct {
+pub const MCI_DGV_OPEN_PARMSW = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: PWSTR,
@@ -4615,7 +4615,7 @@ pub const MCI_DGV_OPEN_PARMSW = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_DGV_PASTE_PARMS = extern struct {
+pub const MCI_DGV_PASTE_PARMS = packed struct {
     dwCallback: usize,
     dwTo: u32,
     rc: RECT,
@@ -4623,7 +4623,7 @@ pub const MCI_DGV_PASTE_PARMS = extern struct {
     dwVideoStream: u32,
 };
 
-pub const MCI_DGV_QUALITY_PARMSA = extern struct {
+pub const MCI_DGV_QUALITY_PARMSA = packed struct {
     dwCallback: usize,
     dwItem: u32,
     lpstrName: PSTR,
@@ -4631,7 +4631,7 @@ pub const MCI_DGV_QUALITY_PARMSA = extern struct {
     dwHandle: u32,
 };
 
-pub const MCI_DGV_QUALITY_PARMSW = extern struct {
+pub const MCI_DGV_QUALITY_PARMSW = packed struct {
     dwCallback: usize,
     dwItem: u32,
     lpstrName: PWSTR,
@@ -4639,7 +4639,7 @@ pub const MCI_DGV_QUALITY_PARMSW = extern struct {
     dwHandle: u32,
 };
 
-pub const MCI_DGV_RECORD_PARMS = extern struct {
+pub const MCI_DGV_RECORD_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
@@ -4648,43 +4648,43 @@ pub const MCI_DGV_RECORD_PARMS = extern struct {
     dwVideoStream: u32,
 };
 
-pub const MCI_DGV_RESERVE_PARMSA = extern struct {
+pub const MCI_DGV_RESERVE_PARMSA = packed struct {
     dwCallback: usize,
     lpstrPath: PSTR,
     dwSize: u32,
 };
 
-pub const MCI_DGV_RESERVE_PARMSW = extern struct {
+pub const MCI_DGV_RESERVE_PARMSW = packed struct {
     dwCallback: usize,
     lpstrPath: PWSTR,
     dwSize: u32,
 };
 
-pub const MCI_DGV_RESTORE_PARMSA = extern struct {
+pub const MCI_DGV_RESTORE_PARMSA = packed struct {
     dwCallback: usize,
     lpstrFileName: PSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_RESTORE_PARMSW = extern struct {
+pub const MCI_DGV_RESTORE_PARMSW = packed struct {
     dwCallback: usize,
     lpstrFileName: PWSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_SAVE_PARMSA = extern struct {
+pub const MCI_DGV_SAVE_PARMSA = packed struct {
     dwCallback: usize,
     lpstrFileName: PSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_SAVE_PARMSW = extern struct {
+pub const MCI_DGV_SAVE_PARMSW = packed struct {
     dwCallback: usize,
     lpstrFileName: PWSTR,
     rc: RECT,
 };
 
-pub const MCI_DGV_SET_PARMS = extern struct {
+pub const MCI_DGV_SET_PARMS = packed struct {
     dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
@@ -4692,7 +4692,7 @@ pub const MCI_DGV_SET_PARMS = extern struct {
     dwSpeed: u32,
 };
 
-pub const MCI_DGV_SETAUDIO_PARMSA = extern struct {
+pub const MCI_DGV_SETAUDIO_PARMSA = packed struct {
     dwCallback: usize,
     dwItem: u32,
     dwValue: u32,
@@ -4701,7 +4701,7 @@ pub const MCI_DGV_SETAUDIO_PARMSA = extern struct {
     lpstrQuality: PSTR,
 };
 
-pub const MCI_DGV_SETAUDIO_PARMSW = extern struct {
+pub const MCI_DGV_SETAUDIO_PARMSW = packed struct {
     dwCallback: usize,
     dwItem: u32,
     dwValue: u32,
@@ -4710,14 +4710,14 @@ pub const MCI_DGV_SETAUDIO_PARMSW = extern struct {
     lpstrQuality: PWSTR,
 };
 
-pub const MCI_DGV_SIGNAL_PARMS = extern struct {
+pub const MCI_DGV_SIGNAL_PARMS = packed struct {
     dwCallback: usize,
     dwPosition: u32,
     dwPeriod: u32,
     dwUserParm: u32,
 };
 
-pub const MCI_DGV_SETVIDEO_PARMSA = extern struct {
+pub const MCI_DGV_SETVIDEO_PARMSA = packed struct {
     dwCallback: usize,
     dwItem: u32,
     dwValue: u32,
@@ -4727,7 +4727,7 @@ pub const MCI_DGV_SETVIDEO_PARMSA = extern struct {
     dwSourceNumber: u32,
 };
 
-pub const MCI_DGV_SETVIDEO_PARMSW = extern struct {
+pub const MCI_DGV_SETVIDEO_PARMSW = packed struct {
     dwCallback: usize,
     dwItem: u32,
     dwValue: u32,
@@ -4737,7 +4737,7 @@ pub const MCI_DGV_SETVIDEO_PARMSW = extern struct {
     dwSourceNumber: u32,
 };
 
-pub const MCI_DGV_STATUS_PARMSA = extern struct {
+pub const MCI_DGV_STATUS_PARMSA = packed struct {
     dwCallback: usize,
     dwReturn: usize,
     dwItem: u32,
@@ -4746,7 +4746,7 @@ pub const MCI_DGV_STATUS_PARMSA = extern struct {
     dwReference: u32,
 };
 
-pub const MCI_DGV_STATUS_PARMSW = extern struct {
+pub const MCI_DGV_STATUS_PARMSW = packed struct {
     dwCallback: usize,
     dwReturn: usize,
     dwItem: u32,
@@ -4755,25 +4755,25 @@ pub const MCI_DGV_STATUS_PARMSW = extern struct {
     dwReference: u32,
 };
 
-pub const MCI_DGV_STEP_PARMS = extern struct {
+pub const MCI_DGV_STEP_PARMS = packed struct {
     dwCallback: usize,
     dwFrames: u32,
 };
 
-pub const MCI_DGV_UPDATE_PARMS = extern struct {
+pub const MCI_DGV_UPDATE_PARMS = packed struct {
     dwCallback: usize,
     rc: RECT,
     hDC: HDC,
 };
 
-pub const MCI_DGV_WINDOW_PARMSA = extern struct {
+pub const MCI_DGV_WINDOW_PARMSA = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: PSTR,
 };
 
-pub const MCI_DGV_WINDOW_PARMSW = extern struct {
+pub const MCI_DGV_WINDOW_PARMSW = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
@@ -4794,7 +4794,7 @@ pub const LPACMDRIVERPROC = fn(
     param4: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const ACMDRIVERDETAILSA = extern struct {
+pub const ACMDRIVERDETAILSA = packed struct {
     cbStruct: u32,
     fccType: u32,
     fccComp: u32,
@@ -4813,7 +4813,7 @@ pub const ACMDRIVERDETAILSA = extern struct {
     szFeatures: [512]CHAR,
 };
 
-pub const ACMDRIVERDETAILSW = extern struct {
+pub const ACMDRIVERDETAILSW = packed struct {
     cbStruct: u32,
     fccType: u32,
     fccComp: u32,
@@ -4832,7 +4832,7 @@ pub const ACMDRIVERDETAILSW = extern struct {
     szFeatures: [512]u16,
 };
 
-pub const ACMFORMATTAGDETAILSA = extern struct {
+pub const ACMFORMATTAGDETAILSA = packed struct {
     cbStruct: u32,
     dwFormatTagIndex: u32,
     dwFormatTag: u32,
@@ -4842,7 +4842,7 @@ pub const ACMFORMATTAGDETAILSA = extern struct {
     szFormatTag: [48]CHAR,
 };
 
-pub const ACMFORMATTAGDETAILSW = extern struct {
+pub const ACMFORMATTAGDETAILSW = packed struct {
     cbStruct: u32,
     dwFormatTagIndex: u32,
     dwFormatTag: u32,
@@ -4866,7 +4866,7 @@ pub const ACMFORMATTAGENUMCBW = fn(
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ACMFORMATDETAILSA = extern struct {
+pub const ACMFORMATDETAILSA = packed struct {
     cbStruct: u32,
     dwFormatIndex: u32,
     dwFormatTag: u32,
@@ -4876,7 +4876,7 @@ pub const ACMFORMATDETAILSA = extern struct {
     szFormat: [128]CHAR,
 };
 
-pub const tACMFORMATDETAILSW = extern struct {
+pub const tACMFORMATDETAILSW = packed struct {
     cbStruct: u32,
     dwFormatIndex: u32,
     dwFormatTag: u32,
@@ -4914,7 +4914,7 @@ pub const ACMFORMATCHOOSEHOOKPROCW = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const ACMFORMATCHOOSEA = extern struct {
+pub const ACMFORMATCHOOSEA = packed struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -4933,7 +4933,7 @@ pub const ACMFORMATCHOOSEA = extern struct {
     pfnHook: ACMFORMATCHOOSEHOOKPROCA,
 };
 
-pub const ACMFORMATCHOOSEW = extern struct {
+pub const ACMFORMATCHOOSEW = packed struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -4952,7 +4952,7 @@ pub const ACMFORMATCHOOSEW = extern struct {
     pfnHook: ACMFORMATCHOOSEHOOKPROCW,
 };
 
-pub const ACMFILTERTAGDETAILSA = extern struct {
+pub const ACMFILTERTAGDETAILSA = packed struct {
     cbStruct: u32,
     dwFilterTagIndex: u32,
     dwFilterTag: u32,
@@ -4962,7 +4962,7 @@ pub const ACMFILTERTAGDETAILSA = extern struct {
     szFilterTag: [48]CHAR,
 };
 
-pub const ACMFILTERTAGDETAILSW = extern struct {
+pub const ACMFILTERTAGDETAILSW = packed struct {
     cbStruct: u32,
     dwFilterTagIndex: u32,
     dwFilterTag: u32,
@@ -4986,7 +4986,7 @@ pub const ACMFILTERTAGENUMCBW = fn(
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ACMFILTERDETAILSA = extern struct {
+pub const ACMFILTERDETAILSA = packed struct {
     cbStruct: u32,
     dwFilterIndex: u32,
     dwFilterTag: u32,
@@ -4996,7 +4996,7 @@ pub const ACMFILTERDETAILSA = extern struct {
     szFilter: [128]CHAR,
 };
 
-pub const ACMFILTERDETAILSW = extern struct {
+pub const ACMFILTERDETAILSW = packed struct {
     cbStruct: u32,
     dwFilterIndex: u32,
     dwFilterTag: u32,
@@ -5034,7 +5034,7 @@ pub const ACMFILTERCHOOSEHOOKPROCW = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const ACMFILTERCHOOSEA = extern struct {
+pub const ACMFILTERCHOOSEA = packed struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -5053,7 +5053,7 @@ pub const ACMFILTERCHOOSEA = extern struct {
     pfnHook: ACMFILTERCHOOSEHOOKPROCA,
 };
 
-pub const ACMFILTERCHOOSEW = extern struct {
+pub const ACMFILTERCHOOSEW = packed struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -5826,12 +5826,12 @@ pub const CAPCONTROLCALLBACK = fn(
     nState: i32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const DRVM_IOCTL_DATA = extern struct {
+pub const DRVM_IOCTL_DATA = packed struct {
     dwSize: u32,
     dwCmd: u32,
 };
 
-pub const WAVEOPENDESC = extern struct {
+pub const WAVEOPENDESC = packed struct {
     hWave: HWAVE,
     lpFormat: *WAVEFORMAT,
     dwCallback: usize,
@@ -5840,12 +5840,12 @@ pub const WAVEOPENDESC = extern struct {
     dnDevNode: usize,
 };
 
-pub const midiopenstrmid_tag = extern struct {
+pub const midiopenstrmid_tag = packed struct {
     dwStreamID: u32,
     uDeviceID: u32,
 };
 
-pub const tMIXEROPENDESC = extern struct {
+pub const tMIXEROPENDESC = packed struct {
     hmx: HMIXER,
     pReserved0: *c_void,
     dwCallback: usize,
@@ -5853,7 +5853,7 @@ pub const tMIXEROPENDESC = extern struct {
     dnDevNode: usize,
 };
 
-pub const TIMEREVENT = extern struct {
+pub const TIMEREVENT = packed struct {
     wDelay: u16,
     wResolution: u16,
     lpFunction: LPTIMECALLBACK,
@@ -5862,7 +5862,7 @@ pub const TIMEREVENT = extern struct {
     wReserved1: u16,
 };
 
-pub const joypos_tag = extern struct {
+pub const joypos_tag = packed struct {
     dwX: u32,
     dwY: u32,
     dwZ: u32,
@@ -5877,18 +5877,18 @@ pub const joyrange_tag = extern struct {
     jpCenter: joypos_tag,
 };
 
-pub const joyreguservalues_tag = extern struct {
+pub const joyreguservalues_tag = packed struct {
     dwTimeOut: u32,
     jrvRanges: joyrange_tag,
     jpDeadZone: joypos_tag,
 };
 
-pub const joyreghwsettings_tag = extern struct {
+pub const joyreghwsettings_tag = packed struct {
     dwFlags: u32,
     dwNumButtons: u32,
 };
 
-pub const joyreghwconfig_tag = extern struct {
+pub const joyreghwconfig_tag = packed struct {
     hws: joyreghwsettings_tag,
     dwUsageSettings: u32,
     hwv: JOYREGHWVALUES,
@@ -5896,7 +5896,7 @@ pub const joyreghwconfig_tag = extern struct {
     dwReserved: u32,
 };
 
-pub const joycalibrate_tag = extern struct {
+pub const joycalibrate_tag = packed struct {
     wXbase: u16,
     wXdelta: u16,
     wYbase: u16,
@@ -5912,7 +5912,7 @@ pub const LPJOYDEVMSGPROC = fn(
     param3: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MCI_OPEN_DRIVER_PARMS = extern struct {
+pub const MCI_OPEN_DRIVER_PARMS = packed struct {
     wDeviceID: u32,
     lpstrParams: [*:0]const u16,
     wCustomCommandTable: u32,
@@ -5926,7 +5926,7 @@ pub const LPTASKCALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const ACMSTREAMHEADER = extern struct {
+pub const ACMSTREAMHEADER = packed struct {
     cbStruct: u32,
     fdwStatus: u32,
     dwUser: usize,

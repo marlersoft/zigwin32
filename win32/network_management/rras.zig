@@ -380,6 +380,7 @@ pub const HRASCONN = ?*opaque{};
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCONNW = extern struct {
     dwSize: u32,
     hrasconn: HRASCONN,
@@ -399,6 +400,7 @@ pub const RASCONNW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCONNA = extern struct {
     dwSize: u32,
     hrasconn: HRASCONN,
@@ -418,6 +420,7 @@ pub const RASCONNA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALPARAMSW = extern struct {
     dwSize: u32,
     szEntryName: [257]u16,
@@ -437,6 +440,7 @@ pub const RASDIALPARAMSW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALPARAMSA = extern struct {
     dwSize: u32,
     szEntryName: [257]CHAR,
@@ -456,6 +460,7 @@ pub const RASDIALPARAMSA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASEAPINFO = extern struct {
     dwSizeofEapInfo: u32,
     pbEapInfo: *u8,
@@ -466,6 +471,7 @@ pub const RASEAPINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDEVSPECIFICINFO = extern struct {
     dwSize: u32,
     pbDevSpecificInfo: *u8,
@@ -476,6 +482,7 @@ pub const RASDEVSPECIFICINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALEXTENSIONS = extern struct {
     dwSize: u32,
     dwfOptions: u32,
@@ -492,6 +499,7 @@ pub const RASDIALEXTENSIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASIKEV2_PROJECTION_INFO = extern struct {
     dwIPv4NegotiationError: u32,
     ipv4Address: IN_ADDR,
@@ -515,6 +523,7 @@ pub const RASIKEV2_PROJECTION_INFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASADPARAMS = extern struct {
     dwSize: u32,
     hwndOwner: HWND,
@@ -528,6 +537,7 @@ pub const RASADPARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
     dwSize: u32,
     pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
@@ -538,6 +548,7 @@ pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASPBDLGW = extern struct {
     dwSize: u32,
     hwndOwner: HWND,
@@ -556,6 +567,7 @@ pub const RASPBDLGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASPBDLGA = extern struct {
     dwSize: u32,
     hwndOwner: HWND,
@@ -574,6 +586,7 @@ pub const RASPBDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASENTRYDLGW = extern struct {
     dwSize: u32,
     hwndOwner: HWND,
@@ -591,6 +604,7 @@ pub const RASENTRYDLGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASENTRYDLGA = extern struct {
     dwSize: u32,
     hwndOwner: HWND,
@@ -608,6 +622,7 @@ pub const RASENTRYDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALDLG = extern struct {
     dwSize: u32,
     hwndOwner: HWND,

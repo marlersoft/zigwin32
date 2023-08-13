@@ -13641,6 +13641,7 @@ pub const SYSTEM_BATTERY_STATE = extern struct {
     DefaultAlert2: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_DOS_HEADER = extern struct {
     e_magic: u16,
     e_cblp: u16,
@@ -13663,6 +13664,7 @@ pub const IMAGE_DOS_HEADER = extern struct {
     e_lfanew: i32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_OS2_HEADER = extern struct {
     ne_magic: u16,
     ne_ver: CHAR,
@@ -13696,6 +13698,7 @@ pub const IMAGE_OS2_HEADER = extern struct {
     ne_expver: u16,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_VXD_HEADER = extern struct {
     e32_magic: u16,
     e32_border: u8,
@@ -13810,6 +13813,7 @@ pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
     NumberOfSymbols: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_SYMBOL = extern struct {
     N: _N_e__Union,
     Value: u32,
@@ -13820,6 +13824,7 @@ pub const IMAGE_SYMBOL = extern struct {
     const _N_e__Union = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_SYMBOL_EX = extern struct {
     N: _N_e__Union,
     Value: u32,
@@ -13830,6 +13835,7 @@ pub const IMAGE_SYMBOL_EX = extern struct {
     const _N_e__Union = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
     bAuxType: u8,
     bReserved: u8,
@@ -13867,6 +13873,7 @@ pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
 };
 pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.F;
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_RELOCATION = extern struct {
     Anonymous: _Anonymous_e__Union,
     SymbolTableIndex: u32,
@@ -13930,6 +13937,7 @@ pub const PIMAGE_TLS_CALLBACK = fn(
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
     StartAddressOfRawData: u64,
     EndAddressOfRawData: u64,
@@ -14028,17 +14036,17 @@ pub const IMAGE_DYNAMIC_RELOCATION_TABLE = extern struct {
     Size: u32,
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION32 = extern struct {
+pub const IMAGE_DYNAMIC_RELOCATION32 = packed struct {
     Symbol: u32,
     BaseRelocSize: u32,
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION64 = extern struct {
+pub const IMAGE_DYNAMIC_RELOCATION64 = packed struct {
     Symbol: u64,
     BaseRelocSize: u32,
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION32_V2 = extern struct {
+pub const IMAGE_DYNAMIC_RELOCATION32_V2 = packed struct {
     HeaderSize: u32,
     FixupInfoSize: u32,
     Symbol: u32,
@@ -14046,7 +14054,7 @@ pub const IMAGE_DYNAMIC_RELOCATION32_V2 = extern struct {
     Flags: u32,
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION64_V2 = extern struct {
+pub const IMAGE_DYNAMIC_RELOCATION64_V2 = packed struct {
     HeaderSize: u32,
     FixupInfoSize: u32,
     Symbol: u64,
@@ -14058,22 +14066,22 @@ pub const IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
     PrologueByteCount: u8,
 };
 
-pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
+pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = packed struct {
     EpilogueCount: u32,
     EpilogueByteCount: u8,
     BranchDescriptorElementSize: u8,
     BranchDescriptorCount: u16,
 };
 
-pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = packed struct {
     _bitfield: u32,
 };
 
-pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = packed struct {
     _bitfield: u16,
 };
 
-pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = extern struct {
+pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = packed struct {
     _bitfield: u16,
 };
 
@@ -14144,6 +14152,7 @@ pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = extern union {
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
     BeginAddress: u64,
     EndAddress: u64,
@@ -14191,6 +14200,7 @@ pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
     Reserved: [2]u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const NON_PAGED_DEBUG_INFO = extern struct {
     Signature: u16,
     Flags: u16,
@@ -19555,19 +19565,19 @@ pub const TCCollectionBugCheck = _DEVICEDUMP_COLLECTION_TYPE.BugCheck;
 pub const TCCollectionApplicationRequested = _DEVICEDUMP_COLLECTION_TYPE.ApplicationRequested;
 pub const TCCollectionDeviceRequested = _DEVICEDUMP_COLLECTION_TYPE.DeviceRequested;
 
-pub const DEVICEDUMP_SUBSECTION_POINTER = extern struct {
+pub const DEVICEDUMP_SUBSECTION_POINTER = packed struct {
     dwSize: u32,
     dwFlags: u32,
     dwOffset: u32,
 };
 
-pub const DEVICEDUMP_STRUCTURE_VERSION = extern struct {
+pub const DEVICEDUMP_STRUCTURE_VERSION = packed struct {
     dwSignature: u32,
     dwVersion: u32,
     dwSize: u32,
 };
 
-pub const DEVICEDUMP_SECTION_HEADER = extern struct {
+pub const DEVICEDUMP_SECTION_HEADER = packed struct {
     guidDeviceDataId: Guid,
     sOrganizationID: [16]u8,
     dwFirmwareRevision: u32,
@@ -19579,12 +19589,12 @@ pub const DEVICEDUMP_SECTION_HEADER = extern struct {
     szIssueDescriptionString: [132]u8,
 };
 
-pub const GP_LOG_PAGE_DESCRIPTOR = extern struct {
+pub const GP_LOG_PAGE_DESCRIPTOR = packed struct {
     LogAddress: u16,
     LogSectors: u16,
 };
 
-pub const DEVICEDUMP_PUBLIC_SUBSECTION = extern struct {
+pub const DEVICEDUMP_PUBLIC_SUBSECTION = packed struct {
     dwFlags: u32,
     GPLogTable: [16]GP_LOG_PAGE_DESCRIPTOR,
     szDescription: [16]CHAR,
@@ -19595,13 +19605,13 @@ pub const DEVICEDUMP_RESTRICTED_SUBSECTION = extern struct {
     bData: [1]u8,
 };
 
-pub const DEVICEDUMP_PRIVATE_SUBSECTION = extern struct {
+pub const DEVICEDUMP_PRIVATE_SUBSECTION = packed struct {
     dwFlags: u32,
     GPLogId: GP_LOG_PAGE_DESCRIPTOR,
     bData: [1]u8,
 };
 
-pub const DEVICEDUMP_STORAGEDEVICE_DATA = extern struct {
+pub const DEVICEDUMP_STORAGEDEVICE_DATA = packed struct {
     Descriptor: DEVICEDUMP_STRUCTURE_VERSION,
     SectionHeader: DEVICEDUMP_SECTION_HEADER,
     dwBufferSize: u32,
@@ -19611,7 +19621,7 @@ pub const DEVICEDUMP_STORAGEDEVICE_DATA = extern struct {
     PrivateData: DEVICEDUMP_SUBSECTION_POINTER,
 };
 
-pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = extern struct {
+pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = packed struct {
     Cdb: [16]u8,
     Command: [16]u8,
     StartTime: u64,
@@ -19622,7 +19632,7 @@ pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = extern struct {
     const _StackSpecific_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const DEVICEDUMP_STORAGESTACK_PUBLIC_DUMP = extern struct {
+pub const DEVICEDUMP_STORAGESTACK_PUBLIC_DUMP = packed struct {
     Descriptor: DEVICEDUMP_STRUCTURE_VERSION,
     dwReasonForCollection: u32,
     cDriverName: [16]u8,
@@ -20242,7 +20252,7 @@ pub const BIN_RESULTS = extern struct {
     BinCounts: [1]BIN_COUNT,
 };
 
-pub const GETVERSIONINPARAMS = extern struct {
+pub const GETVERSIONINPARAMS = packed struct {
     bVersion: u8,
     bRevision: u8,
     bReserved: u8,
@@ -20262,7 +20272,7 @@ pub const IDEREGS = extern struct {
     bReserved: u8,
 };
 
-pub const SENDCMDINPARAMS = extern struct {
+pub const SENDCMDINPARAMS = packed struct {
     cBufferSize: u32,
     irDriveRegs: IDEREGS,
     bDriveNumber: u8,
@@ -20271,14 +20281,14 @@ pub const SENDCMDINPARAMS = extern struct {
     bBuffer: [1]u8,
 };
 
-pub const DRIVERSTATUS = extern struct {
+pub const DRIVERSTATUS = packed struct {
     bDriverError: u8,
     bIDEError: u8,
     bReserved: [2]u8,
     dwReserved: [2]u32,
 };
 
-pub const SENDCMDOUTPARAMS = extern struct {
+pub const SENDCMDOUTPARAMS = packed struct {
     cBufferSize: u32,
     DriverStatus: DRIVERSTATUS,
     bBuffer: [1]u8,

@@ -9142,12 +9142,12 @@ pub const IWMPDownloadManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = extern struct {
+pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = packed struct {
     dwChangesSinceTransactionID: u32,
     dwResultSetStartingIndex: u32,
 };
 
-pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = extern struct {
+pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = packed struct {
     dwCurrentTransactionID: u32,
     dwReturnedObjectCount: u32,
     dwUnretrievedObjectCount: u32,

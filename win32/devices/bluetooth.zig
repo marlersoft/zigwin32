@@ -1016,14 +1016,14 @@ pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = fn(
     pvParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const SOCKADDR_BTH = extern struct {
+pub const SOCKADDR_BTH = packed struct {
     addressFamily: u16,
     btAddr: u64,
     serviceClassId: Guid,
     port: u32,
 };
 
-pub const BTH_SET_SERVICE = extern struct {
+pub const BTH_SET_SERVICE = packed struct {
     pSdpVersion: *u32,
     pRecordHandle: *HANDLE,
     fCodService: u32,
@@ -1032,12 +1032,12 @@ pub const BTH_SET_SERVICE = extern struct {
     pRecord: [1]u8,
 };
 
-pub const BTH_QUERY_DEVICE = extern struct {
+pub const BTH_QUERY_DEVICE = packed struct {
     LAP: u32,
     length: u8,
 };
 
-pub const BTH_QUERY_SERVICE = extern struct {
+pub const BTH_QUERY_SERVICE = packed struct {
     type: u32,
     serviceHandle: u32,
     uuids: [12]SdpQueryUuid,
@@ -1064,13 +1064,13 @@ pub const RFCOMM_RPN_DATA = extern struct {
     ParameterMask2: u8,
 };
 
-pub const RFCOMM_COMMAND = extern struct {
+pub const RFCOMM_COMMAND = packed struct {
     CmdType: u32,
     Data: _Data_e__Union,
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const BTH_PING_REQ = extern struct {
+pub const BTH_PING_REQ = packed struct {
     btAddr: u64,
     dataLen: u8,
     data: [44]u8,
@@ -1081,12 +1081,12 @@ pub const BTH_PING_RSP = extern struct {
     data: [44]u8,
 };
 
-pub const BTH_INFO_REQ = extern struct {
+pub const BTH_INFO_REQ = packed struct {
     btAddr: u64,
     infoType: u16,
 };
 
-pub const BTH_INFO_RSP = extern struct {
+pub const BTH_INFO_RSP = packed struct {
     result: u16,
     dataLen: u8,
     Anonymous: _Anonymous_e__Union,

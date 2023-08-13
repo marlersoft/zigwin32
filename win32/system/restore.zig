@@ -27,21 +27,21 @@ pub const MAX_DESC_W = @as(u32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const RESTOREPOINTINFOA = extern struct {
+pub const RESTOREPOINTINFOA = packed struct {
     dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
     dwRestorePtType: RESTOREPOINTINFO_TYPE,
     llSequenceNumber: i64,
     szDescription: [64]CHAR,
 };
 
-pub const RESTOREPOINTINFOW = extern struct {
+pub const RESTOREPOINTINFOW = packed struct {
     dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
     dwRestorePtType: RESTOREPOINTINFO_TYPE,
     llSequenceNumber: i64,
     szDescription: [256]u16,
 };
 
-pub const _RESTOREPTINFOEX = extern struct {
+pub const _RESTOREPTINFOEX = packed struct {
     ftCreation: FILETIME,
     dwEventType: u32,
     dwRestorePtType: u32,
@@ -49,7 +49,7 @@ pub const _RESTOREPTINFOEX = extern struct {
     szDescription: [256]u16,
 };
 
-pub const STATEMGRSTATUS = extern struct {
+pub const STATEMGRSTATUS = packed struct {
     nStatus: u32,
     llSequenceNumber: i64,
 };

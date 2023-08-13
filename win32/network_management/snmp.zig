@@ -99,6 +99,7 @@ pub const MAXVENDORINFO = @as(u32, 32);
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const AsnOctetString = extern struct {
     stream: *u8,
     length: u32,
@@ -110,6 +111,7 @@ pub const AsnOctetString = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const AsnObjectIdentifier = extern struct {
     idLength: u32,
     ids: *u32,
@@ -120,6 +122,7 @@ pub const AsnObjectIdentifier = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const SnmpVarBindList = extern struct {
     list: *SnmpVarBind,
     len: u32,

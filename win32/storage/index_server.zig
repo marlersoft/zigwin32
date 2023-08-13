@@ -364,6 +364,7 @@ pub const DBKIND_GUID = DBKINDENUM.GUID;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBID = extern struct {
     uGuid: _uGuid_e__Union,
     eKind: u32,

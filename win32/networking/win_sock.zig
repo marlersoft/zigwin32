@@ -861,6 +861,7 @@ pub const RIO_RQ_t = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ATM_PVC_PARAMS = extern struct {
     PvcConnectionId: ATM_CONNECTION_ID,
     PvcQos: QOS,

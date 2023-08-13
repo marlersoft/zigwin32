@@ -11259,14 +11259,14 @@ pub const ISDBCAS_REQUEST_ID = extern enum(i32) {
 pub const ISDBCAS_REQUEST_ID_EMG = ISDBCAS_REQUEST_ID.G;
 pub const ISDBCAS_REQUEST_ID_EMD = ISDBCAS_REQUEST_ID.D;
 
-pub const BDA_ISDBCAS_REQUESTHEADER = extern struct {
+pub const BDA_ISDBCAS_REQUESTHEADER = packed struct {
     bInstruction: u8,
     bReserved: [3]u8,
     ulDataLength: u32,
     argbIsdbCommand: [1]u8,
 };
 
-pub const BDA_ISDBCAS_RESPONSEDATA = extern struct {
+pub const BDA_ISDBCAS_RESPONSEDATA = packed struct {
     lResult: i32,
     ulRequestID: u32,
     ulIsdbStatus: u32,
@@ -11296,13 +11296,14 @@ pub const PID_OTHER = MUX_PID_TYPE.OTHER;
 pub const PID_ELEMENTARY_STREAM = MUX_PID_TYPE.ELEMENTARY_STREAM;
 pub const PID_MPEG2_SECTION_PSI_SI = MUX_PID_TYPE.MPEG2_SECTION_PSI_SI;
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const BDA_MUX_PIDLISTITEM = extern struct {
     usPIDNumber: u16,
     usProgramNumber: u16,
     ePIDType: MUX_PID_TYPE,
 };
 
-pub const BDA_TS_SELECTORINFO = extern struct {
+pub const BDA_TS_SELECTORINFO = packed struct {
     bTSInfolength: u8,
     bReserved: [2]u8,
     guidNetworkType: Guid,
@@ -22694,17 +22695,20 @@ pub const IXMLGraphBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const RIFFCHUNK = extern struct {
     fcc: u32,
     cb: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const RIFFLIST = extern struct {
     fcc: u32,
     cb: u32,
     fccListType: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVIMAINHEADER = extern struct {
     fcc: u32,
     cb: u32,
@@ -22721,6 +22725,7 @@ pub const AVIMAINHEADER = extern struct {
     dwReserved: [4]u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVIEXTHEADER = extern struct {
     fcc: u32,
     cb: u32,
@@ -22728,6 +22733,7 @@ pub const AVIEXTHEADER = extern struct {
     dwFuture: [61]u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVISTREAMHEADER = extern struct {
     fcc: u32,
     cb: u32,
@@ -22748,6 +22754,7 @@ pub const AVISTREAMHEADER = extern struct {
     const _rcFrame_e__Struct = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVIOLDINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -22755,12 +22762,14 @@ pub const AVIOLDINDEX = extern struct {
     const _avioldindex_entry = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const TIMECODEDATA = extern struct {
     time: TIMECODE,
     dwSMPTEflags: u32,
     dwUser: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVIMETAINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -22773,6 +22782,7 @@ pub const AVIMETAINDEX = extern struct {
     adwIndex: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVISUPERINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -22786,11 +22796,13 @@ pub const AVISUPERINDEX = extern struct {
     const _avisuperindex_entry = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVISTDINDEX_ENTRY = extern struct {
     dwOffset: u32,
     dwSize: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVISTDINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -22804,12 +22816,14 @@ pub const AVISTDINDEX = extern struct {
     aIndex: [2044]AVISTDINDEX_ENTRY,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVITIMEDINDEX_ENTRY = extern struct {
     dwOffset: u32,
     dwSize: u32,
     dwDuration: u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const _avitimedindex = extern struct {
     fcc: u32,
     cb: u32,
@@ -22824,6 +22838,7 @@ pub const _avitimedindex = extern struct {
     adwTrailingFill: [2734]u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVITIMECODEINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -22836,6 +22851,7 @@ pub const AVITIMECODEINDEX = extern struct {
     aIndex: [1022]TIMECODEDATA,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVITCDLINDEX_ENTRY = extern struct {
     dwTick: u32,
     time: TIMECODE,
@@ -22844,6 +22860,7 @@ pub const AVITCDLINDEX_ENTRY = extern struct {
     szReelId: [12]i8,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const _avitcdlindex = extern struct {
     fcc: u32,
     cb: u32,
@@ -22857,6 +22874,7 @@ pub const _avitcdlindex = extern struct {
     adwTrailingFill: [3512]u32,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const AVIFIELDINDEX = extern struct {
     fcc: u32,
     cb: u32,
@@ -23565,7 +23583,7 @@ pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
 pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
 pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
 
-pub const MPEG1WAVEFORMAT = extern struct {
+pub const MPEG1WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     fwHeadLayer: u16,
     dwHeadBitrate: u32,
@@ -23577,7 +23595,7 @@ pub const MPEG1WAVEFORMAT = extern struct {
     dwPTSHigh: u32,
 };
 
-pub const MPEGLAYER3WAVEFORMAT = extern struct {
+pub const MPEGLAYER3WAVEFORMAT = packed struct {
     wfx: WAVEFORMATEX,
     wID: u16,
     fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
@@ -23586,7 +23604,7 @@ pub const MPEGLAYER3WAVEFORMAT = extern struct {
     nCodecDelay: u16,
 };
 
-pub const HEAACWAVEINFO = extern struct {
+pub const HEAACWAVEINFO = packed struct {
     wfx: WAVEFORMATEX,
     wPayloadType: u16,
     wAudioProfileLevelIndication: u16,
@@ -28699,14 +28717,14 @@ pub const FormatNotSupportedEvents = extern enum(i32) {
 pub const FORMATNOTSUPPORTED_CLEAR = FormatNotSupportedEvents.CLEAR;
 pub const FORMATNOTSUPPORTED_NOTSUPPORTED = FormatNotSupportedEvents.NOTSUPPORTED;
 
-pub const WMDRMProtectionInfo = extern struct {
+pub const WMDRMProtectionInfo = packed struct {
     wszKID: [25]u16,
     qwCounter: u64,
     qwIndex: u64,
     bOffset: u8,
 };
 
-pub const BadSampleInfo = extern struct {
+pub const BadSampleInfo = packed struct {
     hrReason: HRESULT,
 };
 
@@ -36587,11 +36605,11 @@ pub const CLSID_Mpeg2Stream = &CLSID_Mpeg2Stream_Value;
 const CLSID_Mpeg2Data_Value = @import("../zig.zig").Guid.initString("c666e115-bb62-4027-a113-82d643fe2d99");
 pub const CLSID_Mpeg2Data = &CLSID_Mpeg2Data_Value;
 
-pub const PID_BITS_MIDL = extern struct {
+pub const PID_BITS_MIDL = packed struct {
     Bits: u16,
 };
 
-pub const MPEG_HEADER_BITS_MIDL = extern struct {
+pub const MPEG_HEADER_BITS_MIDL = packed struct {
     Bits: u16,
 };
 
@@ -36606,7 +36624,7 @@ pub const MPEG_CURRENT_NEXT_BIT = extern enum(i32) {
 pub const MPEG_SECTION_IS_NEXT = MPEG_CURRENT_NEXT_BIT.NEXT;
 pub const MPEG_SECTION_IS_CURRENT = MPEG_CURRENT_NEXT_BIT.CURRENT;
 
-pub const TID_EXTENSION = extern struct {
+pub const TID_EXTENSION = packed struct {
     wTidExt: u16,
     wCount: u16,
 };
@@ -36618,7 +36636,7 @@ pub const SECTION = extern struct {
     const _Header_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const LONG_SECTION = extern struct {
+pub const LONG_SECTION = packed struct {
     TableId: u8,
     Header: _Header_e__Union,
     TableIdExtension: u16,
@@ -36630,7 +36648,7 @@ pub const LONG_SECTION = extern struct {
     const _Version_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const DSMCC_SECTION = extern struct {
+pub const DSMCC_SECTION = packed struct {
     TableId: u8,
     Header: _Header_e__Union,
     TableIdExtension: u16,
@@ -36649,17 +36667,17 @@ pub const DSMCC_SECTION = extern struct {
     const _Version_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MPEG_RQST_PACKET = extern struct {
+pub const MPEG_RQST_PACKET = packed struct {
     dwLength: u32,
     pSection: *SECTION,
 };
 
-pub const MPEG_PACKET_LIST = extern struct {
+pub const MPEG_PACKET_LIST = packed struct {
     wPacketCount: u16,
     PacketList: [1]*MPEG_RQST_PACKET,
 };
 
-pub const DSMCC_FILTER_OPTIONS = extern struct {
+pub const DSMCC_FILTER_OPTIONS = packed struct {
     fSpecifyProtocol: BOOL,
     Protocol: u8,
     fSpecifyType: BOOL,
@@ -36677,17 +36695,17 @@ pub const DSMCC_FILTER_OPTIONS = extern struct {
     NumberOfBlocksInModule: u16,
 };
 
-pub const ATSC_FILTER_OPTIONS = extern struct {
+pub const ATSC_FILTER_OPTIONS = packed struct {
     fSpecifyEtmId: BOOL,
     EtmId: u32,
 };
 
-pub const DVB_EIT_FILTER_OPTIONS = extern struct {
+pub const DVB_EIT_FILTER_OPTIONS = packed struct {
     fSpecifySegment: BOOL,
     bSegment: u8,
 };
 
-pub const MPEG2_FILTER = extern struct {
+pub const MPEG2_FILTER = packed struct {
     bVersionNumber: u8,
     wFilterSize: u16,
     fUseRawFilteringBits: BOOL,
@@ -36707,14 +36725,14 @@ pub const MPEG2_FILTER = extern struct {
     Atsc: ATSC_FILTER_OPTIONS,
 };
 
-pub const MPEG2_FILTER2 = extern struct {
+pub const MPEG2_FILTER2 = packed struct {
     Anonymous: _Anonymous_e__Union,
     fSpecifyDvbEitOptions: BOOL,
     DvbEit: DVB_EIT_FILTER_OPTIONS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const MPEG_STREAM_BUFFER = extern struct {
+pub const MPEG_STREAM_BUFFER = packed struct {
     hr: HRESULT,
     dwDataBufferSize: u32,
     dwSizeOfDataRead: u32,
@@ -36727,7 +36745,7 @@ pub const MPEG_TIME = extern struct {
     Seconds: u8,
 };
 
-pub const MPEG_DATE = extern struct {
+pub const MPEG_DATE = packed struct {
     Date: u8,
     Month: u8,
     Year: u16,
@@ -36745,15 +36763,15 @@ pub const MPEG_CONTEXT_TYPE = extern enum(i32) {
 pub const MPEG_CONTEXT_BCS_DEMUX = MPEG_CONTEXT_TYPE.BCS_DEMUX;
 pub const MPEG_CONTEXT_WINSOCK = MPEG_CONTEXT_TYPE.WINSOCK;
 
-pub const MPEG_BCS_DEMUX = extern struct {
+pub const MPEG_BCS_DEMUX = packed struct {
     AVMGraphId: u32,
 };
 
-pub const MPEG_WINSOCK = extern struct {
+pub const MPEG_WINSOCK = packed struct {
     AVMGraphId: u32,
 };
 
-pub const MPEG_CONTEXT = extern struct {
+pub const MPEG_CONTEXT = packed struct {
     Type: MPEG_CONTEXT_TYPE,
     U: _U_e__Union,
     const _U_e__Union = u32; // TODO: generate this nested type!
@@ -36780,7 +36798,7 @@ pub const MPEG_RQST_GET_PES_STREAM = MPEG_REQUEST_TYPE.GET_PES_STREAM;
 pub const MPEG_RQST_GET_TS_STREAM = MPEG_REQUEST_TYPE.GET_TS_STREAM;
 pub const MPEG_RQST_START_MPE_STREAM = MPEG_REQUEST_TYPE.START_MPE_STREAM;
 
-pub const MPEG_SERVICE_REQUEST = extern struct {
+pub const MPEG_SERVICE_REQUEST = packed struct {
     Type: MPEG_REQUEST_TYPE,
     Context: MPEG_CONTEXT,
     Pid: u16,
@@ -36789,12 +36807,12 @@ pub const MPEG_SERVICE_REQUEST = extern struct {
     Flags: u32,
 };
 
-pub const MPEG_SERVICE_RESPONSE = extern struct {
+pub const MPEG_SERVICE_RESPONSE = packed struct {
     IPAddress: u32,
     Port: u16,
 };
 
-pub const DSMCC_ELEMENT = extern struct {
+pub const DSMCC_ELEMENT = packed struct {
     pid: u16,
     bComponentTag: u8,
     dwCarouselId: u32,
@@ -36802,13 +36820,13 @@ pub const DSMCC_ELEMENT = extern struct {
     pNext: *DSMCC_ELEMENT,
 };
 
-pub const MPE_ELEMENT = extern struct {
+pub const MPE_ELEMENT = packed struct {
     pid: u16,
     bComponentTag: u8,
     pNext: *MPE_ELEMENT,
 };
 
-pub const MPEG_STREAM_FILTER = extern struct {
+pub const MPEG_STREAM_FILTER = packed struct {
     wPidValue: u16,
     dwFilterSize: u32,
     fCrcEnabled: BOOL,
@@ -36883,7 +36901,7 @@ pub const IMpeg2TableFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const Mpeg2TableSampleHdr = extern struct {
+pub const Mpeg2TableSampleHdr = packed struct {
     SectionCount: u8,
     Reserved: [3]u8,
     SectionOffsets: [1]i32,
@@ -45634,12 +45652,12 @@ pub const CLSID_EVENTID_StreamIDSpanningEvent = &CLSID_EVENTID_StreamIDSpanningE
 const CLSID_EVENTID_PBDAParentalControlEvent_Value = @import("../zig.zig").Guid.initString("f947aa85-fb52-48e8-b9c5-e1e1f411a51a");
 pub const CLSID_EVENTID_PBDAParentalControlEvent = &CLSID_EVENTID_PBDAParentalControlEvent_Value;
 
-pub const RATING_ATTRIBUTE = extern struct {
+pub const RATING_ATTRIBUTE = packed struct {
     rating_attribute_id: u32,
     rating_attribute_value: u32,
 };
 
-pub const RATING_SYSTEM = extern struct {
+pub const RATING_SYSTEM = packed struct {
     rating_system_id: Guid,
     _bitfield: u8,
     country_code: [3]u8,
@@ -45647,12 +45665,12 @@ pub const RATING_SYSTEM = extern struct {
     lpratingattrib: *RATING_ATTRIBUTE,
 };
 
-pub const RATING_INFO = extern struct {
+pub const RATING_INFO = packed struct {
     rating_system_count: u32,
     lpratingsystem: *RATING_SYSTEM,
 };
 
-pub const PBDAParentalControl = extern struct {
+pub const PBDAParentalControl = packed struct {
     rating_system_count: u32,
     rating_systems: *RATING_SYSTEM,
 };
@@ -46548,11 +46566,11 @@ pub const CLSID_EVENTID_BDA_RatingPinReset = &CLSID_EVENTID_BDA_RatingPinReset_V
 const CLSID_PBDA_ALWAYS_TUNE_IN_MUX_Value = @import("../zig.zig").Guid.initString("1e1d7141-583f-4ac2-b019-1f430eda0f4c");
 pub const CLSID_PBDA_ALWAYS_TUNE_IN_MUX = &CLSID_PBDA_ALWAYS_TUNE_IN_MUX_Value;
 
-pub const PID_BITS = extern struct {
+pub const PID_BITS = packed struct {
     _bitfield: u16,
 };
 
-pub const MPEG_HEADER_BITS = extern struct {
+pub const MPEG_HEADER_BITS = packed struct {
     _bitfield: u16,
 };
 

@@ -3561,7 +3561,7 @@ pub const MLDV2_REPORT_HEADER = extern struct {
     RecordCount: u16,
 };
 
-pub const tcp_hdr = extern struct {
+pub const tcp_hdr = packed struct {
     th_sport: u16,
     th_dport: u16,
     th_seq: u32,
@@ -3573,7 +3573,7 @@ pub const tcp_hdr = extern struct {
     th_urp: u16,
 };
 
-pub const tcp_opt_mss = extern struct {
+pub const tcp_opt_mss = packed struct {
     Kind: u8,
     Length: u8,
     Mss: u16,
@@ -3597,7 +3597,7 @@ pub const tcp_opt_sack = extern struct {
     const tcp_opt_sack_block = u32; // TODO: generate this nested type!
 };
 
-pub const tcp_opt_ts = extern struct {
+pub const tcp_opt_ts = packed struct {
     Kind: u8,
     Length: u8,
     Val: u32,
@@ -3644,7 +3644,7 @@ pub const DL_TEREDO_ADDRESS_PRV = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const IPTLS_METADATA = extern struct {
+pub const IPTLS_METADATA = packed struct {
     SequenceNumber: u64,
 };
 

@@ -2527,6 +2527,7 @@ pub const UPDATELAYEREDWINDOWINFO = extern struct {
     prcDirty: *const RECT,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DLGTEMPLATE = extern struct {
     style: u32,
     dwExtendedStyle: u32,
@@ -2537,6 +2538,7 @@ pub const DLGTEMPLATE = extern struct {
     cy: i16,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DLGITEMTEMPLATE = extern struct {
     style: u32,
     dwExtendedStyle: u32,
@@ -2963,7 +2965,7 @@ pub const MrmResourceIndexerMessage = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPENFILENAME_NT4A = extern struct {
+pub const OPENFILENAME_NT4A = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -2991,7 +2993,7 @@ pub const OPENFILENAME_NT4A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPENFILENAME_NT4W = extern struct {
+pub const OPENFILENAME_NT4W = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -3019,7 +3021,7 @@ pub const OPENFILENAME_NT4W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPENFILENAMEA = extern struct {
+pub const OPENFILENAMEA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -3050,7 +3052,7 @@ pub const OPENFILENAMEA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OPENFILENAMEW = extern struct {
+pub const OPENFILENAMEW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -3081,7 +3083,7 @@ pub const OPENFILENAMEW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OFNOTIFYA = extern struct {
+pub const OFNOTIFYA = packed struct {
     hdr: NMHDR,
     lpOFN: *OPENFILENAMEA,
     pszFile: PSTR,
@@ -3092,7 +3094,7 @@ pub const OFNOTIFYA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OFNOTIFYW = extern struct {
+pub const OFNOTIFYW = packed struct {
     hdr: NMHDR,
     lpOFN: *OPENFILENAMEW,
     pszFile: PWSTR,
@@ -3103,7 +3105,7 @@ pub const OFNOTIFYW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OFNOTIFYEXA = extern struct {
+pub const OFNOTIFYEXA = packed struct {
     hdr: NMHDR,
     lpOFN: *OPENFILENAMEA,
     psf: *c_void,
@@ -3115,7 +3117,7 @@ pub const OFNOTIFYEXA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const OFNOTIFYEXW = extern struct {
+pub const OFNOTIFYEXW = packed struct {
     hdr: NMHDR,
     lpOFN: *OPENFILENAMEW,
     psf: *c_void,
@@ -3127,7 +3129,7 @@ pub const OFNOTIFYEXW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CHOOSECOLORA = extern struct {
+pub const CHOOSECOLORA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HWND,
@@ -3144,7 +3146,7 @@ pub const CHOOSECOLORA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CHOOSECOLORW = extern struct {
+pub const CHOOSECOLORW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HWND,
@@ -3161,7 +3163,7 @@ pub const CHOOSECOLORW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FINDREPLACEA = extern struct {
+pub const FINDREPLACEA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -3180,7 +3182,7 @@ pub const FINDREPLACEA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FINDREPLACEW = extern struct {
+pub const FINDREPLACEW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hInstance: HINSTANCE,
@@ -3199,7 +3201,7 @@ pub const FINDREPLACEW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CHOOSEFONTA = extern struct {
+pub const CHOOSEFONTA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDC: HDC,
@@ -3223,7 +3225,7 @@ pub const CHOOSEFONTA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CHOOSEFONTW = extern struct {
+pub const CHOOSEFONTW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDC: HDC,
@@ -3247,7 +3249,7 @@ pub const CHOOSEFONTW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PRINTDLGA = extern struct {
+pub const PRINTDLGA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,
@@ -3274,7 +3276,7 @@ pub const PRINTDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PRINTDLGW = extern struct {
+pub const PRINTDLGW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,
@@ -3301,7 +3303,7 @@ pub const PRINTDLGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PRINTPAGERANGE = extern struct {
+pub const PRINTPAGERANGE = packed struct {
     nFromPage: u32,
     nToPage: u32,
 };
@@ -3311,7 +3313,7 @@ pub const PRINTPAGERANGE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PRINTDLGEXA = extern struct {
+pub const PRINTDLGEXA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,
@@ -3340,7 +3342,7 @@ pub const PRINTDLGEXA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PRINTDLGEXW = extern struct {
+pub const PRINTDLGEXW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,
@@ -3369,7 +3371,7 @@ pub const PRINTDLGEXW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const DEVNAMES = extern struct {
+pub const DEVNAMES = packed struct {
     wDriverOffset: u16,
     wDeviceOffset: u16,
     wOutputOffset: u16,
@@ -3381,7 +3383,7 @@ pub const DEVNAMES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PAGESETUPDLGA = extern struct {
+pub const PAGESETUPDLGA = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,
@@ -3403,7 +3405,7 @@ pub const PAGESETUPDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const PAGESETUPDLGW = extern struct {
+pub const PAGESETUPDLGW = packed struct {
     lStructSize: u32,
     hwndOwner: HWND,
     hDevMode: isize,

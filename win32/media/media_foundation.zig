@@ -5421,7 +5421,7 @@ pub const DXVA_AYUVsample2 = extern struct {
     bSampleAlpha8: u8,
 };
 
-pub const DXVA_BufferDescription = extern struct {
+pub const DXVA_BufferDescription = packed struct {
     dwTypeIndex: u32,
     dwBufferIndex: u32,
     dwDataOffset: u32,
@@ -5434,7 +5434,7 @@ pub const DXVA_BufferDescription = extern struct {
     dwReservedBits: u32,
 };
 
-pub const DXVA_ConfigPictureDecode = extern struct {
+pub const DXVA_ConfigPictureDecode = packed struct {
     dwFunction: u32,
     dwReservedBits: [3]u32,
     guidConfigBitstreamEncryption: Guid,
@@ -5454,7 +5454,7 @@ pub const DXVA_ConfigPictureDecode = extern struct {
     bConfig4GroupedCoefs: u8,
 };
 
-pub const DXVA_PictureParameters = extern struct {
+pub const DXVA_PictureParameters = packed struct {
     wDecodedPictureIndex: u16,
     wDeblockedPictureIndex: u16,
     wForwardRefPictureIndex: u16,
@@ -7848,7 +7848,7 @@ pub const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS = extern struct {
     abEncryptedInitializationParameters: [256]u8,
 };
 
-pub const OPM_GET_INFO_PARAMETERS = extern struct {
+pub const OPM_GET_INFO_PARAMETERS = packed struct {
     omac: OPM_OMAC,
     rnRandomNumber: OPM_RANDOM_NUMBER,
     guidInformation: Guid,
@@ -7857,7 +7857,7 @@ pub const OPM_GET_INFO_PARAMETERS = extern struct {
     abParameters: [4056]u8,
 };
 
-pub const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS = extern struct {
+pub const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     guidInformation: Guid,
     ulSequenceNumber: u32,
@@ -7869,7 +7869,7 @@ pub const OPM_HDCP_KEY_SELECTION_VECTOR = extern struct {
     abKeySelectionVector: [5]u8,
 };
 
-pub const OPM_CONNECTED_HDCP_DEVICE_INFORMATION = extern struct {
+pub const OPM_CONNECTED_HDCP_DEVICE_INFORMATION = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     ulStatusFlags: u32,
     ulHDCPFlags: u32,
@@ -7879,13 +7879,13 @@ pub const OPM_CONNECTED_HDCP_DEVICE_INFORMATION = extern struct {
     Reserved3: [16]u8,
 };
 
-pub const OPM_REQUESTED_INFORMATION = extern struct {
+pub const OPM_REQUESTED_INFORMATION = packed struct {
     omac: OPM_OMAC,
     cbRequestedInformationSize: u32,
     abRequestedInformation: [4076]u8,
 };
 
-pub const OPM_STANDARD_INFORMATION = extern struct {
+pub const OPM_STANDARD_INFORMATION = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     ulStatusFlags: u32,
     ulInformation: u32,
@@ -7893,7 +7893,7 @@ pub const OPM_STANDARD_INFORMATION = extern struct {
     ulReserved2: u32,
 };
 
-pub const OPM_ACTUAL_OUTPUT_FORMAT = extern struct {
+pub const OPM_ACTUAL_OUTPUT_FORMAT = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     ulStatusFlags: u32,
     ulDisplayWidth: u32,
@@ -7904,7 +7904,7 @@ pub const OPM_ACTUAL_OUTPUT_FORMAT = extern struct {
     ulFrequencyDenominator: u32,
 };
 
-pub const OPM_ACP_AND_CGMSA_SIGNALING = extern struct {
+pub const OPM_ACP_AND_CGMSA_SIGNALING = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     ulStatusFlags: u32,
     ulAvailableTVProtectionStandards: u32,
@@ -7920,13 +7920,13 @@ pub const OPM_ACP_AND_CGMSA_SIGNALING = extern struct {
     ulReserved3: [4]u32,
 };
 
-pub const OPM_OUTPUT_ID_DATA = extern struct {
+pub const OPM_OUTPUT_ID_DATA = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     ulStatusFlags: u32,
     OutputId: u64,
 };
 
-pub const OPM_CONFIGURE_PARAMETERS = extern struct {
+pub const OPM_CONFIGURE_PARAMETERS = packed struct {
     omac: OPM_OMAC,
     guidSetting: Guid,
     ulSequenceNumber: u32,
@@ -7934,14 +7934,14 @@ pub const OPM_CONFIGURE_PARAMETERS = extern struct {
     abParameters: [4056]u8,
 };
 
-pub const OPM_SET_PROTECTION_LEVEL_PARAMETERS = extern struct {
+pub const OPM_SET_PROTECTION_LEVEL_PARAMETERS = packed struct {
     ulProtectionType: u32,
     ulProtectionLevel: u32,
     Reserved: u32,
     Reserved2: u32,
 };
 
-pub const OPM_SET_ACP_AND_CGMSA_SIGNALING_PARAMETERS = extern struct {
+pub const OPM_SET_ACP_AND_CGMSA_SIGNALING_PARAMETERS = packed struct {
     ulNewTVProtectionStandard: u32,
     ulAspectRatioChangeMask1: u32,
     ulAspectRatioData1: u32,
@@ -7954,16 +7954,16 @@ pub const OPM_SET_ACP_AND_CGMSA_SIGNALING_PARAMETERS = extern struct {
     ulReserved3: u32,
 };
 
-pub const OPM_SET_HDCP_SRM_PARAMETERS = extern struct {
+pub const OPM_SET_HDCP_SRM_PARAMETERS = packed struct {
     ulSRMVersion: u32,
 };
 
-pub const OPM_GET_CODEC_INFO_PARAMETERS = extern struct {
+pub const OPM_GET_CODEC_INFO_PARAMETERS = packed struct {
     cbVerifier: u32,
     Verifier: [4052]u8,
 };
 
-pub const OPM_GET_CODEC_INFO_INFORMATION = extern struct {
+pub const OPM_GET_CODEC_INFO_INFORMATION = packed struct {
     rnRandomNumber: OPM_RANDOM_NUMBER,
     Merit: u32,
 };
@@ -12763,12 +12763,12 @@ pub const MFRR_COMPONENTS = extern struct {
     pRRComponents: *MFRR_COMPONENT_HASH_INFO,
 };
 
-pub const ASF_FLAT_PICTURE = extern struct {
+pub const ASF_FLAT_PICTURE = packed struct {
     bPictureType: u8,
     dwDataLen: u32,
 };
 
-pub const ASF_FLAT_SYNCHRONISED_LYRICS = extern struct {
+pub const ASF_FLAT_SYNCHRONISED_LYRICS = packed struct {
     bTimeStampFormat: u8,
     bContentType: u8,
     dwLyricsLen: u32,
@@ -27895,6 +27895,7 @@ pub const D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM = D3D11_FEATURE_VIDEO.M;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DCONTENTPROTECTIONCAPS = extern struct {
     Caps: u32,
     KeyExchangeType: Guid,
