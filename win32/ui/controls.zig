@@ -7452,78 +7452,78 @@ pub extern "COMCTL32" fn GetMUILanguage(
 pub extern "COMCTL32" fn DSA_Create(
     cbItem: i32,
     cItemGrow: i32,
-) callconv(@import("std").os.windows.WINAPI) HDSA;
+) callconv(@import("std").os.windows.WINAPI) ?HDSA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_Destroy(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_DestroyCallback(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_DeleteItem(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_DeleteAllItems(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_EnumCallback(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_InsertItem(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     i: i32,
     pitem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_GetItemPtr(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_GetItem(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     i: i32,
     pitem: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_SetItem(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
     i: i32,
     pitem: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_Clone(
-    hdsa: HDSA,
-) callconv(@import("std").os.windows.WINAPI) HDSA;
+    hdsa: ?HDSA,
+) callconv(@import("std").os.windows.WINAPI) ?HDSA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_GetSize(
-    hdsa: HDSA,
+    hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_Sort(
-    pdsa: HDSA,
+    pdsa: ?HDSA,
     pfnCompare: ?PFNDACOMPARE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7531,97 +7531,97 @@ pub extern "COMCTL32" fn DSA_Sort(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Create(
     cItemGrow: i32,
-) callconv(@import("std").os.windows.WINAPI) HDPA;
+) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_CreateEx(
     cpGrow: i32,
     hheap: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HDPA;
+) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Clone(
-    hdpa: HDPA,
-    hdpaNew: HDPA,
-) callconv(@import("std").os.windows.WINAPI) HDPA;
+    hdpa: ?HDPA,
+    hdpaNew: ?HDPA,
+) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Destroy(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_DestroyCallback(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_DeletePtr(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_DeleteAllPtrs(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_EnumCallback(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Grow(
-    pdpa: HDPA,
+    pdpa: ?HDPA,
     cp: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_InsertPtr(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     i: i32,
     p: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_SetPtr(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     i: i32,
     p: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetPtr(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     i: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetPtrIndex(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     p: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetSize(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Sort(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     pfnCompare: ?PFNDACOMPARE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_LoadStream(
-    phdpa: ?*HDPA,
+    phdpa: ?*?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
     pvInstData: ?*c_void,
@@ -7629,7 +7629,7 @@ pub extern "COMCTL32" fn DPA_LoadStream(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_SaveStream(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
     pvInstData: ?*c_void,
@@ -7637,8 +7637,8 @@ pub extern "COMCTL32" fn DPA_SaveStream(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Merge(
-    hdpaDest: HDPA,
-    hdpaSrc: HDPA,
+    hdpaDest: ?HDPA,
+    hdpaSrc: ?HDPA,
     dwFlags: u32,
     pfnCompare: ?PFNDACOMPARE,
     pfnMerge: ?PFNDPAMERGE,
@@ -7647,7 +7647,7 @@ pub extern "COMCTL32" fn DPA_Merge(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Search(
-    hdpa: HDPA,
+    hdpa: ?HDPA,
     pFind: ?*c_void,
     iStart: i32,
     pfnCompare: ?PFNDACOMPARE,
