@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (423)
 //--------------------------------------------------------------------------------
-pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 pub const SHORT_PACKET_TERMINATE = @as(u32, 1);
 pub const AUTO_CLEAR_STALL = @as(u32, 2);
 pub const PIPE_TRANSFER_TIMEOUT = @as(u32, 3);
@@ -425,6 +424,7 @@ pub const MS_GENRE_DESCRIPTOR_INDEX = @as(u32, 1);
 pub const MS_POWER_DESCRIPTOR_INDEX = @as(u32, 2);
 pub const MS_OS_FLAGS_CONTAINERID = @as(u32, 2);
 pub const URB_OPEN_STATIC_STREAMS_VERSION_100 = @as(u32, 256);
+pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 
 //--------------------------------------------------------------------------------
 // Section: Types (124)

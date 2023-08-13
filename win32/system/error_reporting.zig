@@ -42,7 +42,7 @@ pub const WER_MAX_LOCAL_DUMP_SUBPATH_LENGTH = @as(u32, 64);
 pub const WER_MAX_REGISTERED_RUNTIME_EXCEPTION_MODULES = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
-// Section: Types (32)
+// Section: Types (34)
 //--------------------------------------------------------------------------------
 pub const WER_FILE = enum(u32) {
     ANONYMOUS_DATA = 2,
@@ -154,6 +154,12 @@ pub const WER_FAULT_REPORTING_FLAG_NOHEAP = WER_FAULT_REPORTING.FLAG_NOHEAP;
 pub const WER_FAULT_REPORTING_FLAG_QUEUE = WER_FAULT_REPORTING.FLAG_QUEUE;
 pub const WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD = WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD;
 pub const WER_FAULT_REPORTING_ALWAYS_SHOW_UI = WER_FAULT_REPORTING.ALWAYS_SHOW_UI;
+
+// TODO: this type has a FreeFunc 'WerReportCloseHandle', what can Zig do with this information?
+pub const HREPORT = isize;
+
+// TODO: this type has a FreeFunc 'WerStoreClose', what can Zig do with this information?
+pub const HREPORTSTORE = isize;
 
 pub const WER_REPORT_UI = enum(i32) {
     AdditionalDataDlgHeader = 1,
@@ -546,12 +552,12 @@ pub extern "wer" fn WerReportCreate(
     pwzEventType: ?[*:0]const u16,
     repType: WER_REPORT_TYPE,
     pReportInformation: ?*WER_REPORT_INFORMATION,
-    phReportHandle: ?*isize,
+    phReportHandle: ?*HREPORT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSetParameter(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
     dwparamID: u32,
     pwzName: ?[*:0]const u16,
     pwzValue: ?[*:0]const u16,
@@ -559,7 +565,7 @@ pub extern "wer" fn WerReportSetParameter(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddFile(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
     pwzPath: ?[*:0]const u16,
     repFileType: WER_FILE_TYPE,
     dwFileFlags: WER_FILE,
@@ -567,14 +573,14 @@ pub extern "wer" fn WerReportAddFile(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSetUIOption(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
     repUITypeID: WER_REPORT_UI,
     pwzValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSubmit(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
     consent: WER_CONSENT,
     dwFlags: WER_SUBMIT_FLAGS,
     pSubmitResult: ?*WER_SUBMIT_RESULT,
@@ -582,7 +588,7 @@ pub extern "wer" fn WerReportSubmit(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddDump(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
     dumpType: WER_DUMP_TYPE,
@@ -593,7 +599,7 @@ pub extern "wer" fn WerReportAddDump(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportCloseHandle(
-    hReportHandle: isize,
+    hReportHandle: HREPORT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -699,35 +705,35 @@ pub extern "KERNEL32" fn WerUnregisterRuntimeExceptionModule(
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreOpen(
     repStoreType: REPORT_STORE_TYPES,
-    phReportStore: ?*?*c_void,
+    phReportStore: ?*HREPORTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreClose(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetFirstReportKey(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     ppszReportKey: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetNextReportKey(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     ppszReportKey: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreQueryReportMetadataV2(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pszReportKey: ?[*:0]const u16,
     pReportMetadata: ?*WER_REPORT_METADATA_V2,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreQueryReportMetadataV3(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pszReportKey: ?[*:0]const u16,
     pReportMetadata: ?*WER_REPORT_METADATA_V3,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -741,23 +747,23 @@ pub extern "wer" fn WerStorePurge(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreGetReportCount(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pdwReportCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreGetSizeOnDisk(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pqwSizeInBytes: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreQueryReportMetadataV1(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pszReportKey: ?[*:0]const u16,
     pReportMetadata: ?*WER_REPORT_METADATA_V1,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreUploadReport(
-    hReportStore: ?*c_void,
+    hReportStore: HREPORTSTORE,
     pszReportKey: ?[*:0]const u16,
     dwFlags: u32,
     pSubmitResult: ?*WER_SUBMIT_RESULT,

@@ -2,16 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (221)
 //--------------------------------------------------------------------------------
-pub const RDCLIENT_BITMAP_RENDER_SERVICE = Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
-pub const WTS_QUERY_ALLOWED_INITIAL_APP = Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
-pub const WTS_QUERY_LOGON_SCREEN_SIZE = Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
-pub const WTS_QUERY_AUDIOENUM_DLL = Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
-pub const WTS_QUERY_MF_FORMAT_SUPPORT = Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
-pub const WRDS_SERVICE_ID_GRAPHICS_GUID = Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
-pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
-pub const PROPERTY_TYPE_GET_FAST_RECONNECT = Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
-pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
-pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
 pub const WTS_DOMAIN_LENGTH = @as(u32, 255);
 pub const WTS_USERNAME_LENGTH = @as(u32, 255);
 pub const WTS_PASSWORD_LENGTH = @as(u32, 255);
@@ -223,6 +213,16 @@ pub const DISPID_AX_ADMINMESSAGERECEIVED = @as(u32, 760);
 pub const DISPID_AX_KEYCOMBINATIONPRESSED = @as(u32, 761);
 pub const DISPID_AX_REMOTEDESKTOPSIZECHANGED = @as(u32, 762);
 pub const DISPID_AX_TOUCHPOINTERCURSORMOVED = @as(u32, 800);
+pub const RDCLIENT_BITMAP_RENDER_SERVICE = Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
+pub const WTS_QUERY_ALLOWED_INITIAL_APP = Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
+pub const WTS_QUERY_LOGON_SCREEN_SIZE = Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
+pub const WTS_QUERY_AUDIOENUM_DLL = Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
+pub const WTS_QUERY_MF_FORMAT_SUPPORT = Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
+pub const WRDS_SERVICE_ID_GRAPHICS_GUID = Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
+pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
+pub const PROPERTY_TYPE_GET_FAST_RECONNECT = Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
+pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
+pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
 
 //--------------------------------------------------------------------------------
 // Section: Types (255)

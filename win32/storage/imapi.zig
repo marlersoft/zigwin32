@@ -2,44 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (220)
 //--------------------------------------------------------------------------------
-pub const IMAPI_S_PROPERTIESIGNORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262656));
-pub const IMAPI_S_BUFFER_TO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262657));
-pub const IMAPI_E_NOTOPENED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220981));
-pub const IMAPI_E_NOTINITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220980));
-pub const IMAPI_E_USERABORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220979));
-pub const IMAPI_E_GENERIC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220978));
-pub const IMAPI_E_MEDIUM_NOTPRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220977));
-pub const IMAPI_E_MEDIUM_INVALIDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220976));
-pub const IMAPI_E_DEVICE_NOPROPERTIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220975));
-pub const IMAPI_E_DEVICE_NOTACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220974));
-pub const IMAPI_E_DEVICE_NOTPRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220973));
-pub const IMAPI_E_DEVICE_INVALIDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220972));
-pub const IMAPI_E_INITIALIZE_WRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220971));
-pub const IMAPI_E_INITIALIZE_ENDWRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220970));
-pub const IMAPI_E_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220969));
-pub const IMAPI_E_FILEACCESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220968));
-pub const IMAPI_E_DISCINFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220967));
-pub const IMAPI_E_TRACKNOTOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220966));
-pub const IMAPI_E_TRACKOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220965));
-pub const IMAPI_E_DISCFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220964));
-pub const IMAPI_E_BADJOLIETNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220963));
-pub const IMAPI_E_INVALIDIMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220962));
-pub const IMAPI_E_NOACTIVEFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220961));
-pub const IMAPI_E_NOACTIVERECORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220960));
-pub const IMAPI_E_WRONGFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220959));
-pub const IMAPI_E_ALREADYOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220958));
-pub const IMAPI_E_WRONGDISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220957));
-pub const IMAPI_E_FILEEXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220956));
-pub const IMAPI_E_STASHINUSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220955));
-pub const IMAPI_E_DEVICE_STILL_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220954));
-pub const IMAPI_E_LOSS_OF_STREAMING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220953));
-pub const IMAPI_E_COMPRESSEDSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220952));
-pub const IMAPI_E_ENCRYPTEDSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220951));
-pub const IMAPI_E_NOTENOUGHDISKFORSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220950));
-pub const IMAPI_E_REMOVABLESTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220949));
-pub const IMAPI_E_CANNOT_WRITE_TO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220948));
-pub const IMAPI_E_TRACK_NOT_BIG_ENOUGH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220947));
-pub const IMAPI_E_BOOTIMAGE_AND_NONBLANK_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220946));
 pub const IMAPI_SECTOR_SIZE = @as(u32, 2048);
 pub const IMAPI2_DEFAULT_COMMAND_TIMEOUT = @as(u32, 10);
 pub const DISPID_DDISCMASTER2EVENTS_DEVICEADDED = @as(u32, 256);
@@ -222,10 +184,57 @@ pub const DISPID_DFILESYSTEMIMAGEEVENTS_UPDATE = @as(u32, 256);
 pub const DISPID_DFILESYSTEMIMAGEIMPORTEVENTS_UPDATEIMPORT = @as(u32, 257);
 pub const IMAPI2FS_MajorVersion = @as(u32, 1);
 pub const IMAPI2FS_MinorVersion = @as(u32, 0);
+pub const IMAPI_S_PROPERTIESIGNORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262656));
+pub const IMAPI_S_BUFFER_TO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262657));
+pub const IMAPI_E_NOTOPENED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220981));
+pub const IMAPI_E_NOTINITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220980));
+pub const IMAPI_E_USERABORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220979));
+pub const IMAPI_E_GENERIC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220978));
+pub const IMAPI_E_MEDIUM_NOTPRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220977));
+pub const IMAPI_E_MEDIUM_INVALIDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220976));
+pub const IMAPI_E_DEVICE_NOPROPERTIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220975));
+pub const IMAPI_E_DEVICE_NOTACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220974));
+pub const IMAPI_E_DEVICE_NOTPRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220973));
+pub const IMAPI_E_DEVICE_INVALIDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220972));
+pub const IMAPI_E_INITIALIZE_WRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220971));
+pub const IMAPI_E_INITIALIZE_ENDWRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220970));
+pub const IMAPI_E_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220969));
+pub const IMAPI_E_FILEACCESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220968));
+pub const IMAPI_E_DISCINFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220967));
+pub const IMAPI_E_TRACKNOTOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220966));
+pub const IMAPI_E_TRACKOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220965));
+pub const IMAPI_E_DISCFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220964));
+pub const IMAPI_E_BADJOLIETNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220963));
+pub const IMAPI_E_INVALIDIMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220962));
+pub const IMAPI_E_NOACTIVEFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220961));
+pub const IMAPI_E_NOACTIVERECORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220960));
+pub const IMAPI_E_WRONGFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220959));
+pub const IMAPI_E_ALREADYOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220958));
+pub const IMAPI_E_WRONGDISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220957));
+pub const IMAPI_E_FILEEXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220956));
+pub const IMAPI_E_STASHINUSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220955));
+pub const IMAPI_E_DEVICE_STILL_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220954));
+pub const IMAPI_E_LOSS_OF_STREAMING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220953));
+pub const IMAPI_E_COMPRESSEDSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220952));
+pub const IMAPI_E_ENCRYPTEDSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220951));
+pub const IMAPI_E_NOTENOUGHDISKFORSTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220950));
+pub const IMAPI_E_REMOVABLESTASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220949));
+pub const IMAPI_E_CANNOT_WRITE_TO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220948));
+pub const IMAPI_E_TRACK_NOT_BIG_ENOUGH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220947));
+pub const IMAPI_E_BOOTIMAGE_AND_NONBLANK_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220946));
 
 //--------------------------------------------------------------------------------
 // Section: Types (113)
 //--------------------------------------------------------------------------------
+pub const DISC_RECORDER_STATE_FLAGS = enum(u32) {
+    BURNING = 2,
+    DOING_NOTHING = 0,
+    OPENED = 1,
+};
+pub const RECORDER_BURNING = DISC_RECORDER_STATE_FLAGS.BURNING;
+pub const RECORDER_DOING_NOTHING = DISC_RECORDER_STATE_FLAGS.DOING_NOTHING;
+pub const RECORDER_OPENED = DISC_RECORDER_STATE_FLAGS.OPENED;
+
 const CLSID_MsftDiscMaster2_Value = @import("../zig.zig").Guid.initString("2735412e-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscMaster2 = &CLSID_MsftDiscMaster2_Value;
 
@@ -5387,15 +5396,6 @@ pub const IDiscMaster = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const DISC_RECORDER_STATE_FLAGS = enum(u32) {
-    BURNING = 2,
-    DOING_NOTHING = 0,
-    OPENED = 1,
-};
-pub const RECORDER_BURNING = DISC_RECORDER_STATE_FLAGS.BURNING;
-pub const RECORDER_DOING_NOTHING = DISC_RECORDER_STATE_FLAGS.DOING_NOTHING;
-pub const RECORDER_OPENED = DISC_RECORDER_STATE_FLAGS.OPENED;
 
 
 //--------------------------------------------------------------------------------

@@ -2,40 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1332)
 //--------------------------------------------------------------------------------
-pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
-pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
-pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
-pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
-pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
-pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
-pub const UTEXT_MAGIC = @as(i32, 878368812);
-pub const USET_IGNORE_SPACE = @as(i32, 1);
-pub const USET_CASE_INSENSITIVE = @as(i32, 2);
-pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
-pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
-pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
-pub const UIDNA_DEFAULT = @as(i32, 0);
-pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
-pub const UIDNA_CHECK_BIDI = @as(i32, 4);
-pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
-pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
-pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
-pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
-pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
-pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
-pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
-pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
-pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
-pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
-pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
-pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
-pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
-pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
-pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
-pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
-pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
-pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
-pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 pub const ALL_SERVICE_TYPES = @as(u32, 0);
 pub const HIGHLEVEL_SERVICE_TYPES = @as(u32, 1);
 pub const LOWLEVEL_SERVICE_TYPES = @as(u32, 2);
@@ -1334,165 +1300,44 @@ pub const UBIDI_OUTPUT_REVERSE = @as(u32, 16);
 pub const USPREP_DEFAULT = @as(u32, 0);
 pub const USPREP_ALLOW_UNASSIGNED = @as(u32, 1);
 pub const USEARCH_DONE = @as(i32, -1);
+pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
+pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
+pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
+pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
+pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
+pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
+pub const UTEXT_MAGIC = @as(i32, 878368812);
+pub const USET_IGNORE_SPACE = @as(i32, 1);
+pub const USET_CASE_INSENSITIVE = @as(i32, 2);
+pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
+pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
+pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
+pub const UIDNA_DEFAULT = @as(i32, 0);
+pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
+pub const UIDNA_CHECK_BIDI = @as(i32, 4);
+pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
+pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
+pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
+pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
+pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
+pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
+pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
+pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
+pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
+pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
+pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
+pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
+pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
+pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
+pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
+pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
+pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
+pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
+pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 
 //--------------------------------------------------------------------------------
 // Section: Types (358)
 //--------------------------------------------------------------------------------
-pub const UEnumeration = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UResourceBundle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const ULocaleDisplayNames = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USet = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBiDi = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBiDiTransform = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNormalizer2 = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverterSelector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBreakIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCaseMap = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringPrepProfile = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UIDNA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCollator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCollationElements = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetDetector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetMatch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFieldPositionIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UDateIntervalFormat = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UGenderInfo = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UListFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const ULocaleData = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UDateFormatSymbols = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNumberFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedNumber = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNumberingSystem = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UPluralRules = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URegularExpression = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URegion = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URelativeDateTimeFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringSearch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USpoofChecker = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USpoofCheckResult = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const HIMC = *opaque{};
-
-pub const HIMCC = *opaque{};
-
-pub const HSAVEDUILANGUAGES = *opaque{};
-
-pub const FONTSIGNATURE = extern struct {
-    fsUsb: [4]u32,
-    fsCsb: [2]u32,
-};
-
-pub const CHARSETINFO = extern struct {
-    ciCharset: u32,
-    ciACP: u32,
-    fs: FONTSIGNATURE,
-};
-
-pub const LOCALESIGNATURE = extern struct {
-    lsUsb: [4]u32,
-    lsCsbDefault: [2]u32,
-    lsCsbSupported: [2]u32,
-};
-
 pub const FOLD_STRING_MAP_FLAGS = enum(u32) {
     COMPOSITE = 64,
     EXPAND_LIGATURES = 8192,
@@ -1853,6 +1698,161 @@ pub const IS_TEXT_UNICODE_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.UNICODE_MASK;
 pub const IS_TEXT_UNICODE_REVERSE_MASK = IS_TEXT_UNICODE_RESULT.REVERSE_MASK;
 pub const IS_TEXT_UNICODE_NOT_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.NOT_UNICODE_MASK;
 pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK;
+
+pub const UEnumeration = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UResourceBundle = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const ULocaleDisplayNames = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USet = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBiDi = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBiDiTransform = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNormalizer2 = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverterSelector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBreakIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCaseMap = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UStringPrepProfile = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UIDNA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCollator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCollationElements = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCharsetDetector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCharsetMatch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFieldPositionIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateIntervalFormat = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UGenderInfo = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UListFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const ULocaleData = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateFormatSymbols = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNumberFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedNumber = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNumberingSystem = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UPluralRules = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URegularExpression = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URegion = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URelativeDateTimeFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UStringSearch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USpoofChecker = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USpoofCheckResult = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const HIMC = *opaque{};
+
+pub const HIMCC = *opaque{};
+
+pub const HSAVEDUILANGUAGES = *opaque{};
+
+pub const FONTSIGNATURE = extern struct {
+    fsUsb: [4]u32,
+    fsCsb: [2]u32,
+};
+
+pub const CHARSETINFO = extern struct {
+    ciCharset: u32,
+    ciACP: u32,
+    fs: FONTSIGNATURE,
+};
+
+pub const LOCALESIGNATURE = extern struct {
+    lsUsb: [4]u32,
+    lsCsbDefault: [2]u32,
+    lsCsbSupported: [2]u32,
+};
 
 pub const CPINFO = extern struct {
     MaxCharSize: u32,

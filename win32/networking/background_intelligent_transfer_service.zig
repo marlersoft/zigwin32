@@ -71,6 +71,13 @@ pub const QM_E_ITEM_NOT_FOUND = @as(u32, 2164264964);
 //--------------------------------------------------------------------------------
 // Section: Types (74)
 //--------------------------------------------------------------------------------
+pub const BG_TOKEN = enum(u32) {
+    LOCAL_FILE = 1,
+    NETWORK = 2,
+};
+pub const BG_TOKEN_LOCAL_FILE = BG_TOKEN.LOCAL_FILE;
+pub const BG_TOKEN_NETWORK = BG_TOKEN.NETWORK;
+
 const CLSID_BackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("4991d34b-80a1-4291-83b6-3328366b9097");
 pub const CLSID_BackgroundCopyManager = &CLSID_BackgroundCopyManager_Value;
 
@@ -2486,13 +2493,6 @@ pub const IBackgroundCopyQMgr = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const BG_TOKEN = enum(u32) {
-    LOCAL_FILE = 1,
-    NETWORK = 2,
-};
-pub const BG_TOKEN_LOCAL_FILE = BG_TOKEN.LOCAL_FILE;
-pub const BG_TOKEN_NETWORK = BG_TOKEN.NETWORK;
 
 
 //--------------------------------------------------------------------------------

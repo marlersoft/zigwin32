@@ -7,6 +7,23 @@ pub const AVRF_MAX_TRACES = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
+    DONT_RESOLVE_TRACES = 2,
+    SUSPEND = 1,
+    _,
+    pub fn initFlags(o: struct {
+        DONT_RESOLVE_TRACES: u1 = 0,
+        SUSPEND: u1 = 0,
+    }) VERIFIER_ENUM_RESOURCE_FLAGS {
+        return @intToEnum(VERIFIER_ENUM_RESOURCE_FLAGS,
+              (if (o.DONT_RESOLVE_TRACES == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0)
+            | (if (o.SUSPEND == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)
+        );
+    }
+};
+pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
+pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;
+
 pub const AVRF_BACKTRACE_INFORMATION = extern struct {
     Depth: u32,
     Index: u32,
@@ -96,23 +113,6 @@ pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
     EnumerationContext: ?*c_void,
     EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
-    DONT_RESOLVE_TRACES = 2,
-    SUSPEND = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DONT_RESOLVE_TRACES: u1 = 0,
-        SUSPEND: u1 = 0,
-    }) VERIFIER_ENUM_RESOURCE_FLAGS {
-        return @intToEnum(VERIFIER_ENUM_RESOURCE_FLAGS,
-              (if (o.DONT_RESOLVE_TRACES == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0)
-            | (if (o.SUSPEND == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)
-        );
-    }
-};
-pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
-pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;
 
 
 //--------------------------------------------------------------------------------

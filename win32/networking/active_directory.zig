@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (450)
 //--------------------------------------------------------------------------------
-pub const CLSID_DsObjectPicker = Guid.initString("17d6ccd8-3b7b-11d2-b9e0-00c04fd8dbf7");
 pub const WM_ADSPROP_NOTIFY_PAGEINIT = @as(u32, 2125);
 pub const WM_ADSPROP_NOTIFY_PAGEHWND = @as(u32, 2126);
 pub const WM_ADSPROP_NOTIFY_CHANGE = @as(u32, 2127);
@@ -452,6 +451,7 @@ pub const DSOP_FLAG_SKIP_TARGET_COMPUTER_DC_CHECK = @as(u32, 2);
 pub const SCHEDULE_INTERVAL = @as(u32, 0);
 pub const SCHEDULE_BANDWIDTH = @as(u32, 1);
 pub const SCHEDULE_PRIORITY = @as(u32, 2);
+pub const CLSID_DsObjectPicker = Guid.initString("17d6ccd8-3b7b-11d2-b9e0-00c04fd8dbf7");
 
 //--------------------------------------------------------------------------------
 // Section: Types (264)

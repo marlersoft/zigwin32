@@ -1026,6 +1026,13 @@ pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (150)
 //--------------------------------------------------------------------------------
+pub const PROPSPEC_KIND = enum(u32) {
+    LPWSTR = 0,
+    PROPID = 1,
+};
+pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
+pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
+
 pub const PMemoryAllocator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
@@ -3276,13 +3283,6 @@ pub const JET_INSTANCE_INFO_W = extern struct {
     szDatabaseDisplayName: ?*?*u16,
     szDatabaseSLVFileName_Obsolete: ?*?*u16,
 };
-
-pub const PROPSPEC_KIND = enum(u32) {
-    LPWSTR = 0,
-    PROPID = 1,
-};
-pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
-pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
 
 
 

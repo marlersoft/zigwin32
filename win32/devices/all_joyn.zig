@@ -2,6 +2,23 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (37)
 //--------------------------------------------------------------------------------
+pub const QCC_TRUE = @as(u32, 1);
+pub const QCC_FALSE = @as(u32, 0);
+pub const ALLJOYN_MESSAGE_FLAG_NO_REPLY_EXPECTED = @as(u32, 1);
+pub const ALLJOYN_MESSAGE_FLAG_AUTO_START = @as(u32, 2);
+pub const ALLJOYN_MESSAGE_FLAG_ALLOW_REMOTE_MSG = @as(u32, 4);
+pub const ALLJOYN_MESSAGE_FLAG_SESSIONLESS = @as(u32, 16);
+pub const ALLJOYN_MESSAGE_FLAG_GLOBAL_BROADCAST = @as(u32, 32);
+pub const ALLJOYN_MESSAGE_FLAG_ENCRYPTED = @as(u32, 128);
+pub const ALLJOYN_TRAFFIC_TYPE_MESSAGES = @as(u32, 1);
+pub const ALLJOYN_TRAFFIC_TYPE_RAW_UNRELIABLE = @as(u32, 2);
+pub const ALLJOYN_TRAFFIC_TYPE_RAW_RELIABLE = @as(u32, 4);
+pub const ALLJOYN_PROXIMITY_ANY = @as(u32, 255);
+pub const ALLJOYN_PROXIMITY_PHYSICAL = @as(u32, 1);
+pub const ALLJOYN_PROXIMITY_NETWORK = @as(u32, 2);
+pub const ALLJOYN_READ_READY = @as(u32, 1);
+pub const ALLJOYN_WRITE_READY = @as(u32, 2);
+pub const ALLJOYN_DISCONNECTED = @as(u32, 4);
 pub const ALLJOYN_LITTLE_ENDIAN = @as(u8, 108);
 pub const ALLJOYN_BIG_ENDIAN = @as(u8, 66);
 pub const ALLJOYN_MESSAGE_DEFAULT_TIMEOUT = @as(u32, 25000);
@@ -22,23 +39,6 @@ pub const ALLJOYN_MEMBER_ANNOTATE_SESSIONCAST = @as(u8, 4);
 pub const ALLJOYN_MEMBER_ANNOTATE_SESSIONLESS = @as(u8, 8);
 pub const ALLJOYN_MEMBER_ANNOTATE_UNICAST = @as(u8, 16);
 pub const ALLJOYN_MEMBER_ANNOTATE_GLOBAL_BROADCAST = @as(u8, 32);
-pub const QCC_TRUE = @as(u32, 1);
-pub const QCC_FALSE = @as(u32, 0);
-pub const ALLJOYN_MESSAGE_FLAG_NO_REPLY_EXPECTED = @as(u32, 1);
-pub const ALLJOYN_MESSAGE_FLAG_AUTO_START = @as(u32, 2);
-pub const ALLJOYN_MESSAGE_FLAG_ALLOW_REMOTE_MSG = @as(u32, 4);
-pub const ALLJOYN_MESSAGE_FLAG_SESSIONLESS = @as(u32, 16);
-pub const ALLJOYN_MESSAGE_FLAG_GLOBAL_BROADCAST = @as(u32, 32);
-pub const ALLJOYN_MESSAGE_FLAG_ENCRYPTED = @as(u32, 128);
-pub const ALLJOYN_TRAFFIC_TYPE_MESSAGES = @as(u32, 1);
-pub const ALLJOYN_TRAFFIC_TYPE_RAW_UNRELIABLE = @as(u32, 2);
-pub const ALLJOYN_TRAFFIC_TYPE_RAW_RELIABLE = @as(u32, 4);
-pub const ALLJOYN_PROXIMITY_ANY = @as(u32, 255);
-pub const ALLJOYN_PROXIMITY_PHYSICAL = @as(u32, 1);
-pub const ALLJOYN_PROXIMITY_NETWORK = @as(u32, 2);
-pub const ALLJOYN_READ_READY = @as(u32, 1);
-pub const ALLJOYN_WRITE_READY = @as(u32, 2);
-pub const ALLJOYN_DISCONNECTED = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (110)

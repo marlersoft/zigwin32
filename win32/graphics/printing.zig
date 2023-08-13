@@ -2,11 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1084)
 //--------------------------------------------------------------------------------
-pub const NOTIFICATION_RELEASE = Guid.initString("ba9a5027-a70e-4ae7-9b7d-eb3e06ad4157");
-pub const PRINT_APP_BIDI_NOTIFY_CHANNEL = Guid.initString("2abad223-b994-4aca-82fc-4571b1b585ac");
-pub const PRINT_PORT_MONITOR_NOTIFY_CHANNEL = Guid.initString("25df3b0e-74a9-47f5-80ce-79b4b1eb5c58");
-pub const GUID_DEVINTERFACE_USBPRINT = Guid.initString("28d78fad-5a12-11d1-ae5b-0000f803a8c2");
-pub const GUID_DEVINTERFACE_IPPUSB_PRINT = Guid.initString("f2f40381-f46d-4e51-bce7-62de6cf2d098");
 pub const USB_PRINTER_INTERFACE_CLASSIC = @as(u32, 1);
 pub const USB_PRINTER_INTERFACE_IPP = @as(u32, 2);
 pub const USB_PRINTER_INTERFACE_DUAL = @as(u32, 3);
@@ -1086,6 +1081,11 @@ pub const IPDFP_COPY_ALL_FILES = @as(u32, 1);
 pub const UPDP_SILENT_UPLOAD = @as(u32, 1);
 pub const UPDP_UPLOAD_ALWAYS = @as(u32, 2);
 pub const UPDP_CHECK_DRIVERSTORE = @as(u32, 4);
+pub const NOTIFICATION_RELEASE = Guid.initString("ba9a5027-a70e-4ae7-9b7d-eb3e06ad4157");
+pub const PRINT_APP_BIDI_NOTIFY_CHANNEL = Guid.initString("2abad223-b994-4aca-82fc-4571b1b585ac");
+pub const PRINT_PORT_MONITOR_NOTIFY_CHANNEL = Guid.initString("25df3b0e-74a9-47f5-80ce-79b4b1eb5c58");
+pub const GUID_DEVINTERFACE_USBPRINT = Guid.initString("28d78fad-5a12-11d1-ae5b-0000f803a8c2");
+pub const GUID_DEVINTERFACE_IPPUSB_PRINT = Guid.initString("f2f40381-f46d-4e51-bce7-62de6cf2d098");
 
 //--------------------------------------------------------------------------------
 // Section: Types (363)

@@ -88,9 +88,6 @@ pub const WNCON_DYNAMIC = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (58)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
-pub const NetEnumHandle = isize;
-
 pub const UNC_INFO_LEVEL = enum(u32) {
     UNIVERSAL_NAME_INFO_LEVEL = 1,
     REMOTE_NAME_INFO_LEVEL = 2,
@@ -308,6 +305,9 @@ pub const DISCDLGSTRUCT_FLAGS = enum(u32) {
 };
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
 pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
+
+// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
+pub const NetEnumHandle = isize;
 
 pub const NETRESOURCEA = extern struct {
     dwScope: NET_RESOURCE_SCOPE,

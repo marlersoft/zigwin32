@@ -4,9 +4,6 @@
 //--------------------------------------------------------------------------------
 pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
 pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
-pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
-pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
-pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 pub const D3D12_16BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 65535);
 pub const D3D12_32BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 4294967295);
 pub const D3D12_8BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 255);
@@ -446,6 +443,9 @@ pub const D3D_SHADER_REQUIRES_INNER_COVERAGE = @as(u32, 1024);
 pub const D3D_SHADER_REQUIRES_TYPED_UAV_LOAD_ADDITIONAL_FORMATS = @as(u32, 2048);
 pub const D3D_SHADER_REQUIRES_ROVS = @as(u32, 4096);
 pub const D3D_SHADER_REQUIRES_VIEWPORT_AND_RT_ARRAY_INDEX_FROM_ANY_SHADER_FEEDING_RASTERIZER = @as(u32, 8192);
+pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
+pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
+pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 
 //--------------------------------------------------------------------------------
 // Section: Types (440)

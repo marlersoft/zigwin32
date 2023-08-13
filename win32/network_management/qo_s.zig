@@ -2,13 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (199)
 //--------------------------------------------------------------------------------
-pub const IS_GUAR_RSPEC = @as(i32, 130);
-pub const GUAR_ADSPARM_C = @as(i32, 131);
-pub const GUAR_ADSPARM_D = @as(i32, 132);
-pub const GUAR_ADSPARM_Ctot = @as(i32, 133);
-pub const GUAR_ADSPARM_Dtot = @as(i32, 134);
-pub const GUAR_ADSPARM_Csum = @as(i32, 135);
-pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 pub const QOS_MAX_OBJECT_STRING_LENGTH = @as(u32, 256);
 pub const QOS_TRAFFIC_GENERAL_ID_BASE = @as(u32, 4000);
 pub const SERVICETYPE_NOTRAFFIC = @as(u32, 0);
@@ -201,6 +194,13 @@ pub const MAX_STRING_LENGTH = @as(u32, 256);
 pub const QOS_OUTGOING_DEFAULT_MINIMUM_BANDWIDTH = @as(u32, 4294967295);
 pub const QOS_QUERYFLOW_FRESH = @as(u32, 1);
 pub const QOS_NON_ADAPTIVE_FLOW = @as(u32, 2);
+pub const IS_GUAR_RSPEC = @as(i32, 130);
+pub const GUAR_ADSPARM_C = @as(i32, 131);
+pub const GUAR_ADSPARM_D = @as(i32, 132);
+pub const GUAR_ADSPARM_Ctot = @as(i32, 133);
+pub const GUAR_ADSPARM_Dtot = @as(i32, 134);
+pub const GUAR_ADSPARM_Csum = @as(i32, 135);
+pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 
 //--------------------------------------------------------------------------------
 // Section: Types (81)

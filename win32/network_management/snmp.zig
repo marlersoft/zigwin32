@@ -96,9 +96,6 @@ pub const MAXVENDORINFO = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-
-
-
 pub const SNMP_PDU_TYPE = enum(u32) {
     GET = 160,
     GETNEXT = 161,
@@ -267,6 +264,9 @@ pub const SNMP_ERROR_UNDOFAILED = SNMP_ERROR.UNDOFAILED;
 pub const SNMP_ERROR_AUTHORIZATIONERROR = SNMP_ERROR.AUTHORIZATIONERROR;
 pub const SNMP_ERROR_NOTWRITABLE = SNMP_ERROR.NOTWRITABLE;
 pub const SNMP_ERROR_INCONSISTENTNAME = SNMP_ERROR.INCONSISTENTNAME;
+
+
+
 
 pub const AsnAny = extern struct {
     asnType: u8,

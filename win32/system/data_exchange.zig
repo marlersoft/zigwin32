@@ -70,191 +70,6 @@ pub const MF_MASK = @as(u32, 4278190080);
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
-pub const HSZ = *opaque{};
-
-pub const HCONV = *opaque{};
-
-pub const HCONVLIST = *opaque{};
-
-pub const HDDEDATA = *opaque{};
-
-pub const DDEACK = extern struct {
-    _bitfield: u16,
-};
-
-pub const DDEADVISE = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-};
-
-pub const DDEDATA = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-    Value: [1]u8,
-};
-
-pub const DDEPOKE = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-    Value: [1]u8,
-};
-
-pub const DDELN = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-};
-
-pub const DDEUP = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-    rgb: [1]u8,
-};
-
-pub const HSZPAIR = extern struct {
-    hszSvc: ?HSZ,
-    hszTopic: ?HSZ,
-};
-
-pub const CONVCONTEXT = extern struct {
-    cb: u32,
-    wFlags: u32,
-    wCountryID: u32,
-    iCodePage: i32,
-    dwLangID: u32,
-    dwSecurity: u32,
-    qos: SECURITY_QUALITY_OF_SERVICE,
-};
-
-pub const CONVINFO = extern struct {
-    cb: u32,
-    hUser: usize,
-    hConvPartner: ?HCONV,
-    hszSvcPartner: ?HSZ,
-    hszServiceReq: ?HSZ,
-    hszTopic: ?HSZ,
-    hszItem: ?HSZ,
-    wFmt: u32,
-    wType: DDE_CLIENT_TRANSACTION_TYPE,
-    wStatus: CONVINFO_STATUS,
-    wConvst: CONVINFO_CONVERSATION_STATE,
-    wLastError: u32,
-    hConvList: ?HCONVLIST,
-    ConvCtxt: CONVCONTEXT,
-    hwnd: ?HWND,
-    hwndPartner: ?HWND,
-};
-
-pub const PFNCALLBACK = fn(
-    wType: u32,
-    wFmt: u32,
-    hConv: ?HCONV,
-    hsz1: ?HSZ,
-    hsz2: ?HSZ,
-    hData: ?HDDEDATA,
-    dwData1: usize,
-    dwData2: usize,
-) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
-
-pub const DDEML_MSG_HOOK_DATA = extern struct {
-    uiLo: usize,
-    uiHi: usize,
-    cbData: u32,
-    Data: [8]u32,
-};
-
-pub const MONMSGSTRUCT = extern struct {
-    cb: u32,
-    hwndTo: ?HWND,
-    dwTime: u32,
-    hTask: ?HANDLE,
-    wMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    dmhd: DDEML_MSG_HOOK_DATA,
-};
-
-pub const MONCBSTRUCT = extern struct {
-    cb: u32,
-    dwTime: u32,
-    hTask: ?HANDLE,
-    dwRet: u32,
-    wType: u32,
-    wFmt: u32,
-    hConv: ?HCONV,
-    hsz1: ?HSZ,
-    hsz2: ?HSZ,
-    hData: ?HDDEDATA,
-    dwData1: usize,
-    dwData2: usize,
-    cc: CONVCONTEXT,
-    cbData: u32,
-    Data: [8]u32,
-};
-
-pub const MONHSZSTRUCTA = extern struct {
-    cb: u32,
-    fsAction: BOOL,
-    dwTime: u32,
-    hsz: ?HSZ,
-    hTask: ?HANDLE,
-    str: [1]CHAR,
-};
-
-pub const MONHSZSTRUCTW = extern struct {
-    cb: u32,
-    fsAction: BOOL,
-    dwTime: u32,
-    hsz: ?HSZ,
-    hTask: ?HANDLE,
-    str: [1]u16,
-};
-
-pub const MONERRSTRUCT = extern struct {
-    cb: u32,
-    wLastError: u32,
-    dwTime: u32,
-    hTask: ?HANDLE,
-};
-
-pub const MONLINKSTRUCT = extern struct {
-    cb: u32,
-    dwTime: u32,
-    hTask: ?HANDLE,
-    fEstablished: BOOL,
-    fNoData: BOOL,
-    hszSvc: ?HSZ,
-    hszTopic: ?HSZ,
-    hszItem: ?HSZ,
-    wFmt: u32,
-    fServer: BOOL,
-    hConvServer: ?HCONV,
-    hConvClient: ?HCONV,
-};
-
-pub const MONCONVSTRUCT = extern struct {
-    cb: u32,
-    fConnect: BOOL,
-    dwTime: u32,
-    hTask: ?HANDLE,
-    hszSvc: ?HSZ,
-    hszTopic: ?HSZ,
-    hConvClient: ?HCONV,
-    hConvServer: ?HCONV,
-};
-
-pub const METAFILEPICT = extern struct {
-    mm: i32,
-    xExt: i32,
-    yExt: i32,
-    hMF: ?HMETAFILE,
-};
-
-pub const COPYDATASTRUCT = extern struct {
-    dwData: usize,
-    cbData: u32,
-    lpData: ?*c_void,
-};
-
 pub const DDE_ENABLE_CALLBACK_CMD = enum(u32) {
     ENABLEALL = 0,
     ENABLEONE = 128,
@@ -492,6 +307,191 @@ pub const ST_INLIST = CONVINFO_STATUS.INLIST;
 pub const ST_ISLOCAL = CONVINFO_STATUS.ISLOCAL;
 pub const ST_ISSELF = CONVINFO_STATUS.ISSELF;
 pub const ST_TERMINATED = CONVINFO_STATUS.TERMINATED;
+
+pub const HSZ = *opaque{};
+
+pub const HCONV = *opaque{};
+
+pub const HCONVLIST = *opaque{};
+
+pub const HDDEDATA = *opaque{};
+
+pub const DDEACK = extern struct {
+    _bitfield: u16,
+};
+
+pub const DDEADVISE = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+};
+
+pub const DDEDATA = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+    Value: [1]u8,
+};
+
+pub const DDEPOKE = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+    Value: [1]u8,
+};
+
+pub const DDELN = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+};
+
+pub const DDEUP = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+    rgb: [1]u8,
+};
+
+pub const HSZPAIR = extern struct {
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+};
+
+pub const CONVCONTEXT = extern struct {
+    cb: u32,
+    wFlags: u32,
+    wCountryID: u32,
+    iCodePage: i32,
+    dwLangID: u32,
+    dwSecurity: u32,
+    qos: SECURITY_QUALITY_OF_SERVICE,
+};
+
+pub const CONVINFO = extern struct {
+    cb: u32,
+    hUser: usize,
+    hConvPartner: ?HCONV,
+    hszSvcPartner: ?HSZ,
+    hszServiceReq: ?HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
+    wFmt: u32,
+    wType: DDE_CLIENT_TRANSACTION_TYPE,
+    wStatus: CONVINFO_STATUS,
+    wConvst: CONVINFO_CONVERSATION_STATE,
+    wLastError: u32,
+    hConvList: ?HCONVLIST,
+    ConvCtxt: CONVCONTEXT,
+    hwnd: ?HWND,
+    hwndPartner: ?HWND,
+};
+
+pub const PFNCALLBACK = fn(
+    wType: u32,
+    wFmt: u32,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
+    dwData1: usize,
+    dwData2: usize,
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
+
+pub const DDEML_MSG_HOOK_DATA = extern struct {
+    uiLo: usize,
+    uiHi: usize,
+    cbData: u32,
+    Data: [8]u32,
+};
+
+pub const MONMSGSTRUCT = extern struct {
+    cb: u32,
+    hwndTo: ?HWND,
+    dwTime: u32,
+    hTask: ?HANDLE,
+    wMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    dmhd: DDEML_MSG_HOOK_DATA,
+};
+
+pub const MONCBSTRUCT = extern struct {
+    cb: u32,
+    dwTime: u32,
+    hTask: ?HANDLE,
+    dwRet: u32,
+    wType: u32,
+    wFmt: u32,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
+    dwData1: usize,
+    dwData2: usize,
+    cc: CONVCONTEXT,
+    cbData: u32,
+    Data: [8]u32,
+};
+
+pub const MONHSZSTRUCTA = extern struct {
+    cb: u32,
+    fsAction: BOOL,
+    dwTime: u32,
+    hsz: ?HSZ,
+    hTask: ?HANDLE,
+    str: [1]CHAR,
+};
+
+pub const MONHSZSTRUCTW = extern struct {
+    cb: u32,
+    fsAction: BOOL,
+    dwTime: u32,
+    hsz: ?HSZ,
+    hTask: ?HANDLE,
+    str: [1]u16,
+};
+
+pub const MONERRSTRUCT = extern struct {
+    cb: u32,
+    wLastError: u32,
+    dwTime: u32,
+    hTask: ?HANDLE,
+};
+
+pub const MONLINKSTRUCT = extern struct {
+    cb: u32,
+    dwTime: u32,
+    hTask: ?HANDLE,
+    fEstablished: BOOL,
+    fNoData: BOOL,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
+    wFmt: u32,
+    fServer: BOOL,
+    hConvServer: ?HCONV,
+    hConvClient: ?HCONV,
+};
+
+pub const MONCONVSTRUCT = extern struct {
+    cb: u32,
+    fConnect: BOOL,
+    dwTime: u32,
+    hTask: ?HANDLE,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+    hConvClient: ?HCONV,
+    hConvServer: ?HCONV,
+};
+
+pub const METAFILEPICT = extern struct {
+    mm: i32,
+    xExt: i32,
+    yExt: i32,
+    hMF: ?HMETAFILE,
+};
+
+pub const COPYDATASTRUCT = extern struct {
+    dwData: usize,
+    cbData: u32,
+    lpData: ?*c_void,
+};
 
 
 //--------------------------------------------------------------------------------

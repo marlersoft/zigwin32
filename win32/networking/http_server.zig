@@ -96,6 +96,30 @@ pub const HTTP_REQUEST_PROPERTY_SNI_FLAG_NO_SNI = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (111)
 //--------------------------------------------------------------------------------
+pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = enum(u32) {
+    COPY_BODY = 1,
+    FLUSH_BODY = 2,
+};
+pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
+pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
+
+pub const HTTP_INITIALIZE = enum(u32) {
+    CONFIG = 2,
+    SERVER = 1,
+    _,
+    pub fn initFlags(o: struct {
+        CONFIG: u1 = 0,
+        SERVER: u1 = 0,
+    }) HTTP_INITIALIZE {
+        return @intToEnum(HTTP_INITIALIZE,
+              (if (o.CONFIG == 1) @enumToInt(HTTP_INITIALIZE.CONFIG) else 0)
+            | (if (o.SERVER == 1) @enumToInt(HTTP_INITIALIZE.SERVER) else 0)
+        );
+    }
+};
+pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
+pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE.SERVER;
+
 pub const HTTP_SERVER_PROPERTY = enum(i32) {
     AuthenticationProperty = 0,
     LoggingProperty = 1,
@@ -1185,30 +1209,6 @@ pub const HTTP_REQUEST_PROPERTY_SNI = extern struct {
     Hostname: [256]u16,
     Flags: u32,
 };
-
-pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = enum(u32) {
-    COPY_BODY = 1,
-    FLUSH_BODY = 2,
-};
-pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
-pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
-
-pub const HTTP_INITIALIZE = enum(u32) {
-    CONFIG = 2,
-    SERVER = 1,
-    _,
-    pub fn initFlags(o: struct {
-        CONFIG: u1 = 0,
-        SERVER: u1 = 0,
-    }) HTTP_INITIALIZE {
-        return @intToEnum(HTTP_INITIALIZE,
-              (if (o.CONFIG == 1) @enumToInt(HTTP_INITIALIZE.CONFIG) else 0)
-            | (if (o.SERVER == 1) @enumToInt(HTTP_INITIALIZE.SERVER) else 0)
-        );
-    }
-};
-pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
-pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE.SERVER;
 
 
 //--------------------------------------------------------------------------------

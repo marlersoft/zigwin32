@@ -6139,102 +6139,6 @@ pub const ERROR_QUIC_VER_NEG_FAILURE = @import("zig.zig").typedConst(HRESULT, @a
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
-pub const BOOL = i32;
-
-pub const BOOLEAN = u8;
-
-// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
-pub const BSTR = *u16;
-
-// TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
-pub const HANDLE = @import("std").os.windows.HANDLE;
-
-// TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
-pub const HINSTANCE = *opaque{};
-
-pub const HRESULT = i32;
-
-pub const HWND = *opaque{};
-
-pub const LPARAM = isize;
-
-pub const LRESULT = isize;
-
-pub const LSTATUS = i32;
-
-pub const NTSTATUS = i32;
-
-pub const PSID = *opaque{};
-
-pub const PSTR = [*:0]u8;
-
-pub const PWSTR = [*:0]u16;
-
-pub const WPARAM = usize;
-
-pub const SYSTEMTIME = extern struct {
-    wYear: u16,
-    wMonth: u16,
-    wDayOfWeek: u16,
-    wDay: u16,
-    wHour: u16,
-    wMinute: u16,
-    wSecond: u16,
-    wMilliseconds: u16,
-};
-
-pub const FARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-pub const NEARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-pub const PROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-pub const FILETIME = extern struct {
-    dwLowDateTime: u32,
-    dwHighDateTime: u32,
-};
-
-pub const RECT = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const RECTL = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const POINT = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const POINTL = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const SIZE = extern struct {
-    cx: i32,
-    cy: i32,
-};
-
-pub const POINTS = extern struct {
-    x: i16,
-    y: i16,
-};
-
-pub const APP_LOCAL_DEVICE_ID = extern struct {
-    value: [32]u8,
-};
-
 pub const NTSTATUS_FACILITY_CODE = enum(u32) {
     DEBUGGER = 1,
     RPC_RUNTIME = 2,
@@ -6379,6 +6283,102 @@ pub const HANDLE_FLAGS = enum(u32) {
 };
 pub const HANDLE_FLAG_INHERIT = HANDLE_FLAGS.INHERIT;
 pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAGS.PROTECT_FROM_CLOSE;
+
+pub const BOOL = i32;
+
+pub const BOOLEAN = u8;
+
+// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
+pub const BSTR = *u16;
+
+// TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
+pub const HANDLE = @import("std").os.windows.HANDLE;
+
+// TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
+pub const HINSTANCE = *opaque{};
+
+pub const HRESULT = i32;
+
+pub const HWND = *opaque{};
+
+pub const LPARAM = isize;
+
+pub const LRESULT = isize;
+
+pub const LSTATUS = i32;
+
+pub const NTSTATUS = i32;
+
+pub const PSID = *opaque{};
+
+pub const PSTR = [*:0]u8;
+
+pub const PWSTR = [*:0]u16;
+
+pub const WPARAM = usize;
+
+pub const SYSTEMTIME = extern struct {
+    wYear: u16,
+    wMonth: u16,
+    wDayOfWeek: u16,
+    wDay: u16,
+    wHour: u16,
+    wMinute: u16,
+    wSecond: u16,
+    wMilliseconds: u16,
+};
+
+pub const FARPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+pub const NEARPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+pub const PROC = fn(
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+pub const FILETIME = extern struct {
+    dwLowDateTime: u32,
+    dwHighDateTime: u32,
+};
+
+pub const RECT = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const RECTL = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const POINT = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const POINTL = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const SIZE = extern struct {
+    cx: i32,
+    cy: i32,
+};
+
+pub const POINTS = extern struct {
+    x: i16,
+    y: i16,
+};
+
+pub const APP_LOCAL_DEVICE_ID = extern struct {
+    value: [32]u8,
+};
 
 
 //--------------------------------------------------------------------------------

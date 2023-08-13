@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1035)
 //--------------------------------------------------------------------------------
-pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 pub const AUDCLNT_STREAMFLAGS_CROSSPROCESS = @as(u32, 65536);
 pub const AUDCLNT_STREAMFLAGS_LOOPBACK = @as(u32, 131072);
 pub const AUDCLNT_STREAMFLAGS_EVENTCALLBACK = @as(u32, 262144);
@@ -1037,6 +1036,7 @@ pub const SPTLAUD_MD_CLNT_E_COMMAND_ALREADY_WRITTEN = @import("../../zig.zig").t
 pub const SPTLAUD_MD_CLNT_E_FORMAT_MISMATCH = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2004286941));
 pub const SPTLAUD_MD_CLNT_E_BUFFER_STILL_ATTACHED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2004286940));
 pub const SPTLAUD_MD_CLNT_E_ITEMS_LOCKED_FOR_WRITING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2004286939));
+pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1173)

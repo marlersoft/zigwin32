@@ -11,90 +11,6 @@ pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
-
-// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
-pub const HeapHandle = *opaque{};
-
-pub const MEMORY_BASIC_INFORMATION32 = extern struct {
-    BaseAddress: u32,
-    AllocationBase: u32,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    RegionSize: u32,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-};
-
-pub const MEMORY_BASIC_INFORMATION64 = extern struct {
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-    __alignment2: u32,
-};
-
-pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    Addr: ?*c_void,
-    Range: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
-
-pub const HEAP_SUMMARY = extern struct {
-    cb: u32,
-    cbAllocated: usize,
-    cbCommitted: usize,
-    cbReserved: usize,
-    cbMaxReserve: usize,
-};
-
-pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = enum(i32) {
-    LowMemoryResourceNotification = 0,
-    HighMemoryResourceNotification = 1,
-};
-pub const LowMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.LowMemoryResourceNotification;
-pub const HighMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.HighMemoryResourceNotification;
-
-pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
-    VirtualAddress: ?*c_void,
-    NumberOfBytes: usize,
-};
-
-pub const PBAD_MEMORY_CALLBACK_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const OFFER_PRIORITY = enum(i32) {
-    VeryLow = 1,
-    Low = 2,
-    BelowNormal = 3,
-    Normal = 4,
-};
-pub const VmOfferPriorityVeryLow = OFFER_PRIORITY.VeryLow;
-pub const VmOfferPriorityLow = OFFER_PRIORITY.Low;
-pub const VmOfferPriorityBelowNormal = OFFER_PRIORITY.BelowNormal;
-pub const VmOfferPriorityNormal = OFFER_PRIORITY.Normal;
-
-pub const WIN32_MEMORY_INFORMATION_CLASS = enum(i32) {
-    o = 0,
-};
-pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
-
-pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
-    AllocationBase: ?*c_void,
-    AllocationProtect: u32,
-    Anonymous: extern union {
-        Flags: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-    RegionSize: usize,
-    CommitSize: usize,
-};
-
 pub const FILE_MAP = enum(u32) {
     WRITE = 2,
     READ = 4,
@@ -499,6 +415,90 @@ pub const PAGE_TYPE = enum(u32) {
 pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
 pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
+
+
+// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
+pub const HeapHandle = *opaque{};
+
+pub const MEMORY_BASIC_INFORMATION32 = extern struct {
+    BaseAddress: u32,
+    AllocationBase: u32,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: u32,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+pub const MEMORY_BASIC_INFORMATION64 = extern struct {
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+    __alignment2: u32,
+};
+
+pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
+    // TODO: what to do with BytesParamIndex 1?
+    Addr: ?*c_void,
+    Range: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
+pub const HEAP_SUMMARY = extern struct {
+    cb: u32,
+    cbAllocated: usize,
+    cbCommitted: usize,
+    cbReserved: usize,
+    cbMaxReserve: usize,
+};
+
+pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = enum(i32) {
+    LowMemoryResourceNotification = 0,
+    HighMemoryResourceNotification = 1,
+};
+pub const LowMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.LowMemoryResourceNotification;
+pub const HighMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.HighMemoryResourceNotification;
+
+pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
+    VirtualAddress: ?*c_void,
+    NumberOfBytes: usize,
+};
+
+pub const PBAD_MEMORY_CALLBACK_ROUTINE = fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const OFFER_PRIORITY = enum(i32) {
+    VeryLow = 1,
+    Low = 2,
+    BelowNormal = 3,
+    Normal = 4,
+};
+pub const VmOfferPriorityVeryLow = OFFER_PRIORITY.VeryLow;
+pub const VmOfferPriorityLow = OFFER_PRIORITY.Low;
+pub const VmOfferPriorityBelowNormal = OFFER_PRIORITY.BelowNormal;
+pub const VmOfferPriorityNormal = OFFER_PRIORITY.Normal;
+
+pub const WIN32_MEMORY_INFORMATION_CLASS = enum(i32) {
+    o = 0,
+};
+pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
+
+pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
+    AllocationBase: ?*c_void,
+    AllocationProtect: u32,
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
+    RegionSize: usize,
+    CommitSize: usize,
+};
 
 
 pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {

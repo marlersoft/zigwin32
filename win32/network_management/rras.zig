@@ -375,23 +375,6 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 // Section: Types (239)
 //--------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pub const HRASCONN = *opaque{};
-
 pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
     First = 0,
     All = 1,
@@ -516,6 +499,23 @@ pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
 pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
 pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
 pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const HRASCONN = *opaque{};
 
 pub const RASAPIVERSION = enum(i32) {
     @"500" = 1,

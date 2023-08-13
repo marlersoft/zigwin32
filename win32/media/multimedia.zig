@@ -3425,57 +3425,6 @@ pub const TIMERR_STRUCT = @as(u32, 129);
 //--------------------------------------------------------------------------------
 // Section: Types (251)
 //--------------------------------------------------------------------------------
-pub const LPWAVECALLBACK = fn(
-    hdrvr: ?HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const LPMIDICALLBACK = fn(
-    hdrvr: ?HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-
-pub const HMIDI = *opaque{};
-
-pub const HMIDIIN = *opaque{};
-
-pub const HMIDIOUT = *opaque{};
-
-pub const HMIDISTRM = *opaque{};
-
-pub const HMIXER = *opaque{};
-
-pub const HMIXEROBJ = *opaque{};
-
-pub const HWAVE = *opaque{};
-
-pub const HWAVEOUT = *opaque{};
-
-pub const HWAVEIN = *opaque{};
-
-pub const HMMIO = *opaque{};
-
-pub const HDRVR = *opaque{};
-
-pub const HACMDRIVERID = *opaque{};
-
-pub const HACMDRIVER = *opaque{};
-
-pub const HACMSTREAM = *opaque{};
-
-pub const HACMOBJ = *opaque{};
-
-pub const HIC = *opaque{};
-
-pub const HVIDEO = *opaque{};
-
 pub const MIDI_WAVE_OPEN_TYPE = enum(u32) {
     CALLBACK_TYPEMASK = 458752,
     CALLBACK_NULL = 0,
@@ -3581,6 +3530,57 @@ pub const MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = MIXERLINE_COMPONENTTYPE.SRC_
 pub const MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = MIXERLINE_COMPONENTTYPE.SRC_TELEPHONE;
 pub const MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = MIXERLINE_COMPONENTTYPE.SRC_UNDEFINED;
 pub const MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT;
+
+pub const LPWAVECALLBACK = fn(
+    hdrvr: ?HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const LPMIDICALLBACK = fn(
+    hdrvr: ?HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+
+pub const HMIDI = *opaque{};
+
+pub const HMIDIIN = *opaque{};
+
+pub const HMIDIOUT = *opaque{};
+
+pub const HMIDISTRM = *opaque{};
+
+pub const HMIXER = *opaque{};
+
+pub const HMIXEROBJ = *opaque{};
+
+pub const HWAVE = *opaque{};
+
+pub const HWAVEOUT = *opaque{};
+
+pub const HWAVEIN = *opaque{};
+
+pub const HMMIO = *opaque{};
+
+pub const HDRVR = *opaque{};
+
+pub const HACMDRIVERID = *opaque{};
+
+pub const HACMDRIVER = *opaque{};
+
+pub const HACMSTREAM = *opaque{};
+
+pub const HACMOBJ = *opaque{};
+
+pub const HIC = *opaque{};
+
+pub const HVIDEO = *opaque{};
 
 pub const WAVEFORMAT = packed struct {
     wFormatTag: u16,

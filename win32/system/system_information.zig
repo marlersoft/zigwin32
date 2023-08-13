@@ -5,103 +5,8 @@
 pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (19)
+// Section: Types (21)
 //--------------------------------------------------------------------------------
-pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
-    _bitfield: u32,
-};
-
-pub const FIRMWARE_TYPE = enum(i32) {
-    Unknown = 0,
-    Bios = 1,
-    Uefi = 2,
-    Max = 3,
-};
-pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
-pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
-pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
-pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
-
-pub const LOGICAL_PROCESSOR_RELATIONSHIP = enum(i32) {
-    ProcessorCore = 0,
-    NumaNode = 1,
-    Cache = 2,
-    ProcessorPackage = 3,
-    Group = 4,
-    All = 65535,
-};
-pub const RelationProcessorCore = LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorCore;
-pub const RelationNumaNode = LOGICAL_PROCESSOR_RELATIONSHIP.NumaNode;
-pub const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP.Cache;
-pub const RelationProcessorPackage = LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorPackage;
-pub const RelationGroup = LOGICAL_PROCESSOR_RELATIONSHIP.Group;
-pub const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP.All;
-
-pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION = extern struct {
-    ProcessorMask: usize,
-    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
-    Anonymous: extern union {
-        ProcessorCore: extern struct {
-            Flags: u8,
-        },
-        NumaNode: extern struct {
-            NodeNumber: u32,
-        },
-        Cache: CACHE_DESCRIPTOR,
-        Reserved: [2]u64,
-    },
-};
-
-pub const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = extern struct {
-    CycleTime: u64,
-};
-
-pub const OSVERSIONINFOA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-};
-
-pub const OSVERSIONINFOW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-};
-
-pub const OSVERSIONINFOEXA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const OSVERSIONINFOEXW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
 pub const VER_FLAGS = enum(u32) {
     MINORVERSION = 1,
     MAJORVERSION = 2,
@@ -142,6 +47,15 @@ pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
 pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
 pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
 pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
+
+pub const FIRMWARE_TABLE_PROVIDER = enum(u32) {
+    ACPI = 1094930505,
+    FIRM = 1179210317,
+    RSMB = 1381190978,
+};
+pub const ACPI = FIRMWARE_TABLE_PROVIDER.ACPI;
+pub const FIRM = FIRMWARE_TABLE_PROVIDER.FIRM;
+pub const RSMB = FIRMWARE_TABLE_PROVIDER.RSMB;
 
 pub const USER_CET_ENVIRONMENT = enum(u32) {
     WIN32_PROCESS = 0,
@@ -346,6 +260,103 @@ pub const PRODUCT_ULTIMATE_N = OS_PRODUCT_TYPE.ULTIMATE_N;
 pub const PRODUCT_UNDEFINED = OS_PRODUCT_TYPE.UNDEFINED;
 pub const PRODUCT_WEB_SERVER = OS_PRODUCT_TYPE.WEB_SERVER;
 pub const PRODUCT_WEB_SERVER_CORE = OS_PRODUCT_TYPE.WEB_SERVER_CORE;
+
+pub const FIRMWARE_TABLE_ID = u32;
+
+pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
+    _bitfield: u32,
+};
+
+pub const FIRMWARE_TYPE = enum(i32) {
+    Unknown = 0,
+    Bios = 1,
+    Uefi = 2,
+    Max = 3,
+};
+pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
+pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
+pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
+pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
+
+pub const LOGICAL_PROCESSOR_RELATIONSHIP = enum(i32) {
+    ProcessorCore = 0,
+    NumaNode = 1,
+    Cache = 2,
+    ProcessorPackage = 3,
+    Group = 4,
+    All = 65535,
+};
+pub const RelationProcessorCore = LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorCore;
+pub const RelationNumaNode = LOGICAL_PROCESSOR_RELATIONSHIP.NumaNode;
+pub const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP.Cache;
+pub const RelationProcessorPackage = LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorPackage;
+pub const RelationGroup = LOGICAL_PROCESSOR_RELATIONSHIP.Group;
+pub const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP.All;
+
+pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION = extern struct {
+    ProcessorMask: usize,
+    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
+    Anonymous: extern union {
+        ProcessorCore: extern struct {
+            Flags: u8,
+        },
+        NumaNode: extern struct {
+            NodeNumber: u32,
+        },
+        Cache: CACHE_DESCRIPTOR,
+        Reserved: [2]u64,
+    },
+};
+
+pub const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = extern struct {
+    CycleTime: u64,
+};
+
+pub const OSVERSIONINFOA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+};
+
+pub const OSVERSIONINFOW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+};
+
+pub const OSVERSIONINFOEXA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const OSVERSIONINFOEXW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
 
 pub const SYSTEM_INFO = extern struct {
     Anonymous: extern union {
@@ -620,16 +631,16 @@ pub extern "api-ms-win-core-sysinfo-l1-2-0" fn GetOsSafeBootMode(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumSystemFirmwareTables(
-    FirmwareTableProviderSignature: u32,
+    FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
     // TODO: what to do with BytesParamIndex 2?
-    pFirmwareTableEnumBuffer: ?*c_void,
+    pFirmwareTableEnumBuffer: ?*FIRMWARE_TABLE_ID,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetSystemFirmwareTable(
-    FirmwareTableProviderSignature: u32,
-    FirmwareTableID: u32,
+    FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
+    FirmwareTableID: FIRMWARE_TABLE_ID,
     // TODO: what to do with BytesParamIndex 3?
     pFirmwareTableBuffer: ?*c_void,
     BufferSize: u32,

@@ -6,6 +6,91 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const POINTER_FLAGS = enum(u32) {
+    NONE = 0,
+    NEW = 1,
+    INRANGE = 2,
+    INCONTACT = 4,
+    FIRSTBUTTON = 16,
+    SECONDBUTTON = 32,
+    THIRDBUTTON = 64,
+    FOURTHBUTTON = 128,
+    FIFTHBUTTON = 256,
+    PRIMARY = 8192,
+    CONFIDENCE = 16384,
+    CANCELED = 32768,
+    DOWN = 65536,
+    UPDATE = 131072,
+    UP = 262144,
+    WHEEL = 524288,
+    HWHEEL = 1048576,
+    CAPTURECHANGED = 2097152,
+    HASTRANSFORM = 4194304,
+    _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        NEW: u1 = 0,
+        INRANGE: u1 = 0,
+        INCONTACT: u1 = 0,
+        FIRSTBUTTON: u1 = 0,
+        SECONDBUTTON: u1 = 0,
+        THIRDBUTTON: u1 = 0,
+        FOURTHBUTTON: u1 = 0,
+        FIFTHBUTTON: u1 = 0,
+        PRIMARY: u1 = 0,
+        CONFIDENCE: u1 = 0,
+        CANCELED: u1 = 0,
+        DOWN: u1 = 0,
+        UPDATE: u1 = 0,
+        UP: u1 = 0,
+        WHEEL: u1 = 0,
+        HWHEEL: u1 = 0,
+        CAPTURECHANGED: u1 = 0,
+        HASTRANSFORM: u1 = 0,
+    }) POINTER_FLAGS {
+        return @intToEnum(POINTER_FLAGS,
+              (if (o.NONE == 1) @enumToInt(POINTER_FLAGS.NONE) else 0)
+            | (if (o.NEW == 1) @enumToInt(POINTER_FLAGS.NEW) else 0)
+            | (if (o.INRANGE == 1) @enumToInt(POINTER_FLAGS.INRANGE) else 0)
+            | (if (o.INCONTACT == 1) @enumToInt(POINTER_FLAGS.INCONTACT) else 0)
+            | (if (o.FIRSTBUTTON == 1) @enumToInt(POINTER_FLAGS.FIRSTBUTTON) else 0)
+            | (if (o.SECONDBUTTON == 1) @enumToInt(POINTER_FLAGS.SECONDBUTTON) else 0)
+            | (if (o.THIRDBUTTON == 1) @enumToInt(POINTER_FLAGS.THIRDBUTTON) else 0)
+            | (if (o.FOURTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FOURTHBUTTON) else 0)
+            | (if (o.FIFTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FIFTHBUTTON) else 0)
+            | (if (o.PRIMARY == 1) @enumToInt(POINTER_FLAGS.PRIMARY) else 0)
+            | (if (o.CONFIDENCE == 1) @enumToInt(POINTER_FLAGS.CONFIDENCE) else 0)
+            | (if (o.CANCELED == 1) @enumToInt(POINTER_FLAGS.CANCELED) else 0)
+            | (if (o.DOWN == 1) @enumToInt(POINTER_FLAGS.DOWN) else 0)
+            | (if (o.UPDATE == 1) @enumToInt(POINTER_FLAGS.UPDATE) else 0)
+            | (if (o.UP == 1) @enumToInt(POINTER_FLAGS.UP) else 0)
+            | (if (o.WHEEL == 1) @enumToInt(POINTER_FLAGS.WHEEL) else 0)
+            | (if (o.HWHEEL == 1) @enumToInt(POINTER_FLAGS.HWHEEL) else 0)
+            | (if (o.CAPTURECHANGED == 1) @enumToInt(POINTER_FLAGS.CAPTURECHANGED) else 0)
+            | (if (o.HASTRANSFORM == 1) @enumToInt(POINTER_FLAGS.HASTRANSFORM) else 0)
+        );
+    }
+};
+pub const POINTER_FLAG_NONE = POINTER_FLAGS.NONE;
+pub const POINTER_FLAG_NEW = POINTER_FLAGS.NEW;
+pub const POINTER_FLAG_INRANGE = POINTER_FLAGS.INRANGE;
+pub const POINTER_FLAG_INCONTACT = POINTER_FLAGS.INCONTACT;
+pub const POINTER_FLAG_FIRSTBUTTON = POINTER_FLAGS.FIRSTBUTTON;
+pub const POINTER_FLAG_SECONDBUTTON = POINTER_FLAGS.SECONDBUTTON;
+pub const POINTER_FLAG_THIRDBUTTON = POINTER_FLAGS.THIRDBUTTON;
+pub const POINTER_FLAG_FOURTHBUTTON = POINTER_FLAGS.FOURTHBUTTON;
+pub const POINTER_FLAG_FIFTHBUTTON = POINTER_FLAGS.FIFTHBUTTON;
+pub const POINTER_FLAG_PRIMARY = POINTER_FLAGS.PRIMARY;
+pub const POINTER_FLAG_CONFIDENCE = POINTER_FLAGS.CONFIDENCE;
+pub const POINTER_FLAG_CANCELED = POINTER_FLAGS.CANCELED;
+pub const POINTER_FLAG_DOWN = POINTER_FLAGS.DOWN;
+pub const POINTER_FLAG_UPDATE = POINTER_FLAGS.UPDATE;
+pub const POINTER_FLAG_UP = POINTER_FLAGS.UP;
+pub const POINTER_FLAG_WHEEL = POINTER_FLAGS.WHEEL;
+pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS.HWHEEL;
+pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS.CAPTURECHANGED;
+pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS.HASTRANSFORM;
+
 pub const POINTER_BUTTON_CHANGE_TYPE = enum(i32) {
     NONE = 0,
     FIRSTBUTTON_DOWN = 1,
@@ -93,91 +178,6 @@ pub const INPUT_TRANSFORM = extern struct {
         m: [16]f32,
     },
 };
-
-pub const POINTER_FLAGS = enum(u32) {
-    NONE = 0,
-    NEW = 1,
-    INRANGE = 2,
-    INCONTACT = 4,
-    FIRSTBUTTON = 16,
-    SECONDBUTTON = 32,
-    THIRDBUTTON = 64,
-    FOURTHBUTTON = 128,
-    FIFTHBUTTON = 256,
-    PRIMARY = 8192,
-    CONFIDENCE = 16384,
-    CANCELED = 32768,
-    DOWN = 65536,
-    UPDATE = 131072,
-    UP = 262144,
-    WHEEL = 524288,
-    HWHEEL = 1048576,
-    CAPTURECHANGED = 2097152,
-    HASTRANSFORM = 4194304,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        NEW: u1 = 0,
-        INRANGE: u1 = 0,
-        INCONTACT: u1 = 0,
-        FIRSTBUTTON: u1 = 0,
-        SECONDBUTTON: u1 = 0,
-        THIRDBUTTON: u1 = 0,
-        FOURTHBUTTON: u1 = 0,
-        FIFTHBUTTON: u1 = 0,
-        PRIMARY: u1 = 0,
-        CONFIDENCE: u1 = 0,
-        CANCELED: u1 = 0,
-        DOWN: u1 = 0,
-        UPDATE: u1 = 0,
-        UP: u1 = 0,
-        WHEEL: u1 = 0,
-        HWHEEL: u1 = 0,
-        CAPTURECHANGED: u1 = 0,
-        HASTRANSFORM: u1 = 0,
-    }) POINTER_FLAGS {
-        return @intToEnum(POINTER_FLAGS,
-              (if (o.NONE == 1) @enumToInt(POINTER_FLAGS.NONE) else 0)
-            | (if (o.NEW == 1) @enumToInt(POINTER_FLAGS.NEW) else 0)
-            | (if (o.INRANGE == 1) @enumToInt(POINTER_FLAGS.INRANGE) else 0)
-            | (if (o.INCONTACT == 1) @enumToInt(POINTER_FLAGS.INCONTACT) else 0)
-            | (if (o.FIRSTBUTTON == 1) @enumToInt(POINTER_FLAGS.FIRSTBUTTON) else 0)
-            | (if (o.SECONDBUTTON == 1) @enumToInt(POINTER_FLAGS.SECONDBUTTON) else 0)
-            | (if (o.THIRDBUTTON == 1) @enumToInt(POINTER_FLAGS.THIRDBUTTON) else 0)
-            | (if (o.FOURTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FOURTHBUTTON) else 0)
-            | (if (o.FIFTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FIFTHBUTTON) else 0)
-            | (if (o.PRIMARY == 1) @enumToInt(POINTER_FLAGS.PRIMARY) else 0)
-            | (if (o.CONFIDENCE == 1) @enumToInt(POINTER_FLAGS.CONFIDENCE) else 0)
-            | (if (o.CANCELED == 1) @enumToInt(POINTER_FLAGS.CANCELED) else 0)
-            | (if (o.DOWN == 1) @enumToInt(POINTER_FLAGS.DOWN) else 0)
-            | (if (o.UPDATE == 1) @enumToInt(POINTER_FLAGS.UPDATE) else 0)
-            | (if (o.UP == 1) @enumToInt(POINTER_FLAGS.UP) else 0)
-            | (if (o.WHEEL == 1) @enumToInt(POINTER_FLAGS.WHEEL) else 0)
-            | (if (o.HWHEEL == 1) @enumToInt(POINTER_FLAGS.HWHEEL) else 0)
-            | (if (o.CAPTURECHANGED == 1) @enumToInt(POINTER_FLAGS.CAPTURECHANGED) else 0)
-            | (if (o.HASTRANSFORM == 1) @enumToInt(POINTER_FLAGS.HASTRANSFORM) else 0)
-        );
-    }
-};
-pub const POINTER_FLAG_NONE = POINTER_FLAGS.NONE;
-pub const POINTER_FLAG_NEW = POINTER_FLAGS.NEW;
-pub const POINTER_FLAG_INRANGE = POINTER_FLAGS.INRANGE;
-pub const POINTER_FLAG_INCONTACT = POINTER_FLAGS.INCONTACT;
-pub const POINTER_FLAG_FIRSTBUTTON = POINTER_FLAGS.FIRSTBUTTON;
-pub const POINTER_FLAG_SECONDBUTTON = POINTER_FLAGS.SECONDBUTTON;
-pub const POINTER_FLAG_THIRDBUTTON = POINTER_FLAGS.THIRDBUTTON;
-pub const POINTER_FLAG_FOURTHBUTTON = POINTER_FLAGS.FOURTHBUTTON;
-pub const POINTER_FLAG_FIFTHBUTTON = POINTER_FLAGS.FIFTHBUTTON;
-pub const POINTER_FLAG_PRIMARY = POINTER_FLAGS.PRIMARY;
-pub const POINTER_FLAG_CONFIDENCE = POINTER_FLAGS.CONFIDENCE;
-pub const POINTER_FLAG_CANCELED = POINTER_FLAGS.CANCELED;
-pub const POINTER_FLAG_DOWN = POINTER_FLAGS.DOWN;
-pub const POINTER_FLAG_UPDATE = POINTER_FLAGS.UPDATE;
-pub const POINTER_FLAG_UP = POINTER_FLAGS.UP;
-pub const POINTER_FLAG_WHEEL = POINTER_FLAGS.WHEEL;
-pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS.HWHEEL;
-pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS.CAPTURECHANGED;
-pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS.HASTRANSFORM;
 
 
 //--------------------------------------------------------------------------------

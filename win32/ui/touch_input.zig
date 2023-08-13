@@ -6,49 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const HGESTUREINFO = *opaque{};
-
-pub const HTOUCHINPUT = *opaque{};
-
-pub const TOUCHINPUT = extern struct {
-    x: i32,
-    y: i32,
-    hSource: ?HANDLE,
-    dwID: u32,
-    dwFlags: TOUCHEVENTF_FLAGS,
-    dwMask: TOUCHINPUTMASKF_MASK,
-    dwTime: u32,
-    dwExtraInfo: usize,
-    cxContact: u32,
-    cyContact: u32,
-};
-
-pub const GESTUREINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwID: u32,
-    hwndTarget: ?HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-    dwSequenceID: u32,
-    ullArguments: u64,
-    cbExtraArgs: u32,
-};
-
-pub const GESTURENOTIFYSTRUCT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    hwndTarget: ?HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-};
-
-pub const GESTURECONFIG = extern struct {
-    dwID: GESTURECONFIG_ID,
-    dwWant: u32,
-    dwBlock: u32,
-};
-
 pub const GESTURECONFIG_ID = enum(u32) {
     BEGIN = 1,
     END = 2,
@@ -156,6 +113,49 @@ pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
 };
 pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
 pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
+
+pub const HGESTUREINFO = *opaque{};
+
+pub const HTOUCHINPUT = *opaque{};
+
+pub const TOUCHINPUT = extern struct {
+    x: i32,
+    y: i32,
+    hSource: ?HANDLE,
+    dwID: u32,
+    dwFlags: TOUCHEVENTF_FLAGS,
+    dwMask: TOUCHINPUTMASKF_MASK,
+    dwTime: u32,
+    dwExtraInfo: usize,
+    cxContact: u32,
+    cyContact: u32,
+};
+
+pub const GESTUREINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwID: u32,
+    hwndTarget: ?HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+    dwSequenceID: u32,
+    ullArguments: u64,
+    cbExtraArgs: u32,
+};
+
+pub const GESTURENOTIFYSTRUCT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    hwndTarget: ?HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+};
+
+pub const GESTURECONFIG = extern struct {
+    dwID: GESTURECONFIG_ID,
+    dwWant: u32,
+    dwBlock: u32,
+};
 
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;

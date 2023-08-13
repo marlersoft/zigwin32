@@ -10,6 +10,13 @@ pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
+pub const SENS_CONNECTION_TYPE = enum(u32) {
+    LAN = 0,
+    WAN = 1,
+};
+pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
+pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
+
 pub const QOCINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -255,13 +262,6 @@ pub const ISensLogon2 = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const SENS_CONNECTION_TYPE = enum(u32) {
-    LAN = 0,
-    WAN = 1,
-};
-pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
-pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
 
 
 //--------------------------------------------------------------------------------

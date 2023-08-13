@@ -7,6 +7,17 @@ pub const PSAPI_VERSION = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
+pub const ENUM_PROCESS_MODULES_EX_FLAGS = enum(u32) {
+    ALL = 3,
+    DEFAULT = 0,
+    @"32BIT" = 1,
+    @"64BIT" = 2,
+};
+pub const LIST_MODULES_ALL = ENUM_PROCESS_MODULES_EX_FLAGS.ALL;
+pub const LIST_MODULES_DEFAULT = ENUM_PROCESS_MODULES_EX_FLAGS.DEFAULT;
+pub const LIST_MODULES_32BIT = ENUM_PROCESS_MODULES_EX_FLAGS.@"32BIT";
+pub const LIST_MODULES_64BIT = ENUM_PROCESS_MODULES_EX_FLAGS.@"64BIT";
+
 pub const MODULEINFO = extern struct {
     lpBaseOfDll: ?*c_void,
     SizeOfImage: u32,
@@ -116,17 +127,6 @@ pub const PENUM_PAGE_FILE_CALLBACKA = fn(
     pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
     lpFilename: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const ENUM_PROCESS_MODULES_EX_FLAGS = enum(u32) {
-    ALL = 3,
-    DEFAULT = 0,
-    @"32BIT" = 1,
-    @"64BIT" = 2,
-};
-pub const LIST_MODULES_ALL = ENUM_PROCESS_MODULES_EX_FLAGS.ALL;
-pub const LIST_MODULES_DEFAULT = ENUM_PROCESS_MODULES_EX_FLAGS.DEFAULT;
-pub const LIST_MODULES_32BIT = ENUM_PROCESS_MODULES_EX_FLAGS.@"32BIT";
-pub const LIST_MODULES_64BIT = ENUM_PROCESS_MODULES_EX_FLAGS.@"64BIT";
 
 
 //--------------------------------------------------------------------------------

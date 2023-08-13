@@ -2,36 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (104)
 //--------------------------------------------------------------------------------
-pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
-pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
-pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED = @as(i32, 6);
-pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
-pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
-pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED_2 = @as(i32, 16);
-pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR_2 = @as(i32, 17);
-pub const WDS_LOG_TYPE_CLIENT_DRIVER_PACKAGE_NOT_ACCESSIBLE = @as(i32, 18);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED2 = @as(i32, 22);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED3 = @as(i32, 23);
-pub const WDS_LOG_TYPE_CLIENT_MAX_CODE = @as(i32, 24);
-pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
-pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
-pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
-pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
 pub const WDS_CLI_TRANSFER_ASYNCHRONOUS = @as(u32, 1);
 pub const WDS_CLI_NO_SPARSE_FILE = @as(u32, 2);
 pub const PXE_DHCP_SERVER_PORT = @as(u32, 67);
@@ -106,6 +76,36 @@ pub const WDSBP_OPTVAL_PXE_PROMPT_NOPROMPT = @as(u32, 2);
 pub const WDSBP_OPTVAL_PXE_PROMPT_OPTOUT = @as(u32, 3);
 pub const WDSBP_OPTVAL_NBP_VER_7 = @as(u32, 1792);
 pub const WDSBP_OPTVAL_NBP_VER_8 = @as(u32, 2048);
+pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
+pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
+pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
+pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
+pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED = @as(i32, 6);
+pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
+pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
+pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED_2 = @as(i32, 16);
+pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR_2 = @as(i32, 17);
+pub const WDS_LOG_TYPE_CLIENT_DRIVER_PACKAGE_NOT_ACCESSIBLE = @as(i32, 18);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED2 = @as(i32, 22);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED3 = @as(i32, 23);
+pub const WDS_LOG_TYPE_CLIENT_MAX_CODE = @as(i32, 24);
+pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
+pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
+pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
+pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
 
 //--------------------------------------------------------------------------------
 // Section: Types (89)

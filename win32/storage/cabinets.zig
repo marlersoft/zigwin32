@@ -16,6 +16,13 @@ pub const INCLUDED_FDI = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
+pub const FDICREATE_CPU_TYPE = enum(u32) {
+    @"286" = 0,
+    @"386" = 1,
+};
+pub const cpu80286 = FDICREATE_CPU_TYPE.@"286";
+pub const cpu80386 = FDICREATE_CPU_TYPE.@"386";
+
 
 pub const ERF = extern struct {
     erfOper: i32,
@@ -302,13 +309,6 @@ pub const PFNFDINOTIFY = fn(
     fdint: FDINOTIFICATIONTYPE,
     pfdin: ?*FDINOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) isize;
-
-pub const FDICREATE_CPU_TYPE = enum(u32) {
-    @"286" = 0,
-    @"386" = 1,
-};
-pub const cpu80286 = FDICREATE_CPU_TYPE.@"286";
-pub const cpu80386 = FDICREATE_CPU_TYPE.@"386";
 
 
 pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {

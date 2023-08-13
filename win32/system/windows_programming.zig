@@ -579,21 +579,6 @@ pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
 //--------------------------------------------------------------------------------
 // Section: Types (148)
 //--------------------------------------------------------------------------------
-pub const _D3DHAL_CALLBACKS = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-
-pub const HWINWATCH = *opaque{};
-
-pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
-
-pub const FH_SERVICE_PIPE_HANDLE = isize;
-
 pub const NT_CREATE_FILE_DISPOSITION = enum(u32) {
     SUPERSEDE = 0,
     CREATE = 2,
@@ -627,6 +612,21 @@ pub const CL_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_TL_ENTITY;
 pub const CO_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_TL_ENTITY;
 pub const ER_ENTITY = TDIENTITY_ENTITY_TYPE.ER_ENTITY;
 pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
+
+pub const _D3DHAL_CALLBACKS = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+
+pub const HWINWATCH = *opaque{};
+
+pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
+
+pub const FH_SERVICE_PIPE_HANDLE = isize;
 
 pub const LPFIBER_START_ROUTINE = fn(
     lpFiberParameter: ?*c_void,

@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (811)
 //--------------------------------------------------------------------------------
-pub const INVALID_SOCKET = @import("../zig.zig").typedConst(SOCKET, @as(u32, 4294967295));
 pub const SOCKET_DEFAULT2_QM_POLICY = Guid.initString("aec2ef9c-3a4d-4d3e-8842-239942e39a47");
 pub const REAL_TIME_NOTIFICATION_CAPABILITY = Guid.initString("6b59819a-5cae-492d-a901-2a3c2c50164f");
 pub const REAL_TIME_NOTIFICATION_CAPABILITY_EX = Guid.initString("6843da03-154a-4616-a508-44371295f96b");
@@ -803,6 +802,7 @@ pub const SENDER_DEFAULT_LATE_JOINER_PERCENTAGE = @as(u32, 0);
 pub const SENDER_MAX_LATE_JOINER_PERCENTAGE = @as(u32, 75);
 pub const BITS_PER_BYTE = @as(u32, 8);
 pub const LOG2_BITS_PER_BYTE = @as(u32, 3);
+pub const INVALID_SOCKET = @import("../zig.zig").typedConst(SOCKET, @as(u32, 4294967295));
 pub const LM_HB_Extension = @as(i32, 128);
 pub const LM_HB1_PnP = @as(i32, 1);
 pub const LM_HB1_PDA_Palmtop = @as(i32, 2);
@@ -817,27 +817,6 @@ pub const LM_HB2_FileServer = @as(i32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (326)
 //--------------------------------------------------------------------------------
-
-
-pub const RIO_BUFFERID_t = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const RIO_CQ_t = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const RIO_RQ_t = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-
-// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
-pub const HWSAEVENT = *opaque{};
-
-// TODO: this type has a FreeFunc 'closesocket', what can Zig do with this information?
-pub const SOCKET = @import("std").os.windows.ws2_32.SOCKET;
-
 pub const WSA_ERROR = enum(i32) {
     _IO_PENDING = 997,
     _IO_INCOMPLETE = 996,
@@ -1074,6 +1053,27 @@ pub const RESOURCEDISPLAYTYPE_GROUP = RESOURCE_DISPLAY_TYPE.GROUP;
 pub const RESOURCEDISPLAYTYPE_SERVER = RESOURCE_DISPLAY_TYPE.SERVER;
 pub const RESOURCEDISPLAYTYPE_SHARE = RESOURCE_DISPLAY_TYPE.SHARE;
 pub const RESOURCEDISPLAYTYPE_TREE = RESOURCE_DISPLAY_TYPE.TREE;
+
+
+
+pub const RIO_BUFFERID_t = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const RIO_CQ_t = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const RIO_RQ_t = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+
+// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
+pub const HWSAEVENT = *opaque{};
+
+// TODO: this type has a FreeFunc 'closesocket', what can Zig do with this information?
+pub const SOCKET = @import("std").os.windows.ws2_32.SOCKET;
 
 pub const IN_ADDR = extern struct {
     S_un: extern union {

@@ -412,9 +412,6 @@ pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 //--------------------------------------------------------------------------------
 // Section: Types (36)
 //--------------------------------------------------------------------------------
-
-
-
 pub const INTERNET_PORT = enum(u32) {
     HTTP_PORT = 80,
     HTTPS_PORT = 443,
@@ -498,6 +495,9 @@ pub const WINHTTP_INTERNET_SCHEME_HTTP = WINHTTP_INTERNET_SCHEME.HTTP;
 pub const WINHTTP_INTERNET_SCHEME_HTTPS = WINHTTP_INTERNET_SCHEME.HTTPS;
 pub const WINHTTP_INTERNET_SCHEME_FTP = WINHTTP_INTERNET_SCHEME.FTP;
 pub const WINHTTP_INTERNET_SCHEME_SOCKS = WINHTTP_INTERNET_SCHEME.SOCKS;
+
+
+
 
 pub const WINHTTP_ASYNC_RESULT = extern struct {
     dwResult: usize,

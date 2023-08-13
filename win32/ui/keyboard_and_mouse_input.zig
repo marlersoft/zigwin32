@@ -6,151 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (31)
 //--------------------------------------------------------------------------------
-pub const HRAWINPUT = *opaque{};
-
-pub const MOUSEMOVEPOINT = extern struct {
-    x: i32,
-    y: i32,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const TRACKMOUSEEVENT = extern struct {
-    cbSize: u32,
-    dwFlags: TRACKMOUSEEVENT_FLAGS,
-    hwndTrack: ?HWND,
-    dwHoverTime: u32,
-};
-
-pub const MOUSEINPUT = extern struct {
-    dx: i32,
-    dy: i32,
-    mouseData: u32,
-    dwFlags: MOUSE_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const KEYBDINPUT = extern struct {
-    wVk: VIRTUAL_KEY,
-    wScan: u16,
-    dwFlags: KEYBD_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const HARDWAREINPUT = extern struct {
-    uMsg: u32,
-    wParamL: u16,
-    wParamH: u16,
-};
-
-pub const INPUT = extern struct {
-    type: INPUT_TYPE,
-    Anonymous: extern union {
-        mi: MOUSEINPUT,
-        ki: KEYBDINPUT,
-        hi: HARDWAREINPUT,
-    },
-};
-
-pub const LASTINPUTINFO = extern struct {
-    cbSize: u32,
-    dwTime: u32,
-};
-
-pub const RAWINPUTHEADER = extern struct {
-    dwType: u32,
-    dwSize: u32,
-    hDevice: ?HANDLE,
-    wParam: WPARAM,
-};
-
-pub const RAWMOUSE = extern struct {
-    usFlags: u16,
-    Anonymous: extern union {
-        ulButtons: u32,
-        Anonymous: extern struct {
-            usButtonFlags: u16,
-            usButtonData: u16,
-        },
-    },
-    ulRawButtons: u32,
-    lLastX: i32,
-    lLastY: i32,
-    ulExtraInformation: u32,
-};
-
-pub const RAWKEYBOARD = extern struct {
-    MakeCode: u16,
-    Flags: u16,
-    Reserved: u16,
-    VKey: u16,
-    Message: u32,
-    ExtraInformation: u32,
-};
-
-pub const RAWHID = extern struct {
-    dwSizeHid: u32,
-    dwCount: u32,
-    bRawData: [1]u8,
-};
-
-pub const RAWINPUT = extern struct {
-    header: RAWINPUTHEADER,
-    data: extern union {
-        mouse: RAWMOUSE,
-        keyboard: RAWKEYBOARD,
-        hid: RAWHID,
-    },
-};
-
-pub const RID_DEVICE_INFO_MOUSE = extern struct {
-    dwId: u32,
-    dwNumberOfButtons: u32,
-    dwSampleRate: u32,
-    fHasHorizontalWheel: BOOL,
-};
-
-pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
-    dwType: u32,
-    dwSubType: u32,
-    dwKeyboardMode: u32,
-    dwNumberOfFunctionKeys: u32,
-    dwNumberOfIndicators: u32,
-    dwNumberOfKeysTotal: u32,
-};
-
-pub const RID_DEVICE_INFO_HID = extern struct {
-    dwVendorId: u32,
-    dwProductId: u32,
-    dwVersionNumber: u32,
-    usUsagePage: u16,
-    usUsage: u16,
-};
-
-pub const RID_DEVICE_INFO = extern struct {
-    cbSize: u32,
-    dwType: RID_DEVICE_INFO_TYPE,
-    Anonymous: extern union {
-        mouse: RID_DEVICE_INFO_MOUSE,
-        keyboard: RID_DEVICE_INFO_KEYBOARD,
-        hid: RID_DEVICE_INFO_HID,
-    },
-};
-
-pub const RAWINPUTDEVICE = extern struct {
-    usUsagePage: u16,
-    usUsage: u16,
-    dwFlags: RAWINPUTDEVICE_FLAGS,
-    hwndTarget: ?HWND,
-};
-
-pub const RAWINPUTDEVICELIST = extern struct {
-    hDevice: ?HANDLE,
-    dwType: RID_DEVICE_INFO_TYPE,
-};
-
 pub const RAW_INPUT_DATA_COMMAND_FLAGS = enum(u32) {
     HEADER = 268435461,
     INPUT = 268435459,
@@ -840,6 +695,151 @@ pub const VK_ZOOM = VIRTUAL_KEY.ZOOM;
 pub const VK_NONAME = VIRTUAL_KEY.NONAME;
 pub const VK_PA1 = VIRTUAL_KEY.PA1;
 pub const VK_OEM_CLEAR = VIRTUAL_KEY.OEM_CLEAR;
+
+pub const HRAWINPUT = *opaque{};
+
+pub const MOUSEMOVEPOINT = extern struct {
+    x: i32,
+    y: i32,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const TRACKMOUSEEVENT = extern struct {
+    cbSize: u32,
+    dwFlags: TRACKMOUSEEVENT_FLAGS,
+    hwndTrack: ?HWND,
+    dwHoverTime: u32,
+};
+
+pub const MOUSEINPUT = extern struct {
+    dx: i32,
+    dy: i32,
+    mouseData: u32,
+    dwFlags: MOUSE_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const KEYBDINPUT = extern struct {
+    wVk: VIRTUAL_KEY,
+    wScan: u16,
+    dwFlags: KEYBD_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const HARDWAREINPUT = extern struct {
+    uMsg: u32,
+    wParamL: u16,
+    wParamH: u16,
+};
+
+pub const INPUT = extern struct {
+    type: INPUT_TYPE,
+    Anonymous: extern union {
+        mi: MOUSEINPUT,
+        ki: KEYBDINPUT,
+        hi: HARDWAREINPUT,
+    },
+};
+
+pub const LASTINPUTINFO = extern struct {
+    cbSize: u32,
+    dwTime: u32,
+};
+
+pub const RAWINPUTHEADER = extern struct {
+    dwType: u32,
+    dwSize: u32,
+    hDevice: ?HANDLE,
+    wParam: WPARAM,
+};
+
+pub const RAWMOUSE = extern struct {
+    usFlags: u16,
+    Anonymous: extern union {
+        ulButtons: u32,
+        Anonymous: extern struct {
+            usButtonFlags: u16,
+            usButtonData: u16,
+        },
+    },
+    ulRawButtons: u32,
+    lLastX: i32,
+    lLastY: i32,
+    ulExtraInformation: u32,
+};
+
+pub const RAWKEYBOARD = extern struct {
+    MakeCode: u16,
+    Flags: u16,
+    Reserved: u16,
+    VKey: u16,
+    Message: u32,
+    ExtraInformation: u32,
+};
+
+pub const RAWHID = extern struct {
+    dwSizeHid: u32,
+    dwCount: u32,
+    bRawData: [1]u8,
+};
+
+pub const RAWINPUT = extern struct {
+    header: RAWINPUTHEADER,
+    data: extern union {
+        mouse: RAWMOUSE,
+        keyboard: RAWKEYBOARD,
+        hid: RAWHID,
+    },
+};
+
+pub const RID_DEVICE_INFO_MOUSE = extern struct {
+    dwId: u32,
+    dwNumberOfButtons: u32,
+    dwSampleRate: u32,
+    fHasHorizontalWheel: BOOL,
+};
+
+pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
+    dwType: u32,
+    dwSubType: u32,
+    dwKeyboardMode: u32,
+    dwNumberOfFunctionKeys: u32,
+    dwNumberOfIndicators: u32,
+    dwNumberOfKeysTotal: u32,
+};
+
+pub const RID_DEVICE_INFO_HID = extern struct {
+    dwVendorId: u32,
+    dwProductId: u32,
+    dwVersionNumber: u32,
+    usUsagePage: u16,
+    usUsage: u16,
+};
+
+pub const RID_DEVICE_INFO = extern struct {
+    cbSize: u32,
+    dwType: RID_DEVICE_INFO_TYPE,
+    Anonymous: extern union {
+        mouse: RID_DEVICE_INFO_MOUSE,
+        keyboard: RID_DEVICE_INFO_KEYBOARD,
+        hid: RID_DEVICE_INFO_HID,
+    },
+};
+
+pub const RAWINPUTDEVICE = extern struct {
+    usUsagePage: u16,
+    usUsage: u16,
+    dwFlags: RAWINPUTDEVICE_FLAGS,
+    hwndTarget: ?HWND,
+};
+
+pub const RAWINPUTDEVICELIST = extern struct {
+    hDevice: ?HANDLE,
+    dwType: RID_DEVICE_INFO_TYPE,
+};
 
 
 //--------------------------------------------------------------------------------

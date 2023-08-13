@@ -2,19 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1405)
 //--------------------------------------------------------------------------------
-pub const HBMMENU_CALLBACK = @import("../zig.zig").typedConst(HBITMAP, @as(i32, -1));
-pub const HBMMENU_SYSTEM = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 1));
-pub const HBMMENU_MBAR_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 2));
-pub const HBMMENU_MBAR_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 3));
-pub const HBMMENU_MBAR_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 5));
-pub const HBMMENU_MBAR_CLOSE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 6));
-pub const HBMMENU_MBAR_MINIMIZE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 7));
-pub const HBMMENU_POPUP_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 8));
-pub const HBMMENU_POPUP_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 9));
-pub const HBMMENU_POPUP_MAXIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 10));
-pub const HBMMENU_POPUP_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 11));
-pub const CW_USEDEFAULT = @as(i32, -2147483648);
-pub const LBS_STANDARD = @as(i32, 10485763);
 pub const WM_DEVICECHANGE = @as(u32, 537);
 pub const BSM_VXDS = @as(u32, 1);
 pub const BSM_NETDRIVER = @as(u32, 2);
@@ -1407,1021 +1394,23 @@ pub const __WARNING_INVALID_PARAM_VALUE_3 = @as(u32, 28183);
 pub const __WARNING_RETURNING_BAD_RESULT = @as(u32, 28196);
 pub const __WARNING_BANNED_API_USAGE = @as(u32, 28719);
 pub const __WARNING_POST_EXPECTED = @as(u32, 28210);
+pub const HBMMENU_CALLBACK = @import("../zig.zig").typedConst(HBITMAP, @as(i32, -1));
+pub const HBMMENU_SYSTEM = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 1));
+pub const HBMMENU_MBAR_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 2));
+pub const HBMMENU_MBAR_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 3));
+pub const HBMMENU_MBAR_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 5));
+pub const HBMMENU_MBAR_CLOSE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 6));
+pub const HBMMENU_MBAR_MINIMIZE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 7));
+pub const HBMMENU_POPUP_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 8));
+pub const HBMMENU_POPUP_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 9));
+pub const HBMMENU_POPUP_MAXIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 10));
+pub const HBMMENU_POPUP_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 11));
+pub const CW_USEDEFAULT = @as(i32, -2147483648);
+pub const LBS_STANDARD = @as(i32, 10485763);
 
 //--------------------------------------------------------------------------------
-// Section: Types (212)
+// Section: Types (214)
 //--------------------------------------------------------------------------------
-pub const WINSTAENUMPROCA = fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const WINSTAENUMPROCW = fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DESKTOPENUMPROCA = fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DESKTOPENUMPROCW = fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DI_FLAGS = enum(u32) {
-    MASK = 1,
-    IMAGE = 2,
-    NORMAL = 3,
-    COMPAT = 4,
-    DEFAULTSIZE = 8,
-    NOMIRROR = 16,
-    _,
-    pub fn initFlags(o: struct {
-        MASK: u1 = 0,
-        IMAGE: u1 = 0,
-        NORMAL: u1 = 0,
-        COMPAT: u1 = 0,
-        DEFAULTSIZE: u1 = 0,
-        NOMIRROR: u1 = 0,
-    }) DI_FLAGS {
-        return @intToEnum(DI_FLAGS,
-              (if (o.MASK == 1) @enumToInt(DI_FLAGS.MASK) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(DI_FLAGS.IMAGE) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(DI_FLAGS.NORMAL) else 0)
-            | (if (o.COMPAT == 1) @enumToInt(DI_FLAGS.COMPAT) else 0)
-            | (if (o.DEFAULTSIZE == 1) @enumToInt(DI_FLAGS.DEFAULTSIZE) else 0)
-            | (if (o.NOMIRROR == 1) @enumToInt(DI_FLAGS.NOMIRROR) else 0)
-        );
-    }
-};
-pub const DI_MASK = DI_FLAGS.MASK;
-pub const DI_IMAGE = DI_FLAGS.IMAGE;
-pub const DI_NORMAL = DI_FLAGS.NORMAL;
-pub const DI_COMPAT = DI_FLAGS.COMPAT;
-pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
-pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
-pub const HHOOK = *opaque{};
-
-// TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
-pub const HICON = *opaque{};
-
-// TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
-pub const HMENU = *opaque{};
-
-// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
-//TODO: type 'HCURSOR' is "AlsoUsableFor" 'HICON' which means this type is implicitly
-//      convertible to 'HICON' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HCURSOR = HICON;
-
-// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
-pub const HACCEL = *opaque{};
-
-pub const MESSAGE_RESOURCE_ENTRY = extern struct {
-    Length: u16,
-    Flags: u16,
-    Text: [1]u8,
-};
-
-pub const MESSAGE_RESOURCE_BLOCK = extern struct {
-    LowId: u32,
-    HighId: u32,
-    OffsetToEntries: u32,
-};
-
-pub const MESSAGE_RESOURCE_DATA = extern struct {
-    NumberOfBlocks: u32,
-    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
-};
-
-pub const LPOFNHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPCCHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPFRHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPCFHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPPRINTHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPSETUPHOOKPROC = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
-pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
-pub const IPrintDialogCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitDone: fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectionChange: fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleMessage: fn(
-            self: *const IPrintDialogCallback,
-            hDlg: ?HWND,
-            uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
-pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
-pub const IPrintDialogServices = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentDevMode: fn(
-            self: *const IPrintDialogServices,
-            pDevMode: ?*DEVMODEA,
-            pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPrinterName: fn(
-            self: *const IPrintDialogServices,
-            pPrinterName: ?[*:0]u16,
-            pcchSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPortName: fn(
-            self: *const IPrintDialogServices,
-            pPortName: ?[*:0]u16,
-            pcchSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const LPPAGEPAINTHOOK = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const LPPAGESETUPHOOK = fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const WNDPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const DLGPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-pub const TIMERPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: usize,
-    param3: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const WNDENUMPROC = fn(
-    param0: HWND,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const HOOKPROC = fn(
-    code: i32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const SENDASYNCPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: usize,
-    param3: LRESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PROPENUMPROCA = fn(
-    param0: HWND,
-    param1: ?[*:0]const u8,
-    param2: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCW = fn(
-    param0: HWND,
-    param1: ?[*:0]const u16,
-    param2: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCEXA = fn(
-    param0: HWND,
-    param1: ?PSTR,
-    param2: ?HANDLE,
-    param3: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCEXW = fn(
-    param0: HWND,
-    param1: ?PWSTR,
-    param2: ?HANDLE,
-    param3: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const NAMEENUMPROCA = fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const NAMEENUMPROCW = fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const CBT_CREATEWNDA = extern struct {
-    lpcs: ?*CREATESTRUCTA,
-    hwndInsertAfter: ?HWND,
-};
-
-pub const CBT_CREATEWNDW = extern struct {
-    lpcs: ?*CREATESTRUCTW,
-    hwndInsertAfter: ?HWND,
-};
-
-pub const CBTACTIVATESTRUCT = extern struct {
-    fMouse: BOOL,
-    hWndActive: ?HWND,
-};
-
-pub const SHELLHOOKINFO = extern struct {
-    hwnd: ?HWND,
-    rc: RECT,
-};
-
-pub const EVENTMSG = extern struct {
-    message: u32,
-    paramL: u32,
-    paramH: u32,
-    time: u32,
-    hwnd: ?HWND,
-};
-
-pub const CWPSTRUCT = extern struct {
-    lParam: LPARAM,
-    wParam: WPARAM,
-    message: u32,
-    hwnd: ?HWND,
-};
-
-pub const CWPRETSTRUCT = extern struct {
-    lResult: LRESULT,
-    lParam: LPARAM,
-    wParam: WPARAM,
-    message: u32,
-    hwnd: ?HWND,
-};
-
-pub const KBDLLHOOKSTRUCT = extern struct {
-    vkCode: u32,
-    scanCode: u32,
-    flags: KBDLLHOOKSTRUCT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const MSLLHOOKSTRUCT = extern struct {
-    pt: POINT,
-    mouseData: MOUSEHOOKSTRUCTEX_MOUSE_DATA,
-    flags: u32,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const DEBUGHOOKINFO = extern struct {
-    idThread: u32,
-    idThreadInstaller: u32,
-    lParam: LPARAM,
-    wParam: WPARAM,
-    code: i32,
-};
-
-pub const MOUSEHOOKSTRUCT = extern struct {
-    pt: POINT,
-    hwnd: ?HWND,
-    wHitTestCode: u32,
-    dwExtraInfo: usize,
-};
-
-pub const MOUSEHOOKSTRUCTEX = extern struct {
-    __AnonymousBase_winuser_L1173_C46: MOUSEHOOKSTRUCT,
-    mouseData: MOUSEHOOKSTRUCTEX_MOUSE_DATA,
-};
-
-pub const HARDWAREHOOKSTRUCT = extern struct {
-    hwnd: ?HWND,
-    message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-};
-
-pub const WNDCLASSEXA = extern struct {
-    cbSize: u32,
-    style: WNDCLASS_STYLES,
-    lpfnWndProc: ?WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: ?HINSTANCE,
-    hIcon: ?HICON,
-    hCursor: ?HCURSOR,
-    hbrBackground: ?HBRUSH,
-    lpszMenuName: ?[*:0]const u8,
-    lpszClassName: ?[*:0]const u8,
-    hIconSm: ?HICON,
-};
-
-pub const WNDCLASSEXW = extern struct {
-    cbSize: u32,
-    style: WNDCLASS_STYLES,
-    lpfnWndProc: ?WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: ?HINSTANCE,
-    hIcon: ?HICON,
-    hCursor: ?HCURSOR,
-    hbrBackground: ?HBRUSH,
-    lpszMenuName: ?[*:0]const u16,
-    lpszClassName: ?[*:0]const u16,
-    hIconSm: ?HICON,
-};
-
-pub const WNDCLASSA = extern struct {
-    style: WNDCLASS_STYLES,
-    lpfnWndProc: ?WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: ?HINSTANCE,
-    hIcon: ?HICON,
-    hCursor: ?HCURSOR,
-    hbrBackground: ?HBRUSH,
-    lpszMenuName: ?[*:0]const u8,
-    lpszClassName: ?[*:0]const u8,
-};
-
-pub const WNDCLASSW = extern struct {
-    style: WNDCLASS_STYLES,
-    lpfnWndProc: ?WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: ?HINSTANCE,
-    hIcon: ?HICON,
-    hCursor: ?HCURSOR,
-    hbrBackground: ?HBRUSH,
-    lpszMenuName: ?[*:0]const u16,
-    lpszClassName: ?[*:0]const u16,
-};
-
-pub const MSG = extern struct {
-    hwnd: ?HWND,
-    message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    time: u32,
-    pt: POINT,
-};
-
-pub const MINMAXINFO = extern struct {
-    ptReserved: POINT,
-    ptMaxSize: POINT,
-    ptMaxPosition: POINT,
-    ptMinTrackSize: POINT,
-    ptMaxTrackSize: POINT,
-};
-
-pub const MDINEXTMENU = extern struct {
-    hmenuIn: ?HMENU,
-    hmenuNext: ?HMENU,
-    hwndNext: ?HWND,
-};
-
-pub const WINDOWPOS = extern struct {
-    hwnd: ?HWND,
-    hwndInsertAfter: ?HWND,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    flags: SET_WINDOW_POS_FLAGS,
-};
-
-pub const NCCALCSIZE_PARAMS = extern struct {
-    rgrc: [3]RECT,
-    lppos: ?*WINDOWPOS,
-};
-
-pub const ACCEL = extern struct {
-    fVirt: u8,
-    key: u16,
-    cmd: u16,
-};
-
-pub const CREATESTRUCTA = extern struct {
-    lpCreateParams: ?*c_void,
-    hInstance: ?HINSTANCE,
-    hMenu: ?HMENU,
-    hwndParent: ?HWND,
-    cy: i32,
-    cx: i32,
-    y: i32,
-    x: i32,
-    style: i32,
-    lpszName: ?[*:0]const u8,
-    lpszClass: ?[*:0]const u8,
-    dwExStyle: u32,
-};
-
-pub const CREATESTRUCTW = extern struct {
-    lpCreateParams: ?*c_void,
-    hInstance: ?HINSTANCE,
-    hMenu: ?HMENU,
-    hwndParent: ?HWND,
-    cy: i32,
-    cx: i32,
-    y: i32,
-    x: i32,
-    style: i32,
-    lpszName: ?[*:0]const u16,
-    lpszClass: ?[*:0]const u16,
-    dwExStyle: u32,
-};
-
-pub const WINDOWPLACEMENT = extern struct {
-    length: u32,
-    flags: WINDOWPLACEMENT_FLAGS,
-    showCmd: SHOW_WINDOW_CMD,
-    ptMinPosition: POINT,
-    ptMaxPosition: POINT,
-    rcNormalPosition: RECT,
-};
-
-pub const STYLESTRUCT = extern struct {
-    styleOld: u32,
-    styleNew: u32,
-};
-
-pub const BSMINFO = extern struct {
-    cbSize: u32,
-    hdesk: ?HDESK,
-    hwnd: ?HWND,
-    luid: LUID,
-};
-
-pub const PREGISTERCLASSNAMEW = fn(
-    param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
-
-pub const UPDATELAYEREDWINDOWINFO = extern struct {
-    cbSize: u32,
-    hdcDst: ?HDC,
-    pptDst: ?*const POINT,
-    psize: ?*const SIZE,
-    hdcSrc: ?HDC,
-    pptSrc: ?*const POINT,
-    crKey: u32,
-    pblend: ?*const BLENDFUNCTION,
-    dwFlags: UPDATE_LAYERED_WINDOW_FLAGS,
-    prcDirty: ?*const RECT,
-};
-
-pub const DLGTEMPLATE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    style: u32,
-    dwExtendedStyle: u32,
-    cdit: u16,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
-};
-
-pub const DLGITEMTEMPLATE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    style: u32,
-    dwExtendedStyle: u32,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
-    id: u16,
-};
-
-pub const POINTER_INPUT_TYPE = enum(i32) {
-    POINTER = 1,
-    TOUCH = 2,
-    PEN = 3,
-    MOUSE = 4,
-    TOUCHPAD = 5,
-};
-pub const PT_POINTER = POINTER_INPUT_TYPE.POINTER;
-pub const PT_TOUCH = POINTER_INPUT_TYPE.TOUCH;
-pub const PT_PEN = POINTER_INPUT_TYPE.PEN;
-pub const PT_MOUSE = POINTER_INPUT_TYPE.MOUSE;
-pub const PT_TOUCHPAD = POINTER_INPUT_TYPE.TOUCHPAD;
-
-pub const TPMPARAMS = extern struct {
-    cbSize: u32,
-    rcExclude: RECT,
-};
-
-pub const MENUINFO = extern struct {
-    cbSize: u32,
-    fMask: MENUINFO_MASK,
-    dwStyle: MENUINFO_STYLE,
-    cyMax: u32,
-    hbrBack: ?HBRUSH,
-    dwContextHelpID: u32,
-    dwMenuData: usize,
-};
-
-pub const MENUGETOBJECTINFO = extern struct {
-    dwFlags: MENUGETOBJECTINFO_FLAGS,
-    uPos: u32,
-    hmenu: ?HMENU,
-    riid: ?*c_void,
-    pvObj: ?*c_void,
-};
-
-pub const MENUITEMINFOA = extern struct {
-    cbSize: u32,
-    fMask: MENU_ITEM_MASK,
-    fType: MENU_ITEM_TYPE,
-    fState: MENU_ITEM_STATE,
-    wID: u32,
-    hSubMenu: ?HMENU,
-    hbmpChecked: ?HBITMAP,
-    hbmpUnchecked: ?HBITMAP,
-    dwItemData: usize,
-    dwTypeData: ?PSTR,
-    cch: u32,
-    hbmpItem: ?HBITMAP,
-};
-
-pub const MENUITEMINFOW = extern struct {
-    cbSize: u32,
-    fMask: MENU_ITEM_MASK,
-    fType: MENU_ITEM_TYPE,
-    fState: MENU_ITEM_STATE,
-    wID: u32,
-    hSubMenu: ?HMENU,
-    hbmpChecked: ?HBITMAP,
-    hbmpUnchecked: ?HBITMAP,
-    dwItemData: usize,
-    dwTypeData: ?PWSTR,
-    cch: u32,
-    hbmpItem: ?HBITMAP,
-};
-
-pub const DROPSTRUCT = extern struct {
-    hwndSource: ?HWND,
-    hwndSink: ?HWND,
-    wFmt: u32,
-    dwData: usize,
-    ptDrop: POINT,
-    dwControlData: u32,
-};
-
-pub const MSGBOXCALLBACK = fn(
-    lpHelpInfo: ?*HELPINFO,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MSGBOXPARAMSA = extern struct {
-    cbSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpszText: ?[*:0]const u8,
-    lpszCaption: ?[*:0]const u8,
-    dwStyle: MESSAGEBOX_STYLE,
-    lpszIcon: ?[*:0]const u8,
-    dwContextHelpId: usize,
-    lpfnMsgBoxCallback: ?MSGBOXCALLBACK,
-    dwLanguageId: u32,
-};
-
-pub const MSGBOXPARAMSW = extern struct {
-    cbSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpszText: ?[*:0]const u16,
-    lpszCaption: ?[*:0]const u16,
-    dwStyle: MESSAGEBOX_STYLE,
-    lpszIcon: ?[*:0]const u16,
-    dwContextHelpId: usize,
-    lpfnMsgBoxCallback: ?MSGBOXCALLBACK,
-    dwLanguageId: u32,
-};
-
-pub const MENUITEMTEMPLATEHEADER = extern struct {
-    versionNumber: u16,
-    offset: u16,
-};
-
-pub const MENUITEMTEMPLATE = extern struct {
-    mtOption: u16,
-    mtID: u16,
-    mtString: [1]u16,
-};
-
-pub const ICONINFO = extern struct {
-    fIcon: BOOL,
-    xHotspot: u32,
-    yHotspot: u32,
-    hbmMask: ?HBITMAP,
-    hbmColor: ?HBITMAP,
-};
-
-pub const CURSORSHAPE = extern struct {
-    xHotSpot: i32,
-    yHotSpot: i32,
-    cx: i32,
-    cy: i32,
-    cbWidth: i32,
-    Planes: u8,
-    BitsPixel: u8,
-};
-
-pub const ICONINFOEXA = extern struct {
-    cbSize: u32,
-    fIcon: BOOL,
-    xHotspot: u32,
-    yHotspot: u32,
-    hbmMask: ?HBITMAP,
-    hbmColor: ?HBITMAP,
-    wResID: u16,
-    szModName: [260]CHAR,
-    szResName: [260]CHAR,
-};
-
-pub const ICONINFOEXW = extern struct {
-    cbSize: u32,
-    fIcon: BOOL,
-    xHotspot: u32,
-    yHotspot: u32,
-    hbmMask: ?HBITMAP,
-    hbmColor: ?HBITMAP,
-    wResID: u16,
-    szModName: [260]u16,
-    szResName: [260]u16,
-};
-
-pub const EDIT_CONTROL_FEATURE = enum(i32) {
-    ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = 0,
-    PASTE_NOTIFICATIONS = 1,
-};
-pub const EDIT_CONTROL_FEATURE_ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = EDIT_CONTROL_FEATURE.ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT;
-pub const EDIT_CONTROL_FEATURE_PASTE_NOTIFICATIONS = EDIT_CONTROL_FEATURE.PASTE_NOTIFICATIONS;
-
-pub const MDICREATESTRUCTA = extern struct {
-    szClass: ?[*:0]const u8,
-    szTitle: ?[*:0]const u8,
-    hOwner: ?HANDLE,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    style: WINDOW_STYLE,
-    lParam: LPARAM,
-};
-
-pub const MDICREATESTRUCTW = extern struct {
-    szClass: ?[*:0]const u16,
-    szTitle: ?[*:0]const u16,
-    hOwner: ?HANDLE,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    style: WINDOW_STYLE,
-    lParam: LPARAM,
-};
-
-pub const CLIENTCREATESTRUCT = extern struct {
-    hWindowMenu: ?HANDLE,
-    idFirstChild: u32,
-};
-
-pub const TouchPredictionParameters = extern struct {
-    cbSize: u32,
-    dwLatency: u32,
-    dwSampleTime: u32,
-    bUseHWTimeStamp: u32,
-};
-
-pub const HANDEDNESS = enum(i32) {
-    LEFT = 0,
-    RIGHT = 1,
-};
-pub const HANDEDNESS_LEFT = HANDEDNESS.LEFT;
-pub const HANDEDNESS_RIGHT = HANDEDNESS.RIGHT;
-
-pub const NONCLIENTMETRICSA = extern struct {
-    cbSize: u32,
-    iBorderWidth: i32,
-    iScrollWidth: i32,
-    iScrollHeight: i32,
-    iCaptionWidth: i32,
-    iCaptionHeight: i32,
-    lfCaptionFont: LOGFONTA,
-    iSmCaptionWidth: i32,
-    iSmCaptionHeight: i32,
-    lfSmCaptionFont: LOGFONTA,
-    iMenuWidth: i32,
-    iMenuHeight: i32,
-    lfMenuFont: LOGFONTA,
-    lfStatusFont: LOGFONTA,
-    lfMessageFont: LOGFONTA,
-    iPaddedBorderWidth: i32,
-};
-
-pub const NONCLIENTMETRICSW = extern struct {
-    cbSize: u32,
-    iBorderWidth: i32,
-    iScrollWidth: i32,
-    iScrollHeight: i32,
-    iCaptionWidth: i32,
-    iCaptionHeight: i32,
-    lfCaptionFont: LOGFONTW,
-    iSmCaptionWidth: i32,
-    iSmCaptionHeight: i32,
-    lfSmCaptionFont: LOGFONTW,
-    iMenuWidth: i32,
-    iMenuHeight: i32,
-    lfMenuFont: LOGFONTW,
-    lfStatusFont: LOGFONTW,
-    lfMessageFont: LOGFONTW,
-    iPaddedBorderWidth: i32,
-};
-
-pub const MINIMIZEDMETRICS = extern struct {
-    cbSize: u32,
-    iWidth: i32,
-    iHorzGap: i32,
-    iVertGap: i32,
-    iArrange: MINIMIZEDMETRICS_ARRANGE,
-};
-
-pub const ICONMETRICSA = extern struct {
-    cbSize: u32,
-    iHorzSpacing: i32,
-    iVertSpacing: i32,
-    iTitleWrap: i32,
-    lfFont: LOGFONTA,
-};
-
-pub const ICONMETRICSW = extern struct {
-    cbSize: u32,
-    iHorzSpacing: i32,
-    iVertSpacing: i32,
-    iTitleWrap: i32,
-    lfFont: LOGFONTW,
-};
-
-pub const ANIMATIONINFO = extern struct {
-    cbSize: u32,
-    iMinAnimate: i32,
-};
-
-pub const AUDIODESCRIPTION = extern struct {
-    cbSize: u32,
-    Enabled: BOOL,
-    Locale: u32,
-};
-
-pub const GUITHREADINFO = extern struct {
-    cbSize: u32,
-    flags: GUITHREADINFO_FLAGS,
-    hwndActive: ?HWND,
-    hwndFocus: ?HWND,
-    hwndCapture: ?HWND,
-    hwndMenuOwner: ?HWND,
-    hwndMoveSize: ?HWND,
-    hwndCaret: ?HWND,
-    rcCaret: RECT,
-};
-
-pub const CURSORINFO = extern struct {
-    cbSize: u32,
-    flags: CURSORINFO_FLAGS,
-    hCursor: ?HCURSOR,
-    ptScreenPos: POINT,
-};
-
-pub const WINDOWINFO = extern struct {
-    cbSize: u32,
-    rcWindow: RECT,
-    rcClient: RECT,
-    dwStyle: u32,
-    dwExStyle: u32,
-    dwWindowStatus: u32,
-    cxWindowBorders: u32,
-    cyWindowBorders: u32,
-    atomWindowType: u16,
-    wCreatorVersion: u16,
-};
-
-pub const TITLEBARINFO = extern struct {
-    cbSize: u32,
-    rcTitleBar: RECT,
-    rgstate: [6]u32,
-};
-
-pub const TITLEBARINFOEX = extern struct {
-    cbSize: u32,
-    rcTitleBar: RECT,
-    rgstate: [6]u32,
-    rgrect: [6]RECT,
-};
-
-pub const MENUBARINFO = extern struct {
-    cbSize: u32,
-    rcBar: RECT,
-    hMenu: ?HMENU,
-    hwndMenu: ?HWND,
-    _bitfield: i32,
-};
-
-pub const ALTTABINFO = extern struct {
-    cbSize: u32,
-    cItems: i32,
-    cColumns: i32,
-    cRows: i32,
-    iColFocus: i32,
-    iRowFocus: i32,
-    cxItem: i32,
-    cyItem: i32,
-    ptStart: POINT,
-};
-
-pub const CHANGEFILTERSTRUCT = extern struct {
-    cbSize: u32,
-    ExtStatus: MSGFLTINFO_STATUS,
-};
-
-pub const IndexedResourceQualifier = extern struct {
-    name: ?PWSTR,
-    value: ?PWSTR,
-};
-
-pub const MrmPlatformVersion = enum(i32) {
-    Default = 0,
-    Windows10_0_0_0 = 17432576,
-    Windows10_0_0_5 = 17432581,
-};
-pub const MrmPlatformVersion_Default = MrmPlatformVersion.Default;
-pub const MrmPlatformVersion_Windows10_0_0_0 = MrmPlatformVersion.Windows10_0_0_0;
-pub const MrmPlatformVersion_Windows10_0_0_5 = MrmPlatformVersion.Windows10_0_0_5;
-
-pub const MrmResourceIndexerHandle = extern struct {
-    handle: ?*c_void,
-};
-
-pub const MrmPackagingMode = enum(i32) {
-    StandaloneFile = 0,
-    AutoSplit = 1,
-    ResourcePack = 2,
-};
-pub const MrmPackagingModeStandaloneFile = MrmPackagingMode.StandaloneFile;
-pub const MrmPackagingModeAutoSplit = MrmPackagingMode.AutoSplit;
-pub const MrmPackagingModeResourcePack = MrmPackagingMode.ResourcePack;
-
-pub const MrmPackagingOptions = enum(i32) {
-    None = 0,
-    OmitSchemaFromResourcePacks = 1,
-    SplitLanguageVariants = 2,
-};
-pub const MrmPackagingOptionsNone = MrmPackagingOptions.None;
-pub const MrmPackagingOptionsOmitSchemaFromResourcePacks = MrmPackagingOptions.OmitSchemaFromResourcePacks;
-pub const MrmPackagingOptionsSplitLanguageVariants = MrmPackagingOptions.SplitLanguageVariants;
-
-pub const MrmDumpType = enum(i32) {
-    Basic = 0,
-    Detailed = 1,
-    Schema = 2,
-};
-pub const MrmDumpType_Basic = MrmDumpType.Basic;
-pub const MrmDumpType_Detailed = MrmDumpType.Detailed;
-pub const MrmDumpType_Schema = MrmDumpType.Schema;
-
-pub const MrmResourceIndexerMessageSeverity = enum(i32) {
-    Verbose = 0,
-    Info = 1,
-    Warning = 2,
-    Error = 3,
-};
-pub const MrmResourceIndexerMessageSeverityVerbose = MrmResourceIndexerMessageSeverity.Verbose;
-pub const MrmResourceIndexerMessageSeverityInfo = MrmResourceIndexerMessageSeverity.Info;
-pub const MrmResourceIndexerMessageSeverityWarning = MrmResourceIndexerMessageSeverity.Warning;
-pub const MrmResourceIndexerMessageSeverityError = MrmResourceIndexerMessageSeverity.Error;
-
-pub const MrmResourceIndexerMessage = extern struct {
-    severity: MrmResourceIndexerMessageSeverity,
-    id: u32,
-    text: ?[*:0]const u16,
-};
-
 pub const WNDCLASS_STYLES = enum(u32) {
     VREDRAW = 1,
     HREDRAW = 2,
@@ -5684,6 +4673,39 @@ pub const MIIM_STRING = MENU_ITEM_MASK.STRING;
 pub const MIIM_SUBMENU = MENU_ITEM_MASK.SUBMENU;
 pub const MIIM_TYPE = MENU_ITEM_MASK.TYPE;
 
+pub const FLASHWINFO_FLAGS = enum(u32) {
+    ALL = 3,
+    CAPTION = 1,
+    STOP = 0,
+    TIMER = 4,
+    TIMERNOFG = 12,
+    TRAY = 2,
+    _,
+    pub fn initFlags(o: struct {
+        ALL: u1 = 0,
+        CAPTION: u1 = 0,
+        STOP: u1 = 0,
+        TIMER: u1 = 0,
+        TIMERNOFG: u1 = 0,
+        TRAY: u1 = 0,
+    }) FLASHWINFO_FLAGS {
+        return @intToEnum(FLASHWINFO_FLAGS,
+              (if (o.ALL == 1) @enumToInt(FLASHWINFO_FLAGS.ALL) else 0)
+            | (if (o.CAPTION == 1) @enumToInt(FLASHWINFO_FLAGS.CAPTION) else 0)
+            | (if (o.STOP == 1) @enumToInt(FLASHWINFO_FLAGS.STOP) else 0)
+            | (if (o.TIMER == 1) @enumToInt(FLASHWINFO_FLAGS.TIMER) else 0)
+            | (if (o.TIMERNOFG == 1) @enumToInt(FLASHWINFO_FLAGS.TIMERNOFG) else 0)
+            | (if (o.TRAY == 1) @enumToInt(FLASHWINFO_FLAGS.TRAY) else 0)
+        );
+    }
+};
+pub const FLASHW_ALL = FLASHWINFO_FLAGS.ALL;
+pub const FLASHW_CAPTION = FLASHWINFO_FLAGS.CAPTION;
+pub const FLASHW_STOP = FLASHWINFO_FLAGS.STOP;
+pub const FLASHW_TIMER = FLASHWINFO_FLAGS.TIMER;
+pub const FLASHW_TIMERNOFG = FLASHWINFO_FLAGS.TIMERNOFG;
+pub const FLASHW_TRAY = FLASHWINFO_FLAGS.TRAY;
+
 pub const CURSORINFO_FLAGS = enum(u32) {
     HOWING = 1,
     UPPRESSED = 2,
@@ -5886,6 +4908,1025 @@ pub const LLKHF_ALTDOWN = KBDLLHOOKSTRUCT_FLAGS.ALTDOWN;
 pub const LLKHF_UP = KBDLLHOOKSTRUCT_FLAGS.UP;
 pub const LLKHF_INJECTED = KBDLLHOOKSTRUCT_FLAGS.INJECTED;
 pub const LLKHF_LOWER_IL_INJECTED = KBDLLHOOKSTRUCT_FLAGS.LOWER_IL_INJECTED;
+
+pub const WINSTAENUMPROCA = fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const WINSTAENUMPROCW = fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const DESKTOPENUMPROCA = fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const DESKTOPENUMPROCW = fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const DI_FLAGS = enum(u32) {
+    MASK = 1,
+    IMAGE = 2,
+    NORMAL = 3,
+    COMPAT = 4,
+    DEFAULTSIZE = 8,
+    NOMIRROR = 16,
+    _,
+    pub fn initFlags(o: struct {
+        MASK: u1 = 0,
+        IMAGE: u1 = 0,
+        NORMAL: u1 = 0,
+        COMPAT: u1 = 0,
+        DEFAULTSIZE: u1 = 0,
+        NOMIRROR: u1 = 0,
+    }) DI_FLAGS {
+        return @intToEnum(DI_FLAGS,
+              (if (o.MASK == 1) @enumToInt(DI_FLAGS.MASK) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(DI_FLAGS.IMAGE) else 0)
+            | (if (o.NORMAL == 1) @enumToInt(DI_FLAGS.NORMAL) else 0)
+            | (if (o.COMPAT == 1) @enumToInt(DI_FLAGS.COMPAT) else 0)
+            | (if (o.DEFAULTSIZE == 1) @enumToInt(DI_FLAGS.DEFAULTSIZE) else 0)
+            | (if (o.NOMIRROR == 1) @enumToInt(DI_FLAGS.NOMIRROR) else 0)
+        );
+    }
+};
+pub const DI_MASK = DI_FLAGS.MASK;
+pub const DI_IMAGE = DI_FLAGS.IMAGE;
+pub const DI_NORMAL = DI_FLAGS.NORMAL;
+pub const DI_COMPAT = DI_FLAGS.COMPAT;
+pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
+pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
+pub const HHOOK = *opaque{};
+
+// TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
+pub const HICON = *opaque{};
+
+// TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
+pub const HMENU = *opaque{};
+
+// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
+//TODO: type 'HCURSOR' is "AlsoUsableFor" 'HICON' which means this type is implicitly
+//      convertible to 'HICON' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HCURSOR = HICON;
+
+// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
+pub const HACCEL = *opaque{};
+
+pub const MESSAGE_RESOURCE_ENTRY = extern struct {
+    Length: u16,
+    Flags: u16,
+    Text: [1]u8,
+};
+
+pub const MESSAGE_RESOURCE_BLOCK = extern struct {
+    LowId: u32,
+    HighId: u32,
+    OffsetToEntries: u32,
+};
+
+pub const MESSAGE_RESOURCE_DATA = extern struct {
+    NumberOfBlocks: u32,
+    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
+};
+
+pub const LPOFNHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPCCHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPFRHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPCFHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPPRINTHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPSETUPHOOKPROC = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
+pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
+pub const IPrintDialogCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitDone: fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SelectionChange: fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleMessage: fn(
+            self: *const IPrintDialogCallback,
+            hDlg: ?HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
+pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
+pub const IPrintDialogServices = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentDevMode: fn(
+            self: *const IPrintDialogServices,
+            pDevMode: ?*DEVMODEA,
+            pcbSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPrinterName: fn(
+            self: *const IPrintDialogServices,
+            pPrinterName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPortName: fn(
+            self: *const IPrintDialogServices,
+            pPortName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const LPPAGEPAINTHOOK = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const LPPAGESETUPHOOK = fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const WNDPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const DLGPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+pub const TIMERPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: usize,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const WNDENUMPROC = fn(
+    param0: HWND,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const HOOKPROC = fn(
+    code: i32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const SENDASYNCPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: usize,
+    param3: LRESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PROPENUMPROCA = fn(
+    param0: HWND,
+    param1: ?[*:0]const u8,
+    param2: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCW = fn(
+    param0: HWND,
+    param1: ?[*:0]const u16,
+    param2: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCEXA = fn(
+    param0: HWND,
+    param1: ?PSTR,
+    param2: ?HANDLE,
+    param3: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCEXW = fn(
+    param0: HWND,
+    param1: ?PWSTR,
+    param2: ?HANDLE,
+    param3: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const NAMEENUMPROCA = fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const NAMEENUMPROCW = fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const CBT_CREATEWNDA = extern struct {
+    lpcs: ?*CREATESTRUCTA,
+    hwndInsertAfter: ?HWND,
+};
+
+pub const CBT_CREATEWNDW = extern struct {
+    lpcs: ?*CREATESTRUCTW,
+    hwndInsertAfter: ?HWND,
+};
+
+pub const CBTACTIVATESTRUCT = extern struct {
+    fMouse: BOOL,
+    hWndActive: ?HWND,
+};
+
+pub const SHELLHOOKINFO = extern struct {
+    hwnd: ?HWND,
+    rc: RECT,
+};
+
+pub const EVENTMSG = extern struct {
+    message: u32,
+    paramL: u32,
+    paramH: u32,
+    time: u32,
+    hwnd: ?HWND,
+};
+
+pub const CWPSTRUCT = extern struct {
+    lParam: LPARAM,
+    wParam: WPARAM,
+    message: u32,
+    hwnd: ?HWND,
+};
+
+pub const CWPRETSTRUCT = extern struct {
+    lResult: LRESULT,
+    lParam: LPARAM,
+    wParam: WPARAM,
+    message: u32,
+    hwnd: ?HWND,
+};
+
+pub const KBDLLHOOKSTRUCT = extern struct {
+    vkCode: u32,
+    scanCode: u32,
+    flags: KBDLLHOOKSTRUCT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const MSLLHOOKSTRUCT = extern struct {
+    pt: POINT,
+    mouseData: MOUSEHOOKSTRUCTEX_MOUSE_DATA,
+    flags: u32,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const DEBUGHOOKINFO = extern struct {
+    idThread: u32,
+    idThreadInstaller: u32,
+    lParam: LPARAM,
+    wParam: WPARAM,
+    code: i32,
+};
+
+pub const MOUSEHOOKSTRUCT = extern struct {
+    pt: POINT,
+    hwnd: ?HWND,
+    wHitTestCode: u32,
+    dwExtraInfo: usize,
+};
+
+pub const MOUSEHOOKSTRUCTEX = extern struct {
+    __AnonymousBase_winuser_L1173_C46: MOUSEHOOKSTRUCT,
+    mouseData: MOUSEHOOKSTRUCTEX_MOUSE_DATA,
+};
+
+pub const HARDWAREHOOKSTRUCT = extern struct {
+    hwnd: ?HWND,
+    message: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+};
+
+pub const WNDCLASSEXA = extern struct {
+    cbSize: u32,
+    style: WNDCLASS_STYLES,
+    lpfnWndProc: ?WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: ?HINSTANCE,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u8,
+    lpszClassName: ?[*:0]const u8,
+    hIconSm: ?HICON,
+};
+
+pub const WNDCLASSEXW = extern struct {
+    cbSize: u32,
+    style: WNDCLASS_STYLES,
+    lpfnWndProc: ?WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: ?HINSTANCE,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u16,
+    lpszClassName: ?[*:0]const u16,
+    hIconSm: ?HICON,
+};
+
+pub const WNDCLASSA = extern struct {
+    style: WNDCLASS_STYLES,
+    lpfnWndProc: ?WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: ?HINSTANCE,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u8,
+    lpszClassName: ?[*:0]const u8,
+};
+
+pub const WNDCLASSW = extern struct {
+    style: WNDCLASS_STYLES,
+    lpfnWndProc: ?WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: ?HINSTANCE,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u16,
+    lpszClassName: ?[*:0]const u16,
+};
+
+pub const MSG = extern struct {
+    hwnd: ?HWND,
+    message: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    time: u32,
+    pt: POINT,
+};
+
+pub const MINMAXINFO = extern struct {
+    ptReserved: POINT,
+    ptMaxSize: POINT,
+    ptMaxPosition: POINT,
+    ptMinTrackSize: POINT,
+    ptMaxTrackSize: POINT,
+};
+
+pub const MDINEXTMENU = extern struct {
+    hmenuIn: ?HMENU,
+    hmenuNext: ?HMENU,
+    hwndNext: ?HWND,
+};
+
+pub const WINDOWPOS = extern struct {
+    hwnd: ?HWND,
+    hwndInsertAfter: ?HWND,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    flags: SET_WINDOW_POS_FLAGS,
+};
+
+pub const NCCALCSIZE_PARAMS = extern struct {
+    rgrc: [3]RECT,
+    lppos: ?*WINDOWPOS,
+};
+
+pub const ACCEL = extern struct {
+    fVirt: u8,
+    key: u16,
+    cmd: u16,
+};
+
+pub const CREATESTRUCTA = extern struct {
+    lpCreateParams: ?*c_void,
+    hInstance: ?HINSTANCE,
+    hMenu: ?HMENU,
+    hwndParent: ?HWND,
+    cy: i32,
+    cx: i32,
+    y: i32,
+    x: i32,
+    style: i32,
+    lpszName: ?[*:0]const u8,
+    lpszClass: ?[*:0]const u8,
+    dwExStyle: u32,
+};
+
+pub const CREATESTRUCTW = extern struct {
+    lpCreateParams: ?*c_void,
+    hInstance: ?HINSTANCE,
+    hMenu: ?HMENU,
+    hwndParent: ?HWND,
+    cy: i32,
+    cx: i32,
+    y: i32,
+    x: i32,
+    style: i32,
+    lpszName: ?[*:0]const u16,
+    lpszClass: ?[*:0]const u16,
+    dwExStyle: u32,
+};
+
+pub const WINDOWPLACEMENT = extern struct {
+    length: u32,
+    flags: WINDOWPLACEMENT_FLAGS,
+    showCmd: SHOW_WINDOW_CMD,
+    ptMinPosition: POINT,
+    ptMaxPosition: POINT,
+    rcNormalPosition: RECT,
+};
+
+pub const STYLESTRUCT = extern struct {
+    styleOld: u32,
+    styleNew: u32,
+};
+
+pub const BSMINFO = extern struct {
+    cbSize: u32,
+    hdesk: ?HDESK,
+    hwnd: ?HWND,
+    luid: LUID,
+};
+
+pub const PREGISTERCLASSNAMEW = fn(
+    param0: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
+pub const UPDATELAYEREDWINDOWINFO = extern struct {
+    cbSize: u32,
+    hdcDst: ?HDC,
+    pptDst: ?*const POINT,
+    psize: ?*const SIZE,
+    hdcSrc: ?HDC,
+    pptSrc: ?*const POINT,
+    crKey: u32,
+    pblend: ?*const BLENDFUNCTION,
+    dwFlags: UPDATE_LAYERED_WINDOW_FLAGS,
+    prcDirty: ?*const RECT,
+};
+
+pub const FLASHWINFO = extern struct {
+    cbSize: u32,
+    hwnd: ?HWND,
+    dwFlags: FLASHWINFO_FLAGS,
+    uCount: u32,
+    dwTimeout: u32,
+};
+
+pub const DLGTEMPLATE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    style: u32,
+    dwExtendedStyle: u32,
+    cdit: u16,
+    x: i16,
+    y: i16,
+    cx: i16,
+    cy: i16,
+};
+
+pub const DLGITEMTEMPLATE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    style: u32,
+    dwExtendedStyle: u32,
+    x: i16,
+    y: i16,
+    cx: i16,
+    cy: i16,
+    id: u16,
+};
+
+pub const POINTER_INPUT_TYPE = enum(i32) {
+    POINTER = 1,
+    TOUCH = 2,
+    PEN = 3,
+    MOUSE = 4,
+    TOUCHPAD = 5,
+};
+pub const PT_POINTER = POINTER_INPUT_TYPE.POINTER;
+pub const PT_TOUCH = POINTER_INPUT_TYPE.TOUCH;
+pub const PT_PEN = POINTER_INPUT_TYPE.PEN;
+pub const PT_MOUSE = POINTER_INPUT_TYPE.MOUSE;
+pub const PT_TOUCHPAD = POINTER_INPUT_TYPE.TOUCHPAD;
+
+pub const TPMPARAMS = extern struct {
+    cbSize: u32,
+    rcExclude: RECT,
+};
+
+pub const MENUINFO = extern struct {
+    cbSize: u32,
+    fMask: MENUINFO_MASK,
+    dwStyle: MENUINFO_STYLE,
+    cyMax: u32,
+    hbrBack: ?HBRUSH,
+    dwContextHelpID: u32,
+    dwMenuData: usize,
+};
+
+pub const MENUGETOBJECTINFO = extern struct {
+    dwFlags: MENUGETOBJECTINFO_FLAGS,
+    uPos: u32,
+    hmenu: ?HMENU,
+    riid: ?*c_void,
+    pvObj: ?*c_void,
+};
+
+pub const MENUITEMINFOA = extern struct {
+    cbSize: u32,
+    fMask: MENU_ITEM_MASK,
+    fType: MENU_ITEM_TYPE,
+    fState: MENU_ITEM_STATE,
+    wID: u32,
+    hSubMenu: ?HMENU,
+    hbmpChecked: ?HBITMAP,
+    hbmpUnchecked: ?HBITMAP,
+    dwItemData: usize,
+    dwTypeData: ?PSTR,
+    cch: u32,
+    hbmpItem: ?HBITMAP,
+};
+
+pub const MENUITEMINFOW = extern struct {
+    cbSize: u32,
+    fMask: MENU_ITEM_MASK,
+    fType: MENU_ITEM_TYPE,
+    fState: MENU_ITEM_STATE,
+    wID: u32,
+    hSubMenu: ?HMENU,
+    hbmpChecked: ?HBITMAP,
+    hbmpUnchecked: ?HBITMAP,
+    dwItemData: usize,
+    dwTypeData: ?PWSTR,
+    cch: u32,
+    hbmpItem: ?HBITMAP,
+};
+
+pub const DROPSTRUCT = extern struct {
+    hwndSource: ?HWND,
+    hwndSink: ?HWND,
+    wFmt: u32,
+    dwData: usize,
+    ptDrop: POINT,
+    dwControlData: u32,
+};
+
+pub const MSGBOXCALLBACK = fn(
+    lpHelpInfo: ?*HELPINFO,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MSGBOXPARAMSA = extern struct {
+    cbSize: u32,
+    hwndOwner: ?HWND,
+    hInstance: ?HINSTANCE,
+    lpszText: ?[*:0]const u8,
+    lpszCaption: ?[*:0]const u8,
+    dwStyle: MESSAGEBOX_STYLE,
+    lpszIcon: ?[*:0]const u8,
+    dwContextHelpId: usize,
+    lpfnMsgBoxCallback: ?MSGBOXCALLBACK,
+    dwLanguageId: u32,
+};
+
+pub const MSGBOXPARAMSW = extern struct {
+    cbSize: u32,
+    hwndOwner: ?HWND,
+    hInstance: ?HINSTANCE,
+    lpszText: ?[*:0]const u16,
+    lpszCaption: ?[*:0]const u16,
+    dwStyle: MESSAGEBOX_STYLE,
+    lpszIcon: ?[*:0]const u16,
+    dwContextHelpId: usize,
+    lpfnMsgBoxCallback: ?MSGBOXCALLBACK,
+    dwLanguageId: u32,
+};
+
+pub const MENUITEMTEMPLATEHEADER = extern struct {
+    versionNumber: u16,
+    offset: u16,
+};
+
+pub const MENUITEMTEMPLATE = extern struct {
+    mtOption: u16,
+    mtID: u16,
+    mtString: [1]u16,
+};
+
+pub const ICONINFO = extern struct {
+    fIcon: BOOL,
+    xHotspot: u32,
+    yHotspot: u32,
+    hbmMask: ?HBITMAP,
+    hbmColor: ?HBITMAP,
+};
+
+pub const CURSORSHAPE = extern struct {
+    xHotSpot: i32,
+    yHotSpot: i32,
+    cx: i32,
+    cy: i32,
+    cbWidth: i32,
+    Planes: u8,
+    BitsPixel: u8,
+};
+
+pub const ICONINFOEXA = extern struct {
+    cbSize: u32,
+    fIcon: BOOL,
+    xHotspot: u32,
+    yHotspot: u32,
+    hbmMask: ?HBITMAP,
+    hbmColor: ?HBITMAP,
+    wResID: u16,
+    szModName: [260]CHAR,
+    szResName: [260]CHAR,
+};
+
+pub const ICONINFOEXW = extern struct {
+    cbSize: u32,
+    fIcon: BOOL,
+    xHotspot: u32,
+    yHotspot: u32,
+    hbmMask: ?HBITMAP,
+    hbmColor: ?HBITMAP,
+    wResID: u16,
+    szModName: [260]u16,
+    szResName: [260]u16,
+};
+
+pub const EDIT_CONTROL_FEATURE = enum(i32) {
+    ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = 0,
+    PASTE_NOTIFICATIONS = 1,
+};
+pub const EDIT_CONTROL_FEATURE_ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = EDIT_CONTROL_FEATURE.ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT;
+pub const EDIT_CONTROL_FEATURE_PASTE_NOTIFICATIONS = EDIT_CONTROL_FEATURE.PASTE_NOTIFICATIONS;
+
+pub const MDICREATESTRUCTA = extern struct {
+    szClass: ?[*:0]const u8,
+    szTitle: ?[*:0]const u8,
+    hOwner: ?HANDLE,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    style: WINDOW_STYLE,
+    lParam: LPARAM,
+};
+
+pub const MDICREATESTRUCTW = extern struct {
+    szClass: ?[*:0]const u16,
+    szTitle: ?[*:0]const u16,
+    hOwner: ?HANDLE,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    style: WINDOW_STYLE,
+    lParam: LPARAM,
+};
+
+pub const CLIENTCREATESTRUCT = extern struct {
+    hWindowMenu: ?HANDLE,
+    idFirstChild: u32,
+};
+
+pub const TouchPredictionParameters = extern struct {
+    cbSize: u32,
+    dwLatency: u32,
+    dwSampleTime: u32,
+    bUseHWTimeStamp: u32,
+};
+
+pub const HANDEDNESS = enum(i32) {
+    LEFT = 0,
+    RIGHT = 1,
+};
+pub const HANDEDNESS_LEFT = HANDEDNESS.LEFT;
+pub const HANDEDNESS_RIGHT = HANDEDNESS.RIGHT;
+
+pub const NONCLIENTMETRICSA = extern struct {
+    cbSize: u32,
+    iBorderWidth: i32,
+    iScrollWidth: i32,
+    iScrollHeight: i32,
+    iCaptionWidth: i32,
+    iCaptionHeight: i32,
+    lfCaptionFont: LOGFONTA,
+    iSmCaptionWidth: i32,
+    iSmCaptionHeight: i32,
+    lfSmCaptionFont: LOGFONTA,
+    iMenuWidth: i32,
+    iMenuHeight: i32,
+    lfMenuFont: LOGFONTA,
+    lfStatusFont: LOGFONTA,
+    lfMessageFont: LOGFONTA,
+    iPaddedBorderWidth: i32,
+};
+
+pub const NONCLIENTMETRICSW = extern struct {
+    cbSize: u32,
+    iBorderWidth: i32,
+    iScrollWidth: i32,
+    iScrollHeight: i32,
+    iCaptionWidth: i32,
+    iCaptionHeight: i32,
+    lfCaptionFont: LOGFONTW,
+    iSmCaptionWidth: i32,
+    iSmCaptionHeight: i32,
+    lfSmCaptionFont: LOGFONTW,
+    iMenuWidth: i32,
+    iMenuHeight: i32,
+    lfMenuFont: LOGFONTW,
+    lfStatusFont: LOGFONTW,
+    lfMessageFont: LOGFONTW,
+    iPaddedBorderWidth: i32,
+};
+
+pub const MINIMIZEDMETRICS = extern struct {
+    cbSize: u32,
+    iWidth: i32,
+    iHorzGap: i32,
+    iVertGap: i32,
+    iArrange: MINIMIZEDMETRICS_ARRANGE,
+};
+
+pub const ICONMETRICSA = extern struct {
+    cbSize: u32,
+    iHorzSpacing: i32,
+    iVertSpacing: i32,
+    iTitleWrap: i32,
+    lfFont: LOGFONTA,
+};
+
+pub const ICONMETRICSW = extern struct {
+    cbSize: u32,
+    iHorzSpacing: i32,
+    iVertSpacing: i32,
+    iTitleWrap: i32,
+    lfFont: LOGFONTW,
+};
+
+pub const ANIMATIONINFO = extern struct {
+    cbSize: u32,
+    iMinAnimate: i32,
+};
+
+pub const AUDIODESCRIPTION = extern struct {
+    cbSize: u32,
+    Enabled: BOOL,
+    Locale: u32,
+};
+
+pub const GUITHREADINFO = extern struct {
+    cbSize: u32,
+    flags: GUITHREADINFO_FLAGS,
+    hwndActive: ?HWND,
+    hwndFocus: ?HWND,
+    hwndCapture: ?HWND,
+    hwndMenuOwner: ?HWND,
+    hwndMoveSize: ?HWND,
+    hwndCaret: ?HWND,
+    rcCaret: RECT,
+};
+
+pub const CURSORINFO = extern struct {
+    cbSize: u32,
+    flags: CURSORINFO_FLAGS,
+    hCursor: ?HCURSOR,
+    ptScreenPos: POINT,
+};
+
+pub const WINDOWINFO = extern struct {
+    cbSize: u32,
+    rcWindow: RECT,
+    rcClient: RECT,
+    dwStyle: u32,
+    dwExStyle: u32,
+    dwWindowStatus: u32,
+    cxWindowBorders: u32,
+    cyWindowBorders: u32,
+    atomWindowType: u16,
+    wCreatorVersion: u16,
+};
+
+pub const TITLEBARINFO = extern struct {
+    cbSize: u32,
+    rcTitleBar: RECT,
+    rgstate: [6]u32,
+};
+
+pub const TITLEBARINFOEX = extern struct {
+    cbSize: u32,
+    rcTitleBar: RECT,
+    rgstate: [6]u32,
+    rgrect: [6]RECT,
+};
+
+pub const MENUBARINFO = extern struct {
+    cbSize: u32,
+    rcBar: RECT,
+    hMenu: ?HMENU,
+    hwndMenu: ?HWND,
+    _bitfield: i32,
+};
+
+pub const ALTTABINFO = extern struct {
+    cbSize: u32,
+    cItems: i32,
+    cColumns: i32,
+    cRows: i32,
+    iColFocus: i32,
+    iRowFocus: i32,
+    cxItem: i32,
+    cyItem: i32,
+    ptStart: POINT,
+};
+
+pub const CHANGEFILTERSTRUCT = extern struct {
+    cbSize: u32,
+    ExtStatus: MSGFLTINFO_STATUS,
+};
+
+pub const IndexedResourceQualifier = extern struct {
+    name: ?PWSTR,
+    value: ?PWSTR,
+};
+
+pub const MrmPlatformVersion = enum(i32) {
+    Default = 0,
+    Windows10_0_0_0 = 17432576,
+    Windows10_0_0_5 = 17432581,
+};
+pub const MrmPlatformVersion_Default = MrmPlatformVersion.Default;
+pub const MrmPlatformVersion_Windows10_0_0_0 = MrmPlatformVersion.Windows10_0_0_0;
+pub const MrmPlatformVersion_Windows10_0_0_5 = MrmPlatformVersion.Windows10_0_0_5;
+
+pub const MrmResourceIndexerHandle = extern struct {
+    handle: ?*c_void,
+};
+
+pub const MrmPackagingMode = enum(i32) {
+    StandaloneFile = 0,
+    AutoSplit = 1,
+    ResourcePack = 2,
+};
+pub const MrmPackagingModeStandaloneFile = MrmPackagingMode.StandaloneFile;
+pub const MrmPackagingModeAutoSplit = MrmPackagingMode.AutoSplit;
+pub const MrmPackagingModeResourcePack = MrmPackagingMode.ResourcePack;
+
+pub const MrmPackagingOptions = enum(i32) {
+    None = 0,
+    OmitSchemaFromResourcePacks = 1,
+    SplitLanguageVariants = 2,
+};
+pub const MrmPackagingOptionsNone = MrmPackagingOptions.None;
+pub const MrmPackagingOptionsOmitSchemaFromResourcePacks = MrmPackagingOptions.OmitSchemaFromResourcePacks;
+pub const MrmPackagingOptionsSplitLanguageVariants = MrmPackagingOptions.SplitLanguageVariants;
+
+pub const MrmDumpType = enum(i32) {
+    Basic = 0,
+    Detailed = 1,
+    Schema = 2,
+};
+pub const MrmDumpType_Basic = MrmDumpType.Basic;
+pub const MrmDumpType_Detailed = MrmDumpType.Detailed;
+pub const MrmDumpType_Schema = MrmDumpType.Schema;
+
+pub const MrmResourceIndexerMessageSeverity = enum(i32) {
+    Verbose = 0,
+    Info = 1,
+    Warning = 2,
+    Error = 3,
+};
+pub const MrmResourceIndexerMessageSeverityVerbose = MrmResourceIndexerMessageSeverity.Verbose;
+pub const MrmResourceIndexerMessageSeverityInfo = MrmResourceIndexerMessageSeverity.Info;
+pub const MrmResourceIndexerMessageSeverityWarning = MrmResourceIndexerMessageSeverity.Warning;
+pub const MrmResourceIndexerMessageSeverityError = MrmResourceIndexerMessageSeverity.Error;
+
+pub const MrmResourceIndexerMessage = extern struct {
+    severity: MrmResourceIndexerMessageSeverity,
+    id: u32,
+    text: ?[*:0]const u16,
+};
 
 
 
@@ -6615,7 +6656,7 @@ pub const PAGESETUPDLGW = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (424)
+// Section: Functions (426)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -7306,6 +7347,17 @@ pub extern "USER32" fn SetLayeredWindowAttributes(
 pub extern "USER32" fn ShowWindowAsync(
     hWnd: ?HWND,
     nCmdShow: SHOW_WINDOW_CMD,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindow(
+    hWnd: ?HWND,
+    bInvert: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindowEx(
+    pfwi: ?*FLASHWINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9225,7 +9277,7 @@ pub extern "USER32" fn GetTitleBarInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetMenuBarInfo(
     hwnd: ?HWND,
-    idObject: SCROLLBAR_OBJID,
+    idObject: OBJECT_IDENTIFIER,
     idItem: i32,
     pmbi: ?*MENUBARINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -10030,11 +10082,11 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const LUID = @import("../system/system_services.zig").LUID;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
+const OBJECT_IDENTIFIER = @import("../ui/controls.zig").OBJECT_IDENTIFIER;
 const POINT = @import("../foundation.zig").POINT;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
-const SCROLLBAR_OBJID = @import("../ui/controls.zig").SCROLLBAR_OBJID;
 const SIZE = @import("../foundation.zig").SIZE;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

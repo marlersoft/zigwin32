@@ -151,61 +151,6 @@ pub const REG_CREATE_KEY_DISPOSITION = enum(u32) {
 pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
 pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
 
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = *opaque{};
-
-pub const val_context = extern struct {
-    valuelen: i32,
-    value_context: ?*c_void,
-    val_buff_ptr: ?*c_void,
-};
-
-pub const pvalueA = extern struct {
-    pv_valuename: ?PSTR,
-    pv_valuelen: i32,
-    pv_value_context: ?*c_void,
-    pv_type: u32,
-};
-
-pub const pvalueW = extern struct {
-    pv_valuename: ?PWSTR,
-    pv_valuelen: i32,
-    pv_value_context: ?*c_void,
-    pv_type: u32,
-};
-
-pub const PQUERYHANDLER = fn(
-    keycontext: ?*c_void,
-    val_list: ?*val_context,
-    num_vals: u32,
-    outputbuffer: ?*c_void,
-    total_outlen: ?*u32,
-    input_blen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const provider_info = extern struct {
-    pi_R0_1val: ?PQUERYHANDLER,
-    pi_R0_allvals: ?PQUERYHANDLER,
-    pi_R3_1val: ?PQUERYHANDLER,
-    pi_R3_allvals: ?PQUERYHANDLER,
-    pi_flags: u32,
-    pi_key_context: ?*c_void,
-};
-
-pub const VALENTA = extern struct {
-    ve_valuename: ?PSTR,
-    ve_valuelen: u32,
-    ve_valueptr: usize,
-    ve_type: REG_VALUE_TYPE,
-};
-
-pub const VALENTW = extern struct {
-    ve_valuename: ?PWSTR,
-    ve_valuelen: u32,
-    ve_valueptr: usize,
-    ve_type: REG_VALUE_TYPE,
-};
-
 pub const REG_SAVE_FORMAT = enum(u32) {
     STANDARD_FORMAT = 1,
     LATEST_FORMAT = 2,
@@ -299,6 +244,61 @@ pub const RRF_RT_REG_MULTI_SZ = RRF_RT.REG_MULTI_SZ;
 pub const RRF_RT_REG_NONE = RRF_RT.REG_NONE;
 pub const RRF_RT_REG_QWORD = RRF_RT.REG_QWORD;
 pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
+
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = *opaque{};
+
+pub const val_context = extern struct {
+    valuelen: i32,
+    value_context: ?*c_void,
+    val_buff_ptr: ?*c_void,
+};
+
+pub const pvalueA = extern struct {
+    pv_valuename: ?PSTR,
+    pv_valuelen: i32,
+    pv_value_context: ?*c_void,
+    pv_type: u32,
+};
+
+pub const pvalueW = extern struct {
+    pv_valuename: ?PWSTR,
+    pv_valuelen: i32,
+    pv_value_context: ?*c_void,
+    pv_type: u32,
+};
+
+pub const PQUERYHANDLER = fn(
+    keycontext: ?*c_void,
+    val_list: ?*val_context,
+    num_vals: u32,
+    outputbuffer: ?*c_void,
+    total_outlen: ?*u32,
+    input_blen: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const provider_info = extern struct {
+    pi_R0_1val: ?PQUERYHANDLER,
+    pi_R0_allvals: ?PQUERYHANDLER,
+    pi_R3_1val: ?PQUERYHANDLER,
+    pi_R3_allvals: ?PQUERYHANDLER,
+    pi_flags: u32,
+    pi_key_context: ?*c_void,
+};
+
+pub const VALENTA = extern struct {
+    ve_valuename: ?PSTR,
+    ve_valuelen: u32,
+    ve_valueptr: usize,
+    ve_type: REG_VALUE_TYPE,
+};
+
+pub const VALENTW = extern struct {
+    ve_valuename: ?PWSTR,
+    ve_valuelen: u32,
+    ve_valueptr: usize,
+    ve_type: REG_VALUE_TYPE,
+};
 
 
 //--------------------------------------------------------------------------------

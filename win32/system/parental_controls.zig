@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (102)
 //--------------------------------------------------------------------------------
-pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 pub const ARRAY_SEP_CHAR = @as(u32, 9);
 pub const WPCCHANNEL = @as(u32, 16);
 pub const WPC_SETTINGS_LOCATE = @as(u32, 20);
@@ -104,6 +103,7 @@ pub const MSG_Event_WebsiteVisit = @as(i32, -1342177261);
 pub const MSG_Event_Application = @as(i32, -1342177260);
 pub const MSG_Event_ComputerUsage = @as(i32, -1342177259);
 pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
+pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 
 //--------------------------------------------------------------------------------
 // Section: Types (44)

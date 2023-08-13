@@ -2,398 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (922)
 //--------------------------------------------------------------------------------
-pub const UIA_ScrollPatternNoScroll = @as(f64, -1);
-pub const UIA_InvokePatternId = @as(i32, 10000);
-pub const UIA_SelectionPatternId = @as(i32, 10001);
-pub const UIA_ValuePatternId = @as(i32, 10002);
-pub const UIA_RangeValuePatternId = @as(i32, 10003);
-pub const UIA_ScrollPatternId = @as(i32, 10004);
-pub const UIA_ExpandCollapsePatternId = @as(i32, 10005);
-pub const UIA_GridPatternId = @as(i32, 10006);
-pub const UIA_GridItemPatternId = @as(i32, 10007);
-pub const UIA_MultipleViewPatternId = @as(i32, 10008);
-pub const UIA_WindowPatternId = @as(i32, 10009);
-pub const UIA_SelectionItemPatternId = @as(i32, 10010);
-pub const UIA_DockPatternId = @as(i32, 10011);
-pub const UIA_TablePatternId = @as(i32, 10012);
-pub const UIA_TableItemPatternId = @as(i32, 10013);
-pub const UIA_TextPatternId = @as(i32, 10014);
-pub const UIA_TogglePatternId = @as(i32, 10015);
-pub const UIA_TransformPatternId = @as(i32, 10016);
-pub const UIA_ScrollItemPatternId = @as(i32, 10017);
-pub const UIA_LegacyIAccessiblePatternId = @as(i32, 10018);
-pub const UIA_ItemContainerPatternId = @as(i32, 10019);
-pub const UIA_VirtualizedItemPatternId = @as(i32, 10020);
-pub const UIA_SynchronizedInputPatternId = @as(i32, 10021);
-pub const UIA_ObjectModelPatternId = @as(i32, 10022);
-pub const UIA_AnnotationPatternId = @as(i32, 10023);
-pub const UIA_TextPattern2Id = @as(i32, 10024);
-pub const UIA_StylesPatternId = @as(i32, 10025);
-pub const UIA_SpreadsheetPatternId = @as(i32, 10026);
-pub const UIA_SpreadsheetItemPatternId = @as(i32, 10027);
-pub const UIA_TransformPattern2Id = @as(i32, 10028);
-pub const UIA_TextChildPatternId = @as(i32, 10029);
-pub const UIA_DragPatternId = @as(i32, 10030);
-pub const UIA_DropTargetPatternId = @as(i32, 10031);
-pub const UIA_TextEditPatternId = @as(i32, 10032);
-pub const UIA_CustomNavigationPatternId = @as(i32, 10033);
-pub const UIA_SelectionPattern2Id = @as(i32, 10034);
-pub const UIA_ToolTipOpenedEventId = @as(i32, 20000);
-pub const UIA_ToolTipClosedEventId = @as(i32, 20001);
-pub const UIA_StructureChangedEventId = @as(i32, 20002);
-pub const UIA_MenuOpenedEventId = @as(i32, 20003);
-pub const UIA_AutomationPropertyChangedEventId = @as(i32, 20004);
-pub const UIA_AutomationFocusChangedEventId = @as(i32, 20005);
-pub const UIA_AsyncContentLoadedEventId = @as(i32, 20006);
-pub const UIA_MenuClosedEventId = @as(i32, 20007);
-pub const UIA_LayoutInvalidatedEventId = @as(i32, 20008);
-pub const UIA_Invoke_InvokedEventId = @as(i32, 20009);
-pub const UIA_SelectionItem_ElementAddedToSelectionEventId = @as(i32, 20010);
-pub const UIA_SelectionItem_ElementRemovedFromSelectionEventId = @as(i32, 20011);
-pub const UIA_SelectionItem_ElementSelectedEventId = @as(i32, 20012);
-pub const UIA_Selection_InvalidatedEventId = @as(i32, 20013);
-pub const UIA_Text_TextSelectionChangedEventId = @as(i32, 20014);
-pub const UIA_Text_TextChangedEventId = @as(i32, 20015);
-pub const UIA_Window_WindowOpenedEventId = @as(i32, 20016);
-pub const UIA_Window_WindowClosedEventId = @as(i32, 20017);
-pub const UIA_MenuModeStartEventId = @as(i32, 20018);
-pub const UIA_MenuModeEndEventId = @as(i32, 20019);
-pub const UIA_InputReachedTargetEventId = @as(i32, 20020);
-pub const UIA_InputReachedOtherElementEventId = @as(i32, 20021);
-pub const UIA_InputDiscardedEventId = @as(i32, 20022);
-pub const UIA_SystemAlertEventId = @as(i32, 20023);
-pub const UIA_LiveRegionChangedEventId = @as(i32, 20024);
-pub const UIA_HostedFragmentRootsInvalidatedEventId = @as(i32, 20025);
-pub const UIA_Drag_DragStartEventId = @as(i32, 20026);
-pub const UIA_Drag_DragCancelEventId = @as(i32, 20027);
-pub const UIA_Drag_DragCompleteEventId = @as(i32, 20028);
-pub const UIA_DropTarget_DragEnterEventId = @as(i32, 20029);
-pub const UIA_DropTarget_DragLeaveEventId = @as(i32, 20030);
-pub const UIA_DropTarget_DroppedEventId = @as(i32, 20031);
-pub const UIA_TextEdit_TextChangedEventId = @as(i32, 20032);
-pub const UIA_TextEdit_ConversionTargetChangedEventId = @as(i32, 20033);
-pub const UIA_ChangesEventId = @as(i32, 20034);
-pub const UIA_NotificationEventId = @as(i32, 20035);
-pub const UIA_ActiveTextPositionChangedEventId = @as(i32, 20036);
-pub const UIA_RuntimeIdPropertyId = @as(i32, 30000);
-pub const UIA_BoundingRectanglePropertyId = @as(i32, 30001);
-pub const UIA_ProcessIdPropertyId = @as(i32, 30002);
-pub const UIA_ControlTypePropertyId = @as(i32, 30003);
-pub const UIA_LocalizedControlTypePropertyId = @as(i32, 30004);
-pub const UIA_NamePropertyId = @as(i32, 30005);
-pub const UIA_AcceleratorKeyPropertyId = @as(i32, 30006);
-pub const UIA_AccessKeyPropertyId = @as(i32, 30007);
-pub const UIA_HasKeyboardFocusPropertyId = @as(i32, 30008);
-pub const UIA_IsKeyboardFocusablePropertyId = @as(i32, 30009);
-pub const UIA_IsEnabledPropertyId = @as(i32, 30010);
-pub const UIA_AutomationIdPropertyId = @as(i32, 30011);
-pub const UIA_ClassNamePropertyId = @as(i32, 30012);
-pub const UIA_HelpTextPropertyId = @as(i32, 30013);
-pub const UIA_ClickablePointPropertyId = @as(i32, 30014);
-pub const UIA_CulturePropertyId = @as(i32, 30015);
-pub const UIA_IsControlElementPropertyId = @as(i32, 30016);
-pub const UIA_IsContentElementPropertyId = @as(i32, 30017);
-pub const UIA_LabeledByPropertyId = @as(i32, 30018);
-pub const UIA_IsPasswordPropertyId = @as(i32, 30019);
-pub const UIA_NativeWindowHandlePropertyId = @as(i32, 30020);
-pub const UIA_ItemTypePropertyId = @as(i32, 30021);
-pub const UIA_IsOffscreenPropertyId = @as(i32, 30022);
-pub const UIA_OrientationPropertyId = @as(i32, 30023);
-pub const UIA_FrameworkIdPropertyId = @as(i32, 30024);
-pub const UIA_IsRequiredForFormPropertyId = @as(i32, 30025);
-pub const UIA_ItemStatusPropertyId = @as(i32, 30026);
-pub const UIA_IsDockPatternAvailablePropertyId = @as(i32, 30027);
-pub const UIA_IsExpandCollapsePatternAvailablePropertyId = @as(i32, 30028);
-pub const UIA_IsGridItemPatternAvailablePropertyId = @as(i32, 30029);
-pub const UIA_IsGridPatternAvailablePropertyId = @as(i32, 30030);
-pub const UIA_IsInvokePatternAvailablePropertyId = @as(i32, 30031);
-pub const UIA_IsMultipleViewPatternAvailablePropertyId = @as(i32, 30032);
-pub const UIA_IsRangeValuePatternAvailablePropertyId = @as(i32, 30033);
-pub const UIA_IsScrollPatternAvailablePropertyId = @as(i32, 30034);
-pub const UIA_IsScrollItemPatternAvailablePropertyId = @as(i32, 30035);
-pub const UIA_IsSelectionItemPatternAvailablePropertyId = @as(i32, 30036);
-pub const UIA_IsSelectionPatternAvailablePropertyId = @as(i32, 30037);
-pub const UIA_IsTablePatternAvailablePropertyId = @as(i32, 30038);
-pub const UIA_IsTableItemPatternAvailablePropertyId = @as(i32, 30039);
-pub const UIA_IsTextPatternAvailablePropertyId = @as(i32, 30040);
-pub const UIA_IsTogglePatternAvailablePropertyId = @as(i32, 30041);
-pub const UIA_IsTransformPatternAvailablePropertyId = @as(i32, 30042);
-pub const UIA_IsValuePatternAvailablePropertyId = @as(i32, 30043);
-pub const UIA_IsWindowPatternAvailablePropertyId = @as(i32, 30044);
-pub const UIA_ValueValuePropertyId = @as(i32, 30045);
-pub const UIA_ValueIsReadOnlyPropertyId = @as(i32, 30046);
-pub const UIA_RangeValueValuePropertyId = @as(i32, 30047);
-pub const UIA_RangeValueIsReadOnlyPropertyId = @as(i32, 30048);
-pub const UIA_RangeValueMinimumPropertyId = @as(i32, 30049);
-pub const UIA_RangeValueMaximumPropertyId = @as(i32, 30050);
-pub const UIA_RangeValueLargeChangePropertyId = @as(i32, 30051);
-pub const UIA_RangeValueSmallChangePropertyId = @as(i32, 30052);
-pub const UIA_ScrollHorizontalScrollPercentPropertyId = @as(i32, 30053);
-pub const UIA_ScrollHorizontalViewSizePropertyId = @as(i32, 30054);
-pub const UIA_ScrollVerticalScrollPercentPropertyId = @as(i32, 30055);
-pub const UIA_ScrollVerticalViewSizePropertyId = @as(i32, 30056);
-pub const UIA_ScrollHorizontallyScrollablePropertyId = @as(i32, 30057);
-pub const UIA_ScrollVerticallyScrollablePropertyId = @as(i32, 30058);
-pub const UIA_SelectionSelectionPropertyId = @as(i32, 30059);
-pub const UIA_SelectionCanSelectMultiplePropertyId = @as(i32, 30060);
-pub const UIA_SelectionIsSelectionRequiredPropertyId = @as(i32, 30061);
-pub const UIA_GridRowCountPropertyId = @as(i32, 30062);
-pub const UIA_GridColumnCountPropertyId = @as(i32, 30063);
-pub const UIA_GridItemRowPropertyId = @as(i32, 30064);
-pub const UIA_GridItemColumnPropertyId = @as(i32, 30065);
-pub const UIA_GridItemRowSpanPropertyId = @as(i32, 30066);
-pub const UIA_GridItemColumnSpanPropertyId = @as(i32, 30067);
-pub const UIA_GridItemContainingGridPropertyId = @as(i32, 30068);
-pub const UIA_DockDockPositionPropertyId = @as(i32, 30069);
-pub const UIA_ExpandCollapseExpandCollapseStatePropertyId = @as(i32, 30070);
-pub const UIA_MultipleViewCurrentViewPropertyId = @as(i32, 30071);
-pub const UIA_MultipleViewSupportedViewsPropertyId = @as(i32, 30072);
-pub const UIA_WindowCanMaximizePropertyId = @as(i32, 30073);
-pub const UIA_WindowCanMinimizePropertyId = @as(i32, 30074);
-pub const UIA_WindowWindowVisualStatePropertyId = @as(i32, 30075);
-pub const UIA_WindowWindowInteractionStatePropertyId = @as(i32, 30076);
-pub const UIA_WindowIsModalPropertyId = @as(i32, 30077);
-pub const UIA_WindowIsTopmostPropertyId = @as(i32, 30078);
-pub const UIA_SelectionItemIsSelectedPropertyId = @as(i32, 30079);
-pub const UIA_SelectionItemSelectionContainerPropertyId = @as(i32, 30080);
-pub const UIA_TableRowHeadersPropertyId = @as(i32, 30081);
-pub const UIA_TableColumnHeadersPropertyId = @as(i32, 30082);
-pub const UIA_TableRowOrColumnMajorPropertyId = @as(i32, 30083);
-pub const UIA_TableItemRowHeaderItemsPropertyId = @as(i32, 30084);
-pub const UIA_TableItemColumnHeaderItemsPropertyId = @as(i32, 30085);
-pub const UIA_ToggleToggleStatePropertyId = @as(i32, 30086);
-pub const UIA_TransformCanMovePropertyId = @as(i32, 30087);
-pub const UIA_TransformCanResizePropertyId = @as(i32, 30088);
-pub const UIA_TransformCanRotatePropertyId = @as(i32, 30089);
-pub const UIA_IsLegacyIAccessiblePatternAvailablePropertyId = @as(i32, 30090);
-pub const UIA_LegacyIAccessibleChildIdPropertyId = @as(i32, 30091);
-pub const UIA_LegacyIAccessibleNamePropertyId = @as(i32, 30092);
-pub const UIA_LegacyIAccessibleValuePropertyId = @as(i32, 30093);
-pub const UIA_LegacyIAccessibleDescriptionPropertyId = @as(i32, 30094);
-pub const UIA_LegacyIAccessibleRolePropertyId = @as(i32, 30095);
-pub const UIA_LegacyIAccessibleStatePropertyId = @as(i32, 30096);
-pub const UIA_LegacyIAccessibleHelpPropertyId = @as(i32, 30097);
-pub const UIA_LegacyIAccessibleKeyboardShortcutPropertyId = @as(i32, 30098);
-pub const UIA_LegacyIAccessibleSelectionPropertyId = @as(i32, 30099);
-pub const UIA_LegacyIAccessibleDefaultActionPropertyId = @as(i32, 30100);
-pub const UIA_AriaRolePropertyId = @as(i32, 30101);
-pub const UIA_AriaPropertiesPropertyId = @as(i32, 30102);
-pub const UIA_IsDataValidForFormPropertyId = @as(i32, 30103);
-pub const UIA_ControllerForPropertyId = @as(i32, 30104);
-pub const UIA_DescribedByPropertyId = @as(i32, 30105);
-pub const UIA_FlowsToPropertyId = @as(i32, 30106);
-pub const UIA_ProviderDescriptionPropertyId = @as(i32, 30107);
-pub const UIA_IsItemContainerPatternAvailablePropertyId = @as(i32, 30108);
-pub const UIA_IsVirtualizedItemPatternAvailablePropertyId = @as(i32, 30109);
-pub const UIA_IsSynchronizedInputPatternAvailablePropertyId = @as(i32, 30110);
-pub const UIA_OptimizeForVisualContentPropertyId = @as(i32, 30111);
-pub const UIA_IsObjectModelPatternAvailablePropertyId = @as(i32, 30112);
-pub const UIA_AnnotationAnnotationTypeIdPropertyId = @as(i32, 30113);
-pub const UIA_AnnotationAnnotationTypeNamePropertyId = @as(i32, 30114);
-pub const UIA_AnnotationAuthorPropertyId = @as(i32, 30115);
-pub const UIA_AnnotationDateTimePropertyId = @as(i32, 30116);
-pub const UIA_AnnotationTargetPropertyId = @as(i32, 30117);
-pub const UIA_IsAnnotationPatternAvailablePropertyId = @as(i32, 30118);
-pub const UIA_IsTextPattern2AvailablePropertyId = @as(i32, 30119);
-pub const UIA_StylesStyleIdPropertyId = @as(i32, 30120);
-pub const UIA_StylesStyleNamePropertyId = @as(i32, 30121);
-pub const UIA_StylesFillColorPropertyId = @as(i32, 30122);
-pub const UIA_StylesFillPatternStylePropertyId = @as(i32, 30123);
-pub const UIA_StylesShapePropertyId = @as(i32, 30124);
-pub const UIA_StylesFillPatternColorPropertyId = @as(i32, 30125);
-pub const UIA_StylesExtendedPropertiesPropertyId = @as(i32, 30126);
-pub const UIA_IsStylesPatternAvailablePropertyId = @as(i32, 30127);
-pub const UIA_IsSpreadsheetPatternAvailablePropertyId = @as(i32, 30128);
-pub const UIA_SpreadsheetItemFormulaPropertyId = @as(i32, 30129);
-pub const UIA_SpreadsheetItemAnnotationObjectsPropertyId = @as(i32, 30130);
-pub const UIA_SpreadsheetItemAnnotationTypesPropertyId = @as(i32, 30131);
-pub const UIA_IsSpreadsheetItemPatternAvailablePropertyId = @as(i32, 30132);
-pub const UIA_Transform2CanZoomPropertyId = @as(i32, 30133);
-pub const UIA_IsTransformPattern2AvailablePropertyId = @as(i32, 30134);
-pub const UIA_LiveSettingPropertyId = @as(i32, 30135);
-pub const UIA_IsTextChildPatternAvailablePropertyId = @as(i32, 30136);
-pub const UIA_IsDragPatternAvailablePropertyId = @as(i32, 30137);
-pub const UIA_DragIsGrabbedPropertyId = @as(i32, 30138);
-pub const UIA_DragDropEffectPropertyId = @as(i32, 30139);
-pub const UIA_DragDropEffectsPropertyId = @as(i32, 30140);
-pub const UIA_IsDropTargetPatternAvailablePropertyId = @as(i32, 30141);
-pub const UIA_DropTargetDropTargetEffectPropertyId = @as(i32, 30142);
-pub const UIA_DropTargetDropTargetEffectsPropertyId = @as(i32, 30143);
-pub const UIA_DragGrabbedItemsPropertyId = @as(i32, 30144);
-pub const UIA_Transform2ZoomLevelPropertyId = @as(i32, 30145);
-pub const UIA_Transform2ZoomMinimumPropertyId = @as(i32, 30146);
-pub const UIA_Transform2ZoomMaximumPropertyId = @as(i32, 30147);
-pub const UIA_FlowsFromPropertyId = @as(i32, 30148);
-pub const UIA_IsTextEditPatternAvailablePropertyId = @as(i32, 30149);
-pub const UIA_IsPeripheralPropertyId = @as(i32, 30150);
-pub const UIA_IsCustomNavigationPatternAvailablePropertyId = @as(i32, 30151);
-pub const UIA_PositionInSetPropertyId = @as(i32, 30152);
-pub const UIA_SizeOfSetPropertyId = @as(i32, 30153);
-pub const UIA_LevelPropertyId = @as(i32, 30154);
-pub const UIA_AnnotationTypesPropertyId = @as(i32, 30155);
-pub const UIA_AnnotationObjectsPropertyId = @as(i32, 30156);
-pub const UIA_LandmarkTypePropertyId = @as(i32, 30157);
-pub const UIA_LocalizedLandmarkTypePropertyId = @as(i32, 30158);
-pub const UIA_FullDescriptionPropertyId = @as(i32, 30159);
-pub const UIA_FillColorPropertyId = @as(i32, 30160);
-pub const UIA_OutlineColorPropertyId = @as(i32, 30161);
-pub const UIA_FillTypePropertyId = @as(i32, 30162);
-pub const UIA_VisualEffectsPropertyId = @as(i32, 30163);
-pub const UIA_OutlineThicknessPropertyId = @as(i32, 30164);
-pub const UIA_CenterPointPropertyId = @as(i32, 30165);
-pub const UIA_RotationPropertyId = @as(i32, 30166);
-pub const UIA_SizePropertyId = @as(i32, 30167);
-pub const UIA_IsSelectionPattern2AvailablePropertyId = @as(i32, 30168);
-pub const UIA_Selection2FirstSelectedItemPropertyId = @as(i32, 30169);
-pub const UIA_Selection2LastSelectedItemPropertyId = @as(i32, 30170);
-pub const UIA_Selection2CurrentSelectedItemPropertyId = @as(i32, 30171);
-pub const UIA_Selection2ItemCountPropertyId = @as(i32, 30172);
-pub const UIA_HeadingLevelPropertyId = @as(i32, 30173);
-pub const UIA_IsDialogPropertyId = @as(i32, 30174);
-pub const UIA_AnimationStyleAttributeId = @as(i32, 40000);
-pub const UIA_BackgroundColorAttributeId = @as(i32, 40001);
-pub const UIA_BulletStyleAttributeId = @as(i32, 40002);
-pub const UIA_CapStyleAttributeId = @as(i32, 40003);
-pub const UIA_CultureAttributeId = @as(i32, 40004);
-pub const UIA_FontNameAttributeId = @as(i32, 40005);
-pub const UIA_FontSizeAttributeId = @as(i32, 40006);
-pub const UIA_FontWeightAttributeId = @as(i32, 40007);
-pub const UIA_ForegroundColorAttributeId = @as(i32, 40008);
-pub const UIA_HorizontalTextAlignmentAttributeId = @as(i32, 40009);
-pub const UIA_IndentationFirstLineAttributeId = @as(i32, 40010);
-pub const UIA_IndentationLeadingAttributeId = @as(i32, 40011);
-pub const UIA_IndentationTrailingAttributeId = @as(i32, 40012);
-pub const UIA_IsHiddenAttributeId = @as(i32, 40013);
-pub const UIA_IsItalicAttributeId = @as(i32, 40014);
-pub const UIA_IsReadOnlyAttributeId = @as(i32, 40015);
-pub const UIA_IsSubscriptAttributeId = @as(i32, 40016);
-pub const UIA_IsSuperscriptAttributeId = @as(i32, 40017);
-pub const UIA_MarginBottomAttributeId = @as(i32, 40018);
-pub const UIA_MarginLeadingAttributeId = @as(i32, 40019);
-pub const UIA_MarginTopAttributeId = @as(i32, 40020);
-pub const UIA_MarginTrailingAttributeId = @as(i32, 40021);
-pub const UIA_OutlineStylesAttributeId = @as(i32, 40022);
-pub const UIA_OverlineColorAttributeId = @as(i32, 40023);
-pub const UIA_OverlineStyleAttributeId = @as(i32, 40024);
-pub const UIA_StrikethroughColorAttributeId = @as(i32, 40025);
-pub const UIA_StrikethroughStyleAttributeId = @as(i32, 40026);
-pub const UIA_TabsAttributeId = @as(i32, 40027);
-pub const UIA_TextFlowDirectionsAttributeId = @as(i32, 40028);
-pub const UIA_UnderlineColorAttributeId = @as(i32, 40029);
-pub const UIA_UnderlineStyleAttributeId = @as(i32, 40030);
-pub const UIA_AnnotationTypesAttributeId = @as(i32, 40031);
-pub const UIA_AnnotationObjectsAttributeId = @as(i32, 40032);
-pub const UIA_StyleNameAttributeId = @as(i32, 40033);
-pub const UIA_StyleIdAttributeId = @as(i32, 40034);
-pub const UIA_LinkAttributeId = @as(i32, 40035);
-pub const UIA_IsActiveAttributeId = @as(i32, 40036);
-pub const UIA_SelectionActiveEndAttributeId = @as(i32, 40037);
-pub const UIA_CaretPositionAttributeId = @as(i32, 40038);
-pub const UIA_CaretBidiModeAttributeId = @as(i32, 40039);
-pub const UIA_LineSpacingAttributeId = @as(i32, 40040);
-pub const UIA_BeforeParagraphSpacingAttributeId = @as(i32, 40041);
-pub const UIA_AfterParagraphSpacingAttributeId = @as(i32, 40042);
-pub const UIA_SayAsInterpretAsAttributeId = @as(i32, 40043);
-pub const UIA_ButtonControlTypeId = @as(i32, 50000);
-pub const UIA_CalendarControlTypeId = @as(i32, 50001);
-pub const UIA_CheckBoxControlTypeId = @as(i32, 50002);
-pub const UIA_ComboBoxControlTypeId = @as(i32, 50003);
-pub const UIA_EditControlTypeId = @as(i32, 50004);
-pub const UIA_HyperlinkControlTypeId = @as(i32, 50005);
-pub const UIA_ImageControlTypeId = @as(i32, 50006);
-pub const UIA_ListItemControlTypeId = @as(i32, 50007);
-pub const UIA_ListControlTypeId = @as(i32, 50008);
-pub const UIA_MenuControlTypeId = @as(i32, 50009);
-pub const UIA_MenuBarControlTypeId = @as(i32, 50010);
-pub const UIA_MenuItemControlTypeId = @as(i32, 50011);
-pub const UIA_ProgressBarControlTypeId = @as(i32, 50012);
-pub const UIA_RadioButtonControlTypeId = @as(i32, 50013);
-pub const UIA_ScrollBarControlTypeId = @as(i32, 50014);
-pub const UIA_SliderControlTypeId = @as(i32, 50015);
-pub const UIA_SpinnerControlTypeId = @as(i32, 50016);
-pub const UIA_StatusBarControlTypeId = @as(i32, 50017);
-pub const UIA_TabControlTypeId = @as(i32, 50018);
-pub const UIA_TabItemControlTypeId = @as(i32, 50019);
-pub const UIA_TextControlTypeId = @as(i32, 50020);
-pub const UIA_ToolBarControlTypeId = @as(i32, 50021);
-pub const UIA_ToolTipControlTypeId = @as(i32, 50022);
-pub const UIA_TreeControlTypeId = @as(i32, 50023);
-pub const UIA_TreeItemControlTypeId = @as(i32, 50024);
-pub const UIA_CustomControlTypeId = @as(i32, 50025);
-pub const UIA_GroupControlTypeId = @as(i32, 50026);
-pub const UIA_ThumbControlTypeId = @as(i32, 50027);
-pub const UIA_DataGridControlTypeId = @as(i32, 50028);
-pub const UIA_DataItemControlTypeId = @as(i32, 50029);
-pub const UIA_DocumentControlTypeId = @as(i32, 50030);
-pub const UIA_SplitButtonControlTypeId = @as(i32, 50031);
-pub const UIA_WindowControlTypeId = @as(i32, 50032);
-pub const UIA_PaneControlTypeId = @as(i32, 50033);
-pub const UIA_HeaderControlTypeId = @as(i32, 50034);
-pub const UIA_HeaderItemControlTypeId = @as(i32, 50035);
-pub const UIA_TableControlTypeId = @as(i32, 50036);
-pub const UIA_TitleBarControlTypeId = @as(i32, 50037);
-pub const UIA_SeparatorControlTypeId = @as(i32, 50038);
-pub const UIA_SemanticZoomControlTypeId = @as(i32, 50039);
-pub const UIA_AppBarControlTypeId = @as(i32, 50040);
-pub const AnnotationType_Unknown = @as(i32, 60000);
-pub const AnnotationType_SpellingError = @as(i32, 60001);
-pub const AnnotationType_GrammarError = @as(i32, 60002);
-pub const AnnotationType_Comment = @as(i32, 60003);
-pub const AnnotationType_FormulaError = @as(i32, 60004);
-pub const AnnotationType_TrackChanges = @as(i32, 60005);
-pub const AnnotationType_Header = @as(i32, 60006);
-pub const AnnotationType_Footer = @as(i32, 60007);
-pub const AnnotationType_Highlighted = @as(i32, 60008);
-pub const AnnotationType_Endnote = @as(i32, 60009);
-pub const AnnotationType_Footnote = @as(i32, 60010);
-pub const AnnotationType_InsertionChange = @as(i32, 60011);
-pub const AnnotationType_DeletionChange = @as(i32, 60012);
-pub const AnnotationType_MoveChange = @as(i32, 60013);
-pub const AnnotationType_FormatChange = @as(i32, 60014);
-pub const AnnotationType_UnsyncedChange = @as(i32, 60015);
-pub const AnnotationType_EditingLockedChange = @as(i32, 60016);
-pub const AnnotationType_ExternalChange = @as(i32, 60017);
-pub const AnnotationType_ConflictingChange = @as(i32, 60018);
-pub const AnnotationType_Author = @as(i32, 60019);
-pub const AnnotationType_AdvancedProofingIssue = @as(i32, 60020);
-pub const AnnotationType_DataValidationError = @as(i32, 60021);
-pub const AnnotationType_CircularReferenceError = @as(i32, 60022);
-pub const AnnotationType_Mathematics = @as(i32, 60023);
-pub const AnnotationType_Sensitive = @as(i32, 60024);
-pub const StyleId_Custom = @as(i32, 70000);
-pub const StyleId_Heading1 = @as(i32, 70001);
-pub const StyleId_Heading2 = @as(i32, 70002);
-pub const StyleId_Heading3 = @as(i32, 70003);
-pub const StyleId_Heading4 = @as(i32, 70004);
-pub const StyleId_Heading5 = @as(i32, 70005);
-pub const StyleId_Heading6 = @as(i32, 70006);
-pub const StyleId_Heading7 = @as(i32, 70007);
-pub const StyleId_Heading8 = @as(i32, 70008);
-pub const StyleId_Heading9 = @as(i32, 70009);
-pub const StyleId_Title = @as(i32, 70010);
-pub const StyleId_Subtitle = @as(i32, 70011);
-pub const StyleId_Normal = @as(i32, 70012);
-pub const StyleId_Emphasis = @as(i32, 70013);
-pub const StyleId_Quote = @as(i32, 70014);
-pub const StyleId_BulletedList = @as(i32, 70015);
-pub const StyleId_NumberedList = @as(i32, 70016);
-pub const UIA_CustomLandmarkTypeId = @as(i32, 80000);
-pub const UIA_FormLandmarkTypeId = @as(i32, 80001);
-pub const UIA_MainLandmarkTypeId = @as(i32, 80002);
-pub const UIA_NavigationLandmarkTypeId = @as(i32, 80003);
-pub const UIA_SearchLandmarkTypeId = @as(i32, 80004);
-pub const HeadingLevel_None = @as(i32, 80050);
-pub const HeadingLevel1 = @as(i32, 80051);
-pub const HeadingLevel2 = @as(i32, 80052);
-pub const HeadingLevel3 = @as(i32, 80053);
-pub const HeadingLevel4 = @as(i32, 80054);
-pub const HeadingLevel5 = @as(i32, 80055);
-pub const HeadingLevel6 = @as(i32, 80056);
-pub const HeadingLevel7 = @as(i32, 80057);
-pub const HeadingLevel8 = @as(i32, 80058);
-pub const HeadingLevel9 = @as(i32, 80059);
-pub const UIA_SummaryChangeId = @as(i32, 90000);
-pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 pub const LIBID_Accessibility = Guid.initString("1ea4dbf0-3c3b-11cf-810c-00aa00389b71");
 pub const CLSID_AccPropServices = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
 pub const IIS_IsOleaccProxy = Guid.initString("902697fa-80e4-4560-802a-a13f22a64709");
@@ -924,128 +532,402 @@ pub const UIA_IAFP_DEFAULT = @as(u32, 0);
 pub const UIA_IAFP_UNWRAP_BRIDGE = @as(u32, 1);
 pub const UIA_PFIA_DEFAULT = @as(u32, 0);
 pub const UIA_PFIA_UNWRAP_BRIDGE = @as(u32, 1);
+pub const UIA_ScrollPatternNoScroll = @as(f64, -1);
+pub const UIA_InvokePatternId = @as(i32, 10000);
+pub const UIA_SelectionPatternId = @as(i32, 10001);
+pub const UIA_ValuePatternId = @as(i32, 10002);
+pub const UIA_RangeValuePatternId = @as(i32, 10003);
+pub const UIA_ScrollPatternId = @as(i32, 10004);
+pub const UIA_ExpandCollapsePatternId = @as(i32, 10005);
+pub const UIA_GridPatternId = @as(i32, 10006);
+pub const UIA_GridItemPatternId = @as(i32, 10007);
+pub const UIA_MultipleViewPatternId = @as(i32, 10008);
+pub const UIA_WindowPatternId = @as(i32, 10009);
+pub const UIA_SelectionItemPatternId = @as(i32, 10010);
+pub const UIA_DockPatternId = @as(i32, 10011);
+pub const UIA_TablePatternId = @as(i32, 10012);
+pub const UIA_TableItemPatternId = @as(i32, 10013);
+pub const UIA_TextPatternId = @as(i32, 10014);
+pub const UIA_TogglePatternId = @as(i32, 10015);
+pub const UIA_TransformPatternId = @as(i32, 10016);
+pub const UIA_ScrollItemPatternId = @as(i32, 10017);
+pub const UIA_LegacyIAccessiblePatternId = @as(i32, 10018);
+pub const UIA_ItemContainerPatternId = @as(i32, 10019);
+pub const UIA_VirtualizedItemPatternId = @as(i32, 10020);
+pub const UIA_SynchronizedInputPatternId = @as(i32, 10021);
+pub const UIA_ObjectModelPatternId = @as(i32, 10022);
+pub const UIA_AnnotationPatternId = @as(i32, 10023);
+pub const UIA_TextPattern2Id = @as(i32, 10024);
+pub const UIA_StylesPatternId = @as(i32, 10025);
+pub const UIA_SpreadsheetPatternId = @as(i32, 10026);
+pub const UIA_SpreadsheetItemPatternId = @as(i32, 10027);
+pub const UIA_TransformPattern2Id = @as(i32, 10028);
+pub const UIA_TextChildPatternId = @as(i32, 10029);
+pub const UIA_DragPatternId = @as(i32, 10030);
+pub const UIA_DropTargetPatternId = @as(i32, 10031);
+pub const UIA_TextEditPatternId = @as(i32, 10032);
+pub const UIA_CustomNavigationPatternId = @as(i32, 10033);
+pub const UIA_SelectionPattern2Id = @as(i32, 10034);
+pub const UIA_ToolTipOpenedEventId = @as(i32, 20000);
+pub const UIA_ToolTipClosedEventId = @as(i32, 20001);
+pub const UIA_StructureChangedEventId = @as(i32, 20002);
+pub const UIA_MenuOpenedEventId = @as(i32, 20003);
+pub const UIA_AutomationPropertyChangedEventId = @as(i32, 20004);
+pub const UIA_AutomationFocusChangedEventId = @as(i32, 20005);
+pub const UIA_AsyncContentLoadedEventId = @as(i32, 20006);
+pub const UIA_MenuClosedEventId = @as(i32, 20007);
+pub const UIA_LayoutInvalidatedEventId = @as(i32, 20008);
+pub const UIA_Invoke_InvokedEventId = @as(i32, 20009);
+pub const UIA_SelectionItem_ElementAddedToSelectionEventId = @as(i32, 20010);
+pub const UIA_SelectionItem_ElementRemovedFromSelectionEventId = @as(i32, 20011);
+pub const UIA_SelectionItem_ElementSelectedEventId = @as(i32, 20012);
+pub const UIA_Selection_InvalidatedEventId = @as(i32, 20013);
+pub const UIA_Text_TextSelectionChangedEventId = @as(i32, 20014);
+pub const UIA_Text_TextChangedEventId = @as(i32, 20015);
+pub const UIA_Window_WindowOpenedEventId = @as(i32, 20016);
+pub const UIA_Window_WindowClosedEventId = @as(i32, 20017);
+pub const UIA_MenuModeStartEventId = @as(i32, 20018);
+pub const UIA_MenuModeEndEventId = @as(i32, 20019);
+pub const UIA_InputReachedTargetEventId = @as(i32, 20020);
+pub const UIA_InputReachedOtherElementEventId = @as(i32, 20021);
+pub const UIA_InputDiscardedEventId = @as(i32, 20022);
+pub const UIA_SystemAlertEventId = @as(i32, 20023);
+pub const UIA_LiveRegionChangedEventId = @as(i32, 20024);
+pub const UIA_HostedFragmentRootsInvalidatedEventId = @as(i32, 20025);
+pub const UIA_Drag_DragStartEventId = @as(i32, 20026);
+pub const UIA_Drag_DragCancelEventId = @as(i32, 20027);
+pub const UIA_Drag_DragCompleteEventId = @as(i32, 20028);
+pub const UIA_DropTarget_DragEnterEventId = @as(i32, 20029);
+pub const UIA_DropTarget_DragLeaveEventId = @as(i32, 20030);
+pub const UIA_DropTarget_DroppedEventId = @as(i32, 20031);
+pub const UIA_TextEdit_TextChangedEventId = @as(i32, 20032);
+pub const UIA_TextEdit_ConversionTargetChangedEventId = @as(i32, 20033);
+pub const UIA_ChangesEventId = @as(i32, 20034);
+pub const UIA_NotificationEventId = @as(i32, 20035);
+pub const UIA_ActiveTextPositionChangedEventId = @as(i32, 20036);
+pub const UIA_RuntimeIdPropertyId = @as(i32, 30000);
+pub const UIA_BoundingRectanglePropertyId = @as(i32, 30001);
+pub const UIA_ProcessIdPropertyId = @as(i32, 30002);
+pub const UIA_ControlTypePropertyId = @as(i32, 30003);
+pub const UIA_LocalizedControlTypePropertyId = @as(i32, 30004);
+pub const UIA_NamePropertyId = @as(i32, 30005);
+pub const UIA_AcceleratorKeyPropertyId = @as(i32, 30006);
+pub const UIA_AccessKeyPropertyId = @as(i32, 30007);
+pub const UIA_HasKeyboardFocusPropertyId = @as(i32, 30008);
+pub const UIA_IsKeyboardFocusablePropertyId = @as(i32, 30009);
+pub const UIA_IsEnabledPropertyId = @as(i32, 30010);
+pub const UIA_AutomationIdPropertyId = @as(i32, 30011);
+pub const UIA_ClassNamePropertyId = @as(i32, 30012);
+pub const UIA_HelpTextPropertyId = @as(i32, 30013);
+pub const UIA_ClickablePointPropertyId = @as(i32, 30014);
+pub const UIA_CulturePropertyId = @as(i32, 30015);
+pub const UIA_IsControlElementPropertyId = @as(i32, 30016);
+pub const UIA_IsContentElementPropertyId = @as(i32, 30017);
+pub const UIA_LabeledByPropertyId = @as(i32, 30018);
+pub const UIA_IsPasswordPropertyId = @as(i32, 30019);
+pub const UIA_NativeWindowHandlePropertyId = @as(i32, 30020);
+pub const UIA_ItemTypePropertyId = @as(i32, 30021);
+pub const UIA_IsOffscreenPropertyId = @as(i32, 30022);
+pub const UIA_OrientationPropertyId = @as(i32, 30023);
+pub const UIA_FrameworkIdPropertyId = @as(i32, 30024);
+pub const UIA_IsRequiredForFormPropertyId = @as(i32, 30025);
+pub const UIA_ItemStatusPropertyId = @as(i32, 30026);
+pub const UIA_IsDockPatternAvailablePropertyId = @as(i32, 30027);
+pub const UIA_IsExpandCollapsePatternAvailablePropertyId = @as(i32, 30028);
+pub const UIA_IsGridItemPatternAvailablePropertyId = @as(i32, 30029);
+pub const UIA_IsGridPatternAvailablePropertyId = @as(i32, 30030);
+pub const UIA_IsInvokePatternAvailablePropertyId = @as(i32, 30031);
+pub const UIA_IsMultipleViewPatternAvailablePropertyId = @as(i32, 30032);
+pub const UIA_IsRangeValuePatternAvailablePropertyId = @as(i32, 30033);
+pub const UIA_IsScrollPatternAvailablePropertyId = @as(i32, 30034);
+pub const UIA_IsScrollItemPatternAvailablePropertyId = @as(i32, 30035);
+pub const UIA_IsSelectionItemPatternAvailablePropertyId = @as(i32, 30036);
+pub const UIA_IsSelectionPatternAvailablePropertyId = @as(i32, 30037);
+pub const UIA_IsTablePatternAvailablePropertyId = @as(i32, 30038);
+pub const UIA_IsTableItemPatternAvailablePropertyId = @as(i32, 30039);
+pub const UIA_IsTextPatternAvailablePropertyId = @as(i32, 30040);
+pub const UIA_IsTogglePatternAvailablePropertyId = @as(i32, 30041);
+pub const UIA_IsTransformPatternAvailablePropertyId = @as(i32, 30042);
+pub const UIA_IsValuePatternAvailablePropertyId = @as(i32, 30043);
+pub const UIA_IsWindowPatternAvailablePropertyId = @as(i32, 30044);
+pub const UIA_ValueValuePropertyId = @as(i32, 30045);
+pub const UIA_ValueIsReadOnlyPropertyId = @as(i32, 30046);
+pub const UIA_RangeValueValuePropertyId = @as(i32, 30047);
+pub const UIA_RangeValueIsReadOnlyPropertyId = @as(i32, 30048);
+pub const UIA_RangeValueMinimumPropertyId = @as(i32, 30049);
+pub const UIA_RangeValueMaximumPropertyId = @as(i32, 30050);
+pub const UIA_RangeValueLargeChangePropertyId = @as(i32, 30051);
+pub const UIA_RangeValueSmallChangePropertyId = @as(i32, 30052);
+pub const UIA_ScrollHorizontalScrollPercentPropertyId = @as(i32, 30053);
+pub const UIA_ScrollHorizontalViewSizePropertyId = @as(i32, 30054);
+pub const UIA_ScrollVerticalScrollPercentPropertyId = @as(i32, 30055);
+pub const UIA_ScrollVerticalViewSizePropertyId = @as(i32, 30056);
+pub const UIA_ScrollHorizontallyScrollablePropertyId = @as(i32, 30057);
+pub const UIA_ScrollVerticallyScrollablePropertyId = @as(i32, 30058);
+pub const UIA_SelectionSelectionPropertyId = @as(i32, 30059);
+pub const UIA_SelectionCanSelectMultiplePropertyId = @as(i32, 30060);
+pub const UIA_SelectionIsSelectionRequiredPropertyId = @as(i32, 30061);
+pub const UIA_GridRowCountPropertyId = @as(i32, 30062);
+pub const UIA_GridColumnCountPropertyId = @as(i32, 30063);
+pub const UIA_GridItemRowPropertyId = @as(i32, 30064);
+pub const UIA_GridItemColumnPropertyId = @as(i32, 30065);
+pub const UIA_GridItemRowSpanPropertyId = @as(i32, 30066);
+pub const UIA_GridItemColumnSpanPropertyId = @as(i32, 30067);
+pub const UIA_GridItemContainingGridPropertyId = @as(i32, 30068);
+pub const UIA_DockDockPositionPropertyId = @as(i32, 30069);
+pub const UIA_ExpandCollapseExpandCollapseStatePropertyId = @as(i32, 30070);
+pub const UIA_MultipleViewCurrentViewPropertyId = @as(i32, 30071);
+pub const UIA_MultipleViewSupportedViewsPropertyId = @as(i32, 30072);
+pub const UIA_WindowCanMaximizePropertyId = @as(i32, 30073);
+pub const UIA_WindowCanMinimizePropertyId = @as(i32, 30074);
+pub const UIA_WindowWindowVisualStatePropertyId = @as(i32, 30075);
+pub const UIA_WindowWindowInteractionStatePropertyId = @as(i32, 30076);
+pub const UIA_WindowIsModalPropertyId = @as(i32, 30077);
+pub const UIA_WindowIsTopmostPropertyId = @as(i32, 30078);
+pub const UIA_SelectionItemIsSelectedPropertyId = @as(i32, 30079);
+pub const UIA_SelectionItemSelectionContainerPropertyId = @as(i32, 30080);
+pub const UIA_TableRowHeadersPropertyId = @as(i32, 30081);
+pub const UIA_TableColumnHeadersPropertyId = @as(i32, 30082);
+pub const UIA_TableRowOrColumnMajorPropertyId = @as(i32, 30083);
+pub const UIA_TableItemRowHeaderItemsPropertyId = @as(i32, 30084);
+pub const UIA_TableItemColumnHeaderItemsPropertyId = @as(i32, 30085);
+pub const UIA_ToggleToggleStatePropertyId = @as(i32, 30086);
+pub const UIA_TransformCanMovePropertyId = @as(i32, 30087);
+pub const UIA_TransformCanResizePropertyId = @as(i32, 30088);
+pub const UIA_TransformCanRotatePropertyId = @as(i32, 30089);
+pub const UIA_IsLegacyIAccessiblePatternAvailablePropertyId = @as(i32, 30090);
+pub const UIA_LegacyIAccessibleChildIdPropertyId = @as(i32, 30091);
+pub const UIA_LegacyIAccessibleNamePropertyId = @as(i32, 30092);
+pub const UIA_LegacyIAccessibleValuePropertyId = @as(i32, 30093);
+pub const UIA_LegacyIAccessibleDescriptionPropertyId = @as(i32, 30094);
+pub const UIA_LegacyIAccessibleRolePropertyId = @as(i32, 30095);
+pub const UIA_LegacyIAccessibleStatePropertyId = @as(i32, 30096);
+pub const UIA_LegacyIAccessibleHelpPropertyId = @as(i32, 30097);
+pub const UIA_LegacyIAccessibleKeyboardShortcutPropertyId = @as(i32, 30098);
+pub const UIA_LegacyIAccessibleSelectionPropertyId = @as(i32, 30099);
+pub const UIA_LegacyIAccessibleDefaultActionPropertyId = @as(i32, 30100);
+pub const UIA_AriaRolePropertyId = @as(i32, 30101);
+pub const UIA_AriaPropertiesPropertyId = @as(i32, 30102);
+pub const UIA_IsDataValidForFormPropertyId = @as(i32, 30103);
+pub const UIA_ControllerForPropertyId = @as(i32, 30104);
+pub const UIA_DescribedByPropertyId = @as(i32, 30105);
+pub const UIA_FlowsToPropertyId = @as(i32, 30106);
+pub const UIA_ProviderDescriptionPropertyId = @as(i32, 30107);
+pub const UIA_IsItemContainerPatternAvailablePropertyId = @as(i32, 30108);
+pub const UIA_IsVirtualizedItemPatternAvailablePropertyId = @as(i32, 30109);
+pub const UIA_IsSynchronizedInputPatternAvailablePropertyId = @as(i32, 30110);
+pub const UIA_OptimizeForVisualContentPropertyId = @as(i32, 30111);
+pub const UIA_IsObjectModelPatternAvailablePropertyId = @as(i32, 30112);
+pub const UIA_AnnotationAnnotationTypeIdPropertyId = @as(i32, 30113);
+pub const UIA_AnnotationAnnotationTypeNamePropertyId = @as(i32, 30114);
+pub const UIA_AnnotationAuthorPropertyId = @as(i32, 30115);
+pub const UIA_AnnotationDateTimePropertyId = @as(i32, 30116);
+pub const UIA_AnnotationTargetPropertyId = @as(i32, 30117);
+pub const UIA_IsAnnotationPatternAvailablePropertyId = @as(i32, 30118);
+pub const UIA_IsTextPattern2AvailablePropertyId = @as(i32, 30119);
+pub const UIA_StylesStyleIdPropertyId = @as(i32, 30120);
+pub const UIA_StylesStyleNamePropertyId = @as(i32, 30121);
+pub const UIA_StylesFillColorPropertyId = @as(i32, 30122);
+pub const UIA_StylesFillPatternStylePropertyId = @as(i32, 30123);
+pub const UIA_StylesShapePropertyId = @as(i32, 30124);
+pub const UIA_StylesFillPatternColorPropertyId = @as(i32, 30125);
+pub const UIA_StylesExtendedPropertiesPropertyId = @as(i32, 30126);
+pub const UIA_IsStylesPatternAvailablePropertyId = @as(i32, 30127);
+pub const UIA_IsSpreadsheetPatternAvailablePropertyId = @as(i32, 30128);
+pub const UIA_SpreadsheetItemFormulaPropertyId = @as(i32, 30129);
+pub const UIA_SpreadsheetItemAnnotationObjectsPropertyId = @as(i32, 30130);
+pub const UIA_SpreadsheetItemAnnotationTypesPropertyId = @as(i32, 30131);
+pub const UIA_IsSpreadsheetItemPatternAvailablePropertyId = @as(i32, 30132);
+pub const UIA_Transform2CanZoomPropertyId = @as(i32, 30133);
+pub const UIA_IsTransformPattern2AvailablePropertyId = @as(i32, 30134);
+pub const UIA_LiveSettingPropertyId = @as(i32, 30135);
+pub const UIA_IsTextChildPatternAvailablePropertyId = @as(i32, 30136);
+pub const UIA_IsDragPatternAvailablePropertyId = @as(i32, 30137);
+pub const UIA_DragIsGrabbedPropertyId = @as(i32, 30138);
+pub const UIA_DragDropEffectPropertyId = @as(i32, 30139);
+pub const UIA_DragDropEffectsPropertyId = @as(i32, 30140);
+pub const UIA_IsDropTargetPatternAvailablePropertyId = @as(i32, 30141);
+pub const UIA_DropTargetDropTargetEffectPropertyId = @as(i32, 30142);
+pub const UIA_DropTargetDropTargetEffectsPropertyId = @as(i32, 30143);
+pub const UIA_DragGrabbedItemsPropertyId = @as(i32, 30144);
+pub const UIA_Transform2ZoomLevelPropertyId = @as(i32, 30145);
+pub const UIA_Transform2ZoomMinimumPropertyId = @as(i32, 30146);
+pub const UIA_Transform2ZoomMaximumPropertyId = @as(i32, 30147);
+pub const UIA_FlowsFromPropertyId = @as(i32, 30148);
+pub const UIA_IsTextEditPatternAvailablePropertyId = @as(i32, 30149);
+pub const UIA_IsPeripheralPropertyId = @as(i32, 30150);
+pub const UIA_IsCustomNavigationPatternAvailablePropertyId = @as(i32, 30151);
+pub const UIA_PositionInSetPropertyId = @as(i32, 30152);
+pub const UIA_SizeOfSetPropertyId = @as(i32, 30153);
+pub const UIA_LevelPropertyId = @as(i32, 30154);
+pub const UIA_AnnotationTypesPropertyId = @as(i32, 30155);
+pub const UIA_AnnotationObjectsPropertyId = @as(i32, 30156);
+pub const UIA_LandmarkTypePropertyId = @as(i32, 30157);
+pub const UIA_LocalizedLandmarkTypePropertyId = @as(i32, 30158);
+pub const UIA_FullDescriptionPropertyId = @as(i32, 30159);
+pub const UIA_FillColorPropertyId = @as(i32, 30160);
+pub const UIA_OutlineColorPropertyId = @as(i32, 30161);
+pub const UIA_FillTypePropertyId = @as(i32, 30162);
+pub const UIA_VisualEffectsPropertyId = @as(i32, 30163);
+pub const UIA_OutlineThicknessPropertyId = @as(i32, 30164);
+pub const UIA_CenterPointPropertyId = @as(i32, 30165);
+pub const UIA_RotationPropertyId = @as(i32, 30166);
+pub const UIA_SizePropertyId = @as(i32, 30167);
+pub const UIA_IsSelectionPattern2AvailablePropertyId = @as(i32, 30168);
+pub const UIA_Selection2FirstSelectedItemPropertyId = @as(i32, 30169);
+pub const UIA_Selection2LastSelectedItemPropertyId = @as(i32, 30170);
+pub const UIA_Selection2CurrentSelectedItemPropertyId = @as(i32, 30171);
+pub const UIA_Selection2ItemCountPropertyId = @as(i32, 30172);
+pub const UIA_HeadingLevelPropertyId = @as(i32, 30173);
+pub const UIA_IsDialogPropertyId = @as(i32, 30174);
+pub const UIA_AnimationStyleAttributeId = @as(i32, 40000);
+pub const UIA_BackgroundColorAttributeId = @as(i32, 40001);
+pub const UIA_BulletStyleAttributeId = @as(i32, 40002);
+pub const UIA_CapStyleAttributeId = @as(i32, 40003);
+pub const UIA_CultureAttributeId = @as(i32, 40004);
+pub const UIA_FontNameAttributeId = @as(i32, 40005);
+pub const UIA_FontSizeAttributeId = @as(i32, 40006);
+pub const UIA_FontWeightAttributeId = @as(i32, 40007);
+pub const UIA_ForegroundColorAttributeId = @as(i32, 40008);
+pub const UIA_HorizontalTextAlignmentAttributeId = @as(i32, 40009);
+pub const UIA_IndentationFirstLineAttributeId = @as(i32, 40010);
+pub const UIA_IndentationLeadingAttributeId = @as(i32, 40011);
+pub const UIA_IndentationTrailingAttributeId = @as(i32, 40012);
+pub const UIA_IsHiddenAttributeId = @as(i32, 40013);
+pub const UIA_IsItalicAttributeId = @as(i32, 40014);
+pub const UIA_IsReadOnlyAttributeId = @as(i32, 40015);
+pub const UIA_IsSubscriptAttributeId = @as(i32, 40016);
+pub const UIA_IsSuperscriptAttributeId = @as(i32, 40017);
+pub const UIA_MarginBottomAttributeId = @as(i32, 40018);
+pub const UIA_MarginLeadingAttributeId = @as(i32, 40019);
+pub const UIA_MarginTopAttributeId = @as(i32, 40020);
+pub const UIA_MarginTrailingAttributeId = @as(i32, 40021);
+pub const UIA_OutlineStylesAttributeId = @as(i32, 40022);
+pub const UIA_OverlineColorAttributeId = @as(i32, 40023);
+pub const UIA_OverlineStyleAttributeId = @as(i32, 40024);
+pub const UIA_StrikethroughColorAttributeId = @as(i32, 40025);
+pub const UIA_StrikethroughStyleAttributeId = @as(i32, 40026);
+pub const UIA_TabsAttributeId = @as(i32, 40027);
+pub const UIA_TextFlowDirectionsAttributeId = @as(i32, 40028);
+pub const UIA_UnderlineColorAttributeId = @as(i32, 40029);
+pub const UIA_UnderlineStyleAttributeId = @as(i32, 40030);
+pub const UIA_AnnotationTypesAttributeId = @as(i32, 40031);
+pub const UIA_AnnotationObjectsAttributeId = @as(i32, 40032);
+pub const UIA_StyleNameAttributeId = @as(i32, 40033);
+pub const UIA_StyleIdAttributeId = @as(i32, 40034);
+pub const UIA_LinkAttributeId = @as(i32, 40035);
+pub const UIA_IsActiveAttributeId = @as(i32, 40036);
+pub const UIA_SelectionActiveEndAttributeId = @as(i32, 40037);
+pub const UIA_CaretPositionAttributeId = @as(i32, 40038);
+pub const UIA_CaretBidiModeAttributeId = @as(i32, 40039);
+pub const UIA_LineSpacingAttributeId = @as(i32, 40040);
+pub const UIA_BeforeParagraphSpacingAttributeId = @as(i32, 40041);
+pub const UIA_AfterParagraphSpacingAttributeId = @as(i32, 40042);
+pub const UIA_SayAsInterpretAsAttributeId = @as(i32, 40043);
+pub const UIA_ButtonControlTypeId = @as(i32, 50000);
+pub const UIA_CalendarControlTypeId = @as(i32, 50001);
+pub const UIA_CheckBoxControlTypeId = @as(i32, 50002);
+pub const UIA_ComboBoxControlTypeId = @as(i32, 50003);
+pub const UIA_EditControlTypeId = @as(i32, 50004);
+pub const UIA_HyperlinkControlTypeId = @as(i32, 50005);
+pub const UIA_ImageControlTypeId = @as(i32, 50006);
+pub const UIA_ListItemControlTypeId = @as(i32, 50007);
+pub const UIA_ListControlTypeId = @as(i32, 50008);
+pub const UIA_MenuControlTypeId = @as(i32, 50009);
+pub const UIA_MenuBarControlTypeId = @as(i32, 50010);
+pub const UIA_MenuItemControlTypeId = @as(i32, 50011);
+pub const UIA_ProgressBarControlTypeId = @as(i32, 50012);
+pub const UIA_RadioButtonControlTypeId = @as(i32, 50013);
+pub const UIA_ScrollBarControlTypeId = @as(i32, 50014);
+pub const UIA_SliderControlTypeId = @as(i32, 50015);
+pub const UIA_SpinnerControlTypeId = @as(i32, 50016);
+pub const UIA_StatusBarControlTypeId = @as(i32, 50017);
+pub const UIA_TabControlTypeId = @as(i32, 50018);
+pub const UIA_TabItemControlTypeId = @as(i32, 50019);
+pub const UIA_TextControlTypeId = @as(i32, 50020);
+pub const UIA_ToolBarControlTypeId = @as(i32, 50021);
+pub const UIA_ToolTipControlTypeId = @as(i32, 50022);
+pub const UIA_TreeControlTypeId = @as(i32, 50023);
+pub const UIA_TreeItemControlTypeId = @as(i32, 50024);
+pub const UIA_CustomControlTypeId = @as(i32, 50025);
+pub const UIA_GroupControlTypeId = @as(i32, 50026);
+pub const UIA_ThumbControlTypeId = @as(i32, 50027);
+pub const UIA_DataGridControlTypeId = @as(i32, 50028);
+pub const UIA_DataItemControlTypeId = @as(i32, 50029);
+pub const UIA_DocumentControlTypeId = @as(i32, 50030);
+pub const UIA_SplitButtonControlTypeId = @as(i32, 50031);
+pub const UIA_WindowControlTypeId = @as(i32, 50032);
+pub const UIA_PaneControlTypeId = @as(i32, 50033);
+pub const UIA_HeaderControlTypeId = @as(i32, 50034);
+pub const UIA_HeaderItemControlTypeId = @as(i32, 50035);
+pub const UIA_TableControlTypeId = @as(i32, 50036);
+pub const UIA_TitleBarControlTypeId = @as(i32, 50037);
+pub const UIA_SeparatorControlTypeId = @as(i32, 50038);
+pub const UIA_SemanticZoomControlTypeId = @as(i32, 50039);
+pub const UIA_AppBarControlTypeId = @as(i32, 50040);
+pub const AnnotationType_Unknown = @as(i32, 60000);
+pub const AnnotationType_SpellingError = @as(i32, 60001);
+pub const AnnotationType_GrammarError = @as(i32, 60002);
+pub const AnnotationType_Comment = @as(i32, 60003);
+pub const AnnotationType_FormulaError = @as(i32, 60004);
+pub const AnnotationType_TrackChanges = @as(i32, 60005);
+pub const AnnotationType_Header = @as(i32, 60006);
+pub const AnnotationType_Footer = @as(i32, 60007);
+pub const AnnotationType_Highlighted = @as(i32, 60008);
+pub const AnnotationType_Endnote = @as(i32, 60009);
+pub const AnnotationType_Footnote = @as(i32, 60010);
+pub const AnnotationType_InsertionChange = @as(i32, 60011);
+pub const AnnotationType_DeletionChange = @as(i32, 60012);
+pub const AnnotationType_MoveChange = @as(i32, 60013);
+pub const AnnotationType_FormatChange = @as(i32, 60014);
+pub const AnnotationType_UnsyncedChange = @as(i32, 60015);
+pub const AnnotationType_EditingLockedChange = @as(i32, 60016);
+pub const AnnotationType_ExternalChange = @as(i32, 60017);
+pub const AnnotationType_ConflictingChange = @as(i32, 60018);
+pub const AnnotationType_Author = @as(i32, 60019);
+pub const AnnotationType_AdvancedProofingIssue = @as(i32, 60020);
+pub const AnnotationType_DataValidationError = @as(i32, 60021);
+pub const AnnotationType_CircularReferenceError = @as(i32, 60022);
+pub const AnnotationType_Mathematics = @as(i32, 60023);
+pub const AnnotationType_Sensitive = @as(i32, 60024);
+pub const StyleId_Custom = @as(i32, 70000);
+pub const StyleId_Heading1 = @as(i32, 70001);
+pub const StyleId_Heading2 = @as(i32, 70002);
+pub const StyleId_Heading3 = @as(i32, 70003);
+pub const StyleId_Heading4 = @as(i32, 70004);
+pub const StyleId_Heading5 = @as(i32, 70005);
+pub const StyleId_Heading6 = @as(i32, 70006);
+pub const StyleId_Heading7 = @as(i32, 70007);
+pub const StyleId_Heading8 = @as(i32, 70008);
+pub const StyleId_Heading9 = @as(i32, 70009);
+pub const StyleId_Title = @as(i32, 70010);
+pub const StyleId_Subtitle = @as(i32, 70011);
+pub const StyleId_Normal = @as(i32, 70012);
+pub const StyleId_Emphasis = @as(i32, 70013);
+pub const StyleId_Quote = @as(i32, 70014);
+pub const StyleId_BulletedList = @as(i32, 70015);
+pub const StyleId_NumberedList = @as(i32, 70016);
+pub const UIA_CustomLandmarkTypeId = @as(i32, 80000);
+pub const UIA_FormLandmarkTypeId = @as(i32, 80001);
+pub const UIA_MainLandmarkTypeId = @as(i32, 80002);
+pub const UIA_NavigationLandmarkTypeId = @as(i32, 80003);
+pub const UIA_SearchLandmarkTypeId = @as(i32, 80004);
+pub const HeadingLevel_None = @as(i32, 80050);
+pub const HeadingLevel1 = @as(i32, 80051);
+pub const HeadingLevel2 = @as(i32, 80052);
+pub const HeadingLevel3 = @as(i32, 80053);
+pub const HeadingLevel4 = @as(i32, 80054);
+pub const HeadingLevel5 = @as(i32, 80055);
+pub const HeadingLevel6 = @as(i32, 80056);
+pub const HeadingLevel7 = @as(i32, 80057);
+pub const HeadingLevel8 = @as(i32, 80058);
+pub const HeadingLevel9 = @as(i32, 80059);
+pub const UIA_SummaryChangeId = @as(i32, 90000);
+pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 
 //--------------------------------------------------------------------------------
 // Section: Types (241)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = *opaque{};
-
-pub const HUIANODE = *opaque{};
-
-pub const HUIAPATTERNOBJECT = *opaque{};
-
-pub const HUIATEXTRANGE = *opaque{};
-
-pub const HUIAEVENT = *opaque{};
-
-pub const SERIALKEYSA = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PSTR,
-    lpszPort: ?PSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
-};
-
-pub const SERIALKEYSW = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PWSTR,
-    lpszPort: ?PWSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
-};
-
-pub const HIGHCONTRASTA = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PSTR,
-};
-
-pub const HIGHCONTRASTW = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PWSTR,
-};
-
-pub const FILTERKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iWaitMSec: u32,
-    iDelayMSec: u32,
-    iRepeatMSec: u32,
-    iBounceMSec: u32,
-};
-
-pub const STICKYKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: STICKYKEYS_FLAGS,
-};
-
-pub const MOUSEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iMaxSpeed: u32,
-    iTimeToMaxSpeed: u32,
-    iCtrlSpeed: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
-
-pub const ACCESSTIMEOUT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iTimeOutMSec: u32,
-};
-
-pub const SOUNDSENTRYA = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const SOUNDSENTRYW = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PWSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const TOGGLEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-};
-
-pub const WINEVENTPROC = fn(
-    hWinEventHook: ?HWINEVENTHOOK,
-    event: u32,
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-    idEventThread: u32,
-    dwmsEventTime: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub const STICKYKEYS_FLAGS = enum(u32) {
     STICKYKEYSON = 1,
     AVAILABLE = 2,
@@ -1293,6 +1175,124 @@ pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
 pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
 pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
 pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
+
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = *opaque{};
+
+pub const HUIANODE = *opaque{};
+
+pub const HUIAPATTERNOBJECT = *opaque{};
+
+pub const HUIATEXTRANGE = *opaque{};
+
+pub const HUIAEVENT = *opaque{};
+
+pub const SERIALKEYSA = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PSTR,
+    lpszPort: ?PSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
+
+pub const SERIALKEYSW = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PWSTR,
+    lpszPort: ?PWSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
+
+pub const HIGHCONTRASTA = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PSTR,
+};
+
+pub const HIGHCONTRASTW = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PWSTR,
+};
+
+pub const FILTERKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iWaitMSec: u32,
+    iDelayMSec: u32,
+    iRepeatMSec: u32,
+    iBounceMSec: u32,
+};
+
+pub const STICKYKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: STICKYKEYS_FLAGS,
+};
+
+pub const MOUSEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iMaxSpeed: u32,
+    iTimeToMaxSpeed: u32,
+    iCtrlSpeed: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const ACCESSTIMEOUT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iTimeOutMSec: u32,
+};
+
+pub const SOUNDSENTRYA = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const SOUNDSENTRYW = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PWSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const TOGGLEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+};
+
+pub const WINEVENTPROC = fn(
+    hWinEventHook: ?HWINEVENTHOOK,
+    event: u32,
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+    idEventThread: u32,
+    dwmsEventTime: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_CAccPropServices_Value = @import("../zig.zig").Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
 pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;

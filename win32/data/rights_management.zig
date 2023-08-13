@@ -2,13 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (62)
 //--------------------------------------------------------------------------------
-pub const DRMIDVERSION = @as(u32, 0);
-pub const DRMBOUNDLICENSEPARAMSVERSION = @as(u32, 1);
-pub const DRMBINDINGFLAGS_IGNORE_VALIDITY_INTERVALS = @as(u32, 1);
-pub const DRMLICENSEACQDATAVERSION = @as(u32, 0);
-pub const DRMACTSERVINFOVERSION = @as(u32, 0);
-pub const DRMCLIENTSTRUCTVERSION = @as(u32, 1);
-pub const DRMCALLBACKVERSION = @as(u32, 1);
 pub const DRMHANDLE_INVALID = @as(u32, 0);
 pub const DRMENVHANDLE_INVALID = @as(u32, 0);
 pub const DRMQUERYHANDLE_INVALID = @as(u32, 0);
@@ -64,6 +57,13 @@ pub const DRM_LOCKBOXTYPE_BLACKBOX = @as(u32, 2);
 pub const DRM_AILT_NONSILENT = @as(u32, 1);
 pub const DRM_AILT_OBTAIN_ALL = @as(u32, 2);
 pub const DRM_AILT_CANCEL = @as(u32, 4);
+pub const DRMIDVERSION = @as(u32, 0);
+pub const DRMBOUNDLICENSEPARAMSVERSION = @as(u32, 1);
+pub const DRMBINDINGFLAGS_IGNORE_VALIDITY_INTERVALS = @as(u32, 1);
+pub const DRMLICENSEACQDATAVERSION = @as(u32, 0);
+pub const DRMACTSERVINFOVERSION = @as(u32, 0);
+pub const DRMCLIENTSTRUCTVERSION = @as(u32, 1);
+pub const DRMCALLBACKVERSION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (15)
