@@ -14,19 +14,19 @@ pub const FLT_PORT_FLAG_SYNC_HANDLE = @as(u32, 1);
 pub const HFILTER = ?*c_void;
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
-pub const HFILTER_INSTANCE = ?*c_void;
+pub const HFILTER_INSTANCE = isize;
 
 // TODO: this type has a FreeFunc 'FilterFindClose', what can Zig do with this information?
-pub const FilterFindHandle = ?*c_void;
+pub const FilterFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeFindClose', what can Zig do with this information?
-pub const FilterVolumeFindHandle = ?*c_void;
+pub const FilterVolumeFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterInstanceFindClose', what can Zig do with this information?
-pub const FilterInstanceFindHandle = ?*c_void;
+pub const FilterInstanceFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
-pub const FilterVolumeInstanceFindHandle = ?*c_void;
+pub const FilterVolumeInstanceFindHandle = isize;
 
 pub const FLT_FILESYSTEM_TYPE = extern enum(i32) {
     UNKNOWN = 0,

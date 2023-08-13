@@ -932,17 +932,6 @@ pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 //--------------------------------------------------------------------------------
 // Section: Types (258)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = ?*c_void;
-
-pub const HUIANODE = ?*c_void;
-
-pub const HUIAPATTERNOBJECT = ?*c_void;
-
-pub const HUIATEXTRANGE = ?*c_void;
-
-pub const HUIAEVENT = ?*c_void;
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STICKYKEYS_FLAGS = extern enum(u32) {
     STICKYKEYSON = 1,
@@ -1084,6 +1073,17 @@ pub const SSWF_DISPLAY = SOUNDSENTRYA_iWindowsEffect.DISPLAY;
 pub const SSWF_NONE = SOUNDSENTRYA_iWindowsEffect.NONE;
 pub const SSWF_TITLE = SOUNDSENTRYA_iWindowsEffect.TITLE;
 pub const SSWF_WINDOW = SOUNDSENTRYA_iWindowsEffect.WINDOW;
+
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = ?*c_void;
+
+pub const HUIANODE = ?*c_void;
+
+pub const HUIAPATTERNOBJECT = ?*c_void;
+
+pub const HUIATEXTRANGE = ?*c_void;
+
+pub const HUIAEVENT = ?*c_void;
 
 const CLSID_MSAAControl_Value = @import("../zig.zig").Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
 pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
@@ -11470,7 +11470,7 @@ pub extern "USER32" fn NotifyWinEvent(
 pub extern "USER32" fn SetWinEventHook(
     eventMin: u32,
     eventMax: u32,
-    hmodWinEventProc: ?*c_void,
+    hmodWinEventProc: isize,
     pfnWinEventProc: WINEVENTPROC,
     idProcess: u32,
     idThread: u32,

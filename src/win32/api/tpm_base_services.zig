@@ -33,6 +33,28 @@ pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const TBS_CONTEXT_PARAMS = extern struct {
+    version: u32,
+};
+
+pub const TBS_CONTEXT_PARAMS2 = extern struct {
+    version: u32,
+    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const tdTPM_WNF_PROVISIONING = extern struct {
+    status: u32,
+    message: [28]u8,
+};
+
+pub const TPM_DEVICE_INFO = extern struct {
+    structVersion: u32,
+    tpmVersion: u32,
+    tpmInterfaceType: u32,
+    tpmImpRevision: u32,
+};
+
 pub const Tbsip_Submit_Command_PriorityFlags = extern enum(u32) {
     LOW = 100,
     NORMAL = 200,
@@ -58,28 +80,6 @@ pub const TBS_COMMAND_LOCALITY_ONE = Tbsip_Submit_Command_LocalityFlags.ONE;
 pub const TBS_COMMAND_LOCALITY_TWO = Tbsip_Submit_Command_LocalityFlags.TWO;
 pub const TBS_COMMAND_LOCALITY_THREE = Tbsip_Submit_Command_LocalityFlags.THREE;
 pub const TBS_COMMAND_LOCALITY_FOUR = Tbsip_Submit_Command_LocalityFlags.FOUR;
-
-pub const TBS_CONTEXT_PARAMS = extern struct {
-    version: u32,
-};
-
-pub const TBS_CONTEXT_PARAMS2 = extern struct {
-    version: u32,
-    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const tdTPM_WNF_PROVISIONING = extern struct {
-    status: u32,
-    message: [28]u8,
-};
-
-pub const TPM_DEVICE_INFO = extern struct {
-    structVersion: u32,
-    tpmVersion: u32,
-    tpmInterfaceType: u32,
-    tpmImpRevision: u32,
-};
 
 
 //--------------------------------------------------------------------------------

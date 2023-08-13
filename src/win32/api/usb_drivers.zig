@@ -871,12 +871,12 @@ pub const USBD_ENDPOINT_OFFLOAD_INFORMATION = extern struct {
     _bitfield2: u32,
     TransferSegmentLA: LARGE_INTEGER,
     TransferSegmentVA: *c_void,
-    TransferRingSize: ?*c_void,
+    TransferRingSize: usize,
     TransferRingInitialCycleBit: u32,
     MessageNumber: u32,
     EventRingSegmentLA: LARGE_INTEGER,
     EventRingSegmentVA: *c_void,
-    EventRingSize: ?*c_void,
+    EventRingSize: usize,
     EventRingInitialCycleBit: u32,
 };
 

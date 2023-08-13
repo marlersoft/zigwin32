@@ -6,6 +6,18 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
+pub const OPERATION_START_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_START_PARAMETERSFlags,
+};
+
+pub const OPERATION_END_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_END_PARAMETERSFlags,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPERATION_START_PARAMETERSFlags = extern enum(u32) {
     D = 1,
@@ -19,18 +31,6 @@ pub const OPERATION_END_PARAMETERSFlags = extern enum(u32) {
     _,
 };
 pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERSFlags.D;
-
-pub const OPERATION_START_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_START_PARAMETERSFlags,
-};
-
-pub const OPERATION_END_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_END_PARAMETERSFlags,
-};
 
 
 //--------------------------------------------------------------------------------

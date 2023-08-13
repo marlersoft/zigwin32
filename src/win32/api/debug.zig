@@ -318,34 +318,56 @@ pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../zig.zig").typedConst(
 pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (1715)
+// Section: Types (1716)
 //--------------------------------------------------------------------------------
 pub const CONTEXT = extern struct {
+    P1Home: u64,
+    P2Home: u64,
+    P3Home: u64,
+    P4Home: u64,
+    P5Home: u64,
+    P6Home: u64,
     ContextFlags: u32,
-    Dr0: u32,
-    Dr1: u32,
-    Dr2: u32,
-    Dr3: u32,
-    Dr6: u32,
-    Dr7: u32,
-    FloatSave: FLOATING_SAVE_AREA,
-    SegGs: u32,
-    SegFs: u32,
-    SegEs: u32,
-    SegDs: u32,
-    Edi: u32,
-    Esi: u32,
-    Ebx: u32,
-    Edx: u32,
-    Ecx: u32,
-    Eax: u32,
-    Ebp: u32,
-    Eip: u32,
-    SegCs: u32,
+    MxCsr: u32,
+    SegCs: u16,
+    SegDs: u16,
+    SegEs: u16,
+    SegFs: u16,
+    SegGs: u16,
+    SegSs: u16,
     EFlags: u32,
-    Esp: u32,
-    SegSs: u32,
-    ExtendedRegisters: [512]u8,
+    Dr0: u64,
+    Dr1: u64,
+    Dr2: u64,
+    Dr3: u64,
+    Dr6: u64,
+    Dr7: u64,
+    Rax: u64,
+    Rcx: u64,
+    Rdx: u64,
+    Rbx: u64,
+    Rsp: u64,
+    Rbp: u64,
+    Rsi: u64,
+    Rdi: u64,
+    R8: u64,
+    R9: u64,
+    R10: u64,
+    R11: u64,
+    R12: u64,
+    R13: u64,
+    R14: u64,
+    R15: u64,
+    Rip: u64,
+    Anonymous: CONTEXT._Anonymous_e__Union,
+    VectorRegister: [26]M128A,
+    VectorControl: u64,
+    DebugControl: u64,
+    LastBranchToRip: u64,
+    LastBranchFromRip: u64,
+    LastExceptionToRip: u64,
+    LastExceptionFromRip: u64,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LDT_ENTRY = extern struct {
@@ -408,7 +430,7 @@ pub const EXCEPTION_RECORD = extern struct {
     ExceptionRecord: *EXCEPTION_RECORD,
     ExceptionAddress: *c_void,
     NumberParameters: u32,
-    ExceptionInformation: [15]?*c_void,
+    ExceptionInformation: [15]usize,
 };
 
 pub const EXCEPTION_RECORD64 = extern struct {
@@ -729,6 +751,17 @@ pub const FORMAT_MESSAGE_FROM_STRING = FORMAT_MESSAGE_OPTIONS.FROM_STRING;
 pub const FORMAT_MESSAGE_FROM_SYSTEM = FORMAT_MESSAGE_OPTIONS.FROM_SYSTEM;
 pub const FORMAT_MESSAGE_IGNORE_INSERTS = FORMAT_MESSAGE_OPTIONS.IGNORE_INSERTS;
 
+pub const RtlVirtualUnwind_HandlerTypeFlags = extern enum(u32) {
+    NHANDLER = 0,
+    EHANDLER = 1,
+    UHANDLER = 2,
+    CHAININFO = 4,
+};
+pub const UNW_FLAG_NHANDLER = RtlVirtualUnwind_HandlerTypeFlags.NHANDLER;
+pub const UNW_FLAG_EHANDLER = RtlVirtualUnwind_HandlerTypeFlags.EHANDLER;
+pub const UNW_FLAG_UHANDLER = RtlVirtualUnwind_HandlerTypeFlags.UHANDLER;
+pub const UNW_FLAG_CHAININFO = RtlVirtualUnwind_HandlerTypeFlags.CHAININFO;
+
 pub const OpenThreadWaitChainSession_Flags = extern enum(u32) {
     G = 1,
 };
@@ -972,7 +1005,7 @@ pub const WAITCHAIN_NODE_INFO = extern struct {
 
 pub const PWAITCHAINCALLBACK = fn(
     WctHandle: *c_void,
-    Context: ?*c_void,
+    Context: usize,
     CallbackStatus: u32,
     NodeCount: *u32,
     NodeInfoArray: *WAITCHAIN_NODE_INFO,
@@ -1809,6 +1842,7 @@ pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MINIDUMP_TYPE = extern enum(i32) {
     Normal = 0,
     WithDataSegs = 1,
@@ -1836,6 +1870,7 @@ pub const MINIDUMP_TYPE = extern enum(i32) {
     WithIptTrace = 4194304,
     ScanInaccessiblePartialPages = 8388608,
     ValidTypeFlags = 16777215,
+    _,
 };
 pub const MiniDumpNormal = MINIDUMP_TYPE.Normal;
 pub const MiniDumpWithDataSegs = MINIDUMP_TYPE.WithDataSegs;
@@ -6769,7 +6804,7 @@ pub const PROFILER_HEAP_ENUM_FLAGS_RELATIONSHIP_SUBSTRINGS = PROFILER_HEAP_ENUM_
 
 pub const PROFILER_HEAP_OBJECT_SCOPE_LIST = extern struct {
     count: u32,
-    scopes: [1]?*c_void,
+    scopes: [1]usize,
 };
 
 pub const PROFILER_RELATIONSHIP_INFO = extern enum(i32) {
@@ -44075,27 +44110,27 @@ pub const IHTMLEventObj3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_imeCompositionChange: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_imeNotifyCommand: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_imeNotifyData: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_imeRequest: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_imeRequestData: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_keyboardLayout: fn(
             self: *const IHTMLEventObj3,
-            p: *?*c_void,
+            p: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_behaviorCookie: fn(
             self: *const IHTMLEventObj3,
@@ -44142,27 +44177,27 @@ pub const IHTMLEventObj3 = extern struct {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_ctrlLeft(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_imeCompositionChange(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_imeCompositionChange(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_imeCompositionChange(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_imeNotifyCommand(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_imeNotifyCommand(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_imeNotifyCommand(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_imeNotifyData(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_imeNotifyData(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_imeNotifyData(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_imeRequest(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_imeRequest(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_imeRequest(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_imeRequestData(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_imeRequestData(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_imeRequestData(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHTMLEventObj3_get_keyboardLayout(self: *const T, p: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHTMLEventObj3_get_keyboardLayout(self: *const T, p: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHTMLEventObj3.VTable, self.vtable).get_keyboardLayout(@ptrCast(*const IHTMLEventObj3, self), p);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -69203,7 +69238,7 @@ pub const IMarkupServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ParseGlobal: fn(
             self: *const IMarkupServices,
-            hglobalHTML: ?*c_void,
+            hglobalHTML: isize,
             dwFlags: u32,
             ppContainerResult: **IMarkupContainer,
             pPointerStart: *IMarkupPointer,
@@ -69297,7 +69332,7 @@ pub const IMarkupServices = extern struct {
             return @ptrCast(*const IMarkupServices.VTable, self.vtable).ParseString(@ptrCast(*const IMarkupServices, self), pchHTML, dwFlags, ppContainerResult, ppPointerStart, ppPointerFinish);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarkupServices_ParseGlobal(self: *const T, hglobalHTML: ?*c_void, dwFlags: u32, ppContainerResult: **IMarkupContainer, pPointerStart: *IMarkupPointer, pPointerFinish: *IMarkupPointer) callconv(.Inline) HRESULT {
+        pub fn IMarkupServices_ParseGlobal(self: *const T, hglobalHTML: isize, dwFlags: u32, ppContainerResult: **IMarkupContainer, pPointerStart: *IMarkupPointer, pPointerFinish: *IMarkupPointer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarkupServices.VTable, self.vtable).ParseGlobal(@ptrCast(*const IMarkupServices, self), hglobalHTML, dwFlags, ppContainerResult, pPointerStart, pPointerFinish);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -69343,7 +69378,7 @@ pub const IMarkupServices2 = extern struct {
         base: IMarkupServices.VTable,
         ParseGlobalEx: fn(
             self: *const IMarkupServices2,
-            hglobalHTML: ?*c_void,
+            hglobalHTML: isize,
             dwFlags: u32,
             pContext: *IMarkupContainer,
             ppContainerResult: **IMarkupContainer,
@@ -69369,7 +69404,7 @@ pub const IMarkupServices2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMarkupServices.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarkupServices2_ParseGlobalEx(self: *const T, hglobalHTML: ?*c_void, dwFlags: u32, pContext: *IMarkupContainer, ppContainerResult: **IMarkupContainer, pPointerStart: *IMarkupPointer, pPointerFinish: *IMarkupPointer) callconv(.Inline) HRESULT {
+        pub fn IMarkupServices2_ParseGlobalEx(self: *const T, hglobalHTML: isize, dwFlags: u32, pContext: *IMarkupContainer, ppContainerResult: **IMarkupContainer, pPointerStart: *IMarkupPointer, pPointerFinish: *IMarkupPointer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarkupServices2.VTable, self.vtable).ParseGlobalEx(@ptrCast(*const IMarkupServices2, self), hglobalHTML, dwFlags, pContext, ppContainerResult, pPointerStart, pPointerFinish);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -73314,7 +73349,7 @@ pub const UnregisterAuthoringClientFunctionType = fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (68)
+// Section: Functions (78)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RtlCaptureContext(
@@ -73329,28 +73364,81 @@ pub extern "KERNEL32" fn RtlUnwind(
     ReturnValue: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "KERNEL32" fn RtlAddFunctionTable(
+    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    BaseAddress: u64,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "KERNEL32" fn RtlDeleteFunctionTable(
+    FunctionTable: *IMAGE_RUNTIME_FUNCTION_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
+    TableIdentifier: u64,
+    BaseAddress: u64,
+    Length: u32,
+    Callback: PGET_RUNTIME_FUNCTION_CALLBACK,
+    Context: ?*c_void,
+    OutOfProcessCallbackDll: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlAddGrowableFunctionTable(
+    DynamicTable: **c_void,
+    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    MaximumEntryCount: u32,
+    RangeBase: usize,
+    RangeEnd: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlGrowFunctionTable(
+    DynamicTable: *c_void,
+    NewEntryCount: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
+    DynamicTable: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlLookupFunctionEntry(
+    ControlPc: u64,
+    ImageBase: *u64,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
+) callconv(@import("std").os.windows.WINAPI) *IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+pub extern "KERNEL32" fn RtlRestoreContext(
+    ContextRecord: *CONTEXT,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlUnwindEx(
+    TargetFrame: ?*c_void,
+    TargetIp: ?*c_void,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    ReturnValue: *c_void,
+    ContextRecord: *CONTEXT,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlVirtualUnwind(
+    HandlerType: RtlVirtualUnwind_HandlerTypeFlags,
+    ImageBase: u64,
+    ControlPc: u64,
+    FunctionEntry: *IMAGE_RUNTIME_FUNCTION_ENTRY,
+    ContextRecord: *CONTEXT,
+    HandlerData: **c_void,
+    EstablisherFrame: *u64,
+    ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS,
+) callconv(@import("std").os.windows.WINAPI) EXCEPTION_ROUTINE;
+
 pub extern "KERNEL32" fn RtlPcToFileHeader(
     PcValue: *c_void,
     BaseOfImage: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReadProcessMemory(
-    hProcess: HANDLE,
-    lpBaseAddress: *const c_void,
-    lpBuffer: [*]u8,
-    nSize: ?*c_void,
-    lpNumberOfBytesRead: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WriteProcessMemory(
-    hProcess: HANDLE,
-    lpBaseAddress: *c_void,
-    lpBuffer: [*]const u8,
-    nSize: ?*c_void,
-    lpNumberOfBytesWritten: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetThreadContext(
@@ -73368,7 +73456,7 @@ pub extern "KERNEL32" fn SetThreadContext(
 pub extern "KERNEL32" fn FlushInstructionCache(
     hProcess: HANDLE,
     lpBaseAddress: ?[*]const u8,
-    dwSize: ?*c_void,
+    dwSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -73380,7 +73468,7 @@ pub extern "KERNEL32" fn FatalExit(
 pub extern "KERNEL32" fn GetThreadSelectorEntry(
     hThread: HANDLE,
     dwSelector: u32,
-    lpSelectorEntry: *LDT_ENTRY,
+    lpSelectorEntry: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -73466,6 +73554,36 @@ pub extern "ntdll" fn RtlNtStatusToDosError(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ReadProcessMemory(
+    hProcess: HANDLE,
+    lpBaseAddress: *const c_void,
+    lpBuffer: [*]u8,
+    nSize: usize,
+    lpNumberOfBytesRead: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn WriteProcessMemory(
+    hProcess: HANDLE,
+    lpBaseAddress: *c_void,
+    lpBuffer: [*]const u8,
+    nSize: usize,
+    lpNumberOfBytesWritten: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn Wow64GetThreadContext(
+    hThread: HANDLE,
+    lpContext: *WOW64_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn Wow64SetThreadContext(
+    hThread: HANDLE,
+    lpContext: *const WOW64_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn FlashWindow(
     hWnd: HWND,
     bInvert: BOOL,
@@ -73486,18 +73604,6 @@ pub extern "USER32" fn SetLastErrorEx(
     dwErrCode: u32,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64GetThreadContext(
-    hThread: HANDLE,
-    lpContext: *WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64SetThreadContext(
-    hThread: HANDLE,
-    lpContext: *const WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsDebuggerPresent(
@@ -73591,7 +73697,7 @@ pub extern "KERNEL32" fn RaiseException(
     dwExceptionCode: u32,
     dwExceptionFlags: u32,
     nNumberOfArguments: u32,
-    lpArguments: ?[*]const ?*c_void,
+    lpArguments: ?[*]const usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -73674,7 +73780,7 @@ pub extern "KERNEL32" fn SetThreadErrorMode(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-errorhandling-l1-1-3" fn TerminateProcessOnMemoryExhaustion(
-    FailedAllocationSize: ?*c_void,
+    FailedAllocationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -73691,7 +73797,7 @@ pub extern "ADVAPI32" fn CloseThreadWaitChainSession(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetThreadWaitChain(
     WctHandle: *c_void,
-    Context: ?*c_void,
+    Context: usize,
     Flags: GetThreadWaitChain_Flags,
     ThreadId: u32,
     NodeCount: *u32,
@@ -73749,27 +73855,32 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (39)
+// Section: Imports (44)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const VS_FIXEDFILEINFO = @import("windows_and_messaging.zig").VS_FIXEDFILEINFO;
+const M128A = @import("system_services.zig").M128A;
 const TIME_ZONE_INFORMATION = @import("windows_programming.zig").TIME_ZONE_INFORMATION;
 const IDispatch = @import("automation.zig").IDispatch;
 const HRGN = @import("gdi.zig").HRGN;
 const HDC = @import("gdi.zig").HDC;
-const IServiceProvider = @import("system_services.zig").IServiceProvider;
-const NTSTATUS = @import("system_services.zig").NTSTATUS;
+const UNWIND_HISTORY_TABLE = @import("system_services.zig").UNWIND_HISTORY_TABLE;
 const HRESULT = @import("com.zig").HRESULT;
+const NTSTATUS = @import("system_services.zig").NTSTATUS;
+const KNONVOLATILE_CONTEXT_POINTERS = @import("system_services.zig").KNONVOLATILE_CONTEXT_POINTERS;
 const IEnumUnknown = @import("com.zig").IEnumUnknown;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
 const BOOL = @import("system_services.zig").BOOL;
+const PGET_RUNTIME_FUNCTION_CALLBACK = @import("system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK;
 const PROCESSOR_ARCHITECTURE = @import("windows_deployment_services.zig").PROCESSOR_ARCHITECTURE;
 const DISPPARAMS = @import("automation.zig").DISPPARAMS;
 const ILockBytes = @import("structured_storage.zig").ILockBytes;
 const TYPEDESC = @import("automation.zig").TYPEDESC;
+const EXCEPTION_ROUTINE = @import("kernel.zig").EXCEPTION_ROUTINE;
 const CADWORD = @import("com.zig").CADWORD;
 const VirtualAlloc_flAllocationType = @import("system_services.zig").VirtualAlloc_flAllocationType;
 const ITypeInfo = @import("automation.zig").ITypeInfo;
+const IMAGE_RUNTIME_FUNCTION_ENTRY = @import("system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY;
 const IActiveIMMApp = @import("intl.zig").IActiveIMMApp;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
 const PWSTR = @import("system_services.zig").PWSTR;
@@ -73789,7 +73900,7 @@ const VARIANT = @import("automation.zig").VARIANT;
 const HANDLE = @import("system_services.zig").HANDLE;
 const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
-const FLOATING_SAVE_AREA = @import("system_services.zig").FLOATING_SAVE_AREA;
+const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
@@ -73803,13 +73914,13 @@ test {
     _ = UnregisterAuthoringClientFunctionType;
 
     const constant_export_count = 314;
-    const type_export_count = 1420;
-    const enum_value_export_count = 2348;
+    const type_export_count = 1421;
+    const enum_value_export_count = 2352;
     const com_iface_id_export_count = 988;
     const com_class_id_export_count = 295;
-    const func_export_count = 68;
+    const func_export_count = 78;
     const unicode_alias_count = 3;
-    const import_count = 39;
+    const import_count = 44;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

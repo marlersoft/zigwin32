@@ -941,6 +941,139 @@ pub const ROLLBACK_BITS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 pub const HCMNOTIFICATION = ?*c_void;
 
+pub const CONFIGRET = extern enum(u32) {
+    CR_SUCCESS = 0,
+    CR_DEFAULT = 1,
+    CR_OUT_OF_MEMORY = 2,
+    CR_INVALID_POINTER = 3,
+    CR_INVALID_FLAG = 4,
+    CR_INVALID_DEVNODE = 5,
+    CR_INVALID_DEVINST = 5,
+    CR_INVALID_RES_DES = 6,
+    CR_INVALID_LOG_CONF = 7,
+    CR_INVALID_ARBITRATOR = 8,
+    CR_INVALID_NODELIST = 9,
+    CR_DEVNODE_HAS_REQS = 10,
+    CR_DEVINST_HAS_REQS = 10,
+    CR_INVALID_RESOURCEID = 11,
+    CR_DLVXD_NOT_FOUND = 12,
+    CR_NO_SUCH_DEVNODE = 13,
+    CR_NO_SUCH_DEVINST = 13,
+    CR_NO_MORE_LOG_CONF = 14,
+    CR_NO_MORE_RES_DES = 15,
+    CR_ALREADY_SUCH_DEVNODE = 16,
+    CR_ALREADY_SUCH_DEVINST = 16,
+    CR_INVALID_RANGE_LIST = 17,
+    CR_INVALID_RANGE = 18,
+    CR_FAILURE = 19,
+    CR_NO_SUCH_LOGICAL_DEV = 20,
+    CR_CREATE_BLOCKED = 21,
+    CR_NOT_SYSTEM_VM = 22,
+    CR_REMOVE_VETOED = 23,
+    CR_APM_VETOED = 24,
+    CR_INVALID_LOAD_TYPE = 25,
+    CR_BUFFER_SMALL = 26,
+    CR_NO_ARBITRATOR = 27,
+    CR_NO_REGISTRY_HANDLE = 28,
+    CR_REGISTRY_ERROR = 29,
+    CR_INVALID_DEVICE_ID = 30,
+    CR_INVALID_DATA = 31,
+    CR_INVALID_API = 32,
+    CR_DEVLOADER_NOT_READY = 33,
+    CR_NEED_RESTART = 34,
+    CR_NO_MORE_HW_PROFILES = 35,
+    CR_DEVICE_NOT_THERE = 36,
+    CR_NO_SUCH_VALUE = 37,
+    CR_WRONG_TYPE = 38,
+    CR_INVALID_PRIORITY = 39,
+    CR_NOT_DISABLEABLE = 40,
+    CR_FREE_RESOURCES = 41,
+    CR_QUERY_VETOED = 42,
+    CR_CANT_SHARE_IRQ = 43,
+    CR_NO_DEPENDENT = 44,
+    CR_SAME_RESOURCES = 45,
+    CR_NO_SUCH_REGISTRY_KEY = 46,
+    CR_INVALID_MACHINENAME = 47,
+    CR_REMOTE_COMM_FAILURE = 48,
+    CR_MACHINE_UNAVAILABLE = 49,
+    CR_NO_CM_SERVICES = 50,
+    CR_ACCESS_DENIED = 51,
+    CR_CALL_NOT_IMPLEMENTED = 52,
+    CR_INVALID_PROPERTY = 53,
+    CR_DEVICE_INTERFACE_ACTIVE = 54,
+    CR_NO_SUCH_DEVICE_INTERFACE = 55,
+    CR_INVALID_REFERENCE_STRING = 56,
+    CR_INVALID_CONFLICT_LIST = 57,
+    CR_INVALID_INDEX = 58,
+    CR_INVALID_STRUCTURE_SIZE = 59,
+    NUM_CR_RESULTS = 60,
+};
+pub const CR_SUCCESS = CONFIGRET.CR_SUCCESS;
+pub const CR_DEFAULT = CONFIGRET.CR_DEFAULT;
+pub const CR_OUT_OF_MEMORY = CONFIGRET.CR_OUT_OF_MEMORY;
+pub const CR_INVALID_POINTER = CONFIGRET.CR_INVALID_POINTER;
+pub const CR_INVALID_FLAG = CONFIGRET.CR_INVALID_FLAG;
+pub const CR_INVALID_DEVNODE = CONFIGRET.CR_INVALID_DEVNODE;
+pub const CR_INVALID_DEVINST = CONFIGRET.CR_INVALID_DEVINST;
+pub const CR_INVALID_RES_DES = CONFIGRET.CR_INVALID_RES_DES;
+pub const CR_INVALID_LOG_CONF = CONFIGRET.CR_INVALID_LOG_CONF;
+pub const CR_INVALID_ARBITRATOR = CONFIGRET.CR_INVALID_ARBITRATOR;
+pub const CR_INVALID_NODELIST = CONFIGRET.CR_INVALID_NODELIST;
+pub const CR_DEVNODE_HAS_REQS = CONFIGRET.CR_DEVNODE_HAS_REQS;
+pub const CR_DEVINST_HAS_REQS = CONFIGRET.CR_DEVINST_HAS_REQS;
+pub const CR_INVALID_RESOURCEID = CONFIGRET.CR_INVALID_RESOURCEID;
+pub const CR_DLVXD_NOT_FOUND = CONFIGRET.CR_DLVXD_NOT_FOUND;
+pub const CR_NO_SUCH_DEVNODE = CONFIGRET.CR_NO_SUCH_DEVNODE;
+pub const CR_NO_SUCH_DEVINST = CONFIGRET.CR_NO_SUCH_DEVINST;
+pub const CR_NO_MORE_LOG_CONF = CONFIGRET.CR_NO_MORE_LOG_CONF;
+pub const CR_NO_MORE_RES_DES = CONFIGRET.CR_NO_MORE_RES_DES;
+pub const CR_ALREADY_SUCH_DEVNODE = CONFIGRET.CR_ALREADY_SUCH_DEVNODE;
+pub const CR_ALREADY_SUCH_DEVINST = CONFIGRET.CR_ALREADY_SUCH_DEVINST;
+pub const CR_INVALID_RANGE_LIST = CONFIGRET.CR_INVALID_RANGE_LIST;
+pub const CR_INVALID_RANGE = CONFIGRET.CR_INVALID_RANGE;
+pub const CR_FAILURE = CONFIGRET.CR_FAILURE;
+pub const CR_NO_SUCH_LOGICAL_DEV = CONFIGRET.CR_NO_SUCH_LOGICAL_DEV;
+pub const CR_CREATE_BLOCKED = CONFIGRET.CR_CREATE_BLOCKED;
+pub const CR_NOT_SYSTEM_VM = CONFIGRET.CR_NOT_SYSTEM_VM;
+pub const CR_REMOVE_VETOED = CONFIGRET.CR_REMOVE_VETOED;
+pub const CR_APM_VETOED = CONFIGRET.CR_APM_VETOED;
+pub const CR_INVALID_LOAD_TYPE = CONFIGRET.CR_INVALID_LOAD_TYPE;
+pub const CR_BUFFER_SMALL = CONFIGRET.CR_BUFFER_SMALL;
+pub const CR_NO_ARBITRATOR = CONFIGRET.CR_NO_ARBITRATOR;
+pub const CR_NO_REGISTRY_HANDLE = CONFIGRET.CR_NO_REGISTRY_HANDLE;
+pub const CR_REGISTRY_ERROR = CONFIGRET.CR_REGISTRY_ERROR;
+pub const CR_INVALID_DEVICE_ID = CONFIGRET.CR_INVALID_DEVICE_ID;
+pub const CR_INVALID_DATA = CONFIGRET.CR_INVALID_DATA;
+pub const CR_INVALID_API = CONFIGRET.CR_INVALID_API;
+pub const CR_DEVLOADER_NOT_READY = CONFIGRET.CR_DEVLOADER_NOT_READY;
+pub const CR_NEED_RESTART = CONFIGRET.CR_NEED_RESTART;
+pub const CR_NO_MORE_HW_PROFILES = CONFIGRET.CR_NO_MORE_HW_PROFILES;
+pub const CR_DEVICE_NOT_THERE = CONFIGRET.CR_DEVICE_NOT_THERE;
+pub const CR_NO_SUCH_VALUE = CONFIGRET.CR_NO_SUCH_VALUE;
+pub const CR_WRONG_TYPE = CONFIGRET.CR_WRONG_TYPE;
+pub const CR_INVALID_PRIORITY = CONFIGRET.CR_INVALID_PRIORITY;
+pub const CR_NOT_DISABLEABLE = CONFIGRET.CR_NOT_DISABLEABLE;
+pub const CR_FREE_RESOURCES = CONFIGRET.CR_FREE_RESOURCES;
+pub const CR_QUERY_VETOED = CONFIGRET.CR_QUERY_VETOED;
+pub const CR_CANT_SHARE_IRQ = CONFIGRET.CR_CANT_SHARE_IRQ;
+pub const CR_NO_DEPENDENT = CONFIGRET.CR_NO_DEPENDENT;
+pub const CR_SAME_RESOURCES = CONFIGRET.CR_SAME_RESOURCES;
+pub const CR_NO_SUCH_REGISTRY_KEY = CONFIGRET.CR_NO_SUCH_REGISTRY_KEY;
+pub const CR_INVALID_MACHINENAME = CONFIGRET.CR_INVALID_MACHINENAME;
+pub const CR_REMOTE_COMM_FAILURE = CONFIGRET.CR_REMOTE_COMM_FAILURE;
+pub const CR_MACHINE_UNAVAILABLE = CONFIGRET.CR_MACHINE_UNAVAILABLE;
+pub const CR_NO_CM_SERVICES = CONFIGRET.CR_NO_CM_SERVICES;
+pub const CR_ACCESS_DENIED = CONFIGRET.CR_ACCESS_DENIED;
+pub const CR_CALL_NOT_IMPLEMENTED = CONFIGRET.CR_CALL_NOT_IMPLEMENTED;
+pub const CR_INVALID_PROPERTY = CONFIGRET.CR_INVALID_PROPERTY;
+pub const CR_DEVICE_INTERFACE_ACTIVE = CONFIGRET.CR_DEVICE_INTERFACE_ACTIVE;
+pub const CR_NO_SUCH_DEVICE_INTERFACE = CONFIGRET.CR_NO_SUCH_DEVICE_INTERFACE;
+pub const CR_INVALID_REFERENCE_STRING = CONFIGRET.CR_INVALID_REFERENCE_STRING;
+pub const CR_INVALID_CONFLICT_LIST = CONFIGRET.CR_INVALID_CONFLICT_LIST;
+pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
+pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
+pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
+
 pub const SetupDiBuildDriverInfoList_DriverTypeFlags = extern enum(u32) {
     LASSDRIVER = 1,
     OMPATDRIVER = 2,
@@ -967,14 +1100,14 @@ pub const SP_DEVINFO_DATA = extern struct {
     cbSize: u32,
     ClassGuid: Guid,
     DevInst: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
 };
 
 pub const SP_DEVICE_INTERFACE_DATA = extern struct {
     cbSize: u32,
     InterfaceClassGuid: Guid,
     Flags: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
 };
 
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
@@ -1009,7 +1142,7 @@ pub const SP_DEVINSTALL_PARAMS_A = extern struct {
     InstallMsgHandler: PSP_FILE_CALLBACK_A,
     InstallMsgHandlerContext: *c_void,
     FileQueue: *c_void,
-    ClassInstallReserved: ?*c_void,
+    ClassInstallReserved: usize,
     Reserved: u32,
     DriverPath: [260]i8,
 };
@@ -1022,7 +1155,7 @@ pub const SP_DEVINSTALL_PARAMS_W = extern struct {
     InstallMsgHandler: PSP_FILE_CALLBACK_A,
     InstallMsgHandlerContext: *c_void,
     FileQueue: *c_void,
-    ClassInstallReserved: ?*c_void,
+    ClassInstallReserved: usize,
     Reserved: u32,
     DriverPath: [260]u16,
 };
@@ -1088,7 +1221,7 @@ pub const SP_DETECTDEVICE_PARAMS = extern struct {
 pub const SP_INSTALLWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
-    DynamicPages: [20]?*c_void,
+    DynamicPages: [20]isize,
     NumDynamicPages: u32,
     DynamicPageFlags: u32,
     PrivateFlags: u32,
@@ -1099,7 +1232,7 @@ pub const SP_INSTALLWIZARD_DATA = extern struct {
 pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
-    DynamicPages: [20]?*c_void,
+    DynamicPages: [20]isize,
     NumDynamicPages: u32,
     hwndWizardDlg: HWND,
 };
@@ -1129,7 +1262,7 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
 pub const SP_DRVINFO_DATA_V2_A = extern struct {
     cbSize: u32,
     DriverType: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     Description: [256]i8,
     MfgName: [256]i8,
     ProviderName: [256]i8,
@@ -1140,7 +1273,7 @@ pub const SP_DRVINFO_DATA_V2_A = extern struct {
 pub const SP_DRVINFO_DATA_V2_W = extern struct {
     cbSize: u32,
     DriverType: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     Description: [256]u16,
     MfgName: [256]u16,
     ProviderName: [256]u16,
@@ -1151,7 +1284,7 @@ pub const SP_DRVINFO_DATA_V2_W = extern struct {
 pub const SP_DRVINFO_DATA_V1_A = extern struct {
     cbSize: u32,
     DriverType: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     Description: [256]i8,
     MfgName: [256]i8,
     ProviderName: [256]i8,
@@ -1160,7 +1293,7 @@ pub const SP_DRVINFO_DATA_V1_A = extern struct {
 pub const SP_DRVINFO_DATA_V1_W = extern struct {
     cbSize: u32,
     DriverType: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     Description: [256]u16,
     MfgName: [256]u16,
     ProviderName: [256]u16,
@@ -1171,7 +1304,7 @@ pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
     InfDate: FILETIME,
     CompatIDsOffset: u32,
     CompatIDsLength: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     SectionName: [256]i8,
     InfFileName: [260]i8,
     DrvDescription: [256]i8,
@@ -1183,7 +1316,7 @@ pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
     InfDate: FILETIME,
     CompatIDsOffset: u32,
     CompatIDsLength: u32,
-    Reserved: ?*c_void,
+    Reserved: usize,
     SectionName: [256]u16,
     InfFileName: [260]u16,
     DrvDescription: [256]u16,
@@ -1194,7 +1327,7 @@ pub const SP_DRVINSTALL_PARAMS = extern struct {
     cbSize: u32,
     Rank: u32,
     Flags: u32,
-    PrivateData: ?*c_void,
+    PrivateData: usize,
     Reserved: u32,
 };
 
@@ -1214,7 +1347,7 @@ pub const COINSTALLER_CONTEXT_DATA = extern struct {
 pub const SP_CLASSIMAGELIST_DATA = extern struct {
     cbSize: u32,
     ImageList: HIMAGELIST,
-    Reserved: ?*c_void,
+    Reserved: usize,
 };
 
 pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
@@ -1300,7 +1433,7 @@ pub const CONFLICT_DETAILS_A = extern struct {
     CD_ulSize: u32,
     CD_ulMask: u32,
     CD_dnDevInst: u32,
-    CD_rdResDes: ?*c_void,
+    CD_rdResDes: usize,
     CD_ulFlags: u32,
     CD_szDescription: [260]i8,
 };
@@ -1309,7 +1442,7 @@ pub const CONFLICT_DETAILS_W = extern struct {
     CD_ulSize: u32,
     CD_ulMask: u32,
     CD_dnDevInst: u32,
-    CD_rdResDes: ?*c_void,
+    CD_rdResDes: usize,
     CD_ulFlags: u32,
     CD_szDescription: [260]u16,
 };
@@ -1601,139 +1734,6 @@ pub const PCM_NOTIFY_CALLBACK = fn(
     EventData: [*]CM_NOTIFY_EVENT_DATA,
     EventDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const CONFIGRET = extern enum(u32) {
-    CR_SUCCESS = 0,
-    CR_DEFAULT = 1,
-    CR_OUT_OF_MEMORY = 2,
-    CR_INVALID_POINTER = 3,
-    CR_INVALID_FLAG = 4,
-    CR_INVALID_DEVNODE = 5,
-    CR_INVALID_DEVINST = 5,
-    CR_INVALID_RES_DES = 6,
-    CR_INVALID_LOG_CONF = 7,
-    CR_INVALID_ARBITRATOR = 8,
-    CR_INVALID_NODELIST = 9,
-    CR_DEVNODE_HAS_REQS = 10,
-    CR_DEVINST_HAS_REQS = 10,
-    CR_INVALID_RESOURCEID = 11,
-    CR_DLVXD_NOT_FOUND = 12,
-    CR_NO_SUCH_DEVNODE = 13,
-    CR_NO_SUCH_DEVINST = 13,
-    CR_NO_MORE_LOG_CONF = 14,
-    CR_NO_MORE_RES_DES = 15,
-    CR_ALREADY_SUCH_DEVNODE = 16,
-    CR_ALREADY_SUCH_DEVINST = 16,
-    CR_INVALID_RANGE_LIST = 17,
-    CR_INVALID_RANGE = 18,
-    CR_FAILURE = 19,
-    CR_NO_SUCH_LOGICAL_DEV = 20,
-    CR_CREATE_BLOCKED = 21,
-    CR_NOT_SYSTEM_VM = 22,
-    CR_REMOVE_VETOED = 23,
-    CR_APM_VETOED = 24,
-    CR_INVALID_LOAD_TYPE = 25,
-    CR_BUFFER_SMALL = 26,
-    CR_NO_ARBITRATOR = 27,
-    CR_NO_REGISTRY_HANDLE = 28,
-    CR_REGISTRY_ERROR = 29,
-    CR_INVALID_DEVICE_ID = 30,
-    CR_INVALID_DATA = 31,
-    CR_INVALID_API = 32,
-    CR_DEVLOADER_NOT_READY = 33,
-    CR_NEED_RESTART = 34,
-    CR_NO_MORE_HW_PROFILES = 35,
-    CR_DEVICE_NOT_THERE = 36,
-    CR_NO_SUCH_VALUE = 37,
-    CR_WRONG_TYPE = 38,
-    CR_INVALID_PRIORITY = 39,
-    CR_NOT_DISABLEABLE = 40,
-    CR_FREE_RESOURCES = 41,
-    CR_QUERY_VETOED = 42,
-    CR_CANT_SHARE_IRQ = 43,
-    CR_NO_DEPENDENT = 44,
-    CR_SAME_RESOURCES = 45,
-    CR_NO_SUCH_REGISTRY_KEY = 46,
-    CR_INVALID_MACHINENAME = 47,
-    CR_REMOTE_COMM_FAILURE = 48,
-    CR_MACHINE_UNAVAILABLE = 49,
-    CR_NO_CM_SERVICES = 50,
-    CR_ACCESS_DENIED = 51,
-    CR_CALL_NOT_IMPLEMENTED = 52,
-    CR_INVALID_PROPERTY = 53,
-    CR_DEVICE_INTERFACE_ACTIVE = 54,
-    CR_NO_SUCH_DEVICE_INTERFACE = 55,
-    CR_INVALID_REFERENCE_STRING = 56,
-    CR_INVALID_CONFLICT_LIST = 57,
-    CR_INVALID_INDEX = 58,
-    CR_INVALID_STRUCTURE_SIZE = 59,
-    NUM_CR_RESULTS = 60,
-};
-pub const CR_SUCCESS = CONFIGRET.CR_SUCCESS;
-pub const CR_DEFAULT = CONFIGRET.CR_DEFAULT;
-pub const CR_OUT_OF_MEMORY = CONFIGRET.CR_OUT_OF_MEMORY;
-pub const CR_INVALID_POINTER = CONFIGRET.CR_INVALID_POINTER;
-pub const CR_INVALID_FLAG = CONFIGRET.CR_INVALID_FLAG;
-pub const CR_INVALID_DEVNODE = CONFIGRET.CR_INVALID_DEVNODE;
-pub const CR_INVALID_DEVINST = CONFIGRET.CR_INVALID_DEVINST;
-pub const CR_INVALID_RES_DES = CONFIGRET.CR_INVALID_RES_DES;
-pub const CR_INVALID_LOG_CONF = CONFIGRET.CR_INVALID_LOG_CONF;
-pub const CR_INVALID_ARBITRATOR = CONFIGRET.CR_INVALID_ARBITRATOR;
-pub const CR_INVALID_NODELIST = CONFIGRET.CR_INVALID_NODELIST;
-pub const CR_DEVNODE_HAS_REQS = CONFIGRET.CR_DEVNODE_HAS_REQS;
-pub const CR_DEVINST_HAS_REQS = CONFIGRET.CR_DEVINST_HAS_REQS;
-pub const CR_INVALID_RESOURCEID = CONFIGRET.CR_INVALID_RESOURCEID;
-pub const CR_DLVXD_NOT_FOUND = CONFIGRET.CR_DLVXD_NOT_FOUND;
-pub const CR_NO_SUCH_DEVNODE = CONFIGRET.CR_NO_SUCH_DEVNODE;
-pub const CR_NO_SUCH_DEVINST = CONFIGRET.CR_NO_SUCH_DEVINST;
-pub const CR_NO_MORE_LOG_CONF = CONFIGRET.CR_NO_MORE_LOG_CONF;
-pub const CR_NO_MORE_RES_DES = CONFIGRET.CR_NO_MORE_RES_DES;
-pub const CR_ALREADY_SUCH_DEVNODE = CONFIGRET.CR_ALREADY_SUCH_DEVNODE;
-pub const CR_ALREADY_SUCH_DEVINST = CONFIGRET.CR_ALREADY_SUCH_DEVINST;
-pub const CR_INVALID_RANGE_LIST = CONFIGRET.CR_INVALID_RANGE_LIST;
-pub const CR_INVALID_RANGE = CONFIGRET.CR_INVALID_RANGE;
-pub const CR_FAILURE = CONFIGRET.CR_FAILURE;
-pub const CR_NO_SUCH_LOGICAL_DEV = CONFIGRET.CR_NO_SUCH_LOGICAL_DEV;
-pub const CR_CREATE_BLOCKED = CONFIGRET.CR_CREATE_BLOCKED;
-pub const CR_NOT_SYSTEM_VM = CONFIGRET.CR_NOT_SYSTEM_VM;
-pub const CR_REMOVE_VETOED = CONFIGRET.CR_REMOVE_VETOED;
-pub const CR_APM_VETOED = CONFIGRET.CR_APM_VETOED;
-pub const CR_INVALID_LOAD_TYPE = CONFIGRET.CR_INVALID_LOAD_TYPE;
-pub const CR_BUFFER_SMALL = CONFIGRET.CR_BUFFER_SMALL;
-pub const CR_NO_ARBITRATOR = CONFIGRET.CR_NO_ARBITRATOR;
-pub const CR_NO_REGISTRY_HANDLE = CONFIGRET.CR_NO_REGISTRY_HANDLE;
-pub const CR_REGISTRY_ERROR = CONFIGRET.CR_REGISTRY_ERROR;
-pub const CR_INVALID_DEVICE_ID = CONFIGRET.CR_INVALID_DEVICE_ID;
-pub const CR_INVALID_DATA = CONFIGRET.CR_INVALID_DATA;
-pub const CR_INVALID_API = CONFIGRET.CR_INVALID_API;
-pub const CR_DEVLOADER_NOT_READY = CONFIGRET.CR_DEVLOADER_NOT_READY;
-pub const CR_NEED_RESTART = CONFIGRET.CR_NEED_RESTART;
-pub const CR_NO_MORE_HW_PROFILES = CONFIGRET.CR_NO_MORE_HW_PROFILES;
-pub const CR_DEVICE_NOT_THERE = CONFIGRET.CR_DEVICE_NOT_THERE;
-pub const CR_NO_SUCH_VALUE = CONFIGRET.CR_NO_SUCH_VALUE;
-pub const CR_WRONG_TYPE = CONFIGRET.CR_WRONG_TYPE;
-pub const CR_INVALID_PRIORITY = CONFIGRET.CR_INVALID_PRIORITY;
-pub const CR_NOT_DISABLEABLE = CONFIGRET.CR_NOT_DISABLEABLE;
-pub const CR_FREE_RESOURCES = CONFIGRET.CR_FREE_RESOURCES;
-pub const CR_QUERY_VETOED = CONFIGRET.CR_QUERY_VETOED;
-pub const CR_CANT_SHARE_IRQ = CONFIGRET.CR_CANT_SHARE_IRQ;
-pub const CR_NO_DEPENDENT = CONFIGRET.CR_NO_DEPENDENT;
-pub const CR_SAME_RESOURCES = CONFIGRET.CR_SAME_RESOURCES;
-pub const CR_NO_SUCH_REGISTRY_KEY = CONFIGRET.CR_NO_SUCH_REGISTRY_KEY;
-pub const CR_INVALID_MACHINENAME = CONFIGRET.CR_INVALID_MACHINENAME;
-pub const CR_REMOTE_COMM_FAILURE = CONFIGRET.CR_REMOTE_COMM_FAILURE;
-pub const CR_MACHINE_UNAVAILABLE = CONFIGRET.CR_MACHINE_UNAVAILABLE;
-pub const CR_NO_CM_SERVICES = CONFIGRET.CR_NO_CM_SERVICES;
-pub const CR_ACCESS_DENIED = CONFIGRET.CR_ACCESS_DENIED;
-pub const CR_CALL_NOT_IMPLEMENTED = CONFIGRET.CR_CALL_NOT_IMPLEMENTED;
-pub const CR_INVALID_PROPERTY = CONFIGRET.CR_INVALID_PROPERTY;
-pub const CR_DEVICE_INTERFACE_ACTIVE = CONFIGRET.CR_DEVICE_INTERFACE_ACTIVE;
-pub const CR_NO_SUCH_DEVICE_INTERFACE = CONFIGRET.CR_NO_SUCH_DEVICE_INTERFACE;
-pub const CR_INVALID_REFERENCE_STRING = CONFIGRET.CR_INVALID_REFERENCE_STRING;
-pub const CR_INVALID_CONFLICT_LIST = CONFIGRET.CR_INVALID_CONFLICT_LIST;
-pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
-pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
-pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 
 
 //--------------------------------------------------------------------------------
@@ -3109,7 +3109,7 @@ pub extern "SETUPAPI" fn SetupDiGetCustomDevicePropertyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Add_Empty_Log_Conf(
-    plcLogConf: *?*c_void,
+    plcLogConf: *usize,
     dnDevInst: u32,
     Priority: PRIORITY,
     ulFlags: u32,
@@ -3117,11 +3117,11 @@ pub extern "SETUPAPI" fn CM_Add_Empty_Log_Conf(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Add_Empty_Log_Conf_Ex(
-    plcLogConf: *?*c_void,
+    plcLogConf: *usize,
     dnDevInst: u32,
     Priority: PRIORITY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Add_IDA(
@@ -3141,7 +3141,7 @@ pub extern "SETUPAPI" fn CM_Add_ID_ExA(
     dnDevInst: u32,
     pszID: PSTR,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3149,20 +3149,20 @@ pub extern "SETUPAPI" fn CM_Add_ID_ExW(
     dnDevInst: u32,
     pszID: PWSTR,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Add_Range(
     ullStartValue: u64,
     ullEndValue: u64,
-    rlh: ?*c_void,
+    rlh: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Add_Res_Des(
-    prdResDes: ?*?*c_void,
-    lcLogConf: ?*c_void,
+    prdResDes: ?*usize,
+    lcLogConf: usize,
     ResourceID: u32,
     ResourceData: [*]u8,
     ResourceLen: u32,
@@ -3171,24 +3171,24 @@ pub extern "SETUPAPI" fn CM_Add_Res_Des(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Add_Res_Des_Ex(
-    prdResDes: ?*?*c_void,
-    lcLogConf: ?*c_void,
+    prdResDes: ?*usize,
+    lcLogConf: usize,
     ResourceID: u32,
     ResourceData: [*]u8,
     ResourceLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Connect_MachineA(
     UNCServerName: ?[*:0]const u8,
-    phMachine: *?*c_void,
+    phMachine: *isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Connect_MachineW(
     UNCServerName: ?[*:0]const u16,
-    phMachine: *?*c_void,
+    phMachine: *isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Create_DevNodeA(
@@ -3210,7 +3210,7 @@ pub extern "SETUPAPI" fn CM_Create_DevNode_ExA(
     pDeviceID: *i8,
     dnParent: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Create_DevNode_ExW(
@@ -3218,11 +3218,11 @@ pub extern "SETUPAPI" fn CM_Create_DevNode_ExW(
     pDeviceID: *u16,
     dnParent: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Create_Range_List(
-    prlh: *?*c_void,
+    prlh: *usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
@@ -3235,7 +3235,7 @@ pub extern "SETUPAPI" fn CM_Delete_Class_Key(
 pub extern "SETUPAPI" fn CM_Delete_Class_Key_Ex(
     ClassGuid: *Guid,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3249,13 +3249,13 @@ pub extern "SETUPAPI" fn CM_Delete_DevNode_Key_Ex(
     dnDevNode: u32,
     ulHardwareProfile: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Delete_Range(
     ullStartValue: u64,
     ullEndValue: u64,
-    rlh: ?*c_void,
+    rlh: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
@@ -3275,7 +3275,7 @@ pub extern "SETUPAPI" fn CM_Detect_Resource_Conflict_Ex(
     ResourceLen: u32,
     pbConflictDetected: *BOOL,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3287,17 +3287,17 @@ pub extern "SETUPAPI" fn CM_Disable_DevNode(
 pub extern "SETUPAPI" fn CM_Disable_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Disconnect_Machine(
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Dup_Range_List(
-    rlhOld: ?*c_void,
-    rlhNew: ?*c_void,
+    rlhOld: usize,
+    rlhNew: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
@@ -3310,7 +3310,7 @@ pub extern "SETUPAPI" fn CM_Enable_DevNode(
 pub extern "SETUPAPI" fn CM_Enable_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3325,7 +3325,7 @@ pub extern "SETUPAPI" fn CM_Enumerate_Classes_Ex(
     ulClassIndex: u32,
     ClassGuid: *Guid,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Enumerate_EnumeratorsA(
@@ -3348,7 +3348,7 @@ pub extern "SETUPAPI" fn CM_Enumerate_Enumerators_ExA(
     Buffer: [*:0]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3357,7 +3357,7 @@ pub extern "SETUPAPI" fn CM_Enumerate_Enumerators_ExW(
     Buffer: [*:0]u16,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Find_Range(
@@ -3366,59 +3366,59 @@ pub extern "SETUPAPI" fn CM_Find_Range(
     ulLength: u32,
     ullAlignment: u64,
     ullEnd: u64,
-    rlh: ?*c_void,
+    rlh: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_First_Range(
-    rlh: ?*c_void,
+    rlh: usize,
     pullStart: *u64,
     pullEnd: *u64,
-    preElement: *?*c_void,
+    preElement: *usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Log_Conf(
-    lcLogConfToBeFreed: ?*c_void,
+    lcLogConfToBeFreed: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Log_Conf_Ex(
-    lcLogConfToBeFreed: ?*c_void,
+    lcLogConfToBeFreed: usize,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Log_Conf_Handle(
-    lcLogConf: ?*c_void,
+    lcLogConf: usize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Free_Range_List(
-    rlh: ?*c_void,
+    rlh: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Res_Des(
-    prdResDes: ?*?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: ?*usize,
+    rdResDes: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Res_Des_Ex(
-    prdResDes: ?*?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: ?*usize,
+    rdResDes: usize,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Res_Des_Handle(
-    rdResDes: ?*c_void,
+    rdResDes: usize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3433,7 +3433,7 @@ pub extern "SETUPAPI" fn CM_Get_Child_Ex(
     pdnDevInst: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Class_NameA(
@@ -3455,7 +3455,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Name_ExA(
     Buffer: ?[*:0]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Class_Name_ExW(
@@ -3463,7 +3463,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Name_ExW(
     Buffer: ?[*:0]u16,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Class_Key_NameA(
@@ -3485,7 +3485,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Key_Name_ExA(
     pszKeyName: ?[*:0]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Class_Key_Name_ExW(
@@ -3493,7 +3493,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Key_Name_ExW(
     pszKeyName: ?[*:0]u16,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3508,7 +3508,7 @@ pub extern "SETUPAPI" fn CM_Get_Depth_Ex(
     pulDepth: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Device_IDA(
@@ -3531,7 +3531,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_ExA(
     Buffer: [*:0]u8,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3540,7 +3540,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_ExW(
     Buffer: [*:0]u16,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3564,7 +3564,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_List_ExA(
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3573,7 +3573,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_List_ExW(
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3594,7 +3594,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_List_Size_ExA(
     pulLen: *u32,
     pszFilter: ?[*:0]const u8,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3602,7 +3602,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_List_Size_ExW(
     pulLen: *u32,
     pszFilter: ?[*:0]const u16,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3617,7 +3617,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_ID_Size_Ex(
     pulLen: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3638,7 +3638,7 @@ pub extern "CFGMGR32" fn CM_Get_DevNode_Property_ExW(
     PropertyBuffer: ?[*:0]u8,
     PropertyBufferSize: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3655,7 +3655,7 @@ pub extern "CFGMGR32" fn CM_Get_DevNode_Property_Keys_Ex(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_DevNode_Registry_PropertyA(
@@ -3684,7 +3684,7 @@ pub extern "SETUPAPI" fn CM_Get_DevNode_Registry_Property_ExA(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_DevNode_Registry_Property_ExW(
@@ -3694,7 +3694,7 @@ pub extern "SETUPAPI" fn CM_Get_DevNode_Registry_Property_ExW(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_DevNode_Custom_PropertyA(
@@ -3722,7 +3722,7 @@ pub extern "SETUPAPI" fn CM_Get_DevNode_Custom_Property_ExA(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_DevNode_Custom_Property_ExW(
@@ -3732,7 +3732,7 @@ pub extern "SETUPAPI" fn CM_Get_DevNode_Custom_Property_ExW(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3749,22 +3749,22 @@ pub extern "SETUPAPI" fn CM_Get_DevNode_Status_Ex(
     pulProblemNumber: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_First_Log_Conf(
-    plcLogConf: ?*?*c_void,
+    plcLogConf: ?*usize,
     dnDevInst: u32,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_First_Log_Conf_Ex(
-    plcLogConf: ?*?*c_void,
+    plcLogConf: ?*usize,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Global_State(
@@ -3775,7 +3775,7 @@ pub extern "SETUPAPI" fn CM_Get_Global_State(
 pub extern "SETUPAPI" fn CM_Get_Global_State_Ex(
     pulState: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Hardware_Profile_InfoA(
@@ -3788,7 +3788,7 @@ pub extern "SETUPAPI" fn CM_Get_Hardware_Profile_Info_ExA(
     ulIndex: u32,
     pHWProfileInfo: *HWProfileInfo_sA,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Hardware_Profile_InfoW(
@@ -3801,7 +3801,7 @@ pub extern "SETUPAPI" fn CM_Get_Hardware_Profile_Info_ExW(
     ulIndex: u32,
     pHWProfileInfo: *HWProfileInfo_sW,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3826,7 +3826,7 @@ pub extern "SETUPAPI" fn CM_Get_HW_Prof_Flags_ExA(
     ulHardwareProfile: u32,
     pulValue: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3835,7 +3835,7 @@ pub extern "SETUPAPI" fn CM_Get_HW_Prof_Flags_ExW(
     ulHardwareProfile: u32,
     pulValue: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Device_Interface_AliasA(
@@ -3861,7 +3861,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_Alias_ExA(
     pszAliasDeviceInterface: [*:0]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Device_Interface_Alias_ExW(
@@ -3870,7 +3870,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_Alias_ExW(
     pszAliasDeviceInterface: [*:0]u16,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3897,7 +3897,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_ExA(
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_ExW(
@@ -3906,7 +3906,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_ExW(
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3930,7 +3930,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_Size_ExA(
     InterfaceClassGuid: *Guid,
     pDeviceID: ?*i8,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_Size_ExW(
@@ -3938,7 +3938,7 @@ pub extern "SETUPAPI" fn CM_Get_Device_Interface_List_Size_ExW(
     InterfaceClassGuid: *Guid,
     pDeviceID: ?*u16,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3959,7 +3959,7 @@ pub extern "CFGMGR32" fn CM_Get_Device_Interface_Property_ExW(
     PropertyBuffer: ?[*:0]u8,
     PropertyBufferSize: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3976,37 +3976,37 @@ pub extern "CFGMGR32" fn CM_Get_Device_Interface_Property_Keys_ExW(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Log_Conf_Priority(
-    lcLogConf: ?*c_void,
+    lcLogConf: usize,
     pPriority: *u32,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Log_Conf_Priority_Ex(
-    lcLogConf: ?*c_void,
+    lcLogConf: usize,
     pPriority: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Next_Log_Conf(
-    plcLogConf: ?*?*c_void,
-    lcLogConf: ?*c_void,
+    plcLogConf: ?*usize,
+    lcLogConf: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Next_Log_Conf_Ex(
-    plcLogConf: ?*?*c_void,
-    lcLogConf: ?*c_void,
+    plcLogConf: ?*usize,
+    lcLogConf: usize,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4021,12 +4021,12 @@ pub extern "SETUPAPI" fn CM_Get_Parent_Ex(
     pdnDevInst: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Res_Des_Data(
-    rdResDes: ?*c_void,
+    rdResDes: usize,
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
@@ -4034,26 +4034,26 @@ pub extern "SETUPAPI" fn CM_Get_Res_Des_Data(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Res_Des_Data_Ex(
-    rdResDes: ?*c_void,
+    rdResDes: usize,
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Res_Des_Data_Size(
     pulSize: *u32,
-    rdResDes: ?*c_void,
+    rdResDes: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Res_Des_Data_Size_Ex(
     pulSize: *u32,
-    rdResDes: ?*c_void,
+    rdResDes: usize,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4068,7 +4068,7 @@ pub extern "SETUPAPI" fn CM_Get_Sibling_Ex(
     pdnDevInst: *u32,
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4077,7 +4077,7 @@ pub extern "SETUPAPI" fn CM_Get_Version(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Version_Ex(
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4088,19 +4088,19 @@ pub extern "SETUPAPI" fn CM_Is_Version_Available(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn CM_Is_Version_Available_Ex(
     wVersion: u16,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SETUPAPI" fn CM_Intersect_Range_List(
-    rlhOld1: ?*c_void,
-    rlhOld2: ?*c_void,
-    rlhNew: ?*c_void,
+    rlhOld1: usize,
+    rlhOld2: usize,
+    rlhNew: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Invert_Range_List(
-    rlhOld: ?*c_void,
-    rlhNew: ?*c_void,
+    rlhOld: usize,
+    rlhNew: usize,
     ullMaxValue: u64,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
@@ -4123,7 +4123,7 @@ pub extern "SETUPAPI" fn CM_Locate_DevNode_ExA(
     pdnDevInst: *u32,
     pDeviceID: ?*i8,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4131,20 +4131,20 @@ pub extern "SETUPAPI" fn CM_Locate_DevNode_ExW(
     pdnDevInst: *u32,
     pDeviceID: ?*u16,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Merge_Range_List(
-    rlhOld1: ?*c_void,
-    rlhOld2: ?*c_void,
-    rlhNew: ?*c_void,
+    rlhOld1: usize,
+    rlhOld2: usize,
+    rlhNew: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Modify_Res_Des(
-    prdResDes: *?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: *usize,
+    rdResDes: usize,
     ResourceID: u32,
     ResourceData: [*]u8,
     ResourceLen: u32,
@@ -4153,13 +4153,13 @@ pub extern "SETUPAPI" fn CM_Modify_Res_Des(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Modify_Res_Des_Ex(
-    prdResDes: *?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: *usize,
+    rdResDes: usize,
     ResourceID: u32,
     ResourceData: [*]u8,
     ResourceLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Move_DevNode(
@@ -4172,11 +4172,11 @@ pub extern "SETUPAPI" fn CM_Move_DevNode_Ex(
     dnFromDevInst: u32,
     dnToDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Next_Range(
-    preElement: *?*c_void,
+    preElement: *usize,
     pullStart: *u64,
     pullEnd: *u64,
     ulFlags: u32,
@@ -4184,8 +4184,8 @@ pub extern "SETUPAPI" fn CM_Next_Range(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Next_Res_Des(
-    prdResDes: *?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: *usize,
+    rdResDes: usize,
     ForResource: u32,
     pResourceID: ?*u32,
     ulFlags: u32,
@@ -4193,12 +4193,12 @@ pub extern "SETUPAPI" fn CM_Get_Next_Res_Des(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Next_Res_Des_Ex(
-    prdResDes: *?*c_void,
-    rdResDes: ?*c_void,
+    prdResDes: *usize,
+    rdResDes: usize,
     ForResource: u32,
     pResourceID: ?*u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Open_Class_KeyA(
@@ -4227,7 +4227,7 @@ pub extern "SETUPAPI" fn CM_Open_Class_Key_ExA(
     Disposition: u32,
     phkClass: *HKEY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Open_Class_Key_ExW(
@@ -4237,7 +4237,7 @@ pub extern "SETUPAPI" fn CM_Open_Class_Key_ExW(
     Disposition: u32,
     phkClass: *HKEY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4257,7 +4257,7 @@ pub extern "SETUPAPI" fn CM_Open_DevNode_Key_Ex(
     Disposition: u32,
     phkDevice: *HKEY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4285,7 +4285,7 @@ pub extern "SETUPAPI" fn CM_Open_Device_Interface_Key_ExA(
     Disposition: u32,
     phkDeviceInterface: *HKEY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -4295,7 +4295,7 @@ pub extern "SETUPAPI" fn CM_Open_Device_Interface_Key_ExW(
     Disposition: u32,
     phkDeviceInterface: *HKEY,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Delete_Device_Interface_KeyA(
@@ -4313,14 +4313,14 @@ pub extern "SETUPAPI" fn CM_Delete_Device_Interface_KeyW(
 pub extern "SETUPAPI" fn CM_Delete_Device_Interface_Key_ExA(
     pszDeviceInterface: [*:0]const u8,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "SETUPAPI" fn CM_Delete_Device_Interface_Key_ExW(
     pszDeviceInterface: [*:0]const u16,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Query_Arbitrator_Free_Data(
@@ -4337,7 +4337,7 @@ pub extern "SETUPAPI" fn CM_Query_Arbitrator_Free_Data_Ex(
     dnDevInst: u32,
     ResourceID: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Query_Arbitrator_Free_Size(
@@ -4352,7 +4352,7 @@ pub extern "SETUPAPI" fn CM_Query_Arbitrator_Free_Size_Ex(
     dnDevInst: u32,
     ResourceID: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Query_Remove_SubTree(
@@ -4363,7 +4363,7 @@ pub extern "SETUPAPI" fn CM_Query_Remove_SubTree(
 pub extern "SETUPAPI" fn CM_Query_Remove_SubTree_Ex(
     dnAncestor: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Query_And_Remove_SubTreeA(
@@ -4389,7 +4389,7 @@ pub extern "SETUPAPI" fn CM_Query_And_Remove_SubTree_ExA(
     pszVetoName: ?[*:0]u8,
     ulNameLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4399,7 +4399,7 @@ pub extern "SETUPAPI" fn CM_Query_And_Remove_SubTree_ExW(
     pszVetoName: ?[*:0]u16,
     ulNameLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Request_Device_EjectA(
@@ -4416,7 +4416,7 @@ pub extern "SETUPAPI" fn CM_Request_Device_Eject_ExA(
     pszVetoName: ?[*:0]u8,
     ulNameLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4435,7 +4435,7 @@ pub extern "SETUPAPI" fn CM_Request_Device_Eject_ExW(
     pszVetoName: ?[*:0]u16,
     ulNameLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4448,7 +4448,7 @@ pub extern "SETUPAPI" fn CM_Reenumerate_DevNode(
 pub extern "SETUPAPI" fn CM_Reenumerate_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Register_Device_InterfaceA(
@@ -4476,7 +4476,7 @@ pub extern "SETUPAPI" fn CM_Register_Device_Interface_ExA(
     pszDeviceInterface: [*:0]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Register_Device_Interface_ExW(
@@ -4486,7 +4486,7 @@ pub extern "SETUPAPI" fn CM_Register_Device_Interface_ExW(
     pszDeviceInterface: [*:0]u16,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4494,7 +4494,7 @@ pub extern "SETUPAPI" fn CM_Set_DevNode_Problem_Ex(
     dnDevInst: u32,
     ulProblem: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4517,13 +4517,13 @@ pub extern "SETUPAPI" fn CM_Unregister_Device_InterfaceW(
 pub extern "SETUPAPI" fn CM_Unregister_Device_Interface_ExA(
     pszDeviceInterface: [*:0]const u8,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Unregister_Device_Interface_ExW(
     pszDeviceInterface: [*:0]const u16,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Register_Device_Driver(
@@ -4534,7 +4534,7 @@ pub extern "SETUPAPI" fn CM_Register_Device_Driver(
 pub extern "SETUPAPI" fn CM_Register_Device_Driver_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Remove_SubTree(
@@ -4545,7 +4545,7 @@ pub extern "SETUPAPI" fn CM_Remove_SubTree(
 pub extern "SETUPAPI" fn CM_Remove_SubTree_Ex(
     dnAncestor: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4566,7 +4566,7 @@ pub extern "CFGMGR32" fn CM_Set_DevNode_Property_ExW(
     PropertyBuffer: ?[*:0]const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_DevNode_Registry_PropertyA(
@@ -4592,7 +4592,7 @@ pub extern "SETUPAPI" fn CM_Set_DevNode_Registry_Property_ExA(
     Buffer: ?[*]u8,
     ulLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_DevNode_Registry_Property_ExW(
@@ -4601,7 +4601,7 @@ pub extern "SETUPAPI" fn CM_Set_DevNode_Registry_Property_ExW(
     Buffer: ?[*]u8,
     ulLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4622,7 +4622,7 @@ pub extern "CFGMGR32" fn CM_Set_Device_Interface_Property_ExW(
     PropertyBuffer: ?[*:0]const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4633,7 +4633,7 @@ pub extern "SETUPAPI" fn CM_Is_Dock_Station_Present(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Is_Dock_Station_Present_Ex(
     pbPresent: *BOOL,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4642,7 +4642,7 @@ pub extern "SETUPAPI" fn CM_Request_Eject_PC(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Request_Eject_PC_Ex(
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_HW_Prof_FlagsA(
@@ -4664,7 +4664,7 @@ pub extern "SETUPAPI" fn CM_Set_HW_Prof_Flags_ExA(
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_HW_Prof_Flags_ExW(
@@ -4672,7 +4672,7 @@ pub extern "SETUPAPI" fn CM_Set_HW_Prof_Flags_ExW(
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4684,13 +4684,13 @@ pub extern "SETUPAPI" fn CM_Setup_DevNode(
 pub extern "SETUPAPI" fn CM_Setup_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Test_Range_Available(
     ullStartValue: u64,
     ullEndValue: u64,
-    rlh: ?*c_void,
+    rlh: usize,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
@@ -4703,7 +4703,7 @@ pub extern "SETUPAPI" fn CM_Uninstall_DevNode(
 pub extern "SETUPAPI" fn CM_Uninstall_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Run_Detection(
@@ -4712,7 +4712,7 @@ pub extern "SETUPAPI" fn CM_Run_Detection(
 
 pub extern "SETUPAPI" fn CM_Run_Detection_Ex(
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_HW_Prof(
@@ -4723,40 +4723,40 @@ pub extern "SETUPAPI" fn CM_Set_HW_Prof(
 pub extern "SETUPAPI" fn CM_Set_HW_Prof_Ex(
     ulHardwareProfile: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Query_Resource_Conflict_List(
-    pclConflictList: *?*c_void,
+    pclConflictList: *usize,
     dnDevInst: u32,
     ResourceID: u32,
     ResourceData: [*]u8,
     ResourceLen: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Free_Resource_Conflict_Handle(
-    clConflictList: ?*c_void,
+    clConflictList: usize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Resource_Conflict_Count(
-    clConflictList: ?*c_void,
+    clConflictList: usize,
     pulCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Resource_Conflict_DetailsA(
-    clConflictList: ?*c_void,
+    clConflictList: usize,
     ulIndex: u32,
     pConflictDetails: *CONFLICT_DETAILS_A,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SETUPAPI" fn CM_Get_Resource_Conflict_DetailsW(
-    clConflictList: ?*c_void,
+    clConflictList: usize,
     ulIndex: u32,
     pConflictDetails: *CONFLICT_DETAILS_W,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
@@ -4779,7 +4779,7 @@ pub extern "CFGMGR32" fn CM_Get_Class_Property_ExW(
     PropertyBuffer: ?[*:0]u8,
     PropertyBufferSize: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4796,7 +4796,7 @@ pub extern "CFGMGR32" fn CM_Get_Class_Property_Keys_Ex(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4817,7 +4817,7 @@ pub extern "CFGMGR32" fn CM_Set_Class_Property_ExW(
     PropertyBuffer: ?[*:0]const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Get_Class_Registry_PropertyA(
@@ -4827,7 +4827,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Registry_PropertyA(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4838,7 +4838,7 @@ pub extern "SETUPAPI" fn CM_Get_Class_Registry_PropertyW(
     Buffer: ?[*]u8,
     pulLength: *u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CM_Set_Class_Registry_PropertyA(
@@ -4847,7 +4847,7 @@ pub extern "SETUPAPI" fn CM_Set_Class_Registry_PropertyA(
     Buffer: ?[*]u8,
     ulLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4857,7 +4857,7 @@ pub extern "SETUPAPI" fn CM_Set_Class_Registry_PropertyW(
     Buffer: ?[*]u8,
     ulLength: u32,
     ulFlags: u32,
-    hMachine: ?*c_void,
+    hMachine: isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 pub extern "SETUPAPI" fn CMP_WaitNoPendingInstallEvents(
@@ -4869,7 +4869,7 @@ pub extern "CFGMGR32" fn CM_Register_Notification(
     pFilter: *CM_NOTIFY_FILTER,
     pContext: ?*c_void,
     pCallback: PCM_NOTIFY_CALLBACK,
-    pNotifyContext: *?*c_void,
+    pNotifyContext: *isize,
 ) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows8.0'

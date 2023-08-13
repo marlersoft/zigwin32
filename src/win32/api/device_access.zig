@@ -51,11 +51,11 @@ pub const IDeviceIoControl = extern struct {
             outputBuffer: ?[*:0]u8,
             outputBufferSize: u32,
             requestCompletionCallback: *IDeviceRequestCompletionCallback,
-            cancelContext: ?*?*c_void,
+            cancelContext: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelOperation: fn(
             self: *const IDeviceIoControl,
-            cancelContext: ?*c_void,
+            cancelContext: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -66,11 +66,11 @@ pub const IDeviceIoControl = extern struct {
             return @ptrCast(*const IDeviceIoControl.VTable, self.vtable).DeviceIoControlSync(@ptrCast(*const IDeviceIoControl, self), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, bytesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceIoControl_DeviceIoControlAsync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: *IDeviceRequestCompletionCallback, cancelContext: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDeviceIoControl_DeviceIoControlAsync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: *IDeviceRequestCompletionCallback, cancelContext: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceIoControl.VTable, self.vtable).DeviceIoControlAsync(@ptrCast(*const IDeviceIoControl, self), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, requestCompletionCallback, cancelContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceIoControl_CancelOperation(self: *const T, cancelContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDeviceIoControl_CancelOperation(self: *const T, cancelContext: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceIoControl.VTable, self.vtable).CancelOperation(@ptrCast(*const IDeviceIoControl, self), cancelContext);
         }
     };}

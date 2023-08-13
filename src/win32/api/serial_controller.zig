@@ -17,7 +17,7 @@ pub const HCOMDB = ?*c_void;
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
 pub extern "MSPORTS" fn ComDBOpen(
-    PHComDB: *?*c_void,
+    PHComDB: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBClose(

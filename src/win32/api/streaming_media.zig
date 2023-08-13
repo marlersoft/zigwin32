@@ -74,7 +74,7 @@ pub const IMFDeviceTransform = extern struct {
         ProcessMessage: fn(
             self: *const IMFDeviceTransform,
             eMessage: MFT_MESSAGE_TYPE,
-            ulParam: ?*c_void,
+            ulParam: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessOutput: fn(
             self: *const IMFDeviceTransform,
@@ -172,7 +172,7 @@ pub const IMFDeviceTransform = extern struct {
             return @ptrCast(*const IMFDeviceTransform.VTable, self.vtable).ProcessInput(@ptrCast(*const IMFDeviceTransform, self), dwInputStreamID, pSample, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFDeviceTransform_ProcessMessage(self: *const T, eMessage: MFT_MESSAGE_TYPE, ulParam: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMFDeviceTransform_ProcessMessage(self: *const T, eMessage: MFT_MESSAGE_TYPE, ulParam: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFDeviceTransform.VTable, self.vtable).ProcessMessage(@ptrCast(*const IMFDeviceTransform, self), eMessage, ulParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

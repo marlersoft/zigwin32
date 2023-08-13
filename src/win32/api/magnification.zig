@@ -21,7 +21,7 @@ pub const MAGIMAGEHEADER = extern struct {
     format: Guid,
     stride: u32,
     offset: u32,
-    cbSize: ?*c_void,
+    cbSize: usize,
 };
 
 pub const MAGCOLOREFFECT = extern struct {

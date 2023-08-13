@@ -1089,14 +1089,14 @@ pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = fn(
     hCluster: *_HCLUSTER,
     Filters: *NOTIFY_FILTER_AND_TYPE,
     dwFilterCount: u32,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
 pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = fn(
     hChange: *_HCHANGE,
     Filter: NOTIFY_FILTER_AND_TYPE,
     hObject: HANDLE,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = fn(
@@ -1106,7 +1106,7 @@ pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = fn(
 
 pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = fn(
     hChange: *_HCHANGE,
-    lpdwNotifyKey: *?*c_void,
+    lpdwNotifyKey: *usize,
     pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
     buffer: ?*u8,
     lpcchBufferSize: ?*u32,
@@ -1125,19 +1125,19 @@ pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = fn(
     hChange: *_HCHANGE,
     hCluster: *_HCLUSTER,
     dwFilter: u32,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
 pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = fn(
     hChange: *_HCHANGE,
     dwFilterType: u32,
     hObject: HANDLE,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_NOTIFY = fn(
     hChange: *_HCHANGE,
-    lpdwNotifyKey: *?*c_void,
+    lpdwNotifyKey: *usize,
     lpdwFilterType: *u32,
     lpszName: ?[*:0]u16,
     lpcchName: *u32,
@@ -4473,17 +4473,17 @@ pub const RESOURCE_STATUS_EX = extern struct {
 };
 
 pub const PSET_RESOURCE_STATUS_ROUTINE_EX = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     ResourceStatus: *RESOURCE_STATUS_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PSET_RESOURCE_STATUS_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     ResourceStatus: *RESOURCE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PQUORUM_RESOURCE_LOST = fn(
-    Resource: ?*c_void,
+    Resource: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LOG_LEVEL = extern enum(i32) {
@@ -4498,7 +4498,7 @@ pub const LOG_ERROR = LOG_LEVEL.ERROR;
 pub const LOG_SEVERE = LOG_LEVEL.SEVERE;
 
 pub const PLOG_EVENT_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     LogLevel: LOG_LEVEL,
     FormatString: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -4506,7 +4506,7 @@ pub const PLOG_EVENT_ROUTINE = fn(
 pub const POPEN_ROUTINE = fn(
     ResourceName: [*:0]const u16,
     ResourceKey: HKEY,
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub const PCLOSE_ROUTINE = fn(
@@ -4566,7 +4566,7 @@ pub const PRESOURCE_TYPE_CONTROL_ROUTINE = fn(
 pub const POPEN_V2_ROUTINE = fn(
     ResourceName: [*:0]const u16,
     ResourceKey: HKEY,
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     OpenFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
@@ -4778,19 +4778,19 @@ pub const ClusterResourceApplicationOSHeartBeat = CLUSTER_RESOURCE_APPLICATION_S
 pub const ClusterResourceApplicationReady = CLUSTER_RESOURCE_APPLICATION_STATE.Ready;
 
 pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PSIGNAL_FAILURE_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     FailureType: FAILURE_TYPE,
     ApplicationSpecificErrorCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     propertyListBuffer: *u8,
     propertyListBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4822,7 +4822,7 @@ pub const PRAISE_RES_TYPE_NOTIFICATION = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = fn(
-    resource: ?*c_void,
+    resource: isize,
     processName: [*:0]const u16,
     processId: u32,
     isAdd: BOOL,
@@ -4836,13 +4836,13 @@ pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PSET_INTERNAL_STATE = fn(
-    param0: ?*c_void,
+    param0: isize,
     stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
     active: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = fn(
-    ResourceHandle: ?*c_void,
+    ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
     LockedModeFlags: u32,
@@ -4940,7 +4940,7 @@ pub const CLUSTER_HEALTH_FAULT_ARRAY = extern struct {
 
 pub const PRESUTIL_START_RESOURCE_SERVICE = fn(
     pszServiceName: [*:0]const u16,
-    phServiceHandle: *?*c_void,
+    phServiceHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = fn(
@@ -5286,21 +5286,21 @@ pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = fn(
     pszServiceName: [*:0]const u16,
     hResource: *_HRESOURCE,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = fn(
     pszServiceName: [*:0]const u16,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = fn(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
-    phService: *?*c_void,
+    phService: *isize,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_FIND_SZ_PROPERTY = fn(
@@ -5495,7 +5495,7 @@ pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = fn(
     bOffline: BOOL,
     pdwResourceState: *u32,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_GET_PROPERTY_FORMATS = fn(
@@ -5626,10 +5626,10 @@ pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = fn(
 pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = fn(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
-    phService: *?*c_void,
+    phService: *isize,
     dwDesiredAccess: u32,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_ENUM_RESOURCES_EX2 = fn(
@@ -6526,14 +6526,14 @@ pub const ISClusRefObject = extern struct {
         base: IDispatch.VTable,
         get_Handle: fn(
             self: *const ISClusRefObject,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRefObject_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusRefObject_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusRefObject.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusRefObject, self), phandle);
         }
     };}
@@ -6656,7 +6656,7 @@ pub const ISCluster = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISCluster,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Open: fn(
             self: *const ISCluster,
@@ -6743,7 +6743,7 @@ pub const ISCluster = extern struct {
             return @ptrCast(*const ISCluster.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISCluster, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISCluster_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCluster.VTable, self.vtable).get_Handle(@ptrCast(*const ISCluster, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6841,7 +6841,7 @@ pub const ISClusNode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISClusNode,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NodeID: fn(
             self: *const ISClusNode,
@@ -6897,7 +6897,7 @@ pub const ISClusNode = extern struct {
             return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNode, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusNode_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNode, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7004,7 +7004,7 @@ pub const ISClusNetwork = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISClusNetwork,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const ISClusNetwork,
@@ -7051,7 +7051,7 @@ pub const ISClusNetwork = extern struct {
             return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusNetwork_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetwork, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7154,7 +7154,7 @@ pub const ISClusNetInterface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISClusNetInterface,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_State: fn(
             self: *const ISClusNetInterface,
@@ -7189,7 +7189,7 @@ pub const ISClusNetInterface = extern struct {
             return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNetInterface, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusNetInterface_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetInterface, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7362,7 +7362,7 @@ pub const ISClusResGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISClusResGroup,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const ISClusResGroup,
@@ -7433,7 +7433,7 @@ pub const ISClusResGroup = extern struct {
             return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusResGroup_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResGroup, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7569,7 +7569,7 @@ pub const ISClusResource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Handle: fn(
             self: *const ISClusResource,
-            phandle: *?*c_void,
+            phandle: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const ISClusResource,
@@ -7702,7 +7702,7 @@ pub const ISClusResource = extern struct {
             return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResource, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Handle(self: *const T, phandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISClusResource_get_Handle(self: *const T, phandle: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResource, self), phandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9482,7 +9482,7 @@ pub extern "CLUSAPI" fn CreateClusterNotifyPortV2(
     hCluster: *_HCLUSTER,
     Filters: *NOTIFY_FILTER_AND_TYPE,
     dwFilterCount: u32,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
 // TODO: this type is limited to platform 'windowsServer2016'
@@ -9490,7 +9490,7 @@ pub extern "CLUSAPI" fn RegisterClusterNotifyV2(
     hChange: *_HCHANGE,
     Filter: NOTIFY_FILTER_AND_TYPE,
     hObject: HANDLE,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -9502,7 +9502,7 @@ pub extern "CLUSAPI" fn GetNotifyEventHandle(
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "CLUSAPI" fn GetClusterNotifyV2(
     hChange: *_HCHANGE,
-    lpdwNotifyKey: *?*c_void,
+    lpdwNotifyKey: *usize,
     pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
     buffer: ?[*:0]u8,
     lpbBufferSize: ?*u32,
@@ -9522,7 +9522,7 @@ pub extern "CLUSAPI" fn CreateClusterNotifyPort(
     hChange: *_HCHANGE,
     hCluster: *_HCLUSTER,
     dwFilter: u32,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) *_HCHANGE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -9530,13 +9530,13 @@ pub extern "CLUSAPI" fn RegisterClusterNotify(
     hChange: *_HCHANGE,
     dwFilterType: u32,
     hObject: HANDLE,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn GetClusterNotify(
     hChange: *_HCHANGE,
-    lpdwNotifyKey: *?*c_void,
+    lpdwNotifyKey: *usize,
     lpdwFilterType: *u32,
     lpszName: [*:0]u16,
     lpcchName: *u32,
@@ -10875,7 +10875,7 @@ pub extern "CLUSAPI" fn RegisterClusterResourceTypeNotifyV2(
     hCluster: *_HCLUSTER,
     Flags: i64,
     resTypeName: [*:0]const u16,
-    dwNotifyKey: ?*c_void,
+    dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -10954,7 +10954,7 @@ pub extern "RESUTILS" fn ClusAddClusterHealthFault(
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilStartResourceService(
     pszServiceName: [*:0]const u16,
-    phServiceHandle: *?*c_void,
+    phServiceHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11351,23 +11351,23 @@ pub extern "RESUTILS" fn ResUtilSetResourceServiceEnvironment(
     pszServiceName: [*:0]const u16,
     hResource: *_HRESOURCE,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilRemoveResourceServiceEnvironment(
     pszServiceName: [*:0]const u16,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParameters(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
-    phService: *?*c_void,
+    phService: *isize,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11470,7 +11470,7 @@ pub extern "RESUTILS" fn ClusWorkerTerminateEx(
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "RESUTILS" fn ClusWorkersTerminate(
     ClusWorkers: [*]*CLUS_WORKER,
-    ClusWorkersCount: ?*c_void,
+    ClusWorkersCount: usize,
     TimeoutInMilliseconds: u32,
     WaitOnly: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -11563,7 +11563,7 @@ pub extern "RESUTILS" fn ResUtilTerminateServiceProcessFromResDll(
     bOffline: BOOL,
     pdwResourceState: *u32,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11633,10 +11633,10 @@ pub extern "RESUTILS" fn ClusterClearBackupStateForSharedVolume(
 pub extern "RESUTILS" fn ResUtilSetResourceServiceStartParametersEx(
     pszServiceName: [*:0]const u16,
     schSCMHandle: SC_HANDLE,
-    phService: *?*c_void,
+    phService: *isize,
     dwDesiredAccess: u32,
     pfnLogEvent: PLOG_EVENT_ROUTINE,
-    hResourceHandle: ?*c_void,
+    hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'

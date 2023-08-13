@@ -12,7 +12,7 @@ pub const MOUSEMOVEPOINT = extern struct {
     x: i32,
     y: i32,
     time: u32,
-    dwExtraInfo: ?*c_void,
+    dwExtraInfo: usize,
 };
 
 pub const TRACKMOUSEEVENT = extern struct {
@@ -28,7 +28,7 @@ pub const MOUSEINPUT = extern struct {
     mouseData: u32,
     dwFlags: mouse_eventFlags,
     time: u32,
-    dwExtraInfo: ?*c_void,
+    dwExtraInfo: usize,
 };
 
 pub const KEYBDINPUT = extern struct {
@@ -36,7 +36,7 @@ pub const KEYBDINPUT = extern struct {
     wScan: u16,
     dwFlags: keybd_eventFlags,
     time: u32,
-    dwExtraInfo: ?*c_void,
+    dwExtraInfo: usize,
 };
 
 pub const HARDWAREINPUT = extern struct {
@@ -517,7 +517,7 @@ pub extern "USER32" fn keybd_event(
     bVk: u8,
     bScan: u8,
     dwFlags: keybd_eventFlags,
-    dwExtraInfo: ?*c_void,
+    dwExtraInfo: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -526,7 +526,7 @@ pub extern "USER32" fn mouse_event(
     dx: u32,
     dy: u32,
     dwData: u32,
-    dwExtraInfo: ?*c_void,
+    dwExtraInfo: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'

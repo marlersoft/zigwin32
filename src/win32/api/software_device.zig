@@ -6,8 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
-pub const HSWDEVICE = ?*c_void;
-
 pub const SW_DEVICE_CAPABILITIES = extern enum(i32) {
     None = 0,
     Removable = 1,
@@ -49,6 +47,8 @@ pub const SW_DEVICE_CREATE_CALLBACK = fn(
     pszDeviceInstanceId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub const HSWDEVICE = ?*c_void;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
@@ -62,7 +62,7 @@ pub extern "CFGMGR32" fn SwDeviceCreate(
     pProperties: ?[*]const DEVPROPERTY,
     pCallback: SW_DEVICE_CREATE_CALLBACK,
     pContext: ?*c_void,
-    phSwDevice: *?*c_void,
+    phSwDevice: *isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

@@ -1522,7 +1522,7 @@ pub const HTTP_REQUEST_PROPERTY_SNI = extern struct {
 };
 
 pub const WINHTTP_ASYNC_RESULT = extern struct {
-    dwResult: ?*c_void,
+    dwResult: usize,
     dwError: u32,
 };
 
@@ -1777,7 +1777,7 @@ pub const WINHTTP_CREDS_EX = extern struct {
 
 pub const WINHTTP_STATUS_CALLBACK = fn(
     hInternet: *c_void,
-    dwContext: ?*c_void,
+    dwContext: usize,
     dwInternetStatus: u32,
     lpvStatusInformation: *c_void,
     dwStatusInformationLength: u32,
@@ -2278,7 +2278,7 @@ pub extern "WINHTTP" fn WinHttpSetStatusCallback(
     hInternet: *c_void,
     lpfnInternetCallback: WINHTTP_STATUS_CALLBACK,
     dwNotificationFlags: u32,
-    dwReserved: ?*c_void,
+    dwReserved: usize,
 ) callconv(@import("std").os.windows.WINAPI) WINHTTP_STATUS_CALLBACK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2428,7 +2428,7 @@ pub extern "WINHTTP" fn WinHttpSendRequest(
     lpOptional: ?[*]u8,
     dwOptionalLength: u32,
     dwTotalLength: u32,
-    dwContext: ?*c_void,
+    dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2490,7 +2490,7 @@ pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx(
     hResolver: *c_void,
     pcwszUrl: [*:0]const u16,
     pAutoProxyOptions: *WINHTTP_AUTOPROXY_OPTIONS,
-    pContext: ?*c_void,
+    pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
@@ -2499,7 +2499,7 @@ pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
     pAutoProxyOptions: *WINHTTP_AUTOPROXY_OPTIONS,
     cbInterfaceSelectionContext: u32,
     pInterfaceSelectionContext: ?[*:0]u8,
-    pContext: ?*c_void,
+    pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2565,7 +2565,7 @@ pub extern "WINHTTP" fn WinHttpSetProxySettingsPerUser(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WINHTTP" fn WinHttpWebSocketCompleteUpgrade(
     hRequest: *c_void,
-    pContext: ?*c_void,
+    pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows8.0'

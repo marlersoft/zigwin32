@@ -55,7 +55,7 @@ pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 pub const pD3DCompile = fn(
     pSrcData: *const c_void,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pFileName: [*:0]const u8,
     pDefines: *const D3D_SHADER_MACRO,
     pInclude: *ID3DInclude,
@@ -69,7 +69,7 @@ pub const pD3DCompile = fn(
 
 pub const pD3DPreprocess = fn(
     pSrcData: *const c_void,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pFileName: [*:0]const u8,
     pDefines: *const D3D_SHADER_MACRO,
     pInclude: *ID3DInclude,
@@ -79,7 +79,7 @@ pub const pD3DPreprocess = fn(
 
 pub const pD3DDisassemble = fn(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Flags: u32,
     szComments: ?[*:0]const u8,
     ppDisassembly: **ID3DBlob,
@@ -139,7 +139,7 @@ pub const D3D_BLOB_TEST_COMPILE_REPORT = D3D_BLOB_PART.TEST_COMPILE_REPORT;
 
 pub const D3D_SHADER_DATA = extern struct {
     pBytecode: *const c_void,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
 };
 
 
@@ -159,7 +159,7 @@ pub extern "D3DCOMPILER_47" fn D3DWriteBlobToFile(
 
 pub extern "D3DCOMPILER_47" fn D3DCompile(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -173,7 +173,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompile(
 
 pub extern "D3DCOMPILER_47" fn D3DCompile2(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -183,7 +183,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompile2(
     Flags2: u32,
     SecondaryDataFlags: u32,
     pSecondaryData: ?[*]const u8,
-    SecondaryDataSize: ?*c_void,
+    SecondaryDataSize: usize,
     ppCode: **ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -202,7 +202,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompileFromFile(
 
 pub extern "D3DCOMPILER_47" fn D3DPreprocess(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -212,27 +212,27 @@ pub extern "D3DCOMPILER_47" fn D3DPreprocess(
 
 pub extern "D3DCOMPILER_47" fn D3DGetDebugInfo(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     ppDebugInfo: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DReflect(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pInterface: *const Guid,
     ppReflector: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DReflectLibrary(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     riid: *const Guid,
     ppReflector: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DDisassemble(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Flags: u32,
     szComments: ?[*:0]const u8,
     ppDisassembly: **ID3DBlob,
@@ -240,12 +240,12 @@ pub extern "D3DCOMPILER_47" fn D3DDisassemble(
 
 pub extern "D3DCOMPILER_47" fn D3DDisassembleRegion(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Flags: u32,
     szComments: ?[*:0]const u8,
-    StartByteOffset: ?*c_void,
-    NumInsts: ?*c_void,
-    pFinishByteOffset: ?*?*c_void,
+    StartByteOffset: usize,
+    NumInsts: usize,
+    pFinishByteOffset: ?*usize,
     ppDisassembly: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -255,7 +255,7 @@ pub extern "D3DCOMPILER_47" fn D3DCreateLinker(
 
 pub extern "D3DCOMPILER_47" fn D3DLoadModule(
     pSrcData: *const c_void,
-    cbSrcDataSize: ?*c_void,
+    cbSrcDataSize: usize,
     ppModule: **ID3D11Module,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -266,42 +266,42 @@ pub extern "D3DCOMPILER_47" fn D3DCreateFunctionLinkingGraph(
 
 pub extern "D3DCOMPILER_47" fn D3DGetTraceInstructionOffsets(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Flags: u32,
-    StartInstIndex: ?*c_void,
-    NumInsts: ?*c_void,
-    pOffsets: ?[*]?*c_void,
-    pTotalInsts: ?*?*c_void,
+    StartInstIndex: usize,
+    NumInsts: usize,
+    pOffsets: ?[*]usize,
+    pTotalInsts: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DGetInputSignatureBlob(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DGetOutputSignatureBlob(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DGetInputAndOutputSignatureBlob(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DStripShader(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     uStripFlags: u32,
     ppStrippedBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DGetBlobPart(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Part: D3D_BLOB_PART,
     Flags: u32,
     ppPart: **ID3DBlob,
@@ -309,16 +309,16 @@ pub extern "D3DCOMPILER_47" fn D3DGetBlobPart(
 
 pub extern "D3DCOMPILER_47" fn D3DSetBlobPart(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     Part: D3D_BLOB_PART,
     Flags: u32,
     pPart: [*]const u8,
-    PartSize: ?*c_void,
+    PartSize: usize,
     ppNewShader: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DCreateBlob(
-    Size: ?*c_void,
+    Size: usize,
     ppBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -331,7 +331,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompressShaders(
 
 pub extern "D3DCOMPILER_47" fn D3DDecompressShaders(
     pSrcData: [*]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     uNumShaders: u32,
     uStartIndex: u32,
     pIndices: ?[*]u32,

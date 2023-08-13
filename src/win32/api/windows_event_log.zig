@@ -147,7 +147,7 @@ pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
 pub const EVT_SUBSCRIBE_CALLBACK = fn(
     Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
     UserContext: ?*c_void,
-    Event: ?*c_void,
+    Event: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EVT_SYSTEM_PROPERTY_ID = extern enum(i32) {
@@ -467,16 +467,16 @@ pub extern "wevtapi" fn EvtOpenSession(
     Login: *c_void,
     Timeout: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtClose(
-    Object: ?*c_void,
+    Object: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCancel(
-    Object: ?*c_void,
+    Object: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -488,17 +488,17 @@ pub extern "wevtapi" fn EvtGetExtendedStatus(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtQuery(
-    Session: ?*c_void,
+    Session: isize,
     Path: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNext(
-    ResultSet: ?*c_void,
+    ResultSet: isize,
     EventsSize: u32,
-    Events: [*]?*c_void,
+    Events: [*]isize,
     Timeout: u32,
     Flags: u32,
     Returned: *u32,
@@ -506,36 +506,36 @@ pub extern "wevtapi" fn EvtNext(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSeek(
-    ResultSet: ?*c_void,
+    ResultSet: isize,
     Position: i64,
-    Bookmark: ?*c_void,
+    Bookmark: isize,
     Timeout: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSubscribe(
-    Session: ?*c_void,
+    Session: isize,
     SignalEvent: HANDLE,
     ChannelPath: ?[*:0]const u16,
     Query: ?[*:0]const u16,
-    Bookmark: ?*c_void,
+    Bookmark: isize,
     Context: ?*c_void,
     Callback: ?EVT_SUBSCRIBE_CALLBACK,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateRenderContext(
     ValuePathsCount: u32,
     ValuePaths: ?[*]?PWSTR,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtRender(
-    Context: ?*c_void,
-    Fragment: ?*c_void,
+    Context: isize,
+    Fragment: isize,
     Flags: u32,
     BufferSize: u32,
     Buffer: ?[*]u8,
@@ -545,8 +545,8 @@ pub extern "wevtapi" fn EvtRender(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtFormatMessage(
-    PublisherMetadata: ?*c_void,
-    Event: ?*c_void,
+    PublisherMetadata: isize,
+    Event: isize,
     MessageId: u32,
     ValueCount: u32,
     Values: ?[*]EVT_VARIANT,
@@ -558,14 +558,14 @@ pub extern "wevtapi" fn EvtFormatMessage(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenLog(
-    Session: ?*c_void,
+    Session: isize,
     Path: [*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetLogInfo(
-    Log: ?*c_void,
+    Log: isize,
     PropertyId: EVT_LOG_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     PropertyValueBuffer: ?[*]EVT_VARIANT,
@@ -574,7 +574,7 @@ pub extern "wevtapi" fn EvtGetLogInfo(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtClearLog(
-    Session: ?*c_void,
+    Session: isize,
     ChannelPath: [*:0]const u16,
     TargetFilePath: ?[*:0]const u16,
     Flags: u32,
@@ -582,7 +582,7 @@ pub extern "wevtapi" fn EvtClearLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtExportLog(
-    Session: ?*c_void,
+    Session: isize,
     Path: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     TargetFilePath: [*:0]const u16,
@@ -591,7 +591,7 @@ pub extern "wevtapi" fn EvtExportLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtArchiveExportedLog(
-    Session: ?*c_void,
+    Session: isize,
     LogFilePath: [*:0]const u16,
     Locale: u32,
     Flags: u32,
@@ -599,13 +599,13 @@ pub extern "wevtapi" fn EvtArchiveExportedLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenChannelEnum(
-    Session: ?*c_void,
+    Session: isize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextChannelPath(
-    ChannelEnum: ?*c_void,
+    ChannelEnum: isize,
     ChannelPathBufferSize: u32,
     ChannelPathBuffer: ?[*:0]u16,
     ChannelPathBufferUsed: *u32,
@@ -613,20 +613,20 @@ pub extern "wevtapi" fn EvtNextChannelPath(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenChannelConfig(
-    Session: ?*c_void,
+    Session: isize,
     ChannelPath: [*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSaveChannelConfig(
-    ChannelConfig: ?*c_void,
+    ChannelConfig: isize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSetChannelConfigProperty(
-    ChannelConfig: ?*c_void,
+    ChannelConfig: isize,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValue: *EVT_VARIANT,
@@ -634,7 +634,7 @@ pub extern "wevtapi" fn EvtSetChannelConfigProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetChannelConfigProperty(
-    ChannelConfig: ?*c_void,
+    ChannelConfig: isize,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValueBufferSize: u32,
@@ -644,13 +644,13 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenPublisherEnum(
-    Session: ?*c_void,
+    Session: isize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextPublisherId(
-    PublisherEnum: ?*c_void,
+    PublisherEnum: isize,
     PublisherIdBufferSize: u32,
     PublisherIdBuffer: ?[*:0]u16,
     PublisherIdBufferUsed: *u32,
@@ -658,16 +658,16 @@ pub extern "wevtapi" fn EvtNextPublisherId(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenPublisherMetadata(
-    Session: ?*c_void,
+    Session: isize,
     PublisherId: [*:0]const u16,
     LogFilePath: ?[*:0]const u16,
     Locale: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
-    PublisherMetadata: ?*c_void,
+    PublisherMetadata: isize,
     PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
     Flags: u32,
     PublisherMetadataPropertyBufferSize: u32,
@@ -677,19 +677,19 @@ pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenEventMetadataEnum(
-    PublisherMetadata: ?*c_void,
+    PublisherMetadata: isize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextEventMetadata(
-    EventMetadataEnum: ?*c_void,
+    EventMetadataEnum: isize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetEventMetadataProperty(
-    EventMetadata: ?*c_void,
+    EventMetadata: isize,
     PropertyId: EVT_EVENT_METADATA_PROPERTY_ID,
     Flags: u32,
     EventMetadataPropertyBufferSize: u32,
@@ -699,13 +699,13 @@ pub extern "wevtapi" fn EvtGetEventMetadataProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetObjectArraySize(
-    ObjectArray: ?*c_void,
+    ObjectArray: isize,
     ObjectArraySize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetObjectArrayProperty(
-    ObjectArray: ?*c_void,
+    ObjectArray: isize,
     PropertyId: u32,
     ArrayIndex: u32,
     Flags: u32,
@@ -716,7 +716,7 @@ pub extern "wevtapi" fn EvtGetObjectArrayProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetQueryInfo(
-    QueryOrSubscription: ?*c_void,
+    QueryOrSubscription: isize,
     PropertyId: EVT_QUERY_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     PropertyValueBuffer: ?[*]EVT_VARIANT,
@@ -726,17 +726,17 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateBookmark(
     BookmarkXml: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtUpdateBookmark(
-    Bookmark: ?*c_void,
-    Event: ?*c_void,
+    Bookmark: isize,
+    Event: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetEventInfo(
-    Event: ?*c_void,
+    Event: isize,
     PropertyId: EVT_EVENT_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     PropertyValueBuffer: ?[*]EVT_VARIANT,

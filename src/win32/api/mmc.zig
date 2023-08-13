@@ -1887,7 +1887,7 @@ pub const BUTTONPRESSED = MMC_BUTTON_STATE.BUTTONPRESSED;
 pub const RESULTDATAITEM = extern struct {
     mask: u32,
     bScopeItem: BOOL,
-    itemID: ?*c_void,
+    itemID: isize,
     nIndex: i32,
     nCol: i32,
     str: PWSTR,
@@ -1911,8 +1911,8 @@ pub const SCOPEDATAITEM = extern struct {
     nState: u32,
     cChildren: i32,
     lParam: LPARAM,
-    relativeID: ?*c_void,
-    ID: ?*c_void,
+    relativeID: isize,
+    ID: isize,
 };
 
 pub const MMC_SCOPE_ITEM_STATE = extern enum(i32) {
@@ -1970,7 +1970,7 @@ pub const MFCC_VALUE_CHANGE = MMC_FILTER_CHANGE_CODE.VALUE_CHANGE;
 
 pub const MMC_RESTORE_VIEW = extern struct {
     dwSize: u32,
-    cookie: ?*c_void,
+    cookie: isize,
     pViewType: PWSTR,
     lViewOptions: i32,
 };
@@ -1978,7 +1978,7 @@ pub const MMC_RESTORE_VIEW = extern struct {
 pub const MMC_EXPANDSYNC_STRUCT = extern struct {
     bHandled: BOOL,
     bExpanding: BOOL,
-    hItem: ?*c_void,
+    hItem: isize,
 };
 
 pub const MMC_VISIBLE_COLUMNS = extern struct {
@@ -2123,7 +2123,7 @@ pub const IComponentData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryDataObject: fn(
             self: *const IComponentData,
-            cookie: ?*c_void,
+            cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDataObject: **IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2157,7 +2157,7 @@ pub const IComponentData = extern struct {
             return @ptrCast(*const IComponentData.VTable, self.vtable).Destroy(@ptrCast(*const IComponentData, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentData_QueryDataObject(self: *const T, cookie: ?*c_void, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn IComponentData_QueryDataObject(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponentData.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponentData, self), cookie, type, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2191,17 +2191,17 @@ pub const IComponent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Destroy: fn(
             self: *const IComponent,
-            cookie: ?*c_void,
+            cookie: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryDataObject: fn(
             self: *const IComponent,
-            cookie: ?*c_void,
+            cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDataObject: **IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResultViewType: fn(
             self: *const IComponent,
-            cookie: ?*c_void,
+            cookie: isize,
             ppViewType: *PWSTR,
             pViewOptions: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2227,15 +2227,15 @@ pub const IComponent = extern struct {
             return @ptrCast(*const IComponent.VTable, self.vtable).Notify(@ptrCast(*const IComponent, self), lpDataObject, event, arg, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent_Destroy(self: *const T, cookie: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IComponent_Destroy(self: *const T, cookie: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent.VTable, self.vtable).Destroy(@ptrCast(*const IComponent, self), cookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent_QueryDataObject(self: *const T, cookie: ?*c_void, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn IComponent_QueryDataObject(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDataObject: **IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent.VTable, self.vtable).QueryDataObject(@ptrCast(*const IComponent, self), cookie, type, ppDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent_GetResultViewType(self: *const T, cookie: ?*c_void, ppViewType: *PWSTR, pViewOptions: *i32) callconv(.Inline) HRESULT {
+        pub fn IComponent_GetResultViewType(self: *const T, cookie: isize, ppViewType: *PWSTR, pViewOptions: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent.VTable, self.vtable).GetResultViewType(@ptrCast(*const IComponent, self), cookie, ppViewType, pViewOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2259,8 +2259,8 @@ pub const IResultDataCompare = extern struct {
         Compare: fn(
             self: *const IResultDataCompare,
             lUserParam: LPARAM,
-            cookieA: ?*c_void,
-            cookieB: ?*c_void,
+            cookieA: isize,
+            cookieB: isize,
             pnResult: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2268,7 +2268,7 @@ pub const IResultDataCompare = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultDataCompare_Compare(self: *const T, lUserParam: LPARAM, cookieA: ?*c_void, cookieB: ?*c_void, pnResult: *i32) callconv(.Inline) HRESULT {
+        pub fn IResultDataCompare_Compare(self: *const T, lUserParam: LPARAM, cookieA: isize, cookieB: isize, pnResult: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultDataCompare.VTable, self.vtable).Compare(@ptrCast(*const IResultDataCompare, self), lUserParam, cookieA, cookieB, pnResult);
         }
     };}
@@ -2347,7 +2347,7 @@ pub const IConsole = extern struct {
             self: *const IConsole,
             lpDataObject: *IDataObject,
             data: LPARAM,
-            hint: ?*c_void,
+            hint: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MessageBoxA: fn(
             self: *const IConsole,
@@ -2362,7 +2362,7 @@ pub const IConsole = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SelectScopeItem: fn(
             self: *const IConsole,
-            hScopeItem: ?*c_void,
+            hScopeItem: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMainWindow: fn(
             self: *const IConsole,
@@ -2370,7 +2370,7 @@ pub const IConsole = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NewWindow: fn(
             self: *const IConsole,
-            hScopeItem: ?*c_void,
+            hScopeItem: isize,
             lOptions: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2398,7 +2398,7 @@ pub const IConsole = extern struct {
             return @ptrCast(*const IConsole.VTable, self.vtable).QueryResultImageList(@ptrCast(*const IConsole, self), ppImageList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsole_UpdateAllViews(self: *const T, lpDataObject: *IDataObject, data: LPARAM, hint: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsole_UpdateAllViews(self: *const T, lpDataObject: *IDataObject, data: LPARAM, hint: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsole.VTable, self.vtable).UpdateAllViews(@ptrCast(*const IConsole, self), lpDataObject, data, hint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2410,7 +2410,7 @@ pub const IConsole = extern struct {
             return @ptrCast(*const IConsole.VTable, self.vtable).QueryConsoleVerb(@ptrCast(*const IConsole, self), ppConsoleVerb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsole_SelectScopeItem(self: *const T, hScopeItem: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsole_SelectScopeItem(self: *const T, hScopeItem: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsole.VTable, self.vtable).SelectScopeItem(@ptrCast(*const IConsole, self), hScopeItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2418,7 +2418,7 @@ pub const IConsole = extern struct {
             return @ptrCast(*const IConsole.VTable, self.vtable).GetMainWindow(@ptrCast(*const IConsole, self), phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsole_NewWindow(self: *const T, hScopeItem: ?*c_void, lOptions: u32) callconv(.Inline) HRESULT {
+        pub fn IConsole_NewWindow(self: *const T, hScopeItem: isize, lOptions: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsole.VTable, self.vtable).NewWindow(@ptrCast(*const IConsole, self), hScopeItem, lOptions);
         }
     };}
@@ -2668,13 +2668,13 @@ pub const IImageList = extern struct {
         base: IUnknown.VTable,
         ImageListSetIcon: fn(
             self: *const IImageList,
-            pIcon: *?*c_void,
+            pIcon: *isize,
             nLoc: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImageListSetStrip: fn(
             self: *const IImageList,
-            pBMapSm: *?*c_void,
-            pBMapLg: *?*c_void,
+            pBMapSm: *isize,
+            pBMapLg: *isize,
             nStartLoc: i32,
             cMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2683,11 +2683,11 @@ pub const IImageList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_ImageListSetIcon(self: *const T, pIcon: *?*c_void, nLoc: i32) callconv(.Inline) HRESULT {
+        pub fn IImageList_ImageListSetIcon(self: *const T, pIcon: *isize, nLoc: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList.VTable, self.vtable).ImageListSetIcon(@ptrCast(*const IImageList, self), pIcon, nLoc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_ImageListSetStrip(self: *const T, pBMapSm: *?*c_void, pBMapLg: *?*c_void, nStartLoc: i32, cMask: u32) callconv(.Inline) HRESULT {
+        pub fn IImageList_ImageListSetStrip(self: *const T, pBMapSm: *isize, pBMapLg: *isize, nStartLoc: i32, cMask: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList.VTable, self.vtable).ImageListSetStrip(@ptrCast(*const IImageList, self), pBMapSm, pBMapLg, nStartLoc, cMask);
         }
     };}
@@ -2706,13 +2706,13 @@ pub const IResultData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteItem: fn(
             self: *const IResultData,
-            itemID: ?*c_void,
+            itemID: isize,
             nCol: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindItemByLParam: fn(
             self: *const IResultData,
             lParam: LPARAM,
-            pItemID: *?*c_void,
+            pItemID: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteAllRsltItems: fn(
             self: *const IResultData,
@@ -2732,7 +2732,7 @@ pub const IResultData = extern struct {
         ModifyItemState: fn(
             self: *const IResultData,
             nIndex: i32,
-            itemID: ?*c_void,
+            itemID: isize,
             uAdd: u32,
             uRemove: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2751,7 +2751,7 @@ pub const IResultData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateItem: fn(
             self: *const IResultData,
-            itemID: ?*c_void,
+            itemID: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Sort: fn(
             self: *const IResultData,
@@ -2777,11 +2777,11 @@ pub const IResultData = extern struct {
             return @ptrCast(*const IResultData.VTable, self.vtable).InsertItem(@ptrCast(*const IResultData, self), item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultData_DeleteItem(self: *const T, itemID: ?*c_void, nCol: i32) callconv(.Inline) HRESULT {
+        pub fn IResultData_DeleteItem(self: *const T, itemID: isize, nCol: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultData.VTable, self.vtable).DeleteItem(@ptrCast(*const IResultData, self), itemID, nCol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultData_FindItemByLParam(self: *const T, lParam: LPARAM, pItemID: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResultData_FindItemByLParam(self: *const T, lParam: LPARAM, pItemID: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultData.VTable, self.vtable).FindItemByLParam(@ptrCast(*const IResultData, self), lParam, pItemID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2801,7 +2801,7 @@ pub const IResultData = extern struct {
             return @ptrCast(*const IResultData.VTable, self.vtable).GetNextItem(@ptrCast(*const IResultData, self), item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultData_ModifyItemState(self: *const T, nIndex: i32, itemID: ?*c_void, uAdd: u32, uRemove: u32) callconv(.Inline) HRESULT {
+        pub fn IResultData_ModifyItemState(self: *const T, nIndex: i32, itemID: isize, uAdd: u32, uRemove: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultData.VTable, self.vtable).ModifyItemState(@ptrCast(*const IResultData, self), nIndex, itemID, uAdd, uRemove);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2817,7 +2817,7 @@ pub const IResultData = extern struct {
             return @ptrCast(*const IResultData.VTable, self.vtable).GetViewMode(@ptrCast(*const IResultData, self), lViewMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultData_UpdateItem(self: *const T, itemID: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResultData_UpdateItem(self: *const T, itemID: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultData.VTable, self.vtable).UpdateItem(@ptrCast(*const IResultData, self), itemID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2848,7 +2848,7 @@ pub const IConsoleNameSpace = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteItem: fn(
             self: *const IConsoleNameSpace,
-            hItem: ?*c_void,
+            hItem: isize,
             fDeleteThis: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetItem: fn(
@@ -2861,21 +2861,21 @@ pub const IConsoleNameSpace = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildItem: fn(
             self: *const IConsoleNameSpace,
-            item: ?*c_void,
-            pItemChild: *?*c_void,
-            pCookie: *?*c_void,
+            item: isize,
+            pItemChild: *isize,
+            pCookie: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextItem: fn(
             self: *const IConsoleNameSpace,
-            item: ?*c_void,
-            pItemNext: *?*c_void,
-            pCookie: *?*c_void,
+            item: isize,
+            pItemNext: *isize,
+            pCookie: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentItem: fn(
             self: *const IConsoleNameSpace,
-            item: ?*c_void,
-            pItemParent: *?*c_void,
-            pCookie: *?*c_void,
+            item: isize,
+            pItemParent: *isize,
+            pCookie: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2886,7 +2886,7 @@ pub const IConsoleNameSpace = extern struct {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).InsertItem(@ptrCast(*const IConsoleNameSpace, self), item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace_DeleteItem(self: *const T, hItem: ?*c_void, fDeleteThis: i32) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace_DeleteItem(self: *const T, hItem: isize, fDeleteThis: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).DeleteItem(@ptrCast(*const IConsoleNameSpace, self), hItem, fDeleteThis);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2898,15 +2898,15 @@ pub const IConsoleNameSpace = extern struct {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).GetItem(@ptrCast(*const IConsoleNameSpace, self), item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace_GetChildItem(self: *const T, item: ?*c_void, pItemChild: *?*c_void, pCookie: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace_GetChildItem(self: *const T, item: isize, pItemChild: *isize, pCookie: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).GetChildItem(@ptrCast(*const IConsoleNameSpace, self), item, pItemChild, pCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace_GetNextItem(self: *const T, item: ?*c_void, pItemNext: *?*c_void, pCookie: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace_GetNextItem(self: *const T, item: isize, pItemNext: *isize, pCookie: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).GetNextItem(@ptrCast(*const IConsoleNameSpace, self), item, pItemNext, pCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace_GetParentItem(self: *const T, item: ?*c_void, pItemParent: *?*c_void, pCookie: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace_GetParentItem(self: *const T, item: isize, pItemParent: *isize, pCookie: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace.VTable, self.vtable).GetParentItem(@ptrCast(*const IConsoleNameSpace, self), item, pItemParent, pCookie);
         }
     };}
@@ -2921,11 +2921,11 @@ pub const IConsoleNameSpace2 = extern struct {
         base: IConsoleNameSpace.VTable,
         Expand: fn(
             self: *const IConsoleNameSpace2,
-            hItem: ?*c_void,
+            hItem: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddExtension: fn(
             self: *const IConsoleNameSpace2,
-            hItem: ?*c_void,
+            hItem: isize,
             lpClsid: *Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2933,11 +2933,11 @@ pub const IConsoleNameSpace2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConsoleNameSpace.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace2_Expand(self: *const T, hItem: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace2_Expand(self: *const T, hItem: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace2.VTable, self.vtable).Expand(@ptrCast(*const IConsoleNameSpace2, self), hItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsoleNameSpace2_AddExtension(self: *const T, hItem: ?*c_void, lpClsid: *Guid) callconv(.Inline) HRESULT {
+        pub fn IConsoleNameSpace2_AddExtension(self: *const T, hItem: isize, lpClsid: *Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsoleNameSpace2.VTable, self.vtable).AddExtension(@ptrCast(*const IConsoleNameSpace2, self), hItem, lpClsid);
         }
     };}
@@ -2984,13 +2984,13 @@ pub const IPropertySheetProvider = extern struct {
             self: *const IPropertySheetProvider,
             title: [*:0]const u16,
             type: u8,
-            cookie: ?*c_void,
+            cookie: isize,
             pIDataObjectm: *IDataObject,
             dwOptions: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindPropertySheet: fn(
             self: *const IPropertySheetProvider,
-            hItem: ?*c_void,
+            hItem: isize,
             lpComponent: *IComponent,
             lpDataObject: *IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3006,7 +3006,7 @@ pub const IPropertySheetProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Show: fn(
             self: *const IPropertySheetProvider,
-            window: ?*c_void,
+            window: isize,
             page: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3014,11 +3014,11 @@ pub const IPropertySheetProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySheetProvider_CreatePropertySheet(self: *const T, title: [*:0]const u16, type: u8, cookie: ?*c_void, pIDataObjectm: *IDataObject, dwOptions: u32) callconv(.Inline) HRESULT {
+        pub fn IPropertySheetProvider_CreatePropertySheet(self: *const T, title: [*:0]const u16, type: u8, cookie: isize, pIDataObjectm: *IDataObject, dwOptions: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).CreatePropertySheet(@ptrCast(*const IPropertySheetProvider, self), title, type, cookie, pIDataObjectm, dwOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySheetProvider_FindPropertySheet(self: *const T, hItem: ?*c_void, lpComponent: *IComponent, lpDataObject: *IDataObject) callconv(.Inline) HRESULT {
+        pub fn IPropertySheetProvider_FindPropertySheet(self: *const T, hItem: isize, lpComponent: *IComponent, lpDataObject: *IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).FindPropertySheet(@ptrCast(*const IPropertySheetProvider, self), hItem, lpComponent, lpDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3030,7 +3030,7 @@ pub const IPropertySheetProvider = extern struct {
             return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).AddExtensionPages(@ptrCast(*const IPropertySheetProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySheetProvider_Show(self: *const T, window: ?*c_void, page: i32) callconv(.Inline) HRESULT {
+        pub fn IPropertySheetProvider_Show(self: *const T, window: isize, page: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySheetProvider.VTable, self.vtable).Show(@ptrCast(*const IPropertySheetProvider, self), window, page);
         }
     };}
@@ -3046,7 +3046,7 @@ pub const IExtendPropertySheet = extern struct {
         CreatePropertyPages: fn(
             self: *const IExtendPropertySheet,
             lpProvider: *IPropertySheetCallback,
-            handle: ?*c_void,
+            handle: isize,
             lpIDataObject: *IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryPagesFor: fn(
@@ -3058,7 +3058,7 @@ pub const IExtendPropertySheet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExtendPropertySheet_CreatePropertyPages(self: *const T, lpProvider: *IPropertySheetCallback, handle: ?*c_void, lpIDataObject: *IDataObject) callconv(.Inline) HRESULT {
+        pub fn IExtendPropertySheet_CreatePropertyPages(self: *const T, lpProvider: *IPropertySheetCallback, handle: isize, lpIDataObject: *IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExtendPropertySheet.VTable, self.vtable).CreatePropertyPages(@ptrCast(*const IExtendPropertySheet, self), lpProvider, handle, lpIDataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3530,7 +3530,7 @@ pub const MMC_TASK = extern struct {
 pub const MMC_LISTPAD_INFO = extern struct {
     szTitle: PWSTR,
     szButtonText: PWSTR,
-    nCommandID: ?*c_void,
+    nCommandID: isize,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3658,7 +3658,7 @@ pub const IConsole2 = extern struct {
         base: IConsole.VTable,
         Expand: fn(
             self: *const IConsole2,
-            hItem: ?*c_void,
+            hItem: isize,
             bExpand: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsTaskpadViewPreferred: fn(
@@ -3673,7 +3673,7 @@ pub const IConsole2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConsole.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsole2_Expand(self: *const T, hItem: ?*c_void, bExpand: BOOL) callconv(.Inline) HRESULT {
+        pub fn IConsole2_Expand(self: *const T, hItem: isize, bExpand: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsole2.VTable, self.vtable).Expand(@ptrCast(*const IConsole2, self), hItem, bExpand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3826,7 +3826,7 @@ pub const MMC_COLUMN_DATA = extern struct {
     nColIndex: i32,
     dwFlags: u32,
     nWidth: i32,
-    ulReserved: ?*c_void,
+    ulReserved: usize,
 };
 
 pub const MMC_COLUMN_SET_DATA = extern struct {
@@ -3838,7 +3838,7 @@ pub const MMC_COLUMN_SET_DATA = extern struct {
 pub const MMC_SORT_DATA = extern struct {
     nColIndex: i32,
     dwSortOptions: u32,
-    ulReserved: ?*c_void,
+    ulReserved: usize,
 };
 
 pub const MMC_SORT_SET_DATA = extern struct {
@@ -3961,7 +3961,7 @@ pub const IMessageView = extern struct {
 
 pub const RDITEMHDR = extern struct {
     dwFlags: u32,
-    cookie: ?*c_void,
+    cookie: isize,
     lpReserved: LPARAM,
 };
 
@@ -4040,7 +4040,7 @@ pub const IComponentData2 = extern struct {
         base: IComponentData.VTable,
         QueryDispatch: fn(
             self: *const IComponentData2,
-            cookie: ?*c_void,
+            cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDispatch: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4049,7 +4049,7 @@ pub const IComponentData2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IComponentData.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentData2_QueryDispatch(self: *const T, cookie: ?*c_void, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IComponentData2_QueryDispatch(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponentData2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponentData2, self), cookie, type, ppDispatch);
         }
     };}
@@ -4064,18 +4064,18 @@ pub const IComponent2 = extern struct {
         base: IComponent.VTable,
         QueryDispatch: fn(
             self: *const IComponent2,
-            cookie: ?*c_void,
+            cookie: isize,
             type: DATA_OBJECT_TYPES,
             ppDispatch: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResultViewType2: fn(
             self: *const IComponent2,
-            cookie: ?*c_void,
+            cookie: isize,
             pResultViewType: *RESULT_VIEW_TYPE_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RestoreResultView: fn(
             self: *const IComponent2,
-            cookie: ?*c_void,
+            cookie: isize,
             pResultViewType: *RESULT_VIEW_TYPE_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4083,15 +4083,15 @@ pub const IComponent2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IComponent.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent2_QueryDispatch(self: *const T, cookie: ?*c_void, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IComponent2_QueryDispatch(self: *const T, cookie: isize, type: DATA_OBJECT_TYPES, ppDispatch: **IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent2.VTable, self.vtable).QueryDispatch(@ptrCast(*const IComponent2, self), cookie, type, ppDispatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent2_GetResultViewType2(self: *const T, cookie: ?*c_void, pResultViewType: *RESULT_VIEW_TYPE_INFO) callconv(.Inline) HRESULT {
+        pub fn IComponent2_GetResultViewType2(self: *const T, cookie: isize, pResultViewType: *RESULT_VIEW_TYPE_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent2.VTable, self.vtable).GetResultViewType2(@ptrCast(*const IComponent2, self), cookie, pResultViewType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponent2_RestoreResultView(self: *const T, cookie: ?*c_void, pResultViewType: *RESULT_VIEW_TYPE_INFO) callconv(.Inline) HRESULT {
+        pub fn IComponent2_RestoreResultView(self: *const T, cookie: isize, pResultViewType: *RESULT_VIEW_TYPE_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComponent2.VTable, self.vtable).RestoreResultView(@ptrCast(*const IComponent2, self), cookie, pResultViewType);
         }
     };}
@@ -4275,14 +4275,14 @@ pub const IConsole3 = extern struct {
         base: IConsole2.VTable,
         RenameScopeItem: fn(
             self: *const IConsole3,
-            hScopeItem: ?*c_void,
+            hScopeItem: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConsole2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConsole3_RenameScopeItem(self: *const T, hScopeItem: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConsole3_RenameScopeItem(self: *const T, hScopeItem: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConsole3.VTable, self.vtable).RenameScopeItem(@ptrCast(*const IConsole3, self), hScopeItem);
         }
     };}
@@ -4297,14 +4297,14 @@ pub const IResultData2 = extern struct {
         base: IResultData.VTable,
         RenameResultItem: fn(
             self: *const IResultData2,
-            itemID: ?*c_void,
+            itemID: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IResultData.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResultData2_RenameResultItem(self: *const T, itemID: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResultData2_RenameResultItem(self: *const T, itemID: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResultData2.VTable, self.vtable).RenameResultItem(@ptrCast(*const IResultData2, self), itemID);
         }
     };}

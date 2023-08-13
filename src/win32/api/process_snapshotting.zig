@@ -143,7 +143,7 @@ pub const PSS_PROCESS_FLAGS_FROZEN = PSS_PROCESS_FLAGS.FROZEN;
 pub const PSS_PROCESS_INFORMATION = extern struct {
     ExitStatus: u32,
     PebBaseAddress: *c_void,
-    AffinityMask: ?*c_void,
+    AffinityMask: usize,
     BasePriority: i32,
     ProcessId: u32,
     ParentProcessId: u32,
@@ -153,18 +153,18 @@ pub const PSS_PROCESS_INFORMATION = extern struct {
     KernelTime: FILETIME,
     UserTime: FILETIME,
     PriorityClass: u32,
-    PeakVirtualSize: ?*c_void,
-    VirtualSize: ?*c_void,
+    PeakVirtualSize: usize,
+    VirtualSize: usize,
     PageFaultCount: u32,
-    PeakWorkingSetSize: ?*c_void,
-    WorkingSetSize: ?*c_void,
-    QuotaPeakPagedPoolUsage: ?*c_void,
-    QuotaPagedPoolUsage: ?*c_void,
-    QuotaPeakNonPagedPoolUsage: ?*c_void,
-    QuotaNonPagedPoolUsage: ?*c_void,
-    PagefileUsage: ?*c_void,
-    PeakPagefileUsage: ?*c_void,
-    PrivateUsage: ?*c_void,
+    PeakWorkingSetSize: usize,
+    WorkingSetSize: usize,
+    QuotaPeakPagedPoolUsage: usize,
+    QuotaPagedPoolUsage: usize,
+    QuotaPeakNonPagedPoolUsage: usize,
+    QuotaNonPagedPoolUsage: usize,
+    PagefileUsage: usize,
+    PeakPagefileUsage: usize,
+    PrivateUsage: usize,
     ExecuteFlags: u32,
     ImageFileName: [260]u16,
 };
@@ -222,7 +222,7 @@ pub const PSS_VA_SPACE_ENTRY = extern struct {
     BaseAddress: *c_void,
     AllocationBase: *c_void,
     AllocationProtect: u32,
-    RegionSize: ?*c_void,
+    RegionSize: usize,
     State: u32,
     Protect: u32,
     Type: u32,
@@ -266,7 +266,7 @@ pub const PSS_THREAD_ENTRY = extern struct {
     TebBaseAddress: *c_void,
     ProcessId: u32,
     ThreadId: u32,
-    AffinityMask: ?*c_void,
+    AffinityMask: usize,
     Priority: i32,
     BasePriority: i32,
     LastSyscallFirstArgument: *c_void,
@@ -285,8 +285,8 @@ pub const PSS_THREAD_ENTRY = extern struct {
 
 pub const PSS_ALLOCATOR = extern struct {
     Context: *c_void,
-    AllocRoutine: ?*c_void,
-    FreeRoutine: ?*c_void,
+    AllocRoutine: isize,
+    FreeRoutine: isize,
 };
 
 
@@ -347,13 +347,13 @@ pub extern "KERNEL32" fn PssWalkMarkerFree(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PssWalkMarkerGetPosition(
     WalkMarkerHandle: HPSSWALK,
-    Position: *?*c_void,
+    Position: *usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn PssWalkMarkerSetPosition(
     WalkMarkerHandle: HPSSWALK,
-    Position: ?*c_void,
+    Position: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'

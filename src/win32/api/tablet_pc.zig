@@ -2,10 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (88)
 //--------------------------------------------------------------------------------
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
-pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
 pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
 pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
@@ -90,26 +86,14 @@ pub const IP_CURSOR_DOWN = @as(u32, 1);
 pub const IP_INVERTED = @as(u32, 2);
 pub const IP_MARGIN = @as(u32, 4);
 pub const IECN__BASE = @as(u32, 2048);
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-pub const HRECOALT = ?*c_void;
-
-pub const HRECOCONTEXT = ?*c_void;
-
-pub const HRECOGNIZER = ?*c_void;
-
-pub const HRECOLATTICE = ?*c_void;
-
-pub const HRECOWORDLIST = ?*c_void;
-
-pub const PfnRecoCallback = fn(
-    param0: u32,
-    param1: *u8,
-    param2: HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
@@ -3442,35 +3426,35 @@ pub const IInkRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Draw: fn(
             self: *const IInkRenderer,
-            hDC: ?*c_void,
+            hDC: isize,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawStroke: fn(
             self: *const IInkRenderer,
-            hDC: ?*c_void,
+            hDC: isize,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PixelToInkSpace: fn(
             self: *const IInkRenderer,
-            hDC: ?*c_void,
+            hDC: isize,
             x: *i32,
             y: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InkSpaceToPixel: fn(
             self: *const IInkRenderer,
-            hdcDisplay: ?*c_void,
+            hdcDisplay: isize,
             x: *i32,
             y: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PixelToInkSpaceFromPoints: fn(
             self: *const IInkRenderer,
-            hDC: ?*c_void,
+            hDC: isize,
             Points: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InkSpaceToPixelFromPoints: fn(
             self: *const IInkRenderer,
-            hDC: ?*c_void,
+            hDC: isize,
             Points: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Measure: fn(
@@ -3522,27 +3506,27 @@ pub const IInkRenderer = extern struct {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).SetObjectTransform(@ptrCast(*const IInkRenderer, self), ObjectTransform);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Draw(self: *const T, hDC: ?*c_void, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_Draw(self: *const T, hDC: isize, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).Draw(@ptrCast(*const IInkRenderer, self), hDC, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_DrawStroke(self: *const T, hDC: ?*c_void, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_DrawStroke(self: *const T, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).DrawStroke(@ptrCast(*const IInkRenderer, self), hDC, Stroke, DrawingAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_PixelToInkSpace(self: *const T, hDC: ?*c_void, x: *i32, y: *i32) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_PixelToInkSpace(self: *const T, hDC: isize, x: *i32, y: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpace(@ptrCast(*const IInkRenderer, self), hDC, x, y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_InkSpaceToPixel(self: *const T, hdcDisplay: ?*c_void, x: *i32, y: *i32) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_InkSpaceToPixel(self: *const T, hdcDisplay: isize, x: *i32, y: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixel(@ptrCast(*const IInkRenderer, self), hdcDisplay, x, y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_PixelToInkSpaceFromPoints(self: *const T, hDC: ?*c_void, Points: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_PixelToInkSpaceFromPoints(self: *const T, hDC: isize, Points: *VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpaceFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_InkSpaceToPixelFromPoints(self: *const T, hDC: ?*c_void, Points: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_InkSpaceToPixelFromPoints(self: *const T, hDC: isize, Points: *VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixelFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3576,11 +3560,11 @@ pub const IInkCollector = extern struct {
         base: IDispatch.VTable,
         get_hWnd: fn(
             self: *const IInkCollector,
-            CurrentWindow: *?*c_void,
+            CurrentWindow: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_hWnd: fn(
             self: *const IInkCollector,
-            NewWindow: ?*c_void,
+            NewWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Enabled: fn(
             self: *const IInkCollector,
@@ -3743,11 +3727,11 @@ pub const IInkCollector = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_hWnd(self: *const T, CurrentWindow: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_hWnd(self: *const T, CurrentWindow: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkCollector, self), CurrentWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_hWnd(self: *const T, NewWindow: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_put_hWnd(self: *const T, NewWindow: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkCollector, self), NewWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3926,11 +3910,11 @@ pub const IInkOverlay = extern struct {
         base: IDispatch.VTable,
         get_hWnd: fn(
             self: *const IInkOverlay,
-            CurrentWindow: *?*c_void,
+            CurrentWindow: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_hWnd: fn(
             self: *const IInkOverlay,
-            NewWindow: ?*c_void,
+            NewWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Enabled: fn(
             self: *const IInkOverlay,
@@ -4151,11 +4135,11 @@ pub const IInkOverlay = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_hWnd(self: *const T, CurrentWindow: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_hWnd(self: *const T, CurrentWindow: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkOverlay, self), CurrentWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_hWnd(self: *const T, NewWindow: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_put_hWnd(self: *const T, NewWindow: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkOverlay, self), NewWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4390,7 +4374,7 @@ pub const IInkPicture = extern struct {
         base: IDispatch.VTable,
         get_hWnd: fn(
             self: *const IInkPicture,
-            CurrentWindow: *?*c_void,
+            CurrentWindow: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultDrawingAttributes: fn(
             self: *const IInkPicture,
@@ -4635,7 +4619,7 @@ pub const IInkPicture = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_hWnd(self: *const T, CurrentWindow: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_hWnd(self: *const T, CurrentWindow: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkPicture, self), CurrentWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7897,7 +7881,7 @@ pub const IMathInputControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOwnerWindow: fn(
             self: *const IMathInputControl,
-            OwnerWindow: ?*c_void,
+            OwnerWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnableExtendedButtons: fn(
             self: *const IMathInputControl,
@@ -7968,7 +7952,7 @@ pub const IMathInputControl = extern struct {
             return @ptrCast(*const IMathInputControl.VTable, self.vtable).LoadInk(@ptrCast(*const IMathInputControl, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetOwnerWindow(self: *const T, OwnerWindow: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMathInputControl_SetOwnerWindow(self: *const T, OwnerWindow: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetOwnerWindow(@ptrCast(*const IMathInputControl, self), OwnerWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8128,11 +8112,11 @@ pub const IRealTimeStylus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HWND: fn(
             self: *const IRealTimeStylus,
-            phwnd: *u32,
+            phwnd: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HWND: fn(
             self: *const IRealTimeStylus,
-            hwnd: u32,
+            hwnd: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_WindowInputRectangle: fn(
             self: *const IRealTimeStylus,
@@ -8271,11 +8255,11 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_Enabled(@ptrCast(*const IRealTimeStylus, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_HWND(self: *const T, phwnd: *u32) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_get_HWND(self: *const T, phwnd: *u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_HWND(@ptrCast(*const IRealTimeStylus, self), phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_put_HWND(self: *const T, hwnd: u32) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_put_HWND(self: *const T, hwnd: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_HWND(@ptrCast(*const IRealTimeStylus, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8672,7 +8656,7 @@ pub const IStylusPlugin = extern struct {
             piPlugin: ?*IStylusPlugin,
             dataInterest: RealTimeStylusDataInterest,
             hrErrorCode: HRESULT,
-            lptrKey: *?*c_void,
+            lptrKey: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateMapping: fn(
             self: *const IStylusPlugin,
@@ -8743,7 +8727,7 @@ pub const IStylusPlugin = extern struct {
             return @ptrCast(*const IStylusPlugin.VTable, self.vtable).TabletRemoved(@ptrCast(*const IStylusPlugin, self), piRtsSrc, iTabletIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_Error(self: *const T, piRtsSrc: ?*IRealTimeStylus, piPlugin: ?*IStylusPlugin, dataInterest: RealTimeStylusDataInterest, hrErrorCode: HRESULT, lptrKey: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IStylusPlugin_Error(self: *const T, piRtsSrc: ?*IRealTimeStylus, piPlugin: ?*IStylusPlugin, dataInterest: RealTimeStylusDataInterest, hrErrorCode: HRESULT, lptrKey: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylusPlugin.VTable, self.vtable).Error(@ptrCast(*const IStylusPlugin, self), piRtsSrc, piPlugin, dataInterest, hrErrorCode, lptrKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8802,11 +8786,11 @@ pub const IDynamicRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HWND: fn(
             self: *const IDynamicRenderer,
-            hwnd: *u32,
+            hwnd: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HWND: fn(
             self: *const IDynamicRenderer,
-            hwnd: u32,
+            hwnd: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClipRectangle: fn(
             self: *const IDynamicRenderer,
@@ -8818,11 +8802,11 @@ pub const IDynamicRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClipRegion: fn(
             self: *const IDynamicRenderer,
-            phClipRgn: *u32,
+            phClipRgn: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ClipRegion: fn(
             self: *const IDynamicRenderer,
-            hClipRgn: u32,
+            hClipRgn: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawingAttributes: fn(
             self: *const IDynamicRenderer,
@@ -8849,7 +8833,7 @@ pub const IDynamicRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Draw: fn(
             self: *const IDynamicRenderer,
-            hDC: u32,
+            hDC: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8864,11 +8848,11 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_HWND(self: *const T, hwnd: *u32) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_get_HWND(self: *const T, hwnd: *u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_HWND(self: *const T, hwnd: u32) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_put_HWND(self: *const T, hwnd: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8880,11 +8864,11 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: *u32) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: *u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRegion(@ptrCast(*const IDynamicRenderer, self), phClipRgn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: u32) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRegion(@ptrCast(*const IDynamicRenderer, self), hClipRgn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8912,7 +8896,7 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Refresh(@ptrCast(*const IDynamicRenderer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_Draw(self: *const T, hDC: u32) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_Draw(self: *const T, hDC: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Draw(@ptrCast(*const IDynamicRenderer, self), hDC);
         }
     };}
@@ -9184,6 +9168,22 @@ pub const ITipAutoCompleteClient = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const HRECOALT = ?*c_void;
+
+pub const HRECOCONTEXT = ?*c_void;
+
+pub const HRECOGNIZER = ?*c_void;
+
+pub const HRECOLATTICE = ?*c_void;
+
+pub const HRECOWORDLIST = ?*c_void;
+
+pub const PfnRecoCallback = fn(
+    param0: u32,
+    param1: *u8,
+    param2: HRECOCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------

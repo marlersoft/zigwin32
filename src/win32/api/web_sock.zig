@@ -7,7 +7,7 @@ pub const WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-pub const WEB_SOCKET_HANDLE = ?*c_void;
+pub const WEB_SOCKET_HANDLE = isize;
 
 pub const WEB_SOCKET_CLOSE_STATUS = extern enum(i32) {
     SUCCESS_CLOSE_STATUS = 1000,

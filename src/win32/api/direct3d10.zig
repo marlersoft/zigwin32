@@ -1037,8 +1037,8 @@ pub const ID3D10View = extern struct {
 pub const D3D10_BUFFER_SRV = extern struct {
     Anonymous1: D3D10_BUFFER_SRV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_SRV._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_SRV = extern struct {
@@ -1115,8 +1115,8 @@ pub const ID3D10ShaderResourceView = extern struct {
 pub const D3D10_BUFFER_RTV = extern struct {
     Anonymous1: D3D10_BUFFER_RTV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_RTV._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_RTV = extern struct {
@@ -2079,25 +2079,25 @@ pub const ID3D10Device = extern struct {
             pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC,
             NumElements: u32,
             pShaderBytecodeWithInputSignature: [*]const u8,
-            BytecodeLength: ?*c_void,
+            BytecodeLength: usize,
             ppInputLayout: ?*?*ID3D10InputLayout,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVertexShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
-            BytecodeLength: ?*c_void,
+            BytecodeLength: usize,
             ppVertexShader: ?*?*ID3D10VertexShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
-            BytecodeLength: ?*c_void,
+            BytecodeLength: usize,
             ppGeometryShader: ?*?*ID3D10GeometryShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShaderWithStreamOutput: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
-            BytecodeLength: ?*c_void,
+            BytecodeLength: usize,
             pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY,
             NumEntries: u32,
             OutputStreamStride: u32,
@@ -2106,7 +2106,7 @@ pub const ID3D10Device = extern struct {
         CreatePixelShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
-            BytecodeLength: ?*c_void,
+            BytecodeLength: usize,
             ppPixelShader: ?*?*ID3D10PixelShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendState: fn(
@@ -2495,23 +2495,23 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateDepthStencilView(@ptrCast(*const ID3D10Device, self), pResource, pDesc, ppDepthStencilView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateInputLayout(self: *const T, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: ?*c_void, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateInputLayout(self: *const T, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateInputLayout(@ptrCast(*const ID3D10Device, self), pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateVertexShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: ?*c_void, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateVertexShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateVertexShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppVertexShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: ?*c_void, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateGeometryShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateGeometryShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppGeometryShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShaderWithStreamOutput(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: ?*c_void, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateGeometryShaderWithStreamOutput(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateGeometryShaderWithStreamOutput(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, OutputStreamStride, ppGeometryShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreatePixelShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: ?*c_void, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreatePixelShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreatePixelShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppPixelShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3795,7 +3795,7 @@ pub const D3D10_MESSAGE = extern struct {
     Severity: D3D10_MESSAGE_SEVERITY,
     ID: D3D10_MESSAGE_ID,
     pDescription: *const u8,
-    DescriptionByteLength: ?*c_void,
+    DescriptionByteLength: usize,
 };
 
 pub const D3D10_INFO_QUEUE_FILTER_DESC = extern struct {
@@ -3828,7 +3828,7 @@ pub const ID3D10InfoQueue = extern struct {
             self: *const ID3D10InfoQueue,
             MessageIndex: u64,
             pMessage: ?[*]D3D10_MESSAGE,
-            pMessageByteLength: *?*c_void,
+            pMessageByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumMessagesAllowedByStorageFilter: fn(
             self: *const ID3D10InfoQueue,
@@ -3855,7 +3855,7 @@ pub const ID3D10InfoQueue = extern struct {
         GetStorageFilter: fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?[*]D3D10_INFO_QUEUE_FILTER,
-            pFilterByteLength: *?*c_void,
+            pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearStorageFilter: fn(
             self: *const ID3D10InfoQueue,
@@ -3883,7 +3883,7 @@ pub const ID3D10InfoQueue = extern struct {
         GetRetrievalFilter: fn(
             self: *const ID3D10InfoQueue,
             pFilter: ?[*]D3D10_INFO_QUEUE_FILTER,
-            pFilterByteLength: *?*c_void,
+            pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearRetrievalFilter: fn(
             self: *const ID3D10InfoQueue,
@@ -3963,7 +3963,7 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).ClearStoredMessages(@ptrCast(*const ID3D10InfoQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetMessageA(self: *const T, MessageIndex: u64, pMessage: ?[*]D3D10_MESSAGE, pMessageByteLength: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D10InfoQueue_GetMessageA(self: *const T, MessageIndex: u64, pMessage: ?[*]D3D10_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetMessageA(@ptrCast(*const ID3D10InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3995,7 +3995,7 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).AddStorageFilterEntries(@ptrCast(*const ID3D10InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetStorageFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D10InfoQueue_GetStorageFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetStorageFilter(@ptrCast(*const ID3D10InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4027,7 +4027,7 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).AddRetrievalFilterEntries(@ptrCast(*const ID3D10InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D10InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetRetrievalFilter(@ptrCast(*const ID3D10InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5521,7 +5521,7 @@ pub const D3D10_PASS_DESC = extern struct {
     Name: [*:0]const u8,
     Annotations: u32,
     pIAInputSignature: *u8,
-    IAInputSignatureSize: ?*c_void,
+    IAInputSignatureSize: usize,
     StencilRef: u32,
     SampleMask: u32,
     BlendFactor: [4]f32,
@@ -6275,7 +6275,7 @@ pub const ID3D10ShaderReflection1 = extern struct {
 pub const PFN_D3D10_CREATE_DEVICE1 = fn(
     param0: *IDXGIAdapter,
     param1: D3D10_DRIVER_TYPE,
-    param2: ?*c_void,
+    param2: isize,
     param3: u32,
     param4: D3D10_FEATURE_LEVEL1,
     param5: u32,
@@ -6285,7 +6285,7 @@ pub const PFN_D3D10_CREATE_DEVICE1 = fn(
 pub const PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1 = fn(
     param0: *IDXGIAdapter,
     param1: D3D10_DRIVER_TYPE,
-    param2: ?*c_void,
+    param2: isize,
     param3: u32,
     param4: D3D10_FEATURE_LEVEL1,
     param5: u32,
@@ -6301,7 +6301,7 @@ pub const PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1 = fn(
 pub extern "d3d10" fn D3D10CreateDevice(
     pAdapter: ?*IDXGIAdapter,
     DriverType: D3D10_DRIVER_TYPE,
-    Software: ?*c_void,
+    Software: isize,
     Flags: u32,
     SDKVersion: u32,
     ppDevice: ?*?*ID3D10Device,
@@ -6310,7 +6310,7 @@ pub extern "d3d10" fn D3D10CreateDevice(
 pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
     pAdapter: ?*IDXGIAdapter,
     DriverType: D3D10_DRIVER_TYPE,
-    Software: ?*c_void,
+    Software: isize,
     Flags: u32,
     SDKVersion: u32,
     pSwapChainDesc: ?*DXGI_SWAP_CHAIN_DESC,
@@ -6319,13 +6319,13 @@ pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateBlob(
-    NumBytes: ?*c_void,
+    NumBytes: usize,
     ppBuffer: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileShader(
     pSrcData: [*:0]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -6338,7 +6338,7 @@ pub extern "d3d10" fn D3D10CompileShader(
 
 pub extern "d3d10" fn D3D10DisassembleShader(
     pShader: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     EnableColorCode: BOOL,
     pComments: ?[*:0]const u8,
     ppDisassembly: **ID3DBlob,
@@ -6358,13 +6358,13 @@ pub extern "d3d10" fn D3D10GetGeometryShaderProfile(
 
 pub extern "d3d10" fn D3D10ReflectShader(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     ppReflector: **ID3D10ShaderReflection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10PreprocessShader(
     pSrcData: [*:0]const u8,
-    SrcDataSize: ?*c_void,
+    SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -6374,25 +6374,25 @@ pub extern "d3d10" fn D3D10PreprocessShader(
 
 pub extern "d3d10" fn D3D10GetInputSignatureBlob(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetOutputSignatureBlob(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputAndOutputSignatureBlob(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetShaderDebugInfo(
     pShaderBytecode: [*]const u8,
-    BytecodeLength: ?*c_void,
+    BytecodeLength: usize,
     ppDebugInfo: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -6450,7 +6450,7 @@ pub extern "d3d10" fn D3D10CreateStateBlock(
 
 pub extern "d3d10" fn D3D10CompileEffectFromMemory(
     pData: [*]u8,
-    DataLength: ?*c_void,
+    DataLength: usize,
     pSrcFileName: [*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
@@ -6462,7 +6462,7 @@ pub extern "d3d10" fn D3D10CompileEffectFromMemory(
 
 pub extern "d3d10" fn D3D10CreateEffectFromMemory(
     pData: [*]u8,
-    DataLength: ?*c_void,
+    DataLength: usize,
     FXFlags: u32,
     pDevice: *ID3D10Device,
     pEffectPool: ?*ID3D10EffectPool,
@@ -6471,7 +6471,7 @@ pub extern "d3d10" fn D3D10CreateEffectFromMemory(
 
 pub extern "d3d10" fn D3D10CreateEffectPoolFromMemory(
     pData: [*]u8,
-    DataLength: ?*c_void,
+    DataLength: usize,
     FXFlags: u32,
     pDevice: *ID3D10Device,
     ppEffectPool: **ID3D10EffectPool,
@@ -6486,7 +6486,7 @@ pub extern "d3d10" fn D3D10DisassembleEffect(
 pub extern "d3d10_1" fn D3D10CreateDevice1(
     pAdapter: ?*IDXGIAdapter,
     DriverType: D3D10_DRIVER_TYPE,
-    Software: ?*c_void,
+    Software: isize,
     Flags: u32,
     HardwareLevel: D3D10_FEATURE_LEVEL1,
     SDKVersion: u32,
@@ -6496,7 +6496,7 @@ pub extern "d3d10_1" fn D3D10CreateDevice1(
 pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
     pAdapter: ?*IDXGIAdapter,
     DriverType: D3D10_DRIVER_TYPE,
-    Software: ?*c_void,
+    Software: isize,
     Flags: u32,
     HardwareLevel: D3D10_FEATURE_LEVEL1,
     SDKVersion: u32,

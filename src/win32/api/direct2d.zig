@@ -268,7 +268,7 @@ pub const D2D1_BITMAP_PROPERTIES = extern struct {
 
 pub const D2D1_GRADIENT_STOP = extern struct {
     position: f32,
-    color: DXGI_RGBA,
+    color: D3DCOLORVALUE,
 };
 
 pub const D2D1_BRUSH_PROPERTIES = extern struct {
@@ -898,21 +898,21 @@ pub const ID2D1SolidColorBrush = extern struct {
         base: ID2D1Brush.VTable,
         SetColor: fn(
             self: *const ID2D1SolidColorBrush,
-            color: *const DXGI_RGBA,
+            color: *const D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetColor: fn(
             self: *const ID2D1SolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) DXGI_RGBA,
+        ) callconv(@import("std").os.windows.WINAPI) D3DCOLORVALUE,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Brush.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: *const DXGI_RGBA) callconv(.Inline) void {
+        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: *const D3DCOLORVALUE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SolidColorBrush, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SolidColorBrush_GetColor(self: *const T) callconv(.Inline) DXGI_RGBA {
+        pub fn ID2D1SolidColorBrush_GetColor(self: *const T) callconv(.Inline) D3DCOLORVALUE {
             return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SolidColorBrush, self));
         }
     };}
@@ -1750,7 +1750,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSolidColorBrush: fn(
             self: *const ID2D1RenderTarget,
-            color: *const DXGI_RGBA,
+            color: *const D3DCOLORVALUE,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             solidColorBrush: **ID2D1SolidColorBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1966,7 +1966,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         Clear: fn(
             self: *const ID2D1RenderTarget,
-            clearColor: ?*const DXGI_RGBA,
+            clearColor: ?*const D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BeginDraw: fn(
             self: *const ID2D1RenderTarget,
@@ -2023,7 +2023,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1RenderTarget, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: *const DXGI_RGBA, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: **ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: *const D3DCOLORVALUE, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: **ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSolidColorBrush(@ptrCast(*const ID2D1RenderTarget, self), color, brushProperties, solidColorBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2179,7 +2179,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PopAxisAlignedClip(@ptrCast(*const ID2D1RenderTarget, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_Clear(self: *const T, clearColor: ?*const DXGI_RGBA) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_Clear(self: *const T, clearColor: ?*const D3DCOLORVALUE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).Clear(@ptrCast(*const ID2D1RenderTarget, self), clearColor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3936,7 +3936,7 @@ pub const ID2D1CommandSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const ID2D1CommandSink,
-            color: ?*const DXGI_RGBA,
+            color: ?*const D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGlyphRun: fn(
             self: *const ID2D1CommandSink,
@@ -4070,7 +4070,7 @@ pub const ID2D1CommandSink = extern struct {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetUnitMode(@ptrCast(*const ID2D1CommandSink, self), unitMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_Clear(self: *const T, color: ?*const DXGI_RGBA) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_Clear(self: *const T, color: ?*const D3DCOLORVALUE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).Clear(@ptrCast(*const ID2D1CommandSink, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7093,11 +7093,11 @@ pub const ID2D1SvgPaint = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_SVG_PAINT_TYPE,
         SetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *const DXGI_RGBA,
+            color: *const D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *DXGI_RGBA,
+            color: *D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetId: fn(
             self: *const ID2D1SvgPaint,
@@ -7124,11 +7124,11 @@ pub const ID2D1SvgPaint = extern struct {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetPaintType(@ptrCast(*const ID2D1SvgPaint, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: *const DXGI_RGBA) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: *const D3DCOLORVALUE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: *DXGI_RGBA) callconv(.Inline) void {
+        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: *D3DCOLORVALUE) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7671,7 +7671,7 @@ pub const ID2D1SvgDocument = extern struct {
         CreatePaint: fn(
             self: *const ID2D1SvgDocument,
             paintType: D2D1_SVG_PAINT_TYPE,
-            color: ?*const DXGI_RGBA,
+            color: ?*const D3DCOLORVALUE,
             id: ?[*:0]const u16,
             paint: **ID2D1SvgPaint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7728,7 +7728,7 @@ pub const ID2D1SvgDocument = extern struct {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Deserialize(@ptrCast(*const ID2D1SvgDocument, self), inputXmlStream, subtree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const DXGI_RGBA, id: ?[*:0]const u16, paint: **ID2D1SvgPaint) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D3DCOLORVALUE, id: ?[*:0]const u16, paint: **ID2D1SvgPaint) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePaint(@ptrCast(*const ID2D1SvgDocument, self), paintType, color, id, paint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7859,10 +7859,10 @@ pub const D2D1_GRADIENT_MESH_PATCH = extern struct {
     point31: D2D_POINT_2F,
     point32: D2D_POINT_2F,
     point33: D2D_POINT_2F,
-    color00: DXGI_RGBA,
-    color03: DXGI_RGBA,
-    color30: DXGI_RGBA,
-    color33: DXGI_RGBA,
+    color00: D3DCOLORVALUE,
+    color03: D3DCOLORVALUE,
+    color30: D3DCOLORVALUE,
+    color33: D3DCOLORVALUE,
     topEdgeMode: D2D1_PATCH_EDGE_MODE,
     leftEdgeMode: D2D1_PATCH_EDGE_MODE,
     bottomEdgeMode: D2D1_PATCH_EDGE_MODE,
@@ -8494,7 +8494,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: *const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const DXGI_RGBA,
+            colors: ?*const D3DCOLORVALUE,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8507,7 +8507,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: ?*const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const DXGI_RGBA,
+            colors: ?*const D3DCOLORVALUE,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8520,7 +8520,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: ?[*]D2D_RECT_F,
             sourceRectangles: ?[*]D2D_RECT_U,
-            colors: ?[*]DXGI_RGBA,
+            colors: ?[*]D3DCOLORVALUE,
             transforms: ?[*]D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpriteCount: fn(
@@ -8534,15 +8534,15 @@ pub const ID2D1SpriteBatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: *const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const DXGI_RGBA, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: *const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D3DCOLORVALUE, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).AddSprites(@ptrCast(*const ID2D1SpriteBatch, self), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_SetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const DXGI_RGBA, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_SetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D3DCOLORVALUE, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).SetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_GetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]DXGI_RGBA, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_GetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D3DCOLORVALUE, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).GetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9245,8 +9245,8 @@ pub extern "d2d1" fn D2D1CreateDeviceContext(
 pub extern "d2d1" fn D2D1ConvertColorSpace(
     sourceColorSpace: D2D1_COLOR_SPACE,
     destinationColorSpace: D2D1_COLOR_SPACE,
-    color: *const DXGI_RGBA,
-) callconv(@import("std").os.windows.WINAPI) DXGI_RGBA;
+    color: *const D3DCOLORVALUE,
+) callconv(@import("std").os.windows.WINAPI) D3DCOLORVALUE;
 
 pub extern "d2d1" fn D2D1SinCos(
     angle: f32,
@@ -9307,11 +9307,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
-const DXGI_RGBA = @import("dxgi.zig").DXGI_RGBA;
 const IDWriteTextFormat = @import("direct_write.zig").IDWriteTextFormat;
 const D3D_FEATURE_LEVEL = @import("direct3d11.zig").D3D_FEATURE_LEVEL;
-const DXGI_COLOR_SPACE_TYPE = @import("dxgi.zig").DXGI_COLOR_SPACE_TYPE;
+const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
 const HRESULT = @import("com.zig").HRESULT;
+const DXGI_COLOR_SPACE_TYPE = @import("dxgi.zig").DXGI_COLOR_SPACE_TYPE;
 const IDWriteRenderingParams = @import("direct_write.zig").IDWriteRenderingParams;
 const BOOL = @import("system_services.zig").BOOL;
 const IWICBitmap = @import("windows_imaging_component.zig").IWICBitmap;

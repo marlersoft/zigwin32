@@ -2,6 +2,7 @@
 pub const api = @import("win32/api.zig");
 pub const zig = @import("win32/zig.zig");
 pub const missing = @import("win32/missing.zig");
+pub const windowlongptr = @import("win32/windowlongptr.zig");
 pub const everything = @import("win32/everything.zig");
 
 const std = @import("std");

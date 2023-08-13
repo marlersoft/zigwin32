@@ -10,8 +10,6 @@ pub const UI_ANIMATION_SECONDS_INFINITE = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-pub const UI_ANIMATION_KEYFRAME = ?*c_void;
-
 const CLSID_UIAnimationManager_Value = @import("../zig.zig").Guid.initString("4c1fc63a-695c-47e8-a339-1a194be3d0b8");
 pub const CLSID_UIAnimationManager = &CLSID_UIAnimationManager_Value;
 
@@ -1814,7 +1812,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
         OnLoopIterationChanged: fn(
             self: *const IUIAnimationLoopIterationChangeHandler2,
             storyboard: *IUIAnimationStoryboard2,
-            id: ?*c_void,
+            id: usize,
             newIterationCount: u32,
             oldIterationCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1823,7 +1821,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationLoopIterationChangeHandler2_OnLoopIterationChanged(self: *const T, storyboard: *IUIAnimationStoryboard2, id: ?*c_void, newIterationCount: u32, oldIterationCount: u32) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationLoopIterationChangeHandler2_OnLoopIterationChanged(self: *const T, storyboard: *IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationLoopIterationChangeHandler2.VTable, self.vtable).OnLoopIterationChanged(@ptrCast(*const IUIAnimationLoopIterationChangeHandler2, self), storyboard, id, newIterationCount, oldIterationCount);
         }
     };}
@@ -2278,7 +2276,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
             cRepetition: f64,
             repeatMode: UI_ANIMATION_REPEAT_MODE,
             pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2,
-            id: ?*c_void,
+            id: usize,
             fRegisterForNextAnimationEvent: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HoldVariable: fn(
@@ -2357,7 +2355,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
             return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransitionBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition, startKeyframe, endKeyframe);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: ?*c_void, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationStoryboard2_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).RepeatBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), startKeyframe, endKeyframe, cRepetition, repeatMode, pIterationChangeHandler, id, fRegisterForNextAnimationEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2411,6 +2409,8 @@ pub const IUIAnimationStoryboard2 = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const UI_ANIMATION_KEYFRAME = isize;
 
 
 //--------------------------------------------------------------------------------

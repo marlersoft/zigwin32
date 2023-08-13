@@ -5501,32 +5501,32 @@ pub const IDirectorySearch = extern struct {
             pszSearchFilter: PWSTR,
             pAttributeNames: ?*?PWSTR,
             dwNumberAttributes: u32,
-            phSearchResult: ?*?*c_void,
+            phSearchResult: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AbandonSearch: fn(
             self: *const IDirectorySearch,
-            phSearchResult: ?*c_void,
+            phSearchResult: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFirstRow: fn(
             self: *const IDirectorySearch,
-            hSearchResult: ?*c_void,
+            hSearchResult: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextRow: fn(
             self: *const IDirectorySearch,
-            hSearchResult: ?*c_void,
+            hSearchResult: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreviousRow: fn(
             self: *const IDirectorySearch,
-            hSearchResult: ?*c_void,
+            hSearchResult: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextColumnName: fn(
             self: *const IDirectorySearch,
-            hSearchHandle: ?*c_void,
+            hSearchHandle: isize,
             ppszColumnName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumn: fn(
             self: *const IDirectorySearch,
-            hSearchResult: ?*c_void,
+            hSearchResult: isize,
             szColumnName: PWSTR,
             pSearchColumn: *ads_search_column,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5536,7 +5536,7 @@ pub const IDirectorySearch = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseSearchHandle: fn(
             self: *const IDirectorySearch,
-            hSearchResult: ?*c_void,
+            hSearchResult: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5547,31 +5547,31 @@ pub const IDirectorySearch = extern struct {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).SetSearchPreference(@ptrCast(*const IDirectorySearch, self), pSearchPrefs, dwNumPrefs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).ExecuteSearch(@ptrCast(*const IDirectorySearch, self), pszSearchFilter, pAttributeNames, dwNumberAttributes, phSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_AbandonSearch(self: *const T, phSearchResult: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_AbandonSearch(self: *const T, phSearchResult: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).AbandonSearch(@ptrCast(*const IDirectorySearch, self), phSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetFirstRow(self: *const T, hSearchResult: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetFirstRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetFirstRow(@ptrCast(*const IDirectorySearch, self), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetNextRow(self: *const T, hSearchResult: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetNextRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetNextRow(@ptrCast(*const IDirectorySearch, self), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetPreviousRow(self: *const T, hSearchResult: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetPreviousRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetPreviousRow(@ptrCast(*const IDirectorySearch, self), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: ?*c_void, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: isize, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetNextColumnName(@ptrCast(*const IDirectorySearch, self), hSearchHandle, ppszColumnName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetColumn(self: *const T, hSearchResult: ?*c_void, szColumnName: PWSTR, pSearchColumn: *ads_search_column) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetColumn(self: *const T, hSearchResult: isize, szColumnName: PWSTR, pSearchColumn: *ads_search_column) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetColumn(@ptrCast(*const IDirectorySearch, self), hSearchResult, szColumnName, pSearchColumn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5579,7 +5579,7 @@ pub const IDirectorySearch = extern struct {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).FreeColumn(@ptrCast(*const IDirectorySearch, self), pSearchColumn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_CloseSearchHandle(self: *const T, hSearchResult: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_CloseSearchHandle(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).CloseSearchHandle(@ptrCast(*const IDirectorySearch, self), hSearchResult);
         }
     };}
@@ -8782,7 +8782,7 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
-pub const GetDcContextHandle = ?*c_void;
+pub const GetDcContextHandle = isize;
 
 pub const BFFCALLBACK = fn(
     hwnd: HWND,

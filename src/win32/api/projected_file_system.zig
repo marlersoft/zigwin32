@@ -6,9 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (31)
 //--------------------------------------------------------------------------------
-pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = ?*c_void;
+pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = isize;
 
-pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = ?*c_void;
+pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = isize;
 
 pub const PRJ_NOTIFY_TYPES = extern enum(i32) {
     NONE = 0,
@@ -365,7 +365,7 @@ pub extern "PROJECTEDFSLIB" fn PrjGetOnDiskFileState(
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjAllocateAlignedBuffer(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    size: ?*c_void,
+    size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows10.0.17763'

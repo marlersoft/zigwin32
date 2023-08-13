@@ -129,77 +129,6 @@ pub const PROXIMITY_UNIT_CHAPTER = @as(u32, 3);
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
-pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
-pub const IPhraseSink = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PutSmallPhrase: fn(
-            self: *const IPhraseSink,
-            pwcNoun: [*:0]const u16,
-            cwcNoun: u32,
-            pwcModifier: [*:0]const u16,
-            cwcModifier: u32,
-            ulAttachmentType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutPhrase: fn(
-            self: *const IPhraseSink,
-            pwcPhrase: [*:0]const u16,
-            cwcPhrase: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: [*:0]const u16, cwcNoun: u32, pwcModifier: [*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutSmallPhrase(@ptrCast(*const IPhraseSink, self), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: [*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutPhrase(@ptrCast(*const IPhraseSink, self), pwcPhrase, cwcPhrase);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const WORDREP_BREAK_TYPE = extern enum(i32) {
-    W = 0,
-    S = 1,
-    P = 2,
-    C = 3,
-};
-pub const WORDREP_BREAK_EOW = WORDREP_BREAK_TYPE.W;
-pub const WORDREP_BREAK_EOS = WORDREP_BREAK_TYPE.S;
-pub const WORDREP_BREAK_EOP = WORDREP_BREAK_TYPE.P;
-pub const WORDREP_BREAK_EOC = WORDREP_BREAK_TYPE.C;
-
-pub const DBKINDENUM = extern enum(i32) {
-    GUID_NAME = 0,
-    GUID_PROPID = 1,
-    NAME = 2,
-    PGUID_NAME = 3,
-    PGUID_PROPID = 4,
-    PROPID = 5,
-    GUID = 6,
-};
-pub const DBKIND_GUID_NAME = DBKINDENUM.GUID_NAME;
-pub const DBKIND_GUID_PROPID = DBKINDENUM.GUID_PROPID;
-pub const DBKIND_NAME = DBKINDENUM.NAME;
-pub const DBKIND_PGUID_NAME = DBKINDENUM.PGUID_NAME;
-pub const DBKIND_PGUID_PROPID = DBKINDENUM.PGUID_PROPID;
-pub const DBKIND_PROPID = DBKINDENUM.PROPID;
-pub const DBKIND_GUID = DBKINDENUM.GUID;
-
-pub const DBID = extern struct {
-    uGuid: DBID._uGuid_e__Union,
-    eKind: u32,
-    uName: DBID._uName_e__Union,
-    const _uGuid_e__Union = u32; // TODO: generate this nested type!
-    const _uName_e__Union = u32; // TODO: generate this nested type!
-};
-
 pub const CI_STATE = extern struct {
     cbStruct: u32,
     cWordList: u32,
@@ -356,6 +285,77 @@ pub const IFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
+pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
+pub const IPhraseSink = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PutSmallPhrase: fn(
+            self: *const IPhraseSink,
+            pwcNoun: [*:0]const u16,
+            cwcNoun: u32,
+            pwcModifier: [*:0]const u16,
+            cwcModifier: u32,
+            ulAttachmentType: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PutPhrase: fn(
+            self: *const IPhraseSink,
+            pwcPhrase: [*:0]const u16,
+            cwcPhrase: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: [*:0]const u16, cwcNoun: u32, pwcModifier: [*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutSmallPhrase(@ptrCast(*const IPhraseSink, self), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: [*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutPhrase(@ptrCast(*const IPhraseSink, self), pwcPhrase, cwcPhrase);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const WORDREP_BREAK_TYPE = extern enum(i32) {
+    W = 0,
+    S = 1,
+    P = 2,
+    C = 3,
+};
+pub const WORDREP_BREAK_EOW = WORDREP_BREAK_TYPE.W;
+pub const WORDREP_BREAK_EOS = WORDREP_BREAK_TYPE.S;
+pub const WORDREP_BREAK_EOP = WORDREP_BREAK_TYPE.P;
+pub const WORDREP_BREAK_EOC = WORDREP_BREAK_TYPE.C;
+
+pub const DBKINDENUM = extern enum(i32) {
+    GUID_NAME = 0,
+    GUID_PROPID = 1,
+    NAME = 2,
+    PGUID_NAME = 3,
+    PGUID_PROPID = 4,
+    PROPID = 5,
+    GUID = 6,
+};
+pub const DBKIND_GUID_NAME = DBKINDENUM.GUID_NAME;
+pub const DBKIND_GUID_PROPID = DBKINDENUM.GUID_PROPID;
+pub const DBKIND_NAME = DBKINDENUM.NAME;
+pub const DBKIND_PGUID_NAME = DBKINDENUM.PGUID_NAME;
+pub const DBKIND_PGUID_PROPID = DBKINDENUM.PGUID_PROPID;
+pub const DBKIND_PROPID = DBKINDENUM.PROPID;
+pub const DBKIND_GUID = DBKINDENUM.GUID;
+
+pub const DBID = extern struct {
+    uGuid: DBID._uGuid_e__Union,
+    eKind: u32,
+    uName: DBID._uName_e__Union,
+    const _uGuid_e__Union = u32; // TODO: generate this nested type!
+    const _uName_e__Union = u32; // TODO: generate this nested type!
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
@@ -406,8 +406,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("structured_storage.zig").IStream;
-const PWSTR = @import("system_services.zig").PWSTR;
 const PROPSPEC = @import("structured_storage.zig").PROPSPEC;
+const PWSTR = @import("system_services.zig").PWSTR;
 const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;

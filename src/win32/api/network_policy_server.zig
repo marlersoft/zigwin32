@@ -1778,12 +1778,12 @@ pub const repAuthorization = RADIUS_EXTENSION_POINT.orization;
 
 pub const RADIUS_ATTRIBUTE_ARRAY = extern struct {
     cbSize: u32,
-    Add: ?*c_void,
+    Add: isize,
     AttributeAt: *const *const *const *const *const *const *const *const *const *const RADIUS_ATTRIBUTE,
-    GetSize: ?*c_void,
-    InsertAt: ?*c_void,
-    RemoveAt: ?*c_void,
-    SetAt: ?*c_void,
+    GetSize: isize,
+    InsertAt: isize,
+    RemoveAt: isize,
+    SetAt: isize,
 };
 
 pub const RADIUS_EXTENSION_CONTROL_BLOCK = extern struct {
@@ -1792,9 +1792,9 @@ pub const RADIUS_EXTENSION_CONTROL_BLOCK = extern struct {
     repPoint: RADIUS_EXTENSION_POINT,
     rcRequestType: RADIUS_CODE,
     rcResponseType: RADIUS_CODE,
-    GetRequest: ?*c_void,
-    GetResponse: ?*c_void,
-    SetResponseType: ?*c_void,
+    GetRequest: isize,
+    GetResponse: isize,
+    SetResponseType: isize,
 };
 
 pub const PRADIUS_EXTENSION_PROCESS_2 = fn(

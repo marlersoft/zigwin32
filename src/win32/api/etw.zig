@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (345)
 //--------------------------------------------------------------------------------
+pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const WNODE_FLAG_ALL_DATA = @as(u32, 1);
 pub const WNODE_FLAG_SINGLE_INSTANCE = @as(u32, 2);
 pub const WNODE_FLAG_SINGLE_ITEM = @as(u32, 4);
@@ -346,13 +347,12 @@ pub const EVENT_ENABLE_PROPERTY_SOURCE_CONTAINER_TRACKING = @as(u32, 2048);
 pub const PROCESS_TRACE_MODE_REAL_TIME = @as(u32, 256);
 pub const PROCESS_TRACE_MODE_RAW_TIMESTAMP = @as(u32, 4096);
 pub const PROCESS_TRACE_MODE_EVENT_RECORD = @as(u32, 268435456);
-pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'TdhCloseDecodingHandle', what can Zig do with this information?
-pub const TDH_HANDLE = ?*c_void;
+pub const TDH_HANDLE = isize;
 
 pub const WNODE_HEADER = extern struct {
     BufferSize: u32,
@@ -1794,12 +1794,6 @@ pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ADVAPI32" fn CveEventWrite(
-    CveId: [*:0]const u16,
-    AdditionalDetails: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StartTraceW(
     TraceHandle: *u64,
@@ -2329,7 +2323,7 @@ pub extern "TDH" fn TdhFormatProperty(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhOpenDecodingHandle(
-    Handle: *?*c_void,
+    Handle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2385,6 +2379,12 @@ pub extern "TDH" fn TdhGetManifestEventInformation(
     Buffer: ?[*]TRACE_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "ADVAPI32" fn CveEventWrite(
+    CveId: [*:0]const u16,
+    AdditionalDetails: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 //--------------------------------------------------------------------------------

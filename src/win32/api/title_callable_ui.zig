@@ -15,7 +15,7 @@ pub const PlayerPickerUICompletionRoutine = fn(
     returnCode: HRESULT,
     context: *c_void,
     selectedXuids: [*]const HSTRING,
-    selectedXuidsCount: ?*c_void,
+    selectedXuidsCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const KnownGamingPrivileges = extern enum(i32) {
@@ -81,11 +81,11 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
     promptDisplayText: HSTRING,
     xuids: [*]const HSTRING,
-    xuidsCount: ?*c_void,
+    xuidsCount: usize,
     preSelectedXuids: ?[*]const HSTRING,
-    preSelectedXuidsCount: ?*c_void,
-    minSelectionCount: ?*c_void,
-    maxSelectionCount: ?*c_void,
+    preSelectedXuidsCount: usize,
+    minSelectionCount: usize,
+    maxSelectionCount: usize,
     completionRoutine: PlayerPickerUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -145,11 +145,11 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
     user: *IInspectable,
     promptDisplayText: HSTRING,
     xuids: [*]const HSTRING,
-    xuidsCount: ?*c_void,
+    xuidsCount: usize,
     preSelectedXuids: ?[*]const HSTRING,
-    preSelectedXuidsCount: ?*c_void,
-    minSelectionCount: ?*c_void,
-    maxSelectionCount: ?*c_void,
+    preSelectedXuidsCount: usize,
+    minSelectionCount: usize,
+    maxSelectionCount: usize,
     completionRoutine: PlayerPickerUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

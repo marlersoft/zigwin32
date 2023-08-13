@@ -3180,12 +3180,12 @@ pub const WS_RAW_SYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
 
 pub const WS_NCRYPT_ASYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
     keyHandle: WS_SECURITY_KEY_HANDLE,
-    asymmetricKey: ?*c_void,
+    asymmetricKey: usize,
 };
 
 pub const WS_CAPI_ASYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
     keyHandle: WS_SECURITY_KEY_HANDLE,
-    provider: ?*c_void,
+    provider: usize,
     keySpec: u32,
 };
 
@@ -5141,8 +5141,8 @@ pub extern "webservices" fn WsGetFaultErrorDetail(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateHeap(
-    maxSize: ?*c_void,
-    trimSize: ?*c_void,
+    maxSize: usize,
+    trimSize: usize,
     properties: ?*const WS_HEAP_PROPERTY,
     propertyCount: u32,
     heap: **WS_HEAP,
@@ -5152,7 +5152,7 @@ pub extern "webservices" fn WsCreateHeap(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsAlloc(
     heap: *WS_HEAP,
-    size: ?*c_void,
+    size: usize,
     ptr: **c_void,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

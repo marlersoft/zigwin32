@@ -898,19 +898,19 @@ pub const STRM_STOPPED = @as(u32, 16);
 pub const LINECALLBACK = fn(
     hDevice: u32,
     dwMessage: u32,
-    dwInstance: ?*c_void,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
-    dwParam3: ?*c_void,
+    dwInstance: usize,
+    dwParam1: usize,
+    dwParam2: usize,
+    dwParam3: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PHONECALLBACK = fn(
     hDevice: u32,
     dwMessage: u32,
-    dwInstance: ?*c_void,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
-    dwParam3: ?*c_void,
+    dwInstance: usize,
+    dwParam1: usize,
+    dwParam2: usize,
+    dwParam3: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LINEADDRESSCAPS = extern struct {
@@ -1551,10 +1551,10 @@ pub const LINEMEDIACONTROLTONE = extern struct {
 pub const LINEMESSAGE = extern struct {
     hDevice: u32,
     dwMessageID: u32,
-    dwCallbackInstance: ?*c_void,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
-    dwParam3: ?*c_void,
+    dwCallbackInstance: usize,
+    dwParam1: usize,
+    dwParam2: usize,
+    dwParam3: usize,
 };
 
 pub const LINEMONITORTONE = extern struct {
@@ -1747,10 +1747,10 @@ pub const PHONEINITIALIZEEXPARAMS = extern struct {
 pub const PHONEMESSAGE = extern struct {
     hDevice: u32,
     dwMessageID: u32,
-    dwCallbackInstance: ?*c_void,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
-    dwParam3: ?*c_void,
+    dwCallbackInstance: usize,
+    dwParam1: usize,
+    dwParam2: usize,
+    dwParam3: usize,
 };
 
 pub const PHONESTATUS = extern struct {
@@ -6792,7 +6792,7 @@ pub const ITAddressTranslation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TranslateDialog: fn(
             self: *const ITAddressTranslation,
-            hwndOwner: i32,
+            hwndOwner: i64,
             pAddressIn: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateLocations: fn(
@@ -6820,7 +6820,7 @@ pub const ITAddressTranslation = extern struct {
             return @ptrCast(*const ITAddressTranslation.VTable, self.vtable).TranslateAddress(@ptrCast(*const ITAddressTranslation, self), pAddressToTranslate, lCard, lTranslateOptions, ppTranslated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITAddressTranslation_TranslateDialog(self: *const T, hwndOwner: i32, pAddressIn: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITAddressTranslation_TranslateDialog(self: *const T, hwndOwner: i64, pAddressIn: BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITAddressTranslation.VTable, self.vtable).TranslateDialog(@ptrCast(*const ITAddressTranslation, self), hwndOwner, pAddressIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10477,19 +10477,19 @@ pub extern "TAPI32" fn lineGetGroupListW(
 pub extern "TAPI32" fn lineGetIcon(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u8,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetIconA(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u8,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetIconW(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u16,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetID(
@@ -10749,7 +10749,7 @@ pub extern "TAPI32" fn lineOpen(
     lphLine: *u32,
     dwAPIVersion: u32,
     dwExtVersion: u32,
-    dwCallbackInstance: ?*c_void,
+    dwCallbackInstance: usize,
     dwPrivileges: u32,
     dwMediaModes: u32,
     lpCallParams: *const LINECALLPARAMS,
@@ -10761,7 +10761,7 @@ pub extern "TAPI32" fn lineOpenA(
     lphLine: *u32,
     dwAPIVersion: u32,
     dwExtVersion: u32,
-    dwCallbackInstance: ?*c_void,
+    dwCallbackInstance: usize,
     dwPrivileges: u32,
     dwMediaModes: u32,
     lpCallParams: *const LINECALLPARAMS,
@@ -10773,7 +10773,7 @@ pub extern "TAPI32" fn lineOpenW(
     lphLine: *u32,
     dwAPIVersion: u32,
     dwExtVersion: u32,
-    dwCallbackInstance: ?*c_void,
+    dwCallbackInstance: usize,
     dwPrivileges: u32,
     dwMediaModes: u32,
     lpCallParams: *const LINECALLPARAMS,
@@ -11343,19 +11343,19 @@ pub extern "TAPI32" fn phoneGetHookSwitch(
 pub extern "TAPI32" fn phoneGetIcon(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u8,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn phoneGetIconA(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u8,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn phoneGetIconW(
     dwDeviceID: u32,
     lpszDeviceClass: [*:0]const u16,
-    lphIcon: *?*c_void,
+    lphIcon: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn phoneGetID(
@@ -11474,7 +11474,7 @@ pub extern "TAPI32" fn phoneOpen(
     lphPhone: *u32,
     dwAPIVersion: u32,
     dwExtVersion: u32,
-    dwCallbackInstance: ?*c_void,
+    dwCallbackInstance: usize,
     dwPrivilege: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

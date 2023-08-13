@@ -153,7 +153,7 @@ pub const STATUS_SEVERITY_WARNING = @as(u32, 2);
 pub const STATUS_SEVERITY_ERROR = @as(u32, 3);
 
 //--------------------------------------------------------------------------------
-// Section: Types (84)
+// Section: Types (94)
 //--------------------------------------------------------------------------------
 pub const SCSI_PASS_THROUGH = extern struct {
     Length: u16,
@@ -166,12 +166,44 @@ pub const SCSI_PASS_THROUGH = extern struct {
     DataIn: u8,
     DataTransferLength: u32,
     TimeOutValue: u32,
-    DataBufferOffset: ?*c_void,
+    DataBufferOffset: usize,
     SenseInfoOffset: u32,
     Cdb: [16]u8,
 };
 
 pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBuffer: *c_void,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+pub const SCSI_PASS_THROUGH32 = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBufferOffset: u32,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT32 = extern struct {
     Length: u16,
     ScsiStatus: u8,
     PathId: u8,
@@ -201,12 +233,50 @@ pub const SCSI_PASS_THROUGH_EX = extern struct {
     SenseInfoOffset: u32,
     DataOutTransferLength: u32,
     DataInTransferLength: u32,
-    DataOutBufferOffset: ?*c_void,
-    DataInBufferOffset: ?*c_void,
+    DataOutBufferOffset: usize,
+    DataInBufferOffset: usize,
     Cdb: [1]u8,
 };
 
 pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBuffer: *c_void,
+    DataInBuffer: *c_void,
+    Cdb: [1]u8,
+};
+
+pub const SCSI_PASS_THROUGH32_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBufferOffset: u32,
+    DataInBufferOffset: u32,
+    Cdb: [1]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT32_EX = extern struct {
     Version: u32,
     Length: u32,
     CdbLength: u32,
@@ -235,12 +305,42 @@ pub const ATA_PASS_THROUGH_EX = extern struct {
     DataTransferLength: u32,
     TimeOutValue: u32,
     ReservedAsUlong: u32,
-    DataBufferOffset: ?*c_void,
+    DataBufferOffset: usize,
     PreviousTaskFile: [8]u8,
     CurrentTaskFile: [8]u8,
 };
 
 pub const ATA_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBuffer: *c_void,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
+pub const ATA_PASS_THROUGH_EX32 = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBufferOffset: u32,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
+pub const ATA_PASS_THROUGH_DIRECT32 = extern struct {
     Length: u16,
     AtaFlags: u16,
     PathId: u8,
@@ -292,6 +392,42 @@ pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
 };
 
 pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH32 = extern struct {
+    PassThrough: SCSI_PASS_THROUGH32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32 = extern struct {
+    PassThrough: SCSI_PASS_THROUGH_DIRECT32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH32_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = extern struct {
     PassThroughOffset: u32,
     Version: u32,
     Length: u16,
@@ -1730,7 +1866,7 @@ test {
     _ = PDUMP_DEVICE_POWERON_ROUTINE;
 
     const constant_export_count = 149;
-    const type_export_count = 84;
+    const type_export_count = 94;
     const enum_value_export_count = 33;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

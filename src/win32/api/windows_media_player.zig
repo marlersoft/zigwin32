@@ -2,44 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (120)
 //--------------------------------------------------------------------------------
-pub const CLSID_XFeedsManager = Guid.initString("fe6b11c3-c72e-4061-86c6-9d163121f229");
-pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
-pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
-pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
-pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
-pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
-pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
-pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
-pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
-pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
-pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
-pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
-pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
-pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
-pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
-pub const SA_BUFFER_SIZE = @as(u32, 1024);
-pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
-pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
-pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
-pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
-pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
-pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
-pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
-pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
-pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
-pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
-pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
-pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
-pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
-pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
-pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
-pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
-pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
-pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
-pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
-pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
-pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
-pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
 pub const CLSID_WMPSkinManager = Guid.initString("b2a7fd52-301f-4348-b93a-638c6de49229");
 pub const CLSID_WMPMediaPluginRegistrar = Guid.initString("5569e7f5-424b-4b93-89ca-79d17924689a");
 pub const WMP_PLUGINTYPE_DSP = Guid.initString("6434baea-4954-498d-abd5-2b07123e1f04");
@@ -122,6 +84,44 @@ pub const g_szVerifyPermissionSync = "VerifyPermissionSync";
 pub const g_szStationEvent_Started = "TrackStarted";
 pub const g_szStationEvent_Complete = "TrackComplete";
 pub const g_szStationEvent_Skipped = "TrackSkipped";
+pub const CLSID_XFeedsManager = Guid.initString("fe6b11c3-c72e-4061-86c6-9d163121f229");
+pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
+pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
+pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
+pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
+pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
+pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
+pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
+pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
+pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
+pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
+pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
+pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
+pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
+pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
+pub const SA_BUFFER_SIZE = @as(u32, 1024);
+pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
+pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
+pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
+pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
+pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
+pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
+pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
+pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
+pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
+pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
+pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
+pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
+pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
+pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
+pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
+pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
+pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
+pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
+pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
+pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
+pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
+pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (153)
@@ -4459,22 +4459,22 @@ pub const IWMPNodeWindowed = extern struct {
         base: IUnknown.VTable,
         SetOwnerWindow: fn(
             self: *const IWMPNodeWindowed,
-            hwnd: ?*c_void,
+            hwnd: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOwnerWindow: fn(
             self: *const IWMPNodeWindowed,
-            phwnd: *?*c_void,
+            phwnd: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPNodeWindowed_SetOwnerWindow(self: *const T, hwnd: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWMPNodeWindowed_SetOwnerWindow(self: *const T, hwnd: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPNodeWindowed.VTable, self.vtable).SetOwnerWindow(@ptrCast(*const IWMPNodeWindowed, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPNodeWindowed_GetOwnerWindow(self: *const T, phwnd: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWMPNodeWindowed_GetOwnerWindow(self: *const T, phwnd: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPNodeWindowed.VTable, self.vtable).GetOwnerWindow(@ptrCast(*const IWMPNodeWindowed, self), phwnd);
         }
     };}
@@ -4538,7 +4538,7 @@ pub const IWMPNodeWindowless = extern struct {
         base: IWMPWindowMessageSink.VTable,
         OnDraw: fn(
             self: *const IWMPNodeWindowless,
-            hdc: ?*c_void,
+            hdc: isize,
             prcDraw: *const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4546,7 +4546,7 @@ pub const IWMPNodeWindowless = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMPWindowMessageSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPNodeWindowless_OnDraw(self: *const T, hdc: ?*c_void, prcDraw: *const RECT) callconv(.Inline) HRESULT {
+        pub fn IWMPNodeWindowless_OnDraw(self: *const T, hdc: isize, prcDraw: *const RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPNodeWindowless.VTable, self.vtable).OnDraw(@ptrCast(*const IWMPNodeWindowless, self), hdc, prcDraw);
         }
     };}
@@ -4741,7 +4741,7 @@ pub const IWMPPlugin = extern struct {
         base: IUnknown.VTable,
         Init: fn(
             self: *const IWMPPlugin,
-            dwPlaybackContext: ?*c_void,
+            dwPlaybackContext: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shutdown: fn(
             self: *const IWMPPlugin,
@@ -4766,7 +4766,7 @@ pub const IWMPPlugin = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPPlugin_Init(self: *const T, dwPlaybackContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWMPPlugin_Init(self: *const T, dwPlaybackContext: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPPlugin.VTable, self.vtable).Init(@ptrCast(*const IWMPPlugin, self), dwPlaybackContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -510,25 +510,25 @@ pub const IFunctionDiscoveryProvider = extern struct {
         InstancePropertyStoreValidateAccess: fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             dwStgAccess: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InstancePropertyStoreOpen: fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             dwStgAccess: u32,
             ppIPropertyStore: **IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InstancePropertyStoreFlush: fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InstanceQueryService: fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             guidService: *const Guid,
             riid: *const Guid,
             ppIUnknown: ?*?*IUnknown,
@@ -536,7 +536,7 @@ pub const IFunctionDiscoveryProvider = extern struct {
         InstanceReleased: fn(
             self: *const IFunctionDiscoveryProvider,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -555,23 +555,23 @@ pub const IFunctionDiscoveryProvider = extern struct {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).EndQuery(@ptrCast(*const IFunctionDiscoveryProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreValidateAccess(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, dwStgAccess: u32) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreValidateAccess(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreValidateAccess(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreOpen(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, dwStgAccess: u32, ppIPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreOpen(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32, ppIPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreOpen(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess, ppIPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreFlush(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreFlush(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreFlush(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, guidService: *const Guid, riid: *const Guid, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, guidService: *const Guid, riid: *const Guid, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceQueryService(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, guidService, riid, ppIUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstanceReleased(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstanceReleased(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceReleased(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
         }
     };}
@@ -587,27 +587,27 @@ pub const IProviderProperties = extern struct {
         GetCount: fn(
             self: *const IProviderProperties,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             pdwCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAt: fn(
             self: *const IProviderProperties,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             dwIndex: u32,
             pKey: *PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const IProviderProperties,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             Key: *const PROPERTYKEY,
             ppropVar: *PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const IProviderProperties,
             pIFunctionInstance: *IFunctionInstance,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             Key: *const PROPERTYKEY,
             ppropVar: *const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -616,19 +616,19 @@ pub const IProviderProperties = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetCount(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IProviderProperties_GetCount(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, pdwCount: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetCount(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetAt(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, dwIndex: u32, pKey: *PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IProviderProperties_GetAt(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, dwIndex: u32, pKey: *PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetAt(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, dwIndex, pKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetValue(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, Key: *const PROPERTYKEY, ppropVar: *PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IProviderProperties_GetValue(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, Key: *const PROPERTYKEY, ppropVar: *PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_SetValue(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: ?*c_void, Key: *const PROPERTYKEY, ppropVar: *const PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IProviderProperties_SetValue(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, Key: *const PROPERTYKEY, ppropVar: *const PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderProperties.VTable, self.vtable).SetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
         }
     };}
@@ -684,7 +684,7 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
             self: *const IFunctionDiscoveryProviderFactory,
             pszSubCategory: [*:0]const u16,
             pszProviderInstanceIdentity: [*:0]const u16,
-            iProviderInstanceContext: ?*c_void,
+            iProviderInstanceContext: isize,
             pIPropertyStore: *IPropertyStore,
             pIFunctionDiscoveryProvider: *IFunctionDiscoveryProvider,
             ppIFunctionInstance: **IFunctionInstance,
@@ -702,7 +702,7 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
             return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreatePropertyStore(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), ppIPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderFactory_CreateInstance(self: *const T, pszSubCategory: [*:0]const u16, pszProviderInstanceIdentity: [*:0]const u16, iProviderInstanceContext: ?*c_void, pIPropertyStore: *IPropertyStore, pIFunctionDiscoveryProvider: *IFunctionDiscoveryProvider, ppIFunctionInstance: **IFunctionInstance) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProviderFactory_CreateInstance(self: *const T, pszSubCategory: [*:0]const u16, pszProviderInstanceIdentity: [*:0]const u16, iProviderInstanceContext: isize, pIPropertyStore: *IPropertyStore, pIFunctionDiscoveryProvider: *IFunctionDiscoveryProvider, ppIFunctionInstance: **IFunctionInstance) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), pszSubCategory, pszProviderInstanceIdentity, iProviderInstanceContext, pIPropertyStore, pIFunctionDiscoveryProvider, ppIFunctionInstance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3560,7 +3560,7 @@ pub extern "wsdapi" fn WSDGetConfigurationOption(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAllocateLinkedMemory(
     pParent: *c_void,
-    cbSize: ?*c_void,
+    cbSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

@@ -1446,7 +1446,7 @@ pub const IFsrmAccessDeniedRemediationClient = extern struct {
         base: IDispatch.VTable,
         Show: fn(
             self: *const IFsrmAccessDeniedRemediationClient,
-            parentWnd: ?*c_void,
+            parentWnd: usize,
             accessPath: BSTR,
             errorType: AdrClientErrorType,
             flags: i32,
@@ -1459,7 +1459,7 @@ pub const IFsrmAccessDeniedRemediationClient = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAccessDeniedRemediationClient_Show(self: *const T, parentWnd: ?*c_void, accessPath: BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: BSTR, windowMessage: BSTR, result: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmAccessDeniedRemediationClient_Show(self: *const T, parentWnd: usize, accessPath: BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: BSTR, windowMessage: BSTR, result: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAccessDeniedRemediationClient.VTable, self.vtable).Show(@ptrCast(*const IFsrmAccessDeniedRemediationClient, self), parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
         }
     };}

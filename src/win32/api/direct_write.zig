@@ -9,6 +9,19 @@ pub const DWRITE_ERR_BASE = @as(u32, 20480);
 //--------------------------------------------------------------------------------
 // Section: Types (192)
 //--------------------------------------------------------------------------------
+pub const DWRITE_FONT_AXIS_TAG = extern enum(u32) {
+    WEIGHT = 1952999287,
+    WIDTH = 1752458359,
+    SLANT = 1953393779,
+    OPTICAL_SIZE = 2054385775,
+    ITALIC = 1818326121,
+};
+pub const DWRITE_FONT_AXIS_TAG_WEIGHT = DWRITE_FONT_AXIS_TAG.WEIGHT;
+pub const DWRITE_FONT_AXIS_TAG_WIDTH = DWRITE_FONT_AXIS_TAG.WIDTH;
+pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
+pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
+pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
+
 pub const DWRITE_MEASURING_MODE = extern enum(i32) {
     NATURAL = 0,
     GDI_CLASSIC = 1,
@@ -4586,7 +4599,7 @@ pub const IDWriteFontFace2 = extern struct {
             colorPaletteIndex: u32,
             firstEntryIndex: u32,
             entryCount: u32,
-            paletteEntries: [*]DXGI_RGBA,
+            paletteEntries: [*]D3DCOLORVALUE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecommendedRenderingMode: fn(
             self: *const IDWriteFontFace2,
@@ -4618,7 +4631,7 @@ pub const IDWriteFontFace2 = extern struct {
             return @ptrCast(*const IDWriteFontFace2.VTable, self.vtable).GetPaletteEntryCount(@ptrCast(*const IDWriteFontFace2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetPaletteEntries(self: *const T, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]DXGI_RGBA) callconv(.Inline) HRESULT {
+        pub fn IDWriteFontFace2_GetPaletteEntries(self: *const T, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]D3DCOLORVALUE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFontFace2.VTable, self.vtable).GetPaletteEntries(@ptrCast(*const IDWriteFontFace2, self), colorPaletteIndex, firstEntryIndex, entryCount, paletteEntries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4634,7 +4647,7 @@ pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
     glyphRunDescription: *DWRITE_GLYPH_RUN_DESCRIPTION,
     baselineOriginX: f32,
     baselineOriginY: f32,
-    runColor: DXGI_RGBA,
+    runColor: D3DCOLORVALUE,
     paletteIndex: u16,
 };
 
@@ -7113,19 +7126,6 @@ pub const IDWriteFontSet3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DWRITE_FONT_AXIS_TAG = extern enum(u32) {
-    WEIGHT = 1952999287,
-    WIDTH = 1752458359,
-    SLANT = 1953393779,
-    OPTICAL_SIZE = 2054385775,
-    ITALIC = 1818326121,
-};
-pub const DWRITE_FONT_AXIS_TAG_WEIGHT = DWRITE_FONT_AXIS_TAG.WEIGHT;
-pub const DWRITE_FONT_AXIS_TAG_WIDTH = DWRITE_FONT_AXIS_TAG.WIDTH;
-pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
-pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
-pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -7158,9 +7158,9 @@ const HDC = @import("gdi.zig").HDC;
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const PWSTR = @import("system_services.zig").PWSTR;
-const DXGI_RGBA = @import("dxgi.zig").DXGI_RGBA;
-const IUnknown = @import("com.zig").IUnknown;
 const FONTSIGNATURE = @import("intl.zig").FONTSIGNATURE;
+const IUnknown = @import("com.zig").IUnknown;
+const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
 const HRESULT = @import("com.zig").HRESULT;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
 const RECT = @import("display_devices.zig").RECT;

@@ -17,11 +17,6 @@ pub const MERGE_VIRTUAL_DISK_DEFAULT_MERGE_DEPTH = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (59)
 //--------------------------------------------------------------------------------
-pub const VIRTUAL_STORAGE_TYPE = extern struct {
-    DeviceId: u32,
-    VendorId: Guid,
-};
-
 pub const OPEN_VIRTUAL_DISK_VERSION = extern enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
@@ -563,6 +558,11 @@ pub const FORK_VIRTUAL_DISK_FLAG = extern enum(i32) {
 };
 pub const FORK_VIRTUAL_DISK_FLAG_NONE = FORK_VIRTUAL_DISK_FLAG.NONE;
 pub const FORK_VIRTUAL_DISK_FLAG_EXISTING_FILE = FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE;
+
+pub const VIRTUAL_STORAGE_TYPE = extern struct {
+    DeviceId: u32,
+    VendorId: Guid,
+};
 
 
 //--------------------------------------------------------------------------------

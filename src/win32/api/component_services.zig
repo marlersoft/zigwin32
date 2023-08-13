@@ -2489,16 +2489,16 @@ pub const xa_switch_t = extern struct {
     name: [32]i8,
     flags: i32,
     version: i32,
-    xa_open_entry: ?*c_void,
-    xa_close_entry: ?*c_void,
-    xa_start_entry: ?*c_void,
-    xa_end_entry: ?*c_void,
-    xa_rollback_entry: ?*c_void,
-    xa_prepare_entry: ?*c_void,
-    xa_commit_entry: ?*c_void,
-    xa_recover_entry: ?*c_void,
-    xa_forget_entry: ?*c_void,
-    xa_complete_entry: ?*c_void,
+    xa_open_entry: isize,
+    xa_close_entry: isize,
+    xa_start_entry: isize,
+    xa_end_entry: isize,
+    xa_rollback_entry: isize,
+    xa_prepare_entry: isize,
+    xa_commit_entry: isize,
+    xa_recover_entry: isize,
+    xa_forget_entry: isize,
+    xa_complete_entry: isize,
 };
 
 const IID_IXATransLookup_Value = @import("../zig.zig").Guid.initString("f3b1f131-eeda-11ce-aed4-00aa0051e2c4");
@@ -6743,8 +6743,8 @@ pub const IDispenserManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContext: fn(
             self: *const IDispenserManager,
-            __MIDL__IDispenserManager0002: *?*c_void,
-            __MIDL__IDispenserManager0003: *?*c_void,
+            __MIDL__IDispenserManager0002: *usize,
+            __MIDL__IDispenserManager0003: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6755,7 +6755,7 @@ pub const IDispenserManager = extern struct {
             return @ptrCast(*const IDispenserManager.VTable, self.vtable).RegisterDispenser(@ptrCast(*const IDispenserManager, self), __MIDL__IDispenserManager0000, szDispenserName, __MIDL__IDispenserManager0001);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserManager_GetContext(self: *const T, __MIDL__IDispenserManager0002: *?*c_void, __MIDL__IDispenserManager0003: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDispenserManager_GetContext(self: *const T, __MIDL__IDispenserManager0002: *usize, __MIDL__IDispenserManager0003: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserManager.VTable, self.vtable).GetContext(@ptrCast(*const IDispenserManager, self), __MIDL__IDispenserManager0002, __MIDL__IDispenserManager0003);
         }
     };}
@@ -6770,16 +6770,16 @@ pub const IHolder = extern struct {
         base: IUnknown.VTable,
         AllocResource: fn(
             self: *const IHolder,
-            __MIDL__IHolder0000: ?*c_void,
-            __MIDL__IHolder0001: *?*c_void,
+            __MIDL__IHolder0000: usize,
+            __MIDL__IHolder0001: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeResource: fn(
             self: *const IHolder,
-            __MIDL__IHolder0002: ?*c_void,
+            __MIDL__IHolder0002: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TrackResource: fn(
             self: *const IHolder,
-            __MIDL__IHolder0003: ?*c_void,
+            __MIDL__IHolder0003: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TrackResourceS: fn(
             self: *const IHolder,
@@ -6787,7 +6787,7 @@ pub const IHolder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UntrackResource: fn(
             self: *const IHolder,
-            __MIDL__IHolder0005: ?*c_void,
+            __MIDL__IHolder0005: usize,
             __MIDL__IHolder0006: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UntrackResourceS: fn(
@@ -6800,22 +6800,22 @@ pub const IHolder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestDestroyResource: fn(
             self: *const IHolder,
-            __MIDL__IHolder0009: ?*c_void,
+            __MIDL__IHolder0009: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolder_AllocResource(self: *const T, __MIDL__IHolder0000: ?*c_void, __MIDL__IHolder0001: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolder_AllocResource(self: *const T, __MIDL__IHolder0000: usize, __MIDL__IHolder0001: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolder.VTable, self.vtable).AllocResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0000, __MIDL__IHolder0001);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolder_FreeResource(self: *const T, __MIDL__IHolder0002: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolder_FreeResource(self: *const T, __MIDL__IHolder0002: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolder.VTable, self.vtable).FreeResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0002);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolder_TrackResource(self: *const T, __MIDL__IHolder0003: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolder_TrackResource(self: *const T, __MIDL__IHolder0003: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolder.VTable, self.vtable).TrackResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0003);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6823,7 +6823,7 @@ pub const IHolder = extern struct {
             return @ptrCast(*const IHolder.VTable, self.vtable).TrackResourceS(@ptrCast(*const IHolder, self), __MIDL__IHolder0004);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolder_UntrackResource(self: *const T, __MIDL__IHolder0005: ?*c_void, __MIDL__IHolder0006: BOOL) callconv(.Inline) HRESULT {
+        pub fn IHolder_UntrackResource(self: *const T, __MIDL__IHolder0005: usize, __MIDL__IHolder0006: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolder.VTable, self.vtable).UntrackResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0005, __MIDL__IHolder0006);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6835,7 +6835,7 @@ pub const IHolder = extern struct {
             return @ptrCast(*const IHolder.VTable, self.vtable).Close(@ptrCast(*const IHolder, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolder_RequestDestroyResource(self: *const T, __MIDL__IHolder0009: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolder_RequestDestroyResource(self: *const T, __MIDL__IHolder0009: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolder.VTable, self.vtable).RequestDestroyResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0009);
         }
     };}
@@ -6850,29 +6850,29 @@ pub const IDispenserDriver = extern struct {
         base: IUnknown.VTable,
         CreateResource: fn(
             self: *const IDispenserDriver,
-            ResTypId: ?*c_void,
-            pResId: *?*c_void,
+            ResTypId: usize,
+            pResId: *usize,
             pSecsFreeBeforeDestroy: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RateResource: fn(
             self: *const IDispenserDriver,
-            ResTypId: ?*c_void,
-            ResId: ?*c_void,
+            ResTypId: usize,
+            ResId: usize,
             fRequiresTransactionEnlistment: BOOL,
             pRating: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnlistResource: fn(
             self: *const IDispenserDriver,
-            ResId: ?*c_void,
-            TransId: ?*c_void,
+            ResId: usize,
+            TransId: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetResource: fn(
             self: *const IDispenserDriver,
-            ResId: ?*c_void,
+            ResId: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestroyResource: fn(
             self: *const IDispenserDriver,
-            ResId: ?*c_void,
+            ResId: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestroyResourceS: fn(
             self: *const IDispenserDriver,
@@ -6883,23 +6883,23 @@ pub const IDispenserDriver = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserDriver_CreateResource(self: *const T, ResTypId: ?*c_void, pResId: *?*c_void, pSecsFreeBeforeDestroy: *i32) callconv(.Inline) HRESULT {
+        pub fn IDispenserDriver_CreateResource(self: *const T, ResTypId: usize, pResId: *usize, pSecsFreeBeforeDestroy: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserDriver.VTable, self.vtable).CreateResource(@ptrCast(*const IDispenserDriver, self), ResTypId, pResId, pSecsFreeBeforeDestroy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserDriver_RateResource(self: *const T, ResTypId: ?*c_void, ResId: ?*c_void, fRequiresTransactionEnlistment: BOOL, pRating: *u32) callconv(.Inline) HRESULT {
+        pub fn IDispenserDriver_RateResource(self: *const T, ResTypId: usize, ResId: usize, fRequiresTransactionEnlistment: BOOL, pRating: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserDriver.VTable, self.vtable).RateResource(@ptrCast(*const IDispenserDriver, self), ResTypId, ResId, fRequiresTransactionEnlistment, pRating);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserDriver_EnlistResource(self: *const T, ResId: ?*c_void, TransId: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDispenserDriver_EnlistResource(self: *const T, ResId: usize, TransId: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserDriver.VTable, self.vtable).EnlistResource(@ptrCast(*const IDispenserDriver, self), ResId, TransId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserDriver_ResetResource(self: *const T, ResId: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDispenserDriver_ResetResource(self: *const T, ResId: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserDriver.VTable, self.vtable).ResetResource(@ptrCast(*const IDispenserDriver, self), ResId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispenserDriver_DestroyResource(self: *const T, ResId: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDispenserDriver_DestroyResource(self: *const T, ResId: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispenserDriver.VTable, self.vtable).DestroyResource(@ptrCast(*const IDispenserDriver, self), ResId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

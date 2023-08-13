@@ -492,12 +492,12 @@ pub extern "wer" fn WerReportCreate(
     pwzEventType: [*:0]const u16,
     repType: WER_REPORT_TYPE,
     pReportInformation: ?*WER_REPORT_INFORMATION,
-    phReportHandle: *?*c_void,
+    phReportHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSetParameter(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
     dwparamID: u32,
     pwzName: ?[*:0]const u16,
     pwzValue: [*:0]const u16,
@@ -505,7 +505,7 @@ pub extern "wer" fn WerReportSetParameter(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddFile(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
     pwzPath: [*:0]const u16,
     repFileType: WER_FILE_TYPE,
     dwFileFlags: WER_FILE,
@@ -513,14 +513,14 @@ pub extern "wer" fn WerReportAddFile(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSetUIOption(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
     repUITypeID: WER_REPORT_UI,
     pwzValue: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportSubmit(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
     consent: WER_CONSENT,
     dwFlags: WerReportSubmit_dwFlags,
     pSubmitResult: ?*WER_SUBMIT_RESULT,
@@ -528,7 +528,7 @@ pub extern "wer" fn WerReportSubmit(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddDump(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
     hProcess: HANDLE,
     hThread: HANDLE,
     dumpType: WER_DUMP_TYPE,
@@ -539,7 +539,7 @@ pub extern "wer" fn WerReportAddDump(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportCloseHandle(
-    hReportHandle: ?*c_void,
+    hReportHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

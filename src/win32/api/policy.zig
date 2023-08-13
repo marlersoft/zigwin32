@@ -85,7 +85,7 @@ pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
 // Section: Types (23)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
-pub const CriticalPolicySectionHandle = ?*c_void;
+pub const CriticalPolicySectionHandle = isize;
 
 pub const GPO_LINK = extern enum(i32) {
     Unknown = 0,
@@ -143,7 +143,7 @@ pub const PFNPROCESSGROUPPOLICY = fn(
     hKeyRoot: HKEY,
     pDeletedGPOList: *GROUP_POLICY_OBJECTA,
     pChangedGPOList: *GROUP_POLICY_OBJECTA,
-    pHandle: ?*c_void,
+    pHandle: usize,
     pbAbort: *BOOL,
     pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -154,7 +154,7 @@ pub const PFNPROCESSGROUPPOLICYEX = fn(
     hKeyRoot: HKEY,
     pDeletedGPOList: *GROUP_POLICY_OBJECTA,
     pChangedGPOList: *GROUP_POLICY_OBJECTA,
-    pHandle: ?*c_void,
+    pHandle: usize,
     pbAbort: *BOOL,
     pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
     pWbemServices: ?*IWbemServices,
@@ -696,14 +696,14 @@ pub extern "USERENV" fn GetAppliedGPOListW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompleted(
     extensionId: *Guid,
-    pAsyncHandle: ?*c_void,
+    pAsyncHandle: usize,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
     extensionId: *Guid,
-    pAsyncHandle: ?*c_void,
+    pAsyncHandle: usize,
     dwStatus: u32,
     RsopStatus: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;

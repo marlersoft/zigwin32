@@ -2,8 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (242)
 //--------------------------------------------------------------------------------
-pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
-pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 pub const RPC_C_BINDING_INFINITE_TIMEOUT = @as(u32, 10);
 pub const RPC_C_BINDING_MIN_TIMEOUT = @as(u32, 0);
 pub const RPC_C_BINDING_DEFAULT_TIMEOUT = @as(u32, 5);
@@ -244,10 +242,17 @@ pub const USER_MARSHAL_FC_ULONG = @as(u32, 9);
 pub const USER_MARSHAL_FC_FLOAT = @as(u32, 10);
 pub const USER_MARSHAL_FC_HYPER = @as(u32, 11);
 pub const USER_MARSHAL_FC_DOUBLE = @as(u32, 12);
+pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
+pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (164)
 //--------------------------------------------------------------------------------
+pub const NDR_SCONTEXT_1 = extern struct {
+    pad: [2]*c_void,
+    userContext: *c_void,
+};
+
 pub const RPC_BINDING_VECTOR = extern struct {
     Count: u32,
     BindingH: [1]*c_void,
@@ -672,7 +677,7 @@ pub const RPC_DISPATCH_FUNCTION = fn(
 pub const RPC_DISPATCH_TABLE = extern struct {
     DispatchTableCount: u32,
     DispatchTable: RPC_DISPATCH_FUNCTION,
-    Reserved: ?*c_void,
+    Reserved: isize,
 };
 
 pub const RPC_PROTSEQ_ENDPOINT = extern struct {
@@ -699,7 +704,7 @@ pub const RPC_CLIENT_INTERFACE = extern struct {
     DispatchTable: *RPC_DISPATCH_TABLE,
     RpcProtseqEndpointCount: u32,
     RpcProtseqEndpoint: *RPC_PROTSEQ_ENDPOINT,
-    Reserved: ?*c_void,
+    Reserved: usize,
     InterpreterInfo: *const c_void,
     Flags: u32,
 };
@@ -903,7 +908,7 @@ pub const RPC_ASYNC_STATE = extern struct {
     Event: RPC_ASYNC_EVENT,
     NotificationType: RPC_NOTIFICATION_TYPES,
     u: RPC_ASYNC_NOTIFICATION_INFO,
-    Reserved: [4]?*c_void,
+    Reserved: [4]isize,
 };
 
 pub const ExtendedErrorParamTypes = extern enum(i32) {
@@ -1187,11 +1192,11 @@ pub const MIDL_STUB_MESSAGE = extern struct {
     CorrDespIncrement: u8,
     uFlags: u8,
     UniquePtrCount: u16,
-    MaxCount: ?*c_void,
+    MaxCount: usize,
     Offset: u32,
     ActualCount: u32,
-    pfnAllocate: ?*c_void,
-    pfnFree: ?*c_void,
+    pfnAllocate: isize,
+    pfnFree: isize,
     StackTop: *u8,
     pPresentedType: *u8,
     pTransmitType: *u8,
@@ -1217,16 +1222,16 @@ pub const MIDL_STUB_MESSAGE = extern struct {
     pCorrInfo: *_NDR_CORRELATION_INFO,
     pCorrMemory: *u8,
     pMemoryList: *c_void,
-    pCSInfo: ?*c_void,
+    pCSInfo: isize,
     ConformanceMark: *u8,
     VarianceMark: *u8,
-    Unused: ?*c_void,
+    Unused: isize,
     pContext: *_NDR_PROC_CONTEXT,
     ContextHandleHash: *c_void,
     pUserMarshalList: *c_void,
-    Reserved51_3: ?*c_void,
-    Reserved51_4: ?*c_void,
-    Reserved51_5: ?*c_void,
+    Reserved51_3: isize,
+    Reserved51_4: isize,
+    Reserved51_5: isize,
 };
 
 pub const GENERIC_BINDING_ROUTINE = fn(
@@ -1313,8 +1318,8 @@ pub const USER_MARSHAL_CB = extern struct {
 };
 
 pub const MALLOC_FREE_STRUCT = extern struct {
-    pfnAllocate: ?*c_void,
-    pfnFree: ?*c_void,
+    pfnAllocate: isize,
+    pfnFree: isize,
 };
 
 pub const COMM_FAULT_OFFSETS = extern struct {
@@ -1398,8 +1403,8 @@ pub const NDR_EXPR_DESC = extern struct {
 
 pub const MIDL_STUB_DESC = extern struct {
     RpcInterfaceInformation: *c_void,
-    pfnAllocate: ?*c_void,
-    pfnFree: ?*c_void,
+    pfnAllocate: isize,
+    pfnFree: isize,
     IMPLICIT_HANDLE_INFO: MIDL_STUB_DESC._IMPLICIT_HANDLE_INFO_e__Union,
     apfnNdrRundownRoutines: *const NDR_RUNDOWN,
     aGenericBindingRoutinePairs: *const GENERIC_BINDING_ROUTINE_PAIR,
@@ -1413,7 +1418,7 @@ pub const MIDL_STUB_DESC = extern struct {
     CommFaultOffsets: *const COMM_FAULT_OFFSETS,
     aUserMarshalQuadruple: *const USER_MARSHAL_ROUTINE_QUADRUPLE,
     NotifyRoutineTable: *const NDR_NOTIFY_ROUTINE,
-    mFlags: ?*c_void,
+    mFlags: usize,
     CsRoutineTables: *const NDR_CS_ROUTINES,
     ProxyServerInfo: *c_void,
     pExprInfo: *const NDR_EXPR_DESC,
@@ -1434,7 +1439,7 @@ pub const SERVER_ROUTINE = fn(
 
 pub const MIDL_METHOD_PROPERTY = extern struct {
     Id: u32,
-    Value: ?*c_void,
+    Value: usize,
 };
 
 pub const MIDL_METHOD_PROPERTY_MAP = extern struct {
@@ -1454,7 +1459,7 @@ pub const MIDL_SERVER_INFO = extern struct {
     FmtStringOffset: *const u16,
     ThunkTable: *const STUB_THUNK,
     pTransferSyntax: *RPC_SYNTAX_IDENTIFIER,
-    nCount: ?*c_void,
+    nCount: usize,
     pSyntaxInfo: *MIDL_SYNTAX_INFO,
 };
 
@@ -1463,7 +1468,7 @@ pub const MIDL_STUBLESS_PROXY_INFO = extern struct {
     ProcFormatString: *u8,
     FormatStringOffset: *const u16,
     pTransferSyntax: *RPC_SYNTAX_IDENTIFIER,
-    nCount: ?*c_void,
+    nCount: usize,
     pSyntaxInfo: *MIDL_SYNTAX_INFO,
 };
 
@@ -1475,7 +1480,7 @@ pub const MIDL_SYNTAX_INFO = extern struct {
     TypeString: *u8,
     aUserMarshalQuadruple: *const c_void,
     pMethodProperties: *const MIDL_INTERFACE_METHOD_PROPERTIES,
-    pReserved2: ?*c_void,
+    pReserved2: usize,
 };
 
 pub const CLIENT_CALL_RETURN = u32; // TODO: implement StructOrUnion types?
@@ -1568,7 +1573,7 @@ pub const PROXY_SENDRECEIVE = PROXY_PHASE.SENDRECEIVE;
 pub const PROXY_UNMARSHAL = PROXY_PHASE.UNMARSHAL;
 
 pub const RPC_CLIENT_ALLOC = fn(
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub const RPC_CLIENT_FREE = fn(
@@ -1578,10 +1583,10 @@ pub const RPC_CLIENT_FREE = fn(
 pub const NDR_USER_MARSHAL_INFO_LEVEL1 = extern struct {
     Buffer: *c_void,
     BufferSize: u32,
-    pfnAllocate: ?*c_void,
-    pfnFree: ?*c_void,
+    pfnAllocate: isize,
+    pfnFree: isize,
     pRpcChannelBuffer: *IRpcChannelBuffer,
-    Reserved: [5]?*c_void,
+    Reserved: [5]usize,
 };
 
 pub const NDR_USER_MARSHAL_INFO = extern struct {
@@ -1629,7 +1634,7 @@ pub const MIDL_ES_READ = fn(
 pub const MIDL_TYPE_PICKLING_INFO = extern struct {
     Version: u32,
     Flags: u32,
-    Reserved: [3]?*c_void,
+    Reserved: [3]usize,
 };
 
 pub const RpcNsGroupDelete_GroupNameSyntax = extern enum(u32) {
@@ -1663,11 +1668,6 @@ pub const RPC_BINDING_HANDLE_OPTIONS_V1Flags = extern enum(u32) {
 };
 pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_V1Flags.NONCAUSAL;
 pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_V1Flags.DONTLINGER;
-
-pub const NDR_SCONTEXT_1 = extern struct {
-    pad: [2]*c_void,
-    userContext: *c_void,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -1705,14 +1705,14 @@ pub extern "RPCRT4" fn RpcBindingFree(
 pub extern "RPCRT4" fn RpcBindingSetOption(
     hBinding: *c_void,
     option: u32,
-    optionValue: ?*c_void,
+    optionValue: usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqOption(
     hBinding: *c_void,
     option: u32,
-    pOptionValue: *?*c_void,
+    pOptionValue: *usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2928,7 +2928,7 @@ pub extern "RPCRT4" fn I_RpcBindingIsServerLocal(
 pub extern "RPCRT4" fn I_RpcBindingSetPrivateOption(
     hBinding: *c_void,
     option: u32,
-    optionValue: ?*c_void,
+    optionValue: usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn I_RpcServerSubscribeForDisconnectNotification(
@@ -3440,13 +3440,13 @@ pub extern "RPCRT4" fn RpcErrorGetNumberOfRecords(
 pub extern "RPCRT4" fn RpcErrorSaveErrorInfo(
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
     ErrorBlob: **c_void,
-    BlobSize: *?*c_void,
+    BlobSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "RPCRT4" fn RpcErrorLoadErrorInfo(
     ErrorBlob: [*]u8,
-    BlobSize: ?*c_void,
+    BlobSize: usize,
     EnumHandle: *RPC_ERROR_ENUM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3549,16 +3549,16 @@ pub extern "RPCRT4" fn I_RpcBindingInqClientTokenAttributes(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn NDRCContextBinding(
-    CContext: ?*c_void,
+    CContext: isize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "RPCRT4" fn NDRCContextMarshall(
-    CContext: ?*c_void,
+    CContext: isize,
     pBuff: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn NDRCContextUnmarshall(
-    pCContext: ?*?*c_void,
+    pCContext: ?*isize,
     hBinding: *c_void,
     pBuff: *c_void,
     DataRepresentation: u32,
@@ -3707,7 +3707,7 @@ pub extern "RPCRT4" fn NdrInterfacePointerMarshall(
 
 pub extern "RPCRT4" fn NdrClientContextMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
-    ContextHandle: ?*c_void,
+    ContextHandle: isize,
     fCheck: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -3857,7 +3857,7 @@ pub extern "RPCRT4" fn NdrInterfacePointerUnmarshall(
 
 pub extern "RPCRT4" fn NdrClientContextUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
-    pContextHandle: *?*c_void,
+    pContextHandle: *isize,
     BindHandle: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4301,7 +4301,7 @@ pub extern "RPCRT4" fn NdrMapCommAndFaultStatus(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSsAllocate(
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4342,7 +4342,7 @@ pub extern "RPCRT4" fn RpcSsSwapClientAllocFree(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcSmAllocate(
-    Size: ?*c_void,
+    Size: usize,
     pStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
@@ -4406,7 +4406,7 @@ pub extern "RPCRT4" fn NdrRpcSmSetClientToOsf(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn NdrRpcSmClientAllocate(
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "RPCRT4" fn NdrRpcSmClientFree(
@@ -4414,7 +4414,7 @@ pub extern "RPCRT4" fn NdrRpcSmClientFree(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn NdrRpcSsDefaultAllocate(
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "RPCRT4" fn NdrRpcSsDefaultFree(
@@ -4432,7 +4432,7 @@ pub extern "RPCRT4" fn NdrFullPointerXlatFree(
 
 pub extern "RPCRT4" fn NdrAllocate(
     pStubMsg: *MIDL_STUB_MESSAGE,
-    Len: ?*c_void,
+    Len: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4444,7 +4444,7 @@ pub extern "RPCRT4" fn NdrClearOutParameters(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrOleAllocate(
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4615,7 +4615,7 @@ pub extern "RPCRT4" fn MesInqProcEncodingId(
 
 pub extern "RPCRT4" fn NdrMesSimpleTypeAlignSize(
     param0: *c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "RPCRT4" fn NdrMesSimpleTypeDecode(
     Handle: *c_void,
@@ -4635,7 +4635,7 @@ pub extern "RPCRT4" fn NdrMesTypeAlignSize(
     pStubDesc: *const MIDL_STUB_DESC,
     pFormatString: *u8,
     pObject: *const c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "RPCRT4" fn NdrMesTypeEncode(
     Handle: *c_void,
@@ -4657,7 +4657,7 @@ pub extern "RPCRT4" fn NdrMesTypeAlignSize2(
     pStubDesc: *const MIDL_STUB_DESC,
     pFormatString: *u8,
     pObject: *const c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "RPCRT4" fn NdrMesTypeEncode2(
     Handle: *c_void,
@@ -4703,7 +4703,7 @@ pub extern "RPCRT4" fn NdrMesTypeAlignSize3(
     ArrTypeOffset: *const *const u32,
     nTypeIndex: u32,
     pObject: *const c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "RPCRT4" fn NdrMesTypeEncode3(
     Handle: *c_void,
@@ -4756,7 +4756,7 @@ pub extern "RPCRT4" fn NdrMesSimpleTypeEncodeAll(
 pub extern "RPCRT4" fn NdrMesSimpleTypeAlignSizeAll(
     Handle: *c_void,
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcCertGeneratePrincipalNameW(

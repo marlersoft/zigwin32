@@ -523,7 +523,7 @@ pub extern "NDFAPI" fn NdfCreateIncident(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NDFAPI" fn NdfCreateWinSockIncident(
-    sock: ?*c_void,
+    sock: usize,
     host: ?[*:0]const u16,
     port: u16,
     appId: ?[*:0]const u16,

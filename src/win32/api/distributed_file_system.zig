@@ -35,7 +35,7 @@ pub const DFS_MOVE_FLAG_REPLACE_IF_EXISTS = @as(u32, 1);
 pub const DFS_FORCE_REMOVE = @as(u32, 2147483648);
 
 //--------------------------------------------------------------------------------
-// Section: Types (30)
+// Section: Types (35)
 //--------------------------------------------------------------------------------
 pub const DFS_TARGET_PRIORITY_CLASS = extern enum(i32) {
     InvalidPriorityClass = -1,
@@ -62,9 +62,20 @@ pub const DFS_INFO_1 = extern struct {
     EntryPath: PWSTR,
 };
 
+pub const DFS_INFO_1_32 = extern struct {
+    EntryPath: u32,
+};
+
 pub const DFS_INFO_2 = extern struct {
     EntryPath: PWSTR,
     Comment: PWSTR,
+    State: u32,
+    NumberOfStorages: u32,
+};
+
+pub const DFS_INFO_2_32 = extern struct {
+    EntryPath: u32,
+    Comment: u32,
     State: u32,
     NumberOfStorages: u32,
 };
@@ -73,6 +84,12 @@ pub const DFS_STORAGE_INFO = extern struct {
     State: u32,
     ServerName: PWSTR,
     ShareName: PWSTR,
+};
+
+pub const DFS_STORAGE_INFO_0_32 = extern struct {
+    State: u32,
+    ServerName: u32,
+    ShareName: u32,
 };
 
 pub const DFS_STORAGE_INFO_1 = extern struct {
@@ -90,6 +107,14 @@ pub const DFS_INFO_3 = extern struct {
     Storage: *DFS_STORAGE_INFO,
 };
 
+pub const DFS_INFO_3_32 = extern struct {
+    EntryPath: u32,
+    Comment: u32,
+    State: u32,
+    NumberOfStorages: u32,
+    Storage: u32,
+};
+
 pub const DFS_INFO_4 = extern struct {
     EntryPath: PWSTR,
     Comment: PWSTR,
@@ -98,6 +123,16 @@ pub const DFS_INFO_4 = extern struct {
     Guid: Guid,
     NumberOfStorages: u32,
     Storage: *DFS_STORAGE_INFO,
+};
+
+pub const DFS_INFO_4_32 = extern struct {
+    EntryPath: u32,
+    Comment: u32,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    NumberOfStorages: u32,
+    Storage: u32,
 };
 
 pub const DFS_INFO_5 = extern struct {
@@ -458,7 +493,7 @@ const PWSTR = @import("system_services.zig").PWSTR;
 
 test {
     const constant_export_count = 31;
-    const type_export_count = 30;
+    const type_export_count = 35;
     const enum_value_export_count = 9;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

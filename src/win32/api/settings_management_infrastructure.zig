@@ -255,7 +255,7 @@ pub const ITargetInfo = extern struct {
         LoadModule: fn(
             self: *const ITargetInfo,
             Module: [*:0]const u16,
-            ModuleHandle: *?*c_void,
+            ModuleHandle: *isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWow64Context: fn(
             self: *const ITargetInfo,
@@ -345,7 +345,7 @@ pub const ITargetInfo = extern struct {
             return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetModulePath(@ptrCast(*const ITargetInfo, self), Module, Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_LoadModule(self: *const T, Module: [*:0]const u16, ModuleHandle: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITargetInfo_LoadModule(self: *const T, Module: [*:0]const u16, ModuleHandle: *isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITargetInfo.VTable, self.vtable).LoadModule(@ptrCast(*const ITargetInfo, self), Module, ModuleHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -455,7 +455,7 @@ pub const ISettingsEngine = extern struct {
             self: *const ISettingsEngine,
             SettingsContext: *ISettingsContext,
             pppwzIdentities: **PWSTR,
-            pcIdentities: *?*c_void,
+            pcIdentities: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSettingsContext: fn(
             self: *const ISettingsEngine,
@@ -522,7 +522,7 @@ pub const ISettingsEngine = extern struct {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetSettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_ApplySettingsContext(self: *const T, SettingsContext: *ISettingsContext, pppwzIdentities: **PWSTR, pcIdentities: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_ApplySettingsContext(self: *const T, SettingsContext: *ISettingsContext, pppwzIdentities: **PWSTR, pcIdentities: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).ApplySettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext, pppwzIdentities, pcIdentities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -885,7 +885,7 @@ pub const ISettingsContext = extern struct {
             pStream: *IStream,
             pTarget: *ITargetInfo,
             pppResults: [*]**ISettingsResult,
-            pcResultCount: *?*c_void,
+            pcResultCount: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUserData: fn(
             self: *const ISettingsContext,
@@ -920,7 +920,7 @@ pub const ISettingsContext = extern struct {
             return @ptrCast(*const ISettingsContext.VTable, self.vtable).Serialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_Deserialize(self: *const T, pStream: *IStream, pTarget: *ITargetInfo, pppResults: [*]**ISettingsResult, pcResultCount: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISettingsContext_Deserialize(self: *const T, pStream: *IStream, pTarget: *ITargetInfo, pppResults: [*]**ISettingsResult, pcResultCount: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsContext.VTable, self.vtable).Deserialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget, pppResults, pcResultCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

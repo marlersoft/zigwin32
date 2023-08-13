@@ -871,11 +871,11 @@ pub const YIELDPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MCI_GENERIC_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
 };
 
 pub const MCI_OPEN_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
     lpstrElementName: [*:0]const u8,
@@ -883,7 +883,7 @@ pub const MCI_OPEN_PARMSA = extern struct {
 };
 
 pub const MCI_OPEN_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
     lpstrElementName: [*:0]const u16,
@@ -891,43 +891,43 @@ pub const MCI_OPEN_PARMSW = extern struct {
 };
 
 pub const MCI_PLAY_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
 pub const MCI_SEEK_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwTo: u32,
 };
 
 pub const MCI_STATUS_PARMS = extern struct {
-    dwCallback: ?*c_void,
-    dwReturn: ?*c_void,
+    dwCallback: usize,
+    dwReturn: usize,
     dwItem: u32,
     dwTrack: u32,
 };
 
 pub const MCI_INFO_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrReturn: PSTR,
     dwRetSize: u32,
 };
 
 pub const MCI_INFO_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrReturn: PWSTR,
     dwRetSize: u32,
 };
 
 pub const MCI_GETDEVCAPS_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwReturn: u32,
     dwItem: u32,
 };
 
 pub const MCI_SYSINFO_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrReturn: PSTR,
     dwRetSize: u32,
     dwNumber: u32,
@@ -935,7 +935,7 @@ pub const MCI_SYSINFO_PARMSA = extern struct {
 };
 
 pub const MCI_SYSINFO_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrReturn: PWSTR,
     dwRetSize: u32,
     dwNumber: u32,
@@ -943,67 +943,67 @@ pub const MCI_SYSINFO_PARMSW = extern struct {
 };
 
 pub const MCI_SET_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
 };
 
 pub const MCI_BREAK_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     nVirtKey: i32,
     hwndBreak: HWND,
 };
 
 pub const MCI_SAVE_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u8,
 };
 
 pub const MCI_SAVE_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u16,
 };
 
 pub const MCI_LOAD_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u8,
 };
 
 pub const MCI_LOAD_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u16,
 };
 
 pub const MCI_RECORD_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
 pub const MCI_VD_PLAY_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
     dwSpeed: u32,
 };
 
 pub const MCI_VD_STEP_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrames: u32,
 };
 
 pub const MCI_VD_ESCAPE_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrCommand: [*:0]const u8,
 };
 
 pub const MCI_VD_ESCAPE_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpstrCommand: [*:0]const u16,
 };
 
 pub const MCI_WAVE_OPEN_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
     lpstrElementName: [*:0]const u8,
@@ -1012,7 +1012,7 @@ pub const MCI_WAVE_OPEN_PARMSA = extern struct {
 };
 
 pub const MCI_WAVE_OPEN_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
     lpstrElementName: [*:0]const u16,
@@ -1021,13 +1021,13 @@ pub const MCI_WAVE_OPEN_PARMSW = extern struct {
 };
 
 pub const MCI_WAVE_DELETE_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
 pub const MCI_WAVE_SET_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
     wInput: u32,
@@ -1045,7 +1045,7 @@ pub const MCI_WAVE_SET_PARMS = extern struct {
 };
 
 pub const MCI_SEQ_SET_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
     dwTempo: u32,
@@ -1056,7 +1056,7 @@ pub const MCI_SEQ_SET_PARMS = extern struct {
 };
 
 pub const MCI_ANIM_OPEN_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
     lpstrElementName: [*:0]const u8,
@@ -1066,7 +1066,7 @@ pub const MCI_ANIM_OPEN_PARMSA = extern struct {
 };
 
 pub const MCI_ANIM_OPEN_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
     lpstrElementName: [*:0]const u16,
@@ -1076,44 +1076,44 @@ pub const MCI_ANIM_OPEN_PARMSW = extern struct {
 };
 
 pub const MCI_ANIM_PLAY_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
     dwSpeed: u32,
 };
 
 pub const MCI_ANIM_STEP_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     dwFrames: u32,
 };
 
 pub const MCI_ANIM_WINDOW_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u8,
 };
 
 pub const MCI_ANIM_WINDOW_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u16,
 };
 
 pub const MCI_ANIM_RECT_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     rc: RECT,
 };
 
 pub const MCI_ANIM_UPDATE_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     rc: RECT,
     hDC: HDC,
 };
 
 pub const MCI_OVLY_OPEN_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
     lpstrElementName: [*:0]const u8,
@@ -1123,7 +1123,7 @@ pub const MCI_OVLY_OPEN_PARMSA = extern struct {
 };
 
 pub const MCI_OVLY_OPEN_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
     lpstrElementName: [*:0]const u16,
@@ -1133,44 +1133,44 @@ pub const MCI_OVLY_OPEN_PARMSW = extern struct {
 };
 
 pub const MCI_OVLY_WINDOW_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u8,
 };
 
 pub const MCI_OVLY_WINDOW_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u16,
 };
 
 pub const MCI_OVLY_RECT_PARMS = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     rc: RECT,
 };
 
 pub const MCI_OVLY_SAVE_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u8,
     rc: RECT,
 };
 
 pub const MCI_OVLY_SAVE_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u16,
     rc: RECT,
 };
 
 pub const MCI_OVLY_LOAD_PARMSA = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u8,
     rc: RECT,
 };
 
 pub const MCI_OVLY_LOAD_PARMSW = extern struct {
-    dwCallback: ?*c_void,
+    dwCallback: usize,
     lpfilename: [*:0]const u16,
     rc: RECT,
 };
@@ -1901,6 +1901,7 @@ pub const KSSTREAM_HEADER = extern struct {
     DataUsed: u32,
     Data: *c_void,
     OptionsFlags: u32,
+    Reserved: u32,
 };
 
 pub const KSSTREAM_METADATA_INFO = extern struct {
@@ -2551,8 +2552,8 @@ pub const DS3DVECTOR = extern struct {
     Anonymous2: DS3DVECTOR._Anonymous2_e__Union,
     Anonymous3: DS3DVECTOR._Anonymous3_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 const CLSID_KSPROPSETID_DirectSound3DListener_Value = @import("../zig.zig").Guid.initString("437b3414-d060-11d0-8583-00c04fd9baf3");
@@ -3740,14 +3741,12 @@ pub const KSNODEPROPERTY_AUDIO_DEV_SPECIFIC = extern struct {
 pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
     NodeProperty: KSNODEPROPERTY,
     ListenerId: *c_void,
-    Reserved: u32,
 };
 
 pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
     NodeProperty: KSNODEPROPERTY,
     AppContext: *c_void,
     Length: u32,
-    Reserved: u32,
 };
 
 const CLSID_KSDATAFORMAT_TYPE_MUSIC_Value = @import("../zig.zig").Guid.initString("e725d360-62cc-11cf-a5d6-28db04c10000");
@@ -4831,7 +4830,7 @@ pub const KSPROPERTY_CURRENT_CAPTURE_SURFACE = KSPROPERTY_VIDMEM_TRANSPORT.CURRE
 pub const KSPROPERTY_MAP_CAPTURE_HANDLE_TO_VRAM_ADDRESS = KSPROPERTY_VIDMEM_TRANSPORT.MAP_CAPTURE_HANDLE_TO_VRAM_ADDRESS;
 
 pub const VRAM_SURFACE_INFO = extern struct {
-    hSurface: ?*c_void,
+    hSurface: usize,
     VramPhysicalAddress: i64,
     cbCaptured: u32,
     dwWidth: u32,
@@ -6614,7 +6613,7 @@ pub const DDVIDEOPORTCONNECT = extern struct {
     dwPortWidth: u32,
     guidTypeID: Guid,
     dwFlags: u32,
-    dwReserved1: ?*c_void,
+    dwReserved1: usize,
 };
 
 pub const KS_AMPixAspectRatio = extern enum(i32) {
@@ -10991,15 +10990,15 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
 pub extern "WINMM" fn mciSendCommandA(
     mciId: u32,
     uMsg: u32,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
+    dwParam1: usize,
+    dwParam2: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINMM" fn mciSendCommandW(
     mciId: u32,
     uMsg: u32,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
+    dwParam1: usize,
+    dwParam2: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINMM" fn mciSendStringA(
@@ -11063,7 +11062,7 @@ pub extern "WINMM" fn mciGetYieldProc(
 
 pub extern "WINMM" fn mciGetDriverData(
     wDeviceID: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "WINMM" fn mciLoadCommandResource(
     hInstance: HANDLE,
@@ -11073,7 +11072,7 @@ pub extern "WINMM" fn mciLoadCommandResource(
 
 pub extern "WINMM" fn mciSetDriverData(
     wDeviceID: u32,
-    dwData: ?*c_void,
+    dwData: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINMM" fn mciDriverYield(

@@ -42,10 +42,10 @@ pub const PDH_LOG_TYPE_TRACE_GENERIC = @as(u32, 5);
 // Section: Types (61)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
-pub const PerfProviderHandle = ?*c_void;
+pub const PerfProviderHandle = isize;
 
 // TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
-pub const PerfQueryHandle = ?*c_void;
+pub const PerfQueryHandle = isize;
 
 pub const PERF_DATA_BLOCK = extern struct {
     Signature: [4]u16,
@@ -69,9 +69,9 @@ pub const PERF_OBJECT_TYPE = extern struct {
     DefinitionLength: u32,
     HeaderLength: u32,
     ObjectNameTitleIndex: u32,
-    ObjectNameTitle: PWSTR,
+    ObjectNameTitle: u32,
     ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: PWSTR,
+    ObjectHelpTitle: u32,
     DetailLevel: PERF_DETAIL,
     NumCounters: u32,
     DefaultCounter: i32,
@@ -84,9 +84,9 @@ pub const PERF_OBJECT_TYPE = extern struct {
 pub const PERF_COUNTER_DEFINITION = extern struct {
     ByteLength: u32,
     CounterNameTitleIndex: u32,
-    CounterNameTitle: PWSTR,
+    CounterNameTitle: u32,
     CounterHelpTitleIndex: u32,
-    CounterHelpTitle: PWSTR,
+    CounterHelpTitle: u32,
     DefaultScale: i32,
     DetailLevel: PERF_DETAIL,
     CounterType: u32,
@@ -159,7 +159,7 @@ pub const PERFLIBREQUEST = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PERF_MEM_ALLOC = fn(
-    AllocSize: ?*c_void,
+    AllocSize: usize,
     pContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
@@ -372,8 +372,8 @@ pub const PDH_COUNTER_INFO_A = extern struct {
     CStatus: u32,
     lScale: i32,
     lDefaultScale: i32,
-    dwUserData: ?*c_void,
-    dwQueryUserData: ?*c_void,
+    dwUserData: usize,
+    dwQueryUserData: usize,
     szFullPath: PSTR,
     Anonymous: PDH_COUNTER_INFO_A._Anonymous_e__Union,
     szExplainText: PSTR,
@@ -388,8 +388,8 @@ pub const PDH_COUNTER_INFO_W = extern struct {
     CStatus: u32,
     lScale: i32,
     lDefaultScale: i32,
-    dwUserData: ?*c_void,
-    dwQueryUserData: ?*c_void,
+    dwUserData: usize,
+    dwQueryUserData: usize,
     szFullPath: PWSTR,
     Anonymous: PDH_COUNTER_INFO_W._Anonymous_e__Union,
     szExplainText: PWSTR,
@@ -437,17 +437,17 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
 };
 
 pub const CounterPathCallBack = fn(
-    param0: ?*c_void,
+    param0: usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
     _bitfield: u32,
     hWndOwner: HWND,
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szReturnPathBuffer: PWSTR,
     cchReturnPathLength: u32,
     pCallBack: CounterPathCallBack,
-    dwCallBackArg: ?*c_void,
+    dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
     szDialogBoxCaption: PWSTR,
@@ -456,11 +456,11 @@ pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
 pub const PDH_BROWSE_DLG_CONFIG_HA = extern struct {
     _bitfield: u32,
     hWndOwner: HWND,
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szReturnPathBuffer: PSTR,
     cchReturnPathLength: u32,
     pCallBack: CounterPathCallBack,
-    dwCallBackArg: ?*c_void,
+    dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
     szDialogBoxCaption: PSTR,
@@ -473,7 +473,7 @@ pub const PDH_BROWSE_DLG_CONFIG_W = extern struct {
     szReturnPathBuffer: PWSTR,
     cchReturnPathLength: u32,
     pCallBack: CounterPathCallBack,
-    dwCallBackArg: ?*c_void,
+    dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
     szDialogBoxCaption: PWSTR,
@@ -486,7 +486,7 @@ pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
     szReturnPathBuffer: PSTR,
     cchReturnPathLength: u32,
     pCallBack: CounterPathCallBack,
-    dwCallBackArg: ?*c_void,
+    dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
     szDialogBoxCaption: PSTR,
@@ -607,14 +607,14 @@ pub extern "loadperf" fn UpdatePerfNameFilesA(
     szNewCtrFilePath: [*:0]const u8,
     szNewHlpFilePath: ?[*:0]const u8,
     szLanguageID: PSTR,
-    dwFlags: ?*c_void,
+    dwFlags: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "loadperf" fn UpdatePerfNameFilesW(
     szNewCtrFilePath: [*:0]const u16,
     szNewHlpFilePath: ?[*:0]const u16,
     szLanguageID: PWSTR,
-    dwFlags: ?*c_void,
+    dwFlags: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "loadperf" fn SetServiceAsTrustedA(
@@ -818,85 +818,85 @@ pub extern "pdh" fn PdhGetDllVersion(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryW(
     szDataSource: ?[*:0]const u16,
-    dwUserData: ?*c_void,
-    phQuery: *?*c_void,
+    dwUserData: usize,
+    phQuery: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryA(
     szDataSource: ?[*:0]const u8,
-    dwUserData: ?*c_void,
-    phQuery: *?*c_void,
+    dwUserData: usize,
+    phQuery: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhAddCounterW(
-    hQuery: ?*c_void,
+    hQuery: isize,
     szFullCounterPath: [*:0]const u16,
-    dwUserData: ?*c_void,
-    phCounter: *?*c_void,
+    dwUserData: usize,
+    phCounter: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhAddCounterA(
-    hQuery: ?*c_void,
+    hQuery: isize,
     szFullCounterPath: [*:0]const u8,
-    dwUserData: ?*c_void,
-    phCounter: *?*c_void,
+    dwUserData: usize,
+    phCounter: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhAddEnglishCounterW(
-    hQuery: ?*c_void,
+    hQuery: isize,
     szFullCounterPath: [*:0]const u16,
-    dwUserData: ?*c_void,
-    phCounter: *?*c_void,
+    dwUserData: usize,
+    phCounter: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhAddEnglishCounterA(
-    hQuery: ?*c_void,
+    hQuery: isize,
     szFullCounterPath: [*:0]const u8,
-    dwUserData: ?*c_void,
-    phCounter: *?*c_void,
+    dwUserData: usize,
+    phCounter: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhCollectQueryDataWithTime(
-    hQuery: ?*c_void,
+    hQuery: isize,
     pllTimeStamp: *i64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhValidatePathExW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szFullPathBuffer: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "pdh" fn PdhValidatePathExA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szFullPathBuffer: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhRemoveCounter(
-    hCounter: ?*c_void,
+    hCounter: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCollectQueryData(
-    hQuery: ?*c_void,
+    hQuery: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCloseQuery(
-    hQuery: ?*c_void,
+    hQuery: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterValue(
-    hCounter: ?*c_void,
+    hCounter: isize,
     dwFormat: PDH_FMT,
     lpdwType: ?*u32,
     pValue: *PDH_FMT_COUNTERVALUE,
@@ -904,7 +904,7 @@ pub extern "pdh" fn PdhGetFormattedCounterValue(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterArrayA(
-    hCounter: ?*c_void,
+    hCounter: isize,
     dwFormat: PDH_FMT,
     lpdwBufferSize: *u32,
     lpdwItemCount: *u32,
@@ -913,7 +913,7 @@ pub extern "pdh" fn PdhGetFormattedCounterArrayA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetFormattedCounterArrayW(
-    hCounter: ?*c_void,
+    hCounter: isize,
     dwFormat: PDH_FMT,
     lpdwBufferSize: *u32,
     lpdwItemCount: *u32,
@@ -922,14 +922,14 @@ pub extern "pdh" fn PdhGetFormattedCounterArrayW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterValue(
-    hCounter: ?*c_void,
+    hCounter: isize,
     lpdwType: ?*u32,
     pValue: *PDH_RAW_COUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterArrayA(
-    hCounter: ?*c_void,
+    hCounter: isize,
     lpdwBufferSize: *u32,
     lpdwItemCount: *u32,
     ItemBuffer: ?*PDH_RAW_COUNTER_ITEM_A,
@@ -937,7 +937,7 @@ pub extern "pdh" fn PdhGetRawCounterArrayA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetRawCounterArrayW(
-    hCounter: ?*c_void,
+    hCounter: isize,
     lpdwBufferSize: *u32,
     lpdwItemCount: *u32,
     ItemBuffer: ?*PDH_RAW_COUNTER_ITEM_W,
@@ -945,7 +945,7 @@ pub extern "pdh" fn PdhGetRawCounterArrayW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCalculateCounterFromRawValue(
-    hCounter: ?*c_void,
+    hCounter: isize,
     dwFormat: PDH_FMT,
     rawValue1: *PDH_RAW_COUNTER,
     rawValue2: *PDH_RAW_COUNTER,
@@ -954,7 +954,7 @@ pub extern "pdh" fn PdhCalculateCounterFromRawValue(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhComputeCounterStatistics(
-    hCounter: ?*c_void,
+    hCounter: isize,
     dwFormat: PDH_FMT,
     dwFirstEntry: u32,
     dwNumEntries: u32,
@@ -964,7 +964,7 @@ pub extern "pdh" fn PdhComputeCounterStatistics(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterInfoW(
-    hCounter: ?*c_void,
+    hCounter: isize,
     bRetrieveExplainText: u8,
     pdwBufferSize: *u32,
     lpBuffer: ?*PDH_COUNTER_INFO_W,
@@ -972,7 +972,7 @@ pub extern "pdh" fn PdhGetCounterInfoW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterInfoA(
-    hCounter: ?*c_void,
+    hCounter: isize,
     bRetrieveExplainText: u8,
     pdwBufferSize: *u32,
     lpBuffer: ?*PDH_COUNTER_INFO_A,
@@ -980,7 +980,7 @@ pub extern "pdh" fn PdhGetCounterInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetCounterScaleFactor(
-    hCounter: ?*c_void,
+    hCounter: isize,
     lFactor: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1227,10 +1227,10 @@ pub extern "pdh" fn PdhOpenLogW(
     szLogFileName: [*:0]const u16,
     dwAccessFlags: PDH_LOG,
     lpdwLogType: *PDH_LOG_TYPE,
-    hQuery: ?*c_void,
+    hQuery: isize,
     dwMaxSize: u32,
     szUserCaption: ?[*:0]const u16,
-    phLog: *?*c_void,
+    phLog: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1238,38 +1238,38 @@ pub extern "pdh" fn PdhOpenLogA(
     szLogFileName: [*:0]const u8,
     dwAccessFlags: PDH_LOG,
     lpdwLogType: *PDH_LOG_TYPE,
-    hQuery: ?*c_void,
+    hQuery: isize,
     dwMaxSize: u32,
     szUserCaption: ?[*:0]const u8,
-    phLog: *?*c_void,
+    phLog: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogW(
-    hLog: ?*c_void,
+    hLog: isize,
     szUserString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogA(
-    hLog: ?*c_void,
+    hLog: isize,
     szUserString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhUpdateLogFileCatalog(
-    hLog: ?*c_void,
+    hLog: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetLogFileSize(
-    hLog: ?*c_void,
+    hLog: isize,
     llSize: *i64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCloseLog(
-    hLog: ?*c_void,
+    hLog: isize,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1291,12 +1291,12 @@ pub extern "pdh" fn PdhSelectDataSourceA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhIsRealTimeQuery(
-    hQuery: ?*c_void,
+    hQuery: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetQueryTimeRange(
-    hQuery: ?*c_void,
+    hQuery: isize,
     pInfo: *PDH_TIME_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1318,7 +1318,7 @@ pub extern "pdh" fn PdhGetDataSourceTimeRangeA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhCollectQueryDataEx(
-    hQuery: ?*c_void,
+    hQuery: isize,
     dwIntervalTime: u32,
     hNewDataEvent: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1335,13 +1335,13 @@ pub extern "pdh" fn PdhFormatFromRawValue(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetCounterTimeBase(
-    hCounter: ?*c_void,
+    hCounter: isize,
     pTimeBase: *i64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhReadRawLogRecord(
-    hLog: ?*c_void,
+    hLog: isize,
     ftRecord: FILETIME,
     pRawLogRecord: ?*PDH_RAW_LOG_RECORD,
     pdwBufferLength: *u32,
@@ -1354,40 +1354,40 @@ pub extern "pdh" fn PdhSetDefaultRealTimeDataSource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBindInputDataSourceW(
-    phDataSource: *?*c_void,
+    phDataSource: *isize,
     LogFileNameList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhBindInputDataSourceA(
-    phDataSource: *?*c_void,
+    phDataSource: *isize,
     LogFileNameList: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhOpenQueryH(
-    hDataSource: ?*c_void,
-    dwUserData: ?*c_void,
-    phQuery: *?*c_void,
+    hDataSource: isize,
+    dwUserData: usize,
+    phQuery: *isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     mszMachineList: ?[*]u16,
     pcchBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumMachinesHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     mszMachineList: ?[*]u8,
     pcchBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u16,
     mszObjectList: ?[*]u16,
     pcchBufferSize: *u32,
@@ -1397,7 +1397,7 @@ pub extern "pdh" fn PdhEnumObjectsHW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectsHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u8,
     mszObjectList: ?[*]u8,
     pcchBufferSize: *u32,
@@ -1407,7 +1407,7 @@ pub extern "pdh" fn PdhEnumObjectsHA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u16,
     szObjectName: [*:0]const u16,
     mszCounterList: ?[*]u16,
@@ -1420,7 +1420,7 @@ pub extern "pdh" fn PdhEnumObjectItemsHW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhEnumObjectItemsHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u8,
     szObjectName: [*:0]const u8,
     mszCounterList: ?[*]u8,
@@ -1433,7 +1433,7 @@ pub extern "pdh" fn PdhEnumObjectItemsHA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szWildCardPath: [*:0]const u16,
     mszExpandedPathList: ?[*]u16,
     pcchPathListLength: *u32,
@@ -1442,7 +1442,7 @@ pub extern "pdh" fn PdhExpandWildCardPathHW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhExpandWildCardPathHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szWildCardPath: [*:0]const u8,
     mszExpandedPathList: ?[*]u8,
     pcchPathListLength: *u32,
@@ -1451,7 +1451,7 @@ pub extern "pdh" fn PdhExpandWildCardPathHA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     pdwNumEntries: *u32,
     pInfo: *PDH_TIME_INFO,
     pdwBufferSize: *u32,
@@ -1459,7 +1459,7 @@ pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u16,
     szDefaultObjectName: ?PWSTR,
     pcchBufferSize: *u32,
@@ -1467,7 +1467,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u8,
     szDefaultObjectName: ?PSTR,
     pcchBufferSize: *u32,
@@ -1475,7 +1475,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u16,
     szObjectName: [*:0]const u16,
     szDefaultCounterName: ?PWSTR,
@@ -1484,7 +1484,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
-    hDataSource: ?*c_void,
+    hDataSource: isize,
     szMachineName: ?[*:0]const u8,
     szObjectName: [*:0]const u8,
     szDefaultCounterName: ?PSTR,
@@ -1532,13 +1532,13 @@ pub extern "pdh" fn PdhEnumLogSetNamesA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "pdh" fn PdhGetLogSetGUID(
-    hLog: ?*c_void,
+    hLog: isize,
     pGuid: ?*Guid,
     pRunId: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "pdh" fn PdhSetLogSetRunID(
-    hLog: ?*c_void,
+    hLog: isize,
     RunId: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

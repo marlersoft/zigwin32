@@ -103,7 +103,7 @@ pub const JsMemoryFailure = JsMemoryEventType.Failure;
 pub const JsMemoryAllocationCallback = fn(
     callbackState: ?*c_void,
     allocationEvent: JsMemoryEventType,
-    allocationSize: ?*c_void,
+    allocationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) bool;
 
 pub const JsBeforeCollectCallback = fn(
@@ -173,17 +173,17 @@ pub extern "chakra" fn JsDisposeRuntime(
 
 pub extern "chakra" fn JsGetRuntimeMemoryUsage(
     runtime: *c_void,
-    memoryUsage: *?*c_void,
+    memoryUsage: *usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetRuntimeMemoryLimit(
     runtime: *c_void,
-    memoryLimit: *?*c_void,
+    memoryLimit: *usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetRuntimeMemoryLimit(
     runtime: *c_void,
-    memoryLimit: ?*c_void,
+    memoryLimit: usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsSetRuntimeMemoryAllocationCallback(
@@ -210,7 +210,7 @@ pub extern "chakra" fn JsRelease(
 
 pub extern "chakra" fn JsCreateContext(
     runtime: *c_void,
-    debugApplication: *IDebugApplication32,
+    debugApplication: *IDebugApplication64,
     newContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
@@ -228,7 +228,7 @@ pub extern "chakra" fn JsGetRuntime(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsStartDebugging(
-    debugApplication: *IDebugApplication32,
+    debugApplication: *IDebugApplication64,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsIdle(
@@ -237,14 +237,14 @@ pub extern "chakra" fn JsIdle(
 
 pub extern "chakra" fn JsParseScript(
     script: [*:0]const u16,
-    sourceContext: ?*c_void,
+    sourceContext: usize,
     sourceUrl: [*:0]const u16,
     result: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsRunScript(
     script: [*:0]const u16,
-    sourceContext: ?*c_void,
+    sourceContext: usize,
     sourceUrl: [*:0]const u16,
     result: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -258,7 +258,7 @@ pub extern "chakra" fn JsSerializeScript(
 pub extern "chakra" fn JsParseSerializedScript(
     script: [*:0]const u16,
     buffer: *u8,
-    sourceContext: ?*c_void,
+    sourceContext: usize,
     sourceUrl: [*:0]const u16,
     result: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -266,7 +266,7 @@ pub extern "chakra" fn JsParseSerializedScript(
 pub extern "chakra" fn JsRunSerializedScript(
     script: [*:0]const u16,
     buffer: *u8,
-    sourceContext: ?*c_void,
+    sourceContext: usize,
     sourceUrl: [*:0]const u16,
     result: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -344,14 +344,14 @@ pub extern "chakra" fn JsGetStringLength(
 
 pub extern "chakra" fn JsPointerToString(
     stringValue: [*:0]const u16,
-    stringLength: ?*c_void,
+    stringLength: usize,
     value: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsStringToPointer(
     value: *c_void,
     stringValue: *const *const u16,
-    stringLength: *?*c_void,
+    stringLength: *usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConvertValueToString(
@@ -615,13 +615,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
+const IDebugApplication64 = @import("debug.zig").IDebugApplication64;
 const PWSTR = @import("system_services.zig").PWSTR;
 const VARIANT = @import("automation.zig").VARIANT;
 const HRESULT = @import("com.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("debug.zig").PROFILER_EVENT_MASK;
-const IDebugApplication32 = @import("debug.zig").IDebugApplication32;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

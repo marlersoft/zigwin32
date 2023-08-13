@@ -914,7 +914,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
         DoModal: fn(
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: HWND,
-            ppnReturnCode: ?*?*c_void,
+            ppnReturnCode: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveData: fn(
             self: *const IPhotoAcquireOptionsDialog,
@@ -936,7 +936,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
             return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Destroy(@ptrCast(*const IPhotoAcquireOptionsDialog, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_DoModal(self: *const T, hWndParent: HWND, ppnReturnCode: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireOptionsDialog_DoModal(self: *const T, hWndParent: HWND, ppnReturnCode: ?*isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).DoModal(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, ppnReturnCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

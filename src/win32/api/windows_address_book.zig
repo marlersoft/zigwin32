@@ -414,7 +414,7 @@ pub const IMAPIProp = extern struct {
             ciidExclude: u32,
             rgiidExclude: *Guid,
             lpExcludeProps: *SPropTagArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: *IMAPIProgress,
             lpInterface: *Guid,
             lpDestObj: *c_void,
@@ -424,7 +424,7 @@ pub const IMAPIProp = extern struct {
         CopyProps: fn(
             self: *const IMAPIProp,
             lpIncludeProps: *SPropTagArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: *IMAPIProgress,
             lpInterface: *Guid,
             lpDestObj: *c_void,
@@ -479,11 +479,11 @@ pub const IMAPIProp = extern struct {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).DeleteProps(@ptrCast(*const IMAPIProp, self), lpPropTagArray, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: *Guid, lpExcludeProps: *SPropTagArray, ulUIParam: ?*c_void, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: *Guid, lpExcludeProps: *SPropTagArray, ulUIParam: usize, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyTo(@ptrCast(*const IMAPIProp, self), ciidExclude, rgiidExclude, lpExcludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: *SPropTagArray, ulUIParam: ?*c_void, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: *SPropTagArray, ulUIParam: usize, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyProps(@ptrCast(*const IMAPIProp, self), lpIncludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -825,12 +825,12 @@ pub const IMAPIStatus = extern struct {
         base: IMAPIProp.VTable,
         ValidateState: fn(
             self: *const IMAPIStatus,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SettingsDialog: fn(
             self: *const IMAPIStatus,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangePassword: fn(
@@ -841,7 +841,7 @@ pub const IMAPIStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlushQueues: fn(
             self: *const IMAPIStatus,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             cbTargetTransport: u32,
             lpTargetTransport: ?[*]ENTRYID,
             ulFlags: u32,
@@ -851,11 +851,11 @@ pub const IMAPIStatus = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIStatus_ValidateState(self: *const T, ulUIParam: ?*c_void, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIStatus_ValidateState(self: *const T, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).ValidateState(@ptrCast(*const IMAPIStatus, self), ulUIParam, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIStatus_SettingsDialog(self: *const T, ulUIParam: ?*c_void, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIStatus_SettingsDialog(self: *const T, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).SettingsDialog(@ptrCast(*const IMAPIStatus, self), ulUIParam, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -863,7 +863,7 @@ pub const IMAPIStatus = extern struct {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).ChangePassword(@ptrCast(*const IMAPIStatus, self), lpOldPass, lpNewPass, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIStatus_FlushQueues(self: *const T, ulUIParam: ?*c_void, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIStatus_FlushQueues(self: *const T, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).FlushQueues(@ptrCast(*const IMAPIStatus, self), ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
         }
     };}
@@ -952,7 +952,7 @@ pub const IABContainer = extern struct {
         CopyEntries: fn(
             self: *const IABContainer,
             lpEntries: *SBinaryArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -977,7 +977,7 @@ pub const IABContainer = extern struct {
             return @ptrCast(*const IABContainer.VTable, self.vtable).CreateEntry(@ptrCast(*const IABContainer, self), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IABContainer_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IABContainer_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IABContainer.VTable, self.vtable).CopyEntries(@ptrCast(*const IABContainer, self), lpEntries, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1018,7 +1018,7 @@ pub const IDistList = extern struct {
         CopyEntries: fn(
             self: *const IDistList,
             lpEntries: *SBinaryArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1043,7 +1043,7 @@ pub const IDistList = extern struct {
             return @ptrCast(*const IDistList.VTable, self.vtable).CreateEntry(@ptrCast(*const IDistList, self), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDistList_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDistList_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDistList.VTable, self.vtable).CopyEntries(@ptrCast(*const IDistList, self), lpEntries, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1072,14 +1072,14 @@ pub const IMAPIFolder = extern struct {
             lpMsgList: *SBinaryArray,
             lpInterface: ?*Guid,
             lpDestFolder: *c_void,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMessages: fn(
             self: *const IMAPIFolder,
             lpMsgList: *SBinaryArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1099,7 +1099,7 @@ pub const IMAPIFolder = extern struct {
             lpInterface: ?*Guid,
             lpDestFolder: *c_void,
             lpszNewFolderName: *i8,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1107,14 +1107,14 @@ pub const IMAPIFolder = extern struct {
             self: *const IMAPIFolder,
             cbEntryID: u32,
             lpEntryID: [*]ENTRYID,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReadFlags: fn(
             self: *const IMAPIFolder,
             lpMsgList: *SBinaryArray,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1140,7 +1140,7 @@ pub const IMAPIFolder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EmptyFolder: fn(
             self: *const IMAPIFolder,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1153,11 +1153,11 @@ pub const IMAPIFolder = extern struct {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateMessage(@ptrCast(*const IMAPIFolder, self), lpInterface, ulFlags, lppMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: *SBinaryArray, lpInterface: ?*Guid, lpDestFolder: *c_void, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: *SBinaryArray, lpInterface: ?*Guid, lpDestFolder: *c_void, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyMessages(@ptrCast(*const IMAPIFolder, self), lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_DeleteMessages(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_DeleteMessages(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).DeleteMessages(@ptrCast(*const IMAPIFolder, self), lpMsgList, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1165,15 +1165,15 @@ pub const IMAPIFolder = extern struct {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateFolder(@ptrCast(*const IMAPIFolder, self), ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: [*]ENTRYID, lpInterface: ?*Guid, lpDestFolder: *c_void, lpszNewFolderName: *i8, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: [*]ENTRYID, lpInterface: ?*Guid, lpDestFolder: *c_void, lpszNewFolderName: *i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyFolder(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_DeleteFolder(self: *const T, cbEntryID: u32, lpEntryID: [*]ENTRYID, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_DeleteFolder(self: *const T, cbEntryID: u32, lpEntryID: [*]ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).DeleteFolder(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_SetReadFlags(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_SetReadFlags(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).SetReadFlags(@ptrCast(*const IMAPIFolder, self), lpMsgList, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1189,7 +1189,7 @@ pub const IMAPIFolder = extern struct {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).SaveContentsSort(@ptrCast(*const IMAPIFolder, self), lpSortCriteria, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_EmptyFolder(self: *const T, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_EmptyFolder(self: *const T, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).EmptyFolder(@ptrCast(*const IMAPIFolder, self), ulUIParam, lpProgress, ulFlags);
         }
     };}
@@ -1364,7 +1364,7 @@ pub const IMessage = extern struct {
         DeleteAttach: fn(
             self: *const IMessage,
             ulAttachmentNum: u32,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1403,7 +1403,7 @@ pub const IMessage = extern struct {
             return @ptrCast(*const IMessage.VTable, self.vtable).CreateAttach(@ptrCast(*const IMessage, self), lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_DeleteAttach(self: *const T, ulAttachmentNum: u32, ulUIParam: ?*c_void, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMessage_DeleteAttach(self: *const T, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).DeleteAttach(@ptrCast(*const IMessage, self), ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1438,17 +1438,17 @@ pub const IAttach = extern struct {
 };
 
 pub const LPFNABSDI = fn(
-    ulUIParam: ?*c_void,
+    ulUIParam: usize,
     lpvmsg: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNDISMISS = fn(
-    ulUIParam: ?*c_void,
+    ulUIParam: usize,
     lpvContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPFNBUTTON = fn(
-    ulUIParam: ?*c_void,
+    ulUIParam: usize,
     lpvContext: *c_void,
     cbEntryID: u32,
     lpSelection: *ENTRYID,
@@ -1488,7 +1488,7 @@ pub const IMAPIControl = extern struct {
         Activate: fn(
             self: *const IMAPIControl,
             ulFlags: u32,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetState: fn(
             self: *const IMAPIControl,
@@ -1504,7 +1504,7 @@ pub const IMAPIControl = extern struct {
             return @ptrCast(*const IMAPIControl.VTable, self.vtable).GetLastError(@ptrCast(*const IMAPIControl, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIControl_Activate(self: *const T, ulFlags: u32, ulUIParam: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMAPIControl_Activate(self: *const T, ulFlags: u32, ulUIParam: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIControl.VTable, self.vtable).Activate(@ptrCast(*const IMAPIControl, self), ulFlags, ulUIParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1609,7 +1609,7 @@ pub const IProviderAdmin = extern struct {
             lpszProvider: *i8,
             cValues: u32,
             lpProps: [*]SPropValue,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             ulFlags: u32,
             lpUID: *MAPIUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1637,7 +1637,7 @@ pub const IProviderAdmin = extern struct {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).GetProviderTable(@ptrCast(*const IProviderAdmin, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_CreateProvider(self: *const T, lpszProvider: *i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: ?*c_void, ulFlags: u32, lpUID: *MAPIUID) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_CreateProvider(self: *const T, lpszProvider: *i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: *MAPIUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).CreateProvider(@ptrCast(*const IProviderAdmin, self), lpszProvider, cValues, lpProps, ulUIParam, ulFlags, lpUID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1708,7 +1708,7 @@ pub const IAddrBook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveName: fn(
             self: *const IAddrBook,
-            ulUIParam: ?*c_void,
+            ulUIParam: usize,
             ulFlags: u32,
             lpszNewEntryTitle: *i8,
             lpAdrList: *ADRLIST,
@@ -1721,7 +1721,7 @@ pub const IAddrBook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Details: fn(
             self: *const IAddrBook,
-            lpulUIParam: *?*c_void,
+            lpulUIParam: *usize,
             lpfnDismiss: LPFNDISMISS,
             lpvDismissContext: *c_void,
             cbEntryID: u32,
@@ -1809,7 +1809,7 @@ pub const IAddrBook = extern struct {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).NewEntry(@ptrCast(*const IAddrBook, self), ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_ResolveName(self: *const T, ulUIParam: ?*c_void, ulFlags: u32, lpszNewEntryTitle: *i8, lpAdrList: *ADRLIST) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_ResolveName(self: *const T, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: *i8, lpAdrList: *ADRLIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).ResolveName(@ptrCast(*const IAddrBook, self), ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1817,7 +1817,7 @@ pub const IAddrBook = extern struct {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Address(@ptrCast(*const IAddrBook, self), lpulUIParam, lpAdrParms, lppAdrList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_Details(self: *const T, lpulUIParam: *?*c_void, lpfnDismiss: LPFNDISMISS, lpvDismissContext: *c_void, cbEntryID: u32, lpEntryID: *ENTRYID, lpfButtonCallback: LPFNBUTTON, lpvButtonContext: *c_void, lpszButtonText: *i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_Details(self: *const T, lpulUIParam: *usize, lpfnDismiss: LPFNDISMISS, lpvDismissContext: *c_void, cbEntryID: u32, lpEntryID: *ENTRYID, lpfButtonCallback: LPFNBUTTON, lpvButtonContext: *c_void, lpszButtonText: *i8, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Details(@ptrCast(*const IAddrBook, self), lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

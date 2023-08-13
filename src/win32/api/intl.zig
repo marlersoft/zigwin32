@@ -2,6 +2,40 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1288)
 //--------------------------------------------------------------------------------
+pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
+pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
+pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
+pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
+pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
+pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
+pub const UTEXT_MAGIC = @as(i32, 878368812);
+pub const USET_IGNORE_SPACE = @as(i32, 1);
+pub const USET_CASE_INSENSITIVE = @as(i32, 2);
+pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
+pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
+pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
+pub const UIDNA_DEFAULT = @as(i32, 0);
+pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
+pub const UIDNA_CHECK_BIDI = @as(i32, 4);
+pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
+pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
+pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
+pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
+pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
+pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
+pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
+pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
+pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
+pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
+pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
+pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
+pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
+pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
+pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
+pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
+pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
+pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
+pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 pub const ALL_SERVICE_TYPES = @as(u32, 0);
 pub const HIGHLEVEL_SERVICE_TYPES = @as(u32, 1);
 pub const LOWLEVEL_SERVICE_TYPES = @as(u32, 2);
@@ -1256,40 +1290,6 @@ pub const UBIDI_OUTPUT_REVERSE = @as(u32, 16);
 pub const USPREP_DEFAULT = @as(u32, 0);
 pub const USPREP_ALLOW_UNASSIGNED = @as(u32, 1);
 pub const USEARCH_DONE = @as(i32, -1);
-pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
-pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
-pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
-pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
-pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
-pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
-pub const UTEXT_MAGIC = @as(i32, 878368812);
-pub const USET_IGNORE_SPACE = @as(i32, 1);
-pub const USET_CASE_INSENSITIVE = @as(i32, 2);
-pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
-pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
-pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
-pub const UIDNA_DEFAULT = @as(i32, 0);
-pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
-pub const UIDNA_CHECK_BIDI = @as(i32, 4);
-pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
-pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
-pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
-pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
-pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
-pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
-pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
-pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
-pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
-pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
-pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
-pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
-pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
-pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
-pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
-pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
-pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
-pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
-pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 
 //--------------------------------------------------------------------------------
 // Section: Types (360)
@@ -1476,19 +1476,19 @@ pub const LANGUAGEGROUP_ENUMPROCA = fn(
     param1: PSTR,
     param2: PSTR,
     param3: u32,
-    param4: ?*c_void,
+    param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LANGGROUPLOCALE_ENUMPROCA = fn(
     param0: u32,
     param1: u32,
     param2: PSTR,
-    param3: ?*c_void,
+    param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const UILANGUAGE_ENUMPROCA = fn(
     param0: PSTR,
-    param1: ?*c_void,
+    param1: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CODEPAGE_ENUMPROCA = fn(
@@ -1522,19 +1522,19 @@ pub const LANGUAGEGROUP_ENUMPROCW = fn(
     param1: PWSTR,
     param2: PWSTR,
     param3: u32,
-    param4: ?*c_void,
+    param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LANGGROUPLOCALE_ENUMPROCW = fn(
     param0: u32,
     param1: u32,
     param2: PWSTR,
-    param3: ?*c_void,
+    param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const UILANGUAGE_ENUMPROCW = fn(
     param0: PWSTR,
-    param1: ?*c_void,
+    param1: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CODEPAGE_ENUMPROCW = fn(
@@ -1725,7 +1725,7 @@ pub const PFN_MAPPINGCALLBACKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MAPPING_SERVICE_INFO = extern struct {
-    Size: ?*c_void,
+    Size: usize,
     pszCopyright: PWSTR,
     wMajorVersion: u16,
     wMinorVersion: u16,
@@ -1753,7 +1753,7 @@ pub const MAPPING_SERVICE_INFO = extern struct {
 };
 
 pub const MAPPING_ENUM_OPTIONS = extern struct {
-    Size: ?*c_void,
+    Size: usize,
     pszCategory: PWSTR,
     pszInputLanguage: PWSTR,
     pszOutputLanguage: PWSTR,
@@ -1766,7 +1766,7 @@ pub const MAPPING_ENUM_OPTIONS = extern struct {
 };
 
 pub const MAPPING_OPTIONS = extern struct {
-    Size: ?*c_void,
+    Size: usize,
     pszInputLanguage: PWSTR,
     pszOutputLanguage: PWSTR,
     pszInputScript: PWSTR,
@@ -1798,7 +1798,7 @@ pub const MAPPING_DATA_RANGE = extern struct {
 };
 
 pub const MAPPING_PROPERTY_BAG = extern struct {
-    Size: ?*c_void,
+    Size: usize,
     prgResultRanges: *MAPPING_DATA_RANGE,
     dwRangesCount: u32,
     pServiceData: *c_void,
@@ -4168,12 +4168,12 @@ pub const USCRIPT_USAGE_ASPIRATIONAL = UScriptUsage.ASPIRATIONAL;
 pub const USCRIPT_USAGE_RECOMMENDED = UScriptUsage.RECOMMENDED;
 
 pub const UReplaceableCallbacks = extern struct {
-    length: ?*c_void,
-    charAt: ?*c_void,
-    char32At: ?*c_void,
-    replace: ?*c_void,
-    extract: ?*c_void,
-    copy: ?*c_void,
+    length: isize,
+    charAt: isize,
+    char32At: isize,
+    replace: isize,
+    extract: isize,
+    copy: isize,
 };
 
 pub const UFieldPosition = extern struct {
@@ -4549,13 +4549,13 @@ pub const UCNV_ROUNDTRIP_AND_FALLBACK_SET = UConverterUnicodeSet.AND_FALLBACK_SE
 
 pub const UMemAllocFn = fn(
     context: *const c_void,
-    size: ?*c_void,
+    size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub const UMemReallocFn = fn(
     context: *const c_void,
     mem: *c_void,
-    size: ?*c_void,
+    size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub const UMemFreeFn = fn(
@@ -10042,6 +10042,13 @@ pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IsTextUnicode_lpiResultFlags.NOT_ASCI
 //--------------------------------------------------------------------------------
 // Section: Functions (1225)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn IsTextUnicode(
+    lpv: [*]const u8,
+    iSize: i32,
+    lpiResult: ?*IsTextUnicode_lpiResultFlags,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn FindStringOrdinal(
     dwFindStringOrdinalFlags: u32,
@@ -10051,13 +10058,6 @@ pub extern "KERNEL32" fn FindStringOrdinal(
     cchValue: i32,
     bIgnoreCase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn IsTextUnicode(
-    lpv: [*]const u8,
-    iSize: i32,
-    lpiResult: ?*IsTextUnicode_lpiResultFlags,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextCharset(
@@ -10783,14 +10783,14 @@ pub extern "KERNEL32" fn EnumSystemLocalesW(
 pub extern "KERNEL32" fn EnumSystemLanguageGroupsA(
     lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCA,
     dwFlags: EnumSystemLanguageGroupsW_dwFlags,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumSystemLanguageGroupsW(
     lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCW,
     dwFlags: EnumSystemLanguageGroupsW_dwFlags,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10798,7 +10798,7 @@ pub extern "KERNEL32" fn EnumLanguageGroupLocalesA(
     lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCA,
     LanguageGroup: u32,
     dwFlags: u32,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10806,21 +10806,21 @@ pub extern "KERNEL32" fn EnumLanguageGroupLocalesW(
     lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCW,
     LanguageGroup: u32,
     dwFlags: u32,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumUILanguagesA(
     lpUILanguageEnumProc: UILANGUAGE_ENUMPROCA,
     dwFlags: u32,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumUILanguagesW(
     lpUILanguageEnumProc: UILANGUAGE_ENUMPROCW,
     dwFlags: u32,
-    lParam: ?*c_void,
+    lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -11530,7 +11530,7 @@ pub extern "IMM32" fn ImmGetHotKey(
     param0: u32,
     lpuModifiers: *u32,
     lpuVKey: *u32,
-    phKL: *?*c_void,
+    phKL: *isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "IMM32" fn ImmSetHotKey(

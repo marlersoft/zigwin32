@@ -865,12 +865,12 @@ pub const DRT_REGISTRATION = extern struct {
 pub const DRT_SECURITY_PROVIDER = extern struct {
     pvContext: *c_void,
     Attach: *********HRESULT,
-    Detach: ?*c_void,
+    Detach: isize,
     RegisterKey: *********HRESULT,
     UnregisterKey: *********HRESULT,
     ValidateAndUnpackPayload: *********HRESULT,
     SecureAndPackPayload: *********HRESULT,
-    FreeData: ?*c_void,
+    FreeData: isize,
     EncryptData: *********HRESULT,
     DecryptData: *********HRESULT,
     GetSerializedCredential: *********HRESULT,
@@ -889,12 +889,12 @@ pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = fn(
 pub const DRT_BOOTSTRAP_PROVIDER = extern struct {
     pvContext: *c_void,
     Attach: *********HRESULT,
-    Detach: ?*c_void,
+    Detach: isize,
     InitResolve: *********HRESULT,
     IssueResolve: *********HRESULT,
-    EndResolve: ?*c_void,
+    EndResolve: isize,
     Register: *********HRESULT,
-    Unregister: ?*c_void,
+    Unregister: isize,
 };
 
 pub const DRT_SETTINGS = extern struct {
@@ -1537,7 +1537,7 @@ pub extern "P2P" fn PeerGroupResumePasswordAuthentication(
 pub extern "P2P" fn PeerIdentityCreate(
     pwzClassifier: ?[*:0]const u16,
     pwzFriendlyName: ?[*:0]const u16,
-    hCryptProv: ?*c_void,
+    hCryptProv: usize,
     ppwzIdentity: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1556,7 +1556,7 @@ pub extern "P2P" fn PeerIdentitySetFriendlyName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerIdentityGetCryptKey(
     pwzIdentity: ?[*:0]const u16,
-    phCryptProv: *?*c_void,
+    phCryptProv: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2099,51 +2099,51 @@ pub extern "drt" fn DrtGetInstanceNameSize(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistStartup(
     dwVersionRequested: u32,
-    phPeerDist: *?*c_void,
+    phPeerDist: *isize,
     pdwSupportedVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistShutdown(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistGetStatus(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     pPeerDistStatus: *PEERDIST_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistRegisterForStatusChangeNotification(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
+    ulCompletionKey: usize,
     lpOverlapped: *OVERLAPPED,
     pPeerDistStatus: *PEERDIST_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistUnregisterForStatusChangeNotification(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerPublishStream(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     cbContentIdentifier: u32,
     pContentIdentifier: [*:0]u8,
     cbContentLength: u64,
     pPublishOptions: ?*PEERDIST_PUBLICATION_OPTIONS,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
-    phStream: *?*c_void,
+    ulCompletionKey: usize,
+    phStream: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerPublishAddToStream(
-    hPeerDist: ?*c_void,
-    hStream: ?*c_void,
+    hPeerDist: isize,
+    hStream: isize,
     cbNumberOfBytes: u32,
     pBuffer: [*:0]u8,
     lpOverlapped: *OVERLAPPED,
@@ -2151,40 +2151,40 @@ pub extern "PeerDist" fn PeerDistServerPublishAddToStream(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerPublishCompleteStream(
-    hPeerDist: ?*c_void,
-    hStream: ?*c_void,
+    hPeerDist: isize,
+    hStream: isize,
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerCloseStreamHandle(
-    hPeerDist: ?*c_void,
-    hStream: ?*c_void,
+    hPeerDist: isize,
+    hStream: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerUnpublish(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     cbContentIdentifier: u32,
     pContentIdentifier: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerOpenContentInformation(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     cbContentIdentifier: u32,
     pContentIdentifier: [*:0]u8,
     ullContentOffset: u64,
     cbContentLength: u64,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
-    phContentInfo: *?*c_void,
+    ulCompletionKey: usize,
+    phContentInfo: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerRetrieveContentInformation(
-    hPeerDist: ?*c_void,
-    hContentInfo: ?*c_void,
+    hPeerDist: isize,
+    hContentInfo: isize,
     cbMaxNumberOfBytes: u32,
     pBuffer: [*:0]u8,
     lpOverlapped: *OVERLAPPED,
@@ -2192,13 +2192,13 @@ pub extern "PeerDist" fn PeerDistServerRetrieveContentInformation(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerCloseContentInformation(
-    hPeerDist: ?*c_void,
-    hContentInfo: ?*c_void,
+    hPeerDist: isize,
+    hContentInfo: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistServerCancelAsyncOperation(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     cbContentIdentifier: u32,
     pContentIdentifier: [*:0]u8,
     pOverlapped: *OVERLAPPED,
@@ -2206,23 +2206,23 @@ pub extern "PeerDist" fn PeerDistServerCancelAsyncOperation(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientOpenContent(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     pContentTag: *PEERDIST_CONTENT_TAG,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
-    phContentHandle: *?*c_void,
+    ulCompletionKey: usize,
+    phContentHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientCloseContent(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientAddContentInformation(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     cbNumberOfBytes: u32,
     pBuffer: [*:0]u8,
     lpOverlapped: *OVERLAPPED,
@@ -2230,15 +2230,15 @@ pub extern "PeerDist" fn PeerDistClientAddContentInformation(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientCompleteContentInformation(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientAddData(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     cbNumberOfBytes: u32,
     pBuffer: [*:0]u8,
     lpOverlapped: *OVERLAPPED,
@@ -2246,8 +2246,8 @@ pub extern "PeerDist" fn PeerDistClientAddData(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientBlockRead(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     cbMaxNumberOfBytes: u32,
     pBuffer: ?[*:0]u8,
     dwTimeoutInMilliseconds: u32,
@@ -2256,8 +2256,8 @@ pub extern "PeerDist" fn PeerDistClientBlockRead(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientStreamRead(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     cbMaxNumberOfBytes: u32,
     pBuffer: ?[*:0]u8,
     dwTimeoutInMilliseconds: u32,
@@ -2266,31 +2266,31 @@ pub extern "PeerDist" fn PeerDistClientStreamRead(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientFlushContent(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     pContentTag: *PEERDIST_CONTENT_TAG,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
+    ulCompletionKey: usize,
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "PeerDist" fn PeerDistClientCancelAsyncOperation(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "PeerDist" fn PeerDistGetStatusEx(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     pPeerDistStatus: *PEERDIST_STATUS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "PeerDist" fn PeerDistRegisterForStatusChangeNotificationEx(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
+    ulCompletionKey: usize,
     lpOverlapped: *OVERLAPPED,
     pPeerDistStatus: *PEERDIST_STATUS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2304,21 +2304,21 @@ pub extern "PeerDist" fn PeerDistGetOverlappedResult(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "PeerDist" fn PeerDistServerOpenContentInformationEx(
-    hPeerDist: ?*c_void,
+    hPeerDist: isize,
     cbContentIdentifier: u32,
     pContentIdentifier: [*:0]u8,
     ullContentOffset: u64,
     cbContentLength: u64,
     pRetrievalOptions: *PEERDIST_RETRIEVAL_OPTIONS,
     hCompletionPort: HANDLE,
-    ulCompletionKey: ?*c_void,
-    phContentInfo: *?*c_void,
+    ulCompletionKey: usize,
+    phContentInfo: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "PeerDist" fn PeerDistClientGetInformationByHandle(
-    hPeerDist: ?*c_void,
-    hContentHandle: ?*c_void,
+    hPeerDist: isize,
+    hContentHandle: isize,
     PeerDistClientInfoClass: PEERDIST_CLIENT_INFO_BY_HANDLE_CLASS,
     dwBufferSize: u32,
     lpInformation: [*]u8,

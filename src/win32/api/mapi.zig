@@ -81,39 +81,39 @@ pub const MapiMessageW = extern struct {
 };
 
 pub const LPMAPILOGON = fn(
-    ulUIParam: ?*c_void,
+    ulUIParam: usize,
     lpszProfileName: ?PSTR,
     lpszPassword: ?PSTR,
     flFlags: u32,
     ulReserved: u32,
-    lplhSession: *?*c_void,
+    lplhSession: *usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPILOGOFF = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISENDMAIL = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpMessage: *MapiMessage,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISENDMAILW = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpMessage: *MapiMessageW,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISENDDOCUMENTS = fn(
-    ulUIParam: ?*c_void,
+    ulUIParam: usize,
     lpszDelimChar: PSTR,
     lpszFilePaths: PSTR,
     lpszFileNames: PSTR,
@@ -121,8 +121,8 @@ pub const LPMAPISENDDOCUMENTS = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIFINDNEXT = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpszMessageType: PSTR,
     lpszSeedMessageID: PSTR,
     flFlags: u32,
@@ -131,8 +131,8 @@ pub const LPMAPIFINDNEXT = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIREADMAIL = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpszMessageID: PSTR,
     flFlags: u32,
     ulReserved: u32,
@@ -140,8 +140,8 @@ pub const LPMAPIREADMAIL = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPISAVEMAIL = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpMessage: *MapiMessage,
     flFlags: u32,
     ulReserved: u32,
@@ -149,8 +149,8 @@ pub const LPMAPISAVEMAIL = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIDELETEMAIL = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpszMessageID: PSTR,
     flFlags: u32,
     ulReserved: u32,
@@ -161,8 +161,8 @@ pub const LPMAPIFREEBUFFER = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIADDRESS = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpszCaption: PSTR,
     nEditFields: u32,
     lpszLabels: PSTR,
@@ -175,16 +175,16 @@ pub const LPMAPIADDRESS = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIDETAILS = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpRecip: *MapiRecipDesc,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIRESOLVENAME = fn(
-    lhSession: ?*c_void,
-    ulUIParam: ?*c_void,
+    lhSession: usize,
+    ulUIParam: usize,
     lpszName: PSTR,
     flFlags: u32,
     ulReserved: u32,

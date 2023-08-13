@@ -12,6 +12,7 @@ pub const HICON = ?*c_void;
 // TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
 pub const HMENU = ?*c_void;
 
+// TODO: this type is also usable for 'HICON'
 // TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
 pub const HCURSOR = ?*c_void;
 

@@ -19,7 +19,7 @@ pub const MODULEINFO = extern struct {
 pub const PSAPI_WORKING_SET_BLOCK = u32; // TODO: implement StructOrUnion types?
 
 pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
-    NumberOfEntries: ?*c_void,
+    NumberOfEntries: usize,
     WorkingSetInfo: [1]PSAPI_WORKING_SET_BLOCK,
 };
 
@@ -37,49 +37,49 @@ pub const PSAPI_WS_WATCH_INFORMATION = extern struct {
 
 pub const PSAPI_WS_WATCH_INFORMATION_EX = extern struct {
     BasicInfo: PSAPI_WS_WATCH_INFORMATION,
-    FaultingThreadId: ?*c_void,
-    Flags: ?*c_void,
+    FaultingThreadId: usize,
+    Flags: usize,
 };
 
 pub const PROCESS_MEMORY_COUNTERS = extern struct {
     cb: u32,
     PageFaultCount: u32,
-    PeakWorkingSetSize: ?*c_void,
-    WorkingSetSize: ?*c_void,
-    QuotaPeakPagedPoolUsage: ?*c_void,
-    QuotaPagedPoolUsage: ?*c_void,
-    QuotaPeakNonPagedPoolUsage: ?*c_void,
-    QuotaNonPagedPoolUsage: ?*c_void,
-    PagefileUsage: ?*c_void,
-    PeakPagefileUsage: ?*c_void,
+    PeakWorkingSetSize: usize,
+    WorkingSetSize: usize,
+    QuotaPeakPagedPoolUsage: usize,
+    QuotaPagedPoolUsage: usize,
+    QuotaPeakNonPagedPoolUsage: usize,
+    QuotaNonPagedPoolUsage: usize,
+    PagefileUsage: usize,
+    PeakPagefileUsage: usize,
 };
 
 pub const PROCESS_MEMORY_COUNTERS_EX = extern struct {
     cb: u32,
     PageFaultCount: u32,
-    PeakWorkingSetSize: ?*c_void,
-    WorkingSetSize: ?*c_void,
-    QuotaPeakPagedPoolUsage: ?*c_void,
-    QuotaPagedPoolUsage: ?*c_void,
-    QuotaPeakNonPagedPoolUsage: ?*c_void,
-    QuotaNonPagedPoolUsage: ?*c_void,
-    PagefileUsage: ?*c_void,
-    PeakPagefileUsage: ?*c_void,
-    PrivateUsage: ?*c_void,
+    PeakWorkingSetSize: usize,
+    WorkingSetSize: usize,
+    QuotaPeakPagedPoolUsage: usize,
+    QuotaPagedPoolUsage: usize,
+    QuotaPeakNonPagedPoolUsage: usize,
+    QuotaNonPagedPoolUsage: usize,
+    PagefileUsage: usize,
+    PeakPagefileUsage: usize,
+    PrivateUsage: usize,
 };
 
 pub const PERFORMANCE_INFORMATION = extern struct {
     cb: u32,
-    CommitTotal: ?*c_void,
-    CommitLimit: ?*c_void,
-    CommitPeak: ?*c_void,
-    PhysicalTotal: ?*c_void,
-    PhysicalAvailable: ?*c_void,
-    SystemCache: ?*c_void,
-    KernelTotal: ?*c_void,
-    KernelPaged: ?*c_void,
-    KernelNonpaged: ?*c_void,
-    PageSize: ?*c_void,
+    CommitTotal: usize,
+    CommitLimit: usize,
+    CommitPeak: usize,
+    PhysicalTotal: usize,
+    PhysicalAvailable: usize,
+    SystemCache: usize,
+    KernelTotal: usize,
+    KernelPaged: usize,
+    KernelNonpaged: usize,
+    PageSize: usize,
     HandleCount: u32,
     ProcessCount: u32,
     ThreadCount: u32,
@@ -88,9 +88,9 @@ pub const PERFORMANCE_INFORMATION = extern struct {
 pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
     cb: u32,
     Reserved: u32,
-    TotalSize: ?*c_void,
-    TotalInUse: ?*c_void,
-    PeakUsage: ?*c_void,
+    TotalSize: usize,
+    TotalInUse: usize,
+    PeakUsage: usize,
 };
 
 pub const PENUM_PAGE_FILE_CALLBACKW = fn(
@@ -117,14 +117,14 @@ pub extern "KERNEL32" fn K32EnumProcesses(
 
 pub extern "KERNEL32" fn K32EnumProcessModules(
     hProcess: HANDLE,
-    lphModule: [*]?*c_void,
+    lphModule: [*]isize,
     cb: u32,
     lpcbNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32EnumProcessModulesEx(
     hProcess: HANDLE,
-    lphModule: [*]?*c_void,
+    lphModule: [*]isize,
     cb: u32,
     lpcbNeeded: *u32,
     dwFilterFlag: u32,
@@ -132,35 +132,35 @@ pub extern "KERNEL32" fn K32EnumProcessModulesEx(
 
 pub extern "KERNEL32" fn K32GetModuleBaseNameA(
     hProcess: HANDLE,
-    hModule: ?*c_void,
+    hModule: isize,
     lpBaseName: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleBaseNameW(
     hProcess: HANDLE,
-    hModule: ?*c_void,
+    hModule: isize,
     lpBaseName: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleFileNameExA(
     hProcess: HANDLE,
-    hModule: ?*c_void,
+    hModule: isize,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleFileNameExW(
     hProcess: HANDLE,
-    hModule: ?*c_void,
+    hModule: isize,
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleInformation(
     hProcess: HANDLE,
-    hModule: ?*c_void,
+    hModule: isize,
     lpmodinfo: *MODULEINFO,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

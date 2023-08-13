@@ -2,6 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (18)
 //--------------------------------------------------------------------------------
+pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
+pub const c_DwmMaxMonitors = @as(u32, 16);
+pub const c_DwmMaxAdapters = @as(u32, 16);
 pub const DWM_BB_ENABLE = @as(u32, 1);
 pub const DWM_BB_BLURREGION = @as(u32, 2);
 pub const DWM_BB_TRANSITIONONMAXIMIZED = @as(u32, 4);
@@ -17,9 +20,6 @@ pub const DWM_FRAME_DURATION_DEFAULT = @as(i32, -1);
 pub const DWM_EC_DISABLECOMPOSITION = @as(u32, 0);
 pub const DWM_EC_ENABLECOMPOSITION = @as(u32, 1);
 pub const DWM_SIT_DISPLAYFRAME = @as(u32, 1);
-pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
-pub const c_DwmMaxMonitors = @as(u32, 16);
-pub const c_DwmMaxAdapters = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (13)
@@ -310,7 +310,7 @@ pub extern "dwmapi" fn DwmModifyPreviousDxFrameDuration(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmQueryThumbnailSourceSize(
-    hThumbnail: ?*c_void,
+    hThumbnail: isize,
     pSize: *SIZE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -318,7 +318,7 @@ pub extern "dwmapi" fn DwmQueryThumbnailSourceSize(
 pub extern "dwmapi" fn DwmRegisterThumbnail(
     hwndDestination: HWND,
     hwndSource: HWND,
-    phThumbnailId: *?*c_void,
+    phThumbnailId: *isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -343,12 +343,12 @@ pub extern "dwmapi" fn DwmSetWindowAttribute(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmUnregisterThumbnail(
-    hThumbnailId: ?*c_void,
+    hThumbnailId: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmUpdateThumbnailProperties(
-    hThumbnailId: ?*c_void,
+    hThumbnailId: isize,
     ptnProperties: *const DWM_THUMBNAIL_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

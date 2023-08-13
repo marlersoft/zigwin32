@@ -2,6 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (109)
 //--------------------------------------------------------------------------------
+pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
+pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 pub const FS_INITIALIZING = @as(u32, 536870912);
 pub const FS_DIALING = @as(u32, 536870913);
 pub const FS_TRANSMITTING = @as(u32, 536870914);
@@ -109,8 +111,6 @@ pub const FAX_CONFIG_SET = @as(u32, 8);
 pub const FAX_PORT_QUERY = @as(u32, 16);
 pub const FAX_PORT_SET = @as(u32, 32);
 pub const FAX_JOB_MANAGE = @as(u32, 64);
-pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
-pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 
 //--------------------------------------------------------------------------------
 // Section: Types (260)
@@ -454,7 +454,7 @@ pub const FAX_JOB_PARAMA = extern struct {
     DeliveryReportAddress: [*:0]const u8,
     DocumentName: [*:0]const u8,
     CallHandle: u32,
-    Reserved: [3]?*c_void,
+    Reserved: [3]usize,
 };
 
 pub const FAX_JOB_PARAMW = extern struct {
@@ -472,7 +472,7 @@ pub const FAX_JOB_PARAMW = extern struct {
     DeliveryReportAddress: [*:0]const u16,
     DocumentName: [*:0]const u16,
     CallHandle: u32,
-    Reserved: [3]?*c_void,
+    Reserved: [3]usize,
 };
 
 pub const FAX_EVENTA = extern struct {
@@ -832,7 +832,7 @@ pub const PFAXSETROUTINGINFOW = fn(
 pub const PFAXINITIALIZEEVENTQUEUE = fn(
     FaxHandle: HANDLE,
     CompletionPort: HANDLE,
-    CompletionKey: ?*c_void,
+    CompletionKey: usize,
     hWnd: HWND,
     MessageStart: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -934,19 +934,19 @@ pub const FAX_DEV_STATUS = extern struct {
 pub const PFAX_SERVICE_CALLBACK = fn(
     FaxHandle: HANDLE,
     DeviceId: u32,
-    Param1: ?*c_void,
-    Param2: ?*c_void,
-    Param3: ?*c_void,
+    Param1: usize,
+    Param2: usize,
+    Param3: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAX_LINECALLBACK = fn(
     FaxHandle: HANDLE,
     hDevice: u32,
     dwMessage: u32,
-    dwInstance: ?*c_void,
-    dwParam1: ?*c_void,
-    dwParam2: ?*c_void,
-    dwParam3: ?*c_void,
+    dwInstance: usize,
+    dwParam1: usize,
+    dwParam2: usize,
+    dwParam3: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFAX_SEND_CALLBACK = fn(
@@ -968,7 +968,7 @@ pub const PFAXDEVVIRTUALDEVICECREATION = fn(
     DeviceNamePrefix: *[128]u16,
     DeviceIdPrefix: *u32,
     CompletionPort: HANDLE,
-    CompletionKey: ?*c_void,
+    CompletionKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXDEVSTARTJOB = fn(
@@ -976,7 +976,7 @@ pub const PFAXDEVSTARTJOB = fn(
     param1: u32,
     param2: *HANDLE,
     param3: HANDLE,
-    param4: ?*c_void,
+    param4: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXDEVENDJOB = fn(
@@ -7626,7 +7626,7 @@ pub extern "WINFAX" fn FaxSetRoutingInfoW(
 pub extern "WINFAX" fn FaxInitializeEventQueue(
     FaxHandle: HANDLE,
     CompletionPort: HANDLE,
-    CompletionKey: ?*c_void,
+    CompletionKey: usize,
     hWnd: HWND,
     MessageStart: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

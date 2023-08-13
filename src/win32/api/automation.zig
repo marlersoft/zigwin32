@@ -1097,7 +1097,7 @@ pub const PARAMDESC = extern struct {
 };
 
 pub const IDLDESC = extern struct {
-    dwReserved: ?*c_void,
+    dwReserved: usize,
     wIDLFlags: u16,
 };
 
@@ -3447,7 +3447,7 @@ pub const IProvideRuntimeContext = extern struct {
         base: IUnknown.VTable,
         GetCurrentSourceContext: fn(
             self: *const IProvideRuntimeContext,
-            pdwContext: *?*c_void,
+            pdwContext: *usize,
             pfExecutingGlobalCode: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3455,7 +3455,7 @@ pub const IProvideRuntimeContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideRuntimeContext_GetCurrentSourceContext(self: *const T, pdwContext: *?*c_void, pfExecutingGlobalCode: *i16) callconv(.Inline) HRESULT {
+        pub fn IProvideRuntimeContext_GetCurrentSourceContext(self: *const T, pdwContext: *usize, pfExecutingGlobalCode: *i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProvideRuntimeContext.VTable, self.vtable).GetCurrentSourceContext(@ptrCast(*const IProvideRuntimeContext, self), pdwContext, pfExecutingGlobalCode);
         }
     };}
@@ -3464,6 +3464,10 @@ pub const IProvideRuntimeContext = extern struct {
 
 // TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
 pub const BSTR = *u16;
+
+pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
+    pExcepInfo: *EXCEPINFO,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const VARENUM = extern enum(i32) {
     EMPTY = 0,
@@ -3572,10 +3576,6 @@ pub const VT_ILLEGAL = VARENUM.ILLEGAL;
 pub const VT_ILLEGALMASKED = VARENUM.ILLEGALMASKED;
 pub const VT_TYPEMASK = VARENUM.TYPEMASK;
 
-pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
-    pExcepInfo: *EXCEPINFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (412)
@@ -3603,6 +3603,52 @@ pub extern "OLEAUT32" fn BSTR_UserFree(
     param1: *BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "OLE32" fn HWND_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
+    param0: *u32,
+    param1: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn BSTR_UserSize64(
     param0: *u32,
@@ -3628,6 +3674,56 @@ pub extern "OLEAUT32" fn BSTR_UserUnmarshal64(
 pub extern "OLEAUT32" fn BSTR_UserFree64(
     param0: *u32,
     param1: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HWND_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree64(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
+    param0: *u32,
+    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn VARIANT_UserSize(
@@ -5654,7 +5750,7 @@ pub extern "OLEAUT32" fn CreateStdDispatch(
 
 pub extern "OLEAUT32" fn DispCallFunc(
     pvInstance: ?*c_void,
-    oVft: ?*c_void,
+    oVft: usize,
     cc: CALLCONV,
     vtReturn: u16,
     cActuals: u32,
@@ -5719,52 +5815,6 @@ pub extern "OLEAUT32" fn ClearCustData(
 pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HWND_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
-    param0: *u32,
-    param1: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "OLE32" fn STGMEDIUM_UserSize(
     param0: *u32,
     param1: u32,
@@ -5786,56 +5836,6 @@ pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
 pub extern "OLE32" fn STGMEDIUM_UserFree(
     param0: *u32,
     param1: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HWND_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree64(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
-    param0: *u32,
-    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn STGMEDIUM_UserSize64(

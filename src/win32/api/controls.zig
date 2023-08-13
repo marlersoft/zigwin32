@@ -1236,7 +1236,7 @@ pub const FSB_ENCARTA_MODE = @as(u32, 1);
 pub const FSB_REGULAR_MODE = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
-// Section: Types (431)
+// Section: Types (428)
 //--------------------------------------------------------------------------------
 pub const HSYNTHETICPOINTERDEVICE = ?*c_void;
 
@@ -1282,8 +1282,8 @@ pub const PROPSHEETPAGEA_V1 = extern struct {
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKA,
     pcRefParent: *u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V2 = extern struct {
@@ -1299,8 +1299,8 @@ pub const PROPSHEETPAGEA_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V3 = extern struct {
@@ -1317,8 +1317,8 @@ pub const PROPSHEETPAGEA_V3 = extern struct {
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA = extern struct {
@@ -1336,9 +1336,9 @@ pub const PROPSHEETPAGEA = extern struct {
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
     Anonymous3: PROPSHEETPAGEA._Anonymous3_e__Union,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V1 = extern struct {
@@ -1352,8 +1352,8 @@ pub const PROPSHEETPAGEW_V1 = extern struct {
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKW,
     pcRefParent: *u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V2 = extern struct {
@@ -1369,8 +1369,8 @@ pub const PROPSHEETPAGEW_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V3 = extern struct {
@@ -1387,8 +1387,8 @@ pub const PROPSHEETPAGEW_V3 = extern struct {
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW = extern struct {
@@ -1406,9 +1406,9 @@ pub const PROPSHEETPAGEW = extern struct {
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
     Anonymous3: PROPSHEETPAGEW._Anonymous3_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFNPROPSHEETCALLBACK = fn(
@@ -1428,9 +1428,9 @@ pub const PROPSHEETHEADERA_V1 = extern struct {
     Anonymous2: PROPSHEETHEADERA_V1._Anonymous2_e__Union,
     Anonymous3: PROPSHEETHEADERA_V1._Anonymous3_e__Union,
     pfnCallback: PFNPROPSHEETCALLBACK,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERA_V2 = extern struct {
@@ -1447,11 +1447,11 @@ pub const PROPSHEETHEADERA_V2 = extern struct {
     Anonymous4: PROPSHEETHEADERA_V2._Anonymous4_e__Union,
     hplWatermark: HPALETTE,
     Anonymous5: PROPSHEETHEADERA_V2._Anonymous5_e__Union,
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERW_V1 = extern struct {
@@ -1465,9 +1465,9 @@ pub const PROPSHEETHEADERW_V1 = extern struct {
     Anonymous2: PROPSHEETHEADERW_V1._Anonymous2_e__Union,
     Anonymous3: PROPSHEETHEADERW_V1._Anonymous3_e__Union,
     pfnCallback: PFNPROPSHEETCALLBACK,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERW_V2 = extern struct {
@@ -1484,11 +1484,11 @@ pub const PROPSHEETHEADERW_V2 = extern struct {
     Anonymous4: PROPSHEETHEADERW_V2._Anonymous4_e__Union,
     hplWatermark: HPALETTE,
     Anonymous5: PROPSHEETHEADERW_V2._Anonymous5_e__Union,
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LPFNSVADDPROPSHEETPAGE = fn(
@@ -1525,8 +1525,8 @@ pub const NMTOOLTIPSCREATED = extern struct {
 
 pub const NMMOUSE = extern struct {
     hdr: NMHDR,
-    dwItemSpec: ?*c_void,
-    dwItemData: ?*c_void,
+    dwItemSpec: usize,
+    dwItemData: usize,
     pt: POINT,
     dwHitInfo: LPARAM,
 };
@@ -1568,7 +1568,7 @@ pub const NMCUSTOMDRAW = extern struct {
     dwDrawStage: NMCUSTOMDRAW_dwDrawStageFlags,
     hdc: HDC,
     rc: RECT,
-    dwItemSpec: ?*c_void,
+    dwItemSpec: usize,
     uItemState: u32,
     lItemlParam: LPARAM,
 };
@@ -1713,9 +1713,9 @@ pub const TBBUTTON = extern struct {
     idCommand: i32,
     fsState: u8,
     fsStyle: u8,
-    bReserved: [2]u8,
-    dwData: ?*c_void,
-    iString: ?*c_void,
+    bReserved: [6]u8,
+    dwData: usize,
+    iString: isize,
 };
 
 pub const COLORMAP = extern struct {
@@ -1742,7 +1742,7 @@ pub const NMTBCUSTOMDRAW = extern struct {
 
 pub const TBADDBITMAP = extern struct {
     hInst: HINSTANCE,
-    nID: ?*c_void,
+    nID: usize,
 };
 
 pub const TBSAVEPARAMSA = extern struct {
@@ -1764,9 +1764,9 @@ pub const TBINSERTMARK = extern struct {
 
 pub const TBREPLACEBITMAP = extern struct {
     hInstOld: HINSTANCE,
-    nIDOld: ?*c_void,
+    nIDOld: usize,
     hInstNew: HINSTANCE,
-    nIDNew: ?*c_void,
+    nIDNew: usize,
     nButtons: i32,
 };
 
@@ -1778,7 +1778,7 @@ pub const TBBUTTONINFOA = extern struct {
     fsState: u8,
     fsStyle: u8,
     cx: u16,
-    lParam: ?*c_void,
+    lParam: usize,
     pszText: PSTR,
     cchText: i32,
 };
@@ -1791,7 +1791,7 @@ pub const TBBUTTONINFOW = extern struct {
     fsState: u8,
     fsStyle: u8,
     cx: u16,
-    lParam: ?*c_void,
+    lParam: usize,
     pszText: PWSTR,
     cchText: i32,
 };
@@ -1855,7 +1855,7 @@ pub const NMTBDISPINFOA = extern struct {
     hdr: NMHDR,
     dwMask: NMTBDISPINFOW_dwMask,
     idCommand: i32,
-    lParam: ?*c_void,
+    lParam: usize,
     iImage: i32,
     pszText: PSTR,
     cchText: i32,
@@ -1865,7 +1865,7 @@ pub const NMTBDISPINFOW = extern struct {
     hdr: NMHDR,
     dwMask: NMTBDISPINFOW_dwMask,
     idCommand: i32,
-    lParam: ?*c_void,
+    lParam: usize,
     iImage: i32,
     pszText: PWSTR,
     cchText: i32,
@@ -2003,7 +2003,7 @@ pub const TTTOOLINFOA = extern struct {
     cbSize: u32,
     uFlags: u32,
     hwnd: HWND,
-    uId: ?*c_void,
+    uId: usize,
     rect: RECT,
     hinst: HINSTANCE,
     lpszText: PSTR,
@@ -2015,7 +2015,7 @@ pub const TTTOOLINFOW = extern struct {
     cbSize: u32,
     uFlags: u32,
     hwnd: HWND,
-    uId: ?*c_void,
+    uId: usize,
     rect: RECT,
     hinst: HINSTANCE,
     lpszText: PWSTR,
@@ -2647,7 +2647,7 @@ pub const NMTVASYNCDRAW = extern struct {
 
 pub const COMBOBOXEXITEMA = extern struct {
     mask: COMBOBOXEXITEMW_mask,
-    iItem: ?*c_void,
+    iItem: isize,
     pszText: PSTR,
     cchTextMax: i32,
     iImage: i32,
@@ -2659,7 +2659,7 @@ pub const COMBOBOXEXITEMA = extern struct {
 
 pub const COMBOBOXEXITEMW = extern struct {
     mask: COMBOBOXEXITEMW_mask,
-    iItem: ?*c_void,
+    iItem: isize,
     pszText: PWSTR,
     cchTextMax: i32,
     iImage: i32,
@@ -2779,7 +2779,7 @@ pub const MCGRIDINFO = extern struct {
     stEnd: SYSTEMTIME,
     rc: RECT,
     pszName: PWSTR,
-    cchName: ?*c_void,
+    cchName: usize,
 };
 
 pub const NMSELCHANGE = extern struct {
@@ -2964,7 +2964,7 @@ pub const PFTASKDIALOGCALLBACK = fn(
     msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-    lpRefData: ?*c_void,
+    lpRefData: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const _TASKDIALOG_FLAGS = extern enum(i32) {
@@ -3125,10 +3125,10 @@ pub const TASKDIALOGCONFIG = extern struct {
     Anonymous2: TASKDIALOGCONFIG._Anonymous2_e__Union,
     pszFooter: [*:0]const u16,
     pfCallback: PFTASKDIALOGCALLBACK,
-    lpCallbackData: ?*c_void,
+    lpCallbackData: isize,
     cxWidth: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFNDAENUMCALLBACK = fn(
@@ -3770,14 +3770,14 @@ pub const TEXTRANGEW = extern struct {
 };
 
 pub const EDITSTREAMCALLBACK = fn(
-    dwCookie: ?*c_void,
+    dwCookie: usize,
     pbBuff: *u8,
     cb: i32,
     pcb: *i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EDITSTREAM = extern struct {
-    dwCookie: ?*c_void,
+    dwCookie: usize,
     dwError: u32,
     pfnCallback: EDITSTREAMCALLBACK,
 };
@@ -3945,7 +3945,7 @@ pub const COMPCOLOR = extern struct {
 
 pub const REPASTESPECIAL = extern struct {
     dwAspect: u32,
-    dwParam: ?*c_void,
+    dwParam: usize,
 };
 
 pub const UNDONAMEID = extern enum(i32) {
@@ -4015,7 +4015,7 @@ pub const hyphresult = extern struct {
 pub const HYPHENATEINFO = extern struct {
     cbSize: i16,
     dxHyphenateZone: i16,
-    pfnHyphenate: ?*c_void,
+    pfnHyphenate: isize,
 };
 
 pub const tomConstants = extern enum(i32) {
@@ -9282,7 +9282,7 @@ pub const IRichEditOle = extern struct {
             self: *const IRichEditOle,
             lpdataobj: *IDataObject,
             cf: u16,
-            hMetaPict: ?*c_void,
+            hMetaPict: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9349,7 +9349,7 @@ pub const IRichEditOle = extern struct {
             return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetClipboardData(@ptrCast(*const IRichEditOle, self), lpchrg, reco, lplpdataobj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_ImportDataObject(self: *const T, lpdataobj: *IDataObject, cf: u16, hMetaPict: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRichEditOle_ImportDataObject(self: *const T, lpdataobj: *IDataObject, cf: u16, hMetaPict: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRichEditOle.VTable, self.vtable).ImportDataObject(@ptrCast(*const IRichEditOle, self), lpdataobj, cf, hMetaPict);
         }
     };}
@@ -9392,7 +9392,7 @@ pub const IRichEditOleCallback = extern struct {
             lpcfFormat: *u16,
             reco: u32,
             fReally: BOOL,
-            hMetaPict: ?*c_void,
+            hMetaPict: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContextSensitiveHelp: fn(
             self: *const IRichEditOleCallback,
@@ -9442,7 +9442,7 @@ pub const IRichEditOleCallback = extern struct {
             return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).DeleteObject(@ptrCast(*const IRichEditOleCallback, self), lpoleobj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_QueryAcceptData(self: *const T, lpdataobj: *IDataObject, lpcfFormat: *u16, reco: u32, fReally: BOOL, hMetaPict: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRichEditOleCallback_QueryAcceptData(self: *const T, lpdataobj: *IDataObject, lpcfFormat: *u16, reco: u32, fReally: BOOL, hMetaPict: isize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).QueryAcceptData(@ptrCast(*const IRichEditOleCallback, self), lpdataobj, lpcfFormat, reco, fReally, hMetaPict);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10706,53 +10706,6 @@ pub const CFE_EFFECTS = extern enum(u32) {
 // TODO: enum 'CFE_EFFECTS' has known issues with its value aliases
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CFE_UNDERLINE = extern enum(u32) {
-    CF1UNDERLINE = 255,
-    INVERT = 254,
-    UNDERLINE = 1,
-    UNDERLINEDASH = 5,
-    UNDERLINEDASHDOT = 6,
-    UNDERLINEDASHDOTDOT = 7,
-    UNDERLINEDOTTED = 4,
-    UNDERLINEDOUBLE = 3,
-    UNDERLINEDOUBLEWAVE = 11,
-    UNDERLINEHAIRLINE = 10,
-    UNDERLINEHEAVYWAVE = 12,
-    UNDERLINELONGDASH = 13,
-    UNDERLINENONE = 0,
-    UNDERLINETHICK = 9,
-    UNDERLINETHICKDASH = 14,
-    UNDERLINETHICKDASHDOT = 15,
-    UNDERLINETHICKDASHDOTDOT = 16,
-    UNDERLINETHICKDOTTED = 17,
-    UNDERLINETHICKLONGDASH = 18,
-    UNDERLINEWAVE = 8,
-    UNDERLINEWORD = 2,
-    _,
-};
-pub const CFU_CF1UNDERLINE = CFE_UNDERLINE.CF1UNDERLINE;
-pub const CFU_INVERT = CFE_UNDERLINE.INVERT;
-pub const CFU_UNDERLINE = CFE_UNDERLINE.UNDERLINE;
-pub const CFU_UNDERLINEDASH = CFE_UNDERLINE.UNDERLINEDASH;
-pub const CFU_UNDERLINEDASHDOT = CFE_UNDERLINE.UNDERLINEDASHDOT;
-pub const CFU_UNDERLINEDASHDOTDOT = CFE_UNDERLINE.UNDERLINEDASHDOTDOT;
-pub const CFU_UNDERLINEDOTTED = CFE_UNDERLINE.UNDERLINEDOTTED;
-pub const CFU_UNDERLINEDOUBLE = CFE_UNDERLINE.UNDERLINEDOUBLE;
-pub const CFU_UNDERLINEDOUBLEWAVE = CFE_UNDERLINE.UNDERLINEDOUBLEWAVE;
-pub const CFU_UNDERLINEHAIRLINE = CFE_UNDERLINE.UNDERLINEHAIRLINE;
-pub const CFU_UNDERLINEHEAVYWAVE = CFE_UNDERLINE.UNDERLINEHEAVYWAVE;
-pub const CFU_UNDERLINELONGDASH = CFE_UNDERLINE.UNDERLINELONGDASH;
-pub const CFU_UNDERLINENONE = CFE_UNDERLINE.UNDERLINENONE;
-pub const CFU_UNDERLINETHICK = CFE_UNDERLINE.UNDERLINETHICK;
-pub const CFU_UNDERLINETHICKDASH = CFE_UNDERLINE.UNDERLINETHICKDASH;
-pub const CFU_UNDERLINETHICKDASHDOT = CFE_UNDERLINE.UNDERLINETHICKDASHDOT;
-pub const CFU_UNDERLINETHICKDASHDOTDOT = CFE_UNDERLINE.UNDERLINETHICKDASHDOTDOT;
-pub const CFU_UNDERLINETHICKDOTTED = CFE_UNDERLINE.UNDERLINETHICKDOTTED;
-pub const CFU_UNDERLINETHICKLONGDASH = CFE_UNDERLINE.UNDERLINETHICKLONGDASH;
-pub const CFU_UNDERLINEWAVE = CFE_UNDERLINE.UNDERLINEWAVE;
-pub const CFU_UNDERLINEWORD = CFE_UNDERLINE.UNDERLINEWORD;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PARAFORMAT_MASK = extern enum(u32) {
     ALIGNMENT = 8,
     NUMBERING = 32,
@@ -11130,18 +11083,6 @@ pub const TVITEMEXW_cChildren = extern enum(i32) {
 pub const I_CHILDRENCALLBACK = TVITEMEXW_cChildren.CALLBACK;
 pub const I_CHILDRENAUTO = TVITEMEXW_cChildren.AUTO;
 
-pub const PARAFORMAT_rgxTabs = extern enum(u32) {
-    None = 0,
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
-    @"4" = 4,
-};
-pub const rgxTabs1 = PARAFORMAT_rgxTabs.@"1";
-pub const rgxTabs2 = PARAFORMAT_rgxTabs.@"2";
-pub const rgxTabs3 = PARAFORMAT_rgxTabs.@"3";
-pub const rgxTabs4 = PARAFORMAT_rgxTabs.@"4";
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TVITEMA_mask = extern enum(u32) {
     CHILDREN = 64,
@@ -11298,20 +11239,6 @@ pub const HICF_MOUSE = NMTBHOTITEM_dwFlags.MOUSE;
 pub const HICF_OTHER = NMTBHOTITEM_dwFlags.OTHER;
 pub const HICF_RESELECT = NMTBHOTITEM_dwFlags.RESELECT;
 pub const HICF_TOGGLEDROPDOWN = NMTBHOTITEM_dwFlags.TOGGLEDROPDOWN;
-
-pub const PARAFORMAT2_bLineSpacingRuleFlags = extern enum(u32) {
-    None = 0,
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
-    @"4" = 4,
-    @"5" = 5,
-};
-pub const bLineSpacingRule1 = PARAFORMAT2_bLineSpacingRuleFlags.@"1";
-pub const bLineSpacingRule2 = PARAFORMAT2_bLineSpacingRuleFlags.@"2";
-pub const bLineSpacingRule3 = PARAFORMAT2_bLineSpacingRuleFlags.@"3";
-pub const bLineSpacingRule4 = PARAFORMAT2_bLineSpacingRuleFlags.@"4";
-pub const bLineSpacingRule5 = PARAFORMAT2_bLineSpacingRuleFlags.@"5";
 
 pub const LVTILEVIEWINFO_dwFlags = extern enum(u32) {
     D = 4,
@@ -11788,7 +11715,7 @@ pub const EDITWORDBREAKPROCW = fn(
 
 pub const NMHDR = extern struct {
     hwndFrom: HWND,
-    idFrom: ?*c_void,
+    idFrom: usize,
     code: u32,
 };
 
@@ -11798,7 +11725,7 @@ pub const MEASUREITEMSTRUCT = extern struct {
     itemID: u32,
     itemWidth: u32,
     itemHeight: u32,
-    itemData: ?*c_void,
+    itemData: usize,
 };
 
 pub const DRAWITEMSTRUCT = extern struct {
@@ -11810,7 +11737,7 @@ pub const DRAWITEMSTRUCT = extern struct {
     hwndItem: HWND,
     hDC: HDC,
     rcItem: RECT,
-    itemData: ?*c_void,
+    itemData: usize,
 };
 
 pub const DELETEITEMSTRUCT = extern struct {
@@ -11818,7 +11745,7 @@ pub const DELETEITEMSTRUCT = extern struct {
     CtlID: u32,
     itemID: u32,
     hwndItem: HWND,
-    itemData: ?*c_void,
+    itemData: usize,
 };
 
 pub const COMPAREITEMSTRUCT = extern struct {
@@ -11826,9 +11753,9 @@ pub const COMPAREITEMSTRUCT = extern struct {
     CtlID: u32,
     hwndItem: HWND,
     itemID1: u32,
-    itemData1: ?*c_void,
+    itemData1: usize,
     itemID2: u32,
-    itemData2: ?*c_void,
+    itemData2: usize,
     dwLocaleId: u32,
 };
 
@@ -12040,12 +11967,12 @@ pub extern "COMCTL32" fn DestroyPropertySheetPage(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn PropertySheetA(
     param0: *PROPSHEETHEADERA_V2,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn PropertySheetW(
     param0: *PROPSHEETHEADERW_V2,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn InitCommonControls(
@@ -12326,7 +12253,7 @@ pub extern "COMCTL32" fn CreateToolbarEx(
     wID: u32,
     nBitmaps: i32,
     hBMInst: HINSTANCE,
-    wBMID: ?*c_void,
+    wBMID: usize,
     lpButtons: *TBBUTTON,
     iNumButtons: i32,
     dxButton: i32,
@@ -12339,7 +12266,7 @@ pub extern "COMCTL32" fn CreateToolbarEx(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn CreateMappedBitmap(
     hInstance: HINSTANCE,
-    idBitmap: ?*c_void,
+    idBitmap: isize,
     wFlags: u32,
     lpColorMap: ?*COLORMAP,
     iNumMaps: i32,
@@ -12391,7 +12318,7 @@ pub extern "COMCTL32" fn MenuHelp(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn ShowHideMenuCtl(
     hWnd: HWND,
-    uFlags: ?*c_void,
+    uFlags: usize,
     lpInfo: *i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -12616,7 +12543,7 @@ pub extern "COMCTL32" fn DPA_SetPtr(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetPtr(
     hdpa: *_DPA,
-    i: ?*c_void,
+    i: isize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -12750,7 +12677,7 @@ pub extern "COMCTL32" fn FlatSB_SetScrollRange(
 pub extern "COMCTL32" fn FlatSB_SetScrollProp(
     param0: HWND,
     index: WSB_PROP,
-    newValue: ?*c_void,
+    newValue: isize,
     param3: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -12804,7 +12731,7 @@ pub extern "COMCTL32" fn ImageList_CoCreateInstance(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UXTHEME" fn GetThemeAnimationProperty(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iStoryboardId: i32,
     iTargetId: i32,
     eProperty: TA_PROPERTY,
@@ -12815,7 +12742,7 @@ pub extern "UXTHEME" fn GetThemeAnimationProperty(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UXTHEME" fn GetThemeAnimationTransform(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iStoryboardId: i32,
     iTargetId: i32,
     dwTransformIndex: u32,
@@ -12826,7 +12753,7 @@ pub extern "UXTHEME" fn GetThemeAnimationTransform(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UXTHEME" fn GetThemeTimingFunction(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iTimingFunctionId: i32,
     pTimingFunction: ?[*]TA_TIMINGFUNCTION,
     cbSize: u32,
@@ -12837,23 +12764,23 @@ pub extern "UXTHEME" fn GetThemeTimingFunction(
 pub extern "UXTHEME" fn OpenThemeData(
     hwnd: HWND,
     pszClassList: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn OpenThemeDataEx(
     hwnd: HWND,
     pszClassList: [*:0]const u16,
     dwFlags: OpenThemeDataEx_dwFlags,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn CloseThemeData(
-    hTheme: ?*c_void,
+    hTheme: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn DrawThemeBackground(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12863,7 +12790,7 @@ pub extern "UXTHEME" fn DrawThemeBackground(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn DrawThemeBackgroundEx(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12873,7 +12800,7 @@ pub extern "UXTHEME" fn DrawThemeBackgroundEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn DrawThemeText(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12886,7 +12813,7 @@ pub extern "UxTheme" fn DrawThemeText(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeBackgroundContentRect(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12896,7 +12823,7 @@ pub extern "UXTHEME" fn GetThemeBackgroundContentRect(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeBackgroundExtent(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12906,7 +12833,7 @@ pub extern "UXTHEME" fn GetThemeBackgroundExtent(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeBackgroundRegion(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12916,7 +12843,7 @@ pub extern "UxTheme" fn GetThemeBackgroundRegion(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemePartSize(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12927,7 +12854,7 @@ pub extern "UXTHEME" fn GetThemePartSize(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeTextExtent(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12940,7 +12867,7 @@ pub extern "UxTheme" fn GetThemeTextExtent(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeTextMetrics(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12949,7 +12876,7 @@ pub extern "UxTheme" fn GetThemeTextMetrics(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn HitTestThemeBackground(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12962,7 +12889,7 @@ pub extern "UxTheme" fn HitTestThemeBackground(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn DrawThemeEdge(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12974,7 +12901,7 @@ pub extern "UxTheme" fn DrawThemeEdge(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn DrawThemeIcon(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -12985,21 +12912,21 @@ pub extern "UxTheme" fn DrawThemeIcon(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn IsThemePartDefined(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn IsThemeBackgroundPartiallyTransparent(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeColor(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13008,7 +12935,7 @@ pub extern "UXTHEME" fn GetThemeColor(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeMetric(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -13018,7 +12945,7 @@ pub extern "UXTHEME" fn GetThemeMetric(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeString(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13028,7 +12955,7 @@ pub extern "UxTheme" fn GetThemeString(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeBool(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13037,7 +12964,7 @@ pub extern "UxTheme" fn GetThemeBool(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeInt(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13046,7 +12973,7 @@ pub extern "UXTHEME" fn GetThemeInt(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeEnumValue(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13055,7 +12982,7 @@ pub extern "UXTHEME" fn GetThemeEnumValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemePosition(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13064,7 +12991,7 @@ pub extern "UXTHEME" fn GetThemePosition(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeFont(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -13074,7 +13001,7 @@ pub extern "UXTHEME" fn GetThemeFont(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeRect(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13083,7 +13010,7 @@ pub extern "UXTHEME" fn GetThemeRect(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeMargins(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -13094,7 +13021,7 @@ pub extern "UXTHEME" fn GetThemeMargins(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeIntList(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13103,7 +13030,7 @@ pub extern "UxTheme" fn GetThemeIntList(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemePropertyOrigin(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13119,7 +13046,7 @@ pub extern "UXTHEME" fn SetWindowTheme(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeFilename(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13129,38 +13056,38 @@ pub extern "UxTheme" fn GetThemeFilename(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysColor(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iColorId: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysColorBrush(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iColorId: i32,
 ) callconv(@import("std").os.windows.WINAPI) HBRUSH;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysBool(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iBoolId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysSize(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iSizeId: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysFont(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iFontId: i32,
     plf: *LOGFONTW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysString(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iStringId: i32,
     pszStringBuff: [*:0]u16,
     cchMaxStringChars: i32,
@@ -13168,7 +13095,7 @@ pub extern "UxTheme" fn GetThemeSysString(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeSysInt(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iIntId: i32,
     piValue: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -13184,7 +13111,7 @@ pub extern "UXTHEME" fn IsAppThemed(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetWindowTheme(
     hwnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn EnableThemeDialogTexture(
@@ -13254,7 +13181,7 @@ pub extern "UXTHEME" fn SetWindowThemeAttribute(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn DrawThemeTextEx(
-    hTheme: ?*c_void,
+    hTheme: isize,
     hdc: HDC,
     iPartId: i32,
     iStateId: i32,
@@ -13267,7 +13194,7 @@ pub extern "UXTHEME" fn DrawThemeTextEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeBitmap(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13277,7 +13204,7 @@ pub extern "UXTHEME" fn GetThemeBitmap(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetThemeStream(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
@@ -13301,46 +13228,46 @@ pub extern "UXTHEME" fn BeginBufferedPaint(
     dwFormat: BP_BUFFERFORMAT,
     pPaintParams: ?*BP_PAINTPARAMS,
     phdc: *HDC,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn EndBufferedPaint(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
     fUpdateTarget: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetBufferedPaintTargetRect(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
     prc: *RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetBufferedPaintTargetDC(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetBufferedPaintDC(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn GetBufferedPaintBits(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
     ppbBuffer: **RGBQUAD,
     pcxRow: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UXTHEME" fn BufferedPaintClear(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
     prc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn BufferedPaintSetAlpha(
-    hBufferedPaint: ?*c_void,
+    hBufferedPaint: isize,
     prc: ?*const RECT,
     alpha: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -13360,11 +13287,11 @@ pub extern "UxTheme" fn BeginBufferedAnimation(
     pAnimationParams: *BP_ANIMATIONPARAMS,
     phdcFrom: *HDC,
     phdcTo: *HDC,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn EndBufferedAnimation(
-    hbpAnimation: ?*c_void,
+    hbpAnimation: isize,
     fUpdateTarget: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -13380,7 +13307,7 @@ pub extern "UXTHEME" fn IsCompositionActive(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "UxTheme" fn GetThemeTransitionDuration(
-    hTheme: ?*c_void,
+    hTheme: isize,
     iPartId: i32,
     iStateIdFrom: i32,
     iStateIdTo: i32,
@@ -14042,8 +13969,8 @@ test {
     _ = EDITWORDBREAKPROCW;
 
     const constant_export_count = 1232;
-    const type_export_count = 430;
-    const enum_value_export_count = 1278;
+    const type_export_count = 427;
+    const enum_value_export_count = 1248;
     const com_iface_id_export_count = 21;
     const com_class_id_export_count = 1;
     const func_export_count = 229;

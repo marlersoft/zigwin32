@@ -13,15 +13,6 @@ pub const CLSID_MILBitmapEffectEmboss = Guid.initString("cd299846-824f-47ec-a007
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-pub const MilMatrix3x2D = extern struct {
-    S_11: f64,
-    S_12: f64,
-    S_21: f64,
-    S_22: f64,
-    DX: f64,
-    DY: f64,
-};
-
 pub const MilRectD = extern struct {
     left: f64,
     top: f64,
@@ -900,6 +891,15 @@ pub const IMILBitmapEffectEvents = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const MilMatrix3x2D = extern struct {
+    S_11: f64,
+    S_12: f64,
+    S_21: f64,
+    S_22: f64,
+    DX: f64,
+    DY: f64,
 };
 
 

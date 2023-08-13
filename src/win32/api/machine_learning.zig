@@ -152,7 +152,7 @@ pub const WINML_MODEL_DESC = extern struct {
     Name: PWSTR,
     Domain: PWSTR,
     Description: PWSTR,
-    Version: ?*c_void,
+    Version: usize,
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
@@ -376,7 +376,7 @@ pub const IMLOperatorAttributes = extern struct {
             name: *const i8,
             type: MLOperatorAttributeType,
             elementCount: u32,
-            elementByteSize: ?*c_void,
+            elementByteSize: usize,
             value: *c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringAttributeElementLength: fn(
@@ -401,7 +401,7 @@ pub const IMLOperatorAttributes = extern struct {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttributeElementCount(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: *const i8, type: MLOperatorAttributeType, elementCount: u32, elementByteSize: ?*c_void, value: *c_void) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: *const i8, type: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: *c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttribute(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount, elementByteSize, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -647,7 +647,7 @@ pub const IMLOperatorKernelContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateTemporaryData: fn(
             self: *const IMLOperatorKernelContext,
-            size: ?*c_void,
+            size: usize,
             data: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExecutionInterface: fn(
@@ -671,7 +671,7 @@ pub const IMLOperatorKernelContext = extern struct {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, dimensionCount, dimensionSizes, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_AllocateTemporaryData(self: *const T, size: ?*c_void, data: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorKernelContext_AllocateTemporaryData(self: *const T, size: usize, data: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).AllocateTemporaryData(@ptrCast(*const IMLOperatorKernelContext, self), size, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

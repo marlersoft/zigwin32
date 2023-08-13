@@ -11,11 +11,11 @@ pub const COMPRESS_RAW = @as(u32, 536870912);
 // Section: Types (6)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
-pub const COMPRESSOR_HANDLE = ?*c_void;
+pub const COMPRESSOR_HANDLE = isize;
 
 pub const PFN_COMPRESS_ALLOCATE = fn(
     UserContext: *c_void,
-    Size: ?*c_void,
+    Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub const PFN_COMPRESS_FREE = fn(
@@ -57,7 +57,7 @@ pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 pub extern "Cabinet" fn CreateCompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
-    CompressorHandle: *?*c_void,
+    CompressorHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -65,7 +65,7 @@ pub extern "Cabinet" fn SetCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     CompressInformation: [*]const u8,
-    CompressInformationSize: ?*c_void,
+    CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -73,17 +73,17 @@ pub extern "Cabinet" fn QueryCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     CompressInformation: [*]u8,
-    CompressInformationSize: ?*c_void,
+    CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn Compress(
     CompressorHandle: COMPRESSOR_HANDLE,
     UncompressedData: ?[*]const u8,
-    UncompressedDataSize: ?*c_void,
+    UncompressedDataSize: usize,
     CompressedBuffer: ?[*]u8,
-    CompressedBufferSize: ?*c_void,
-    CompressedDataSize: *?*c_void,
+    CompressedBufferSize: usize,
+    CompressedDataSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -100,43 +100,43 @@ pub extern "Cabinet" fn CloseCompressor(
 pub extern "Cabinet" fn CreateDecompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
-    DecompressorHandle: *?*c_void,
+    DecompressorHandle: *isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn SetDecompressorInformation(
-    DecompressorHandle: ?*c_void,
+    DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     CompressInformation: [*]const u8,
-    CompressInformationSize: ?*c_void,
+    CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn QueryDecompressorInformation(
-    DecompressorHandle: ?*c_void,
+    DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     CompressInformation: [*]u8,
-    CompressInformationSize: ?*c_void,
+    CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn Decompress(
-    DecompressorHandle: ?*c_void,
+    DecompressorHandle: isize,
     CompressedData: ?[*]const u8,
-    CompressedDataSize: ?*c_void,
+    CompressedDataSize: usize,
     UncompressedBuffer: ?[*]u8,
-    UncompressedBufferSize: ?*c_void,
-    UncompressedDataSize: ?*?*c_void,
+    UncompressedBufferSize: usize,
+    UncompressedDataSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn ResetDecompressor(
-    DecompressorHandle: ?*c_void,
+    DecompressorHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn CloseDecompressor(
-    DecompressorHandle: ?*c_void,
+    DecompressorHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

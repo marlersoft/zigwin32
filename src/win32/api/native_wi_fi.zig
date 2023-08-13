@@ -2050,7 +2050,7 @@ pub const NDIS_STATISTICS_VALUE_EX = extern struct {
 pub const NDIS_VAR_DATA_DESC = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Offset: ?*c_void,
+    Offset: usize,
 };
 
 pub const NDIS_OBJECT_HEADER = extern struct {

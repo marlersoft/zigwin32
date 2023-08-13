@@ -2646,7 +2646,7 @@ pub const IWICImagingFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDecoderFromFileHandle: fn(
             self: *const IWICImagingFactory,
-            hFile: ?*c_void,
+            hFile: usize,
             pguidVendor: *const Guid,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: **IWICBitmapDecoder,
@@ -2786,7 +2786,7 @@ pub const IWICImagingFactory = extern struct {
             return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromStream(@ptrCast(*const IWICImagingFactory, self), pIStream, pguidVendor, metadataOptions, ppIDecoder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateDecoderFromFileHandle(self: *const T, hFile: ?*c_void, pguidVendor: *const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: **IWICBitmapDecoder) callconv(.Inline) HRESULT {
+        pub fn IWICImagingFactory_CreateDecoderFromFileHandle(self: *const T, hFile: usize, pguidVendor: *const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: **IWICBitmapDecoder) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromFileHandle(@ptrCast(*const IWICImagingFactory, self), hFile, pguidVendor, metadataOptions, ppIDecoder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
