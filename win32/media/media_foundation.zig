@@ -30069,32 +30069,32 @@ pub extern "dxva2" fn OPMGetVideoOutputsFromIDirect3DDevice9Object(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFSerializeAttributesToStream(
+pub extern "mfplat" fn MFSerializeAttributesToStream(
     pAttr: ?*IMFAttributes,
     dwOptions: u32,
     pStm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFDeserializeAttributesFromStream(
+pub extern "mfplat" fn MFDeserializeAttributesFromStream(
     pAttr: ?*IMFAttributes,
     dwOptions: u32,
     pStm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFCreateTransformActivate(
+pub extern "mfplat" fn MFCreateTransformActivate(
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateMediaSession(
+pub extern "mf" fn MFCreateMediaSession(
     pConfiguration: ?*IMFAttributes,
     ppMediaSession: ?*?*IMFMediaSession,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreatePMPMediaSession(
+pub extern "mf" fn MFCreatePMPMediaSession(
     dwCreationFlags: u32,
     pConfiguration: ?*IMFAttributes,
     ppMediaSession: ?*?*IMFMediaSession,
@@ -30102,38 +30102,38 @@ pub extern "MF" fn MFCreatePMPMediaSession(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateSourceResolver(
+pub extern "mfplat" fn MFCreateSourceResolver(
     ppISourceResolver: ?*?*IMFSourceResolver,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn CreatePropertyStore(
+pub extern "mfplat" fn CreatePropertyStore(
     ppStore: ?*?*IPropertyStore,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetSupportedSchemes(
+pub extern "mfplat" fn MFGetSupportedSchemes(
     pPropVarSchemeArray: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetSupportedMimeTypes(
+pub extern "mfplat" fn MFGetSupportedMimeTypes(
     pPropVarMimeTypeArray: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateTopology(
+pub extern "mf" fn MFCreateTopology(
     ppTopo: ?*?*IMFTopology,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateTopologyNode(
+pub extern "mf" fn MFCreateTopologyNode(
     NodeType: MF_TOPOLOGY_TYPE,
     ppNode: ?*?*IMFTopologyNode,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFGetTopoNodeCurrentType(
+pub extern "mf" fn MFGetTopoNodeCurrentType(
     pNode: ?*IMFTopologyNode,
     dwStreamIndex: u32,
     fOutput: BOOL,
@@ -30141,7 +30141,7 @@ pub extern "MF" fn MFGetTopoNodeCurrentType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFGetService(
+pub extern "mf" fn MFGetService(
     punkObject: ?*IUnknown,
     guidService: ?*const Guid,
     riid: ?*const Guid,
@@ -30149,33 +30149,33 @@ pub extern "MF" fn MFGetService(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetSystemTime(
+pub extern "mfplat" fn MFGetSystemTime(
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreatePresentationClock(
+pub extern "mf" fn MFCreatePresentationClock(
     ppPresentationClock: ?*?*IMFPresentationClock,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateSystemTimeSource(
+pub extern "mfplat" fn MFCreateSystemTimeSource(
     ppSystemTimeSource: ?*?*IMFPresentationTimeSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreatePresentationDescriptor(
+pub extern "mfplat" fn MFCreatePresentationDescriptor(
     cStreamDescriptors: u32,
     apStreamDescriptors: ?[*]?*IMFStreamDescriptor,
     ppPresentationDescriptor: ?*?*IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFRequireProtectedEnvironment(
+pub extern "mf" fn MFRequireProtectedEnvironment(
     pPresentationDescriptor: ?*IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFSerializePresentationDescriptor(
+pub extern "mfplat" fn MFSerializePresentationDescriptor(
     pPD: ?*IMFPresentationDescriptor,
     pcbData: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -30183,14 +30183,14 @@ pub extern "MFPlat" fn MFSerializePresentationDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFDeserializePresentationDescriptor(
+pub extern "mfplat" fn MFDeserializePresentationDescriptor(
     cbData: u32,
     pbData: [*:0]u8,
     ppPD: ?*?*IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateStreamDescriptor(
+pub extern "mfplat" fn MFCreateStreamDescriptor(
     dwStreamIdentifier: u32,
     cMediaTypes: u32,
     apMediaTypes: [*]?*IMFMediaType,
@@ -30198,34 +30198,34 @@ pub extern "MFPlat" fn MFCreateStreamDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateSimpleTypeHandler(
+pub extern "mf" fn MFCreateSimpleTypeHandler(
     ppHandler: ?*?*IMFMediaTypeHandler,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFShutdownObject(
+pub extern "mf" fn MFShutdownObject(
     pUnk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateAudioRenderer(
+pub extern "mf" fn MFCreateAudioRenderer(
     pAudioAttributes: ?*IMFAttributes,
     ppSink: ?*?*IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateAudioRendererActivate(
+pub extern "mf" fn MFCreateAudioRendererActivate(
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateVideoRendererActivate(
+pub extern "mf" fn MFCreateVideoRendererActivate(
     hwndVideo: ?HWND,
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateMPEG4MediaSink(
+pub extern "mf" fn MFCreateMPEG4MediaSink(
     pIByteStream: ?*IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
@@ -30233,7 +30233,7 @@ pub extern "MF" fn MFCreateMPEG4MediaSink(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreate3GPMediaSink(
+pub extern "mf" fn MFCreate3GPMediaSink(
     pIByteStream: ?*IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
@@ -30241,27 +30241,27 @@ pub extern "MF" fn MFCreate3GPMediaSink(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateMP3MediaSink(
+pub extern "mf" fn MFCreateMP3MediaSink(
     pTargetByteStream: ?*IMFByteStream,
     ppMediaSink: ?*?*IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateAC3MediaSink(
-    pTargetByteStream: ?*IMFByteStream,
-    pAudioMediaType: ?*IMFMediaType,
-    ppMediaSink: ?*?*IMFMediaSink,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateADTSMediaSink(
+pub extern "mf" fn MFCreateAC3MediaSink(
     pTargetByteStream: ?*IMFByteStream,
     pAudioMediaType: ?*IMFMediaType,
     ppMediaSink: ?*?*IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateMuxSink(
+pub extern "mf" fn MFCreateADTSMediaSink(
+    pTargetByteStream: ?*IMFByteStream,
+    pAudioMediaType: ?*IMFMediaType,
+    ppMediaSink: ?*?*IMFMediaSink,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "mf" fn MFCreateMuxSink(
     guidOutputSubType: Guid,
     pOutputAttributes: ?*IMFAttributes,
     pOutputByteStream: ?*IMFByteStream,
@@ -30269,7 +30269,7 @@ pub extern "MF" fn MFCreateMuxSink(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateFMPEG4MediaSink(
+pub extern "mf" fn MFCreateFMPEG4MediaSink(
     pIByteStream: ?*IMFByteStream,
     pVideoMediaType: ?*IMFMediaType,
     pAudioMediaType: ?*IMFMediaType,
@@ -30292,87 +30292,87 @@ pub extern "mfsrcsnk" fn MFCreateWAVEMediaSink(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateTopoLoader(
+pub extern "mf" fn MFCreateTopoLoader(
     ppObj: ?*?*IMFTopoLoader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateSampleGrabberSinkActivate(
+pub extern "mf" fn MFCreateSampleGrabberSinkActivate(
     pIMFMediaType: ?*IMFMediaType,
     pIMFSampleGrabberSinkCallback: ?*IMFSampleGrabberSinkCallback,
     ppIActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateStandardQualityManager(
+pub extern "mf" fn MFCreateStandardQualityManager(
     ppQualityManager: ?*?*IMFQualityManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateSequencerSource(
+pub extern "mf" fn MFCreateSequencerSource(
     pReserved: ?*IUnknown,
     ppSequencerSource: ?*?*IMFSequencerSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateSequencerSegmentOffset(
+pub extern "mf" fn MFCreateSequencerSegmentOffset(
     dwId: u32,
     hnsOffset: i64,
     pvarSegmentOffset: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateAggregateSource(
+pub extern "mf" fn MFCreateAggregateSource(
     pSourceCollection: ?*IMFCollection,
     ppAggSource: ?*?*IMFMediaSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateCredentialCache(
+pub extern "mf" fn MFCreateCredentialCache(
     ppCache: ?*?*IMFNetCredentialCache,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateProxyLocator(
+pub extern "mf" fn MFCreateProxyLocator(
     pszProtocol: ?[*:0]const u16,
     pProxyConfig: ?*IPropertyStore,
     ppProxyLocator: ?*?*IMFNetProxyLocator,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateNetSchemePlugin(
+pub extern "mf" fn MFCreateNetSchemePlugin(
     riid: ?*const Guid,
     ppvHandler: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreatePMPServer(
+pub extern "mf" fn MFCreatePMPServer(
     dwCreationFlags: u32,
     ppPMPServer: ?*?*IMFPMPServer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateRemoteDesktopPlugin(
+pub extern "mf" fn MFCreateRemoteDesktopPlugin(
     ppPlugin: ?*?*IMFRemoteDesktopPlugin,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn CreateNamedPropertyStore(
+pub extern "mf" fn CreateNamedPropertyStore(
     ppStore: ?*?*INamedPropertyStore,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateSampleCopierMFT(
+pub extern "mf" fn MFCreateSampleCopierMFT(
     ppCopierMFT: ?*?*IMFTransform,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateTranscodeProfile(
+pub extern "mf" fn MFCreateTranscodeProfile(
     ppTranscodeProfile: ?*?*IMFTranscodeProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateTranscodeTopology(
+pub extern "mf" fn MFCreateTranscodeTopology(
     pSrc: ?*IMFMediaSource,
     pwszOutputFilePath: ?[*:0]const u16,
     pProfile: ?*IMFTranscodeProfile,
@@ -30380,7 +30380,7 @@ pub extern "MF" fn MFCreateTranscodeTopology(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateTranscodeTopologyFromByteStream(
+pub extern "mf" fn MFCreateTranscodeTopologyFromByteStream(
     pSrc: ?*IMFMediaSource,
     pOutputStream: ?*IMFByteStream,
     pProfile: ?*IMFTranscodeProfile,
@@ -30388,7 +30388,7 @@ pub extern "MF" fn MFCreateTranscodeTopologyFromByteStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFTranscodeGetAudioOutputAvailableTypes(
+pub extern "mf" fn MFTranscodeGetAudioOutputAvailableTypes(
     guidSubType: ?*const Guid,
     dwMFTFlags: u32,
     pCodecConfig: ?*IMFAttributes,
@@ -30396,90 +30396,90 @@ pub extern "MF" fn MFTranscodeGetAudioOutputAvailableTypes(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateTranscodeSinkActivate(
+pub extern "mf" fn MFCreateTranscodeSinkActivate(
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateTrackedSample(
+pub extern "mfplat" fn MFCreateTrackedSample(
     ppMFSample: ?*?*IMFTrackedSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFCreateMFByteStreamOnStream(
+pub extern "mfplat" fn MFCreateMFByteStreamOnStream(
     pStream: ?*IStream,
     ppByteStream: ?*?*IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateStreamOnMFByteStream(
+pub extern "mfplat" fn MFCreateStreamOnMFByteStream(
     pByteStream: ?*IMFByteStream,
     ppStream: ?*?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateMFByteStreamOnStreamEx(
+pub extern "mfplat" fn MFCreateMFByteStreamOnStreamEx(
     punkStream: ?*IUnknown,
     ppByteStream: ?*?*IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateStreamOnMFByteStreamEx(
+pub extern "mfplat" fn MFCreateStreamOnMFByteStreamEx(
     pByteStream: ?*IMFByteStream,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateMediaTypeFromProperties(
+pub extern "mfplat" fn MFCreateMediaTypeFromProperties(
     punkStream: ?*IUnknown,
     ppMediaType: ?*?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreatePropertiesFromMediaType(
+pub extern "mfplat" fn MFCreatePropertiesFromMediaType(
     pMediaType: ?*IMFMediaType,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFEnumDeviceSources(
+pub extern "mf" fn MFEnumDeviceSources(
     pAttributes: ?*IMFAttributes,
     pppSourceActivate: ?*?*?*IMFActivate,
     pcSourceActivate: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateDeviceSource(
+pub extern "mf" fn MFCreateDeviceSource(
     pAttributes: ?*IMFAttributes,
     ppSource: ?*?*IMFMediaSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateDeviceSourceActivate(
+pub extern "mf" fn MFCreateDeviceSourceActivate(
     pAttributes: ?*IMFAttributes,
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFCreateProtectedEnvironmentAccess(
+pub extern "mf" fn MFCreateProtectedEnvironmentAccess(
     ppAccess: ?*?*IMFProtectedEnvironmentAccess,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFLoadSignedLibrary(
+pub extern "mf" fn MFLoadSignedLibrary(
     pszName: ?[*:0]const u16,
     ppLib: ?*?*IMFSignedLibrary,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFGetSystemId(
+pub extern "mf" fn MFGetSystemId(
     ppId: ?*?*IMFSystemId,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MF" fn MFGetLocalId(
+pub extern "mf" fn MFGetLocalId(
     // TODO: what to do with BytesParamIndex 1?
     verifier: ?*const u8,
     size: u32,
@@ -30487,19 +30487,19 @@ pub extern "MF" fn MFGetLocalId(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "MFPlat" fn MFCreateContentProtectionDevice(
+pub extern "mfplat" fn MFCreateContentProtectionDevice(
     ProtectionSystemId: ?*const Guid,
     ContentProtectionDevice: ?*?*IMFContentProtectionDevice,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "MFPlat" fn MFIsContentProtectionDeviceSupported(
+pub extern "mfplat" fn MFIsContentProtectionDeviceSupported(
     ProtectionSystemId: ?*const Guid,
     isSupported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "MFPlat" fn MFCreateContentDecryptorContext(
+pub extern "mfplat" fn MFCreateContentDecryptorContext(
     guidMediaProtectionSystemId: ?*const Guid,
     pD3DManager: ?*IMFDXGIDeviceManager,
     pContentProtectionDevice: ?*IMFContentProtectionDevice,
@@ -30507,13 +30507,13 @@ pub extern "MFPlat" fn MFCreateContentDecryptorContext(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "MFSENSORGROUP" fn MFCreateSensorGroup(
+pub extern "mfsensorgroup" fn MFCreateSensorGroup(
     SensorGroupSymbolicLink: ?[*:0]const u16,
     ppSensorGroup: ?*?*IMFSensorGroup,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "MFSENSORGROUP" fn MFCreateSensorStream(
+pub extern "mfsensorgroup" fn MFCreateSensorStream(
     StreamId: u32,
     pAttributes: ?*IMFAttributes,
     pMediaTypeCollection: ?*IMFCollection,
@@ -30521,7 +30521,7 @@ pub extern "MFSENSORGROUP" fn MFCreateSensorStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-pub extern "MFSENSORGROUP" fn MFCreateSensorProfile(
+pub extern "mfsensorgroup" fn MFCreateSensorProfile(
     ProfileType: ?*const Guid,
     ProfileIndex: u32,
     Constraints: ?[*:0]const u16,
@@ -30529,160 +30529,160 @@ pub extern "MFSENSORGROUP" fn MFCreateSensorProfile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "MFSENSORGROUP" fn MFCreateSensorProfileCollection(
+pub extern "mfsensorgroup" fn MFCreateSensorProfileCollection(
     ppSensorProfile: ?*?*IMFSensorProfileCollection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFSENSORGROUP" fn MFCreateSensorActivityMonitor(
+pub extern "mfsensorgroup" fn MFCreateSensorActivityMonitor(
     pCallback: ?*IMFSensorActivitiesReportCallback,
     ppActivityMonitor: ?*?*IMFSensorActivityMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFCORE" fn MFCreateExtendedCameraIntrinsics(
+pub extern "mfcore" fn MFCreateExtendedCameraIntrinsics(
     ppExtendedCameraIntrinsics: ?*?*IMFExtendedCameraIntrinsics,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFCORE" fn MFCreateExtendedCameraIntrinsicModel(
+pub extern "mfcore" fn MFCreateExtendedCameraIntrinsicModel(
     distortionModelType: MFCameraIntrinsic_DistortionModelType,
     ppExtendedCameraIntrinsicModel: ?*?*IMFExtendedCameraIntrinsicModel,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "MFSENSORGROUP" fn MFCreateRelativePanelWatcher(
+pub extern "mfsensorgroup" fn MFCreateRelativePanelWatcher(
     videoDeviceId: ?[*:0]const u16,
     displayMonitorDeviceId: ?[*:0]const u16,
     ppRelativePanelWatcher: ?*?*IMFRelativePanelWatcher,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFSENSORGROUP" fn MFCreateCameraOcclusionStateMonitor(
+pub extern "mfsensorgroup" fn MFCreateCameraOcclusionStateMonitor(
     symbolicLink: ?[*:0]const u16,
     callback: ?*IMFCameraOcclusionStateReportCallback,
     occlusionStateMonitor: ?*?*IMFCameraOcclusionStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFContentInfo(
+pub extern "mf" fn MFCreateASFContentInfo(
     ppIContentInfo: ?*?*IMFASFContentInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFIndexer(
+pub extern "mf" fn MFCreateASFIndexer(
     ppIIndexer: ?*?*IMFASFIndexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFIndexerByteStream(
+pub extern "mf" fn MFCreateASFIndexerByteStream(
     pIContentByteStream: ?*IMFByteStream,
     cbIndexStartOffset: u64,
     pIIndexByteStream: ?*?*IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFSplitter(
+pub extern "mf" fn MFCreateASFSplitter(
     ppISplitter: ?*?*IMFASFSplitter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFProfile(
+pub extern "mf" fn MFCreateASFProfile(
     ppIProfile: ?*?*IMFASFProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFProfileFromPresentationDescriptor(
+pub extern "mf" fn MFCreateASFProfileFromPresentationDescriptor(
     pIPD: ?*IMFPresentationDescriptor,
     ppIProfile: ?*?*IMFASFProfile,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreatePresentationDescriptorFromASFProfile(
+pub extern "mf" fn MFCreatePresentationDescriptorFromASFProfile(
     pIProfile: ?*IMFASFProfile,
     ppIPD: ?*?*IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFMultiplexer(
+pub extern "mf" fn MFCreateASFMultiplexer(
     ppIMultiplexer: ?*?*IMFASFMultiplexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFStreamSelector(
+pub extern "mf" fn MFCreateASFStreamSelector(
     pIASFProfile: ?*IMFASFProfile,
     ppSelector: ?*?*IMFASFStreamSelector,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFMediaSink(
+pub extern "mf" fn MFCreateASFMediaSink(
     pIByteStream: ?*IMFByteStream,
     ppIMediaSink: ?*?*IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateASFMediaSinkActivate(
+pub extern "mf" fn MFCreateASFMediaSinkActivate(
     pwszFileName: ?[*:0]const u16,
     pContentInfo: ?*IMFASFContentInfo,
     ppIActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateWMVEncoderActivate(
+pub extern "mf" fn MFCreateWMVEncoderActivate(
     pMediaType: ?*IMFMediaType,
     pEncodingConfigurationProperties: ?*IPropertyStore,
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MF" fn MFCreateWMAEncoderActivate(
+pub extern "mf" fn MFCreateWMAEncoderActivate(
     pMediaType: ?*IMFMediaType,
     pEncodingConfigurationProperties: ?*IPropertyStore,
     ppActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateASFStreamingMediaSink(
+pub extern "mf" fn MFCreateASFStreamingMediaSink(
     pIByteStream: ?*IMFByteStream,
     ppIMediaSink: ?*?*IMFMediaSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MF" fn MFCreateASFStreamingMediaSinkActivate(
+pub extern "mf" fn MFCreateASFStreamingMediaSinkActivate(
     pByteStreamActivate: ?*IMFActivate,
     pContentInfo: ?*IMFASFContentInfo,
     ppIActivate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFPlat" fn MFCreateD3D12SynchronizationObject(
+pub extern "mfplat" fn MFCreateD3D12SynchronizationObject(
     pDevice: ?*ID3D12Device,
     riid: ?*const Guid,
     ppvSyncObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFStartup(
+pub extern "mfplat" fn MFStartup(
     Version: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFShutdown(
+pub extern "mfplat" fn MFShutdown(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFLockPlatform(
+pub extern "mfplat" fn MFLockPlatform(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFUnlockPlatform(
+pub extern "mfplat" fn MFUnlockPlatform(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFPutWorkItem(
+pub extern "mfplat" fn MFPutWorkItem(
     dwQueue: u32,
     pCallback: ?*IMFAsyncCallback,
     pState: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFPutWorkItem2(
+pub extern "mfplat" fn MFPutWorkItem2(
     dwQueue: u32,
     Priority: i32,
     pCallback: ?*IMFAsyncCallback,
@@ -30690,20 +30690,20 @@ pub extern "MFPlat" fn MFPutWorkItem2(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFPutWorkItemEx(
+pub extern "mfplat" fn MFPutWorkItemEx(
     dwQueue: u32,
     pResult: ?*IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFPutWorkItemEx2(
+pub extern "mfplat" fn MFPutWorkItemEx2(
     dwQueue: u32,
     Priority: i32,
     pResult: ?*IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFPutWaitingWorkItem(
+pub extern "mfplat" fn MFPutWaitingWorkItem(
     hEvent: ?HANDLE,
     Priority: i32,
     pResult: ?*IMFAsyncResult,
@@ -30711,20 +30711,20 @@ pub extern "MFPlat" fn MFPutWaitingWorkItem(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFAllocateSerialWorkQueue(
+pub extern "mfplat" fn MFAllocateSerialWorkQueue(
     dwWorkQueue: u32,
     pdwWorkQueue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFScheduleWorkItemEx(
+pub extern "mfplat" fn MFScheduleWorkItemEx(
     pResult: ?*IMFAsyncResult,
     Timeout: i64,
     pKey: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFScheduleWorkItem(
+pub extern "mfplat" fn MFScheduleWorkItem(
     pCallback: ?*IMFAsyncCallback,
     pState: ?*IUnknown,
     Timeout: i64,
@@ -30732,50 +30732,50 @@ pub extern "MFPlat" fn MFScheduleWorkItem(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCancelWorkItem(
+pub extern "mfplat" fn MFCancelWorkItem(
     Key: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetTimerPeriodicity(
+pub extern "mfplat" fn MFGetTimerPeriodicity(
     Periodicity: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFAddPeriodicCallback(
+pub extern "mfplat" fn MFAddPeriodicCallback(
     Callback: ?MFPERIODICCALLBACK,
     pContext: ?*IUnknown,
     pdwKey: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFRemovePeriodicCallback(
+pub extern "mfplat" fn MFRemovePeriodicCallback(
     dwKey: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFAllocateWorkQueueEx(
+pub extern "mfplat" fn MFAllocateWorkQueueEx(
     WorkQueueType: MFASYNC_WORKQUEUE_TYPE,
     pdwWorkQueue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFAllocateWorkQueue(
+pub extern "mfplat" fn MFAllocateWorkQueue(
     pdwWorkQueue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFLockWorkQueue(
+pub extern "mfplat" fn MFLockWorkQueue(
     dwWorkQueue: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFUnlockWorkQueue(
+pub extern "mfplat" fn MFUnlockWorkQueue(
     dwWorkQueue: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSS(
+pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSS(
     dwWorkQueueId: u32,
     wszClass: ?[*:0]const u16,
     dwTaskId: u32,
@@ -30784,7 +30784,7 @@ pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSS(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
+pub extern "mfplat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
     dwWorkQueueId: u32,
     wszClass: ?[*:0]const u16,
     dwTaskId: u32,
@@ -30794,49 +30794,49 @@ pub extern "MFPlat" fn MFBeginRegisterWorkQueueWithMMCSSEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFEndRegisterWorkQueueWithMMCSS(
+pub extern "mfplat" fn MFEndRegisterWorkQueueWithMMCSS(
     pResult: ?*IMFAsyncResult,
     pdwTaskId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFBeginUnregisterWorkQueueWithMMCSS(
+pub extern "mfplat" fn MFBeginUnregisterWorkQueueWithMMCSS(
     dwWorkQueueId: u32,
     pDoneCallback: ?*IMFAsyncCallback,
     pDoneState: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFEndUnregisterWorkQueueWithMMCSS(
+pub extern "mfplat" fn MFEndUnregisterWorkQueueWithMMCSS(
     pResult: ?*IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetWorkQueueMMCSSClass(
+pub extern "mfplat" fn MFGetWorkQueueMMCSSClass(
     dwWorkQueueId: u32,
     pwszClass: ?[*:0]u16,
     pcchClass: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetWorkQueueMMCSSTaskId(
+pub extern "mfplat" fn MFGetWorkQueueMMCSSTaskId(
     dwWorkQueueId: u32,
     pdwTaskId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFRegisterPlatformWithMMCSS(
+pub extern "mfplat" fn MFRegisterPlatformWithMMCSS(
     wszClass: ?[*:0]const u16,
     pdwTaskId: ?*u32,
     lPriority: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFUnregisterPlatformFromMMCSS(
+pub extern "mfplat" fn MFUnregisterPlatformFromMMCSS(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFLockSharedWorkQueue(
+pub extern "mfplat" fn MFLockSharedWorkQueue(
     wszClass: ?[*:0]const u16,
     BasePriority: i32,
     pdwTaskId: ?*u32,
@@ -30844,13 +30844,13 @@ pub extern "MFPlat" fn MFLockSharedWorkQueue(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFGetWorkQueueMMCSSPriority(
+pub extern "mfplat" fn MFGetWorkQueueMMCSSPriority(
     dwWorkQueueId: u32,
     lPriority: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateAsyncResult(
+pub extern "mfplat" fn MFCreateAsyncResult(
     punkObject: ?*IUnknown,
     pCallback: ?*IMFAsyncCallback,
     punkState: ?*IUnknown,
@@ -30858,12 +30858,12 @@ pub extern "MFPlat" fn MFCreateAsyncResult(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInvokeCallback(
+pub extern "mfplat" fn MFInvokeCallback(
     pAsyncResult: ?*IMFAsyncResult,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateFile(
+pub extern "mfplat" fn MFCreateFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
     fFlags: MF_FILE_FLAGS,
@@ -30872,7 +30872,7 @@ pub extern "MFPlat" fn MFCreateFile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateTempFile(
+pub extern "mfplat" fn MFCreateTempFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
     fFlags: MF_FILE_FLAGS,
@@ -30880,7 +30880,7 @@ pub extern "MFPlat" fn MFCreateTempFile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFBeginCreateFile(
+pub extern "mfplat" fn MFBeginCreateFile(
     AccessMode: MF_FILE_ACCESSMODE,
     OpenMode: MF_FILE_OPENMODE,
     fFlags: MF_FILE_FLAGS,
@@ -30891,24 +30891,24 @@ pub extern "MFPlat" fn MFBeginCreateFile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFEndCreateFile(
+pub extern "mfplat" fn MFEndCreateFile(
     pResult: ?*IMFAsyncResult,
     ppFile: ?*?*IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCancelCreateFile(
+pub extern "mfplat" fn MFCancelCreateFile(
     pCancelCookie: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMemoryBuffer(
+pub extern "mfplat" fn MFCreateMemoryBuffer(
     cbMaxLength: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMediaBufferWrapper(
+pub extern "mfplat" fn MFCreateMediaBufferWrapper(
     pBuffer: ?*IMFMediaBuffer,
     cbOffset: u32,
     dwLength: u32,
@@ -30916,7 +30916,7 @@ pub extern "MFPlat" fn MFCreateMediaBufferWrapper(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
+pub extern "mfplat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
     pSample: ?*IMFSample,
     pMFMediaBuffer: ?*IMFMediaBuffer,
     cbOffset: u32,
@@ -30924,27 +30924,27 @@ pub extern "MFPlat" fn MFCreateLegacyMediaBufferOnMFMediaBuffer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFMapDX9FormatToDXGIFormat(
+pub extern "mfplat" fn MFMapDX9FormatToDXGIFormat(
     dx9: u32,
 ) callconv(@import("std").os.windows.WINAPI) DXGI_FORMAT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFMapDXGIFormatToDX9Format(
+pub extern "mfplat" fn MFMapDXGIFormatToDX9Format(
     dx11: DXGI_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFLockDXGIDeviceManager(
+pub extern "mfplat" fn MFLockDXGIDeviceManager(
     pResetToken: ?*u32,
     ppManager: ?*?*IMFDXGIDeviceManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFUnlockDXGIDeviceManager(
+pub extern "mfplat" fn MFUnlockDXGIDeviceManager(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateDXSurfaceBuffer(
+pub extern "mfplat" fn MFCreateDXSurfaceBuffer(
     riid: ?*const Guid,
     punkSurface: ?*IUnknown,
     fBottomUpWhenLinear: BOOL,
@@ -30952,14 +30952,14 @@ pub extern "MFPlat" fn MFCreateDXSurfaceBuffer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateWICBitmapBuffer(
+pub extern "mfplat" fn MFCreateWICBitmapBuffer(
     riid: ?*const Guid,
     punkSurface: ?*IUnknown,
     ppBuffer: ?*?*IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateDXGISurfaceBuffer(
+pub extern "mfplat" fn MFCreateDXGISurfaceBuffer(
     riid: ?*const Guid,
     punkSurface: ?*IUnknown,
     uSubresourceIndex: u32,
@@ -30968,26 +30968,26 @@ pub extern "MFPlat" fn MFCreateDXGISurfaceBuffer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateVideoSampleAllocatorEx(
+pub extern "mfplat" fn MFCreateVideoSampleAllocatorEx(
     riid: ?*const Guid,
     ppSampleAllocator: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateDXGIDeviceManager(
+pub extern "mfplat" fn MFCreateDXGIDeviceManager(
     resetToken: ?*u32,
     ppDeviceManager: ?*?*IMFDXGIDeviceManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateAlignedMemoryBuffer(
+pub extern "mfplat" fn MFCreateAlignedMemoryBuffer(
     cbMaxLength: u32,
     cbAligment: u32,
     ppBuffer: ?*?*IMFMediaBuffer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMediaEvent(
+pub extern "mfplat" fn MFCreateMediaEvent(
     met: u32,
     guidExtendedType: ?*const Guid,
     hrStatus: HRESULT,
@@ -30996,23 +30996,23 @@ pub extern "MFPlat" fn MFCreateMediaEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateEventQueue(
+pub extern "mfplat" fn MFCreateEventQueue(
     ppMediaEventQueue: ?*?*IMFMediaEventQueue,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateSample(
+pub extern "mfplat" fn MFCreateSample(
     ppIMFSample: ?*?*IMFSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateAttributes(
+pub extern "mfplat" fn MFCreateAttributes(
     ppMFAttributes: ?*?*IMFAttributes,
     cInitialSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitAttributesFromBlob(
+pub extern "mfplat" fn MFInitAttributesFromBlob(
     pAttributes: ?*IMFAttributes,
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*const u8,
@@ -31020,13 +31020,13 @@ pub extern "MFPlat" fn MFInitAttributesFromBlob(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetAttributesAsBlobSize(
+pub extern "mfplat" fn MFGetAttributesAsBlobSize(
     pAttributes: ?*IMFAttributes,
     pcbBufSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetAttributesAsBlob(
+pub extern "mfplat" fn MFGetAttributesAsBlob(
     pAttributes: ?*IMFAttributes,
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*u8,
@@ -31034,7 +31034,7 @@ pub extern "MFPlat" fn MFGetAttributesAsBlob(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFTRegister(
+pub extern "mfplat" fn MFTRegister(
     clsidMFT: Guid,
     guidCategory: Guid,
     pszName: ?PWSTR,
@@ -31047,12 +31047,12 @@ pub extern "MFPlat" fn MFTRegister(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFTUnregister(
+pub extern "mfplat" fn MFTUnregister(
     clsidMFT: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFTRegisterLocal(
+pub extern "mfplat" fn MFTRegisterLocal(
     pClassFactory: ?*IClassFactory,
     guidCategory: ?*const Guid,
     pszName: ?[*:0]const u16,
@@ -31064,12 +31064,12 @@ pub extern "MFPlat" fn MFTRegisterLocal(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFTUnregisterLocal(
+pub extern "mfplat" fn MFTUnregisterLocal(
     pClassFactory: ?*IClassFactory,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFTRegisterLocalByCLSID(
+pub extern "mfplat" fn MFTRegisterLocalByCLSID(
     clisdMFT: ?*const Guid,
     guidCategory: ?*const Guid,
     pszName: ?[*:0]const u16,
@@ -31081,12 +31081,12 @@ pub extern "MFPlat" fn MFTRegisterLocalByCLSID(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFTUnregisterLocalByCLSID(
+pub extern "mfplat" fn MFTUnregisterLocalByCLSID(
     clsidMFT: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFTEnum(
+pub extern "mfplat" fn MFTEnum(
     guidCategory: Guid,
     Flags: u32,
     pInputType: ?*MFT_REGISTER_TYPE_INFO,
@@ -31097,7 +31097,7 @@ pub extern "MFPlat" fn MFTEnum(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFTEnumEx(
+pub extern "mfplat" fn MFTEnumEx(
     guidCategory: Guid,
     Flags: u32,
     pInputType: ?*const MFT_REGISTER_TYPE_INFO,
@@ -31107,7 +31107,7 @@ pub extern "MFPlat" fn MFTEnumEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "MFPlat" fn MFTEnum2(
+pub extern "mfplat" fn MFTEnum2(
     guidCategory: Guid,
     Flags: u32,
     pInputType: ?*const MFT_REGISTER_TYPE_INFO,
@@ -31118,7 +31118,7 @@ pub extern "MFPlat" fn MFTEnum2(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFTGetInfo(
+pub extern "mfplat" fn MFTGetInfo(
     clsidMFT: Guid,
     pszName: ?*?PWSTR,
     ppInputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
@@ -31129,12 +31129,12 @@ pub extern "MFPlat" fn MFTGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFGetPluginControl(
+pub extern "mfplat" fn MFGetPluginControl(
     ppPluginControl: ?*?*IMFPluginControl,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFGetMFTMerit(
+pub extern "mfplat" fn MFGetMFTMerit(
     pMFT: ?*IUnknown,
     cbVerifier: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -31143,26 +31143,26 @@ pub extern "MFPlat" fn MFGetMFTMerit(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFRegisterLocalSchemeHandler(
+pub extern "mfplat" fn MFRegisterLocalSchemeHandler(
     szScheme: ?[*:0]const u16,
     pActivate: ?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFRegisterLocalByteStreamHandler(
+pub extern "mfplat" fn MFRegisterLocalByteStreamHandler(
     szFileExtension: ?[*:0]const u16,
     szMimeType: ?[*:0]const u16,
     pActivate: ?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateMFByteStreamWrapper(
+pub extern "mfplat" fn MFCreateMFByteStreamWrapper(
     pStream: ?*IMFByteStream,
     ppStreamWrapper: ?*?*IMFByteStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateMediaExtensionActivate(
+pub extern "mfplat" fn MFCreateMediaExtensionActivate(
     szActivatableClassId: ?[*:0]const u16,
     pConfiguration: ?*IUnknown,
     riid: ?*const Guid,
@@ -31170,25 +31170,25 @@ pub extern "MFPlat" fn MFCreateMediaExtensionActivate(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "MFPlat" fn MFCreateMuxStreamAttributes(
+pub extern "mfplat" fn MFCreateMuxStreamAttributes(
     pAttributesToMux: ?*IMFCollection,
     ppMuxAttribs: ?*?*IMFAttributes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "MFPlat" fn MFCreateMuxStreamMediaType(
+pub extern "mfplat" fn MFCreateMuxStreamMediaType(
     pMediaTypesToMux: ?*IMFCollection,
     ppMuxMediaType: ?*?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "MFPlat" fn MFCreateMuxStreamSample(
+pub extern "mfplat" fn MFCreateMuxStreamSample(
     pSamplesToMux: ?*IMFCollection,
     ppMuxSample: ?*?*IMFSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFValidateMediaTypeSize(
+pub extern "mfplat" fn MFValidateMediaTypeSize(
     FormatType: Guid,
     // TODO: what to do with BytesParamIndex 2?
     pBlock: ?*u8,
@@ -31196,19 +31196,19 @@ pub extern "MFPlat" fn MFValidateMediaTypeSize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMediaType(
+pub extern "mfplat" fn MFCreateMediaType(
     ppMFType: ?*?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMFVideoFormatFromMFMediaType(
+pub extern "mfplat" fn MFCreateMFVideoFormatFromMFMediaType(
     pMFType: ?*IMFMediaType,
     ppMFVF: ?*?*MFVIDEOFORMAT,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateWaveFormatExFromMFMediaType(
+pub extern "mfplat" fn MFCreateWaveFormatExFromMFMediaType(
     pMFType: ?*IMFMediaType,
     ppWF: ?*?*WAVEFORMATEX,
     pcbSize: ?*u32,
@@ -31216,7 +31216,7 @@ pub extern "MFPlat" fn MFCreateWaveFormatExFromMFMediaType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader(
+pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pVIH: ?*const VIDEOINFOHEADER,
@@ -31225,7 +31225,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader2(
+pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader2(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pVIH2: ?*const VIDEOINFOHEADER2,
@@ -31234,7 +31234,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromVideoInfoHeader2(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromMPEG1VideoInfo(
+pub extern "mfplat" fn MFInitMediaTypeFromMPEG1VideoInfo(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pMP1VI: ?*const MPEG1VIDEOINFO,
@@ -31243,7 +31243,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromMPEG1VideoInfo(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromMPEG2VideoInfo(
+pub extern "mfplat" fn MFInitMediaTypeFromMPEG2VideoInfo(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pMP2VI: ?*const MPEG2VIDEOINFO,
@@ -31252,7 +31252,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromMPEG2VideoInfo(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCalculateBitmapImageSize(
+pub extern "mfplat" fn MFCalculateBitmapImageSize(
     // TODO: what to do with BytesParamIndex 1?
     pBMIH: ?*const BITMAPINFOHEADER,
     cbBufSize: u32,
@@ -31261,7 +31261,7 @@ pub extern "MFPlat" fn MFCalculateBitmapImageSize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCalculateImageSize(
+pub extern "mfplat" fn MFCalculateImageSize(
     guidSubtype: ?*const Guid,
     unWidth: u32,
     unHeight: u32,
@@ -31269,21 +31269,21 @@ pub extern "MFPlat" fn MFCalculateImageSize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFFrameRateToAverageTimePerFrame(
+pub extern "mfplat" fn MFFrameRateToAverageTimePerFrame(
     unNumerator: u32,
     unDenominator: u32,
     punAverageTimePerFrame: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFAverageTimePerFrameToFrameRate(
+pub extern "mfplat" fn MFAverageTimePerFrameToFrameRate(
     unAverageTimePerFrame: u64,
     punNumerator: ?*u32,
     punDenominator: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromMFVideoFormat(
+pub extern "mfplat" fn MFInitMediaTypeFromMFVideoFormat(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pMFVF: ?*const MFVIDEOFORMAT,
@@ -31291,7 +31291,7 @@ pub extern "MFPlat" fn MFInitMediaTypeFromMFVideoFormat(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromWaveFormatEx(
+pub extern "mfplat" fn MFInitMediaTypeFromWaveFormatEx(
     pMFType: ?*IMFMediaType,
     // TODO: what to do with BytesParamIndex 2?
     pWaveFormat: ?*const WAVEFORMATEX,
@@ -31299,33 +31299,33 @@ pub extern "MFPlat" fn MFInitMediaTypeFromWaveFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitMediaTypeFromAMMediaType(
+pub extern "mfplat" fn MFInitMediaTypeFromAMMediaType(
     pMFType: ?*IMFMediaType,
     pAMType: ?*const AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitAMMediaTypeFromMFMediaType(
+pub extern "mfplat" fn MFInitAMMediaTypeFromMFMediaType(
     pMFType: ?*IMFMediaType,
     guidFormatBlockType: Guid,
     pAMType: ?*AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateAMMediaTypeFromMFMediaType(
+pub extern "mfplat" fn MFCreateAMMediaTypeFromMFMediaType(
     pMFType: ?*IMFMediaType,
     guidFormatBlockType: Guid,
     ppAMType: ?*?*AM_MEDIA_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCompareFullToPartialMediaType(
+pub extern "mfplat" fn MFCompareFullToPartialMediaType(
     pMFTypeFull: ?*IMFMediaType,
     pMFTypePartial: ?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFWrapMediaType(
+pub extern "mfplat" fn MFWrapMediaType(
     pOrig: ?*IMFMediaType,
     MajorType: ?*const Guid,
     SubType: ?*const Guid,
@@ -31333,30 +31333,30 @@ pub extern "MFPlat" fn MFWrapMediaType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFUnwrapMediaType(
+pub extern "mfplat" fn MFUnwrapMediaType(
     pWrap: ?*IMFMediaType,
     ppOrig: ?*?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateVideoMediaType(
+pub extern "mfplat" fn MFCreateVideoMediaType(
     pVideoFormat: ?*const MFVIDEOFORMAT,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateVideoMediaTypeFromSubtype(
+pub extern "mfplat" fn MFCreateVideoMediaTypeFromSubtype(
     pAMSubtype: ?*const Guid,
     ppIVideoMediaType: ?*?*IMFVideoMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "EVR" fn MFIsFormatYUV(
+pub extern "evr" fn MFIsFormatYUV(
     Format: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
+pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
     pbmihBitMapInfoHeader: ?*const BITMAPINFOHEADER,
     dwPixelAspectRatioX: u32,
     dwPixelAspectRatioY: u32,
@@ -31369,14 +31369,14 @@ pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetStrideForBitmapInfoHeader(
+pub extern "mfplat" fn MFGetStrideForBitmapInfoHeader(
     format: u32,
     dwWidth: u32,
     pStride: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "EVR" fn MFGetPlaneSize(
+pub extern "evr" fn MFGetPlaneSize(
     format: u32,
     dwWidth: u32,
     dwHeight: u32,
@@ -31384,7 +31384,7 @@ pub extern "EVR" fn MFGetPlaneSize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
+pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
     // TODO: what to do with BytesParamIndex 1?
     pbmihBitMapInfoHeader: ?*const BITMAPINFOHEADER,
     cbBitMapInfoHeader: u32,
@@ -31399,31 +31399,31 @@ pub extern "MFPlat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateMediaTypeFromRepresentation(
+pub extern "mfplat" fn MFCreateMediaTypeFromRepresentation(
     guidRepresentation: Guid,
     pvRepresentation: ?*anyopaque,
     ppIMediaType: ?*?*IMFMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateAudioMediaType(
+pub extern "mfplat" fn MFCreateAudioMediaType(
     pAudioFormat: ?*const WAVEFORMATEX,
     ppIAudioMediaType: ?*?*IMFAudioMediaType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFGetUncompressedVideoFormat(
+pub extern "mfplat" fn MFGetUncompressedVideoFormat(
     pVideoFormat: ?*const MFVIDEOFORMAT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitVideoFormat(
+pub extern "mfplat" fn MFInitVideoFormat(
     pVideoFormat: ?*MFVIDEOFORMAT,
     type: MFStandardVideoFormat,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFInitVideoFormat_RGB(
+pub extern "mfplat" fn MFInitVideoFormat_RGB(
     pVideoFormat: ?*MFVIDEOFORMAT,
     dwWidth: u32,
     dwHeight: u32,
@@ -31431,19 +31431,19 @@ pub extern "MFPlat" fn MFInitVideoFormat_RGB(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFConvertColorInfoToDXVA(
+pub extern "mfplat" fn MFConvertColorInfoToDXVA(
     pdwToDXVA: ?*u32,
     pFromFormat: ?*const MFVIDEOFORMAT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFConvertColorInfoFromDXVA(
+pub extern "mfplat" fn MFConvertColorInfoFromDXVA(
     pToFormat: ?*MFVIDEOFORMAT,
     dwFromDXVA: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCopyImage(
+pub extern "mfplat" fn MFCopyImage(
     pDest: ?*u8,
     lDestStride: i32,
     pSrc: ?*const u8,
@@ -31453,21 +31453,21 @@ pub extern "MFPlat" fn MFCopyImage(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFConvertFromFP16Array(
+pub extern "mfplat" fn MFConvertFromFP16Array(
     pDest: [*]f32,
     pSrc: [*:0]const u16,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFConvertToFP16Array(
+pub extern "mfplat" fn MFConvertToFP16Array(
     pDest: [*:0]u16,
     pSrc: [*]const f32,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreate2DMediaBuffer(
+pub extern "mfplat" fn MFCreate2DMediaBuffer(
     dwWidth: u32,
     dwHeight: u32,
     dwFourCC: u32,
@@ -31476,7 +31476,7 @@ pub extern "MFPlat" fn MFCreate2DMediaBuffer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFCreateMediaBufferFromMediaType(
+pub extern "mfplat" fn MFCreateMediaBufferFromMediaType(
     pMediaType: ?*IMFMediaType,
     llDuration: i64,
     dwMinLength: u32,
@@ -31485,12 +31485,12 @@ pub extern "MFPlat" fn MFCreateMediaBufferFromMediaType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFCreateCollection(
+pub extern "mfplat" fn MFCreateCollection(
     ppIMFCollection: ?*?*IMFCollection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFHeapAlloc(
+pub extern "mfplat" fn MFHeapAlloc(
     nSize: usize,
     dwFlags: u32,
     pszFile: ?PSTR,
@@ -31499,12 +31499,12 @@ pub extern "MFPlat" fn MFHeapAlloc(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MFPlat" fn MFHeapFree(
+pub extern "mfplat" fn MFHeapFree(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlat" fn MFllMulDiv(
+pub extern "mfplat" fn MFllMulDiv(
     a: i64,
     b: i64,
     c: i64,
@@ -31512,13 +31512,13 @@ pub extern "MFPlat" fn MFllMulDiv(
 ) callconv(@import("std").os.windows.WINAPI) i64;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MFPlat" fn MFGetContentProtectionSystemCLSID(
+pub extern "mfplat" fn MFGetContentProtectionSystemCLSID(
     guidProtectionSystemID: ?*const Guid,
     pclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "MFPlat" fn MFCombineSamples(
+pub extern "mfplat" fn MFCombineSamples(
     pSample: ?*IMFSample,
     pSampleToAdd: ?*IMFSample,
     dwMaxMergedDurationInMS: u32,
@@ -31526,7 +31526,7 @@ pub extern "MFPlat" fn MFCombineSamples(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "MFPlat" fn MFSplitSample(
+pub extern "mfplat" fn MFSplitSample(
     pSample: ?*IMFSample,
     pOutputSamples: [*]?*IMFSample,
     dwOutputSampleMaxCount: u32,
@@ -31534,28 +31534,28 @@ pub extern "MFPlat" fn MFSplitSample(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFReadWrite" fn MFCreateSourceReaderFromURL(
+pub extern "mfreadwrite" fn MFCreateSourceReaderFromURL(
     pwszURL: ?[*:0]const u16,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFReadWrite" fn MFCreateSourceReaderFromByteStream(
+pub extern "mfreadwrite" fn MFCreateSourceReaderFromByteStream(
     pByteStream: ?*IMFByteStream,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFReadWrite" fn MFCreateSourceReaderFromMediaSource(
+pub extern "mfreadwrite" fn MFCreateSourceReaderFromMediaSource(
     pMediaSource: ?*IMFMediaSource,
     pAttributes: ?*IMFAttributes,
     ppSourceReader: ?*?*IMFSourceReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFReadWrite" fn MFCreateSinkWriterFromURL(
+pub extern "mfreadwrite" fn MFCreateSinkWriterFromURL(
     pwszOutputURL: ?[*:0]const u16,
     pByteStream: ?*IMFByteStream,
     pAttributes: ?*IMFAttributes,
@@ -31563,27 +31563,27 @@ pub extern "MFReadWrite" fn MFCreateSinkWriterFromURL(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFReadWrite" fn MFCreateSinkWriterFromMediaSink(
+pub extern "mfreadwrite" fn MFCreateSinkWriterFromMediaSink(
     pMediaSink: ?*IMFMediaSink,
     pAttributes: ?*IMFAttributes,
     ppSinkWriter: ?*?*IMFSinkWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "EVR" fn MFCreateVideoPresenter(
+pub extern "evr" fn MFCreateVideoPresenter(
     pOwner: ?*IUnknown,
     riidDevice: ?*const Guid,
     riid: ?*const Guid,
     ppVideoPresenter: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "EVR" fn MFCreateVideoMixer(
+pub extern "evr" fn MFCreateVideoMixer(
     pOwner: ?*IUnknown,
     riidDevice: ?*const Guid,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "EVR" fn MFCreateVideoMixerAndPresenter(
+pub extern "evr" fn MFCreateVideoMixerAndPresenter(
     pMixerOwner: ?*IUnknown,
     pPresenterOwner: ?*IUnknown,
     riidMixer: ?*const Guid,
@@ -31592,17 +31592,17 @@ pub extern "EVR" fn MFCreateVideoMixerAndPresenter(
     ppvVideoPresenter: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MF" fn MFCreateVideoRenderer(
+pub extern "mf" fn MFCreateVideoRenderer(
     riidRenderer: ?*const Guid,
     ppVideoRenderer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "EVR" fn MFCreateVideoSampleFromSurface(
+pub extern "evr" fn MFCreateVideoSampleFromSurface(
     pUnkSurface: ?*IUnknown,
     ppSample: ?*?*IMFSample,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "EVR" fn MFCreateVideoSampleAllocator(
+pub extern "evr" fn MFCreateVideoSampleAllocator(
     riid: ?*const Guid,
     ppSampleAllocator: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -31612,14 +31612,14 @@ pub extern "EVR" fn MFCreateVideoSampleAllocator(
 pub fn MFPCreateMediaPlayer() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "MF" fn MFCreateEncryptedMediaExtensionsStoreActivate(
+pub extern "mf" fn MFCreateEncryptedMediaExtensionsStoreActivate(
     pmpHost: ?*IMFPMPHostApp,
     objectStream: ?*IStream,
     classId: ?[*:0]const u16,
     activate: ?*?*IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFSENSORGROUP" fn MFCreateVirtualCamera(
+pub extern "mfsensorgroup" fn MFCreateVirtualCamera(
     type: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001,
     lifetime: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0002,
     access: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003,
@@ -31630,20 +31630,20 @@ pub extern "MFSENSORGROUP" fn MFCreateVirtualCamera(
     virtualCamera: ?*?*IMFVirtualCamera,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MFSENSORGROUP" fn MFIsVirtualCameraTypeSupported(
+pub extern "mfsensorgroup" fn MFIsVirtualCameraTypeSupported(
     type: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001,
     supported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OPMXbox" fn OPMXboxEnableHDCP(
+pub extern "opmxbox" fn OPMXboxEnableHDCP(
     HDCPType: OPM_HDCP_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OPMXbox" fn OPMXboxGetHDCPStatus(
+pub extern "opmxbox" fn OPMXboxGetHDCPStatus(
     pHDCPStatus: ?*OPM_HDCP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OPMXbox" fn OPMXboxGetHDCPStatusAndType(
+pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
     pHDCPStatus: ?*OPM_HDCP_STATUS,
     pHDCPType: ?*OPM_HDCP_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

@@ -14742,22 +14742,22 @@ pub const DBCOST = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (211)
 //--------------------------------------------------------------------------------
-pub extern "ODBC32" fn SQLAllocConnect(
+pub extern "odbc32" fn SQLAllocConnect(
     EnvironmentHandle: ?*anyopaque,
     ConnectionHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLAllocEnv(
+pub extern "odbc32" fn SQLAllocEnv(
     EnvironmentHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLAllocHandle(
+pub extern "odbc32" fn SQLAllocHandle(
     HandleType: i16,
     InputHandle: ?*anyopaque,
     OutputHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLAllocStmt(
+pub extern "odbc32" fn SQLAllocStmt(
     ConnectionHandle: ?*anyopaque,
     StatementHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -14765,7 +14765,7 @@ pub extern "ODBC32" fn SQLAllocStmt(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLBindCol(
+pub extern "odbc32" fn SQLBindCol(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
@@ -14779,7 +14779,7 @@ pub extern "ODBC32" fn SQLBindCol(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLBindParam(
+pub extern "odbc32" fn SQLBindParam(
     StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
@@ -14792,23 +14792,23 @@ pub extern "ODBC32" fn SQLBindParam(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLCancel(
+pub extern "odbc32" fn SQLCancel(
     StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLCancelHandle(
+pub extern "odbc32" fn SQLCancelHandle(
     HandleType: i16,
     InputHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLCloseCursor(
+pub extern "odbc32" fn SQLCloseCursor(
     StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttribute(
+pub extern "odbc32" fn SQLColAttribute(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
@@ -14821,7 +14821,7 @@ pub extern "ODBC32" fn SQLColAttribute(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLColumns(
+pub extern "odbc32" fn SQLColumns(
     StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
@@ -14833,13 +14833,13 @@ pub extern "ODBC32" fn SQLColumns(
     NameLength4: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLCompleteAsync(
+pub extern "odbc32" fn SQLCompleteAsync(
     HandleType: i16,
     Handle: ?*anyopaque,
     AsyncRetCodePtr: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLConnect(
+pub extern "odbc32" fn SQLConnect(
     ConnectionHandle: ?*anyopaque,
     ServerName: [*:0]u8,
     NameLength1: i16,
@@ -14849,12 +14849,12 @@ pub extern "ODBC32" fn SQLConnect(
     NameLength3: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLCopyDesc(
+pub extern "odbc32" fn SQLCopyDesc(
     SourceDescHandle: ?*anyopaque,
     TargetDescHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDataSources(
+pub extern "odbc32" fn SQLDataSources(
     EnvironmentHandle: ?*anyopaque,
     Direction: u16,
     ServerName: ?[*:0]u8,
@@ -14868,7 +14868,7 @@ pub extern "ODBC32" fn SQLDataSources(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLDescribeCol(
+pub extern "odbc32" fn SQLDescribeCol(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     ColumnName: ?[*:0]u8,
@@ -14882,17 +14882,17 @@ pub extern "ODBC32" fn SQLDescribeCol(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLDisconnect(
+pub extern "odbc32" fn SQLDisconnect(
     ConnectionHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLEndTran(
+pub extern "odbc32" fn SQLEndTran(
     HandleType: i16,
     Handle: ?*anyopaque,
     CompletionType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLError(
+pub extern "odbc32" fn SQLError(
     EnvironmentHandle: ?*anyopaque,
     ConnectionHandle: ?*anyopaque,
     StatementHandle: ?*anyopaque,
@@ -14903,24 +14903,24 @@ pub extern "ODBC32" fn SQLError(
     TextLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLExecDirect(
+pub extern "odbc32" fn SQLExecDirect(
     StatementHandle: ?*anyopaque,
     StatementText: ?[*:0]u8,
     TextLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLExecute(
+pub extern "odbc32" fn SQLExecute(
     StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLFetch(
+pub extern "odbc32" fn SQLFetch(
     StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLFetchScroll(
+pub extern "odbc32" fn SQLFetchScroll(
     StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i64,
@@ -14928,25 +14928,25 @@ pub extern "ODBC32" fn SQLFetchScroll(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLFreeConnect(
+pub extern "odbc32" fn SQLFreeConnect(
     ConnectionHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLFreeEnv(
+pub extern "odbc32" fn SQLFreeEnv(
     EnvironmentHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLFreeHandle(
+pub extern "odbc32" fn SQLFreeHandle(
     HandleType: i16,
     Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLFreeStmt(
+pub extern "odbc32" fn SQLFreeStmt(
     StatementHandle: ?*anyopaque,
     Option: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectAttr(
+pub extern "odbc32" fn SQLGetConnectAttr(
     ConnectionHandle: ?*anyopaque,
     Attribute: i32,
     Value: ?*anyopaque,
@@ -14954,13 +14954,13 @@ pub extern "ODBC32" fn SQLGetConnectAttr(
     StringLengthPtr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectOption(
+pub extern "odbc32" fn SQLGetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetCursorName(
+pub extern "odbc32" fn SQLGetCursorName(
     StatementHandle: ?*anyopaque,
     CursorName: ?[*:0]u8,
     BufferLength: i16,
@@ -14970,7 +14970,7 @@ pub extern "ODBC32" fn SQLGetCursorName(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLGetData(
+pub extern "odbc32" fn SQLGetData(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
@@ -14981,7 +14981,7 @@ pub extern "ODBC32" fn SQLGetData(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLGetDescField(
+pub extern "odbc32" fn SQLGetDescField(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
@@ -14993,7 +14993,7 @@ pub extern "ODBC32" fn SQLGetDescField(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRec(
+pub extern "odbc32" fn SQLGetDescRec(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Name: ?[*:0]u8,
@@ -15009,7 +15009,7 @@ pub extern "ODBC32" fn SQLGetDescRec(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLGetDiagField(
+pub extern "odbc32" fn SQLGetDiagField(
     HandleType: i16,
     Handle: ?*anyopaque,
     RecNumber: i16,
@@ -15019,7 +15019,7 @@ pub extern "ODBC32" fn SQLGetDiagField(
     StringLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetDiagRec(
+pub extern "odbc32" fn SQLGetDiagRec(
     HandleType: i16,
     Handle: ?*anyopaque,
     RecNumber: i16,
@@ -15030,7 +15030,7 @@ pub extern "ODBC32" fn SQLGetDiagRec(
     TextLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetEnvAttr(
+pub extern "odbc32" fn SQLGetEnvAttr(
     EnvironmentHandle: ?*anyopaque,
     Attribute: i32,
     Value: ?*anyopaque,
@@ -15038,13 +15038,13 @@ pub extern "ODBC32" fn SQLGetEnvAttr(
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetFunctions(
+pub extern "odbc32" fn SQLGetFunctions(
     ConnectionHandle: ?*anyopaque,
     FunctionId: u16,
     Supported: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetInfo(
+pub extern "odbc32" fn SQLGetInfo(
     ConnectionHandle: ?*anyopaque,
     InfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -15053,7 +15053,7 @@ pub extern "ODBC32" fn SQLGetInfo(
     StringLengthPtr: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetStmtAttr(
+pub extern "odbc32" fn SQLGetStmtAttr(
     StatementHandle: ?*anyopaque,
     Attribute: i32,
     Value: ?*anyopaque,
@@ -15061,28 +15061,28 @@ pub extern "ODBC32" fn SQLGetStmtAttr(
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetStmtOption(
+pub extern "odbc32" fn SQLGetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetTypeInfo(
+pub extern "odbc32" fn SQLGetTypeInfo(
     StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLNumResultCols(
+pub extern "odbc32" fn SQLNumResultCols(
     StatementHandle: ?*anyopaque,
     ColumnCount: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLParamData(
+pub extern "odbc32" fn SQLParamData(
     StatementHandle: ?*anyopaque,
     Value: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLPrepare(
+pub extern "odbc32" fn SQLPrepare(
     StatementHandle: ?*anyopaque,
     StatementText: [*:0]u8,
     TextLength: i32,
@@ -15091,7 +15091,7 @@ pub extern "ODBC32" fn SQLPrepare(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLPutData(
+pub extern "odbc32" fn SQLPutData(
     StatementHandle: ?*anyopaque,
     Data: ?*anyopaque,
     StrLen_or_Ind: i64,
@@ -15102,14 +15102,14 @@ pub extern "ODBC32" fn SQLPutData(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLRowCount(
+pub extern "odbc32" fn SQLRowCount(
     StatementHandle: ?*anyopaque,
     RowCount: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSetConnectAttr(
+pub extern "odbc32" fn SQLSetConnectAttr(
     ConnectionHandle: ?*anyopaque,
     Attribute: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -15120,7 +15120,7 @@ pub extern "ODBC32" fn SQLSetConnectAttr(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOption(
+pub extern "odbc32" fn SQLSetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
@@ -15128,13 +15128,13 @@ pub extern "ODBC32" fn SQLSetConnectOption(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSetCursorName(
+pub extern "odbc32" fn SQLSetCursorName(
     StatementHandle: ?*anyopaque,
     CursorName: [*:0]u8,
     NameLength: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetDescField(
+pub extern "odbc32" fn SQLSetDescField(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
@@ -15145,7 +15145,7 @@ pub extern "ODBC32" fn SQLSetDescField(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetDescRec(
+pub extern "odbc32" fn SQLSetDescRec(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Type: i16,
@@ -15161,7 +15161,7 @@ pub extern "ODBC32" fn SQLSetDescRec(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSetEnvAttr(
+pub extern "odbc32" fn SQLSetEnvAttr(
     EnvironmentHandle: ?*anyopaque,
     Attribute: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -15172,7 +15172,7 @@ pub extern "ODBC32" fn SQLSetEnvAttr(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetParam(
+pub extern "odbc32" fn SQLSetParam(
     StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
@@ -15185,7 +15185,7 @@ pub extern "ODBC32" fn SQLSetParam(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSetStmtAttr(
+pub extern "odbc32" fn SQLSetStmtAttr(
     StatementHandle: ?*anyopaque,
     Attribute: i32,
     Value: ?*anyopaque,
@@ -15195,7 +15195,7 @@ pub extern "ODBC32" fn SQLSetStmtAttr(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetStmtOption(
+pub extern "odbc32" fn SQLSetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
@@ -15203,7 +15203,7 @@ pub extern "ODBC32" fn SQLSetStmtOption(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSpecialColumns(
+pub extern "odbc32" fn SQLSpecialColumns(
     StatementHandle: ?*anyopaque,
     IdentifierType: u16,
     CatalogName: ?[*:0]u8,
@@ -15216,7 +15216,7 @@ pub extern "ODBC32" fn SQLSpecialColumns(
     Nullable: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLStatistics(
+pub extern "odbc32" fn SQLStatistics(
     StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
@@ -15228,7 +15228,7 @@ pub extern "ODBC32" fn SQLStatistics(
     Reserved: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTables(
+pub extern "odbc32" fn SQLTables(
     StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
@@ -15240,7 +15240,7 @@ pub extern "ODBC32" fn SQLTables(
     NameLength4: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTransact(
+pub extern "odbc32" fn SQLTransact(
     EnvironmentHandle: ?*anyopaque,
     ConnectionHandle: ?*anyopaque,
     CompletionType: u16,
@@ -15406,7 +15406,7 @@ pub extern "odbcbcp" fn SQLCloseEnumServers(
     hEnumHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDriverConnect(
+pub extern "odbc32" fn SQLDriverConnect(
     hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u8,
@@ -15417,7 +15417,7 @@ pub extern "ODBC32" fn SQLDriverConnect(
     fDriverCompletion: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLBrowseConnect(
+pub extern "odbc32" fn SQLBrowseConnect(
     hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u8,
     cchConnStrIn: i16,
@@ -15426,7 +15426,7 @@ pub extern "ODBC32" fn SQLBrowseConnect(
     pcchConnStrOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLBulkOperations(
+pub extern "odbc32" fn SQLBulkOperations(
     StatementHandle: ?*anyopaque,
     Operation: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15434,7 +15434,7 @@ pub extern "ODBC32" fn SQLBulkOperations(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttributes(
+pub extern "odbc32" fn SQLColAttributes(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -15446,7 +15446,7 @@ pub extern "ODBC32" fn SQLColAttributes(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLColumnPrivileges(
+pub extern "odbc32" fn SQLColumnPrivileges(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
@@ -15461,7 +15461,7 @@ pub extern "ODBC32" fn SQLColumnPrivileges(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLDescribeParam(
+pub extern "odbc32" fn SQLDescribeParam(
     hstmt: ?*anyopaque,
     ipar: u16,
     pfSqlType: ?*i16,
@@ -15475,7 +15475,7 @@ pub extern "ODBC32" fn SQLDescribeParam(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLExtendedFetch(
+pub extern "odbc32" fn SQLExtendedFetch(
     hstmt: ?*anyopaque,
     fFetchType: u16,
     irow: i64,
@@ -15485,7 +15485,7 @@ pub extern "ODBC32" fn SQLExtendedFetch(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLForeignKeys(
+pub extern "odbc32" fn SQLForeignKeys(
     hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u8,
     cchPkCatalogName: i16,
@@ -15501,11 +15501,11 @@ pub extern "ODBC32" fn SQLForeignKeys(
     cchFkTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLMoreResults(
+pub extern "odbc32" fn SQLMoreResults(
     hstmt: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLNativeSql(
+pub extern "odbc32" fn SQLNativeSql(
     hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u8,
     cchSqlStrIn: i32,
@@ -15514,7 +15514,7 @@ pub extern "ODBC32" fn SQLNativeSql(
     pcbSqlStr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLNumParams(
+pub extern "odbc32" fn SQLNumParams(
     hstmt: ?*anyopaque,
     pcpar: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15522,7 +15522,7 @@ pub extern "ODBC32" fn SQLNumParams(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLParamOptions(
+pub extern "odbc32" fn SQLParamOptions(
     hstmt: ?*anyopaque,
     crow: u64,
     pirow: ?*u64,
@@ -15530,7 +15530,7 @@ pub extern "ODBC32" fn SQLParamOptions(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLPrimaryKeys(
+pub extern "odbc32" fn SQLPrimaryKeys(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
@@ -15540,7 +15540,7 @@ pub extern "ODBC32" fn SQLPrimaryKeys(
     cchTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProcedureColumns(
+pub extern "odbc32" fn SQLProcedureColumns(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
@@ -15552,7 +15552,7 @@ pub extern "ODBC32" fn SQLProcedureColumns(
     cchColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProcedures(
+pub extern "odbc32" fn SQLProcedures(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
@@ -15565,7 +15565,7 @@ pub extern "ODBC32" fn SQLProcedures(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetPos(
+pub extern "odbc32" fn SQLSetPos(
     hstmt: ?*anyopaque,
     irow: u64,
     fOption: u16,
@@ -15574,7 +15574,7 @@ pub extern "ODBC32" fn SQLSetPos(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLTablePrivileges(
+pub extern "odbc32" fn SQLTablePrivileges(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
@@ -15584,7 +15584,7 @@ pub extern "ODBC32" fn SQLTablePrivileges(
     cchTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDrivers(
+pub extern "odbc32" fn SQLDrivers(
     henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u8,
@@ -15598,7 +15598,7 @@ pub extern "ODBC32" fn SQLDrivers(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLBindParameter(
+pub extern "odbc32" fn SQLBindParameter(
     hstmt: ?*anyopaque,
     ipar: u16,
     fParamType: i16,
@@ -15613,7 +15613,7 @@ pub extern "ODBC32" fn SQLBindParameter(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLAllocHandleStd(
+pub extern "odbc32" fn SQLAllocHandleStd(
     fHandleType: i16,
     hInput: ?*anyopaque,
     phOutput: ?*?*anyopaque,
@@ -15622,7 +15622,7 @@ pub extern "ODBC32" fn SQLAllocHandleStd(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetScrollOptions(
+pub extern "odbc32" fn SQLSetScrollOptions(
     hstmt: ?*anyopaque,
     fConcurrency: u16,
     crowKeyset: i64,
@@ -15631,17 +15631,17 @@ pub extern "ODBC32" fn SQLSetScrollOptions(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn ODBCSetTryWaitValue(
+pub extern "odbc32" fn ODBCSetTryWaitValue(
     dwValue: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ODBC32" fn ODBCGetTryWaitValue(
+pub extern "odbc32" fn ODBCGetTryWaitValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttributeW(
+pub extern "odbc32" fn SQLColAttributeW(
     hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
@@ -15657,7 +15657,7 @@ pub extern "ODBC32" fn SQLColAttributeW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttributesW(
+pub extern "odbc32" fn SQLColAttributesW(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -15670,7 +15670,7 @@ pub extern "ODBC32" fn SQLColAttributesW(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLConnectW(
+pub extern "odbc32" fn SQLConnectW(
     hdbc: ?*anyopaque,
     szDSN: [*:0]u16,
     cchDSN: i16,
@@ -15683,7 +15683,7 @@ pub extern "ODBC32" fn SQLConnectW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLDescribeColW(
+pub extern "odbc32" fn SQLDescribeColW(
     hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u16,
@@ -15697,7 +15697,7 @@ pub extern "ODBC32" fn SQLDescribeColW(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLErrorW(
+pub extern "odbc32" fn SQLErrorW(
     henv: ?*anyopaque,
     hdbc: ?*anyopaque,
     hstmt: ?*anyopaque,
@@ -15708,13 +15708,13 @@ pub extern "ODBC32" fn SQLErrorW(
     pcchErrorMsg: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLExecDirectW(
+pub extern "odbc32" fn SQLExecDirectW(
     hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u16,
     TextLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectAttrW(
+pub extern "odbc32" fn SQLGetConnectAttrW(
     hdbc: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
@@ -15722,14 +15722,14 @@ pub extern "ODBC32" fn SQLGetConnectAttrW(
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetCursorNameW(
+pub extern "odbc32" fn SQLGetCursorNameW(
     hstmt: ?*anyopaque,
     szCursor: ?[*:0]u16,
     cchCursorMax: i16,
     pcchCursor: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetDescFieldW(
+pub extern "odbc32" fn SQLSetDescFieldW(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
@@ -15737,7 +15737,7 @@ pub extern "ODBC32" fn SQLSetDescFieldW(
     BufferLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetDescFieldW(
+pub extern "odbc32" fn SQLGetDescFieldW(
     hdesc: ?*anyopaque,
     iRecord: i16,
     iField: i16,
@@ -15749,7 +15749,7 @@ pub extern "ODBC32" fn SQLGetDescFieldW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRecW(
+pub extern "odbc32" fn SQLGetDescRecW(
     hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u16,
@@ -15765,7 +15765,7 @@ pub extern "ODBC32" fn SQLGetDescRecW(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLGetDiagFieldW(
+pub extern "odbc32" fn SQLGetDiagFieldW(
     fHandleType: i16,
     handle: ?*anyopaque,
     iRecord: i16,
@@ -15775,7 +15775,7 @@ pub extern "ODBC32" fn SQLGetDiagFieldW(
     pcbStringLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetDiagRecW(
+pub extern "odbc32" fn SQLGetDiagRecW(
     fHandleType: i16,
     handle: ?*anyopaque,
     iRecord: i16,
@@ -15786,13 +15786,13 @@ pub extern "ODBC32" fn SQLGetDiagRecW(
     pcchErrorMsg: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLPrepareW(
+pub extern "odbc32" fn SQLPrepareW(
     hstmt: ?*anyopaque,
     szSqlStr: [*:0]u16,
     cchSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetConnectAttrW(
+pub extern "odbc32" fn SQLSetConnectAttrW(
     hdbc: ?*anyopaque,
     fAttribute: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -15800,13 +15800,13 @@ pub extern "ODBC32" fn SQLSetConnectAttrW(
     cbValue: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetCursorNameW(
+pub extern "odbc32" fn SQLSetCursorNameW(
     hstmt: ?*anyopaque,
     szCursor: [*:0]u16,
     cchCursor: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLColumnsW(
+pub extern "odbc32" fn SQLColumnsW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15818,13 +15818,13 @@ pub extern "ODBC32" fn SQLColumnsW(
     cchColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectOptionW(
+pub extern "odbc32" fn SQLGetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetInfoW(
+pub extern "odbc32" fn SQLGetInfoW(
     hdbc: ?*anyopaque,
     fInfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -15833,7 +15833,7 @@ pub extern "ODBC32" fn SQLGetInfoW(
     pcbInfoValue: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetTypeInfoW(
+pub extern "odbc32" fn SQLGetTypeInfoW(
     StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15841,7 +15841,7 @@ pub extern "ODBC32" fn SQLGetTypeInfoW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOptionW(
+pub extern "odbc32" fn SQLSetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
@@ -15849,7 +15849,7 @@ pub extern "ODBC32" fn SQLSetConnectOptionW(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSpecialColumnsW(
+pub extern "odbc32" fn SQLSpecialColumnsW(
     hstmt: ?*anyopaque,
     fColType: u16,
     szCatalogName: ?[*:0]u16,
@@ -15862,7 +15862,7 @@ pub extern "ODBC32" fn SQLSpecialColumnsW(
     fNullable: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLStatisticsW(
+pub extern "odbc32" fn SQLStatisticsW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15874,7 +15874,7 @@ pub extern "ODBC32" fn SQLStatisticsW(
     fAccuracy: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTablesW(
+pub extern "odbc32" fn SQLTablesW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15886,7 +15886,7 @@ pub extern "ODBC32" fn SQLTablesW(
     cchTableType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDataSourcesW(
+pub extern "odbc32" fn SQLDataSourcesW(
     henv: ?*anyopaque,
     fDirection: u16,
     szDSN: ?[*:0]u16,
@@ -15897,7 +15897,7 @@ pub extern "ODBC32" fn SQLDataSourcesW(
     pcchDescription: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDriverConnectW(
+pub extern "odbc32" fn SQLDriverConnectW(
     hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u16,
@@ -15908,7 +15908,7 @@ pub extern "ODBC32" fn SQLDriverConnectW(
     fDriverCompletion: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLBrowseConnectW(
+pub extern "odbc32" fn SQLBrowseConnectW(
     hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u16,
     cchConnStrIn: i16,
@@ -15917,7 +15917,7 @@ pub extern "ODBC32" fn SQLBrowseConnectW(
     pcchConnStrOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLColumnPrivilegesW(
+pub extern "odbc32" fn SQLColumnPrivilegesW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15929,7 +15929,7 @@ pub extern "ODBC32" fn SQLColumnPrivilegesW(
     cchColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetStmtAttrW(
+pub extern "odbc32" fn SQLGetStmtAttrW(
     hstmt: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
@@ -15937,14 +15937,14 @@ pub extern "ODBC32" fn SQLGetStmtAttrW(
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetStmtAttrW(
+pub extern "odbc32" fn SQLSetStmtAttrW(
     hstmt: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
     cbValueMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLForeignKeysW(
+pub extern "odbc32" fn SQLForeignKeysW(
     hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u16,
     cchPkCatalogName: i16,
@@ -15960,7 +15960,7 @@ pub extern "ODBC32" fn SQLForeignKeysW(
     cchFkTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLNativeSqlW(
+pub extern "odbc32" fn SQLNativeSqlW(
     hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u16,
     cchSqlStrIn: i32,
@@ -15969,7 +15969,7 @@ pub extern "ODBC32" fn SQLNativeSqlW(
     pcchSqlStr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLPrimaryKeysW(
+pub extern "odbc32" fn SQLPrimaryKeysW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15979,7 +15979,7 @@ pub extern "ODBC32" fn SQLPrimaryKeysW(
     cchTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProcedureColumnsW(
+pub extern "odbc32" fn SQLProcedureColumnsW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15991,7 +15991,7 @@ pub extern "ODBC32" fn SQLProcedureColumnsW(
     cchColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProceduresW(
+pub extern "odbc32" fn SQLProceduresW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -16001,7 +16001,7 @@ pub extern "ODBC32" fn SQLProceduresW(
     cchProcName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTablePrivilegesW(
+pub extern "odbc32" fn SQLTablePrivilegesW(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -16011,7 +16011,7 @@ pub extern "ODBC32" fn SQLTablePrivilegesW(
     cchTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDriversW(
+pub extern "odbc32" fn SQLDriversW(
     henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u16,
@@ -16025,7 +16025,7 @@ pub extern "ODBC32" fn SQLDriversW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttributeA(
+pub extern "odbc32" fn SQLColAttributeA(
     hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
@@ -16041,7 +16041,7 @@ pub extern "ODBC32" fn SQLColAttributeA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLColAttributesA(
+pub extern "odbc32" fn SQLColAttributesA(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -16054,7 +16054,7 @@ pub extern "ODBC32" fn SQLColAttributesA(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLConnectA(
+pub extern "odbc32" fn SQLConnectA(
     hdbc: ?*anyopaque,
     szDSN: [*:0]u8,
     cbDSN: i16,
@@ -16067,7 +16067,7 @@ pub extern "ODBC32" fn SQLConnectA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLDescribeColA(
+pub extern "odbc32" fn SQLDescribeColA(
     hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u8,
@@ -16081,7 +16081,7 @@ pub extern "ODBC32" fn SQLDescribeColA(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLErrorA(
+pub extern "odbc32" fn SQLErrorA(
     henv: ?*anyopaque,
     hdbc: ?*anyopaque,
     hstmt: ?*anyopaque,
@@ -16092,13 +16092,13 @@ pub extern "ODBC32" fn SQLErrorA(
     pcbErrorMsg: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLExecDirectA(
+pub extern "odbc32" fn SQLExecDirectA(
     hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u8,
     cbSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectAttrA(
+pub extern "odbc32" fn SQLGetConnectAttrA(
     hdbc: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
@@ -16106,14 +16106,14 @@ pub extern "ODBC32" fn SQLGetConnectAttrA(
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetCursorNameA(
+pub extern "odbc32" fn SQLGetCursorNameA(
     hstmt: ?*anyopaque,
     szCursor: ?[*:0]u8,
     cbCursorMax: i16,
     pcbCursor: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetDescFieldA(
+pub extern "odbc32" fn SQLGetDescFieldA(
     hdesc: ?*anyopaque,
     iRecord: i16,
     iField: i16,
@@ -16125,7 +16125,7 @@ pub extern "ODBC32" fn SQLGetDescFieldA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRecA(
+pub extern "odbc32" fn SQLGetDescRecA(
     hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u8,
@@ -16141,7 +16141,7 @@ pub extern "ODBC32" fn SQLGetDescRecA(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLGetDiagFieldA(
+pub extern "odbc32" fn SQLGetDiagFieldA(
     fHandleType: i16,
     handle: ?*anyopaque,
     iRecord: i16,
@@ -16151,7 +16151,7 @@ pub extern "ODBC32" fn SQLGetDiagFieldA(
     pcbDiagInfo: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetDiagRecA(
+pub extern "odbc32" fn SQLGetDiagRecA(
     fHandleType: i16,
     handle: ?*anyopaque,
     iRecord: i16,
@@ -16162,7 +16162,7 @@ pub extern "ODBC32" fn SQLGetDiagRecA(
     pcbErrorMsg: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetStmtAttrA(
+pub extern "odbc32" fn SQLGetStmtAttrA(
     hstmt: ?*anyopaque,
     fAttribute: i32,
     rgbValue: ?*anyopaque,
@@ -16170,18 +16170,18 @@ pub extern "ODBC32" fn SQLGetStmtAttrA(
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetTypeInfoA(
+pub extern "odbc32" fn SQLGetTypeInfoA(
     StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLPrepareA(
+pub extern "odbc32" fn SQLPrepareA(
     hstmt: ?*anyopaque,
     szSqlStr: [*:0]u8,
     cbSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetConnectAttrA(
+pub extern "odbc32" fn SQLSetConnectAttrA(
     hdbc: ?*anyopaque,
     fAttribute: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -16189,13 +16189,13 @@ pub extern "ODBC32" fn SQLSetConnectAttrA(
     cbValue: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLSetCursorNameA(
+pub extern "odbc32" fn SQLSetCursorNameA(
     hstmt: ?*anyopaque,
     szCursor: [*:0]u8,
     cbCursor: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLColumnsA(
+pub extern "odbc32" fn SQLColumnsA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16207,13 +16207,13 @@ pub extern "ODBC32" fn SQLColumnsA(
     cbColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetConnectOptionA(
+pub extern "odbc32" fn SQLGetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLGetInfoA(
+pub extern "odbc32" fn SQLGetInfoA(
     hdbc: ?*anyopaque,
     fInfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -16225,7 +16225,7 @@ pub extern "ODBC32" fn SQLGetInfoA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOptionA(
+pub extern "odbc32" fn SQLSetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
@@ -16233,7 +16233,7 @@ pub extern "ODBC32" fn SQLSetConnectOptionA(
 
 }, else => struct { } };
 
-pub extern "ODBC32" fn SQLSpecialColumnsA(
+pub extern "odbc32" fn SQLSpecialColumnsA(
     hstmt: ?*anyopaque,
     fColType: u16,
     szCatalogName: ?[*:0]u8,
@@ -16246,7 +16246,7 @@ pub extern "ODBC32" fn SQLSpecialColumnsA(
     fNullable: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLStatisticsA(
+pub extern "odbc32" fn SQLStatisticsA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16258,7 +16258,7 @@ pub extern "ODBC32" fn SQLStatisticsA(
     fAccuracy: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTablesA(
+pub extern "odbc32" fn SQLTablesA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16270,7 +16270,7 @@ pub extern "ODBC32" fn SQLTablesA(
     cbTableType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDataSourcesA(
+pub extern "odbc32" fn SQLDataSourcesA(
     henv: ?*anyopaque,
     fDirection: u16,
     szDSN: ?[*:0]u8,
@@ -16281,7 +16281,7 @@ pub extern "ODBC32" fn SQLDataSourcesA(
     pcbDescription: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDriverConnectA(
+pub extern "odbc32" fn SQLDriverConnectA(
     hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u8,
@@ -16292,7 +16292,7 @@ pub extern "ODBC32" fn SQLDriverConnectA(
     fDriverCompletion: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLBrowseConnectA(
+pub extern "odbc32" fn SQLBrowseConnectA(
     hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u8,
     cbConnStrIn: i16,
@@ -16301,7 +16301,7 @@ pub extern "ODBC32" fn SQLBrowseConnectA(
     pcbConnStrOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLColumnPrivilegesA(
+pub extern "odbc32" fn SQLColumnPrivilegesA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16313,7 +16313,7 @@ pub extern "ODBC32" fn SQLColumnPrivilegesA(
     cbColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLForeignKeysA(
+pub extern "odbc32" fn SQLForeignKeysA(
     hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u8,
     cbPkCatalogName: i16,
@@ -16329,7 +16329,7 @@ pub extern "ODBC32" fn SQLForeignKeysA(
     cbFkTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLNativeSqlA(
+pub extern "odbc32" fn SQLNativeSqlA(
     hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u8,
     cbSqlStrIn: i32,
@@ -16338,7 +16338,7 @@ pub extern "ODBC32" fn SQLNativeSqlA(
     pcbSqlStr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLPrimaryKeysA(
+pub extern "odbc32" fn SQLPrimaryKeysA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16348,7 +16348,7 @@ pub extern "ODBC32" fn SQLPrimaryKeysA(
     cbTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProcedureColumnsA(
+pub extern "odbc32" fn SQLProcedureColumnsA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16360,7 +16360,7 @@ pub extern "ODBC32" fn SQLProcedureColumnsA(
     cbColumnName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLProceduresA(
+pub extern "odbc32" fn SQLProceduresA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16370,7 +16370,7 @@ pub extern "ODBC32" fn SQLProceduresA(
     cbProcName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLTablePrivilegesA(
+pub extern "odbc32" fn SQLTablePrivilegesA(
     hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16380,7 +16380,7 @@ pub extern "ODBC32" fn SQLTablePrivilegesA(
     cbTableName: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "ODBC32" fn SQLDriversA(
+pub extern "odbc32" fn SQLDriversA(
     henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u8,
@@ -16394,7 +16394,7 @@ pub extern "ODBC32" fn SQLDriversA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLBindCol(
+pub extern "odbc32" fn SQLBindCol(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
@@ -16408,7 +16408,7 @@ pub extern "ODBC32" fn SQLBindCol(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLBindParam(
+pub extern "odbc32" fn SQLBindParam(
     StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
@@ -16424,7 +16424,7 @@ pub extern "ODBC32" fn SQLBindParam(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttribute(
+pub extern "odbc32" fn SQLColAttribute(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
@@ -16440,7 +16440,7 @@ pub extern "ODBC32" fn SQLColAttribute(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLDescribeCol(
+pub extern "odbc32" fn SQLDescribeCol(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     ColumnName: ?[*:0]u8,
@@ -16457,7 +16457,7 @@ pub extern "ODBC32" fn SQLDescribeCol(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLFetchScroll(
+pub extern "odbc32" fn SQLFetchScroll(
     StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i32,
@@ -16468,7 +16468,7 @@ pub extern "ODBC32" fn SQLFetchScroll(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLGetData(
+pub extern "odbc32" fn SQLGetData(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
@@ -16482,7 +16482,7 @@ pub extern "ODBC32" fn SQLGetData(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRec(
+pub extern "odbc32" fn SQLGetDescRec(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Name: ?[*:0]u8,
@@ -16501,7 +16501,7 @@ pub extern "ODBC32" fn SQLGetDescRec(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLPutData(
+pub extern "odbc32" fn SQLPutData(
     StatementHandle: ?*anyopaque,
     Data: ?*anyopaque,
     StrLen_or_Ind: i32,
@@ -16512,7 +16512,7 @@ pub extern "ODBC32" fn SQLPutData(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLRowCount(
+pub extern "odbc32" fn SQLRowCount(
     StatementHandle: ?*anyopaque,
     RowCount: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16522,7 +16522,7 @@ pub extern "ODBC32" fn SQLRowCount(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOption(
+pub extern "odbc32" fn SQLSetConnectOption(
     ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
@@ -16533,7 +16533,7 @@ pub extern "ODBC32" fn SQLSetConnectOption(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetDescRec(
+pub extern "odbc32" fn SQLSetDescRec(
     DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Type: i16,
@@ -16552,7 +16552,7 @@ pub extern "ODBC32" fn SQLSetDescRec(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetParam(
+pub extern "odbc32" fn SQLSetParam(
     StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
@@ -16568,7 +16568,7 @@ pub extern "ODBC32" fn SQLSetParam(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetStmtOption(
+pub extern "odbc32" fn SQLSetStmtOption(
     StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
@@ -16579,7 +16579,7 @@ pub extern "ODBC32" fn SQLSetStmtOption(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttributes(
+pub extern "odbc32" fn SQLColAttributes(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -16594,7 +16594,7 @@ pub extern "ODBC32" fn SQLColAttributes(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLDescribeParam(
+pub extern "odbc32" fn SQLDescribeParam(
     hstmt: ?*anyopaque,
     ipar: u16,
     pfSqlType: ?*i16,
@@ -16608,7 +16608,7 @@ pub extern "ODBC32" fn SQLDescribeParam(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLExtendedFetch(
+pub extern "odbc32" fn SQLExtendedFetch(
     hstmt: ?*anyopaque,
     fFetchType: u16,
     irow: i32,
@@ -16621,7 +16621,7 @@ pub extern "ODBC32" fn SQLExtendedFetch(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLParamOptions(
+pub extern "odbc32" fn SQLParamOptions(
     hstmt: ?*anyopaque,
     crow: u32,
     pirow: ?*u32,
@@ -16632,7 +16632,7 @@ pub extern "ODBC32" fn SQLParamOptions(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetPos(
+pub extern "odbc32" fn SQLSetPos(
     hstmt: ?*anyopaque,
     irow: u16,
     fOption: u16,
@@ -16644,7 +16644,7 @@ pub extern "ODBC32" fn SQLSetPos(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLBindParameter(
+pub extern "odbc32" fn SQLBindParameter(
     hstmt: ?*anyopaque,
     ipar: u16,
     fParamType: i16,
@@ -16662,7 +16662,7 @@ pub extern "ODBC32" fn SQLBindParameter(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetScrollOptions(
+pub extern "odbc32" fn SQLSetScrollOptions(
     hstmt: ?*anyopaque,
     fConcurrency: u16,
     crowKeyset: i32,
@@ -16674,7 +16674,7 @@ pub extern "ODBC32" fn SQLSetScrollOptions(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttributeW(
+pub extern "odbc32" fn SQLColAttributeW(
     hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
@@ -16690,7 +16690,7 @@ pub extern "ODBC32" fn SQLColAttributeW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttributesW(
+pub extern "odbc32" fn SQLColAttributesW(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -16706,7 +16706,7 @@ pub extern "ODBC32" fn SQLColAttributesW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLDescribeColW(
+pub extern "odbc32" fn SQLDescribeColW(
     hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u16,
@@ -16723,7 +16723,7 @@ pub extern "ODBC32" fn SQLDescribeColW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRecW(
+pub extern "odbc32" fn SQLGetDescRecW(
     hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u16,
@@ -16742,7 +16742,7 @@ pub extern "ODBC32" fn SQLGetDescRecW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOptionW(
+pub extern "odbc32" fn SQLSetConnectOptionW(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,
@@ -16753,7 +16753,7 @@ pub extern "ODBC32" fn SQLSetConnectOptionW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttributeA(
+pub extern "odbc32" fn SQLColAttributeA(
     hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
@@ -16769,7 +16769,7 @@ pub extern "ODBC32" fn SQLColAttributeA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLColAttributesA(
+pub extern "odbc32" fn SQLColAttributesA(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
@@ -16785,7 +16785,7 @@ pub extern "ODBC32" fn SQLColAttributesA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLDescribeColA(
+pub extern "odbc32" fn SQLDescribeColA(
     hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u8,
@@ -16802,7 +16802,7 @@ pub extern "ODBC32" fn SQLDescribeColA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLGetDescRecA(
+pub extern "odbc32" fn SQLGetDescRecA(
     hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u8,
@@ -16821,7 +16821,7 @@ pub extern "ODBC32" fn SQLGetDescRecA(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub extern "ODBC32" fn SQLSetConnectOptionA(
+pub extern "odbc32" fn SQLSetConnectOptionA(
     hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,

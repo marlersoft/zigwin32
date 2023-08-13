@@ -240,118 +240,118 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD = switch(@import("../zig.zi
 //--------------------------------------------------------------------------------
 // Section: Functions (37)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn SetEnvironmentStringsW(
+pub extern "kernel32" fn SetEnvironmentStringsW(
     NewEnvironment: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCommandLineA(
+pub extern "kernel32" fn GetCommandLineA(
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCommandLineW(
+pub extern "kernel32" fn GetCommandLineW(
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetEnvironmentStrings(
+pub extern "kernel32" fn GetEnvironmentStrings(
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetEnvironmentStringsW(
+pub extern "kernel32" fn GetEnvironmentStringsW(
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FreeEnvironmentStringsA(
+pub extern "kernel32" fn FreeEnvironmentStringsA(
     penv: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FreeEnvironmentStringsW(
+pub extern "kernel32" fn FreeEnvironmentStringsW(
     penv: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetEnvironmentVariableA(
+pub extern "kernel32" fn GetEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpBuffer: ?[*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetEnvironmentVariableW(
+pub extern "kernel32" fn GetEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpBuffer: ?[*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetEnvironmentVariableA(
+pub extern "kernel32" fn SetEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetEnvironmentVariableW(
+pub extern "kernel32" fn SetEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn ExpandEnvironmentStringsA(
+pub extern "kernel32" fn ExpandEnvironmentStringsA(
     lpSrc: ?[*:0]const u8,
     lpDst: ?[*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn ExpandEnvironmentStringsW(
+pub extern "kernel32" fn ExpandEnvironmentStringsW(
     lpSrc: ?[*:0]const u16,
     lpDst: ?[*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn SetCurrentDirectoryA(
+pub extern "kernel32" fn SetCurrentDirectoryA(
     lpPathName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetCurrentDirectoryW(
+pub extern "kernel32" fn SetCurrentDirectoryW(
     lpPathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetCurrentDirectoryA(
+pub extern "kernel32" fn GetCurrentDirectoryA(
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetCurrentDirectoryW(
+pub extern "kernel32" fn GetCurrentDirectoryW(
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn NeedCurrentDirectoryForExePathA(
+pub extern "kernel32" fn NeedCurrentDirectoryForExePathA(
     ExeName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn NeedCurrentDirectoryForExePathW(
+pub extern "kernel32" fn NeedCurrentDirectoryForExePathW(
     ExeName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn CreateEnvironmentBlock(
+pub extern "userenv" fn CreateEnvironmentBlock(
     lpEnvironment: ?*?*anyopaque,
     hToken: ?HANDLE,
     bInherit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DestroyEnvironmentBlock(
+pub extern "userenv" fn DestroyEnvironmentBlock(
     lpEnvironment: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
+pub extern "userenv" fn ExpandEnvironmentStringsForUserA(
     hToken: ?HANDLE,
     lpSrc: ?[*:0]const u8,
     lpDest: [*:0]u8,
@@ -359,7 +359,7 @@ pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
+pub extern "userenv" fn ExpandEnvironmentStringsForUserW(
     hToken: ?HANDLE,
     lpSrc: ?[*:0]const u16,
     lpDest: [*:0]u16,
@@ -367,12 +367,12 @@ pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "KERNEL32" fn IsEnclaveTypeSupported(
+pub extern "kernel32" fn IsEnclaveTypeSupported(
     flEnclaveType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "KERNEL32" fn CreateEnclave(
+pub extern "kernel32" fn CreateEnclave(
     hProcess: ?HANDLE,
     lpAddress: ?*anyopaque,
     dwSize: usize,
@@ -385,7 +385,7 @@ pub extern "KERNEL32" fn CreateEnclave(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "KERNEL32" fn LoadEnclaveData(
+pub extern "kernel32" fn LoadEnclaveData(
     hProcess: ?HANDLE,
     lpAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
@@ -400,7 +400,7 @@ pub extern "KERNEL32" fn LoadEnclaveData(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "KERNEL32" fn InitializeEnclave(
+pub extern "kernel32" fn InitializeEnclave(
     hProcess: ?HANDLE,
     lpAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?

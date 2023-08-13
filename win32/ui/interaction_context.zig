@@ -378,160 +378,160 @@ pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = fn(
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn CreateInteractionContext(
+pub extern "ninput" fn CreateInteractionContext(
     interactionContext: ?*?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn DestroyInteractionContext(
+pub extern "ninput" fn DestroyInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn RegisterOutputCallbackInteractionContext(
+pub extern "ninput" fn RegisterOutputCallbackInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     outputCallback: ?INTERACTION_CONTEXT_OUTPUT_CALLBACK,
     clientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn RegisterOutputCallbackInteractionContext2(
+pub extern "ninput" fn RegisterOutputCallbackInteractionContext2(
     interactionContext: ?HINTERACTIONCONTEXT,
     outputCallback: ?INTERACTION_CONTEXT_OUTPUT_CALLBACK2,
     clientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetInteractionConfigurationInteractionContext(
+pub extern "ninput" fn SetInteractionConfigurationInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     configurationCount: u32,
     configuration: [*]const INTERACTION_CONTEXT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetInteractionConfigurationInteractionContext(
+pub extern "ninput" fn GetInteractionConfigurationInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     configurationCount: u32,
     configuration: [*]INTERACTION_CONTEXT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetPropertyInteractionContext(
+pub extern "ninput" fn SetPropertyInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     contextProperty: INTERACTION_CONTEXT_PROPERTY,
     value: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetPropertyInteractionContext(
+pub extern "ninput" fn GetPropertyInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     contextProperty: INTERACTION_CONTEXT_PROPERTY,
     value: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetInertiaParameterInteractionContext(
+pub extern "ninput" fn SetInertiaParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     inertiaParameter: INERTIA_PARAMETER,
     value: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetInertiaParameterInteractionContext(
+pub extern "ninput" fn GetInertiaParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     inertiaParameter: INERTIA_PARAMETER,
     value: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetCrossSlideParametersInteractionContext(
+pub extern "ninput" fn SetCrossSlideParametersInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameterCount: u32,
     crossSlideParameters: [*]CROSS_SLIDE_PARAMETER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetCrossSlideParameterInteractionContext(
+pub extern "ninput" fn GetCrossSlideParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     threshold: CROSS_SLIDE_THRESHOLD,
     distance: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn SetTapParameterInteractionContext(
+pub extern "ninput" fn SetTapParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: TAP_PARAMETER,
     value: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn GetTapParameterInteractionContext(
+pub extern "ninput" fn GetTapParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: TAP_PARAMETER,
     value: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn SetHoldParameterInteractionContext(
+pub extern "ninput" fn SetHoldParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: HOLD_PARAMETER,
     value: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn GetHoldParameterInteractionContext(
+pub extern "ninput" fn GetHoldParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: HOLD_PARAMETER,
     value: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn SetTranslationParameterInteractionContext(
+pub extern "ninput" fn SetTranslationParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: TRANSLATION_PARAMETER,
     value: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "NInput" fn GetTranslationParameterInteractionContext(
+pub extern "ninput" fn GetTranslationParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: TRANSLATION_PARAMETER,
     value: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetMouseWheelParameterInteractionContext(
+pub extern "ninput" fn SetMouseWheelParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: MOUSE_WHEEL_PARAMETER,
     value: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetMouseWheelParameterInteractionContext(
+pub extern "ninput" fn GetMouseWheelParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     parameter: MOUSE_WHEEL_PARAMETER,
     value: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn ResetInteractionContext(
+pub extern "ninput" fn ResetInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn GetStateInteractionContext(
+pub extern "ninput" fn GetStateInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     pointerInfo: ?*const POINTER_INFO,
     state: ?*INTERACTION_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn AddPointerInteractionContext(
+pub extern "ninput" fn AddPointerInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     pointerId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn RemovePointerInteractionContext(
+pub extern "ninput" fn RemovePointerInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     pointerId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn ProcessPointerFramesInteractionContext(
+pub extern "ninput" fn ProcessPointerFramesInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     entriesCount: u32,
     pointerCount: u32,
@@ -539,29 +539,29 @@ pub extern "NInput" fn ProcessPointerFramesInteractionContext(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn BufferPointerPacketsInteractionContext(
+pub extern "ninput" fn BufferPointerPacketsInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     entriesCount: u32,
     pointerInfo: [*]const POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn ProcessBufferedPacketsInteractionContext(
+pub extern "ninput" fn ProcessBufferedPacketsInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn ProcessInertiaInteractionContext(
+pub extern "ninput" fn ProcessInertiaInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn StopInteractionContext(
+pub extern "ninput" fn StopInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NInput" fn SetPivotInteractionContext(
+pub extern "ninput" fn SetPivotInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     x: f32,
     y: f32,

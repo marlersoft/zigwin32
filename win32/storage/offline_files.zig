@@ -2189,23 +2189,23 @@ pub const IOfflineFilesCache2 = extern struct {
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "CSCAPI" fn OfflineFilesEnable(
+pub extern "cscapi" fn OfflineFilesEnable(
     bEnable: BOOL,
     pbRebootRequired: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CSCAPI" fn OfflineFilesStart(
+pub extern "cscapi" fn OfflineFilesStart(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "CSCAPI" fn OfflineFilesQueryStatus(
+pub extern "cscapi" fn OfflineFilesQueryStatus(
     pbActive: ?*BOOL,
     pbEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CSCAPI" fn OfflineFilesQueryStatusEx(
+pub extern "cscapi" fn OfflineFilesQueryStatusEx(
     pbActive: ?*BOOL,
     pbEnabled: ?*BOOL,
     pbAvailable: ?*BOOL,

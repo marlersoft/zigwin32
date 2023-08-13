@@ -5553,7 +5553,7 @@ pub const INPUT_BUTTON_ENABLE_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (47)
 //--------------------------------------------------------------------------------
-pub extern "DINPUT8" fn DirectInput8Create(
+pub extern "dinput8" fn DirectInput8Create(
     hinst: ?HINSTANCE,
     dwVersion: u32,
     riidltf: ?*const Guid,
@@ -5562,22 +5562,22 @@ pub extern "DINPUT8" fn DirectInput8Create(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn joyConfigChanged(
+pub extern "winmm" fn joyConfigChanged(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HID" fn HidP_GetCaps(
+pub extern "hid" fn HidP_GetCaps(
     PreparsedData: isize,
     Capabilities: ?*HIDP_CAPS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetLinkCollectionNodes(
+pub extern "hid" fn HidP_GetLinkCollectionNodes(
     LinkCollectionNodes: [*]HIDP_LINK_COLLECTION_NODE,
     LinkCollectionNodesLength: ?*u32,
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetSpecificButtonCaps(
+pub extern "hid" fn HidP_GetSpecificButtonCaps(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5587,14 +5587,14 @@ pub extern "HID" fn HidP_GetSpecificButtonCaps(
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetButtonCaps(
+pub extern "hid" fn HidP_GetButtonCaps(
     ReportType: HIDP_REPORT_TYPE,
     ButtonCaps: [*]HIDP_BUTTON_CAPS,
     ButtonCapsLength: ?*u16,
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetSpecificValueCaps(
+pub extern "hid" fn HidP_GetSpecificValueCaps(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5604,14 +5604,14 @@ pub extern "HID" fn HidP_GetSpecificValueCaps(
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetValueCaps(
+pub extern "hid" fn HidP_GetValueCaps(
     ReportType: HIDP_REPORT_TYPE,
     ValueCaps: [*]HIDP_VALUE_CAPS,
     ValueCapsLength: ?*u16,
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetExtendedAttributes(
+pub extern "hid" fn HidP_GetExtendedAttributes(
     ReportType: HIDP_REPORT_TYPE,
     DataIndex: u16,
     PreparsedData: isize,
@@ -5619,7 +5619,7 @@ pub extern "HID" fn HidP_GetExtendedAttributes(
     LengthAttributes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_InitializeReportForID(
+pub extern "hid" fn HidP_InitializeReportForID(
     ReportType: HIDP_REPORT_TYPE,
     ReportID: u8,
     PreparsedData: isize,
@@ -5628,7 +5628,7 @@ pub extern "HID" fn HidP_InitializeReportForID(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_SetData(
+pub extern "hid" fn HidP_SetData(
     ReportType: HIDP_REPORT_TYPE,
     DataList: [*]HIDP_DATA,
     DataLength: ?*u32,
@@ -5638,7 +5638,7 @@ pub extern "HID" fn HidP_SetData(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetData(
+pub extern "hid" fn HidP_GetData(
     ReportType: HIDP_REPORT_TYPE,
     DataList: [*]HIDP_DATA,
     DataLength: ?*u32,
@@ -5648,12 +5648,12 @@ pub extern "HID" fn HidP_GetData(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_MaxDataListLength(
+pub extern "hid" fn HidP_MaxDataListLength(
     ReportType: HIDP_REPORT_TYPE,
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HID" fn HidP_SetUsages(
+pub extern "hid" fn HidP_SetUsages(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5665,7 +5665,7 @@ pub extern "HID" fn HidP_SetUsages(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_UnsetUsages(
+pub extern "hid" fn HidP_UnsetUsages(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5677,7 +5677,7 @@ pub extern "HID" fn HidP_UnsetUsages(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetUsages(
+pub extern "hid" fn HidP_GetUsages(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5689,7 +5689,7 @@ pub extern "HID" fn HidP_GetUsages(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetUsagesEx(
+pub extern "hid" fn HidP_GetUsagesEx(
     ReportType: HIDP_REPORT_TYPE,
     LinkCollection: u16,
     ButtonList: [*]USAGE_AND_PAGE,
@@ -5700,13 +5700,13 @@ pub extern "HID" fn HidP_GetUsagesEx(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_MaxUsageListLength(
+pub extern "hid" fn HidP_MaxUsageListLength(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HID" fn HidP_SetUsageValue(
+pub extern "hid" fn HidP_SetUsageValue(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5718,7 +5718,7 @@ pub extern "HID" fn HidP_SetUsageValue(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_SetScaledUsageValue(
+pub extern "hid" fn HidP_SetScaledUsageValue(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5730,7 +5730,7 @@ pub extern "HID" fn HidP_SetScaledUsageValue(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_SetUsageValueArray(
+pub extern "hid" fn HidP_SetUsageValueArray(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5744,7 +5744,7 @@ pub extern "HID" fn HidP_SetUsageValueArray(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetUsageValue(
+pub extern "hid" fn HidP_GetUsageValue(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5756,7 +5756,7 @@ pub extern "HID" fn HidP_GetUsageValue(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetScaledUsageValue(
+pub extern "hid" fn HidP_GetScaledUsageValue(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5768,7 +5768,7 @@ pub extern "HID" fn HidP_GetScaledUsageValue(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetUsageValueArray(
+pub extern "hid" fn HidP_GetUsageValueArray(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5782,7 +5782,7 @@ pub extern "HID" fn HidP_GetUsageValueArray(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_UsageListDifference(
+pub extern "hid" fn HidP_UsageListDifference(
     PreviousUsageList: [*:0]u16,
     CurrentUsageList: [*:0]u16,
     BreakUsageList: [*:0]u16,
@@ -5790,7 +5790,7 @@ pub extern "HID" fn HidP_UsageListDifference(
     UsageListLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_GetButtonArray(
+pub extern "hid" fn HidP_GetButtonArray(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5803,7 +5803,7 @@ pub extern "HID" fn HidP_GetButtonArray(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_SetButtonArray(
+pub extern "hid" fn HidP_SetButtonArray(
     ReportType: HIDP_REPORT_TYPE,
     UsagePage: u16,
     LinkCollection: u16,
@@ -5816,7 +5816,7 @@ pub extern "HID" fn HidP_SetButtonArray(
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidP_TranslateUsagesToI8042ScanCodes(
+pub extern "hid" fn HidP_TranslateUsagesToI8042ScanCodes(
     ChangedUsageList: [*:0]u16,
     UsageListLength: u32,
     KeyAction: HIDP_KEYBOARD_DIRECTION,
@@ -5825,102 +5825,102 @@ pub extern "HID" fn HidP_TranslateUsagesToI8042ScanCodes(
     InsertCodesContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "HID" fn HidD_GetAttributes(
+pub extern "hid" fn HidD_GetAttributes(
     HidDeviceObject: ?HANDLE,
     Attributes: ?*HIDD_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetHidGuid(
+pub extern "hid" fn HidD_GetHidGuid(
     HidGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "HID" fn HidD_GetPreparsedData(
+pub extern "hid" fn HidD_GetPreparsedData(
     HidDeviceObject: ?HANDLE,
     PreparsedData: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_FreePreparsedData(
+pub extern "hid" fn HidD_FreePreparsedData(
     PreparsedData: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_FlushQueue(
+pub extern "hid" fn HidD_FlushQueue(
     HidDeviceObject: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetConfiguration(
-    HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    Configuration: ?*HIDD_CONFIGURATION,
-    ConfigurationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
-
-pub extern "HID" fn HidD_SetConfiguration(
+pub extern "hid" fn HidD_GetConfiguration(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetFeature(
+pub extern "hid" fn HidD_SetConfiguration(
+    HidDeviceObject: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    Configuration: ?*HIDD_CONFIGURATION,
+    ConfigurationLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
+pub extern "hid" fn HidD_GetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_SetFeature(
+pub extern "hid" fn HidD_SetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetInputReport(
+pub extern "hid" fn HidD_GetInputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_SetOutputReport(
+pub extern "hid" fn HidD_SetOutputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetNumInputBuffers(
+pub extern "hid" fn HidD_GetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_SetNumInputBuffers(
+pub extern "hid" fn HidD_SetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetPhysicalDescriptor(
+pub extern "hid" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetManufacturerString(
+pub extern "hid" fn HidD_GetManufacturerString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetProductString(
+pub extern "hid" fn HidD_GetProductString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetIndexedString(
+pub extern "hid" fn HidD_GetIndexedString(
     HidDeviceObject: ?HANDLE,
     StringIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -5928,14 +5928,14 @@ pub extern "HID" fn HidD_GetIndexedString(
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetSerialNumberString(
+pub extern "hid" fn HidD_GetSerialNumberString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "HID" fn HidD_GetMsGenreDescriptor(
+pub extern "hid" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*anyopaque,

@@ -894,7 +894,7 @@ pub const GESTURECONFIG = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn GetTouchInputInfo(
+pub extern "user32" fn GetTouchInputInfo(
     hTouchInput: ?HTOUCHINPUT,
     cInputs: u32,
     pInputs: [*]TOUCHINPUT,
@@ -902,35 +902,35 @@ pub extern "USER32" fn GetTouchInputInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn CloseTouchInputHandle(
+pub extern "user32" fn CloseTouchInputHandle(
     hTouchInput: ?HTOUCHINPUT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn RegisterTouchWindow(
+pub extern "user32" fn RegisterTouchWindow(
     hwnd: ?HWND,
     ulFlags: REGISTER_TOUCH_WINDOW_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn UnregisterTouchWindow(
+pub extern "user32" fn UnregisterTouchWindow(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn IsTouchWindow(
+pub extern "user32" fn IsTouchWindow(
     hwnd: ?HWND,
     pulFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn GetGestureInfo(
+pub extern "user32" fn GetGestureInfo(
     hGestureInfo: ?HGESTUREINFO,
     pGestureInfo: ?*GESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn GetGestureExtraArgs(
+pub extern "user32" fn GetGestureExtraArgs(
     hGestureInfo: ?HGESTUREINFO,
     cbExtraArgs: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -938,12 +938,12 @@ pub extern "USER32" fn GetGestureExtraArgs(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn CloseGestureInfoHandle(
+pub extern "user32" fn CloseGestureInfoHandle(
     hGestureInfo: ?HGESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn SetGestureConfig(
+pub extern "user32" fn SetGestureConfig(
     hwnd: ?HWND,
     dwReserved: u32,
     cIDs: u32,
@@ -952,7 +952,7 @@ pub extern "USER32" fn SetGestureConfig(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "USER32" fn GetGestureConfig(
+pub extern "user32" fn GetGestureConfig(
     hwnd: ?HWND,
     dwReserved: u32,
     dwFlags: u32,

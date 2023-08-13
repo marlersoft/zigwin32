@@ -7357,12 +7357,12 @@ pub const WTSSESSION_NOTIFICATION = extern struct {
 // Section: Functions (65)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSStopRemoteControlSession(
+pub extern "wtsapi32" fn WTSStopRemoteControlSession(
     LogonId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSStartRemoteControlSessionW(
+pub extern "wtsapi32" fn WTSStartRemoteControlSessionW(
     pTargetServerName: ?PWSTR,
     TargetLogonId: u32,
     HotkeyVk: u8,
@@ -7370,7 +7370,7 @@ pub extern "WTSAPI32" fn WTSStartRemoteControlSessionW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSStartRemoteControlSessionA(
+pub extern "wtsapi32" fn WTSStartRemoteControlSessionA(
     pTargetServerName: ?PSTR,
     TargetLogonId: u32,
     HotkeyVk: u8,
@@ -7378,7 +7378,7 @@ pub extern "WTSAPI32" fn WTSStartRemoteControlSessionA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSConnectSessionA(
+pub extern "wtsapi32" fn WTSConnectSessionA(
     LogonId: u32,
     TargetLogonId: u32,
     pPassword: ?PSTR,
@@ -7386,7 +7386,7 @@ pub extern "WTSAPI32" fn WTSConnectSessionA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSConnectSessionW(
+pub extern "wtsapi32" fn WTSConnectSessionW(
     LogonId: u32,
     TargetLogonId: u32,
     pPassword: ?PWSTR,
@@ -7394,7 +7394,7 @@ pub extern "WTSAPI32" fn WTSConnectSessionW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateServersW(
+pub extern "wtsapi32" fn WTSEnumerateServersW(
     pDomainName: ?PWSTR,
     Reserved: u32,
     Version: u32,
@@ -7403,7 +7403,7 @@ pub extern "WTSAPI32" fn WTSEnumerateServersW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateServersA(
+pub extern "wtsapi32" fn WTSEnumerateServersA(
     pDomainName: ?PSTR,
     Reserved: u32,
     Version: u32,
@@ -7412,32 +7412,32 @@ pub extern "WTSAPI32" fn WTSEnumerateServersA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSOpenServerW(
+pub extern "wtsapi32" fn WTSOpenServerW(
     pServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSOpenServerA(
+pub extern "wtsapi32" fn WTSOpenServerA(
     pServerName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSOpenServerExW(
+pub extern "wtsapi32" fn WTSOpenServerExW(
     pServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSOpenServerExA(
+pub extern "wtsapi32" fn WTSOpenServerExA(
     pServerName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSCloseServer(
+pub extern "wtsapi32" fn WTSCloseServer(
     hServer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateSessionsW(
+pub extern "wtsapi32" fn WTSEnumerateSessionsW(
     hServer: ?HANDLE,
     Reserved: u32,
     Version: u32,
@@ -7446,7 +7446,7 @@ pub extern "WTSAPI32" fn WTSEnumerateSessionsW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateSessionsA(
+pub extern "wtsapi32" fn WTSEnumerateSessionsA(
     hServer: ?HANDLE,
     Reserved: u32,
     Version: u32,
@@ -7455,7 +7455,7 @@ pub extern "WTSAPI32" fn WTSEnumerateSessionsA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateSessionsExW(
+pub extern "wtsapi32" fn WTSEnumerateSessionsExW(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     Filter: u32,
@@ -7464,7 +7464,7 @@ pub extern "WTSAPI32" fn WTSEnumerateSessionsExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateSessionsExA(
+pub extern "wtsapi32" fn WTSEnumerateSessionsExA(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     Filter: u32,
@@ -7473,7 +7473,7 @@ pub extern "WTSAPI32" fn WTSEnumerateSessionsExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateProcessesW(
+pub extern "wtsapi32" fn WTSEnumerateProcessesW(
     hServer: ?HANDLE,
     Reserved: u32,
     Version: u32,
@@ -7482,7 +7482,7 @@ pub extern "WTSAPI32" fn WTSEnumerateProcessesW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSEnumerateProcessesA(
+pub extern "wtsapi32" fn WTSEnumerateProcessesA(
     hServer: ?HANDLE,
     Reserved: u32,
     Version: u32,
@@ -7491,14 +7491,14 @@ pub extern "WTSAPI32" fn WTSEnumerateProcessesA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSTerminateProcess(
+pub extern "wtsapi32" fn WTSTerminateProcess(
     hServer: ?HANDLE,
     ProcessId: u32,
     ExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSQuerySessionInformationW(
+pub extern "wtsapi32" fn WTSQuerySessionInformationW(
     hServer: ?HANDLE,
     SessionId: u32,
     WTSInfoClass: WTS_INFO_CLASS,
@@ -7507,7 +7507,7 @@ pub extern "WTSAPI32" fn WTSQuerySessionInformationW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSQuerySessionInformationA(
+pub extern "wtsapi32" fn WTSQuerySessionInformationA(
     hServer: ?HANDLE,
     SessionId: u32,
     WTSInfoClass: WTS_INFO_CLASS,
@@ -7516,7 +7516,7 @@ pub extern "WTSAPI32" fn WTSQuerySessionInformationA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSQueryUserConfigW(
+pub extern "wtsapi32" fn WTSQueryUserConfigW(
     pServerName: ?PWSTR,
     pUserName: ?PWSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
@@ -7525,7 +7525,7 @@ pub extern "WTSAPI32" fn WTSQueryUserConfigW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSQueryUserConfigA(
+pub extern "wtsapi32" fn WTSQueryUserConfigA(
     pServerName: ?PSTR,
     pUserName: ?PSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
@@ -7534,7 +7534,7 @@ pub extern "WTSAPI32" fn WTSQueryUserConfigA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSSetUserConfigW(
+pub extern "wtsapi32" fn WTSSetUserConfigW(
     pServerName: ?PWSTR,
     pUserName: ?PWSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
@@ -7544,7 +7544,7 @@ pub extern "WTSAPI32" fn WTSSetUserConfigW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSSetUserConfigA(
+pub extern "wtsapi32" fn WTSSetUserConfigA(
     pServerName: ?PSTR,
     pUserName: ?PSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
@@ -7554,7 +7554,7 @@ pub extern "WTSAPI32" fn WTSSetUserConfigA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSSendMessageW(
+pub extern "wtsapi32" fn WTSSendMessageW(
     hServer: ?HANDLE,
     SessionId: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7570,7 +7570,7 @@ pub extern "WTSAPI32" fn WTSSendMessageW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSSendMessageA(
+pub extern "wtsapi32" fn WTSSendMessageA(
     hServer: ?HANDLE,
     SessionId: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7586,53 +7586,53 @@ pub extern "WTSAPI32" fn WTSSendMessageA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSDisconnectSession(
+pub extern "wtsapi32" fn WTSDisconnectSession(
     hServer: ?HANDLE,
     SessionId: u32,
     bWait: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSLogoffSession(
+pub extern "wtsapi32" fn WTSLogoffSession(
     hServer: ?HANDLE,
     SessionId: u32,
     bWait: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSShutdownSystem(
+pub extern "wtsapi32" fn WTSShutdownSystem(
     hServer: ?HANDLE,
     ShutdownFlag: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSWaitSystemEvent(
+pub extern "wtsapi32" fn WTSWaitSystemEvent(
     hServer: ?HANDLE,
     EventMask: u32,
     pEventFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelOpen(
+pub extern "wtsapi32" fn WTSVirtualChannelOpen(
     hServer: ?HANDLE,
     SessionId: u32,
     pVirtualName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HwtsVirtualChannelHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelOpenEx(
+pub extern "wtsapi32" fn WTSVirtualChannelOpenEx(
     SessionId: u32,
     pVirtualName: ?PSTR,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HwtsVirtualChannelHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelClose(
+pub extern "wtsapi32" fn WTSVirtualChannelClose(
     hChannelHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelRead(
+pub extern "wtsapi32" fn WTSVirtualChannelRead(
     hChannelHandle: ?HANDLE,
     TimeOut: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7642,7 +7642,7 @@ pub extern "WTSAPI32" fn WTSVirtualChannelRead(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelWrite(
+pub extern "wtsapi32" fn WTSVirtualChannelWrite(
     hChannelHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?[*]u8,
@@ -7651,17 +7651,17 @@ pub extern "WTSAPI32" fn WTSVirtualChannelWrite(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelPurgeInput(
+pub extern "wtsapi32" fn WTSVirtualChannelPurgeInput(
     hChannelHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelPurgeOutput(
+pub extern "wtsapi32" fn WTSVirtualChannelPurgeOutput(
     hChannelHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSVirtualChannelQuery(
+pub extern "wtsapi32" fn WTSVirtualChannelQuery(
     hChannelHandle: ?HANDLE,
     param1: WTS_VIRTUAL_CLASS,
     ppBuffer: ?*?*anyopaque,
@@ -7669,56 +7669,56 @@ pub extern "WTSAPI32" fn WTSVirtualChannelQuery(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSFreeMemory(
+pub extern "wtsapi32" fn WTSFreeMemory(
     pMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSRegisterSessionNotification(
+pub extern "wtsapi32" fn WTSRegisterSessionNotification(
     hWnd: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSUnRegisterSessionNotification(
+pub extern "wtsapi32" fn WTSUnRegisterSessionNotification(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSRegisterSessionNotificationEx(
+pub extern "wtsapi32" fn WTSRegisterSessionNotificationEx(
     hServer: ?HANDLE,
     hWnd: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSUnRegisterSessionNotificationEx(
+pub extern "wtsapi32" fn WTSUnRegisterSessionNotificationEx(
     hServer: ?HANDLE,
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WTSAPI32" fn WTSQueryUserToken(
+pub extern "wtsapi32" fn WTSQueryUserToken(
     SessionId: u32,
     phToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSFreeMemoryExW(
+pub extern "wtsapi32" fn WTSFreeMemoryExW(
     WTSTypeClass: WTS_TYPE_CLASS,
     pMemory: ?*anyopaque,
     NumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSFreeMemoryExA(
+pub extern "wtsapi32" fn WTSFreeMemoryExA(
     WTSTypeClass: WTS_TYPE_CLASS,
     pMemory: ?*anyopaque,
     NumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateProcessesExW(
+pub extern "wtsapi32" fn WTSEnumerateProcessesExW(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     SessionId: u32,
@@ -7727,7 +7727,7 @@ pub extern "WTSAPI32" fn WTSEnumerateProcessesExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateProcessesExA(
+pub extern "wtsapi32" fn WTSEnumerateProcessesExA(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     SessionId: u32,
@@ -7736,7 +7736,7 @@ pub extern "WTSAPI32" fn WTSEnumerateProcessesExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateListenersW(
+pub extern "wtsapi32" fn WTSEnumerateListenersW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7745,7 +7745,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSEnumerateListenersA(
+pub extern "wtsapi32" fn WTSEnumerateListenersA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7754,7 +7754,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSQueryListenerConfigW(
+pub extern "wtsapi32" fn WTSQueryListenerConfigW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7763,7 +7763,7 @@ pub extern "WTSAPI32" fn WTSQueryListenerConfigW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSQueryListenerConfigA(
+pub extern "wtsapi32" fn WTSQueryListenerConfigA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7772,7 +7772,7 @@ pub extern "WTSAPI32" fn WTSQueryListenerConfigA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSCreateListenerW(
+pub extern "wtsapi32" fn WTSCreateListenerW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7782,7 +7782,7 @@ pub extern "WTSAPI32" fn WTSCreateListenerW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSCreateListenerA(
+pub extern "wtsapi32" fn WTSCreateListenerA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7792,7 +7792,7 @@ pub extern "WTSAPI32" fn WTSCreateListenerA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSSetListenerSecurityW(
+pub extern "wtsapi32" fn WTSSetListenerSecurityW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7802,7 +7802,7 @@ pub extern "WTSAPI32" fn WTSSetListenerSecurityW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSSetListenerSecurityA(
+pub extern "wtsapi32" fn WTSSetListenerSecurityA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7812,7 +7812,7 @@ pub extern "WTSAPI32" fn WTSSetListenerSecurityA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSGetListenerSecurityW(
+pub extern "wtsapi32" fn WTSGetListenerSecurityW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7824,7 +7824,7 @@ pub extern "WTSAPI32" fn WTSGetListenerSecurityW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WTSAPI32" fn WTSGetListenerSecurityA(
+pub extern "wtsapi32" fn WTSGetListenerSecurityA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
@@ -7836,22 +7836,22 @@ pub extern "WTSAPI32" fn WTSGetListenerSecurityA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WTSAPI32" fn WTSEnableChildSessions(
+pub extern "wtsapi32" fn WTSEnableChildSessions(
     bEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WTSAPI32" fn WTSIsChildSessionsEnabled(
+pub extern "wtsapi32" fn WTSIsChildSessionsEnabled(
     pbEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WTSAPI32" fn WTSGetChildSessionId(
+pub extern "wtsapi32" fn WTSGetChildSessionId(
     pSessionId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WTSAPI32" fn WTSSetRenderHint(
+pub extern "wtsapi32" fn WTSSetRenderHint(
     pRenderHintID: ?*u64,
     hwndOwner: ?HWND,
     renderHintType: u32,
@@ -7861,13 +7861,13 @@ pub extern "WTSAPI32" fn WTSSetRenderHint(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ProcessIdToSessionId(
+pub extern "kernel32" fn ProcessIdToSessionId(
     dwProcessId: u32,
     pSessionId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
+pub extern "kernel32" fn WTSGetActiveConsoleSessionId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

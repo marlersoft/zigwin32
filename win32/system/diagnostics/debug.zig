@@ -45380,7 +45380,7 @@ pub const IMAGEHLP_DUPLICATE_SYMBOL = switch(@import("../../zig.zig").arch) {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlAddFunctionTable(
+pub extern "kernel32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     BaseAddress: usize,
@@ -45391,7 +45391,7 @@ pub extern "KERNEL32" fn RtlAddFunctionTable(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlDeleteFunctionTable(
+pub extern "kernel32" fn RtlDeleteFunctionTable(
     FunctionTable: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -45415,7 +45415,7 @@ pub extern "ntdll" fn RtlAddGrowableFunctionTable(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlLookupFunctionEntry(
+pub extern "kernel32" fn RtlLookupFunctionEntry(
     ControlPc: usize,
     ImageBase: ?*usize,
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
@@ -45426,7 +45426,7 @@ pub extern "KERNEL32" fn RtlLookupFunctionEntry(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlVirtualUnwind(
+pub extern "kernel32" fn RtlVirtualUnwind(
     HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
     ImageBase: usize,
     ControlPc: usize,
@@ -45468,7 +45468,7 @@ pub extern "dbgmodel" fn CreateDataModelManager(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReadProcessMemory(
+pub extern "kernel32" fn ReadProcessMemory(
     hProcess: ?HANDLE,
     lpBaseAddress: ?*const anyopaque,
     // TODO: what to do with BytesParamIndex 3?
@@ -45478,7 +45478,7 @@ pub extern "KERNEL32" fn ReadProcessMemory(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WriteProcessMemory(
+pub extern "kernel32" fn WriteProcessMemory(
     hProcess: ?HANDLE,
     lpBaseAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
@@ -45488,19 +45488,19 @@ pub extern "KERNEL32" fn WriteProcessMemory(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadContext(
+pub extern "kernel32" fn GetThreadContext(
     hThread: ?HANDLE,
     lpContext: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadContext(
+pub extern "kernel32" fn SetThreadContext(
     hThread: ?HANDLE,
     lpContext: ?*const CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FlushInstructionCache(
+pub extern "kernel32" fn FlushInstructionCache(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBaseAddress: ?*const anyopaque,
@@ -45508,19 +45508,19 @@ pub extern "KERNEL32" fn FlushInstructionCache(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64GetThreadContext(
+pub extern "kernel32" fn Wow64GetThreadContext(
     hThread: ?HANDLE,
     lpContext: ?*WOW64_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64SetThreadContext(
+pub extern "kernel32" fn Wow64SetThreadContext(
     hThread: ?HANDLE,
     lpContext: ?*const WOW64_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
+pub extern "kernel32" fn RtlCaptureStackBackTrace(
     FramesToSkip: u32,
     FramesToCapture: u32,
     BackTrace: [*]?*anyopaque,
@@ -45528,21 +45528,21 @@ pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RtlCaptureContext(
+pub extern "kernel32" fn RtlCaptureContext(
     ContextRecord: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-pub extern "KERNEL32" fn RtlCaptureContext2(
+pub extern "kernel32" fn RtlCaptureContext2(
     ContextRecord: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 }, else => struct { } };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RtlUnwind(
+pub extern "kernel32" fn RtlUnwind(
     TargetFrame: ?*anyopaque,
     TargetIp: ?*anyopaque,
     ExceptionRecord: ?*EXCEPTION_RECORD,
@@ -45552,7 +45552,7 @@ pub extern "KERNEL32" fn RtlUnwind(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-pub extern "KERNEL32" fn RtlAddFunctionTable(
+pub extern "kernel32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     BaseAddress: u64,
@@ -45563,7 +45563,7 @@ pub extern "KERNEL32" fn RtlAddFunctionTable(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-pub extern "KERNEL32" fn RtlDeleteFunctionTable(
+pub extern "kernel32" fn RtlDeleteFunctionTable(
     FunctionTable: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -45572,7 +45572,7 @@ pub extern "KERNEL32" fn RtlDeleteFunctionTable(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
+pub extern "kernel32" fn RtlInstallFunctionTableCallback(
     TableIdentifier: u64,
     BaseAddress: u64,
     Length: u32,
@@ -45622,7 +45622,7 @@ pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-pub extern "KERNEL32" fn RtlLookupFunctionEntry(
+pub extern "kernel32" fn RtlLookupFunctionEntry(
     ControlPc: u64,
     ImageBase: ?*u64,
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
@@ -45630,7 +45630,7 @@ pub extern "KERNEL32" fn RtlLookupFunctionEntry(
 
 }, else => struct { } };
 
-pub extern "KERNEL32" fn RtlRestoreContext(
+pub extern "kernel32" fn RtlRestoreContext(
     ContextRecord: ?*CONTEXT,
     ExceptionRecord: ?*EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -45638,7 +45638,7 @@ pub extern "KERNEL32" fn RtlRestoreContext(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn RtlUnwindEx(
+pub extern "kernel32" fn RtlUnwindEx(
     TargetFrame: ?*anyopaque,
     TargetIp: ?*anyopaque,
     ExceptionRecord: ?*EXCEPTION_RECORD,
@@ -45652,7 +45652,7 @@ pub extern "KERNEL32" fn RtlUnwindEx(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-pub extern "KERNEL32" fn RtlVirtualUnwind(
+pub extern "kernel32" fn RtlVirtualUnwind(
     HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
     ImageBase: u64,
     ControlPc: u64,
@@ -45665,81 +45665,81 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
 
 }, else => struct { } };
 
-pub extern "KERNEL32" fn RtlRaiseException(
+pub extern "kernel32" fn RtlRaiseException(
     ExceptionRecord: ?*EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn RtlPcToFileHeader(
+pub extern "kernel32" fn RtlPcToFileHeader(
     PcValue: ?*anyopaque,
     BaseOfImage: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsDebuggerPresent(
+pub extern "kernel32" fn IsDebuggerPresent(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugBreak(
+pub extern "kernel32" fn DebugBreak(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OutputDebugStringA(
+pub extern "kernel32" fn OutputDebugStringA(
     lpOutputString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OutputDebugStringW(
+pub extern "kernel32" fn OutputDebugStringW(
     lpOutputString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ContinueDebugEvent(
+pub extern "kernel32" fn ContinueDebugEvent(
     dwProcessId: u32,
     dwThreadId: u32,
     dwContinueStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WaitForDebugEvent(
+pub extern "kernel32" fn WaitForDebugEvent(
     lpDebugEvent: ?*DEBUG_EVENT,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugActiveProcess(
+pub extern "kernel32" fn DebugActiveProcess(
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugActiveProcessStop(
+pub extern "kernel32" fn DebugActiveProcessStop(
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CheckRemoteDebuggerPresent(
+pub extern "kernel32" fn CheckRemoteDebuggerPresent(
     hProcess: ?HANDLE,
     pbDebuggerPresent: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "KERNEL32" fn WaitForDebugEventEx(
+pub extern "kernel32" fn WaitForDebugEventEx(
     lpDebugEvent: ?*DEBUG_EVENT,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn EncodePointer(
+pub extern "kernel32" fn EncodePointer(
     Ptr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "KERNEL32" fn DecodePointer(
+pub extern "kernel32" fn DecodePointer(
     Ptr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "KERNEL32" fn EncodeSystemPointer(
+pub extern "kernel32" fn EncodeSystemPointer(
     Ptr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "KERNEL32" fn DecodeSystemPointer(
+pub extern "kernel32" fn DecodeSystemPointer(
     Ptr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
@@ -45756,13 +45756,13 @@ pub extern "api-ms-win-core-util-l1-1-1" fn DecodeRemotePointer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn Beep(
+pub extern "kernel32" fn Beep(
     dwFreq: u32,
     dwDuration: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RaiseException(
+pub extern "kernel32" fn RaiseException(
     dwExceptionCode: u32,
     dwExceptionFlags: u32,
     nNumberOfArguments: u32,
@@ -45770,71 +45770,71 @@ pub extern "KERNEL32" fn RaiseException(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn UnhandledExceptionFilter(
+pub extern "kernel32" fn UnhandledExceptionFilter(
     ExceptionInfo: ?*EXCEPTION_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetUnhandledExceptionFilter(
+pub extern "kernel32" fn SetUnhandledExceptionFilter(
     lpTopLevelExceptionFilter: ?LPTOP_LEVEL_EXCEPTION_FILTER,
 ) callconv(@import("std").os.windows.WINAPI) ?LPTOP_LEVEL_EXCEPTION_FILTER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetErrorMode(
+pub extern "kernel32" fn GetErrorMode(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetErrorMode(
+pub extern "kernel32" fn SetErrorMode(
     uMode: THREAD_ERROR_MODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn AddVectoredExceptionHandler(
+pub extern "kernel32" fn AddVectoredExceptionHandler(
     First: u32,
     Handler: ?PVECTORED_EXCEPTION_HANDLER,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RemoveVectoredExceptionHandler(
+pub extern "kernel32" fn RemoveVectoredExceptionHandler(
     Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn AddVectoredContinueHandler(
+pub extern "kernel32" fn AddVectoredContinueHandler(
     First: u32,
     Handler: ?PVECTORED_EXCEPTION_HANDLER,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn RemoveVectoredContinueHandler(
+pub extern "kernel32" fn RemoveVectoredContinueHandler(
     Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn RaiseFailFastException(
+pub extern "kernel32" fn RaiseFailFastException(
     pExceptionRecord: ?*EXCEPTION_RECORD,
     pContextRecord: ?*CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FatalAppExitA(
+pub extern "kernel32" fn FatalAppExitA(
     uAction: u32,
     lpMessageText: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FatalAppExitW(
+pub extern "kernel32" fn FatalAppExitW(
     uAction: u32,
     lpMessageText: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetThreadErrorMode(
+pub extern "kernel32" fn GetThreadErrorMode(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetThreadErrorMode(
+pub extern "kernel32" fn SetThreadErrorMode(
     dwNewMode: THREAD_ERROR_MODE,
     lpOldMode: ?*THREAD_ERROR_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -45844,18 +45844,18 @@ pub extern "api-ms-win-core-errorhandling-l1-1-3" fn TerminateProcessOnMemoryExh
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn OpenThreadWaitChainSession(
+pub extern "advapi32" fn OpenThreadWaitChainSession(
     Flags: OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS,
     callback: ?PWAITCHAINCALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn CloseThreadWaitChainSession(
+pub extern "advapi32" fn CloseThreadWaitChainSession(
     WctHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn GetThreadWaitChain(
+pub extern "advapi32" fn GetThreadWaitChain(
     WctHandle: ?*anyopaque,
     Context: usize,
     Flags: WAIT_CHAIN_THREAD_OPTIONS,
@@ -45866,7 +45866,7 @@ pub extern "ADVAPI32" fn GetThreadWaitChain(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn RegisterWaitChainCOMCallback(
+pub extern "advapi32" fn RegisterWaitChainCOMCallback(
     CallStateCallback: ?PCOGETCALLSTATE,
     ActivationStateCallback: ?PCOGETACTIVATIONSTATE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -47451,41 +47451,41 @@ pub extern "dbghelp" fn RangeMapWrite(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn MessageBeep(
+pub extern "user32" fn MessageBeep(
     uType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FatalExit(
+pub extern "kernel32" fn FatalExit(
     ExitCode: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadSelectorEntry(
+pub extern "kernel32" fn GetThreadSelectorEntry(
     hThread: ?HANDLE,
     dwSelector: u32,
     lpSelectorEntry: ?*LDT_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn Wow64GetThreadSelectorEntry(
+pub extern "kernel32" fn Wow64GetThreadSelectorEntry(
     hThread: ?HANDLE,
     dwSelector: u32,
     lpSelectorEntry: ?*WOW64_LDT_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugSetProcessKillOnExit(
+pub extern "kernel32" fn DebugSetProcessKillOnExit(
     KillOnExit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugBreakProcess(
+pub extern "kernel32" fn DebugBreakProcess(
     Process: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FormatMessageA(
+pub extern "kernel32" fn FormatMessageA(
     dwFlags: FORMAT_MESSAGE_OPTIONS,
     lpSource: ?*const anyopaque,
     dwMessageId: u32,
@@ -47496,7 +47496,7 @@ pub extern "KERNEL32" fn FormatMessageA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FormatMessageW(
+pub extern "kernel32" fn FormatMessageW(
     dwFlags: FORMAT_MESSAGE_OPTIONS,
     lpSource: ?*const anyopaque,
     dwMessageId: u32,
@@ -47507,14 +47507,14 @@ pub extern "KERNEL32" fn FormatMessageW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CopyContext(
+pub extern "kernel32" fn CopyContext(
     Destination: ?*CONTEXT,
     ContextFlags: u32,
     Source: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn InitializeContext(
+pub extern "kernel32" fn InitializeContext(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*anyopaque,
     ContextFlags: u32,
@@ -47522,7 +47522,7 @@ pub extern "KERNEL32" fn InitializeContext(
     ContextLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn InitializeContext2(
+pub extern "kernel32" fn InitializeContext2(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*anyopaque,
     ContextFlags: u32,
@@ -47535,7 +47535,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetEnabledXStateFeatures(
+pub extern "kernel32" fn GetEnabledXStateFeatures(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 }, else => struct { } };
@@ -47544,7 +47544,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetXStateFeaturesMask(
+pub extern "kernel32" fn GetXStateFeaturesMask(
     Context: ?*CONTEXT,
     FeatureMask: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -47555,7 +47555,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn LocateXStateFeature(
+pub extern "kernel32" fn LocateXStateFeature(
     Context: ?*CONTEXT,
     FeatureId: u32,
     Length: ?*u32,
@@ -47567,7 +47567,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetXStateFeaturesMask(
+pub extern "kernel32" fn SetXStateFeaturesMask(
     Context: ?*CONTEXT,
     FeatureMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

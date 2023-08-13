@@ -177,7 +177,7 @@ pub const pCryptSIPGetSealedDigest = fn(
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn CryptSIPGetSignedDataMsg(
+pub extern "wintrust" fn CryptSIPGetSignedDataMsg(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     pdwEncodingType: ?*CERT_QUERY_ENCODING_TYPE,
     dwIndex: u32,
@@ -186,7 +186,7 @@ pub extern "WINTRUST" fn CryptSIPGetSignedDataMsg(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn CryptSIPPutSignedDataMsg(
+pub extern "wintrust" fn CryptSIPPutSignedDataMsg(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     pdwIndex: ?*u32,
@@ -195,62 +195,62 @@ pub extern "WINTRUST" fn CryptSIPPutSignedDataMsg(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn CryptSIPCreateIndirectData(
+pub extern "wintrust" fn CryptSIPCreateIndirectData(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     pcbIndirectData: ?*u32,
     pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn CryptSIPVerifyIndirectData(
+pub extern "wintrust" fn CryptSIPVerifyIndirectData(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     pIndirectData: ?*SIP_INDIRECT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn CryptSIPRemoveSignedDataMsg(
+pub extern "wintrust" fn CryptSIPRemoveSignedDataMsg(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     dwIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPT32" fn CryptSIPLoad(
+pub extern "crypt32" fn CryptSIPLoad(
     pgSubject: ?*const Guid,
     dwFlags: u32,
     pSipDispatch: ?*SIP_DISPATCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPT32" fn CryptSIPRetrieveSubjectGuid(
+pub extern "crypt32" fn CryptSIPRetrieveSubjectGuid(
     FileName: ?[*:0]const u16,
     hFileIn: ?HANDLE,
     pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPT32" fn CryptSIPRetrieveSubjectGuidForCatalogFile(
+pub extern "crypt32" fn CryptSIPRetrieveSubjectGuidForCatalogFile(
     FileName: ?[*:0]const u16,
     hFileIn: ?HANDLE,
     pgSubject: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPT32" fn CryptSIPAddProvider(
+pub extern "crypt32" fn CryptSIPAddProvider(
     psNewProv: ?*SIP_ADD_NEWPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPT32" fn CryptSIPRemoveProvider(
+pub extern "crypt32" fn CryptSIPRemoveProvider(
     pgProv: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINTRUST" fn CryptSIPGetCaps(
+pub extern "wintrust" fn CryptSIPGetCaps(
     pSubjInfo: ?*SIP_SUBJECTINFO,
     pCaps: ?*SIP_CAP_SET_V3,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINTRUST" fn CryptSIPGetSealedDigest(
+pub extern "wintrust" fn CryptSIPGetSealedDigest(
     pSubjectInfo: ?*SIP_SUBJECTINFO,
     pSig: ?[*:0]const u8,
     dwSig: u32,

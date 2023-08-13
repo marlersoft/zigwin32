@@ -250,7 +250,7 @@ pub const LPMAPIRESOLVENAME = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
-pub extern "MAPI32" fn MAPIFreeBuffer(
+pub extern "mapi32" fn MAPIFreeBuffer(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

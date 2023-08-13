@@ -311,7 +311,7 @@ pub const DFS_INFO_4_32 = switch(@import("../zig.zig").arch) {
 // Section: Functions (22)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsAdd(
+pub extern "netapi32" fn NetDfsAdd(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
@@ -320,7 +320,7 @@ pub extern "NETAPI32" fn NetDfsAdd(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsAddStdRoot(
+pub extern "netapi32" fn NetDfsAddStdRoot(
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
     Comment: ?PWSTR,
@@ -328,14 +328,14 @@ pub extern "NETAPI32" fn NetDfsAddStdRoot(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsRemoveStdRoot(
+pub extern "netapi32" fn NetDfsRemoveStdRoot(
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsAddFtRoot(
+pub extern "netapi32" fn NetDfsAddFtRoot(
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
     FtDfsName: ?PWSTR,
@@ -344,7 +344,7 @@ pub extern "NETAPI32" fn NetDfsAddFtRoot(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsRemoveFtRoot(
+pub extern "netapi32" fn NetDfsRemoveFtRoot(
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
     FtDfsName: ?PWSTR,
@@ -352,7 +352,7 @@ pub extern "NETAPI32" fn NetDfsRemoveFtRoot(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsRemoveFtRootForced(
+pub extern "netapi32" fn NetDfsRemoveFtRootForced(
     DomainName: ?PWSTR,
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
@@ -361,14 +361,14 @@ pub extern "NETAPI32" fn NetDfsRemoveFtRootForced(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsRemove(
+pub extern "netapi32" fn NetDfsRemove(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsEnum(
+pub extern "netapi32" fn NetDfsEnum(
     DfsName: ?PWSTR,
     Level: u32,
     PrefMaxLen: u32,
@@ -378,7 +378,7 @@ pub extern "NETAPI32" fn NetDfsEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetInfo(
+pub extern "netapi32" fn NetDfsGetInfo(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
@@ -387,7 +387,7 @@ pub extern "NETAPI32" fn NetDfsGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsSetInfo(
+pub extern "netapi32" fn NetDfsSetInfo(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
@@ -396,7 +396,7 @@ pub extern "NETAPI32" fn NetDfsSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetClientInfo(
+pub extern "netapi32" fn NetDfsGetClientInfo(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
@@ -405,7 +405,7 @@ pub extern "NETAPI32" fn NetDfsGetClientInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsSetClientInfo(
+pub extern "netapi32" fn NetDfsSetClientInfo(
     DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
@@ -414,14 +414,14 @@ pub extern "NETAPI32" fn NetDfsSetClientInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsMove(
+pub extern "netapi32" fn NetDfsMove(
     OldDfsEntryPath: ?PWSTR,
     NewDfsEntryPath: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsAddRootTarget(
+pub extern "netapi32" fn NetDfsAddRootTarget(
     pDfsPath: ?PWSTR,
     pTargetPath: ?PWSTR,
     MajorVersion: u32,
@@ -430,14 +430,14 @@ pub extern "NETAPI32" fn NetDfsAddRootTarget(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsRemoveRootTarget(
+pub extern "netapi32" fn NetDfsRemoveRootTarget(
     pDfsPath: ?PWSTR,
     pTargetPath: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetSecurity(
+pub extern "netapi32" fn NetDfsGetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
     ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -445,14 +445,14 @@ pub extern "NETAPI32" fn NetDfsGetSecurity(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsSetSecurity(
+pub extern "netapi32" fn NetDfsSetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetStdContainerSecurity(
+pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
     ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -460,14 +460,14 @@ pub extern "NETAPI32" fn NetDfsGetStdContainerSecurity(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsSetStdContainerSecurity(
+pub extern "netapi32" fn NetDfsSetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetFtContainerSecurity(
+pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
     ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -475,14 +475,14 @@ pub extern "NETAPI32" fn NetDfsGetFtContainerSecurity(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsSetFtContainerSecurity(
+pub extern "netapi32" fn NetDfsSetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn NetDfsGetSupportedNamespaceVersion(
+pub extern "netapi32" fn NetDfsGetSupportedNamespaceVersion(
     Origin: DFS_NAMESPACE_VERSION_ORIGIN,
     pName: ?PWSTR,
     ppVersionInfo: ?*?*DFS_SUPPORTED_NAMESPACE_VERSION_INFO,

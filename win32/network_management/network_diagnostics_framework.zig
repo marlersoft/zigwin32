@@ -540,7 +540,7 @@ pub const INetDiagExtensibleHelper = extern struct {
 // Section: Functions (16)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateIncident(
+pub extern "ndfapi" fn NdfCreateIncident(
     helperClassName: ?[*:0]const u16,
     celt: u32,
     attributes: [*]HELPER_ATTRIBUTE,
@@ -548,7 +548,7 @@ pub extern "NDFAPI" fn NdfCreateIncident(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateWinSockIncident(
+pub extern "ndfapi" fn NdfCreateWinSockIncident(
     sock: ?SOCKET,
     host: ?[*:0]const u16,
     port: u16,
@@ -558,13 +558,13 @@ pub extern "NDFAPI" fn NdfCreateWinSockIncident(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateWebIncident(
+pub extern "ndfapi" fn NdfCreateWebIncident(
     url: ?[*:0]const u16,
     handle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateWebIncidentEx(
+pub extern "ndfapi" fn NdfCreateWebIncidentEx(
     url: ?[*:0]const u16,
     useWinHTTP: BOOL,
     moduleName: ?PWSTR,
@@ -572,31 +572,31 @@ pub extern "NDFAPI" fn NdfCreateWebIncidentEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateSharingIncident(
+pub extern "ndfapi" fn NdfCreateSharingIncident(
     UNCPath: ?[*:0]const u16,
     handle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateDNSIncident(
+pub extern "ndfapi" fn NdfCreateDNSIncident(
     hostname: ?[*:0]const u16,
     queryType: u16,
     handle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCreateConnectivityIncident(
+pub extern "ndfapi" fn NdfCreateConnectivityIncident(
     handle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NDFAPI" fn NdfCreateNetConnectionIncident(
+pub extern "ndfapi" fn NdfCreateNetConnectionIncident(
     handle: ?*?*anyopaque,
     id: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfCreatePnrpIncident(
+pub extern "ndfapi" fn NdfCreatePnrpIncident(
     cloudname: ?[*:0]const u16,
     peername: ?[*:0]const u16,
     diagnosePublish: BOOL,
@@ -605,7 +605,7 @@ pub extern "NDFAPI" fn NdfCreatePnrpIncident(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfCreateGroupingIncident(
+pub extern "ndfapi" fn NdfCreateGroupingIncident(
     CloudName: ?[*:0]const u16,
     GroupName: ?[*:0]const u16,
     Identity: ?[*:0]const u16,
@@ -616,18 +616,18 @@ pub extern "NDFAPI" fn NdfCreateGroupingIncident(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfExecuteDiagnosis(
+pub extern "ndfapi" fn NdfExecuteDiagnosis(
     handle: ?*anyopaque,
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NDFAPI" fn NdfCloseIncident(
+pub extern "ndfapi" fn NdfCloseIncident(
     handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfDiagnoseIncident(
+pub extern "ndfapi" fn NdfDiagnoseIncident(
     Handle: ?*anyopaque,
     RootCauseCount: ?*u32,
     RootCauses: ?*?*RootCauseInfo,
@@ -636,19 +636,19 @@ pub extern "NDFAPI" fn NdfDiagnoseIncident(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfRepairIncident(
+pub extern "ndfapi" fn NdfRepairIncident(
     Handle: ?*anyopaque,
     RepairEx: ?*RepairInfoEx,
     dwWait: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfCancelIncident(
+pub extern "ndfapi" fn NdfCancelIncident(
     Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NDFAPI" fn NdfGetTraceFile(
+pub extern "ndfapi" fn NdfGetTraceFile(
     Handle: ?*anyopaque,
     TraceFileLocation: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

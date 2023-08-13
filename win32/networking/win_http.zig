@@ -1010,7 +1010,7 @@ pub const WINHTTP_RESOLVER_CACHE_CONFIG = switch(@import("../zig.zig").arch) {
 // Section: Functions (51)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSetStatusCallback(
+pub extern "winhttp" fn WinHttpSetStatusCallback(
     hInternet: ?*anyopaque,
     lpfnInternetCallback: ?WINHTTP_STATUS_CALLBACK,
     dwNotificationFlags: u32,
@@ -1018,19 +1018,19 @@ pub extern "WINHTTP" fn WinHttpSetStatusCallback(
 ) callconv(@import("std").os.windows.WINAPI) ?WINHTTP_STATUS_CALLBACK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpTimeFromSystemTime(
+pub extern "winhttp" fn WinHttpTimeFromSystemTime(
     pst: ?*const SYSTEMTIME,
     pwszTime: *[62]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpTimeToSystemTime(
+pub extern "winhttp" fn WinHttpTimeToSystemTime(
     pwszTime: ?[*:0]const u16,
     pst: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpCrackUrl(
+pub extern "winhttp" fn WinHttpCrackUrl(
     pwszUrl: [*:0]const u16,
     dwUrlLength: u32,
     dwFlags: u32,
@@ -1038,7 +1038,7 @@ pub extern "WINHTTP" fn WinHttpCrackUrl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpCreateUrl(
+pub extern "winhttp" fn WinHttpCreateUrl(
     lpUrlComponents: ?*URL_COMPONENTS,
     dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
     pwszUrl: ?[*:0]u16,
@@ -1046,21 +1046,21 @@ pub extern "WINHTTP" fn WinHttpCreateUrl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpCheckPlatform(
+pub extern "winhttp" fn WinHttpCheckPlatform(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpGetDefaultProxyConfiguration(
+pub extern "winhttp" fn WinHttpGetDefaultProxyConfiguration(
     pProxyInfo: ?*WINHTTP_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSetDefaultProxyConfiguration(
+pub extern "winhttp" fn WinHttpSetDefaultProxyConfiguration(
     pProxyInfo: ?*WINHTTP_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpOpen(
+pub extern "winhttp" fn WinHttpOpen(
     pszAgentW: ?[*:0]const u16,
     dwAccessType: WINHTTP_ACCESS_TYPE,
     pszProxyW: ?[*:0]const u16,
@@ -1069,12 +1069,12 @@ pub extern "WINHTTP" fn WinHttpOpen(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpCloseHandle(
+pub extern "winhttp" fn WinHttpCloseHandle(
     hInternet: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpConnect(
+pub extern "winhttp" fn WinHttpConnect(
     hSession: ?*anyopaque,
     pswzServerName: ?[*:0]const u16,
     nServerPort: INTERNET_PORT,
@@ -1082,7 +1082,7 @@ pub extern "WINHTTP" fn WinHttpConnect(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpReadData(
+pub extern "winhttp" fn WinHttpReadData(
     hRequest: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -1090,7 +1090,7 @@ pub extern "WINHTTP" fn WinHttpReadData(
     lpdwNumberOfBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINHTTP" fn WinHttpReadDataEx(
+pub extern "winhttp" fn WinHttpReadDataEx(
     hRequest: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -1103,7 +1103,7 @@ pub extern "WINHTTP" fn WinHttpReadDataEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpWriteData(
+pub extern "winhttp" fn WinHttpWriteData(
     hRequest: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*const anyopaque,
@@ -1112,13 +1112,13 @@ pub extern "WINHTTP" fn WinHttpWriteData(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpQueryDataAvailable(
+pub extern "winhttp" fn WinHttpQueryDataAvailable(
     hRequest: ?*anyopaque,
     lpdwNumberOfBytesAvailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpQueryOption(
+pub extern "winhttp" fn WinHttpQueryOption(
     hInternet: ?*anyopaque,
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1127,7 +1127,7 @@ pub extern "WINHTTP" fn WinHttpQueryOption(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSetOption(
+pub extern "winhttp" fn WinHttpSetOption(
     hInternet: ?*anyopaque,
     dwOption: u32,
     lpBuffer: ?[*]u8,
@@ -1135,7 +1135,7 @@ pub extern "WINHTTP" fn WinHttpSetOption(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSetTimeouts(
+pub extern "winhttp" fn WinHttpSetTimeouts(
     hInternet: ?*anyopaque,
     nResolveTimeout: i32,
     nConnectTimeout: i32,
@@ -1144,7 +1144,7 @@ pub extern "WINHTTP" fn WinHttpSetTimeouts(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpOpenRequest(
+pub extern "winhttp" fn WinHttpOpenRequest(
     hConnect: ?*anyopaque,
     pwszVerb: ?[*:0]const u16,
     pwszObjectName: ?[*:0]const u16,
@@ -1155,14 +1155,14 @@ pub extern "WINHTTP" fn WinHttpOpenRequest(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpAddRequestHeaders(
+pub extern "winhttp" fn WinHttpAddRequestHeaders(
     hRequest: ?*anyopaque,
     lpszHeaders: [*:0]const u16,
     dwHeadersLength: u32,
     dwModifiers: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINHTTP" fn WinHttpAddRequestHeadersEx(
+pub extern "winhttp" fn WinHttpAddRequestHeadersEx(
     hRequest: ?*anyopaque,
     dwModifiers: u32,
     ullFlags: u64,
@@ -1172,7 +1172,7 @@ pub extern "WINHTTP" fn WinHttpAddRequestHeadersEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSendRequest(
+pub extern "winhttp" fn WinHttpSendRequest(
     hRequest: ?*anyopaque,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
@@ -1184,7 +1184,7 @@ pub extern "WINHTTP" fn WinHttpSendRequest(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpSetCredentials(
+pub extern "winhttp" fn WinHttpSetCredentials(
     hRequest: ?*anyopaque,
     AuthTargets: u32,
     AuthScheme: u32,
@@ -1194,7 +1194,7 @@ pub extern "WINHTTP" fn WinHttpSetCredentials(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpQueryAuthSchemes(
+pub extern "winhttp" fn WinHttpQueryAuthSchemes(
     hRequest: ?*anyopaque,
     lpdwSupportedSchemes: ?*u32,
     lpdwFirstScheme: ?*u32,
@@ -1202,13 +1202,13 @@ pub extern "WINHTTP" fn WinHttpQueryAuthSchemes(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpReceiveResponse(
+pub extern "winhttp" fn WinHttpReceiveResponse(
     hRequest: ?*anyopaque,
     lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpQueryHeaders(
+pub extern "winhttp" fn WinHttpQueryHeaders(
     hRequest: ?*anyopaque,
     dwInfoLevel: u32,
     pwszName: ?[*:0]const u16,
@@ -1218,7 +1218,7 @@ pub extern "WINHTTP" fn WinHttpQueryHeaders(
     lpdwIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINHTTP" fn WinHttpQueryHeadersEx(
+pub extern "winhttp" fn WinHttpQueryHeadersEx(
     hRequest: ?*anyopaque,
     dwInfoLevel: u32,
     ullFlags: u64,
@@ -1232,25 +1232,25 @@ pub extern "WINHTTP" fn WinHttpQueryHeadersEx(
     pdwHeadersCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpQueryConnectionGroup(
+pub extern "winhttp" fn WinHttpQueryConnectionGroup(
     hInternet: ?*anyopaque,
     pGuidConnection: ?*const Guid,
     ullFlags: u64,
     ppResult: ?*?*WINHTTP_QUERY_CONNECTION_GROUP_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpFreeQueryConnectionGroupResult(
+pub extern "winhttp" fn WinHttpFreeQueryConnectionGroupResult(
     pResult: ?*WINHTTP_QUERY_CONNECTION_GROUP_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpDetectAutoProxyConfigUrl(
+pub extern "winhttp" fn WinHttpDetectAutoProxyConfigUrl(
     dwAutoDetectFlags: u32,
     ppwstrAutoConfigUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpGetProxyForUrl(
+pub extern "winhttp" fn WinHttpGetProxyForUrl(
     hSession: ?*anyopaque,
     lpcwszUrl: ?[*:0]const u16,
     pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
@@ -1258,20 +1258,20 @@ pub extern "WINHTTP" fn WinHttpGetProxyForUrl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpCreateProxyResolver(
+pub extern "winhttp" fn WinHttpCreateProxyResolver(
     hSession: ?*anyopaque,
     phResolver: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx(
+pub extern "winhttp" fn WinHttpGetProxyForUrlEx(
     hResolver: ?*anyopaque,
     pcwszUrl: ?[*:0]const u16,
     pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
     pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
+pub extern "winhttp" fn WinHttpGetProxyForUrlEx2(
     hResolver: ?*anyopaque,
     pcwszUrl: ?[*:0]const u16,
     pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
@@ -1282,43 +1282,43 @@ pub extern "WINHTTP" fn WinHttpGetProxyForUrlEx2(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpGetProxyResult(
+pub extern "winhttp" fn WinHttpGetProxyResult(
     hResolver: ?*anyopaque,
     pProxyResult: ?*WINHTTP_PROXY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpGetProxyResultEx(
+pub extern "winhttp" fn WinHttpGetProxyResultEx(
     hResolver: ?*anyopaque,
     pProxyResultEx: ?*WINHTTP_PROXY_RESULT_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpFreeProxyResult(
+pub extern "winhttp" fn WinHttpFreeProxyResult(
     pProxyResult: ?*WINHTTP_PROXY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "WINHTTP" fn WinHttpFreeProxyResultEx(
+pub extern "winhttp" fn WinHttpFreeProxyResultEx(
     pProxyResultEx: ?*WINHTTP_PROXY_RESULT_EX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpResetAutoProxy(
+pub extern "winhttp" fn WinHttpResetAutoProxy(
     hSession: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINHTTP" fn WinHttpGetIEProxyConfigForCurrentUser(
+pub extern "winhttp" fn WinHttpGetIEProxyConfigForCurrentUser(
     pProxyConfig: ?*WINHTTP_CURRENT_USER_IE_PROXY_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINHTTP" fn WinHttpWriteProxySettings(
+pub extern "winhttp" fn WinHttpWriteProxySettings(
     hSession: ?*anyopaque,
     fForceUpdate: BOOL,
     pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpReadProxySettings(
+pub extern "winhttp" fn WinHttpReadProxySettings(
     hSession: ?*anyopaque,
     pcwszConnectionName: ?[*:0]const u16,
     fFallBackToDefaultSettings: BOOL,
@@ -1328,27 +1328,27 @@ pub extern "WINHTTP" fn WinHttpReadProxySettings(
     pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpFreeProxySettings(
+pub extern "winhttp" fn WinHttpFreeProxySettings(
     pWinHttpProxySettings: ?*WINHTTP_PROXY_SETTINGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "WINHTTP" fn WinHttpGetProxySettingsVersion(
+pub extern "winhttp" fn WinHttpGetProxySettingsVersion(
     hSession: ?*anyopaque,
     pdwProxySettingsVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINHTTP" fn WinHttpSetProxySettingsPerUser(
+pub extern "winhttp" fn WinHttpSetProxySettingsPerUser(
     fProxySettingsPerUser: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketCompleteUpgrade(
+pub extern "winhttp" fn WinHttpWebSocketCompleteUpgrade(
     hRequest: ?*anyopaque,
     pContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketSend(
+pub extern "winhttp" fn WinHttpWebSocketSend(
     hWebSocket: ?*anyopaque,
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
     pvBuffer: ?[*]u8,
@@ -1356,7 +1356,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketSend(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketReceive(
+pub extern "winhttp" fn WinHttpWebSocketReceive(
     hWebSocket: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pvBuffer: ?*anyopaque,
@@ -1366,7 +1366,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketReceive(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketShutdown(
+pub extern "winhttp" fn WinHttpWebSocketShutdown(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -1375,7 +1375,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketShutdown(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketClose(
+pub extern "winhttp" fn WinHttpWebSocketClose(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -1384,7 +1384,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketClose(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WINHTTP" fn WinHttpWebSocketQueryCloseStatus(
+pub extern "winhttp" fn WinHttpWebSocketQueryCloseStatus(
     hWebSocket: ?*anyopaque,
     pusStatus: ?*u16,
     // TODO: what to do with BytesParamIndex 3?

@@ -31378,56 +31378,56 @@ pub const OPEN_PRINTER_PROPS_INFOW = switch(@import("../zig.zig").arch) {
 // Section: Functions (688)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileA(
+pub extern "userenv" fn LoadUserProfileA(
     hToken: ?HANDLE,
     lpProfileInfo: ?*PROFILEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileW(
+pub extern "userenv" fn LoadUserProfileW(
     hToken: ?HANDLE,
     lpProfileInfo: ?*PROFILEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn UnloadUserProfile(
+pub extern "userenv" fn UnloadUserProfile(
     hToken: ?HANDLE,
     hProfile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryA(
+pub extern "userenv" fn GetProfilesDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryW(
+pub extern "userenv" fn GetProfilesDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfileType(
+pub extern "userenv" fn GetProfileType(
     dwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileA(
+pub extern "userenv" fn DeleteProfileA(
     lpSidString: ?[*:0]const u8,
     lpProfilePath: ?[*:0]const u8,
     lpComputerName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileW(
+pub extern "userenv" fn DeleteProfileW(
     lpSidString: ?[*:0]const u16,
     lpProfilePath: ?[*:0]const u16,
     lpComputerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn CreateProfile(
+pub extern "userenv" fn CreateProfile(
     pszUserSid: ?[*:0]const u16,
     pszUserName: ?[*:0]const u16,
     pszProfilePath: [*:0]u16,
@@ -31435,45 +31435,45 @@ pub extern "USERENV" fn CreateProfile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
+pub extern "userenv" fn GetDefaultUserProfileDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
+pub extern "userenv" fn GetDefaultUserProfileDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
+pub extern "userenv" fn GetAllUsersProfileDirectoryA(
     lpProfileDir: ?[*:0]u8,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
+pub extern "userenv" fn GetAllUsersProfileDirectoryW(
     lpProfileDir: ?[*:0]u16,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryA(
+pub extern "userenv" fn GetUserProfileDirectoryA(
     hToken: ?HANDLE,
     lpProfileDir: ?[*:0]u8,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryW(
+pub extern "userenv" fn GetUserProfileDirectoryW(
     hToken: ?HANDLE,
     lpProfileDir: ?[*:0]u16,
     lpcchSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn SetWindowSubclass(
+pub extern "comctl32" fn SetWindowSubclass(
     hWnd: ?HWND,
     pfnSubclass: ?SUBCLASSPROC,
     uIdSubclass: usize,
@@ -31481,7 +31481,7 @@ pub extern "COMCTL32" fn SetWindowSubclass(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn GetWindowSubclass(
+pub extern "comctl32" fn GetWindowSubclass(
     hWnd: ?HWND,
     pfnSubclass: ?SUBCLASSPROC,
     uIdSubclass: usize,
@@ -31489,14 +31489,14 @@ pub extern "COMCTL32" fn GetWindowSubclass(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn RemoveWindowSubclass(
+pub extern "comctl32" fn RemoveWindowSubclass(
     hWnd: ?HWND,
     pfnSubclass: ?SUBCLASSPROC,
     uIdSubclass: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn DefSubclassProc(
+pub extern "comctl32" fn DefSubclassProc(
     hWnd: ?HWND,
     uMsg: u32,
     wParam: WPARAM,
@@ -31504,29 +31504,29 @@ pub extern "COMCTL32" fn DefSubclassProc(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetWindowContextHelpId(
+pub extern "user32" fn SetWindowContextHelpId(
     param0: ?HWND,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetWindowContextHelpId(
+pub extern "user32" fn GetWindowContextHelpId(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetMenuContextHelpId(
+pub extern "user32" fn SetMenuContextHelpId(
     param0: ?HMENU,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetMenuContextHelpId(
+pub extern "user32" fn GetMenuContextHelpId(
     param0: ?HMENU,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpA(
+pub extern "user32" fn WinHelpA(
     hWndMain: ?HWND,
     lpszHelp: ?[*:0]const u8,
     uCommand: u32,
@@ -31534,7 +31534,7 @@ pub extern "USER32" fn WinHelpA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpW(
+pub extern "user32" fn WinHelpW(
     hWndMain: ?HWND,
     lpszHelp: ?[*:0]const u16,
     uCommand: u32,
@@ -31542,19 +31542,19 @@ pub extern "USER32" fn WinHelpW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHSimpleIDListFromPath(
+pub extern "shell32" fn SHSimpleIDListFromPath(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateItemFromIDList(
+pub extern "shell32" fn SHCreateItemFromIDList(
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateItemFromParsingName(
+pub extern "shell32" fn SHCreateItemFromParsingName(
     pszPath: ?[*:0]const u16,
     pbc: ?*IBindCtx,
     riid: ?*const Guid,
@@ -31562,7 +31562,7 @@ pub extern "SHELL32" fn SHCreateItemFromParsingName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateItemWithParent(
+pub extern "shell32" fn SHCreateItemWithParent(
     pidlParent: ?*ITEMIDLIST,
     psfParent: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
@@ -31571,7 +31571,7 @@ pub extern "SHELL32" fn SHCreateItemWithParent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateItemFromRelativeName(
+pub extern "shell32" fn SHCreateItemFromRelativeName(
     psiParent: ?*IShellItem,
     pszName: ?[*:0]const u16,
     pbc: ?*IBindCtx,
@@ -31580,7 +31580,7 @@ pub extern "SHELL32" fn SHCreateItemFromRelativeName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateItemInKnownFolder(
+pub extern "shell32" fn SHCreateItemInKnownFolder(
     kfid: ?*const Guid,
     dwKFFlags: u32,
     pszItem: ?[*:0]const u16,
@@ -31589,27 +31589,27 @@ pub extern "SHELL32" fn SHCreateItemInKnownFolder(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetIDListFromObject(
+pub extern "shell32" fn SHGetIDListFromObject(
     punk: ?*IUnknown,
     ppidl: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHGetItemFromObject(
+pub extern "shell32" fn SHGetItemFromObject(
     punk: ?*IUnknown,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetNameFromIDList(
+pub extern "shell32" fn SHGetNameFromIDList(
     pidl: ?*ITEMIDLIST,
     sigdnName: SIGDN,
     ppszName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHGetItemFromDataObject(
+pub extern "shell32" fn SHGetItemFromDataObject(
     pdtobj: ?*IDataObject,
     dwFlags: DATAOBJ_GET_ITEM_FLAGS,
     riid: ?*const Guid,
@@ -31617,7 +31617,7 @@ pub extern "SHELL32" fn SHGetItemFromDataObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateShellItemArray(
+pub extern "shell32" fn SHCreateShellItemArray(
     pidlParent: ?*ITEMIDLIST,
     psf: ?*IShellFolder,
     cidl: u32,
@@ -31626,64 +31626,64 @@ pub extern "SHELL32" fn SHCreateShellItemArray(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateShellItemArrayFromDataObject(
+pub extern "shell32" fn SHCreateShellItemArrayFromDataObject(
     pdo: ?*IDataObject,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateShellItemArrayFromIDLists(
+pub extern "shell32" fn SHCreateShellItemArrayFromIDLists(
     cidl: u32,
     rgpidl: [*]?*ITEMIDLIST,
     ppsiItemArray: ?*?*IShellItemArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateShellItemArrayFromShellItem(
+pub extern "shell32" fn SHCreateShellItemArrayFromShellItem(
     psi: ?*IShellItem,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateAssociationRegistration(
+pub extern "shell32" fn SHCreateAssociationRegistration(
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateDefaultExtractIcon(
+pub extern "shell32" fn SHCreateDefaultExtractIcon(
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SetCurrentProcessExplicitAppUserModelID(
+pub extern "shell32" fn SetCurrentProcessExplicitAppUserModelID(
     AppID: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn GetCurrentProcessExplicitAppUserModelID(
+pub extern "shell32" fn GetCurrentProcessExplicitAppUserModelID(
     AppID: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetTemporaryPropertyForItem(
+pub extern "shell32" fn SHGetTemporaryPropertyForItem(
     psi: ?*IShellItem,
     propkey: ?*const PROPERTYKEY,
     ppropvar: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHSetTemporaryPropertyForItem(
+pub extern "shell32" fn SHSetTemporaryPropertyForItem(
     psi: ?*IShellItem,
     propkey: ?*const PROPERTYKEY,
     propvar: ?*const PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHShowManageLibraryUI(
+pub extern "shell32" fn SHShowManageLibraryUI(
     psiLibrary: ?*IShellItem,
     hwndOwner: ?HWND,
     pszTitle: ?[*:0]const u16,
@@ -31692,78 +31692,78 @@ pub extern "SHELL32" fn SHShowManageLibraryUI(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHResolveLibrary(
+pub extern "shell32" fn SHResolveLibrary(
     psiLibrary: ?*IShellItem,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHAssocEnumHandlers(
+pub extern "shell32" fn SHAssocEnumHandlers(
     pszExtra: ?[*:0]const u16,
     afFilter: ASSOC_FILTER,
     ppEnumHandler: ?*?*IEnumAssocHandlers,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHAssocEnumHandlersForProtocolByApplication(
+pub extern "shell32" fn SHAssocEnumHandlersForProtocolByApplication(
     protocol: ?[*:0]const u16,
     riid: ?*const Guid,
     enumHandlers: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn HMONITOR_UserSize(
+pub extern "ole32" fn HMONITOR_UserSize(
     param0: ?*u32,
     param1: u32,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HMONITOR_UserMarshal(
+pub extern "ole32" fn HMONITOR_UserMarshal(
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMONITOR_UserUnmarshal(
+pub extern "ole32" fn HMONITOR_UserUnmarshal(
     param0: ?*u32,
     param1: [*:0]u8,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMONITOR_UserFree(
+pub extern "ole32" fn HMONITOR_UserFree(
     param0: ?*u32,
     param1: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HMONITOR_UserSize64(
+pub extern "ole32" fn HMONITOR_UserSize64(
     param0: ?*u32,
     param1: u32,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HMONITOR_UserMarshal64(
+pub extern "ole32" fn HMONITOR_UserMarshal64(
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMONITOR_UserUnmarshal64(
+pub extern "ole32" fn HMONITOR_UserUnmarshal64(
     param0: ?*u32,
     param1: [*:0]u8,
     param2: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMONITOR_UserFree64(
+pub extern "ole32" fn HMONITOR_UserFree64(
     param0: ?*u32,
     param1: ?*?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateDefaultPropertiesOp(
+pub extern "shell32" fn SHCreateDefaultPropertiesOp(
     psi: ?*IShellItem,
     ppFileOp: ?*?*IFileOperation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHSetDefaultProperties(
+pub extern "shell32" fn SHSetDefaultProperties(
     hwnd: ?HWND,
     psi: ?*IShellItem,
     dwFileOpFlags: u32,
@@ -31771,130 +31771,130 @@ pub extern "SHELL32" fn SHSetDefaultProperties(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetMalloc(
+pub extern "shell32" fn SHGetMalloc(
     ppMalloc: ?*?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHAlloc(
+pub extern "shell32" fn SHAlloc(
     cb: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHFree(
+pub extern "shell32" fn SHFree(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetIconOverlayIndexA(
+pub extern "shell32" fn SHGetIconOverlayIndexA(
     pszIconPath: ?[*:0]const u8,
     iIconIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetIconOverlayIndexW(
+pub extern "shell32" fn SHGetIconOverlayIndexW(
     pszIconPath: ?[*:0]const u16,
     iIconIndex: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILClone(
+pub extern "shell32" fn ILClone(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILCloneFirst(
+pub extern "shell32" fn ILCloneFirst(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILCombine(
+pub extern "shell32" fn ILCombine(
     pidl1: ?*ITEMIDLIST,
     pidl2: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILFree(
+pub extern "shell32" fn ILFree(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILGetNext(
+pub extern "shell32" fn ILGetNext(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILGetSize(
+pub extern "shell32" fn ILGetSize(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILFindChild(
+pub extern "shell32" fn ILFindChild(
     pidlParent: ?*ITEMIDLIST,
     pidlChild: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILFindLastID(
+pub extern "shell32" fn ILFindLastID(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILRemoveLastID(
+pub extern "shell32" fn ILRemoveLastID(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILIsEqual(
+pub extern "shell32" fn ILIsEqual(
     pidl1: ?*ITEMIDLIST,
     pidl2: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILIsParent(
+pub extern "shell32" fn ILIsParent(
     pidl1: ?*ITEMIDLIST,
     pidl2: ?*ITEMIDLIST,
     fImmediate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILSaveToStream(
+pub extern "shell32" fn ILSaveToStream(
     pstm: ?*IStream,
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn ILLoadFromStreamEx(
+pub extern "shell32" fn ILLoadFromStreamEx(
     pstm: ?*IStream,
     pidl: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILCreateFromPathA(
+pub extern "shell32" fn ILCreateFromPathA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILCreateFromPathW(
+pub extern "shell32" fn ILCreateFromPathW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHILCreateFromPath(
+pub extern "shell32" fn SHILCreateFromPath(
     pszPath: ?[*:0]const u16,
     ppidl: ?*?*ITEMIDLIST,
     rgfInOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ILAppendID(
+pub extern "shell32" fn ILAppendID(
     pidl: ?*ITEMIDLIST,
     pmkid: ?*SHITEMID,
     fAppend: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetPathFromIDListEx(
+pub extern "shell32" fn SHGetPathFromIDListEx(
     pidl: ?*ITEMIDLIST,
     pszPath: [*:0]u16,
     cchPath: u32,
@@ -31902,39 +31902,39 @@ pub extern "SHELL32" fn SHGetPathFromIDListEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetPathFromIDListA(
+pub extern "shell32" fn SHGetPathFromIDListA(
     pidl: ?*ITEMIDLIST,
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetPathFromIDListW(
+pub extern "shell32" fn SHGetPathFromIDListW(
     pidl: ?*ITEMIDLIST,
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreateDirectory(
+pub extern "shell32" fn SHCreateDirectory(
     hwnd: ?HWND,
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCreateDirectoryExA(
+pub extern "shell32" fn SHCreateDirectoryExA(
     hwnd: ?HWND,
     pszPath: ?[*:0]const u8,
     psa: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCreateDirectoryExW(
+pub extern "shell32" fn SHCreateDirectoryExW(
     hwnd: ?HWND,
     pszPath: ?[*:0]const u16,
     psa: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHOpenFolderAndSelectItems(
+pub extern "shell32" fn SHOpenFolderAndSelectItems(
     pidlFolder: ?*ITEMIDLIST,
     cidl: u32,
     apidl: ?[*]?*ITEMIDLIST,
@@ -31942,7 +31942,7 @@ pub extern "SHELL32" fn SHOpenFolderAndSelectItems(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreateShellItem(
+pub extern "shell32" fn SHCreateShellItem(
     pidlParent: ?*ITEMIDLIST,
     psfParent: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
@@ -31950,21 +31950,21 @@ pub extern "SHELL32" fn SHCreateShellItem(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetSpecialFolderLocation(
+pub extern "shell32" fn SHGetSpecialFolderLocation(
     hwnd: ?HWND,
     csidl: i32,
     ppidl: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCloneSpecialIDList(
+pub extern "shell32" fn SHCloneSpecialIDList(
     hwnd: ?HWND,
     csidl: i32,
     fCreate: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetSpecialFolderPathA(
+pub extern "shell32" fn SHGetSpecialFolderPathA(
     hwnd: ?HWND,
     pszPath: *[260]u8,
     csidl: i32,
@@ -31972,7 +31972,7 @@ pub extern "SHELL32" fn SHGetSpecialFolderPathA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetSpecialFolderPathW(
+pub extern "shell32" fn SHGetSpecialFolderPathW(
     hwnd: ?HWND,
     pszPath: *[260]u16,
     csidl: i32,
@@ -31980,11 +31980,11 @@ pub extern "SHELL32" fn SHGetSpecialFolderPathW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFlushSFCache(
+pub extern "shell32" fn SHFlushSFCache(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetFolderPathA(
+pub extern "shell32" fn SHGetFolderPathA(
     hwnd: ?HWND,
     csidl: i32,
     hToken: ?HANDLE,
@@ -31993,7 +31993,7 @@ pub extern "SHELL32" fn SHGetFolderPathA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetFolderPathW(
+pub extern "shell32" fn SHGetFolderPathW(
     hwnd: ?HWND,
     csidl: i32,
     hToken: ?HANDLE,
@@ -32002,7 +32002,7 @@ pub extern "SHELL32" fn SHGetFolderPathW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetFolderLocation(
+pub extern "shell32" fn SHGetFolderLocation(
     hwnd: ?HWND,
     csidl: i32,
     hToken: ?HANDLE,
@@ -32011,7 +32011,7 @@ pub extern "SHELL32" fn SHGetFolderLocation(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHSetFolderPathA(
+pub extern "shell32" fn SHSetFolderPathA(
     csidl: i32,
     hToken: ?HANDLE,
     dwFlags: u32,
@@ -32019,7 +32019,7 @@ pub extern "SHELL32" fn SHSetFolderPathA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHSetFolderPathW(
+pub extern "shell32" fn SHSetFolderPathW(
     csidl: i32,
     hToken: ?HANDLE,
     dwFlags: u32,
@@ -32027,7 +32027,7 @@ pub extern "SHELL32" fn SHSetFolderPathW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetFolderPathAndSubDirA(
+pub extern "shell32" fn SHGetFolderPathAndSubDirA(
     hwnd: ?HWND,
     csidl: i32,
     hToken: ?HANDLE,
@@ -32037,7 +32037,7 @@ pub extern "SHELL32" fn SHGetFolderPathAndSubDirA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetFolderPathAndSubDirW(
+pub extern "shell32" fn SHGetFolderPathAndSubDirW(
     hwnd: ?HWND,
     csidl: i32,
     hToken: ?HANDLE,
@@ -32047,7 +32047,7 @@ pub extern "SHELL32" fn SHGetFolderPathAndSubDirW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetKnownFolderIDList(
+pub extern "shell32" fn SHGetKnownFolderIDList(
     rfid: ?*const Guid,
     dwFlags: u32,
     hToken: ?HANDLE,
@@ -32055,7 +32055,7 @@ pub extern "SHELL32" fn SHGetKnownFolderIDList(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHSetKnownFolderPath(
+pub extern "shell32" fn SHSetKnownFolderPath(
     rfid: ?*const Guid,
     dwFlags: u32,
     hToken: ?HANDLE,
@@ -32063,7 +32063,7 @@ pub extern "SHELL32" fn SHSetKnownFolderPath(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetKnownFolderPath(
+pub extern "shell32" fn SHGetKnownFolderPath(
     rfid: ?*const Guid,
     dwFlags: u32,
     hToken: ?HANDLE,
@@ -32071,7 +32071,7 @@ pub extern "SHELL32" fn SHGetKnownFolderPath(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHGetKnownFolderItem(
+pub extern "shell32" fn SHGetKnownFolderItem(
     rfid: ?*const Guid,
     flags: KNOWN_FOLDER_FLAG,
     hToken: ?HANDLE,
@@ -32080,34 +32080,34 @@ pub extern "SHELL32" fn SHGetKnownFolderItem(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetSetFolderCustomSettings(
+pub extern "shell32" fn SHGetSetFolderCustomSettings(
     pfcs: ?*SHFOLDERCUSTOMSETTINGS,
     pszPath: ?[*:0]const u16,
     dwReadWrite: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHBrowseForFolderA(
+pub extern "shell32" fn SHBrowseForFolderA(
     lpbi: ?*BROWSEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHBrowseForFolderW(
+pub extern "shell32" fn SHBrowseForFolderW(
     lpbi: ?*BROWSEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) ?*ITEMIDLIST;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHLoadInProc(
+pub extern "shell32" fn SHLoadInProc(
     rclsid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetDesktopFolder(
+pub extern "shell32" fn SHGetDesktopFolder(
     ppshf: ?*?*IShellFolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHChangeNotify(
+pub extern "shell32" fn SHChangeNotify(
     wEventId: SHCNE_ID,
     uFlags: SHCNF_FLAGS,
     dwItem1: ?*const anyopaque,
@@ -32115,18 +32115,18 @@ pub extern "SHELL32" fn SHChangeNotify(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHAddToRecentDocs(
+pub extern "shell32" fn SHAddToRecentDocs(
     uFlags: u32,
     pv: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHHandleUpdateImage(
+pub extern "shell32" fn SHHandleUpdateImage(
     pidlExtra: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHUpdateImageA(
+pub extern "shell32" fn SHUpdateImageA(
     pszHashItem: ?[*:0]const u8,
     iIndex: i32,
     uFlags: u32,
@@ -32134,7 +32134,7 @@ pub extern "SHELL32" fn SHUpdateImageA(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHUpdateImageW(
+pub extern "shell32" fn SHUpdateImageW(
     pszHashItem: ?[*:0]const u16,
     iIndex: i32,
     uFlags: u32,
@@ -32142,7 +32142,7 @@ pub extern "SHELL32" fn SHUpdateImageW(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHChangeNotifyRegister(
+pub extern "shell32" fn SHChangeNotifyRegister(
     hwnd: ?HWND,
     fSources: SHCNRF_SOURCE,
     fEvents: i32,
@@ -32152,12 +32152,12 @@ pub extern "SHELL32" fn SHChangeNotifyRegister(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHChangeNotifyDeregister(
+pub extern "shell32" fn SHChangeNotifyDeregister(
     ulID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHChangeNotification_Lock(
+pub extern "shell32" fn SHChangeNotification_Lock(
     hChange: ?HANDLE,
     dwProcId: u32,
     pppidl: ?*?*?*ITEMIDLIST,
@@ -32165,24 +32165,24 @@ pub extern "SHELL32" fn SHChangeNotification_Lock(
 ) callconv(@import("std").os.windows.WINAPI) ShFindChangeNotificationHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHChangeNotification_Unlock(
+pub extern "shell32" fn SHChangeNotification_Unlock(
     hLock: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetRealIDL(
+pub extern "shell32" fn SHGetRealIDL(
     psf: ?*IShellFolder,
     pidlSimple: ?*ITEMIDLIST,
     ppidlReal: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetInstanceExplorer(
+pub extern "shell32" fn SHGetInstanceExplorer(
     ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetDataFromIDListA(
+pub extern "shell32" fn SHGetDataFromIDListA(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
@@ -32192,7 +32192,7 @@ pub extern "SHELL32" fn SHGetDataFromIDListA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetDataFromIDListW(
+pub extern "shell32" fn SHGetDataFromIDListW(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
@@ -32202,14 +32202,14 @@ pub extern "SHELL32" fn SHGetDataFromIDListW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn RestartDialog(
+pub extern "shell32" fn RestartDialog(
     hwnd: ?HWND,
     pszPrompt: ?[*:0]const u16,
     dwReturn: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn RestartDialogEx(
+pub extern "shell32" fn RestartDialogEx(
     hwnd: ?HWND,
     pszPrompt: ?[*:0]const u16,
     dwReturn: u32,
@@ -32217,7 +32217,7 @@ pub extern "SHELL32" fn RestartDialogEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCoCreateInstance(
+pub extern "shell32" fn SHCoCreateInstance(
     pszCLSID: ?[*:0]const u16,
     pclsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
@@ -32226,7 +32226,7 @@ pub extern "SHELL32" fn SHCoCreateInstance(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateDataObject(
+pub extern "shell32" fn SHCreateDataObject(
     pidlFolder: ?*ITEMIDLIST,
     cidl: u32,
     apidl: ?[*]?*ITEMIDLIST,
@@ -32236,7 +32236,7 @@ pub extern "SHELL32" fn SHCreateDataObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn CIDLData_CreateFromIDArray(
+pub extern "shell32" fn CIDLData_CreateFromIDArray(
     pidlFolder: ?*ITEMIDLIST,
     cidl: u32,
     apidl: ?[*]?*ITEMIDLIST,
@@ -32244,14 +32244,14 @@ pub extern "SHELL32" fn CIDLData_CreateFromIDArray(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreateStdEnumFmtEtc(
+pub extern "shell32" fn SHCreateStdEnumFmtEtc(
     cfmt: u32,
     afmt: [*]const FORMATETC,
     ppenumFormatEtc: ?*?*IEnumFORMATETC,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHDoDragDrop(
+pub extern "shell32" fn SHDoDragDrop(
     hwnd: ?HWND,
     pdata: ?*IDataObject,
     pdsrc: ?*IDropSource,
@@ -32260,59 +32260,59 @@ pub extern "SHELL32" fn SHDoDragDrop(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_SetDragImage(
+pub extern "shell32" fn DAD_SetDragImage(
     him: ?HIMAGELIST,
     pptOffset: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_DragEnterEx(
+pub extern "shell32" fn DAD_DragEnterEx(
     hwndTarget: ?HWND,
     ptStart: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_DragEnterEx2(
+pub extern "shell32" fn DAD_DragEnterEx2(
     hwndTarget: ?HWND,
     ptStart: POINT,
     pdtObject: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_ShowDragImage(
+pub extern "shell32" fn DAD_ShowDragImage(
     fShow: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_DragMove(
+pub extern "shell32" fn DAD_DragMove(
     pt: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_DragLeave(
+pub extern "shell32" fn DAD_DragLeave(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn DAD_AutoScroll(
+pub extern "shell32" fn DAD_AutoScroll(
     hwnd: ?HWND,
     pad: ?*AUTO_SCROLL_DATA,
     pptNow: ?*const POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ReadCabinetState(
+pub extern "shell32" fn ReadCabinetState(
     // TODO: what to do with BytesParamIndex 1?
     pcs: ?*CABINETSTATE,
     cLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn WriteCabinetState(
+pub extern "shell32" fn WriteCabinetState(
     pcs: ?*CABINETSTATE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PathMakeUniqueName(
+pub extern "shell32" fn PathMakeUniqueName(
     pszUniqueName: [*:0]u16,
     cchMax: u32,
     pszTemplate: ?[*:0]const u16,
@@ -32321,25 +32321,25 @@ pub extern "SHELL32" fn PathMakeUniqueName(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathIsExe(
+pub extern "shell32" fn PathIsExe(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathCleanupSpec(
+pub extern "shell32" fn PathCleanupSpec(
     pszDir: ?[*:0]const u16,
     pszSpec: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) PCS_RET;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathResolve(
+pub extern "shell32" fn PathResolve(
     pszPath: *[260]u16,
     dirs: ?*?*u16,
     fFlags: PRF_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn GetFileNameFromBrowse(
+pub extern "shell32" fn GetFileNameFromBrowse(
     hwnd: ?HWND,
     pszFilePath: [*:0]u16,
     cchFilePath: u32,
@@ -32350,23 +32350,23 @@ pub extern "SHELL32" fn GetFileNameFromBrowse(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DriveType(
+pub extern "shell32" fn DriveType(
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn RealDriveType(
+pub extern "shell32" fn RealDriveType(
     iDrive: i32,
     fOKToHitNet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn IsNetDrive(
+pub extern "shell32" fn IsNetDrive(
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_MergeMenus(
+pub extern "shell32" fn Shell_MergeMenus(
     hmDst: ?HMENU,
     hmSrc: ?HMENU,
     uInsert: u32,
@@ -32376,7 +32376,7 @@ pub extern "SHELL32" fn Shell_MergeMenus(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHObjectProperties(
+pub extern "shell32" fn SHObjectProperties(
     hwnd: ?HWND,
     shopObjectType: SHOP_TYPE,
     pszObjectName: ?[*:0]const u16,
@@ -32384,7 +32384,7 @@ pub extern "SHELL32" fn SHObjectProperties(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFormatDrive(
+pub extern "shell32" fn SHFormatDrive(
     hwnd: ?HWND,
     drive: u32,
     fmtID: SHFMT_ID,
@@ -32392,19 +32392,19 @@ pub extern "SHELL32" fn SHFormatDrive(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHDestroyPropSheetExtArray(
+pub extern "shell32" fn SHDestroyPropSheetExtArray(
     hpsxa: ?HPSXA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHAddFromPropSheetExtArray(
+pub extern "shell32" fn SHAddFromPropSheetExtArray(
     hpsxa: ?HPSXA,
     lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHReplaceFromPropSheetExtArray(
+pub extern "shell32" fn SHReplaceFromPropSheetExtArray(
     hpsxa: ?HPSXA,
     uPageID: u32,
     lpfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE,
@@ -32412,7 +32412,7 @@ pub extern "SHELL32" fn SHReplaceFromPropSheetExtArray(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn OpenRegStream(
+pub extern "shell32" fn OpenRegStream(
     hkey: ?HKEY,
     pszSubkey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -32420,18 +32420,18 @@ pub extern "SHELL32" fn OpenRegStream(
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFindFiles(
+pub extern "shell32" fn SHFindFiles(
     pidlFolder: ?*ITEMIDLIST,
     pidlSaveFile: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathGetShortPath(
+pub extern "shell32" fn PathGetShortPath(
     pszLongPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PathYetAnotherMakeUniqueName(
+pub extern "shell32" fn PathYetAnotherMakeUniqueName(
     pszUniqueName: *[260]u16,
     pszPath: ?[*:0]const u16,
     pszShort: ?[*:0]const u16,
@@ -32439,22 +32439,22 @@ pub extern "SHELL32" fn PathYetAnotherMakeUniqueName(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Win32DeleteFile(
+pub extern "shell32" fn Win32DeleteFile(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHRestricted(
+pub extern "shell32" fn SHRestricted(
     rest: RESTRICTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SignalFileOpen(
+pub extern "shell32" fn SignalFileOpen(
     pidl: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn AssocGetDetailsOfPropKey(
+pub extern "shell32" fn AssocGetDetailsOfPropKey(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     pkey: ?*const PROPERTYKEY,
@@ -32463,14 +32463,14 @@ pub extern "SHELL32" fn AssocGetDetailsOfPropKey(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHStartNetConnectionDialogW(
+pub extern "shell32" fn SHStartNetConnectionDialogW(
     hwnd: ?HWND,
     pszRemoteName: ?[*:0]const u16,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHDefExtractIconA(
+pub extern "shell32" fn SHDefExtractIconA(
     pszIconFile: ?[*:0]const u8,
     iIndex: i32,
     uFlags: u32,
@@ -32480,7 +32480,7 @@ pub extern "SHELL32" fn SHDefExtractIconA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHDefExtractIconW(
+pub extern "shell32" fn SHDefExtractIconW(
     pszIconFile: ?[*:0]const u16,
     iIndex: i32,
     uFlags: u32,
@@ -32490,69 +32490,69 @@ pub extern "SHELL32" fn SHDefExtractIconW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHOpenWithDialog(
+pub extern "shell32" fn SHOpenWithDialog(
     hwndParent: ?HWND,
     poainfo: ?*const OPENASINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_GetImageLists(
+pub extern "shell32" fn Shell_GetImageLists(
     phiml: ?*?HIMAGELIST,
     phimlSmall: ?*?HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_GetCachedImageIndex(
+pub extern "shell32" fn Shell_GetCachedImageIndex(
     pwszIconPath: ?[*:0]const u16,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_GetCachedImageIndexA(
+pub extern "shell32" fn Shell_GetCachedImageIndexA(
     pszIconPath: ?[*:0]const u8,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_GetCachedImageIndexW(
+pub extern "shell32" fn Shell_GetCachedImageIndexW(
     pszIconPath: ?[*:0]const u16,
     iIconIndex: i32,
     uIconFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHValidateUNC(
+pub extern "shell32" fn SHValidateUNC(
     hwndOwner: ?HWND,
     pszFile: ?PWSTR,
     fConnect: VALIDATEUNC_OPTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHSetInstanceExplorer(
+pub extern "shell32" fn SHSetInstanceExplorer(
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn IsUserAnAdmin(
+pub extern "shell32" fn IsUserAnAdmin(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHShellFolderView_Message(
+pub extern "shell32" fn SHShellFolderView_Message(
     hwndMain: ?HWND,
     uMsg: u32,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCreateShellFolderView(
+pub extern "shell32" fn SHCreateShellFolderView(
     pcsfv: ?*const SFV_CREATE,
     ppsv: ?*?*IShellView,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn CDefFolderMenu_Create2(
+pub extern "shell32" fn CDefFolderMenu_Create2(
     pidlFolder: ?*ITEMIDLIST,
     hwnd: ?HWND,
     cidl: u32,
@@ -32565,14 +32565,14 @@ pub extern "SHELL32" fn CDefFolderMenu_Create2(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHCreateDefaultContextMenu(
+pub extern "shell32" fn SHCreateDefaultContextMenu(
     pdcm: ?*const DEFCONTEXTMENU,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFind_InitMenuPopup(
+pub extern "shell32" fn SHFind_InitMenuPopup(
     hmenu: ?HMENU,
     hwndOwner: ?HWND,
     idCmdFirst: u32,
@@ -32580,26 +32580,26 @@ pub extern "SHELL32" fn SHFind_InitMenuPopup(
 ) callconv(@import("std").os.windows.WINAPI) ?*IContextMenu;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCreateShellFolderViewEx(
+pub extern "shell32" fn SHCreateShellFolderViewEx(
     pcsfv: ?*CSFV,
     ppsv: ?*?*IShellView,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetSetSettings(
+pub extern "shell32" fn SHGetSetSettings(
     lpss: ?*SHELLSTATEA,
     dwMask: SSF_MASK,
     bSet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetSettings(
+pub extern "shell32" fn SHGetSettings(
     psfs: ?*SHELLFLAGSTATE,
     dwMask: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHBindToParent(
+pub extern "shell32" fn SHBindToParent(
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
@@ -32607,7 +32607,7 @@ pub extern "SHELL32" fn SHBindToParent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHBindToFolderIDListParent(
+pub extern "shell32" fn SHBindToFolderIDListParent(
     psfRoot: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
@@ -32616,7 +32616,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHBindToFolderIDListParentEx(
+pub extern "shell32" fn SHBindToFolderIDListParentEx(
     psfRoot: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     ppbc: ?*IBindCtx,
@@ -32626,7 +32626,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParentEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHBindToObject(
+pub extern "shell32" fn SHBindToObject(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     pbc: ?*IBindCtx,
@@ -32635,7 +32635,7 @@ pub extern "SHELL32" fn SHBindToObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHParseDisplayName(
+pub extern "shell32" fn SHParseDisplayName(
     pszName: ?[*:0]const u16,
     pbc: ?*IBindCtx,
     ppidl: ?*?*ITEMIDLIST,
@@ -32644,7 +32644,7 @@ pub extern "SHELL32" fn SHParseDisplayName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHPathPrepareForWriteA(
+pub extern "shell32" fn SHPathPrepareForWriteA(
     hwnd: ?HWND,
     punkEnableModless: ?*IUnknown,
     pszPath: ?[*:0]const u8,
@@ -32652,7 +32652,7 @@ pub extern "SHELL32" fn SHPathPrepareForWriteA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHPathPrepareForWriteW(
+pub extern "shell32" fn SHPathPrepareForWriteW(
     hwnd: ?HWND,
     punkEnableModless: ?*IUnknown,
     pszPath: ?[*:0]const u16,
@@ -32660,7 +32660,7 @@ pub extern "SHELL32" fn SHPathPrepareForWriteW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreateFileExtractIconW(
+pub extern "shell32" fn SHCreateFileExtractIconW(
     pszFile: ?[*:0]const u16,
     dwFileAttributes: u32,
     riid: ?*const Guid,
@@ -32668,13 +32668,13 @@ pub extern "SHELL32" fn SHCreateFileExtractIconW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHLimitInputEdit(
+pub extern "shell32" fn SHLimitInputEdit(
     hwndEdit: ?HWND,
     psf: ?*IShellFolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetAttributesFromDataObject(
+pub extern "shell32" fn SHGetAttributesFromDataObject(
     pdo: ?*IDataObject,
     dwAttributeMask: u32,
     pdwAttributes: ?*u32,
@@ -32682,20 +32682,20 @@ pub extern "SHELL32" fn SHGetAttributesFromDataObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHMapPIDLToSystemImageListIndex(
+pub extern "shell32" fn SHMapPIDLToSystemImageListIndex(
     pshf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     piIndexSel: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCLSIDFromString(
+pub extern "shell32" fn SHCLSIDFromString(
     psz: ?[*:0]const u16,
     pclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PickIconDlg(
+pub extern "shell32" fn PickIconDlg(
     hwnd: ?HWND,
     pszIconPath: [*:0]u16,
     cchIconPath: u32,
@@ -32703,7 +32703,7 @@ pub extern "SHELL32" fn PickIconDlg(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn StgMakeUniqueName(
+pub extern "shell32" fn StgMakeUniqueName(
     pstgParent: ?*IStorage,
     pszFileSpec: ?[*:0]const u16,
     grfMode: u32,
@@ -32712,35 +32712,35 @@ pub extern "SHELL32" fn StgMakeUniqueName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHChangeNotifyRegisterThread(
+pub extern "shell32" fn SHChangeNotifyRegisterThread(
     status: SCNRT_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SHELL32" fn PathQualify(
+pub extern "shell32" fn PathQualify(
     psz: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathIsSlowA(
+pub extern "shell32" fn PathIsSlowA(
     pszFile: ?[*:0]const u8,
     dwAttr: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn PathIsSlowW(
+pub extern "shell32" fn PathIsSlowW(
     pszFile: ?[*:0]const u16,
     dwAttr: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreatePropSheetExtArray(
+pub extern "shell32" fn SHCreatePropSheetExtArray(
     hKey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
     max_iface: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HPSXA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHOpenPropSheetW(
+pub extern "shell32" fn SHOpenPropSheetW(
     pszCaption: ?[*:0]const u16,
     ahkeys: ?[*]?HKEY,
     ckeys: u32,
@@ -32751,7 +32751,7 @@ pub extern "SHELL32" fn SHOpenPropSheetW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHDOCVW" fn SoftwareUpdateMessageBox(
+pub extern "shdocvw" fn SoftwareUpdateMessageBox(
     hWnd: ?HWND,
     pszDistUnit: ?[*:0]const u16,
     dwFlags: u32,
@@ -32759,17 +32759,17 @@ pub extern "SHDOCVW" fn SoftwareUpdateMessageBox(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHMultiFileProperties(
+pub extern "shell32" fn SHMultiFileProperties(
     pdtobj: ?*IDataObject,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHCreateQueryCancelAutoPlayMoniker(
+pub extern "shell32" fn SHCreateQueryCancelAutoPlayMoniker(
     ppmoniker: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "SHDOCVW" fn ImportPrivacySettings(
+pub extern "shdocvw" fn ImportPrivacySettings(
     pszFilename: ?[*:0]const u16,
     pfParsePrivacyPreferences: ?*BOOL,
     pfParsePerSiteRules: ?*BOOL,
@@ -32817,13 +32817,13 @@ pub extern "api-ms-win-shcore-scaling-l1-1-2" fn GetDpiForShellUIComponent(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn CommandLineToArgvW(
+pub extern "shell32" fn CommandLineToArgvW(
     lpCmdLine: ?[*:0]const u16,
     pNumArgs: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DragQueryFileA(
+pub extern "shell32" fn DragQueryFileA(
     hDrop: ?HDROP,
     iFile: u32,
     lpszFile: ?[*:0]u8,
@@ -32831,7 +32831,7 @@ pub extern "SHELL32" fn DragQueryFileA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DragQueryFileW(
+pub extern "shell32" fn DragQueryFileW(
     hDrop: ?HDROP,
     iFile: u32,
     lpszFile: ?[*:0]u16,
@@ -32839,24 +32839,24 @@ pub extern "SHELL32" fn DragQueryFileW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DragQueryPoint(
+pub extern "shell32" fn DragQueryPoint(
     hDrop: ?HDROP,
     ppt: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DragFinish(
+pub extern "shell32" fn DragFinish(
     hDrop: ?HDROP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DragAcceptFiles(
+pub extern "shell32" fn DragAcceptFiles(
     hWnd: ?HWND,
     fAccept: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellExecuteA(
+pub extern "shell32" fn ShellExecuteA(
     hwnd: ?HWND,
     lpOperation: ?[*:0]const u8,
     lpFile: ?[*:0]const u8,
@@ -32866,7 +32866,7 @@ pub extern "SHELL32" fn ShellExecuteA(
 ) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellExecuteW(
+pub extern "shell32" fn ShellExecuteW(
     hwnd: ?HWND,
     lpOperation: ?[*:0]const u16,
     lpFile: ?[*:0]const u16,
@@ -32876,21 +32876,21 @@ pub extern "SHELL32" fn ShellExecuteW(
 ) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn FindExecutableA(
+pub extern "shell32" fn FindExecutableA(
     lpFile: ?[*:0]const u8,
     lpDirectory: ?[*:0]const u8,
     lpResult: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn FindExecutableW(
+pub extern "shell32" fn FindExecutableW(
     lpFile: ?[*:0]const u16,
     lpDirectory: ?[*:0]const u16,
     lpResult: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellAboutA(
+pub extern "shell32" fn ShellAboutA(
     hWnd: ?HWND,
     szApp: ?[*:0]const u8,
     szOtherStuff: ?[*:0]const u8,
@@ -32898,7 +32898,7 @@ pub extern "SHELL32" fn ShellAboutA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellAboutW(
+pub extern "shell32" fn ShellAboutW(
     hWnd: ?HWND,
     szApp: ?[*:0]const u16,
     szOtherStuff: ?[*:0]const u16,
@@ -32906,27 +32906,27 @@ pub extern "SHELL32" fn ShellAboutW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DuplicateIcon(
+pub extern "shell32" fn DuplicateIcon(
     hInst: ?HINSTANCE,
     hIcon: ?HICON,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractAssociatedIconA(
+pub extern "shell32" fn ExtractAssociatedIconA(
     hInst: ?HINSTANCE,
     pszIconPath: *[128]u8,
     piIcon: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractAssociatedIconW(
+pub extern "shell32" fn ExtractAssociatedIconW(
     hInst: ?HINSTANCE,
     pszIconPath: *[128]u16,
     piIcon: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractAssociatedIconExA(
+pub extern "shell32" fn ExtractAssociatedIconExA(
     hInst: ?HINSTANCE,
     pszIconPath: *[128]u8,
     piIconIndex: ?*u16,
@@ -32934,7 +32934,7 @@ pub extern "SHELL32" fn ExtractAssociatedIconExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractAssociatedIconExW(
+pub extern "shell32" fn ExtractAssociatedIconExW(
     hInst: ?HINSTANCE,
     pszIconPath: *[128]u16,
     piIconIndex: ?*u16,
@@ -32942,39 +32942,39 @@ pub extern "SHELL32" fn ExtractAssociatedIconExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractIconA(
+pub extern "shell32" fn ExtractIconA(
     hInst: ?HINSTANCE,
     pszExeFileName: ?[*:0]const u8,
     nIconIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractIconW(
+pub extern "shell32" fn ExtractIconW(
     hInst: ?HINSTANCE,
     pszExeFileName: ?[*:0]const u16,
     nIconIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHAppBarMessage(
+pub extern "shell32" fn SHAppBarMessage(
     dwMessage: u32,
     pData: ?*APPBARDATA,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DoEnvironmentSubstA(
+pub extern "shell32" fn DoEnvironmentSubstA(
     pszSrc: [*:0]u8,
     cchSrc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn DoEnvironmentSubstW(
+pub extern "shell32" fn DoEnvironmentSubstW(
     pszSrc: [*:0]u16,
     cchSrc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractIconExA(
+pub extern "shell32" fn ExtractIconExA(
     lpszFile: ?[*:0]const u8,
     nIconIndex: i32,
     phiconLarge: ?[*]?HICON,
@@ -32983,7 +32983,7 @@ pub extern "SHELL32" fn ExtractIconExA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ExtractIconExW(
+pub extern "shell32" fn ExtractIconExW(
     lpszFile: ?[*:0]const u16,
     nIconIndex: i32,
     phiconLarge: ?[*]?HICON,
@@ -32992,37 +32992,37 @@ pub extern "SHELL32" fn ExtractIconExW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFileOperationA(
+pub extern "shell32" fn SHFileOperationA(
     lpFileOp: ?*SHFILEOPSTRUCTA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFileOperationW(
+pub extern "shell32" fn SHFileOperationW(
     lpFileOp: ?*SHFILEOPSTRUCTW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHFreeNameMappings(
+pub extern "shell32" fn SHFreeNameMappings(
     hNameMappings: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellExecuteExA(
+pub extern "shell32" fn ShellExecuteExA(
     pExecInfo: ?*SHELLEXECUTEINFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn ShellExecuteExW(
+pub extern "shell32" fn ShellExecuteExW(
     pExecInfo: ?*SHELLEXECUTEINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHCreateProcessAsUserW(
+pub extern "shell32" fn SHCreateProcessAsUserW(
     pscpi: ?*SHCREATEPROCESSINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHEvaluateSystemCommandTemplate(
+pub extern "shell32" fn SHEvaluateSystemCommandTemplate(
     pszCmdTemplate: ?[*:0]const u16,
     ppszApplication: ?*?PWSTR,
     ppszCommandLine: ?*?PWSTR,
@@ -33030,7 +33030,7 @@ pub extern "SHELL32" fn SHEvaluateSystemCommandTemplate(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn AssocCreateForClasses(
+pub extern "shell32" fn AssocCreateForClasses(
     rgClasses: [*]const ASSOCIATIONELEMENT,
     cClasses: u32,
     riid: ?*const Guid,
@@ -33038,56 +33038,56 @@ pub extern "SHELL32" fn AssocCreateForClasses(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHQueryRecycleBinA(
+pub extern "shell32" fn SHQueryRecycleBinA(
     pszRootPath: ?[*:0]const u8,
     pSHQueryRBInfo: ?*SHQUERYRBINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHQueryRecycleBinW(
+pub extern "shell32" fn SHQueryRecycleBinW(
     pszRootPath: ?[*:0]const u16,
     pSHQueryRBInfo: ?*SHQUERYRBINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHEmptyRecycleBinA(
+pub extern "shell32" fn SHEmptyRecycleBinA(
     hwnd: ?HWND,
     pszRootPath: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHEmptyRecycleBinW(
+pub extern "shell32" fn SHEmptyRecycleBinW(
     hwnd: ?HWND,
     pszRootPath: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHQueryUserNotificationState(
+pub extern "shell32" fn SHQueryUserNotificationState(
     pquns: ?*QUERY_USER_NOTIFICATION_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_NotifyIconA(
+pub extern "shell32" fn Shell_NotifyIconA(
     dwMessage: NOTIFY_ICON_MESSAGE,
     lpData: ?*NOTIFYICONDATAA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn Shell_NotifyIconW(
+pub extern "shell32" fn Shell_NotifyIconW(
     dwMessage: NOTIFY_ICON_MESSAGE,
     lpData: ?*NOTIFYICONDATAW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn Shell_NotifyIconGetRect(
+pub extern "shell32" fn Shell_NotifyIconGetRect(
     identifier: ?*const NOTIFYICONIDENTIFIER,
     iconLocation: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetFileInfoA(
+pub extern "shell32" fn SHGetFileInfoA(
     pszPath: ?[*:0]const u8,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     // TODO: what to do with BytesParamIndex 3?
@@ -33097,7 +33097,7 @@ pub extern "SHELL32" fn SHGetFileInfoA(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetFileInfoW(
+pub extern "shell32" fn SHGetFileInfoW(
     pszPath: ?[*:0]const u16,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     // TODO: what to do with BytesParamIndex 3?
@@ -33107,14 +33107,14 @@ pub extern "SHELL32" fn SHGetFileInfoW(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetStockIconInfo(
+pub extern "shell32" fn SHGetStockIconInfo(
     siid: SHSTOCKICONID,
     uFlags: u32,
     psii: ?*SHSTOCKICONINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetDiskFreeSpaceExA(
+pub extern "shell32" fn SHGetDiskFreeSpaceExA(
     pszDirectoryName: ?[*:0]const u8,
     pulFreeBytesAvailableToCaller: ?*ULARGE_INTEGER,
     pulTotalNumberOfBytes: ?*ULARGE_INTEGER,
@@ -33122,7 +33122,7 @@ pub extern "SHELL32" fn SHGetDiskFreeSpaceExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetDiskFreeSpaceExW(
+pub extern "shell32" fn SHGetDiskFreeSpaceExW(
     pszDirectoryName: ?[*:0]const u16,
     pulFreeBytesAvailableToCaller: ?*ULARGE_INTEGER,
     pulTotalNumberOfBytes: ?*ULARGE_INTEGER,
@@ -33130,7 +33130,7 @@ pub extern "SHELL32" fn SHGetDiskFreeSpaceExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetNewLinkInfoA(
+pub extern "shell32" fn SHGetNewLinkInfoA(
     pszLinkTo: ?[*:0]const u8,
     pszDir: ?[*:0]const u8,
     pszName: *[260]u8,
@@ -33139,7 +33139,7 @@ pub extern "SHELL32" fn SHGetNewLinkInfoA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHGetNewLinkInfoW(
+pub extern "shell32" fn SHGetNewLinkInfoW(
     pszLinkTo: ?[*:0]const u16,
     pszDir: ?[*:0]const u16,
     pszName: *[260]u16,
@@ -33148,7 +33148,7 @@ pub extern "SHELL32" fn SHGetNewLinkInfoW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHInvokePrinterCommandA(
+pub extern "shell32" fn SHInvokePrinterCommandA(
     hwnd: ?HWND,
     uAction: u32,
     lpBuf1: ?[*:0]const u8,
@@ -33157,7 +33157,7 @@ pub extern "SHELL32" fn SHInvokePrinterCommandA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHInvokePrinterCommandW(
+pub extern "shell32" fn SHInvokePrinterCommandW(
     hwnd: ?HWND,
     uAction: u32,
     lpBuf1: ?[*:0]const u16,
@@ -33166,29 +33166,29 @@ pub extern "SHELL32" fn SHInvokePrinterCommandW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHLoadNonloadedIconOverlayIdentifiers(
+pub extern "shell32" fn SHLoadNonloadedIconOverlayIdentifiers(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHIsFileAvailableOffline(
+pub extern "shell32" fn SHIsFileAvailableOffline(
     pwszPath: ?[*:0]const u16,
     pdwStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHSetLocalizedName(
+pub extern "shell32" fn SHSetLocalizedName(
     pszPath: ?[*:0]const u16,
     pszResModule: ?[*:0]const u16,
     idsRes: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHRemoveLocalizedName(
+pub extern "shell32" fn SHRemoveLocalizedName(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetLocalizedName(
+pub extern "shell32" fn SHGetLocalizedName(
     pszPath: ?[*:0]const u16,
     pszResModule: [*:0]u16,
     cch: u32,
@@ -33196,7 +33196,7 @@ pub extern "SHELL32" fn SHGetLocalizedName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn ShellMessageBoxA(
+pub extern "shlwapi" fn ShellMessageBoxA(
     hAppInst: ?HINSTANCE,
     hWnd: ?HWND,
     lpcText: ?[*:0]const u8,
@@ -33205,7 +33205,7 @@ pub extern "SHLWAPI" fn ShellMessageBoxA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn ShellMessageBoxW(
+pub extern "shlwapi" fn ShellMessageBoxW(
     hAppInst: ?HINSTANCE,
     hWnd: ?HWND,
     lpcText: ?[*:0]const u16,
@@ -33213,16 +33213,16 @@ pub extern "SHLWAPI" fn ShellMessageBoxW(
     fuStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "SHELL32" fn IsLFNDriveA(
+pub extern "shell32" fn IsLFNDriveA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SHELL32" fn IsLFNDriveW(
+pub extern "shell32" fn IsLFNDriveW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHEnumerateUnreadMailAccountsW(
+pub extern "shell32" fn SHEnumerateUnreadMailAccountsW(
     hKeyUser: ?HKEY,
     dwIndex: u32,
     pszMailAddress: [*:0]u16,
@@ -33230,7 +33230,7 @@ pub extern "SHELL32" fn SHEnumerateUnreadMailAccountsW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetUnreadMailCountW(
+pub extern "shell32" fn SHGetUnreadMailCountW(
     hKeyUser: ?HKEY,
     pszMailAddress: ?[*:0]const u16,
     pdwCount: ?*u32,
@@ -33240,137 +33240,137 @@ pub extern "SHELL32" fn SHGetUnreadMailCountW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHSetUnreadMailCountW(
+pub extern "shell32" fn SHSetUnreadMailCountW(
     pszMailAddress: ?[*:0]const u16,
     dwCount: u32,
     pszShellExecuteCommand: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHTestTokenMembership(
+pub extern "shell32" fn SHTestTokenMembership(
     hToken: ?HANDLE,
     ulRID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHGetImageList(
+pub extern "shell32" fn SHGetImageList(
     iImageList: i32,
     riid: ?*const Guid,
     ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn InitNetworkAddressControl(
+pub extern "shell32" fn InitNetworkAddressControl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetDriveMedia(
+pub extern "shell32" fn SHGetDriveMedia(
     pszDrive: ?[*:0]const u16,
     pdwMediaContent: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrChrA(
+pub extern "shlwapi" fn StrChrA(
     pszStart: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrChrW(
+pub extern "shlwapi" fn StrChrW(
     pszStart: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrChrIA(
+pub extern "shlwapi" fn StrChrIA(
     pszStart: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrChrIW(
+pub extern "shlwapi" fn StrChrIW(
     pszStart: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn StrChrNW(
+pub extern "shlwapi" fn StrChrNW(
     pszStart: ?[*:0]const u16,
     wMatch: u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn StrChrNIW(
+pub extern "shlwapi" fn StrChrNIW(
     pszStart: ?[*:0]const u16,
     wMatch: u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNA(
+pub extern "shlwapi" fn StrCmpNA(
     psz1: ?[*:0]const u8,
     psz2: ?[*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNW(
+pub extern "shlwapi" fn StrCmpNW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNIA(
+pub extern "shlwapi" fn StrCmpNIA(
     psz1: ?[*:0]const u8,
     psz2: ?[*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNIW(
+pub extern "shlwapi" fn StrCmpNIW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCSpnA(
+pub extern "shlwapi" fn StrCSpnA(
     pszStr: ?[*:0]const u8,
     pszSet: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCSpnW(
+pub extern "shlwapi" fn StrCSpnW(
     pszStr: ?[*:0]const u16,
     pszSet: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCSpnIA(
+pub extern "shlwapi" fn StrCSpnIA(
     pszStr: ?[*:0]const u8,
     pszSet: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCSpnIW(
+pub extern "shlwapi" fn StrCSpnIW(
     pszStr: ?[*:0]const u16,
     pszSet: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrDupA(
+pub extern "shlwapi" fn StrDupA(
     pszSrch: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrDupW(
+pub extern "shlwapi" fn StrDupW(
     pszSrch: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn StrFormatByteSizeEx(
+pub extern "shlwapi" fn StrFormatByteSizeEx(
     ull: u64,
     flags: SFBS_FLAGS,
     pszBuf: [*:0]u16,
@@ -33378,42 +33378,42 @@ pub extern "SHLWAPI" fn StrFormatByteSizeEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFormatByteSizeA(
+pub extern "shlwapi" fn StrFormatByteSizeA(
     dw: u32,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFormatByteSize64A(
+pub extern "shlwapi" fn StrFormatByteSize64A(
     qdw: i64,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFormatByteSizeW(
+pub extern "shlwapi" fn StrFormatByteSizeW(
     qdw: i64,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFormatKBSizeW(
+pub extern "shlwapi" fn StrFormatKBSizeW(
     qdw: i64,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFormatKBSizeA(
+pub extern "shlwapi" fn StrFormatKBSizeA(
     qdw: i64,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFromTimeIntervalA(
+pub extern "shlwapi" fn StrFromTimeIntervalA(
     pszOut: [*:0]u8,
     cchMax: u32,
     dwTimeMS: u32,
@@ -33421,7 +33421,7 @@ pub extern "SHLWAPI" fn StrFromTimeIntervalA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrFromTimeIntervalW(
+pub extern "shlwapi" fn StrFromTimeIntervalW(
     pszOut: [*:0]u16,
     cchMax: u32,
     dwTimeMS: u32,
@@ -33429,7 +33429,7 @@ pub extern "SHLWAPI" fn StrFromTimeIntervalW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrIsIntlEqualA(
+pub extern "shlwapi" fn StrIsIntlEqualA(
     fCaseSens: BOOL,
     pszString1: ?[*:0]const u8,
     pszString2: ?[*:0]const u8,
@@ -33437,7 +33437,7 @@ pub extern "SHLWAPI" fn StrIsIntlEqualA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrIsIntlEqualW(
+pub extern "shlwapi" fn StrIsIntlEqualW(
     fCaseSens: BOOL,
     pszString1: ?[*:0]const u16,
     pszString2: ?[*:0]const u16,
@@ -33445,232 +33445,232 @@ pub extern "SHLWAPI" fn StrIsIntlEqualW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrNCatA(
+pub extern "shlwapi" fn StrNCatA(
     psz1: [*:0]u8,
     psz2: ?[*:0]const u8,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrNCatW(
+pub extern "shlwapi" fn StrNCatW(
     psz1: [*:0]u16,
     psz2: ?[*:0]const u16,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrPBrkA(
+pub extern "shlwapi" fn StrPBrkA(
     psz: ?[*:0]const u8,
     pszSet: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrPBrkW(
+pub extern "shlwapi" fn StrPBrkW(
     psz: ?[*:0]const u16,
     pszSet: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRChrA(
+pub extern "shlwapi" fn StrRChrA(
     pszStart: ?[*:0]const u8,
     pszEnd: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRChrW(
+pub extern "shlwapi" fn StrRChrW(
     pszStart: ?[*:0]const u16,
     pszEnd: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRChrIA(
+pub extern "shlwapi" fn StrRChrIA(
     pszStart: ?[*:0]const u8,
     pszEnd: ?[*:0]const u8,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRChrIW(
+pub extern "shlwapi" fn StrRChrIW(
     pszStart: ?[*:0]const u16,
     pszEnd: ?[*:0]const u16,
     wMatch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRStrIA(
+pub extern "shlwapi" fn StrRStrIA(
     pszSource: ?[*:0]const u8,
     pszLast: ?[*:0]const u8,
     pszSrch: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRStrIW(
+pub extern "shlwapi" fn StrRStrIW(
     pszSource: ?[*:0]const u16,
     pszLast: ?[*:0]const u16,
     pszSrch: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrSpnA(
+pub extern "shlwapi" fn StrSpnA(
     psz: ?[*:0]const u8,
     pszSet: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrSpnW(
+pub extern "shlwapi" fn StrSpnW(
     psz: ?[*:0]const u16,
     pszSet: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrStrA(
+pub extern "shlwapi" fn StrStrA(
     pszFirst: ?[*:0]const u8,
     pszSrch: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrStrW(
+pub extern "shlwapi" fn StrStrW(
     pszFirst: ?[*:0]const u16,
     pszSrch: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrStrIA(
+pub extern "shlwapi" fn StrStrIA(
     pszFirst: ?[*:0]const u8,
     pszSrch: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrStrIW(
+pub extern "shlwapi" fn StrStrIW(
     pszFirst: ?[*:0]const u16,
     pszSrch: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn StrStrNW(
+pub extern "shlwapi" fn StrStrNW(
     pszFirst: ?[*:0]const u16,
     pszSrch: ?[*:0]const u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn StrStrNIW(
+pub extern "shlwapi" fn StrStrNIW(
     pszFirst: ?[*:0]const u16,
     pszSrch: ?[*:0]const u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToIntA(
+pub extern "shlwapi" fn StrToIntA(
     pszSrc: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToIntW(
+pub extern "shlwapi" fn StrToIntW(
     pszSrc: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToIntExA(
+pub extern "shlwapi" fn StrToIntExA(
     pszString: ?[*:0]const u8,
     dwFlags: i32,
     piRet: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToIntExW(
+pub extern "shlwapi" fn StrToIntExW(
     pszString: ?[*:0]const u16,
     dwFlags: i32,
     piRet: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToInt64ExA(
+pub extern "shlwapi" fn StrToInt64ExA(
     pszString: ?[*:0]const u8,
     dwFlags: i32,
     pllRet: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrToInt64ExW(
+pub extern "shlwapi" fn StrToInt64ExW(
     pszString: ?[*:0]const u16,
     dwFlags: i32,
     pllRet: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrTrimA(
+pub extern "shlwapi" fn StrTrimA(
     psz: ?PSTR,
     pszTrimChars: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrTrimW(
+pub extern "shlwapi" fn StrTrimW(
     psz: ?PWSTR,
     pszTrimChars: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCatW(
+pub extern "shlwapi" fn StrCatW(
     psz1: ?PWSTR,
     psz2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpW(
+pub extern "shlwapi" fn StrCmpW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpIW(
+pub extern "shlwapi" fn StrCmpIW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCpyW(
+pub extern "shlwapi" fn StrCpyW(
     psz1: ?PWSTR,
     psz2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCpyNW(
+pub extern "shlwapi" fn StrCpyNW(
     pszDst: [*:0]u16,
     pszSrc: ?[*:0]const u16,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCatBuffW(
+pub extern "shlwapi" fn StrCatBuffW(
     pszDest: [*:0]u16,
     pszSrc: ?[*:0]const u16,
     cchDestBuffSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCatBuffA(
+pub extern "shlwapi" fn StrCatBuffA(
     pszDest: [*:0]u8,
     pszSrc: ?[*:0]const u8,
     cchDestBuffSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ChrCmpIA(
+pub extern "shlwapi" fn ChrCmpIA(
     w1: u16,
     w2: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ChrCmpIW(
+pub extern "shlwapi" fn ChrCmpIW(
     w1: u16,
     w2: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn wvnsprintfA(
+pub extern "shlwapi" fn wvnsprintfA(
     pszDest: [*:0]u8,
     cchDest: i32,
     pszFmt: ?[*:0]const u8,
@@ -33678,7 +33678,7 @@ pub extern "SHLWAPI" fn wvnsprintfA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn wvnsprintfW(
+pub extern "shlwapi" fn wvnsprintfW(
     pszDest: [*:0]u16,
     cchDest: i32,
     pszFmt: ?[*:0]const u16,
@@ -33686,35 +33686,35 @@ pub extern "SHLWAPI" fn wvnsprintfW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn wnsprintfA(
+pub extern "shlwapi" fn wnsprintfA(
     pszDest: [*:0]u8,
     cchDest: i32,
     pszFmt: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn wnsprintfW(
+pub extern "shlwapi" fn wnsprintfW(
     pszDest: [*:0]u16,
     cchDest: i32,
     pszFmt: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRetToStrA(
+pub extern "shlwapi" fn StrRetToStrA(
     pstr: ?*STRRET,
     pidl: ?*ITEMIDLIST,
     ppsz: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRetToStrW(
+pub extern "shlwapi" fn StrRetToStrW(
     pstr: ?*STRRET,
     pidl: ?*ITEMIDLIST,
     ppsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRetToBufA(
+pub extern "shlwapi" fn StrRetToBufA(
     pstr: ?*STRRET,
     pidl: ?*ITEMIDLIST,
     pszBuf: [*:0]u8,
@@ -33722,7 +33722,7 @@ pub extern "SHLWAPI" fn StrRetToBufA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrRetToBufW(
+pub extern "shlwapi" fn StrRetToBufW(
     pstr: ?*STRRET,
     pidl: ?*ITEMIDLIST,
     pszBuf: [*:0]u16,
@@ -33730,25 +33730,25 @@ pub extern "SHLWAPI" fn StrRetToBufW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHStrDupA(
+pub extern "shlwapi" fn SHStrDupA(
     psz: ?[*:0]const u8,
     ppwsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHStrDupW(
+pub extern "shlwapi" fn SHStrDupW(
     psz: ?[*:0]const u16,
     ppwsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn StrCmpLogicalW(
+pub extern "shlwapi" fn StrCmpLogicalW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn StrCatChainW(
+pub extern "shlwapi" fn StrCatChainW(
     pszDst: [*:0]u16,
     cchDst: u32,
     ichAt: u32,
@@ -33756,14 +33756,14 @@ pub extern "SHLWAPI" fn StrCatChainW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn StrRetToBSTR(
+pub extern "shlwapi" fn StrRetToBSTR(
     pstr: ?*STRRET,
     pidl: ?*ITEMIDLIST,
     pbstr: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHLoadIndirectString(
+pub extern "shlwapi" fn SHLoadIndirectString(
     pszSource: ?[*:0]const u16,
     pszOutBuf: [*:0]u16,
     cchOutBuf: u32,
@@ -33771,69 +33771,69 @@ pub extern "SHLWAPI" fn SHLoadIndirectString(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IsCharSpaceA(
+pub extern "shlwapi" fn IsCharSpaceA(
     wch: CHAR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IsCharSpaceW(
+pub extern "shlwapi" fn IsCharSpaceW(
     wch: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpCA(
+pub extern "shlwapi" fn StrCmpCA(
     pszStr1: ?[*:0]const u8,
     pszStr2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpCW(
+pub extern "shlwapi" fn StrCmpCW(
     pszStr1: ?[*:0]const u16,
     pszStr2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpICA(
+pub extern "shlwapi" fn StrCmpICA(
     pszStr1: ?[*:0]const u8,
     pszStr2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpICW(
+pub extern "shlwapi" fn StrCmpICW(
     pszStr1: ?[*:0]const u16,
     pszStr2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNCA(
-    pszStr1: ?[*:0]const u8,
-    pszStr2: ?[*:0]const u8,
-    nChar: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNCW(
-    pszStr1: ?[*:0]const u16,
-    pszStr2: ?[*:0]const u16,
-    nChar: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNICA(
+pub extern "shlwapi" fn StrCmpNCA(
     pszStr1: ?[*:0]const u8,
     pszStr2: ?[*:0]const u8,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn StrCmpNICW(
+pub extern "shlwapi" fn StrCmpNCW(
     pszStr1: ?[*:0]const u16,
     pszStr2: ?[*:0]const u16,
     nChar: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IntlStrEqWorkerA(
+pub extern "shlwapi" fn StrCmpNICA(
+    pszStr1: ?[*:0]const u8,
+    pszStr2: ?[*:0]const u8,
+    nChar: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "shlwapi" fn StrCmpNICW(
+    pszStr1: ?[*:0]const u16,
+    pszStr2: ?[*:0]const u16,
+    nChar: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "shlwapi" fn IntlStrEqWorkerA(
     fCaseSens: BOOL,
     lpString1: [*:0]const u8,
     lpString2: [*:0]const u8,
@@ -33841,7 +33841,7 @@ pub extern "SHLWAPI" fn IntlStrEqWorkerA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IntlStrEqWorkerW(
+pub extern "shlwapi" fn IntlStrEqWorkerW(
     fCaseSens: BOOL,
     lpString1: [*:0]const u16,
     lpString2: [*:0]const u16,
@@ -33849,93 +33849,93 @@ pub extern "SHLWAPI" fn IntlStrEqWorkerW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAddBackslashA(
+pub extern "shlwapi" fn PathAddBackslashA(
     pszPath: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAddBackslashW(
+pub extern "shlwapi" fn PathAddBackslashW(
     pszPath: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAddExtensionA(
+pub extern "shlwapi" fn PathAddExtensionA(
     pszPath: *[260]u8,
     pszExt: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAddExtensionW(
+pub extern "shlwapi" fn PathAddExtensionW(
     pszPath: *[260]u16,
     pszExt: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAppendA(
+pub extern "shlwapi" fn PathAppendA(
     pszPath: *[260]u8,
     pszMore: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathAppendW(
+pub extern "shlwapi" fn PathAppendW(
     pszPath: *[260]u16,
     pszMore: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathBuildRootA(
+pub extern "shlwapi" fn PathBuildRootA(
     pszRoot: *[4]u8,
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathBuildRootW(
+pub extern "shlwapi" fn PathBuildRootW(
     pszRoot: *[4]u16,
     iDrive: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCanonicalizeA(
+pub extern "shlwapi" fn PathCanonicalizeA(
     pszBuf: *[260]u8,
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCanonicalizeW(
+pub extern "shlwapi" fn PathCanonicalizeW(
     pszBuf: *[260]u16,
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCombineA(
+pub extern "shlwapi" fn PathCombineA(
     pszDest: *[260]u8,
     pszDir: ?[*:0]const u8,
     pszFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCombineW(
+pub extern "shlwapi" fn PathCombineW(
     pszDest: *[260]u16,
     pszDir: ?[*:0]const u16,
     pszFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCompactPathA(
+pub extern "shlwapi" fn PathCompactPathA(
     hDC: ?HDC,
     pszPath: *[260]u8,
     dx: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCompactPathW(
+pub extern "shlwapi" fn PathCompactPathW(
     hDC: ?HDC,
     pszPath: *[260]u16,
     dx: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCompactPathExA(
+pub extern "shlwapi" fn PathCompactPathExA(
     pszOut: [*:0]u8,
     pszSrc: ?[*:0]const u8,
     cchMax: u32,
@@ -33943,7 +33943,7 @@ pub extern "SHLWAPI" fn PathCompactPathExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCompactPathExW(
+pub extern "shlwapi" fn PathCompactPathExW(
     pszOut: [*:0]u16,
     pszSrc: ?[*:0]const u16,
     cchMax: u32,
@@ -33951,319 +33951,319 @@ pub extern "SHLWAPI" fn PathCompactPathExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCommonPrefixA(
+pub extern "shlwapi" fn PathCommonPrefixA(
     pszFile1: ?[*:0]const u8,
     pszFile2: ?[*:0]const u8,
     achPath: ?*[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCommonPrefixW(
+pub extern "shlwapi" fn PathCommonPrefixW(
     pszFile1: ?[*:0]const u16,
     pszFile2: ?[*:0]const u16,
     achPath: ?*[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFileExistsA(
+pub extern "shlwapi" fn PathFileExistsA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFileExistsW(
+pub extern "shlwapi" fn PathFileExistsW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindExtensionA(
+pub extern "shlwapi" fn PathFindExtensionA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindExtensionW(
+pub extern "shlwapi" fn PathFindExtensionW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindFileNameA(
+pub extern "shlwapi" fn PathFindFileNameA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindFileNameW(
+pub extern "shlwapi" fn PathFindFileNameW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindNextComponentA(
+pub extern "shlwapi" fn PathFindNextComponentA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindNextComponentW(
+pub extern "shlwapi" fn PathFindNextComponentW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindOnPathA(
+pub extern "shlwapi" fn PathFindOnPathA(
     pszPath: *[260]u8,
     ppszOtherDirs: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindOnPathW(
+pub extern "shlwapi" fn PathFindOnPathW(
     pszPath: *[260]u16,
     ppszOtherDirs: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindSuffixArrayA(
+pub extern "shlwapi" fn PathFindSuffixArrayA(
     pszPath: ?[*:0]const u8,
     apszSuffix: [*]const ?[*:0]const u8,
     iArraySize: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathFindSuffixArrayW(
+pub extern "shlwapi" fn PathFindSuffixArrayW(
     pszPath: ?[*:0]const u16,
     apszSuffix: [*]const ?[*:0]const u16,
     iArraySize: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetArgsA(
+pub extern "shlwapi" fn PathGetArgsA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetArgsW(
+pub extern "shlwapi" fn PathGetArgsW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsLFNFileSpecA(
+pub extern "shlwapi" fn PathIsLFNFileSpecA(
     pszName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsLFNFileSpecW(
+pub extern "shlwapi" fn PathIsLFNFileSpecW(
     pszName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetCharTypeA(
+pub extern "shlwapi" fn PathGetCharTypeA(
     ch: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetCharTypeW(
+pub extern "shlwapi" fn PathGetCharTypeW(
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetDriveNumberA(
+pub extern "shlwapi" fn PathGetDriveNumberA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathGetDriveNumberW(
+pub extern "shlwapi" fn PathGetDriveNumberW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsDirectoryA(
+pub extern "shlwapi" fn PathIsDirectoryA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsDirectoryW(
+pub extern "shlwapi" fn PathIsDirectoryW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsDirectoryEmptyA(
+pub extern "shlwapi" fn PathIsDirectoryEmptyA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsDirectoryEmptyW(
+pub extern "shlwapi" fn PathIsDirectoryEmptyW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsFileSpecA(
+pub extern "shlwapi" fn PathIsFileSpecA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsFileSpecW(
+pub extern "shlwapi" fn PathIsFileSpecW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsPrefixA(
+pub extern "shlwapi" fn PathIsPrefixA(
     pszPrefix: ?[*:0]const u8,
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsPrefixW(
+pub extern "shlwapi" fn PathIsPrefixW(
     pszPrefix: ?[*:0]const u16,
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsRelativeA(
+pub extern "shlwapi" fn PathIsRelativeA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsRelativeW(
+pub extern "shlwapi" fn PathIsRelativeW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsRootA(
+pub extern "shlwapi" fn PathIsRootA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsRootW(
+pub extern "shlwapi" fn PathIsRootW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsSameRootA(
+pub extern "shlwapi" fn PathIsSameRootA(
     pszPath1: ?[*:0]const u8,
     pszPath2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsSameRootW(
+pub extern "shlwapi" fn PathIsSameRootW(
     pszPath1: ?[*:0]const u16,
     pszPath2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCA(
+pub extern "shlwapi" fn PathIsUNCA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCW(
+pub extern "shlwapi" fn PathIsUNCW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsNetworkPathA(
+pub extern "shlwapi" fn PathIsNetworkPathA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsNetworkPathW(
+pub extern "shlwapi" fn PathIsNetworkPathW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCServerA(
+pub extern "shlwapi" fn PathIsUNCServerA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCServerW(
+pub extern "shlwapi" fn PathIsUNCServerW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCServerShareA(
+pub extern "shlwapi" fn PathIsUNCServerShareA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsUNCServerShareW(
+pub extern "shlwapi" fn PathIsUNCServerShareW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsContentTypeA(
+pub extern "shlwapi" fn PathIsContentTypeA(
     pszPath: ?[*:0]const u8,
     pszContentType: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsContentTypeW(
+pub extern "shlwapi" fn PathIsContentTypeW(
     pszPath: ?[*:0]const u16,
     pszContentType: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsURLA(
+pub extern "shlwapi" fn PathIsURLA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsURLW(
+pub extern "shlwapi" fn PathIsURLW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMakePrettyA(
+pub extern "shlwapi" fn PathMakePrettyA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMakePrettyW(
+pub extern "shlwapi" fn PathMakePrettyW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMatchSpecA(
+pub extern "shlwapi" fn PathMatchSpecA(
     pszFile: ?[*:0]const u8,
     pszSpec: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMatchSpecW(
+pub extern "shlwapi" fn PathMatchSpecW(
     pszFile: ?[*:0]const u16,
     pszSpec: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn PathMatchSpecExA(
+pub extern "shlwapi" fn PathMatchSpecExA(
     pszFile: ?[*:0]const u8,
     pszSpec: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn PathMatchSpecExW(
+pub extern "shlwapi" fn PathMatchSpecExW(
     pszFile: ?[*:0]const u16,
     pszSpec: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathParseIconLocationA(
+pub extern "shlwapi" fn PathParseIconLocationA(
     pszIconFile: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathParseIconLocationW(
+pub extern "shlwapi" fn PathParseIconLocationW(
     pszIconFile: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathQuoteSpacesA(
+pub extern "shlwapi" fn PathQuoteSpacesA(
     lpsz: *[260]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathQuoteSpacesW(
+pub extern "shlwapi" fn PathQuoteSpacesW(
     lpsz: *[260]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRelativePathToA(
+pub extern "shlwapi" fn PathRelativePathToA(
     pszPath: *[260]u8,
     pszFrom: ?[*:0]const u8,
     dwAttrFrom: u32,
@@ -34272,7 +34272,7 @@ pub extern "SHLWAPI" fn PathRelativePathToA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRelativePathToW(
+pub extern "shlwapi" fn PathRelativePathToW(
     pszPath: *[260]u16,
     pszFrom: ?[*:0]const u16,
     dwAttrFrom: u32,
@@ -34281,207 +34281,207 @@ pub extern "SHLWAPI" fn PathRelativePathToW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveArgsA(
+pub extern "shlwapi" fn PathRemoveArgsA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveArgsW(
+pub extern "shlwapi" fn PathRemoveArgsW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveBackslashA(
+pub extern "shlwapi" fn PathRemoveBackslashA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveBackslashW(
+pub extern "shlwapi" fn PathRemoveBackslashW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveBlanksA(
+pub extern "shlwapi" fn PathRemoveBlanksA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveBlanksW(
+pub extern "shlwapi" fn PathRemoveBlanksW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveExtensionA(
+pub extern "shlwapi" fn PathRemoveExtensionA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveExtensionW(
+pub extern "shlwapi" fn PathRemoveExtensionW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveFileSpecA(
+pub extern "shlwapi" fn PathRemoveFileSpecA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRemoveFileSpecW(
+pub extern "shlwapi" fn PathRemoveFileSpecW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRenameExtensionA(
+pub extern "shlwapi" fn PathRenameExtensionA(
     pszPath: *[260]u8,
     pszExt: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathRenameExtensionW(
+pub extern "shlwapi" fn PathRenameExtensionW(
     pszPath: *[260]u16,
     pszExt: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSearchAndQualifyA(
+pub extern "shlwapi" fn PathSearchAndQualifyA(
     pszPath: ?[*:0]const u8,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSearchAndQualifyW(
+pub extern "shlwapi" fn PathSearchAndQualifyW(
     pszPath: ?[*:0]const u16,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSetDlgItemPathA(
+pub extern "shlwapi" fn PathSetDlgItemPathA(
     hDlg: ?HWND,
     id: i32,
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSetDlgItemPathW(
+pub extern "shlwapi" fn PathSetDlgItemPathW(
     hDlg: ?HWND,
     id: i32,
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSkipRootA(
+pub extern "shlwapi" fn PathSkipRootA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathSkipRootW(
+pub extern "shlwapi" fn PathSkipRootW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathStripPathA(
+pub extern "shlwapi" fn PathStripPathA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathStripPathW(
+pub extern "shlwapi" fn PathStripPathW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathStripToRootA(
+pub extern "shlwapi" fn PathStripToRootA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathStripToRootW(
+pub extern "shlwapi" fn PathStripToRootW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnquoteSpacesA(
+pub extern "shlwapi" fn PathUnquoteSpacesA(
     lpsz: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnquoteSpacesW(
+pub extern "shlwapi" fn PathUnquoteSpacesW(
     lpsz: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMakeSystemFolderA(
+pub extern "shlwapi" fn PathMakeSystemFolderA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathMakeSystemFolderW(
+pub extern "shlwapi" fn PathMakeSystemFolderW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnmakeSystemFolderA(
+pub extern "shlwapi" fn PathUnmakeSystemFolderA(
     pszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnmakeSystemFolderW(
+pub extern "shlwapi" fn PathUnmakeSystemFolderW(
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsSystemFolderA(
+pub extern "shlwapi" fn PathIsSystemFolderA(
     pszPath: ?[*:0]const u8,
     dwAttrb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathIsSystemFolderW(
+pub extern "shlwapi" fn PathIsSystemFolderW(
     pszPath: ?[*:0]const u16,
     dwAttrb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUndecorateA(
+pub extern "shlwapi" fn PathUndecorateA(
     pszPath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUndecorateW(
+pub extern "shlwapi" fn PathUndecorateW(
     pszPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnExpandEnvStringsA(
+pub extern "shlwapi" fn PathUnExpandEnvStringsA(
     pszPath: ?[*:0]const u8,
     pszBuf: [*:0]u8,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathUnExpandEnvStringsW(
+pub extern "shlwapi" fn PathUnExpandEnvStringsW(
     pszPath: ?[*:0]const u16,
     pszBuf: [*:0]u16,
     cchBuf: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCompareA(
+pub extern "shlwapi" fn UrlCompareA(
     psz1: ?[*:0]const u8,
     psz2: ?[*:0]const u8,
     fIgnoreSlash: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCompareW(
+pub extern "shlwapi" fn UrlCompareW(
     psz1: ?[*:0]const u16,
     psz2: ?[*:0]const u16,
     fIgnoreSlash: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCombineA(
+pub extern "shlwapi" fn UrlCombineA(
     pszBase: ?[*:0]const u8,
     pszRelative: ?[*:0]const u8,
     pszCombined: ?[*:0]u8,
@@ -34490,7 +34490,7 @@ pub extern "SHLWAPI" fn UrlCombineA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCombineW(
+pub extern "shlwapi" fn UrlCombineW(
     pszBase: ?[*:0]const u16,
     pszRelative: ?[*:0]const u16,
     pszCombined: ?[*:0]u16,
@@ -34499,7 +34499,7 @@ pub extern "SHLWAPI" fn UrlCombineW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCanonicalizeA(
+pub extern "shlwapi" fn UrlCanonicalizeA(
     pszUrl: ?[*:0]const u8,
     pszCanonicalized: [*:0]u8,
     pcchCanonicalized: ?*u32,
@@ -34507,7 +34507,7 @@ pub extern "SHLWAPI" fn UrlCanonicalizeA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCanonicalizeW(
+pub extern "shlwapi" fn UrlCanonicalizeW(
     pszUrl: ?[*:0]const u16,
     pszCanonicalized: [*:0]u16,
     pcchCanonicalized: ?*u32,
@@ -34515,49 +34515,49 @@ pub extern "SHLWAPI" fn UrlCanonicalizeW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsOpaqueA(
+pub extern "shlwapi" fn UrlIsOpaqueA(
     pszURL: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsOpaqueW(
+pub extern "shlwapi" fn UrlIsOpaqueW(
     pszURL: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsNoHistoryA(
+pub extern "shlwapi" fn UrlIsNoHistoryA(
     pszURL: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsNoHistoryW(
+pub extern "shlwapi" fn UrlIsNoHistoryW(
     pszURL: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsA(
+pub extern "shlwapi" fn UrlIsA(
     pszUrl: ?[*:0]const u8,
     UrlIs: URLIS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlIsW(
+pub extern "shlwapi" fn UrlIsW(
     pszUrl: ?[*:0]const u16,
     UrlIs: URLIS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlGetLocationA(
+pub extern "shlwapi" fn UrlGetLocationA(
     pszURL: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlGetLocationW(
+pub extern "shlwapi" fn UrlGetLocationW(
     pszURL: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlUnescapeA(
+pub extern "shlwapi" fn UrlUnescapeA(
     pszUrl: ?PSTR,
     pszUnescaped: ?[*:0]u8,
     pcchUnescaped: ?*u32,
@@ -34565,7 +34565,7 @@ pub extern "SHLWAPI" fn UrlUnescapeA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlUnescapeW(
+pub extern "shlwapi" fn UrlUnescapeW(
     pszUrl: ?PWSTR,
     pszUnescaped: ?[*:0]u16,
     pcchUnescaped: ?*u32,
@@ -34573,7 +34573,7 @@ pub extern "SHLWAPI" fn UrlUnescapeW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlEscapeA(
+pub extern "shlwapi" fn UrlEscapeA(
     pszUrl: ?[*:0]const u8,
     pszEscaped: [*:0]u8,
     pcchEscaped: ?*u32,
@@ -34581,7 +34581,7 @@ pub extern "SHLWAPI" fn UrlEscapeA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlEscapeW(
+pub extern "shlwapi" fn UrlEscapeW(
     pszUrl: ?[*:0]const u16,
     pszEscaped: [*:0]u16,
     pcchEscaped: ?*u32,
@@ -34589,7 +34589,7 @@ pub extern "SHLWAPI" fn UrlEscapeW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCreateFromPathA(
+pub extern "shlwapi" fn UrlCreateFromPathA(
     pszPath: ?[*:0]const u8,
     pszUrl: [*:0]u8,
     pcchUrl: ?*u32,
@@ -34597,7 +34597,7 @@ pub extern "SHLWAPI" fn UrlCreateFromPathA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlCreateFromPathW(
+pub extern "shlwapi" fn UrlCreateFromPathW(
     pszPath: ?[*:0]const u16,
     pszUrl: [*:0]u16,
     pcchUrl: ?*u32,
@@ -34605,7 +34605,7 @@ pub extern "SHLWAPI" fn UrlCreateFromPathW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCreateFromUrlA(
+pub extern "shlwapi" fn PathCreateFromUrlA(
     pszUrl: ?[*:0]const u8,
     pszPath: [*:0]u8,
     pcchPath: ?*u32,
@@ -34613,7 +34613,7 @@ pub extern "SHLWAPI" fn PathCreateFromUrlA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn PathCreateFromUrlW(
+pub extern "shlwapi" fn PathCreateFromUrlW(
     pszUrl: ?[*:0]const u16,
     pszPath: [*:0]u16,
     pcchPath: ?*u32,
@@ -34621,14 +34621,14 @@ pub extern "SHLWAPI" fn PathCreateFromUrlW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn PathCreateFromUrlAlloc(
+pub extern "shlwapi" fn PathCreateFromUrlAlloc(
     pszIn: ?[*:0]const u16,
     ppszOut: ?*?PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlHashA(
+pub extern "shlwapi" fn UrlHashA(
     pszUrl: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     pbHash: ?*u8,
@@ -34636,7 +34636,7 @@ pub extern "SHLWAPI" fn UrlHashA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlHashW(
+pub extern "shlwapi" fn UrlHashW(
     pszUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     pbHash: ?*u8,
@@ -34644,7 +34644,7 @@ pub extern "SHLWAPI" fn UrlHashW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlGetPartW(
+pub extern "shlwapi" fn UrlGetPartW(
     pszIn: ?[*:0]const u16,
     pszOut: [*:0]u16,
     pcchOut: ?*u32,
@@ -34653,7 +34653,7 @@ pub extern "SHLWAPI" fn UrlGetPartW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlGetPartA(
+pub extern "shlwapi" fn UrlGetPartA(
     pszIn: ?[*:0]const u8,
     pszOut: [*:0]u8,
     pcchOut: ?*u32,
@@ -34662,7 +34662,7 @@ pub extern "SHLWAPI" fn UrlGetPartA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlApplySchemeA(
+pub extern "shlwapi" fn UrlApplySchemeA(
     pszIn: ?[*:0]const u8,
     pszOut: [*:0]u8,
     pcchOut: ?*u32,
@@ -34670,7 +34670,7 @@ pub extern "SHLWAPI" fn UrlApplySchemeA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn UrlApplySchemeW(
+pub extern "shlwapi" fn UrlApplySchemeW(
     pszIn: ?[*:0]const u16,
     pszOut: [*:0]u16,
     pcchOut: ?*u32,
@@ -34678,7 +34678,7 @@ pub extern "SHLWAPI" fn UrlApplySchemeW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn HashData(
+pub extern "shlwapi" fn HashData(
     // TODO: what to do with BytesParamIndex 1?
     pbData: ?*u8,
     cbData: u32,
@@ -34688,69 +34688,69 @@ pub extern "SHLWAPI" fn HashData(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn UrlFixupW(
+pub extern "shlwapi" fn UrlFixupW(
     pcszUrl: ?[*:0]const u16,
     pszTranslatedUrl: [*:0]u16,
     cchMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn ParseURLA(
+pub extern "shlwapi" fn ParseURLA(
     pcszURL: ?[*:0]const u8,
     ppu: ?*PARSEDURLA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn ParseURLW(
+pub extern "shlwapi" fn ParseURLW(
     pcszURL: ?[*:0]const u16,
     ppu: ?*PARSEDURLW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteEmptyKeyA(
+pub extern "shlwapi" fn SHDeleteEmptyKeyA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteEmptyKeyW(
+pub extern "shlwapi" fn SHDeleteEmptyKeyW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteKeyA(
+pub extern "shlwapi" fn SHDeleteKeyA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteKeyW(
+pub extern "shlwapi" fn SHDeleteKeyW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegDuplicateHKey(
+pub extern "shlwapi" fn SHRegDuplicateHKey(
     hkey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteValueA(
+pub extern "shlwapi" fn SHDeleteValueA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHDeleteValueW(
+pub extern "shlwapi" fn SHDeleteValueW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHGetValueA(
+pub extern "shlwapi" fn SHGetValueA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -34761,7 +34761,7 @@ pub extern "SHLWAPI" fn SHGetValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHGetValueW(
+pub extern "shlwapi" fn SHGetValueW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -34772,7 +34772,7 @@ pub extern "SHLWAPI" fn SHGetValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHSetValueA(
+pub extern "shlwapi" fn SHSetValueA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -34783,7 +34783,7 @@ pub extern "SHLWAPI" fn SHSetValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHSetValueW(
+pub extern "shlwapi" fn SHSetValueW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -34794,7 +34794,7 @@ pub extern "SHLWAPI" fn SHSetValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHRegGetValueA(
+pub extern "shlwapi" fn SHRegGetValueA(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -34806,7 +34806,7 @@ pub extern "SHLWAPI" fn SHRegGetValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHRegGetValueW(
+pub extern "shlwapi" fn SHRegGetValueW(
     hkey: ?HKEY,
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -34818,7 +34818,7 @@ pub extern "SHLWAPI" fn SHRegGetValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn SHRegGetValueFromHKCUHKLM(
+pub extern "shlwapi" fn SHRegGetValueFromHKCUHKLM(
     pwszKey: ?[*:0]const u16,
     pwszValue: ?[*:0]const u16,
     srrfFlags: i32,
@@ -34829,7 +34829,7 @@ pub extern "SHLWAPI" fn SHRegGetValueFromHKCUHKLM(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHQueryValueExA(
+pub extern "shlwapi" fn SHQueryValueExA(
     hkey: ?HKEY,
     pszValue: ?[*:0]const u8,
     pdwReserved: ?*u32,
@@ -34840,7 +34840,7 @@ pub extern "SHLWAPI" fn SHQueryValueExA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHQueryValueExW(
+pub extern "shlwapi" fn SHQueryValueExW(
     hkey: ?HKEY,
     pszValue: ?[*:0]const u16,
     pdwReserved: ?*u32,
@@ -34851,7 +34851,7 @@ pub extern "SHLWAPI" fn SHQueryValueExW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHEnumKeyExA(
+pub extern "shlwapi" fn SHEnumKeyExA(
     hkey: ?HKEY,
     dwIndex: u32,
     pszName: [*:0]u8,
@@ -34859,7 +34859,7 @@ pub extern "SHLWAPI" fn SHEnumKeyExA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHEnumKeyExW(
+pub extern "shlwapi" fn SHEnumKeyExW(
     hkey: ?HKEY,
     dwIndex: u32,
     pszName: [*:0]u16,
@@ -34867,7 +34867,7 @@ pub extern "SHLWAPI" fn SHEnumKeyExW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHEnumValueA(
+pub extern "shlwapi" fn SHEnumValueA(
     hkey: ?HKEY,
     dwIndex: u32,
     pszValueName: ?[*:0]u8,
@@ -34879,7 +34879,7 @@ pub extern "SHLWAPI" fn SHEnumValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHEnumValueW(
+pub extern "shlwapi" fn SHEnumValueW(
     hkey: ?HKEY,
     dwIndex: u32,
     pszValueName: ?[*:0]u16,
@@ -34891,7 +34891,7 @@ pub extern "SHLWAPI" fn SHEnumValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHQueryInfoKeyA(
+pub extern "shlwapi" fn SHQueryInfoKeyA(
     hkey: ?HKEY,
     pcSubKeys: ?*u32,
     pcchMaxSubKeyLen: ?*u32,
@@ -34900,7 +34900,7 @@ pub extern "SHLWAPI" fn SHQueryInfoKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHQueryInfoKeyW(
+pub extern "shlwapi" fn SHQueryInfoKeyW(
     hkey: ?HKEY,
     pcSubKeys: ?*u32,
     pcchMaxSubKeyLen: ?*u32,
@@ -34909,7 +34909,7 @@ pub extern "SHLWAPI" fn SHQueryInfoKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHCopyKeyA(
+pub extern "shlwapi" fn SHCopyKeyA(
     hkeySrc: ?HKEY,
     pszSrcSubKey: ?[*:0]const u8,
     hkeyDest: ?HKEY,
@@ -34917,7 +34917,7 @@ pub extern "SHLWAPI" fn SHCopyKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHCopyKeyW(
+pub extern "shlwapi" fn SHCopyKeyW(
     hkeySrc: ?HKEY,
     pszSrcSubKey: ?[*:0]const u16,
     hkeyDest: ?HKEY,
@@ -34925,7 +34925,7 @@ pub extern "SHLWAPI" fn SHCopyKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetPathA(
+pub extern "shlwapi" fn SHRegGetPathA(
     hKey: ?HKEY,
     pcszSubKey: ?[*:0]const u8,
     pcszValue: ?[*:0]const u8,
@@ -34934,7 +34934,7 @@ pub extern "SHLWAPI" fn SHRegGetPathA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetPathW(
+pub extern "shlwapi" fn SHRegGetPathW(
     hKey: ?HKEY,
     pcszSubKey: ?[*:0]const u16,
     pcszValue: ?[*:0]const u16,
@@ -34943,7 +34943,7 @@ pub extern "SHLWAPI" fn SHRegGetPathW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegSetPathA(
+pub extern "shlwapi" fn SHRegSetPathA(
     hKey: ?HKEY,
     pcszSubKey: ?[*:0]const u8,
     pcszValue: ?[*:0]const u8,
@@ -34952,7 +34952,7 @@ pub extern "SHLWAPI" fn SHRegSetPathA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegSetPathW(
+pub extern "shlwapi" fn SHRegSetPathW(
     hKey: ?HKEY,
     pcszSubKey: ?[*:0]const u16,
     pcszValue: ?[*:0]const u16,
@@ -34961,7 +34961,7 @@ pub extern "SHLWAPI" fn SHRegSetPathW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegCreateUSKeyA(
+pub extern "shlwapi" fn SHRegCreateUSKeyA(
     pszPath: ?[*:0]const u8,
     samDesired: u32,
     hRelativeUSKey: isize,
@@ -34970,7 +34970,7 @@ pub extern "SHLWAPI" fn SHRegCreateUSKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegCreateUSKeyW(
+pub extern "shlwapi" fn SHRegCreateUSKeyW(
     pwzPath: ?[*:0]const u16,
     samDesired: u32,
     hRelativeUSKey: isize,
@@ -34979,7 +34979,7 @@ pub extern "SHLWAPI" fn SHRegCreateUSKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegOpenUSKeyA(
+pub extern "shlwapi" fn SHRegOpenUSKeyA(
     pszPath: ?[*:0]const u8,
     samDesired: u32,
     hRelativeUSKey: isize,
@@ -34988,7 +34988,7 @@ pub extern "SHLWAPI" fn SHRegOpenUSKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegOpenUSKeyW(
+pub extern "shlwapi" fn SHRegOpenUSKeyW(
     pwzPath: ?[*:0]const u16,
     samDesired: u32,
     hRelativeUSKey: isize,
@@ -34997,7 +34997,7 @@ pub extern "SHLWAPI" fn SHRegOpenUSKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegQueryUSValueA(
+pub extern "shlwapi" fn SHRegQueryUSValueA(
     hUSKey: isize,
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
@@ -35011,7 +35011,7 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegQueryUSValueW(
+pub extern "shlwapi" fn SHRegQueryUSValueW(
     hUSKey: isize,
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
@@ -35025,7 +35025,7 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegWriteUSValueA(
+pub extern "shlwapi" fn SHRegWriteUSValueA(
     hUSKey: isize,
     pszValue: ?[*:0]const u8,
     dwType: u32,
@@ -35036,7 +35036,7 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegWriteUSValueW(
+pub extern "shlwapi" fn SHRegWriteUSValueW(
     hUSKey: isize,
     pwzValue: ?[*:0]const u16,
     dwType: u32,
@@ -35047,35 +35047,35 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegDeleteUSValueA(
+pub extern "shlwapi" fn SHRegDeleteUSValueA(
     hUSKey: isize,
     pszValue: ?[*:0]const u8,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegDeleteUSValueW(
+pub extern "shlwapi" fn SHRegDeleteUSValueW(
     hUSKey: isize,
     pwzValue: ?[*:0]const u16,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegDeleteEmptyUSKeyW(
+pub extern "shlwapi" fn SHRegDeleteEmptyUSKeyW(
     hUSKey: isize,
     pwzSubKey: ?[*:0]const u16,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegDeleteEmptyUSKeyA(
+pub extern "shlwapi" fn SHRegDeleteEmptyUSKeyA(
     hUSKey: isize,
     pszSubKey: ?[*:0]const u8,
     delRegFlags: SHREGDEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegEnumUSKeyA(
+pub extern "shlwapi" fn SHRegEnumUSKeyA(
     hUSKey: isize,
     dwIndex: u32,
     pszName: [*:0]u8,
@@ -35084,7 +35084,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegEnumUSKeyW(
+pub extern "shlwapi" fn SHRegEnumUSKeyW(
     hUSKey: isize,
     dwIndex: u32,
     pwzName: [*:0]u16,
@@ -35093,7 +35093,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegEnumUSValueA(
+pub extern "shlwapi" fn SHRegEnumUSValueA(
     hUSkey: isize,
     dwIndex: u32,
     pszValueName: [*:0]u8,
@@ -35106,7 +35106,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegEnumUSValueW(
+pub extern "shlwapi" fn SHRegEnumUSValueW(
     hUSkey: isize,
     dwIndex: u32,
     pszValueName: [*:0]u16,
@@ -35119,7 +35119,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyA(
+pub extern "shlwapi" fn SHRegQueryInfoUSKeyA(
     hUSKey: isize,
     pcSubKeys: ?*u32,
     pcchMaxSubKeyLen: ?*u32,
@@ -35129,7 +35129,7 @@ pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyW(
+pub extern "shlwapi" fn SHRegQueryInfoUSKeyW(
     hUSKey: isize,
     pcSubKeys: ?*u32,
     pcchMaxSubKeyLen: ?*u32,
@@ -35139,12 +35139,12 @@ pub extern "SHLWAPI" fn SHRegQueryInfoUSKeyW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegCloseUSKey(
+pub extern "shlwapi" fn SHRegCloseUSKey(
     hUSKey: isize,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetUSValueA(
+pub extern "shlwapi" fn SHRegGetUSValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
@@ -35158,7 +35158,7 @@ pub extern "SHLWAPI" fn SHRegGetUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetUSValueW(
+pub extern "shlwapi" fn SHRegGetUSValueW(
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
@@ -35172,7 +35172,7 @@ pub extern "SHLWAPI" fn SHRegGetUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegSetUSValueA(
+pub extern "shlwapi" fn SHRegSetUSValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     dwType: u32,
@@ -35183,7 +35183,7 @@ pub extern "SHLWAPI" fn SHRegSetUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegSetUSValueW(
+pub extern "shlwapi" fn SHRegSetUSValueW(
     pwzSubKey: ?[*:0]const u16,
     pwzValue: ?[*:0]const u16,
     dwType: u32,
@@ -35194,14 +35194,14 @@ pub extern "SHLWAPI" fn SHRegSetUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetIntW(
+pub extern "shlwapi" fn SHRegGetIntW(
     hk: ?HKEY,
     pwzKey: ?[*:0]const u16,
     iDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetBoolUSValueA(
+pub extern "shlwapi" fn SHRegGetBoolUSValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     fIgnoreHKCU: BOOL,
@@ -35209,7 +35209,7 @@ pub extern "SHLWAPI" fn SHRegGetBoolUSValueA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHRegGetBoolUSValueW(
+pub extern "shlwapi" fn SHRegGetBoolUSValueW(
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
     fIgnoreHKCU: BOOL,
@@ -35217,14 +35217,14 @@ pub extern "SHLWAPI" fn SHRegGetBoolUSValueW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocCreate(
+pub extern "shlwapi" fn AssocCreate(
     clsid: Guid,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryStringA(
+pub extern "shlwapi" fn AssocQueryStringA(
     flags: u32,
     str: ASSOCSTR,
     pszAssoc: ?[*:0]const u8,
@@ -35234,7 +35234,7 @@ pub extern "SHLWAPI" fn AssocQueryStringA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryStringW(
+pub extern "shlwapi" fn AssocQueryStringW(
     flags: u32,
     str: ASSOCSTR,
     pszAssoc: ?[*:0]const u16,
@@ -35244,7 +35244,7 @@ pub extern "SHLWAPI" fn AssocQueryStringW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryStringByKeyA(
+pub extern "shlwapi" fn AssocQueryStringByKeyA(
     flags: u32,
     str: ASSOCSTR,
     hkAssoc: ?HKEY,
@@ -35254,7 +35254,7 @@ pub extern "SHLWAPI" fn AssocQueryStringByKeyA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryStringByKeyW(
+pub extern "shlwapi" fn AssocQueryStringByKeyW(
     flags: u32,
     str: ASSOCSTR,
     hkAssoc: ?HKEY,
@@ -35264,7 +35264,7 @@ pub extern "SHLWAPI" fn AssocQueryStringByKeyW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryKeyA(
+pub extern "shlwapi" fn AssocQueryKeyA(
     flags: u32,
     key: ASSOCKEY,
     pszAssoc: ?[*:0]const u8,
@@ -35273,7 +35273,7 @@ pub extern "SHLWAPI" fn AssocQueryKeyA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn AssocQueryKeyW(
+pub extern "shlwapi" fn AssocQueryKeyW(
     flags: u32,
     key: ASSOCKEY,
     pszAssoc: ?[*:0]const u16,
@@ -35282,12 +35282,12 @@ pub extern "SHLWAPI" fn AssocQueryKeyW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn AssocIsDangerous(
+pub extern "shlwapi" fn AssocIsDangerous(
     pszAssoc: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn AssocGetPerceivedType(
+pub extern "shlwapi" fn AssocGetPerceivedType(
     pszExt: ?[*:0]const u16,
     ptype: ?*PERCEIVED,
     pflag: ?*u32,
@@ -35295,7 +35295,7 @@ pub extern "SHLWAPI" fn AssocGetPerceivedType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHOpenRegStreamA(
+pub extern "shlwapi" fn SHOpenRegStreamA(
     hkey: ?HKEY,
     pszSubkey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -35303,7 +35303,7 @@ pub extern "SHLWAPI" fn SHOpenRegStreamA(
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHOpenRegStreamW(
+pub extern "shlwapi" fn SHOpenRegStreamW(
     hkey: ?HKEY,
     pszSubkey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -35311,7 +35311,7 @@ pub extern "SHLWAPI" fn SHOpenRegStreamW(
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHOpenRegStream2A(
+pub extern "shlwapi" fn SHOpenRegStream2A(
     hkey: ?HKEY,
     pszSubkey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
@@ -35319,7 +35319,7 @@ pub extern "SHLWAPI" fn SHOpenRegStream2A(
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHOpenRegStream2W(
+pub extern "shlwapi" fn SHOpenRegStream2W(
     hkey: ?HKEY,
     pszSubkey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
@@ -35327,21 +35327,21 @@ pub extern "SHLWAPI" fn SHOpenRegStream2W(
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHCreateStreamOnFileA(
+pub extern "shlwapi" fn SHCreateStreamOnFileA(
     pszFile: ?[*:0]const u8,
     grfMode: u32,
     ppstm: ?*?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHCreateStreamOnFileW(
+pub extern "shlwapi" fn SHCreateStreamOnFileW(
     pszFile: ?[*:0]const u16,
     grfMode: u32,
     ppstm: ?*?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHCreateStreamOnFileEx(
+pub extern "shlwapi" fn SHCreateStreamOnFileEx(
     pszFile: ?[*:0]const u16,
     grfMode: u32,
     dwAttributes: u32,
@@ -35351,56 +35351,56 @@ pub extern "SHLWAPI" fn SHCreateStreamOnFileEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHCreateMemStream(
+pub extern "shlwapi" fn SHCreateMemStream(
     // TODO: what to do with BytesParamIndex 1?
     pInit: ?*const u8,
     cbInit: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*IStream;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn GetAcceptLanguagesA(
+pub extern "shlwapi" fn GetAcceptLanguagesA(
     pszLanguages: [*:0]u8,
     pcchLanguages: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn GetAcceptLanguagesW(
+pub extern "shlwapi" fn GetAcceptLanguagesW(
     pszLanguages: [*:0]u16,
     pcchLanguages: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_Set(
+pub extern "shlwapi" fn IUnknown_Set(
     ppunk: ?*?*IUnknown,
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_AtomicRelease(
+pub extern "shlwapi" fn IUnknown_AtomicRelease(
     ppunk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_GetWindow(
+pub extern "shlwapi" fn IUnknown_GetWindow(
     punk: ?*IUnknown,
     phwnd: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_SetSite(
+pub extern "shlwapi" fn IUnknown_SetSite(
     punk: ?*IUnknown,
     punkSite: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_GetSite(
+pub extern "shlwapi" fn IUnknown_GetSite(
     punk: ?*IUnknown,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IUnknown_QueryService(
+pub extern "shlwapi" fn IUnknown_QueryService(
     punk: ?*IUnknown,
     guidService: ?*const Guid,
     riid: ?*const Guid,
@@ -35408,14 +35408,14 @@ pub extern "SHLWAPI" fn IUnknown_QueryService(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IStream_Read(
+pub extern "shlwapi" fn IStream_Read(
     pstm: ?*IStream,
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_Write(
+pub extern "shlwapi" fn IStream_Write(
     pstm: ?*IStream,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*const anyopaque,
@@ -35423,18 +35423,18 @@ pub extern "SHLWAPI" fn IStream_Write(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IStream_Reset(
+pub extern "shlwapi" fn IStream_Reset(
     pstm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IStream_Size(
+pub extern "shlwapi" fn IStream_Size(
     pstm: ?*IStream,
     pui: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ConnectToConnectionPoint(
+pub extern "shlwapi" fn ConnectToConnectionPoint(
     punk: ?*IUnknown,
     riidEvent: ?*const Guid,
     fConnect: BOOL,
@@ -35444,38 +35444,38 @@ pub extern "SHLWAPI" fn ConnectToConnectionPoint(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_ReadPidl(
+pub extern "shlwapi" fn IStream_ReadPidl(
     pstm: ?*IStream,
     ppidlOut: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_WritePidl(
+pub extern "shlwapi" fn IStream_WritePidl(
     pstm: ?*IStream,
     pidlWrite: ?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_ReadStr(
+pub extern "shlwapi" fn IStream_ReadStr(
     pstm: ?*IStream,
     ppsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_WriteStr(
+pub extern "shlwapi" fn IStream_WriteStr(
     pstm: ?*IStream,
     psz: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn IStream_Copy(
+pub extern "shlwapi" fn IStream_Copy(
     pstmFrom: ?*IStream,
     pstmTo: ?*IStream,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
+pub extern "shlwapi" fn SHGetViewStatePropertyBag(
     pidl: ?*ITEMIDLIST,
     pszBagName: ?[*:0]const u16,
     dwFlags: u32,
@@ -35484,7 +35484,7 @@ pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHFormatDateTimeA(
+pub extern "shlwapi" fn SHFormatDateTimeA(
     pft: ?*const FILETIME,
     pdwFlags: ?*u32,
     pszBuf: [*:0]u8,
@@ -35492,7 +35492,7 @@ pub extern "SHLWAPI" fn SHFormatDateTimeA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHFormatDateTimeW(
+pub extern "shlwapi" fn SHFormatDateTimeW(
     pft: ?*const FILETIME,
     pdwFlags: ?*u32,
     pszBuf: [*:0]u16,
@@ -35500,35 +35500,35 @@ pub extern "SHLWAPI" fn SHFormatDateTimeW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHAnsiToUnicode(
+pub extern "shlwapi" fn SHAnsiToUnicode(
     pszSrc: ?[*:0]const u8,
     pwszDst: [*:0]u16,
     cwchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHAnsiToAnsi(
+pub extern "shlwapi" fn SHAnsiToAnsi(
     pszSrc: ?[*:0]const u8,
     pszDst: [*:0]u8,
     cchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHUnicodeToAnsi(
+pub extern "shlwapi" fn SHUnicodeToAnsi(
     pwszSrc: ?[*:0]const u16,
     pszDst: [*:0]u8,
     cchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHUnicodeToUnicode(
+pub extern "shlwapi" fn SHUnicodeToUnicode(
     pwzSrc: ?[*:0]const u16,
     pwzDst: [*:0]u16,
     cwchBuf: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHMessageBoxCheckA(
+pub extern "shlwapi" fn SHMessageBoxCheckA(
     hwnd: ?HWND,
     pszText: ?[*:0]const u8,
     pszCaption: ?[*:0]const u8,
@@ -35538,7 +35538,7 @@ pub extern "SHLWAPI" fn SHMessageBoxCheckA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHMessageBoxCheckW(
+pub extern "shlwapi" fn SHMessageBoxCheckW(
     hwnd: ?HWND,
     pszText: ?[*:0]const u16,
     pszCaption: ?[*:0]const u16,
@@ -35548,51 +35548,51 @@ pub extern "SHLWAPI" fn SHMessageBoxCheckW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHSendMessageBroadcastA(
+pub extern "shlwapi" fn SHSendMessageBroadcastA(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHSendMessageBroadcastW(
+pub extern "shlwapi" fn SHSendMessageBroadcastW(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHStripMneumonicA(
+pub extern "shlwapi" fn SHStripMneumonicA(
     pszMenu: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) CHAR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHStripMneumonicW(
+pub extern "shlwapi" fn SHStripMneumonicW(
     pszMenu: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn IsOS(
+pub extern "shlwapi" fn IsOS(
     dwOS: OS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHLWAPI" fn SHGlobalCounterGetValue(
+pub extern "shlwapi" fn SHGlobalCounterGetValue(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHLWAPI" fn SHGlobalCounterIncrement(
+pub extern "shlwapi" fn SHGlobalCounterIncrement(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "SHLWAPI" fn SHGlobalCounterDecrement(
+pub extern "shlwapi" fn SHGlobalCounterDecrement(
     id: SHGLOBALCOUNTER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHAllocShared(
+pub extern "shlwapi" fn SHAllocShared(
     // TODO: what to do with BytesParamIndex 1?
     pvData: ?*const anyopaque,
     dwSize: u32,
@@ -35600,28 +35600,28 @@ pub extern "SHLWAPI" fn SHAllocShared(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHFreeShared(
+pub extern "shlwapi" fn SHFreeShared(
     hData: ?HANDLE,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHLockShared(
+pub extern "shlwapi" fn SHLockShared(
     hData: ?HANDLE,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHUnlockShared(
+pub extern "shlwapi" fn SHUnlockShared(
     pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn WhichPlatform(
+pub extern "shlwapi" fn WhichPlatform(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn QISearch(
+pub extern "shlwapi" fn QISearch(
     that: ?*anyopaque,
     pqit: ?*QITAB,
     riid: ?*const Guid,
@@ -35629,53 +35629,53 @@ pub extern "SHLWAPI" fn QISearch(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHIsLowMemoryMachine(
+pub extern "shlwapi" fn SHIsLowMemoryMachine(
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn GetMenuPosFromID(
+pub extern "shlwapi" fn GetMenuPosFromID(
     hmenu: ?HMENU,
     id: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHGetInverseCMAP(
+pub extern "shlwapi" fn SHGetInverseCMAP(
     // TODO: what to do with BytesParamIndex 1?
     pbMap: ?*u8,
     cbMap: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHAutoComplete(
+pub extern "shlwapi" fn SHAutoComplete(
     hwndEdit: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHCreateThreadRef(
+pub extern "shlwapi" fn SHCreateThreadRef(
     pcRef: ?*i32,
     ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHSetThreadRef(
+pub extern "shlwapi" fn SHSetThreadRef(
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHGetThreadRef(
+pub extern "shlwapi" fn SHGetThreadRef(
     ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHSkipJunction(
+pub extern "shlwapi" fn SHSkipJunction(
     pbc: ?*IBindCtx,
     pclsid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHCreateThread(
+pub extern "shlwapi" fn SHCreateThread(
     pfnThreadProc: ?LPTHREAD_START_ROUTINE,
     pData: ?*anyopaque,
     flags: u32,
@@ -35683,7 +35683,7 @@ pub extern "SHLWAPI" fn SHCreateThread(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHLWAPI" fn SHCreateThreadWithHandle(
+pub extern "shlwapi" fn SHCreateThreadWithHandle(
     pfnThreadProc: ?LPTHREAD_START_ROUTINE,
     pData: ?*anyopaque,
     flags: u32,
@@ -35692,16 +35692,16 @@ pub extern "SHLWAPI" fn SHCreateThreadWithHandle(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHReleaseThreadRef(
+pub extern "shlwapi" fn SHReleaseThreadRef(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn SHCreateShellPalette(
+pub extern "shlwapi" fn SHCreateShellPalette(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) ?HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ColorRGBToHLS(
+pub extern "shlwapi" fn ColorRGBToHLS(
     clrRGB: u32,
     pwHue: ?*u16,
     pwLuminance: ?*u16,
@@ -35709,21 +35709,21 @@ pub extern "SHLWAPI" fn ColorRGBToHLS(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ColorHLSToRGB(
+pub extern "shlwapi" fn ColorHLSToRGB(
     wHue: u16,
     wLuminance: u16,
     wSaturation: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "SHLWAPI" fn ColorAdjustLuma(
+pub extern "shlwapi" fn ColorAdjustLuma(
     clrRGB: u32,
     n: i32,
     fScale: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn IsInternetESCEnabled(
+pub extern "shlwapi" fn IsInternetESCEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "hlink" fn HlinkCreateFromMoniker(

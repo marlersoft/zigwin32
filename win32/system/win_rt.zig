@@ -1247,14 +1247,14 @@ pub const IMessageDispatcher = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (68)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn CoDecodeProxy(
+pub extern "ole32" fn CoDecodeProxy(
     dwClientPid: u32,
     ui64ProxyAddress: u64,
     pServerInformation: ?*ServerInformation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "OLE32" fn RoGetAgileReference(
+pub extern "ole32" fn RoGetAgileReference(
     options: AgileReferenceOptions,
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
@@ -1452,7 +1452,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-1" fn WindowsInspectString2(
     targetStringAddress: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "CoreMessaging" fn CreateDispatcherQueueController(
+pub extern "coremessaging" fn CreateDispatcherQueueController(
     options: DispatcherQueueOptions,
     dispatcherQueueController: ?**struct{comment: []const u8 = "MissingClrType DispatcherQueueController.Windows.System"},
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1627,7 +1627,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn IsErrorPropagationEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "RoMetadata" fn MetaDataGetDispenser(
+pub extern "rometadata" fn MetaDataGetDispenser(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,

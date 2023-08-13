@@ -204,7 +204,7 @@ pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferGetPolicyInformation(
+pub extern "advapi32" fn SaferGetPolicyInformation(
     dwScopeId: u32,
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
@@ -215,7 +215,7 @@ pub extern "ADVAPI32" fn SaferGetPolicyInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferSetPolicyInformation(
+pub extern "advapi32" fn SaferSetPolicyInformation(
     dwScopeId: u32,
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
@@ -225,7 +225,7 @@ pub extern "ADVAPI32" fn SaferSetPolicyInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferCreateLevel(
+pub extern "advapi32" fn SaferCreateLevel(
     dwScopeId: u32,
     dwLevelId: u32,
     OpenFlags: u32,
@@ -234,12 +234,12 @@ pub extern "ADVAPI32" fn SaferCreateLevel(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferCloseLevel(
+pub extern "advapi32" fn SaferCloseLevel(
     hLevelHandle: SAFER_LEVEL_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferIdentifyLevel(
+pub extern "advapi32" fn SaferIdentifyLevel(
     dwNumProperties: u32,
     pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
     pLevelHandle: ?*SAFER_LEVEL_HANDLE,
@@ -247,7 +247,7 @@ pub extern "ADVAPI32" fn SaferIdentifyLevel(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferComputeTokenFromLevel(
+pub extern "advapi32" fn SaferComputeTokenFromLevel(
     LevelHandle: SAFER_LEVEL_HANDLE,
     InAccessToken: ?HANDLE,
     OutAccessToken: ?*?HANDLE,
@@ -256,7 +256,7 @@ pub extern "ADVAPI32" fn SaferComputeTokenFromLevel(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferGetLevelInformation(
+pub extern "advapi32" fn SaferGetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -266,7 +266,7 @@ pub extern "ADVAPI32" fn SaferGetLevelInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferSetLevelInformation(
+pub extern "advapi32" fn SaferSetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -275,14 +275,14 @@ pub extern "ADVAPI32" fn SaferSetLevelInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferRecordEventLogEntry(
+pub extern "advapi32" fn SaferRecordEventLogEntry(
     hLevel: SAFER_LEVEL_HANDLE,
     szTargetPath: ?[*:0]const u16,
     lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SaferiIsExecutableFileType(
+pub extern "advapi32" fn SaferiIsExecutableFileType(
     szFullPathname: ?[*:0]const u16,
     bFromShellExecute: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

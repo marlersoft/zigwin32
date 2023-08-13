@@ -10923,36 +10923,36 @@ pub const NSID = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (252)
 //--------------------------------------------------------------------------------
-pub extern "TAPI32" fn lineAccept(
+pub extern "tapi32" fn lineAccept(
     hCall: u32,
     lpsUserUserInfo: ?[*:0]const u8,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAddProvider(
+pub extern "tapi32" fn lineAddProvider(
     lpszProviderFilename: ?[*:0]const u8,
     hwndOwner: ?HWND,
     lpdwPermanentProviderID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAddProviderA(
+pub extern "tapi32" fn lineAddProviderA(
     lpszProviderFilename: ?[*:0]const u8,
     hwndOwner: ?HWND,
     lpdwPermanentProviderID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAddProviderW(
+pub extern "tapi32" fn lineAddProviderW(
     lpszProviderFilename: ?[*:0]const u16,
     hwndOwner: ?HWND,
     lpdwPermanentProviderID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAddToConference(
+pub extern "tapi32" fn lineAddToConference(
     hConfCall: u32,
     hConsultCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAgentSpecific(
+pub extern "tapi32" fn lineAgentSpecific(
     hLine: u32,
     dwAddressID: u32,
     dwAgentExtensionIDIndex: u32,
@@ -10960,67 +10960,67 @@ pub extern "TAPI32" fn lineAgentSpecific(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineAnswer(
+pub extern "tapi32" fn lineAnswer(
     hCall: u32,
     lpsUserUserInfo: ?[*:0]const u8,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineBlindTransfer(
+pub extern "tapi32" fn lineBlindTransfer(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineBlindTransferA(
+pub extern "tapi32" fn lineBlindTransferA(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineBlindTransferW(
+pub extern "tapi32" fn lineBlindTransferW(
     hCall: u32,
     lpszDestAddressW: ?[*:0]const u16,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineClose(
+pub extern "tapi32" fn lineClose(
     hLine: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCompleteCall(
+pub extern "tapi32" fn lineCompleteCall(
     hCall: u32,
     lpdwCompletionID: ?*u32,
     dwCompletionMode: u32,
     dwMessageID: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCompleteTransfer(
+pub extern "tapi32" fn lineCompleteTransfer(
     hCall: u32,
     hConsultCall: u32,
     lphConfCall: ?*u32,
     dwTransferMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialog(
+pub extern "tapi32" fn lineConfigDialog(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialogA(
+pub extern "tapi32" fn lineConfigDialogA(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialogW(
+pub extern "tapi32" fn lineConfigDialogW(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialogEdit(
+pub extern "tapi32" fn lineConfigDialogEdit(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
@@ -11029,7 +11029,7 @@ pub extern "TAPI32" fn lineConfigDialogEdit(
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialogEditA(
+pub extern "tapi32" fn lineConfigDialogEditA(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
@@ -11038,7 +11038,7 @@ pub extern "TAPI32" fn lineConfigDialogEditA(
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigDialogEditW(
+pub extern "tapi32" fn lineConfigDialogEditW(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u16,
@@ -11047,26 +11047,26 @@ pub extern "TAPI32" fn lineConfigDialogEditW(
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineConfigProvider(
+pub extern "tapi32" fn lineConfigProvider(
     hwndOwner: ?HWND,
     dwPermanentProviderID: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCreateAgentW(
+pub extern "tapi32" fn lineCreateAgentW(
     hLine: u32,
     lpszAgentID: ?[*:0]const u16,
     lpszAgentPIN: ?[*:0]const u16,
     lphAgent: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCreateAgentA(
+pub extern "tapi32" fn lineCreateAgentA(
     hLine: u32,
     lpszAgentID: ?[*:0]const u8,
     lpszAgentPIN: ?[*:0]const u8,
     lphAgent: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCreateAgentSessionW(
+pub extern "tapi32" fn lineCreateAgentSessionW(
     hLine: u32,
     hAgent: u32,
     lpszAgentPIN: ?[*:0]const u16,
@@ -11075,7 +11075,7 @@ pub extern "TAPI32" fn lineCreateAgentSessionW(
     lphAgentSession: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineCreateAgentSessionA(
+pub extern "tapi32" fn lineCreateAgentSessionA(
     hLine: u32,
     hAgent: u32,
     lpszAgentPIN: ?[*:0]const u8,
@@ -11084,11 +11084,11 @@ pub extern "TAPI32" fn lineCreateAgentSessionA(
     lphAgentSession: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDeallocateCall(
+pub extern "tapi32" fn lineDeallocateCall(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDevSpecific(
+pub extern "tapi32" fn lineDevSpecific(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -11096,38 +11096,38 @@ pub extern "TAPI32" fn lineDevSpecific(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDevSpecificFeature(
+pub extern "tapi32" fn lineDevSpecificFeature(
     hLine: u32,
     dwFeature: u32,
     lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDial(
+pub extern "tapi32" fn lineDial(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDialA(
+pub extern "tapi32" fn lineDialA(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDialW(
+pub extern "tapi32" fn lineDialW(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u16,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineDrop(
+pub extern "tapi32" fn lineDrop(
     hCall: u32,
     lpsUserUserInfo: ?[*:0]const u8,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineForward(
+pub extern "tapi32" fn lineForward(
     hLine: u32,
     bAllAddresses: u32,
     dwAddressID: u32,
@@ -11137,7 +11137,7 @@ pub extern "TAPI32" fn lineForward(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineForwardA(
+pub extern "tapi32" fn lineForwardA(
     hLine: u32,
     bAllAddresses: u32,
     dwAddressID: u32,
@@ -11147,7 +11147,7 @@ pub extern "TAPI32" fn lineForwardA(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineForwardW(
+pub extern "tapi32" fn lineForwardW(
     hLine: u32,
     bAllAddresses: u32,
     dwAddressID: u32,
@@ -11157,7 +11157,7 @@ pub extern "TAPI32" fn lineForwardW(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGatherDigits(
+pub extern "tapi32" fn lineGatherDigits(
     hCall: u32,
     dwDigitModes: u32,
     lpsDigits: ?[*:0]u8,
@@ -11167,7 +11167,7 @@ pub extern "TAPI32" fn lineGatherDigits(
     dwInterDigitTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGatherDigitsA(
+pub extern "tapi32" fn lineGatherDigitsA(
     hCall: u32,
     dwDigitModes: u32,
     lpsDigits: ?[*:0]u8,
@@ -11177,7 +11177,7 @@ pub extern "TAPI32" fn lineGatherDigitsA(
     dwInterDigitTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGatherDigitsW(
+pub extern "tapi32" fn lineGatherDigitsW(
     hCall: u32,
     dwDigitModes: u32,
     lpsDigits: ?[*:0]u16,
@@ -11187,28 +11187,28 @@ pub extern "TAPI32" fn lineGatherDigitsW(
     dwInterDigitTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGenerateDigits(
+pub extern "tapi32" fn lineGenerateDigits(
     hCall: u32,
     dwDigitMode: u32,
     lpszDigits: ?[*:0]const u8,
     dwDuration: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGenerateDigitsA(
+pub extern "tapi32" fn lineGenerateDigitsA(
     hCall: u32,
     dwDigitMode: u32,
     lpszDigits: ?[*:0]const u8,
     dwDuration: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGenerateDigitsW(
+pub extern "tapi32" fn lineGenerateDigitsW(
     hCall: u32,
     dwDigitMode: u32,
     lpszDigits: ?[*:0]const u16,
     dwDuration: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGenerateTone(
+pub extern "tapi32" fn lineGenerateTone(
     hCall: u32,
     dwToneMode: u32,
     dwDuration: u32,
@@ -11216,7 +11216,7 @@ pub extern "TAPI32" fn lineGenerateTone(
     lpTones: ?*const LINEGENERATETONE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressCaps(
+pub extern "tapi32" fn lineGetAddressCaps(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAddressID: u32,
@@ -11225,7 +11225,7 @@ pub extern "TAPI32" fn lineGetAddressCaps(
     lpAddressCaps: ?*LINEADDRESSCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressCapsA(
+pub extern "tapi32" fn lineGetAddressCapsA(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAddressID: u32,
@@ -11234,7 +11234,7 @@ pub extern "TAPI32" fn lineGetAddressCapsA(
     lpAddressCaps: ?*LINEADDRESSCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressCapsW(
+pub extern "tapi32" fn lineGetAddressCapsW(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAddressID: u32,
@@ -11243,7 +11243,7 @@ pub extern "TAPI32" fn lineGetAddressCapsW(
     lpAddressCaps: ?*LINEADDRESSCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressID(
+pub extern "tapi32" fn lineGetAddressID(
     hLine: u32,
     lpdwAddressID: ?*u32,
     dwAddressMode: u32,
@@ -11251,7 +11251,7 @@ pub extern "TAPI32" fn lineGetAddressID(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressIDA(
+pub extern "tapi32" fn lineGetAddressIDA(
     hLine: u32,
     lpdwAddressID: ?*u32,
     dwAddressMode: u32,
@@ -11259,7 +11259,7 @@ pub extern "TAPI32" fn lineGetAddressIDA(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressIDW(
+pub extern "tapi32" fn lineGetAddressIDW(
     hLine: u32,
     lpdwAddressID: ?*u32,
     dwAddressMode: u32,
@@ -11267,37 +11267,37 @@ pub extern "TAPI32" fn lineGetAddressIDW(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressStatus(
+pub extern "tapi32" fn lineGetAddressStatus(
     hLine: u32,
     dwAddressID: u32,
     lpAddressStatus: ?*LINEADDRESSSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressStatusA(
+pub extern "tapi32" fn lineGetAddressStatusA(
     hLine: u32,
     dwAddressID: u32,
     lpAddressStatus: ?*LINEADDRESSSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAddressStatusW(
+pub extern "tapi32" fn lineGetAddressStatusW(
     hLine: u32,
     dwAddressID: u32,
     lpAddressStatus: ?*LINEADDRESSSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentActivityListA(
+pub extern "tapi32" fn lineGetAgentActivityListA(
     hLine: u32,
     dwAddressID: u32,
     lpAgentActivityList: ?*LINEAGENTACTIVITYLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentActivityListW(
+pub extern "tapi32" fn lineGetAgentActivityListW(
     hLine: u32,
     dwAddressID: u32,
     lpAgentActivityList: ?*LINEAGENTACTIVITYLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentCapsA(
+pub extern "tapi32" fn lineGetAgentCapsA(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAddressID: u32,
@@ -11305,7 +11305,7 @@ pub extern "TAPI32" fn lineGetAgentCapsA(
     lpAgentCaps: ?*LINEAGENTCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentCapsW(
+pub extern "tapi32" fn lineGetAgentCapsW(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAddressID: u32,
@@ -11313,49 +11313,49 @@ pub extern "TAPI32" fn lineGetAgentCapsW(
     lpAgentCaps: ?*LINEAGENTCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentGroupListA(
+pub extern "tapi32" fn lineGetAgentGroupListA(
     hLine: u32,
     dwAddressID: u32,
     lpAgentGroupList: ?*LINEAGENTGROUPLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentGroupListW(
+pub extern "tapi32" fn lineGetAgentGroupListW(
     hLine: u32,
     dwAddressID: u32,
     lpAgentGroupList: ?*LINEAGENTGROUPLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentInfo(
+pub extern "tapi32" fn lineGetAgentInfo(
     hLine: u32,
     hAgent: u32,
     lpAgentInfo: ?*LINEAGENTINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentSessionInfo(
+pub extern "tapi32" fn lineGetAgentSessionInfo(
     hLine: u32,
     hAgentSession: u32,
     lpAgentSessionInfo: ?*LINEAGENTSESSIONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentSessionList(
+pub extern "tapi32" fn lineGetAgentSessionList(
     hLine: u32,
     hAgent: u32,
     lpAgentSessionList: ?*LINEAGENTSESSIONLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentStatusA(
+pub extern "tapi32" fn lineGetAgentStatusA(
     hLine: u32,
     dwAddressID: u32,
     lpAgentStatus: ?*LINEAGENTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAgentStatusW(
+pub extern "tapi32" fn lineGetAgentStatusW(
     hLine: u32,
     dwAddressID: u32,
     lpAgentStatus: ?*LINEAGENTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAppPriority(
+pub extern "tapi32" fn lineGetAppPriority(
     lpszAppFilename: ?[*:0]const u8,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11364,7 +11364,7 @@ pub extern "TAPI32" fn lineGetAppPriority(
     lpdwPriority: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAppPriorityA(
+pub extern "tapi32" fn lineGetAppPriorityA(
     lpszAppFilename: ?[*:0]const u8,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11373,7 +11373,7 @@ pub extern "TAPI32" fn lineGetAppPriorityA(
     lpdwPriority: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetAppPriorityW(
+pub extern "tapi32" fn lineGetAppPriorityW(
     lpszAppFilename: ?[*:0]const u16,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11382,50 +11382,50 @@ pub extern "TAPI32" fn lineGetAppPriorityW(
     lpdwPriority: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCallInfo(
+pub extern "tapi32" fn lineGetCallInfo(
     hCall: u32,
     lpCallInfo: ?*LINECALLINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCallInfoA(
+pub extern "tapi32" fn lineGetCallInfoA(
     hCall: u32,
     lpCallInfo: ?*LINECALLINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCallInfoW(
+pub extern "tapi32" fn lineGetCallInfoW(
     hCall: u32,
     lpCallInfo: ?*LINECALLINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCallStatus(
+pub extern "tapi32" fn lineGetCallStatus(
     hCall: u32,
     lpCallStatus: ?*LINECALLSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetConfRelatedCalls(
+pub extern "tapi32" fn lineGetConfRelatedCalls(
     hCall: u32,
     lpCallList: ?*LINECALLLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCountry(
+pub extern "tapi32" fn lineGetCountry(
     dwCountryID: u32,
     dwAPIVersion: u32,
     lpLineCountryList: ?*LINECOUNTRYLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCountryA(
+pub extern "tapi32" fn lineGetCountryA(
     dwCountryID: u32,
     dwAPIVersion: u32,
     lpLineCountryList: ?*LINECOUNTRYLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetCountryW(
+pub extern "tapi32" fn lineGetCountryW(
     dwCountryID: u32,
     dwAPIVersion: u32,
     lpLineCountryList: ?*LINECOUNTRYLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevCaps(
+pub extern "tapi32" fn lineGetDevCaps(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -11433,7 +11433,7 @@ pub extern "TAPI32" fn lineGetDevCaps(
     lpLineDevCaps: ?*LINEDEVCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevCapsA(
+pub extern "tapi32" fn lineGetDevCapsA(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -11441,7 +11441,7 @@ pub extern "TAPI32" fn lineGetDevCapsA(
     lpLineDevCaps: ?*LINEDEVCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevCapsW(
+pub extern "tapi32" fn lineGetDevCapsW(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -11449,53 +11449,53 @@ pub extern "TAPI32" fn lineGetDevCapsW(
     lpLineDevCaps: ?*LINEDEVCAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevConfig(
+pub extern "tapi32" fn lineGetDevConfig(
     dwDeviceID: u32,
     lpDeviceConfig: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevConfigA(
+pub extern "tapi32" fn lineGetDevConfigA(
     dwDeviceID: u32,
     lpDeviceConfig: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetDevConfigW(
+pub extern "tapi32" fn lineGetDevConfigW(
     dwDeviceID: u32,
     lpDeviceConfig: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetGroupListA(
+pub extern "tapi32" fn lineGetGroupListA(
     hLine: u32,
     lpGroupList: ?*LINEAGENTGROUPLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetGroupListW(
+pub extern "tapi32" fn lineGetGroupListW(
     hLine: u32,
     lpGroupList: ?*LINEAGENTGROUPLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetIcon(
+pub extern "tapi32" fn lineGetIcon(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u8,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetIconA(
+pub extern "tapi32" fn lineGetIconA(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u8,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetIconW(
+pub extern "tapi32" fn lineGetIconW(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u16,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetID(
+pub extern "tapi32" fn lineGetID(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -11504,7 +11504,7 @@ pub extern "TAPI32" fn lineGetID(
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetIDA(
+pub extern "tapi32" fn lineGetIDA(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -11513,7 +11513,7 @@ pub extern "TAPI32" fn lineGetIDA(
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetIDW(
+pub extern "tapi32" fn lineGetIDW(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -11522,145 +11522,145 @@ pub extern "TAPI32" fn lineGetIDW(
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetLineDevStatus(
+pub extern "tapi32" fn lineGetLineDevStatus(
     hLine: u32,
     lpLineDevStatus: ?*LINEDEVSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetLineDevStatusA(
+pub extern "tapi32" fn lineGetLineDevStatusA(
     hLine: u32,
     lpLineDevStatus: ?*LINEDEVSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetLineDevStatusW(
+pub extern "tapi32" fn lineGetLineDevStatusW(
     hLine: u32,
     lpLineDevStatus: ?*LINEDEVSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetMessage(
+pub extern "tapi32" fn lineGetMessage(
     hLineApp: u32,
     lpMessage: ?*LINEMESSAGE,
     dwTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetNewCalls(
+pub extern "tapi32" fn lineGetNewCalls(
     hLine: u32,
     dwAddressID: u32,
     dwSelect: u32,
     lpCallList: ?*LINECALLLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetNumRings(
+pub extern "tapi32" fn lineGetNumRings(
     hLine: u32,
     dwAddressID: u32,
     lpdwNumRings: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetProviderList(
+pub extern "tapi32" fn lineGetProviderList(
     dwAPIVersion: u32,
     lpProviderList: ?*LINEPROVIDERLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetProviderListA(
+pub extern "tapi32" fn lineGetProviderListA(
     dwAPIVersion: u32,
     lpProviderList: ?*LINEPROVIDERLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetProviderListW(
+pub extern "tapi32" fn lineGetProviderListW(
     dwAPIVersion: u32,
     lpProviderList: ?*LINEPROVIDERLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetProxyStatus(
+pub extern "tapi32" fn lineGetProxyStatus(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAppAPIVersion: u32,
     lpLineProxyReqestList: ?*LINEPROXYREQUESTLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetQueueInfo(
+pub extern "tapi32" fn lineGetQueueInfo(
     hLine: u32,
     dwQueueID: u32,
     lpLineQueueInfo: ?*LINEQUEUEINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetQueueListA(
+pub extern "tapi32" fn lineGetQueueListA(
     hLine: u32,
     lpGroupID: ?*Guid,
     lpQueueList: ?*LINEQUEUELIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetQueueListW(
+pub extern "tapi32" fn lineGetQueueListW(
     hLine: u32,
     lpGroupID: ?*Guid,
     lpQueueList: ?*LINEQUEUELIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetRequest(
+pub extern "tapi32" fn lineGetRequest(
     hLineApp: u32,
     dwRequestMode: u32,
     lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetRequestA(
+pub extern "tapi32" fn lineGetRequestA(
     hLineApp: u32,
     dwRequestMode: u32,
     lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetRequestW(
+pub extern "tapi32" fn lineGetRequestW(
     hLineApp: u32,
     dwRequestMode: u32,
     lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetStatusMessages(
+pub extern "tapi32" fn lineGetStatusMessages(
     hLine: u32,
     lpdwLineStates: ?*u32,
     lpdwAddressStates: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetTranslateCaps(
+pub extern "tapi32" fn lineGetTranslateCaps(
     hLineApp: u32,
     dwAPIVersion: u32,
     lpTranslateCaps: ?*LINETRANSLATECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetTranslateCapsA(
+pub extern "tapi32" fn lineGetTranslateCapsA(
     hLineApp: u32,
     dwAPIVersion: u32,
     lpTranslateCaps: ?*LINETRANSLATECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineGetTranslateCapsW(
+pub extern "tapi32" fn lineGetTranslateCapsW(
     hLineApp: u32,
     dwAPIVersion: u32,
     lpTranslateCaps: ?*LINETRANSLATECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineHandoff(
+pub extern "tapi32" fn lineHandoff(
     hCall: u32,
     lpszFileName: ?[*:0]const u8,
     dwMediaMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineHandoffA(
+pub extern "tapi32" fn lineHandoffA(
     hCall: u32,
     lpszFileName: ?[*:0]const u8,
     dwMediaMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineHandoffW(
+pub extern "tapi32" fn lineHandoffW(
     hCall: u32,
     lpszFileName: ?[*:0]const u16,
     dwMediaMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineHold(
+pub extern "tapi32" fn lineHold(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineInitialize(
+pub extern "tapi32" fn lineInitialize(
     lphLineApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?LINECALLBACK,
@@ -11668,7 +11668,7 @@ pub extern "TAPI32" fn lineInitialize(
     lpdwNumDevs: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineInitializeExA(
+pub extern "tapi32" fn lineInitializeExA(
     lphLineApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?LINECALLBACK,
@@ -11678,7 +11678,7 @@ pub extern "TAPI32" fn lineInitializeExA(
     lpLineInitializeExParams: ?*LINEINITIALIZEEXPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineInitializeExW(
+pub extern "tapi32" fn lineInitializeExW(
     lphLineApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?LINECALLBACK,
@@ -11688,7 +11688,7 @@ pub extern "TAPI32" fn lineInitializeExW(
     lpLineInitializeExParams: ?*LINEINITIALIZEEXPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMakeCall(
+pub extern "tapi32" fn lineMakeCall(
     hLine: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u8,
@@ -11696,7 +11696,7 @@ pub extern "TAPI32" fn lineMakeCall(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMakeCallA(
+pub extern "tapi32" fn lineMakeCallA(
     hLine: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u8,
@@ -11704,7 +11704,7 @@ pub extern "TAPI32" fn lineMakeCallA(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMakeCallW(
+pub extern "tapi32" fn lineMakeCallW(
     hLine: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u16,
@@ -11712,23 +11712,23 @@ pub extern "TAPI32" fn lineMakeCallW(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMonitorDigits(
+pub extern "tapi32" fn lineMonitorDigits(
     hCall: u32,
     dwDigitModes: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMonitorMedia(
+pub extern "tapi32" fn lineMonitorMedia(
     hCall: u32,
     dwMediaModes: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineMonitorTones(
+pub extern "tapi32" fn lineMonitorTones(
     hCall: u32,
     lpToneList: ?*const LINEMONITORTONE,
     dwNumEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineNegotiateAPIVersion(
+pub extern "tapi32" fn lineNegotiateAPIVersion(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPILowVersion: u32,
@@ -11737,7 +11737,7 @@ pub extern "TAPI32" fn lineNegotiateAPIVersion(
     lpExtensionID: ?*LINEEXTENSIONID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineNegotiateExtVersion(
+pub extern "tapi32" fn lineNegotiateExtVersion(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -11746,7 +11746,7 @@ pub extern "TAPI32" fn lineNegotiateExtVersion(
     lpdwExtVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineOpen(
+pub extern "tapi32" fn lineOpen(
     hLineApp: u32,
     dwDeviceID: u32,
     lphLine: ?*u32,
@@ -11758,7 +11758,7 @@ pub extern "TAPI32" fn lineOpen(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineOpenA(
+pub extern "tapi32" fn lineOpenA(
     hLineApp: u32,
     dwDeviceID: u32,
     lphLine: ?*u32,
@@ -11770,7 +11770,7 @@ pub extern "TAPI32" fn lineOpenA(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineOpenW(
+pub extern "tapi32" fn lineOpenW(
     hLineApp: u32,
     dwDeviceID: u32,
     lphLine: ?*u32,
@@ -11782,28 +11782,28 @@ pub extern "TAPI32" fn lineOpenW(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePark(
+pub extern "tapi32" fn linePark(
     hCall: u32,
     dwParkMode: u32,
     lpszDirAddress: ?[*:0]const u8,
     lpNonDirAddress: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineParkA(
+pub extern "tapi32" fn lineParkA(
     hCall: u32,
     dwParkMode: u32,
     lpszDirAddress: ?[*:0]const u8,
     lpNonDirAddress: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineParkW(
+pub extern "tapi32" fn lineParkW(
     hCall: u32,
     dwParkMode: u32,
     lpszDirAddress: ?[*:0]const u16,
     lpNonDirAddress: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePickup(
+pub extern "tapi32" fn linePickup(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
@@ -11811,7 +11811,7 @@ pub extern "TAPI32" fn linePickup(
     lpszGroupID: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePickupA(
+pub extern "tapi32" fn linePickupA(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
@@ -11819,7 +11819,7 @@ pub extern "TAPI32" fn linePickupA(
     lpszGroupID: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePickupW(
+pub extern "tapi32" fn linePickupW(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
@@ -11827,25 +11827,25 @@ pub extern "TAPI32" fn linePickupW(
     lpszGroupID: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePrepareAddToConference(
+pub extern "tapi32" fn linePrepareAddToConference(
     hConfCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePrepareAddToConferenceA(
+pub extern "tapi32" fn linePrepareAddToConferenceA(
     hConfCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn linePrepareAddToConferenceW(
+pub extern "tapi32" fn linePrepareAddToConferenceW(
     hConfCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineProxyMessage(
+pub extern "tapi32" fn lineProxyMessage(
     hLine: u32,
     hCall: u32,
     dwMsg: u32,
@@ -11854,100 +11854,100 @@ pub extern "TAPI32" fn lineProxyMessage(
     dwParam3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineProxyResponse(
+pub extern "tapi32" fn lineProxyResponse(
     hLine: u32,
     lpProxyRequest: ?*LINEPROXYREQUEST,
     dwResult: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRedirect(
+pub extern "tapi32" fn lineRedirect(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRedirectA(
+pub extern "tapi32" fn lineRedirectA(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u8,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRedirectW(
+pub extern "tapi32" fn lineRedirectW(
     hCall: u32,
     lpszDestAddress: ?[*:0]const u16,
     dwCountryCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRegisterRequestRecipient(
+pub extern "tapi32" fn lineRegisterRequestRecipient(
     hLineApp: u32,
     dwRegistrationInstance: u32,
     dwRequestMode: u32,
     bEnable: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineReleaseUserUserInfo(
+pub extern "tapi32" fn lineReleaseUserUserInfo(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRemoveFromConference(
+pub extern "tapi32" fn lineRemoveFromConference(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineRemoveProvider(
+pub extern "tapi32" fn lineRemoveProvider(
     dwPermanentProviderID: u32,
     hwndOwner: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSecureCall(
+pub extern "tapi32" fn lineSecureCall(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSendUserUserInfo(
+pub extern "tapi32" fn lineSendUserUserInfo(
     hCall: u32,
     lpsUserUserInfo: ?[*:0]const u8,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentActivity(
+pub extern "tapi32" fn lineSetAgentActivity(
     hLine: u32,
     dwAddressID: u32,
     dwActivityID: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentGroup(
+pub extern "tapi32" fn lineSetAgentGroup(
     hLine: u32,
     dwAddressID: u32,
     lpAgentGroupList: ?*LINEAGENTGROUPLIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentMeasurementPeriod(
+pub extern "tapi32" fn lineSetAgentMeasurementPeriod(
     hLine: u32,
     hAgent: u32,
     dwMeasurementPeriod: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentSessionState(
+pub extern "tapi32" fn lineSetAgentSessionState(
     hLine: u32,
     hAgentSession: u32,
     dwAgentSessionState: u32,
     dwNextAgentSessionState: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentStateEx(
+pub extern "tapi32" fn lineSetAgentStateEx(
     hLine: u32,
     hAgent: u32,
     dwAgentState: u32,
     dwNextAgentState: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAgentState(
+pub extern "tapi32" fn lineSetAgentState(
     hLine: u32,
     dwAddressID: u32,
     dwAgentState: u32,
     dwNextAgentState: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAppPriority(
+pub extern "tapi32" fn lineSetAppPriority(
     lpszAppFilename: ?[*:0]const u8,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11956,7 +11956,7 @@ pub extern "TAPI32" fn lineSetAppPriority(
     dwPriority: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAppPriorityA(
+pub extern "tapi32" fn lineSetAppPriorityA(
     lpszAppFilename: ?[*:0]const u8,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11965,7 +11965,7 @@ pub extern "TAPI32" fn lineSetAppPriorityA(
     dwPriority: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAppPriorityW(
+pub extern "tapi32" fn lineSetAppPriorityW(
     lpszAppFilename: ?[*:0]const u16,
     dwMediaMode: u32,
     lpExtensionID: ?*LINEEXTENSIONID,
@@ -11974,18 +11974,18 @@ pub extern "TAPI32" fn lineSetAppPriorityW(
     dwPriority: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetAppSpecific(
+pub extern "tapi32" fn lineSetAppSpecific(
     hCall: u32,
     dwAppSpecific: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCallData(
+pub extern "tapi32" fn lineSetCallData(
     hCall: u32,
     lpCallData: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCallParams(
+pub extern "tapi32" fn lineSetCallParams(
     hCall: u32,
     dwBearerMode: u32,
     dwMinRate: u32,
@@ -11993,12 +11993,12 @@ pub extern "TAPI32" fn lineSetCallParams(
     lpDialParams: ?*const LINEDIALPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCallPrivilege(
+pub extern "tapi32" fn lineSetCallPrivilege(
     hCall: u32,
     dwCallPrivilege: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCallQualityOfService(
+pub extern "tapi32" fn lineSetCallQualityOfService(
     hCall: u32,
     lpSendingFlowspec: ?*anyopaque,
     dwSendingFlowspecSize: u32,
@@ -12006,44 +12006,44 @@ pub extern "TAPI32" fn lineSetCallQualityOfService(
     dwReceivingFlowspecSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCallTreatment(
+pub extern "tapi32" fn lineSetCallTreatment(
     hCall: u32,
     dwTreatment: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetCurrentLocation(
+pub extern "tapi32" fn lineSetCurrentLocation(
     hLineApp: u32,
     dwLocation: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetDevConfig(
+pub extern "tapi32" fn lineSetDevConfig(
     dwDeviceID: u32,
     lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetDevConfigA(
+pub extern "tapi32" fn lineSetDevConfigA(
     dwDeviceID: u32,
     lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetDevConfigW(
+pub extern "tapi32" fn lineSetDevConfigW(
     dwDeviceID: u32,
     lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetLineDevStatus(
+pub extern "tapi32" fn lineSetLineDevStatus(
     hLine: u32,
     dwStatusToChange: u32,
     fStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetMediaControl(
+pub extern "tapi32" fn lineSetMediaControl(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -12058,30 +12058,30 @@ pub extern "TAPI32" fn lineSetMediaControl(
     dwCallStateNumEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetMediaMode(
+pub extern "tapi32" fn lineSetMediaMode(
     hCall: u32,
     dwMediaModes: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetQueueMeasurementPeriod(
+pub extern "tapi32" fn lineSetQueueMeasurementPeriod(
     hLine: u32,
     dwQueueID: u32,
     dwMeasurementPeriod: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetNumRings(
+pub extern "tapi32" fn lineSetNumRings(
     hLine: u32,
     dwAddressID: u32,
     dwNumRings: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetStatusMessages(
+pub extern "tapi32" fn lineSetStatusMessages(
     hLine: u32,
     dwLineStates: u32,
     dwAddressStates: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetTerminal(
+pub extern "tapi32" fn lineSetTerminal(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
@@ -12091,28 +12091,28 @@ pub extern "TAPI32" fn lineSetTerminal(
     bEnable: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetTollList(
+pub extern "tapi32" fn lineSetTollList(
     hLineApp: u32,
     dwDeviceID: u32,
     lpszAddressIn: ?[*:0]const u8,
     dwTollListOption: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetTollListA(
+pub extern "tapi32" fn lineSetTollListA(
     hLineApp: u32,
     dwDeviceID: u32,
     lpszAddressIn: ?[*:0]const u8,
     dwTollListOption: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetTollListW(
+pub extern "tapi32" fn lineSetTollListW(
     hLineApp: u32,
     dwDeviceID: u32,
     lpszAddressInW: ?[*:0]const u16,
     dwTollListOption: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupConference(
+pub extern "tapi32" fn lineSetupConference(
     hCall: u32,
     hLine: u32,
     lphConfCall: ?*u32,
@@ -12121,7 +12121,7 @@ pub extern "TAPI32" fn lineSetupConference(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupConferenceA(
+pub extern "tapi32" fn lineSetupConferenceA(
     hCall: u32,
     hLine: u32,
     lphConfCall: ?*u32,
@@ -12130,7 +12130,7 @@ pub extern "TAPI32" fn lineSetupConferenceA(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupConferenceW(
+pub extern "tapi32" fn lineSetupConferenceW(
     hCall: u32,
     hLine: u32,
     lphConfCall: ?*u32,
@@ -12139,34 +12139,34 @@ pub extern "TAPI32" fn lineSetupConferenceW(
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupTransfer(
+pub extern "tapi32" fn lineSetupTransfer(
     hCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupTransferA(
+pub extern "tapi32" fn lineSetupTransferA(
     hCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSetupTransferW(
+pub extern "tapi32" fn lineSetupTransferW(
     hCall: u32,
     lphConsultCall: ?*u32,
     lpCallParams: ?*const LINECALLPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineShutdown(
+pub extern "tapi32" fn lineShutdown(
     hLineApp: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineSwapHold(
+pub extern "tapi32" fn lineSwapHold(
     hActiveCall: u32,
     hHeldCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateAddress(
+pub extern "tapi32" fn lineTranslateAddress(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12176,7 +12176,7 @@ pub extern "TAPI32" fn lineTranslateAddress(
     lpTranslateOutput: ?*LINETRANSLATEOUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateAddressA(
+pub extern "tapi32" fn lineTranslateAddressA(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12186,7 +12186,7 @@ pub extern "TAPI32" fn lineTranslateAddressA(
     lpTranslateOutput: ?*LINETRANSLATEOUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateAddressW(
+pub extern "tapi32" fn lineTranslateAddressW(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12196,7 +12196,7 @@ pub extern "TAPI32" fn lineTranslateAddressW(
     lpTranslateOutput: ?*LINETRANSLATEOUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateDialog(
+pub extern "tapi32" fn lineTranslateDialog(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12204,7 +12204,7 @@ pub extern "TAPI32" fn lineTranslateDialog(
     lpszAddressIn: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateDialogA(
+pub extern "tapi32" fn lineTranslateDialogA(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12212,7 +12212,7 @@ pub extern "TAPI32" fn lineTranslateDialogA(
     lpszAddressIn: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineTranslateDialogW(
+pub extern "tapi32" fn lineTranslateDialogW(
     hLineApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12220,90 +12220,90 @@ pub extern "TAPI32" fn lineTranslateDialogW(
     lpszAddressIn: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineUncompleteCall(
+pub extern "tapi32" fn lineUncompleteCall(
     hLine: u32,
     dwCompletionID: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineUnhold(
+pub extern "tapi32" fn lineUnhold(
     hCall: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineUnpark(
+pub extern "tapi32" fn lineUnpark(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineUnparkA(
+pub extern "tapi32" fn lineUnparkA(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn lineUnparkW(
+pub extern "tapi32" fn lineUnparkW(
     hLine: u32,
     dwAddressID: u32,
     lphCall: ?*u32,
     lpszDestAddress: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneClose(
+pub extern "tapi32" fn phoneClose(
     hPhone: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneConfigDialog(
+pub extern "tapi32" fn phoneConfigDialog(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneConfigDialogA(
+pub extern "tapi32" fn phoneConfigDialogA(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneConfigDialogW(
+pub extern "tapi32" fn phoneConfigDialogW(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneDevSpecific(
+pub extern "tapi32" fn phoneDevSpecific(
     hPhone: u32,
     lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetButtonInfo(
+pub extern "tapi32" fn phoneGetButtonInfo(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetButtonInfoA(
+pub extern "tapi32" fn phoneGetButtonInfoA(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetButtonInfoW(
+pub extern "tapi32" fn phoneGetButtonInfoW(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetData(
+pub extern "tapi32" fn phoneGetData(
     hPhone: u32,
     dwDataID: u32,
     lpData: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetDevCaps(
+pub extern "tapi32" fn phoneGetDevCaps(
     hPhoneApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12311,7 +12311,7 @@ pub extern "TAPI32" fn phoneGetDevCaps(
     lpPhoneCaps: ?*PHONECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetDevCapsA(
+pub extern "tapi32" fn phoneGetDevCapsA(
     hPhoneApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12319,7 +12319,7 @@ pub extern "TAPI32" fn phoneGetDevCapsA(
     lpPhoneCaps: ?*PHONECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetDevCapsW(
+pub extern "tapi32" fn phoneGetDevCapsW(
     hPhoneApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12327,105 +12327,105 @@ pub extern "TAPI32" fn phoneGetDevCapsW(
     lpPhoneCaps: ?*PHONECAPS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetDisplay(
+pub extern "tapi32" fn phoneGetDisplay(
     hPhone: u32,
     lpDisplay: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetGain(
+pub extern "tapi32" fn phoneGetGain(
     hPhone: u32,
     dwHookSwitchDev: u32,
     lpdwGain: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetHookSwitch(
+pub extern "tapi32" fn phoneGetHookSwitch(
     hPhone: u32,
     lpdwHookSwitchDevs: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetIcon(
+pub extern "tapi32" fn phoneGetIcon(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u8,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetIconA(
+pub extern "tapi32" fn phoneGetIconA(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u8,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetIconW(
+pub extern "tapi32" fn phoneGetIconW(
     dwDeviceID: u32,
     lpszDeviceClass: ?[*:0]const u16,
     lphIcon: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetID(
+pub extern "tapi32" fn phoneGetID(
     hPhone: u32,
     lpDeviceID: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetIDA(
+pub extern "tapi32" fn phoneGetIDA(
     hPhone: u32,
     lpDeviceID: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetIDW(
+pub extern "tapi32" fn phoneGetIDW(
     hPhone: u32,
     lpDeviceID: ?*VARSTRING,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetLamp(
+pub extern "tapi32" fn phoneGetLamp(
     hPhone: u32,
     dwButtonLampID: u32,
     lpdwLampMode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetMessage(
+pub extern "tapi32" fn phoneGetMessage(
     hPhoneApp: u32,
     lpMessage: ?*PHONEMESSAGE,
     dwTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetRing(
+pub extern "tapi32" fn phoneGetRing(
     hPhone: u32,
     lpdwRingMode: ?*u32,
     lpdwVolume: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetStatus(
+pub extern "tapi32" fn phoneGetStatus(
     hPhone: u32,
     lpPhoneStatus: ?*PHONESTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetStatusA(
+pub extern "tapi32" fn phoneGetStatusA(
     hPhone: u32,
     lpPhoneStatus: ?*PHONESTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetStatusW(
+pub extern "tapi32" fn phoneGetStatusW(
     hPhone: u32,
     lpPhoneStatus: ?*PHONESTATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetStatusMessages(
+pub extern "tapi32" fn phoneGetStatusMessages(
     hPhone: u32,
     lpdwPhoneStates: ?*u32,
     lpdwButtonModes: ?*u32,
     lpdwButtonStates: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneGetVolume(
+pub extern "tapi32" fn phoneGetVolume(
     hPhone: u32,
     dwHookSwitchDev: u32,
     lpdwVolume: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneInitialize(
+pub extern "tapi32" fn phoneInitialize(
     lphPhoneApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?PHONECALLBACK,
@@ -12433,7 +12433,7 @@ pub extern "TAPI32" fn phoneInitialize(
     lpdwNumDevs: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneInitializeExA(
+pub extern "tapi32" fn phoneInitializeExA(
     lphPhoneApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?PHONECALLBACK,
@@ -12443,7 +12443,7 @@ pub extern "TAPI32" fn phoneInitializeExA(
     lpPhoneInitializeExParams: ?*PHONEINITIALIZEEXPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneInitializeExW(
+pub extern "tapi32" fn phoneInitializeExW(
     lphPhoneApp: ?*u32,
     hInstance: ?HINSTANCE,
     lpfnCallback: ?PHONECALLBACK,
@@ -12453,7 +12453,7 @@ pub extern "TAPI32" fn phoneInitializeExW(
     lpPhoneInitializeExParams: ?*PHONEINITIALIZEEXPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneNegotiateAPIVersion(
+pub extern "tapi32" fn phoneNegotiateAPIVersion(
     hPhoneApp: u32,
     dwDeviceID: u32,
     dwAPILowVersion: u32,
@@ -12462,7 +12462,7 @@ pub extern "TAPI32" fn phoneNegotiateAPIVersion(
     lpExtensionID: ?*PHONEEXTENSIONID,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneNegotiateExtVersion(
+pub extern "tapi32" fn phoneNegotiateExtVersion(
     hPhoneApp: u32,
     dwDeviceID: u32,
     dwAPIVersion: u32,
@@ -12471,7 +12471,7 @@ pub extern "TAPI32" fn phoneNegotiateExtVersion(
     lpdwExtVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneOpen(
+pub extern "tapi32" fn phoneOpen(
     hPhoneApp: u32,
     dwDeviceID: u32,
     lphPhone: ?*u32,
@@ -12481,32 +12481,32 @@ pub extern "TAPI32" fn phoneOpen(
     dwPrivilege: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetButtonInfo(
+pub extern "tapi32" fn phoneSetButtonInfo(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*const PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetButtonInfoA(
+pub extern "tapi32" fn phoneSetButtonInfoA(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*const PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetButtonInfoW(
+pub extern "tapi32" fn phoneSetButtonInfoW(
     hPhone: u32,
     dwButtonLampID: u32,
     lpButtonInfo: ?*const PHONEBUTTONINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetData(
+pub extern "tapi32" fn phoneSetData(
     hPhone: u32,
     dwDataID: u32,
     lpData: ?*const anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetDisplay(
+pub extern "tapi32" fn phoneSetDisplay(
     hPhone: u32,
     dwRow: u32,
     dwColumn: u32,
@@ -12514,89 +12514,89 @@ pub extern "TAPI32" fn phoneSetDisplay(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetGain(
+pub extern "tapi32" fn phoneSetGain(
     hPhone: u32,
     dwHookSwitchDev: u32,
     dwGain: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetHookSwitch(
+pub extern "tapi32" fn phoneSetHookSwitch(
     hPhone: u32,
     dwHookSwitchDevs: u32,
     dwHookSwitchMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetLamp(
+pub extern "tapi32" fn phoneSetLamp(
     hPhone: u32,
     dwButtonLampID: u32,
     dwLampMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetRing(
+pub extern "tapi32" fn phoneSetRing(
     hPhone: u32,
     dwRingMode: u32,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetStatusMessages(
+pub extern "tapi32" fn phoneSetStatusMessages(
     hPhone: u32,
     dwPhoneStates: u32,
     dwButtonModes: u32,
     dwButtonStates: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneSetVolume(
+pub extern "tapi32" fn phoneSetVolume(
     hPhone: u32,
     dwHookSwitchDev: u32,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn phoneShutdown(
+pub extern "tapi32" fn phoneShutdown(
     hPhoneApp: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiGetLocationInfo(
+pub extern "tapi32" fn tapiGetLocationInfo(
     lpszCountryCode: *[8]u8,
     lpszCityCode: *[8]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiGetLocationInfoA(
+pub extern "tapi32" fn tapiGetLocationInfoA(
     lpszCountryCode: *[8]u8,
     lpszCityCode: *[8]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiGetLocationInfoW(
+pub extern "tapi32" fn tapiGetLocationInfoW(
     lpszCountryCodeW: *[8]u16,
     lpszCityCodeW: *[8]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestDrop(
+pub extern "tapi32" fn tapiRequestDrop(
     hwnd: ?HWND,
     wRequestID: WPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMakeCall(
+pub extern "tapi32" fn tapiRequestMakeCall(
     lpszDestAddress: ?[*:0]const u8,
     lpszAppName: ?[*:0]const u8,
     lpszCalledParty: ?[*:0]const u8,
     lpszComment: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMakeCallA(
+pub extern "tapi32" fn tapiRequestMakeCallA(
     lpszDestAddress: ?[*:0]const u8,
     lpszAppName: ?[*:0]const u8,
     lpszCalledParty: ?[*:0]const u8,
     lpszComment: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMakeCallW(
+pub extern "tapi32" fn tapiRequestMakeCallW(
     lpszDestAddress: ?[*:0]const u16,
     lpszAppName: ?[*:0]const u16,
     lpszCalledParty: ?[*:0]const u16,
     lpszComment: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMediaCall(
+pub extern "tapi32" fn tapiRequestMediaCall(
     hwnd: ?HWND,
     wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u8,
@@ -12609,7 +12609,7 @@ pub extern "TAPI32" fn tapiRequestMediaCall(
     lpszComment: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMediaCallA(
+pub extern "tapi32" fn tapiRequestMediaCallA(
     hwnd: ?HWND,
     wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u8,
@@ -12622,7 +12622,7 @@ pub extern "TAPI32" fn tapiRequestMediaCallA(
     lpszComment: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "TAPI32" fn tapiRequestMediaCallW(
+pub extern "tapi32" fn tapiRequestMediaCallW(
     hwnd: ?HWND,
     wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u16,
@@ -12635,7 +12635,7 @@ pub extern "TAPI32" fn tapiRequestMediaCallW(
     lpszComment: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn OpenTnefStream(
+pub extern "mapi32" fn OpenTnefStream(
     lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
@@ -12645,7 +12645,7 @@ pub extern "MAPI32" fn OpenTnefStream(
     lppTNEF: ?*?*ITnef,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn OpenTnefStreamEx(
+pub extern "mapi32" fn OpenTnefStreamEx(
     lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
@@ -12656,7 +12656,7 @@ pub extern "MAPI32" fn OpenTnefStreamEx(
     lppTNEF: ?*?*ITnef,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn GetTnefStreamCodepage(
+pub extern "mapi32" fn GetTnefStreamCodepage(
     lpStream: ?*IStream,
     lpulCodepage: ?*u32,
     lpulSubCodepage: ?*u32,

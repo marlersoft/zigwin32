@@ -705,7 +705,7 @@ pub const ServiceSharedDirectoryPersistentState = SERVICE_SHARED_DIRECTORY_TYPE.
 // Section: Functions (56)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetServiceBits(
+pub extern "advapi32" fn SetServiceBits(
     hServiceStatus: SERVICE_STATUS_HANDLE,
     dwServiceBits: u32,
     bSetBitsOn: BOOL,
@@ -713,7 +713,7 @@ pub extern "ADVAPI32" fn SetServiceBits(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfigA(
+pub extern "advapi32" fn ChangeServiceConfigA(
     hService: SC_HANDLE,
     dwServiceType: u32,
     dwStartType: SERVICE_START_TYPE,
@@ -728,7 +728,7 @@ pub extern "ADVAPI32" fn ChangeServiceConfigA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfigW(
+pub extern "advapi32" fn ChangeServiceConfigW(
     hService: SC_HANDLE,
     dwServiceType: u32,
     dwStartType: SERVICE_START_TYPE,
@@ -743,33 +743,33 @@ pub extern "ADVAPI32" fn ChangeServiceConfigW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfig2A(
+pub extern "advapi32" fn ChangeServiceConfig2A(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
     lpInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfig2W(
+pub extern "advapi32" fn ChangeServiceConfig2W(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
     lpInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CloseServiceHandle(
+pub extern "advapi32" fn CloseServiceHandle(
     hSCObject: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ControlService(
+pub extern "advapi32" fn ControlService(
     hService: SC_HANDLE,
     dwControl: u32,
     lpServiceStatus: ?*SERVICE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateServiceA(
+pub extern "advapi32" fn CreateServiceA(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u8,
     lpDisplayName: ?[*:0]const u8,
@@ -786,7 +786,7 @@ pub extern "ADVAPI32" fn CreateServiceA(
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateServiceW(
+pub extern "advapi32" fn CreateServiceW(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u16,
     lpDisplayName: ?[*:0]const u16,
@@ -803,12 +803,12 @@ pub extern "ADVAPI32" fn CreateServiceW(
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DeleteService(
+pub extern "advapi32" fn DeleteService(
     hService: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumDependentServicesA(
+pub extern "advapi32" fn EnumDependentServicesA(
     hService: SC_HANDLE,
     dwServiceState: ENUM_SERVICE_STATE,
     // TODO: what to do with BytesParamIndex 3?
@@ -819,7 +819,7 @@ pub extern "ADVAPI32" fn EnumDependentServicesA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumDependentServicesW(
+pub extern "advapi32" fn EnumDependentServicesW(
     hService: SC_HANDLE,
     dwServiceState: ENUM_SERVICE_STATE,
     // TODO: what to do with BytesParamIndex 3?
@@ -830,7 +830,7 @@ pub extern "ADVAPI32" fn EnumDependentServicesW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumServicesStatusA(
+pub extern "advapi32" fn EnumServicesStatusA(
     hSCManager: SC_HANDLE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
@@ -843,7 +843,7 @@ pub extern "ADVAPI32" fn EnumServicesStatusA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumServicesStatusW(
+pub extern "advapi32" fn EnumServicesStatusW(
     hSCManager: SC_HANDLE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
@@ -856,7 +856,7 @@ pub extern "ADVAPI32" fn EnumServicesStatusW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumServicesStatusExA(
+pub extern "advapi32" fn EnumServicesStatusExA(
     hSCManager: SC_HANDLE,
     InfoLevel: SC_ENUM_TYPE,
     dwServiceType: ENUM_SERVICE_TYPE,
@@ -871,7 +871,7 @@ pub extern "ADVAPI32" fn EnumServicesStatusExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EnumServicesStatusExW(
+pub extern "advapi32" fn EnumServicesStatusExW(
     hSCManager: SC_HANDLE,
     InfoLevel: SC_ENUM_TYPE,
     dwServiceType: ENUM_SERVICE_TYPE,
@@ -886,7 +886,7 @@ pub extern "ADVAPI32" fn EnumServicesStatusExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetServiceKeyNameA(
+pub extern "advapi32" fn GetServiceKeyNameA(
     hSCManager: SC_HANDLE,
     lpDisplayName: ?[*:0]const u8,
     lpServiceName: ?[*:0]u8,
@@ -894,7 +894,7 @@ pub extern "ADVAPI32" fn GetServiceKeyNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetServiceKeyNameW(
+pub extern "advapi32" fn GetServiceKeyNameW(
     hSCManager: SC_HANDLE,
     lpDisplayName: ?[*:0]const u16,
     lpServiceName: ?[*:0]u16,
@@ -902,7 +902,7 @@ pub extern "ADVAPI32" fn GetServiceKeyNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetServiceDisplayNameA(
+pub extern "advapi32" fn GetServiceDisplayNameA(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u8,
     lpDisplayName: ?[*:0]u8,
@@ -910,7 +910,7 @@ pub extern "ADVAPI32" fn GetServiceDisplayNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetServiceDisplayNameW(
+pub extern "advapi32" fn GetServiceDisplayNameW(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u16,
     lpDisplayName: ?[*:0]u16,
@@ -918,45 +918,45 @@ pub extern "ADVAPI32" fn GetServiceDisplayNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LockServiceDatabase(
+pub extern "advapi32" fn LockServiceDatabase(
     hSCManager: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn NotifyBootConfigStatus(
+pub extern "advapi32" fn NotifyBootConfigStatus(
     BootAcceptable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenSCManagerA(
+pub extern "advapi32" fn OpenSCManagerA(
     lpMachineName: ?[*:0]const u8,
     lpDatabaseName: ?[*:0]const u8,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenSCManagerW(
+pub extern "advapi32" fn OpenSCManagerW(
     lpMachineName: ?[*:0]const u16,
     lpDatabaseName: ?[*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenServiceA(
+pub extern "advapi32" fn OpenServiceA(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u8,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenServiceW(
+pub extern "advapi32" fn OpenServiceW(
     hSCManager: SC_HANDLE,
     lpServiceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceConfigA(
+pub extern "advapi32" fn QueryServiceConfigA(
     hService: SC_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpServiceConfig: ?*QUERY_SERVICE_CONFIGA,
@@ -965,7 +965,7 @@ pub extern "ADVAPI32" fn QueryServiceConfigA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceConfigW(
+pub extern "advapi32" fn QueryServiceConfigW(
     hService: SC_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpServiceConfig: ?*QUERY_SERVICE_CONFIGW,
@@ -974,7 +974,7 @@ pub extern "ADVAPI32" fn QueryServiceConfigW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceConfig2A(
+pub extern "advapi32" fn QueryServiceConfig2A(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
     // TODO: what to do with BytesParamIndex 3?
@@ -984,7 +984,7 @@ pub extern "ADVAPI32" fn QueryServiceConfig2A(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceConfig2W(
+pub extern "advapi32" fn QueryServiceConfig2W(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
     // TODO: what to do with BytesParamIndex 3?
@@ -994,7 +994,7 @@ pub extern "ADVAPI32" fn QueryServiceConfig2W(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceLockStatusA(
+pub extern "advapi32" fn QueryServiceLockStatusA(
     hSCManager: SC_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpLockStatus: ?*QUERY_SERVICE_LOCK_STATUSA,
@@ -1003,7 +1003,7 @@ pub extern "ADVAPI32" fn QueryServiceLockStatusA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceLockStatusW(
+pub extern "advapi32" fn QueryServiceLockStatusW(
     hSCManager: SC_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpLockStatus: ?*QUERY_SERVICE_LOCK_STATUSW,
@@ -1012,7 +1012,7 @@ pub extern "ADVAPI32" fn QueryServiceLockStatusW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceObjectSecurity(
+pub extern "advapi32" fn QueryServiceObjectSecurity(
     hService: SC_HANDLE,
     dwSecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1022,13 +1022,13 @@ pub extern "ADVAPI32" fn QueryServiceObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceStatus(
+pub extern "advapi32" fn QueryServiceStatus(
     hService: SC_HANDLE,
     lpServiceStatus: ?*SERVICE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryServiceStatusEx(
+pub extern "advapi32" fn QueryServiceStatusEx(
     hService: SC_HANDLE,
     InfoLevel: SC_STATUS_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -1038,89 +1038,89 @@ pub extern "ADVAPI32" fn QueryServiceStatusEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerA(
+pub extern "advapi32" fn RegisterServiceCtrlHandlerA(
     lpServiceName: ?[*:0]const u8,
     lpHandlerProc: ?LPHANDLER_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerW(
+pub extern "advapi32" fn RegisterServiceCtrlHandlerW(
     lpServiceName: ?[*:0]const u16,
     lpHandlerProc: ?LPHANDLER_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerExA(
+pub extern "advapi32" fn RegisterServiceCtrlHandlerExA(
     lpServiceName: ?[*:0]const u8,
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerExW(
+pub extern "advapi32" fn RegisterServiceCtrlHandlerExW(
     lpServiceName: ?[*:0]const u16,
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetServiceObjectSecurity(
+pub extern "advapi32" fn SetServiceObjectSecurity(
     hService: SC_HANDLE,
     dwSecurityInformation: OBJECT_SECURITY_INFORMATION,
     lpSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetServiceStatus(
+pub extern "advapi32" fn SetServiceStatus(
     hServiceStatus: SERVICE_STATUS_HANDLE,
     lpServiceStatus: ?*SERVICE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn StartServiceCtrlDispatcherA(
+pub extern "advapi32" fn StartServiceCtrlDispatcherA(
     lpServiceStartTable: ?*const SERVICE_TABLE_ENTRYA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn StartServiceCtrlDispatcherW(
+pub extern "advapi32" fn StartServiceCtrlDispatcherW(
     lpServiceStartTable: ?*const SERVICE_TABLE_ENTRYW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn StartServiceA(
+pub extern "advapi32" fn StartServiceA(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
     lpServiceArgVectors: ?[*]?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn StartServiceW(
+pub extern "advapi32" fn StartServiceW(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
     lpServiceArgVectors: ?[*]?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn UnlockServiceDatabase(
+pub extern "advapi32" fn UnlockServiceDatabase(
     ScLock: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn NotifyServiceStatusChangeA(
+pub extern "advapi32" fn NotifyServiceStatusChangeA(
     hService: SC_HANDLE,
     dwNotifyMask: SERVICE_NOTIFY,
     pNotifyBuffer: ?*SERVICE_NOTIFY_2A,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn NotifyServiceStatusChangeW(
+pub extern "advapi32" fn NotifyServiceStatusChangeW(
     hService: SC_HANDLE,
     dwNotifyMask: SERVICE_NOTIFY,
     pNotifyBuffer: ?*SERVICE_NOTIFY_2W,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn ControlServiceExA(
+pub extern "advapi32" fn ControlServiceExA(
     hService: SC_HANDLE,
     dwControl: u32,
     dwInfoLevel: u32,
@@ -1128,7 +1128,7 @@ pub extern "ADVAPI32" fn ControlServiceExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn ControlServiceExW(
+pub extern "advapi32" fn ControlServiceExW(
     hService: SC_HANDLE,
     dwControl: u32,
     dwInfoLevel: u32,
@@ -1136,13 +1136,13 @@ pub extern "ADVAPI32" fn ControlServiceExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ADVAPI32" fn QueryServiceDynamicInformation(
+pub extern "advapi32" fn QueryServiceDynamicInformation(
     hServiceStatus: SERVICE_STATUS_HANDLE,
     dwInfoLevel: u32,
     ppDynamicInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn WaitServiceState(
+pub extern "advapi32" fn WaitServiceState(
     hService: SC_HANDLE,
     dwNotify: u32,
     dwTimeout: u32,

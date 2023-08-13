@@ -3477,7 +3477,7 @@ pub const IMediaRadioManagerNotifySink = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
-pub extern "DMProcessXMLFiltered" fn DMProcessConfigXMLFiltered(
+pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
     pszXmlIn: ?[*:0]const u16,
     rgszAllowedCspNodes: [*]?PWSTR,
     dwNumAllowedCspNodes: u32,

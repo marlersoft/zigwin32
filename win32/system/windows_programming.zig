@@ -1914,26 +1914,26 @@ pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryThreadCycleTime(
+pub extern "kernel32" fn QueryThreadCycleTime(
     ThreadHandle: ?HANDLE,
     CycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryProcessCycleTime(
+pub extern "kernel32" fn QueryProcessCycleTime(
     ProcessHandle: ?HANDLE,
     CycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryIdleProcessorCycleTime(
+pub extern "kernel32" fn QueryIdleProcessorCycleTime(
     BufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     ProcessorIdleCycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn QueryIdleProcessorCycleTimeEx(
+pub extern "kernel32" fn QueryIdleProcessorCycleTimeEx(
     Group: u16,
     BufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -1956,7 +1956,7 @@ pub extern "api-ms-win-core-realtime-l1-1-1" fn QueryInterruptTime(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn QueryUnbiasedInterruptTime(
+pub extern "kernel32" fn QueryUnbiasedInterruptTime(
     UnbiasedTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1979,164 +1979,164 @@ pub extern "api-ms-win-core-realtime-l1-1-2" fn ConvertPerformanceCounterToAuxil
     lpConversionError: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn GlobalCompact(
+pub extern "kernel32" fn GlobalCompact(
     dwMinFree: u32,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub extern "KERNEL32" fn GlobalFix(
+pub extern "kernel32" fn GlobalFix(
     hMem: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn GlobalUnfix(
+pub extern "kernel32" fn GlobalUnfix(
     hMem: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn GlobalWire(
+pub extern "kernel32" fn GlobalWire(
     hMem: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "KERNEL32" fn GlobalUnWire(
+pub extern "kernel32" fn GlobalUnWire(
     hMem: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn LocalShrink(
+pub extern "kernel32" fn LocalShrink(
     hMem: isize,
     cbNewSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub extern "KERNEL32" fn LocalCompact(
+pub extern "kernel32" fn LocalCompact(
     uMinFree: u32,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub extern "KERNEL32" fn SetEnvironmentStringsA(
+pub extern "kernel32" fn SetEnvironmentStringsA(
     NewEnvironment: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetHandleCount(
+pub extern "kernel32" fn SetHandleCount(
     uNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn RequestDeviceWakeup(
+pub extern "kernel32" fn RequestDeviceWakeup(
     hDevice: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CancelDeviceWakeupRequest(
+pub extern "kernel32" fn CancelDeviceWakeupRequest(
     hDevice: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetMessageWaitingIndicator(
+pub extern "kernel32" fn SetMessageWaitingIndicator(
     hMsgIndicator: ?HANDLE,
     ulMsgCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn MulDiv(
+pub extern "kernel32" fn MulDiv(
     nNumber: i32,
     nNumerator: i32,
     nDenominator: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemRegistryQuota(
+pub extern "kernel32" fn GetSystemRegistryQuota(
     pdwQuotaAllowed: ?*u32,
     pdwQuotaUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FileTimeToDosDateTime(
+pub extern "kernel32" fn FileTimeToDosDateTime(
     lpFileTime: ?*const FILETIME,
     lpFatDate: ?*u16,
     lpFatTime: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DosDateTimeToFileTime(
+pub extern "kernel32" fn DosDateTimeToFileTime(
     wFatDate: u16,
     wFatTime: u16,
     lpFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn _lopen(
+pub extern "kernel32" fn _lopen(
     lpPathName: ?[*:0]const u8,
     iReadWrite: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn _lcreat(
+pub extern "kernel32" fn _lcreat(
     lpPathName: ?[*:0]const u8,
     iAttribute: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn _lread(
+pub extern "kernel32" fn _lread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
     uBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn _lwrite(
+pub extern "kernel32" fn _lwrite(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?[*]const u8,
     uBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn _hread(
+pub extern "kernel32" fn _hread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
     lBytes: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn _hwrite(
+pub extern "kernel32" fn _hwrite(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?[*]const u8,
     lBytes: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn _lclose(
+pub extern "kernel32" fn _lclose(
     hFile: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn _llseek(
+pub extern "kernel32" fn _llseek(
     hFile: i32,
     lOffset: i32,
     iOrigin: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SignalObjectAndWait(
+pub extern "kernel32" fn SignalObjectAndWait(
     hObjectToSignal: ?HANDLE,
     hObjectToWaitOn: ?HANDLE,
     dwMilliseconds: u32,
     bAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn OpenMutexA(
+pub extern "kernel32" fn OpenMutexA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn OpenSemaphoreA(
+pub extern "kernel32" fn OpenSemaphoreA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn CreateWaitableTimerA(
+pub extern "kernel32" fn CreateWaitableTimerA(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     bManualReset: BOOL,
     lpTimerName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn OpenWaitableTimerA(
+pub extern "kernel32" fn OpenWaitableTimerA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpTimerName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn CreateWaitableTimerExA(
+pub extern "kernel32" fn CreateWaitableTimerExA(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     lpTimerName: ?[*:0]const u8,
     dwFlags: u32,
@@ -2144,7 +2144,7 @@ pub extern "KERNEL32" fn CreateWaitableTimerExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableA(
+pub extern "kernel32" fn GetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2153,7 +2153,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableW(
+pub extern "kernel32" fn GetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2162,7 +2162,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExA(
+pub extern "kernel32" fn GetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2172,7 +2172,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExW(
+pub extern "kernel32" fn GetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2182,7 +2182,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableA(
+pub extern "kernel32" fn SetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2191,7 +2191,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableW(
+pub extern "kernel32" fn SetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2200,7 +2200,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExA(
+pub extern "kernel32" fn SetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2210,7 +2210,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExW(
+pub extern "kernel32" fn SetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2220,26 +2220,26 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn IsNativeVhdBoot(
+pub extern "kernel32" fn IsNativeVhdBoot(
     NativeVhdBoot: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileIntA(
+pub extern "kernel32" fn GetProfileIntA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     nDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileIntW(
+pub extern "kernel32" fn GetProfileIntW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     nDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileStringA(
+pub extern "kernel32" fn GetProfileStringA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     lpDefault: ?[*:0]const u8,
@@ -2248,7 +2248,7 @@ pub extern "KERNEL32" fn GetProfileStringA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileStringW(
+pub extern "kernel32" fn GetProfileStringW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     lpDefault: ?[*:0]const u16,
@@ -2257,47 +2257,47 @@ pub extern "KERNEL32" fn GetProfileStringW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WriteProfileStringA(
+pub extern "kernel32" fn WriteProfileStringA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WriteProfileStringW(
+pub extern "kernel32" fn WriteProfileStringW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileSectionA(
+pub extern "kernel32" fn GetProfileSectionA(
     lpAppName: ?[*:0]const u8,
     lpReturnedString: ?[*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetProfileSectionW(
+pub extern "kernel32" fn GetProfileSectionW(
     lpAppName: ?[*:0]const u16,
     lpReturnedString: ?[*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WriteProfileSectionA(
+pub extern "kernel32" fn WriteProfileSectionA(
     lpAppName: ?[*:0]const u8,
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WriteProfileSectionW(
+pub extern "kernel32" fn WriteProfileSectionW(
     lpAppName: ?[*:0]const u16,
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileIntA(
+pub extern "kernel32" fn GetPrivateProfileIntA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     nDefault: i32,
@@ -2305,7 +2305,7 @@ pub extern "KERNEL32" fn GetPrivateProfileIntA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileIntW(
+pub extern "kernel32" fn GetPrivateProfileIntW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     nDefault: i32,
@@ -2313,7 +2313,7 @@ pub extern "KERNEL32" fn GetPrivateProfileIntW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileStringA(
+pub extern "kernel32" fn GetPrivateProfileStringA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     lpDefault: ?[*:0]const u8,
@@ -2323,7 +2323,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStringA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileStringW(
+pub extern "kernel32" fn GetPrivateProfileStringW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     lpDefault: ?[*:0]const u16,
@@ -2333,7 +2333,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStringW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileStringA(
+pub extern "kernel32" fn WritePrivateProfileStringA(
     lpAppName: ?[*:0]const u8,
     lpKeyName: ?[*:0]const u8,
     lpString: ?[*:0]const u8,
@@ -2341,7 +2341,7 @@ pub extern "KERNEL32" fn WritePrivateProfileStringA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileStringW(
+pub extern "kernel32" fn WritePrivateProfileStringW(
     lpAppName: ?[*:0]const u16,
     lpKeyName: ?[*:0]const u16,
     lpString: ?[*:0]const u16,
@@ -2349,7 +2349,7 @@ pub extern "KERNEL32" fn WritePrivateProfileStringW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileSectionA(
+pub extern "kernel32" fn GetPrivateProfileSectionA(
     lpAppName: ?[*:0]const u8,
     lpReturnedString: ?[*:0]u8,
     nSize: u32,
@@ -2357,7 +2357,7 @@ pub extern "KERNEL32" fn GetPrivateProfileSectionA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileSectionW(
+pub extern "kernel32" fn GetPrivateProfileSectionW(
     lpAppName: ?[*:0]const u16,
     lpReturnedString: ?[*:0]u16,
     nSize: u32,
@@ -2365,35 +2365,35 @@ pub extern "KERNEL32" fn GetPrivateProfileSectionW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileSectionA(
+pub extern "kernel32" fn WritePrivateProfileSectionA(
     lpAppName: ?[*:0]const u8,
     lpString: ?[*:0]const u8,
     lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileSectionW(
+pub extern "kernel32" fn WritePrivateProfileSectionW(
     lpAppName: ?[*:0]const u16,
     lpString: ?[*:0]const u16,
     lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileSectionNamesA(
+pub extern "kernel32" fn GetPrivateProfileSectionNamesA(
     lpszReturnBuffer: ?[*:0]u8,
     nSize: u32,
     lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileSectionNamesW(
+pub extern "kernel32" fn GetPrivateProfileSectionNamesW(
     lpszReturnBuffer: ?[*:0]u16,
     nSize: u32,
     lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileStructA(
+pub extern "kernel32" fn GetPrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2403,7 +2403,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStructA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetPrivateProfileStructW(
+pub extern "kernel32" fn GetPrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2413,7 +2413,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStructW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileStructA(
+pub extern "kernel32" fn WritePrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2423,7 +2423,7 @@ pub extern "KERNEL32" fn WritePrivateProfileStructA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WritePrivateProfileStructW(
+pub extern "kernel32" fn WritePrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2432,74 +2432,74 @@ pub extern "KERNEL32" fn WritePrivateProfileStructW(
     szFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn IsBadHugeReadPtr(
+pub extern "kernel32" fn IsBadHugeReadPtr(
     lp: ?*const anyopaque,
     ucb: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn IsBadHugeWritePtr(
+pub extern "kernel32" fn IsBadHugeWritePtr(
     lp: ?*anyopaque,
     ucb: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetComputerNameA(
+pub extern "kernel32" fn GetComputerNameA(
     lpBuffer: ?[*:0]u8,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetComputerNameW(
+pub extern "kernel32" fn GetComputerNameW(
     lpBuffer: ?[*:0]u16,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DnsHostnameToComputerNameA(
+pub extern "kernel32" fn DnsHostnameToComputerNameA(
     Hostname: ?[*:0]const u8,
     ComputerName: ?[*:0]u8,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DnsHostnameToComputerNameW(
+pub extern "kernel32" fn DnsHostnameToComputerNameW(
     Hostname: ?[*:0]const u16,
     ComputerName: ?[*:0]u16,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetUserNameA(
+pub extern "advapi32" fn GetUserNameA(
     lpBuffer: ?[*:0]u8,
     pcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetUserNameW(
+pub extern "advapi32" fn GetUserNameW(
     lpBuffer: ?[*:0]u16,
     pcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn IsTokenUntrusted(
+pub extern "advapi32" fn IsTokenUntrusted(
     TokenHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CancelTimerQueueTimer(
+pub extern "kernel32" fn CancelTimerQueueTimer(
     TimerQueue: ?HANDLE,
     Timer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetCurrentHwProfileA(
+pub extern "advapi32" fn GetCurrentHwProfileA(
     lpHwProfileInfo: ?*HW_PROFILE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetCurrentHwProfileW(
+pub extern "advapi32" fn GetCurrentHwProfileW(
     lpHwProfileInfo: ?*HW_PROFILE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReplacePartitionUnit(
+pub extern "kernel32" fn ReplacePartitionUnit(
     TargetPartition: ?PWSTR,
     SparePartition: ?PWSTR,
     Flags: u32,
@@ -2508,7 +2508,7 @@ pub extern "KERNEL32" fn ReplacePartitionUnit(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86, .X64 => struct {
 
-pub extern "KERNEL32" fn GetThreadEnabledXStateFeatures(
+pub extern "kernel32" fn GetThreadEnabledXStateFeatures(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 }, else => struct { } };
@@ -2516,7 +2516,7 @@ pub extern "KERNEL32" fn GetThreadEnabledXStateFeatures(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86, .X64 => struct {
 
-pub extern "KERNEL32" fn EnableProcessOptionalXStateFeatures(
+pub extern "kernel32" fn EnableProcessOptionalXStateFeatures(
     Features: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2529,7 +2529,7 @@ pub extern "api-ms-win-core-backgroundtask-l1-1-0" fn RaiseCustomSystemEventTrig
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_lstrcmpW(
+pub extern "kernel32" fn uaw_lstrcmpW(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2539,7 +2539,7 @@ pub extern "KERNEL32" fn uaw_lstrcmpW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_lstrcmpiW(
+pub extern "kernel32" fn uaw_lstrcmpiW(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2549,7 +2549,7 @@ pub extern "KERNEL32" fn uaw_lstrcmpiW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_lstrlenW(
+pub extern "kernel32" fn uaw_lstrlenW(
     String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2558,7 +2558,7 @@ pub extern "KERNEL32" fn uaw_lstrlenW(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_wcschr(
+pub extern "kernel32" fn uaw_wcschr(
     String: ?*u16,
     Character: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
@@ -2568,7 +2568,7 @@ pub extern "KERNEL32" fn uaw_wcschr(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_wcscpy(
+pub extern "kernel32" fn uaw_wcscpy(
     Destination: ?*u16,
     Source: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
@@ -2578,7 +2578,7 @@ pub extern "KERNEL32" fn uaw_wcscpy(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_wcsicmp(
+pub extern "kernel32" fn uaw_wcsicmp(
     String1: ?*u16,
     String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2588,7 +2588,7 @@ pub extern "KERNEL32" fn uaw_wcsicmp(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_wcslen(
+pub extern "kernel32" fn uaw_wcslen(
     String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
@@ -2597,7 +2597,7 @@ pub extern "KERNEL32" fn uaw_wcslen(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub extern "KERNEL32" fn uaw_wcsrchr(
+pub extern "kernel32" fn uaw_wcsrchr(
     String: ?*u16,
     Character: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u16;
@@ -2836,21 +2836,21 @@ pub extern "api-ms-win-core-featurestaging-l1-1-1" fn GetFeatureVariant(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCIOpenProvider(
+pub extern "dciman32" fn DCIOpenProvider(
 ) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCICloseProvider(
+pub extern "dciman32" fn DCICloseProvider(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCICreatePrimary(
+pub extern "dciman32" fn DCICreatePrimary(
     hdc: ?HDC,
     lplpSurface: ?*?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCICreateOffscreen(
+pub extern "dciman32" fn DCICreateOffscreen(
     hdc: ?HDC,
     dwCompression: u32,
     dwRedMask: u32,
@@ -2863,13 +2863,13 @@ pub extern "DCIMAN32" fn DCICreateOffscreen(
     lplpSurface: ?*?*DCIOFFSCREEN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCICreateOverlay(
+pub extern "dciman32" fn DCICreateOverlay(
     hdc: ?HDC,
     lpOffscreenSurf: ?*anyopaque,
     lplpSurface: ?*?*DCIOVERLAY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCIEnum(
+pub extern "dciman32" fn DCIEnum(
     hdc: ?HDC,
     lprDst: ?*RECT,
     lprSrc: ?*RECT,
@@ -2877,57 +2877,57 @@ pub extern "DCIMAN32" fn DCIEnum(
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCISetSrcDestClip(
+pub extern "dciman32" fn DCISetSrcDestClip(
     pdci: ?*DCIOFFSCREEN,
     srcrc: ?*RECT,
     destrc: ?*RECT,
     prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn WinWatchOpen(
+pub extern "dciman32" fn WinWatchOpen(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWINWATCH;
 
-pub extern "DCIMAN32" fn WinWatchClose(
+pub extern "dciman32" fn WinWatchClose(
     hWW: ?HWINWATCH,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DCIMAN32" fn WinWatchGetClipList(
+pub extern "dciman32" fn WinWatchGetClipList(
     hWW: ?HWINWATCH,
     prc: ?*RECT,
     size: u32,
     prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DCIMAN32" fn WinWatchDidStatusChange(
+pub extern "dciman32" fn WinWatchDidStatusChange(
     hWW: ?HWINWATCH,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "DCIMAN32" fn GetWindowRegionData(
+pub extern "dciman32" fn GetWindowRegionData(
     hwnd: ?HWND,
     size: u32,
     prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DCIMAN32" fn GetDCRegionData(
+pub extern "dciman32" fn GetDCRegionData(
     hdc: ?HDC,
     size: u32,
     prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DCIMAN32" fn WinWatchNotify(
+pub extern "dciman32" fn WinWatchNotify(
     hWW: ?HWINWATCH,
     NotifyCallback: ?WINWATCHNOTIFYPROC,
     NotifyParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCIEndAccess(
+pub extern "dciman32" fn DCIEndAccess(
     pdci: ?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCIBeginAccess(
+pub extern "dciman32" fn DCIBeginAccess(
     pdci: ?*DCISURFACEINFO,
     x: i32,
     y: i32,
@@ -2936,20 +2936,20 @@ pub extern "DCIMAN32" fn DCIBeginAccess(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "DCIMAN32" fn DCIDestroy(
+pub extern "dciman32" fn DCIDestroy(
     pdci: ?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DCIMAN32" fn DCIDraw(
+pub extern "dciman32" fn DCIDraw(
     pdci: ?*DCIOFFSCREEN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCISetClipList(
+pub extern "dciman32" fn DCISetClipList(
     pdci: ?*DCIOFFSCREEN,
     prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "DCIMAN32" fn DCISetDestination(
+pub extern "dciman32" fn DCISetDestination(
     pdci: ?*DCIOFFSCREEN,
     dst: ?*RECT,
     src: ?*RECT,
@@ -2958,7 +2958,7 @@ pub extern "DCIMAN32" fn DCISetDestination(
 pub extern "api-ms-win-dx-d3dkmt-l1-1-0" fn GdiEntry13(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ADVPACK" fn RunSetupCommandA(
+pub extern "advpack" fn RunSetupCommandA(
     hWnd: ?HWND,
     szCmdName: ?[*:0]const u8,
     szInfSection: ?[*:0]const u8,
@@ -2969,7 +2969,7 @@ pub extern "ADVPACK" fn RunSetupCommandA(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RunSetupCommandW(
+pub extern "advpack" fn RunSetupCommandW(
     hWnd: ?HWND,
     szCmdName: ?[*:0]const u16,
     szInfSection: ?[*:0]const u16,
@@ -2980,28 +2980,28 @@ pub extern "ADVPACK" fn RunSetupCommandW(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn NeedRebootInit(
+pub extern "advpack" fn NeedRebootInit(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ADVPACK" fn NeedReboot(
+pub extern "advpack" fn NeedReboot(
     dwRebootCheck: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVPACK" fn RebootCheckOnInstallA(
+pub extern "advpack" fn RebootCheckOnInstallA(
     hwnd: ?HWND,
     pszINF: ?[*:0]const u8,
     pszSec: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RebootCheckOnInstallW(
+pub extern "advpack" fn RebootCheckOnInstallW(
     hwnd: ?HWND,
     pszINF: ?[*:0]const u16,
     pszSec: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn TranslateInfStringA(
+pub extern "advpack" fn TranslateInfStringA(
     pszInfFilename: ?[*:0]const u8,
     pszInstallSection: ?[*:0]const u8,
     pszTranslateSection: ?[*:0]const u8,
@@ -3012,7 +3012,7 @@ pub extern "ADVPACK" fn TranslateInfStringA(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn TranslateInfStringW(
+pub extern "advpack" fn TranslateInfStringW(
     pszInfFilename: ?[*:0]const u16,
     pszInstallSection: ?[*:0]const u16,
     pszTranslateSection: ?[*:0]const u16,
@@ -3024,39 +3024,39 @@ pub extern "ADVPACK" fn TranslateInfStringW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ADVPACK" fn RegInstallA(
+pub extern "advpack" fn RegInstallA(
     hmod: ?HINSTANCE,
     pszSection: ?[*:0]const u8,
     pstTable: ?*const STRTABLEA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ADVPACK" fn RegInstallW(
+pub extern "advpack" fn RegInstallW(
     hmod: ?HINSTANCE,
     pszSection: ?[*:0]const u16,
     pstTable: ?*const STRTABLEW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn LaunchINFSectionExW(
+pub extern "advpack" fn LaunchINFSectionExW(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn ExecuteCabA(
+pub extern "advpack" fn ExecuteCabA(
     hwnd: ?HWND,
     pCab: ?*CABINFOA,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn ExecuteCabW(
+pub extern "advpack" fn ExecuteCabW(
     hwnd: ?HWND,
     pCab: ?*CABINFOW,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn AdvInstallFileA(
+pub extern "advpack" fn AdvInstallFileA(
     hwnd: ?HWND,
     lpszSourceDir: ?[*:0]const u8,
     lpszSourceFile: ?[*:0]const u8,
@@ -3066,7 +3066,7 @@ pub extern "ADVPACK" fn AdvInstallFileA(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn AdvInstallFileW(
+pub extern "advpack" fn AdvInstallFileW(
     hwnd: ?HWND,
     lpszSourceDir: ?[*:0]const u16,
     lpszSourceFile: ?[*:0]const u16,
@@ -3076,7 +3076,7 @@ pub extern "ADVPACK" fn AdvInstallFileW(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegSaveRestoreA(
+pub extern "advpack" fn RegSaveRestoreA(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u8,
     hkBckupKey: ?HKEY,
@@ -3086,7 +3086,7 @@ pub extern "ADVPACK" fn RegSaveRestoreA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegSaveRestoreW(
+pub extern "advpack" fn RegSaveRestoreW(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u16,
     hkBckupKey: ?HKEY,
@@ -3096,7 +3096,7 @@ pub extern "ADVPACK" fn RegSaveRestoreW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegSaveRestoreOnINFA(
+pub extern "advpack" fn RegSaveRestoreOnINFA(
     hWnd: ?HWND,
     pszTitle: ?[*:0]const u8,
     pszINF: ?[*:0]const u8,
@@ -3106,7 +3106,7 @@ pub extern "ADVPACK" fn RegSaveRestoreOnINFA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegSaveRestoreOnINFW(
+pub extern "advpack" fn RegSaveRestoreOnINFW(
     hWnd: ?HWND,
     pszTitle: ?[*:0]const u16,
     pszINF: ?[*:0]const u16,
@@ -3116,19 +3116,19 @@ pub extern "ADVPACK" fn RegSaveRestoreOnINFW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegRestoreAllA(
+pub extern "advpack" fn RegRestoreAllA(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u8,
     hkBckupKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn RegRestoreAllW(
+pub extern "advpack" fn RegRestoreAllW(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u16,
     hkBckupKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn FileSaveRestoreW(
+pub extern "advpack" fn FileSaveRestoreW(
     hDlg: ?HWND,
     lpFileList: ?PWSTR,
     lpDir: ?[*:0]const u16,
@@ -3136,7 +3136,7 @@ pub extern "ADVPACK" fn FileSaveRestoreW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn FileSaveRestoreOnINFA(
+pub extern "advpack" fn FileSaveRestoreOnINFA(
     hWnd: ?HWND,
     pszTitle: ?[*:0]const u8,
     pszINF: ?[*:0]const u8,
@@ -3146,7 +3146,7 @@ pub extern "ADVPACK" fn FileSaveRestoreOnINFA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn FileSaveRestoreOnINFW(
+pub extern "advpack" fn FileSaveRestoreOnINFW(
     hWnd: ?HWND,
     pszTitle: ?[*:0]const u16,
     pszINF: ?[*:0]const u16,
@@ -3156,83 +3156,83 @@ pub extern "ADVPACK" fn FileSaveRestoreOnINFW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn AddDelBackupEntryA(
+pub extern "advpack" fn AddDelBackupEntryA(
     lpcszFileList: ?[*:0]const u8,
     lpcszBackupDir: ?[*:0]const u8,
     lpcszBaseName: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn AddDelBackupEntryW(
+pub extern "advpack" fn AddDelBackupEntryW(
     lpcszFileList: ?[*:0]const u16,
     lpcszBackupDir: ?[*:0]const u16,
     lpcszBaseName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn FileSaveMarkNotExistA(
+pub extern "advpack" fn FileSaveMarkNotExistA(
     lpFileList: ?[*:0]const u8,
     lpDir: ?[*:0]const u8,
     lpBaseName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn FileSaveMarkNotExistW(
+pub extern "advpack" fn FileSaveMarkNotExistW(
     lpFileList: ?[*:0]const u16,
     lpDir: ?[*:0]const u16,
     lpBaseName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn GetVersionFromFileA(
+pub extern "advpack" fn GetVersionFromFileA(
     lpszFilename: ?[*:0]const u8,
     pdwMSVer: ?*u32,
     pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn GetVersionFromFileW(
+pub extern "advpack" fn GetVersionFromFileW(
     lpszFilename: ?[*:0]const u16,
     pdwMSVer: ?*u32,
     pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn GetVersionFromFileExA(
+pub extern "advpack" fn GetVersionFromFileExA(
     lpszFilename: ?[*:0]const u8,
     pdwMSVer: ?*u32,
     pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn GetVersionFromFileExW(
+pub extern "advpack" fn GetVersionFromFileExW(
     lpszFilename: ?[*:0]const u16,
     pdwMSVer: ?*u32,
     pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn IsNTAdmin(
+pub extern "advpack" fn IsNTAdmin(
     dwReserved: u32,
     lpdwReserved: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVPACK" fn DelNodeA(
+pub extern "advpack" fn DelNodeA(
     pszFileOrDirName: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn DelNodeW(
+pub extern "advpack" fn DelNodeW(
     pszFileOrDirName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn DelNodeRunDLL32W(
+pub extern "advpack" fn DelNodeRunDLL32W(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn OpenINFEngineA(
+pub extern "advpack" fn OpenINFEngineA(
     pszInfFilename: ?[*:0]const u8,
     pszInstallSection: ?[*:0]const u8,
     dwFlags: u32,
@@ -3240,7 +3240,7 @@ pub extern "ADVPACK" fn OpenINFEngineA(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn OpenINFEngineW(
+pub extern "advpack" fn OpenINFEngineW(
     pszInfFilename: ?[*:0]const u16,
     pszInstallSection: ?[*:0]const u16,
     dwFlags: u32,
@@ -3248,7 +3248,7 @@ pub extern "ADVPACK" fn OpenINFEngineW(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn TranslateInfStringExA(
+pub extern "advpack" fn TranslateInfStringExA(
     hInf: ?*anyopaque,
     pszInfFilename: ?[*:0]const u8,
     pszTranslateSection: ?[*:0]const u8,
@@ -3259,7 +3259,7 @@ pub extern "ADVPACK" fn TranslateInfStringExA(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn TranslateInfStringExW(
+pub extern "advpack" fn TranslateInfStringExW(
     hInf: ?*anyopaque,
     pszInfFilename: ?[*:0]const u16,
     pszTranslateSection: ?[*:0]const u16,
@@ -3270,11 +3270,11 @@ pub extern "ADVPACK" fn TranslateInfStringExW(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn CloseINFEngine(
+pub extern "advpack" fn CloseINFEngine(
     hInf: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn ExtractFilesA(
+pub extern "advpack" fn ExtractFilesA(
     pszCabName: ?[*:0]const u8,
     pszExpandDir: ?[*:0]const u8,
     dwFlags: u32,
@@ -3283,7 +3283,7 @@ pub extern "ADVPACK" fn ExtractFilesA(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn ExtractFilesW(
+pub extern "advpack" fn ExtractFilesW(
     pszCabName: ?[*:0]const u16,
     pszExpandDir: ?[*:0]const u16,
     dwFlags: u32,
@@ -3292,138 +3292,138 @@ pub extern "ADVPACK" fn ExtractFilesW(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn LaunchINFSectionW(
+pub extern "advpack" fn LaunchINFSectionW(
     hwndOwner: ?HWND,
     hInstance: ?HINSTANCE,
     pszParams: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "ADVPACK" fn UserInstStubWrapperA(
+pub extern "advpack" fn UserInstStubWrapperA(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?[*:0]const u8,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn UserInstStubWrapperW(
+pub extern "advpack" fn UserInstStubWrapperW(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?[*:0]const u16,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn UserUnInstStubWrapperA(
+pub extern "advpack" fn UserUnInstStubWrapperA(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?[*:0]const u8,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn UserUnInstStubWrapperW(
+pub extern "advpack" fn UserUnInstStubWrapperW(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
     pszParms: ?[*:0]const u16,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn SetPerUserSecValuesA(
+pub extern "advpack" fn SetPerUserSecValuesA(
     pPerUser: ?*PERUSERSECTIONA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ADVPACK" fn SetPerUserSecValuesW(
+pub extern "advpack" fn SetPerUserSecValuesW(
     pPerUser: ?*PERUSERSECTIONW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SendIMEMessageExA(
+pub extern "user32" fn SendIMEMessageExA(
     param0: ?HWND,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SendIMEMessageExW(
+pub extern "user32" fn SendIMEMessageExW(
     param0: ?HWND,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub extern "USER32" fn IMPGetIMEA(
+pub extern "user32" fn IMPGetIMEA(
     param0: ?HWND,
     param1: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn IMPGetIMEW(
+pub extern "user32" fn IMPGetIMEW(
     param0: ?HWND,
     param1: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn IMPQueryIMEA(
+pub extern "user32" fn IMPQueryIMEA(
     param0: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn IMPQueryIMEW(
+pub extern "user32" fn IMPQueryIMEW(
     param0: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn IMPSetIMEA(
+pub extern "user32" fn IMPSetIMEA(
     param0: ?HWND,
     param1: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn IMPSetIMEW(
+pub extern "user32" fn IMPSetIMEW(
     param0: ?HWND,
     param1: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn WINNLSGetIMEHotkey(
+pub extern "user32" fn WINNLSGetIMEHotkey(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn WINNLSEnableIME(
+pub extern "user32" fn WINNLSEnableIME(
     param0: ?HWND,
     param1: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "USER32" fn WINNLSGetEnableStatus(
+pub extern "user32" fn WINNLSGetEnableStatus(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "APPHELP" fn ApphelpCheckShellObject(
+pub extern "apphelp" fn ApphelpCheckShellObject(
     ObjectCLSID: ?*const Guid,
     bShimIfNecessary: BOOL,
     pullFlags: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Wldp" fn WldpGetLockdownPolicy(
+pub extern "wldp" fn WldpGetLockdownPolicy(
     hostInformation: ?*WLDP_HOST_INFORMATION,
     lockdownState: ?*u32,
     lockdownFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Wldp" fn WldpIsClassInApprovedList(
+pub extern "wldp" fn WldpIsClassInApprovedList(
     classID: ?*const Guid,
     hostInformation: ?*WLDP_HOST_INFORMATION,
     isApproved: ?*BOOL,
     optionalFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Wldp" fn WldpSetDynamicCodeTrust(
+pub extern "wldp" fn WldpSetDynamicCodeTrust(
     fileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Wldp" fn WldpIsDynamicCodePolicyEnabled(
+pub extern "wldp" fn WldpIsDynamicCodePolicyEnabled(
     isEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Wldp" fn WldpQueryDynamicCodeTrust(
+pub extern "wldp" fn WldpQueryDynamicCodeTrust(
     fileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     baseImage: ?*anyopaque,
     imageSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Wldp" fn WldpQueryDeviceSecurityInformation(
+pub extern "wldp" fn WldpQueryDeviceSecurityInformation(
     information: ?[*]WLDP_DEVICE_SECURITY_INFORMATION,
     informationLength: u32,
     returnLength: ?*u32,

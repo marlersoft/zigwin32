@@ -729,62 +729,62 @@ pub const CONFIG_CI_PROV_INFO = extern struct {
 // Section: Functions (18)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WinVerifyTrust(
+pub extern "wintrust" fn WinVerifyTrust(
     hwnd: ?HWND,
     pgActionID: ?*Guid,
     pWVTData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WinVerifyTrustEx(
+pub extern "wintrust" fn WinVerifyTrustEx(
     hwnd: ?HWND,
     pgActionID: ?*Guid,
     pWinTrustData: ?*WINTRUST_DATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustGetRegPolicyFlags(
+pub extern "wintrust" fn WintrustGetRegPolicyFlags(
     pdwPolicyFlags: ?*WINTRUST_POLICY_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustSetRegPolicyFlags(
+pub extern "wintrust" fn WintrustSetRegPolicyFlags(
     dwPolicyFlags: WINTRUST_POLICY_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustAddActionID(
+pub extern "wintrust" fn WintrustAddActionID(
     pgActionID: ?*Guid,
     fdwFlags: u32,
     psProvInfo: ?*CRYPT_REGISTER_ACTIONID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustRemoveActionID(
+pub extern "wintrust" fn WintrustRemoveActionID(
     pgActionID: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustLoadFunctionPointers(
+pub extern "wintrust" fn WintrustLoadFunctionPointers(
     pgActionID: ?*Guid,
     pPfns: ?*CRYPT_PROVIDER_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustAddDefaultForUsage(
+pub extern "wintrust" fn WintrustAddDefaultForUsage(
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_REGDEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WintrustGetDefaultForUsage(
+pub extern "wintrust" fn WintrustGetDefaultForUsage(
     dwAction: WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION,
     pszUsageOID: ?[*:0]const u8,
     psUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WTHelperGetProvSignerFromChain(
+pub extern "wintrust" fn WTHelperGetProvSignerFromChain(
     pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSigner: BOOL,
@@ -792,47 +792,47 @@ pub extern "WINTRUST" fn WTHelperGetProvSignerFromChain(
 ) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_SGNR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WTHelperGetProvCertFromChain(
+pub extern "wintrust" fn WTHelperGetProvCertFromChain(
     pSgnr: ?*CRYPT_PROVIDER_SGNR,
     idxCert: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_CERT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WTHelperProvDataFromStateData(
+pub extern "wintrust" fn WTHelperProvDataFromStateData(
     hStateData: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_DATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WTHelperGetProvPrivateDataFromChain(
+pub extern "wintrust" fn WTHelperGetProvPrivateDataFromChain(
     pProvData: ?*CRYPT_PROVIDER_DATA,
     pgProviderID: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_PRIVDATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn WTHelperCertIsSelfSigned(
+pub extern "wintrust" fn WTHelperCertIsSelfSigned(
     dwEncoding: u32,
     pCert: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WINTRUST" fn WTHelperCertCheckValidSignature(
+pub extern "wintrust" fn WTHelperCertCheckValidSignature(
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn OpenPersonalTrustDBDialogEx(
+pub extern "wintrust" fn OpenPersonalTrustDBDialogEx(
     hwndParent: ?HWND,
     dwFlags: u32,
     pvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WINTRUST" fn OpenPersonalTrustDBDialog(
+pub extern "wintrust" fn OpenPersonalTrustDBDialog(
     hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WINTRUST" fn WintrustSetDefaultIncludePEPageHashes(
+pub extern "wintrust" fn WintrustSetDefaultIncludePEPageHashes(
     fIncludePEPageHashes: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 

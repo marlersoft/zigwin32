@@ -316,7 +316,7 @@ pub const WSC_SECURITY_PROVIDER_HEALTH_SNOOZE = WSC_SECURITY_PROVIDER_HEALTH.SNO
 // Section: Functions (6)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WSCAPI" fn WscRegisterForChanges(
+pub extern "wscapi" fn WscRegisterForChanges(
     Reserved: ?*anyopaque,
     phCallbackRegistration: ?*?HANDLE,
     lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
@@ -324,23 +324,23 @@ pub extern "WSCAPI" fn WscRegisterForChanges(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WSCAPI" fn WscUnRegisterChanges(
+pub extern "wscapi" fn WscUnRegisterChanges(
     hRegistrationHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WSCAPI" fn WscRegisterForUserNotifications(
+pub extern "wscapi" fn WscRegisterForUserNotifications(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WSCAPI" fn WscGetSecurityProviderHealth(
+pub extern "wscapi" fn WscGetSecurityProviderHealth(
     Providers: u32,
     pHealth: ?*WSC_SECURITY_PROVIDER_HEALTH,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WSCAPI" fn WscQueryAntiMalwareUri(
+pub extern "wscapi" fn WscQueryAntiMalwareUri(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WSCAPI" fn WscGetAntiMalwareUri(
+pub extern "wscapi" fn WscGetAntiMalwareUri(
     ppszUri: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

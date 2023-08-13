@@ -12671,7 +12671,7 @@ pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "D3DCOMPILER_47" fn D3DDisassemble11Trace(
+pub extern "d3dcompiler_47" fn D3DDisassemble11Trace(
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,

@@ -1803,51 +1803,51 @@ pub const IDirectSoundFullDuplex = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
-pub extern "DSOUND" fn DirectSoundCreate(
+pub extern "dsound" fn DirectSoundCreate(
     pcGuidDevice: ?*const Guid,
     ppDS: ?*?*IDirectSound,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundEnumerateA(
+pub extern "dsound" fn DirectSoundEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundEnumerateW(
+pub extern "dsound" fn DirectSoundEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundCaptureCreate(
+pub extern "dsound" fn DirectSoundCaptureCreate(
     pcGuidDevice: ?*const Guid,
     ppDSC: ?*?*IDirectSoundCapture,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundCaptureEnumerateA(
+pub extern "dsound" fn DirectSoundCaptureEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundCaptureEnumerateW(
+pub extern "dsound" fn DirectSoundCaptureEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundCreate8(
+pub extern "dsound" fn DirectSoundCreate8(
     pcGuidDevice: ?*const Guid,
     ppDS8: ?*?*IDirectSound8,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundCaptureCreate8(
+pub extern "dsound" fn DirectSoundCaptureCreate8(
     pcGuidDevice: ?*const Guid,
     ppDSC8: ?*?*IDirectSoundCapture,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn DirectSoundFullDuplexCreate(
+pub extern "dsound" fn DirectSoundFullDuplexCreate(
     pcGuidCaptureDevice: ?*const Guid,
     pcGuidRenderDevice: ?*const Guid,
     pcDSCBufferDesc: ?*DSCBUFFERDESC,
@@ -1860,7 +1860,7 @@ pub extern "DSOUND" fn DirectSoundFullDuplexCreate(
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DSOUND" fn GetDeviceID(
+pub extern "dsound" fn GetDeviceID(
     pGuidSrc: ?*const Guid,
     pGuidDest: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

@@ -10799,14 +10799,14 @@ pub const WINEVENTPROC = fn(
 // Section: Functions (123)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn LresultFromObject(
+pub extern "oleacc" fn LresultFromObject(
     riid: ?*const Guid,
     wParam: WPARAM,
     punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEACC" fn ObjectFromLresult(
+pub extern "oleacc" fn ObjectFromLresult(
     lResult: LRESULT,
     riid: ?*const Guid,
     wParam: WPARAM,
@@ -10814,13 +10814,13 @@ pub extern "OLEACC" fn ObjectFromLresult(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn WindowFromAccessibleObject(
+pub extern "oleacc" fn WindowFromAccessibleObject(
     param0: ?*IAccessible,
     phwnd: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn AccessibleObjectFromWindow(
+pub extern "oleacc" fn AccessibleObjectFromWindow(
     hwnd: ?HWND,
     dwId: u32,
     riid: ?*const Guid,
@@ -10828,7 +10828,7 @@ pub extern "OLEACC" fn AccessibleObjectFromWindow(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn AccessibleObjectFromEvent(
+pub extern "oleacc" fn AccessibleObjectFromEvent(
     hwnd: ?HWND,
     dwId: u32,
     dwChildId: u32,
@@ -10837,14 +10837,14 @@ pub extern "OLEACC" fn AccessibleObjectFromEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn AccessibleObjectFromPoint(
+pub extern "oleacc" fn AccessibleObjectFromPoint(
     ptScreen: POINT,
     ppacc: ?*?*IAccessible,
     pvarChild: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn AccessibleChildren(
+pub extern "oleacc" fn AccessibleChildren(
     paccContainer: ?*IAccessible,
     iChildStart: i32,
     cChildren: i32,
@@ -10853,41 +10853,41 @@ pub extern "OLEACC" fn AccessibleChildren(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn GetRoleTextA(
+pub extern "oleacc" fn GetRoleTextA(
     lRole: u32,
     lpszRole: ?[*:0]u8,
     cchRoleMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn GetRoleTextW(
+pub extern "oleacc" fn GetRoleTextW(
     lRole: u32,
     lpszRole: ?[*:0]u16,
     cchRoleMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn GetStateTextA(
+pub extern "oleacc" fn GetStateTextA(
     lStateBit: u32,
     lpszState: ?[*:0]u8,
     cchState: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn GetStateTextW(
+pub extern "oleacc" fn GetStateTextW(
     lStateBit: u32,
     lpszState: ?[*:0]u16,
     cchState: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn GetOleaccVersionInfo(
+pub extern "oleacc" fn GetOleaccVersionInfo(
     pVer: ?*u32,
     pBuild: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn CreateStdAccessibleObject(
+pub extern "oleacc" fn CreateStdAccessibleObject(
     hwnd: ?HWND,
     idObject: i32,
     riid: ?*const Guid,
@@ -10895,7 +10895,7 @@ pub extern "OLEACC" fn CreateStdAccessibleObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn CreateStdAccessibleProxyA(
+pub extern "oleacc" fn CreateStdAccessibleProxyA(
     hwnd: ?HWND,
     pClassName: ?[*:0]const u8,
     idObject: i32,
@@ -10904,7 +10904,7 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyA(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEACC" fn CreateStdAccessibleProxyW(
+pub extern "oleacc" fn CreateStdAccessibleProxyW(
     hwnd: ?HWND,
     pClassName: ?[*:0]const u16,
     idObject: i32,
@@ -10913,74 +10913,74 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "OLEACC" fn AccSetRunningUtilityState(
+pub extern "oleacc" fn AccSetRunningUtilityState(
     hwndApp: ?HWND,
     dwUtilityStateMask: u32,
     dwUtilityState: ACC_UTILITY_STATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "OLEACC" fn AccNotifyTouchInteraction(
+pub extern "oleacc" fn AccNotifyTouchInteraction(
     hwndApp: ?HWND,
     hwndTarget: ?HWND,
     ptTarget: POINT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetErrorDescription(
+pub extern "uiautomationcore" fn UiaGetErrorDescription(
     pDescription: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaHUiaNodeFromVariant(
+pub extern "uiautomationcore" fn UiaHUiaNodeFromVariant(
     pvar: ?*VARIANT,
     phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaHPatternObjectFromVariant(
+pub extern "uiautomationcore" fn UiaHPatternObjectFromVariant(
     pvar: ?*VARIANT,
     phobj: ?*?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaHTextRangeFromVariant(
+pub extern "uiautomationcore" fn UiaHTextRangeFromVariant(
     pvar: ?*VARIANT,
     phtextrange: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNodeRelease(
+pub extern "uiautomationcore" fn UiaNodeRelease(
     hnode: ?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetPropertyValue(
+pub extern "uiautomationcore" fn UiaGetPropertyValue(
     hnode: ?HUIANODE,
     propertyId: i32,
     pValue: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetPatternProvider(
+pub extern "uiautomationcore" fn UiaGetPatternProvider(
     hnode: ?HUIANODE,
     patternId: i32,
     phobj: ?*?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetRuntimeId(
+pub extern "uiautomationcore" fn UiaGetRuntimeId(
     hnode: ?HUIANODE,
     pruntimeId: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaSetFocus(
+pub extern "uiautomationcore" fn UiaSetFocus(
     hnode: ?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNavigate(
+pub extern "uiautomationcore" fn UiaNavigate(
     hnode: ?HUIANODE,
     direction: NavigateDirection,
     pCondition: ?*UiaCondition,
@@ -10990,7 +10990,7 @@ pub extern "UIAutomationCore" fn UiaNavigate(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetUpdatedCache(
+pub extern "uiautomationcore" fn UiaGetUpdatedCache(
     hnode: ?HUIANODE,
     pRequest: ?*UiaCacheRequest,
     normalizeState: NormalizeState,
@@ -11000,7 +11000,7 @@ pub extern "UIAutomationCore" fn UiaGetUpdatedCache(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaFind(
+pub extern "uiautomationcore" fn UiaFind(
     hnode: ?HUIANODE,
     pParams: ?*UiaFindParams,
     pRequest: ?*UiaCacheRequest,
@@ -11010,7 +11010,7 @@ pub extern "UIAutomationCore" fn UiaFind(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNodeFromPoint(
+pub extern "uiautomationcore" fn UiaNodeFromPoint(
     x: f64,
     y: f64,
     pRequest: ?*UiaCacheRequest,
@@ -11019,56 +11019,56 @@ pub extern "UIAutomationCore" fn UiaNodeFromPoint(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNodeFromFocus(
+pub extern "uiautomationcore" fn UiaNodeFromFocus(
     pRequest: ?*UiaCacheRequest,
     ppRequestedData: ?*?*SAFEARRAY,
     ppTreeStructure: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNodeFromHandle(
+pub extern "uiautomationcore" fn UiaNodeFromHandle(
     hwnd: ?HWND,
     phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaNodeFromProvider(
+pub extern "uiautomationcore" fn UiaNodeFromProvider(
     pProvider: ?*IRawElementProviderSimple,
     phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetRootNode(
+pub extern "uiautomationcore" fn UiaGetRootNode(
     phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRegisterProviderCallback(
+pub extern "uiautomationcore" fn UiaRegisterProviderCallback(
     pCallback: ?*?UiaProviderCallback,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaLookupId(
+pub extern "uiautomationcore" fn UiaLookupId(
     type: AutomationIdentifierType,
     pGuid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetReservedNotSupportedValue(
+pub extern "uiautomationcore" fn UiaGetReservedNotSupportedValue(
     punkNotSupportedValue: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaGetReservedMixedAttributeValue(
+pub extern "uiautomationcore" fn UiaGetReservedMixedAttributeValue(
     punkMixedAttributeValue: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaClientsAreListening(
+pub extern "uiautomationcore" fn UiaClientsAreListening(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
+pub extern "uiautomationcore" fn UiaRaiseAutomationPropertyChangedEvent(
     pProvider: ?*IRawElementProviderSimple,
     id: i32,
     oldValue: VARIANT,
@@ -11076,13 +11076,13 @@ pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRaiseAutomationEvent(
+pub extern "uiautomationcore" fn UiaRaiseAutomationEvent(
     pProvider: ?*IRawElementProviderSimple,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRaiseStructureChangedEvent(
+pub extern "uiautomationcore" fn UiaRaiseStructureChangedEvent(
     pProvider: ?*IRawElementProviderSimple,
     structureChangeType: StructureChangeType,
     pRuntimeId: ?*i32,
@@ -11090,28 +11090,28 @@ pub extern "UIAutomationCore" fn UiaRaiseStructureChangedEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRaiseAsyncContentLoadedEvent(
+pub extern "uiautomationcore" fn UiaRaiseAsyncContentLoadedEvent(
     pProvider: ?*IRawElementProviderSimple,
     asyncContentLoadedState: AsyncContentLoadedState,
     percentComplete: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "UIAutomationCore" fn UiaRaiseTextEditTextChangedEvent(
+pub extern "uiautomationcore" fn UiaRaiseTextEditTextChangedEvent(
     pProvider: ?*IRawElementProviderSimple,
     textEditChangeType: TextEditChangeType,
     pChangedData: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "UIAutomationCore" fn UiaRaiseChangesEvent(
+pub extern "uiautomationcore" fn UiaRaiseChangesEvent(
     pProvider: ?*IRawElementProviderSimple,
     eventIdCount: i32,
     pUiaChanges: ?*UiaChangeInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
+pub extern "uiautomationcore" fn UiaRaiseNotificationEvent(
     provider: ?*IRawElementProviderSimple,
     notificationKind: NotificationKind,
     notificationProcessing: NotificationProcessing,
@@ -11120,13 +11120,13 @@ pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "UIAutomationCore" fn UiaRaiseActiveTextPositionChangedEvent(
+pub extern "uiautomationcore" fn UiaRaiseActiveTextPositionChangedEvent(
     provider: ?*IRawElementProviderSimple,
     textRange: ?*ITextRangeProvider,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaAddEvent(
+pub extern "uiautomationcore" fn UiaAddEvent(
     hnode: ?HUIANODE,
     eventId: i32,
     pCallback: ?*?UiaEventCallback,
@@ -11138,40 +11138,40 @@ pub extern "UIAutomationCore" fn UiaAddEvent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaRemoveEvent(
+pub extern "uiautomationcore" fn UiaRemoveEvent(
     hEvent: ?HUIAEVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaEventAddWindow(
-    hEvent: ?HUIAEVENT,
-    hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaEventRemoveWindow(
+pub extern "uiautomationcore" fn UiaEventAddWindow(
     hEvent: ?HUIAEVENT,
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn DockPattern_SetDockPosition(
+pub extern "uiautomationcore" fn UiaEventRemoveWindow(
+    hEvent: ?HUIAEVENT,
+    hwnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn DockPattern_SetDockPosition(
     hobj: ?HUIAPATTERNOBJECT,
     dockPosition: DockPosition,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ExpandCollapsePattern_Collapse(
+pub extern "uiautomationcore" fn ExpandCollapsePattern_Collapse(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ExpandCollapsePattern_Expand(
+pub extern "uiautomationcore" fn ExpandCollapsePattern_Expand(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn GridPattern_GetItem(
+pub extern "uiautomationcore" fn GridPattern_GetItem(
     hobj: ?HUIAPATTERNOBJECT,
     row: i32,
     column: i32,
@@ -11179,165 +11179,165 @@ pub extern "UIAutomationCore" fn GridPattern_GetItem(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn InvokePattern_Invoke(
+pub extern "uiautomationcore" fn InvokePattern_Invoke(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn MultipleViewPattern_GetViewName(
+pub extern "uiautomationcore" fn MultipleViewPattern_GetViewName(
     hobj: ?HUIAPATTERNOBJECT,
     viewId: i32,
     ppStr: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn MultipleViewPattern_SetCurrentView(
+pub extern "uiautomationcore" fn MultipleViewPattern_SetCurrentView(
     hobj: ?HUIAPATTERNOBJECT,
     viewId: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn RangeValuePattern_SetValue(
+pub extern "uiautomationcore" fn RangeValuePattern_SetValue(
     hobj: ?HUIAPATTERNOBJECT,
     val: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ScrollItemPattern_ScrollIntoView(
+pub extern "uiautomationcore" fn ScrollItemPattern_ScrollIntoView(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ScrollPattern_Scroll(
+pub extern "uiautomationcore" fn ScrollPattern_Scroll(
     hobj: ?HUIAPATTERNOBJECT,
     horizontalAmount: ScrollAmount,
     verticalAmount: ScrollAmount,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ScrollPattern_SetScrollPercent(
+pub extern "uiautomationcore" fn ScrollPattern_SetScrollPercent(
     hobj: ?HUIAPATTERNOBJECT,
     horizontalPercent: f64,
     verticalPercent: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn SelectionItemPattern_AddToSelection(
+pub extern "uiautomationcore" fn SelectionItemPattern_AddToSelection(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn SelectionItemPattern_RemoveFromSelection(
+pub extern "uiautomationcore" fn SelectionItemPattern_RemoveFromSelection(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn SelectionItemPattern_Select(
+pub extern "uiautomationcore" fn SelectionItemPattern_Select(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TogglePattern_Toggle(
+pub extern "uiautomationcore" fn TogglePattern_Toggle(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TransformPattern_Move(
+pub extern "uiautomationcore" fn TransformPattern_Move(
     hobj: ?HUIAPATTERNOBJECT,
     x: f64,
     y: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TransformPattern_Resize(
+pub extern "uiautomationcore" fn TransformPattern_Resize(
     hobj: ?HUIAPATTERNOBJECT,
     width: f64,
     height: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TransformPattern_Rotate(
+pub extern "uiautomationcore" fn TransformPattern_Rotate(
     hobj: ?HUIAPATTERNOBJECT,
     degrees: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn ValuePattern_SetValue(
+pub extern "uiautomationcore" fn ValuePattern_SetValue(
     hobj: ?HUIAPATTERNOBJECT,
     pVal: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn WindowPattern_Close(
+pub extern "uiautomationcore" fn WindowPattern_Close(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn WindowPattern_SetWindowVisualState(
+pub extern "uiautomationcore" fn WindowPattern_SetWindowVisualState(
     hobj: ?HUIAPATTERNOBJECT,
     state: WindowVisualState,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn WindowPattern_WaitForInputIdle(
+pub extern "uiautomationcore" fn WindowPattern_WaitForInputIdle(
     hobj: ?HUIAPATTERNOBJECT,
     milliseconds: i32,
     pResult: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_GetSelection(
+pub extern "uiautomationcore" fn TextPattern_GetSelection(
     hobj: ?HUIAPATTERNOBJECT,
     pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_GetVisibleRanges(
+pub extern "uiautomationcore" fn TextPattern_GetVisibleRanges(
     hobj: ?HUIAPATTERNOBJECT,
     pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_RangeFromChild(
+pub extern "uiautomationcore" fn TextPattern_RangeFromChild(
     hobj: ?HUIAPATTERNOBJECT,
     hnodeChild: ?HUIANODE,
     pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_RangeFromPoint(
+pub extern "uiautomationcore" fn TextPattern_RangeFromPoint(
     hobj: ?HUIAPATTERNOBJECT,
     point: UiaPoint,
     pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_get_DocumentRange(
+pub extern "uiautomationcore" fn TextPattern_get_DocumentRange(
     hobj: ?HUIAPATTERNOBJECT,
     pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextPattern_get_SupportedTextSelection(
+pub extern "uiautomationcore" fn TextPattern_get_SupportedTextSelection(
     hobj: ?HUIAPATTERNOBJECT,
     pRetVal: ?*SupportedTextSelection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_Clone(
+pub extern "uiautomationcore" fn TextRange_Clone(
     hobj: ?HUIATEXTRANGE,
     pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_Compare(
+pub extern "uiautomationcore" fn TextRange_Compare(
     hobj: ?HUIATEXTRANGE,
     range: ?HUIATEXTRANGE,
     pRetVal: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_CompareEndpoints(
+pub extern "uiautomationcore" fn TextRange_CompareEndpoints(
     hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
     targetRange: ?HUIATEXTRANGE,
@@ -11346,20 +11346,20 @@ pub extern "UIAutomationCore" fn TextRange_CompareEndpoints(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_ExpandToEnclosingUnit(
+pub extern "uiautomationcore" fn TextRange_ExpandToEnclosingUnit(
     hobj: ?HUIATEXTRANGE,
     unit: TextUnit,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_GetAttributeValue(
+pub extern "uiautomationcore" fn TextRange_GetAttributeValue(
     hobj: ?HUIATEXTRANGE,
     attributeId: i32,
     pRetVal: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_FindAttribute(
+pub extern "uiautomationcore" fn TextRange_FindAttribute(
     hobj: ?HUIATEXTRANGE,
     attributeId: i32,
     val: VARIANT,
@@ -11368,7 +11368,7 @@ pub extern "UIAutomationCore" fn TextRange_FindAttribute(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_FindText(
+pub extern "uiautomationcore" fn TextRange_FindText(
     hobj: ?HUIATEXTRANGE,
     text: ?BSTR,
     backward: BOOL,
@@ -11377,26 +11377,26 @@ pub extern "UIAutomationCore" fn TextRange_FindText(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_GetBoundingRectangles(
+pub extern "uiautomationcore" fn TextRange_GetBoundingRectangles(
     hobj: ?HUIATEXTRANGE,
     pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_GetEnclosingElement(
+pub extern "uiautomationcore" fn TextRange_GetEnclosingElement(
     hobj: ?HUIATEXTRANGE,
     pRetVal: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_GetText(
+pub extern "uiautomationcore" fn TextRange_GetText(
     hobj: ?HUIATEXTRANGE,
     maxLength: i32,
     pRetVal: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_Move(
+pub extern "uiautomationcore" fn TextRange_Move(
     hobj: ?HUIATEXTRANGE,
     unit: TextUnit,
     count: i32,
@@ -11404,7 +11404,7 @@ pub extern "UIAutomationCore" fn TextRange_Move(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_MoveEndpointByUnit(
+pub extern "uiautomationcore" fn TextRange_MoveEndpointByUnit(
     hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
     unit: TextUnit,
@@ -11413,7 +11413,7 @@ pub extern "UIAutomationCore" fn TextRange_MoveEndpointByUnit(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_MoveEndpointByRange(
+pub extern "uiautomationcore" fn TextRange_MoveEndpointByRange(
     hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
     targetRange: ?HUIATEXTRANGE,
@@ -11421,34 +11421,34 @@ pub extern "UIAutomationCore" fn TextRange_MoveEndpointByRange(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_Select(
+pub extern "uiautomationcore" fn TextRange_Select(
     hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_AddToSelection(
+pub extern "uiautomationcore" fn TextRange_AddToSelection(
     hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_RemoveFromSelection(
+pub extern "uiautomationcore" fn TextRange_RemoveFromSelection(
     hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_ScrollIntoView(
+pub extern "uiautomationcore" fn TextRange_ScrollIntoView(
     hobj: ?HUIATEXTRANGE,
     alignToTop: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn TextRange_GetChildren(
+pub extern "uiautomationcore" fn TextRange_GetChildren(
     hobj: ?HUIATEXTRANGE,
     pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn ItemContainerPattern_FindItemByProperty(
+pub extern "uiautomationcore" fn ItemContainerPattern_FindItemByProperty(
     hobj: ?HUIAPATTERNOBJECT,
     hnodeStartAfter: ?HUIANODE,
     propertyId: i32,
@@ -11457,56 +11457,56 @@ pub extern "UIAutomationCore" fn ItemContainerPattern_FindItemByProperty(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_Select(
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_Select(
     hobj: ?HUIAPATTERNOBJECT,
     flagsSelect: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_DoDefaultAction(
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_DoDefaultAction(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_SetValue(
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_SetValue(
     hobj: ?HUIAPATTERNOBJECT,
     szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_GetIAccessible(
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_GetIAccessible(
     hobj: ?HUIAPATTERNOBJECT,
     pAccessible: ?*?*IAccessible,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn SynchronizedInputPattern_StartListening(
+pub extern "uiautomationcore" fn SynchronizedInputPattern_StartListening(
     hobj: ?HUIAPATTERNOBJECT,
     inputType: SynchronizedInputType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn SynchronizedInputPattern_Cancel(
+pub extern "uiautomationcore" fn SynchronizedInputPattern_Cancel(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UIAutomationCore" fn VirtualizedItemPattern_Realize(
+pub extern "uiautomationcore" fn VirtualizedItemPattern_Realize(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaPatternRelease(
+pub extern "uiautomationcore" fn UiaPatternRelease(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaTextRangeRelease(
+pub extern "uiautomationcore" fn UiaTextRangeRelease(
     hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaReturnRawElementProvider(
+pub extern "uiautomationcore" fn UiaReturnRawElementProvider(
     hwnd: ?HWND,
     wParam: WPARAM,
     lParam: LPARAM,
@@ -11514,13 +11514,13 @@ pub extern "UIAutomationCore" fn UiaReturnRawElementProvider(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaHostProviderFromHwnd(
+pub extern "uiautomationcore" fn UiaHostProviderFromHwnd(
     hwnd: ?HWND,
     ppProvider: ?*?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UIAutomationCore" fn UiaProviderForNonClient(
+pub extern "uiautomationcore" fn UiaProviderForNonClient(
     hwnd: ?HWND,
     idObject: i32,
     idChild: i32,
@@ -11528,7 +11528,7 @@ pub extern "UIAutomationCore" fn UiaProviderForNonClient(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UIAutomationCore" fn UiaIAccessibleFromProvider(
+pub extern "uiautomationcore" fn UiaIAccessibleFromProvider(
     pProvider: ?*IRawElementProviderSimple,
     dwFlags: u32,
     ppAccessible: ?*?*IAccessible,
@@ -11536,7 +11536,7 @@ pub extern "UIAutomationCore" fn UiaIAccessibleFromProvider(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UIAutomationCore" fn UiaProviderFromIAccessible(
+pub extern "uiautomationcore" fn UiaProviderFromIAccessible(
     pAccessible: ?*IAccessible,
     idChild: i32,
     dwFlags: u32,
@@ -11544,46 +11544,46 @@ pub extern "UIAutomationCore" fn UiaProviderFromIAccessible(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UIAutomationCore" fn UiaDisconnectAllProviders(
+pub extern "uiautomationcore" fn UiaDisconnectAllProviders(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UIAutomationCore" fn UiaDisconnectProvider(
+pub extern "uiautomationcore" fn UiaDisconnectProvider(
     pProvider: ?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
+pub extern "uiautomationcore" fn UiaHasServerSideProvider(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn RegisterPointerInputTarget(
+pub extern "user32" fn RegisterPointerInputTarget(
     hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn UnregisterPointerInputTarget(
+pub extern "user32" fn UnregisterPointerInputTarget(
     hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn RegisterPointerInputTargetEx(
+pub extern "user32" fn RegisterPointerInputTargetEx(
     hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
     fObserve: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn UnregisterPointerInputTargetEx(
+pub extern "user32" fn UnregisterPointerInputTargetEx(
     hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn NotifyWinEvent(
+pub extern "user32" fn NotifyWinEvent(
     event: u32,
     hwnd: ?HWND,
     idObject: i32,
@@ -11591,7 +11591,7 @@ pub extern "USER32" fn NotifyWinEvent(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetWinEventHook(
+pub extern "user32" fn SetWinEventHook(
     eventMin: u32,
     eventMax: u32,
     hmodWinEventProc: ?HINSTANCE,
@@ -11602,12 +11602,12 @@ pub extern "USER32" fn SetWinEventHook(
 ) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn IsWinEventHookInstalled(
+pub extern "user32" fn IsWinEventHookInstalled(
     event: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnhookWinEvent(
+pub extern "user32" fn UnhookWinEvent(
     hWinEventHook: ?HWINEVENTHOOK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

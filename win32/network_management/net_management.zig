@@ -5751,7 +5751,7 @@ pub const MPR_PROTOCOL_0 = extern struct {
 // Section: Functions (175)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserAdd(
+pub extern "netapi32" fn NetUserAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*u8,
@@ -5759,7 +5759,7 @@ pub extern "NETAPI32" fn NetUserAdd(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserEnum(
+pub extern "netapi32" fn NetUserEnum(
     servername: ?[*:0]const u16,
     level: u32,
     filter: NET_USER_ENUM_FILTER_FLAGS,
@@ -5771,7 +5771,7 @@ pub extern "NETAPI32" fn NetUserEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETAPI32" fn NetUserGetInfo(
+pub extern "netapi32" fn NetUserGetInfo(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
     level: u32,
@@ -5779,7 +5779,7 @@ pub extern "NETAPI32" fn NetUserGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserSetInfo(
+pub extern "netapi32" fn NetUserSetInfo(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
     level: u32,
@@ -5788,13 +5788,13 @@ pub extern "NETAPI32" fn NetUserSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserDel(
+pub extern "netapi32" fn NetUserDel(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserGetGroups(
+pub extern "netapi32" fn NetUserGetGroups(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
     level: u32,
@@ -5805,7 +5805,7 @@ pub extern "NETAPI32" fn NetUserGetGroups(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserSetGroups(
+pub extern "netapi32" fn NetUserSetGroups(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
     level: u32,
@@ -5814,7 +5814,7 @@ pub extern "NETAPI32" fn NetUserSetGroups(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserGetLocalGroups(
+pub extern "netapi32" fn NetUserGetLocalGroups(
     servername: ?[*:0]const u16,
     username: ?[*:0]const u16,
     level: u32,
@@ -5826,14 +5826,14 @@ pub extern "NETAPI32" fn NetUserGetLocalGroups(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserModalsGet(
+pub extern "netapi32" fn NetUserModalsGet(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserModalsSet(
+pub extern "netapi32" fn NetUserModalsSet(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*u8,
@@ -5841,7 +5841,7 @@ pub extern "NETAPI32" fn NetUserModalsSet(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUserChangePassword(
+pub extern "netapi32" fn NetUserChangePassword(
     domainname: ?[*:0]const u16,
     username: ?[*:0]const u16,
     oldpassword: ?[*:0]const u16,
@@ -5849,7 +5849,7 @@ pub extern "NETAPI32" fn NetUserChangePassword(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupAdd(
+pub extern "netapi32" fn NetGroupAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*u8,
@@ -5857,14 +5857,14 @@ pub extern "NETAPI32" fn NetGroupAdd(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupAddUser(
+pub extern "netapi32" fn NetGroupAddUser(
     servername: ?[*:0]const u16,
     GroupName: ?[*:0]const u16,
     username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupEnum(
+pub extern "netapi32" fn NetGroupEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -5875,7 +5875,7 @@ pub extern "NETAPI32" fn NetGroupEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupGetInfo(
+pub extern "netapi32" fn NetGroupGetInfo(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5883,7 +5883,7 @@ pub extern "NETAPI32" fn NetGroupGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupSetInfo(
+pub extern "netapi32" fn NetGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5892,20 +5892,20 @@ pub extern "NETAPI32" fn NetGroupSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupDel(
+pub extern "netapi32" fn NetGroupDel(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupDelUser(
+pub extern "netapi32" fn NetGroupDelUser(
     servername: ?[*:0]const u16,
     GroupName: ?[*:0]const u16,
     Username: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupGetUsers(
+pub extern "netapi32" fn NetGroupGetUsers(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5917,7 +5917,7 @@ pub extern "NETAPI32" fn NetGroupGetUsers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGroupSetUsers(
+pub extern "netapi32" fn NetGroupSetUsers(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5926,21 +5926,21 @@ pub extern "NETAPI32" fn NetGroupSetUsers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupAdd(
+pub extern "netapi32" fn NetLocalGroupAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetLocalGroupAddMember(
+pub extern "netapi32" fn NetLocalGroupAddMember(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     membersid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupEnum(
+pub extern "netapi32" fn NetLocalGroupEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -5951,7 +5951,7 @@ pub extern "NETAPI32" fn NetLocalGroupEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupGetInfo(
+pub extern "netapi32" fn NetLocalGroupGetInfo(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5959,7 +5959,7 @@ pub extern "NETAPI32" fn NetLocalGroupGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupSetInfo(
+pub extern "netapi32" fn NetLocalGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -5968,19 +5968,19 @@ pub extern "NETAPI32" fn NetLocalGroupSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupDel(
+pub extern "netapi32" fn NetLocalGroupDel(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetLocalGroupDelMember(
+pub extern "netapi32" fn NetLocalGroupDelMember(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     membersid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupGetMembers(
+pub extern "netapi32" fn NetLocalGroupGetMembers(
     servername: ?[*:0]const u16,
     localgroupname: ?[*:0]const u16,
     level: u32,
@@ -5992,7 +5992,7 @@ pub extern "NETAPI32" fn NetLocalGroupGetMembers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupSetMembers(
+pub extern "netapi32" fn NetLocalGroupSetMembers(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -6001,7 +6001,7 @@ pub extern "NETAPI32" fn NetLocalGroupSetMembers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupAddMembers(
+pub extern "netapi32" fn NetLocalGroupAddMembers(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -6010,7 +6010,7 @@ pub extern "NETAPI32" fn NetLocalGroupAddMembers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetLocalGroupDelMembers(
+pub extern "netapi32" fn NetLocalGroupDelMembers(
     servername: ?[*:0]const u16,
     groupname: ?[*:0]const u16,
     level: u32,
@@ -6019,7 +6019,7 @@ pub extern "NETAPI32" fn NetLocalGroupDelMembers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetQueryDisplayInformation(
+pub extern "netapi32" fn NetQueryDisplayInformation(
     ServerName: ?[*:0]const u16,
     Level: u32,
     Index: u32,
@@ -6030,7 +6030,7 @@ pub extern "NETAPI32" fn NetQueryDisplayInformation(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGetDisplayInformationIndex(
+pub extern "netapi32" fn NetGetDisplayInformationIndex(
     ServerName: ?[*:0]const u16,
     Level: u32,
     Prefix: ?[*:0]const u16,
@@ -6038,7 +6038,7 @@ pub extern "NETAPI32" fn NetGetDisplayInformationIndex(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessAdd(
+pub extern "netapi32" fn NetAccessAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*u8,
@@ -6046,7 +6046,7 @@ pub extern "NETAPI32" fn NetAccessAdd(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessEnum(
+pub extern "netapi32" fn NetAccessEnum(
     servername: ?[*:0]const u16,
     BasePath: ?[*:0]const u16,
     Recursive: u32,
@@ -6059,7 +6059,7 @@ pub extern "NETAPI32" fn NetAccessEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessGetInfo(
+pub extern "netapi32" fn NetAccessGetInfo(
     servername: ?[*:0]const u16,
     resource: ?[*:0]const u16,
     level: u32,
@@ -6067,7 +6067,7 @@ pub extern "NETAPI32" fn NetAccessGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessSetInfo(
+pub extern "netapi32" fn NetAccessSetInfo(
     servername: ?[*:0]const u16,
     resource: ?[*:0]const u16,
     level: u32,
@@ -6076,13 +6076,13 @@ pub extern "NETAPI32" fn NetAccessSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessDel(
+pub extern "netapi32" fn NetAccessDel(
     servername: ?[*:0]const u16,
     resource: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAccessGetUserPerms(
+pub extern "netapi32" fn NetAccessGetUserPerms(
     servername: ?[*:0]const u16,
     UGname: ?[*:0]const u16,
     resource: ?[*:0]const u16,
@@ -6090,7 +6090,7 @@ pub extern "NETAPI32" fn NetAccessGetUserPerms(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "NETAPI32" fn NetValidatePasswordPolicy(
+pub extern "netapi32" fn NetValidatePasswordPolicy(
     ServerName: ?[*:0]const u16,
     Qualifier: ?*anyopaque,
     ValidationType: NET_VALIDATE_PASSWORD_TYPE,
@@ -6099,25 +6099,25 @@ pub extern "NETAPI32" fn NetValidatePasswordPolicy(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "NETAPI32" fn NetValidatePasswordPolicyFree(
+pub extern "netapi32" fn NetValidatePasswordPolicyFree(
     OutputArg: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGetDCName(
+pub extern "netapi32" fn NetGetDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGetAnyDCName(
+pub extern "netapi32" fn NetGetAnyDCName(
     ServerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn I_NetLogonControl2(
+pub extern "netapi32" fn I_NetLogonControl2(
     ServerName: ?[*:0]const u16,
     FunctionCode: u32,
     QueryLevel: u32,
@@ -6126,7 +6126,7 @@ pub extern "NETAPI32" fn I_NetLogonControl2(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetAddServiceAccount(
+pub extern "netapi32" fn NetAddServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     Password: ?PWSTR,
@@ -6134,14 +6134,14 @@ pub extern "NETAPI32" fn NetAddServiceAccount(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetRemoveServiceAccount(
+pub extern "netapi32" fn NetRemoveServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetEnumerateServiceAccounts(
+pub extern "netapi32" fn NetEnumerateServiceAccounts(
     ServerName: ?PWSTR,
     Flags: u32,
     AccountsCount: ?*u32,
@@ -6149,14 +6149,14 @@ pub extern "NETAPI32" fn NetEnumerateServiceAccounts(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetIsServiceAccount(
+pub extern "netapi32" fn NetIsServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     IsService: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetQueryServiceAccount(
+pub extern "netapi32" fn NetQueryServiceAccount(
     ServerName: ?PWSTR,
     AccountName: ?PWSTR,
     InfoLevel: u32,
@@ -6164,14 +6164,14 @@ pub extern "NETAPI32" fn NetQueryServiceAccount(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAlertRaise(
+pub extern "netapi32" fn NetAlertRaise(
     AlertType: ?[*:0]const u16,
     Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetAlertRaiseEx(
+pub extern "netapi32" fn NetAlertRaiseEx(
     AlertType: ?[*:0]const u16,
     VariableInfo: ?*anyopaque,
     VariableInfoSize: u32,
@@ -6179,13 +6179,13 @@ pub extern "NETAPI32" fn NetAlertRaiseEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetMessageNameAdd(
+pub extern "netapi32" fn NetMessageNameAdd(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetMessageNameEnum(
+pub extern "netapi32" fn NetMessageNameEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -6196,7 +6196,7 @@ pub extern "NETAPI32" fn NetMessageNameEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetMessageNameGetInfo(
+pub extern "netapi32" fn NetMessageNameGetInfo(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
     level: u32,
@@ -6204,13 +6204,13 @@ pub extern "NETAPI32" fn NetMessageNameGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetMessageNameDel(
+pub extern "netapi32" fn NetMessageNameDel(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetMessageBufferSend(
+pub extern "netapi32" fn NetMessageBufferSend(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
     fromname: ?[*:0]const u16,
@@ -6219,44 +6219,44 @@ pub extern "NETAPI32" fn NetMessageBufferSend(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetRemoteTOD(
+pub extern "netapi32" fn NetRemoteTOD(
     UncServerName: ?[*:0]const u16,
     BufferPtr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetRemoteComputerSupports(
+pub extern "netapi32" fn NetRemoteComputerSupports(
     UncServerName: ?[*:0]const u16,
     OptionsWanted: NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS,
     OptionsSupported: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplGetInfo(
+pub extern "netapi32" fn NetReplGetInfo(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplSetInfo(
+pub extern "netapi32" fn NetReplSetInfo(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirAdd(
+pub extern "netapi32" fn NetReplExportDirAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirDel(
+pub extern "netapi32" fn NetReplExportDirDel(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirEnum(
+pub extern "netapi32" fn NetReplExportDirEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -6266,14 +6266,14 @@ pub extern "NETAPI32" fn NetReplExportDirEnum(
     resumehandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirGetInfo(
+pub extern "netapi32" fn NetReplExportDirGetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirSetInfo(
+pub extern "netapi32" fn NetReplExportDirSetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     level: u32,
@@ -6281,30 +6281,30 @@ pub extern "NETAPI32" fn NetReplExportDirSetInfo(
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirLock(
+pub extern "netapi32" fn NetReplExportDirLock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplExportDirUnlock(
+pub extern "netapi32" fn NetReplExportDirUnlock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     unlockforce: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirAdd(
+pub extern "netapi32" fn NetReplImportDirAdd(
     servername: ?[*:0]const u16,
     level: u32,
     buf: ?*const u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirDel(
+pub extern "netapi32" fn NetReplImportDirDel(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirEnum(
+pub extern "netapi32" fn NetReplImportDirEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -6314,26 +6314,26 @@ pub extern "NETAPI32" fn NetReplImportDirEnum(
     resumehandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirGetInfo(
+pub extern "netapi32" fn NetReplImportDirGetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirLock(
+pub extern "netapi32" fn NetReplImportDirLock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetReplImportDirUnlock(
+pub extern "netapi32" fn NetReplImportDirUnlock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     unlockforce: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerEnum(
+pub extern "netapi32" fn NetServerEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -6346,14 +6346,14 @@ pub extern "NETAPI32" fn NetServerEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerGetInfo(
+pub extern "netapi32" fn NetServerGetInfo(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerSetInfo(
+pub extern "netapi32" fn NetServerSetInfo(
     servername: ?PWSTR,
     level: u32,
     buf: ?*u8,
@@ -6361,7 +6361,7 @@ pub extern "NETAPI32" fn NetServerSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerDiskEnum(
+pub extern "netapi32" fn NetServerDiskEnum(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
@@ -6372,41 +6372,41 @@ pub extern "NETAPI32" fn NetServerDiskEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerComputerNameAdd(
+pub extern "netapi32" fn NetServerComputerNameAdd(
     ServerName: ?PWSTR,
     EmulatedDomainName: ?PWSTR,
     EmulatedServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerComputerNameDel(
+pub extern "netapi32" fn NetServerComputerNameDel(
     ServerName: ?PWSTR,
     EmulatedServerName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerTransportAdd(
+pub extern "netapi32" fn NetServerTransportAdd(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerTransportAddEx(
+pub extern "netapi32" fn NetServerTransportAddEx(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerTransportDel(
+pub extern "netapi32" fn NetServerTransportDel(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetServerTransportEnum(
+pub extern "netapi32" fn NetServerTransportEnum(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
@@ -6416,7 +6416,7 @@ pub extern "NETAPI32" fn NetServerTransportEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetServiceControl(
+pub extern "netapi32" fn NetServiceControl(
     servername: ?[*:0]const u16,
     service: ?[*:0]const u16,
     opcode: u32,
@@ -6424,7 +6424,7 @@ pub extern "NETAPI32" fn NetServiceControl(
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetServiceEnum(
+pub extern "netapi32" fn NetServiceEnum(
     servername: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
@@ -6434,14 +6434,14 @@ pub extern "NETAPI32" fn NetServiceEnum(
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetServiceGetInfo(
+pub extern "netapi32" fn NetServiceGetInfo(
     servername: ?[*:0]const u16,
     service: ?[*:0]const u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetServiceInstall(
+pub extern "netapi32" fn NetServiceInstall(
     servername: ?[*:0]const u16,
     service: ?[*:0]const u16,
     argc: u32,
@@ -6450,7 +6450,7 @@ pub extern "NETAPI32" fn NetServiceInstall(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUseAdd(
+pub extern "netapi32" fn NetUseAdd(
     servername: ?*i8,
     LevelFlags: u32,
     buf: ?*u8,
@@ -6458,14 +6458,14 @@ pub extern "NETAPI32" fn NetUseAdd(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUseDel(
+pub extern "netapi32" fn NetUseDel(
     UncServerName: ?PWSTR,
     UseName: ?PWSTR,
     ForceLevelFlags: FORCE_LEVEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUseEnum(
+pub extern "netapi32" fn NetUseEnum(
     UncServerName: ?PWSTR,
     LevelFlags: u32,
     BufPtr: ?*?*u8,
@@ -6476,7 +6476,7 @@ pub extern "NETAPI32" fn NetUseEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUseGetInfo(
+pub extern "netapi32" fn NetUseGetInfo(
     UncServerName: ?PWSTR,
     UseName: ?PWSTR,
     LevelFlags: u32,
@@ -6484,14 +6484,14 @@ pub extern "NETAPI32" fn NetUseGetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaGetInfo(
+pub extern "netapi32" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaSetInfo(
+pub extern "netapi32" fn NetWkstaSetInfo(
     servername: ?PWSTR,
     level: u32,
     buffer: ?*u8,
@@ -6499,14 +6499,14 @@ pub extern "NETAPI32" fn NetWkstaSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaUserGetInfo(
+pub extern "netapi32" fn NetWkstaUserGetInfo(
     reserved: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaUserSetInfo(
+pub extern "netapi32" fn NetWkstaUserSetInfo(
     reserved: ?PWSTR,
     level: u32,
     buf: ?*u8,
@@ -6514,7 +6514,7 @@ pub extern "NETAPI32" fn NetWkstaUserSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaUserEnum(
+pub extern "netapi32" fn NetWkstaUserEnum(
     servername: ?PWSTR,
     level: u32,
     bufptr: ?*?*u8,
@@ -6524,21 +6524,21 @@ pub extern "NETAPI32" fn NetWkstaUserEnum(
     resumehandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetWkstaTransportAdd(
+pub extern "netapi32" fn NetWkstaTransportAdd(
     servername: ?*i8,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetWkstaTransportDel(
+pub extern "netapi32" fn NetWkstaTransportDel(
     servername: ?PWSTR,
     transportname: ?PWSTR,
     ucond: FORCE_LEVEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetWkstaTransportEnum(
+pub extern "netapi32" fn NetWkstaTransportEnum(
     servername: ?*i8,
     level: u32,
     bufptr: ?*?*u8,
@@ -6549,36 +6549,36 @@ pub extern "NETAPI32" fn NetWkstaTransportEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetApiBufferAllocate(
+pub extern "netapi32" fn NetApiBufferAllocate(
     ByteCount: u32,
     Buffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetApiBufferFree(
+pub extern "netapi32" fn NetApiBufferFree(
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetApiBufferReallocate(
+pub extern "netapi32" fn NetApiBufferReallocate(
     OldBuffer: ?*anyopaque,
     NewByteCount: u32,
     NewBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetApiBufferSize(
+pub extern "netapi32" fn NetApiBufferSize(
     Buffer: ?*anyopaque,
     ByteCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetErrorLogClear(
+pub extern "netapi32" fn NetErrorLogClear(
     UncServerName: ?[*:0]const u16,
     BackupFile: ?[*:0]const u16,
     Reserved: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetErrorLogRead(
+pub extern "netapi32" fn NetErrorLogRead(
     UncServerName: ?[*:0]const u16,
     Reserved1: ?PWSTR,
     ErrorLogHandle: ?*HLOG,
@@ -6592,7 +6592,7 @@ pub extern "NETAPI32" fn NetErrorLogRead(
     TotalAvailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetErrorLogWrite(
+pub extern "netapi32" fn NetErrorLogWrite(
     Reserved1: ?*u8,
     Code: u32,
     Component: ?[*:0]const u16,
@@ -6603,20 +6603,20 @@ pub extern "NETAPI32" fn NetErrorLogWrite(
     Reserved2: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetConfigGet(
+pub extern "netapi32" fn NetConfigGet(
     server: ?[*:0]const u16,
     component: ?[*:0]const u16,
     parameter: ?[*:0]const u16,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetConfigGetAll(
+pub extern "netapi32" fn NetConfigGetAll(
     server: ?[*:0]const u16,
     component: ?[*:0]const u16,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetConfigSet(
+pub extern "netapi32" fn NetConfigSet(
     server: ?[*:0]const u16,
     reserved1: ?[*:0]const u16,
     component: ?[*:0]const u16,
@@ -6626,13 +6626,13 @@ pub extern "NETAPI32" fn NetConfigSet(
     reserved3: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetAuditClear(
+pub extern "netapi32" fn NetAuditClear(
     server: ?[*:0]const u16,
     backupfile: ?[*:0]const u16,
     service: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetAuditRead(
+pub extern "netapi32" fn NetAuditRead(
     server: ?[*:0]const u16,
     service: ?[*:0]const u16,
     auditloghandle: ?*HLOG,
@@ -6646,7 +6646,7 @@ pub extern "NETAPI32" fn NetAuditRead(
     totalavailable: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn NetAuditWrite(
+pub extern "netapi32" fn NetAuditWrite(
     type: u32,
     buf: ?*u8,
     numbytes: u32,
@@ -6655,7 +6655,7 @@ pub extern "NETAPI32" fn NetAuditWrite(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetJoinDomain(
+pub extern "netapi32" fn NetJoinDomain(
     lpServer: ?[*:0]const u16,
     lpDomain: ?[*:0]const u16,
     lpMachineAccountOU: ?[*:0]const u16,
@@ -6665,7 +6665,7 @@ pub extern "NETAPI32" fn NetJoinDomain(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetUnjoinDomain(
+pub extern "netapi32" fn NetUnjoinDomain(
     lpServer: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
@@ -6673,7 +6673,7 @@ pub extern "NETAPI32" fn NetUnjoinDomain(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetRenameMachineInDomain(
+pub extern "netapi32" fn NetRenameMachineInDomain(
     lpServer: ?[*:0]const u16,
     lpNewMachineName: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
@@ -6682,7 +6682,7 @@ pub extern "NETAPI32" fn NetRenameMachineInDomain(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetValidateName(
+pub extern "netapi32" fn NetValidateName(
     lpServer: ?[*:0]const u16,
     lpName: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
@@ -6691,7 +6691,7 @@ pub extern "NETAPI32" fn NetValidateName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGetJoinableOUs(
+pub extern "netapi32" fn NetGetJoinableOUs(
     lpServer: ?[*:0]const u16,
     lpDomain: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
@@ -6701,7 +6701,7 @@ pub extern "NETAPI32" fn NetGetJoinableOUs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETAPI32" fn NetAddAlternateComputerName(
+pub extern "netapi32" fn NetAddAlternateComputerName(
     Server: ?[*:0]const u16,
     AlternateName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
@@ -6710,7 +6710,7 @@ pub extern "NETAPI32" fn NetAddAlternateComputerName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETAPI32" fn NetRemoveAlternateComputerName(
+pub extern "netapi32" fn NetRemoveAlternateComputerName(
     Server: ?[*:0]const u16,
     AlternateName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
@@ -6719,7 +6719,7 @@ pub extern "NETAPI32" fn NetRemoveAlternateComputerName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETAPI32" fn NetSetPrimaryComputerName(
+pub extern "netapi32" fn NetSetPrimaryComputerName(
     Server: ?[*:0]const u16,
     PrimaryName: ?[*:0]const u16,
     DomainAccount: ?[*:0]const u16,
@@ -6728,7 +6728,7 @@ pub extern "NETAPI32" fn NetSetPrimaryComputerName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETAPI32" fn NetEnumerateComputerNames(
+pub extern "netapi32" fn NetEnumerateComputerNames(
     Server: ?[*:0]const u16,
     NameType: NET_COMPUTER_NAME_TYPE,
     Reserved: u32,
@@ -6737,7 +6737,7 @@ pub extern "NETAPI32" fn NetEnumerateComputerNames(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetProvisionComputerAccount(
+pub extern "netapi32" fn NetProvisionComputerAccount(
     lpDomain: ?[*:0]const u16,
     lpMachineName: ?[*:0]const u16,
     lpMachineAccountOU: ?[*:0]const u16,
@@ -6749,7 +6749,7 @@ pub extern "NETAPI32" fn NetProvisionComputerAccount(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
+pub extern "netapi32" fn NetRequestOfflineDomainJoin(
     // TODO: what to do with BytesParamIndex 1?
     pProvisionBinData: ?*u8,
     cbProvisionBinDataSize: u32,
@@ -6758,7 +6758,7 @@ pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NETAPI32" fn NetCreateProvisioningPackage(
+pub extern "netapi32" fn NetCreateProvisioningPackage(
     pProvisioningParams: ?*NETSETUP_PROVISIONING_PARAMS,
     ppPackageBinData: ?*?*u8,
     pdwPackageBinDataSize: ?*u32,
@@ -6766,7 +6766,7 @@ pub extern "NETAPI32" fn NetCreateProvisioningPackage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
+pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
     // TODO: what to do with BytesParamIndex 1?
     pPackageBinData: ?*u8,
     dwPackageBinDataSize: u32,
@@ -6776,18 +6776,18 @@ pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "NETAPI32" fn NetGetAadJoinInformation(
+pub extern "netapi32" fn NetGetAadJoinInformation(
     pcszTenantId: ?[*:0]const u16,
     ppJoinInfo: ?*?*DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "NETAPI32" fn NetFreeAadJoinInformation(
+pub extern "netapi32" fn NetFreeAadJoinInformation(
     pJoinInfo: ?*DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetGetJoinInformation(
+pub extern "netapi32" fn NetGetJoinInformation(
     lpServer: ?[*:0]const u16,
     lpNameBuffer: ?*?PWSTR,
     BufferType: ?*NETSETUP_JOIN_STATUS,
@@ -6808,21 +6808,21 @@ pub extern "mstask" fn SetNetScheduleAccountInformation(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetScheduleJobAdd(
+pub extern "netapi32" fn NetScheduleJobAdd(
     Servername: ?[*:0]const u16,
     Buffer: ?*u8,
     JobId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetScheduleJobDel(
+pub extern "netapi32" fn NetScheduleJobDel(
     Servername: ?[*:0]const u16,
     MinJobId: u32,
     MaxJobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetScheduleJobEnum(
+pub extern "netapi32" fn NetScheduleJobEnum(
     Servername: ?[*:0]const u16,
     PointerToBuffer: ?*?*u8,
     PrefferedMaximumLength: u32,
@@ -6832,7 +6832,7 @@ pub extern "NETAPI32" fn NetScheduleJobEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "NETAPI32" fn NetScheduleJobGetInfo(
+pub extern "netapi32" fn NetScheduleJobGetInfo(
     Servername: ?[*:0]const u16,
     JobId: u32,
     PointerToBuffer: ?*?*u8,

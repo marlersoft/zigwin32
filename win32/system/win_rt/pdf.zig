@@ -57,7 +57,7 @@ pub const IPdfRendererNative = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
-pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
+pub extern "windows.data.pdf" fn PdfCreateRenderer(
     pDevice: ?*IDXGIDevice,
     ppRenderer: ?*?*IPdfRendererNative,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

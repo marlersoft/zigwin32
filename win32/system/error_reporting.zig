@@ -605,77 +605,77 @@ pub extern "wer" fn WerReportCloseHandle(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerRegisterFile(
+pub extern "kernel32" fn WerRegisterFile(
     pwzFile: ?[*:0]const u16,
     regFileType: WER_REGISTER_FILE_TYPE,
     dwFlags: WER_FILE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerUnregisterFile(
+pub extern "kernel32" fn WerUnregisterFile(
     pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerRegisterMemoryBlock(
+pub extern "kernel32" fn WerRegisterMemoryBlock(
     pvAddress: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerUnregisterMemoryBlock(
+pub extern "kernel32" fn WerUnregisterMemoryBlock(
     pvAddress: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerRegisterExcludedMemoryBlock(
+pub extern "kernel32" fn WerRegisterExcludedMemoryBlock(
     address: ?*const anyopaque,
     size: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerUnregisterExcludedMemoryBlock(
+pub extern "kernel32" fn WerUnregisterExcludedMemoryBlock(
     address: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerRegisterCustomMetadata(
+pub extern "kernel32" fn WerRegisterCustomMetadata(
     key: ?[*:0]const u16,
     value: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerUnregisterCustomMetadata(
+pub extern "kernel32" fn WerUnregisterCustomMetadata(
     key: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerRegisterAdditionalProcess(
+pub extern "kernel32" fn WerRegisterAdditionalProcess(
     processId: u32,
     captureExtraInfoForThreadId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "KERNEL32" fn WerUnregisterAdditionalProcess(
+pub extern "kernel32" fn WerUnregisterAdditionalProcess(
     processId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn WerRegisterAppLocalDump(
+pub extern "kernel32" fn WerRegisterAppLocalDump(
     localAppDataRelativePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn WerUnregisterAppLocalDump(
+pub extern "kernel32" fn WerUnregisterAppLocalDump(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerSetFlags(
+pub extern "kernel32" fn WerSetFlags(
     dwFlags: WER_FAULT_REPORTING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WerGetFlags(
+pub extern "kernel32" fn WerGetFlags(
     hProcess: ?HANDLE,
     pdwFlags: ?*WER_FAULT_REPORTING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -693,13 +693,13 @@ pub extern "wer" fn WerRemoveExcludedApplication(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn WerRegisterRuntimeExceptionModule(
+pub extern "kernel32" fn WerRegisterRuntimeExceptionModule(
     pwszOutOfProcessCallbackDll: ?[*:0]const u16,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn WerUnregisterRuntimeExceptionModule(
+pub extern "kernel32" fn WerUnregisterRuntimeExceptionModule(
     pwszOutOfProcessCallbackDll: ?[*:0]const u16,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

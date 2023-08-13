@@ -54,7 +54,7 @@ pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS;
 // Section: Functions (22)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CreatePipe(
+pub extern "kernel32" fn CreatePipe(
     hReadPipe: ?*?HANDLE,
     hWritePipe: ?*?HANDLE,
     lpPipeAttributes: ?*SECURITY_ATTRIBUTES,
@@ -62,18 +62,18 @@ pub extern "KERNEL32" fn CreatePipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn ConnectNamedPipe(
+pub extern "kernel32" fn ConnectNamedPipe(
     hNamedPipe: ?HANDLE,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DisconnectNamedPipe(
+pub extern "kernel32" fn DisconnectNamedPipe(
     hNamedPipe: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetNamedPipeHandleState(
+pub extern "kernel32" fn SetNamedPipeHandleState(
     hNamedPipe: ?HANDLE,
     lpMode: ?*NAMED_PIPE_MODE,
     lpMaxCollectionCount: ?*u32,
@@ -81,7 +81,7 @@ pub extern "KERNEL32" fn SetNamedPipeHandleState(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn PeekNamedPipe(
+pub extern "kernel32" fn PeekNamedPipe(
     hNamedPipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -92,7 +92,7 @@ pub extern "KERNEL32" fn PeekNamedPipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn TransactNamedPipe(
+pub extern "kernel32" fn TransactNamedPipe(
     hNamedPipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpInBuffer: ?*anyopaque,
@@ -104,7 +104,7 @@ pub extern "KERNEL32" fn TransactNamedPipe(
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CreateNamedPipeW(
+pub extern "kernel32" fn CreateNamedPipeW(
     lpName: ?[*:0]const u16,
     dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
     dwPipeMode: NAMED_PIPE_MODE,
@@ -115,12 +115,12 @@ pub extern "KERNEL32" fn CreateNamedPipeW(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn WaitNamedPipeW(
+pub extern "kernel32" fn WaitNamedPipeW(
     lpNamedPipeName: ?[*:0]const u16,
     nTimeOut: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetNamedPipeClientComputerNameW(
+pub extern "kernel32" fn GetNamedPipeClientComputerNameW(
     Pipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ClientComputerName: ?PWSTR,
@@ -128,12 +128,12 @@ pub extern "KERNEL32" fn GetNamedPipeClientComputerNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
+pub extern "advapi32" fn ImpersonateNamedPipeClient(
     hNamedPipe: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetNamedPipeInfo(
+pub extern "kernel32" fn GetNamedPipeInfo(
     hNamedPipe: ?HANDLE,
     lpFlags: ?*NAMED_PIPE_MODE,
     lpOutBufferSize: ?*u32,
@@ -141,7 +141,7 @@ pub extern "KERNEL32" fn GetNamedPipeInfo(
     lpMaxInstances: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetNamedPipeHandleStateW(
+pub extern "kernel32" fn GetNamedPipeHandleStateW(
     hNamedPipe: ?HANDLE,
     lpState: ?*NAMED_PIPE_MODE,
     lpCurInstances: ?*u32,
@@ -151,7 +151,7 @@ pub extern "KERNEL32" fn GetNamedPipeHandleStateW(
     nMaxUserNameSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CallNamedPipeW(
+pub extern "kernel32" fn CallNamedPipeW(
     lpNamedPipeName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     lpInBuffer: ?*anyopaque,
@@ -164,7 +164,7 @@ pub extern "KERNEL32" fn CallNamedPipeW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CreateNamedPipeA(
+pub extern "kernel32" fn CreateNamedPipeA(
     lpName: ?[*:0]const u8,
     dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
     dwPipeMode: NAMED_PIPE_MODE,
@@ -176,7 +176,7 @@ pub extern "KERNEL32" fn CreateNamedPipeA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
+pub extern "kernel32" fn GetNamedPipeHandleStateA(
     hNamedPipe: ?HANDLE,
     lpState: ?*NAMED_PIPE_MODE,
     lpCurInstances: ?*u32,
@@ -187,7 +187,7 @@ pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CallNamedPipeA(
+pub extern "kernel32" fn CallNamedPipeA(
     lpNamedPipeName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpInBuffer: ?*anyopaque,
@@ -200,13 +200,13 @@ pub extern "KERNEL32" fn CallNamedPipeA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WaitNamedPipeA(
+pub extern "kernel32" fn WaitNamedPipeA(
     lpNamedPipeName: ?[*:0]const u8,
     nTimeOut: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientComputerNameA(
+pub extern "kernel32" fn GetNamedPipeClientComputerNameA(
     Pipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ClientComputerName: ?PSTR,
@@ -214,25 +214,25 @@ pub extern "KERNEL32" fn GetNamedPipeClientComputerNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientProcessId(
+pub extern "kernel32" fn GetNamedPipeClientProcessId(
     Pipe: ?HANDLE,
     ClientProcessId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientSessionId(
+pub extern "kernel32" fn GetNamedPipeClientSessionId(
     Pipe: ?HANDLE,
     ClientSessionId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeServerProcessId(
+pub extern "kernel32" fn GetNamedPipeServerProcessId(
     Pipe: ?HANDLE,
     ServerProcessId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeServerSessionId(
+pub extern "kernel32" fn GetNamedPipeServerSessionId(
     Pipe: ?HANDLE,
     ServerSessionId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

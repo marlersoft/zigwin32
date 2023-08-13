@@ -3490,32 +3490,32 @@ pub const PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__ = extern struct {
 // Section: Functions (63)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentPackageId(
+pub extern "kernel32" fn GetCurrentPackageId(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentPackageFullName(
+pub extern "kernel32" fn GetCurrentPackageFullName(
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentPackageFamilyName(
+pub extern "kernel32" fn GetCurrentPackageFamilyName(
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentPackagePath(
+pub extern "kernel32" fn GetCurrentPackagePath(
     pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackageId(
+pub extern "kernel32" fn GetPackageId(
     hProcess: ?HANDLE,
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3523,7 +3523,7 @@ pub extern "KERNEL32" fn GetPackageId(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackageFullName(
+pub extern "kernel32" fn GetPackageFullName(
     hProcess: ?HANDLE,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
@@ -3537,7 +3537,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackageFamilyName(
+pub extern "kernel32" fn GetPackageFamilyName(
     hProcess: ?HANDLE,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
@@ -3551,7 +3551,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackagePath(
+pub extern "kernel32" fn GetPackagePath(
     packageId: ?*const PACKAGE_ID,
     reserved: u32,
     pathLength: ?*u32,
@@ -3559,14 +3559,14 @@ pub extern "KERNEL32" fn GetPackagePath(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn GetPackagePathByFullName(
+pub extern "kernel32" fn GetPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn GetStagedPackagePathByFullName(
+pub extern "kernel32" fn GetStagedPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
@@ -3605,12 +3605,12 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
     path: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn GetCurrentApplicationUserModelId(
+pub extern "kernel32" fn GetCurrentApplicationUserModelId(
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn GetApplicationUserModelId(
+pub extern "kernel32" fn GetApplicationUserModelId(
     hProcess: ?HANDLE,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
@@ -3643,7 +3643,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicat
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn PackageIdFromFullName(
+pub extern "kernel32" fn PackageIdFromFullName(
     packageFullName: ?[*:0]const u16,
     flags: u32,
     bufferLength: ?*u32,
@@ -3652,28 +3652,28 @@ pub extern "KERNEL32" fn PackageIdFromFullName(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn PackageFullNameFromId(
+pub extern "kernel32" fn PackageFullNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn PackageFamilyNameFromId(
+pub extern "kernel32" fn PackageFamilyNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn PackageFamilyNameFromFullName(
+pub extern "kernel32" fn PackageFamilyNameFromFullName(
     packageFullName: ?[*:0]const u16,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn PackageNameAndPublisherIdFromFamilyName(
+pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
     packageFamilyName: ?[*:0]const u16,
     packageNameLength: ?*u32,
     packageName: ?[*:0]u16,
@@ -3682,7 +3682,7 @@ pub extern "KERNEL32" fn PackageNameAndPublisherIdFromFamilyName(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn FormatApplicationUserModelId(
+pub extern "kernel32" fn FormatApplicationUserModelId(
     packageFamilyName: ?[*:0]const u16,
     packageRelativeApplicationId: ?[*:0]const u16,
     applicationUserModelIdLength: ?*u32,
@@ -3690,7 +3690,7 @@ pub extern "KERNEL32" fn FormatApplicationUserModelId(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn ParseApplicationUserModelId(
+pub extern "kernel32" fn ParseApplicationUserModelId(
     applicationUserModelId: ?[*:0]const u16,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
@@ -3699,7 +3699,7 @@ pub extern "KERNEL32" fn ParseApplicationUserModelId(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackagesByPackageFamily(
+pub extern "kernel32" fn GetPackagesByPackageFamily(
     packageFamilyName: ?[*:0]const u16,
     count: ?*u32,
     packageFullNames: ?[*]?PWSTR,
@@ -3708,7 +3708,7 @@ pub extern "KERNEL32" fn GetPackagesByPackageFamily(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn FindPackagesByPackageFamily(
+pub extern "kernel32" fn FindPackagesByPackageFamily(
     packageFamilyName: ?[*:0]const u16,
     packageFilters: u32,
     count: ?*u32,
@@ -3725,7 +3725,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentPackageInfo(
+pub extern "kernel32" fn GetCurrentPackageInfo(
     flags: u32,
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3734,7 +3734,7 @@ pub extern "KERNEL32" fn GetCurrentPackageInfo(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn OpenPackageInfoByFullName(
+pub extern "kernel32" fn OpenPackageInfoByFullName(
     packageFullName: ?[*:0]const u16,
     reserved: u32,
     packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
@@ -3748,12 +3748,12 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForU
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn ClosePackageInfo(
+pub extern "kernel32" fn ClosePackageInfo(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetPackageInfo(
+pub extern "kernel32" fn GetPackageInfo(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     flags: u32,
     bufferLength: ?*u32,
@@ -3763,7 +3763,7 @@ pub extern "KERNEL32" fn GetPackageInfo(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn GetPackageApplicationIds(
+pub extern "kernel32" fn GetPackageApplicationIds(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3782,12 +3782,12 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn CheckIsMSIXPackage(
+pub extern "kernel32" fn CheckIsMSIXPackage(
     packageFullName: ?[*:0]const u16,
     isMSIXPackage: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn TryCreatePackageDependency(
+pub extern "kernel32" fn TryCreatePackageDependency(
     user: ?PSID,
     packageFamilyName: ?[*:0]const u16,
     minVersion: PACKAGE_VERSION,
@@ -3798,11 +3798,11 @@ pub extern "KERNEL32" fn TryCreatePackageDependency(
     packageDependencyId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn DeletePackageDependency(
+pub extern "kernel32" fn DeletePackageDependency(
     packageDependencyId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn AddPackageDependency(
+pub extern "kernel32" fn AddPackageDependency(
     packageDependencyId: ?[*:0]const u16,
     rank: i32,
     options: AddPackageDependencyOptions,
@@ -3810,87 +3810,87 @@ pub extern "KERNEL32" fn AddPackageDependency(
     packageFullName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn RemovePackageDependency(
+pub extern "kernel32" fn RemovePackageDependency(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn GetResolvedPackageFullNameForPackageDependency(
+pub extern "kernel32" fn GetResolvedPackageFullNameForPackageDependency(
     packageDependencyId: ?[*:0]const u16,
     packageFullName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn GetIdForPackageDependencyContext(
+pub extern "kernel32" fn GetIdForPackageDependencyContext(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
     packageDependencyId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn AppPolicyGetLifecycleManagement(
+pub extern "kernel32" fn AppPolicyGetLifecycleManagement(
     processToken: ?HANDLE,
     policy: ?*AppPolicyLifecycleManagement,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetWindowingModel(
+pub extern "kernel32" fn AppPolicyGetWindowingModel(
     processToken: ?HANDLE,
     policy: ?*AppPolicyWindowingModel,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetMediaFoundationCodecLoading(
+pub extern "kernel32" fn AppPolicyGetMediaFoundationCodecLoading(
     processToken: ?HANDLE,
     policy: ?*AppPolicyMediaFoundationCodecLoading,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetClrCompat(
+pub extern "kernel32" fn AppPolicyGetClrCompat(
     processToken: ?HANDLE,
     policy: ?*AppPolicyClrCompat,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetThreadInitializationType(
+pub extern "kernel32" fn AppPolicyGetThreadInitializationType(
     processToken: ?HANDLE,
     policy: ?*AppPolicyThreadInitializationType,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetShowDeveloperDiagnostic(
+pub extern "kernel32" fn AppPolicyGetShowDeveloperDiagnostic(
     processToken: ?HANDLE,
     policy: ?*AppPolicyShowDeveloperDiagnostic,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetProcessTerminationMethod(
+pub extern "kernel32" fn AppPolicyGetProcessTerminationMethod(
     processToken: ?HANDLE,
     policy: ?*AppPolicyProcessTerminationMethod,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn AppPolicyGetCreateFileAccess(
+pub extern "kernel32" fn AppPolicyGetCreateFileAccess(
     processToken: ?HANDLE,
     policy: ?*AppPolicyCreateFileAccess,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "KERNEL32" fn CreatePackageVirtualizationContext(
+pub extern "kernel32" fn CreatePackageVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
     context: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn ActivatePackageVirtualizationContext(
+pub extern "kernel32" fn ActivatePackageVirtualizationContext(
     context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
     cookie: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn ReleasePackageVirtualizationContext(
+pub extern "kernel32" fn ReleasePackageVirtualizationContext(
     context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn DeactivatePackageVirtualizationContext(
+pub extern "kernel32" fn DeactivatePackageVirtualizationContext(
     cookie: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn DuplicatePackageVirtualizationContext(
+pub extern "kernel32" fn DuplicatePackageVirtualizationContext(
     sourceContext: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
     destContext: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn GetCurrentPackageVirtualizationContext(
+pub extern "kernel32" fn GetCurrentPackageVirtualizationContext(
 ) callconv(@import("std").os.windows.WINAPI) ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__;
 
-pub extern "KERNEL32" fn GetProcessesInVirtualizationContext(
+pub extern "kernel32" fn GetProcessesInVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
     count: ?*u32,
     processes: ?*?*?HANDLE,

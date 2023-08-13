@@ -14,17 +14,17 @@ pub const OOBE_COMPLETED_CALLBACK = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn OOBEComplete(
+pub extern "kernel32" fn OOBEComplete(
     isOOBEComplete: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn RegisterWaitUntilOOBECompleted(
+pub extern "kernel32" fn RegisterWaitUntilOOBECompleted(
     OOBECompletedCallback: ?OOBE_COMPLETED_CALLBACK,
     CallbackContext: ?*anyopaque,
     WaitHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn UnregisterWaitUntilOOBECompleted(
+pub extern "kernel32" fn UnregisterWaitUntilOOBECompleted(
     WaitHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

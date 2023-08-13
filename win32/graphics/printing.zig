@@ -7106,30 +7106,30 @@ pub const _SPLCLIENT_INFO_2_V2 = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (214)
 //--------------------------------------------------------------------------------
-pub extern "COMPSTUI" fn CommonPropertySheetUIA(
+pub extern "compstui" fn CommonPropertySheetUIA(
     hWndOwner: ?HWND,
     pfnPropSheetUI: ?PFNPROPSHEETUI,
     lParam: LPARAM,
     pResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "COMPSTUI" fn CommonPropertySheetUIW(
+pub extern "compstui" fn CommonPropertySheetUIW(
     hWndOwner: ?HWND,
     pfnPropSheetUI: ?PFNPROPSHEETUI,
     lParam: LPARAM,
     pResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "COMPSTUI" fn GetCPSUIUserData(
+pub extern "compstui" fn GetCPSUIUserData(
     hDlg: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub extern "COMPSTUI" fn SetCPSUIUserData(
+pub extern "compstui" fn SetCPSUIUserData(
     hDlg: ?HWND,
     CPSUIUserData: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintersA(
+pub extern "winspool" fn EnumPrintersA(
     Flags: u32,
     Name: ?PSTR,
     Level: u32,
@@ -7140,7 +7140,7 @@ pub extern "WINSPOOL" fn EnumPrintersA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintersW(
+pub extern "winspool" fn EnumPrintersW(
     Flags: u32,
     Name: ?PWSTR,
     Level: u32,
@@ -7151,44 +7151,44 @@ pub extern "WINSPOOL" fn EnumPrintersW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetSpoolFileHandle(
+pub extern "winspool" fn GetSpoolFileHandle(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn CommitSpoolData(
+pub extern "winspool" fn CommitSpoolData(
     hPrinter: ?HANDLE,
     hSpoolFile: ?HANDLE,
     cbCommit: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn CloseSpoolFileHandle(
+pub extern "winspool" fn CloseSpoolFileHandle(
     hPrinter: ?HANDLE,
     hSpoolFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn OpenPrinterA(
+pub extern "winspool" fn OpenPrinterA(
     pPrinterName: ?PSTR,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn OpenPrinterW(
+pub extern "winspool" fn OpenPrinterW(
     pPrinterName: ?PWSTR,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ResetPrinterA(
+pub extern "winspool" fn ResetPrinterA(
     hPrinter: ?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ResetPrinterW(
+pub extern "winspool" fn ResetPrinterW(
     hPrinter: ?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetJobA(
+pub extern "winspool" fn SetJobA(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
@@ -7196,7 +7196,7 @@ pub extern "WINSPOOL" fn SetJobA(
     Command: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetJobW(
+pub extern "winspool" fn SetJobW(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
@@ -7204,7 +7204,7 @@ pub extern "WINSPOOL" fn SetJobW(
     Command: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetJobA(
+pub extern "winspool" fn GetJobA(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
@@ -7214,7 +7214,7 @@ pub extern "WINSPOOL" fn GetJobA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetJobW(
+pub extern "winspool" fn GetJobW(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
@@ -7224,7 +7224,7 @@ pub extern "WINSPOOL" fn GetJobW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumJobsA(
+pub extern "winspool" fn EnumJobsA(
     hPrinter: ?HANDLE,
     FirstJob: u32,
     NoJobs: u32,
@@ -7236,7 +7236,7 @@ pub extern "WINSPOOL" fn EnumJobsA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumJobsW(
+pub extern "winspool" fn EnumJobsW(
     hPrinter: ?HANDLE,
     FirstJob: u32,
     NoJobs: u32,
@@ -7248,37 +7248,37 @@ pub extern "WINSPOOL" fn EnumJobsW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterA(
+pub extern "winspool" fn AddPrinterA(
     pName: ?PSTR,
     Level: u32,
     pPrinter: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn AddPrinterW(
+pub extern "winspool" fn AddPrinterW(
     pName: ?PWSTR,
     Level: u32,
     pPrinter: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn DeletePrinter(
+pub extern "winspool" fn DeletePrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetPrinterA(
-    hPrinter: ?HANDLE,
-    Level: u32,
-    pPrinter: ?*u8,
-    Command: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "WINSPOOL" fn SetPrinterW(
+pub extern "winspool" fn SetPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
     pPrinter: ?*u8,
     Command: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterA(
+pub extern "winspool" fn SetPrinterW(
+    hPrinter: ?HANDLE,
+    Level: u32,
+    pPrinter: ?*u8,
+    Command: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "winspool" fn GetPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7287,7 +7287,7 @@ pub extern "WINSPOOL" fn GetPrinterA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterW(
+pub extern "winspool" fn GetPrinterW(
     hPrinter: ?HANDLE,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7296,33 +7296,33 @@ pub extern "WINSPOOL" fn GetPrinterW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterDriverA(
+pub extern "winspool" fn AddPrinterDriverA(
     pName: ?PSTR,
     Level: u32,
     pDriverInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterDriverW(
+pub extern "winspool" fn AddPrinterDriverW(
     pName: ?PWSTR,
     Level: u32,
     pDriverInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterDriverExA(
+pub extern "winspool" fn AddPrinterDriverExA(
     pName: ?PSTR,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterDriverExW(
+pub extern "winspool" fn AddPrinterDriverExW(
     pName: ?PWSTR,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrinterDriversA(
+pub extern "winspool" fn EnumPrinterDriversA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7333,7 +7333,7 @@ pub extern "WINSPOOL" fn EnumPrinterDriversA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrinterDriversW(
+pub extern "winspool" fn EnumPrinterDriversW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7344,7 +7344,7 @@ pub extern "WINSPOOL" fn EnumPrinterDriversW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterDriverA(
+pub extern "winspool" fn GetPrinterDriverA(
     hPrinter: ?HANDLE,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7354,7 +7354,7 @@ pub extern "WINSPOOL" fn GetPrinterDriverA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterDriverW(
+pub extern "winspool" fn GetPrinterDriverW(
     hPrinter: ?HANDLE,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7364,7 +7364,7 @@ pub extern "WINSPOOL" fn GetPrinterDriverW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterDriverDirectoryA(
+pub extern "winspool" fn GetPrinterDriverDirectoryA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7374,7 +7374,7 @@ pub extern "WINSPOOL" fn GetPrinterDriverDirectoryA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterDriverDirectoryW(
+pub extern "winspool" fn GetPrinterDriverDirectoryW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7384,19 +7384,19 @@ pub extern "WINSPOOL" fn GetPrinterDriverDirectoryW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverA(
+pub extern "winspool" fn DeletePrinterDriverA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pDriverName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverW(
+pub extern "winspool" fn DeletePrinterDriverW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pDriverName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverExA(
+pub extern "winspool" fn DeletePrinterDriverExA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pDriverName: ?PSTR,
@@ -7404,7 +7404,7 @@ pub extern "WINSPOOL" fn DeletePrinterDriverExA(
     dwVersionFlag: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverExW(
+pub extern "winspool" fn DeletePrinterDriverExW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pDriverName: ?PWSTR,
@@ -7412,21 +7412,21 @@ pub extern "WINSPOOL" fn DeletePrinterDriverExW(
     dwVersionFlag: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrintProcessorA(
+pub extern "winspool" fn AddPrintProcessorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPathName: ?PSTR,
     pPrintProcessorName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrintProcessorW(
+pub extern "winspool" fn AddPrintProcessorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPathName: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintProcessorsA(
+pub extern "winspool" fn EnumPrintProcessorsA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7437,7 +7437,7 @@ pub extern "WINSPOOL" fn EnumPrintProcessorsA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintProcessorsW(
+pub extern "winspool" fn EnumPrintProcessorsW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7448,7 +7448,7 @@ pub extern "WINSPOOL" fn EnumPrintProcessorsW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrintProcessorDirectoryA(
+pub extern "winspool" fn GetPrintProcessorDirectoryA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7458,7 +7458,7 @@ pub extern "WINSPOOL" fn GetPrintProcessorDirectoryA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrintProcessorDirectoryW(
+pub extern "winspool" fn GetPrintProcessorDirectoryW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7468,7 +7468,7 @@ pub extern "WINSPOOL" fn GetPrintProcessorDirectoryW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintProcessorDatatypesA(
+pub extern "winspool" fn EnumPrintProcessorDatatypesA(
     pName: ?PSTR,
     pPrintProcessorName: ?PSTR,
     Level: u32,
@@ -7479,7 +7479,7 @@ pub extern "WINSPOOL" fn EnumPrintProcessorDatatypesA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPrintProcessorDatatypesW(
+pub extern "winspool" fn EnumPrintProcessorDatatypesW(
     pName: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
     Level: u32,
@@ -7490,35 +7490,35 @@ pub extern "WINSPOOL" fn EnumPrintProcessorDatatypesW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrintProcessorA(
+pub extern "winspool" fn DeletePrintProcessorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPrintProcessorName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrintProcessorW(
+pub extern "winspool" fn DeletePrintProcessorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn StartDocPrinterA(
+pub extern "winspool" fn StartDocPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
     pDocInfo: ?*DOC_INFO_1A,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn StartDocPrinterW(
+pub extern "winspool" fn StartDocPrinterW(
     hPrinter: ?HANDLE,
     Level: u32,
     pDocInfo: ?*DOC_INFO_1W,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn StartPagePrinter(
+pub extern "winspool" fn StartPagePrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn WritePrinter(
+pub extern "winspool" fn WritePrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*anyopaque,
@@ -7526,7 +7526,7 @@ pub extern "WINSPOOL" fn WritePrinter(
     pcWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn FlushPrinter(
+pub extern "winspool" fn FlushPrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*anyopaque,
@@ -7535,15 +7535,15 @@ pub extern "WINSPOOL" fn FlushPrinter(
     cSleep: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EndPagePrinter(
+pub extern "winspool" fn EndPagePrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AbortPrinter(
+pub extern "winspool" fn AbortPrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ReadPrinter(
+pub extern "winspool" fn ReadPrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pBuf: ?*anyopaque,
@@ -7551,20 +7551,11 @@ pub extern "WINSPOOL" fn ReadPrinter(
     pNoBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EndDocPrinter(
+pub extern "winspool" fn EndDocPrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddJobA(
-    hPrinter: ?HANDLE,
-    Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pData: ?*u8,
-    cbBuf: u32,
-    pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "WINSPOOL" fn AddJobW(
+pub extern "winspool" fn AddJobA(
     hPrinter: ?HANDLE,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7573,17 +7564,26 @@ pub extern "WINSPOOL" fn AddJobW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ScheduleJob(
+pub extern "winspool" fn AddJobW(
+    hPrinter: ?HANDLE,
+    Level: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pData: ?*u8,
+    cbBuf: u32,
+    pcbNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "winspool" fn ScheduleJob(
     hPrinter: ?HANDLE,
     JobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn PrinterProperties(
+pub extern "winspool" fn PrinterProperties(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DocumentPropertiesA(
+pub extern "winspool" fn DocumentPropertiesA(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pDeviceName: ?PSTR,
@@ -7592,7 +7592,7 @@ pub extern "WINSPOOL" fn DocumentPropertiesA(
     fMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "WINSPOOL" fn DocumentPropertiesW(
+pub extern "winspool" fn DocumentPropertiesW(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pDeviceName: ?PWSTR,
@@ -7601,7 +7601,7 @@ pub extern "WINSPOOL" fn DocumentPropertiesW(
     fMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "WINSPOOL" fn AdvancedDocumentPropertiesA(
+pub extern "winspool" fn AdvancedDocumentPropertiesA(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pDeviceName: ?PSTR,
@@ -7609,7 +7609,7 @@ pub extern "WINSPOOL" fn AdvancedDocumentPropertiesA(
     pDevModeInput: ?*DEVMODEA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "WINSPOOL" fn AdvancedDocumentPropertiesW(
+pub extern "winspool" fn AdvancedDocumentPropertiesW(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pDeviceName: ?PWSTR,
@@ -7617,7 +7617,7 @@ pub extern "WINSPOOL" fn AdvancedDocumentPropertiesW(
     pDevModeInput: ?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "WINSPOOL" fn ExtDeviceMode(
+pub extern "winspool" fn ExtDeviceMode(
     hWnd: ?HWND,
     hInst: ?HANDLE,
     pDevModeOutput: ?*DEVMODEA,
@@ -7628,7 +7628,7 @@ pub extern "WINSPOOL" fn ExtDeviceMode(
     fMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "WINSPOOL" fn GetPrinterDataA(
+pub extern "winspool" fn GetPrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
     pType: ?*u32,
@@ -7638,7 +7638,7 @@ pub extern "WINSPOOL" fn GetPrinterDataA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn GetPrinterDataW(
+pub extern "winspool" fn GetPrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
     pType: ?*u32,
@@ -7648,7 +7648,7 @@ pub extern "WINSPOOL" fn GetPrinterDataW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn GetPrinterDataExA(
+pub extern "winspool" fn GetPrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
@@ -7659,7 +7659,7 @@ pub extern "WINSPOOL" fn GetPrinterDataExA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn GetPrinterDataExW(
+pub extern "winspool" fn GetPrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
@@ -7670,7 +7670,7 @@ pub extern "WINSPOOL" fn GetPrinterDataExW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterDataA(
+pub extern "winspool" fn EnumPrinterDataA(
     hPrinter: ?HANDLE,
     dwIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7683,7 +7683,7 @@ pub extern "WINSPOOL" fn EnumPrinterDataA(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterDataW(
+pub extern "winspool" fn EnumPrinterDataW(
     hPrinter: ?HANDLE,
     dwIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7696,7 +7696,7 @@ pub extern "WINSPOOL" fn EnumPrinterDataW(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterDataExA(
+pub extern "winspool" fn EnumPrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -7706,7 +7706,7 @@ pub extern "WINSPOOL" fn EnumPrinterDataExA(
     pnEnumValues: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterDataExW(
+pub extern "winspool" fn EnumPrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -7716,7 +7716,7 @@ pub extern "WINSPOOL" fn EnumPrinterDataExW(
     pnEnumValues: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterKeyA(
+pub extern "winspool" fn EnumPrinterKeyA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -7725,7 +7725,7 @@ pub extern "WINSPOOL" fn EnumPrinterKeyA(
     pcbSubkey: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumPrinterKeyW(
+pub extern "winspool" fn EnumPrinterKeyW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -7734,7 +7734,7 @@ pub extern "WINSPOOL" fn EnumPrinterKeyW(
     pcbSubkey: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn SetPrinterDataA(
+pub extern "winspool" fn SetPrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
     Type: u32,
@@ -7743,7 +7743,7 @@ pub extern "WINSPOOL" fn SetPrinterDataA(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn SetPrinterDataW(
+pub extern "winspool" fn SetPrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
     Type: u32,
@@ -7752,7 +7752,7 @@ pub extern "WINSPOOL" fn SetPrinterDataW(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn SetPrinterDataExA(
+pub extern "winspool" fn SetPrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
@@ -7762,7 +7762,7 @@ pub extern "WINSPOOL" fn SetPrinterDataExA(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn SetPrinterDataExW(
+pub extern "winspool" fn SetPrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
@@ -7772,66 +7772,66 @@ pub extern "WINSPOOL" fn SetPrinterDataExW(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterDataA(
+pub extern "winspool" fn DeletePrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterDataW(
+pub extern "winspool" fn DeletePrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterDataExA(
+pub extern "winspool" fn DeletePrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterDataExW(
+pub extern "winspool" fn DeletePrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterKeyA(
+pub extern "winspool" fn DeletePrinterKeyA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeletePrinterKeyW(
+pub extern "winspool" fn DeletePrinterKeyW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn WaitForPrinterChange(
+pub extern "winspool" fn WaitForPrinterChange(
     hPrinter: ?HANDLE,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn FindFirstPrinterChangeNotification(
+pub extern "winspool" fn FindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFilter: u32,
     fdwOptions: u32,
     pPrinterNotifyOptions: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn FindNextPrinterChangeNotification(
+pub extern "winspool" fn FindNextPrinterChangeNotification(
     hChange: ?HANDLE,
     pdwChange: ?*u32,
     pvReserved: ?*anyopaque,
     ppPrinterNotifyInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn FreePrinterNotifyInfo(
+pub extern "winspool" fn FreePrinterNotifyInfo(
     pPrinterNotifyInfo: ?*PRINTER_NOTIFY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn FindClosePrinterChangeNotification(
+pub extern "winspool" fn FindClosePrinterChangeNotification(
     hChange: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn PrinterMessageBoxA(
+pub extern "winspool" fn PrinterMessageBoxA(
     hPrinter: ?HANDLE,
     Error: u32,
     hWnd: ?HWND,
@@ -7840,7 +7840,7 @@ pub extern "WINSPOOL" fn PrinterMessageBoxA(
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn PrinterMessageBoxW(
+pub extern "winspool" fn PrinterMessageBoxW(
     hPrinter: ?HANDLE,
     Error: u32,
     hWnd: ?HWND,
@@ -7849,33 +7849,33 @@ pub extern "WINSPOOL" fn PrinterMessageBoxW(
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn ClosePrinter(
+pub extern "winspool" fn ClosePrinter(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddFormA(
-    hPrinter: ?HANDLE,
-    Level: u32,
-    pForm: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "WINSPOOL" fn AddFormW(
+pub extern "winspool" fn AddFormA(
     hPrinter: ?HANDLE,
     Level: u32,
     pForm: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeleteFormA(
+pub extern "winspool" fn AddFormW(
+    hPrinter: ?HANDLE,
+    Level: u32,
+    pForm: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "winspool" fn DeleteFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeleteFormW(
+pub extern "winspool" fn DeleteFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetFormA(
+pub extern "winspool" fn GetFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
     Level: u32,
@@ -7885,7 +7885,7 @@ pub extern "WINSPOOL" fn GetFormA(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetFormW(
+pub extern "winspool" fn GetFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
     Level: u32,
@@ -7895,21 +7895,21 @@ pub extern "WINSPOOL" fn GetFormW(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetFormA(
+pub extern "winspool" fn SetFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
     Level: u32,
     pForm: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetFormW(
+pub extern "winspool" fn SetFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
     Level: u32,
     pForm: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumFormsA(
+pub extern "winspool" fn EnumFormsA(
     hPrinter: ?HANDLE,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7919,7 +7919,7 @@ pub extern "WINSPOOL" fn EnumFormsA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumFormsW(
+pub extern "winspool" fn EnumFormsW(
     hPrinter: ?HANDLE,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7929,7 +7929,7 @@ pub extern "WINSPOOL" fn EnumFormsW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumMonitorsA(
+pub extern "winspool" fn EnumMonitorsA(
     pName: ?PSTR,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7939,7 +7939,7 @@ pub extern "WINSPOOL" fn EnumMonitorsA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumMonitorsW(
+pub extern "winspool" fn EnumMonitorsW(
     pName: ?PWSTR,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7949,31 +7949,31 @@ pub extern "WINSPOOL" fn EnumMonitorsW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddMonitorA(
+pub extern "winspool" fn AddMonitorA(
     pName: ?PSTR,
     Level: u32,
     pMonitors: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddMonitorW(
+pub extern "winspool" fn AddMonitorW(
     pName: ?PWSTR,
     Level: u32,
     pMonitors: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeleteMonitorA(
+pub extern "winspool" fn DeleteMonitorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pMonitorName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeleteMonitorW(
+pub extern "winspool" fn DeleteMonitorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pMonitorName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPortsA(
+pub extern "winspool" fn EnumPortsA(
     pName: ?PSTR,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7983,7 +7983,7 @@ pub extern "WINSPOOL" fn EnumPortsA(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn EnumPortsW(
+pub extern "winspool" fn EnumPortsW(
     pName: ?PWSTR,
     Level: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7993,43 +7993,43 @@ pub extern "WINSPOOL" fn EnumPortsW(
     pcReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPortA(
+pub extern "winspool" fn AddPortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pMonitorName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPortW(
+pub extern "winspool" fn AddPortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pMonitorName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ConfigurePortA(
+pub extern "winspool" fn ConfigurePortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pPortName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ConfigurePortW(
+pub extern "winspool" fn ConfigurePortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pPortName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePortA(
+pub extern "winspool" fn DeletePortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pPortName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePortW(
+pub extern "winspool" fn DeletePortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pPortName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn XcvDataW(
+pub extern "winspool" fn XcvDataW(
     hXcv: ?HANDLE,
     pszDataName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -8042,122 +8042,122 @@ pub extern "WINSPOOL" fn XcvDataW(
     pdwStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetDefaultPrinterA(
+pub extern "winspool" fn GetDefaultPrinterA(
     pszBuffer: ?[*:0]u8,
     pcchBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetDefaultPrinterW(
+pub extern "winspool" fn GetDefaultPrinterW(
     pszBuffer: ?[*:0]u16,
     pcchBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetDefaultPrinterA(
+pub extern "winspool" fn SetDefaultPrinterA(
     pszPrinter: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetDefaultPrinterW(
+pub extern "winspool" fn SetDefaultPrinterW(
     pszPrinter: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetPortA(
+pub extern "winspool" fn SetPortA(
     pName: ?PSTR,
     pPortName: ?PSTR,
     dwLevel: u32,
     pPortInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn SetPortW(
+pub extern "winspool" fn SetPortW(
     pName: ?PWSTR,
     pPortName: ?PWSTR,
     dwLevel: u32,
     pPortInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterConnectionA(
+pub extern "winspool" fn AddPrinterConnectionA(
     pName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterConnectionW(
+pub extern "winspool" fn AddPrinterConnectionW(
     pName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterConnectionA(
+pub extern "winspool" fn DeletePrinterConnectionA(
     pName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterConnectionW(
+pub extern "winspool" fn DeletePrinterConnectionW(
     pName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn ConnectToPrinterDlg(
+pub extern "winspool" fn ConnectToPrinterDlg(
     hwnd: ?HWND,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn AddPrintProvidorA(
+pub extern "winspool" fn AddPrintProvidorA(
     pName: ?PSTR,
     Level: u32,
     pProvidorInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrintProvidorW(
+pub extern "winspool" fn AddPrintProvidorW(
     pName: ?PWSTR,
     Level: u32,
     pProvidorInfo: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrintProvidorA(
+pub extern "winspool" fn DeletePrintProvidorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPrintProvidorName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrintProvidorW(
+pub extern "winspool" fn DeletePrintProvidorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPrintProvidorName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn IsValidDevmodeA(
+pub extern "winspool" fn IsValidDevmodeA(
     pDevmode: ?*DEVMODEA,
     DevmodeSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn IsValidDevmodeW(
+pub extern "winspool" fn IsValidDevmodeW(
     pDevmode: ?*DEVMODEW,
     DevmodeSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn OpenPrinter2A(
+pub extern "winspool" fn OpenPrinter2A(
     pPrinterName: ?[*:0]const u8,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
     pOptions: ?*PRINTER_OPTIONSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn OpenPrinter2W(
+pub extern "winspool" fn OpenPrinter2W(
     pPrinterName: ?[*:0]const u16,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
     pOptions: ?*PRINTER_OPTIONSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterConnection2A(
+pub extern "winspool" fn AddPrinterConnection2A(
     hWnd: ?HWND,
     pszName: ?[*:0]const u8,
     dwLevel: u32,
     pConnectionInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn AddPrinterConnection2W(
+pub extern "winspool" fn AddPrinterConnection2W(
     hWnd: ?HWND,
     pszName: ?[*:0]const u16,
     dwLevel: u32,
     pConnectionInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn InstallPrinterDriverFromPackageA(
+pub extern "winspool" fn InstallPrinterDriverFromPackageA(
     pszServer: ?[*:0]const u8,
     pszInfPath: ?[*:0]const u8,
     pszDriverName: ?[*:0]const u8,
@@ -8165,7 +8165,7 @@ pub extern "WINSPOOL" fn InstallPrinterDriverFromPackageA(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn InstallPrinterDriverFromPackageW(
+pub extern "winspool" fn InstallPrinterDriverFromPackageW(
     pszServer: ?[*:0]const u16,
     pszInfPath: ?[*:0]const u16,
     pszDriverName: ?[*:0]const u16,
@@ -8173,7 +8173,7 @@ pub extern "WINSPOOL" fn InstallPrinterDriverFromPackageW(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn UploadPrinterDriverPackageA(
+pub extern "winspool" fn UploadPrinterDriverPackageA(
     pszServer: ?[*:0]const u8,
     pszInfPath: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
@@ -8183,7 +8183,7 @@ pub extern "WINSPOOL" fn UploadPrinterDriverPackageA(
     pcchDestInfPath: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn UploadPrinterDriverPackageW(
+pub extern "winspool" fn UploadPrinterDriverPackageW(
     pszServer: ?[*:0]const u16,
     pszInfPath: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
@@ -8193,7 +8193,7 @@ pub extern "WINSPOOL" fn UploadPrinterDriverPackageW(
     pcchDestInfPath: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn GetCorePrinterDriversA(
+pub extern "winspool" fn GetCorePrinterDriversA(
     pszServer: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
     pszzCoreDriverDependencies: ?[*:0]const u8,
@@ -8201,7 +8201,7 @@ pub extern "WINSPOOL" fn GetCorePrinterDriversA(
     pCorePrinterDrivers: [*]CORE_PRINTER_DRIVERA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn GetCorePrinterDriversW(
+pub extern "winspool" fn GetCorePrinterDriversW(
     pszServer: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
     pszzCoreDriverDependencies: ?[*:0]const u16,
@@ -8215,7 +8215,7 @@ pub fn CorePrinterDriverInstalledA() void { @panic("this function is not working
 // This function from dll 'WINSPOOL' is being skipped because it has some sort of issue
 pub fn CorePrinterDriverInstalledW() void { @panic("this function is not working"); }
 
-pub extern "WINSPOOL" fn GetPrinterDriverPackagePathA(
+pub extern "winspool" fn GetPrinterDriverPackagePathA(
     pszServer: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
     pszLanguage: ?[*:0]const u8,
@@ -8225,7 +8225,7 @@ pub extern "WINSPOOL" fn GetPrinterDriverPackagePathA(
     pcchRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn GetPrinterDriverPackagePathW(
+pub extern "winspool" fn GetPrinterDriverPackagePathW(
     pszServer: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
     pszLanguage: ?[*:0]const u16,
@@ -8235,26 +8235,26 @@ pub extern "WINSPOOL" fn GetPrinterDriverPackagePathW(
     pcchRequiredSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverPackageA(
+pub extern "winspool" fn DeletePrinterDriverPackageA(
     pszServer: ?[*:0]const u8,
     pszInfPath: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn DeletePrinterDriverPackageW(
+pub extern "winspool" fn DeletePrinterDriverPackageW(
     pszServer: ?[*:0]const u16,
     pszInfPath: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn ReportJobProcessingProgress(
+pub extern "winspool" fn ReportJobProcessingProgress(
     printerHandle: ?HANDLE,
     jobId: u32,
     jobOperation: EPrintXPSJobOperation,
     jobProgress: EPrintXPSJobProgress,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn GetPrinterDriver2A(
+pub extern "winspool" fn GetPrinterDriver2A(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pEnvironment: ?PSTR,
@@ -8265,7 +8265,7 @@ pub extern "WINSPOOL" fn GetPrinterDriver2A(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrinterDriver2W(
+pub extern "winspool" fn GetPrinterDriver2W(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
     pEnvironment: ?PWSTR,
@@ -8276,58 +8276,58 @@ pub extern "WINSPOOL" fn GetPrinterDriver2W(
     pcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetPrintExecutionData(
+pub extern "winspool" fn GetPrintExecutionData(
     pData: ?*PRINT_EXECUTION_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn GetJobNamedPropertyValue(
+pub extern "winspool" fn GetJobNamedPropertyValue(
     hPrinter: ?HANDLE,
     JobId: u32,
     pszName: ?[*:0]const u16,
     pValue: ?*PrintPropertyValue,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn FreePrintPropertyValue(
+pub extern "winspool" fn FreePrintPropertyValue(
     pValue: ?*PrintPropertyValue,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "WINSPOOL" fn FreePrintNamedPropertyArray(
+pub extern "winspool" fn FreePrintNamedPropertyArray(
     cProperties: u32,
     ppProperties: ?[*]?*PrintNamedProperty,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "WINSPOOL" fn SetJobNamedProperty(
+pub extern "winspool" fn SetJobNamedProperty(
     hPrinter: ?HANDLE,
     JobId: u32,
     pProperty: ?*const PrintNamedProperty,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn DeleteJobNamedProperty(
+pub extern "winspool" fn DeleteJobNamedProperty(
     hPrinter: ?HANDLE,
     JobId: u32,
     pszName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn EnumJobNamedProperties(
+pub extern "winspool" fn EnumJobNamedProperties(
     hPrinter: ?HANDLE,
     JobId: u32,
     pcProperties: ?*u32,
     ppProperties: ?*?*PrintNamedProperty,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINSPOOL" fn GetPrintOutputInfo(
+pub extern "winspool" fn GetPrintOutputInfo(
     hWnd: ?HWND,
     pszPrinter: ?[*:0]const u16,
     phFile: ?*?HANDLE,
     ppszOutputFile: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINSPOOL" fn DevQueryPrintEx(
+pub extern "winspool" fn DevQueryPrintEx(
     pDQPInfo: ?*DEVQUERYPRINT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WINSPOOL" fn RegisterForPrintAsyncNotifications(
+pub extern "winspool" fn RegisterForPrintAsyncNotifications(
     pszName: ?[*:0]const u16,
     pNotificationType: ?*Guid,
     eUserFilter: PrintAsyncNotifyUserFilter,
@@ -8337,12 +8337,12 @@ pub extern "WINSPOOL" fn RegisterForPrintAsyncNotifications(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WINSPOOL" fn UnRegisterForPrintAsyncNotifications(
+pub extern "winspool" fn UnRegisterForPrintAsyncNotifications(
     param0: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WINSPOOL" fn CreatePrintAsyncNotifyChannel(
+pub extern "winspool" fn CreatePrintAsyncNotifyChannel(
     pszName: ?[*:0]const u16,
     pNotificationType: ?*Guid,
     eUserFilter: PrintAsyncNotifyUserFilter,
@@ -8351,40 +8351,40 @@ pub extern "WINSPOOL" fn CreatePrintAsyncNotifyChannel(
     ppIAsynchNotification: ?*?*IPrintAsyncNotifyChannel,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "GDI32" fn GdiGetSpoolFileHandle(
+pub extern "gdi32" fn GdiGetSpoolFileHandle(
     pwszPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     pwszDocName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "GDI32" fn GdiDeleteSpoolFileHandle(
+pub extern "gdi32" fn GdiDeleteSpoolFileHandle(
     SpoolFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiGetPageCount(
+pub extern "gdi32" fn GdiGetPageCount(
     SpoolFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "GDI32" fn GdiGetDC(
+pub extern "gdi32" fn GdiGetDC(
     SpoolFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
-pub extern "GDI32" fn GdiGetPageHandle(
+pub extern "gdi32" fn GdiGetPageHandle(
     SpoolFileHandle: ?HANDLE,
     Page: u32,
     pdwPageType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "GDI32" fn GdiStartDocEMF(
+pub extern "gdi32" fn GdiStartDocEMF(
     SpoolFileHandle: ?HANDLE,
     pDocInfo: ?*DOCINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiStartPageEMF(
+pub extern "gdi32" fn GdiStartPageEMF(
     SpoolFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiPlayPageEMF(
+pub extern "gdi32" fn GdiPlayPageEMF(
     SpoolFileHandle: ?HANDLE,
     hemf: ?HANDLE,
     prectDocument: ?*RECT,
@@ -8392,34 +8392,34 @@ pub extern "GDI32" fn GdiPlayPageEMF(
     prectClip: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiEndPageEMF(
+pub extern "gdi32" fn GdiEndPageEMF(
     SpoolFileHandle: ?HANDLE,
     dwOptimization: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiEndDocEMF(
+pub extern "gdi32" fn GdiEndDocEMF(
     SpoolFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiGetDevmodeForPage(
+pub extern "gdi32" fn GdiGetDevmodeForPage(
     SpoolFileHandle: ?HANDLE,
     dwPageNumber: u32,
     pCurrDM: ?*?*DEVMODEW,
     pLastDM: ?*?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "GDI32" fn GdiResetDCEMF(
+pub extern "gdi32" fn GdiResetDCEMF(
     SpoolFileHandle: ?HANDLE,
     pCurrDM: ?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn GetJobAttributes(
+pub extern "spoolss" fn GetJobAttributes(
     pPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     pAttributeInfo: ?*ATTRIBUTE_INFO_3,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn GetJobAttributesEx(
+pub extern "spoolss" fn GetJobAttributesEx(
     pPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     dwLevel: u32,
@@ -8429,12 +8429,12 @@ pub extern "SPOOLSS" fn GetJobAttributesEx(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn CreatePrinterIC(
+pub extern "winspool" fn CreatePrinterIC(
     hPrinter: ?HANDLE,
     pDevMode: ?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "WINSPOOL" fn PlayGdiScriptOnPrinterIC(
+pub extern "winspool" fn PlayGdiScriptOnPrinterIC(
     hPrinterIC: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pIn: ?*u8,
@@ -8445,31 +8445,31 @@ pub extern "WINSPOOL" fn PlayGdiScriptOnPrinterIC(
     ul: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DeletePrinterIC(
+pub extern "winspool" fn DeletePrinterIC(
     hPrinterIC: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINSPOOL" fn DevQueryPrint(
+pub extern "winspool" fn DevQueryPrint(
     hPrinter: ?HANDLE,
     pDevMode: ?*DEVMODEA,
     pResID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn RevertToPrinterSelf(
+pub extern "spoolss" fn RevertToPrinterSelf(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "SPOOLSS" fn ImpersonatePrinterClient(
+pub extern "spoolss" fn ImpersonatePrinterClient(
     hToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn ReplyPrinterChangeNotification(
+pub extern "spoolss" fn ReplyPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwChangeFlags: u32,
     pdwResult: ?*u32,
     pPrinterNotifyInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn ReplyPrinterChangeNotificationEx(
+pub extern "spoolss" fn ReplyPrinterChangeNotificationEx(
     hNotify: ?HANDLE,
     dwColor: u32,
     fdwFlags: u32,
@@ -8477,42 +8477,42 @@ pub extern "SPOOLSS" fn ReplyPrinterChangeNotificationEx(
     pPrinterNotifyInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn PartialReplyPrinterChangeNotification(
+pub extern "spoolss" fn PartialReplyPrinterChangeNotification(
     hPrinter: ?HANDLE,
     pDataSrc: ?*PRINTER_NOTIFY_INFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn RouterAllocPrinterNotifyInfo(
+pub extern "spoolss" fn RouterAllocPrinterNotifyInfo(
     cPrinterNotifyInfoData: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*PRINTER_NOTIFY_INFO;
 
-pub extern "SPOOLSS" fn RouterFreePrinterNotifyInfo(
+pub extern "spoolss" fn RouterFreePrinterNotifyInfo(
     pInfo: ?*PRINTER_NOTIFY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn RouterAllocBidiResponseContainer(
+pub extern "spoolss" fn RouterAllocBidiResponseContainer(
     Count: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*BIDI_RESPONSE_CONTAINER;
 
-pub extern "SPOOLSS" fn RouterAllocBidiMem(
+pub extern "spoolss" fn RouterAllocBidiMem(
     NumBytes: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "WINSPOOL" fn RouterFreeBidiResponseContainer(
+pub extern "winspool" fn RouterFreeBidiResponseContainer(
     pData: ?*BIDI_RESPONSE_CONTAINER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SPOOLSS" fn RouterFreeBidiMem(
+pub extern "spoolss" fn RouterFreeBidiMem(
     pMemPointer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SPOOLSS" fn AppendPrinterNotifyInfoData(
+pub extern "spoolss" fn AppendPrinterNotifyInfoData(
     pInfoDest: ?*PRINTER_NOTIFY_INFO,
     pDataSrc: ?*PRINTER_NOTIFY_INFO_DATA,
     fdwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn CallRouterFindFirstPrinterChangeNotification(
+pub extern "spoolss" fn CallRouterFindFirstPrinterChangeNotification(
     hPrinterRPC: ?HANDLE,
     fdwFilterFlags: u32,
     fdwOptions: u32,
@@ -8520,7 +8520,7 @@ pub extern "SPOOLSS" fn CallRouterFindFirstPrinterChangeNotification(
     pPrinterNotifyOptions: ?*PRINTER_NOTIFY_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SPOOLSS" fn ProvidorFindFirstPrinterChangeNotification(
+pub extern "spoolss" fn ProvidorFindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFlags: u32,
     fdwOptions: u32,
@@ -8529,11 +8529,11 @@ pub extern "SPOOLSS" fn ProvidorFindFirstPrinterChangeNotification(
     pvReserved1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn ProvidorFindClosePrinterChangeNotification(
+pub extern "spoolss" fn ProvidorFindClosePrinterChangeNotification(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn SpoolerFindFirstPrinterChangeNotification(
+pub extern "spoolss" fn SpoolerFindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFilterFlags: u32,
     fdwOptions: u32,
@@ -8544,25 +8544,25 @@ pub extern "SPOOLSS" fn SpoolerFindFirstPrinterChangeNotification(
     phEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn SpoolerFindNextPrinterChangeNotification(
+pub extern "spoolss" fn SpoolerFindNextPrinterChangeNotification(
     hPrinter: ?HANDLE,
     pfdwChange: ?*u32,
     pPrinterNotifyOptions: ?*anyopaque,
     ppPrinterNotifyInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn SpoolerRefreshPrinterChangeNotification(
+pub extern "spoolss" fn SpoolerRefreshPrinterChangeNotification(
     hPrinter: ?HANDLE,
     dwColor: u32,
     pOptions: ?*PRINTER_NOTIFY_OPTIONS,
     ppInfo: ?*?*PRINTER_NOTIFY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn SpoolerFreePrinterNotifyInfo(
+pub extern "spoolss" fn SpoolerFreePrinterNotifyInfo(
     pInfo: ?*PRINTER_NOTIFY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SPOOLSS" fn SpoolerFindClosePrinterChangeNotification(
+pub extern "spoolss" fn SpoolerFindClosePrinterChangeNotification(
     hPrinter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8584,30 +8584,30 @@ pub extern "mscms" fn GenerateCopyFilePaths(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SPOOLSS" fn SplPromptUIInUsersSession(
+pub extern "spoolss" fn SplPromptUIInUsersSession(
     hPrinter: ?HANDLE,
     JobId: u32,
     pUIParams: ?*SHOWUIPARAMS,
     pResponse: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "SPOOLSS" fn SplIsSessionZero(
+pub extern "spoolss" fn SplIsSessionZero(
     hPrinter: ?HANDLE,
     JobId: u32,
     pIsSessionZero: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SPOOLSS" fn AddPrintDeviceObject(
+pub extern "spoolss" fn AddPrintDeviceObject(
     hPrinter: ?HANDLE,
     phDeviceObject: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "SPOOLSS" fn UpdatePrintDeviceObject(
+pub extern "spoolss" fn UpdatePrintDeviceObject(
     hPrinter: ?HANDLE,
     hDeviceObject: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "SPOOLSS" fn RemovePrintDeviceObject(
+pub extern "spoolss" fn RemovePrintDeviceObject(
     hDeviceObject: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

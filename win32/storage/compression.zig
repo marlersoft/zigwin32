@@ -54,14 +54,14 @@ pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn CreateCompressor(
+pub extern "cabinet" fn CreateCompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
     CompressorHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn SetCompressorInformation(
+pub extern "cabinet" fn SetCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -70,7 +70,7 @@ pub extern "Cabinet" fn SetCompressorInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn QueryCompressorInformation(
+pub extern "cabinet" fn QueryCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -79,7 +79,7 @@ pub extern "Cabinet" fn QueryCompressorInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn Compress(
+pub extern "cabinet" fn Compress(
     CompressorHandle: COMPRESSOR_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     UncompressedData: ?*const anyopaque,
@@ -91,24 +91,24 @@ pub extern "Cabinet" fn Compress(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn ResetCompressor(
+pub extern "cabinet" fn ResetCompressor(
     CompressorHandle: COMPRESSOR_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn CloseCompressor(
+pub extern "cabinet" fn CloseCompressor(
     CompressorHandle: COMPRESSOR_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn CreateDecompressor(
+pub extern "cabinet" fn CreateDecompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
     DecompressorHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn SetDecompressorInformation(
+pub extern "cabinet" fn SetDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -117,7 +117,7 @@ pub extern "Cabinet" fn SetDecompressorInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn QueryDecompressorInformation(
+pub extern "cabinet" fn QueryDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -126,7 +126,7 @@ pub extern "Cabinet" fn QueryDecompressorInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn Decompress(
+pub extern "cabinet" fn Decompress(
     DecompressorHandle: isize,
     // TODO: what to do with BytesParamIndex 2?
     CompressedData: ?*const anyopaque,
@@ -138,12 +138,12 @@ pub extern "Cabinet" fn Decompress(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn ResetDecompressor(
+pub extern "cabinet" fn ResetDecompressor(
     DecompressorHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "Cabinet" fn CloseDecompressor(
+pub extern "cabinet" fn CloseDecompressor(
     DecompressorHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

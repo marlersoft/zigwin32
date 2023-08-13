@@ -7263,64 +7263,64 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMIsContentProtected(
+pub extern "wmvcore" fn WMIsContentProtected(
     pwszFileName: ?[*:0]const u16,
     pfIsProtected: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateWriter(
+pub extern "wmvcore" fn WMCreateWriter(
     pUnkCert: ?*IUnknown,
     ppWriter: ?*?*IWMWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateReader(
+pub extern "wmvcore" fn WMCreateReader(
     pUnkCert: ?*IUnknown,
     dwRights: u32,
     ppReader: ?*?*IWMReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateSyncReader(
+pub extern "wmvcore" fn WMCreateSyncReader(
     pUnkCert: ?*IUnknown,
     dwRights: u32,
     ppSyncReader: ?*?*IWMSyncReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateEditor(
+pub extern "wmvcore" fn WMCreateEditor(
     ppEditor: ?*?*IWMMetadataEditor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateIndexer(
+pub extern "wmvcore" fn WMCreateIndexer(
     ppIndexer: ?*?*IWMIndexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateBackupRestorer(
+pub extern "wmvcore" fn WMCreateBackupRestorer(
     pCallback: ?*IUnknown,
     ppBackup: ?*?*IWMLicenseBackup,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateProfileManager(
+pub extern "wmvcore" fn WMCreateProfileManager(
     ppProfileManager: ?*?*IWMProfileManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateWriterFileSink(
+pub extern "wmvcore" fn WMCreateWriterFileSink(
     ppSink: ?*?*IWMWriterFileSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateWriterNetworkSink(
+pub extern "wmvcore" fn WMCreateWriterNetworkSink(
     ppSink: ?*?*IWMWriterNetworkSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WMVCore" fn WMCreateWriterPushSink(
+pub extern "wmvcore" fn WMCreateWriterPushSink(
     ppSink: ?*?*IWMWriterPushSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

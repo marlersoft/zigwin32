@@ -2014,22 +2014,22 @@ pub const USBSCAN_TIMEOUT = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (34)
 //--------------------------------------------------------------------------------
-pub extern "WINUSB" fn WinUsb_Initialize(
+pub extern "winusb" fn WinUsb_Initialize(
     DeviceHandle: ?HANDLE,
     InterfaceHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_Free(
+pub extern "winusb" fn WinUsb_Free(
     InterfaceHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetAssociatedInterface(
+pub extern "winusb" fn WinUsb_GetAssociatedInterface(
     InterfaceHandle: ?*anyopaque,
     AssociatedInterfaceIndex: u8,
     AssociatedInterfaceHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetDescriptor(
+pub extern "winusb" fn WinUsb_GetDescriptor(
     InterfaceHandle: ?*anyopaque,
     DescriptorType: u8,
     Index: u8,
@@ -2040,13 +2040,13 @@ pub extern "WINUSB" fn WinUsb_GetDescriptor(
     LengthTransferred: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_QueryInterfaceSettings(
+pub extern "winusb" fn WinUsb_QueryInterfaceSettings(
     InterfaceHandle: ?*anyopaque,
     AlternateInterfaceNumber: u8,
     UsbAltInterfaceDescriptor: ?*USB_INTERFACE_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_QueryDeviceInformation(
+pub extern "winusb" fn WinUsb_QueryDeviceInformation(
     InterfaceHandle: ?*anyopaque,
     InformationType: u32,
     BufferLength: ?*u32,
@@ -2054,31 +2054,31 @@ pub extern "WINUSB" fn WinUsb_QueryDeviceInformation(
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_SetCurrentAlternateSetting(
+pub extern "winusb" fn WinUsb_SetCurrentAlternateSetting(
     InterfaceHandle: ?*anyopaque,
     SettingNumber: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetCurrentAlternateSetting(
+pub extern "winusb" fn WinUsb_GetCurrentAlternateSetting(
     InterfaceHandle: ?*anyopaque,
     SettingNumber: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_QueryPipe(
+pub extern "winusb" fn WinUsb_QueryPipe(
     InterfaceHandle: ?*anyopaque,
     AlternateInterfaceNumber: u8,
     PipeIndex: u8,
     PipeInformation: ?*WINUSB_PIPE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_QueryPipeEx(
+pub extern "winusb" fn WinUsb_QueryPipeEx(
     InterfaceHandle: ?*anyopaque,
     AlternateSettingNumber: u8,
     PipeIndex: u8,
     PipeInformationEx: ?*WINUSB_PIPE_INFORMATION_EX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_SetPipePolicy(
+pub extern "winusb" fn WinUsb_SetPipePolicy(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     PolicyType: u32,
@@ -2087,7 +2087,7 @@ pub extern "WINUSB" fn WinUsb_SetPipePolicy(
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetPipePolicy(
+pub extern "winusb" fn WinUsb_GetPipePolicy(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     PolicyType: u32,
@@ -2096,7 +2096,7 @@ pub extern "WINUSB" fn WinUsb_GetPipePolicy(
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_ReadPipe(
+pub extern "winusb" fn WinUsb_ReadPipe(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2106,7 +2106,7 @@ pub extern "WINUSB" fn WinUsb_ReadPipe(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_WritePipe(
+pub extern "winusb" fn WinUsb_WritePipe(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2116,7 +2116,7 @@ pub extern "WINUSB" fn WinUsb_WritePipe(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_ControlTransfer(
+pub extern "winusb" fn WinUsb_ControlTransfer(
     InterfaceHandle: ?*anyopaque,
     SetupPacket: WINUSB_SETUP_PACKET,
     // TODO: what to do with BytesParamIndex 3?
@@ -2126,22 +2126,22 @@ pub extern "WINUSB" fn WinUsb_ControlTransfer(
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_ResetPipe(
+pub extern "winusb" fn WinUsb_ResetPipe(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_AbortPipe(
+pub extern "winusb" fn WinUsb_AbortPipe(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_FlushPipe(
+pub extern "winusb" fn WinUsb_FlushPipe(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_SetPowerPolicy(
+pub extern "winusb" fn WinUsb_SetPowerPolicy(
     InterfaceHandle: ?*anyopaque,
     PolicyType: u32,
     ValueLength: u32,
@@ -2149,7 +2149,7 @@ pub extern "WINUSB" fn WinUsb_SetPowerPolicy(
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetPowerPolicy(
+pub extern "winusb" fn WinUsb_GetPowerPolicy(
     InterfaceHandle: ?*anyopaque,
     PolicyType: u32,
     ValueLength: ?*u32,
@@ -2157,14 +2157,14 @@ pub extern "WINUSB" fn WinUsb_GetPowerPolicy(
     Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_GetOverlappedResult(
+pub extern "winusb" fn WinUsb_GetOverlappedResult(
     InterfaceHandle: ?*anyopaque,
     lpOverlapped: ?*OVERLAPPED,
     lpNumberOfBytesTransferred: ?*u32,
     bWait: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINUSB" fn WinUsb_ParseConfigurationDescriptor(
+pub extern "winusb" fn WinUsb_ParseConfigurationDescriptor(
     ConfigurationDescriptor: ?*USB_CONFIGURATION_DESCRIPTOR,
     StartPosition: ?*anyopaque,
     InterfaceNumber: i32,
@@ -2174,7 +2174,7 @@ pub extern "WINUSB" fn WinUsb_ParseConfigurationDescriptor(
     InterfaceProtocol: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*USB_INTERFACE_DESCRIPTOR;
 
-pub extern "WINUSB" fn WinUsb_ParseDescriptors(
+pub extern "winusb" fn WinUsb_ParseDescriptors(
     // TODO: what to do with BytesParamIndex 1?
     DescriptorBuffer: ?*anyopaque,
     TotalLength: u32,
@@ -2183,20 +2183,20 @@ pub extern "WINUSB" fn WinUsb_ParseDescriptors(
 ) callconv(@import("std").os.windows.WINAPI) ?*USB_COMMON_DESCRIPTOR;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumber(
+pub extern "winusb" fn WinUsb_GetCurrentFrameNumber(
     InterfaceHandle: ?*anyopaque,
     CurrentFrameNumber: ?*u32,
     TimeStamp: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_GetAdjustedFrameNumber(
+pub extern "winusb" fn WinUsb_GetAdjustedFrameNumber(
     CurrentFrameNumber: ?*u32,
     TimeStamp: LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
+pub extern "winusb" fn WinUsb_RegisterIsochBuffer(
     InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2206,12 +2206,12 @@ pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_UnregisterIsochBuffer(
+pub extern "winusb" fn WinUsb_UnregisterIsochBuffer(
     IsochBufferHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
+pub extern "winusb" fn WinUsb_WriteIsochPipe(
     BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
@@ -2220,7 +2220,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
+pub extern "winusb" fn WinUsb_ReadIsochPipe(
     BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
@@ -2231,7 +2231,7 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
+pub extern "winusb" fn WinUsb_WriteIsochPipeAsap(
     BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
@@ -2240,7 +2240,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
+pub extern "winusb" fn WinUsb_ReadIsochPipeAsap(
     BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
@@ -2251,19 +2251,19 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "WINUSB" fn WinUsb_StartTrackingForTimeSync(
+pub extern "winusb" fn WinUsb_StartTrackingForTimeSync(
     InterfaceHandle: ?*anyopaque,
     StartTrackingInfo: ?*USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumberAndQpc(
+pub extern "winusb" fn WinUsb_GetCurrentFrameNumberAndQpc(
     InterfaceHandle: ?*anyopaque,
     FrameQpcInfo: ?*USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "WINUSB" fn WinUsb_StopTrackingForTimeSync(
+pub extern "winusb" fn WinUsb_StopTrackingForTimeSync(
     InterfaceHandle: ?*anyopaque,
     StopTrackingInfo: ?*USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

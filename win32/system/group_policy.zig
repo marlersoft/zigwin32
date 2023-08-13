@@ -4502,39 +4502,39 @@ pub const GPOBROWSEINFO = extern struct {
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RefreshPolicy(
+pub extern "userenv" fn RefreshPolicy(
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RefreshPolicyEx(
+pub extern "userenv" fn RefreshPolicyEx(
     bMachine: BOOL,
     dwOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn EnterCriticalPolicySection(
+pub extern "userenv" fn EnterCriticalPolicySection(
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn LeaveCriticalPolicySection(
+pub extern "userenv" fn LeaveCriticalPolicySection(
     hSection: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RegisterGPNotification(
+pub extern "userenv" fn RegisterGPNotification(
     hEvent: ?HANDLE,
     bMachine: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn UnregisterGPNotification(
+pub extern "userenv" fn UnregisterGPNotification(
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn GetGPOListA(
+pub extern "userenv" fn GetGPOListA(
     hToken: ?HANDLE,
     lpName: ?[*:0]const u8,
     lpHostName: ?[*:0]const u8,
@@ -4544,7 +4544,7 @@ pub extern "USERENV" fn GetGPOListA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn GetGPOListW(
+pub extern "userenv" fn GetGPOListW(
     hToken: ?HANDLE,
     lpName: ?[*:0]const u16,
     lpHostName: ?[*:0]const u16,
@@ -4554,17 +4554,17 @@ pub extern "USERENV" fn GetGPOListW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn FreeGPOListA(
+pub extern "userenv" fn FreeGPOListA(
     pGPOList: ?*GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn FreeGPOListW(
+pub extern "userenv" fn FreeGPOListW(
     pGPOList: ?*GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn GetAppliedGPOListA(
+pub extern "userenv" fn GetAppliedGPOListA(
     dwFlags: u32,
     pMachineName: ?[*:0]const u8,
     pSidUser: ?PSID,
@@ -4573,7 +4573,7 @@ pub extern "USERENV" fn GetAppliedGPOListA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn GetAppliedGPOListW(
+pub extern "userenv" fn GetAppliedGPOListW(
     dwFlags: u32,
     pMachineName: ?[*:0]const u16,
     pSidUser: ?PSID,
@@ -4582,14 +4582,14 @@ pub extern "USERENV" fn GetAppliedGPOListW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn ProcessGroupPolicyCompleted(
+pub extern "userenv" fn ProcessGroupPolicyCompleted(
     extensionId: ?*Guid,
     pAsyncHandle: usize,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
+pub extern "userenv" fn ProcessGroupPolicyCompletedEx(
     extensionId: ?*Guid,
     pAsyncHandle: usize,
     dwStatus: u32,
@@ -4597,7 +4597,7 @@ pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RsopAccessCheckByType(
+pub extern "userenv" fn RsopAccessCheckByType(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pPrincipalSelfSid: ?PSID,
     pRsopToken: ?*anyopaque,
@@ -4613,7 +4613,7 @@ pub extern "USERENV" fn RsopAccessCheckByType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RsopFileAccessCheck(
+pub extern "userenv" fn RsopFileAccessCheck(
     pszFileName: ?PWSTR,
     pRsopToken: ?*anyopaque,
     dwDesiredAccessMask: u32,
@@ -4622,7 +4622,7 @@ pub extern "USERENV" fn RsopFileAccessCheck(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RsopSetPolicySettingStatus(
+pub extern "userenv" fn RsopSetPolicySettingStatus(
     dwFlags: u32,
     pServices: ?*IWbemServices,
     pSettingInstance: ?*IWbemClassObject,
@@ -4631,37 +4631,37 @@ pub extern "USERENV" fn RsopSetPolicySettingStatus(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn RsopResetPolicySettingStatus(
+pub extern "userenv" fn RsopResetPolicySettingStatus(
     dwFlags: u32,
     pServices: ?*IWbemServices,
     pSettingInstance: ?*IWbemClassObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "USERENV" fn GenerateGPNotification(
+pub extern "userenv" fn GenerateGPNotification(
     bMachine: BOOL,
     lpwszMgmtProduct: ?[*:0]const u16,
     dwMgmtProductOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn InstallApplication(
+pub extern "advapi32" fn InstallApplication(
     pInstallInfo: ?*INSTALLDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn UninstallApplication(
+pub extern "advapi32" fn UninstallApplication(
     ProductCode: ?PWSTR,
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ADVAPI32" fn CommandLineFromMsiDescriptor(
+pub extern "advapi32" fn CommandLineFromMsiDescriptor(
     Descriptor: ?PWSTR,
     CommandLine: [*:0]u16,
     CommandLineLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn GetManagedApplications(
+pub extern "advapi32" fn GetManagedApplications(
     pCategory: ?*Guid,
     dwQueryFlags: u32,
     dwInfoLevel: u32,
@@ -4670,55 +4670,55 @@ pub extern "ADVAPI32" fn GetManagedApplications(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn GetLocalManagedApplications(
+pub extern "advapi32" fn GetLocalManagedApplications(
     bUserApps: BOOL,
     pdwApps: ?*u32,
     prgLocalApps: ?*?*LOCALMANAGEDAPPLICATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ADVAPI32" fn GetLocalManagedApplicationData(
+pub extern "advapi32" fn GetLocalManagedApplicationData(
     ProductCode: ?PWSTR,
     DisplayName: ?*?PWSTR,
     SupportUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn GetManagedApplicationCategories(
+pub extern "advapi32" fn GetManagedApplicationCategories(
     dwReserved: u32,
     pAppCategory: ?*APPCATEGORYINFOLIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn CreateGPOLink(
+pub extern "gpedit" fn CreateGPOLink(
     lpGPO: ?PWSTR,
     lpContainer: ?PWSTR,
     fHighPriority: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn DeleteGPOLink(
+pub extern "gpedit" fn DeleteGPOLink(
     lpGPO: ?PWSTR,
     lpContainer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn DeleteAllGPOLinks(
+pub extern "gpedit" fn DeleteAllGPOLinks(
     lpContainer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn BrowseForGPO(
+pub extern "gpedit" fn BrowseForGPO(
     lpBrowseInfo: ?*GPOBROWSEINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn ImportRSoPData(
+pub extern "gpedit" fn ImportRSoPData(
     lpNameSpace: ?PWSTR,
     lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "GPEDIT" fn ExportRSoPData(
+pub extern "gpedit" fn ExportRSoPData(
     lpNameSpace: ?PWSTR,
     lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

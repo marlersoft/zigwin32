@@ -7305,7 +7305,7 @@ pub const IDWriteFontFace6 = extern struct {
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "DWrite" fn DWriteCreateFactory(
+pub extern "dwrite" fn DWriteCreateFactory(
     factoryType: DWRITE_FACTORY_TYPE,
     iid: ?*const Guid,
     factory: ?*?*IUnknown,

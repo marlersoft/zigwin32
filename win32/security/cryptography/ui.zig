@@ -740,7 +740,7 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIDlgViewContext(
+pub extern "cryptui" fn CryptUIDlgViewContext(
     dwContextType: u32,
     pvContext: ?*const anyopaque,
     hwnd: ?HWND,
@@ -750,7 +750,7 @@ pub extern "CRYPTUI" fn CryptUIDlgViewContext(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIDlgSelectCertificateFromStore(
+pub extern "cryptui" fn CryptUIDlgSelectCertificateFromStore(
     hCertStore: ?*anyopaque,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
@@ -761,19 +761,19 @@ pub extern "CRYPTUI" fn CryptUIDlgSelectCertificateFromStore(
 ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "CRYPTUI" fn CertSelectionGetSerializedBlob(
+pub extern "cryptui" fn CertSelectionGetSerializedBlob(
     pcsi: ?*CERT_SELECTUI_INPUT,
     ppOutBuffer: ?*?*anyopaque,
     pulOutBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIDlgCertMgr(
+pub extern "cryptui" fn CryptUIDlgCertMgr(
     pCryptUICertMgr: ?*CRYPTUI_CERT_MGR_STRUCT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIWizDigitalSign(
+pub extern "cryptui" fn CryptUIWizDigitalSign(
     dwFlags: u32,
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
@@ -782,24 +782,24 @@ pub extern "CRYPTUI" fn CryptUIWizDigitalSign(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIWizFreeDigitalSignContext(
+pub extern "cryptui" fn CryptUIWizFreeDigitalSignContext(
     pSignContext: ?*CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIDlgViewCertificateW(
+pub extern "cryptui" fn CryptUIDlgViewCertificateW(
     pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTW,
     pfPropertiesChanged: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIDlgViewCertificateA(
+pub extern "cryptui" fn CryptUIDlgViewCertificateA(
     pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTA,
     pfPropertiesChanged: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIWizExport(
+pub extern "cryptui" fn CryptUIWizExport(
     dwFlags: CRYPTUI_WIZ_FLAGS,
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
@@ -808,7 +808,7 @@ pub extern "CRYPTUI" fn CryptUIWizExport(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "CRYPTUI" fn CryptUIWizImport(
+pub extern "cryptui" fn CryptUIWizImport(
     dwFlags: CRYPTUI_WIZ_FLAGS,
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,

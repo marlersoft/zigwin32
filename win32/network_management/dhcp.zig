@@ -1930,32 +1930,32 @@ pub extern "dhcpcsvc" fn DhcpGetOriginalSubnetMask(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAddFilterV4(
+pub extern "dhcpsapi" fn DhcpAddFilterV4(
     ServerIpAddress: ?[*:0]const u16,
     AddFilterInfo: ?*DHCP_FILTER_ADD_INFO,
     ForceFlag: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteFilterV4(
+pub extern "dhcpsapi" fn DhcpDeleteFilterV4(
     ServerIpAddress: ?[*:0]const u16,
     DeleteFilterInfo: ?*DHCP_ADDR_PATTERN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetFilterV4(
+pub extern "dhcpsapi" fn DhcpSetFilterV4(
     ServerIpAddress: ?[*:0]const u16,
     GlobalFilterInfo: ?*DHCP_FILTER_GLOBAL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetFilterV4(
+pub extern "dhcpsapi" fn DhcpGetFilterV4(
     ServerIpAddress: ?[*:0]const u16,
     GlobalFilterInfo: ?*DHCP_FILTER_GLOBAL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumFilterV4(
+pub extern "dhcpsapi" fn DhcpEnumFilterV4(
     ServerIpAddress: ?[*:0]const u16,
     ResumeHandle: ?*DHCP_ADDR_PATTERN,
     PreferredMaximum: u32,
@@ -1966,28 +1966,28 @@ pub extern "DHCPSAPI" fn DhcpEnumFilterV4(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpCreateSubnet(
+pub extern "dhcpsapi" fn DhcpCreateSubnet(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*const DHCP_SUBNET_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpSetSubnetInfo(
+pub extern "dhcpsapi" fn DhcpSetSubnetInfo(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*const DHCP_SUBNET_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpGetSubnetInfo(
+pub extern "dhcpsapi" fn DhcpGetSubnetInfo(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*?*DHCP_SUBNET_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumSubnets(
+pub extern "dhcpsapi" fn DhcpEnumSubnets(
     ServerIpAddress: ?[*:0]const u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -1997,14 +1997,14 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnets(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAddSubnetElement(
+pub extern "dhcpsapi" fn DhcpAddSubnetElement(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     AddElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetElements(
+pub extern "dhcpsapi" fn DhcpEnumSubnetElements(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     EnumElementType: DHCP_SUBNET_ELEMENT_TYPE,
@@ -2016,7 +2016,7 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetElements(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveSubnetElement(
+pub extern "dhcpsapi" fn DhcpRemoveSubnetElement(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     RemoveElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA,
@@ -2024,35 +2024,35 @@ pub extern "DHCPSAPI" fn DhcpRemoveSubnetElement(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpDeleteSubnet(
+pub extern "dhcpsapi" fn DhcpDeleteSubnet(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ForceFlag: DHCP_FORCE_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateOption(
+pub extern "dhcpsapi" fn DhcpCreateOption(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     OptionInfo: ?*const DHCP_OPTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionInfo(
+pub extern "dhcpsapi" fn DhcpSetOptionInfo(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     OptionInfo: ?*const DHCP_OPTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetOptionInfo(
+pub extern "dhcpsapi" fn DhcpGetOptionInfo(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     OptionInfo: ?*?*DHCP_OPTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptions(
+pub extern "dhcpsapi" fn DhcpEnumOptions(
     ServerIpAddress: ?[*:0]const u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2062,13 +2062,13 @@ pub extern "DHCPSAPI" fn DhcpEnumOptions(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveOption(
+pub extern "dhcpsapi" fn DhcpRemoveOption(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionValue(
+pub extern "dhcpsapi" fn DhcpSetOptionValue(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     ScopeInfo: ?*const DHCP_OPTION_SCOPE_INFO,
@@ -2076,14 +2076,14 @@ pub extern "DHCPSAPI" fn DhcpSetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionValues(
+pub extern "dhcpsapi" fn DhcpSetOptionValues(
     ServerIpAddress: ?[*:0]const u16,
     ScopeInfo: ?*const DHCP_OPTION_SCOPE_INFO,
     OptionValues: ?*const DHCP_OPTION_VALUE_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpGetOptionValue(
+pub extern "dhcpsapi" fn DhcpGetOptionValue(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     ScopeInfo: ?*const DHCP_OPTION_SCOPE_INFO,
@@ -2091,7 +2091,7 @@ pub extern "DHCPSAPI" fn DhcpGetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptionValues(
+pub extern "dhcpsapi" fn DhcpEnumOptionValues(
     ServerIpAddress: ?[*:0]const u16,
     ScopeInfo: ?*const DHCP_OPTION_SCOPE_INFO,
     ResumeHandle: ?*u32,
@@ -2102,33 +2102,33 @@ pub extern "DHCPSAPI" fn DhcpEnumOptionValues(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveOptionValue(
+pub extern "dhcpsapi" fn DhcpRemoveOptionValue(
     ServerIpAddress: ?[*:0]const u16,
     OptionID: u32,
     ScopeInfo: ?*const DHCP_OPTION_SCOPE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateClientInfoVQ(
+pub extern "dhcpsapi" fn DhcpCreateClientInfoVQ(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetClientInfoVQ(
+pub extern "dhcpsapi" fn DhcpSetClientInfoVQ(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetClientInfoVQ(
+pub extern "dhcpsapi" fn DhcpGetClientInfoVQ(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCP_CLIENT_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsVQ(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClientsVQ(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2139,7 +2139,7 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsVQ(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsFilterStatusInfo(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClientsFilterStatusInfo(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2150,32 +2150,32 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsFilterStatusInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpCreateClientInfo(
+pub extern "dhcpsapi" fn DhcpCreateClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpSetClientInfo(
+pub extern "dhcpsapi" fn DhcpSetClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpGetClientInfo(
+pub extern "dhcpsapi" fn DhcpGetClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCP_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpDeleteClientInfo(
+pub extern "dhcpsapi" fn DhcpDeleteClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_SEARCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClients(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClients(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2186,33 +2186,33 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClients(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetClientOptions(
+pub extern "dhcpsapi" fn DhcpGetClientOptions(
     ServerIpAddress: ?[*:0]const u16,
     ClientIpAddress: u32,
     ClientSubnetMask: u32,
     ClientOptions: ?*?*DHCP_OPTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpGetMibInfo(
+pub extern "dhcpsapi" fn DhcpGetMibInfo(
     ServerIpAddress: ?[*:0]const u16,
     MibInfo: ?*?*DHCP_MIB_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerSetConfig(
+pub extern "dhcpsapi" fn DhcpServerSetConfig(
     ServerIpAddress: ?[*:0]const u16,
     FieldsToSet: u32,
     ConfigInfo: ?*DHCP_SERVER_CONFIG_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerGetConfig(
+pub extern "dhcpsapi" fn DhcpServerGetConfig(
     ServerIpAddress: ?[*:0]const u16,
     ConfigInfo: ?*?*DHCP_SERVER_CONFIG_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpScanDatabase(
+pub extern "dhcpsapi" fn DhcpScanDatabase(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     FixFlag: u32,
@@ -2220,26 +2220,26 @@ pub extern "DHCPSAPI" fn DhcpScanDatabase(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpRpcFreeMemory(
+pub extern "dhcpsapi" fn DhcpRpcFreeMemory(
     BufferPointer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpGetVersion(
+pub extern "dhcpsapi" fn DhcpGetVersion(
     ServerIpAddress: ?PWSTR,
     MajorVersion: ?*u32,
     MinorVersion: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAddSubnetElementV4(
+pub extern "dhcpsapi" fn DhcpAddSubnetElementV4(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     AddElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV4(
+pub extern "dhcpsapi" fn DhcpEnumSubnetElementsV4(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     EnumElementType: DHCP_SUBNET_ELEMENT_TYPE,
@@ -2251,7 +2251,7 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV4(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV4(
+pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV4(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     RemoveElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA_V4,
@@ -2259,26 +2259,26 @@ pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV4(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateClientInfoV4(
+pub extern "dhcpsapi" fn DhcpCreateClientInfoV4(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetClientInfoV4(
+pub extern "dhcpsapi" fn DhcpSetClientInfoV4(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetClientInfoV4(
+pub extern "dhcpsapi" fn DhcpGetClientInfoV4(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCP_CLIENT_INFO_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV4(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClientsV4(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2289,20 +2289,20 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV4(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerSetConfigV4(
+pub extern "dhcpsapi" fn DhcpServerSetConfigV4(
     ServerIpAddress: ?[*:0]const u16,
     FieldsToSet: u32,
     ConfigInfo: ?*DHCP_SERVER_CONFIG_INFO_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerGetConfigV4(
+pub extern "dhcpsapi" fn DhcpServerGetConfigV4(
     ServerIpAddress: ?[*:0]const u16,
     ConfigInfo: ?*?*DHCP_SERVER_CONFIG_INFO_V4,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetSuperScopeV4(
+pub extern "dhcpsapi" fn DhcpSetSuperScopeV4(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SuperScopeName: ?[*:0]const u16,
@@ -2310,19 +2310,19 @@ pub extern "DHCPSAPI" fn DhcpSetSuperScopeV4(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteSuperScopeV4(
+pub extern "dhcpsapi" fn DhcpDeleteSuperScopeV4(
     ServerIpAddress: ?[*:0]const u16,
     SuperScopeName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetSuperScopeInfoV4(
+pub extern "dhcpsapi" fn DhcpGetSuperScopeInfoV4(
     ServerIpAddress: ?[*:0]const u16,
     SuperScopeTable: ?*?*DHCP_SUPER_SCOPE_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV5(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClientsV5(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2333,7 +2333,7 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateOptionV5(
+pub extern "dhcpsapi" fn DhcpCreateOptionV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionId: u32,
@@ -2343,7 +2343,7 @@ pub extern "DHCPSAPI" fn DhcpCreateOptionV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionInfoV5(
+pub extern "dhcpsapi" fn DhcpSetOptionInfoV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2353,7 +2353,7 @@ pub extern "DHCPSAPI" fn DhcpSetOptionInfoV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetOptionInfoV5(
+pub extern "dhcpsapi" fn DhcpGetOptionInfoV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2363,7 +2363,7 @@ pub extern "DHCPSAPI" fn DhcpGetOptionInfoV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptionsV5(
+pub extern "dhcpsapi" fn DhcpEnumOptionsV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ClassName: ?PWSTR,
@@ -2376,7 +2376,7 @@ pub extern "DHCPSAPI" fn DhcpEnumOptionsV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveOptionV5(
+pub extern "dhcpsapi" fn DhcpRemoveOptionV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2385,7 +2385,7 @@ pub extern "DHCPSAPI" fn DhcpRemoveOptionV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpSetOptionValueV5(
+pub extern "dhcpsapi" fn DhcpSetOptionValueV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionId: u32,
@@ -2396,7 +2396,7 @@ pub extern "DHCPSAPI" fn DhcpSetOptionValueV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionValuesV5(
+pub extern "dhcpsapi" fn DhcpSetOptionValuesV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ClassName: ?PWSTR,
@@ -2406,7 +2406,7 @@ pub extern "DHCPSAPI" fn DhcpSetOptionValuesV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetOptionValueV5(
+pub extern "dhcpsapi" fn DhcpGetOptionValueV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2417,7 +2417,7 @@ pub extern "DHCPSAPI" fn DhcpGetOptionValueV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetOptionValueV6(
+pub extern "dhcpsapi" fn DhcpGetOptionValueV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2428,7 +2428,7 @@ pub extern "DHCPSAPI" fn DhcpGetOptionValueV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptionValuesV5(
+pub extern "dhcpsapi" fn DhcpEnumOptionValuesV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ClassName: ?PWSTR,
@@ -2442,7 +2442,7 @@ pub extern "DHCPSAPI" fn DhcpEnumOptionValuesV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpRemoveOptionValueV5(
+pub extern "dhcpsapi" fn DhcpRemoveOptionValueV5(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2452,28 +2452,28 @@ pub extern "DHCPSAPI" fn DhcpRemoveOptionValueV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateClass(
+pub extern "dhcpsapi" fn DhcpCreateClass(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpModifyClass(
+pub extern "dhcpsapi" fn DhcpModifyClass(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteClass(
+pub extern "dhcpsapi" fn DhcpDeleteClass(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetClassInfo(
+pub extern "dhcpsapi" fn DhcpGetClassInfo(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     PartialClassInfo: ?*DHCP_CLASS_INFO,
@@ -2481,7 +2481,7 @@ pub extern "DHCPSAPI" fn DhcpGetClassInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumClasses(
+pub extern "dhcpsapi" fn DhcpEnumClasses(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ResumeHandle: ?*u32,
@@ -2492,21 +2492,21 @@ pub extern "DHCPSAPI" fn DhcpEnumClasses(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetAllOptions(
+pub extern "dhcpsapi" fn DhcpGetAllOptions(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionStruct: ?*?*DHCP_ALL_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetAllOptionsV6(
+pub extern "dhcpsapi" fn DhcpGetAllOptionsV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionStruct: ?*?*DHCP_ALL_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetAllOptionValues(
+pub extern "dhcpsapi" fn DhcpGetAllOptionValues(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
@@ -2514,7 +2514,7 @@ pub extern "DHCPSAPI" fn DhcpGetAllOptionValues(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetAllOptionValuesV6(
+pub extern "dhcpsapi" fn DhcpGetAllOptionValuesV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
@@ -2522,7 +2522,7 @@ pub extern "DHCPSAPI" fn DhcpGetAllOptionValuesV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumServers(
+pub extern "dhcpsapi" fn DhcpEnumServers(
     Flags: u32,
     IdInfo: ?*anyopaque,
     Servers: ?*?*DHCPDS_SERVERS,
@@ -2531,7 +2531,7 @@ pub extern "DHCPSAPI" fn DhcpEnumServers(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpAddServer(
+pub extern "dhcpsapi" fn DhcpAddServer(
     Flags: u32,
     IdInfo: ?*anyopaque,
     NewServer: ?*DHCPDS_SERVER,
@@ -2540,7 +2540,7 @@ pub extern "DHCPSAPI" fn DhcpAddServer(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpDeleteServer(
+pub extern "dhcpsapi" fn DhcpDeleteServer(
     Flags: u32,
     IdInfo: ?*anyopaque,
     NewServer: ?*DHCPDS_SERVER,
@@ -2549,28 +2549,28 @@ pub extern "DHCPSAPI" fn DhcpDeleteServer(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpGetServerBindingInfo(
+pub extern "dhcpsapi" fn DhcpGetServerBindingInfo(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
     BindElementsInfo: ?*?*DHCP_BIND_ELEMENT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpSetServerBindingInfo(
+pub extern "dhcpsapi" fn DhcpSetServerBindingInfo(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
     BindElementInfo: ?*DHCP_BIND_ELEMENT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpAddSubnetElementV5(
+pub extern "dhcpsapi" fn DhcpAddSubnetElementV5(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     AddElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA_V5,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV5(
+pub extern "dhcpsapi" fn DhcpEnumSubnetElementsV5(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     EnumElementType: DHCP_SUBNET_ELEMENT_TYPE,
@@ -2582,7 +2582,7 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV5(
+pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV5(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     RemoveElementInfo: ?*const DHCP_SUBNET_ELEMENT_DATA_V5,
@@ -2590,7 +2590,7 @@ pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4EnumSubnetReservations(
+pub extern "dhcpsapi" fn DhcpV4EnumSubnetReservations(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -2601,7 +2601,7 @@ pub extern "DHCPSAPI" fn DhcpV4EnumSubnetReservations(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateOptionV6(
+pub extern "dhcpsapi" fn DhcpCreateOptionV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionId: u32,
@@ -2611,7 +2611,7 @@ pub extern "DHCPSAPI" fn DhcpCreateOptionV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveOptionV6(
+pub extern "dhcpsapi" fn DhcpRemoveOptionV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2620,7 +2620,7 @@ pub extern "DHCPSAPI" fn DhcpRemoveOptionV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptionsV6(
+pub extern "dhcpsapi" fn DhcpEnumOptionsV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ClassName: ?PWSTR,
@@ -2633,7 +2633,7 @@ pub extern "DHCPSAPI" fn DhcpEnumOptionsV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveOptionValueV6(
+pub extern "dhcpsapi" fn DhcpRemoveOptionValueV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2643,7 +2643,7 @@ pub extern "DHCPSAPI" fn DhcpRemoveOptionValueV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetOptionInfoV6(
+pub extern "dhcpsapi" fn DhcpGetOptionInfoV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2653,7 +2653,7 @@ pub extern "DHCPSAPI" fn DhcpGetOptionInfoV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionInfoV6(
+pub extern "dhcpsapi" fn DhcpSetOptionInfoV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -2663,7 +2663,7 @@ pub extern "DHCPSAPI" fn DhcpSetOptionInfoV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetOptionValueV6(
+pub extern "dhcpsapi" fn DhcpSetOptionValueV6(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionId: u32,
@@ -2674,28 +2674,28 @@ pub extern "DHCPSAPI" fn DhcpSetOptionValueV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetSubnetInfoVQ(
+pub extern "dhcpsapi" fn DhcpGetSubnetInfoVQ(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*?*DHCP_SUBNET_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateSubnetVQ(
+pub extern "dhcpsapi" fn DhcpCreateSubnetVQ(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*const DHCP_SUBNET_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetSubnetInfoVQ(
+pub extern "dhcpsapi" fn DhcpSetSubnetInfoVQ(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     SubnetInfo: ?*const DHCP_SUBNET_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumOptionValuesV6(
+pub extern "dhcpsapi" fn DhcpEnumOptionValuesV6(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
     ClassName: ?PWSTR,
@@ -2709,27 +2709,27 @@ pub extern "DHCPSAPI" fn DhcpEnumOptionValuesV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpDsInit(
+pub extern "dhcpsapi" fn DhcpDsInit(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpDsCleanup(
+pub extern "dhcpsapi" fn DhcpDsCleanup(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetThreadOptions(
+pub extern "dhcpsapi" fn DhcpSetThreadOptions(
     Flags: u32,
     Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetThreadOptions(
+pub extern "dhcpsapi" fn DhcpGetThreadOptions(
     pFlags: ?*u32,
     Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerQueryAttribute(
+pub extern "dhcpsapi" fn DhcpServerQueryAttribute(
     ServerIpAddr: ?PWSTR,
     dwReserved: u32,
     DhcpAttribId: u32,
@@ -2737,7 +2737,7 @@ pub extern "DHCPSAPI" fn DhcpServerQueryAttribute(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerQueryAttributes(
+pub extern "dhcpsapi" fn DhcpServerQueryAttributes(
     ServerIpAddr: ?PWSTR,
     dwReserved: u32,
     dwAttribCount: u32,
@@ -2746,13 +2746,13 @@ pub extern "DHCPSAPI" fn DhcpServerQueryAttributes(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "DHCPSAPI" fn DhcpServerRedoAuthorization(
+pub extern "dhcpsapi" fn DhcpServerRedoAuthorization(
     ServerIpAddr: ?PWSTR,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAuditLogSetParams(
+pub extern "dhcpsapi" fn DhcpAuditLogSetParams(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     AuditLogDir: ?PWSTR,
@@ -2762,7 +2762,7 @@ pub extern "DHCPSAPI" fn DhcpAuditLogSetParams(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAuditLogGetParams(
+pub extern "dhcpsapi" fn DhcpAuditLogGetParams(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     AuditLogDir: ?*?PWSTR,
@@ -2772,7 +2772,7 @@ pub extern "DHCPSAPI" fn DhcpAuditLogGetParams(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerQueryDnsRegCredentials(
+pub extern "dhcpsapi" fn DhcpServerQueryDnsRegCredentials(
     ServerIpAddress: ?PWSTR,
     UnameSize: u32,
     Uname: [*:0]u16,
@@ -2780,7 +2780,7 @@ pub extern "DHCPSAPI" fn DhcpServerQueryDnsRegCredentials(
     Domain: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpServerSetDnsRegCredentials(
+pub extern "dhcpsapi" fn DhcpServerSetDnsRegCredentials(
     ServerIpAddress: ?PWSTR,
     Uname: ?PWSTR,
     Domain: ?PWSTR,
@@ -2788,7 +2788,7 @@ pub extern "DHCPSAPI" fn DhcpServerSetDnsRegCredentials(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerSetDnsRegCredentialsV5(
+pub extern "dhcpsapi" fn DhcpServerSetDnsRegCredentialsV5(
     ServerIpAddress: ?PWSTR,
     Uname: ?PWSTR,
     Domain: ?PWSTR,
@@ -2796,56 +2796,56 @@ pub extern "DHCPSAPI" fn DhcpServerSetDnsRegCredentialsV5(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerBackupDatabase(
+pub extern "dhcpsapi" fn DhcpServerBackupDatabase(
     ServerIpAddress: ?PWSTR,
     Path: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerRestoreDatabase(
+pub extern "dhcpsapi" fn DhcpServerRestoreDatabase(
     ServerIpAddress: ?PWSTR,
     Path: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerSetConfigVQ(
+pub extern "dhcpsapi" fn DhcpServerSetConfigVQ(
     ServerIpAddress: ?[*:0]const u16,
     FieldsToSet: u32,
     ConfigInfo: ?*DHCP_SERVER_CONFIG_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerGetConfigVQ(
+pub extern "dhcpsapi" fn DhcpServerGetConfigVQ(
     ServerIpAddress: ?[*:0]const u16,
     ConfigInfo: ?*?*DHCP_SERVER_CONFIG_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetServerSpecificStrings(
+pub extern "dhcpsapi" fn DhcpGetServerSpecificStrings(
     ServerIpAddress: ?[*:0]const u16,
     ServerSpecificStrings: ?*?*DHCP_SERVER_SPECIFIC_STRINGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpServerAuditlogParamsFree(
+pub extern "dhcpsapi" fn DhcpServerAuditlogParamsFree(
     ConfigInfo: ?*DHCP_SERVER_CONFIG_INFO_VQ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateSubnetV6(
+pub extern "dhcpsapi" fn DhcpCreateSubnetV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     SubnetInfo: ?*DHCP_SUBNET_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteSubnetV6(
+pub extern "dhcpsapi" fn DhcpDeleteSubnetV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     ForceFlag: DHCP_FORCE_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetsV6(
+pub extern "dhcpsapi" fn DhcpEnumSubnetsV6(
     ServerIpAddress: ?[*:0]const u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2855,14 +2855,14 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetsV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpAddSubnetElementV6(
+pub extern "dhcpsapi" fn DhcpAddSubnetElementV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     AddElementInfo: ?*DHCP_SUBNET_ELEMENT_DATA_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV6(
+pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     RemoveElementInfo: ?*DHCP_SUBNET_ELEMENT_DATA_V6,
@@ -2870,7 +2870,7 @@ pub extern "DHCPSAPI" fn DhcpRemoveSubnetElementV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV6(
+pub extern "dhcpsapi" fn DhcpEnumSubnetElementsV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     EnumElementType: DHCP_SUBNET_ELEMENT_TYPE_V6,
@@ -2882,14 +2882,14 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetElementsV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetSubnetInfoV6(
+pub extern "dhcpsapi" fn DhcpGetSubnetInfoV6(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     SubnetInfo: ?*?*DHCP_SUBNET_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV6(
+pub extern "dhcpsapi" fn DhcpEnumSubnetClientsV6(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     ResumeHandle: ?*DHCP_IPV6_ADDRESS,
@@ -2900,14 +2900,14 @@ pub extern "DHCPSAPI" fn DhcpEnumSubnetClientsV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerGetConfigV6(
+pub extern "dhcpsapi" fn DhcpServerGetConfigV6(
     ServerIpAddress: ?[*:0]const u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     ConfigInfo: ?*?*DHCP_SERVER_CONFIG_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpServerSetConfigV6(
+pub extern "dhcpsapi" fn DhcpServerSetConfigV6(
     ServerIpAddress: ?[*:0]const u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     FieldsToSet: u32,
@@ -2915,74 +2915,74 @@ pub extern "DHCPSAPI" fn DhcpServerSetConfigV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetSubnetInfoV6(
+pub extern "dhcpsapi" fn DhcpSetSubnetInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     SubnetInfo: ?*DHCP_SUBNET_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetMibInfoV6(
+pub extern "dhcpsapi" fn DhcpGetMibInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     MibInfo: ?*?*DHCP_MIB_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetServerBindingInfoV6(
+pub extern "dhcpsapi" fn DhcpGetServerBindingInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
     BindElementsInfo: ?*?*DHCPV6_BIND_ELEMENT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetServerBindingInfoV6(
+pub extern "dhcpsapi" fn DhcpSetServerBindingInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
     BindElementInfo: ?*DHCPV6_BIND_ELEMENT_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetClientInfoV6(
+pub extern "dhcpsapi" fn DhcpSetClientInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetClientInfoV6(
+pub extern "dhcpsapi" fn DhcpGetClientInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO_V6,
     ClientInfo: ?*?*DHCP_CLIENT_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteClientInfoV6(
+pub extern "dhcpsapi" fn DhcpDeleteClientInfoV6(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_SEARCH_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpCreateClassV6(
+pub extern "dhcpsapi" fn DhcpCreateClassV6(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpModifyClassV6(
+pub extern "dhcpsapi" fn DhcpModifyClassV6(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpDeleteClassV6(
+pub extern "dhcpsapi" fn DhcpDeleteClassV6(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ClassName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpEnumClassesV6(
+pub extern "dhcpsapi" fn DhcpEnumClassesV6(
     ServerIpAddress: ?PWSTR,
     ReservedMustBeZero: u32,
     ResumeHandle: ?*u32,
@@ -2993,31 +2993,31 @@ pub extern "DHCPSAPI" fn DhcpEnumClassesV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpSetSubnetDelayOffer(
+pub extern "dhcpsapi" fn DhcpSetSubnetDelayOffer(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: u32,
     TimeDelayInMilliseconds: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetSubnetDelayOffer(
+pub extern "dhcpsapi" fn DhcpGetSubnetDelayOffer(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: u32,
     TimeDelayInMilliseconds: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DHCPSAPI" fn DhcpGetMibInfoV5(
+pub extern "dhcpsapi" fn DhcpGetMibInfoV5(
     ServerIpAddress: ?[*:0]const u16,
     MibInfo: ?*?*DHCP_MIB_INFO_V5,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpAddSecurityGroup(
+pub extern "dhcpsapi" fn DhcpAddSecurityGroup(
     pServer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4GetOptionValue(
+pub extern "dhcpsapi" fn DhcpV4GetOptionValue(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -3028,7 +3028,7 @@ pub extern "DHCPSAPI" fn DhcpV4GetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4SetOptionValue(
+pub extern "dhcpsapi" fn DhcpV4SetOptionValue(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionId: u32,
@@ -3039,7 +3039,7 @@ pub extern "DHCPSAPI" fn DhcpV4SetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4SetOptionValues(
+pub extern "dhcpsapi" fn DhcpV4SetOptionValues(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     PolicyName: ?PWSTR,
@@ -3049,7 +3049,7 @@ pub extern "DHCPSAPI" fn DhcpV4SetOptionValues(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4RemoveOptionValue(
+pub extern "dhcpsapi" fn DhcpV4RemoveOptionValue(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     OptionID: u32,
@@ -3059,7 +3059,7 @@ pub extern "DHCPSAPI" fn DhcpV4RemoveOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4GetAllOptionValues(
+pub extern "dhcpsapi" fn DhcpV4GetAllOptionValues(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
@@ -3067,33 +3067,33 @@ pub extern "DHCPSAPI" fn DhcpV4GetAllOptionValues(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverCreateRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverCreateRelationship(
     ServerIpAddress: ?PWSTR,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverSetRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverSetRelationship(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverDeleteRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverDeleteRelationship(
     ServerIpAddress: ?PWSTR,
     pRelationshipName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetRelationship(
     ServerIpAddress: ?PWSTR,
     pRelationshipName: ?PWSTR,
     pRelationship: ?*?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverEnumRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverEnumRelationship(
     ServerIpAddress: ?PWSTR,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -3103,60 +3103,60 @@ pub extern "DHCPSAPI" fn DhcpV4FailoverEnumRelationship(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverAddScopeToRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverAddScopeToRelationship(
     ServerIpAddress: ?PWSTR,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverDeleteScopeFromRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverDeleteScopeFromRelationship(
     ServerIpAddress: ?PWSTR,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetScopeRelationship(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetScopeRelationship(
     ServerIpAddress: ?PWSTR,
     ScopeId: u32,
     pRelationship: ?*?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetScopeStatistics(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetScopeStatistics(
     ServerIpAddress: ?PWSTR,
     ScopeId: u32,
     pStats: ?*?*DHCP_FAILOVER_STATISTICS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetClientInfo(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetClientInfo(
     ServerIpAddress: ?PWSTR,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCPV4_FAILOVER_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetSystemTime(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetSystemTime(
     ServerIpAddress: ?PWSTR,
     pTime: ?*u32,
     pMaxAllowedDeltaTime: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverGetAddressStatus(
+pub extern "dhcpsapi" fn DhcpV4FailoverGetAddressStatus(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: u32,
     pStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4FailoverTriggerAddrAllocation(
+pub extern "dhcpsapi" fn DhcpV4FailoverTriggerAddrAllocation(
     ServerIpAddress: ?PWSTR,
     pFailRelName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprCreateV4Policy(
+pub extern "dhcpsapi" fn DhcpHlprCreateV4Policy(
     PolicyName: ?PWSTR,
     fGlobalPolicy: BOOL,
     Subnet: u32,
@@ -3167,7 +3167,7 @@ pub extern "DHCPSAPI" fn DhcpHlprCreateV4Policy(
     Policy: ?*?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpHlprCreateV4PolicyEx(
+pub extern "dhcpsapi" fn DhcpHlprCreateV4PolicyEx(
     PolicyName: ?PWSTR,
     fGlobalPolicy: BOOL,
     Subnet: u32,
@@ -3179,7 +3179,7 @@ pub extern "DHCPSAPI" fn DhcpHlprCreateV4PolicyEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprAddV4PolicyExpr(
+pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyExpr(
     Policy: ?*DHCP_POLICY,
     ParentExpr: u32,
     Operator: DHCP_POL_LOGIC_OPER,
@@ -3187,7 +3187,7 @@ pub extern "DHCPSAPI" fn DhcpHlprAddV4PolicyExpr(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprAddV4PolicyCondition(
+pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyCondition(
     Policy: ?*DHCP_POLICY,
     ParentExpr: u32,
     Type: DHCP_POL_ATTR_TYPE,
@@ -3202,60 +3202,60 @@ pub extern "DHCPSAPI" fn DhcpHlprAddV4PolicyCondition(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprAddV4PolicyRange(
+pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyRange(
     Policy: ?*DHCP_POLICY,
     Range: ?*DHCP_IP_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprResetV4PolicyExpr(
+pub extern "dhcpsapi" fn DhcpHlprResetV4PolicyExpr(
     Policy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprModifyV4PolicyExpr(
+pub extern "dhcpsapi" fn DhcpHlprModifyV4PolicyExpr(
     Policy: ?*DHCP_POLICY,
     Operator: DHCP_POL_LOGIC_OPER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4Policy(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4Policy(
     Policy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4PolicyArray(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4PolicyArray(
     PolicyArray: ?*DHCP_POLICY_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4PolicyEx(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4PolicyEx(
     PolicyEx: ?*DHCP_POLICY_EX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4PolicyExArray(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4PolicyExArray(
     PolicyExArray: ?*DHCP_POLICY_EX_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4DhcpProperty(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4DhcpProperty(
     Property: ?*DHCP_PROPERTY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFreeV4DhcpPropertyArray(
+pub extern "dhcpsapi" fn DhcpHlprFreeV4DhcpPropertyArray(
     PropertyArray: ?*DHCP_PROPERTY_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "DHCPSAPI" fn DhcpHlprFindV4DhcpProperty(
+pub extern "dhcpsapi" fn DhcpHlprFindV4DhcpProperty(
     PropertyArray: ?*DHCP_PROPERTY_ARRAY,
     ID: DHCP_PROPERTY_ID,
     Type: DHCP_PROPERTY_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) ?*DHCP_PROPERTY;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprIsV4PolicySingleUC(
+pub extern "dhcpsapi" fn DhcpHlprIsV4PolicySingleUC(
     Policy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4QueryPolicyEnforcement(
+pub extern "dhcpsapi" fn DhcpV4QueryPolicyEnforcement(
     ServerIpAddress: ?PWSTR,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
@@ -3263,7 +3263,7 @@ pub extern "DHCPSAPI" fn DhcpV4QueryPolicyEnforcement(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4SetPolicyEnforcement(
+pub extern "dhcpsapi" fn DhcpV4SetPolicyEnforcement(
     ServerIpAddress: ?PWSTR,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
@@ -3271,23 +3271,23 @@ pub extern "DHCPSAPI" fn DhcpV4SetPolicyEnforcement(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprIsV4PolicyWellFormed(
+pub extern "dhcpsapi" fn DhcpHlprIsV4PolicyWellFormed(
     pPolicy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpHlprIsV4PolicyValid(
+pub extern "dhcpsapi" fn DhcpHlprIsV4PolicyValid(
     pPolicy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4CreatePolicy(
+pub extern "dhcpsapi" fn DhcpV4CreatePolicy(
     ServerIpAddress: ?PWSTR,
     pPolicy: ?*DHCP_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4GetPolicy(
+pub extern "dhcpsapi" fn DhcpV4GetPolicy(
     ServerIpAddress: ?PWSTR,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
@@ -3296,7 +3296,7 @@ pub extern "DHCPSAPI" fn DhcpV4GetPolicy(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4SetPolicy(
+pub extern "dhcpsapi" fn DhcpV4SetPolicy(
     ServerIpAddress: ?PWSTR,
     FieldsModified: u32,
     fGlobalPolicy: BOOL,
@@ -3306,7 +3306,7 @@ pub extern "DHCPSAPI" fn DhcpV4SetPolicy(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4DeletePolicy(
+pub extern "dhcpsapi" fn DhcpV4DeletePolicy(
     ServerIpAddress: ?PWSTR,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
@@ -3314,7 +3314,7 @@ pub extern "DHCPSAPI" fn DhcpV4DeletePolicy(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4EnumPolicies(
+pub extern "dhcpsapi" fn DhcpV4EnumPolicies(
     ServerIpAddress: ?PWSTR,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -3326,7 +3326,7 @@ pub extern "DHCPSAPI" fn DhcpV4EnumPolicies(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4AddPolicyRange(
+pub extern "dhcpsapi" fn DhcpV4AddPolicyRange(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: u32,
     PolicyName: ?PWSTR,
@@ -3334,7 +3334,7 @@ pub extern "DHCPSAPI" fn DhcpV4AddPolicyRange(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4RemovePolicyRange(
+pub extern "dhcpsapi" fn DhcpV4RemovePolicyRange(
     ServerIpAddress: ?PWSTR,
     SubnetAddress: u32,
     PolicyName: ?PWSTR,
@@ -3342,7 +3342,7 @@ pub extern "DHCPSAPI" fn DhcpV4RemovePolicyRange(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV6SetStatelessStoreParams(
+pub extern "dhcpsapi" fn DhcpV6SetStatelessStoreParams(
     ServerIpAddress: ?PWSTR,
     fServerLevel: BOOL,
     SubnetAddress: DHCP_IPV6_ADDRESS,
@@ -3351,7 +3351,7 @@ pub extern "DHCPSAPI" fn DhcpV6SetStatelessStoreParams(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV6GetStatelessStoreParams(
+pub extern "dhcpsapi" fn DhcpV6GetStatelessStoreParams(
     ServerIpAddress: ?PWSTR,
     fServerLevel: BOOL,
     SubnetAddress: DHCP_IPV6_ADDRESS,
@@ -3359,19 +3359,19 @@ pub extern "DHCPSAPI" fn DhcpV6GetStatelessStoreParams(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV6GetStatelessStatistics(
+pub extern "dhcpsapi" fn DhcpV6GetStatelessStatistics(
     ServerIpAddress: ?PWSTR,
     StatelessStats: ?*?*DHCPV6_STATELESS_STATS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4CreateClientInfo(
+pub extern "dhcpsapi" fn DhcpV4CreateClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_PB,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4EnumSubnetClients(
+pub extern "dhcpsapi" fn DhcpV4EnumSubnetClients(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -3382,20 +3382,20 @@ pub extern "DHCPSAPI" fn DhcpV4EnumSubnetClients(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4GetClientInfo(
+pub extern "dhcpsapi" fn DhcpV4GetClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCP_CLIENT_INFO_PB,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV6CreateClientInfo(
+pub extern "dhcpsapi" fn DhcpV6CreateClientInfo(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_V6,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV4GetFreeIPAddress(
+pub extern "dhcpsapi" fn DhcpV4GetFreeIPAddress(
     ServerIpAddress: ?PWSTR,
     ScopeId: u32,
     StartIP: u32,
@@ -3405,7 +3405,7 @@ pub extern "DHCPSAPI" fn DhcpV4GetFreeIPAddress(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "DHCPSAPI" fn DhcpV6GetFreeIPAddress(
+pub extern "dhcpsapi" fn DhcpV6GetFreeIPAddress(
     ServerIpAddress: ?PWSTR,
     ScopeId: DHCP_IPV6_ADDRESS,
     StartIP: DHCP_IPV6_ADDRESS,
@@ -3414,12 +3414,12 @@ pub extern "DHCPSAPI" fn DhcpV6GetFreeIPAddress(
     IPAddrList: ?*?*DHCPV6_IP_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4CreateClientInfoEx(
+pub extern "dhcpsapi" fn DhcpV4CreateClientInfoEx(
     ServerIpAddress: ?[*:0]const u16,
     ClientInfo: ?*const DHCP_CLIENT_INFO_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4EnumSubnetClientsEx(
+pub extern "dhcpsapi" fn DhcpV4EnumSubnetClientsEx(
     ServerIpAddress: ?[*:0]const u16,
     SubnetAddress: u32,
     ResumeHandle: ?*u32,
@@ -3429,18 +3429,18 @@ pub extern "DHCPSAPI" fn DhcpV4EnumSubnetClientsEx(
     ClientsTotal: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4GetClientInfoEx(
+pub extern "dhcpsapi" fn DhcpV4GetClientInfoEx(
     ServerIpAddress: ?[*:0]const u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCP_CLIENT_INFO_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4CreatePolicyEx(
+pub extern "dhcpsapi" fn DhcpV4CreatePolicyEx(
     ServerIpAddress: ?PWSTR,
     PolicyEx: ?*DHCP_POLICY_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4GetPolicyEx(
+pub extern "dhcpsapi" fn DhcpV4GetPolicyEx(
     ServerIpAddress: ?PWSTR,
     GlobalPolicy: BOOL,
     SubnetAddress: u32,
@@ -3448,7 +3448,7 @@ pub extern "DHCPSAPI" fn DhcpV4GetPolicyEx(
     Policy: ?*?*DHCP_POLICY_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4SetPolicyEx(
+pub extern "dhcpsapi" fn DhcpV4SetPolicyEx(
     ServerIpAddress: ?PWSTR,
     FieldsModified: u32,
     GlobalPolicy: BOOL,
@@ -3457,7 +3457,7 @@ pub extern "DHCPSAPI" fn DhcpV4SetPolicyEx(
     Policy: ?*DHCP_POLICY_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DHCPSAPI" fn DhcpV4EnumPoliciesEx(
+pub extern "dhcpsapi" fn DhcpV4EnumPoliciesEx(
     ServerIpAddress: ?PWSTR,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,

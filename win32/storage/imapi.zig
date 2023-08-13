@@ -5741,17 +5741,17 @@ pub const tagIMMPID_GUIDLIST_ITEM = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (6)
 //--------------------------------------------------------------------------------
-pub extern "MAPI32" fn OpenIMsgSession(
+pub extern "mapi32" fn OpenIMsgSession(
     lpMalloc: ?*IMalloc,
     ulFlags: u32,
     lppMsgSess: ?*?*_MSGSESS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn CloseIMsgSession(
+pub extern "mapi32" fn CloseIMsgSession(
     lpMsgSess: ?*_MSGSESS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn OpenIMsgOnIStg(
+pub extern "mapi32" fn OpenIMsgOnIStg(
     lpMsgSess: ?*_MSGSESS,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpAllocateMore: ?LPALLOCATEMORE,
@@ -5765,20 +5765,20 @@ pub extern "MAPI32" fn OpenIMsgOnIStg(
     lppMsg: ?*?*IMessage,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn GetAttribIMsgOnIStg(
+pub extern "mapi32" fn GetAttribIMsgOnIStg(
     lpObject: ?*anyopaque,
     lpPropTagArray: ?*SPropTagArray,
     lppPropAttrArray: ?*?*SPropAttrArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn SetAttribIMsgOnIStg(
+pub extern "mapi32" fn SetAttribIMsgOnIStg(
     lpObject: ?*anyopaque,
     lpPropTags: ?*SPropTagArray,
     lpPropAttrs: ?*SPropAttrArray,
     lppPropProblems: ?*?*SPropProblemArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn MapStorageSCode(
+pub extern "mapi32" fn MapStorageSCode(
     StgSCode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

@@ -132,14 +132,14 @@ pub const PENUM_PAGE_FILE_CALLBACKA = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn K32EnumProcesses(
+pub extern "kernel32" fn K32EnumProcesses(
     // TODO: what to do with BytesParamIndex 1?
     lpidProcess: ?*u32,
     cb: u32,
     lpcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32EnumProcessModules(
+pub extern "kernel32" fn K32EnumProcessModules(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lphModule: ?*?HINSTANCE,
@@ -147,7 +147,7 @@ pub extern "KERNEL32" fn K32EnumProcessModules(
     lpcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32EnumProcessModulesEx(
+pub extern "kernel32" fn K32EnumProcessModulesEx(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lphModule: ?*?HINSTANCE,
@@ -156,150 +156,150 @@ pub extern "KERNEL32" fn K32EnumProcessModulesEx(
     dwFilterFlag: ENUM_PROCESS_MODULES_EX_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetModuleBaseNameA(
+pub extern "kernel32" fn K32GetModuleBaseNameA(
     hProcess: ?HANDLE,
     hModule: ?HINSTANCE,
     lpBaseName: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetModuleBaseNameW(
+pub extern "kernel32" fn K32GetModuleBaseNameW(
     hProcess: ?HANDLE,
     hModule: ?HINSTANCE,
     lpBaseName: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetModuleFileNameExA(
+pub extern "kernel32" fn K32GetModuleFileNameExA(
     hProcess: ?HANDLE,
     hModule: ?HINSTANCE,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetModuleFileNameExW(
+pub extern "kernel32" fn K32GetModuleFileNameExW(
     hProcess: ?HANDLE,
     hModule: ?HINSTANCE,
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetModuleInformation(
+pub extern "kernel32" fn K32GetModuleInformation(
     hProcess: ?HANDLE,
     hModule: ?HINSTANCE,
     lpmodinfo: ?*MODULEINFO,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32EmptyWorkingSet(
+pub extern "kernel32" fn K32EmptyWorkingSet(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32InitializeProcessForWsWatch(
+pub extern "kernel32" fn K32InitializeProcessForWsWatch(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetWsChanges(
+pub extern "kernel32" fn K32GetWsChanges(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpWatchInfo: ?*PSAPI_WS_WATCH_INFORMATION,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetWsChangesEx(
+pub extern "kernel32" fn K32GetWsChangesEx(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     lpWatchInfoEx: ?*PSAPI_WS_WATCH_INFORMATION_EX,
     cb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetMappedFileNameW(
+pub extern "kernel32" fn K32GetMappedFileNameW(
     hProcess: ?HANDLE,
     lpv: ?*anyopaque,
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetMappedFileNameA(
+pub extern "kernel32" fn K32GetMappedFileNameA(
     hProcess: ?HANDLE,
     lpv: ?*anyopaque,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32EnumDeviceDrivers(
+pub extern "kernel32" fn K32EnumDeviceDrivers(
     // TODO: what to do with BytesParamIndex 1?
     lpImageBase: ?*?*anyopaque,
     cb: u32,
     lpcbNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetDeviceDriverBaseNameA(
+pub extern "kernel32" fn K32GetDeviceDriverBaseNameA(
     ImageBase: ?*anyopaque,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetDeviceDriverBaseNameW(
+pub extern "kernel32" fn K32GetDeviceDriverBaseNameW(
     ImageBase: ?*anyopaque,
     lpBaseName: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetDeviceDriverFileNameA(
+pub extern "kernel32" fn K32GetDeviceDriverFileNameA(
     ImageBase: ?*anyopaque,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetDeviceDriverFileNameW(
+pub extern "kernel32" fn K32GetDeviceDriverFileNameW(
     ImageBase: ?*anyopaque,
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32QueryWorkingSet(
+pub extern "kernel32" fn K32QueryWorkingSet(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32QueryWorkingSetEx(
+pub extern "kernel32" fn K32QueryWorkingSetEx(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetProcessMemoryInfo(
+pub extern "kernel32" fn K32GetProcessMemoryInfo(
     Process: ?HANDLE,
     ppsmemCounters: ?*PROCESS_MEMORY_COUNTERS,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetPerformanceInfo(
+pub extern "kernel32" fn K32GetPerformanceInfo(
     pPerformanceInformation: ?*PERFORMANCE_INFORMATION,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32EnumPageFilesW(
+pub extern "kernel32" fn K32EnumPageFilesW(
     pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKW,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32EnumPageFilesA(
+pub extern "kernel32" fn K32EnumPageFilesA(
     pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKA,
     pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32GetProcessImageFileNameA(
+pub extern "kernel32" fn K32GetProcessImageFileNameA(
     hProcess: ?HANDLE,
     lpImageFileName: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn K32GetProcessImageFileNameW(
+pub extern "kernel32" fn K32GetProcessImageFileNameW(
     hProcess: ?HANDLE,
     lpImageFileName: [*:0]u16,
     nSize: u32,

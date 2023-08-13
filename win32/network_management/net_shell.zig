@@ -218,7 +218,7 @@ pub const PNS_DLL_INIT_FN = fn(
 // Section: Functions (8)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn MatchEnumTag(
+pub extern "netsh" fn MatchEnumTag(
     hModule: ?HANDLE,
     pwcArg: ?[*:0]const u16,
     dwNumArg: u32,
@@ -227,13 +227,13 @@ pub extern "NETSH" fn MatchEnumTag(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn MatchToken(
+pub extern "netsh" fn MatchToken(
     pwszUserToken: ?[*:0]const u16,
     pwszCmdToken: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn PreprocessCommand(
+pub extern "netsh" fn PreprocessCommand(
     hModule: ?HANDLE,
     ppwcArguments: [*]?PWSTR,
     dwCurrentIndex: u32,
@@ -246,29 +246,29 @@ pub extern "NETSH" fn PreprocessCommand(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn PrintError(
+pub extern "netsh" fn PrintError(
     hModule: ?HANDLE,
     dwErrId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn PrintMessageFromModule(
+pub extern "netsh" fn PrintMessageFromModule(
     hModule: ?HANDLE,
     dwMsgId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn PrintMessage(
+pub extern "netsh" fn PrintMessage(
     pwszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn RegisterContext(
+pub extern "netsh" fn RegisterContext(
     pChildContext: ?*const NS_CONTEXT_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NETSH" fn RegisterHelper(
+pub extern "netsh" fn RegisterHelper(
     pguidParentContext: ?*const Guid,
     pfnRegisterSubContext: ?*const NS_HELPER_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
