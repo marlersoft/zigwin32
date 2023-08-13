@@ -7106,12 +7106,12 @@ pub const IUIAutomationElement = extern struct {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUIAutomationElement,
-                retVal: ?HWND,
+                retVal: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUIAutomationElement,
-                retVal: ?HWND,
+                retVal: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7522,12 +7522,12 @@ pub const IUIAutomationElement = extern struct {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUIAutomationElement,
-                retVal: ?HWND,
+                retVal: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUIAutomationElement,
-                retVal: ?HWND,
+                retVal: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7874,7 +7874,7 @@ pub const IUIAutomationElement = extern struct {
             return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentIsPassword(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: ?*?HWND) callconv(.Inline) HRESULT {
             return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CurrentNativeWindowHandle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8002,7 +8002,7 @@ pub const IUIAutomationElement = extern struct {
             return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedIsPassword(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: ?*?HWND) callconv(.Inline) HRESULT {
             return @as(*const IUIAutomationElement.VTable, @ptrCast(self.vtable)).get_CachedNativeWindowHandle(@as(*const IUIAutomationElement, @ptrCast(self)), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -244,7 +244,7 @@ pub extern "kernel32" fn FreeLibrary(
 pub extern "kernel32" fn FreeLibraryAndExitThread(
     hLibModule: ?HINSTANCE,
     dwExitCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(@import("std").os.windows.WINAPI) noreturn;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn FreeResource(

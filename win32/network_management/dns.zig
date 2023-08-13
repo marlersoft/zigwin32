@@ -1271,12 +1271,12 @@ pub const PDNS_SERVICE_BROWSE_CALLBACK = switch (@import("builtin").zig_backend)
     .stage1 => fn(
         Status: u32,
         pQueryContext: ?*anyopaque,
-        pDnsRecord: ?*DNS_RECORDA,
+        pDnsRecord: ?*DNS_RECORDW,
     ) callconv(@import("std").os.windows.WINAPI) void,
     else => *const fn(
         Status: u32,
         pQueryContext: ?*anyopaque,
-        pDnsRecord: ?*DNS_RECORDA,
+        pDnsRecord: ?*DNS_RECORDW,
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 

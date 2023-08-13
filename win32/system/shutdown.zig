@@ -394,7 +394,7 @@ pub extern "advapi32" fn CheckForHiberboot(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn ExitWindowsEx(
     uFlags: EXIT_WINDOWS_FLAGS,
-    dwReason: u32,
+    dwReason: SHUTDOWN_REASON,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

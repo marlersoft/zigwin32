@@ -143,9 +143,9 @@ pub extern "user32" fn GetSystemMetricsForDpi(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "user32" fn AdjustWindowRectExForDpi(
     lpRect: ?*RECT,
-    dwStyle: u32,
+    dwStyle: WINDOW_STYLE,
     bMenu: BOOL,
-    dwExStyle: u32,
+    dwExStyle: WINDOW_EX_STYLE,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -281,7 +281,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -291,6 +291,8 @@ const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
+const WINDOW_EX_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_EX_STYLE;
+const WINDOW_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_STYLE;
 
 test {
     @setEvalBranchQuota(

@@ -858,25 +858,25 @@ pub extern "wevtapi" fn EvtGetEventInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ClearEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ClearEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn BackupEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn BackupEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -892,19 +892,19 @@ pub extern "advapi32" fn DeregisterEventSource(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn NotifyChangeEventLog(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetNumberOfEventLogRecords(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     NumberOfRecords: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetOldestEventLogRecord(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     OldestRecord: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -946,7 +946,7 @@ pub extern "advapi32" fn OpenBackupEventLogW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReadEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -958,7 +958,7 @@ pub extern "advapi32" fn ReadEventLogA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReadEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -970,7 +970,7 @@ pub extern "advapi32" fn ReadEventLogW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReportEventA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventSourceHandle,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
@@ -984,7 +984,7 @@ pub extern "advapi32" fn ReportEventA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReportEventW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventSourceHandle,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
@@ -998,7 +998,7 @@ pub extern "advapi32" fn ReportEventW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetEventLogInformation(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*anyopaque,

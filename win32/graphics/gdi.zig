@@ -1402,6 +1402,16 @@ pub const DIB_USAGE = enum(u32) {
 pub const DIB_RGB_COLORS = DIB_USAGE.RGB_COLORS;
 pub const DIB_PAL_COLORS = DIB_USAGE.PAL_COLORS;
 
+pub const MONITORINFOEXA = extern struct {
+    monitorInfo: MONITORINFO,
+    szDevice: [32]CHAR,
+};
+
+pub const MONITORINFOEXW = extern struct {
+    monitorInfo: MONITORINFO,
+    szDevice: [32]u16,
+};
+
 pub const DRAWEDGE_FLAGS = enum(u32) {
     BDR_RAISEDOUTER = 1,
     BDR_SUNKENOUTER = 2,
@@ -4488,16 +4498,6 @@ pub const MONITORINFO = extern struct {
     dwFlags: u32,
 };
 
-pub const MONITORINFOEXA = extern struct {
-    __AnonymousBase_winuser_L13567_C43: MONITORINFO,
-    szDevice: [32]CHAR,
-};
-
-pub const MONITORINFOEXW = extern struct {
-    __AnonymousBase_winuser_L13571_C43: MONITORINFO,
-    szDevice: [32]u16,
-};
-
 pub const MONITORENUMPROC = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?HMONITOR,
@@ -7484,6 +7484,7 @@ pub extern "user32" fn EnumDisplayMonitors(
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const MONITORINFOEX = thismodule.MONITORINFOEXA;
         pub const TEXTMETRIC = thismodule.TEXTMETRICA;
         pub const NEWTEXTMETRIC = thismodule.NEWTEXTMETRICA;
         pub const LOGFONT = thismodule.LOGFONTA;
@@ -7499,7 +7500,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXISINFO = thismodule.AXISINFOA;
         pub const AXESLIST = thismodule.AXESLISTA;
         pub const ENUMLOGFONTEXDV = thismodule.ENUMLOGFONTEXDVA;
-        pub const MONITORINFOEX = thismodule.MONITORINFOEXA;
         pub const GetObject = thismodule.GetObjectA;
         pub const AddFontResource = thismodule.AddFontResourceA;
         pub const CopyMetaFile = thismodule.CopyMetaFileA;
@@ -7555,6 +7555,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetMonitorInfo = thismodule.GetMonitorInfoA;
     },
     .wide => struct {
+        pub const MONITORINFOEX = thismodule.MONITORINFOEXW;
         pub const TEXTMETRIC = thismodule.TEXTMETRICW;
         pub const NEWTEXTMETRIC = thismodule.NEWTEXTMETRICW;
         pub const LOGFONT = thismodule.LOGFONTW;
@@ -7570,7 +7571,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXISINFO = thismodule.AXISINFOW;
         pub const AXESLIST = thismodule.AXESLISTW;
         pub const ENUMLOGFONTEXDV = thismodule.ENUMLOGFONTEXDVW;
-        pub const MONITORINFOEX = thismodule.MONITORINFOEXW;
         pub const GetObject = thismodule.GetObjectW;
         pub const AddFontResource = thismodule.AddFontResourceW;
         pub const CopyMetaFile = thismodule.CopyMetaFileW;
@@ -7626,6 +7626,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetMonitorInfo = thismodule.GetMonitorInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const MONITORINFOEX = *opaque{};
         pub const TEXTMETRIC = *opaque{};
         pub const NEWTEXTMETRIC = *opaque{};
         pub const LOGFONT = *opaque{};
@@ -7641,7 +7642,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXISINFO = *opaque{};
         pub const AXESLIST = *opaque{};
         pub const ENUMLOGFONTEXDV = *opaque{};
-        pub const MONITORINFOEX = *opaque{};
         pub const GetObject = *opaque{};
         pub const AddFontResource = *opaque{};
         pub const CopyMetaFile = *opaque{};
@@ -7696,6 +7696,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumDisplayDevices = *opaque{};
         pub const GetMonitorInfo = *opaque{};
     } else struct {
+        pub const MONITORINFOEX = @compileError("'MONITORINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const TEXTMETRIC = @compileError("'TEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRIC = @compileError("'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
@@ -7711,7 +7712,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXISINFO = @compileError("'AXISINFO' requires that UNICODE be set to true or false in the root module");
         pub const AXESLIST = @compileError("'AXESLIST' requires that UNICODE be set to true or false in the root module");
         pub const ENUMLOGFONTEXDV = @compileError("'ENUMLOGFONTEXDV' requires that UNICODE be set to true or false in the root module");
-        pub const MONITORINFOEX = @compileError("'MONITORINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const GetObject = @compileError("'GetObject' requires that UNICODE be set to true or false in the root module");
         pub const AddFontResource = @compileError("'AddFontResource' requires that UNICODE be set to true or false in the root module");
         pub const CopyMetaFile = @compileError("'CopyMetaFile' requires that UNICODE be set to true or false in the root module");
