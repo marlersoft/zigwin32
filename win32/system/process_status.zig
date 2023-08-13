@@ -24,6 +24,17 @@ pub const MODULEINFO = extern struct {
     EntryPoint: ?*c_void,
 };
 
+pub const PSAPI_WS_WATCH_INFORMATION = extern struct {
+    FaultingPc: ?*c_void,
+    FaultingVa: ?*c_void,
+};
+
+pub const PSAPI_WS_WATCH_INFORMATION_EX = extern struct {
+    BasicInfo: PSAPI_WS_WATCH_INFORMATION,
+    FaultingThreadId: usize,
+    Flags: usize,
+};
+
 pub const PSAPI_WORKING_SET_BLOCK = extern union {
     Flags: usize,
     Anonymous: extern struct {
@@ -51,17 +62,6 @@ pub const PSAPI_WORKING_SET_EX_BLOCK = extern union {
 pub const PSAPI_WORKING_SET_EX_INFORMATION = extern struct {
     VirtualAddress: ?*c_void,
     VirtualAttributes: PSAPI_WORKING_SET_EX_BLOCK,
-};
-
-pub const PSAPI_WS_WATCH_INFORMATION = extern struct {
-    FaultingPc: ?*c_void,
-    FaultingVa: ?*c_void,
-};
-
-pub const PSAPI_WS_WATCH_INFORMATION_EX = extern struct {
-    BasicInfo: PSAPI_WS_WATCH_INFORMATION,
-    FaultingThreadId: usize,
-    Flags: usize,
 };
 
 pub const PROCESS_MEMORY_COUNTERS = extern struct {
@@ -195,20 +195,6 @@ pub extern "KERNEL32" fn K32EmptyWorkingSet(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn K32QueryWorkingSet(
-    hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*c_void,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn K32QueryWorkingSetEx(
-    hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*c_void,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "KERNEL32" fn K32InitializeProcessForWsWatch(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -271,6 +257,20 @@ pub extern "KERNEL32" fn K32GetDeviceDriverFileNameW(
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn K32QueryWorkingSet(
+    hProcess: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: ?*c_void,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn K32QueryWorkingSetEx(
+    hProcess: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: ?*c_void,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32GetProcessMemoryInfo(
     Process: ?HANDLE,

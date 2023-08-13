@@ -604,14 +604,14 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
-const DXGI_ALPHA_MODE = @import("../../graphics/dxgi.zig").DXGI_ALPHA_MODE;
-const DXGI_FORMAT = @import("../../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_ALPHA_MODE = @import("../../graphics/dxgi/common.zig").DXGI_ALPHA_MODE;
+const DXGI_FORMAT = @import("../../graphics/dxgi/common.zig").DXGI_FORMAT;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECT = @import("../../foundation.zig").RECT;
-const SAFEARRAY = @import("../../system/ole_automation.zig").SAFEARRAY;
+const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 
 test {
     @setEvalBranchQuota(

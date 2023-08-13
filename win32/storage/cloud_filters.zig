@@ -151,7 +151,7 @@ pub const CF_REGISTER_FLAG_UPDATE = CF_REGISTER_FLAGS.UPDATE;
 pub const CF_REGISTER_FLAG_DISABLE_ON_DEMAND_POPULATION_ON_ROOT = CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT;
 pub const CF_REGISTER_FLAG_MARK_IN_SYNC_ON_ROOT = CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT;
 
-pub const CF_HYDRATION_POLICY_PRIMARY = enum(i32) {
+pub const CF_HYDRATION_POLICY_PRIMARY = enum(u16) {
     PARTIAL = 0,
     PROGRESSIVE = 1,
     FULL = 2,
@@ -166,23 +166,26 @@ pub const CF_HYDRATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_HYDRATION_POLICY_MODIFIER = enum(u32) {
+pub const CF_HYDRATION_POLICY_MODIFIER = enum(u16) {
     NONE = 0,
     VALIDATION_REQUIRED = 1,
     STREAMING_ALLOWED = 2,
     AUTO_DEHYDRATION_ALLOWED = 4,
+    ALLOW_FULL_RESTART_HYDRATION = 8,
     _,
     pub fn initFlags(o: struct {
         NONE: u1 = 0,
         VALIDATION_REQUIRED: u1 = 0,
         STREAMING_ALLOWED: u1 = 0,
         AUTO_DEHYDRATION_ALLOWED: u1 = 0,
+        ALLOW_FULL_RESTART_HYDRATION: u1 = 0,
     }) CF_HYDRATION_POLICY_MODIFIER {
         return @intToEnum(CF_HYDRATION_POLICY_MODIFIER,
               (if (o.NONE == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.NONE) else 0)
             | (if (o.VALIDATION_REQUIRED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED) else 0)
             | (if (o.STREAMING_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED) else 0)
             | (if (o.AUTO_DEHYDRATION_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED) else 0)
+            | (if (o.ALLOW_FULL_RESTART_HYDRATION == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION) else 0)
         );
     }
 };
@@ -190,6 +193,7 @@ pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER.NONE;
 pub const CF_HYDRATION_POLICY_MODIFIER_VALIDATION_REQUIRED = CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED;
 pub const CF_HYDRATION_POLICY_MODIFIER_STREAMING_ALLOWED = CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED;
 pub const CF_HYDRATION_POLICY_MODIFIER_AUTO_DEHYDRATION_ALLOWED = CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED;
+pub const CF_HYDRATION_POLICY_MODIFIER_ALLOW_FULL_RESTART_HYDRATION = CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION;
 
 pub const CF_HYDRATION_POLICY_MODIFIER_USHORT = extern struct {
     us: u16,
@@ -200,7 +204,7 @@ pub const CF_HYDRATION_POLICY = extern struct {
     Modifier: CF_HYDRATION_POLICY_MODIFIER_USHORT,
 };
 
-pub const CF_POPULATION_POLICY_PRIMARY = enum(i32) {
+pub const CF_POPULATION_POLICY_PRIMARY = enum(u16) {
     PARTIAL = 0,
     FULL = 2,
     ALWAYS_FULL = 3,
@@ -213,7 +217,7 @@ pub const CF_POPULATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_POPULATION_POLICY_MODIFIER = enum(u32) {
+pub const CF_POPULATION_POLICY_MODIFIER = enum(u16) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -999,6 +1003,7 @@ pub const CF_CONVERT_FLAGS = enum(u32) {
     DEHYDRATE = 2,
     ENABLE_ON_DEMAND_POPULATION = 4,
     ALWAYS_FULL = 8,
+    FORCE_CONVERT_TO_CLOUD_FILE = 16,
     _,
     pub fn initFlags(o: struct {
         NONE: u1 = 0,
@@ -1006,6 +1011,7 @@ pub const CF_CONVERT_FLAGS = enum(u32) {
         DEHYDRATE: u1 = 0,
         ENABLE_ON_DEMAND_POPULATION: u1 = 0,
         ALWAYS_FULL: u1 = 0,
+        FORCE_CONVERT_TO_CLOUD_FILE: u1 = 0,
     }) CF_CONVERT_FLAGS {
         return @intToEnum(CF_CONVERT_FLAGS,
               (if (o.NONE == 1) @enumToInt(CF_CONVERT_FLAGS.NONE) else 0)
@@ -1013,6 +1019,7 @@ pub const CF_CONVERT_FLAGS = enum(u32) {
             | (if (o.DEHYDRATE == 1) @enumToInt(CF_CONVERT_FLAGS.DEHYDRATE) else 0)
             | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
             | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_CONVERT_FLAGS.ALWAYS_FULL) else 0)
+            | (if (o.FORCE_CONVERT_TO_CLOUD_FILE == 1) @enumToInt(CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE) else 0)
         );
     }
 };
@@ -1021,6 +1028,7 @@ pub const CF_CONVERT_FLAG_MARK_IN_SYNC = CF_CONVERT_FLAGS.MARK_IN_SYNC;
 pub const CF_CONVERT_FLAG_DEHYDRATE = CF_CONVERT_FLAGS.DEHYDRATE;
 pub const CF_CONVERT_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION;
 pub const CF_CONVERT_FLAG_ALWAYS_FULL = CF_CONVERT_FLAGS.ALWAYS_FULL;
+pub const CF_CONVERT_FLAG_FORCE_CONVERT_TO_CLOUD_FILE = CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE;
 
 pub const CF_UPDATE_FLAGS = enum(u32) {
     NONE = 0,
@@ -1569,14 +1577,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CORRELATION_VECTOR = @import("../system/system_services.zig").CORRELATION_VECTOR;
+const CORRELATION_VECTOR = @import("../system/correlation_vector.zig").CORRELATION_VECTOR;
 const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
 const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 

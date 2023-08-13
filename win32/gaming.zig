@@ -4,8 +4,275 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (12)
+// Section: Types (21)
 //--------------------------------------------------------------------------------
+const CLSID_GameExplorer_Value = @import("zig.zig").Guid.initString("9a5ea990-3034-4d6f-9128-01f3c61022bc");
+pub const CLSID_GameExplorer = &CLSID_GameExplorer_Value;
+
+const CLSID_GameStatistics_Value = @import("zig.zig").Guid.initString("dbc85a2c-c0dc-4961-b6e2-d28b62c11ad4");
+pub const CLSID_GameStatistics = &CLSID_GameStatistics_Value;
+
+pub const GAME_INSTALL_SCOPE = enum(i32) {
+    NOT_INSTALLED = 1,
+    CURRENT_USER = 2,
+    ALL_USERS = 3,
+};
+pub const GIS_NOT_INSTALLED = GAME_INSTALL_SCOPE.NOT_INSTALLED;
+pub const GIS_CURRENT_USER = GAME_INSTALL_SCOPE.CURRENT_USER;
+pub const GIS_ALL_USERS = GAME_INSTALL_SCOPE.ALL_USERS;
+
+const IID_IGameExplorer_Value = @import("zig.zig").Guid.initString("e7b2fb72-d728-49b3-a5f2-18ebf5f1349e");
+pub const IID_IGameExplorer = &IID_IGameExplorer_Value;
+pub const IGameExplorer = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddGame: fn(
+            self: *const IGameExplorer,
+            bstrGDFBinaryPath: ?BSTR,
+            bstrGameInstallDirectory: ?BSTR,
+            installScope: GAME_INSTALL_SCOPE,
+            pguidInstanceID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGame: fn(
+            self: *const IGameExplorer,
+            guidInstanceID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateGame: fn(
+            self: *const IGameExplorer,
+            guidInstanceID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VerifyAccess: fn(
+            self: *const IGameExplorer,
+            bstrGDFBinaryPath: ?BSTR,
+            pfHasAccess: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer_AddGame(self: *const T, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer.VTable, self.vtable).AddGame(@ptrCast(*const IGameExplorer, self), bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer_RemoveGame(self: *const T, guidInstanceID: Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer.VTable, self.vtable).RemoveGame(@ptrCast(*const IGameExplorer, self), guidInstanceID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer_UpdateGame(self: *const T, guidInstanceID: Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer.VTable, self.vtable).UpdateGame(@ptrCast(*const IGameExplorer, self), guidInstanceID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer_VerifyAccess(self: *const T, bstrGDFBinaryPath: ?BSTR, pfHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer.VTable, self.vtable).VerifyAccess(@ptrCast(*const IGameExplorer, self), bstrGDFBinaryPath, pfHasAccess);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const GAMESTATS_OPEN_TYPE = enum(i32) {
+    RCREATE = 0,
+    NLY = 1,
+};
+pub const GAMESTATS_OPEN_OPENORCREATE = GAMESTATS_OPEN_TYPE.RCREATE;
+pub const GAMESTATS_OPEN_OPENONLY = GAMESTATS_OPEN_TYPE.NLY;
+
+pub const GAMESTATS_OPEN_RESULT = enum(i32) {
+    CREATED = 0,
+    OPENED = 1,
+};
+pub const GAMESTATS_OPEN_CREATED = GAMESTATS_OPEN_RESULT.CREATED;
+pub const GAMESTATS_OPEN_OPENED = GAMESTATS_OPEN_RESULT.OPENED;
+
+const IID_IGameStatistics_Value = @import("zig.zig").Guid.initString("3887c9ca-04a0-42ae-bc4c-5fa6c7721145");
+pub const IID_IGameStatistics = &IID_IGameStatistics_Value;
+pub const IGameStatistics = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMaxCategoryLength: fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxNameLength: fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxValueLength: fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxCategories: fn(
+            self: *const IGameStatistics,
+            pMax: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxStatsPerCategory: fn(
+            self: *const IGameStatistics,
+            pMax: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCategoryTitle: fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            title: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCategoryTitle: fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            pTitle: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatistic: fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            statIndex: u16,
+            pName: ?*?PWSTR,
+            pValue: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatistic: fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            statIndex: u16,
+            name: ?[*:0]const u16,
+            value: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: fn(
+            self: *const IGameStatistics,
+            trackChanges: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastPlayedCategory: fn(
+            self: *const IGameStatistics,
+            categoryIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastPlayedCategory: fn(
+            self: *const IGameStatistics,
+            pCategoryIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetMaxCategoryLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetMaxCategoryLength(@ptrCast(*const IGameStatistics, self), cch);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetMaxNameLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetMaxNameLength(@ptrCast(*const IGameStatistics, self), cch);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetMaxValueLength(self: *const T, cch: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetMaxValueLength(@ptrCast(*const IGameStatistics, self), cch);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetMaxCategories(self: *const T, pMax: ?*u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetMaxCategories(@ptrCast(*const IGameStatistics, self), pMax);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetMaxStatsPerCategory(self: *const T, pMax: ?*u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetMaxStatsPerCategory(@ptrCast(*const IGameStatistics, self), pMax);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_SetCategoryTitle(self: *const T, categoryIndex: u16, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).SetCategoryTitle(@ptrCast(*const IGameStatistics, self), categoryIndex, title);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetCategoryTitle(self: *const T, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetCategoryTitle(@ptrCast(*const IGameStatistics, self), categoryIndex, pTitle);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetStatistic(self: *const T, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetStatistic(@ptrCast(*const IGameStatistics, self), categoryIndex, statIndex, pName, pValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_SetStatistic(self: *const T, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).SetStatistic(@ptrCast(*const IGameStatistics, self), categoryIndex, statIndex, name, value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_Save(self: *const T, trackChanges: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).Save(@ptrCast(*const IGameStatistics, self), trackChanges);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_SetLastPlayedCategory(self: *const T, categoryIndex: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).SetLastPlayedCategory(@ptrCast(*const IGameStatistics, self), categoryIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatistics_GetLastPlayedCategory(self: *const T, pCategoryIndex: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatistics.VTable, self.vtable).GetLastPlayedCategory(@ptrCast(*const IGameStatistics, self), pCategoryIndex);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IGameStatisticsMgr_Value = @import("zig.zig").Guid.initString("aff3ea11-e70e-407d-95dd-35e612c41ce2");
+pub const IID_IGameStatisticsMgr = &IID_IGameStatisticsMgr_Value;
+pub const IGameStatisticsMgr = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGameStatistics: fn(
+            self: *const IGameStatisticsMgr,
+            GDFBinaryPath: ?[*:0]const u16,
+            openType: GAMESTATS_OPEN_TYPE,
+            pOpenResult: ?*GAMESTATS_OPEN_RESULT,
+            ppiStats: ?*?*IGameStatistics,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGameStatistics: fn(
+            self: *const IGameStatisticsMgr,
+            GDFBinaryPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatisticsMgr_GetGameStatistics(self: *const T, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatisticsMgr.VTable, self.vtable).GetGameStatistics(@ptrCast(*const IGameStatisticsMgr, self), GDFBinaryPath, openType, pOpenResult, ppiStats);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameStatisticsMgr_RemoveGameStatistics(self: *const T, GDFBinaryPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameStatisticsMgr.VTable, self.vtable).RemoveGameStatistics(@ptrCast(*const IGameStatisticsMgr, self), GDFBinaryPath);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IGameExplorer2_Value = @import("zig.zig").Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
+pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
+pub const IGameExplorer2 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InstallGame: fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            installDirectory: ?[*:0]const u16,
+            installScope: GAME_INSTALL_SCOPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UninstallGame: fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckAccess: fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            pHasAccess: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer2_InstallGame(self: *const T, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer2.VTable, self.vtable).InstallGame(@ptrCast(*const IGameExplorer2, self), binaryGDFPath, installDirectory, installScope);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer2_UninstallGame(self: *const T, binaryGDFPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer2.VTable, self.vtable).UninstallGame(@ptrCast(*const IGameExplorer2, self), binaryGDFPath);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IGameExplorer2_CheckAccess(self: *const T, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IGameExplorer2.VTable, self.vtable).CheckAccess(@ptrCast(*const IGameExplorer2, self), binaryGDFPath, pHasAccess);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
     NONE = 0,
     MICROSOFT = -1024700366,
@@ -626,9 +893,11 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
+const Guid = @import("zig.zig").Guid;
 const BOOL = @import("foundation.zig").BOOL;
+const BSTR = @import("foundation.zig").BSTR;
 const HRESULT = @import("foundation.zig").HRESULT;
 const HSTRING = @import("system/win_rt.zig").HSTRING;
 const IInspectable = @import("system/win_rt.zig").IInspectable;

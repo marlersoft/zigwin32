@@ -551,7 +551,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {

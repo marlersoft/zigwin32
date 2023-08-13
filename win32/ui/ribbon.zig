@@ -688,10 +688,10 @@ const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IStream = @import("../storage/structured_storage.zig").IStream;
+const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
+const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {

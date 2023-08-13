@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (4)
+// Section: Types (34)
 //--------------------------------------------------------------------------------
 pub const JOB_OBJECT_LIMIT = enum(u32) {
     LIMIT_WORKINGSET = 1,
@@ -193,6 +193,26 @@ pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY.ONLY_TOKEN;
 pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY.FILTER_TOKENS;
 pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY.VALID_FLAGS;
 
+pub const JOB_OBJECT_CPU_RATE_CONTROL = enum(u32) {
+    CPU_RATE_CONTROL_ENABLE = 1,
+    CPU_RATE_CONTROL_WEIGHT_BASED = 2,
+    CPU_RATE_CONTROL_HARD_CAP = 4,
+    CPU_RATE_CONTROL_NOTIFY = 8,
+    _CPU_RATE_CONTROL_MIN_MAX_RATE = 16,
+};
+pub const JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_ENABLE;
+pub const JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_WEIGHT_BASED;
+pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_HARD_CAP;
+pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_NOTIFY;
+pub const JOB_OBJECT__CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL._CPU_RATE_CONTROL_MIN_MAX_RATE;
+
+pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = enum(u32) {
+    TERMINATE_AT_END_OF_JOB = 0,
+    POST_AT_END_OF_JOB = 1,
+};
+pub const JOB_OBJECT_TERMINATE_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.TERMINATE_AT_END_OF_JOB;
+pub const JOB_OBJECT_POST_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.POST_AT_END_OF_JOB;
+
 pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
@@ -202,9 +222,388 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
 };
 
+pub const JOB_SET_ARRAY = extern struct {
+    JobHandle: ?HANDLE,
+    MemberLevel: u32,
+    Flags: u32,
+};
+
+pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
+    TotalUserTime: LARGE_INTEGER,
+    TotalKernelTime: LARGE_INTEGER,
+    ThisPeriodTotalUserTime: LARGE_INTEGER,
+    ThisPeriodTotalKernelTime: LARGE_INTEGER,
+    TotalPageFaultCount: u32,
+    TotalProcesses: u32,
+    ActiveProcesses: u32,
+    TotalTerminatedProcesses: u32,
+};
+
+pub const JOBOBJECT_BASIC_LIMIT_INFORMATION = extern struct {
+    PerProcessUserTimeLimit: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    LimitFlags: JOB_OBJECT_LIMIT,
+    MinimumWorkingSetSize: usize,
+    MaximumWorkingSetSize: usize,
+    ActiveProcessLimit: u32,
+    Affinity: usize,
+    PriorityClass: u32,
+    SchedulingClass: u32,
+};
+
+pub const JOBOBJECT_EXTENDED_LIMIT_INFORMATION = extern struct {
+    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION,
+    IoInfo: IO_COUNTERS,
+    ProcessMemoryLimit: usize,
+    JobMemoryLimit: usize,
+    PeakProcessMemoryUsed: usize,
+    PeakJobMemoryUsed: usize,
+};
+
+pub const JOBOBJECT_BASIC_PROCESS_ID_LIST = extern struct {
+    NumberOfAssignedProcesses: u32,
+    NumberOfProcessIdsInList: u32,
+    ProcessIdList: [1]usize,
+};
+
+pub const JOBOBJECT_BASIC_UI_RESTRICTIONS = extern struct {
+    UIRestrictionsClass: JOB_OBJECT_UILIMIT,
+};
+
+pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
+    SecurityLimitFlags: JOB_OBJECT_SECURITY,
+    JobToken: ?HANDLE,
+    SidsToDisable: ?*TOKEN_GROUPS,
+    PrivilegesToDelete: ?*TOKEN_PRIVILEGES,
+    RestrictedSids: ?*TOKEN_GROUPS,
+};
+
+pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
+    EndOfJobTimeAction: JOB_OBJECT_TERMINATE_AT_END_ACTION,
+};
+
+pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
+    CompletionKey: ?*c_void,
+    CompletionPort: ?HANDLE,
+};
+
+pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
+    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
+    IoInfo: IO_COUNTERS,
+};
+
+pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
+    MemberLevel: u32,
+};
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = enum(i32) {
+    Low = 1,
+    Medium = 2,
+    High = 3,
+};
+pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.Low;
+pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.Medium;
+pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.High;
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = enum(i32) {
+    Short = 1,
+    Medium = 2,
+    Long = 3,
+};
+// TODO: enum 'JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL' has known issues with its value aliases
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    LimitFlags: JOB_OBJECT_LIMIT,
+};
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+        CpuRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    },
+    LimitFlags: JOB_OBJECT_LIMIT,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    JobLowMemoryLimit: u64,
+    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+};
+
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+};
+
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    JobLowMemoryLimit: u64,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+};
+
+pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
+    ControlFlags: JOB_OBJECT_CPU_RATE_CONTROL,
+    Anonymous: extern union {
+        CpuRate: u32,
+        Weight: u32,
+        Anonymous: extern struct {
+            MinRate: u16,
+            MaxRate: u16,
+        },
+    },
+};
+
+pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = enum(i32) {
+    ENABLE = 1,
+    MAX_BANDWIDTH = 2,
+    DSCP_TAG = 4,
+    VALID_FLAGS = 7,
+};
+pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.ENABLE;
+pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.MAX_BANDWIDTH;
+pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.DSCP_TAG;
+pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.VALID_FLAGS;
+
+pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
+    MaxBandwidth: u64,
+    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS,
+    DscpTag: u8,
+};
+
+pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = enum(i32) {
+    ENABLE = 1,
+    STANDALONE_VOLUME = 2,
+    FORCE_UNIT_ACCESS_ALL = 4,
+    FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8,
+    VALID_FLAGS = 15,
+};
+pub const JOB_OBJECT_IO_RATE_CONTROL_ENABLE = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.ENABLE;
+pub const JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.STANDALONE_VOLUME;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ALL;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ON_SOFT_CAP;
+pub const JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.VALID_FLAGS;
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: ?PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+};
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: ?PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+    CriticalReservationIops: i64,
+    ReservationBandwidth: i64,
+    CriticalReservationBandwidth: i64,
+    MaxTimePercent: i64,
+    ReservationTimePercent: i64,
+    CriticalReservationTimePercent: i64,
+};
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: ?PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+    CriticalReservationIops: i64,
+    ReservationBandwidth: i64,
+    CriticalReservationBandwidth: i64,
+    MaxTimePercent: i64,
+    ReservationTimePercent: i64,
+    CriticalReservationTimePercent: i64,
+    SoftMaxIops: i64,
+    SoftMaxBandwidth: i64,
+    SoftMaxTimePercent: i64,
+    LimitExcessNotifyIops: i64,
+    LimitExcessNotifyBandwidth: i64,
+    LimitExcessNotifyTimePercent: i64,
+};
+
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = enum(i32) {
+    ENABLE = 1,
+    DISABLE = 2,
+    VALID_FLAGS = 3,
+};
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.ENABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.DISABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.VALID_FLAGS;
+
+pub const JOBOBJECT_IO_ATTRIBUTION_STATS = extern struct {
+    IoCount: usize,
+    TotalNonOverlappedQueueTime: u64,
+    TotalNonOverlappedServiceTime: u64,
+    TotalSize: u64,
+};
+
+pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
+    ControlFlags: u32,
+    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+};
+
+pub const JOBOBJECTINFOCLASS = enum(i32) {
+    JobObjectBasicAccountingInformation = 1,
+    JobObjectBasicLimitInformation = 2,
+    JobObjectBasicProcessIdList = 3,
+    JobObjectBasicUIRestrictions = 4,
+    JobObjectSecurityLimitInformation = 5,
+    JobObjectEndOfJobTimeInformation = 6,
+    JobObjectAssociateCompletionPortInformation = 7,
+    JobObjectBasicAndIoAccountingInformation = 8,
+    JobObjectExtendedLimitInformation = 9,
+    JobObjectJobSetInformation = 10,
+    JobObjectGroupInformation = 11,
+    JobObjectNotificationLimitInformation = 12,
+    JobObjectLimitViolationInformation = 13,
+    JobObjectGroupInformationEx = 14,
+    JobObjectCpuRateControlInformation = 15,
+    JobObjectCompletionFilter = 16,
+    JobObjectCompletionCounter = 17,
+    JobObjectReserved1Information = 18,
+    JobObjectReserved2Information = 19,
+    JobObjectReserved3Information = 20,
+    JobObjectReserved4Information = 21,
+    JobObjectReserved5Information = 22,
+    JobObjectReserved6Information = 23,
+    JobObjectReserved7Information = 24,
+    JobObjectReserved8Information = 25,
+    JobObjectReserved9Information = 26,
+    JobObjectReserved10Information = 27,
+    JobObjectReserved11Information = 28,
+    JobObjectReserved12Information = 29,
+    JobObjectReserved13Information = 30,
+    JobObjectReserved14Information = 31,
+    JobObjectNetRateControlInformation = 32,
+    JobObjectNotificationLimitInformation2 = 33,
+    JobObjectLimitViolationInformation2 = 34,
+    JobObjectCreateSilo = 35,
+    JobObjectSiloBasicInformation = 36,
+    JobObjectReserved15Information = 37,
+    JobObjectReserved16Information = 38,
+    JobObjectReserved17Information = 39,
+    JobObjectReserved18Information = 40,
+    JobObjectReserved19Information = 41,
+    JobObjectReserved20Information = 42,
+    JobObjectReserved21Information = 43,
+    JobObjectReserved22Information = 44,
+    JobObjectReserved23Information = 45,
+    JobObjectReserved24Information = 46,
+    JobObjectReserved25Information = 47,
+    MaxJobObjectInfoClass = 48,
+};
+pub const JobObjectBasicAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAccountingInformation;
+pub const JobObjectBasicLimitInformation = JOBOBJECTINFOCLASS.JobObjectBasicLimitInformation;
+pub const JobObjectBasicProcessIdList = JOBOBJECTINFOCLASS.JobObjectBasicProcessIdList;
+pub const JobObjectBasicUIRestrictions = JOBOBJECTINFOCLASS.JobObjectBasicUIRestrictions;
+pub const JobObjectSecurityLimitInformation = JOBOBJECTINFOCLASS.JobObjectSecurityLimitInformation;
+pub const JobObjectEndOfJobTimeInformation = JOBOBJECTINFOCLASS.JobObjectEndOfJobTimeInformation;
+pub const JobObjectAssociateCompletionPortInformation = JOBOBJECTINFOCLASS.JobObjectAssociateCompletionPortInformation;
+pub const JobObjectBasicAndIoAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAndIoAccountingInformation;
+pub const JobObjectExtendedLimitInformation = JOBOBJECTINFOCLASS.JobObjectExtendedLimitInformation;
+pub const JobObjectJobSetInformation = JOBOBJECTINFOCLASS.JobObjectJobSetInformation;
+pub const JobObjectGroupInformation = JOBOBJECTINFOCLASS.JobObjectGroupInformation;
+pub const JobObjectNotificationLimitInformation = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation;
+pub const JobObjectLimitViolationInformation = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation;
+pub const JobObjectGroupInformationEx = JOBOBJECTINFOCLASS.JobObjectGroupInformationEx;
+pub const JobObjectCpuRateControlInformation = JOBOBJECTINFOCLASS.JobObjectCpuRateControlInformation;
+pub const JobObjectCompletionFilter = JOBOBJECTINFOCLASS.JobObjectCompletionFilter;
+pub const JobObjectCompletionCounter = JOBOBJECTINFOCLASS.JobObjectCompletionCounter;
+pub const JobObjectReserved1Information = JOBOBJECTINFOCLASS.JobObjectReserved1Information;
+pub const JobObjectReserved2Information = JOBOBJECTINFOCLASS.JobObjectReserved2Information;
+pub const JobObjectReserved3Information = JOBOBJECTINFOCLASS.JobObjectReserved3Information;
+pub const JobObjectReserved4Information = JOBOBJECTINFOCLASS.JobObjectReserved4Information;
+pub const JobObjectReserved5Information = JOBOBJECTINFOCLASS.JobObjectReserved5Information;
+pub const JobObjectReserved6Information = JOBOBJECTINFOCLASS.JobObjectReserved6Information;
+pub const JobObjectReserved7Information = JOBOBJECTINFOCLASS.JobObjectReserved7Information;
+pub const JobObjectReserved8Information = JOBOBJECTINFOCLASS.JobObjectReserved8Information;
+pub const JobObjectReserved9Information = JOBOBJECTINFOCLASS.JobObjectReserved9Information;
+pub const JobObjectReserved10Information = JOBOBJECTINFOCLASS.JobObjectReserved10Information;
+pub const JobObjectReserved11Information = JOBOBJECTINFOCLASS.JobObjectReserved11Information;
+pub const JobObjectReserved12Information = JOBOBJECTINFOCLASS.JobObjectReserved12Information;
+pub const JobObjectReserved13Information = JOBOBJECTINFOCLASS.JobObjectReserved13Information;
+pub const JobObjectReserved14Information = JOBOBJECTINFOCLASS.JobObjectReserved14Information;
+pub const JobObjectNetRateControlInformation = JOBOBJECTINFOCLASS.JobObjectNetRateControlInformation;
+pub const JobObjectNotificationLimitInformation2 = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation2;
+pub const JobObjectLimitViolationInformation2 = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation2;
+pub const JobObjectCreateSilo = JOBOBJECTINFOCLASS.JobObjectCreateSilo;
+pub const JobObjectSiloBasicInformation = JOBOBJECTINFOCLASS.JobObjectSiloBasicInformation;
+pub const JobObjectReserved15Information = JOBOBJECTINFOCLASS.JobObjectReserved15Information;
+pub const JobObjectReserved16Information = JOBOBJECTINFOCLASS.JobObjectReserved16Information;
+pub const JobObjectReserved17Information = JOBOBJECTINFOCLASS.JobObjectReserved17Information;
+pub const JobObjectReserved18Information = JOBOBJECTINFOCLASS.JobObjectReserved18Information;
+pub const JobObjectReserved19Information = JOBOBJECTINFOCLASS.JobObjectReserved19Information;
+pub const JobObjectReserved20Information = JOBOBJECTINFOCLASS.JobObjectReserved20Information;
+pub const JobObjectReserved21Information = JOBOBJECTINFOCLASS.JobObjectReserved21Information;
+pub const JobObjectReserved22Information = JOBOBJECTINFOCLASS.JobObjectReserved22Information;
+pub const JobObjectReserved23Information = JOBOBJECTINFOCLASS.JobObjectReserved23Information;
+pub const JobObjectReserved24Information = JOBOBJECTINFOCLASS.JobObjectReserved24Information;
+pub const JobObjectReserved25Information = JOBOBJECTINFOCLASS.JobObjectReserved25Information;
+pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
+
 
 //--------------------------------------------------------------------------------
-// Section: Functions (13)
+// Section: Functions (14)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsProcessInJob(
@@ -296,6 +695,12 @@ pub extern "KERNEL32" fn OpenJobObjectA(
     lpName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
+pub extern "KERNEL32" fn CreateJobSet(
+    NumJob: u32,
+    UserJobSet: [*]JOB_SET_ARRAY,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
@@ -319,15 +724,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = @import("../system/system_services.zig").JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
-const JOBOBJECTINFOCLASS = @import("../system/system_services.zig").JOBOBJECTINFOCLASS;
+const IO_COUNTERS = @import("../system/threading.zig").IO_COUNTERS;
+const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
+const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
 
 test {
     @setEvalBranchQuota(

@@ -257,7 +257,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
-const CHAR = @import("../../system/system_services.zig").CHAR;
+const CHAR = @import("../../foundation.zig").CHAR;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 

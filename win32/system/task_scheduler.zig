@@ -4364,12 +4364,12 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

@@ -2756,10 +2756,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 
 test {
     @setEvalBranchQuota(

@@ -12,6 +12,7 @@ pub const imapi = @import("storage/imapi.zig");
 pub const index_server = @import("storage/index_server.zig");
 pub const installable_file_systems = @import("storage/installable_file_systems.zig");
 pub const iscsi_disc = @import("storage/iscsi_disc.zig");
+pub const jet = @import("storage/jet.zig");
 pub const offline_files = @import("storage/offline_files.zig");
 pub const operation_recorder = @import("storage/operation_recorder.zig");
 pub const packaging = @import("storage/packaging.zig");

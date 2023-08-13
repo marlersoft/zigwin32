@@ -586,7 +586,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const HRESULT = @import("../foundation.zig").HRESULT;
-const POINTER_INFO = @import("../ui/pointer_input.zig").POINTER_INFO;
+const POINTER_INFO = @import("../ui/input/pointer.zig").POINTER_INFO;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
 
 test {

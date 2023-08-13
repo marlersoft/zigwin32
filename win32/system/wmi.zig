@@ -65,12 +65,8 @@ pub const WBEMS_DISPID_OBJECT_PUT = @as(u32, 4);
 pub const WBEMS_DISPID_CONNECTION_READY = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
-// Section: Types (356)
+// Section: Types (370)
 //--------------------------------------------------------------------------------
-pub const MI_Module_Self = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const MI_Result = enum(i32) {
     OK = 0,
     FAILED = 1,
@@ -1058,6 +1054,10 @@ pub const MI_SchemaDecl = extern struct {
     numQualifierDecls: u32,
     classDecls: ?*const ?*MI_ClassDecl,
     numClassDecls: u32,
+};
+
+pub const MI_Module_Self = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const MI_ProviderFT_Load = fn(
@@ -8124,6 +8124,339 @@ pub const ISWbemRefreshableItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+const CLSID_WMIExtension_Value = @import("../zig.zig").Guid.initString("f0975afe-5c7f-11d2-8b74-00104b2afb41");
+pub const CLSID_WMIExtension = &CLSID_WMIExtension_Value;
+
+const IID_IWMIExtension_Value = @import("../zig.zig").Guid.initString("adc1f06e-5c7e-11d2-8b74-00104b2afb41");
+pub const IID_IWMIExtension = &IID_IWMIExtension_Value;
+pub const IWMIExtension = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WMIObjectPath: fn(
+            self: *const IWMIExtension,
+            strWMIObjectPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWMIObject: fn(
+            self: *const IWMIExtension,
+            objWMIObject: ?*?*ISWbemObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWMIServices: fn(
+            self: *const IWMIExtension,
+            objWMIServices: ?*?*ISWbemServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMIExtension_get_WMIObjectPath(self: *const T, strWMIObjectPath: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWMIExtension.VTable, self.vtable).get_WMIObjectPath(@ptrCast(*const IWMIExtension, self), strWMIObjectPath);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMIExtension_GetWMIObject(self: *const T, objWMIObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWMIExtension.VTable, self.vtable).GetWMIObject(@ptrCast(*const IWMIExtension, self), objWMIObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMIExtension_GetWMIServices(self: *const T, objWMIServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWMIExtension.VTable, self.vtable).GetWMIServices(@ptrCast(*const IWMIExtension, self), objWMIServices);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const CLSID_WbemLevel1Login_Value = @import("../zig.zig").Guid.initString("8bc3f05e-d86b-11d0-a075-00c04fb68820");
+pub const CLSID_WbemLevel1Login = &CLSID_WbemLevel1Login_Value;
+
+const CLSID_WbemLocalAddrRes_Value = @import("../zig.zig").Guid.initString("a1044801-8f7e-11d1-9e7c-00c04fc324a8");
+pub const CLSID_WbemLocalAddrRes = &CLSID_WbemLocalAddrRes_Value;
+
+const CLSID_WbemUninitializedClassObject_Value = @import("../zig.zig").Guid.initString("7a0227f6-7108-11d1-ad90-00c04fd8fdff");
+pub const CLSID_WbemUninitializedClassObject = &CLSID_WbemUninitializedClassObject_Value;
+
+const CLSID_WbemDCOMTransport_Value = @import("../zig.zig").Guid.initString("f7ce2e13-8c90-11d1-9e7b-00c04fc324a8");
+pub const CLSID_WbemDCOMTransport = &CLSID_WbemDCOMTransport_Value;
+
+pub const tag_WBEM_LOGIN_TYPE = enum(i32) {
+    FLAG_INPROC_LOGIN = 0,
+    FLAG_LOCAL_LOGIN = 1,
+    FLAG_REMOTE_LOGIN = 2,
+    AUTHENTICATION_METHOD_MASK = 15,
+    FLAG_USE_MULTIPLE_CHALLENGES = 16,
+};
+pub const WBEM_FLAG_INPROC_LOGIN = tag_WBEM_LOGIN_TYPE.FLAG_INPROC_LOGIN;
+pub const WBEM_FLAG_LOCAL_LOGIN = tag_WBEM_LOGIN_TYPE.FLAG_LOCAL_LOGIN;
+pub const WBEM_FLAG_REMOTE_LOGIN = tag_WBEM_LOGIN_TYPE.FLAG_REMOTE_LOGIN;
+pub const WBEM_AUTHENTICATION_METHOD_MASK = tag_WBEM_LOGIN_TYPE.AUTHENTICATION_METHOD_MASK;
+pub const WBEM_FLAG_USE_MULTIPLE_CHALLENGES = tag_WBEM_LOGIN_TYPE.FLAG_USE_MULTIPLE_CHALLENGES;
+
+const IID_IWbemTransport_Value = @import("../zig.zig").Guid.initString("553fe584-2156-11d0-b6ae-00aa003240c7");
+pub const IID_IWbemTransport = &IID_IWbemTransport_Value;
+pub const IWbemTransport = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IWbemTransport,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemTransport_Initialize(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemTransport.VTable, self.vtable).Initialize(@ptrCast(*const IWbemTransport, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemLevel1Login_Value = @import("../zig.zig").Guid.initString("f309ad18-d86a-11d0-a075-00c04fb68820");
+pub const IID_IWbemLevel1Login = &IID_IWbemLevel1Login_Value;
+pub const IWbemLevel1Login = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EstablishPosition: fn(
+            self: *const IWbemLevel1Login,
+            wszLocaleList: ?PWSTR,
+            dwNumLocales: u32,
+            reserved: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestChallenge: fn(
+            self: *const IWbemLevel1Login,
+            wszNetworkResource: ?PWSTR,
+            wszUser: ?PWSTR,
+            Nonce: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WBEMLogin: fn(
+            self: *const IWbemLevel1Login,
+            wszPreferredLocale: ?PWSTR,
+            AccessToken: ?*u8,
+            lFlags: i32,
+            pCtx: ?*IWbemContext,
+            ppNamespace: ?*?*IWbemServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NTLMLogin: fn(
+            self: *const IWbemLevel1Login,
+            wszNetworkResource: ?PWSTR,
+            wszPreferredLocale: ?PWSTR,
+            lFlags: i32,
+            pCtx: ?*IWbemContext,
+            ppNamespace: ?*?*IWbemServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemLevel1Login_EstablishPosition(self: *const T, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemLevel1Login.VTable, self.vtable).EstablishPosition(@ptrCast(*const IWbemLevel1Login, self), wszLocaleList, dwNumLocales, reserved);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemLevel1Login_RequestChallenge(self: *const T, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemLevel1Login.VTable, self.vtable).RequestChallenge(@ptrCast(*const IWbemLevel1Login, self), wszNetworkResource, wszUser, Nonce);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemLevel1Login_WBEMLogin(self: *const T, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemLevel1Login.VTable, self.vtable).WBEMLogin(@ptrCast(*const IWbemLevel1Login, self), wszPreferredLocale, AccessToken, lFlags, pCtx, ppNamespace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemLevel1Login_NTLMLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemLevel1Login.VTable, self.vtable).NTLMLogin(@ptrCast(*const IWbemLevel1Login, self), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemConnectorLogin_Value = @import("../zig.zig").Guid.initString("d8ec9cb1-b135-4f10-8b1b-c7188bb0d186");
+pub const IID_IWbemConnectorLogin = &IID_IWbemConnectorLogin_Value;
+pub const IWbemConnectorLogin = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConnectorLogin: fn(
+            self: *const IWbemConnectorLogin,
+            wszNetworkResource: ?PWSTR,
+            wszPreferredLocale: ?PWSTR,
+            lFlags: i32,
+            pCtx: ?*IWbemContext,
+            riid: ?*const Guid,
+            pInterface: ?*?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemConnectorLogin_ConnectorLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemConnectorLogin.VTable, self.vtable).ConnectorLogin(@ptrCast(*const IWbemConnectorLogin, self), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemAddressResolution_Value = @import("../zig.zig").Guid.initString("f7ce2e12-8c90-11d1-9e7b-00c04fc324a8");
+pub const IID_IWbemAddressResolution = &IID_IWbemAddressResolution_Value;
+pub const IWbemAddressResolution = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Resolve: fn(
+            self: *const IWbemAddressResolution,
+            wszNamespacePath: ?PWSTR,
+            wszAddressType: ?PWSTR,
+            pdwAddressLength: ?*u32,
+            pabBinaryAddress: ?*?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemAddressResolution_Resolve(self: *const T, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemAddressResolution.VTable, self.vtable).Resolve(@ptrCast(*const IWbemAddressResolution, self), wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemClientTransport_Value = @import("../zig.zig").Guid.initString("f7ce2e11-8c90-11d1-9e7b-00c04fc324a8");
+pub const IID_IWbemClientTransport = &IID_IWbemClientTransport_Value;
+pub const IWbemClientTransport = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConnectServer: fn(
+            self: *const IWbemClientTransport,
+            strAddressType: ?BSTR,
+            dwBinaryAddressLength: u32,
+            abBinaryAddress: [*:0]u8,
+            strNetworkResource: ?BSTR,
+            strUser: ?BSTR,
+            strPassword: ?BSTR,
+            strLocale: ?BSTR,
+            lSecurityFlags: i32,
+            strAuthority: ?BSTR,
+            pCtx: ?*IWbemContext,
+            ppNamespace: ?*?*IWbemServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemClientTransport_ConnectServer(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemClientTransport.VTable, self.vtable).ConnectServer(@ptrCast(*const IWbemClientTransport, self), strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemClientConnectionTransport_Value = @import("../zig.zig").Guid.initString("a889c72a-fcc1-4a9e-af61-ed071333fb5b");
+pub const IID_IWbemClientConnectionTransport = &IID_IWbemClientConnectionTransport_Value;
+pub const IWbemClientConnectionTransport = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: fn(
+            self: *const IWbemClientConnectionTransport,
+            strAddressType: ?BSTR,
+            dwBinaryAddressLength: u32,
+            abBinaryAddress: [*:0]u8,
+            strObject: ?BSTR,
+            strUser: ?BSTR,
+            strPassword: ?BSTR,
+            strLocale: ?BSTR,
+            lFlags: i32,
+            pCtx: ?*IWbemContext,
+            riid: ?*const Guid,
+            pInterface: ?*?*c_void,
+            pCallRes: ?*?*IWbemCallResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenAsync: fn(
+            self: *const IWbemClientConnectionTransport,
+            strAddressType: ?BSTR,
+            dwBinaryAddressLength: u32,
+            abBinaryAddress: [*:0]u8,
+            strObject: ?BSTR,
+            strUser: ?BSTR,
+            strPassword: ?BSTR,
+            strLocale: ?BSTR,
+            lFlags: i32,
+            pCtx: ?*IWbemContext,
+            riid: ?*const Guid,
+            pResponseHandler: ?*IWbemObjectSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: fn(
+            self: *const IWbemClientConnectionTransport,
+            lFlags: i32,
+            pHandler: ?*IWbemObjectSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemClientConnectionTransport_Open(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*c_void, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemClientConnectionTransport.VTable, self.vtable).Open(@ptrCast(*const IWbemClientConnectionTransport, self), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemClientConnectionTransport_OpenAsync(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemClientConnectionTransport.VTable, self.vtable).OpenAsync(@ptrCast(*const IWbemClientConnectionTransport, self), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pResponseHandler);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemClientConnectionTransport_Cancel(self: *const T, lFlags: i32, pHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemClientConnectionTransport.VTable, self.vtable).Cancel(@ptrCast(*const IWbemClientConnectionTransport, self), lFlags, pHandler);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWbemConstructClassObject_Value = @import("../zig.zig").Guid.initString("9ef76194-70d5-11d1-ad90-00c04fd8fdff");
+pub const IID_IWbemConstructClassObject = &IID_IWbemConstructClassObject_Value;
+pub const IWbemConstructClassObject = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetInheritanceChain: fn(
+            self: *const IWbemConstructClassObject,
+            lNumAntecedents: i32,
+            // TODO: what to do with BytesParamIndex 0?
+            awszAntecedents: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPropertyOrigin: fn(
+            self: *const IWbemConstructClassObject,
+            wszPropertyName: ?[*:0]const u16,
+            lOriginIndex: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMethodOrigin: fn(
+            self: *const IWbemConstructClassObject,
+            wszMethodName: ?[*:0]const u16,
+            lOriginIndex: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetServerNamespace: fn(
+            self: *const IWbemConstructClassObject,
+            wszServer: ?[*:0]const u16,
+            wszNamespace: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemConstructClassObject_SetInheritanceChain(self: *const T, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemConstructClassObject.VTable, self.vtable).SetInheritanceChain(@ptrCast(*const IWbemConstructClassObject, self), lNumAntecedents, awszAntecedents);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemConstructClassObject_SetPropertyOrigin(self: *const T, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemConstructClassObject.VTable, self.vtable).SetPropertyOrigin(@ptrCast(*const IWbemConstructClassObject, self), wszPropertyName, lOriginIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemConstructClassObject_SetMethodOrigin(self: *const T, wszMethodName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemConstructClassObject.VTable, self.vtable).SetMethodOrigin(@ptrCast(*const IWbemConstructClassObject, self), wszMethodName, lOriginIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWbemConstructClassObject_SetServerNamespace(self: *const T, wszServer: ?[*:0]const u16, wszNamespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemConstructClassObject.VTable, self.vtable).SetServerNamespace(@ptrCast(*const IWbemConstructClassObject, self), wszServer, wszNamespace);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -8151,16 +8484,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -4451,13 +4451,13 @@ const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IDataObject = @import("../system/com.zig").IDataObject;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumString = @import("../system/com.zig").IEnumString;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

@@ -9,7 +9,7 @@ pub const FILE_CACHE_MIN_HARD_DISABLE = @as(u32, 8);
 pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (22)
+// Section: Types (29)
 //--------------------------------------------------------------------------------
 pub const FILE_MAP = enum(u32) {
     WRITE = 2,
@@ -416,37 +416,28 @@ pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
 pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
 
-
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
 pub const HeapHandle = *opaque{};
 
-pub const MEMORY_BASIC_INFORMATION32 = extern struct {
-    BaseAddress: u32,
-    AllocationBase: u32,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    RegionSize: u32,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
+pub const PROCESS_HEAP_ENTRY = extern struct {
+    lpData: ?*c_void,
+    cbData: u32,
+    cbOverhead: u8,
+    iRegionIndex: u8,
+    wFlags: u16,
+    Anonymous: extern union {
+        Block: extern struct {
+            hMem: ?HANDLE,
+            dwReserved: [3]u32,
+        },
+        Region: extern struct {
+            dwCommittedSize: u32,
+            dwUnCommittedSize: u32,
+            lpFirstBlock: ?*c_void,
+            lpLastBlock: ?*c_void,
+        },
+    },
 };
-
-pub const MEMORY_BASIC_INFORMATION64 = extern struct {
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-    __alignment2: u32,
-};
-
-pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    Addr: ?*c_void,
-    Range: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const HEAP_SUMMARY = extern struct {
     cb: u32,
@@ -500,6 +491,110 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     CommitSize: usize,
 };
 
+pub const WIN32_MEMORY_PARTITION_INFORMATION_CLASS = enum(i32) {
+    Info = 0,
+    DedicatedMemoryInfo = 1,
+};
+pub const MemoryPartitionInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.Info;
+pub const MemoryPartitionDedicatedMemoryInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.DedicatedMemoryInfo;
+
+pub const WIN32_MEMORY_PARTITION_INFORMATION = extern struct {
+    Flags: u32,
+    NumaNode: u32,
+    Channel: u32,
+    NumberOfNumaNodes: u32,
+    ResidentAvailablePages: u64,
+    CommittedPages: u64,
+    CommitLimit: u64,
+    PeakCommitment: u64,
+    TotalNumberOfPages: u64,
+    AvailablePages: u64,
+    ZeroPages: u64,
+    FreePages: u64,
+    StandbyPages: u64,
+    Reserved: [16]u64,
+    MaximumCommitLimit: u64,
+    Reserved2: u64,
+    PartitionId: u32,
+};
+
+
+pub const MEMORY_BASIC_INFORMATION32 = extern struct {
+    BaseAddress: u32,
+    AllocationBase: u32,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: u32,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+pub const MEMORY_BASIC_INFORMATION64 = extern struct {
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+    __alignment2: u32,
+};
+
+pub const CFG_CALL_TARGET_INFO = extern struct {
+    Offset: usize,
+    Flags: usize,
+};
+
+pub const MEM_EXTENDED_PARAMETER_TYPE = enum(i32) {
+    InvalidType = 0,
+    AddressRequirements = 1,
+    NumaNode = 2,
+    PartitionHandle = 3,
+    UserPhysicalHandle = 4,
+    AttributeFlags = 5,
+    ImageMachine = 6,
+    Max = 7,
+};
+pub const MemExtendedParameterInvalidType = MEM_EXTENDED_PARAMETER_TYPE.InvalidType;
+pub const MemExtendedParameterAddressRequirements = MEM_EXTENDED_PARAMETER_TYPE.AddressRequirements;
+pub const MemExtendedParameterNumaNode = MEM_EXTENDED_PARAMETER_TYPE.NumaNode;
+pub const MemExtendedParameterPartitionHandle = MEM_EXTENDED_PARAMETER_TYPE.PartitionHandle;
+pub const MemExtendedParameterUserPhysicalHandle = MEM_EXTENDED_PARAMETER_TYPE.UserPhysicalHandle;
+pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.AttributeFlags;
+pub const MemExtendedParameterImageMachine = MEM_EXTENDED_PARAMETER_TYPE.ImageMachine;
+pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.Max;
+
+pub const MEM_EXTENDED_PARAMETER = extern struct {
+    Anonymous1: extern struct {
+        _bitfield: u64,
+    },
+    Anonymous2: extern union {
+        ULong64: u64,
+        Pointer: ?*c_void,
+        Size: usize,
+        Handle: ?HANDLE,
+        ULong: u32,
+    },
+};
+
+pub const HEAP_INFORMATION_CLASS = enum(i32) {
+    CompatibilityInformation = 0,
+    EnableTerminationOnCorruption = 1,
+    OptimizeResources = 3,
+    Tag = 7,
+};
+pub const HeapCompatibilityInformation = HEAP_INFORMATION_CLASS.CompatibilityInformation;
+pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.EnableTerminationOnCorruption;
+pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.OptimizeResources;
+pub const HeapTag = HEAP_INFORMATION_CLASS.Tag;
+
+pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
+    // TODO: what to do with BytesParamIndex 1?
+    Addr: ?*c_void,
+    Range: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
 
 pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
@@ -524,7 +619,7 @@ pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (99)
+// Section: Functions (106)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapCreate(
@@ -1070,6 +1165,54 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
     ParameterCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
+pub extern "api-ms-win-core-memory-l1-1-8" fn AllocateUserPhysicalPages2(
+    ObjectHandle: ?HANDLE,
+    NumberOfPages: ?*usize,
+    PageArray: [*]usize,
+    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
+    ExtendedParameterCount: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "api-ms-win-core-memory-l1-1-8" fn OpenDedicatedMemoryPartition(
+    Partition: ?HANDLE,
+    DedicatedMemoryTypeId: u64,
+    DesiredAccess: u32,
+    InheritHandle: BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+pub extern "api-ms-win-core-memory-l1-1-8" fn QueryPartitionInformation(
+    Partition: ?HANDLE,
+    PartitionInformationClass: WIN32_MEMORY_PARTITION_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    PartitionInformation: ?*c_void,
+    PartitionInformationLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn RtlCompareMemory(
+    Source1: ?*const c_void,
+    Source2: ?*const c_void,
+    Length: usize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub extern "ntdll" fn RtlCrc32(
+    // TODO: what to do with BytesParamIndex 1?
+    Buffer: ?*const c_void,
+    Size: usize,
+    InitialCrc: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlCrc64(
+    // TODO: what to do with BytesParamIndex 1?
+    Buffer: ?*const c_void,
+    Size: usize,
+    InitialCrc: u64,
+) callconv(@import("std").os.windows.WINAPI) u64;
+
+pub extern "ntdll" fn RtlIsZeroMemory(
+    Buffer: ?*c_void,
+    Length: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GlobalAlloc(
     uFlags: GLOBAL_ALLOC_FLAGS,
@@ -1272,24 +1415,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CFG_CALL_TARGET_INFO = @import("../system/system_services.zig").CFG_CALL_TARGET_INFO;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HEAP_INFORMATION_CLASS = @import("../system/system_services.zig").HEAP_INFORMATION_CLASS;
-const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
-const PROCESS_HEAP_ENTRY = @import("../system/system_services.zig").PROCESS_HEAP_ENTRY;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PSECURE_MEMORY_CACHE_CALLBACK")) { _ = PSECURE_MEMORY_CACHE_CALLBACK; }
     if (@hasDecl(@This(), "PBAD_MEMORY_CALLBACK_ROUTINE")) { _ = PBAD_MEMORY_CALLBACK_ROUTINE; }
+    if (@hasDecl(@This(), "PSECURE_MEMORY_CACHE_CALLBACK")) { _ = PSECURE_MEMORY_CACHE_CALLBACK; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3
@@ -1303,3 +1442,7 @@ test {
         }
     }
 }
+//--------------------------------------------------------------------------------
+// Section: SubModules (1)
+//--------------------------------------------------------------------------------
+pub const non_volatile = @import("memory/non_volatile.zig");

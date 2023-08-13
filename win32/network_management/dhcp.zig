@@ -326,7 +326,6 @@ pub const DHCPV6_OPTION_NISP_DOMAIN_NAME = @as(u32, 30);
 //--------------------------------------------------------------------------------
 // Section: Types (164)
 //--------------------------------------------------------------------------------
-
 pub const DHCPV6CAPI_PARAMS = extern struct {
     Flags: u32,
     OptionId: u32,
@@ -396,6 +395,7 @@ pub const DHCPCAPI_CLASSID = extern struct {
     Data: ?*u8,
     nBytesData: u32,
 };
+
 
 pub const LPDHCP_CONTROL = fn(
     dwControlCode: u32,

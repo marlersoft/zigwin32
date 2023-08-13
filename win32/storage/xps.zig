@@ -6370,9 +6370,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
-const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
-const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
+const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
+const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
+const DEVMODEW = @import("../graphics/gdi.zig").DEVMODEW;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
@@ -6383,8 +6383,8 @@ const IOpcSignatureCustomObjectEnumerator = @import("../storage/packaging/opc.zi
 const IOpcSignatureCustomObjectSet = @import("../storage/packaging/opc.zig").IOpcSignatureCustomObjectSet;
 const IOpcSignatureReferenceEnumerator = @import("../storage/packaging/opc.zig").IOpcSignatureReferenceEnumerator;
 const IOpcSignatureReferenceSet = @import("../storage/packaging/opc.zig").IOpcSignatureReferenceSet;
-const ISequentialStream = @import("../storage/structured_storage.zig").ISequentialStream;
-const IStream = @import("../storage/structured_storage.zig").IStream;
+const ISequentialStream = @import("../system/com.zig").ISequentialStream;
+const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IUri = @import("../system/com.zig").IUri;
 const OPC_SIGNATURE_TIME_FORMAT = @import("../storage/packaging/opc.zig").OPC_SIGNATURE_TIME_FORMAT;

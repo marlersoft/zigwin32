@@ -987,12 +987,12 @@ const HRESULT = @import("../../../foundation.zig").HRESULT;
 const HWND = @import("../../../foundation.zig").HWND;
 const IBindCtx = @import("../../../system/com.zig").IBindCtx;
 const IEnumUnknown = @import("../../../system/com.zig").IEnumUnknown;
-const IPropertyStore = @import("../../../system/properties_system.zig").IPropertyStore;
+const IPropertyStore = @import("../../../ui/shell/properties_system.zig").IPropertyStore;
 const IUnknown = @import("../../../system/com.zig").IUnknown;
-const PROPERTYKEY = @import("../../../system/properties_system.zig").PROPERTYKEY;
-const PROPVARIANT = @import("../../../storage/structured_storage.zig").PROPVARIANT;
+const PROPERTYKEY = @import("../../../ui/shell/properties_system.zig").PROPERTYKEY;
+const PROPVARIANT = @import("../../../system/com/structured_storage.zig").PROPVARIANT;
 const PWSTR = @import("../../../foundation.zig").PWSTR;
-const VARIANT = @import("../../../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../../../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

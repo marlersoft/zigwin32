@@ -799,8 +799,8 @@ const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
+const IDispatch = @import("../system/com.zig").IDispatch;
+const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {

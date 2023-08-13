@@ -8,7 +8,7 @@ pub const NETISO_GEID_FOR_WDAG = @as(u32, 1);
 pub const NETISO_GEID_FOR_NEUTRAL_AWARE = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (86)
+// Section: Types (97)
 //--------------------------------------------------------------------------------
 const CLSID_UPnPNAT_Value = @import("../zig.zig").Guid.initString("ae1e00aa-3fd5-403c-8a27-2bbdc30cd0e1");
 pub const CLSID_UPnPNAT = &CLSID_UPnPNAT_Value;
@@ -1792,6 +1792,71 @@ pub const PNETISO_EDP_ID_CALLBACK_FN = fn(
     wszEnterpriseId: ?[*:0]const u16,
     dwErr: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
+    INVALID = 0,
+    LOCAL = 1,
+    MDM = 2,
+};
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_INVALID = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.INVALID;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.LOCAL;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_MDM = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.MDM;
+
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0 = extern struct {
+    id: Guid,
+    keyword: ?[*:0]const u16,
+    flags: u32,
+    addresses: ?[*:0]const u16,
+};
+
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 = extern struct {
+    dynamicKeywordAddress: _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
+    next: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+    schemaVersion: u16,
+    originType: _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE,
+};
+
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS = enum(i32) {
+    E = 1,
+};
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS.E;
+
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS = enum(i32) {
+    AUTO_RESOLVE = 1,
+    NON_AUTO_RESOLVE = 2,
+    ALL = 3,
+};
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.AUTO_RESOLVE;
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.NON_AUTO_RESOLVE;
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.ALL;
+
+pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = fn(
+    dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = fn(
+    dynamicKeywordAddressId: Guid,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = fn(
+    flags: u32,
+    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = fn(
+    dynamicKeywordAddressId: Guid,
+    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = fn(
+    dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = fn(
+    dynamicKeywordAddressId: Guid,
+    updatedAddresses: ?[*:0]const u16,
+    append: BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetFwRemoteAdminSettings_Value = @import("../zig.zig").Guid.initString("d4becddf-6f73-4a83-b832-9c66874cd20e");
@@ -3870,18 +3935,24 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PSID = @import("../foundation.zig").PSID;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "PAC_CHANGES_CALLBACK_FN")) { _ = PAC_CHANGES_CALLBACK_FN; }
     if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) { _ = PNETISO_EDP_ID_CALLBACK_FN; }
+    if (@hasDecl(@This(), "PFN_FWADDDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWADDDYNAMICKEYWORDADDRESS0; }
+    if (@hasDecl(@This(), "PFN_FWDELETEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWDELETEDYNAMICKEYWORDADDRESS0; }
+    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0; }
+    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0; }
+    if (@hasDecl(@This(), "PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0")) { _ = PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0; }
+    if (@hasDecl(@This(), "PFN_FWUPDATEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWUPDATEDYNAMICKEYWORDADDRESS0; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

@@ -400,11 +400,11 @@ const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IAccessible = @import("../ui/accessibility.zig").IAccessible;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

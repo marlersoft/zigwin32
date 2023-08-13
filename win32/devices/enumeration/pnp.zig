@@ -1381,13 +1381,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
-const DEVPROPERTY = @import("../../system/system_services.zig").DEVPROPERTY;
+const DEVPROPERTY = @import("../../devices/properties.zig").DEVPROPERTY;
 const HRESULT = @import("../../foundation.zig").HRESULT;
-const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../../system/com.zig").IDispatch;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
-const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

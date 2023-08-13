@@ -1959,9 +1959,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
-const CERT_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CONTEXT;
+const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const HRESULT = @import("../../foundation.zig").HRESULT;
-const IStream = @import("../../storage/structured_storage.zig").IStream;
+const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IUri = @import("../../system/com.zig").IUri;
 const PWSTR = @import("../../foundation.zig").PWSTR;

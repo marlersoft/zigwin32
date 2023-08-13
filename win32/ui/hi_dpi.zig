@@ -9,8 +9,10 @@ pub const DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = @import("../zig.zig").typ
 pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = @import("../zig.zig").typedConst(DPI_AWARENESS_CONTEXT, @as(i32, -5));
 
 //--------------------------------------------------------------------------------
-// Section: Types (6)
+// Section: Types (7)
 //--------------------------------------------------------------------------------
+pub const DPI_AWARENESS_CONTEXT = isize;
+
 pub const DPI_AWARENESS = enum(i32) {
     INVALID = -1,
     UNAWARE = 0,
@@ -99,7 +101,7 @@ pub const MDT_DEFAULT = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (28)
+// Section: Functions (29)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "UxTheme" fn OpenThemeDataForDpi(
@@ -227,6 +229,10 @@ pub extern "USER32" fn SetProcessDpiAwarenessContext(
     value: DPI_AWARENESS_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "USER32" fn GetDpiAwarenessContextForProcess(
+    hProcess: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
+
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "USER32" fn SetThreadDpiHostingBehavior(
     value: DPI_HOSTING_BEHAVIOR,
@@ -275,10 +281,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const HRESULT = @import("../foundation.zig").HRESULT;

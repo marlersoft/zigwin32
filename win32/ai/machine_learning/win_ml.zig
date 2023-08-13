@@ -651,13 +651,13 @@ pub const IMLOperatorKernelContext = extern struct {
         GetOutputTensor: fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
+            dimensionCount: u32,
+            dimensionSizes: [*]const u32,
             tensor: ?*?*IMLOperatorTensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputTensor1: fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
-            dimensionCount: u32,
-            dimensionSizes: [*]const u32,
             tensor: ?*?*IMLOperatorTensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateTemporaryData: fn(
@@ -678,12 +678,12 @@ pub const IMLOperatorKernelContext = extern struct {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetInputTensor(@ptrCast(*const IMLOperatorKernelContext, self), inputIndex, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetOutputTensor(self: *const T, outputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, tensor);
+        pub fn IMLOperatorKernelContext_GetOutputTensor(self: *const T, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, dimensionCount, dimensionSizes, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetOutputTensor1(self: *const T, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, dimensionCount, dimensionSizes, tensor);
+        pub fn IMLOperatorKernelContext_GetOutputTensor1(self: *const T, outputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMLOperatorKernelContext_AllocateTemporaryData(self: *const T, size: usize, data: ?*?*IUnknown) callconv(.Inline) HRESULT {

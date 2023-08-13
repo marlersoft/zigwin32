@@ -140,7 +140,7 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 
 test {
     @setEvalBranchQuota(

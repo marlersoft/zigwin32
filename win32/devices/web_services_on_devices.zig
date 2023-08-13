@@ -20,183 +20,6 @@ pub const WSDAPI_ADDRESSFAMILY_IPV6 = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const WSD_DATETIME = extern struct {
-    isPositive: BOOL,
-    year: u32,
-    month: u8,
-    day: u8,
-    hour: u8,
-    minute: u8,
-    second: u8,
-    millisecond: u32,
-    TZIsLocal: BOOL,
-    TZIsPositive: BOOL,
-    TZHour: u8,
-    TZMinute: u8,
-};
-
-pub const WSD_DURATION = extern struct {
-    isPositive: BOOL,
-    year: u32,
-    month: u32,
-    day: u32,
-    hour: u32,
-    minute: u32,
-    second: u32,
-    millisecond: u32,
-};
-
-pub const WSDXML_OP = enum(i32) {
-    None = 0,
-    EndOfTable = 1,
-    BeginElement_ = 2,
-    BeginAnyElement = 3,
-    EndElement = 4,
-    Element_ = 5,
-    AnyElement = 6,
-    AnyElements = 7,
-    AnyText = 8,
-    Attribute_ = 9,
-    BeginChoice = 10,
-    EndChoice = 11,
-    BeginSequence = 12,
-    EndSequence = 13,
-    BeginAll = 14,
-    EndAll = 15,
-    Anything = 16,
-    AnyNumber = 17,
-    OneOrMore = 18,
-    Optional = 19,
-    FormatBool_ = 20,
-    FormatInt8_ = 21,
-    FormatInt16_ = 22,
-    FormatInt32_ = 23,
-    FormatInt64_ = 24,
-    FormatUInt8_ = 25,
-    FormatUInt16_ = 26,
-    FormatUInt32_ = 27,
-    FormatUInt64_ = 28,
-    FormatUnicodeString_ = 29,
-    FormatDom_ = 30,
-    FormatStruct_ = 31,
-    FormatUri_ = 32,
-    FormatUuidUri_ = 33,
-    FormatName_ = 34,
-    FormatListInsertTail_ = 35,
-    FormatType_ = 36,
-    FormatDynamicType_ = 37,
-    FormatLookupType_ = 38,
-    FormatDuration_ = 39,
-    FormatDateTime_ = 40,
-    FormatFloat_ = 41,
-    FormatDouble_ = 42,
-    Process_ = 43,
-    QualifiedAttribute_ = 44,
-    FormatXMLDeclaration_ = 45,
-    FormatMax = 46,
-};
-pub const OpNone = WSDXML_OP.None;
-pub const OpEndOfTable = WSDXML_OP.EndOfTable;
-pub const OpBeginElement_ = WSDXML_OP.BeginElement_;
-pub const OpBeginAnyElement = WSDXML_OP.BeginAnyElement;
-pub const OpEndElement = WSDXML_OP.EndElement;
-pub const OpElement_ = WSDXML_OP.Element_;
-pub const OpAnyElement = WSDXML_OP.AnyElement;
-pub const OpAnyElements = WSDXML_OP.AnyElements;
-pub const OpAnyText = WSDXML_OP.AnyText;
-pub const OpAttribute_ = WSDXML_OP.Attribute_;
-pub const OpBeginChoice = WSDXML_OP.BeginChoice;
-pub const OpEndChoice = WSDXML_OP.EndChoice;
-pub const OpBeginSequence = WSDXML_OP.BeginSequence;
-pub const OpEndSequence = WSDXML_OP.EndSequence;
-pub const OpBeginAll = WSDXML_OP.BeginAll;
-pub const OpEndAll = WSDXML_OP.EndAll;
-pub const OpAnything = WSDXML_OP.Anything;
-pub const OpAnyNumber = WSDXML_OP.AnyNumber;
-pub const OpOneOrMore = WSDXML_OP.OneOrMore;
-pub const OpOptional = WSDXML_OP.Optional;
-pub const OpFormatBool_ = WSDXML_OP.FormatBool_;
-pub const OpFormatInt8_ = WSDXML_OP.FormatInt8_;
-pub const OpFormatInt16_ = WSDXML_OP.FormatInt16_;
-pub const OpFormatInt32_ = WSDXML_OP.FormatInt32_;
-pub const OpFormatInt64_ = WSDXML_OP.FormatInt64_;
-pub const OpFormatUInt8_ = WSDXML_OP.FormatUInt8_;
-pub const OpFormatUInt16_ = WSDXML_OP.FormatUInt16_;
-pub const OpFormatUInt32_ = WSDXML_OP.FormatUInt32_;
-pub const OpFormatUInt64_ = WSDXML_OP.FormatUInt64_;
-pub const OpFormatUnicodeString_ = WSDXML_OP.FormatUnicodeString_;
-pub const OpFormatDom_ = WSDXML_OP.FormatDom_;
-pub const OpFormatStruct_ = WSDXML_OP.FormatStruct_;
-pub const OpFormatUri_ = WSDXML_OP.FormatUri_;
-pub const OpFormatUuidUri_ = WSDXML_OP.FormatUuidUri_;
-pub const OpFormatName_ = WSDXML_OP.FormatName_;
-pub const OpFormatListInsertTail_ = WSDXML_OP.FormatListInsertTail_;
-pub const OpFormatType_ = WSDXML_OP.FormatType_;
-pub const OpFormatDynamicType_ = WSDXML_OP.FormatDynamicType_;
-pub const OpFormatLookupType_ = WSDXML_OP.FormatLookupType_;
-pub const OpFormatDuration_ = WSDXML_OP.FormatDuration_;
-pub const OpFormatDateTime_ = WSDXML_OP.FormatDateTime_;
-pub const OpFormatFloat_ = WSDXML_OP.FormatFloat_;
-pub const OpFormatDouble_ = WSDXML_OP.FormatDouble_;
-pub const OpProcess_ = WSDXML_OP.Process_;
-pub const OpQualifiedAttribute_ = WSDXML_OP.QualifiedAttribute_;
-pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
-pub const OpFormatMax = WSDXML_OP.FormatMax;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDXMLContext_Value = @import("../zig.zig").Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
-pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
-pub const IWSDXMLContext = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddNamespace: fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszSuggestedPrefix: ?[*:0]const u16,
-            ppNamespace: ?*?*WSDXML_NAMESPACE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddNameToNamespace: fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszName: ?[*:0]const u16,
-            ppName: ?*?*WSDXML_NAME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamespaces: fn(
-            self: *const IWSDXMLContext,
-            pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
-            wNamespacesCount: u16,
-            bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTypes: fn(
-            self: *const IWSDXMLContext,
-            pTypes: [*]const ?*const WSDXML_TYPE,
-            dwTypesCount: u32,
-            bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_AddNamespace(self: *const T, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszSuggestedPrefix, ppNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_AddNameToNamespace(self: *const T, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNameToNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszName, ppName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_SetNamespaces(self: *const T, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetNamespaces(@ptrCast(*const IWSDXMLContext, self), pNamespaces, wNamespacesCount, bLayerNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_SetTypes(self: *const T, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetTypes(@ptrCast(*const IWSDXMLContext, self), pTypes, dwTypesCount, bLayerNumber);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const WSD_CONFIG_PARAM_TYPE = enum(i32) {
     CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1,
     CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2,
@@ -792,6 +615,322 @@ pub const IWSDSignatureProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDAttachment_Value = @import("../zig.zig").Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
+pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
+pub const IWSDAttachment = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDOutboundAttachment_Value = @import("../zig.zig").Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
+pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
+pub const IWSDOutboundAttachment = extern struct {
+    pub const VTable = extern struct {
+        base: IWSDAttachment.VTable,
+        Write: fn(
+            self: *const IWSDOutboundAttachment,
+            pBuffer: [*:0]const u8,
+            dwBytesToWrite: u32,
+            pdwNumberOfBytesWritten: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IWSDOutboundAttachment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Abort: fn(
+            self: *const IWSDOutboundAttachment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IWSDAttachment.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDOutboundAttachment_Write(self: *const T, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Write(@ptrCast(*const IWSDOutboundAttachment, self), pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDOutboundAttachment_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDOutboundAttachment, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDOutboundAttachment_Abort(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Abort(@ptrCast(*const IWSDOutboundAttachment, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDInboundAttachment_Value = @import("../zig.zig").Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
+pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
+pub const IWSDInboundAttachment = extern struct {
+    pub const VTable = extern struct {
+        base: IWSDAttachment.VTable,
+        Read: fn(
+            self: *const IWSDInboundAttachment,
+            pBuffer: [*:0]u8,
+            dwBytesToRead: u32,
+            pdwNumberOfBytesRead: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IWSDInboundAttachment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IWSDAttachment.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDInboundAttachment_Read(self: *const T, pBuffer: [*:0]u8, dwBytesToRead: u32, pdwNumberOfBytesRead: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Read(@ptrCast(*const IWSDInboundAttachment, self), pBuffer, dwBytesToRead, pdwNumberOfBytesRead);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDInboundAttachment_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDInboundAttachment, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const WSD_DATETIME = extern struct {
+    isPositive: BOOL,
+    year: u32,
+    month: u8,
+    day: u8,
+    hour: u8,
+    minute: u8,
+    second: u8,
+    millisecond: u32,
+    TZIsLocal: BOOL,
+    TZIsPositive: BOOL,
+    TZHour: u8,
+    TZMinute: u8,
+};
+
+pub const WSD_DURATION = extern struct {
+    isPositive: BOOL,
+    year: u32,
+    month: u32,
+    day: u32,
+    hour: u32,
+    minute: u32,
+    second: u32,
+    millisecond: u32,
+};
+
+pub const WSDXML_OP = enum(i32) {
+    None = 0,
+    EndOfTable = 1,
+    BeginElement_ = 2,
+    BeginAnyElement = 3,
+    EndElement = 4,
+    Element_ = 5,
+    AnyElement = 6,
+    AnyElements = 7,
+    AnyText = 8,
+    Attribute_ = 9,
+    BeginChoice = 10,
+    EndChoice = 11,
+    BeginSequence = 12,
+    EndSequence = 13,
+    BeginAll = 14,
+    EndAll = 15,
+    Anything = 16,
+    AnyNumber = 17,
+    OneOrMore = 18,
+    Optional = 19,
+    FormatBool_ = 20,
+    FormatInt8_ = 21,
+    FormatInt16_ = 22,
+    FormatInt32_ = 23,
+    FormatInt64_ = 24,
+    FormatUInt8_ = 25,
+    FormatUInt16_ = 26,
+    FormatUInt32_ = 27,
+    FormatUInt64_ = 28,
+    FormatUnicodeString_ = 29,
+    FormatDom_ = 30,
+    FormatStruct_ = 31,
+    FormatUri_ = 32,
+    FormatUuidUri_ = 33,
+    FormatName_ = 34,
+    FormatListInsertTail_ = 35,
+    FormatType_ = 36,
+    FormatDynamicType_ = 37,
+    FormatLookupType_ = 38,
+    FormatDuration_ = 39,
+    FormatDateTime_ = 40,
+    FormatFloat_ = 41,
+    FormatDouble_ = 42,
+    Process_ = 43,
+    QualifiedAttribute_ = 44,
+    FormatXMLDeclaration_ = 45,
+    FormatMax = 46,
+};
+pub const OpNone = WSDXML_OP.None;
+pub const OpEndOfTable = WSDXML_OP.EndOfTable;
+pub const OpBeginElement_ = WSDXML_OP.BeginElement_;
+pub const OpBeginAnyElement = WSDXML_OP.BeginAnyElement;
+pub const OpEndElement = WSDXML_OP.EndElement;
+pub const OpElement_ = WSDXML_OP.Element_;
+pub const OpAnyElement = WSDXML_OP.AnyElement;
+pub const OpAnyElements = WSDXML_OP.AnyElements;
+pub const OpAnyText = WSDXML_OP.AnyText;
+pub const OpAttribute_ = WSDXML_OP.Attribute_;
+pub const OpBeginChoice = WSDXML_OP.BeginChoice;
+pub const OpEndChoice = WSDXML_OP.EndChoice;
+pub const OpBeginSequence = WSDXML_OP.BeginSequence;
+pub const OpEndSequence = WSDXML_OP.EndSequence;
+pub const OpBeginAll = WSDXML_OP.BeginAll;
+pub const OpEndAll = WSDXML_OP.EndAll;
+pub const OpAnything = WSDXML_OP.Anything;
+pub const OpAnyNumber = WSDXML_OP.AnyNumber;
+pub const OpOneOrMore = WSDXML_OP.OneOrMore;
+pub const OpOptional = WSDXML_OP.Optional;
+pub const OpFormatBool_ = WSDXML_OP.FormatBool_;
+pub const OpFormatInt8_ = WSDXML_OP.FormatInt8_;
+pub const OpFormatInt16_ = WSDXML_OP.FormatInt16_;
+pub const OpFormatInt32_ = WSDXML_OP.FormatInt32_;
+pub const OpFormatInt64_ = WSDXML_OP.FormatInt64_;
+pub const OpFormatUInt8_ = WSDXML_OP.FormatUInt8_;
+pub const OpFormatUInt16_ = WSDXML_OP.FormatUInt16_;
+pub const OpFormatUInt32_ = WSDXML_OP.FormatUInt32_;
+pub const OpFormatUInt64_ = WSDXML_OP.FormatUInt64_;
+pub const OpFormatUnicodeString_ = WSDXML_OP.FormatUnicodeString_;
+pub const OpFormatDom_ = WSDXML_OP.FormatDom_;
+pub const OpFormatStruct_ = WSDXML_OP.FormatStruct_;
+pub const OpFormatUri_ = WSDXML_OP.FormatUri_;
+pub const OpFormatUuidUri_ = WSDXML_OP.FormatUuidUri_;
+pub const OpFormatName_ = WSDXML_OP.FormatName_;
+pub const OpFormatListInsertTail_ = WSDXML_OP.FormatListInsertTail_;
+pub const OpFormatType_ = WSDXML_OP.FormatType_;
+pub const OpFormatDynamicType_ = WSDXML_OP.FormatDynamicType_;
+pub const OpFormatLookupType_ = WSDXML_OP.FormatLookupType_;
+pub const OpFormatDuration_ = WSDXML_OP.FormatDuration_;
+pub const OpFormatDateTime_ = WSDXML_OP.FormatDateTime_;
+pub const OpFormatFloat_ = WSDXML_OP.FormatFloat_;
+pub const OpFormatDouble_ = WSDXML_OP.FormatDouble_;
+pub const OpProcess_ = WSDXML_OP.Process_;
+pub const OpQualifiedAttribute_ = WSDXML_OP.QualifiedAttribute_;
+pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
+pub const OpFormatMax = WSDXML_OP.FormatMax;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDXMLContext_Value = @import("../zig.zig").Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
+pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
+pub const IWSDXMLContext = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddNamespace: fn(
+            self: *const IWSDXMLContext,
+            pszUri: ?[*:0]const u16,
+            pszSuggestedPrefix: ?[*:0]const u16,
+            ppNamespace: ?*?*WSDXML_NAMESPACE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNameToNamespace: fn(
+            self: *const IWSDXMLContext,
+            pszUri: ?[*:0]const u16,
+            pszName: ?[*:0]const u16,
+            ppName: ?*?*WSDXML_NAME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNamespaces: fn(
+            self: *const IWSDXMLContext,
+            pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
+            wNamespacesCount: u16,
+            bLayerNumber: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTypes: fn(
+            self: *const IWSDXMLContext,
+            pTypes: [*]const ?*const WSDXML_TYPE,
+            dwTypesCount: u32,
+            bLayerNumber: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDXMLContext_AddNamespace(self: *const T, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszSuggestedPrefix, ppNamespace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDXMLContext_AddNameToNamespace(self: *const T, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNameToNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszName, ppName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDXMLContext_SetNamespaces(self: *const T, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetNamespaces(@ptrCast(*const IWSDXMLContext, self), pNamespaces, wNamespacesCount, bLayerNumber);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDXMLContext_SetTypes(self: *const T, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetTypes(@ptrCast(*const IWSDXMLContext, self), pTypes, dwTypesCount, bLayerNumber);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const WSDXML_NAMESPACE = extern struct {
+    Uri: ?[*:0]const u16,
+    PreferredPrefix: ?[*:0]const u16,
+    Names: ?*WSDXML_NAME,
+    NamesCount: u16,
+    Encoding: u16,
+};
+
+pub const WSDXML_NAME = extern struct {
+    Space: ?*WSDXML_NAMESPACE,
+    LocalName: ?PWSTR,
+};
+
+pub const WSDXML_TYPE = extern struct {
+    Uri: ?[*:0]const u16,
+    Table: ?*const u8,
+};
+
+pub const WSDXML_PREFIX_MAPPING = extern struct {
+    Refs: u32,
+    Next: ?*WSDXML_PREFIX_MAPPING,
+    Space: ?*WSDXML_NAMESPACE,
+    Prefix: ?PWSTR,
+};
+
+pub const WSDXML_ATTRIBUTE = extern struct {
+    Element: ?*WSDXML_ELEMENT,
+    Next: ?*WSDXML_ATTRIBUTE,
+    Name: ?*WSDXML_NAME,
+    Value: ?PWSTR,
+};
+
+pub const WSDXML_NODE = extern struct {
+    Type: i32,
+    Parent: ?*WSDXML_ELEMENT,
+    Next: ?*WSDXML_NODE,
+};
+
+pub const WSDXML_ELEMENT = extern struct {
+    Node: WSDXML_NODE,
+    Name: ?*WSDXML_NAME,
+    FirstAttribute: ?*WSDXML_ATTRIBUTE,
+    FirstChild: ?*WSDXML_NODE,
+    PrefixMappings: ?*WSDXML_PREFIX_MAPPING,
+};
+
+pub const WSDXML_TEXT = extern struct {
+    Node: WSDXML_NODE,
+    Text: ?PWSTR,
+};
+
+pub const WSDXML_ELEMENT_LIST = extern struct {
+    Next: ?*WSDXML_ELEMENT_LIST,
+    Element: ?*WSDXML_ELEMENT,
+};
+
 pub const WSD_STUB_FUNCTION = fn(
     server: ?*IUnknown,
     session: ?*IWSDServiceMessaging,
@@ -1161,239 +1300,476 @@ pub const WSD_EVENT = extern struct {
     MessageParameters: ?*IWSDMessageParameters,
 };
 
-pub const WSDXML_NAMESPACE = extern struct {
-    Uri: ?[*:0]const u16,
-    PreferredPrefix: ?[*:0]const u16,
-    Names: ?*WSDXML_NAME,
-    NamesCount: u16,
-    Encoding: u16,
-};
-
-pub const WSDXML_NAME = extern struct {
-    Space: ?*WSDXML_NAMESPACE,
-    LocalName: ?PWSTR,
-};
-
-pub const WSDXML_TYPE = extern struct {
-    Uri: ?[*:0]const u16,
-    Table: ?*const u8,
-};
-
-pub const WSDXML_PREFIX_MAPPING = extern struct {
-    Refs: u32,
-    Next: ?*WSDXML_PREFIX_MAPPING,
-    Space: ?*WSDXML_NAMESPACE,
-    Prefix: ?PWSTR,
-};
-
-pub const WSDXML_ATTRIBUTE = extern struct {
-    Element: ?*WSDXML_ELEMENT,
-    Next: ?*WSDXML_ATTRIBUTE,
-    Name: ?*WSDXML_NAME,
-    Value: ?PWSTR,
-};
-
-pub const WSDXML_NODE = extern struct {
-    Type: i32,
-    Parent: ?*WSDXML_ELEMENT,
-    Next: ?*WSDXML_NODE,
-};
-
-pub const WSDXML_ELEMENT = extern struct {
-    Node: WSDXML_NODE,
-    Name: ?*WSDXML_NAME,
-    FirstAttribute: ?*WSDXML_ATTRIBUTE,
-    FirstChild: ?*WSDXML_NODE,
-    PrefixMappings: ?*WSDXML_PREFIX_MAPPING,
-};
-
-pub const WSDXML_TEXT = extern struct {
-    Node: WSDXML_NODE,
-    Text: ?PWSTR,
-};
-
-pub const WSDXML_ELEMENT_LIST = extern struct {
-    Next: ?*WSDXML_ELEMENT_LIST,
-    Element: ?*WSDXML_ELEMENT,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDiscoveryProvider_Value = @import("../zig.zig").Guid.initString("8ffc8e55-f0eb-480f-88b7-b435dd281d45");
+pub const IID_IWSDiscoveryProvider = &IID_IWSDiscoveryProvider_Value;
+pub const IWSDiscoveryProvider = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAddressFamily: fn(
+            self: *const IWSDiscoveryProvider,
+            dwAddressFamily: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Attach: fn(
+            self: *const IWSDiscoveryProvider,
+            pSink: ?*IWSDiscoveryProviderNotify,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Detach: fn(
+            self: *const IWSDiscoveryProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SearchById: fn(
+            self: *const IWSDiscoveryProvider,
+            pszId: ?[*:0]const u16,
+            pszTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SearchByAddress: fn(
+            self: *const IWSDiscoveryProvider,
+            pszAddress: ?[*:0]const u16,
+            pszTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SearchByType: fn(
+            self: *const IWSDiscoveryProvider,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pszMatchBy: ?[*:0]const u16,
+            pszTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXMLContext: fn(
+            self: *const IWSDiscoveryProvider,
+            ppContext: ?*?*IWSDXMLContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_SetAddressFamily(self: *const T, dwAddressFamily: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryProvider, self), dwAddressFamily);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_Attach(self: *const T, pSink: ?*IWSDiscoveryProviderNotify) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Attach(@ptrCast(*const IWSDiscoveryProvider, self), pSink);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_Detach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Detach(@ptrCast(*const IWSDiscoveryProvider, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_SearchById(self: *const T, pszId: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchById(@ptrCast(*const IWSDiscoveryProvider, self), pszId, pszTag);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_SearchByAddress(self: *const T, pszAddress: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByAddress(@ptrCast(*const IWSDiscoveryProvider, self), pszAddress, pszTag);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_SearchByType(self: *const T, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pszMatchBy: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByType(@ptrCast(*const IWSDiscoveryProvider, self), pTypesList, pScopesList, pszMatchBy, pszTag);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProvider_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryProvider, self), ppContext);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHost_Value = @import("../zig.zig").Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
-pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
-pub const IWSDDeviceHost = extern struct {
+const IID_IWSDiscoveryProviderNotify_Value = @import("../zig.zig").Guid.initString("73ee3ced-b6e6-4329-a546-3e8ad46563d2");
+pub const IID_IWSDiscoveryProviderNotify = &IID_IWSDiscoveryProviderNotify_Value;
+pub const IWSDiscoveryProviderNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: fn(
-            self: *const IWSDDeviceHost,
-            pszLocalId: ?[*:0]const u16,
-            pContext: ?*IWSDXMLContext,
-            ppHostAddresses: ?[*]?*IWSDAddress,
-            dwHostAddressCount: u32,
+        Add: fn(
+            self: *const IWSDiscoveryProviderNotify,
+            pService: ?*IWSDiscoveredService,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IWSDDeviceHost,
+        Remove: fn(
+            self: *const IWSDiscoveryProviderNotify,
+            pService: ?*IWSDiscoveredService,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SearchFailed: fn(
+            self: *const IWSDiscoveryProviderNotify,
+            hr: HRESULT,
+            pszTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SearchComplete: fn(
+            self: *const IWSDiscoveryProviderNotify,
+            pszTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProviderNotify_Add(self: *const T, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Add(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProviderNotify_Remove(self: *const T, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Remove(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProviderNotify_SearchFailed(self: *const T, hr: HRESULT, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchFailed(@ptrCast(*const IWSDiscoveryProviderNotify, self), hr, pszTag);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryProviderNotify_SearchComplete(self: *const T, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchComplete(@ptrCast(*const IWSDiscoveryProviderNotify, self), pszTag);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDiscoveredService_Value = @import("../zig.zig").Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
+pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
+pub const IWSDiscoveredService = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEndpointReference: fn(
+            self: *const IWSDiscoveredService,
+            ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypes: fn(
+            self: *const IWSDiscoveredService,
+            ppTypesList: ?*?*WSD_NAME_LIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScopes: fn(
+            self: *const IWSDiscoveredService,
+            ppScopesList: ?*?*WSD_URI_LIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXAddrs: fn(
+            self: *const IWSDiscoveredService,
+            ppXAddrsList: ?*?*WSD_URI_LIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMetadataVersion: fn(
+            self: *const IWSDiscoveredService,
+            pullMetadataVersion: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExtendedDiscoXML: fn(
+            self: *const IWSDiscoveredService,
+            ppHeaderAny: ?*?*WSDXML_ELEMENT,
+            ppBodyAny: ?*?*WSDXML_ELEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProbeResolveTag: fn(
+            self: *const IWSDiscoveredService,
+            ppszTag: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemoteTransportAddress: fn(
+            self: *const IWSDiscoveredService,
+            ppszRemoteTransportAddress: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalTransportAddress: fn(
+            self: *const IWSDiscoveredService,
+            ppszLocalTransportAddress: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalInterfaceGUID: fn(
+            self: *const IWSDiscoveredService,
+            pGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceId: fn(
+            self: *const IWSDiscoveredService,
+            pullInstanceId: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetEndpointReference(self: *const T, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetEndpointReference(@ptrCast(*const IWSDiscoveredService, self), ppEndpointReference);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetTypes(self: *const T, ppTypesList: ?*?*WSD_NAME_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetTypes(@ptrCast(*const IWSDiscoveredService, self), ppTypesList);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetScopes(self: *const T, ppScopesList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetScopes(@ptrCast(*const IWSDiscoveredService, self), ppScopesList);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetXAddrs(self: *const T, ppXAddrsList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetXAddrs(@ptrCast(*const IWSDiscoveredService, self), ppXAddrsList);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetMetadataVersion(self: *const T, pullMetadataVersion: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetMetadataVersion(@ptrCast(*const IWSDiscoveredService, self), pullMetadataVersion);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetExtendedDiscoXML(self: *const T, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetExtendedDiscoXML(@ptrCast(*const IWSDiscoveredService, self), ppHeaderAny, ppBodyAny);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetProbeResolveTag(self: *const T, ppszTag: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetProbeResolveTag(@ptrCast(*const IWSDiscoveredService, self), ppszTag);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetRemoteTransportAddress(self: *const T, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetRemoteTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszRemoteTransportAddress);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetLocalTransportAddress(self: *const T, ppszLocalTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszLocalTransportAddress);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetLocalInterfaceGUID(self: *const T, pGuid: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalInterfaceGUID(@ptrCast(*const IWSDiscoveredService, self), pGuid);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveredService_GetInstanceId(self: *const T, pullInstanceId: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetInstanceId(@ptrCast(*const IWSDiscoveredService, self), pullInstanceId);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDiscoveryPublisher_Value = @import("../zig.zig").Guid.initString("ae01e1a8-3ff9-4148-8116-057cc616fe13");
+pub const IID_IWSDiscoveryPublisher = &IID_IWSDiscoveryPublisher_Value;
+pub const IWSDiscoveryPublisher = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAddressFamily: fn(
+            self: *const IWSDiscoveryPublisher,
+            dwAddressFamily: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterNotificationSink: fn(
+            self: *const IWSDiscoveryPublisher,
+            pSink: ?*IWSDiscoveryPublisherNotify,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnRegisterNotificationSink: fn(
+            self: *const IWSDiscoveryPublisher,
+            pSink: ?*IWSDiscoveryPublisherNotify,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Publish: fn(
+            self: *const IWSDiscoveryPublisher,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
             ullInstanceId: u64,
-            pScopeList: ?*const WSD_URI_LIST,
-            pNotificationSink: ?*IWSDDeviceHostNotify,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Terminate: fn(
-            self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPortType: fn(
-            self: *const IWSDDeviceHost,
-            pPortType: ?*const WSD_PORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMetadata: fn(
-            self: *const IWSDDeviceHost,
-            pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
-            pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
-            pHostMetadata: ?*const WSD_HOST_METADATA,
-            pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pService: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RetireService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDynamicService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pszEndpointAddress: ?[*:0]const u16,
-            pPortType: ?*const WSD_PORT_TYPE,
-            pPortName: ?*const WSDXML_NAME,
+        UnPublish: fn(
+            self: *const IWSDiscoveryPublisher,
+            pszId: ?[*:0]const u16,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
             pAny: ?*const WSDXML_ELEMENT,
-            pService: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveDynamicService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
+        MatchProbe: fn(
+            self: *const IWSDiscoveryPublisher,
+            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServiceDiscoverable: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            fDiscoverable: BOOL,
+        MatchResolve: fn(
+            self: *const IWSDiscoveryPublisher,
+            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SignalEvent: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pBody: ?*const c_void,
-            pOperation: ?*const WSD_OPERATION,
+        PublishEx: fn(
+            self: *const IWSDiscoveryPublisher,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
+            pHeaderAny: ?*const WSDXML_ELEMENT,
+            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+            pPolicyAny: ?*const WSDXML_ELEMENT,
+            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+            pAny: ?*const WSDXML_ELEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MatchProbeEx: fn(
+            self: *const IWSDiscoveryPublisher,
+            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
+            pHeaderAny: ?*const WSDXML_ELEMENT,
+            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+            pPolicyAny: ?*const WSDXML_ELEMENT,
+            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+            pAny: ?*const WSDXML_ELEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MatchResolveEx: fn(
+            self: *const IWSDiscoveryPublisher,
+            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pszId: ?[*:0]const u16,
+            ullMetadataVersion: u64,
+            ullInstanceId: u64,
+            ullMessageNumber: u64,
+            pszSessionId: ?[*:0]const u16,
+            pTypesList: ?*const WSD_NAME_LIST,
+            pScopesList: ?*const WSD_URI_LIST,
+            pXAddrsList: ?*const WSD_URI_LIST,
+            pHeaderAny: ?*const WSDXML_ELEMENT,
+            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+            pPolicyAny: ?*const WSDXML_ELEMENT,
+            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+            pAny: ?*const WSDXML_ELEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterScopeMatchingRule: fn(
+            self: *const IWSDiscoveryPublisher,
+            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnRegisterScopeMatchingRule: fn(
+            self: *const IWSDiscoveryPublisher,
+            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXMLContext: fn(
+            self: *const IWSDiscoveryPublisher,
+            ppContext: ?*?*IWSDXMLContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_Init(self: *const T, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Init(@ptrCast(*const IWSDDeviceHost, self), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
+        pub fn IWSDiscoveryPublisher_SetAddressFamily(self: *const T, dwAddressFamily: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryPublisher, self), dwAddressFamily);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_Start(self: *const T, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Start(@ptrCast(*const IWSDDeviceHost, self), ullInstanceId, pScopeList, pNotificationSink);
+        pub fn IWSDiscoveryPublisher_RegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Stop(@ptrCast(*const IWSDDeviceHost, self));
+        pub fn IWSDiscoveryPublisher_UnRegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_Terminate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Terminate(@ptrCast(*const IWSDDeviceHost, self));
+        pub fn IWSDiscoveryPublisher_Publish(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).Publish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_RegisterPortType(self: *const T, pPortType: ?*const WSD_PORT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterPortType(@ptrCast(*const IWSDDeviceHost, self), pPortType);
+        pub fn IWSDiscoveryPublisher_UnPublish(self: *const T, pszId: ?[*:0]const u16, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnPublish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullInstanceId, ullMessageNumber, pszSessionId, pAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_SetMetadata(self: *const T, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetMetadata(@ptrCast(*const IWSDDeviceHost, self), pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
+        pub fn IWSDiscoveryPublisher_MatchProbe(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbe(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_RegisterService(self: *const T, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pService);
+        pub fn IWSDiscoveryPublisher_MatchResolve(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolve(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_RetireService(self: *const T, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RetireService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
+        pub fn IWSDiscoveryPublisher_PublishEx(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).PublishEx(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_AddDynamicService(self: *const T, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).AddDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
+        pub fn IWSDiscoveryPublisher_MatchProbeEx(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbeEx(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_RemoveDynamicService(self: *const T, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RemoveDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
+        pub fn IWSDiscoveryPublisher_MatchResolveEx(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolveEx(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_SetServiceDiscoverable(self: *const T, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetServiceDiscoverable(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, fDiscoverable);
+        pub fn IWSDiscoveryPublisher_RegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_SignalEvent(self: *const T, pszServiceId: ?[*:0]const u16, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SignalEvent(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pBody, pOperation);
+        pub fn IWSDiscoveryPublisher_UnRegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryPublisher_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryPublisher, self), ppContext);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHostNotify_Value = @import("../zig.zig").Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
-pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
-pub const IWSDDeviceHostNotify = extern struct {
+const IID_IWSDiscoveryPublisherNotify_Value = @import("../zig.zig").Guid.initString("e67651b0-337a-4b3c-9758-733388568251");
+pub const IID_IWSDiscoveryPublisherNotify = &IID_IWSDiscoveryPublisherNotify_Value;
+pub const IWSDiscoveryPublisherNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetService: fn(
-            self: *const IWSDDeviceHostNotify,
-            pszServiceId: ?[*:0]const u16,
-            ppService: ?*?*IUnknown,
+        ProbeHandler: fn(
+            self: *const IWSDiscoveryPublisherNotify,
+            pSoap: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResolveHandler: fn(
+            self: *const IWSDiscoveryPublisherNotify,
+            pSoap: ?*const WSD_SOAP_MESSAGE,
+            pMessageParameters: ?*IWSDMessageParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHostNotify_GetService(self: *const T, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDDeviceHostNotify.VTable, self.vtable).GetService(@ptrCast(*const IWSDDeviceHostNotify, self), pszServiceId, ppService);
+        pub fn IWSDiscoveryPublisherNotify_ProbeHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ProbeHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWSDiscoveryPublisherNotify_ResolveHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ResolveHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDServiceMessaging_Value = @import("../zig.zig").Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
-pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
-pub const IWSDServiceMessaging = extern struct {
+const IID_IWSDScopeMatchingRule_Value = @import("../zig.zig").Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
+pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
+pub const IWSDScopeMatchingRule = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendResponse: fn(
-            self: *const IWSDServiceMessaging,
-            pBody: ?*c_void,
-            pOperation: ?*WSD_OPERATION,
-            pMessageParameters: ?*IWSDMessageParameters,
+        GetScopeRule: fn(
+            self: *const IWSDScopeMatchingRule,
+            ppszScopeMatchingRule: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FaultRequest: fn(
-            self: *const IWSDServiceMessaging,
-            pRequestHeader: ?*WSD_SOAP_HEADER,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pFault: ?*WSD_SOAP_FAULT,
+        MatchScopes: fn(
+            self: *const IWSDScopeMatchingRule,
+            pszScope1: ?[*:0]const u16,
+            pszScope2: ?[*:0]const u16,
+            pfMatch: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceMessaging_SendResponse(self: *const T, pBody: ?*c_void, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).SendResponse(@ptrCast(*const IWSDServiceMessaging, self), pBody, pOperation, pMessageParameters);
+        pub fn IWSDScopeMatchingRule_GetScopeRule(self: *const T, ppszScopeMatchingRule: ?*?PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).GetScopeRule(@ptrCast(*const IWSDScopeMatchingRule, self), ppszScopeMatchingRule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceMessaging_FaultRequest(self: *const T, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).FaultRequest(@ptrCast(*const IWSDServiceMessaging, self), pRequestHeader, pMessageParameters, pFault);
+        pub fn IWSDScopeMatchingRule_MatchScopes(self: *const T, pszScope1: ?[*:0]const u16, pszScope2: ?[*:0]const u16, pfMatch: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).MatchScopes(@ptrCast(*const IWSDScopeMatchingRule, self), pszScope1, pszScope2, pfMatch);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1968,558 +2344,182 @@ pub const IWSDEventingStatus = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryProvider_Value = @import("../zig.zig").Guid.initString("8ffc8e55-f0eb-480f-88b7-b435dd281d45");
-pub const IID_IWSDiscoveryProvider = &IID_IWSDiscoveryProvider_Value;
-pub const IWSDiscoveryProvider = extern struct {
+const IID_IWSDDeviceHost_Value = @import("../zig.zig").Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
+pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
+pub const IWSDDeviceHost = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAddressFamily: fn(
-            self: *const IWSDiscoveryProvider,
-            dwAddressFamily: u32,
+        Init: fn(
+            self: *const IWSDDeviceHost,
+            pszLocalId: ?[*:0]const u16,
+            pContext: ?*IWSDXMLContext,
+            ppHostAddresses: ?[*]?*IWSDAddress,
+            dwHostAddressCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Attach: fn(
-            self: *const IWSDiscoveryProvider,
-            pSink: ?*IWSDiscoveryProviderNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Detach: fn(
-            self: *const IWSDiscoveryProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchById: fn(
-            self: *const IWSDiscoveryProvider,
-            pszId: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchByAddress: fn(
-            self: *const IWSDiscoveryProvider,
-            pszAddress: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchByType: fn(
-            self: *const IWSDiscoveryProvider,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pszMatchBy: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXMLContext: fn(
-            self: *const IWSDiscoveryProvider,
-            ppContext: ?*?*IWSDXMLContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_SetAddressFamily(self: *const T, dwAddressFamily: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryProvider, self), dwAddressFamily);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_Attach(self: *const T, pSink: ?*IWSDiscoveryProviderNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Attach(@ptrCast(*const IWSDiscoveryProvider, self), pSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_Detach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Detach(@ptrCast(*const IWSDiscoveryProvider, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_SearchById(self: *const T, pszId: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchById(@ptrCast(*const IWSDiscoveryProvider, self), pszId, pszTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_SearchByAddress(self: *const T, pszAddress: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByAddress(@ptrCast(*const IWSDiscoveryProvider, self), pszAddress, pszTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_SearchByType(self: *const T, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pszMatchBy: ?[*:0]const u16, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByType(@ptrCast(*const IWSDiscoveryProvider, self), pTypesList, pScopesList, pszMatchBy, pszTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProvider_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryProvider, self), ppContext);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryProviderNotify_Value = @import("../zig.zig").Guid.initString("73ee3ced-b6e6-4329-a546-3e8ad46563d2");
-pub const IID_IWSDiscoveryProviderNotify = &IID_IWSDiscoveryProviderNotify_Value;
-pub const IWSDiscoveryProviderNotify = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Add: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchFailed: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            hr: HRESULT,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchComplete: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProviderNotify_Add(self: *const T, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Add(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProviderNotify_Remove(self: *const T, pService: ?*IWSDiscoveredService) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Remove(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProviderNotify_SearchFailed(self: *const T, hr: HRESULT, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchFailed(@ptrCast(*const IWSDiscoveryProviderNotify, self), hr, pszTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryProviderNotify_SearchComplete(self: *const T, pszTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchComplete(@ptrCast(*const IWSDiscoveryProviderNotify, self), pszTag);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveredService_Value = @import("../zig.zig").Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
-pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
-pub const IWSDiscoveredService = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEndpointReference: fn(
-            self: *const IWSDiscoveredService,
-            ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTypes: fn(
-            self: *const IWSDiscoveredService,
-            ppTypesList: ?*?*WSD_NAME_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScopes: fn(
-            self: *const IWSDiscoveredService,
-            ppScopesList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXAddrs: fn(
-            self: *const IWSDiscoveredService,
-            ppXAddrsList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataVersion: fn(
-            self: *const IWSDiscoveredService,
-            pullMetadataVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExtendedDiscoXML: fn(
-            self: *const IWSDiscoveredService,
-            ppHeaderAny: ?*?*WSDXML_ELEMENT,
-            ppBodyAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProbeResolveTag: fn(
-            self: *const IWSDiscoveredService,
-            ppszTag: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteTransportAddress: fn(
-            self: *const IWSDiscoveredService,
-            ppszRemoteTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalTransportAddress: fn(
-            self: *const IWSDiscoveredService,
-            ppszLocalTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalInterfaceGUID: fn(
-            self: *const IWSDiscoveredService,
-            pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInstanceId: fn(
-            self: *const IWSDiscoveredService,
-            pullInstanceId: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetEndpointReference(self: *const T, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetEndpointReference(@ptrCast(*const IWSDiscoveredService, self), ppEndpointReference);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetTypes(self: *const T, ppTypesList: ?*?*WSD_NAME_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetTypes(@ptrCast(*const IWSDiscoveredService, self), ppTypesList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetScopes(self: *const T, ppScopesList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetScopes(@ptrCast(*const IWSDiscoveredService, self), ppScopesList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetXAddrs(self: *const T, ppXAddrsList: ?*?*WSD_URI_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetXAddrs(@ptrCast(*const IWSDiscoveredService, self), ppXAddrsList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetMetadataVersion(self: *const T, pullMetadataVersion: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetMetadataVersion(@ptrCast(*const IWSDiscoveredService, self), pullMetadataVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetExtendedDiscoXML(self: *const T, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetExtendedDiscoXML(@ptrCast(*const IWSDiscoveredService, self), ppHeaderAny, ppBodyAny);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetProbeResolveTag(self: *const T, ppszTag: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetProbeResolveTag(@ptrCast(*const IWSDiscoveredService, self), ppszTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetRemoteTransportAddress(self: *const T, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetRemoteTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszRemoteTransportAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetLocalTransportAddress(self: *const T, ppszLocalTransportAddress: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszLocalTransportAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetLocalInterfaceGUID(self: *const T, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalInterfaceGUID(@ptrCast(*const IWSDiscoveredService, self), pGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveredService_GetInstanceId(self: *const T, pullInstanceId: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetInstanceId(@ptrCast(*const IWSDiscoveredService, self), pullInstanceId);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryPublisher_Value = @import("../zig.zig").Guid.initString("ae01e1a8-3ff9-4148-8116-057cc616fe13");
-pub const IID_IWSDiscoveryPublisher = &IID_IWSDiscoveryPublisher_Value;
-pub const IWSDiscoveryPublisher = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAddressFamily: fn(
-            self: *const IWSDiscoveryPublisher,
-            dwAddressFamily: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterNotificationSink: fn(
-            self: *const IWSDiscoveryPublisher,
-            pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnRegisterNotificationSink: fn(
-            self: *const IWSDiscoveryPublisher,
-            pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Publish: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
+        Start: fn(
+            self: *const IWSDDeviceHost,
             ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
+            pScopeList: ?*const WSD_URI_LIST,
+            pNotificationSink: ?*IWSDDeviceHostNotify,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnPublish: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
+        Stop: fn(
+            self: *const IWSDDeviceHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Terminate: fn(
+            self: *const IWSDDeviceHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterPortType: fn(
+            self: *const IWSDDeviceHost,
+            pPortType: ?*const WSD_PORT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMetadata: fn(
+            self: *const IWSDDeviceHost,
+            pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
+            pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
+            pHostMetadata: ?*const WSD_HOST_METADATA,
+            pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterService: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pService: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RetireService: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDynamicService: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pszEndpointAddress: ?[*:0]const u16,
+            pPortType: ?*const WSD_PORT_TYPE,
+            pPortName: ?*const WSDXML_NAME,
             pAny: ?*const WSDXML_ELEMENT,
+            pService: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchProbe: fn(
-            self: *const IWSDiscoveryPublisher,
-            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
+        RemoveDynamicService: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchResolve: fn(
-            self: *const IWSDiscoveryPublisher,
-            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
+        SetServiceDiscoverable: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            fDiscoverable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PublishEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchProbeEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchResolveEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterScopeMatchingRule: fn(
-            self: *const IWSDiscoveryPublisher,
-            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnRegisterScopeMatchingRule: fn(
-            self: *const IWSDiscoveryPublisher,
-            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXMLContext: fn(
-            self: *const IWSDiscoveryPublisher,
-            ppContext: ?*?*IWSDXMLContext,
+        SignalEvent: fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pBody: ?*const c_void,
+            pOperation: ?*const WSD_OPERATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_SetAddressFamily(self: *const T, dwAddressFamily: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryPublisher, self), dwAddressFamily);
+        pub fn IWSDDeviceHost_Init(self: *const T, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Init(@ptrCast(*const IWSDDeviceHost, self), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_RegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
+        pub fn IWSDDeviceHost_Start(self: *const T, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Start(@ptrCast(*const IWSDDeviceHost, self), ullInstanceId, pScopeList, pNotificationSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_UnRegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
+        pub fn IWSDDeviceHost_Stop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Stop(@ptrCast(*const IWSDDeviceHost, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_Publish(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).Publish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+        pub fn IWSDDeviceHost_Terminate(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Terminate(@ptrCast(*const IWSDDeviceHost, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_UnPublish(self: *const T, pszId: ?[*:0]const u16, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnPublish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullInstanceId, ullMessageNumber, pszSessionId, pAny);
+        pub fn IWSDDeviceHost_RegisterPortType(self: *const T, pPortType: ?*const WSD_PORT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterPortType(@ptrCast(*const IWSDDeviceHost, self), pPortType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_MatchProbe(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbe(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+        pub fn IWSDDeviceHost_SetMetadata(self: *const T, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetMetadata(@ptrCast(*const IWSDDeviceHost, self), pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_MatchResolve(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolve(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+        pub fn IWSDDeviceHost_RegisterService(self: *const T, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pService);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_PublishEx(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).PublishEx(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+        pub fn IWSDDeviceHost_RetireService(self: *const T, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RetireService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_MatchProbeEx(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbeEx(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+        pub fn IWSDDeviceHost_AddDynamicService(self: *const T, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).AddDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_MatchResolveEx(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolveEx(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+        pub fn IWSDDeviceHost_RemoveDynamicService(self: *const T, pszServiceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RemoveDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_RegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
+        pub fn IWSDDeviceHost_SetServiceDiscoverable(self: *const T, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetServiceDiscoverable(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, fDiscoverable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_UnRegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisher_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryPublisher, self), ppContext);
+        pub fn IWSDDeviceHost_SignalEvent(self: *const T, pszServiceId: ?[*:0]const u16, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SignalEvent(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pBody, pOperation);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryPublisherNotify_Value = @import("../zig.zig").Guid.initString("e67651b0-337a-4b3c-9758-733388568251");
-pub const IID_IWSDiscoveryPublisherNotify = &IID_IWSDiscoveryPublisherNotify_Value;
-pub const IWSDiscoveryPublisherNotify = extern struct {
+const IID_IWSDDeviceHostNotify_Value = @import("../zig.zig").Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
+pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
+pub const IWSDDeviceHostNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ProbeHandler: fn(
-            self: *const IWSDiscoveryPublisherNotify,
-            pSoap: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResolveHandler: fn(
-            self: *const IWSDiscoveryPublisherNotify,
-            pSoap: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
+        GetService: fn(
+            self: *const IWSDDeviceHostNotify,
+            pszServiceId: ?[*:0]const u16,
+            ppService: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisherNotify_ProbeHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ProbeHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDiscoveryPublisherNotify_ResolveHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ResolveHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
+        pub fn IWSDDeviceHostNotify_GetService(self: *const T, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDDeviceHostNotify.VTable, self.vtable).GetService(@ptrCast(*const IWSDDeviceHostNotify, self), pszServiceId, ppService);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDScopeMatchingRule_Value = @import("../zig.zig").Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
-pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
-pub const IWSDScopeMatchingRule = extern struct {
+const IID_IWSDServiceMessaging_Value = @import("../zig.zig").Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
+pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
+pub const IWSDServiceMessaging = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetScopeRule: fn(
-            self: *const IWSDScopeMatchingRule,
-            ppszScopeMatchingRule: ?*?PWSTR,
+        SendResponse: fn(
+            self: *const IWSDServiceMessaging,
+            pBody: ?*c_void,
+            pOperation: ?*WSD_OPERATION,
+            pMessageParameters: ?*IWSDMessageParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchScopes: fn(
-            self: *const IWSDScopeMatchingRule,
-            pszScope1: ?[*:0]const u16,
-            pszScope2: ?[*:0]const u16,
-            pfMatch: ?*BOOL,
+        FaultRequest: fn(
+            self: *const IWSDServiceMessaging,
+            pRequestHeader: ?*WSD_SOAP_HEADER,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pFault: ?*WSD_SOAP_FAULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDScopeMatchingRule_GetScopeRule(self: *const T, ppszScopeMatchingRule: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).GetScopeRule(@ptrCast(*const IWSDScopeMatchingRule, self), ppszScopeMatchingRule);
+        pub fn IWSDServiceMessaging_SendResponse(self: *const T, pBody: ?*c_void, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).SendResponse(@ptrCast(*const IWSDServiceMessaging, self), pBody, pOperation, pMessageParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDScopeMatchingRule_MatchScopes(self: *const T, pszScope1: ?[*:0]const u16, pszScope2: ?[*:0]const u16, pfMatch: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).MatchScopes(@ptrCast(*const IWSDScopeMatchingRule, self), pszScope1, pszScope2, pfMatch);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAttachment_Value = @import("../zig.zig").Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
-pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
-pub const IWSDAttachment = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDOutboundAttachment_Value = @import("../zig.zig").Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
-pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
-pub const IWSDOutboundAttachment = extern struct {
-    pub const VTable = extern struct {
-        base: IWSDAttachment.VTable,
-        Write: fn(
-            self: *const IWSDOutboundAttachment,
-            pBuffer: [*:0]const u8,
-            dwBytesToWrite: u32,
-            pdwNumberOfBytesWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSDAttachment.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDOutboundAttachment_Write(self: *const T, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Write(@ptrCast(*const IWSDOutboundAttachment, self), pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDOutboundAttachment_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDOutboundAttachment, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDOutboundAttachment_Abort(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Abort(@ptrCast(*const IWSDOutboundAttachment, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDInboundAttachment_Value = @import("../zig.zig").Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
-pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
-pub const IWSDInboundAttachment = extern struct {
-    pub const VTable = extern struct {
-        base: IWSDAttachment.VTable,
-        Read: fn(
-            self: *const IWSDInboundAttachment,
-            pBuffer: [*:0]u8,
-            dwBytesToRead: u32,
-            pdwNumberOfBytesRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWSDInboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSDAttachment.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDInboundAttachment_Read(self: *const T, pBuffer: [*:0]u8, dwBytesToRead: u32, pdwNumberOfBytesRead: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Read(@ptrCast(*const IWSDInboundAttachment, self), pBuffer, dwBytesToRead, pdwNumberOfBytesRead);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDInboundAttachment_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDInboundAttachment, self));
+        pub fn IWSDServiceMessaging_FaultRequest(self: *const T, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).FaultRequest(@ptrCast(*const IWSDServiceMessaging, self), pRequestHeader, pMessageParameters, pFault);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2529,18 +2529,6 @@ pub const IWSDInboundAttachment = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
-    pszNamespace: ?[*:0]const u16,
-    pszName: ?[*:0]const u16,
-    ppName: ?*?*WSDXML_NAME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLCreateContext(
-    ppContext: ?*?*IWSDXMLContext,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateUdpMessageParameters(
     ppTxParams: ?*?*IWSDUdpMessageParameters,
@@ -2559,6 +2547,103 @@ pub extern "wsdapi" fn WSDCreateHttpMessageParameters(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDCreateHttpAddress(
     ppAddress: ?*?*IWSDHttpAddress,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateOutboundAttachment(
+    ppAttachment: ?*?*IWSDOutboundAttachment,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
+    pszNamespace: ?[*:0]const u16,
+    pszName: ?[*:0]const u16,
+    ppName: ?*?*WSDXML_NAME,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLCreateContext(
+    ppContext: ?*?*IWSDXMLContext,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDiscoveryProvider(
+    pContext: ?*IWSDXMLContext,
+    ppProvider: ?*?*IWSDiscoveryProvider,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppProvider: ?*?*IWSDiscoveryProvider,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDiscoveryPublisher(
+    pContext: ?*IWSDXMLContext,
+    ppPublisher: ?*?*IWSDiscoveryPublisher,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppPublisher: ?*?*IWSDiscoveryPublisher,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDeviceProxy(
+    pszDeviceId: ?[*:0]const u16,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
+    pszDeviceId: ?[*:0]const u16,
+    pDeviceAddress: ?*IWSDAddress,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDeviceProxy2(
+    pszDeviceId: ?[*:0]const u16,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDeviceHost(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppHostAddresses: ?[*]?*IWSDAddress,
+    dwHostAddressCount: u32,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDeviceHost2(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2666,91 +2751,6 @@ pub extern "wsdapi" fn WSDUriDecode(
     cchDestOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceHost(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppHostAddresses: ?[*]?*IWSDAddress,
-    dwHostAddressCount: u32,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDeviceHost2(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceProxy(
-    pszDeviceId: ?[*:0]const u16,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
-    pszDeviceId: ?[*:0]const u16,
-    pDeviceAddress: ?*IWSDAddress,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDeviceProxy2(
-    pszDeviceId: ?[*:0]const u16,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDiscoveryProvider(
-    pContext: ?*IWSDXMLContext,
-    ppProvider: ?*?*IWSDiscoveryProvider,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDiscoveryProvider2(
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppProvider: ?*?*IWSDiscoveryProvider,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDiscoveryPublisher(
-    pContext: ?*IWSDXMLContext,
-    ppPublisher: ?*?*IWSDiscoveryPublisher,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppPublisher: ?*?*IWSDiscoveryPublisher,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateOutboundAttachment(
-    ppAttachment: ?*?*IWSDOutboundAttachment,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -2770,7 +2770,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
+const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;

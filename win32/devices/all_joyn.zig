@@ -43,18 +43,6 @@ pub const ALLJOYN_MEMBER_ANNOTATE_GLOBAL_BROADCAST = @as(u8, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const _alljoyn_abouticon_handle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _alljoyn_abouticonobj_handle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _alljoyn_abouticonproxy_handle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const alljoyn_about_announceflag = enum(i32) {
     UNANNOUNCED = 0,
     ANNOUNCED = 1,
@@ -922,6 +910,10 @@ pub const ALLJOYN_INT64_ARRAY = alljoyn_typeid.INT64_ARRAY;
 pub const ALLJOYN_BYTE_ARRAY = alljoyn_typeid.BYTE_ARRAY;
 pub const ALLJOYN_WILDCARD = alljoyn_typeid.WILDCARD;
 
+pub const _alljoyn_abouticon_handle = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const alljoyn_applicationstate = enum(i32) {
     NOT_CLAIMABLE = 0,
     CLAIMABLE = 1,
@@ -1363,6 +1355,14 @@ pub const alljoyn_busattachment_setlinktimeoutcb_ptr = fn(
     timeout: u32,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const _alljoyn_abouticonobj_handle = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _alljoyn_abouticonproxy_handle = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const alljoyn_aboutdatalistener_getaboutdata_ptr = fn(
     context: ?*const c_void,

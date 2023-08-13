@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (6)
+// Section: Types (8)
 //--------------------------------------------------------------------------------
 const IID_IProtectionPolicyManagerInterop_Value = @import("../zig.zig").Guid.initString("4652651d-c1fe-4ba1-9f0a-c0f56596f721");
 pub const IID_IProtectionPolicyManagerInterop = &IID_IProtectionPolicyManagerInterop_Value;
@@ -249,13 +249,27 @@ pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES.ALLOWED;
 pub const ENTERPRISE_POLICY_ENLIGHTENED = ENTERPRISE_DATA_POLICIES.ENLIGHTENED;
 pub const ENTERPRISE_POLICY_EXEMPT = ENTERPRISE_DATA_POLICIES.EXEMPT;
 
+pub const SRPHOSTING_TYPE = enum(i32) {
+    NONE = 0,
+    WINHTTP = 1,
+    WININET = 2,
+};
+pub const SRPHOSTING_TYPE_NONE = SRPHOSTING_TYPE.NONE;
+pub const SRPHOSTING_TYPE_WINHTTP = SRPHOSTING_TYPE.WINHTTP;
+pub const SRPHOSTING_TYPE_WININET = SRPHOSTING_TYPE.WININET;
+
+pub const SRPHOSTING_VERSION = enum(i32) {
+    @"1" = 1,
+};
+pub const SRPHOSTING_VERSION1 = SRPHOSTING_VERSION.@"1";
+
 pub const FILE_UNPROTECT_OPTIONS = extern struct {
     audit: bool,
 };
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (11)
+// Section: Functions (13)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpCreateThreadNetworkContext(
@@ -309,6 +323,17 @@ pub extern "srpapi" fn SrpDoesPolicyAllowAppExecution(
     packageId: ?*const PACKAGE_ID,
     isAllowed: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "srpapi" fn SrpHostingInitialize(
+    Version: SRPHOSTING_VERSION,
+    Type: SRPHOSTING_TYPE,
+    pvData: ?*c_void,
+    cbData: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "srpapi" fn SrpHostingTerminate(
+    Type: SRPHOSTING_TYPE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "efswrt" fn ProtectFileToEnterpriseIdentity(

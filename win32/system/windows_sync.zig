@@ -3912,7 +3912,7 @@ const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

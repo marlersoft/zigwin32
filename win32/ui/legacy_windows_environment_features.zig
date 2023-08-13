@@ -375,8 +375,8 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IMoniker = @import("../system/com.zig").IMoniker;
-const IOleObject = @import("../system/com.zig").IOleObject;
-const IStorage = @import("../storage/structured_storage.zig").IStorage;
+const IOleObject = @import("../system/ole.zig").IOleObject;
+const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

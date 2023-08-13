@@ -18,7 +18,7 @@ pub const CURRENT_IMPORT_REDIRECTION_VERSION = @as(u32, 1);
 pub const LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = @as(u32, 32768);
 
 //--------------------------------------------------------------------------------
-// Section: Types (13)
+// Section: Types (12)
 //--------------------------------------------------------------------------------
 pub const LOAD_LIBRARY_FLAGS = enum(u32) {
     DONT_RESOLVE_DLL_REFERENCES = 1,
@@ -84,8 +84,6 @@ pub const LOAD_LIBRARY_SEARCH_SYSTEM32 = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_
 pub const LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS;
 pub const LOAD_LIBRARY_SAFE_CURRENT_DIRS = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS;
 pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER;
-
-pub const HRSRC = *opaque{};
 
 pub const ENUMUILANG = extern struct {
     NumOfEnumUILang: u32,
@@ -364,6 +362,14 @@ pub extern "KERNEL32" fn EnumResourceNamesW(
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceNamesA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESNAMEPROCA,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadModule(
     lpModuleName: ?[*:0]const u8,
@@ -402,14 +408,6 @@ pub extern "KERNEL32" fn EnumResourceTypesA(
 pub extern "KERNEL32" fn EnumResourceTypesW(
     hModule: ?HINSTANCE,
     lpEnumFunc: ?ENUMRESTYPEPROCW,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceNamesA(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpEnumFunc: ?ENUMRESNAMEPROCA,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -602,12 +600,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRSRC = @import("../foundation.zig").HRSRC;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

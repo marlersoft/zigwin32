@@ -10,7 +10,7 @@ pub const EVT_CLEAR_ACCESS = @as(u32, 4);
 pub const EVT_ALL_ACCESS = @as(u32, 7);
 
 //--------------------------------------------------------------------------------
-// Section: Types (32)
+// Section: Types (34)
 //--------------------------------------------------------------------------------
 pub const REPORT_EVENT_TYPE = enum(u16) {
     SUCCESS = 0,
@@ -524,6 +524,32 @@ pub const EVT_EVENT_PROPERTY_ID = enum(i32) {
 pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
 pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
 pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
+
+pub const EVENTLOGRECORD = extern struct {
+    Length: u32,
+    Reserved: u32,
+    RecordNumber: u32,
+    TimeGenerated: u32,
+    TimeWritten: u32,
+    EventID: u32,
+    EventType: REPORT_EVENT_TYPE,
+    NumStrings: u16,
+    EventCategory: u16,
+    ReservedFlags: u16,
+    ClosingRecordNumber: u32,
+    StringOffset: u32,
+    UserSidLength: u32,
+    UserSidOffset: u32,
+    DataLength: u32,
+    DataOffset: u32,
+};
+
+pub const EVENTSFORLOGFILE = extern struct {
+    ulSize: u32,
+    szLogicalLogFile: [256]u16,
+    ulNumRecords: u32,
+    pEventLogRecords: [1]EVENTLOGRECORD,
+};
 
 pub const EVENTLOG_FULL_INFORMATION = extern struct {
     dwFull: u32,

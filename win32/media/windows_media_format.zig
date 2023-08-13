@@ -7342,19 +7342,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
+const AM_MEDIA_TYPE = @import("../media/direct_show.zig").AM_MEDIA_TYPE;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IAMVideoAccelerator = @import("../graphics/direct_show.zig").IAMVideoAccelerator;
-const IPin = @import("../graphics/direct_show.zig").IPin;
-const IStream = @import("../storage/structured_storage.zig").IStream;
+const IAMVideoAccelerator = @import("../media/direct_show.zig").IAMVideoAccelerator;
+const IPin = @import("../media/direct_show.zig").IPin;
+const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

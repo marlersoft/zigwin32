@@ -926,7 +926,7 @@ pub const UIA_SummaryChangeId = @as(i32, 90000);
 pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (241)
+// Section: Types (243)
 //--------------------------------------------------------------------------------
 pub const STICKYKEYS_FLAGS = enum(u32) {
     STICKYKEYSON = 1,
@@ -1187,112 +1187,53 @@ pub const HUIATEXTRANGE = *opaque{};
 
 pub const HUIAEVENT = *opaque{};
 
-pub const SERIALKEYSA = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PSTR,
-    lpszPort: ?PSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
+// TODO: this type is limited to platform 'windows8.0'
+pub const IRicheditWindowlessAccessibility = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateProvider: fn(
+            self: *const IRicheditWindowlessAccessibility,
+            pSite: ?*IRawElementProviderWindowlessSite,
+            ppProvider: ?*?*IRawElementProviderSimple,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRicheditWindowlessAccessibility_CreateProvider(self: *const T, pSite: ?*IRawElementProviderWindowlessSite, ppProvider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRicheditWindowlessAccessibility.VTable, self.vtable).CreateProvider(@ptrCast(*const IRicheditWindowlessAccessibility, self), pSite, ppProvider);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-pub const SERIALKEYSW = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PWSTR,
-    lpszPort: ?PWSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
+// TODO: this type is limited to platform 'windows8.0'
+pub const IRichEditUiaInformation = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBoundaryRectangle: fn(
+            self: *const IRichEditUiaInformation,
+            pUiaRect: ?*UiaRect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsVisible: fn(
+            self: *const IRichEditUiaInformation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRichEditUiaInformation_GetBoundaryRectangle(self: *const T, pUiaRect: ?*UiaRect) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRichEditUiaInformation.VTable, self.vtable).GetBoundaryRectangle(@ptrCast(*const IRichEditUiaInformation, self), pUiaRect);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRichEditUiaInformation_IsVisible(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRichEditUiaInformation.VTable, self.vtable).IsVisible(@ptrCast(*const IRichEditUiaInformation, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
-
-pub const HIGHCONTRASTA = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PSTR,
-};
-
-pub const HIGHCONTRASTW = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PWSTR,
-};
-
-pub const FILTERKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iWaitMSec: u32,
-    iDelayMSec: u32,
-    iRepeatMSec: u32,
-    iBounceMSec: u32,
-};
-
-pub const STICKYKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: STICKYKEYS_FLAGS,
-};
-
-pub const MOUSEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iMaxSpeed: u32,
-    iTimeToMaxSpeed: u32,
-    iCtrlSpeed: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
-
-pub const ACCESSTIMEOUT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iTimeOutMSec: u32,
-};
-
-pub const SOUNDSENTRYA = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const SOUNDSENTRYW = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PWSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const TOGGLEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-};
-
-pub const WINEVENTPROC = fn(
-    hWinEventHook: ?HWINEVENTHOOK,
-    event: u32,
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-    idEventThread: u32,
-    dwmsEventTime: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_CAccPropServices_Value = @import("../zig.zig").Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
 pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;
@@ -10746,64 +10687,117 @@ pub const UiaEventCallback = fn(
     pTreeStructure: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub const SERIALKEYSA = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PSTR,
+    lpszPort: ?PSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
 
-//--------------------------------------------------------------------------------
-// Section: Functions (123)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn RegisterPointerInputTarget(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SERIALKEYSW = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PWSTR,
+    lpszPort: ?PWSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn UnregisterPointerInputTarget(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const HIGHCONTRASTA = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PSTR,
+};
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn RegisterPointerInputTargetEx(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-    fObserve: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const HIGHCONTRASTW = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PWSTR,
+};
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn UnregisterPointerInputTargetEx(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const FILTERKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iWaitMSec: u32,
+    iDelayMSec: u32,
+    iRepeatMSec: u32,
+    iBounceMSec: u32,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn NotifyWinEvent(
+pub const STICKYKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: STICKYKEYS_FLAGS,
+};
+
+pub const MOUSEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iMaxSpeed: u32,
+    iTimeToMaxSpeed: u32,
+    iCtrlSpeed: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const ACCESSTIMEOUT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iTimeOutMSec: u32,
+};
+
+pub const SOUNDSENTRYA = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const SOUNDSENTRYW = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PWSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const TOGGLEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+};
+
+pub const WINEVENTPROC = fn(
+    hWinEventHook: ?HWINEVENTHOOK,
     event: u32,
     hwnd: ?HWND,
     idObject: i32,
     idChild: i32,
+    idEventThread: u32,
+    dwmsEventTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetWinEventHook(
-    eventMin: u32,
-    eventMax: u32,
-    hmodWinEventProc: ?HINSTANCE,
-    pfnWinEventProc: ?WINEVENTPROC,
-    idProcess: u32,
-    idThread: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn IsWinEventHookInstalled(
-    event: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnhookWinEvent(
-    hWinEventHook: ?HWINEVENTHOOK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
+//--------------------------------------------------------------------------------
+// Section: Functions (123)
+//--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn LresultFromObject(
     riid: ?*const Guid,
@@ -11563,6 +11557,60 @@ pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USER32" fn RegisterPointerInputTarget(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USER32" fn UnregisterPointerInputTarget(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USER32" fn RegisterPointerInputTargetEx(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+    fObserve: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USER32" fn UnregisterPointerInputTargetEx(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn NotifyWinEvent(
+    event: u32,
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn SetWinEventHook(
+    eventMin: u32,
+    eventMax: u32,
+    hmodWinEventProc: ?HINSTANCE,
+    pfnWinEventProc: ?WINEVENTPROC,
+    idProcess: u32,
+    idThread: u32,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn IsWinEventHookInstalled(
+    event: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn UnhookWinEvent(
+    hWinEventHook: ?HWINEVENTHOOK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
@@ -11611,7 +11659,7 @@ const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
@@ -11620,13 +11668,12 @@ const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_IN
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const VARIANT = @import("../system/com.zig").VARIANT;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINEVENTPROC")) { _ = WINEVENTPROC; }
     if (@hasDecl(@This(), "LPFNLRESULTFROMOBJECT")) { _ = LPFNLRESULTFROMOBJECT; }
     if (@hasDecl(@This(), "LPFNOBJECTFROMLRESULT")) { _ = LPFNOBJECTFROMLRESULT; }
     if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMWINDOW")) { _ = LPFNACCESSIBLEOBJECTFROMWINDOW; }
@@ -11635,6 +11682,7 @@ test {
     if (@hasDecl(@This(), "LPFNACCESSIBLECHILDREN")) { _ = LPFNACCESSIBLECHILDREN; }
     if (@hasDecl(@This(), "UiaProviderCallback")) { _ = UiaProviderCallback; }
     if (@hasDecl(@This(), "UiaEventCallback")) { _ = UiaEventCallback; }
+    if (@hasDecl(@This(), "WINEVENTPROC")) { _ = WINEVENTPROC; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

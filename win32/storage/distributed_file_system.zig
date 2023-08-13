@@ -39,11 +39,6 @@ pub const FSCTL_DFS_GET_PKT_ENTRY_STATE = @as(u32, 401340);
 //--------------------------------------------------------------------------------
 // Section: Types (35)
 //--------------------------------------------------------------------------------
-
-
-
-
-
 pub const DFS_TARGET_PRIORITY_CLASS = enum(i32) {
     InvalidPriorityClass = -1,
     SiteCostNormalPriorityClass = 0,
@@ -69,6 +64,7 @@ pub const DFS_INFO_1 = extern struct {
     EntryPath: ?PWSTR,
 };
 
+
 pub const DFS_INFO_2 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -76,11 +72,13 @@ pub const DFS_INFO_2 = extern struct {
     NumberOfStorages: u32,
 };
 
+
 pub const DFS_STORAGE_INFO = extern struct {
     State: u32,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
 };
+
 
 pub const DFS_STORAGE_INFO_1 = extern struct {
     State: u32,
@@ -97,6 +95,7 @@ pub const DFS_INFO_3 = extern struct {
     Storage: ?*DFS_STORAGE_INFO,
 };
 
+
 pub const DFS_INFO_4 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -106,6 +105,7 @@ pub const DFS_INFO_4 = extern struct {
     NumberOfStorages: u32,
     Storage: ?*DFS_STORAGE_INFO,
 };
+
 
 pub const DFS_INFO_5 = extern struct {
     EntryPath: ?PWSTR,

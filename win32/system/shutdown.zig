@@ -239,6 +239,9 @@ pub const SHUTDOWN_FLAGS = enum(u32) {
     SOFT_REBOOT = 2048,
     MOBILE_UI = 4096,
     ARSO = 8192,
+    CHECK_SAFE_FOR_SERVER = 16384,
+    VAIL_CONTAINER = 32768,
+    SYSTEM_INITIATED = 65536,
     _,
     pub fn initFlags(o: struct {
         FORCE_OTHERS: u1 = 0,
@@ -255,6 +258,9 @@ pub const SHUTDOWN_FLAGS = enum(u32) {
         SOFT_REBOOT: u1 = 0,
         MOBILE_UI: u1 = 0,
         ARSO: u1 = 0,
+        CHECK_SAFE_FOR_SERVER: u1 = 0,
+        VAIL_CONTAINER: u1 = 0,
+        SYSTEM_INITIATED: u1 = 0,
     }) SHUTDOWN_FLAGS {
         return @intToEnum(SHUTDOWN_FLAGS,
               (if (o.FORCE_OTHERS == 1) @enumToInt(SHUTDOWN_FLAGS.FORCE_OTHERS) else 0)
@@ -271,6 +277,9 @@ pub const SHUTDOWN_FLAGS = enum(u32) {
             | (if (o.SOFT_REBOOT == 1) @enumToInt(SHUTDOWN_FLAGS.SOFT_REBOOT) else 0)
             | (if (o.MOBILE_UI == 1) @enumToInt(SHUTDOWN_FLAGS.MOBILE_UI) else 0)
             | (if (o.ARSO == 1) @enumToInt(SHUTDOWN_FLAGS.ARSO) else 0)
+            | (if (o.CHECK_SAFE_FOR_SERVER == 1) @enumToInt(SHUTDOWN_FLAGS.CHECK_SAFE_FOR_SERVER) else 0)
+            | (if (o.VAIL_CONTAINER == 1) @enumToInt(SHUTDOWN_FLAGS.VAIL_CONTAINER) else 0)
+            | (if (o.SYSTEM_INITIATED == 1) @enumToInt(SHUTDOWN_FLAGS.SYSTEM_INITIATED) else 0)
         );
     }
 };
@@ -288,6 +297,9 @@ pub const SHUTDOWN_RESTART_BOOTOPTIONS = SHUTDOWN_FLAGS.RESTART_BOOTOPTIONS;
 pub const SHUTDOWN_SOFT_REBOOT = SHUTDOWN_FLAGS.SOFT_REBOOT;
 pub const SHUTDOWN_MOBILE_UI = SHUTDOWN_FLAGS.MOBILE_UI;
 pub const SHUTDOWN_ARSO = SHUTDOWN_FLAGS.ARSO;
+pub const SHUTDOWN_CHECK_SAFE_FOR_SERVER = SHUTDOWN_FLAGS.CHECK_SAFE_FOR_SERVER;
+pub const SHUTDOWN_VAIL_CONTAINER = SHUTDOWN_FLAGS.VAIL_CONTAINER;
+pub const SHUTDOWN_SYSTEM_INITIATED = SHUTDOWN_FLAGS.SYSTEM_INITIATED;
 
 pub const EXIT_WINDOWS_FLAGS = enum(u32) {
     HYBRID_SHUTDOWN = 4194304,
@@ -308,34 +320,6 @@ pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn ExitWindowsEx(
-    uFlags: EXIT_WINDOWS_FLAGS,
-    dwReason: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn LockWorkStation(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonCreate(
-    hWnd: ?HWND,
-    pwszReason: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonQuery(
-    hWnd: ?HWND,
-    pwszBuff: ?[*:0]u16,
-    pcchBuff: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonDestroy(
-    hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn InitiateSystemShutdownA(
     lpMachineName: ?PSTR,
@@ -406,6 +390,34 @@ pub extern "ADVAPI32" fn CheckForHiberboot(
     pHiberboot: ?*BOOLEAN,
     bClearFlag: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn ExitWindowsEx(
+    uFlags: EXIT_WINDOWS_FLAGS,
+    dwReason: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn LockWorkStation(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonCreate(
+    hWnd: ?HWND,
+    pwszReason: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonQuery(
+    hWnd: ?HWND,
+    pwszBuff: ?[*:0]u16,
+    pcchBuff: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonDestroy(
+    hWnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

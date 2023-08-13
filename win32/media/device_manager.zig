@@ -3727,9 +3727,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const ISpecifyPropertyPages = @import("../system/com.zig").ISpecifyPropertyPages;
+const ISpecifyPropertyPages = @import("../system/ole.zig").ISpecifyPropertyPages;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;

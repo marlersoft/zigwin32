@@ -242,9 +242,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
-const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
-const ISequentialStream = @import("../../storage/structured_storage.zig").ISequentialStream;
-const IStream = @import("../../storage/structured_storage.zig").IStream;
+const IDispatch = @import("../../system/com.zig").IDispatch;
+const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
+const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXpsOMPackageTarget = @import("../../storage/xps.zig").IXpsOMPackageTarget;
 const PWSTR = @import("../../foundation.zig").PWSTR;

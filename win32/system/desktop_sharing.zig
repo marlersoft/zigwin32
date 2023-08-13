@@ -128,7 +128,7 @@ pub const DISPID_RDPSRAPI_EVENT_VIEW_MOUSE_MOVE_RECEIVED = @as(u32, 701);
 pub const DISPID_RDPSRAPI_EVENT_VIEW_MOUSE_WHEEL_RECEIVED = @as(u32, 702);
 
 //--------------------------------------------------------------------------------
-// Section: Types (59)
+// Section: Types (58)
 //--------------------------------------------------------------------------------
 const CLSID_RDPViewer_Value = @import("../zig.zig").Guid.initString("32be5ed2-5c86-480f-a914-0ff8885a1b3f");
 pub const CLSID_RDPViewer = &CLSID_RDPViewer_Value;
@@ -1323,30 +1323,6 @@ pub const IRDPSRAPIViewer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IRDPViewerRenderingSurface_Value = @import("../zig.zig").Guid.initString("56bfce32-83e9-414d-82e8-f31d01c62cb5");
-pub const IID_IRDPViewerRenderingSurface = &IID_IRDPViewerRenderingSurface_Value;
-pub const IRDPViewerRenderingSurface = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetRenderingSurface: fn(
-            self: *const IRDPViewerRenderingSurface,
-            pRenderingSurface: ?*IUnknown,
-            surfaceWidth: i32,
-            surfaceHeight: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRDPViewerRenderingSurface_SetRenderingSurface(self: *const T, pRenderingSurface: ?*IUnknown, surfaceWidth: i32, surfaceHeight: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRDPViewerRenderingSurface.VTable, self.vtable).SetRenderingSurface(@ptrCast(*const IRDPViewerRenderingSurface, self), pRenderingSurface, surfaceWidth, surfaceHeight);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IRDPViewerInputSink_Value = @import("../zig.zig").Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
 pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
@@ -1869,7 +1845,7 @@ pub const IRDPSRAPISharingSession2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RDPENCOMAPI_CONSTANTS = enum(i32) {
+pub const __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001 = enum(i32) {
     MAX_CHANNEL_MESSAGE_SIZE = 1024,
     MAX_CHANNEL_NAME_LEN = 8,
     MAX_LEGACY_CHANNEL_MESSAGE_SIZE = 409600,
@@ -1878,13 +1854,13 @@ pub const RDPENCOMAPI_CONSTANTS = enum(i32) {
     CONN_INTERVAL = 50,
     // ATTENDEE_ID_DEFAULT = -1, this enum value conflicts with ATTENDEE_ID_EVERYONE
 };
-pub const CONST_MAX_CHANNEL_MESSAGE_SIZE = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_MESSAGE_SIZE;
-pub const CONST_MAX_CHANNEL_NAME_LEN = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_NAME_LEN;
-pub const CONST_MAX_LEGACY_CHANNEL_MESSAGE_SIZE = RDPENCOMAPI_CONSTANTS.MAX_LEGACY_CHANNEL_MESSAGE_SIZE;
-pub const CONST_ATTENDEE_ID_EVERYONE = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_EVERYONE;
-pub const CONST_ATTENDEE_ID_HOST = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_HOST;
-pub const CONST_CONN_INTERVAL = RDPENCOMAPI_CONSTANTS.CONN_INTERVAL;
-pub const CONST_ATTENDEE_ID_DEFAULT = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_EVERYONE;
+pub const CONST_MAX_CHANNEL_MESSAGE_SIZE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_CHANNEL_MESSAGE_SIZE;
+pub const CONST_MAX_CHANNEL_NAME_LEN = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_CHANNEL_NAME_LEN;
+pub const CONST_MAX_LEGACY_CHANNEL_MESSAGE_SIZE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_LEGACY_CHANNEL_MESSAGE_SIZE;
+pub const CONST_ATTENDEE_ID_EVERYONE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_EVERYONE;
+pub const CONST_ATTENDEE_ID_HOST = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_HOST;
+pub const CONST_CONN_INTERVAL = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.CONN_INTERVAL;
+pub const CONST_ATTENDEE_ID_DEFAULT = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_EVERYONE;
 
 pub const __ReferenceRemainingTypes__ = extern struct {
     __ctrlLevel__: CTRL_LEVEL,
@@ -1934,10 +1910,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

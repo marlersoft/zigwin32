@@ -14,6 +14,7 @@ pub const geolocation = @import("devices/geolocation.zig");
 pub const human_interface_device = @import("devices/human_interface_device.zig");
 pub const image_acquisition = @import("devices/image_acquisition.zig");
 pub const portable_devices = @import("devices/portable_devices.zig");
+pub const properties = @import("devices/properties.zig");
 pub const pwm = @import("devices/pwm.zig");
 pub const sensors = @import("devices/sensors.zig");
 pub const serial_communication = @import("devices/serial_communication.zig");

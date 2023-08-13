@@ -23,7 +23,6 @@ pub const FDICREATE_CPU_TYPE = enum(u32) {
 pub const cpu80286 = FDICREATE_CPU_TYPE.@"286";
 pub const cpu80386 = FDICREATE_CPU_TYPE.@"386";
 
-
 pub const ERF = extern struct {
     erfOper: i32,
     erfType: i32,
@@ -311,6 +310,7 @@ pub const PFNFDINOTIFY = fn(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 
+
 pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ach: [2]CHAR,
@@ -429,7 +429,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../system/system_services.zig").CHAR;
+const CHAR = @import("../foundation.zig").CHAR;
 const PSTR = @import("../foundation.zig").PSTR;
 
 test {

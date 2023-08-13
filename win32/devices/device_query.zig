@@ -454,10 +454,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const DEVPROPCOMPKEY = @import("../system/system_services.zig").DEVPROPCOMPKEY;
-const DEVPROPERTY = @import("../system/system_services.zig").DEVPROPERTY;
-const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
-const DEVPROPSTORE = @import("../system/system_services.zig").DEVPROPSTORE;
+const DEVPROPCOMPKEY = @import("../devices/properties.zig").DEVPROPCOMPKEY;
+const DEVPROPERTY = @import("../devices/properties.zig").DEVPROPERTY;
+const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
+const DEVPROPSTORE = @import("../devices/properties.zig").DEVPROPSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

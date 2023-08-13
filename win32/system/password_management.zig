@@ -66,7 +66,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../system/system_services.zig").CHAR;
+const CHAR = @import("../foundation.zig").CHAR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {

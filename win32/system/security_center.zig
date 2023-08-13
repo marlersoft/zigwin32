@@ -365,8 +365,8 @@ const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const IDispatch = @import("../system/com.zig").IDispatch;
+const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START_ROUTINE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {

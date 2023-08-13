@@ -21,7 +21,7 @@ pub const MAXUSHORT = @as(u32, 65535);
 pub const MAXULONG = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (31)
+// Section: Types (32)
 //--------------------------------------------------------------------------------
 pub const EXCEPTION_DISPOSITION = enum(i32) {
     ContinueExecution = 0,
@@ -33,15 +33,6 @@ pub const ExceptionContinueExecution = EXCEPTION_DISPOSITION.ContinueExecution;
 pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
 pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
 pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
-
-
-
-pub const COMPARTMENT_ID = enum(i32) {
-    UNSPECIFIED_COMPARTMENT_ID = 0,
-    DEFAULT_COMPARTMENT_ID = 1,
-};
-pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
-pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
 
 pub const SLIST_ENTRY = extern struct {
     Next: ?*SLIST_ENTRY,
@@ -59,12 +50,6 @@ pub const PROCESSOR_NUMBER = extern struct {
     Group: u16,
     Number: u8,
     Reserved: u8,
-};
-
-pub const GROUP_AFFINITY = extern struct {
-    Mask: usize,
-    Group: u16,
-    Reserved: [3]u16,
 };
 
 pub const EVENT_TYPE = enum(i32) {
@@ -86,11 +71,13 @@ pub const WAIT_TYPE = enum(i32) {
     Any = 1,
     Notification = 2,
     Dequeue = 3,
+    Dpc = 4,
 };
 pub const WaitAll = WAIT_TYPE.All;
 pub const WaitAny = WAIT_TYPE.Any;
 pub const WaitNotification = WAIT_TYPE.Notification;
 pub const WaitDequeue = WAIT_TYPE.Dequeue;
+pub const WaitDpc = WAIT_TYPE.Dpc;
 
 pub const STRING = extern struct {
     Length: u16,
@@ -104,15 +91,13 @@ pub const CSTRING = extern struct {
     Buffer: ?[*:0]const u8,
 };
 
-pub const UNICODE_STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: ?[*]u16,
-};
-
 pub const LIST_ENTRY = extern struct {
     Flink: ?*LIST_ENTRY,
     Blink: ?*LIST_ENTRY,
+};
+
+pub const SINGLE_LIST_ENTRY = extern struct {
+    Next: ?*SINGLE_LIST_ENTRY,
 };
 
 pub const RTL_BALANCED_NODE = extern struct {
@@ -239,6 +224,33 @@ pub const PhoneNT = SUITE_TYPE.PhoneNT;
 pub const MultiUserTS = SUITE_TYPE.MultiUserTS;
 pub const MaxSuiteType = SUITE_TYPE.MaxSuiteType;
 
+pub const COMPARTMENT_ID = enum(i32) {
+    UNSPECIFIED_COMPARTMENT_ID = 0,
+    DEFAULT_COMPARTMENT_ID = 1,
+};
+pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
+pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
+
+pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
+    Next: ?*EXCEPTION_REGISTRATION_RECORD,
+    Handler: ?EXCEPTION_ROUTINE,
+};
+
+pub const NT_TIB = extern struct {
+    ExceptionList: ?*EXCEPTION_REGISTRATION_RECORD,
+    StackBase: ?*c_void,
+    StackLimit: ?*c_void,
+    SubSystemTib: ?*c_void,
+    Anonymous: extern union {
+        FiberData: ?*c_void,
+        Version: u32,
+    },
+    ArbitraryUserPointer: ?*c_void,
+    Self: ?*NT_TIB,
+};
+
+
+
 
 
 pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
@@ -265,7 +277,7 @@ pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
     .X86 => extern union {
         Alignment: u64,
         Anonymous: extern struct {
-            Next: SLIST_ENTRY,
+            Next: SINGLE_LIST_ENTRY,
             Depth: u16,
             CpuId: u16,
         },
@@ -297,8 +309,46 @@ pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (0)
+// Section: Functions (7)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlInitializeSListHead(
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlFirstEntrySList(
+    ListHead: ?*const SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlInterlockedPopEntrySList(
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlInterlockedPushEntrySList(
+    ListHead: ?*SLIST_HEADER,
+    ListEntry: ?*SLIST_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+
+pub extern "ntdll" fn RtlInterlockedPushListSListEx(
+    ListHead: ?*SLIST_HEADER,
+    List: ?*SLIST_ENTRY,
+    ListEnd: ?*SLIST_ENTRY,
+    Count: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlInterlockedFlushSList(
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlQueryDepthSList(
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -314,13 +364,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
 const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
