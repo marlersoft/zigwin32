@@ -571,12 +571,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const LPARAM = @import("../foundation.zig").LPARAM;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+    pub const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
+
+}, else => struct { } };
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
 const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const BOOL = @import("../foundation.zig").BOOL;
-const LDT_ENTRY = @import("../system/diagnostics/debug.zig").LDT_ENTRY;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+    pub const LDT_ENTRY = @import("../system/diagnostics/debug.zig").LDT_ENTRY;
+
+}, else => struct { } };
 const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
 
 test {

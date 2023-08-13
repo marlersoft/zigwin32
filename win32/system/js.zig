@@ -644,14 +644,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const IDebugApplication64 = @import("../system/diagnostics/debug.zig").IDebugApplication64;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const IDebugApplication64 = @import("../system/diagnostics/debug.zig").IDebugApplication64;
+
+}, else => struct { } };
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_EVENT_MASK;
-const IDebugApplication32 = @import("../system/diagnostics/debug.zig").IDebugApplication32;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+    pub const IDebugApplication32 = @import("../system/diagnostics/debug.zig").IDebugApplication32;
+
+}, else => struct { } };
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

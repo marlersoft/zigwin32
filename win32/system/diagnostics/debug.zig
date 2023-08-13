@@ -1118,8 +1118,76 @@ pub const DBGKD_SIMULATION_EXDI = @as(i32, 1);
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
-// TODO: not generating this type because it is causing some sort of error
-pub const CONTEXT = usize;
+pub const CONTEXT = extern struct {
+    P1Home: u64,
+    P2Home: u64,
+    P3Home: u64,
+    P4Home: u64,
+    P5Home: u64,
+    P6Home: u64,
+    ContextFlags: u32,
+    MxCsr: u32,
+    SegCs: u16,
+    SegDs: u16,
+    SegEs: u16,
+    SegFs: u16,
+    SegGs: u16,
+    SegSs: u16,
+    EFlags: u32,
+    Dr0: u64,
+    Dr1: u64,
+    Dr2: u64,
+    Dr3: u64,
+    Dr6: u64,
+    Dr7: u64,
+    Rax: u64,
+    Rcx: u64,
+    Rdx: u64,
+    Rbx: u64,
+    Rsp: u64,
+    Rbp: u64,
+    Rsi: u64,
+    Rdi: u64,
+    R8: u64,
+    R9: u64,
+    R10: u64,
+    R11: u64,
+    R12: u64,
+    R13: u64,
+    R14: u64,
+    R15: u64,
+    Rip: u64,
+    Anonymous: extern union {
+        FltSave: XSAVE_FORMAT,
+        Anonymous: extern struct {
+            Header: [2]M128A,
+            Legacy: [8]M128A,
+            Xmm0: M128A,
+            Xmm1: M128A,
+            Xmm2: M128A,
+            Xmm3: M128A,
+            Xmm4: M128A,
+            Xmm5: M128A,
+            Xmm6: M128A,
+            Xmm7: M128A,
+            Xmm8: M128A,
+            Xmm9: M128A,
+            Xmm10: M128A,
+            Xmm11: M128A,
+            Xmm12: M128A,
+            Xmm13: M128A,
+            Xmm14: M128A,
+            Xmm15: M128A,
+        },
+    },
+    VectorRegister: [26]M128A,
+    VectorControl: u64,
+    DebugControl: u64,
+    LastBranchToRip: u64,
+    LastBranchFromRip: u64,
+    LastExceptionToRip: u64,
+    LastExceptionFromRip: u64,
+};
 
 }, else => struct { } };
 
@@ -1486,8 +1554,55 @@ pub const PVECTORED_EXCEPTION_HANDLER = fn(
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
-// TODO: not generating this type because it is causing some sort of error
-pub const CONTEXT = usize;
+pub const CONTEXT = extern struct {
+    ContextFlags: u32,
+    Cpsr: u32,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            X0: u64,
+            X1: u64,
+            X2: u64,
+            X3: u64,
+            X4: u64,
+            X5: u64,
+            X6: u64,
+            X7: u64,
+            X8: u64,
+            X9: u64,
+            X10: u64,
+            X11: u64,
+            X12: u64,
+            X13: u64,
+            X14: u64,
+            X15: u64,
+            X16: u64,
+            X17: u64,
+            X18: u64,
+            X19: u64,
+            X20: u64,
+            X21: u64,
+            X22: u64,
+            X23: u64,
+            X24: u64,
+            X25: u64,
+            X26: u64,
+            X27: u64,
+            X28: u64,
+            Fp: u64,
+            Lr: u64,
+        },
+        X: [31]u64,
+    },
+    Sp: u64,
+    Pc: u64,
+    V: [32]ARM64_NT_NEON128,
+    Fpcr: u32,
+    Fpsr: u32,
+    Bcr: [8]u32,
+    Bvr: [8]u64,
+    Wcr: [2]u32,
+    Wvr: [2]u64,
+};
 
 }, else => struct { } };
 
@@ -1667,8 +1782,33 @@ pub const LOADED_IMAGE = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
-// TODO: not generating this type because it is causing some sort of error
-pub const CONTEXT = usize;
+pub const CONTEXT = extern struct {
+    ContextFlags: u32,
+    Dr0: u32,
+    Dr1: u32,
+    Dr2: u32,
+    Dr3: u32,
+    Dr6: u32,
+    Dr7: u32,
+    FloatSave: FLOATING_SAVE_AREA,
+    SegGs: u32,
+    SegFs: u32,
+    SegEs: u32,
+    SegDs: u32,
+    Edi: u32,
+    Esi: u32,
+    Ebx: u32,
+    Edx: u32,
+    Ecx: u32,
+    Eax: u32,
+    Ebp: u32,
+    Eip: u32,
+    SegCs: u32,
+    EFlags: u32,
+    Esp: u32,
+    SegSs: u32,
+    ExtendedRegisters: [512]u8,
+};
 
 }, else => struct { } };
 
@@ -49376,33 +49516,81 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (44)
+// Section: Imports (48)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64 => struct {
+
+    pub const M128A = @import("../../system/system_services.zig").M128A;
+
+}, else => struct { } };
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+    pub const FLOATING_SAVE_AREA = @import("../../system/kernel.zig").FLOATING_SAVE_AREA;
+
+}, else => struct { } };
 const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
 const IServiceProvider = @import("../../system/system_services.zig").IServiceProvider;
 const CHAR = @import("../../system/system_services.zig").CHAR;
-const UNWIND_HISTORY_TABLE = @import("../../system/system_services.zig").UNWIND_HISTORY_TABLE;
-const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
-const KNONVOLATILE_CONTEXT_POINTERS = @import("../../system/system_services.zig").KNONVOLATILE_CONTEXT_POINTERS;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const UNWIND_HISTORY_TABLE = @import("../../system/system_services.zig").UNWIND_HISTORY_TABLE;
+
+}, else => struct { } };
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const KNONVOLATILE_CONTEXT_POINTERS = @import("../../system/system_services.zig").KNONVOLATILE_CONTEXT_POINTERS;
+
+}, else => struct { } };
+const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const BOOL = @import("../../foundation.zig").BOOL;
-const PGET_RUNTIME_FUNCTION_CALLBACK = @import("../../system/system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64 => struct {
+
+    pub const XSAVE_FORMAT = @import("../../system/system_services.zig").XSAVE_FORMAT;
+
+}, else => struct { } };
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const PGET_RUNTIME_FUNCTION_CALLBACK = @import("../../system/system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK;
+
+}, else => struct { } };
 const PROCESSOR_ARCHITECTURE = @import("../../system/deployment_services.zig").PROCESSOR_ARCHITECTURE;
 const DISPPARAMS = @import("../../system/ole_automation.zig").DISPPARAMS;
 const ILockBytes = @import("../../storage/structured_storage.zig").ILockBytes;
 const TYPEDESC = @import("../../system/ole_automation.zig").TYPEDESC;
-const EXCEPTION_ROUTINE = @import("../../system/kernel.zig").EXCEPTION_ROUTINE;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const EXCEPTION_ROUTINE = @import("../../system/kernel.zig").EXCEPTION_ROUTINE;
+
+}, else => struct { } };
 const CADWORD = @import("../../system/com.zig").CADWORD;
 const LIST_ENTRY = @import("../../system/kernel.zig").LIST_ENTRY;
 const ITypeInfo = @import("../../system/ole_automation.zig").ITypeInfo;
 const IHTMLDocument2 = @import("../../web/ms_html.zig").IHTMLDocument2;
 const FARPROC = @import("../../foundation.zig").FARPROC;
 const MEMORY_BASIC_INFORMATION64 = @import("../../system/system_services.zig").MEMORY_BASIC_INFORMATION64;
-const IMAGE_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY;
-const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X64 => struct {
+
+    pub const IMAGE_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+}, else => struct { } };
+usingnamespace switch (@import("../../zig.zig").arch) {
+.Arm64 => struct {
+
+    pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+
+}, else => struct { } };
 const IStream = @import("../../storage/structured_storage.zig").IStream;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const EXCEPINFO = @import("../../system/ole_automation.zig").EXCEPINFO;
@@ -49410,6 +49598,12 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const LPTHREAD_START_ROUTINE = @import("../../system/system_services.zig").LPTHREAD_START_ROUTINE;
 const BSTR = @import("../../foundation.zig").BSTR;
 const PSTR = @import("../../foundation.zig").PSTR;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.Arm64 => struct {
+
+    pub const ARM64_NT_NEON128 = @import("../../system/system_services.zig").ARM64_NT_NEON128;
+
+}, else => struct { } };
 const CALPOLESTR = @import("../../system/com.zig").CALPOLESTR;
 const HWND = @import("../../foundation.zig").HWND;
 const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;

@@ -16079,7 +16079,12 @@ const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const DD_CALLBACKS = @import("../ui/display_devices.zig").DD_CALLBACKS;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
+
+}, else => struct { } };
 const PERBANDINFO = @import("../ui/display_devices.zig").PERBANDINFO;
 const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
@@ -16101,7 +16106,12 @@ const ACE_HEADER = @import("../security.zig").ACE_HEADER;
 const DD_HALINFO = @import("../ui/display_devices.zig").DD_HALINFO;
 const D3DLIGHTTYPE = @import("../graphics/direct3d9.zig").D3DLIGHTTYPE;
 const DEVINFO = @import("../ui/display_devices.zig").DEVINFO;
-const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
+usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+    pub const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
+
+}, else => struct { } };
 const GDIINFO = @import("../ui/display_devices.zig").GDIINFO;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const JOB_OBJECT_UILIMIT = @import("../system/job_objects.zig").JOB_OBJECT_UILIMIT;
